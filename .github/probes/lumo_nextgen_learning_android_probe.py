@@ -761,6 +761,83 @@ class LearningProbe:
             self.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
             time.sleep(.5)
 
+    def _pull_recording(self, name, remote, local, owned):
+        """At most two transfers of one stopped file, within the original 90 s.
+
+        A transfer abort may be retried; a missing/changing recording cannot.
+        Every partial copy and transport error is retained. No UI or recorder
+        action is repeated, and the caller still requires a positive video.
+        """
+        began = time.monotonic()
+        deadline = began + 90
+        proof = {"status": "RUNNING", "remote": remote, "owned_recorder_pid": owned,
+                 "maximum_seconds": 90, "maximum_transfers": 2, "attempts": [],
+                 "remote_observations": [], "recording_or_ui_repeated": False}
+        self.result.setdefault("recording_transfers", []).append(proof)
+
+        def remaining(limit=90):
+            left = deadline - time.monotonic()
+            require(left > 0, "Recording transfer exceeded its original 90-second budget")
+            return min(limit, left)
+
+        def remote_identity(stage):
+            record = {"stage": stage}
+            proof["remote_observations"].append(record)
+            record["screenrecord_pids"] = self.base.adb(
+                "shell", "pidof", "screenrecord", check=False, timeout=remaining(5))
+            pids = record["screenrecord_pids"].split()
+            require(all(pid.isdigit() for pid in pids) and owned not in pids,
+                    "Owned recorder is still running or its state is unobservable")
+            record["size_output"] = self.base.adb(
+                "shell", "toybox", "stat", "-c", "%s", remote, timeout=remaining(5))
+            require(re.fullmatch(r"[1-9][0-9]*", record["size_output"].strip()) is not None,
+                    "Stopped recording has no positive remote size")
+            record["sha256_output"] = self.base.adb(
+                "shell", "sha256sum", remote, timeout=remaining(8))
+            match = re.fullmatch(r"([0-9a-f]{64})\s+" + re.escape(remote), record["sha256_output"].strip())
+            require(match is not None, "Stopped recording has no unambiguous remote SHA-256")
+            remaining()
+            return {"bytes": int(record["size_output"].strip()), "sha256": match[1]}
+
+        try:
+            require(not local.exists(), "Refusing to replace an existing recording")
+            expected = remote_identity("before-transfer")
+            proof["expected"] = expected
+            for attempt in (1, 2):
+                partial = local.with_name(local.name + f".pull-{attempt}.partial")
+                require(not partial.exists(), "Refusing to replace an earlier recording transfer")
+                record = {"attempt": attempt, "local": partial.name}
+                proof["attempts"].append(record)
+                try:
+                    record["adb_output"] = self.base.adb("pull", remote, str(partial), timeout=remaining())
+                except (RuntimeError, subprocess.TimeoutExpired) as error:
+                    record.update(status="TRANSFER_FAILED", error=str(error), error_type=type(error).__name__)
+                    if partial.is_file():
+                        record.update(retained_partial=partial.name, bytes=partial.stat().st_size, sha256=digest(partial))
+                    self.save(name + "-video-transfer", proof)
+                    if attempt == 2 or time.monotonic() >= deadline:
+                        raise
+                    require(remote_identity("after-failed-transfer") == expected,
+                            "Remote recording changed after the aborted transfer")
+                    continue
+                require(partial.is_file(), "Successful transfer did not produce a local recording")
+                actual = {"bytes": partial.stat().st_size, "sha256": digest(partial)}
+                record.update(status="TRANSFER_COMPLETE", **actual)
+                require(actual == expected, "Local recording differs from the stopped remote bytes")
+                require(remote_identity("after-complete-transfer") == expected,
+                        "Remote recording changed during transfer")
+                remaining()
+                partial.rename(local)
+                record.update(status="VERIFIED_TRANSFER", verified_file=local.name)
+                proof.update(status="VERIFIED_TRANSFER", file=local.name, **actual)
+                return
+        except Exception as error:
+            proof.update(status="FAIL", error=str(error), error_type=type(error).__name__)
+            raise
+        finally:
+            proof["elapsed_seconds"] = round(time.monotonic() - began, 3)
+            self.save(name + "-video-transfer", proof)
+
     @contextmanager
     def recording(self, tag):
         """Retain real short video segments; screenrecord's 180 s limit is explicit."""
@@ -794,7 +871,7 @@ class LearningProbe:
                 log.close()
                 if owned:
                     local = self.out / (name + ".mp4")
-                    self.base.adb("pull", remote, str(local), timeout=90)
+                    self._pull_recording(name, remote, local, owned)
                     metadata = read_json(self.base.command("ffprobe", "-v", "error", "-show_streams", "-show_format",
                                                           "-of", "json", str(local)))
                     self.save(name + "-ffprobe", metadata)
@@ -805,6 +882,7 @@ class LearningProbe:
                              "duration_seconds": float(metadata["format"]["duration"]),
                              "width": videos[0]["width"], "height": videos[0]["height"],
                              "audio_recorded": False, "maximum_seconds": 180,
+                             "transfer_verification": name + "-video-transfer.json",
                              "block_elapsed_seconds": round(capture_block_seconds, 2),
                              "whole_block_within_recording_limit": capture_block_seconds < 180}
                     self.recordings.append(entry)

@@ -26,6 +26,155 @@ probe = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(probe)
 
 
+class RecordingTransferTest(unittest.TestCase):
+    """Original ADB error plus explicitly simulated transport; no Android replay."""
+
+    fixtures = Path(__file__).parent / 'fixtures/nextgen_recording_pull_43811505799'
+
+    def exercise(self, mode='first-transfer-aborts'):
+        original = json.loads((self.fixtures / '0091-banana-guided-navigation-recording-error.json').read_text())
+        clock, running, starts, pulls, body_calls, commands = [0.0], [False], [], [], [], []
+        payload = b'Constructed complete transport bytes, not an Android video.' * 10
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        item = object.__new__(probe.LearningProbe)
+        item.out, item.result, item.counter, item.recordings = Path(directory.name), {
+            'run_id': '0a847067d3a043f5ae658c14f37de61c'}, 90, []
+
+        class Process:
+            def __init__(self, command, **kwargs):
+                starts.append(command)
+                running[0] = True
+            def wait(self, **kwargs): return 0
+
+        def adb(*args, **kwargs):
+            clock[0] += .01
+            commands.append(args)
+            if args == ('shell', 'pidof', 'screenrecord'):
+                return '4321' if running[0] else ''
+            if args == ('shell', 'kill', '-2', '4321'):
+                running[0] = mode == 'still-recording'
+                return ''
+            if args[:5] == ('shell', 'toybox', 'stat', '-c', '%s'):
+                if mode == 'missing-remote':
+                    raise RuntimeError('Constructed missing stopped recording')
+                if mode == 'empty-remote':
+                    return '0'
+                return str(len(payload) + (1 if mode == 'changed-remote' and pulls else 0))
+            if args[:2] == ('shell', 'sha256sum'):
+                if mode == 'invalid-remote-hash':
+                    return 'not a hash'
+                data = payload + b'x' if mode == 'changed-remote' and pulls else payload
+                return hashlib.sha256(data).hexdigest() + '  ' + args[2]
+            if args[0] == 'pull':
+                pulls.append(args)
+                target = Path(args[2])
+                aborted = mode in ('persistent-abort', 'expired') or (
+                    len(pulls) == 1 and mode in ('first-transfer-aborts', 'changed-remote'))
+                target.write_bytes(payload[:7] if aborted or mode == 'truncated-success' else payload)
+                if aborted:
+                    if mode == 'expired':
+                        clock[0] += 90
+                    raise RuntimeError(original['error'])
+                return 'Constructed complete transfer; no Android execution'
+            raise AssertionError(args)
+
+        def command(*args):
+            self.assertEqual(args[0], 'ffprobe')
+            # This is explicitly a constructed decoder boundary. The existing
+            # Resize/Foreground tests retain the real zero-duration MP4 gate.
+            return json.dumps({'streams': [{'codec_type': 'video', 'width': 1080, 'height': 2340}],
+                               'format': {'duration': '1.5'}})
+
+        item.base = SimpleNamespace(adb=adb, command=command)
+        error = None
+        with patch.object(probe, 'subprocess', SimpleNamespace(
+                Popen=Process, TimeoutExpired=subprocess.TimeoutExpired, STDOUT=subprocess.STDOUT)), \
+             patch.object(probe.time, 'monotonic', side_effect=lambda: clock[0]), \
+             patch.object(probe.time, 'sleep', side_effect=lambda seconds: clock.__setitem__(0, clock[0] + seconds)):
+            try:
+                with item.recording('banana-guided-navigation'):
+                    body_calls.append('the sole UI block')
+            except Exception as caught:
+                error = caught
+        return item, starts, pulls, body_calls, commands, error
+
+    def test_original_transfer_failure_does_not_claim_a_missing_recording_or_start_failure(self):
+        manifest = json.loads((self.fixtures / 'manifest.json').read_text())
+        for name, record in manifest['files'].items():
+            raw = (self.fixtures / name).read_bytes()
+            self.assertEqual(len(raw), record['bytes'])
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), record['sha256'])
+        original = json.loads((self.fixtures / 'reference-android-result.json').read_text())
+        failure = json.loads((self.fixtures / '0091-banana-guided-navigation-recording-error.json').read_text())
+        self.assertEqual(original['status'], 'FAIL')
+        self.assertEqual(original['recording_errors'], [failure])
+        self.assertIsNone(failure['primary_error'])
+        self.assertIn("('adb', 'pull',", failure['error'])
+        self.assertIn('[  7%]', failure['error'])
+        self.assertNotIn('No such file', failure['error'])
+        self.assertEqual((self.fixtures / '0091-banana-guided-navigation-screenrecord.txt').read_bytes(), b'')
+
+    def test_aborted_transfer_retries_same_completed_bytes_without_replaying_the_ui_or_recorder(self):
+        item, starts, pulls, body, commands, error = self.exercise()
+        self.assertIsNone(error)
+        self.assertEqual(len(starts), 1)
+        self.assertEqual(body, ['the sole UI block'])
+        self.assertEqual(len(pulls), 2)
+        self.assertEqual(pulls[0][1], pulls[1][1])
+        self.assertNotEqual(pulls[0][2], pulls[1][2])
+        self.assertTrue(Path(pulls[0][2]).is_file(), 'Original partial transfer must remain')
+        self.assertEqual(Path(pulls[0][2]).read_bytes(), b'Constru')
+        self.assertEqual(len(item.recordings), 1)
+        self.assertEqual(commands.count(('shell', 'kill', '-2', '4321')), 1)
+        transfer = item.result['recording_transfers'][0]
+        self.assertEqual(transfer['status'], 'VERIFIED_TRANSFER')
+        self.assertEqual(transfer['maximum_seconds'], 90)
+        self.assertLess(transfer['elapsed_seconds'], 90)
+        self.assertIn('[  7%]', transfer['attempts'][0]['error'])
+        self.assertEqual(transfer['sha256'], item.recordings[0]['sha256'])
+        self.assertFalse(transfer['recording_or_ui_repeated'])
+
+    def test_first_complete_transfer_needs_no_retry_and_keeps_full_identity(self):
+        item, starts, pulls, body, commands, error = self.exercise('complete')
+        self.assertIsNone(error)
+        self.assertEqual(len(pulls), 1)
+        self.assertEqual(len(starts), 1)
+        self.assertEqual(len(body), 1)
+        transfer = item.result['recording_transfers'][0]
+        self.assertEqual(transfer['expected']['bytes'], item.recordings[0]['bytes'])
+        self.assertEqual(transfer['expected']['sha256'], item.recordings[0]['sha256'])
+
+    def test_two_aborts_preserve_both_partials_and_still_fail(self):
+        item, starts, pulls, body, commands, error = self.exercise('persistent-abort')
+        self.assertIsInstance(error, RuntimeError)
+        self.assertIn('[  7%]', str(error))
+        self.assertEqual(len(pulls), 2)
+        self.assertTrue(all(Path(call[2]).read_bytes() == b'Constru' for call in pulls))
+        self.assertEqual(item.recordings, [])
+        self.assertEqual(item.result['recording_transfers'][0]['status'], 'FAIL')
+
+    def test_real_recording_or_identity_failures_are_not_retried(self):
+        for mode, count in (('still-recording', 0), ('missing-remote', 0), ('empty-remote', 0),
+                            ('invalid-remote-hash', 0), ('changed-remote', 1), ('truncated-success', 1)):
+            with self.subTest(mode=mode):
+                item, starts, pulls, body, commands, error = self.exercise(mode)
+                self.assertIsInstance(error, RuntimeError)
+                self.assertEqual(len(pulls), count)
+                self.assertEqual(len(starts), 1)
+                self.assertEqual(len(body), 1)
+                self.assertEqual(item.recordings, [])
+                self.assertNotIn('videos', item.result)
+
+    def test_expired_original_budget_never_buys_a_second_transfer(self):
+        item, starts, pulls, body, commands, error = self.exercise('expired')
+        self.assertIsInstance(error, RuntimeError)
+        self.assertIn('[  7%]', str(error))
+        self.assertEqual(len(pulls), 1)
+        self.assertEqual(item.recordings, [])
+        self.assertEqual(item.result['recording_transfers'][0]['maximum_seconds'], 90)
+
+
 class ResizeRecordingTest(unittest.TestCase):
     """One unchanged Android MP4 plus constructed call-order schedules, not a device replay."""
 
@@ -66,6 +215,10 @@ class ResizeRecordingTest(unittest.TestCase):
                 if args == ('shell', 'kill', '-2', '4321'):
                     running = False
                     return ''
+                if args[:5] == ('shell', 'toybox', 'stat', '-c', '%s'):
+                    return str(self.fixture.stat().st_size)
+                if args[:2] == ('shell', 'sha256sum'):
+                    return probe.digest(self.fixture) + '  ' + args[2]
                 if args[0] == 'pull':
                     shutil.copyfile(self.fixture, args[2])
                     return 'copied unchanged fixture, no Android transport'
@@ -289,6 +442,10 @@ class ForegroundTransitionTest(unittest.TestCase):
             if args == ('shell', 'kill', '-2', '4321'):
                 running = False
                 return ''
+            if args[:5] == ('shell', 'toybox', 'stat', '-c', '%s'):
+                return str((self.fixtures / '0270-words-pause-return.mp4').stat().st_size)
+            if args[:2] == ('shell', 'sha256sum'):
+                return probe.digest(self.fixtures / '0270-words-pause-return.mp4') + '  ' + args[2]
             if args[0] == 'pull':
                 shutil.copyfile(self.fixtures / '0270-words-pause-return.mp4', args[2])
                 return 'copied original fixture; no Android transport'
