@@ -529,8 +529,9 @@ class _LearningQuestionCoachState extends State<LearningQuestionCoach>
                     'Frag Lumo', Icons.forum_outlined, _current ? _talk : null,
                     id: 'question-lumo-talk'),
                 if (!widget.isExam &&
-                    widget.taskId.isNotEmpty &&
-                    widget.prompt.trim().isNotEmpty)
+                    _published != null &&
+                    NativeLearningActivity.fromCompanionContext(_published!) !=
+                        null)
                   _button('Mit Lumo in 3D', Icons.view_in_ar_outlined,
                       _current ? _openNative : null,
                       id: 'question-lumo-native'),

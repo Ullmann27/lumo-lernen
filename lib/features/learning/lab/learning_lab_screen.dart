@@ -877,6 +877,17 @@ class _LearningLabScreenState extends State<LearningLabScreen>
     }
     final problemId = _current.id;
     final phase = _phase;
+    final activity = NativeLearningActivity.fromLabProblem(
+      _current,
+      visiblePrompt:
+          phase == _Phase.build ? _current.guidedPrompt : _current.prompt,
+    );
+    if (activity == null) {
+      setState(() => _feedback =
+          'Dieses Modell bleibt in der Lernaufgabe. '
+          'Hier kannst du die Teile weiter selbst bewegen.');
+      return;
+    }
     _discardSpeechCandidate();
     unawaited(_stopSpeech());
     // Assistance is marked synchronously, before checkpoint/platform I/O.
@@ -893,11 +904,8 @@ class _LearningLabScreenState extends State<LearningLabScreen>
     _publish();
     _event(LumoLearningEventKind.hintRequested);
     _event(LumoLearningEventKind.hintAccepted);
-    final task = _published;
-    final activity =
-        task == null ? null : NativeLearningActivity.fromCompanionContext(task);
     try {
-      if (activity == null || !await _checkpoint()) return;
+      if (!await _checkpoint()) return;
       if (!mounted ||
           !_active ||
           !_foreground ||
@@ -906,8 +914,8 @@ class _LearningLabScreenState extends State<LearningLabScreen>
           !_coach.ownsCurrentTask) {
         return;
       }
-      // All six Lab modes retain their exact current prompt/choices in the
-      // bounded task_card. No second evaluator or guessed subject model.
+      // Each checked Lab problem maps to its concrete spatial model.
+      // No generic task_card and no second evaluator or guessed answer.
       await launchLumo3D(context,
           scene: 'learning',
           appState: widget.appState,
@@ -1192,8 +1200,17 @@ class _LearningLabScreenState extends State<LearningLabScreen>
   Widget _commands() {
     final voice = widget.appState.state.settings.voiceEnabled;
     return Wrap(spacing: 8, runSpacing: 8, children: [
-      _command('lab-open-3d', Icons.view_in_ar_rounded, 'Mit Lumo in 3D',
-          _editable ? () => unawaited(_openNativeLearning()) : null),
+      if (!_loading &&
+          !_invalid &&
+          NativeLearningActivity.fromLabProblem(
+                _current,
+                visiblePrompt: _phase == _Phase.build
+                    ? _current.guidedPrompt
+                    : _current.prompt,
+              ) !=
+              null)
+        _command('lab-open-3d', Icons.view_in_ar_rounded, 'Mit Lumo in 3D',
+            _editable ? () => unawaited(_openNativeLearning()) : null),
       _command('lab-help', Icons.lightbulb_outline, 'Hilf mir',
           _editable ? () => _coach.request(LumoLearningAction.hint) : null),
       _command(
