@@ -1,0 +1,166 @@
+{
+  "testedCommit": "ff8243d80b68065c9e97b05c4fe1025b59683bf0",
+  "testedTree": "98de24a985c60769c81daa61b05fe19803715d36",
+  "parent": "c32061ee51bdad88579c7faefe8438f712eed26d",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "newFilesTested": [
+    {
+      "path": ".github/probes/lumo_nextgen_2032_runtime_cases.json",
+      "bytes": 1023,
+      "sha256": "349bda32b7093679ce5cb4477f83fa2241fe9fbc840cf2760131bb10b7bfae21"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2032_runtime_cases_android_probe.py",
+      "bytes": 38617,
+      "sha256": "9d75fcb4d3316921eb38b914553e70efd62e4c4867dedb68cc3e6474ac527157"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2032-runtime-cases.yml",
+      "bytes": 5058,
+      "sha256": "5597d8e33b9d6c4bc518bc0ce5d989eb833641ee4e6e1fc7f0fbd485d474880c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0450-pattern-observed-core-answer-cards.xml",
+      "bytes": 33214,
+      "sha256": "a363ba8d012c2e9fff8bc9ce50eea0f7a2440777f5e1512cc8aeb3a320609a82"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0451-pattern-observed-core-answer-cards.xml",
+      "bytes": 30617,
+      "sha256": "0f3926613b837a762cbcc0149237e6d5ebed04888c7f41e1ca6b7626e1a00e78"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0452-pattern-observed-core-answer-cards.xml",
+      "bytes": 30615,
+      "sha256": "5c78afa90f6e8ad330677d35f63c6cdb2ab0cc823402c7f36174b6e7ac05ba43"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0453-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0454-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0455-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0456-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0457-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/README.md",
+      "bytes": 1065,
+      "sha256": "2071eac827ffa41cb44642574fb5476e86e3d6e2fd760ccfced28d441794f660"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/manifest.json",
+      "bytes": 2441,
+      "sha256": "3cd4cccb462aa37c8cd5572e3135baac4af28f189f4182dbfd7d2363a22bf314"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/observed-subcases.json",
+      "bytes": 46400,
+      "sha256": "c5a7daabd169642ccb47c10c938b067a56d7127fb3dc09503da81922e40b32fc"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2032_runtime_cases.py",
+      "bytes": 18927,
+      "sha256": "19f11808beff092ffddec2ef3f3740ec1c987319e7dee2fc5d74f4cf8a62990f"
+    }
+  ],
+  "unchangedHistoricalAndCurrentFiles": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 47419,
+      "sha256": "97017f2121fb47f2ada40bf108b26b76fd5101fe30d6689d48b2057fd7d469be",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "bytes": 26339,
+      "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "bytes": 44802,
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 92469,
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "bytes": 7595,
+      "sha256": "81efab46dbb85c4d22745bbfbf637ea5389548cb19508ec424948c2bb221c449",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_native_stop.py",
+      "bytes": 10248,
+      "sha256": "2d8e70a2ab3e9a8d0756b6a20341d5d639833c9854e4e087556cf81bb2776b56",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2031-runtime-cases.yml",
+      "bytes": 5673,
+      "sha256": "a98ff0d6dd6a4895587665892e61c1cc1f05c8fd345df407f69cee48150fbdbd",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases.json",
+      "bytes": 411,
+      "sha256": "42e137bf9fe7a8cbf7c38b17b20d72dde44dcd4c0e0bcf1dc272f66b02c562ae",
+      "equalToApkSource": true
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "bytes": 11429,
+      "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441",
+      "equalToApkSource": true
+    }
+  ],
+  "red": {
+    "method": "ReferenceProbe.submit_pattern_answer",
+    "fixtureSequence": "0450–0457 actual Android XML",
+    "invocation": "LUMO_2032_HEADER_BASELINE=1 python3 -B -m unittest tools.android_qa.tests.test_nextgen_2032_runtime_cases.PatternXmlTests.test_recorded_multiline_heading_reaches_one_explicit_domain_submission -v",
+    "expectedExit": 1,
+    "actualExit": 1,
+    "result": "0 explicit Core submissions instead of1; no setup error"
+  },
+  "green": {
+    "newModuleTests": 13,
+    "joinedTests": 64,
+    "joinedModules": [
+      "test_nextgen_2032_runtime_cases",
+      "test_nextgen_2031_runtime_cases",
+      "test_nextgen_2031_native_runtime_cases"
+    ]
+  },
+  "syntax": {
+    "pythonAST": "PASS",
+    "yaml": "PASS",
+    "bashBlocks": 6,
+    "cliHelpCommands": 4
+  },
+  "newAndroidRun": false,
+  "remoteActions": false,
+  "releaseEffect": false
+}

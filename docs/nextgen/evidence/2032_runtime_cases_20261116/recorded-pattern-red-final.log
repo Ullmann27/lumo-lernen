@@ -1,0 +1,14 @@
+test_recorded_multiline_heading_reaches_one_explicit_domain_submission (tools.android_qa.tests.test_nextgen_2032_runtime_cases.PatternXmlTests.test_recorded_multiline_heading_reaches_one_explicit_domain_submission) ... FAIL
+
+======================================================================
+FAIL: test_recorded_multiline_heading_reaches_one_explicit_domain_submission (tools.android_qa.tests.test_nextgen_2032_runtime_cases.PatternXmlTests.test_recorded_multiline_heading_reaches_one_explicit_domain_submission)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-2032-runtime-cases/tools/android_qa/tests/test_nextgen_2032_runtime_cases.py", line 165, in test_recorded_multiline_heading_reaches_one_explicit_domain_submission
+    self.assertEqual(len(harness.touches), 1, "Recorded current cards must reach exactly one explicit answer")
+AssertionError: 0 != 1 : Recorded current cards must reach exactly one explicit answer
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures=1)

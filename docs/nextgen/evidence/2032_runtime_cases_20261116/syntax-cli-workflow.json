@@ -1,0 +1,28 @@
+{
+  "pythonAST": "PASS",
+  "yaml": "PASS",
+  "bashSyntaxBlocks": [
+    "Verify unchanged source boundary and download immutable APK 2032",
+    "Prepare observed UI readers and the same software renderer",
+    "Check the inherited and current supplemental boundaries",
+    "Start the observed software display",
+    "Run additional cases with a fresh fictional profile",
+    "Require all four current observed cases"
+  ],
+  "cliHelp": [
+    "root",
+    "download",
+    "run",
+    "verify"
+  ],
+  "githubPermissions": {
+    "contents": "read",
+    "actions": "read"
+  },
+  "workflowCommands": [
+    "python3 .github/probes/lumo_nextgen_2032_runtime_cases_android_probe.py download --candidate candidate/x86 --out evidence/download --qa-commit \"$GITHUB_SHA\" --workflow-run-id \"$GITHUB_RUN_ID\"",
+    ".probe-venv/bin/python .github/probes/lumo_nextgen_2032_runtime_cases_android_probe.py run --candidate candidate/x86 --download-evidence evidence/download --qa-commit \"$GITHUB_SHA\" --workflow-run-id \"$GITHUB_RUN_ID\" --out evidence/android/runtime-cases",
+    ".probe-venv/bin/python .github/probes/lumo_nextgen_2032_runtime_cases_android_probe.py verify --result evidence/android/runtime-cases/runtime-cases-result.json --qa-commit \"$GITHUB_SHA\" --workflow-run-id \"$GITHUB_RUN_ID\""
+  ],
+  "networkOrAndroidActionsExecuted": false
+}

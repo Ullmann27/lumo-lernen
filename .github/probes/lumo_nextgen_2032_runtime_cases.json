@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "sourceBuildRun": 43837592237,
+  "sourceValidateJob": 133197989015,
+  "sourceBuildJob": 133206155437,
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "versionName": "0.13.20",
+  "versionCode": 2032,
+  "certificate": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "pckSha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+  "cases": [
+    "numeric_wrong_then_correct",
+    "flutter_switch_during_syllable_playback",
+    "native_banana_slower",
+    "native_pattern_then_explicit_core_answer"
+  ],
+  "x86Artifact": {
+    "id": 14213246542,
+    "name": "lumo-nextgen-x86",
+    "zipBytes": 538205955,
+    "zipSha256": "d2cd0e5fd84fd963108a33e1ef4d84995c10f2139071984374d30e56ffb3fdb3",
+    "apkBytes": 538191855,
+    "apkSha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1"
+  },
+  "caseAttempt": 1
+}

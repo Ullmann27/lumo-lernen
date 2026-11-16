@@ -1,0 +1,966 @@
+{
+  "description": "Historical observed subcases retained as unit-test data; changing candidate identity in a test is synthetic and not 2032 device evidence. Current pattern original has NOT_EXERCISED.",
+  "historicalOriginalResultSha256": "c6f33b636e734ad9d091403f773fa21aa78f177c271d6c644ca929aa49d0d7d6",
+  "historicalRun": 43828196598,
+  "historicalOverallStatus": "FAIL",
+  "numeric": {
+    "status": "PASS",
+    "prompt": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+    "problem_id": "bridge-9-7",
+    "submission_control": "Antwort prüfen",
+    "input_method": "real Android text input",
+    "spoken_recognition_exercised": false,
+    "exact_eight_plus_five_numeric_case": false,
+    "pre_submission_capture": {
+      "before": {
+        "profile": {
+          "id": "1794816441215694",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T08:07:21.215694"
+        },
+        "learning": {
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+          "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T08:08:45.908698Z\",\"lastSeen\":\"2026-11-16T08:08:45.908698Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\"],\"independentProblemIds\":[]}}}"
+        }
+      },
+      "after": {
+        "profile": {
+          "id": "1794816441215694",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T08:07:21.215694"
+        },
+        "learning": {
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+          "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T08:08:45.908698Z\",\"lastSeen\":\"2026-11-16T08:08:45.908698Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\"],\"independentProblemIds\":[]}}}"
+        }
+      },
+      "checkpoint_before": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": false,
+        "attempt": 1,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      },
+      "checkpoint_after": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": false,
+        "attempt": 1,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      },
+      "preservation": {
+        "profile_id": "1794816441215694",
+        "learning_keys_compared": 3,
+        "same_task_checkpoint": true
+      },
+      "screenshot": {
+        "file": "0144-numeric-before-wrong-answer.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "31a6cbf3e0ad1539dfd15af1435d887a1f5c326a22c3880eed4de1f076afa87f",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2340,
+          "content_entropy_bits": 5.169,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "video": {
+        "file": "0118-numeric-build-before-graded-recall.mp4",
+        "sha256": "73a6fdf907d76b722ba40bbea7d0f701d299fcd52e82bb7c98204130c4fdc03a",
+        "bytes": 794523,
+        "duration_seconds": 5.275022,
+        "width": 1080,
+        "height": 2340,
+        "audio_recorded": false,
+        "maximum_seconds": 180,
+        "transfer_verification": "0118-numeric-build-before-graded-recall-video-transfer.json",
+        "block_elapsed_seconds": 6.17,
+        "whole_block_within_recording_limit": true
+      },
+      "capture_after_video_finalization": true
+    },
+    "wrong": {
+      "before": {
+        "profile": {
+          "id": "1794816441215694",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T08:07:21.215694"
+        },
+        "learning": {
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+          "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T08:08:45.908698Z\",\"lastSeen\":\"2026-11-16T08:08:45.908698Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\"],\"independentProblemIds\":[]}}}"
+        }
+      },
+      "after": {
+        "profile": {
+          "id": "1794816441215694",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T08:07:21.215694"
+        },
+        "learning": {
+          "flutter.lumo_progress_skills::local-72b69a971935e429fe250826b02d60b2": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":0,\"wrong\":1,\"hintCount\":0,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T08:08:54.324658\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+          "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+          "flutter.lumo_progress_last::local-72b69a971935e429fe250826b02d60b2": "{\"Mathematik\":\"Plus bis 20\"}",
+          "flutter.lumo_progress_daily::local-72b69a971935e429fe250826b02d60b2": "{}",
+          "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794816534452613-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T08:08:54.452613\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":13948}]",
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":2,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T08:08:54.578305Z\",\"lastSeen\":\"2026-11-16T08:08:54.578305Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2\"],\"independentProblemIds\":[]}}}"
+        }
+      },
+      "checkpoint_before": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": false,
+        "attempt": 1,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      },
+      "checkpoint_after": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 2,
+        "answer": "15",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2"
+      },
+      "verification": {
+        "status": "PASS",
+        "stored_attempt": {
+          "id": "1794816534452613-0",
+          "sid": "self",
+          "sub": "Mathematik",
+          "unit": "Plus bis 20",
+          "comp": "Addition mit Zehnerübergang",
+          "ok": false,
+          "at": "2026-11-16T08:08:54.452613",
+          "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+          "a": "15",
+          "e": "16",
+          "ms": 13948
+        },
+        "lab_attempt_id": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2",
+        "journey_key": "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2",
+        "journey_attempts": 2,
+        "support": {
+          "checkpoint_support": 0,
+          "prior_wrong_answer": false,
+          "stored_hint_used": false,
+          "assisted_correct_delta": 0
+        },
+        "attempt_log_id_is_separate_from_lab_evidence_id": true
+      },
+      "screenshot": {
+        "file": "0158-numeric-wrong-after-assessment.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "56d17342a49c4e72bffaf7c85c5d631190ab19a6d3e599a8e8c5658567a0d0a5",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2340,
+          "content_entropy_bits": 5.106,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "video": {
+        "file": "0145-numeric-wrong-submission.mp4",
+        "sha256": "5917661f8bc0283057dce7091bac4619f89079abb6a0f8318e0eb06bf5a1498a",
+        "bytes": 681005,
+        "duration_seconds": 6.107767,
+        "width": 1080,
+        "height": 2340,
+        "audio_recorded": false,
+        "maximum_seconds": 180,
+        "transfer_verification": "0145-numeric-wrong-submission-video-transfer.json",
+        "block_elapsed_seconds": 7.21,
+        "whole_block_within_recording_limit": true
+      }
+    },
+    "corrected": {
+      "before": {
+        "profile": {
+          "id": "1794816441215694",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T08:07:21.215694"
+        },
+        "learning": {
+          "flutter.lumo_progress_skills::local-72b69a971935e429fe250826b02d60b2": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":0,\"wrong\":1,\"hintCount\":0,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T08:08:54.324658\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+          "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+          "flutter.lumo_progress_last::local-72b69a971935e429fe250826b02d60b2": "{\"Mathematik\":\"Plus bis 20\"}",
+          "flutter.lumo_progress_daily::local-72b69a971935e429fe250826b02d60b2": "{}",
+          "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794816534452613-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T08:08:54.452613\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":13948}]",
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":2,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T08:08:54.578305Z\",\"lastSeen\":\"2026-11-16T08:08:54.578305Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2\"],\"independentProblemIds\":[]}}}"
+        }
+      },
+      "after": {
+        "profile": {
+          "id": "1794816441215694",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T08:07:21.215694"
+        },
+        "learning": {
+          "flutter.lumo_progress_skills::local-72b69a971935e429fe250826b02d60b2": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T08:09:01.806631\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+          "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+          "flutter.lumo_progress_last::local-72b69a971935e429fe250826b02d60b2": "{\"Mathematik\":\"Plus bis 20\"}",
+          "flutter.lumo_progress_daily::local-72b69a971935e429fe250826b02d60b2": "{\"2026-11-16\":1}",
+          "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794816534452613-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T08:08:54.452613\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":13948},{\"id\":\"1794816541937895-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T08:09:01.937895\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7481}]",
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T08:09:01.989111Z\",\"lastSeen\":\"2026-11-16T08:09:01.989111Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-3\"],\"independentProblemIds\":[]}}}"
+        }
+      },
+      "checkpoint_before": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 2,
+        "answer": "15",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2"
+      },
+      "checkpoint_after": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 3,
+        "answer": "16",
+        "done": true,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602-3"
+      },
+      "verification": {
+        "status": "PASS",
+        "stored_attempt": {
+          "id": "1794816541937895-1",
+          "sid": "self",
+          "sub": "Mathematik",
+          "unit": "Plus bis 20",
+          "comp": "Addition mit Zehnerübergang",
+          "ok": true,
+          "at": "2026-11-16T08:09:01.937895",
+          "hint": true,
+          "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+          "a": "16",
+          "e": "16",
+          "ms": 7481
+        },
+        "lab_attempt_id": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602-3",
+        "journey_key": "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2",
+        "journey_attempts": 3,
+        "support": {
+          "checkpoint_support": 0,
+          "prior_wrong_answer": true,
+          "stored_hint_used": true,
+          "assisted_correct_delta": 1
+        },
+        "attempt_log_id_is_separate_from_lab_evidence_id": true
+      },
+      "screenshot": {
+        "file": "0172-numeric-corrected-after-assessment.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "e7d7e336a03a27219b277b5ffc78f0abf60ef4c107571bc81d58044cee18249b",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2340,
+          "content_entropy_bits": 5.479,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "video": {
+        "file": "0159-numeric-corrected-submission.mp4",
+        "sha256": "1d44dbc746443b930f4497525c4088d5998510959bbe9066f16ff072ded3c185",
+        "bytes": 605123,
+        "duration_seconds": 5.7948,
+        "width": 1080,
+        "height": 2340,
+        "audio_recorded": false,
+        "maximum_seconds": 180,
+        "transfer_verification": "0159-numeric-corrected-submission-video-transfer.json",
+        "block_elapsed_seconds": 6.83,
+        "whole_block_within_recording_limit": true
+      }
+    }
+  },
+  "switch": {
+    "status": "PASS",
+    "before": {
+      "profile": {
+        "id": "1794816441215694",
+        "name": "LumoNextTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-16T08:07:21.215694"
+      },
+      "learning": {
+        "flutter.lumo_progress_skills::local-72b69a971935e429fe250826b02d60b2": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T08:09:01.806631\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+        "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+        "flutter.lumo_progress_last::local-72b69a971935e429fe250826b02d60b2": "{\"Mathematik\":\"Plus bis 20\"}",
+        "flutter.lumo_progress_daily::local-72b69a971935e429fe250826b02d60b2": "{\"2026-11-16\":1}",
+        "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794816534452613-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T08:08:54.452613\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":13948},{\"id\":\"1794816541937895-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T08:09:01.937895\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7481}]",
+        "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+        "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T08:09:01.989111Z\",\"lastSeen\":\"2026-11-16T08:09:01.989111Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-3\"],\"independentProblemIds\":[]},\"deutsch::silben\":{\"subject\":\"Deutsch\",\"unit\":\"Silben\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T08:09:17.968944Z\",\"lastSeen\":\"2026-11-16T08:09:17.968944Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-c820a10fa981c6fe6b52c51126a53e91-1\"],\"independentProblemIds\":[]}}}"
+      }
+    },
+    "checkpoint_before": {
+      "topicId": "words",
+      "seed": 0,
+      "sessionId": "lab-attempt-c820a10fa981c6fe6b52c51126a53e91",
+      "phase": "build",
+      "problemId": "word-banane",
+      "moved": 0,
+      "pieces": [],
+      "tokens": [
+        2,
+        3,
+        0
+      ],
+      "patternChoice": null,
+      "hint": 0,
+      "support": 0,
+      "wrongBefore": false,
+      "attempt": 1,
+      "answer": "",
+      "done": true,
+      "pendingAttemptId": null,
+      "lastSavedAttemptId": "lab-attempt-c820a10fa981c6fe6b52c51126a53e91-1"
+    },
+    "explicit_stop_before_switch": false,
+    "flutter_media_callbacks_in_native_log": false,
+    "acoustic_playback_verified": false,
+    "viewport": {
+      "mode": "larger_logical_emulator_view",
+      "standard_density_case": false,
+      "physical_device_evidence": false,
+      "original": {
+        "display": {
+          "wm_size": "Physical size: 1080x2340",
+          "wm_density": "Physical density: 440",
+          "size": [
+            1080,
+            2340
+          ],
+          "density_dpi": 440,
+          "physical_density_dpi": 440,
+          "density_override": null
+        },
+        "screenshot": {
+          "file": "0211-switch-original-density.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "89f6fd9069ec4dc98607f2d08bf2d467e95249de5cd0de9ca220f5f2a69778fa",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2340,
+            "content_entropy_bits": 6.215,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        }
+      },
+      "prepared": {
+        "display": {
+          "wm_size": "Physical size: 1080x2340",
+          "wm_density": "Physical density: 440\nOverride density: 320",
+          "size": [
+            1080,
+            2340
+          ],
+          "density_dpi": 320,
+          "physical_density_dpi": 440,
+          "density_override": 320
+        },
+        "snapshot": {
+          "profile": {
+            "id": "1794816441215694",
+            "name": "LumoNextTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-16T08:07:21.215694"
+          },
+          "learning": {
+            "flutter.lumo_progress_skills::local-72b69a971935e429fe250826b02d60b2": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T08:09:01.806631\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+            "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+            "flutter.lumo_progress_last::local-72b69a971935e429fe250826b02d60b2": "{\"Mathematik\":\"Plus bis 20\"}",
+            "flutter.lumo_progress_daily::local-72b69a971935e429fe250826b02d60b2": "{\"2026-11-16\":1}",
+            "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794816534452613-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T08:08:54.452613\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":13948},{\"id\":\"1794816541937895-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T08:09:01.937895\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7481}]",
+            "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+            "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T08:09:01.989111Z\",\"lastSeen\":\"2026-11-16T08:09:01.989111Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-3\"],\"independentProblemIds\":[]},\"deutsch::silben\":{\"subject\":\"Deutsch\",\"unit\":\"Silben\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T08:09:17.968944Z\",\"lastSeen\":\"2026-11-16T08:09:17.968944Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-c820a10fa981c6fe6b52c51126a53e91-1\"],\"independentProblemIds\":[]}}}"
+          }
+        },
+        "checkpoint": {
+          "topicId": "words",
+          "seed": 0,
+          "sessionId": "lab-attempt-c820a10fa981c6fe6b52c51126a53e91",
+          "phase": "build",
+          "problemId": "word-banane",
+          "moved": 0,
+          "pieces": [],
+          "tokens": [
+            2,
+            3,
+            0
+          ],
+          "patternChoice": null,
+          "hint": 0,
+          "support": 0,
+          "wrongBefore": false,
+          "attempt": 1,
+          "answer": "",
+          "done": true,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": "lab-attempt-c820a10fa981c6fe6b52c51126a53e91-1"
+        },
+        "preservation": {
+          "profile_id": "1794816441215694",
+          "learning_keys_compared": 7,
+          "same_task_checkpoint": true
+        },
+        "screenshot": {
+          "file": "0215-switch-density-320.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "89f6fd9069ec4dc98607f2d08bf2d467e95249de5cd0de9ca220f5f2a69778fa",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2340,
+            "content_entropy_bits": 6.215,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        }
+      },
+      "restore_command": [
+        "wm",
+        "density",
+        "reset"
+      ],
+      "restored_display_observation": {
+        "wm_size": "Physical size: 1080x2340",
+        "wm_density": "Physical density: 440",
+        "size": [
+          1080,
+          2340
+        ],
+        "density_dpi": 440,
+        "physical_density_dpi": 440,
+        "density_override": null
+      },
+      "restored": {
+        "status": "RESTORED",
+        "display": {
+          "wm_size": "Physical size: 1080x2340",
+          "wm_density": "Physical density: 440",
+          "size": [
+            1080,
+            2340
+          ],
+          "density_dpi": 440,
+          "physical_density_dpi": 440,
+          "density_override": null
+        },
+        "snapshot": {
+          "profile": {
+            "id": "1794816441215694",
+            "name": "LumoNextTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-16T08:07:21.215694"
+          },
+          "learning": {
+            "flutter.lumo_progress_skills::local-72b69a971935e429fe250826b02d60b2": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T08:09:01.806631\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+            "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+            "flutter.lumo_progress_last::local-72b69a971935e429fe250826b02d60b2": "{\"Mathematik\":\"Plus bis 20\"}",
+            "flutter.lumo_progress_daily::local-72b69a971935e429fe250826b02d60b2": "{\"2026-11-16\":1}",
+            "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794816534452613-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T08:08:54.452613\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":13948},{\"id\":\"1794816541937895-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T08:09:01.937895\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7481}]",
+            "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+            "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T08:09:01.989111Z\",\"lastSeen\":\"2026-11-16T08:09:01.989111Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-3\"],\"independentProblemIds\":[]},\"deutsch::silben\":{\"subject\":\"Deutsch\",\"unit\":\"Silben\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T08:09:17.968944Z\",\"lastSeen\":\"2026-11-16T08:09:17.968944Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-c820a10fa981c6fe6b52c51126a53e91-1\"],\"independentProblemIds\":[]}}}"
+          }
+        },
+        "checkpoint": {
+          "topicId": "words",
+          "seed": 0,
+          "sessionId": "lab-attempt-c820a10fa981c6fe6b52c51126a53e91",
+          "phase": "recall",
+          "problemId": "word-rakete",
+          "moved": 0,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": null,
+          "hint": 0,
+          "support": 0,
+          "wrongBefore": false,
+          "attempt": 1,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        },
+        "preservation": {
+          "profile_id": "1794816441215694",
+          "learning_keys_compared": 7,
+          "same_task_checkpoint": true
+        },
+        "screenshot": {
+          "file": "0251-switch-original-density-restored.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "417c93db3bbedf90f0218b1e74fb57387f621c63f9079734a3670fcfb3caf9aa",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2340,
+            "content_entropy_bits": 4.081,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        }
+      }
+    },
+    "replay_preparation": {
+      "heading": "Die Wortwerkstatt",
+      "prompt": "Baue „Banane“ aus seinen Sprechstücken. Ein Baustein bleibt übrig.",
+      "syllables": [
+        {
+          "label": "Silbe 1: Ba",
+          "bounds": [
+            339,
+            302,
+            463,
+            435
+          ]
+        },
+        {
+          "label": "Silbe 2: na",
+          "bounds": [
+            483,
+            302,
+            602,
+            435
+          ]
+        },
+        {
+          "label": "Silbe 3: ne",
+          "bounds": [
+            622,
+            302,
+            741,
+            435
+          ]
+        }
+      ],
+      "scroll_bounds": [
+        0,
+        248,
+        1080,
+        2292
+      ],
+      "next_bounds": [
+        60,
+        1430,
+        1020,
+        1534
+      ],
+      "next_label": "Jetzt selbstständig antworten",
+      "replay_bounds": [
+        644,
+        1884,
+        950,
+        1988
+      ],
+      "replay_label": "Noch einmal",
+      "xml": "0219-switch-final-joint-viewport.xml",
+      "xml_sha256": "0433725eb0060e39876cc75eb1ce845f6ff9f1444dc2a62f7ce37c0e03c3db54",
+      "screenshot": {
+        "file": "0218-switch-joint-viewport-before-replay.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "a9119baa195a6db350e7d36f295bfed98368026ec8290e4f9a5da5c7a324e839",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2340,
+          "content_entropy_bits": 6.055,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "gestures": [],
+      "capture_started_monotonic": 575.536973705,
+      "capture_finished_monotonic": 575.715199431,
+      "replay_requested_monotonic": 575.71564173,
+      "replay_taps": 1
+    },
+    "observation": {
+      "active_label": "Silbe 1: Ba, gerade aktiv",
+      "next_bounds": [
+        60,
+        1474,
+        1020,
+        1578
+      ],
+      "next_label": "Jetzt selbstständig antworten",
+      "evidence": "same fresh Android accessibility hierarchy",
+      "xml": "0240-switch-live-active-and-next.xml",
+      "xml_sha256": "7810d8b1cb2f70124df5239fb5bd02b2f3910b94da11a1a3fce30a15e8e4ed70",
+      "capture_started_monotonic": 580.598047833,
+      "capture_finished_monotonic": 580.816813115,
+      "touch_requested_monotonic": 580.817221163
+    },
+    "capture_to_touch_seconds": 0.21917332999998962,
+    "after": {
+      "profile": {
+        "id": "1794816441215694",
+        "name": "LumoNextTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-16T08:07:21.215694"
+      },
+      "learning": {
+        "flutter.lumo_progress_skills::local-72b69a971935e429fe250826b02d60b2": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T08:09:01.806631\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+        "flutter.lumo_learning_local_student_id_v1": "local-72b69a971935e429fe250826b02d60b2",
+        "flutter.lumo_progress_last::local-72b69a971935e429fe250826b02d60b2": "{\"Mathematik\":\"Plus bis 20\"}",
+        "flutter.lumo_progress_daily::local-72b69a971935e429fe250826b02d60b2": "{\"2026-11-16\":1}",
+        "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794816534452613-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T08:08:54.452613\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":13948},{\"id\":\"1794816541937895-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T08:09:01.937895\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7481}]",
+        "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+        "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T08:09:01.989111Z\",\"lastSeen\":\"2026-11-16T08:09:01.989111Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-1\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2\",\"lab-attempt-bd64da4eddfab9dbba3857f6f4516602-3\"],\"independentProblemIds\":[]},\"deutsch::silben\":{\"subject\":\"Deutsch\",\"unit\":\"Silben\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T08:09:17.968944Z\",\"lastSeen\":\"2026-11-16T08:09:17.968944Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-c820a10fa981c6fe6b52c51126a53e91-1\"],\"independentProblemIds\":[]}}}"
+      }
+    },
+    "checkpoint_after": {
+      "topicId": "words",
+      "seed": 0,
+      "sessionId": "lab-attempt-c820a10fa981c6fe6b52c51126a53e91",
+      "phase": "recall",
+      "problemId": "word-rakete",
+      "moved": 0,
+      "pieces": [],
+      "tokens": [],
+      "patternChoice": null,
+      "hint": 0,
+      "support": 0,
+      "wrongBefore": false,
+      "attempt": 1,
+      "answer": "",
+      "done": false,
+      "pendingAttemptId": null,
+      "lastSavedAttemptId": null
+    },
+    "verification": {
+      "status": "PASS",
+      "preservation": {
+        "profile_id": "1794816441215694",
+        "learning_keys_compared": 7,
+        "same_task_checkpoint": false
+      },
+      "from_problem": "word-banane",
+      "to_problem": "word-rakete",
+      "same_session": true,
+      "no_new_attempt_or_reward": true
+    },
+    "old_active_marker_absent": true,
+    "screenshot": {
+      "file": "0247-switch-new-unanswered-rakete.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "417c93db3bbedf90f0218b1e74fb57387f621c63f9079734a3670fcfb3caf9aa",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.081,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    "video": {
+      "file": "0216-switch-during-actual-active-syllable.mp4",
+      "sha256": "405583622e00835e2f2f85c2d4f5760d975e041a32629b5688200fc5756cb96a",
+      "bytes": 646148,
+      "duration_seconds": 8.922478,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0216-switch-during-actual-active-syllable-video-transfer.json",
+      "block_elapsed_seconds": 11.0,
+      "whole_block_within_recording_limit": true
+    }
+  },
+  "banana": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "action": "slower",
+    "control": "Frag Lumo / Langsamer",
+    "current_task": "Ba – na – ne",
+    "model_before": {
+      "kind": "syllables",
+      "word": "Banane",
+      "placed": 0,
+      "total": 3,
+      "visible_label": "0 / 3 bewegt"
+    },
+    "model_after": {
+      "kind": "syllables",
+      "word": "Banane",
+      "placed": 0,
+      "total": 3,
+      "visible_label": "0 / 3 bewegt"
+    },
+    "initial_playback": {
+      "pid": 6359,
+      "utterance_ids": [
+        3
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "previous_ids": [
+      3
+    ],
+    "playback": {
+      "pid": 6359,
+      "utterance_ids": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "segments": 4,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "segment_order_source_contract": [
+      "Banane",
+      "Ba",
+      "na",
+      "ne"
+    ],
+    "actual_rate_in_log": false,
+    "segment_words_verified_acoustically": false,
+    "acoustic_speed_verified": false,
+    "source_rate_contract": {
+      "formula": "max(0.70, baseRate * 0.75)",
+      "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+      "controller": "tools/auto_install/LumoLearningConversation.kt",
+      "segments": "scripts/learning/learning_world.gd::_speak_syllables",
+      "playback": "tools/auto_install/LumoLearningSpeech.kt::MediaPlayer.playbackParams.setSpeed"
+    },
+    "preservation": {
+      "profile_id": "1794816441215694",
+      "learning_keys_compared": 7,
+      "same_task_checkpoint": true
+    },
+    "native_answer_submitted": false,
+    "before_screenshot": {
+      "file": "0343-runtime-banana-before-slower.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "b0385c1056d8203ff8ebb9634faec48b9ea034fae3ee301c2b01d99313e6f618"
+    },
+    "after_screenshot": {
+      "file": "0385-runtime-banana-after-slower.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "bd3f7e3f5e71bae112298d884f1f03695958b9ad0bafba7c869de986c174822f"
+    },
+    "video": {
+      "file": "0350-runtime-banana-four-slower-segments.mp4",
+      "sha256": "f142496416982d79e37d9b405cbb9af423e8287981d1caca659901b6f4974a64",
+      "bytes": 1212933,
+      "duration_seconds": 81.996644,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0350-runtime-banana-four-slower-segments-video-transfer.json",
+      "block_elapsed_seconds": 81.56,
+      "whole_block_within_recording_limit": true
+    },
+    "returned_to_academy": {
+      "file": "0401-runtime-banana-return-academy.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "c98c46a9c1e67fe0bcf15148086934f2072b1dc64ceb6ee257e84420188c3b31",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.267,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    }
+  },
+  "currentCandidate": {
+    "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+    "flutter_source_commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+    "versionCode": 2032,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.20",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "engine": "4.6.3",
+      "pck_sha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+      "bytes": 278589884
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "currentPattern": {
+    "task": {
+      "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "sequence": [
+        "Quadrat",
+        "Kreis",
+        "Quadrat",
+        "Kreis"
+      ],
+      "period": 2,
+      "next": "Quadrat"
+    },
+    "returned_task": {
+      "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "sequence": [
+        "Quadrat",
+        "Kreis",
+        "Quadrat",
+        "Kreis"
+      ],
+      "period": 2,
+      "next": "Quadrat"
+    },
+    "initial_playback": {
+      "pid": 12085,
+      "utterance_ids": [
+        3
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "hint_playback": {
+      "pid": 12085,
+      "utterance_ids": [
+        7
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "observed_group_hint": "Die kleinste Gruppe hat 2 Zeichen",
+    "native_proposal": "Quadrat",
+    "native_confirmation_performed": false,
+    "core_answer_submitted": false,
+    "core_submission_boundary": "A Core answer-card tap submits directly; no separate confirmation exists for a native-only proposal.",
+    "preservation": {
+      "profile_id": "1794824016843427",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false
+    },
+    "core_submission": {
+      "status": "NOT_EXERCISED",
+      "reason": "No simultaneous unique observed Core answer heading and four enabled shape cards; ungraded roundtrip remains separately evidenced."
+    }
+  }
+}
