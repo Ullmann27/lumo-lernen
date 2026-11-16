@@ -63,6 +63,9 @@ class ConnectFourTableSession {
   final bool reduceMotion;
   final DateTime Function() _now;
   Timer? _timer;
+  bool _opening = false;
+  int _generation = 0;
+  Future<void>? _closing;
   bool _open = false,
       _busy = false,
       _active = false,
@@ -117,30 +120,57 @@ class ConnectFourTableSession {
   }
 
   Future<void> open({bool automaticPolling = true}) async {
-    if (_open || !controller.canUseProfile())
+    if (_open || _opening || _closing != null || !controller.canUseProfile()) {
       throw StateError('Spiel nicht verfügbar');
-    await controller.settleReward();
-    if (!controller.canUseProfile())
-      throw StateError('Kinderprofil hat gewechselt');
-    _open = true;
-    _remaining = controller.engine.turn == ConnectPiece.lumo &&
-            !controller.round.twoPlayers
-        ? 540
-        : 0;
-    _lastTick = _now().millisecondsSinceEpoch;
+    }
+    // Claim this opening before settlement yields to another open or close.
+    _opening = true;
+    final generation = ++_generation;
     try {
-      await transport.open(token, view);
-    } catch (_) {
-      _open = false;
-      rethrow;
+      await controller.settleReward();
+      if (!controller.canUseProfile()) {
+        throw StateError('Kinderprofil hat gewechselt');
+      }
+      if (generation != _generation || _closing != null) {
+        throw StateError('Der Vier-Gewinnt-Start wurde beendet.');
+      }
+      _open = true;
+      _remaining = controller.engine.turn == ConnectPiece.lumo &&
+              !controller.round.twoPlayers
+          ? 540
+          : 0;
+      _lastTick = _now().millisecondsSinceEpoch;
+      try {
+        await transport.open(token, view);
+      } catch (_) {
+        _open = false;
+        // Native Open may have committed even when its reply was lost.
+        await _cleanupAfterOpen();
+        rethrow;
+      }
+      if (generation != _generation ||
+          _closing != null ||
+          !_open ||
+          !controller.canUseProfile()) {
+        _open = false;
+        // An earlier close can precede a delayed native Open. Clean again
+        // after that close completes; never revive the cancelled poller.
+        await _cleanupAfterOpen();
+        throw StateError('Der Vier-Gewinnt-Start wurde beendet.');
+      }
+      if (automaticPolling) {
+        _timer = Timer.periodic(
+            const Duration(milliseconds: 100), (_) => unawaited(pump()));
+      }
+    } finally {
+      _opening = false;
     }
-    if (!controller.canUseProfile()) {
-      await close();
-      throw StateError('Kinderprofil hat gewechselt');
-    }
-    if (automaticPolling)
-      _timer = Timer.periodic(
-          const Duration(milliseconds: 100), (_) => unawaited(pump()));
+  }
+
+  Future<void> _cleanupAfterOpen() async {
+    final closing = _closing;
+    if (closing != null) await closing;
+    await _closeTransport();
   }
 
   Future<void> pump() async {
@@ -284,12 +314,30 @@ class ConnectFourTableSession {
   }
 
   Future<void> close() async {
-    if (!_open) return;
+    final wasOpen = _open;
+    // Invalidate even while settlement has not created native authority yet.
+    _generation++;
     _open = false;
     _active = false;
     _paused = true;
     _timer?.cancel();
     _timer = null;
+    final closing = _closing;
+    if (closing != null) {
+      await closing;
+      return;
+    }
+    if (!wasOpen) return;
+    final operation = _closeTransport();
+    _closing = operation;
+    try {
+      await operation;
+    } finally {
+      if (identical(_closing, operation)) _closing = null;
+    }
+  }
+
+  Future<void> _closeTransport() async {
     try {
       await transport.close(token);
     } catch (_) {}
