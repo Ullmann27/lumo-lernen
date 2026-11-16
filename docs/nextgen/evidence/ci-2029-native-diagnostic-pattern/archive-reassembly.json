@@ -1,0 +1,28 @@
+{
+  "archiveName": "artifact-14191988638.zip",
+  "bytes": 30677462,
+  "sha256": "2114c52f122e21fc6cc907e6a4c2bea0b4ffae0fba85ff5938a6b43435a76724",
+  "parts": [
+    {
+      "file": "artifact-14191988638.zip.part-001",
+      "bytes": 8388608,
+      "sha256": "456c0f20982d9122cefc24857108bc68e81ef7938dc7d86973271ad9c887b41a"
+    },
+    {
+      "file": "artifact-14191988638.zip.part-002",
+      "bytes": 8388608,
+      "sha256": "a6d7aa8d4eab2646f6794c60d25ef59ac2758c3fc55de54cb8e0c19e924509f1"
+    },
+    {
+      "file": "artifact-14191988638.zip.part-003",
+      "bytes": 8388608,
+      "sha256": "fb295351dd3a6ff38ca5b0af5bf4be59602473c3e79c359701fefd67b44683a4"
+    },
+    {
+      "file": "artifact-14191988638.zip.part-004",
+      "bytes": 5511638,
+      "sha256": "f13079b73f1a89a6bfb18c3dc45e69a1eccc67b84cf409dab9152efe6aec1389"
+    }
+  ],
+  "instruction": "Concatenate the listed parts in order; verify byte count and SHA-256 before extracting. Every original artifact member is retained."
+}

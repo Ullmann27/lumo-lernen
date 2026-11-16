@@ -1,0 +1,72 @@
+{
+  "mode": "diagnostic-only",
+  "qa_commit": "e04e29437e2c28f40e492191f430cd49ddc456fa",
+  "qa_workflow_run": 43790709991,
+  "scene": "pattern",
+  "source_build_run": 43785937519,
+  "source_run_conclusion": "failure",
+  "artifact_id": 14191466126,
+  "zip_bytes": 538198271,
+  "zip_sha256": "059ac8a9e2d13d1c52ac35237a465fbfaeba7d7cb6d3de352f47ae6a5113e2c9",
+  "apk_bytes": 538184171,
+  "candidate": {
+    "sha256": "01e0c126930b48cb8089f0671ed9238b5dc6ded903e288ad7c1fda452ed3cf0f",
+    "flutter_source_commit": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+    "versionCode": 2029,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.17",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "9aeb88d1dc52f612ea591c04d7651ccc3eef8b807b33b8b78c2f82b4e4eea303",
+      "bytes": 278589612
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "source_binding": {
+    "qa_commit": "e04e29437e2c28f40e492191f430cd49ddc456fa",
+    "qa_workflow_run": 43790709991,
+    "scene": "pattern",
+    "apk_source": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+    "source_build_run": 43785937519,
+    "apk_source_tree": "8c40380b93147a7c3ff87769d74605132fcdf191",
+    "qa_tree": "0db92d99d263f16fd42f27ed0865893c13f56518",
+    "changes": [
+      {
+        "status": "A",
+        "path": ".github/probes/lumo_nextgen_2029_native_diagnostic.py"
+      },
+      {
+        "status": "A",
+        "path": ".github/probes/run_lumo_nextgen_2029_native_diagnostic.sh"
+      },
+      {
+        "status": "A",
+        "path": ".github/workflows/lumo-nextgen-2029-native-diagnostic.yml"
+      },
+      {
+        "status": "A",
+        "path": "docs/nextgen/NATIVE_DIAGNOSTIC_2029.md"
+      },
+      {
+        "status": "A",
+        "path": "tools/android_qa/tests/test_nextgen_2029_native_diagnostic.py"
+      }
+    ],
+    "runtime_source_changed": false,
+    "existing_acceptance_gates_changed": false
+  },
+  "apk_rebuilt": false,
+  "origin_files": {
+    "source-run.json": "93f56c17b02cf0273d48b750580058bd444aa747e96222cd4003f287db28104a",
+    "source-artifact.json": "f3156f958cb728b70b42214db8f937d3e93286328df893c4f151ae65703ac5db",
+    "source-validate-job.json": "1ec9ccfb88fa49d17eea8b0337d07f1b753b276caa966ab7e0fec1919bd89b77",
+    "source-build-job.json": "88579975f353888921a7b94c2910b9e11b5da04484707015055dc5b453ba5377",
+    "source-failed-android-job.json": "f9bf89e0396c8b65768a38d379281eacb9cf8df10605bd1fc6e7079d60771f3e"
+  }
+}

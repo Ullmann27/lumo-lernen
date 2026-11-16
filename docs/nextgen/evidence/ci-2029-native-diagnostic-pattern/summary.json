@@ -1,0 +1,93 @@
+{
+  "schema": "lumo.diagnostic.original-evidence",
+  "version": 1,
+  "scene": "pattern",
+  "status": "DIAGNOSTIC_ONLY",
+  "diagnosticOutcome": "FAILED",
+  "releaseEligible": false,
+  "original2029AndroidReclassified": false,
+  "runId": 43790709991,
+  "jobId": 133048238645,
+  "qaCommit": "e04e29437e2c28f40e492191f430cd49ddc456fa",
+  "apkCommit": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "nativeCommit": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "artifactId": 14191988638,
+  "archiveBytes": 30677462,
+  "archiveSha256": "2114c52f122e21fc6cc907e6a4c2bea0b4ffae0fba85ff5938a6b43435a76724",
+  "originalMembers": 1048,
+  "jobLog": {
+    "uncompressedUtf8Bytes": 524216,
+    "sha256": "5c06d4d70f2756027f9f008e965537d22258f606370929024cc3293d23f361a1",
+    "gzipSha256": "3f1bfec98af5e5c8f3c38c6712bd7beca2b30dea55cc0dcffc3275cd0ddf7b81",
+    "whitespaceNormalized": false
+  },
+  "selectedOriginalMembers": [
+    {
+      "path": "diagnostic-android/diagnostic-android-result.json",
+      "bytes": 8310,
+      "sha256": "f0718e380f9d3800d8b0a3a3cca02d9bed71e60120e512185f350d321f880822"
+    },
+    {
+      "path": "diagnostic-android/0113-pattern-native-entry.png",
+      "bytes": 662261,
+      "sha256": "8ea521e66276d16aa5725f956a9069d5df205aad0d99ec841b63b584f4d7d5cc"
+    },
+    {
+      "path": "diagnostic-android/0114-pattern-native-question-9.png",
+      "bytes": 660918,
+      "sha256": "4e2486f2c838f7391f56c14b62b60b610b27d87b43ff4184875cb5a013e5fbf8"
+    },
+    {
+      "path": "diagnostic-android/0114-pattern-native-question-9-ocr.json",
+      "bytes": 19373,
+      "sha256": "45dbbdc4dec317ce4bcc5e3b72d9767a7390302f54bb7186b12ada2dfee32c2e"
+    },
+    {
+      "path": "diagnostic-android/0115-diagnostic-failure-screen.png",
+      "bytes": 660563,
+      "sha256": "b96ae4426aed8be00bb7fa235db421d40831c5cb68912338ff5fd4dfee63ba33"
+    },
+    {
+      "path": "diagnostic-android/0116-native-speech.txt",
+      "bytes": 36780,
+      "sha256": "487bdc13b87d5699ee91ece15620729860fb4277f84769ce3361c68eac92d1d8"
+    },
+    {
+      "path": "origin/qa-source-binding.json",
+      "bytes": 956,
+      "sha256": "d14ed3eb5d0b907b543ee238fd5adfeaed1d3a002e13e63e6c6cc54860be5b6f"
+    },
+    {
+      "path": "origin/source-artifact.json",
+      "bytes": 810,
+      "sha256": "f3156f958cb728b70b42214db8f937d3e93286328df893c4f151ae65703ac5db"
+    },
+    {
+      "path": "origin/source-build-job.json",
+      "bytes": 4514,
+      "sha256": "88579975f353888921a7b94c2910b9e11b5da04484707015055dc5b453ba5377"
+    },
+    {
+      "path": "origin/source-failed-android-job.json",
+      "bytes": 4294,
+      "sha256": "f9bf89e0396c8b65768a38d379281eacb9cf8df10605bd1fc6e7079d60771f3e"
+    },
+    {
+      "path": "origin/source-run.json",
+      "bytes": 13764,
+      "sha256": "93f56c17b02cf0273d48b750580058bd444aa747e96222cd4003f287db28104a"
+    },
+    {
+      "path": "origin/source-validate-job.json",
+      "bytes": 5726,
+      "sha256": "1ec9ccfb88fa49d17eea8b0337d07f1b753b276caa966ab7e0fec1919bd89b77"
+    },
+    {
+      "path": "origin/verified-download.json",
+      "bytes": 2715,
+      "sha256": "2944861d902538862d2aa3e0e2110a158c9220a21b7d37c952f73b66c89ae547"
+    }
+  ],
+  "observation": "The exact current screen visibly contains Was / kommt als Nächstes? over two lines. The original native_text reader searches one OCR line at a time, so it did not accept the full question. Later group-hint and proposal gates were not reached; this diagnostic remains FAILED.",
+  "current2030RunAccepted": false
+}
