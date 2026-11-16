@@ -9,7 +9,7 @@ permissions:
 
 concurrency:
   group: lumo-einfache-apk-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   apk:
