@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "status": "MEDIA_INTEGRITY_CONFIRMED_WITH_EXPLICIT_LIMITATIONS",
+  "artifact": {
+    "artifactId": 14220263387,
+    "workflowRun": 43853317375,
+    "archiveBytes": 65735724,
+    "archiveSha256": "17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed"
+  },
+  "run_id": 43853317375,
+  "job_id": 133251156609,
+  "qa_commit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "apk_source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "native_source": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "original_result": {
+    "member": "android/runtime-cases/runtime-cases-result.json",
+    "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/runtime-cases-result.json",
+    "bytes": 129055,
+    "sha256": "8dd0a99e5da7266a3470a9408e5e58b4f47d17d3f408baaedc7967e64120dd98",
+    "matches_artifact_manifest": true,
+    "manifest_crc32": "f4d2768a"
+  },
+  "independent_checks": {
+    "referenced_original_png_hashes": 28,
+    "referenced_original_mp4_hashes": 12,
+    "additional_panel_png_hashes": 1,
+    "all_match_result_and_artifact_manifest": true,
+    "all_twelve_videos_read_sequentially_to_eof": true,
+    "ffprobe_error_outputs": 0,
+    "positive_video_durations": 12,
+    "video_frames_counted_total": 688,
+    "recorded_duration_seconds_total": 444.990899,
+    "audio_streams_total": 0,
+    "original_images_personally_viewed": 9
+  },
+  "visual_observations": [
+    {
+      "file": "0163-numeric-wrong-after-assessment.png",
+      "member": "android/runtime-cases/0163-numeric-wrong-after-assessment.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0163-numeric-wrong-after-assessment.png",
+      "bytes": 458119,
+      "sha256": "d72af0dde591c5a02a24022e46be1fc2a7a9fd9a1c696f1ffda02189d60d0a31",
+      "personally_viewed_original": true,
+      "case": "Fehlantwort",
+      "observation_de": "Die Zehnerbrücke zeigt die lesbare Aufgabe 9 + 7, Eingabe 15 und die Rückmeldung: Deine Zahl liegt um eins daneben. Die weiteren Erläuterungen und Antwort prüfen sind sichtbar. Der gezeichnete Fuchs sitzt links neben der Lernbeschreibung.",
+      "limit_de": "Das Standbild zeigt den sichtbaren Fehlhinweis; die gespeicherte fachliche Bewertung prüft Learning separat."
+    },
+    {
+      "file": "0177-numeric-corrected-after-assessment.png",
+      "member": "android/runtime-cases/0177-numeric-corrected-after-assessment.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0177-numeric-corrected-after-assessment.png",
+      "bytes": 503554,
+      "sha256": "ec218c9a50eb48751735f26c203969b674f38071c15df722ec37fdc9f5641aa8",
+      "personally_viewed_original": true,
+      "case": "Korrektur",
+      "observation_de": "Eingabe 16, ausgegrautes Antwort prüfen, aktive Neue Aufgabe und Richtig! Diese Antwort war mit Hilfe. sind klar sichtbar.",
+      "limit_de": "Der obere Bildbereich ist gleichmäßig dunkelblau; Aufgabenüberschrift und Figur sind in diesem Nachbild nicht sichtbar. Die Zuordnung zu 9 + 7 folgt nicht allein aus diesem Bild. Keine Ursache für den oberen Bildbereich behauptet."
+    },
+    {
+      "file": "0223-switch-joint-viewport-before-replay.png",
+      "member": "android/runtime-cases/0223-switch-joint-viewport-before-replay.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0223-switch-joint-viewport-before-replay.png",
+      "bytes": 642763,
+      "sha256": "6d417acb802da2f8ec44b06ac9221f6930d3f4f3bf72a2fa47a5f8be03cae7fd",
+      "personally_viewed_original": true,
+      "case": "Vorbereitung des aktiven Wechsels",
+      "observation_de": "Ba, na, ne, die gelegte Silbenreihe, Jetzt selbstständig antworten und Noch einmal sind gleichzeitig lesbar. Der geöffnete Ausschnitt ist nach unten gescrollt; der Worttitel Banane ist oben angeschnitten.",
+      "limit_de": "Dies ist das Bild vor der Wiederholung, kein alleiniger Nachweis einer zu diesem Zeitpunkt aktiven Silbe. Die gemeinsame Ansicht entstand bei der ausdrücklich dokumentierten temporären Emulator-Testdichte 320; kein Beleg für diese Sichtbarkeit bei Standarddichte."
+    },
+    {
+      "file": "0249-switch-new-unanswered-rakete.png",
+      "member": "android/runtime-cases/0249-switch-new-unanswered-rakete.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0249-switch-new-unanswered-rakete.png",
+      "bytes": 293321,
+      "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+      "personally_viewed_original": true,
+      "case": "Neue Aufgabe",
+      "observation_de": "Die Wortwerkstatt zeigt Freier Abruf und Schreibe das Namenwort: Ra – ke – te. Das Antwortfeld ist leer und zeigt 0/80. Figur, Aufgabe und Coachbuttons sind gut lesbar; der vorherige Banane-Bau ist nicht sichtbar.",
+      "limit_de": "Der exakte aktive Wechselzeitpunkt, die alte Audioinvalidierung und die Sessionbindung sind aus diesem Nachbild allein nicht messbar."
+    },
+    {
+      "file": "0342-runtime-banana-before-slower.png",
+      "member": "android/runtime-cases/0342-runtime-banana-before-slower.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0342-runtime-banana-before-slower.png",
+      "bytes": 583805,
+      "sha256": "330c174a8ad65dd795db6448eb42be2c302084de1e07e9463edc93465d69acad",
+      "personally_viewed_original": true,
+      "case": "Native Banane vorher",
+      "observation_de": "Wörter bauen · Banane, die Anweisung für Ba, drei leere Zielplätze und 0 / 3 bewegt sind sichtbar. Der Fuchs steht links oberhalb der Tafel und verdeckt keine wesentliche Aufgabenbeschriftung.",
+      "limit_de": "Eine einzelne Pose belegt weder den Animationsverlauf noch eine Audio-Mund-Synchronisation."
+    },
+    {
+      "file": "0348-runtime-banana-slower-panel.png",
+      "member": "android/runtime-cases/0348-runtime-banana-slower-panel.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0348-runtime-banana-slower-panel.png",
+      "bytes": 431272,
+      "sha256": "220ce039e19abccf1bce06372a60eb8be55d84d0ec74b9c031322279601a2acc",
+      "personally_viewed_original": true,
+      "case": "Native Aktion Langsamer",
+      "observation_de": "Das geöffnete und gescrollte Fragepanel zeigt Fragefeld, Sprechen, Frage senden, Stopp sowie die klar getrennten Aktionen Noch einmal, Langsamer und Ein Hinweis. Hinter dem abgedunkelten Panel bleibt die Banane-Szene erkennbar.",
+      "limit_de": "Der Panelkopf liegt durch den Scrollstand außerhalb dieses Ausschnitts. Dieses Bild belegt das sichtbare Langsamer-Control, aber weder seinen Tap noch die tatsächliche akustische Geschwindigkeit."
+    },
+    {
+      "file": "0389-runtime-banana-after-slower.png",
+      "member": "android/runtime-cases/0389-runtime-banana-after-slower.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0389-runtime-banana-after-slower.png",
+      "bytes": 620380,
+      "sha256": "1912cdff6e096843fa4875014a57e38cf3c62402006f08cc86d7f83d5a03f315",
+      "personally_viewed_original": true,
+      "case": "Native Banane danach",
+      "observation_de": "Die Erklärung benennt Ba – na – ne und Sprechstücke statt Buchstaben. Drei leere Zielplätze und 0 / 3 bewegt sind weiterhin sichtbar; der Audiofooter zeigt Schritt anhören. Der Fuchs steht links oberhalb der Tafel mit einer gehobenen Pfote.",
+      "limit_de": "Vorher-/Nachherpose und Untertitel sind sichtbar; aus den Bildern folgt keine präzise zeitliche Kopplung von Mund, Pfote und Ton. Keine akustische Messung der Verlangsamung."
+    },
+    {
+      "file": "0488-pattern-before-explicit-core-answer.png",
+      "member": "android/runtime-cases/0488-pattern-before-explicit-core-answer.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0488-pattern-before-explicit-core-answer.png",
+      "bytes": 2070993,
+      "sha256": "0d46d2c04ae6664f5c572714917f03b08bc0244b6f842430a123a2e804b27636",
+      "personally_viewed_original": true,
+      "case": "Muster vor fachlicher Abgabe",
+      "observation_de": "Wähle die richtige Antwort: und alle vier großen Karten Quadrat, Dreieck, Stern, Kreis sind vollständig sichtbar. Der Kopf zeigt 0 Sterne und 0 / 400 XP; der Hilfetext ist lesbar.",
+      "limit_de": "Die konkrete ABAB-Aufgabenzeile liegt in diesem gescrollten Ausschnitt oberhalb. Aufgabenidentität und richtige Form müssen zusätzlich an den aktuellen Rohdaten gebunden werden."
+    },
+    {
+      "file": "0492-pattern-after-explicit-core-assessment.png",
+      "member": "android/runtime-cases/0492-pattern-after-explicit-core-assessment.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0492-pattern-after-explicit-core-assessment.png",
+      "bytes": 2122281,
+      "sha256": "049a8b2bb7200910754a49c98437df5fe1e8e2b4526fcd75d396ef193c53b4cf",
+      "personally_viewed_original": true,
+      "case": "Muster nach fachlicher Abgabe",
+      "observation_de": "Der Kopf zeigt nun 5 Sterne und 33 / 400 XP. Die unteren Antwortkarten und der Hilfetext sind sichtbar; der innere Bildkreis der Tippkarte ist in diesem Bild leer.",
+      "limit_de": "Das Bild enthält keinen ausdrücklichen Richtig-Text und ist kein selbständiger Beweis der assistierten fachlichen Musterbewertung. Diese Zuordnung erfolgt durch Learnings Prüfung des neuen Originaldatensatzes."
+    }
+  ],
+  "limits_de": [
+    "Alle zwölf MP4-Dateien haben keine Tonspur. Das Medienpaket liefert deshalb keinen akustischen Nachweis für gesprochene Wörter, Aussprache, Phoneme, Verlangsamungsfaktor oder hörbaren Stopp.",
+    "Die vollständige ffprobe-Lektüre bis EOF wurde tatsächlich durchgeführt. Es wurde keine vollständige manuelle Sichtung aller Videoframes oder Audition behauptet.",
+    "Der aktive Silbenzeitpunkt, Datenbewertung, Session-/Profilbindung und MediaPlayer-Callbackzuordnung sind Gegenstand der getrennten Originaldatenprüfung durch Learning; hier wurde kein Fachverifier erneut ausgeführt.",
+    "Videoframeraten sind keine Godot-Renderleistung, keine 60-FPS-Bestätigung und keine Vorhersage für physische Fold7-/ARM64-Geräte.",
+    "Die Standbilder erlauben keine Messung eines zeitgleichen akustischen Mund-/Gestenstopps und keine allgemeine 48-dp-Abnahme.",
+    "Die beiden Dateinamen aus source_binding.changed_paths sind historische Repository-Diff-Inventareinträge, keine Medienreferenzen dieses Androidlaufs. Sie wurden nicht als aktuelle Medien geprüft.",
+    "Das vollständige äußere ZIP und alle 1889 Mitglieder wurden von Root geprüft. Diese unabhängige Prüfung hasht das Originalresultat, alle darin referenzierten Medien und das zusätzlich gesichtete Panelbild erneut gegen Roots Manifest.",
+    "Keine APK-/Repository-/CI-/Downloadaktion, keine neuen Screens, keine Änderung der Originale und keine Produktänderung."
+  ],
+  "scratch_contains_media_copies": false,
+  "originals_modified": false,
+  "domain_verifier_run_by_this_review": false
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-16T11:28:35.643502+00:00",
+  "status": "MEDIA_HANDOFF_AND_ALL_FILES_BOUND",
+  "originalReviewFiles": 31,
+  "handoffSha256": "69e77d69ba0ce4e736e08dbfd219c7f84cadb03a0696a9391a602feed207e7a2",
+  "ffprobeOutputsRecounted": 12,
+  "frames": 688,
+  "summedSeconds": 444.990899,
+  "audioStreams": 0,
+  "newDecodeByRoot": false,
+  "additionalOriginalPanel": {
+    "path": "android/runtime-cases/0348-runtime-banana-slower-panel.png",
+    "bytes": 431272,
+    "sha256": "220ce039e19abccf1bce06372a60eb8be55d84d0ec74b9c031322279601a2acc",
+    "crc32": "40570325"
+  }
+}

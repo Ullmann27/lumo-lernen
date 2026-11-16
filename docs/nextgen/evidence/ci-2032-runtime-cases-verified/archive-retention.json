@@ -198,6 +198,12 @@
       "bytes": 482524,
       "sha256": "7536c4a7f1528a080f76b174f85051560e95884389ade7e7681c1e5838c44194",
       "crc32": "e92d379f"
+    },
+    {
+      "path": "android/runtime-cases/0348-runtime-banana-slower-panel.png",
+      "bytes": 431272,
+      "sha256": "220ce039e19abccf1bce06372a60eb8be55d84d0ec74b9c031322279601a2acc",
+      "crc32": "40570325"
     }
   ],
   "textArchive": {
@@ -207,5 +213,10 @@
     "fileCount": 1288,
     "allMemberCrcAndShaRechecked": true,
     "format": "Derived ZIP; all original non-PNG/non-MP4 bytes preserved without normalization"
+  },
+  "selectionFollowup": {
+    "addedAt": "2026-11-16T11:28:35.642362+00:00",
+    "reason": "Add original independently viewed native Langsamer panel",
+    "originalPath": "android/runtime-cases/0348-runtime-banana-slower-panel.png"
   }
 }

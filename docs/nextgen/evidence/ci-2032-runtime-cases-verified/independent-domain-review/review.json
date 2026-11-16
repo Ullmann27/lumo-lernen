@@ -1,0 +1,272 @@
+{
+  "schema": "lumo.nextgen.2032.runtime_cases.independent_original_review",
+  "version": 1,
+  "status": "PASS_WITH_LIMITATIONS",
+  "reviewedUtc": "2026-11-16T11:27:50.152202+00:00",
+  "workflowRun": 43853317375,
+  "androidJob": 133251156609,
+  "artifactId": 14220263387,
+  "qaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "qaTree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "versionName": "0.13.20",
+  "versionCode": 2032,
+  "abi": "x86_64",
+  "apkSha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+  "pckSha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+  "originalResult": {
+    "path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/runtime-cases-result.json",
+    "bytes": 129055,
+    "sha256": "8dd0a99e5da7266a3470a9408e5e58b4f47d17d3f408baaedc7967e64120dd98"
+  },
+  "unchangedVerifier": {
+    "returncode": 0,
+    "log": "unchanged-verifier.log",
+    "execution": "verifier-execution.json",
+    "scope": "Re-evaluation of completed saved result only; not a new Android run or test suite."
+  },
+  "archive": {
+    "bytes": 65735724,
+    "sha256": "17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed",
+    "members": 1889,
+    "uncompressedBytesProvidedByRoot": 76019541,
+    "rootAllMemberCRCsVerified": true,
+    "secondArchiveDownloadOrCRCScan": false
+  },
+  "originalFilesIndependentlyBound": 61,
+  "qaSourceFilesBound": 12,
+  "numeric": {
+    "status": "PASS",
+    "prompt": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+    "problemId": "bridge-9-7",
+    "newAttempts": 2,
+    "wrong": {
+      "status": "PASS",
+      "stored_attempt": {
+        "id": "1794826984412138-0",
+        "sid": "self",
+        "sub": "Mathematik",
+        "unit": "Plus bis 20",
+        "comp": "Addition mit Zehnerübergang",
+        "ok": false,
+        "at": "2026-11-16T11:03:04.412138",
+        "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+        "a": "15",
+        "e": "16",
+        "ms": 12610
+      },
+      "lab_attempt_id": "lab-attempt-a1e024e383cfce4766bbbb513268d734-2",
+      "journey_key": "flutter.lumo_progress_journey_v1::local-27bd43515949cfddeb8e48f1cae1293b",
+      "journey_attempts": 2,
+      "support": {
+        "checkpoint_support": 0,
+        "prior_wrong_answer": false,
+        "stored_hint_used": false,
+        "assisted_correct_delta": 0
+      },
+      "attempt_log_id_is_separate_from_lab_evidence_id": true
+    },
+    "corrected": {
+      "status": "PASS",
+      "stored_attempt": {
+        "id": "1794826989702794-1",
+        "sid": "self",
+        "sub": "Mathematik",
+        "unit": "Plus bis 20",
+        "comp": "Addition mit Zehnerübergang",
+        "ok": true,
+        "at": "2026-11-16T11:03:09.702794",
+        "hint": true,
+        "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+        "a": "16",
+        "e": "16",
+        "ms": 5299
+      },
+      "lab_attempt_id": "lab-attempt-a1e024e383cfce4766bbbb513268d734-3",
+      "journey_key": "flutter.lumo_progress_journey_v1::local-27bd43515949cfddeb8e48f1cae1293b",
+      "journey_attempts": 3,
+      "support": {
+        "checkpoint_support": 0,
+        "prior_wrong_answer": true,
+        "stored_hint_used": true,
+        "assisted_correct_delta": 1
+      },
+      "attempt_log_id_is_separate_from_lab_evidence_id": true
+    },
+    "sameLabSession": true,
+    "preSubmissionUnansweredTaskPreserved": true,
+    "sourceRecordAfterPositiveVideoFinalization": true,
+    "spokenRecognition": false
+  },
+  "flutterActiveSwitch": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "activeLabel": "Silbe 1: Ba, gerade aktiv",
+    "captureToRequestedTouchSeconds": 0.13834299899997404,
+    "replayRequestToNextRequestSeconds": 4.247267622999971,
+    "fromProblem": "word-banane",
+    "toProblem": "word-rakete",
+    "sessionId": "lab-attempt-bf5b63a8b84422be4fa392251e740f9c",
+    "newProblemPhase": "recall",
+    "newProblemAnswer": "",
+    "newProblemDone": false,
+    "sameSession": true,
+    "newAttemptOrReward": false,
+    "learningKeysCompared": 7,
+    "oldActiveMarkerAbsent": true,
+    "explicitReplayTaps": 1,
+    "explicitNextTaps": 1,
+    "explicitStopBeforeSwitch": false,
+    "densityDpi": [
+      440,
+      320,
+      440
+    ],
+    "pixelSize": [
+      1080,
+      2340
+    ],
+    "autoReadDisabledThenRestoredExactly": true,
+    "acousticPlaybackOrInputDeliveryLatencyMeasured": false
+  },
+  "nativeBananaSlower": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "pid": 6177,
+    "voiceProfile": "lumo-free-supertonic-de-v1",
+    "previousIds": [
+      3
+    ],
+    "newOrderedIds": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "eventCount": 8,
+    "sameVisibleModel": {
+      "kind": "syllables",
+      "word": "Banane",
+      "placed": 0,
+      "total": 3,
+      "visible_label": "0 / 3 bewegt"
+    },
+    "learningKeysCompared": 7,
+    "sourceWordOrder": [
+      "Banane",
+      "Ba",
+      "na",
+      "ne"
+    ],
+    "sourceRateFormula": "max(0.70, baseRate * 0.75)",
+    "actualRateLogged": false,
+    "acousticWordsOrTempoMeasured": false
+  },
+  "patternCoreAnswer": {
+    "status": "PASS",
+    "task": {
+      "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "sequence": [
+        "Quadrat",
+        "Kreis",
+        "Quadrat",
+        "Kreis"
+      ],
+      "period": 2,
+      "next": "Quadrat"
+    },
+    "attemptCounts": {
+      "beforeNative": 2,
+      "afterNative": 2,
+      "afterExplicitCard": 3,
+      "final": 3
+    },
+    "nativeReturnUngraded": true,
+    "explicitAnswerTaps": 1,
+    "storedAttempt": {
+      "id": "1794827688610310-2",
+      "sid": "self",
+      "sub": "Logik",
+      "unit": "Muster",
+      "comp": "Muster",
+      "ok": true,
+      "at": "2026-11-16T11:14:48.610310",
+      "hint": true,
+      "q": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "a": "Quadrat",
+      "e": "Quadrat",
+      "ms": 287804
+    },
+    "journey": {
+      "subject": "Logik",
+      "unit": "Muster",
+      "attempts": 1,
+      "independentCorrect": 0,
+      "assistedCorrect": 1,
+      "transferCorrect": 0,
+      "errorCounts": {},
+      "dueAt": "2026-11-17T11:14:48.521822Z",
+      "lastSeen": "2026-11-16T11:14:48.521822Z",
+      "reviewStage": 0,
+      "needsPractice": true,
+      "recentTaskIds": [
+        "attempt-bb29413a43bd371af76bf1b0320dcfd4"
+      ],
+      "independentProblemIds": []
+    },
+    "walletBefore": {
+      "stars": 0,
+      "xp": 0,
+      "level": 1,
+      "streak": 0,
+      "totalEarnedStars": 0,
+      "lastDailyKey": "",
+      "gameResultIds": [],
+      "lumoCardsWinStreak": 0
+    },
+    "walletAfter": {
+      "stars": 5,
+      "xp": 33,
+      "level": 1,
+      "streak": 0,
+      "totalEarnedStars": 5,
+      "lastDailyKey": "",
+      "gameResultIds": [],
+      "lumoCardsWinStreak": 0
+    },
+    "nativeHintPlayback": {
+      "pid": 7110,
+      "utterance_ids": [
+        7
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "profileUnchanged": true
+  },
+  "separateMediaReview": {
+    "owner": "/root/conversation",
+    "handoff": "/workspace/scratch/4fa97167812c/runtime-cases-2032-media-review/handoff.json",
+    "sha256ReportedByOwner": "69e77d69ba0ce4e736e08dbfd219c7f84cadb03a0696a9391a602feed207e7a2",
+    "mediaReexecutedInThisReview": false
+  },
+  "releaseEligible": false,
+  "originalProbeRequirementSatisfied": false,
+  "fullReplayReplaced": false,
+  "fullModernizationComplete": false,
+  "noNewAndroidExecution": true,
+  "noNetworkOrCiActions": true,
+  "noSourceOrOriginalMutation": true,
+  "limits": [
+    "Two typed 9+7 answers prove a genuine wrong/corrected domain submission. They do not prove German speech recognition, a misheard spoken number or a spoken correction.",
+    "Flutter active syllable and Next are jointly observed in one fresh hierarchy. Capture start to requested touch is measured; audible playback and actual OS input delivery latency are not.",
+    "Native slower has four new ordered MediaPlayer callback pairs and visible shortcut/model evidence. Words and speed are source-bound, not acoustically measured.",
+    "The native model-preservation flag compares the observed 0/3 model and profile/learning data; it is not an independently persisted native mastery checkpoint.",
+    "Exactly one observed period-two pattern is assessed as assisted correct after an explicit Core card tap. This is not general proof for all pattern families or independent mastery.",
+    "This independent supplemental installation is not another complete-tour acceptance or publication approval. The previous full tour and publication remain separately bound.",
+    "No new physical-device, Fold7, phoneme/mouth/gesture, 60-FPS or complete-modernization evidence follows."
+  ],
+  "reviewToolNote": "The first local raw-audit helper expected object JSON for an original OCR array. Only this Scratch reader was corrected to accept saved arrays; original evidence, committed verifier and QA sources were unchanged. The unchanged result verifier passed on its first invocation."
+}

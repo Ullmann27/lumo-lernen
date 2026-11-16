@@ -1,0 +1,29 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    ".github/probes/lumo_nextgen_2032_runtime_cases_android_probe.py",
+    "verify",
+    "--result",
+    "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/runtime-cases-result.json",
+    "--qa-commit",
+    "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+    "--workflow-run-id",
+    "43853317375"
+  ],
+  "cwd": "/workspace/scratch/4fa97167812c/agent-2032-runtime-cases",
+  "startedUtc": "2026-11-16T11:20:06.148107+00:00",
+  "finishedUtc": "2026-11-16T11:20:06.374585+00:00",
+  "returncode": 0,
+  "result": {
+    "path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/runtime-cases-result.json",
+    "bytes": 129055,
+    "sha256": "8dd0a99e5da7266a3470a9408e5e58b4f47d17d3f408baaedc7967e64120dd98"
+  },
+  "qaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "qaTree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+  "worktreeStatus": "",
+  "noAndroidExecution": true,
+  "noNetworkActions": true,
+  "noTestSuite": true
+}

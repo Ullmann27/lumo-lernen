@@ -1,0 +1,1067 @@
+{
+  "artifact": {
+    "artifactId": 14220263387,
+    "workflowRun": 43853317375,
+    "archiveBytes": 65735724,
+    "archiveSha256": "17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed"
+  },
+  "manifest_path": "/dev/shm/lumo-2032-runtime-cases-originals/artifact-verification.json",
+  "manifest_sha256": "766eaab690d527d19a2705858a606fadb8ea10233f1111472fdc20924b4cb549",
+  "result": {
+    "member": "android/runtime-cases/runtime-cases-result.json",
+    "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/runtime-cases-result.json",
+    "bytes": 129055,
+    "sha256": "8dd0a99e5da7266a3470a9408e5e58b4f47d17d3f408baaedc7967e64120dd98",
+    "matches_artifact_manifest": true,
+    "manifest_crc32": "f4d2768a"
+  },
+  "referenced_png_count": 28,
+  "referenced_video_count": 12,
+  "all_referenced_bytes_and_claimed_hashes_match": true,
+  "media": [
+    {
+      "member": "android/runtime-cases/0001-onboarding.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0001-onboarding.mp4",
+      "bytes": 2239147,
+      "sha256": "630defc836de345e2a0039404a132ce3e03cb25b8ac5d13c011f845e8faad792",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "c5b8ae8e",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[0].file",
+          "sha256": "630defc836de345e2a0039404a132ce3e03cb25b8ac5d13c011f845e8faad792",
+          "bytes": 2239147,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[0].attempts[0].verified_file",
+          "sha256": "630defc836de345e2a0039404a132ce3e03cb25b8ac5d13c011f845e8faad792",
+          "bytes": 2239147,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[0].file",
+          "sha256": "630defc836de345e2a0039404a132ce3e03cb25b8ac5d13c011f845e8faad792",
+          "bytes": 2239147,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0023-home-after-onboarding.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0023-home-after-onboarding.png",
+      "bytes": 3022027,
+      "sha256": "38f4cf982a3c3260b8961ccbdfaada76a5cab4d339b1a91400ca694b4d2bc407",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "ce0b1364",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[0].file",
+          "sha256": "38f4cf982a3c3260b8961ccbdfaada76a5cab4d339b1a91400ca694b4d2bc407",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0063-local-model-conditions.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0063-local-model-conditions.png",
+      "bytes": 556434,
+      "sha256": "f8ad76c889eddf9620c8f40b89a77f60515897f0dd3c49e9e890337bf265db16",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "815f69cd",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[1].file",
+          "sha256": "f8ad76c889eddf9620c8f40b89a77f60515897f0dd3c49e9e890337bf265db16",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0080-local-voice-ready.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0080-local-voice-ready.png",
+      "bytes": 1448649,
+      "sha256": "9fa15d94e9a23ec73d09d8b3e6cad882ff48395cc1fb243edcc811c3bdc863c9",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "51a09391",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[2].file",
+          "sha256": "9fa15d94e9a23ec73d09d8b3e6cad882ff48395cc1fb243edcc811c3bdc863c9",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0101-runtime-auto-read-off.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0101-runtime-auto-read-off.png",
+      "bytes": 1231759,
+      "sha256": "3cf174f3e03bbaa0e82c321908638da6c2395c6f4ffcce276c7960359cc1d357",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "d3394a7c",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[3].file",
+          "sha256": "3cf174f3e03bbaa0e82c321908638da6c2395c6f4ffcce276c7960359cc1d357",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0123-numeric-build-before-graded-recall.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0123-numeric-build-before-graded-recall.mp4",
+      "bytes": 795548,
+      "sha256": "e36a15d50ab999629c8a9c222170576ef01ce560d850e5a9fbbe13a645833417",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "c40f2c70",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[1].file",
+          "sha256": "e36a15d50ab999629c8a9c222170576ef01ce560d850e5a9fbbe13a645833417",
+          "bytes": 795548,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[1].attempts[0].verified_file",
+          "sha256": "e36a15d50ab999629c8a9c222170576ef01ce560d850e5a9fbbe13a645833417",
+          "bytes": 795548,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[1].file",
+          "sha256": "e36a15d50ab999629c8a9c222170576ef01ce560d850e5a9fbbe13a645833417",
+          "bytes": 795548,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.numeric_wrong_then_correct.pre_submission_capture.video.file",
+          "sha256": "e36a15d50ab999629c8a9c222170576ef01ce560d850e5a9fbbe13a645833417",
+          "bytes": 795548,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0149-numeric-before-wrong-answer.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0149-numeric-before-wrong-answer.png",
+      "bytes": 442968,
+      "sha256": "fea4fc2b43849a312457b370c5846a4ddb108b38142ca24e6d49eb978007d667",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "253f3fdb",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[4].file",
+          "sha256": "fea4fc2b43849a312457b370c5846a4ddb108b38142ca24e6d49eb978007d667",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.numeric_wrong_then_correct.pre_submission_capture.screenshot.file",
+          "sha256": "fea4fc2b43849a312457b370c5846a4ddb108b38142ca24e6d49eb978007d667",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0150-numeric-wrong-submission.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0150-numeric-wrong-submission.mp4",
+      "bytes": 617178,
+      "sha256": "d43563c4da5b5401e941bd56ffdb4b5d426a3df537683ff130794b194f1009e1",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "2a740d55",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[2].file",
+          "sha256": "d43563c4da5b5401e941bd56ffdb4b5d426a3df537683ff130794b194f1009e1",
+          "bytes": 617178,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[2].attempts[0].verified_file",
+          "sha256": "d43563c4da5b5401e941bd56ffdb4b5d426a3df537683ff130794b194f1009e1",
+          "bytes": 617178,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[2].file",
+          "sha256": "d43563c4da5b5401e941bd56ffdb4b5d426a3df537683ff130794b194f1009e1",
+          "bytes": 617178,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.numeric_wrong_then_correct.wrong.video.file",
+          "sha256": "d43563c4da5b5401e941bd56ffdb4b5d426a3df537683ff130794b194f1009e1",
+          "bytes": 617178,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0155-numeric-wrong-before-explicit-check.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0155-numeric-wrong-before-explicit-check.png",
+      "bytes": 443680,
+      "sha256": "5d1fe7b9c43fb7cd984ca0cd197ed7dd1444acc0b91896712624c2e03cd98d98",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "d91697b8",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[5].file",
+          "sha256": "5d1fe7b9c43fb7cd984ca0cd197ed7dd1444acc0b91896712624c2e03cd98d98",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0163-numeric-wrong-after-assessment.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0163-numeric-wrong-after-assessment.png",
+      "bytes": 458119,
+      "sha256": "d72af0dde591c5a02a24022e46be1fc2a7a9fd9a1c696f1ffda02189d60d0a31",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "ba7586df",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[6].file",
+          "sha256": "d72af0dde591c5a02a24022e46be1fc2a7a9fd9a1c696f1ffda02189d60d0a31",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.numeric_wrong_then_correct.wrong.screenshot.file",
+          "sha256": "d72af0dde591c5a02a24022e46be1fc2a7a9fd9a1c696f1ffda02189d60d0a31",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0164-numeric-corrected-submission.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0164-numeric-corrected-submission.mp4",
+      "bytes": 561389,
+      "sha256": "55797e591fdcc9b1f4c27e297bad3f6536e9fdd80340e5c8fbe3635a55b63371",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "692a3d8d",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[3].file",
+          "sha256": "55797e591fdcc9b1f4c27e297bad3f6536e9fdd80340e5c8fbe3635a55b63371",
+          "bytes": 561389,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[3].attempts[0].verified_file",
+          "sha256": "55797e591fdcc9b1f4c27e297bad3f6536e9fdd80340e5c8fbe3635a55b63371",
+          "bytes": 561389,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[3].file",
+          "sha256": "55797e591fdcc9b1f4c27e297bad3f6536e9fdd80340e5c8fbe3635a55b63371",
+          "bytes": 561389,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.numeric_wrong_then_correct.corrected.video.file",
+          "sha256": "55797e591fdcc9b1f4c27e297bad3f6536e9fdd80340e5c8fbe3635a55b63371",
+          "bytes": 561389,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0169-numeric-corrected-before-explicit-check.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0169-numeric-corrected-before-explicit-check.png",
+      "bytes": 459567,
+      "sha256": "bb13b36212dab35669bbb3976e3f2d1635a670876fd8e22a23d3098dee931292",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "51e2b3f5",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[7].file",
+          "sha256": "bb13b36212dab35669bbb3976e3f2d1635a670876fd8e22a23d3098dee931292",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0177-numeric-corrected-after-assessment.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0177-numeric-corrected-after-assessment.png",
+      "bytes": 503554,
+      "sha256": "ec218c9a50eb48751735f26c203969b674f38071c15df722ec37fdc9f5641aa8",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "3cb17341",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[8].file",
+          "sha256": "ec218c9a50eb48751735f26c203969b674f38071c15df722ec37fdc9f5641aa8",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.numeric_wrong_then_correct.corrected.screenshot.file",
+          "sha256": "ec218c9a50eb48751735f26c203969b674f38071c15df722ec37fdc9f5641aa8",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0184-switch-build-banane-and-retain-syllable-replay.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0184-switch-build-banane-and-retain-syllable-replay.mp4",
+      "bytes": 1376372,
+      "sha256": "76474aad658afa856550c8e8657e534865e61cb74ae6b0b680ce3ad6f8ec3bb8",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "e25cd838",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[4].file",
+          "sha256": "76474aad658afa856550c8e8657e534865e61cb74ae6b0b680ce3ad6f8ec3bb8",
+          "bytes": 1376372,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[4].attempts[0].verified_file",
+          "sha256": "76474aad658afa856550c8e8657e534865e61cb74ae6b0b680ce3ad6f8ec3bb8",
+          "bytes": 1376372,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[4].file",
+          "sha256": "76474aad658afa856550c8e8657e534865e61cb74ae6b0b680ce3ad6f8ec3bb8",
+          "bytes": 1376372,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0216-switch-original-density.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0216-switch-original-density.png",
+      "bytes": 623216,
+      "sha256": "3725ed62ce77e4281ee4092169bfccab43929b71d3d852377b371d49d45367cc",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "0f5d2cf6",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[9].file",
+          "sha256": "3725ed62ce77e4281ee4092169bfccab43929b71d3d852377b371d49d45367cc",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.flutter_switch_during_syllable_playback.viewport.original.screenshot.file",
+          "sha256": "3725ed62ce77e4281ee4092169bfccab43929b71d3d852377b371d49d45367cc",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0220-switch-density-320.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0220-switch-density-320.png",
+      "bytes": 623216,
+      "sha256": "3725ed62ce77e4281ee4092169bfccab43929b71d3d852377b371d49d45367cc",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "0f5d2cf6",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[10].file",
+          "sha256": "3725ed62ce77e4281ee4092169bfccab43929b71d3d852377b371d49d45367cc",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.flutter_switch_during_syllable_playback.viewport.prepared.screenshot.file",
+          "sha256": "3725ed62ce77e4281ee4092169bfccab43929b71d3d852377b371d49d45367cc",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0221-switch-during-actual-active-syllable.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0221-switch-during-actual-active-syllable.mp4",
+      "bytes": 818355,
+      "sha256": "a599ded00234bf58d04d1059288e52b41ad19fb0fc1cf7db6ba5f71b7db62263",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "94ed91e4",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[5].file",
+          "sha256": "a599ded00234bf58d04d1059288e52b41ad19fb0fc1cf7db6ba5f71b7db62263",
+          "bytes": 818355,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[5].attempts[0].verified_file",
+          "sha256": "a599ded00234bf58d04d1059288e52b41ad19fb0fc1cf7db6ba5f71b7db62263",
+          "bytes": 818355,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[5].file",
+          "sha256": "a599ded00234bf58d04d1059288e52b41ad19fb0fc1cf7db6ba5f71b7db62263",
+          "bytes": 818355,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.flutter_switch_during_syllable_playback.video.file",
+          "sha256": "a599ded00234bf58d04d1059288e52b41ad19fb0fc1cf7db6ba5f71b7db62263",
+          "bytes": 818355,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0223-switch-joint-viewport-before-replay.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0223-switch-joint-viewport-before-replay.png",
+      "bytes": 642763,
+      "sha256": "6d417acb802da2f8ec44b06ac9221f6930d3f4f3bf72a2fa47a5f8be03cae7fd",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "b176d5b0",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[11].file",
+          "sha256": "6d417acb802da2f8ec44b06ac9221f6930d3f4f3bf72a2fa47a5f8be03cae7fd",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.flutter_switch_during_syllable_playback.replay_preparation.screenshot.file",
+          "sha256": "6d417acb802da2f8ec44b06ac9221f6930d3f4f3bf72a2fa47a5f8be03cae7fd",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0249-switch-new-unanswered-rakete.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0249-switch-new-unanswered-rakete.png",
+      "bytes": 293321,
+      "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "8063fc93",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[12].file",
+          "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.flutter_switch_during_syllable_playback.screenshot.file",
+          "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0253-switch-original-density-restored.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0253-switch-original-density-restored.png",
+      "bytes": 293321,
+      "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "8063fc93",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[13].file",
+          "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.flutter_switch_during_syllable_playback.viewport.restored.screenshot.file",
+          "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0295-local-voice-ready.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0295-local-voice-ready.png",
+      "bytes": 1277564,
+      "sha256": "54a2aa7f2feb4d62f84ba89ce24cd01834a7a5acbfc132a8f067ef89bd66a4e0",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "0f1cf867",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[14].file",
+          "sha256": "54a2aa7f2feb4d62f84ba89ce24cd01834a7a5acbfc132a8f067ef89bd66a4e0",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0336-runtime-banana-native-entry.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0336-runtime-banana-native-entry.png",
+      "bytes": 584040,
+      "sha256": "3826817b2ab855faf5859441d6c86ccf3ba6714ba91d7dce08102787e26c87f3",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "12340ec5",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[15].file",
+          "sha256": "3826817b2ab855faf5859441d6c86ccf3ba6714ba91d7dce08102787e26c87f3",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0342-runtime-banana-before-slower.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0342-runtime-banana-before-slower.png",
+      "bytes": 583805,
+      "sha256": "330c174a8ad65dd795db6448eb42be2c302084de1e07e9463edc93465d69acad",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "83984017",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[16].file",
+          "sha256": "330c174a8ad65dd795db6448eb42be2c302084de1e07e9463edc93465d69acad",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.native_banana_slower.before_screenshot.file",
+          "sha256": "330c174a8ad65dd795db6448eb42be2c302084de1e07e9463edc93465d69acad",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0350-runtime-banana-four-slower-segments.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0350-runtime-banana-four-slower-segments.mp4",
+      "bytes": 1140656,
+      "sha256": "ec59d17a5d3b5fb693360ee3b9ae31b8ca42e0d3d5ee91d4f45d7b2023bbac84",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "45bf6736",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[6].file",
+          "sha256": "ec59d17a5d3b5fb693360ee3b9ae31b8ca42e0d3d5ee91d4f45d7b2023bbac84",
+          "bytes": 1140656,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[6].attempts[0].verified_file",
+          "sha256": "ec59d17a5d3b5fb693360ee3b9ae31b8ca42e0d3d5ee91d4f45d7b2023bbac84",
+          "bytes": 1140656,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[6].file",
+          "sha256": "ec59d17a5d3b5fb693360ee3b9ae31b8ca42e0d3d5ee91d4f45d7b2023bbac84",
+          "bytes": 1140656,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.native_banana_slower.video.file",
+          "sha256": "ec59d17a5d3b5fb693360ee3b9ae31b8ca42e0d3d5ee91d4f45d7b2023bbac84",
+          "bytes": 1140656,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0389-runtime-banana-after-slower.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0389-runtime-banana-after-slower.png",
+      "bytes": 620380,
+      "sha256": "1912cdff6e096843fa4875014a57e38cf3c62402006f08cc86d7f83d5a03f315",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "23085076",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[17].file",
+          "sha256": "1912cdff6e096843fa4875014a57e38cf3c62402006f08cc86d7f83d5a03f315",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.native_banana_slower.after_screenshot.file",
+          "sha256": "1912cdff6e096843fa4875014a57e38cf3c62402006f08cc86d7f83d5a03f315",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0394-runtime-banana-flutter-return.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0394-runtime-banana-flutter-return.png",
+      "bytes": 1346737,
+      "sha256": "1e004bf9972c1d14f3ff826a97da589fab88a977e52c1466f1d2f3b9ecb1498b",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "27110cd2",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[18].file",
+          "sha256": "1e004bf9972c1d14f3ff826a97da589fab88a977e52c1466f1d2f3b9ecb1498b",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0405-runtime-banana-return-academy.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0405-runtime-banana-return-academy.png",
+      "bytes": 901891,
+      "sha256": "5c558ac3f49eb6cfd10d915c7424a45284ae03fc4c8412504dd32408d515fee4",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "9f70b0bb",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[19].file",
+          "sha256": "5c558ac3f49eb6cfd10d915c7424a45284ae03fc4c8412504dd32408d515fee4",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.native_banana_slower.returned_to_academy.file",
+          "sha256": "5c558ac3f49eb6cfd10d915c7424a45284ae03fc4c8412504dd32408d515fee4",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0406-pattern-visible-academy-navigation.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0406-pattern-visible-academy-navigation.mp4",
+      "bytes": 837838,
+      "sha256": "0ead97534856c29831741a4957e46bd2bc2975a4af30ffacf934eac098d2c186",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "99d0acd9",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[7].file",
+          "sha256": "0ead97534856c29831741a4957e46bd2bc2975a4af30ffacf934eac098d2c186",
+          "bytes": 837838,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[7].attempts[0].verified_file",
+          "sha256": "0ead97534856c29831741a4957e46bd2bc2975a4af30ffacf934eac098d2c186",
+          "bytes": 837838,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[7].file",
+          "sha256": "0ead97534856c29831741a4957e46bd2bc2975a4af30ffacf934eac098d2c186",
+          "bytes": 837838,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0426-pattern-unanswered-before-native.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0426-pattern-unanswered-before-native.png",
+      "bytes": 2172803,
+      "sha256": "18400679e3a0119926404899048547f158e4d1489714090052596ad190c86bec",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "8bb65977",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[20].file",
+          "sha256": "18400679e3a0119926404899048547f158e4d1489714090052596ad190c86bec",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0428-pattern-native-entry-and-playback.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0428-pattern-native-entry-and-playback.mp4",
+      "bytes": 1740393,
+      "sha256": "b7a3c48637e793dbde3c103810fe418091b3ce6207b87ccf244db3400de853e0",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "3b3d0faf",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[8].file",
+          "sha256": "b7a3c48637e793dbde3c103810fe418091b3ce6207b87ccf244db3400de853e0",
+          "bytes": 1740393,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[8].attempts[0].verified_file",
+          "sha256": "b7a3c48637e793dbde3c103810fe418091b3ce6207b87ccf244db3400de853e0",
+          "bytes": 1740393,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[8].file",
+          "sha256": "b7a3c48637e793dbde3c103810fe418091b3ce6207b87ccf244db3400de853e0",
+          "bytes": 1740393,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0434-pattern-native-entry.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0434-pattern-native-entry.png",
+      "bytes": 660781,
+      "sha256": "c49ccbbd11ad87f2df5684643e627941478f914f90f95eb966328a5333e098b8",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "7d4572fe",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[21].file",
+          "sha256": "c49ccbbd11ad87f2df5684643e627941478f914f90f95eb966328a5333e098b8",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0437-pattern-observed-group-and-unconfirmed-proposal.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0437-pattern-observed-group-and-unconfirmed-proposal.mp4",
+      "bytes": 1643554,
+      "sha256": "ae6d8ddab61d389eb78b6b7d86dfc709953052d318518f8c6e29d3a3c773e513",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "1bcfccb7",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[9].file",
+          "sha256": "ae6d8ddab61d389eb78b6b7d86dfc709953052d318518f8c6e29d3a3c773e513",
+          "bytes": 1643554,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[9].attempts[0].verified_file",
+          "sha256": "ae6d8ddab61d389eb78b6b7d86dfc709953052d318518f8c6e29d3a3c773e513",
+          "bytes": 1643554,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[9].file",
+          "sha256": "ae6d8ddab61d389eb78b6b7d86dfc709953052d318518f8c6e29d3a3c773e513",
+          "bytes": 1643554,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0460-pattern-two-sign-group.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0460-pattern-two-sign-group.png",
+      "bytes": 645241,
+      "sha256": "b30f77994c0e98876429e6b39831213930dea60c6e74f52ea7fdc51179829045",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "8ad7874b",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[22].file",
+          "sha256": "b30f77994c0e98876429e6b39831213930dea60c6e74f52ea7fdc51179829045",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0464-pattern-unconfirmed-native-proposal.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0464-pattern-unconfirmed-native-proposal.png",
+      "bytes": 643541,
+      "sha256": "25c911d54db8c8596d8c650cb5c8c6e27df85b0b6cf0236e54aac019da3d3707",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "eb5a04ef",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[23].file",
+          "sha256": "25c911d54db8c8596d8c650cb5c8c6e27df85b0b6cf0236e54aac019da3d3707",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0465-pattern-return-to-same-unanswered-question.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0465-pattern-return-to-same-unanswered-question.mp4",
+      "bytes": 1324125,
+      "sha256": "1b3914ee83439e1bec7aed52dfcd1e24ccd29f9c7542d5af6cec7e02cc26062e",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "4efc21ba",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[10].file",
+          "sha256": "1b3914ee83439e1bec7aed52dfcd1e24ccd29f9c7542d5af6cec7e02cc26062e",
+          "bytes": 1324125,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[10].attempts[0].verified_file",
+          "sha256": "1b3914ee83439e1bec7aed52dfcd1e24ccd29f9c7542d5af6cec7e02cc26062e",
+          "bytes": 1324125,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[10].file",
+          "sha256": "1b3914ee83439e1bec7aed52dfcd1e24ccd29f9c7542d5af6cec7e02cc26062e",
+          "bytes": 1324125,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0469-pattern-flutter-return.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0469-pattern-flutter-return.png",
+      "bytes": 641740,
+      "sha256": "a4720902c491e2f26060af9a65013fdf8d9e697d23073f348d172a39a5dc4d2c",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "25dea5eb",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[24].file",
+          "sha256": "a4720902c491e2f26060af9a65013fdf8d9e697d23073f348d172a39a5dc4d2c",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0476-pattern-current-unanswered-return.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0476-pattern-current-unanswered-return.png",
+      "bytes": 2172543,
+      "sha256": "c907520c5390c8d3b3e34f755a445c38047c76874e62a3347d95a65290a7998a",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "5f2154dc",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[25].file",
+          "sha256": "c907520c5390c8d3b3e34f755a445c38047c76874e62a3347d95a65290a7998a",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0487-pattern-explicit-core-answer-after-ungraded-return.mp4",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0487-pattern-explicit-core-answer-after-ungraded-return.mp4",
+      "bytes": 482524,
+      "sha256": "7536c4a7f1528a080f76b174f85051560e95884389ade7e7681c1e5838c44194",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "e92d379f",
+      "result_references": [
+        {
+          "json_field": "$.recording_transfers[11].file",
+          "sha256": "7536c4a7f1528a080f76b174f85051560e95884389ade7e7681c1e5838c44194",
+          "bytes": 482524,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.recording_transfers[11].attempts[0].verified_file",
+          "sha256": "7536c4a7f1528a080f76b174f85051560e95884389ade7e7681c1e5838c44194",
+          "bytes": 482524,
+          "width": null,
+          "height": null
+        },
+        {
+          "json_field": "$.videos[11].file",
+          "sha256": "7536c4a7f1528a080f76b174f85051560e95884389ade7e7681c1e5838c44194",
+          "bytes": 482524,
+          "width": 1080,
+          "height": 2340
+        },
+        {
+          "json_field": "$.pattern_core_evidence.video.file",
+          "sha256": "7536c4a7f1528a080f76b174f85051560e95884389ade7e7681c1e5838c44194",
+          "bytes": 482524,
+          "width": 1080,
+          "height": 2340
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0488-pattern-before-explicit-core-answer.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0488-pattern-before-explicit-core-answer.png",
+      "bytes": 2070993,
+      "sha256": "0d46d2c04ae6664f5c572714917f03b08bc0244b6f842430a123a2e804b27636",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "b61faa0a",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[26].file",
+          "sha256": "0d46d2c04ae6664f5c572714917f03b08bc0244b6f842430a123a2e804b27636",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    },
+    {
+      "member": "android/runtime-cases/0492-pattern-after-explicit-core-assessment.png",
+      "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0492-pattern-after-explicit-core-assessment.png",
+      "bytes": 2122281,
+      "sha256": "049a8b2bb7200910754a49c98437df5fe1e8e2b4526fcd75d396ef193c53b4cf",
+      "matches_artifact_manifest": true,
+      "manifest_crc32": "e8a2ddb3",
+      "result_references": [
+        {
+          "json_field": "$.screenshots[27].file",
+          "sha256": "049a8b2bb7200910754a49c98437df5fe1e8e2b4526fcd75d396ef193c53b4cf",
+          "bytes": null,
+          "width": 1080,
+          "height": 2340
+        }
+      ],
+      "width": 1080,
+      "height": 2340
+    }
+  ],
+  "additional_original_visual": {
+    "member": "android/runtime-cases/0348-runtime-banana-slower-panel.png",
+    "original_path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0348-runtime-banana-slower-panel.png",
+    "bytes": 431272,
+    "sha256": "220ce039e19abccf1bce06372a60eb8be55d84d0ec74b9c031322279601a2acc",
+    "matches_artifact_manifest": true,
+    "manifest_crc32": "40570325"
+  },
+  "excluded_repository_inventory_paths": [
+    {
+      "field": "$.source_binding.changed_paths[41]",
+      "value": "docs/nextgen/evidence/ci-2032-android-launcher-anr-failure/original/original-android/0001-onboarding.mp4",
+      "reason": "Repository source-diff inventory; not current artifact-media reference."
+    },
+    {
+      "field": "$.source_binding.changed_paths[65]",
+      "value": "docs/nextgen/evidence/ci-2032-android-launcher-anr-failure/original/original-android/0025-failure-current-screen.png",
+      "reason": "Repository source-diff inventory; not current artifact-media reference."
+    }
+  ],
+  "archive_verified_by": "Root; this review independently rehashes result and referenced media, not the outer ZIP."
+}

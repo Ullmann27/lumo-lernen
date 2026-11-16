@@ -1,0 +1,220 @@
+{
+  "status": "PASS",
+  "prompt": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+  "problemId": "bridge-9-7",
+  "beforeAfterSnapshotSources": [
+    {
+      "side": "before",
+      "preferences": "0145-numeric-before-first-check-preferences.xml",
+      "checkpoint": "0144-bridge-checkpoint-preferences.xml"
+    },
+    {
+      "side": "after",
+      "preferences": "0148-numeric-after-build-video-preferences.xml",
+      "checkpoint": "0147-bridge-checkpoint-preferences.xml"
+    },
+    {
+      "side": "before",
+      "preferences": "0148-numeric-after-build-video-preferences.xml",
+      "checkpoint": "0147-bridge-checkpoint-preferences.xml"
+    },
+    {
+      "side": "after",
+      "preferences": "0162-numeric-wrong-stored-preferences.xml",
+      "checkpoint": "0159-bridge-checkpoint-preferences.xml"
+    },
+    {
+      "side": "before",
+      "preferences": "0162-numeric-wrong-stored-preferences.xml",
+      "checkpoint": "0159-bridge-checkpoint-preferences.xml"
+    },
+    {
+      "side": "after",
+      "preferences": "0176-numeric-corrected-stored-preferences.xml",
+      "checkpoint": "0173-bridge-checkpoint-preferences.xml"
+    }
+  ],
+  "preSubmissionCapture": {
+    "unansweredTaskPreserved": true,
+    "captureAfterVideoFinalization": true,
+    "orderingEvidence": "unchanged source order plus completed recording metadata and matching fresh preference/checkpoint originals",
+    "video": {
+      "file": "0123-numeric-build-before-graded-recall.mp4",
+      "sha256": "e36a15d50ab999629c8a9c222170576ef01ce560d850e5a9fbbe13a645833417",
+      "bytes": 795548,
+      "duration_seconds": 5.200044,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0123-numeric-build-before-graded-recall-video-transfer.json",
+      "block_elapsed_seconds": 6.15,
+      "whole_block_within_recording_limit": true
+    }
+  },
+  "submissions": {
+    "wrong": {
+      "verification": {
+        "status": "PASS",
+        "stored_attempt": {
+          "id": "1794826984412138-0",
+          "sid": "self",
+          "sub": "Mathematik",
+          "unit": "Plus bis 20",
+          "comp": "Addition mit Zehnerübergang",
+          "ok": false,
+          "at": "2026-11-16T11:03:04.412138",
+          "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+          "a": "15",
+          "e": "16",
+          "ms": 12610
+        },
+        "lab_attempt_id": "lab-attempt-a1e024e383cfce4766bbbb513268d734-2",
+        "journey_key": "flutter.lumo_progress_journey_v1::local-27bd43515949cfddeb8e48f1cae1293b",
+        "journey_attempts": 2,
+        "support": {
+          "checkpoint_support": 0,
+          "prior_wrong_answer": false,
+          "stored_hint_used": false,
+          "assisted_correct_delta": 0
+        },
+        "attempt_log_id_is_separate_from_lab_evidence_id": true
+      },
+      "attemptCountBefore": 0,
+      "attemptCountAfter": 1,
+      "inputXml": "0153-numeric-wrong-input-written.xml",
+      "checkXml": "0156-numeric-wrong-explicit-check.xml",
+      "touch": {
+        "label": "Antwort prüfen",
+        "observed_bounds": [
+          83,
+          1181,
+          998,
+          1324
+        ]
+      },
+      "checkpointBefore": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-a1e024e383cfce4766bbbb513268d734",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": false,
+        "attempt": 1,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      },
+      "checkpointAfter": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-a1e024e383cfce4766bbbb513268d734",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 2,
+        "answer": "15",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-a1e024e383cfce4766bbbb513268d734-2"
+      }
+    },
+    "corrected": {
+      "verification": {
+        "status": "PASS",
+        "stored_attempt": {
+          "id": "1794826989702794-1",
+          "sid": "self",
+          "sub": "Mathematik",
+          "unit": "Plus bis 20",
+          "comp": "Addition mit Zehnerübergang",
+          "ok": true,
+          "at": "2026-11-16T11:03:09.702794",
+          "hint": true,
+          "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+          "a": "16",
+          "e": "16",
+          "ms": 5299
+        },
+        "lab_attempt_id": "lab-attempt-a1e024e383cfce4766bbbb513268d734-3",
+        "journey_key": "flutter.lumo_progress_journey_v1::local-27bd43515949cfddeb8e48f1cae1293b",
+        "journey_attempts": 3,
+        "support": {
+          "checkpoint_support": 0,
+          "prior_wrong_answer": true,
+          "stored_hint_used": true,
+          "assisted_correct_delta": 1
+        },
+        "attempt_log_id_is_separate_from_lab_evidence_id": true
+      },
+      "attemptCountBefore": 1,
+      "attemptCountAfter": 2,
+      "inputXml": "0167-numeric-corrected-input-written.xml",
+      "checkXml": "0170-numeric-corrected-explicit-check.xml",
+      "touch": {
+        "label": "Antwort prüfen",
+        "observed_bounds": [
+          83,
+          1181,
+          998,
+          1324
+        ]
+      },
+      "checkpointBefore": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-a1e024e383cfce4766bbbb513268d734",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 2,
+        "answer": "15",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-a1e024e383cfce4766bbbb513268d734-2"
+      },
+      "checkpointAfter": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-a1e024e383cfce4766bbbb513268d734",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 3,
+        "answer": "16",
+        "done": true,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-a1e024e383cfce4766bbbb513268d734-3"
+      }
+    }
+  },
+  "limits": [
+    "Real typed 9+7 answers 15 and 16; no speech recognition, misheard spoken number or 8+5 numeric submission.",
+    "Lab journey IDs and attempt-log IDs are separate existing storage identities."
+  ]
+}

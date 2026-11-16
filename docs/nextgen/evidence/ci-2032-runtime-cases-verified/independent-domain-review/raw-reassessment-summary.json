@@ -1,0 +1,54 @@
+{
+  "status": "PASS_WITH_LIMITATIONS",
+  "reviewedUtc": "2026-11-16T11:25:25.910182+00:00",
+  "workflowRun": 43853317375,
+  "androidJob": 133251156609,
+  "qaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "resultSha256": "8dd0a99e5da7266a3470a9408e5e58b4f47d17d3f408baaedc7967e64120dd98",
+  "numeric": {
+    "wrongId": "1794826984412138-0",
+    "correctedId": "1794826989702794-1",
+    "newAttempts": 2
+  },
+  "switch": {
+    "activeLabel": "Silbe 1: Ba, gerade aktiv",
+    "captureToRequestedTouchSeconds": 0.13834299899997404,
+    "sameSession": true,
+    "newAttemptOrReward": false
+  },
+  "banana": {
+    "pid": 6177,
+    "newOrderedPlaybackIds": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "acousticTempoVerified": false
+  },
+  "pattern": {
+    "assessedAttempt": {
+      "id": "1794827688610310-2",
+      "sid": "self",
+      "sub": "Logik",
+      "unit": "Muster",
+      "comp": "Muster",
+      "ok": true,
+      "at": "2026-11-16T11:14:48.610310",
+      "hint": true,
+      "q": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "a": "Quadrat",
+      "e": "Quadrat",
+      "ms": 287804
+    },
+    "newAttempts": 1,
+    "assisted": true
+  },
+  "usedOriginalFiles": 61,
+  "releaseEligible": false,
+  "fullReplayReplaced": false,
+  "newAndroidRun": false,
+  "newNetworkCalls": false,
+  "testSuiteExecuted": false,
+  "sourceOrOriginalMutation": false
+}

@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_MEDIA_REVIEW",
+  "directory": "/workspace/scratch/4fa97167812c/runtime-cases-2032-media-review",
+  "files": [
+    {
+      "path": "0001-onboarding-ffprobe.json",
+      "bytes": 5615,
+      "sha256": "f3ad6182386302f2ee8382d25f2fae0decc7207135652a2eee97b96f00d4766e"
+    },
+    {
+      "path": "0001-onboarding-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0123-numeric-build-before-graded-recall-ffprobe.json",
+      "bytes": 5633,
+      "sha256": "b73ac20b6248d64fce3aac7d9b8ec5c485160170a8a4e24f0164385592a34546"
+    },
+    {
+      "path": "0123-numeric-build-before-graded-recall-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0150-numeric-wrong-submission-ffprobe.json",
+      "bytes": 5618,
+      "sha256": "95acb2c3a79b90b3296ffdd3dfe4993e98fdc20380c076a237181a22ee84f0e7"
+    },
+    {
+      "path": "0150-numeric-wrong-submission-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0164-numeric-corrected-submission-ffprobe.json",
+      "bytes": 5624,
+      "sha256": "5bfeccaba7fe6bfb4f951431b184c344ba2a9da10f6b5b48043a61c3d2b3c5e6"
+    },
+    {
+      "path": "0164-numeric-corrected-submission-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0184-switch-build-banane-and-retain-syllable-replay-ffprobe.json",
+      "bytes": 5649,
+      "sha256": "9bc759eb6040d97589a2e9a330fd1c3133ba915ec24f6279426ac54669133406"
+    },
+    {
+      "path": "0184-switch-build-banane-and-retain-syllable-replay-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0221-switch-during-actual-active-syllable-ffprobe.json",
+      "bytes": 5632,
+      "sha256": "6561780362eafa31913602ec68294406ab0d827b82d217e58a35b4973e5611d2"
+    },
+    {
+      "path": "0221-switch-during-actual-active-syllable-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0350-runtime-banana-four-slower-segments-ffprobe.json",
+      "bytes": 5638,
+      "sha256": "405787862e1869f710b2ae199fcd051b8c5dc4c902a976c62bc1ae77ef6e8261"
+    },
+    {
+      "path": "0350-runtime-banana-four-slower-segments-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0406-pattern-visible-academy-navigation-ffprobe.json",
+      "bytes": 5630,
+      "sha256": "c3b140ebe8837559558d7bd7f021149bc0267688ff467dde0539d40938d5c34b"
+    },
+    {
+      "path": "0406-pattern-visible-academy-navigation-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0428-pattern-native-entry-and-playback-ffprobe.json",
+      "bytes": 5637,
+      "sha256": "b139ce422ef5f0839d52b72aaed8b75b8502575c71b7c1b2db331f9105002f76"
+    },
+    {
+      "path": "0428-pattern-native-entry-and-playback-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0437-pattern-observed-group-and-unconfirmed-proposal-ffprobe.json",
+      "bytes": 5659,
+      "sha256": "11ede103e5c6780db9b9f1651c8535a428f16fca612fc2100c82044192135526"
+    },
+    {
+      "path": "0437-pattern-observed-group-and-unconfirmed-proposal-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0465-pattern-return-to-same-unanswered-question-ffprobe.json",
+      "bytes": 5647,
+      "sha256": "b2c0258d0ed14ffec48abe8e6ce2e2fd578754c54fc19849fc7078f040fb12a6"
+    },
+    {
+      "path": "0465-pattern-return-to-same-unanswered-question-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "0487-pattern-explicit-core-answer-after-ungraded-return-ffprobe.json",
+      "bytes": 5643,
+      "sha256": "4d146ce991f584530d3cbca641249ae3dc0b2588f994900bebab963a6f18dc84"
+    },
+    {
+      "path": "0487-pattern-explicit-core-answer-after-ungraded-return-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6235,
+      "sha256": "ab2df0f31437556f799b441143681848e1a41c2aa1eb25d0e7d8fa3932cbc506"
+    },
+    {
+      "path": "ffprobe-version.txt",
+      "bytes": 1873,
+      "sha256": "02412fef1eca820a65af53c5fa03b637f92ef643783005ccf9c4b4e3a31fb699"
+    },
+    {
+      "path": "media-hash-review.json",
+      "bytes": 41400,
+      "sha256": "6d7086e933d857e99c19f8c27da0fdffff55f3784d6f5cc849709c13f53cb7ea"
+    },
+    {
+      "path": "review.json",
+      "bytes": 11227,
+      "sha256": "4d38e90a44b0fa4510e6db169d5eaedcd2b7a253954365c2ef9a34c2150ac5f5"
+    },
+    {
+      "path": "review_media.py",
+      "bytes": 9280,
+      "sha256": "1ce7ee35cef56e72a0cbfdb2b6517fdc4354473311551cfd1edd868b6d7a250e"
+    },
+    {
+      "path": "video-eof-review.json",
+      "bytes": 14332,
+      "sha256": "7cea37a51937fdcff855db0141dd515a33856c8cd87c5ea29db7fb7f5d8cc88d"
+    }
+  ],
+  "originalsRoot": "/dev/shm/lumo-2032-runtime-cases-originals",
+  "runId": 43853317375,
+  "artifactId": 14220263387,
+  "sourcePreserved": true,
+  "repoMutation": false,
+  "newAndroidExecution": false,
+  "note": "All file hashes cover review notes, read-only audit code and actual ffprobe outputs. No media copies."
+}

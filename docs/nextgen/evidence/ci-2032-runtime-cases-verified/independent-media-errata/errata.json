@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "type": "ERRATA_VISUAL_REVIEW",
+  "status": "CORRECTED_AND_FROZEN",
+  "createdUtc": "2026-11-16T11:33:50.896013+00:00",
+  "runId": 43853317375,
+  "artifactId": 14220263387,
+  "original": {
+    "path": "/dev/shm/lumo-2032-runtime-cases-originals/original/android/runtime-cases/0177-numeric-corrected-after-assessment.png",
+    "member": "android/runtime-cases/0177-numeric-corrected-after-assessment.png",
+    "bytes": 503554,
+    "sha256": "ec218c9a50eb48751735f26c203969b674f38071c15df722ec37fdc9f5641aa8"
+  },
+  "originalReopenedAndPersonallyViewed": true,
+  "withdrawnStatement": "Der obere Bildbereich ist gleichmäßig dunkelblau; Aufgabenüberschrift und Figur sind in diesem Nachbild nicht sichtbar. Die Zuordnung zu 9 + 7 folgt nicht allein aus diesem Bild.",
+  "correctedObservation": "Im unveränderten Original sind Die Zehnerbrücke, Freier Abruf, der Fuchs, die vollständige Aufgabe „9 + 7 = ? Rechne zuerst zur Zehn.“, Eingabe 16, „Neue Aufgabe“ und „Richtig! Diese Antwort war mit Hilfe.“ gemeinsam klar sichtbar. Der Aufgabenbezug ist in diesem Bild selbst erkennbar.",
+  "errorAttribution": "Der frühere Sichtbefund war falsch. Aus ihm wird keine technische Ursache und kein Produktfehler abgeleitet.",
+  "supersedes": [
+    "review.json: visual_observations entry for 0177, limit_de",
+    "README.md: Korrektur / 0177, statement about the missing upper image area",
+    "Corresponding earlier chat statements about 0177"
+  ],
+  "boundFrozenReviewFiles": [
+    {
+      "path": "/workspace/scratch/4fa97167812c/runtime-cases-2032-media-review/review.json",
+      "bytes": 11227,
+      "sha256": "4d38e90a44b0fa4510e6db169d5eaedcd2b7a253954365c2ef9a34c2150ac5f5"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/runtime-cases-2032-media-review/README.md",
+      "bytes": 6235,
+      "sha256": "ab2df0f31437556f799b441143681848e1a41c2aa1eb25d0e7d8fa3932cbc506"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/runtime-cases-2032-media-review/handoff.json",
+      "bytes": 5932,
+      "sha256": "69e77d69ba0ce4e736e08dbfd219c7f84cadb03a0696a9391a602feed207e7a2"
+    }
+  ],
+  "unchanged": "Alle bisherigen Reviewdateien und Originalmedien bleiben unverändert. Hash-/EOF-/Tonspurbefunde und der getrennte Sichtbefund zu 0492 werden nicht geändert.",
+  "actions": {
+    "newTests": false,
+    "newFfprobeRuns": false,
+    "mediaEdited": false,
+    "originalWritten": false,
+    "repositoryEdited": false,
+    "ciAction": false,
+    "download": false
+  }
+}

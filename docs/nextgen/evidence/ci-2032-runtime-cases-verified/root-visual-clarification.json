@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-16T11:32:57.553464+00:00",
+  "status": "ROOT_ORIGINAL_VISUAL_CORRECTION",
+  "files": [
+    {
+      "path": "original/android/runtime-cases/0177-numeric-corrected-after-assessment.png",
+      "bytes": 503554,
+      "sha256": "ec218c9a50eb48751735f26c203969b674f38071c15df722ec37fdc9f5641aa8"
+    },
+    {
+      "path": "original/android/runtime-cases/0492-pattern-after-explicit-core-assessment.png",
+      "bytes": 2122281,
+      "sha256": "049a8b2bb7200910754a49c98437df5fe1e8e2b4526fcd75d396ef193c53b4cf"
+    }
+  ],
+  "rootPersonallyViewedOriginals": true,
+  "correction": {
+    "file": "0177-numeric-corrected-after-assessment.png",
+    "supersededObservation": "Upper area uniformly blue, task and fox absent",
+    "actualObservation": "The full displayed original clearly shows Die Zehnerbruecke, Freier Abruf, the fox, the complete 9+7 task, answer16, and Richtig! Diese Antwort war mit Hilfe.",
+    "originalHashUnchanged": true,
+    "noMissingHeaderFindingSupported": true
+  },
+  "confirmedBoundary": {
+    "file": "0492-pattern-after-explicit-core-assessment.png",
+    "actualObservation": "Header shows5 stars/33XP; lower answer cards and hint card are visible. No explicit Richtig text in this scrolled frame. Hint card circle is empty.",
+    "exactAssessmentComesFromRawStoredAttempt": true,
+    "noCauseForEmptyHintCircleEstablished": true
+  },
+  "frozenIndependentReviewPreserved": true,
+  "newAndroidExecution": false,
+  "mediaEdited": false
+}

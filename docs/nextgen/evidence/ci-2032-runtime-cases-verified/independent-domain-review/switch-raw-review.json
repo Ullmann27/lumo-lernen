@@ -1,0 +1,110 @@
+{
+  "status": "PASS_WITH_LIMITATIONS",
+  "activeObservation": {
+    "active_label": "Silbe 1: Ba, gerade aktiv",
+    "next_bounds": [
+      60,
+      1474,
+      1020,
+      1578
+    ],
+    "next_label": "Jetzt selbstständig antworten",
+    "evidence": "same fresh Android accessibility hierarchy",
+    "xml": "0242-switch-live-active-and-next.xml",
+    "xml_sha256": "e7da845a5514edaa5ed6bf61a5eaa8354637aa74dd4cec27081e21313598afa8",
+    "capture_started_monotonic": 619.545031869,
+    "capture_finished_monotonic": 619.682987693,
+    "touch_requested_monotonic": 619.683374868
+  },
+  "captureToRequestedTouchSeconds": 0.13834299899997404,
+  "replayRequestToNextRequestSeconds": 4.247267622999971,
+  "explicitReplayTaps": 1,
+  "explicitNextTaps": 1,
+  "explicitStopBeforeSwitch": false,
+  "checkpointBefore": {
+    "topicId": "words",
+    "seed": 0,
+    "sessionId": "lab-attempt-bf5b63a8b84422be4fa392251e740f9c",
+    "phase": "build",
+    "problemId": "word-banane",
+    "moved": 0,
+    "pieces": [],
+    "tokens": [
+      2,
+      3,
+      0
+    ],
+    "patternChoice": null,
+    "hint": 0,
+    "support": 0,
+    "wrongBefore": false,
+    "attempt": 1,
+    "answer": "",
+    "done": true,
+    "pendingAttemptId": null,
+    "lastSavedAttemptId": "lab-attempt-bf5b63a8b84422be4fa392251e740f9c-1"
+  },
+  "checkpointAfter": {
+    "topicId": "words",
+    "seed": 0,
+    "sessionId": "lab-attempt-bf5b63a8b84422be4fa392251e740f9c",
+    "phase": "recall",
+    "problemId": "word-rakete",
+    "moved": 0,
+    "pieces": [],
+    "tokens": [],
+    "patternChoice": null,
+    "hint": 0,
+    "support": 0,
+    "wrongBefore": false,
+    "attempt": 1,
+    "answer": "",
+    "done": false,
+    "pendingAttemptId": null,
+    "lastSavedAttemptId": null
+  },
+  "sameSession": true,
+  "unchangedProfileLearningReward": true,
+  "learningKeysCompared": 7,
+  "oldActiveMarkerAbsentInFreshXml": true,
+  "displayBefore": {
+    "wm_size": "Physical size: 1080x2340",
+    "wm_density": "Physical density: 440",
+    "size": [
+      1080,
+      2340
+    ],
+    "density_dpi": 440,
+    "physical_density_dpi": 440,
+    "density_override": null
+  },
+  "displayPrepared": {
+    "wm_size": "Physical size: 1080x2340",
+    "wm_density": "Physical density: 440\nOverride density: 320",
+    "size": [
+      1080,
+      2340
+    ],
+    "density_dpi": 320,
+    "physical_density_dpi": 440,
+    "density_override": 320
+  },
+  "displayRestored": {
+    "wm_size": "Physical size: 1080x2340",
+    "wm_density": "Physical density: 440",
+    "size": [
+      1080,
+      2340
+    ],
+    "density_dpi": 440,
+    "physical_density_dpi": 440,
+    "density_override": null
+  },
+  "autoReadDisabledAndExactlyRestored": true,
+  "limits": [
+    "Active Flutter accessibility cue and actual requested UI switch; no acoustic recording or native MediaPlayer log of this Flutter voice.",
+    "Timing measures capture start to requested tap; OS input delivery and acoustic stop latency are not measured.",
+    "The 45-second code budget remains unchanged; the request-to-request observations are about 4.25 seconds apart.",
+    "1080x2340 at temporary 320dpi, restored to440dpi; not physical-device proof."
+  ]
+}

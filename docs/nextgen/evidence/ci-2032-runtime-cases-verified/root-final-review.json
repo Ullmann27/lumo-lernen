@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-16T11:29:54.227487+00:00",
+  "status": "CURRENT_FOUR_CASE_ORIGINALS_AND_INDEPENDENT_REVIEWS_VERIFIED_WITH_LIMITATIONS",
+  "workflowRun": 43853317375,
+  "attempt": 1,
+  "androidJob": 133251156609,
+  "artifactId": 14220263387,
+  "qaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "qaTree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "apkSha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+  "originalResultSha256": "8dd0a99e5da7266a3470a9408e5e58b4f47d17d3f408baaedc7967e64120dd98",
+  "domainReview": {
+    "filesRetained": 13,
+    "handoffSha256": "c0d3a5e7b2770995cdd681e321d9189e38db490c865840d35a0303081df5f149",
+    "reviewSha256": "c9f4f568f802f4a689503e101138085425b64b0c78daf41cd351534b00a0dec6",
+    "rawInputsAdditionallyBoundByRoot": 61,
+    "sourceBlobsAdditionallyBoundByRoot": 12,
+    "unchangedVerifierExitCode": 0,
+    "noAdditionalRootVerifierExecution": true
+  },
+  "mediaReview": {
+    "filesRetained": 31,
+    "handoffSha256": "69e77d69ba0ce4e736e08dbfd219c7f84cadb03a0696a9391a602feed207e7a2",
+    "checks": {
+      "referenced_original_png_hashes": 28,
+      "referenced_original_mp4_hashes": 12,
+      "additional_panel_png_hashes": 1,
+      "all_match_result_and_artifact_manifest": true,
+      "all_twelve_videos_read_sequentially_to_eof": true,
+      "ffprobe_error_outputs": 0,
+      "positive_video_durations": 12,
+      "video_frames_counted_total": 688,
+      "recorded_duration_seconds_total": 444.990899,
+      "audio_streams_total": 0,
+      "original_images_personally_viewed": 9
+    },
+    "rootRecountedActualFfprobeOutputs": 12,
+    "rootDidNotRepeatDecoding": true,
+    "separateVisualErrata": {
+      "filesRetained": 3,
+      "handoffSha256": "34459026b323cb69606219b2793f98b1d6c5e26af89f71a3a58103f2b5e329f6",
+      "path": "independent-media-errata/ERRATA.md",
+      "scope": "Withdraw incorrect missing-header description of unchanged screenshot0177; task9+7 and fox are visible. Hash/EOF/audio and pattern observations unchanged.",
+      "rootViewedSameOriginalAndAgrees": true
+    }
+  },
+  "allFourCasesConfirmed": true,
+  "originalCompleteTourReplaced": false,
+  "apkRebuilt": false,
+  "historicalResultsReclassified": false,
+  "fullModernizationComplete": false,
+  "limits": [
+    "Two typed 9+7 answers prove a genuine wrong/corrected domain submission. They do not prove German speech recognition, a misheard spoken number or a spoken correction.",
+    "Flutter active syllable and Next are jointly observed in one fresh hierarchy. Capture start to requested touch is measured; audible playback and actual OS input delivery latency are not.",
+    "Native slower has four new ordered MediaPlayer callback pairs and visible shortcut/model evidence. Words and speed are source-bound, not acoustically measured.",
+    "The native model-preservation flag compares the observed 0/3 model and profile/learning data; it is not an independently persisted native mastery checkpoint.",
+    "Exactly one observed period-two pattern is assessed as assisted correct after an explicit Core card tap. This is not general proof for all pattern families or independent mastery.",
+    "This independent supplemental installation is not another complete-tour acceptance or publication approval. The previous full tour and publication remain separately bound.",
+    "No new physical-device, Fold7, phoneme/mouth/gesture, 60-FPS or complete-modernization evidence follows."
+  ]
+}

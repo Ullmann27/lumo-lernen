@@ -1,0 +1,131 @@
+{
+  "status": "PASS_WITH_LIMITATIONS",
+  "pid": 6177,
+  "previousIds": [
+    3
+  ],
+  "utteranceIds": [
+    7,
+    8,
+    9,
+    10
+  ],
+  "events": [
+    {
+      "state": "started",
+      "id": 7,
+      "profile": "lumo-free-supertonic-de-v1"
+    },
+    {
+      "state": "completed",
+      "id": 7,
+      "profile": null
+    },
+    {
+      "state": "started",
+      "id": 8,
+      "profile": "lumo-free-supertonic-de-v1"
+    },
+    {
+      "state": "completed",
+      "id": 8,
+      "profile": null
+    },
+    {
+      "state": "started",
+      "id": 9,
+      "profile": "lumo-free-supertonic-de-v1"
+    },
+    {
+      "state": "completed",
+      "id": 9,
+      "profile": null
+    },
+    {
+      "state": "started",
+      "id": 10,
+      "profile": "lumo-free-supertonic-de-v1"
+    },
+    {
+      "state": "completed",
+      "id": 10,
+      "profile": null
+    }
+  ],
+  "modelOCR": [
+    {
+      "file": "0341-runtime-banana-model-before-0-ocr.json",
+      "matchingRows": [
+        {
+          "text": "0/3 bewegt",
+          "bounds": [
+            74.0,
+            1672.0,
+            344.0,
+            1716.0
+          ],
+          "variant": "contrast"
+        }
+      ]
+    },
+    {
+      "file": "0388-runtime-banana-model-after-0-ocr.json",
+      "matchingRows": [
+        {
+          "text": "0/3 bewegt",
+          "bounds": [
+            74.0,
+            1672.0,
+            344.0,
+            1716.0
+          ],
+          "variant": "contrast"
+        }
+      ]
+    }
+  ],
+  "sameVisibleModel": {
+    "kind": "syllables",
+    "word": "Banane",
+    "placed": 0,
+    "total": 3,
+    "visible_label": "0 / 3 bewegt"
+  },
+  "profileLearningPreservation": {
+    "profile_id": "1794826885736046",
+    "learning_keys_compared": 7,
+    "same_task_checkpoint": true
+  },
+  "stablePanelTarget": [
+    493.0,
+    1509.0,
+    739.0,
+    1554.0
+  ],
+  "currentSourceRateContract": {
+    "formula": "max(0.70, baseRate * 0.75)",
+    "apk_source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+    "native_source": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+    "pck_sha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+    "host_source_sha256": {
+      "tools/auto_install/LumoLearningConversation.kt": "f3a09318752f819e65be5c8de7486dba1287ae71b5ae5831aed17d5f298904fc",
+      "tools/auto_install/LumoLearningSpeech.kt": "6855fcf77abada42a7b59178e013108ef641f523007200be5c916d4e39e096c8"
+    },
+    "native_source_review": {
+      "path": "scripts/learning/learning_world.gd",
+      "sha256": "1e12a51ee1264c86bdf7e83fc0073e36aae766b777b56923ff80e3a8cf449fca",
+      "function": "_speak_syllables",
+      "function_sha256": "b7e9819cb5c4478818ba52dab9999bd418cb38d23e9e5df45b848e8753aca6da"
+    },
+    "binding": "Exact source fingerprints and installed APK/PCK identity; not a rate emitted by MediaPlayer",
+    "native_source_read_on_runner": false,
+    "runtime_rate_measured": false
+  },
+  "rawBefore": "0349-native-speech.txt",
+  "rawAfter": "0386-native-speech.txt",
+  "limits": [
+    "Four ordered MediaPlayer callback pairs in PID6177; speech logs contain no spoken words or rate.",
+    "Banane/Ba/na/ne order and max(0.70,baseRate*0.75) are source-bound; no acoustic correctness or tempo measurement.",
+    "same_task_checkpoint here compares the observed native0/3 model; it is not a newly saved native mastery record."
+  ]
+}

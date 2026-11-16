@@ -1,0 +1,79 @@
+{
+  "schema": "lumo.independent_original_review.handoff",
+  "version": 1,
+  "status": "PASS_WITH_LIMITATIONS",
+  "directory": "/workspace/scratch/4fa97167812c/agent-ci-2032-runtime-cases-review",
+  "qaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "qaTree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "workflowRun": 43853317375,
+  "androidJob": 133251156609,
+  "artifactId": 14220263387,
+  "files": [
+    {
+      "path": "SUMMARY.md",
+      "bytes": 6384,
+      "sha256": "d056a8bcfd84f43ae3ee2882c711ba06b24e8c90e6088c5f99571d3fc5809c1a"
+    },
+    {
+      "path": "native-banana-raw-review.json",
+      "bytes": 3361,
+      "sha256": "88227018eab9b3c4ad6420f72176d64e0ac6a18a7f79704af9612420e39b6756"
+    },
+    {
+      "path": "numeric-raw-review.json",
+      "bytes": 6927,
+      "sha256": "567caeae902074200ee26cf7b8efe181f151e609418819acc79260ca7c4bc600"
+    },
+    {
+      "path": "pattern-raw-review.json",
+      "bytes": 3585,
+      "sha256": "f964bad60a461de3b9bd391ee90736d216a95bfe8cb0aa2d2f313eb5ee68d83a"
+    },
+    {
+      "path": "raw-input-binding.json",
+      "bytes": 15074,
+      "sha256": "76c48b8124404eda13f156512614260f9622b540fbeb7e9a12e5f4899b372f29"
+    },
+    {
+      "path": "raw-reassessment-summary.json",
+      "bytes": 1434,
+      "sha256": "52564ed91f8a281f5ef04b569c2f4688ced334a1d491ec08f22e724471b040f8"
+    },
+    {
+      "path": "reassess_originals.py",
+      "bytes": 20818,
+      "sha256": "2127ab0e97231d26ada63cdf0bac3e173b51bad551f03d40be6fe5d54792b620"
+    },
+    {
+      "path": "review.json",
+      "bytes": 9394,
+      "sha256": "c9f4f568f802f4a689503e101138085425b64b0c78daf41cd351534b00a0dec6"
+    },
+    {
+      "path": "source-installation-review.json",
+      "bytes": 45563,
+      "sha256": "20094dfaa5bbd6ee94be4354ea192a9fe3f43c1e32d895d5f5e19b5dbf8a12bb"
+    },
+    {
+      "path": "switch-raw-review.json",
+      "bytes": 3162,
+      "sha256": "030ac3ef939b6603ceb3837005f3a6c0190803ab3e1f0591c77eb57bd71cc50a"
+    },
+    {
+      "path": "unchanged-verifier.log",
+      "bytes": 254,
+      "sha256": "ee8985b5e8396f0ae1e762020ec6fc3e820885dac299b9a82c612602c4b47b4e"
+    },
+    {
+      "path": "verifier-execution.json",
+      "bytes": 1014,
+      "sha256": "aaecc3143d814cfe76f70d047fb0a4e8dcf137b7a769f794d3854f0b734d2f55"
+    }
+  ],
+  "noAndroidExecution": true,
+  "noNetworkOrCiCalls": true,
+  "noProductOrOriginalMutation": true,
+  "frozen": true
+}

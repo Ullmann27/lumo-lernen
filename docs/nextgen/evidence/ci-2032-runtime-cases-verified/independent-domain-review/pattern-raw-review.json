@@ -1,0 +1,160 @@
+{
+  "status": "PASS",
+  "task": {
+    "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+    "sequence": [
+      "Quadrat",
+      "Kreis",
+      "Quadrat",
+      "Kreis"
+    ],
+    "period": 2,
+    "next": "Quadrat"
+  },
+  "nativeReturnUngraded": true,
+  "attemptCounts": {
+    "beforeNative": 2,
+    "afterNative": 2,
+    "afterExplicitCard": 3,
+    "final": 3
+  },
+  "selection": {
+    "task": {
+      "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "sequence": [
+        "Quadrat",
+        "Kreis",
+        "Quadrat",
+        "Kreis"
+      ],
+      "period": 2,
+      "next": "Quadrat"
+    },
+    "header": "Wähle die richtige Antwort:",
+    "header_bounds": [
+      39,
+      356,
+      1042,
+      1694
+    ],
+    "scroll_bounds": [
+      0,
+      356,
+      1080,
+      1914
+    ],
+    "controls": {
+      "Stern": [
+        39,
+        1001,
+        524,
+        1221
+      ],
+      "Quadrat": [
+        39,
+        748,
+        524,
+        968
+      ],
+      "Dreieck": [
+        557,
+        748,
+        1042,
+        968
+      ],
+      "Kreis": [
+        557,
+        1001,
+        1042,
+        1221
+      ]
+    },
+    "target": [
+      39,
+      748,
+      524,
+      968
+    ]
+  },
+  "selectionXml": "0489-pattern-final-current-answer-cards.xml",
+  "selectionXmlSha256": "35455d0972239d7c635274e0e0381e656c341cf396dc859328e1b5b2211cc0a1",
+  "explicitAnswerTaps": 1,
+  "rawTouch": {
+    "label": "Wähle die richtige Antwort: / Quadrat",
+    "observed_bounds": [
+      39,
+      748,
+      524,
+      968
+    ]
+  },
+  "storedAttempt": {
+    "id": "1794827688610310-2",
+    "sid": "self",
+    "sub": "Logik",
+    "unit": "Muster",
+    "comp": "Muster",
+    "ok": true,
+    "at": "2026-11-16T11:14:48.610310",
+    "hint": true,
+    "q": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+    "a": "Quadrat",
+    "e": "Quadrat",
+    "ms": 287804
+  },
+  "journeyKey": "flutter.lumo_progress_journey_v1::local-27bd43515949cfddeb8e48f1cae1293b",
+  "journey": {
+    "subject": "Logik",
+    "unit": "Muster",
+    "attempts": 1,
+    "independentCorrect": 0,
+    "assistedCorrect": 1,
+    "transferCorrect": 0,
+    "errorCounts": {},
+    "dueAt": "2026-11-17T11:14:48.521822Z",
+    "lastSeen": "2026-11-16T11:14:48.521822Z",
+    "reviewStage": 0,
+    "needsPractice": true,
+    "recentTaskIds": [
+      "attempt-bb29413a43bd371af76bf1b0320dcfd4"
+    ],
+    "independentProblemIds": []
+  },
+  "walletBefore": {
+    "stars": 0,
+    "xp": 0,
+    "level": 1,
+    "streak": 0,
+    "totalEarnedStars": 0,
+    "lastDailyKey": "",
+    "gameResultIds": [],
+    "lumoCardsWinStreak": 0
+  },
+  "walletAfter": {
+    "stars": 5,
+    "xp": 33,
+    "level": 1,
+    "streak": 0,
+    "totalEarnedStars": 5,
+    "lastDailyKey": "",
+    "gameResultIds": [],
+    "lumoCardsWinStreak": 0
+  },
+  "nativeHintPlayback": {
+    "pid": 7110,
+    "utterance_ids": [
+      7
+    ],
+    "segments": 1,
+    "profile": "lumo-free-supertonic-de-v1",
+    "evidence": "ordered MediaPlayer started/completed callbacks",
+    "spoken_words_in_log": false,
+    "audible_quality_verified": false
+  },
+  "profileUnchanged": true,
+  "limits": [
+    "One observed Quadrat/Kreis period2 task, not all pattern families.",
+    "An actual Core answer-card tap is the existing direct submission; no invented separate confirmation step.",
+    "Assisted correct evidence is not independent mastery or transfer evidence."
+  ]
+}

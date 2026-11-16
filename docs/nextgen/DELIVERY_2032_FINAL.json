@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "status": "INTEGRATED_TEST_APK_DELIVERED_WITH_DOCUMENTED_REMAINING_SCOPE",
+  "finalizedAt": "2026-11-16T11:35:40.530453+00:00",
+  "versionName": "0.13.20",
+  "versionCode": 2032,
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "apkSourceTree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "nativeSourceTree": "26b6e5301372d4ade91ca8955f7c1ccf5d0dee78",
+  "integrationBranch": "integration/lumo-nextgen-learning-20261115",
+  "qaBranch": "qa/lumo-nextgen-2032-runtime-cases-20261116",
+  "qaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "qaTree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+  "apk": {
+    "url": "https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-nextgen-learning-0.13.20-2032/Lumo-Lernen-Neu-0.13.20-2032.apk",
+    "bytes": 535026462,
+    "sha256": "cfa6709547ed82ffe6f081568c3bc454e1cc41afbfea2ecf9c85f534a6ea42de",
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "publicCompleteAnonymousDownloadVerifiedAt": "2026-11-16T10:33:37Z",
+    "releaseId": 446893589,
+    "assetId": 754429456,
+    "githubImmutableFlag": false
+  },
+  "mainWorkflow": {
+    "id": 43837592237,
+    "attempt": 2,
+    "status": "SUCCESS",
+    "androidJob": 133221738048,
+    "publisherJob": 133238196787,
+    "originalAndroidResult": "PASS_WITH_LIMITATIONS",
+    "referenceAndroidResult": "PASS_WITH_LIMITATIONS"
+  },
+  "supplementWorkflow": {
+    "id": 43853317375,
+    "attempt": 1,
+    "job": 133251156609,
+    "status": "SUCCESS",
+    "originalResult": "PASS_WITH_LIMITATIONS",
+    "allFourMandatoryCasesVerified": true,
+    "independentOriginalReviewsComplete": true,
+    "artifactId": 14220263387,
+    "archiveBytes": 65735724,
+    "archiveSha256": "17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed",
+    "originalMembers": 1889
+  },
+  "report": {
+    "path": "ANDROID_DELIVERY_2032.md",
+    "sha256": "82b3888e8d1d59fee7a4cd6a2d8d552a6565f74a93a9213b00e23c766331953d"
+  },
+  "coverage": {
+    "path": "COVERAGE.json",
+    "sha256": "1aaef7e1cf9ffcc3f2b93b2abac65709b41437e389874d1de54392f4eb38ad2a",
+    "inventoryEntries": 61,
+    "screenFiles": 55,
+    "curriculumFamilies": 236,
+    "activeSpecialistEntries": 19,
+    "activeSpecialistScreens": 18,
+    "labModes": 6,
+    "labProblemIds": 35,
+    "guidedLessons": 7,
+    "nativeKinds": 12
+  },
+  "contract": {
+    "protocolVersion": 1,
+    "path": "lib/core/lumo_learning_session_contract.dart",
+    "sha256": "1c8d8f2655faef057089d845a89920822409bfa91c9388e5bed7c70d62caf18d"
+  },
+  "fullModernizationComplete": false,
+  "allTaskVariantsReviewed": false,
+  "physicalDeviceVerified": false,
+  "realGermanSttVerified": false,
+  "phonemeTimingVerified": false,
+  "jointAcousticMouthGestureStopVerified": false,
+  "allControls48dpVerified": false,
+  "physical60fpsVerified": false,
+  "populatedUserProfileUpgradeVerified": false,
+  "mainMerged": false
+}
