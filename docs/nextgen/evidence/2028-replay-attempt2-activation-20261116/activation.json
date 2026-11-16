@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "qaCommit": "0919f32431ce07491e0e182b3ea12b21aaaf9540",
+  "qaTree": "d1b093697d81ac94ba690999386f612d03c518f7",
+  "qaBranch": "qa/lumo-nextgen-2028-android-20261116",
+  "qaRun": 43783036351,
+  "qaJob": 133024363592,
+  "createdUtc": "2026-11-16T00:53:41Z",
+  "apkSource": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "sourceBuildRun": 43774460935,
+  "runUrl": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43783036351",
+  "stateWhenRecorded": "in_progress",
+  "observedCompletedSteps": [
+    "Set up job",
+    "Run actions/checkout@v4",
+    "Verify source boundary and download the exact existing 2028 APK",
+    "Run actions/setup-java@v4"
+  ],
+  "deliveryBranchPreparedWithoutPublicationConfig": "delivery/lumo-nextgen-2028-replay-20261116"
+}
