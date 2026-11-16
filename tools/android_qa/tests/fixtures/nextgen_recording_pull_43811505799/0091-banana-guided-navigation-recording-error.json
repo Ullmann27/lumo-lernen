@@ -1,0 +1,8 @@
+{
+  "recording": "0091-banana-guided-navigation",
+  "error": "Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4', 'evidence/android/reference-android/0091-banana-guided-navigation.mp4')\n[  7%] /sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4\n",
+  "error_type": "RuntimeError",
+  "secondary_to_primary": false,
+  "primary_error": null,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 797, in recording\n    self.base.adb(\"pull\", remote, str(local), timeout=90)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 44, in adb\n    return command('adb', *args, timeout=timeout, check=check)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 39, in command\n    raise RuntimeError(f'Command failed ({result.returncode}): {args}\\n{text}')\nRuntimeError: Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4', 'evidence/android/reference-android/0091-banana-guided-navigation.mp4')\n[  7%] /sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4\n\n"
+}

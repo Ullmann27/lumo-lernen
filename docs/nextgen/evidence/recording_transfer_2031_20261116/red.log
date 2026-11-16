@@ -1,0 +1,15 @@
+test_aborted_transfer_retries_same_completed_bytes_without_replaying_the_ui_or_recorder (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_aborted_transfer_retries_same_completed_bytes_without_replaying_the_ui_or_recorder) ... FAIL
+test_original_transfer_failure_does_not_claim_a_missing_recording_or_start_failure (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_original_transfer_failure_does_not_claim_a_missing_recording_or_start_failure) ... ok
+
+======================================================================
+FAIL: test_aborted_transfer_retries_same_completed_bytes_without_replaying_the_ui_or_recorder (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_aborted_transfer_retries_same_completed_bytes_without_replaying_the_ui_or_recorder)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 116, in test_aborted_transfer_retries_same_completed_bytes_without_replaying_the_ui_or_recorder
+    self.assertIsNone(error)
+AssertionError: RuntimeError("Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4', 'evidence/android/reference-android/0091-banana-guided-navigation.mp4')\n[  7%] /sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4\n") is not None
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+FAILED (failures=1)
