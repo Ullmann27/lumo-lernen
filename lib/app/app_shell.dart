@@ -7,6 +7,7 @@ import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import 'lumo_companion_host.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
+import '../widgets/fox/lumo_free_companion.dart';
 import '../core/lumo_asset_paths.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
@@ -672,6 +673,11 @@ class _AppShellState extends State<AppShell>
                               _appState.state.section == LumoSection.home;
                           final navWidth = width < 980 ? 160.0 : 200.0;
                           final gap = width < 980 ? 6.0 : 10.0;
+                          final coreMenuPresenter =
+                              section == LumoSection.exercises &&
+                                      !_isReadingMode()
+                                  ? _coreConversation.presentMenu
+                                  : null;
 
                           if (mobile) {
                             final fullBleed = fullBleedScene != null;
@@ -701,11 +707,15 @@ class _AppShellState extends State<AppShell>
                               if (fullBleed)
                                 _LumoHelpDock(
                                     appState: _appState,
-                                    onSection: _navigateTo),
+                                    onSection: _navigateTo,
+                                    onAskLumo: _openConversation,
+                                    menuPresenter: coreMenuPresenter),
                               if (!fullBleed)
                                 LumoCompanionHost(
                                     appState: _appState,
                                     onSection: _navigateTo,
+                                    onAskLumo: _openConversation,
+                                    menuPresenter: coreMenuPresenter,
                                     compact: constraints.maxHeight < 650),
                               LumoBottomNavigation(
                                   active: _appState.state.section,
@@ -761,11 +771,14 @@ class _AppShellState extends State<AppShell>
                                             section == LumoSection.games)
                                           _LumoHelpDock(
                                               appState: _appState,
-                                              onSection: _navigateTo)
+                                              onSection: _navigateTo,
+                                              onAskLumo: _openConversation)
                                         else
                                           LumoCompanionHost(
                                               appState: _appState,
                                               onSection: _navigateTo,
+                                              onAskLumo: _openConversation,
+                                              menuPresenter: coreMenuPresenter,
                                               compact:
                                                   constraints.maxHeight < 600),
                                       ]),
@@ -798,9 +811,16 @@ class _AppShellState extends State<AppShell>
 /// Lumo keeps his initiative/menu listeners, with his own space outside the
 /// scrolling page. No game card or answer can be hidden behind the fox.
 class _LumoHelpDock extends StatelessWidget {
-  const _LumoHelpDock({required this.appState, required this.onSection});
+  const _LumoHelpDock({
+    required this.appState,
+    required this.onSection,
+    required this.onAskLumo,
+    this.menuPresenter,
+  });
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
+  final VoidCallback onAskLumo;
+  final LumoCompanionMenuPresenter? menuPresenter;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -830,7 +850,11 @@ class _LumoHelpDock extends StatelessWidget {
                         TextStyle(color: LumoVisualTokens.muted, fontSize: 12)),
               ])),
           LumoCompanionHost(
-              appState: appState, onSection: onSection, floating: true),
+              appState: appState,
+              onSection: onSection,
+              onAskLumo: onAskLumo,
+              menuPresenter: menuPresenter,
+              floating: true),
         ]),
       );
 }

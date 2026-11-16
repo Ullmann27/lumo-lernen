@@ -1,0 +1,128 @@
+{
+  "source_snapshot_before_test_commit": "3a34400b213ca622b69e960dbcc0da2bdf2d276e",
+  "execution_worktree_dirty": true,
+  "dirty_paths": [
+    "lib/app/app_shell.dart",
+    "lib/features/learning/learning_content.dart",
+    "test/learning/core_conversation_route_test.dart"
+  ],
+  "original_menu_red_base": "7c42d6da303ba42de2c7e94707dd187ff3660f1f",
+  "dependencies": {
+    "header_dialog": "fd4a1eea31bcf1aeff41086e3e739da1136933d2",
+    "resize": "7c42d6da303ba42de2c7e94707dd187ff3660f1f",
+    "presenter_producer": "80b18f63ebddd3e0c29607250ac0e4c3393f7548",
+    "presenter_local_cherry_pick": "f2b4d560bbce95231a0c497a3f6e55466d43713e",
+    "presenter_style_producer": "ff2bf662d5f31d851671135c67c73ef3ec9560d0"
+  },
+  "tested_source_files": {
+    "lib/app/app_shell.dart": {
+      "bytes": 39210,
+      "sha256": "1d2be251542a1733c6638326db87df09f4e2c7edb541f6c916e405f3cf21882a"
+    },
+    "lib/features/learning/learning_content.dart": {
+      "bytes": 155423,
+      "sha256": "c9e8fcfcefa63864264aef0d8d3ad7c479f4c1cd0f4fbae1197f921b8622ed50"
+    },
+    "lib/app/lumo_companion_host.dart": {
+      "bytes": 12781,
+      "sha256": "bfcab61255f60e62826ba60558f75b1341a125eee78a9a92704fe8502e63fd18"
+    },
+    "lib/widgets/fox/lumo_free_companion.dart": {
+      "bytes": 27242,
+      "sha256": "a361c60177ef9e8f7a011178b74d135604a135659839e0c3edf9d300ee5f2643"
+    },
+    "test/learning/core_conversation_route_test.dart": {
+      "bytes": 17971,
+      "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42"
+    },
+    "test/learning/learning_content_commands_test.dart": {
+      "bytes": 10145,
+      "sha256": "fd14e76020c90b24ec78e3951b7f173fb0f06695122abf4681e75b40bb54e727"
+    },
+    "test/lumo_header_semantics_test.dart": {
+      "bytes": 5586,
+      "sha256": "74fff37f0d58474d268cb9b4fe155127df4f7be661b6797e5632a0a469bddbb7"
+    },
+    "test/design/learning_shell_back_navigation_test.dart": {
+      "bytes": 5982,
+      "sha256": "f1fbe7cdfab46d7a1f92faa627cbb3821e82d2a24743c6ebe3a4d222357542fe"
+    }
+  },
+  "results": {
+    "original_menu_red": {
+      "failed": 1,
+      "description": "Actual mobile dock menu disappears before deliberate selection; original product unchanged."
+    },
+    "closing_pause_red": {
+      "failed": 1,
+      "description": "Actual menu selection followed by inactive/resumed during closing wrongly opens the old question; interim menu implementation."
+    },
+    "final_green": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "log": "final-green.log"
+    },
+    "analysis": {
+      "result": "No issues found",
+      "log": "analyze.log"
+    },
+    "overlapping_intermediate_runs_are_not_added": true
+  },
+  "limitations": [
+    "Real AppShell/Core/route/controller logic; artwork/asset JSON transport and replacement fonts are synthetic.",
+    "No Android, microphone, audio playback, physical folding or image-quality success is claimed.",
+    "Exact existing task ValueKeys, grading, task IDs, rewards, saved formats, native pins and release/QA gates are unchanged.",
+    "Pause invalidation in the menu closing interval is directly covered; no exhaustive lifecycle/profile/device matrix is claimed."
+  ],
+  "raw_evidence": {
+    "red.log": {
+      "bytes": 2356,
+      "sha256": "3638d5f06f622320dcf5c440badb3d085435c33c8fb8b15435845e2b5a3680ea"
+    },
+    "red-provenance.json": {
+      "bytes": 763,
+      "sha256": "4b2a388190ffb3cb3b1f11ba7ca7d93b78147b634718972e0b3cba94c8ea920d"
+    },
+    "red-test.dart.txt": {
+      "bytes": 12874,
+      "sha256": "b2c50635dcdbb6cd3fe5f42f1377a79e935688d0db89b9c48ec232775f1bd6a6"
+    },
+    "green-initial.log": {
+      "bytes": 276,
+      "sha256": "41560d8e7cc4c3b6167f618a8d8493ace92355e947a841f986f87427f9f1e65f"
+    },
+    "joined-green.log": {
+      "bytes": 4494,
+      "sha256": "0b458bcdda4ff7b3c6a7340663f3508cb54058292a142f71f85c38f8b6b20541"
+    },
+    "joined-green-provenance.json": {
+      "bytes": 1260,
+      "sha256": "eafb6072be369178150e23066cdf251db654cf4ca3d8686349ef79ae13034727"
+    },
+    "closing-pause-red.log": {
+      "bytes": 2432,
+      "sha256": "e1ddacf500110522e2981174a6f3b5ce5690c6ffe3d421601c1e3a65abdadadc"
+    },
+    "closing-pause-red-provenance.json": {
+      "bytes": 692,
+      "sha256": "a6d23ac4d097aa3f4e055c544db345cd935c6eb6c3e9c1ec766392e97e0d760c"
+    },
+    "closing-pause-red-test.dart.txt": {
+      "bytes": 17971,
+      "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42"
+    },
+    "final-green.log": {
+      "bytes": 4677,
+      "sha256": "22c6d06a491e3002bb30d9cc68354369738e5cf5166a33dec488b2faf9c0e4c4"
+    },
+    "analyze-initial.log": {
+      "bytes": 281,
+      "sha256": "2eb1f02e71e398e143cb8533783c8f4fb0f3a4b48a8089de462a51eb3525e9d5"
+    },
+    "analyze.log": {
+      "bytes": 96,
+      "sha256": "0419496a543d882390bfc22515282d139567b28abb2ec2c6cef14f141aea5d25"
+    }
+  }
+}

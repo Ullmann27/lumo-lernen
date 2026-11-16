@@ -1,0 +1,102 @@
+{
+  "producer_commit": "a8b5093ea14acacf241e8590be187cd180fb27d8",
+  "tree": "151239945191d8edcfd03cd143911aa70808c28d",
+  "parent": "3a34400b213ca622b69e960dbcc0da2bdf2d276e",
+  "branch": "fix/lumo-core-conversation-scope-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-core-conversation-scope",
+  "files": {
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/README.md": {
+      "bytes": 2538,
+      "sha256": "97717ba8dac19f9819e097ef61607650a0ec550cd032c85ae0900760015ad5d2"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/analyze-initial.log": {
+      "bytes": 281,
+      "sha256": "2eb1f02e71e398e143cb8533783c8f4fb0f3a4b48a8089de462a51eb3525e9d5"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/analyze.log": {
+      "bytes": 96,
+      "sha256": "0419496a543d882390bfc22515282d139567b28abb2ec2c6cef14f141aea5d25"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red-provenance.json": {
+      "bytes": 692,
+      "sha256": "a6d23ac4d097aa3f4e055c544db345cd935c6eb6c3e9c1ec766392e97e0d760c"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red-test.dart.txt": {
+      "bytes": 17971,
+      "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red.log": {
+      "bytes": 2432,
+      "sha256": "e1ddacf500110522e2981174a6f3b5ce5690c6ffe3d421601c1e3a65abdadadc"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/final-green.log": {
+      "bytes": 4677,
+      "sha256": "22c6d06a491e3002bb30d9cc68354369738e5cf5166a33dec488b2faf9c0e4c4"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/green-initial.log": {
+      "bytes": 276,
+      "sha256": "41560d8e7cc4c3b6167f618a8d8493ace92355e947a841f986f87427f9f1e65f"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/joined-green-provenance.json": {
+      "bytes": 1260,
+      "sha256": "eafb6072be369178150e23066cdf251db654cf4ca3d8686349ef79ae13034727"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/joined-green.log": {
+      "bytes": 4494,
+      "sha256": "0b458bcdda4ff7b3c6a7340663f3508cb54058292a142f71f85c38f8b6b20541"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/red-provenance.json": {
+      "bytes": 763,
+      "sha256": "4b2a388190ffb3cb3b1f11ba7ca7d93b78147b634718972e0b3cba94c8ea920d"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/red-test.dart.txt": {
+      "bytes": 12874,
+      "sha256": "b2c50635dcdbb6cd3fe5f42f1377a79e935688d0db89b9c48ec232775f1bd6a6"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/red.log": {
+      "bytes": 2356,
+      "sha256": "3638d5f06f622320dcf5c440badb3d085435c33c8fb8b15435845e2b5a3680ea"
+    },
+    "docs/nextgen/evidence/core_companion_menu_scope_20261116/source.json": {
+      "bytes": 4914,
+      "sha256": "8a92fe1fd98e13d83ad971e83f869953c49bcc9869cae6f770ea7857c48c20f2"
+    },
+    "lib/app/app_shell.dart": {
+      "bytes": 39210,
+      "sha256": "1d2be251542a1733c6638326db87df09f4e2c7edb541f6c916e405f3cf21882a"
+    },
+    "lib/features/learning/learning_content.dart": {
+      "bytes": 155423,
+      "sha256": "c9e8fcfcefa63864264aef0d8d3ad7c479f4c1cd0f4fbae1197f921b8622ed50"
+    },
+    "test/learning/core_conversation_route_test.dart": {
+      "bytes": 17971,
+      "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42"
+    }
+  },
+  "dependency_files": {
+    "lib/app/lumo_companion_host.dart": {
+      "bytes": 12781,
+      "sha256": "bfcab61255f60e62826ba60558f75b1341a125eee78a9a92704fe8502e63fd18"
+    },
+    "lib/widgets/fox/lumo_free_companion.dart": {
+      "bytes": 27242,
+      "sha256": "a361c60177ef9e8f7a011178b74d135604a135659839e0c3edf9d300ee5f2643"
+    }
+  },
+  "tests": {
+    "passed": 20,
+    "failed": 0,
+    "skipped": 0,
+    "log": "docs/nextgen/evidence/core_companion_menu_scope_20261116/final-green.log",
+    "analysis": "No issues found; analyze.log",
+    "overlapping_intermediate_pass_counts_not_added": true
+  },
+  "evidence": "docs/nextgen/evidence/core_companion_menu_scope_20261116",
+  "original_reds": [
+    "red.log",
+    "closing-pause-red.log"
+  ],
+  "remote_actions": false,
+  "runtime_claim": "Widget route/scope regression only; no Android, physical Fold or audio success."
+}

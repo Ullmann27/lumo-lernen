@@ -1,0 +1,21 @@
+{
+  "execution_head": "f2b4d560bbce95231a0c497a3f6e55466d43713e",
+  "execution_worktree_dirty": true,
+  "source_sha256": {
+    "lib/app/app_shell.dart": "1d2be251542a1733c6638326db87df09f4e2c7edb541f6c916e405f3cf21882a",
+    "lib/features/learning/learning_content.dart": "cddee60c4c553e8b8dff6cc2f7b684d60905d60bea5a9c6093c4837993a6b354",
+    "lib/app/lumo_companion_host.dart": "be927b5ad93782ec945cb0302e70e7601fe644ae749e632a5007ea490c1e8d33",
+    "lib/widgets/fox/lumo_free_companion.dart": "a361c60177ef9e8f7a011178b74d135604a135659839e0c3edf9d300ee5f2643",
+    "test/learning/core_conversation_route_test.dart": "620a5d1f0a36d0c461cd81767dc363423997f29c8c6cd3837fc02c2c03220666",
+    "test/learning/learning_content_commands_test.dart": "fd14e76020c90b24ec78e3951b7f173fb0f06695122abf4681e75b40bb54e727",
+    "test/lumo_header_semantics_test.dart": "74fff37f0d58474d268cb9b4fe155127df4f7be661b6797e5632a0a469bddbb7",
+    "test/design/learning_shell_back_navigation_test.dart": "f1fbe7cdfab46d7a1f92faa627cbb3821e82d2a24743c6ebe3a4d222357542fe"
+  },
+  "result": {
+    "passed": 19,
+    "failed": 0,
+    "skipped": 0
+  },
+  "log": "joined-green.log",
+  "analysis": "One use_super_parameters info in presenter dependency; analyze-initial.log preserved."
+}

@@ -274,4 +274,137 @@ void main() {
     expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+      'actual Core dock menu keeps its task through the question action',
+      (tester) async {
+    final app = await _openCore(tester);
+    final task = _bus.taskContext.value!;
+    final rewards = (app.state.stars, app.state.xp, app.learningDailyDone());
+    await _tap(
+        tester,
+        find.descendant(
+            of: find.byKey(const ValueKey('lumo-help-dock')),
+            matching: find.byKey(const ValueKey('lumo-fox-button'))));
+    expect(find.text('Was möchtest du machen?'), findsOneWidget,
+        reason:
+            'The actual own menu must remain open for a deliberate choice.');
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    await _tap(tester, find.text('Lumo eine Frage stellen'));
+    final dialog = find.byType(LumoAgentContent);
+    expect(dialog, findsOneWidget);
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    expect(find.descendant(of: dialog, matching: find.text(task.prompt)),
+        findsOneWidget);
+    final beforeHelp = _bus.taskContext.value!.helpLevel;
+    expect(
+        _bus.requestLearningAction(LumoLearningAction.hint,
+            identity: _bus.learningIdentity.value!),
+        isTrue);
+    await _frames(tester);
+    expect(_bus.taskContext.value!.helpLevel, greaterThan(beforeHelp));
+    await _tap(tester, find.byTooltip('Zurück zur Aufgabe'));
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('wide Core companion questions and menu use the current owner',
+      (tester) async {
+    final app = await _openCore(tester);
+    final task = _bus.taskContext.value!;
+    final rewards = (app.state.stars, app.state.xp, app.learningDailyDone());
+    await tester.binding.setSurfaceSize(const Size(1000, 1400));
+    await _frames(tester);
+    final floor = find.byKey(const ValueKey('lumo-companion-floor'));
+    await _tap(
+        tester, find.descendant(of: floor, matching: find.text('Fragen')));
+    final dialog = find.byType(LumoAgentContent);
+    expect(dialog, findsOneWidget);
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    expect(find.descendant(of: dialog, matching: find.text(task.prompt)),
+        findsOneWidget);
+    await _tap(tester, find.byTooltip('Zurück zur Aufgabe'));
+    await _tap(tester, find.descendant(of: floor, matching: find.text('Idee')));
+    expect(find.text('Was möchtest du machen?'), findsOneWidget);
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    await _tap(tester, find.text('Aufgabe erklären'));
+    expect(find.text('Was möchtest du machen?'), findsNothing);
+    expect(find.byType(LumoAgentContent), findsNothing);
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    expect(_bus.taskContext.value!.helpLevel, greaterThan(task.helpLevel));
+    expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('stop retires a menu selection without an unbound fallback',
+      (tester) async {
+    final app = await _openCore(tester);
+    final task = _bus.taskContext.value!;
+    final rewards = (app.state.stars, app.state.xp, app.learningDailyDone());
+    await _tap(tester, find.byKey(const ValueKey('lumo-fox-button')));
+    expect(find.text('Was möchtest du machen?'), findsOneWidget);
+    final oldIdentity = _bus.learningIdentity.value!;
+    _bus.cancelLearningInteraction(reason: 'stop');
+    await _frames(tester);
+    expect(_bus.isCurrentLearningIdentity(oldIdentity), isFalse);
+    await _tap(tester, find.text('Lumo eine Frage stellen'));
+    expect(find.text('Was möchtest du machen?'), findsNothing);
+    expect(find.byType(LumoAgentContent), findsNothing,
+        reason:
+            'A cancelled presenter result must not open the default route.');
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    expect(_bus.taskContext.value!.helpLevel, task.helpLevel);
+    expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('task change during menu closing discards its pending action',
+      (tester) async {
+    final app = await _openCore(tester);
+    final task = _bus.taskContext.value!;
+    final rewards = (app.state.stars, app.state.xp, app.learningDailyDone());
+    await _tap(tester, find.byKey(const ValueKey('lumo-fox-button')));
+    expect(find.text('Was möchtest du machen?'), findsOneWidget);
+    final oldIdentity = _bus.learningIdentity.value!;
+    // A real tap starts dismissal; change the task before its closing route
+    // completes instead of pumping that transition away first.
+    await tester.tap(find.text('Lumo eine Frage stellen'));
+    app.update(app.state.copyWith(unit: 'Zahlenstrahl'));
+    await _frames(tester);
+    expect(find.text('Was möchtest du machen?'), findsNothing);
+    expect(find.byType(LumoAgentContent), findsNothing);
+    expect(_bus.taskContext.value?.taskId, isNot(task.taskId));
+    expect(_bus.taskContext.value?.unit, 'Zahlenstrahl');
+    expect(_bus.isCurrentLearningIdentity(oldIdentity), isFalse);
+    expect(
+        _bus.requestLearningAction(LumoLearningAction.hint,
+            identity: oldIdentity),
+        isFalse);
+    expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('pause and resume while menu closes retire its pending action',
+      (tester) async {
+    final app = await _openCore(tester);
+    final task = _bus.taskContext.value!;
+    final rewards = (app.state.stars, app.state.xp, app.learningDailyDone());
+    await _tap(tester, find.byKey(const ValueKey('lumo-fox-button')));
+    expect(find.text('Was möchtest du machen?'), findsOneWidget);
+    await tester.tap(find.text('Lumo eine Frage stellen'));
+    expect(_bus.taskContext.value, isNull,
+        reason:
+            'Exercise the closing interval after the selected menu popped.');
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await _frames(tester);
+    expect(find.byType(LumoAgentContent), findsNothing,
+        reason:
+            'Returning to foreground must not revive a pending old choice.');
+    expect(find.text('Was möchtest du machen?'), findsNothing);
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
+    expect(tester.takeException(), isNull);
+  });
 }
