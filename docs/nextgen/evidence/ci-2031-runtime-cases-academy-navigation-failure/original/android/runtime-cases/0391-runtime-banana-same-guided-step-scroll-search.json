@@ -1,0 +1,79 @@
+{
+  "status": "FOUND",
+  "strategy": "forward_then_observed_boundary_reverse",
+  "non_scroll_observations": 0,
+  "gestures": [
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        345,
+        1080,
+        1895
+      ],
+      "before": "653a4f2039f3584ea6c57d9c6a0a0fc6f2576b6746db16efa47d28112a448bae",
+      "after": "01728c1d8a211b77655cbf2a77ee6ad1df157e3bb94f22f862f20ff4c681a018",
+      "content_changed": true
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        345,
+        1080,
+        1895
+      ],
+      "before": "01728c1d8a211b77655cbf2a77ee6ad1df157e3bb94f22f862f20ff4c681a018",
+      "after": "30b20817ac3ac430a112c03ff9db8e6ba3bb536a7bf6a1cbc84acb57ce5f0236",
+      "content_changed": true
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        345,
+        1080,
+        1895
+      ],
+      "before": "30b20817ac3ac430a112c03ff9db8e6ba3bb536a7bf6a1cbc84acb57ce5f0236",
+      "after": "30b20817ac3ac430a112c03ff9db8e6ba3bb536a7bf6a1cbc84acb57ce5f0236",
+      "content_changed": false
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        345,
+        1080,
+        1895
+      ],
+      "before": "30b20817ac3ac430a112c03ff9db8e6ba3bb536a7bf6a1cbc84acb57ce5f0236",
+      "after": "30b20817ac3ac430a112c03ff9db8e6ba3bb536a7bf6a1cbc84acb57ce5f0236",
+      "content_changed": false
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        345,
+        1080,
+        1895
+      ],
+      "before": "30b20817ac3ac430a112c03ff9db8e6ba3bb536a7bf6a1cbc84acb57ce5f0236",
+      "after": "91100e58bded82d95269a98cddf219abc140f67547a66b0eb0d5b9c5b33981a1",
+      "content_changed": true
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        345,
+        1080,
+        1895
+      ],
+      "before": "91100e58bded82d95269a98cddf219abc140f67547a66b0eb0d5b9c5b33981a1",
+      "after": "66c24807305c001d211ab298a5ea51d224e551319b30270a240d68545cd797be",
+      "content_changed": true
+    }
+  ]
+}

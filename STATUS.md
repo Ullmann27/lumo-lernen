@@ -1,13 +1,15 @@
-# LUMO Next Generation – vollständige Tour und Zusatzfälle erneut in Prüfung
+# LUMO Next Generation – vollständige Tour läuft, Zusatznavigation in Korrektur
 
-Stand: 16. November 2026, 06:54 UTC. Produktquelle **e05a96a52aaf57e466e79831f15aaffd144284ee**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**, Version **0.13.19+2031**. Signierte ARM64-APK und vollständige Bytes sind unabhängig geprüft; **noch kein öffentlicher Download**. `fullModernizationComplete=false` bleibt maßgeblich.
+Stand: 16. November 2026, 07:10 UTC. Produktquelle **e05a96a52aaf57e466e79831f15aaffd144284ee**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**, Version **0.13.19+2031**. Signierte ARM64-APK und vollständige Bytes sind unabhängig geprüft; **noch kein öffentlicher Download**. `fullModernizationComplete=false` bleibt maßgeblich.
 
 Zwei tatsächliche Androidläufe wurden um **06:52:23 UTC** auf derselben QA-Quelle **ae6c27c81d41342179a0bf6e60fedbcafacb63a4**, Tree **52e8fc78e7cd17781a567d64d7b311e1f45ce874**, gestartet:
 
 | Prüfung | Run | Beobachteter Stand |
 |---|---|---|
 | Vollständiger Replay 4: Originaltour und native Banane-/Musterreferenz | [43819768411](https://github.com/Ullmann27/lumo-lernen/actions/runs/43819768411) | in_progress; kein abgeschlossener PASS |
-| Zusatzlauf 3: numerische Fehlantwort/Korrektur, aktiver Silbenwechsel, nativ Langsamer/Stopp | [43819768114](https://github.com/Ullmann27/lumo-lernen/actions/runs/43819768114) | in_progress; kein abgeschlossener PASS |
+| Zusatzlauf 3: numerische Fehlantwort/Korrektur, aktiver Silbenwechsel, nativ Langsamer/Stopp | [43819768114](https://github.com/Ullmann27/lumo-lernen/actions/runs/43819768114) | FAIL; drei abgeschlossene Teilfälle, erneuter Akademie-Toggle scheitert vor Stopp |
+
+Zusatzlauf 3 ist vollständig gesichert: **1.234 Originalmitglieder**, vollständiges ZIP und Rohjoblog unter `docs/nextgen/evidence/ci-2031-runtime-cases-academy-navigation-failure/`. Numerische Korrektur und aktiver Wortwechsel wurden aus den Originalresultaten nachgeprüft; Banane-Langsamer besitzt vier neue geordnete MediaPlayer-Paare **7–10** und unverändertes sichtbares Modell. **Kein Stopp-PASS.** Der zweite `academy()`-Aufruf schloss das bereits offene Lernatelier durch einen weiteren Toggle; eine eng begrenzte Supplemental-Korrektur wird im getrennten Teamzweig vorbereitet. Gemeinsame Tourquellen und Produktbytes bleiben unverändert.
 
 Integrierter Checkpoint: **4d03aae80114a738dd69fe033fe66a2bd0a6332a**. Beide eng begrenzten QA-Korrekturen sind unabhängig gegengeprüft; **230/230 gemeinsame Hostprüfungen** bestehen. Die 31 Publisherquellen, 17 weiteren vollständigen Replay-Fixtures und 12 Zusatzquellen/-Fixtures stimmen bytegleich mit dem tatsächlichen QA-Commit überein. Exakte Handoffs, Quellen, Originalprotokolle und Aktivierungsdaten: `docs/nextgen/evidence/replay_attempt4_integration_20261116/`.
 

@@ -1,0 +1,1928 @@
+{
+  "schema": "lumo.nextgen.runtime_cases.android",
+  "version": 1,
+  "status": "FAIL",
+  "mode": "immutable-runtime-cases",
+  "release_eligible": false,
+  "original_probe_requirement_satisfied": false,
+  "run_id": "978061c0c9124e0f8f3a0e15f2a31a33",
+  "started_utc": "2026-11-16T06:56:32Z",
+  "qa_commit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+  "qa_workflow_run": 43819768114,
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "source_build_run": 43800892196,
+  "probe_sha256": "2869bba0ac0c9a028653254cbd4627b961b2dbc7cf9a580b429cdf40f1face90",
+  "reference_probe_sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "apk_rebuilt_by_probe": false,
+  "fullModernizationComplete": false,
+  "config": {
+    "schemaVersion": 1,
+    "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+    "sourceBuildRun": 43800892196,
+    "versionName": "0.13.19",
+    "versionCode": 2031,
+    "caseAttempt": 3,
+    "cases": [
+      "numeric_wrong_then_correct",
+      "flutter_switch_during_syllable_playback",
+      "native_banana_slower",
+      "native_stop_during_playback"
+    ]
+  },
+  "config_sha256": "589e05ceaf3abcd49a0cc7a416e26d5114dbbc5ab2b3fdbe477134757905fed9",
+  "source_binding": {
+    "mode": "immutable-replay",
+    "qa_commit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+    "qa_workflow_run": 43819768114,
+    "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "source_build_run": 43800892196,
+    "apk_source_tree": "037ec0108fb41e13b59e73ac2514220099e9548a",
+    "qa_tree": "52e8fc78e7cd17781a567d64d7b311e1f45ce874",
+    "changed_paths": [
+      ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py",
+      ".github/probes/lumo_nextgen_2031_runtime_cases.json",
+      ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      ".github/probes/lumo_nextgen_learning_android_probe.py",
+      ".github/probes/lumo_nextgen_reference_android_probe.py",
+      ".github/probes/run_lumo_nextgen_2031_replay_android.sh",
+      ".github/workflows/lumo-nextgen-2031-replay-publish.yml",
+      ".github/workflows/lumo-nextgen-2031-replay.yml",
+      ".github/workflows/lumo-nextgen-2031-runtime-cases.yml",
+      "CONTINUE.md",
+      "STATUS.md",
+      "config/nextgen-2031-replay.json",
+      "docs/nextgen/ANDROID_DELIVERY_2031.md",
+      "docs/nextgen/evidence/2031-build-activation-20261116/activation.json",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/foreground-component.json",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/foreground-owner-handoff.json",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/integrated-complete-replay-gates.json",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/integrated-complete-replay-gates.log",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/integrated-original-probe-tests.json",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/integrated-original-probe-tests.log",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/integrated-source-boundary.json",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/replay-component.json",
+      "docs/nextgen/evidence/2031-replay-integration-20261116/replay-owner-handoff.json",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/README.md",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/original-observation-manifest.json",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/source-review.json",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-fixture-followup-failure.log",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-green-final.log",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-green-first.log",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-red-source.json",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-red-test.patch",
+      "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-red.log",
+      "docs/nextgen/evidence/2031_immutable_replay_20261116/README.md",
+      "docs/nextgen/evidence/2031_immutable_replay_20261116/component-gates.log",
+      "docs/nextgen/evidence/2031_immutable_replay_20261116/original-android-failure-artifact.json",
+      "docs/nextgen/evidence/2031_immutable_replay_20261116/original-arm64-artifact.json",
+      "docs/nextgen/evidence/2031_immutable_replay_20261116/original-x86-upload.log",
+      "docs/nextgen/evidence/2031_immutable_replay_20261116/source.json",
+      "docs/nextgen/evidence/2031_immutable_replay_20261116/syntax-cli.json",
+      "docs/nextgen/evidence/2031_native_panel_readiness_20261116/README.md",
+      "docs/nextgen/evidence/2031_native_panel_readiness_20261116/panel-focused-first.log",
+      "docs/nextgen/evidence/2031_native_panel_readiness_20261116/panel-original-sequence-red-provenance.json",
+      "docs/nextgen/evidence/2031_native_panel_readiness_20261116/panel-original-sequence-red-tests.patch.gz",
+      "docs/nextgen/evidence/2031_native_panel_readiness_20261116/panel-original-sequence-red.log",
+      "docs/nextgen/evidence/2031_native_panel_readiness_20261116/source-review.json",
+      "docs/nextgen/evidence/2031_native_runtime_cases_20261116/README.md",
+      "docs/nextgen/evidence/2031_native_runtime_cases_20261116/host-tests-final.log",
+      "docs/nextgen/evidence/2031_native_runtime_cases_20261116/host-tests-first.log",
+      "docs/nextgen/evidence/2031_native_runtime_cases_20261116/source.json",
+      "docs/nextgen/evidence/android_foreground_transition_20261116/README.md",
+      "docs/nextgen/evidence/android_foreground_transition_20261116/final-green.log",
+      "docs/nextgen/evidence/android_foreground_transition_20261116/green-initial-fixture-key-error.log",
+      "docs/nextgen/evidence/android_foreground_transition_20261116/green.log",
+      "docs/nextgen/evidence/android_foreground_transition_20261116/red-provenance.json",
+      "docs/nextgen/evidence/android_foreground_transition_20261116/red-test.py.txt",
+      "docs/nextgen/evidence/android_foreground_transition_20261116/red.log",
+      "docs/nextgen/evidence/android_foreground_transition_20261116/source.json",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/README.md",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/green-reader.json",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/green-reader.log",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/independent-review.md",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/integrated-host-gates.json",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/integrated-host-gates.log",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/red-reader.json",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/red-reader.log",
+      "docs/nextgen/evidence/banana_wrapped_status_20261116/replay-attempt2-activation.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/README.md",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/archive-parts.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part01",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part02",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part03",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part04",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-verification.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/github-artifact.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/job-133088843594.log.gz",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/job-log-manifest.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/observed-jobs.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0163-bridge-paused-activity.txt",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0189-bridge-compact.png",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0199-bridge-expanded.png",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0209-bridge-fold7-cover-emulated.png",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0219-bridge-fold7-inner-emulated.png",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0267-banane-slower-stopped-same-task.png",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0268-words-checkpoint-preferences.xml",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0269-words-before-roundtrips-preferences.xml",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0270-words-pause-return-ffprobe.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0270-words-pause-return-screenrecord.txt",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0270-words-pause-return.mp4",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0271-words-before-pause.png",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/0272-failure-current-screen.png",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/candidate-BUILD-PROVENANCE.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/candidate-manifest.txt",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/candidate-signature.txt",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/display-original.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/installed-apk-sha256.txt",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/learning-android-result.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/selected-originals/microphone-observation.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/summary.json",
+      "docs/nextgen/evidence/ci-2031-android-home-transition-failure/verification.json",
+      "docs/nextgen/evidence/ci-2031-build/README.md",
+      "docs/nextgen/evidence/ci-2031-build/artifact-14197517484.zip",
+      "docs/nextgen/evidence/ci-2031-build/artifact-verification.json",
+      "docs/nextgen/evidence/ci-2031-build/github-arm64-artifact-metadata.json",
+      "docs/nextgen/evidence/ci-2031-build/github-build-artifact-metadata.json",
+      "docs/nextgen/evidence/ci-2031-build/job-133085378884.log.gz",
+      "docs/nextgen/evidence/ci-2031-build/job-log-manifest.json",
+      "docs/nextgen/evidence/ci-2031-build/local-arm64-byte-check/APK-VERIFICATION.json",
+      "docs/nextgen/evidence/ci-2031-build/local-arm64-byte-check/BUILD-PROVENANCE.json",
+      "docs/nextgen/evidence/ci-2031-build/local-arm64-byte-check/SHA256SUMS.txt",
+      "docs/nextgen/evidence/ci-2031-build/local-arm64-byte-check/artifact-byte-verification.json",
+      "docs/nextgen/evidence/ci-2031-build/local-arm64-byte-check/inspect_artifact.py",
+      "docs/nextgen/evidence/ci-2031-build/original/VERIFY-arm64.json",
+      "docs/nextgen/evidence/ci-2031-build/original/VERIFY-x86.json",
+      "docs/nextgen/evidence/ci-2031-build/original/build.log",
+      "docs/nextgen/evidence/ci-2031-build/original/ndk/ndk-28.2.13676358.SY0nTZ/clang-1.log",
+      "docs/nextgen/evidence/ci-2031-build/original/ndk/ndk-28.2.13676358.SY0nTZ/sdkmanager-install-1.log",
+      "docs/nextgen/evidence/ci-2031-build/summary.json",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/0184-compact-display.json",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/0187-bridge-compact-model.xml",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/0194-expanded-display.json",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/0197-bridge-expanded-model.xml",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/0204-fold7-cover-emulated-display.json",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/0207-bridge-fold7-cover-emulated-model.xml",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/0214-fold7-inner-emulated-display.json",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/0217-bridge-fold7-inner-emulated-model.xml",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/README.md",
+      "docs/nextgen/evidence/ci-2031-layout-touch-inspection/inspection.json",
+      "docs/nextgen/evidence/ci-2031-validation/README.md",
+      "docs/nextgen/evidence/ci-2031-validation/artifact-14196419377.zip",
+      "docs/nextgen/evidence/ci-2031-validation/artifact-verification.json",
+      "docs/nextgen/evidence/ci-2031-validation/github-artifact-metadata.json",
+      "docs/nextgen/evidence/ci-2031-validation/independent-review.json",
+      "docs/nextgen/evidence/ci-2031-validation/job-133080632526.log.gz",
+      "docs/nextgen/evidence/ci-2031-validation/job-log-manifest.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/analyze.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/flutter-tests.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/godot-import.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/godot-version.txt",
+      "docs/nextgen/evidence/ci-2031-validation/original/host-contracts.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/host-python.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-apple-960x540-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-apple-960x540-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-bag-960x540-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-bag-960x540-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-ball-960x540-complete.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-ball-960x540-complete.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-ball-960x540-hint.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-ball-960x540-hint.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-ball-960x540-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-ball-960x540-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-book-412x915-complete.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-book-412x915-complete.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-book-412x915-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-book-412x915-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-car-2400x1080-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-car-2400x1080-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-chair-640x360-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-chair-640x360-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-desk-960x540-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-desk-960x540-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-paper-2400x1080-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-paper-2400x1080-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-pen-1080x2400-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-pen-1080x2400-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-pencil-case-1080x2400-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-pencil-case-1080x2400-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-rubber-640x360-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-rubber-640x360-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-ruler-640x360-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-ruler-640x360-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-school-bag-412x915-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-school-bag-412x915-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-sun-960x540-start.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/english-sun-960x540-start.layout.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning-english/learning-english-report.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_android_host_capability_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_companion_scope_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_english_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_generation_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_host_payload_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_pattern_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_sharing_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_wonder_details_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/learning_world_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/native-project.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/native-test-toolchain.json",
+      "docs/nextgen/evidence/ci-2031-validation/original/nextgen_avatar_contract_review.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/nextgen_learning_base_audio_regression.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/nextgen_learning_route_review.log",
+      "docs/nextgen/evidence/ci-2031-validation/original/source.json",
+      "docs/nextgen/evidence/ci-2031-validation/summary.json",
+      "docs/nextgen/evidence/recording_offline_2031_20261116/README.md",
+      "docs/nextgen/evidence/recording_offline_2031_20261116/joined-green.log",
+      "docs/nextgen/evidence/recording_offline_2031_20261116/red-source.json",
+      "docs/nextgen/evidence/recording_offline_2031_20261116/red-test.patch",
+      "docs/nextgen/evidence/recording_offline_2031_20261116/red.log",
+      "docs/nextgen/evidence/recording_offline_2031_20261116/source.json",
+      "docs/nextgen/evidence/recording_offline_2031_20261116/transfer-green-first.log",
+      "docs/nextgen/evidence/recording_transfer_2031_20261116/README.md",
+      "docs/nextgen/evidence/recording_transfer_2031_20261116/first-green-missing-sparse-fixtures.log",
+      "docs/nextgen/evidence/recording_transfer_2031_20261116/green.log",
+      "docs/nextgen/evidence/recording_transfer_2031_20261116/red-source.json",
+      "docs/nextgen/evidence/recording_transfer_2031_20261116/red-test.patch",
+      "docs/nextgen/evidence/recording_transfer_2031_20261116/red.log",
+      "docs/nextgen/evidence/recording_transfer_2031_20261116/source.json",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/README.md",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-green.log",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red-source.json",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red-test.patch",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red.log",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-source.json",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final-14.log",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final.log",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-first.log",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/source.json",
+      "docs/nextgen/evidence/runtime_cases_2031_20261116/syntax-cli.json",
+      "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0199-switch-check-built-word.xml",
+      "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0200-switch-check-built-word.xml",
+      "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0204-switch-next-is-offered.xml",
+      "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0212-switch-start-fresh-syllable-replay-touch.json",
+      "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0213-switch-live-active-and-next.xml",
+      "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/manifest.json",
+      "tools/android_qa/tests/fixtures/nextgen_banana_wrapped_43806736020/0138-banana-syllable-status-3-9-ocr.json",
+      "tools/android_qa/tests/fixtures/nextgen_banana_wrapped_43806736020/0138-banana-syllable-status-3-9.png",
+      "tools/android_qa/tests/fixtures/nextgen_banana_wrapped_43806736020/manifest.json",
+      "tools/android_qa/tests/fixtures/nextgen_banana_wrapped_43806736020/reference-android-result.json",
+      "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0163-bridge-paused-activity.txt",
+      "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0270-words-pause-return-ffprobe.json",
+      "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0270-words-pause-return.mp4",
+      "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/README.md",
+      "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/learning-android-result.json",
+      "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json",
+      "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/0116-native-title-3-ocr.json",
+      "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/0143-native-speech.txt",
+      "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/0148-native-speech.txt",
+      "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/0149-native-move-one-0-ocr.json",
+      "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/README.md",
+      "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/manifest.json",
+      "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/source-contract.json",
+      "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0342-runtime-banana-open-question-surface-readiness.json",
+      "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0343-runtime-banana-slower-panel.png",
+      "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0344-runtime-failure-current-screen.png",
+      "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/manifest.json",
+      "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-recording-error.json",
+      "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-screenrecord.txt",
+      "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-video-transfer.json",
+      "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/manifest.json",
+      "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/0091-banana-guided-navigation-recording-error.json",
+      "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/0091-banana-guided-navigation-screenrecord.txt",
+      "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/README.md",
+      "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/manifest.json",
+      "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/reference-android-result.json",
+      "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py",
+      "tools/android_qa/tests/test_nextgen_2031_replay.py",
+      "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "tools/android_qa/tests/test_nextgen_native_reader.py",
+      "tools/android_qa/tests/test_nextgen_reference_android_probe.py",
+      "tools/nextgen/prepare_2031_learning_replay_release.py",
+      "tools/nextgen/test_prepare_2031_learning_replay_release.py"
+    ],
+    "runtime_source_changed": false,
+    "config_sha256": "06ff7bc5f572f293b2d6cd29f8121f4eed751fe8f1e516fc06df0a67f1a040d7"
+  },
+  "native_runtime_module_sha256": "8c5c08a2525f4b653c55a833e9b6f45b8fbd975127dde072b56027d6437a288b",
+  "candidate": {
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "flutter_source_commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "versionCode": 2031,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.19",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef",
+      "bytes": 278589756
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2031,
+    "versionName": "0.13.19",
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794812262632898",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T06:57:42.632898"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0023-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e1a087f806c7d60d524ab9c343b714c9c1c09bff0495db573b245821b8bb8cb8",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.082,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0057-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "fd951f7c69eb9f7b471d6e46364b380fb49cdd0dde6301c92e4a36cb66d8e7fe",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0074-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "8489d6ce1161bec3556df5ee4f57553fe03095d471349a64ed05ce502c583d57",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.184,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0095-runtime-auto-read-off.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "73d3014328397ff36c95bbaedb08960a5beb48089f2610eeef87f2010a9cb971",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.852,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0136-numeric-before-wrong-answer.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e221fecd9a710a0a8b2117772039ef5c00417ad55e21c007fd5f8e9b8683e2d2",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.169,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0144-numeric-wrong-before-explicit-check.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "f528df0768e9a9fc4f677f0b0c5c8912bb524e06b3be2b95ae763d1917e57f8e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.231,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0152-numeric-wrong-after-assessment.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "7151fbd630ca07dcf300688c0e386f850c82814fb13b5a5e97a7ea3399a7170a",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.106,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0158-numeric-corrected-before-explicit-check.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "712116bca21e57066b7882b074cadb815e909a4e001411ab7230b2d411ebd014",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.166,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0166-numeric-corrected-after-assessment.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "fcd498ceabe48948cb4912f8d9703b188eca03322d4029038957b50929ded1fb",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.479,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0205-switch-original-density.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "b08aa33002a0b5a46300789a948d2c59902a8f07dbb38521c0696530c518f017",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.25,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0209-switch-density-320.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "b08aa33002a0b5a46300789a948d2c59902a8f07dbb38521c0696530c518f017",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.25,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0212-switch-joint-viewport-before-replay.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "37bd7b44b3a04e2b38da5923c9d86cf1ef250db3beb87b045408348b30e7bd60",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.055,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0243-switch-new-unanswered-rakete.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "4b42db95a357ac0a99ffada1d6d298daa84353d7ea692a6c326984a0ab47aeb4",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.081,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0247-switch-original-density-restored.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "4b42db95a357ac0a99ffada1d6d298daa84353d7ea692a6c326984a0ab47aeb4",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.081,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0289-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "433160b0d1438cb82b363d2df3bbe464759e91f25fd52870af7b4ce28de5e78c",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.936,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0333-runtime-banana-native-entry.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "cc49170cefe34784caed03130e070a78d4b1b198fd0b2ad7ea5e773692d6c4f6"
+    },
+    {
+      "file": "0339-runtime-banana-before-slower.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "d303bdbe8c42f3396164df189581718bac96c0e353ee3b3061aadf4b2bb63750"
+    },
+    {
+      "file": "0378-runtime-banana-after-slower.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "024ea55003807f03ccd0852c5fa82f14b27d6ff9fe636ca688aa05c32b1a73ad"
+    },
+    {
+      "file": "0383-runtime-banana-flutter-return.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "16d39aa80cd01eda1e3477802326aea5d2be4efd7f7afcacb825edeb9d4ccb44",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.969,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0395-runtime-banana-return-academy.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "43c97074f49c3f5042cd9329035365c6f2fdeb17139aa8b3c1379dc351942c67",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.286,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0418-runtime-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "452cad84d59e6c3d02c52e307439b3dc413b71d02745570959ec4e568000e16d"
+    }
+  ],
+  "recording_transfers": [
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0001-onboarding.mp4",
+      "owned_recorder_pid": "3708",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0001-onboarding.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0001-onboarding.mp4: 1 file pulled, 0 skipped. 80.2 MB/s (2138533 bytes in 0.025s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 2138533,
+          "sha256": "752f3b61285abd4433b4e87f62480087f14451a68a40f364724007fa8deb3a3d",
+          "verified_file": "0001-onboarding.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "2138533",
+          "sha256_output": "752f3b61285abd4433b4e87f62480087f14451a68a40f364724007fa8deb3a3d  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0001-onboarding.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "2138533",
+          "sha256_output": "752f3b61285abd4433b4e87f62480087f14451a68a40f364724007fa8deb3a3d  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0001-onboarding.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "db321c59-dc20-4a0a-8218-d74921c7e822"
+      },
+      "expected": {
+        "bytes": 2138533,
+        "sha256": "752f3b61285abd4433b4e87f62480087f14451a68a40f364724007fa8deb3a3d"
+      },
+      "file": "0001-onboarding.mp4",
+      "bytes": 2138533,
+      "sha256": "752f3b61285abd4433b4e87f62480087f14451a68a40f364724007fa8deb3a3d",
+      "elapsed_seconds": 0.335
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0115-numeric-build-before-graded-recall.mp4",
+      "owned_recorder_pid": "5123",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0115-numeric-build-before-graded-recall.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0115-numeric-build-before-graded-recall.mp4: 1 file pulled, 0 skipped. 66.9 MB/s (998613 bytes in 0.014s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 998613,
+          "sha256": "9d69766d02016c7d4e6b3278be0e5bfeca5c1acd7036213f0119d11372d57397",
+          "verified_file": "0115-numeric-build-before-graded-recall.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "998613",
+          "sha256_output": "9d69766d02016c7d4e6b3278be0e5bfeca5c1acd7036213f0119d11372d57397  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0115-numeric-build-before-graded-recall.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "998613",
+          "sha256_output": "9d69766d02016c7d4e6b3278be0e5bfeca5c1acd7036213f0119d11372d57397  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0115-numeric-build-before-graded-recall.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "db321c59-dc20-4a0a-8218-d74921c7e822"
+      },
+      "expected": {
+        "bytes": 998613,
+        "sha256": "9d69766d02016c7d4e6b3278be0e5bfeca5c1acd7036213f0119d11372d57397"
+      },
+      "file": "0115-numeric-build-before-graded-recall.mp4",
+      "bytes": 998613,
+      "sha256": "9d69766d02016c7d4e6b3278be0e5bfeca5c1acd7036213f0119d11372d57397",
+      "elapsed_seconds": 0.195
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0139-numeric-wrong-submission.mp4",
+      "owned_recorder_pid": "5262",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0139-numeric-wrong-submission.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0139-numeric-wrong-submission.mp4: 1 file pulled, 0 skipped. 66.2 MB/s (646135 bytes in 0.009s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 646135,
+          "sha256": "04939896bec3f99ff9321b9a4774cc002e46ce82eaaffbeb04e94bdaedd54604",
+          "verified_file": "0139-numeric-wrong-submission.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "646135",
+          "sha256_output": "04939896bec3f99ff9321b9a4774cc002e46ce82eaaffbeb04e94bdaedd54604  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0139-numeric-wrong-submission.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "646135",
+          "sha256_output": "04939896bec3f99ff9321b9a4774cc002e46ce82eaaffbeb04e94bdaedd54604  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0139-numeric-wrong-submission.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "db321c59-dc20-4a0a-8218-d74921c7e822"
+      },
+      "expected": {
+        "bytes": 646135,
+        "sha256": "04939896bec3f99ff9321b9a4774cc002e46ce82eaaffbeb04e94bdaedd54604"
+      },
+      "file": "0139-numeric-wrong-submission.mp4",
+      "bytes": 646135,
+      "sha256": "04939896bec3f99ff9321b9a4774cc002e46ce82eaaffbeb04e94bdaedd54604",
+      "elapsed_seconds": 0.316
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0153-numeric-corrected-submission.mp4",
+      "owned_recorder_pid": "5428",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0153-numeric-corrected-submission.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0153-numeric-corrected-submission.mp4: 1 file pulled, 0 skipped. 65.3 MB/s (641403 bytes in 0.009s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 641403,
+          "sha256": "056cb962d182ab6c9a40e04a33f010a129f5d842da1a5fabd819d847603bfadd",
+          "verified_file": "0153-numeric-corrected-submission.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "641403",
+          "sha256_output": "056cb962d182ab6c9a40e04a33f010a129f5d842da1a5fabd819d847603bfadd  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0153-numeric-corrected-submission.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "641403",
+          "sha256_output": "056cb962d182ab6c9a40e04a33f010a129f5d842da1a5fabd819d847603bfadd  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0153-numeric-corrected-submission.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "db321c59-dc20-4a0a-8218-d74921c7e822"
+      },
+      "expected": {
+        "bytes": 641403,
+        "sha256": "056cb962d182ab6c9a40e04a33f010a129f5d842da1a5fabd819d847603bfadd"
+      },
+      "file": "0153-numeric-corrected-submission.mp4",
+      "bytes": 641403,
+      "sha256": "056cb962d182ab6c9a40e04a33f010a129f5d842da1a5fabd819d847603bfadd",
+      "elapsed_seconds": 0.208
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0173-switch-build-banane-and-retain-syllable-replay.mp4",
+      "owned_recorder_pid": "5592",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0173-switch-build-banane-and-retain-syllable-replay.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0173-switch-build-banane-and-retain-syllable-replay.mp4: 1 file pulled, 0 skipped. 152.8 MB/s (1968363 bytes in 0.012s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1968363,
+          "sha256": "e8254bd110b77f32031b5eb3043d215ee8ebbde815265fcb566724ec4d067085",
+          "verified_file": "0173-switch-build-banane-and-retain-syllable-replay.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "1968363",
+          "sha256_output": "e8254bd110b77f32031b5eb3043d215ee8ebbde815265fcb566724ec4d067085  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0173-switch-build-banane-and-retain-syllable-replay.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "1968363",
+          "sha256_output": "e8254bd110b77f32031b5eb3043d215ee8ebbde815265fcb566724ec4d067085  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0173-switch-build-banane-and-retain-syllable-replay.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "db321c59-dc20-4a0a-8218-d74921c7e822"
+      },
+      "expected": {
+        "bytes": 1968363,
+        "sha256": "e8254bd110b77f32031b5eb3043d215ee8ebbde815265fcb566724ec4d067085"
+      },
+      "file": "0173-switch-build-banane-and-retain-syllable-replay.mp4",
+      "bytes": 1968363,
+      "sha256": "e8254bd110b77f32031b5eb3043d215ee8ebbde815265fcb566724ec4d067085",
+      "elapsed_seconds": 0.191
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0210-switch-during-actual-active-syllable.mp4",
+      "owned_recorder_pid": "5903",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0210-switch-during-actual-active-syllable.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0210-switch-during-actual-active-syllable.mp4: 1 file pulled, 0 skipped. 65.3 MB/s (606410 bytes in 0.009s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 606410,
+          "sha256": "378daecd2343bf3aee0ec6144e2fd63136b90f78e1044790403502a89c24c310",
+          "verified_file": "0210-switch-during-actual-active-syllable.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "606410",
+          "sha256_output": "378daecd2343bf3aee0ec6144e2fd63136b90f78e1044790403502a89c24c310  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0210-switch-during-actual-active-syllable.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "606410",
+          "sha256_output": "378daecd2343bf3aee0ec6144e2fd63136b90f78e1044790403502a89c24c310  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0210-switch-during-actual-active-syllable.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "db321c59-dc20-4a0a-8218-d74921c7e822"
+      },
+      "expected": {
+        "bytes": 606410,
+        "sha256": "378daecd2343bf3aee0ec6144e2fd63136b90f78e1044790403502a89c24c310"
+      },
+      "file": "0210-switch-during-actual-active-syllable.mp4",
+      "bytes": 606410,
+      "sha256": "378daecd2343bf3aee0ec6144e2fd63136b90f78e1044790403502a89c24c310",
+      "elapsed_seconds": 0.186
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0346-runtime-banana-four-slower-segments.mp4",
+      "owned_recorder_pid": "6718",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0346-runtime-banana-four-slower-segments.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0346-runtime-banana-four-slower-segments.mp4: 1 file pulled, 0 skipped. 18.4 MB/s (1056206 bytes in 0.055s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1056206,
+          "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272",
+          "verified_file": "0346-runtime-banana-four-slower-segments.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "1056206",
+          "sha256_output": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0346-runtime-banana-four-slower-segments.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+          "size_output": "1056206",
+          "sha256_output": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0346-runtime-banana-four-slower-segments.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "db321c59-dc20-4a0a-8218-d74921c7e822"
+      },
+      "expected": {
+        "bytes": 1056206,
+        "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272"
+      },
+      "file": "0346-runtime-banana-four-slower-segments.mp4",
+      "bytes": 1056206,
+      "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272",
+      "elapsed_seconds": 1.985
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "752f3b61285abd4433b4e87f62480087f14451a68a40f364724007fa8deb3a3d",
+      "bytes": 2138533,
+      "duration_seconds": 27.075489,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0001-onboarding-video-transfer.json",
+      "block_elapsed_seconds": 31.48,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0115-numeric-build-before-graded-recall.mp4",
+      "sha256": "9d69766d02016c7d4e6b3278be0e5bfeca5c1acd7036213f0119d11372d57397",
+      "bytes": 998613,
+      "duration_seconds": 5.831078,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0115-numeric-build-before-graded-recall-video-transfer.json",
+      "block_elapsed_seconds": 7.21,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0139-numeric-wrong-submission.mp4",
+      "sha256": "04939896bec3f99ff9321b9a4774cc002e46ce82eaaffbeb04e94bdaedd54604",
+      "bytes": 646135,
+      "duration_seconds": 5.764578,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0139-numeric-wrong-submission-video-transfer.json",
+      "block_elapsed_seconds": 7.12,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0153-numeric-corrected-submission.mp4",
+      "sha256": "056cb962d182ab6c9a40e04a33f010a129f5d842da1a5fabd819d847603bfadd",
+      "bytes": 641403,
+      "duration_seconds": 5.433389,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0153-numeric-corrected-submission-video-transfer.json",
+      "block_elapsed_seconds": 6.83,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0173-switch-build-banane-and-retain-syllable-replay.mp4",
+      "sha256": "e8254bd110b77f32031b5eb3043d215ee8ebbde815265fcb566724ec4d067085",
+      "bytes": 1968363,
+      "duration_seconds": 13.128822,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0173-switch-build-banane-and-retain-syllable-replay-video-transfer.json",
+      "block_elapsed_seconds": 13.68,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0210-switch-during-actual-active-syllable.mp4",
+      "sha256": "378daecd2343bf3aee0ec6144e2fd63136b90f78e1044790403502a89c24c310",
+      "bytes": 606410,
+      "duration_seconds": 8.982144,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0210-switch-during-actual-active-syllable-video-transfer.json",
+      "block_elapsed_seconds": 10.57,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0346-runtime-banana-four-slower-segments.mp4",
+      "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272",
+      "bytes": 1056206,
+      "duration_seconds": 64.066222,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0346-runtime-banana-four-slower-segments-video-transfer.json",
+      "block_elapsed_seconds": 63.91,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "runtime_auto_read_ui_changes": [
+    {
+      "before": {
+        "dailyGoal": 3,
+        "requireDailyMissionForGames": false,
+        "missionTasksPerStation": 4,
+        "soundEnabled": true,
+        "voiceEnabled": true,
+        "autoReadEnabled": true,
+        "cloudVoiceEnabled": false,
+        "localVoiceLicenseAccepted": true,
+        "microphoneEnabled": true,
+        "scannerEnabled": false,
+        "aiProxyEnabled": false,
+        "aiLearningMode": "chatOnly",
+        "aiProxyUrl": "https://lumo-ai-proxy.onrender.com",
+        "reduceAnimations": false,
+        "largeText": false,
+        "calmMode": false,
+        "learningMode": "normal",
+        "voiceRate": 0.35,
+        "voicePitch": 1.0
+      },
+      "after": {
+        "dailyGoal": 3,
+        "requireDailyMissionForGames": false,
+        "missionTasksPerStation": 4,
+        "soundEnabled": true,
+        "voiceEnabled": true,
+        "autoReadEnabled": false,
+        "cloudVoiceEnabled": false,
+        "localVoiceLicenseAccepted": true,
+        "microphoneEnabled": true,
+        "scannerEnabled": false,
+        "aiProxyEnabled": false,
+        "aiLearningMode": "chatOnly",
+        "aiProxyUrl": "https://lumo-ai-proxy.onrender.com",
+        "reduceAnimations": false,
+        "largeText": false,
+        "calmMode": false,
+        "learningMode": "normal",
+        "voiceRate": 0.35,
+        "voicePitch": 1.0
+      },
+      "control": "Automatisch vorlesen",
+      "private_preferences_written": false
+    }
+  ],
+  "numeric_wrong_then_correct": {
+    "status": "PASS",
+    "prompt": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+    "problem_id": "bridge-9-7",
+    "submission_control": "Antwort prüfen",
+    "input_method": "real Android text input",
+    "spoken_recognition_exercised": false,
+    "exact_eight_plus_five_numeric_case": false,
+    "wrong": {
+      "before": {
+        "profile": {
+          "id": "1794812262632898",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T06:57:42.632898"
+        },
+        "learning": {
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_learning_local_student_id_v1": "local-54af1e0cab42227f1036067cec6555bf",
+          "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T06:59:03.996136Z\",\"lastSeen\":\"2026-11-16T06:59:03.996136Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-1\"],\"independentProblemIds\":[]}}}"
+        }
+      },
+      "after": {
+        "profile": {
+          "id": "1794812262632898",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T06:57:42.632898"
+        },
+        "learning": {
+          "flutter.lumo_progress_daily::local-54af1e0cab42227f1036067cec6555bf": "{}",
+          "flutter.lumo_learning_local_student_id_v1": "local-54af1e0cab42227f1036067cec6555bf",
+          "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":2,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T06:59:12.909540Z\",\"lastSeen\":\"2026-11-16T06:59:12.909540Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-1\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-2\"],\"independentProblemIds\":[]}}}",
+          "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794812352907640-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T06:59:12.907640\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":14503}]",
+          "flutter.lumo_progress_skills::local-54af1e0cab42227f1036067cec6555bf": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":0,\"wrong\":1,\"hintCount\":0,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T06:59:12.832321\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_progress_last::local-54af1e0cab42227f1036067cec6555bf": "{\"Mathematik\":\"Plus bis 20\"}"
+        }
+      },
+      "checkpoint_before": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-d6f43fbb7549278f50581a9ed3010106",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": false,
+        "attempt": 1,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      },
+      "checkpoint_after": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-d6f43fbb7549278f50581a9ed3010106",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 2,
+        "answer": "15",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-d6f43fbb7549278f50581a9ed3010106-2"
+      },
+      "verification": {
+        "status": "PASS",
+        "stored_attempt": {
+          "id": "1794812352907640-0",
+          "sid": "self",
+          "sub": "Mathematik",
+          "unit": "Plus bis 20",
+          "comp": "Addition mit Zehnerübergang",
+          "ok": false,
+          "at": "2026-11-16T06:59:12.907640",
+          "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+          "a": "15",
+          "e": "16",
+          "ms": 14503
+        },
+        "lab_attempt_id": "lab-attempt-d6f43fbb7549278f50581a9ed3010106-2",
+        "journey_key": "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf",
+        "journey_attempts": 2,
+        "support": {
+          "checkpoint_support": 0,
+          "prior_wrong_answer": false,
+          "stored_hint_used": false,
+          "assisted_correct_delta": 0
+        },
+        "attempt_log_id_is_separate_from_lab_evidence_id": true
+      },
+      "screenshot": {
+        "file": "0152-numeric-wrong-after-assessment.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "7151fbd630ca07dcf300688c0e386f850c82814fb13b5a5e97a7ea3399a7170a",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2340,
+          "content_entropy_bits": 5.106,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "video": {
+        "file": "0139-numeric-wrong-submission.mp4",
+        "sha256": "04939896bec3f99ff9321b9a4774cc002e46ce82eaaffbeb04e94bdaedd54604",
+        "bytes": 646135,
+        "duration_seconds": 5.764578,
+        "width": 1080,
+        "height": 2340,
+        "audio_recorded": false,
+        "maximum_seconds": 180,
+        "transfer_verification": "0139-numeric-wrong-submission-video-transfer.json",
+        "block_elapsed_seconds": 7.12,
+        "whole_block_within_recording_limit": true
+      }
+    },
+    "corrected": {
+      "before": {
+        "profile": {
+          "id": "1794812262632898",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T06:57:42.632898"
+        },
+        "learning": {
+          "flutter.lumo_progress_daily::local-54af1e0cab42227f1036067cec6555bf": "{}",
+          "flutter.lumo_learning_local_student_id_v1": "local-54af1e0cab42227f1036067cec6555bf",
+          "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":2,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T06:59:12.909540Z\",\"lastSeen\":\"2026-11-16T06:59:12.909540Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-1\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-2\"],\"independentProblemIds\":[]}}}",
+          "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794812352907640-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T06:59:12.907640\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":14503}]",
+          "flutter.lumo_progress_skills::local-54af1e0cab42227f1036067cec6555bf": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":0,\"wrong\":1,\"hintCount\":0,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T06:59:12.832321\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_progress_last::local-54af1e0cab42227f1036067cec6555bf": "{\"Mathematik\":\"Plus bis 20\"}"
+        }
+      },
+      "after": {
+        "profile": {
+          "id": "1794812262632898",
+          "name": "LumoNextTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-16T06:57:42.632898"
+        },
+        "learning": {
+          "flutter.lumo_progress_daily::local-54af1e0cab42227f1036067cec6555bf": "{\"2026-11-16\":1}",
+          "flutter.lumo_learning_local_student_id_v1": "local-54af1e0cab42227f1036067cec6555bf",
+          "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T06:59:20.416083Z\",\"lastSeen\":\"2026-11-16T06:59:20.416083Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-1\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-2\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-3\"],\"independentProblemIds\":[]}}}",
+          "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794812352907640-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T06:59:12.907640\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":14503},{\"id\":\"1794812360396419-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T06:59:20.396419\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7356}]",
+          "flutter.lumo_progress_skills::local-54af1e0cab42227f1036067cec6555bf": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T06:59:20.189995\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+          "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+          "flutter.lumo_progress_last::local-54af1e0cab42227f1036067cec6555bf": "{\"Mathematik\":\"Plus bis 20\"}"
+        }
+      },
+      "checkpoint_before": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-d6f43fbb7549278f50581a9ed3010106",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 2,
+        "answer": "15",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-d6f43fbb7549278f50581a9ed3010106-2"
+      },
+      "checkpoint_after": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-d6f43fbb7549278f50581a9ed3010106",
+        "phase": "recall",
+        "problemId": "bridge-9-7",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": true,
+        "attempt": 3,
+        "answer": "16",
+        "done": true,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": "lab-attempt-d6f43fbb7549278f50581a9ed3010106-3"
+      },
+      "verification": {
+        "status": "PASS",
+        "stored_attempt": {
+          "id": "1794812360396419-1",
+          "sid": "self",
+          "sub": "Mathematik",
+          "unit": "Plus bis 20",
+          "comp": "Addition mit Zehnerübergang",
+          "ok": true,
+          "at": "2026-11-16T06:59:20.396419",
+          "hint": true,
+          "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+          "a": "16",
+          "e": "16",
+          "ms": 7356
+        },
+        "lab_attempt_id": "lab-attempt-d6f43fbb7549278f50581a9ed3010106-3",
+        "journey_key": "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf",
+        "journey_attempts": 3,
+        "support": {
+          "checkpoint_support": 0,
+          "prior_wrong_answer": true,
+          "stored_hint_used": true,
+          "assisted_correct_delta": 1
+        },
+        "attempt_log_id_is_separate_from_lab_evidence_id": true
+      },
+      "screenshot": {
+        "file": "0166-numeric-corrected-after-assessment.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "fcd498ceabe48948cb4912f8d9703b188eca03322d4029038957b50929ded1fb",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2340,
+          "content_entropy_bits": 5.479,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "video": {
+        "file": "0153-numeric-corrected-submission.mp4",
+        "sha256": "056cb962d182ab6c9a40e04a33f010a129f5d842da1a5fabd819d847603bfadd",
+        "bytes": 641403,
+        "duration_seconds": 5.433389,
+        "width": 1080,
+        "height": 2340,
+        "audio_recorded": false,
+        "maximum_seconds": 180,
+        "transfer_verification": "0153-numeric-corrected-submission-video-transfer.json",
+        "block_elapsed_seconds": 6.83,
+        "whole_block_within_recording_limit": true
+      }
+    }
+  },
+  "flutter_switch_during_syllable_playback": {
+    "status": "PASS",
+    "before": {
+      "profile": {
+        "id": "1794812262632898",
+        "name": "LumoNextTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-16T06:57:42.632898"
+      },
+      "learning": {
+        "flutter.lumo_progress_daily::local-54af1e0cab42227f1036067cec6555bf": "{\"2026-11-16\":1}",
+        "flutter.lumo_learning_local_student_id_v1": "local-54af1e0cab42227f1036067cec6555bf",
+        "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T06:59:20.416083Z\",\"lastSeen\":\"2026-11-16T06:59:20.416083Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-1\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-2\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-3\"],\"independentProblemIds\":[]},\"deutsch::silben\":{\"subject\":\"Deutsch\",\"unit\":\"Silben\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T06:59:36.818447Z\",\"lastSeen\":\"2026-11-16T06:59:36.818447Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86-1\"],\"independentProblemIds\":[]}}}",
+        "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794812352907640-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T06:59:12.907640\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":14503},{\"id\":\"1794812360396419-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T06:59:20.396419\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7356}]",
+        "flutter.lumo_progress_skills::local-54af1e0cab42227f1036067cec6555bf": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T06:59:20.189995\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+        "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+        "flutter.lumo_progress_last::local-54af1e0cab42227f1036067cec6555bf": "{\"Mathematik\":\"Plus bis 20\"}"
+      }
+    },
+    "checkpoint_before": {
+      "topicId": "words",
+      "seed": 0,
+      "sessionId": "lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86",
+      "phase": "build",
+      "problemId": "word-banane",
+      "moved": 0,
+      "pieces": [],
+      "tokens": [
+        2,
+        3,
+        0
+      ],
+      "patternChoice": null,
+      "hint": 0,
+      "support": 0,
+      "wrongBefore": false,
+      "attempt": 1,
+      "answer": "",
+      "done": true,
+      "pendingAttemptId": null,
+      "lastSavedAttemptId": "lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86-1"
+    },
+    "explicit_stop_before_switch": false,
+    "flutter_media_callbacks_in_native_log": false,
+    "acoustic_playback_verified": false,
+    "viewport": {
+      "mode": "larger_logical_emulator_view",
+      "standard_density_case": false,
+      "physical_device_evidence": false,
+      "original": {
+        "display": {
+          "wm_size": "Physical size: 1080x2340",
+          "wm_density": "Physical density: 440",
+          "size": [
+            1080,
+            2340
+          ],
+          "density_dpi": 440,
+          "physical_density_dpi": 440,
+          "density_override": null
+        },
+        "screenshot": {
+          "file": "0205-switch-original-density.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "b08aa33002a0b5a46300789a948d2c59902a8f07dbb38521c0696530c518f017",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2340,
+            "content_entropy_bits": 6.25,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        }
+      },
+      "prepared": {
+        "display": {
+          "wm_size": "Physical size: 1080x2340",
+          "wm_density": "Physical density: 440\nOverride density: 320",
+          "size": [
+            1080,
+            2340
+          ],
+          "density_dpi": 320,
+          "physical_density_dpi": 440,
+          "density_override": 320
+        },
+        "snapshot": {
+          "profile": {
+            "id": "1794812262632898",
+            "name": "LumoNextTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-16T06:57:42.632898"
+          },
+          "learning": {
+            "flutter.lumo_progress_daily::local-54af1e0cab42227f1036067cec6555bf": "{\"2026-11-16\":1}",
+            "flutter.lumo_learning_local_student_id_v1": "local-54af1e0cab42227f1036067cec6555bf",
+            "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T06:59:20.416083Z\",\"lastSeen\":\"2026-11-16T06:59:20.416083Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-1\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-2\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-3\"],\"independentProblemIds\":[]},\"deutsch::silben\":{\"subject\":\"Deutsch\",\"unit\":\"Silben\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T06:59:36.818447Z\",\"lastSeen\":\"2026-11-16T06:59:36.818447Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86-1\"],\"independentProblemIds\":[]}}}",
+            "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794812352907640-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T06:59:12.907640\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":14503},{\"id\":\"1794812360396419-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T06:59:20.396419\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7356}]",
+            "flutter.lumo_progress_skills::local-54af1e0cab42227f1036067cec6555bf": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T06:59:20.189995\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+            "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+            "flutter.lumo_progress_last::local-54af1e0cab42227f1036067cec6555bf": "{\"Mathematik\":\"Plus bis 20\"}"
+          }
+        },
+        "checkpoint": {
+          "topicId": "words",
+          "seed": 0,
+          "sessionId": "lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86",
+          "phase": "build",
+          "problemId": "word-banane",
+          "moved": 0,
+          "pieces": [],
+          "tokens": [
+            2,
+            3,
+            0
+          ],
+          "patternChoice": null,
+          "hint": 0,
+          "support": 0,
+          "wrongBefore": false,
+          "attempt": 1,
+          "answer": "",
+          "done": true,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": "lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86-1"
+        },
+        "preservation": {
+          "profile_id": "1794812262632898",
+          "learning_keys_compared": 7,
+          "same_task_checkpoint": true
+        },
+        "screenshot": {
+          "file": "0209-switch-density-320.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "b08aa33002a0b5a46300789a948d2c59902a8f07dbb38521c0696530c518f017",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2340,
+            "content_entropy_bits": 6.25,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        }
+      },
+      "restore_command": [
+        "wm",
+        "density",
+        "reset"
+      ],
+      "restored_display_observation": {
+        "wm_size": "Physical size: 1080x2340",
+        "wm_density": "Physical density: 440",
+        "size": [
+          1080,
+          2340
+        ],
+        "density_dpi": 440,
+        "physical_density_dpi": 440,
+        "density_override": null
+      },
+      "restored": {
+        "status": "RESTORED",
+        "display": {
+          "wm_size": "Physical size: 1080x2340",
+          "wm_density": "Physical density: 440",
+          "size": [
+            1080,
+            2340
+          ],
+          "density_dpi": 440,
+          "physical_density_dpi": 440,
+          "density_override": null
+        },
+        "snapshot": {
+          "profile": {
+            "id": "1794812262632898",
+            "name": "LumoNextTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-16T06:57:42.632898"
+          },
+          "learning": {
+            "flutter.lumo_progress_daily::local-54af1e0cab42227f1036067cec6555bf": "{\"2026-11-16\":1}",
+            "flutter.lumo_learning_local_student_id_v1": "local-54af1e0cab42227f1036067cec6555bf",
+            "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T06:59:20.416083Z\",\"lastSeen\":\"2026-11-16T06:59:20.416083Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-1\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-2\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-3\"],\"independentProblemIds\":[]},\"deutsch::silben\":{\"subject\":\"Deutsch\",\"unit\":\"Silben\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T06:59:36.818447Z\",\"lastSeen\":\"2026-11-16T06:59:36.818447Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86-1\"],\"independentProblemIds\":[]}}}",
+            "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794812352907640-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T06:59:12.907640\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":14503},{\"id\":\"1794812360396419-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T06:59:20.396419\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7356}]",
+            "flutter.lumo_progress_skills::local-54af1e0cab42227f1036067cec6555bf": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T06:59:20.189995\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+            "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+            "flutter.lumo_progress_last::local-54af1e0cab42227f1036067cec6555bf": "{\"Mathematik\":\"Plus bis 20\"}"
+          }
+        },
+        "checkpoint": {
+          "topicId": "words",
+          "seed": 0,
+          "sessionId": "lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86",
+          "phase": "recall",
+          "problemId": "word-rakete",
+          "moved": 0,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": null,
+          "hint": 0,
+          "support": 0,
+          "wrongBefore": false,
+          "attempt": 1,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        },
+        "preservation": {
+          "profile_id": "1794812262632898",
+          "learning_keys_compared": 7,
+          "same_task_checkpoint": true
+        },
+        "screenshot": {
+          "file": "0247-switch-original-density-restored.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "4b42db95a357ac0a99ffada1d6d298daa84353d7ea692a6c326984a0ab47aeb4",
+          "render_readiness": {
+            "width": 1080,
+            "height": 2340,
+            "content_entropy_bits": 4.081,
+            "threshold_bits": 3.0,
+            "visually_ready": true,
+            "scope": "Rendered content readiness, not an accessibility or gameplay check"
+          }
+        }
+      }
+    },
+    "replay_preparation": {
+      "heading": "Die Wortwerkstatt",
+      "prompt": "Baue „Banane“ aus seinen Sprechstücken. Ein Baustein bleibt übrig.",
+      "syllables": [
+        {
+          "label": "Silbe 1: Ba",
+          "bounds": [
+            339,
+            302,
+            463,
+            435
+          ]
+        },
+        {
+          "label": "Silbe 2: na",
+          "bounds": [
+            483,
+            302,
+            602,
+            435
+          ]
+        },
+        {
+          "label": "Silbe 3: ne",
+          "bounds": [
+            622,
+            302,
+            741,
+            435
+          ]
+        }
+      ],
+      "scroll_bounds": [
+        0,
+        248,
+        1080,
+        2292
+      ],
+      "next_bounds": [
+        60,
+        1430,
+        1020,
+        1534
+      ],
+      "next_label": "Jetzt selbstständig antworten",
+      "replay_bounds": [
+        644,
+        1884,
+        950,
+        1988
+      ],
+      "replay_label": "Noch einmal",
+      "xml": "0213-switch-final-joint-viewport.xml",
+      "xml_sha256": "b515ad5abdd6344ba7add240c853bae62a7ee2a60f5de9c1bbf807f93df66225",
+      "screenshot": {
+        "file": "0212-switch-joint-viewport-before-replay.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "37bd7b44b3a04e2b38da5923c9d86cf1ef250db3beb87b045408348b30e7bd60",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2340,
+          "content_entropy_bits": 6.055,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "gestures": [],
+      "capture_started_monotonic": 481.621215057,
+      "capture_finished_monotonic": 481.832330726,
+      "replay_requested_monotonic": 481.83269273,
+      "replay_taps": 1
+    },
+    "observation": {
+      "active_label": "Silbe 1: Ba, gerade aktiv",
+      "next_bounds": [
+        60,
+        1474,
+        1020,
+        1578
+      ],
+      "next_label": "Jetzt selbstständig antworten",
+      "evidence": "same fresh Android accessibility hierarchy",
+      "xml": "0236-switch-live-active-and-next.xml",
+      "xml_sha256": "34dd600fa0fbcefcb2b7e0ea374890cf88d668083c3f111d99549b88c4b810b6",
+      "capture_started_monotonic": 487.33016937,
+      "capture_finished_monotonic": 487.423879439,
+      "touch_requested_monotonic": 487.42637696
+    },
+    "capture_to_touch_seconds": 0.0962075900000059,
+    "after": {
+      "profile": {
+        "id": "1794812262632898",
+        "name": "LumoNextTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-16T06:57:42.632898"
+      },
+      "learning": {
+        "flutter.lumo_progress_daily::local-54af1e0cab42227f1036067cec6555bf": "{\"2026-11-16\":1}",
+        "flutter.lumo_learning_local_student_id_v1": "local-54af1e0cab42227f1036067cec6555bf",
+        "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf": "{\"version\":1,\"records\":{\"mathematik::plus bis 20\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"attempts\":3,\"independentCorrect\":0,\"assistedCorrect\":2,\"transferCorrect\":0,\"errorCounts\":{\"one_off\":1},\"dueAt\":\"2026-11-17T06:59:20.416083Z\",\"lastSeen\":\"2026-11-16T06:59:20.416083Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-1\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-2\",\"lab-attempt-d6f43fbb7549278f50581a9ed3010106-3\"],\"independentProblemIds\":[]},\"deutsch::silben\":{\"subject\":\"Deutsch\",\"unit\":\"Silben\",\"attempts\":1,\"independentCorrect\":0,\"assistedCorrect\":1,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-17T06:59:36.818447Z\",\"lastSeen\":\"2026-11-16T06:59:36.818447Z\",\"reviewStage\":0,\"needsPractice\":true,\"recentTaskIds\":[\"lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86-1\"],\"independentProblemIds\":[]}}}",
+        "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794812352907640-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":false,\"at\":\"2026-11-16T06:59:12.907640\",\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"15\",\"e\":\"16\",\"ms\":14503},{\"id\":\"1794812360396419-1\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"comp\":\"Addition mit Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-16T06:59:20.396419\",\"hint\":true,\"q\":\"9 + 7 = ? Rechne zuerst bis zur Zehn.\",\"a\":\"16\",\"e\":\"16\",\"ms\":7356}]",
+        "flutter.lumo_progress_skills::local-54af1e0cab42227f1036067cec6555bf": "{\"mathematik::plus bis 20\":{\"skillId\":\"mathematik::plus bis 20\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 20\",\"correct\":1,\"wrong\":1,\"hintCount\":1,\"currentStreak\":0,\"currentMisses\":1,\"difficulty\":1,\"lastSeen\":\"2026-11-16T06:59:20.189995\",\"independentEvidence\":{\"version\":1,\"correct\":0,\"wrong\":1,\"correctStreak\":0,\"wrongStreak\":1}}}",
+        "flutter.lumo_reward_wallet_v1": "{\"stars\":0,\"xp\":0,\"level\":1,\"streak\":0,\"totalEarnedStars\":0,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+        "flutter.lumo_progress_last::local-54af1e0cab42227f1036067cec6555bf": "{\"Mathematik\":\"Plus bis 20\"}"
+      }
+    },
+    "checkpoint_after": {
+      "topicId": "words",
+      "seed": 0,
+      "sessionId": "lab-attempt-1cd2b3335ac6eb680318d34dbcd71c86",
+      "phase": "recall",
+      "problemId": "word-rakete",
+      "moved": 0,
+      "pieces": [],
+      "tokens": [],
+      "patternChoice": null,
+      "hint": 0,
+      "support": 0,
+      "wrongBefore": false,
+      "attempt": 1,
+      "answer": "",
+      "done": false,
+      "pendingAttemptId": null,
+      "lastSavedAttemptId": null
+    },
+    "verification": {
+      "status": "PASS",
+      "preservation": {
+        "profile_id": "1794812262632898",
+        "learning_keys_compared": 7,
+        "same_task_checkpoint": false
+      },
+      "from_problem": "word-banane",
+      "to_problem": "word-rakete",
+      "same_session": true,
+      "no_new_attempt_or_reward": true
+    },
+    "old_active_marker_absent": true,
+    "screenshot": {
+      "file": "0243-switch-new-unanswered-rakete.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "4b42db95a357ac0a99ffada1d6d298daa84353d7ea692a6c326984a0ab47aeb4",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.081,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    "video": {
+      "file": "0210-switch-during-actual-active-syllable.mp4",
+      "sha256": "378daecd2343bf3aee0ec6144e2fd63136b90f78e1044790403502a89c24c310",
+      "bytes": 606410,
+      "duration_seconds": 8.982144,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0210-switch-during-actual-active-syllable-video-transfer.json",
+      "block_elapsed_seconds": 10.57,
+      "whole_block_within_recording_limit": true
+    }
+  },
+  "auto_read_restored_before_native": true,
+  "native_runtime_cases": {
+    "schema": "lumo.nextgen.native.runtime.cases",
+    "version": 1,
+    "status": "FAIL",
+    "candidate": {
+      "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+      "flutter_source_commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+      "versionCode": 2031,
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "versionName": "0.13.19",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+        "engine": "4.6.3",
+        "pck_sha256": "94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef",
+        "bytes": 278589756
+      },
+      "abis": [
+        "x86_64"
+      ],
+      "tracked_source_clean": true
+    },
+    "module_sha256": "8c5c08a2525f4b653c55a833e9b6f45b8fbd975127dde072b56027d6437a288b",
+    "installation_or_reset_performed": false,
+    "banana_slower": {
+      "status": "PASS_WITH_LIMITATIONS",
+      "action": "slower",
+      "control": "Frag Lumo / Langsamer",
+      "current_task": "Ba – na – ne",
+      "model_before": {
+        "kind": "syllables",
+        "word": "Banane",
+        "placed": 0,
+        "total": 3,
+        "visible_label": "0 / 3 bewegt"
+      },
+      "model_after": {
+        "kind": "syllables",
+        "word": "Banane",
+        "placed": 0,
+        "total": 3,
+        "visible_label": "0 / 3 bewegt"
+      },
+      "initial_playback": {
+        "pid": 6407,
+        "utterance_ids": [
+          3
+        ],
+        "segments": 1,
+        "profile": "lumo-free-supertonic-de-v1",
+        "evidence": "ordered MediaPlayer started/completed callbacks",
+        "spoken_words_in_log": false,
+        "audible_quality_verified": false
+      },
+      "previous_ids": [
+        3
+      ],
+      "playback": {
+        "pid": 6407,
+        "utterance_ids": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "segments": 4,
+        "profile": "lumo-free-supertonic-de-v1",
+        "evidence": "ordered MediaPlayer started/completed callbacks",
+        "spoken_words_in_log": false,
+        "audible_quality_verified": false
+      },
+      "segment_order_source_contract": [
+        "Banane",
+        "Ba",
+        "na",
+        "ne"
+      ],
+      "actual_rate_in_log": false,
+      "segment_words_verified_acoustically": false,
+      "acoustic_speed_verified": false,
+      "source_rate_contract": {
+        "formula": "max(0.70, baseRate * 0.75)",
+        "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+        "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+        "controller": "tools/auto_install/LumoLearningConversation.kt",
+        "segments": "scripts/learning/learning_world.gd::_speak_syllables",
+        "playback": "tools/auto_install/LumoLearningSpeech.kt::MediaPlayer.playbackParams.setSpeed"
+      },
+      "preservation": {
+        "profile_id": "1794812262632898",
+        "learning_keys_compared": 7,
+        "same_task_checkpoint": true
+      },
+      "native_answer_submitted": false,
+      "before_screenshot": {
+        "file": "0339-runtime-banana-before-slower.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "d303bdbe8c42f3396164df189581718bac96c0e353ee3b3061aadf4b2bb63750"
+      },
+      "after_screenshot": {
+        "file": "0378-runtime-banana-after-slower.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "024ea55003807f03ccd0852c5fa82f14b27d6ff9fe636ca688aa05c32b1a73ad"
+      },
+      "video": {
+        "file": "0346-runtime-banana-four-slower-segments.mp4",
+        "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272",
+        "bytes": 1056206,
+        "duration_seconds": 64.066222,
+        "width": 1080,
+        "height": 2340,
+        "audio_recorded": false,
+        "maximum_seconds": 180,
+        "transfer_verification": "0346-runtime-banana-four-slower-segments-video-transfer.json",
+        "block_elapsed_seconds": 63.91,
+        "whole_block_within_recording_limit": true
+      },
+      "returned_to_academy": {
+        "file": "0395-runtime-banana-return-academy.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "43c97074f49c3f5042cd9329035365c6f2fdeb17139aa8b3c1379dc351942c67",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2340,
+          "content_entropy_bits": 6.286,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      }
+    },
+    "error": "Current visible Flutter text missing: Dein Lernatelier"
+  },
+  "error": "Current visible Flutter text missing: Dein Lernatelier",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py\", line 653, in run\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py\", line 613, in run\n    native.run_native_cases(self)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2031_native_runtime_cases.py\", line 400, in run_native_cases\n    result[\"bridge_active_stop\"] = bridge_active_stop(probe)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2031_native_runtime_cases.py\", line 298, in bridge_active_stop\n    probe.academy()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1029, in academy\n    self.see(\"Dein Lernatelier\", \"academy-tools-open\", scroll=True)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 659, in see\n    raise RuntimeError(\"Current visible Flutter text missing: \" + text)\nRuntimeError: Current visible Flutter text missing: Dein Lernatelier\n",
+  "finished_utc": "2026-11-16T07:04:59Z"
+}

@@ -1,0 +1,3 @@
+Derived Root analysis only; no Android test or original mutation.
+AttributeError: module 'actual_runtime_evidence' has no attribute 'native'
+The corrected analysis imports lumo_nextgen_reference_android_probe.py explicitly.
