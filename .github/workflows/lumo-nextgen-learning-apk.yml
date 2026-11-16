@@ -138,6 +138,7 @@ jobs:
             scripts.tests.test_game_return_contract \
             scripts.tests.test_prepare_android \
             tools.android_qa.tests.test_nextgen_learning_android_probe \
+            tools.nextgen.test_public_learning_download \
             2>&1 | tee evidence/validation/host-contracts.log
       - uses: actions/checkout@v4
         with:
@@ -370,17 +371,18 @@ jobs:
         run: |
           set -euo pipefail
           python3 tools/nextgen/prepare_current_learning_release.py
-          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo 'Refusing to overwrite an existing release.' >&2
-            exit 1
-          fi
           tar -czf release/Android-Lernpruefung.tar.gz -C android-evidence .
           cp docs/nextgen/COVERAGE.json release/COVERAGE.json
+          python3 tools/nextgen/public_learning_download.py absent
           gh release create "$RELEASE_TAG" release/*.apk release/BUILD-PROVENANCE.json release/APK-VERIFICATION.json release/DELIVERY.json release/COVERAGE.json release/Android-Lernpruefung.tar.gz --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title "LUMO Lernwelt $VERSION_NAME ($VERSION_CODE)" --notes-file release-notes.md
-          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json url,tagName,assets > release/PUBLIC-DOWNLOAD.json
+          python3 tools/nextgen/public_learning_download.py verify
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lumo-nextgen-public-download-proof
-          path: release/PUBLIC-DOWNLOAD.json
+          path: |
+            release/PUBLIC-*.json
+            release/DELIVERY.json
+            release/BUILD-PROVENANCE.json
+          if-no-files-found: error
           retention-days: 30
