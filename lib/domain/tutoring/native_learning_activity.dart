@@ -11,73 +11,15 @@ class NativeLearningActivity {
   final String kind;
   final Map<String, Object> _payload;
 
-  /// Every reviewed task can use the existing native companion. Specialised
-  /// object scenes take precedence; other tasks retain their exact prompt and
-  /// choices. This descriptor deliberately has no answer or reward field.
-  static NativeLearningActivity forTask(TaskInstance task) =>
-      fromTask(task) ??
-      _taskCard(
-        taskId: task.taskInstanceId,
-        subject: task.subject.name,
-        unit: task.parameters['unit']?.toString() ?? '',
-        prompt: task.prompt,
-        explanation: task.helpPayload.shortHint ?? '',
-        choices: task.options.map((option) => option.label).toList(),
-      );
+  /// Only a verified task-specific visual may enter native 3D.
+  /// Text-only tasks retain their actual Flutter renderer and tutor.
+  static NativeLearningActivity? forTask(TaskInstance task) => fromTask(task);
 
-  /// Adapts specialist, reading and guided screens without changing their
-  /// authoritative evaluators, storage keys or protected writing internals.
+  /// A companion text context does not validate 3D objects or concepts.
   static NativeLearningActivity? fromCompanionContext(
     LumoCompanionTaskContext context,
   ) {
-    if (context.isExam ||
-        context.taskId.isEmpty ||
-        context.prompt.trim().isEmpty) {
-      return null;
-    }
-    return _taskCard(
-      taskId: context.taskId,
-      subject: context.subject,
-      unit: context.unit,
-      prompt: context.prompt,
-      explanation: context.explanation ?? context.localHelp ?? '',
-      choices: context.answerChoices,
-      stepId: context.stepId,
-    );
-  }
-
-  static NativeLearningActivity _taskCard({
-    required String taskId,
-    required String subject,
-    required String unit,
-    required String prompt,
-    required String explanation,
-    required List<String> choices,
-    String? stepId,
-  }) {
-    String bounded(String value, int length) => value.runes.length <= length
-        ? value
-        : String.fromCharCodes(value.runes.take(length));
-    final visibleChoices = choices
-        .where((choice) => choice.trim().isNotEmpty)
-        .take(8)
-        .map((choice) => bounded(choice, 120))
-        .toList(growable: false);
-    return NativeLearningActivity._('task_card', {
-      'kind': 'task_card',
-      'sourceTaskId': bounded(taskId, 180),
-      'subject': bounded(subject, 80),
-      'unit': bounded(unit, 80),
-      'prompt': bounded(prompt, 800),
-      'explanation': bounded(explanation, 1200),
-      'answerChoices': visibleChoices,
-      'objectIds': [
-        'task_prompt',
-        'task_model',
-        for (var i = 0; i < visibleChoices.length; i++) 'answer_$i',
-      ],
-      if (stepId != null) 'stepId': bounded(stepId, 120),
-    });
+    return null;
   }
 
   /// Only consume the checked renderer payload and verify its arithmetic
@@ -88,6 +30,43 @@ class NativeLearningActivity {
       return payload == null
           ? null
           : NativeLearningActivity._('english_objects', payload);
+    }
+    if (task.subject == LearningSubject.mathematik &&
+        task.visualPayload.type == VisualType.clock) {
+      final dial = task.visualPayload.data;
+      final hour = dial['hour'];
+      final minute = dial['minute'];
+      final answer = RegExp(r'^\s*(\d{1,2}):(\d{2})(?:\s*Uhr)?\s*$')
+          .firstMatch(task.correctAnswer.toString());
+      final labels = task.options
+          .map((option) => option.label.trim())
+          .toList(growable: false);
+      if (hour is int &&
+          hour >= 1 && hour <= 12 &&
+          minute is int && minute >= 0 && minute < 60 &&
+          answer != null &&
+          int.tryParse(answer.group(1)!) == hour &&
+          int.tryParse(answer.group(2)!) == minute &&
+          labels.length >= 2 && labels.length <= 6 &&
+          labels.every((label) => label.isNotEmpty && label.length <= 120) &&
+          labels.toSet().length == labels.length &&
+          labels.contains(task.correctAnswer.toString().trim())) {
+        return NativeLearningActivity._('clock', {
+          'kind': 'clock',
+          'hour': hour,
+          'minute': minute,
+          'subject': 'Mathematik',
+          'unit': 'Uhrzeit',
+          'prompt': task.prompt.length <= 800
+              ? task.prompt
+              : task.prompt.substring(0, 800),
+          'explanation': (task.helpPayload.shortHint ?? '').length <= 1200
+              ? (task.helpPayload.shortHint ?? '')
+              : (task.helpPayload.shortHint ?? '').substring(0, 1200),
+          'answerChoices': labels,
+        });
+      }
+      return null;
     }
     final data = task.subject == LearningSubject.mathematik
         ? _arithmeticPayload(task.prompt, task.visualPayload.data)
