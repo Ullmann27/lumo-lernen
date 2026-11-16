@@ -1,0 +1,391 @@
+{
+  "schema": "lumo.nextgen.validation.handoff",
+  "version": 1,
+  "directory": "/workspace/scratch/4fa97167812c/agent-ci-2032-validation",
+  "repository": "Ullmann27/lumo-lernen",
+  "runId": 43837592237,
+  "jobId": 133197989015,
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "validationJob": "SUCCESS",
+  "artifact": {
+    "artifactId": 14212363195,
+    "archive": "lumo-nextgen-validation-14212363195.zip",
+    "bytes": 264077,
+    "sha256": "167bed7006a1fcad952685f92f9583f6158a5f5bc1434a9c153484e24b3d41cd",
+    "memberCount": 58,
+    "fileCount": 58,
+    "uncompressedBytes": 1927153
+  },
+  "jobLog": {
+    "repo": "Ullmann27/lumo-lernen",
+    "runId": 43837592237,
+    "jobId": 133197989015,
+    "file": "job-133197989015.log",
+    "bytes": 1739643,
+    "sha256": "fce7d09999355a493d28604e989a6e431a0461c21d2b0d1c13cc325ad2c6ffac",
+    "transport": "fetch_workflow_job_logs decoded content, encoded to UTF-8 without normalization",
+    "bomPreserved": true,
+    "newlinesPreserved": true,
+    "lineFeedCount": 14091,
+    "carriageReturnCount": 0,
+    "decodedCodePoints": 1737203,
+    "chunkWritesReadBackEqual": 44,
+    "apiFetchCount": 1
+  },
+  "summary": {
+    "path": "summary.json",
+    "bytes": 67025,
+    "sha256": "918022d74743f017929c7cd72c8d1acc3ed8c8b8ca704bf7c9042b2b567c0d47"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4933,
+      "sha256": "4419bd198c17c1a38f985b40ac188bd293cd29f527ef7b788108d9ba791c2faf"
+    },
+    {
+      "path": "artifact-verification.json",
+      "bytes": 12658,
+      "sha256": "7cd56bf985a3177866e6e763032e9a1ae4c3ae852950ceea8fc28d0885585a1a"
+    },
+    {
+      "path": "github-artifacts.json",
+      "bytes": 866,
+      "sha256": "a1f05e29c45c472abb7244bdfb4255e7361705b29c8670d627de3cd4faae6947"
+    },
+    {
+      "path": "github-jobs-completed.json",
+      "bytes": 5656,
+      "sha256": "a24f4ecaa066c0705bb7fbc16b05e84331e7cc829cf1c884e53db22cd0f7550d"
+    },
+    {
+      "path": "independent-source-verification.json",
+      "bytes": 73355,
+      "sha256": "2bf24f03de843416f35860172c6d0082f522b8001f30ab3e0471ce219b510d48"
+    },
+    {
+      "path": "job-133197989015.log",
+      "bytes": 1739643,
+      "sha256": "fce7d09999355a493d28604e989a6e431a0461c21d2b0d1c13cc325ad2c6ffac"
+    },
+    {
+      "path": "job-log-verification.json",
+      "bytes": 514,
+      "sha256": "e555ee695b9df3d954e72e78153cd61044dbcf206436ee1815b32567faa7e460"
+    },
+    {
+      "path": "lumo-nextgen-validation-14212363195.zip",
+      "bytes": 264077,
+      "sha256": "167bed7006a1fcad952685f92f9583f6158a5f5bc1434a9c153484e24b3d41cd"
+    },
+    {
+      "path": "original/analyze.log",
+      "bytes": 59743,
+      "sha256": "8e557fdb5d55a312ae147b06cfa107f3bf8f7ddfb85645838fa642264739c5a4"
+    },
+    {
+      "path": "original/flutter-tests.log",
+      "bytes": 554792,
+      "sha256": "c6205452f22258d12471a279e180784d83449afabc4f42fdaf43e990e204e8cf"
+    },
+    {
+      "path": "original/godot-import.log",
+      "bytes": 416228,
+      "sha256": "9f77b46326fb737f8f44c6b942c9074afab891673f79c82f84120fb2e6aacf64"
+    },
+    {
+      "path": "original/godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "original/host-contracts.log",
+      "bytes": 40533,
+      "sha256": "774505877a91839f156998263d8bc9dd3bcbc9f961402059c821a76a71663467"
+    },
+    {
+      "path": "original/host-python.json",
+      "bytes": 109,
+      "sha256": "70f1887bf9713ef1832b1025fc3ac405c430226c27aaa7c608742d73995565bb"
+    },
+    {
+      "path": "original/learning-english/english-apple-960x540-start.json",
+      "bytes": 3025,
+      "sha256": "20fbfd86fc78190c7ac15c33874be1943095a59ff94b0bf02f59fe28935aa89f"
+    },
+    {
+      "path": "original/learning-english/english-apple-960x540-start.layout.json",
+      "bytes": 33628,
+      "sha256": "02c72f4c2326bf7b1fdf4816b1e982f69101c076b3b02966a075d36aa3169e02"
+    },
+    {
+      "path": "original/learning-english/english-bag-960x540-start.json",
+      "bytes": 3039,
+      "sha256": "0e6b1372c33d34bf2a2f07488c6a3a7d022c3dfc116ba05e7dd56530c6c64cc1"
+    },
+    {
+      "path": "original/learning-english/english-bag-960x540-start.layout.json",
+      "bytes": 44823,
+      "sha256": "b16aa78167957f45fafec2c6cb5fc60b49af58201f51f52a2487e351f4beeada"
+    },
+    {
+      "path": "original/learning-english/english-ball-960x540-complete.json",
+      "bytes": 3021,
+      "sha256": "3376b9cf39dfaf5072d18ed6b041adccc3a236d37dc76a42492d941c16c37cba"
+    },
+    {
+      "path": "original/learning-english/english-ball-960x540-complete.layout.json",
+      "bytes": 34874,
+      "sha256": "811e6e577bb5bf6b18a2d72814b77c80a63253137c069363145789f2ef429582"
+    },
+    {
+      "path": "original/learning-english/english-ball-960x540-hint.json",
+      "bytes": 3018,
+      "sha256": "10db4346a2e81ca50d7a73f876d2b930e986b6315ff10d8e89a143755b669322"
+    },
+    {
+      "path": "original/learning-english/english-ball-960x540-hint.layout.json",
+      "bytes": 34875,
+      "sha256": "ac0c742a772777b3d744965424b7d3cf2492375be0129b786a3f84d397274ba7"
+    },
+    {
+      "path": "original/learning-english/english-ball-960x540-start.json",
+      "bytes": 3015,
+      "sha256": "c69d9f73bb4e07ac75e7f5b41dd165f5ac700d74e8e2a06bca2dc77c022b779e"
+    },
+    {
+      "path": "original/learning-english/english-ball-960x540-start.layout.json",
+      "bytes": 34077,
+      "sha256": "4c30184d83b5bdad9d2bcca7307a89b5f377f622cd92831c2b62bddfcf972745"
+    },
+    {
+      "path": "original/learning-english/english-book-412x915-complete.json",
+      "bytes": 3013,
+      "sha256": "dc7327958a6121b85b0e1430db1bb3b84b22f22c31fff83dd6aceea146c618ff"
+    },
+    {
+      "path": "original/learning-english/english-book-412x915-complete.layout.json",
+      "bytes": 37821,
+      "sha256": "47d62341ba845745d552b4cccda2957c5609cb6274aadcbe3588de70410dd2be"
+    },
+    {
+      "path": "original/learning-english/english-book-412x915-start.json",
+      "bytes": 3014,
+      "sha256": "f0bc5109fe4fbae365f1cac6e3a7d1055db52c73d4da3391caab50528b7936a3"
+    },
+    {
+      "path": "original/learning-english/english-book-412x915-start.layout.json",
+      "bytes": 37015,
+      "sha256": "4b240ee09bd2fd6226d2023aab7c4d1049bd806319ec313cb7aea0f01f3c19b4"
+    },
+    {
+      "path": "original/learning-english/english-car-2400x1080-start.json",
+      "bytes": 3282,
+      "sha256": "36a1def5a19616d08ed1b8554bde5b6390081ff7a54e226557e66efd2e616d8f"
+    },
+    {
+      "path": "original/learning-english/english-car-2400x1080-start.layout.json",
+      "bytes": 50392,
+      "sha256": "7bd261b746f1a543c5cc757139c3a19a10c9bf97efab32a68de7e56f7499cd8d"
+    },
+    {
+      "path": "original/learning-english/english-chair-640x360-start.json",
+      "bytes": 3013,
+      "sha256": "b063f85d9f54ae9fc51de442b0da0d7e4360da5ad49ab870acabaf4fea79c02e"
+    },
+    {
+      "path": "original/learning-english/english-chair-640x360-start.layout.json",
+      "bytes": 38421,
+      "sha256": "5c6c50d70772d3c96ddd28fe9ff93bb376f1276c552b275860e721d30ca4237b"
+    },
+    {
+      "path": "original/learning-english/english-desk-960x540-start.json",
+      "bytes": 3016,
+      "sha256": "9cb2539ce86f40e43b91b74baf27cfe03794c0b0f0de9f145fc6641bc66d709c"
+    },
+    {
+      "path": "original/learning-english/english-desk-960x540-start.layout.json",
+      "bytes": 33315,
+      "sha256": "177e75b6af6fc5d3df19899a14bf5473ffcf2f3a28910d9c29d8422e4bf99956"
+    },
+    {
+      "path": "original/learning-english/english-paper-2400x1080-start.json",
+      "bytes": 3294,
+      "sha256": "a5433be822c1591b4fd12f3dc8821c2cbcf3121408851b5bb27c3f474882140b"
+    },
+    {
+      "path": "original/learning-english/english-paper-2400x1080-start.layout.json",
+      "bytes": 30421,
+      "sha256": "28db8ff2f1da9cce7d8f2eb1defe60f9014c3f568cc8c9c3616b622a401c75bf"
+    },
+    {
+      "path": "original/learning-english/english-pen-1080x2400-start.json",
+      "bytes": 3157,
+      "sha256": "68e4e98f2e420301afcdbfe6177b5906d3df4b3825cdefd93ae118abb6d9b891"
+    },
+    {
+      "path": "original/learning-english/english-pen-1080x2400-start.layout.json",
+      "bytes": 25787,
+      "sha256": "34c4274255ebea12ec3840c77a3d465dcb39ac4d6d3e228e63f7a181c1df1991"
+    },
+    {
+      "path": "original/learning-english/english-pencil-case-1080x2400-start.json",
+      "bytes": 3358,
+      "sha256": "d0f4fac0aec2058c16f777317c5549de3b08b1e7610130628def01d83fe21e5b"
+    },
+    {
+      "path": "original/learning-english/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 33364,
+      "sha256": "6e383120fbf87db3065c7c17dfe821a6e5f4eb1e5ab7e80455664620922c4057"
+    },
+    {
+      "path": "original/learning-english/english-rubber-640x360-start.json",
+      "bytes": 3008,
+      "sha256": "a33173fb0d2d43fbb86ae9f29a77758b9bcdf6237d556f4c1101d35036e8d5b6"
+    },
+    {
+      "path": "original/learning-english/english-rubber-640x360-start.layout.json",
+      "bytes": 30072,
+      "sha256": "573c3d581357a983ab097f7892fc3b99bd0a928d008d0c767124ae6d2c500f4f"
+    },
+    {
+      "path": "original/learning-english/english-ruler-640x360-start.json",
+      "bytes": 2999,
+      "sha256": "55c3da852cf223473c032c7e9c2e0f6ba7e7f6981437c8187137d46ba197b6bd"
+    },
+    {
+      "path": "original/learning-english/english-ruler-640x360-start.layout.json",
+      "bytes": 41707,
+      "sha256": "6d64be4c9e6579c3fa2b77a6fd5776cd4273a85a2c32f5fcc489ff3c0cc7a026"
+    },
+    {
+      "path": "original/learning-english/english-school-bag-412x915-start.json",
+      "bytes": 3057,
+      "sha256": "b761be9c22026f28a34b3db15d4402b986bc2057551d797321b6e140d0fa5a33"
+    },
+    {
+      "path": "original/learning-english/english-school-bag-412x915-start.layout.json",
+      "bytes": 44278,
+      "sha256": "6a537f0554a94f5bd73933a0c2021f2c1ab3e909f13e9f9354d1357ebe564834"
+    },
+    {
+      "path": "original/learning-english/english-sun-960x540-start.json",
+      "bytes": 3013,
+      "sha256": "75e6ff8b15e8e47139626da323a9f32033b5049d77f43000b1a65b5a617516d7"
+    },
+    {
+      "path": "original/learning-english/english-sun-960x540-start.layout.json",
+      "bytes": 30920,
+      "sha256": "af1a67ffc49d3f84cd38779f07f39ecc93d8b9ca2a1556a34f3255f57f623f0d"
+    },
+    {
+      "path": "original/learning-english/learning-english-report.json",
+      "bytes": 143305,
+      "sha256": "5090d06697d5bd31cb43c73417a9dc4c8bef850c44bf8d64ef449573b3a72d10"
+    },
+    {
+      "path": "original/learning_android_host_capability_regression.log",
+      "bytes": 660,
+      "sha256": "d9d468b67ce6dac5381a3571f7ea360c729d9929894fcea834c44672381b412b"
+    },
+    {
+      "path": "original/learning_button_state_contrast_regression.json",
+      "bytes": 6935,
+      "sha256": "27b610db10f1ed9bc2e9a66ff7d7ad8290ce15013c2013078388b8836a95fb88"
+    },
+    {
+      "path": "original/learning_button_state_contrast_regression.log",
+      "bytes": 513,
+      "sha256": "08636c101c2983dd3b6be2f7cd8e1f883908587eab0c59d0ec1a93d0d960848c"
+    },
+    {
+      "path": "original/learning_companion_scope_regression.log",
+      "bytes": 547,
+      "sha256": "aa30c2986ff93d43dbeeecc52e991bdc1da8a781282f4bf9067cf5478b33996c"
+    },
+    {
+      "path": "original/learning_english_regression.log",
+      "bytes": 6179,
+      "sha256": "3b1c45fd159dbd4c7b110c7adbf04b74c2b204714a58cafaf6a07bd7ebf127f4"
+    },
+    {
+      "path": "original/learning_generation_regression.log",
+      "bytes": 557,
+      "sha256": "10c0449a302035ab85a4df38f33db04e7bb21cf92cac38b82d5974c494c38df0"
+    },
+    {
+      "path": "original/learning_host_payload_regression.log",
+      "bytes": 561,
+      "sha256": "c763d84b6655eadfffb6b9fbbd62ab446baf0468976b0630248786ccb1e69387"
+    },
+    {
+      "path": "original/learning_pattern_regression.log",
+      "bytes": 516,
+      "sha256": "218cf9af10b3a0b0840b6da9cc5b2ae2a0a29a155e2b343571e1254fed4a9f9b"
+    },
+    {
+      "path": "original/learning_sharing_regression.log",
+      "bytes": 1482,
+      "sha256": "46611a9b8519f2137a9ce2a5cf8dab5b11b66b298a062b70a5bf8e039f138b3e"
+    },
+    {
+      "path": "original/learning_wonder_details_regression.log",
+      "bytes": 3912,
+      "sha256": "c1e35122735bf052d21f7665d9614b26ed6260852819c3fa73b8562d505b39b9"
+    },
+    {
+      "path": "original/learning_world_regression.log",
+      "bytes": 10599,
+      "sha256": "2c7ffff6da31d57164877f8d78c806b98945001fe89d7e894fa03756a2d825ce"
+    },
+    {
+      "path": "original/native-project.log",
+      "bytes": 5519,
+      "sha256": "b9fd53306efa6c8672985028fb67cd7d0231cff60af8cb2ac23c6225e2d59e6c"
+    },
+    {
+      "path": "original/native-test-toolchain.json",
+      "bytes": 549,
+      "sha256": "735e64f7978ecde7f4c774ed938227faf701a7d5cceb1f7447df05ff93efc3f2"
+    },
+    {
+      "path": "original/nextgen_avatar_contract_review.log",
+      "bytes": 640,
+      "sha256": "79b48e0fa26da1cdf8899d565b0b81d56123ce84767821a8263f81e00e77d305"
+    },
+    {
+      "path": "original/nextgen_learning_base_audio_regression.log",
+      "bytes": 514,
+      "sha256": "181656fbc11b99b2732ac482ca30a5e1ae03215cd5e2e467ef8baeaefcf9227c"
+    },
+    {
+      "path": "original/nextgen_learning_route_review.log",
+      "bytes": 1194,
+      "sha256": "216e19d5ae314153b8d005feb9999bd4acee39039f1fa53e34701bb327db574e"
+    },
+    {
+      "path": "original/source.json",
+      "bytes": 3402,
+      "sha256": "a51e1164810d53c787f8e07d3c26808864fca0fe9db885126e668d28b3da50e4"
+    },
+    {
+      "path": "poll-history.json",
+      "bytes": 53908,
+      "sha256": "32f1c1a01675effeb0f7b5f70523839625dbf37adef4e46157dec4bb533fd00f"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 67025,
+      "sha256": "918022d74743f017929c7cd72c8d1acc3ed8c8b8ca704bf7c9042b2b567c0d47"
+    }
+  ],
+  "totalFilesExcludingThisHandoff": 68,
+  "totalBytesExcludingThisHandoff": 4149788,
+  "testsRunByReviewer": false,
+  "androidExecutionByReviewer": false,
+  "repositoryMutations": false,
+  "remoteMutations": false,
+  "provenanceScope": "All original bytes plus derived read-only validation review. Build/Android/release are outside this job review."
+}

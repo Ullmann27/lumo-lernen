@@ -4,7 +4,7 @@
 
 **Dokumentstand: 16. November 2026. `fullModernizationComplete=false`.**
 
-Dieser Entwurf beschreibt den belegten Quellstand und den bereits abgeschlossenen Katalogexport für Kandidat 2032. Er ist noch keine APK-Auslieferung oder Android-Abnahme. Beim gesicherten Aktivierungsstand läuft die Validierung; Build-Ergebnisse, aktuelle Android-Originale und ein verifizierter öffentlicher Download liegen diesem Dokument noch nicht zugrunde.
+Dieser Entwurf beschreibt den belegten Quellstand, den abgeschlossenen Katalogexport und die vollständige neue Quellvalidierung für Kandidat 2032. Er ist noch keine APK-Auslieferung oder Android-Abnahme. Validate-Job 133197989015 ist SUCCESS; Buildjob 133206155437 läuft. Aktuelle Android-Originale und ein verifizierter öffentlicher Download liegen diesem Dokument noch nicht zugrunde.
 
 Die aktivierte APK-Quelle ist `9b38360ca5f21919dce4a2b99e605ee39bbbf454`, der native Pin `9d6ef1d704a0e54098a8f8f0818f36deae0e3789`. Der vollständige Lauf [43837592237](https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237) ist im gesicherten [Aktivierungsbeleg](evidence/2032-build-activation-20261116/activation.json) noch nicht abgeschlossen. Alle folgenden Aussagen sind an den dokumentierten Quell- und Belegstand gebunden.
 
@@ -107,7 +107,23 @@ Die folgenden Funktionen gehören zum integrierten Next-Generation-Stand. Die ko
 | Kontrastregression: zuerst 32 erwartete Fehler, danach 79/79 | Lokale Godot-4.6.3-Laufzeit mit echten Buttons, Themezuständen und Eingaben; keine neue Androidaufnahme |
 | Anschluss der aktuellen Stopp-Prüfung: 26/26 | Gezielte Hostprüfungen; Ablauf-/Vertragskontrolle, kein tatsächlicher Stopp eines Android-MediaPlayers in diesem Testlauf |
 | Quell-/Hashvergleiche: 480 Exportquellen, 364 Coverage-Quellhashes, 18 geschützte Dateien | Git-/Dateivergleich; keine zusätzlichen Geräte- oder Akustikaussagen |
-| Vollständige neue Pipeline 43837592237 | Aktiviert; abgeschlossene Originalergebnisse liegen diesem Entwurf noch nicht zugrunde |
+| Vollständige neue Pipeline 43837592237 | Validate 133197989015 SUCCESS; Build 133206155437 läuft, Android und Veröffentlichung ausstehend |
+
+### Abgeschlossene aktuelle Quellvalidierung
+
+Der vollständige neue Validate-Job **133197989015** an APK-Quelle **9b38360ca5f21919dce4a2b99e605ee39bbbf454** ist **SUCCESS**. Die [unveränderten Originale](evidence/ci-2032-validation/README.md) und der [unabhängige Root-Vergleich](evidence/ci-2032-validation/root-integration-review.json) belegen:
+
+| Prüfebene | Ergebnis der aktuellen CI |
+|---|---:|
+| Flutter | **2.896 PASS / 202 SKIP / 0 FAIL** |
+| Analyzer | **0 Fehler / 4 Warnungen / 274 Infos** |
+| Host-unittest | **174 Methoden PASS**, einschließlich aller 11 neuen Stopp-Hostfälle |
+| Godot-Import | **SUCCESS**, tatsächliche Version `4.6.3.stable.official.7d41c59c4` |
+| Native Programme | **13 Programme / 55.631 Prüfaussagen**, darin Kontrast **79/79** |
+| Separater Projektvalidator | **118 PASS / 0 WARN / 0 FAIL** |
+| Quellen / Schutz | **364** Quellhashes / **18** bytegleiche Schutzdateien |
+
+Die 202 Skips bleiben ausgewiesen; einzelne Skipgründe sind dem parallelen expanded-Log nicht zuverlässig zuzuordnen. Die vier Analyzerwarnungen betreffen ungenutzte Importe/Felder; der isolierte Avatarprüfer enthält eine erhaltene ObjectDB-Warnung beim Beenden. Diese Befunde sind keine warnungsfreie Gesamtprüfung und keine Android- oder Akustikabnahme. Das vollständige Artefakt **14212363195** besitzt **264.077 Bytes**, SHA-256 `167bed7006a1fcad952685f92f9583f6158a5f5bc1434a9c153484e24b3d41cd`; alle **58 Originalmitglieder** und der vollständige Rohjoblog sind unverändert gesichert.
 
 Die aufgezeichneten Gruppen werden nicht zu einer vermeintlichen aktuellen Gesamttestzahl addiert. Frühere Flutter-, JVM-, Desktop- und Androidläufe behalten ihre eigene Quelle und Umgebung. [Vorprüfung](evidence/2032-build-activation-20261116/preflight.json), [Katalogbelege](evidence/ci-2032-catalog-export/README.md), [Quellenvergleich](evidence/2032-native-contrast-integration-20261116/host-product-boundary-review.json).
 
@@ -120,7 +136,7 @@ Die aufgezeichneten Gruppen werden nicht zu einer vermeintlichen aktuellen Gesam
 | `Ullmann27/lumo-godot`: veröffentlichter Kontrastbaustein | `fix/lumo-learning-button-state-contrast-20261116` | API-Commit `4eeafe49e632e56dd7f517804f09032ab0be0fe5`; identischer Tree zum integrierten nativen Stand; ursprünglicher lokaler Producer `570e8238aabcb5d0e2c7dc19d237ad82d03a3959` |
 | `Ullmann27/lumo-lernen`: veröffentlichter aktueller Stopp-Prüfweg | `qa/lumo-current-native-stop-20261116` | API-Commit `c55df64ce3c699363e04f6d2472c71a9db230fb1`, Tree `41ed1d22425f6a1c499b3986bd81738f1cba620d`; ursprünglicher Producer `e0df201c73509a44384bcce3ebaad82cce00bde3` |
 | `Ullmann27/lumo-lernen`: tatsächlicher Katalogexport | `integration/lumo-nextgen-learning-20261115` | Commit `a5ea7422b1152576b34cf80519856129ff264ac1`, Tree `e72c53feed7e5360f7f677b6bc49c58bfd50cd5d` |
-| Dieser noch nicht veröffentlichte Dokumententwurf | `docs/lumo-nextgen-2032-delivery-draft-20261116` | Basis `bf94cd739ed48cef89640c5f7c8fd3b7395826d2`; sein eigener Commit steht in der getrennten Übergabe und ersetzt keine APK-Quelle |
+| Veröffentlichter ursprünglicher Berichtsentwurf | `docs/lumo-nextgen-2032-delivery-draft-20261116` | API-Commit `05e0b3a97cfbcee7db5d1aaf48cd499ff9f2d153`, Tree `4ee97f942f9b31712b3efbfe782c4bc7b83b545b`; Root-Integration `7b2cabc89ace083eb7f30d9d06f19c7d840406e5`, spätere Ergebnisergänzungen getrennt von der APK-Quelle |
 
 - **Version und Pin stimmen im aktivierten Quellstand überein:** `0.13.20+2032`, vorgesehener Tag `lumo-nextgen-learning-0.13.20-2032`, Godot `4.6.3`. Der Tagname ist eine Konfigurationsangabe, keine Behauptung einer bereits existierenden Veröffentlichung. [Releasekonfiguration](../../config/nextgen-release.json), [pubspec.yaml](../../pubspec.yaml), [Godot-Pin](../../config/godot-source.json).
 - **Baustein, Integration und APK-Quelle sind verschiedene Identitäten.** Die Integration bindet die geprüften Dateien an die oben genannte Buildquelle. Der lokale Producer und der API-Commit können trotz identischem Tree unterschiedliche Commit-Hashes haben. Die [Native-Integration](evidence/2032-native-contrast-integration-20261116/root-source-review.json) und die [Stopp-Integration](evidence/2032-current-stop-integration-20261116/root-integration-review.json) halten diese Zuordnung fest. `main` wurde für diesen Dokumentauftrag nicht verändert.
@@ -137,7 +153,7 @@ Diese Abschlussliste bleibt offen, bis Root die neuen unveränderten Originale �
 
 | Für den Abschluss von Kandidat 2032 | Stand dieses Entwurfs |
 | --- | --- |
-| Vollständige Flutter-, Analyse-, Host- und Native-Ergebnisse am aktivierten Source-HEAD | Noch nicht aus abgeschlossenen Originalprotokollen übernommen |
+| Vollständige Flutter-, Analyse-, Host- und Native-Ergebnisse am aktivierten Source-HEAD | **Abgeschlossen und aus sämtlichen Originalen übernommen; Details in Abschnitt 3** |
 | Signierte ARM64- und x86-APK: Artefakt-ID, Bytezahl, SHA-256, Paket, Version, Zertifikat, native/PCK-Provenienz | Noch nicht belegt |
 | Frische Installation und tatsächliche Paket-/Versions-/Signatur-/Dateiprüfung | Ausstehend |
 | Originaltour: 8 + 5, „Warum zuerst zwei?“, Stop, Rückkehr, Pause und Größenwechsel mit erhaltenem Profil/Lernstand | Neue 2032-Originale ausstehend |

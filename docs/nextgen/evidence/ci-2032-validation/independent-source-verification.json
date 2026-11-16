@@ -1,0 +1,1941 @@
+{
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "coverageFileSha256": "1aaef7e1cf9ffcc3f2b93b2abac65709b41437e389874d1de54392f4eb38ad2a",
+  "coverageAcceptanceClaim": false,
+  "sourceCount": 364,
+  "sources": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "bytes": 26339,
+      "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_native_stop.py",
+      "bytes": 10248,
+      "sha256": "2d8e70a2ab3e9a8d0756b6a20341d5d639833c9854e4e087556cf81bb2776b56"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "bytes": 7595,
+      "sha256": "81efab46dbb85c4d22745bbfbf637ea5389548cb19508ec424948c2bb221c449"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 92469,
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_native_reader.py",
+      "bytes": 5817,
+      "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "bytes": 44802,
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41"
+    },
+    {
+      "path": ".github/probes/run_lumo_nextgen_current_android.sh",
+      "bytes": 1168,
+      "sha256": "a54f2ec1ca5a64eb7ea1f2d3dc80f19db55354cf2137aaec1c175667b8740d47"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-catalog-export.yml",
+      "bytes": 4982,
+      "sha256": "10304be797565faa24c612b1bb693635849231fe146c2aa7404d2fbb5acbf00a"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-learning-apk.yml",
+      "bytes": 19883,
+      "sha256": "848c868ff7a785220073aa34822ebf7ee2b6d4250ff15216b80a2193759bc2ef"
+    },
+    {
+      "path": "assets/learning_questions/grade1_german.json",
+      "bytes": 10021,
+      "sha256": "196446c24c5b47beb95321c7152da6ef332e53ca3708f3142065b7789c515a7d"
+    },
+    {
+      "path": "assets/learning_questions/grade1_math.json",
+      "bytes": 9005,
+      "sha256": "3f257be28325e09d4836b58845c53a2c74cce227b71727e1354b5a0bdbce9004"
+    },
+    {
+      "path": "assets/learning_questions/grade2_german.json",
+      "bytes": 10128,
+      "sha256": "17e15e3448af2534b45a2eb0112a10a52236c67d38b88a40a57190c2ac163525"
+    },
+    {
+      "path": "assets/learning_questions/grade2_math.json",
+      "bytes": 9142,
+      "sha256": "c5025f1d6c7db83ea4b8a74b16a0db36a5da8ac9730caafa92479d7641803f7b"
+    },
+    {
+      "path": "config/lumo-offline-voice.json",
+      "bytes": 1877,
+      "sha256": "9d0593c11a9dfa3db5683feedbc692cb5b79db6799b05a49b044c4226849fd12"
+    },
+    {
+      "path": "docs/evidence/lumo-nextgen-game-questions/focused-tests.log",
+      "bytes": 10095,
+      "sha256": "59f9b16e734b79c9e07b01bc5d7d69e8837c7814d48bab981f02269f812f7685"
+    },
+    {
+      "path": "docs/nextgen/MODULE_CONNECTIONS.json",
+      "bytes": 36559,
+      "sha256": "afafb77ad3f8f6aeb8a7d19a68c0446ffd399e6c71a53925bc713a304ae4d38c"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/core-dialog-component.json",
+      "bytes": 675,
+      "sha256": "6206da432363ba837357a40a8a473e98be29b1707aae5ac11fa2cf74c3601fa6"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/core-menu-component.json",
+      "bytes": 3035,
+      "sha256": "1e8edeedf9199a3099fd0a0f4f24da966b4944fb401342e0110b5852a9174a68"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/core-menu-handoff.json",
+      "bytes": 4433,
+      "sha256": "3092de748d301d27bf00ac46362377674168dbf1b6a122ecc93bcfe1ca399297"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/core-resize-component.json",
+      "bytes": 664,
+      "sha256": "841920b1659e7a02d0224256f9686469934552ee757f3e10224d2236880eefe4"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/joined-host-contracts.json",
+      "bytes": 1275,
+      "sha256": "8d9a1dab62fde2ebd46ac8e0bfcf3ccc9f45998e99bc53ee68a031f65ad8cba8"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/joined-host-contracts.log",
+      "bytes": 9494,
+      "sha256": "11a2dbe7978b93547ba215db4232e27cd80a99961713376c7a5129fc3f46f03e"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/native-performance-interpretation.json",
+      "bytes": 2165,
+      "sha256": "eb4be8f83231d0f30019e00ebd36e3d41e4912d443691d82caa28c35ffb2b7c7"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/pattern-component.json",
+      "bytes": 935,
+      "sha256": "901beb797977b6eb69f8b71235ac9f358e7529c722314f31c2c05ab6ab2b9481"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/preflight.json",
+      "bytes": 750,
+      "sha256": "3c4dbed6d8f693e54ae5b99823df8a066195f48400f2975749249245764a64a9"
+    },
+    {
+      "path": "docs/nextgen/evidence/assessment-contract/flutter-tests.log",
+      "bytes": 1945,
+      "sha256": "115cb2ff52e78c8d9d592e9b87178722213f651fe54f5298f2f6873dc7b8dc2f"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/README.md",
+      "bytes": 1552,
+      "sha256": "fa45514175a7cde82b49948b493817b336d228f687ac14834ce076570f992144"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/component.json",
+      "bytes": 953,
+      "sha256": "04e488db4942e43b86bfa30161bbe4540dfd984534d4edcf75d6ff6985a6a013"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/green-first-control-expectation-failure.log",
+      "bytes": 4357,
+      "sha256": "f07b85ef9fafb2d47df679d24bfc64a3f01b011c78eafef5b231a611edb265cd"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/green.log",
+      "bytes": 4069,
+      "sha256": "f329df40bf25bb219b16214ab54f29021b889b6dff092c2b8aef93f0091f7787"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/handoff.json",
+      "bytes": 6303,
+      "sha256": "c221dc0e222c99332ab0cd6461e6241188d3146898cddfa2b91f3484496a75ca"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/red.log",
+      "bytes": 3291,
+      "sha256": "7ff9f5929e5c1c7e5cc56340a23f2beac6ec9e81bb8d420d050b48364d6c7cc6"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/source-check.json",
+      "bytes": 160,
+      "sha256": "d8ba8272441b4d202b8a8cc32e6f66c1cbcc3e0c93c087f8ed4afcd0d7b89efc"
+    },
+    {
+      "path": "docs/nextgen/evidence/c5_integration_20261115/integration_tests.log",
+      "bytes": 826,
+      "sha256": "af46151164d981e825d7e1a29c3d536ae5fee9ef14674a7276a07b8fcf6d345b"
+    },
+    {
+      "path": "docs/nextgen/evidence/chat2_completion_20261115/core_tests.log",
+      "bytes": 24630,
+      "sha256": "b2b0488c49757d927e80e1b7929d815a6542ca4ba950f1307e654df218eeab3d"
+    },
+    {
+      "path": "docs/nextgen/evidence/chat2_completion_20261115/module_tests.log",
+      "bytes": 25624,
+      "sha256": "f00cf62a6800acfac847fbfed823c31b81a33997adeee8d6c4a76ffd7ea3e1be"
+    },
+    {
+      "path": "docs/nextgen/evidence/chat2_core_20261115/core_tests.log",
+      "bytes": 37186,
+      "sha256": "77b9ed6535db007bd1e79c54ca599bc5db410b1ec7feae1e8f0543b641cb8c52"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci_learning_20261115/tests.log",
+      "bytes": 7164,
+      "sha256": "6bc157aa6130caa9840c202dc091f39c87923ccf5b4cdd3c6033d250ee6a0fd2"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci_retry_20261115/contracts-tests.log",
+      "bytes": 3067,
+      "sha256": "9f3c638c94f3d249b1d3ab39f7943636400a8ac427a2ba4d62ff0b7e8a37a22b"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci_retry_20261115/mini-audio-tests.log",
+      "bytes": 2146,
+      "sha256": "aac95b665c59f87a096ce29f21bd755c80912278577bc1aaf1b2fc3e16b2edaa"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci_retry_20261115/mini-games-tests.log",
+      "bytes": 4661,
+      "sha256": "c9583b297985ac45fe7fa4237956fc501f8f74c7d43ecf209fcb9add6862579f"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci_retry_20261115/story-audio-tests.log",
+      "bytes": 6013,
+      "sha256": "411c2e557bb623eb9c0e4347aedb3325eacfcc1dc18fc3a28c6fe5bc27f6de65"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/README.md",
+      "bytes": 2538,
+      "sha256": "97717ba8dac19f9819e097ef61607650a0ec550cd032c85ae0900760015ad5d2"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/analyze-initial.log",
+      "bytes": 281,
+      "sha256": "2eb1f02e71e398e143cb8533783c8f4fb0f3a4b48a8089de462a51eb3525e9d5"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/analyze.log",
+      "bytes": 96,
+      "sha256": "0419496a543d882390bfc22515282d139567b28abb2ec2c6cef14f141aea5d25"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red-provenance.json",
+      "bytes": 692,
+      "sha256": "a6d23ac4d097aa3f4e055c544db345cd935c6eb6c3e9c1ec766392e97e0d760c"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red-test.dart.txt",
+      "bytes": 17971,
+      "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red.log",
+      "bytes": 2432,
+      "sha256": "e1ddacf500110522e2981174a6f3b5ce5690c6ffe3d421601c1e3a65abdadadc"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/final-green.log",
+      "bytes": 4677,
+      "sha256": "22c6d06a491e3002bb30d9cc68354369738e5cf5166a33dec488b2faf9c0e4c4"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/green-initial.log",
+      "bytes": 276,
+      "sha256": "41560d8e7cc4c3b6167f618a8d8493ace92355e947a841f986f87427f9f1e65f"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/joined-green-provenance.json",
+      "bytes": 1260,
+      "sha256": "eafb6072be369178150e23066cdf251db654cf4ca3d8686349ef79ae13034727"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/joined-green.log",
+      "bytes": 4494,
+      "sha256": "0b458bcdda4ff7b3c6a7340663f3508cb54058292a142f71f85c38f8b6b20541"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/red-provenance.json",
+      "bytes": 763,
+      "sha256": "4b2a388190ffb3cb3b1f11ba7ca7d93b78147b634718972e0b3cba94c8ea920d"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/red-test.dart.txt",
+      "bytes": 12874,
+      "sha256": "b2c50635dcdbb6cd3fe5f42f1377a79e935688d0db89b9c48ec232775f1bd6a6"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/red.log",
+      "bytes": 2356,
+      "sha256": "3638d5f06f622320dcf5c440badb3d085435c33c8fb8b15435845e2b5a3680ea"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/source.json",
+      "bytes": 4914,
+      "sha256": "8a92fe1fd98e13d83ad971e83f869953c49bcc9869cae6f770ea7857c48c20f2"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/README.md",
+      "bytes": 1917,
+      "sha256": "fbe2cea4352eda0fb442f358586bcf32a1d14e0752e92af48fa952a22bda2e6c"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/analyze-initial.log",
+      "bytes": 570,
+      "sha256": "3cd6f5ba8ca6802c2c2d13d65eeca055c086d7b49c4d1fb8aefff371702c0b91"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/analyze.log",
+      "bytes": 96,
+      "sha256": "5e715e6ca69f27c394afc08ba68f81f6d4ff4695a470c48a7fe8757556ca33c4"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/existing-targeted.log",
+      "bytes": 2629,
+      "sha256": "5fdefdb51c6da36b38bfdab77919f54662e4e644a9e83e5c0a490201f72e0030"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/green-initial.log",
+      "bytes": 277,
+      "sha256": "38cdc82d5d09751661c1d8c4d4746544f2fa95cdbca497976f86e7446a6e7b8d"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/green.log",
+      "bytes": 415,
+      "sha256": "b205c7b2e494e7ab43f570925b724ad875345ffbb4357d451494277abf4b7e77"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/joined-green.log",
+      "bytes": 3578,
+      "sha256": "a89fd2ca07a4bab1eddfe510e44c7d7a55e40fd79e5608004d117c31d7114e77"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red-first.log",
+      "bytes": 7367,
+      "sha256": "2a67c24410a328c6751f10aaa1e0b0f68fc43c349bd92405989f0290370b2d70"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red-provenance.json",
+      "bytes": 851,
+      "sha256": "262fbb0dc39f78a0337f6f45d662cc84c7ad3b0fc22807f3e4751ce5dc3cc2ec"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red-shader-setup.log",
+      "bytes": 4124,
+      "sha256": "41fcbca71ced88eb070cb32681fc686900bbaa4fb72ed1821c6d8f9882ae705f"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red-test.dart.txt",
+      "bytes": 6141,
+      "sha256": "99ca990647f4090da914951af4a1cbec41522e86159db1f74a77e9c58ec69770"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red.log",
+      "bytes": 2272,
+      "sha256": "d05455d9fee6e455696d2b1d86f8b293fd94e7d0ddc66173fd60195fa82f8a5e"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/source.json",
+      "bytes": 4568,
+      "sha256": "da9c0ff6d9ffffae130f3b2c8099ed1d32b47acb8081f90a26a13747c5e7f18c"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/component.json",
+      "bytes": 941,
+      "sha256": "6a23ebb465c2596753d608ab1ac799d213ff717ca356011dfa79b6dd722e6b65"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/handoff.json",
+      "bytes": 2522,
+      "sha256": "feab0f5f890e6eaec7ef3a994ac1aed19694ed46b5129dccad0ec51c562edc6b"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/source-format-review.json",
+      "bytes": 2209,
+      "sha256": "84c6b59073675febac3ff0f26e3964c8fe1f010d0bda6bde7536f27759a2f0fa"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/style-handoff.json",
+      "bytes": 1324,
+      "sha256": "fa79ed2f7c3e51a01857cb0c9424671b921349931b192933274c3e7597c2ce19"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/style-publication.json",
+      "bytes": 377,
+      "sha256": "bce37c22a203e464d9b512b3406962db13d558057c4800fd472e9d65def16932"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/README.md",
+      "bytes": 1194,
+      "sha256": "065dac2a112eed8a3cbc0b9d361e65ea1e52f7e3d58c6de71190135aca432a8a"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/analyze.log",
+      "bytes": 96,
+      "sha256": "3d1b8e5f21c3a232381c958c2022d476bb93f386ca5eb05448d071bf05ea33e7"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/green.log",
+      "bytes": 273,
+      "sha256": "047d1955af68c949880df3a23b26ba8451f30b9620236cd7fd0a81592bbb50ae"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/joined-green.log",
+      "bytes": 3762,
+      "sha256": "d4ea594d113c571b9ba18f3d2dd19af10cdc3611f1b2e01e64393a3ce9b60e84"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/red-provenance.json",
+      "bytes": 668,
+      "sha256": "80f7dc973f79f5f8ba145a4a500a77051dd8e8a8d8385eb5e3525e1adefcaef4"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/red-test.dart.txt",
+      "bytes": 11360,
+      "sha256": "6e956cdc117d6fb1367383e3d3f936af466fe9fe384531bdc695911d4e17e8ad"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/red.log",
+      "bytes": 2327,
+      "sha256": "b9d3e7f8677320031c89131a0f86ba3a6ba468d69bfc020221a43f57e9e50089"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/source.json",
+      "bytes": 2086,
+      "sha256": "57ebe7287148cc90c7c5e3680b897c94b4233c088f5e415bd9069d6e70234282"
+    },
+    {
+      "path": "docs/nextgen/evidence/coverage_refresh_20261115/catalog_export.log",
+      "bytes": 218,
+      "sha256": "61046bd4a371512f9e68fcb090d3a208059cb00589466cec75edfa0a31b68364"
+    },
+    {
+      "path": "docs/nextgen/evidence/coverage_refresh_20261115/runs.json",
+      "bytes": 1755,
+      "sha256": "7fac26ddd3fafcef5dc1a07405afbd139cf211657c67c644a17180cad554f495"
+    },
+    {
+      "path": "docs/nextgen/evidence/coverage_refresh_20261115/sentence_privacy.log",
+      "bytes": 322,
+      "sha256": "4f4f0f11e56bbe832fdce6749bcc5f8c5c9f7022844a9a1232a673b588bbfb5f"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_native_20261115/tests.log",
+      "bytes": 3985,
+      "sha256": "6bb1d482375426ed002315ee5778e5ef1027663bd1fc1210f1828ca642c8c43d"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_return_frames_20261116/green.log",
+      "bytes": 4824,
+      "sha256": "d002b1b3d2674eb2e9c82efa2f6cdcd7087d6c42a6a4a930f4dc951bec668cf7"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_route_return_20261116/green.log",
+      "bytes": 4813,
+      "sha256": "063fccc3041165e09b53a00173a66a37d781ff306194ec0cb29f0bd75c228502"
+    },
+    {
+      "path": "docs/nextgen/evidence/learning_audio_owner_20261115/tests.log",
+      "bytes": 23728,
+      "sha256": "c9fc30c9f0784d8f672770823ee88b5b844411faaa073a3989bc369192846222"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/README.md",
+      "bytes": 3926,
+      "sha256": "85a1c14d0a9b573b7ace6503d9b8d064d99fcfbeb2dd3a1d2d909d3426f493b9"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/current-candidate.log",
+      "bytes": 2382,
+      "sha256": "9e74196e64286eda4fd4ca89afe292e8529361cf4f6b844851407c8e43e1edd7"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-green.log",
+      "bytes": 298,
+      "sha256": "ea60caf75a0df2b3e407b875568cec6954885b41213e9555a0c25660c5259ada"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-provenance.json",
+      "bytes": 1091,
+      "sha256": "60505cf4479f5ef35f49d5dc3b2007a02aaba66691935bf1359ebffe013491c0"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-red.log",
+      "bytes": 1485,
+      "sha256": "759dcd45881c6cd607cb9df2340aa5ab7e1fc613ac6693d6aff3511fba798909"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/green.log",
+      "bytes": 2060,
+      "sha256": "4f00286d7f5021efbb2dd65050cfccd8133be8a456f1ea20b43e052ffe6a1d14"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/handoff.json",
+      "bytes": 4513,
+      "sha256": "b5c51d58e49c0b278360b42700f39f86d3baec1d9d5e5ad08721010db759e2cb"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/red-provenance.json",
+      "bytes": 1107,
+      "sha256": "ad586f6139bf22c14e7127c5dfa823c70d999fa3bcaae1416db1f1d3b05598fb"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/red.log",
+      "bytes": 1671,
+      "sha256": "d1075af024abf835632e2dbd27f01050fd39520012e25bc2c3b9fcaad2055a1a"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/setup-import.log",
+      "bytes": 1518,
+      "sha256": "da77260c85b465bbe39b8e8c72df6ac46714f03ee2c5948a7773633944c5ec9f"
+    },
+    {
+      "path": "docs/nextgen/evidence/reading_audio_owner_20261115/tests.log",
+      "bytes": 3856,
+      "sha256": "f0054fcddaf4144c43794d298ffea5f193113d82700f737805a06eaf2268b69f"
+    },
+    {
+      "path": "docs/nextgen/evidence/reading_integration_20261115/tests.log",
+      "bytes": 5112,
+      "sha256": "a4cf746161042d009b3da88ed3a368b9eb5e70db23999380756d6510cdb67987"
+    },
+    {
+      "path": "docs/nextgen/evidence/remaining_integration_20261115/mini_game_routes_initial.log",
+      "bytes": 589,
+      "sha256": "3208e0dfc1c3ab4020065b816fadf15dd89748d4e3cb1dd9d4593418e983730d"
+    },
+    {
+      "path": "docs/nextgen/evidence/remaining_integration_20261115/remaining_native_joined.log",
+      "bytes": 5801,
+      "sha256": "0b9dff22ac0baf3e674c826acc0323c6b5ca3db9f0e4288555dd22d13a4131a4"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/README.md",
+      "bytes": 1269,
+      "sha256": "bbe5e85921556cbd706754c20866f3f551ebc437c507f61236e8b4d32e3583b0"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/component.json",
+      "bytes": 504,
+      "sha256": "318cbc39fce22c063d3488de7ec908586f1bad5bec5af396877e58159e98bf0d"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/green.log",
+      "bytes": 750,
+      "sha256": "bff2cfdbd9b6f9acad239977746e2430dc75b691a6cbfcdcbf3e5d14a50eb4b0"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/handoff.json",
+      "bytes": 4149,
+      "sha256": "addf0004af531688f7050c404f7710f47d119f04d4d138bdbeeea4419a75ada5"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/independent-review.json",
+      "bytes": 588,
+      "sha256": "2b0d7b6c6f2efd23fef1ed40c4ce39459654f5ea121d8b70c46ae9c961994c1a"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/red-first-test-boundary-error.log",
+      "bytes": 3286,
+      "sha256": "9ae4bdda74dacfb9b614b3db6f07224cd70db8df52a7c462ebea6d4d1ceb7317"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/red.log",
+      "bytes": 1693,
+      "sha256": "c38c85f4b99ae8c803151dfd884ec73f9d7c327fc88e190115f1681108307d51"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/source-check.json",
+      "bytes": 252,
+      "sha256": "54cbf16c4ea94c098aca87d782679369de0b6011450b67627f9449bb932600ef"
+    },
+    {
+      "path": "docs/nextgen/evidence/root_joined_20261115/joined-native-boundary-tests-final.log",
+      "bytes": 4294,
+      "sha256": "41a4bce3ddad58007bae23956e34983dad5229cdacc813decee70ccb07cf42d7"
+    },
+    {
+      "path": "docs/nextgen/evidence/root_joined_20261115/root-integrated-stt-check.log",
+      "bytes": 4705,
+      "sha256": "c2f12dcbba257850a4e5811a3f2fb7cc30b8a0ad88f7821fc2503cc41e930671"
+    },
+    {
+      "path": "docs/nextgen/evidence/root_joined_20261115/root-photo-thinking-integrated-tests.log",
+      "bytes": 12115,
+      "sha256": "d4e7ab9370a7293e0db5554a9579d26f611780301ae176a7752007b9a96d1828"
+    },
+    {
+      "path": "lib/app/app_shell.dart",
+      "bytes": 39210,
+      "sha256": "1d2be251542a1733c6638326db87df09f4e2c7edb541f6c916e405f3cf21882a"
+    },
+    {
+      "path": "lib/app/lumo_companion_host.dart",
+      "bytes": 12781,
+      "sha256": "bfcab61255f60e62826ba60558f75b1341a125eee78a9a92704fe8502e63fd18"
+    },
+    {
+      "path": "lib/core/cognitive_profile_generator.dart",
+      "bytes": 19799,
+      "sha256": "1a2d52215e64e029d0db057e3548424741ca30b46aee3440a68ed5d01c92a991"
+    },
+    {
+      "path": "lib/core/cognitive_profile_repository.dart",
+      "bytes": 2768,
+      "sha256": "d73c46b1bc6e61df56a6ebbf8db465955b9b2c1a4e8b45cfcd642124039ca2f5"
+    },
+    {
+      "path": "lib/core/cognitive_profile_scorer.dart",
+      "bytes": 1660,
+      "sha256": "cef38dc5dc5bd1939dbf6fe543fc346f5bec785e813f8137440cfd063e740793"
+    },
+    {
+      "path": "lib/core/curriculum/academy_topic_units.dart",
+      "bytes": 1942,
+      "sha256": "8bbd138dc33431f273cc4fa611e8dac34b762049decd84822c7a987601b102d7"
+    },
+    {
+      "path": "lib/core/curriculum/primary_activity_catalog.dart",
+      "bytes": 18536,
+      "sha256": "11a35f16fb3106c54acadee86d21ce5e06d4dfaee8ddf4a9fdbfe65df8b5788a"
+    },
+    {
+      "path": "lib/core/game_progress_repository.dart",
+      "bytes": 9590,
+      "sha256": "1838d8bdc9ee99c6b07a5e430c0d4b3bc7380f177a2e844a27e8376536cbcfd9"
+    },
+    {
+      "path": "lib/core/german_task_templates.dart",
+      "bytes": 46860,
+      "sha256": "744e55d8551aecb8d1cea7f6f6fb3eb43991d432285e8ea0fb443b86e0a32361"
+    },
+    {
+      "path": "lib/core/iq/iq_test_repository.dart",
+      "bytes": 2478,
+      "sha256": "125a77d422cfc218fe2caff07be9099a2aa506e0d351a45ab28a32fcd9379961"
+    },
+    {
+      "path": "lib/core/iq/iq_test_session.dart",
+      "bytes": 4299,
+      "sha256": "3460e8f169e68ae6b0e3ba2b84345e455b504d488902c411eae792cf6f244bb0"
+    },
+    {
+      "path": "lib/core/lumo_learning_session_contract.dart",
+      "bytes": 3686,
+      "sha256": "1c8d8f2655faef057089d845a89920822409bfa91c9388e5bed7c70d62caf18d"
+    },
+    {
+      "path": "lib/core/lumo_quest_library.dart",
+      "bytes": 16272,
+      "sha256": "900b30057c22ebfaf0ad1e9ebad01ce427680eb7b52a8fbeb223678d12b09826"
+    },
+    {
+      "path": "lib/core/lumo_story_summary_scoring.dart",
+      "bytes": 3436,
+      "sha256": "441828ec5f59bc0ff77ac22619c4c2d8d8a33a4979daa91a85431d148e4b2717"
+    },
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "bytes": 49784,
+      "sha256": "5db29aaa2d18a8b8eb3dc4f3dffd433b13ec364e7768fb27a90a7d16926854d2"
+    },
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "bytes": 84548,
+      "sha256": "623895c04db1a554a64136c9c67ce9857d304695ff90f3120461909d286c4332"
+    },
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "bytes": 3785,
+      "sha256": "9cbea3120444ae0011719f42b341690b82a4568f1774345dc0ed7657a68a99a3"
+    },
+    {
+      "path": "lib/core/writing_target_parser.dart",
+      "bytes": 2449,
+      "sha256": "8830cb2241bc46b7dc948795f8206c5664fd7c9a0a137594f5a18e3d7fde8121"
+    },
+    {
+      "path": "lib/domain/games/game_level_catalog.dart",
+      "bytes": 12497,
+      "sha256": "dcc2fafeb808b87f554d11e49635914673cbd5a3a079f96ec3c7ecbdd3cc4976"
+    },
+    {
+      "path": "lib/domain/learning/lumo_learning_domain.dart",
+      "bytes": 9458,
+      "sha256": "5c7ace9e4ed6471800a28d39be18095e3964d7a48c63a74bc3690bc569d615ec"
+    },
+    {
+      "path": "lib/domain/learning_intelligence/learning_scene_contract.dart",
+      "bytes": 8825,
+      "sha256": "f3f6dde4a40358f8cc1bceb9737410310155011603ad2adb23ae95e9f3b64185"
+    },
+    {
+      "path": "lib/domain/quiz/quiz_question_bank.dart",
+      "bytes": 40606,
+      "sha256": "58d33107d5768d7eabfe1bc7d3aeede7ecea9a01377b851ad01d422771eebbcd"
+    },
+    {
+      "path": "lib/domain/quiz/quiz_show.dart",
+      "bytes": 8874,
+      "sha256": "912736e2264178ac24f274651699602cd5d34bd185c2acf6eb50dbbd5464d0da"
+    },
+    {
+      "path": "lib/domain/tutoring/guided_lesson_catalog.dart",
+      "bytes": 33657,
+      "sha256": "4abfbd2fb3bd5deaa3062ff8fa0dacf48dacfd278fff8fe7e8c5ac17a2759e7f"
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "bytes": 13770,
+      "sha256": "6ab61d2b533fd23e60c5f86214310f5cde2848cf07d2330bfe9e4dbe5023144e"
+    },
+    {
+      "path": "lib/domain/writing/expanded_writing_template_repository.dart",
+      "bytes": 8968,
+      "sha256": "93c9010c923751900591c899cf0ca984c5af52a7d6ec4811353d2a40b05baa0b"
+    },
+    {
+      "path": "lib/domain/writing/letter_practice_rules.dart",
+      "bytes": 3041,
+      "sha256": "cf04686db75dec076bc9df4f918eab5a444aea2f8417194b90e01ca0de4ec0e3"
+    },
+    {
+      "path": "lib/domain/writing/writing_domain.dart",
+      "bytes": 11011,
+      "sha256": "1263772507004fd3cbfd2613bafd96c65c123ca945d69c9493e29d396c7f82d5"
+    },
+    {
+      "path": "lib/domain/writing/writing_path_geometry.dart",
+      "bytes": 3648,
+      "sha256": "4138e8389d0113734a0f8a8ee9b348ee8140f18400c609b4be45da00e047a929"
+    },
+    {
+      "path": "lib/domain/writing/writing_progress.dart",
+      "bytes": 5996,
+      "sha256": "4999aca194975399a4a9cbc746f6c38e338262823816a0aba227ca809db8f777"
+    },
+    {
+      "path": "lib/domain/writing/writing_word_bank.dart",
+      "bytes": 9063,
+      "sha256": "0fd0870b20769e8d3e1b2a188751f0bc048ef864acc39e0ce00fac296a9f6295"
+    },
+    {
+      "path": "lib/features/deutsch/deutsch_gap_sentences.dart",
+      "bytes": 5727,
+      "sha256": "c6446b2fc3a9805d0d560c5babc57e2f49d3b6d74e72a9073ad63c50aa34eeed"
+    },
+    {
+      "path": "lib/features/deutsch/lumo_deutsch_screen.dart",
+      "bytes": 24553,
+      "sha256": "d93a1b051cfbea29fb4f5cce8d32b155db00d90df5c97803a7780147cf669df5"
+    },
+    {
+      "path": "lib/features/games/flame/lumo_jump_game.dart",
+      "bytes": 115068,
+      "sha256": "14fad69c63e59a61de3b13bf7ff9619f14eeecb71fb850a1e3f2363c52621fb3"
+    },
+    {
+      "path": "lib/features/games/games_content.dart",
+      "bytes": 60394,
+      "sha256": "7349825672c6d3e7a43e5398fd644ed70cdc65c057385f5ad2c3a8beff2d2ad1"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/learning_question_repository.dart",
+      "bytes": 9783,
+      "sha256": "2d88123e96bb1bb52183ed90b5b8132b61d74f43541970029e59a22026f24942"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "bytes": 17240,
+      "sha256": "f1b6469e120de3f62a39b280b28604cc9a800a0ef2548376dda607a61b742245"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_screen.dart",
+      "bytes": 56525,
+      "sha256": "9ceba304ee6e66b323e5fee36cacbc267ab0b0ae621c9a738802745989482ec2"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_learning_card_overlay.dart",
+      "bytes": 13734,
+      "sha256": "f369c77b7418a5fafe0922df2792af312d78283554709f238d8cb585e8c63f7b"
+    },
+    {
+      "path": "lib/features/games/mini_games/color_boxes_game.dart",
+      "bytes": 639,
+      "sha256": "ebb72f5defba9bddbbe69262e5f86f4eddc067e37729adc8aa20c0264906c080"
+    },
+    {
+      "path": "lib/features/games/mini_games/lesson_trail_game.dart",
+      "bytes": 714,
+      "sha256": "70cdfd3a815c442f1b13d1f0f165708fb0d307b1e3f8530286ddbd95da4364c0"
+    },
+    {
+      "path": "lib/features/games/mini_games/letter_fill_game.dart",
+      "bytes": 639,
+      "sha256": "656a7e5438631b3b0fd01e86d4758bb1718759d9d17cebbf39dd9a0ffc0662bf"
+    },
+    {
+      "path": "lib/features/games/mini_games/mini_game_learning_screen.dart",
+      "bytes": 77221,
+      "sha256": "a4b59189a6c7268c207863e153103ba617f78e29e7af613e1253ca3a7a53f215"
+    },
+    {
+      "path": "lib/features/games/mini_games/number_house_game.dart",
+      "bytes": 714,
+      "sha256": "f7ed3f1fddc9528c6a4be148a8188114685901b1a6e0009b2788b341af13515a"
+    },
+    {
+      "path": "lib/features/games/mini_games/stars_path_game.dart",
+      "bytes": 710,
+      "sha256": "4871b1f6c5a3d60c8c328e943fa963f753675734d226ddfa57ea87e809551ae8"
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "bytes": 47640,
+      "sha256": "46c695aa6a7d52daccc3d47e2c4792cfb508e3dc1890094fab579805e71902f7"
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "bytes": 3696,
+      "sha256": "9b6e404d8312ed9ffb874eac2fea06e0fdf45024b308392e1ef58b5a85e13753"
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "bytes": 33174,
+      "sha256": "389270e2a26df93cbc76ec0e028efaa804210236c5d57647afb60023db054aa4"
+    },
+    {
+      "path": "lib/features/learning/adapters/legacy_lumo_task_adapter.dart",
+      "bytes": 47529,
+      "sha256": "c96f688d4d8c1f06729b0175de8ab93caafb74c5cdb7955c484d9d705e06455f"
+    },
+    {
+      "path": "lib/features/learning/cross_grade_practice_screen.dart",
+      "bytes": 49986,
+      "sha256": "e58cdb454aa1f97e4e4fd0ca794c397992d0f8a1b85474c9af96d5460d08e713"
+    },
+    {
+      "path": "lib/features/learning/cross_grade_writing_screen.dart",
+      "bytes": 7001,
+      "sha256": "a66696803c600e74d58ca343a7e8f77d76e29157abb3fc45e9e9613104c36797"
+    },
+    {
+      "path": "lib/features/learning/curriculum_activities_screen.dart",
+      "bytes": 15707,
+      "sha256": "ec417bab98d6fda60ae686622b66ad3191aa8298df17f9fa7da88bbb43ddb2bd"
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_catalog.dart",
+      "bytes": 17357,
+      "sha256": "54b8a6489805f0dc83a3f6d11c42d239f7aea86f8bebcdc7070914684c6ad0be"
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_hub.dart",
+      "bytes": 12638,
+      "sha256": "ac44a1a019666daf412e4ef124ba298c63f1a924316fc3ae1c212cea85a49415"
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_screen.dart",
+      "bytes": 56493,
+      "sha256": "5770aea4b73db3fab1cbb7faa14321546d2cfaaaedd6964d51f571a37099870f"
+    },
+    {
+      "path": "lib/features/learning/lab/learning_manipulatives.dart",
+      "bytes": 52096,
+      "sha256": "0857af09548a4526a18846229414994bc8840a93c0f9243465b8886fc385c148"
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "bytes": 155423,
+      "sha256": "c9e8fcfcefa63864264aef0d8d3ad7c479f4c1cd0f4fbae1197f921b8622ed50"
+    },
+    {
+      "path": "lib/features/learning/learning_navigation.dart",
+      "bytes": 715,
+      "sha256": "3a75272cb508b31772b75ae0255b635e4f3d68c425172fe912a4610f11a52fe4"
+    },
+    {
+      "path": "lib/features/learning/lumo_abc_tafel_screen.dart",
+      "bytes": 17877,
+      "sha256": "f9f244e1c58d61aaf4de240abee9c435b49a3e0b191245141eb04a7cbfb11797"
+    },
+    {
+      "path": "lib/features/learning/lumo_rechentricks_poster_screen.dart",
+      "bytes": 25402,
+      "sha256": "a0a2a0d0dd7210fe6a06889f505f9be3275fcffbb9dbb85a650d70b4d90e0a66"
+    },
+    {
+      "path": "lib/features/learning/nextgen/learning_coach_binding.dart",
+      "bytes": 5218,
+      "sha256": "15d92d3249953cfe3e5a062cb0372642eef11690b13da12eb36424bbab5fa8a8"
+    },
+    {
+      "path": "lib/features/learning/nextgen/module_task_scope.dart",
+      "bytes": 24049,
+      "sha256": "4f291593257e70468add023ba448ca8fe2ee071d9bc7feae421bff5c026eec3c"
+    },
+    {
+      "path": "lib/features/learning/renderers/adaptive_task_renderer.dart",
+      "bytes": 65909,
+      "sha256": "30ca1b54887a10a015af77943136a872142ccd1f9927b1efbf996fbf4fbaab8f"
+    },
+    {
+      "path": "lib/features/learning/renderers/writing_task_renderer.dart",
+      "bytes": 18198,
+      "sha256": "2ab4338e9b862292f35f50b95cfc4aa2cb719009a5f4e5f5f73b7e654cde4395"
+    },
+    {
+      "path": "lib/features/learning/scenes/learning_scene_contract.dart",
+      "bytes": 4637,
+      "sha256": "2e5cef9ee7a82015f99f425cbffd57250b1a7c84dd0e76dd008160ef5a51041c"
+    },
+    {
+      "path": "lib/features/learning/widgets/learning_question_coach.dart",
+      "bytes": 21056,
+      "sha256": "0ee7696387509059d29185aaa7c5cc82311c282969a965c296fcb5cb38afa8e9"
+    },
+    {
+      "path": "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart",
+      "bytes": 14167,
+      "sha256": "c6c436beb3aac11f10da851d15559cd533e29cc191740dcb7d6eff7049c0fb3e"
+    },
+    {
+      "path": "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart",
+      "bytes": 19312,
+      "sha256": "3ebafd28a0398ae83efe27cd2c23c0733e8d6b27553c029b118d66465814cc62"
+    },
+    {
+      "path": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart",
+      "bytes": 15033,
+      "sha256": "8d06dd4f85f4399e7acf0d01fc74e35a6cd2140872c94c553739e6693673b49c"
+    },
+    {
+      "path": "lib/features/learning_modules/farben/farben_screen.dart",
+      "bytes": 23621,
+      "sha256": "862022e4d886b57d5f9fe5fdaa9db81593d1fff25d3e56e2f5fbfb25652dbded"
+    },
+    {
+      "path": "lib/features/learning_modules/formen/formen_screen.dart",
+      "bytes": 17678,
+      "sha256": "f41d5b4083ad186e62ba69cd1f67990ff37da32668243699c5021c8a5ea7e589"
+    },
+    {
+      "path": "lib/features/learning_modules/geld/geld_screen.dart",
+      "bytes": 21471,
+      "sha256": "d9c027bbe040fe4d9a431d9e6f2dd87bf231698fcc6d7041fa385eb4ed522f66"
+    },
+    {
+      "path": "lib/features/learning_modules/jahreszeiten/jahreszeiten_screen.dart",
+      "bytes": 17525,
+      "sha256": "ed4e5fa1f675666ef4ee6e6e8efaff8d4f5cfff6bee7ca98fbd663117be9d754"
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_progress.dart",
+      "bytes": 21443,
+      "sha256": "8e7ee4bf4845153cdc2ed1f3b8b9e117625a4874f9a3c72fe575cc599cd28dfc"
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_registry.dart",
+      "bytes": 4664,
+      "sha256": "a8c272577b4ff6d33bfe5c97327243d36ffdc77b1b2cf7d5a5fa5f05b0eec890"
+    },
+    {
+      "path": "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart",
+      "bytes": 16394,
+      "sha256": "e8434659878c6aa47dca30485ef3c30e8f63edb65daa0f4d91f3c5a86aa755e2"
+    },
+    {
+      "path": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+      "bytes": 15179,
+      "sha256": "621e27be21059d66ea34f6d094ece254b30cf86b09cb0ef764753d2ea5cd762d"
+    },
+    {
+      "path": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+      "bytes": 62925,
+      "sha256": "31ad5bde3d8cb897d3feebf85edf21f60e7a5643d1bb3f98c92053db4c7b3872"
+    },
+    {
+      "path": "lib/features/learning_modules/tiere/tiere_screen.dart",
+      "bytes": 20379,
+      "sha256": "06335fa4649bc559d68b2f7c50bed9c0876b76f7c52c5a5e07e60536b3b2cc12"
+    },
+    {
+      "path": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+      "bytes": 19164,
+      "sha256": "d75005c24c4c34bc6d5628a3bba6c44c3f63dc56610b6e3bcf2ab0f70368ec63"
+    },
+    {
+      "path": "lib/features/learning_modules/verkehr/verkehr_screen.dart",
+      "bytes": 23299,
+      "sha256": "4d035b56ad5d402bf0fb72f0074b8f55cff0d8e2d679d8d0d955053bf6b92c1e"
+    },
+    {
+      "path": "lib/features/learning_modules/wetter/wetter_screen.dart",
+      "bytes": 25449,
+      "sha256": "f85bd00c961bf5de8351d59c4ca32b4d8621405c5375905f4cf9a79729be108e"
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "bytes": 26157,
+      "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e"
+    },
+    {
+      "path": "lib/features/learning_modules/wortarten/wortarten_screen.dart",
+      "bytes": 21071,
+      "sha256": "876d14c168fe3f2941ba0bfb5dbc5beb49f36c7bdd17b61e838ce958555f7696"
+    },
+    {
+      "path": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+      "bytes": 17565,
+      "sha256": "2cd5083572830dc8b6d2462a314e4356716cd31b868300e17030eee36d1bfa57"
+    },
+    {
+      "path": "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart",
+      "bytes": 20006,
+      "sha256": "136fc4f02d9aa9f43b9a0626c147ca505eb82626390a9c0f897d7219c4ff5963"
+    },
+    {
+      "path": "lib/features/learning_modules/zeitformen/zeitformen_screen.dart",
+      "bytes": 20441,
+      "sha256": "399a03a682d68829c65d7be2d79fae62006747a59486407bf0439328b6e21769"
+    },
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "bytes": 39711,
+      "sha256": "56fc1f1f69f332d69c71b83cf8b0601aaa3507b70442a2b4baddc068b52e92a1"
+    },
+    {
+      "path": "lib/features/photo_lesson/lumo_photo_lesson_screen.dart",
+      "bytes": 25883,
+      "sha256": "25d28c744d2a06fef828ba2ee92d94c8f8f126ac59ce9ae6e44319eafaa1aff7"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_practice.dart",
+      "bytes": 2626,
+      "sha256": "74e0ff5c44c2cb429133af3dc3c173bbf80438ff492fab87567d44506494d67a"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_practice_screen.dart",
+      "bytes": 32330,
+      "sha256": "9c1f93d2b8e418efc2c9e898ce9dade6672c0406ec9ac4c1e9a2129d25ae3c5d"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_session.dart",
+      "bytes": 11334,
+      "sha256": "672438f8e0e67cd0d7af72df5f696534fa38472e8d3920baa56582dc3b73ad3c"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "bytes": 65234,
+      "sha256": "a9736e917b2029c74cf7c8a77b2549d0353698a29bf2ae2a74a720acbd74f044"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_repository.dart",
+      "bytes": 1371,
+      "sha256": "509973ae13ac25a0010578832b170dd52ccafd317d2f2805a194892fe78b381b"
+    },
+    {
+      "path": "lib/features/reading/lumo_reading_buddy_screen.dart",
+      "bytes": 34972,
+      "sha256": "b7fb8c93739e20c8ce30d3c4f402bda0465cefa139d1050f0b5cf0640ddf49a2"
+    },
+    {
+      "path": "lib/features/reading/reading_content.dart",
+      "bytes": 42887,
+      "sha256": "d3e66bee722341a44465071a9516c4f2a5c5f9a35993626cd254e3b984329ec8"
+    },
+    {
+      "path": "lib/features/reading/reading_lesson_companion.dart",
+      "bytes": 15698,
+      "sha256": "11e908b4866cb16c41975787f49f401006c5710249d77f330a372b927fd3e43b"
+    },
+    {
+      "path": "lib/features/reading/reading_text_library.dart",
+      "bytes": 10500,
+      "sha256": "aee0e7ed2e4a3d72d7622c780967c25e3f2f72a269187425c5afda8ee785fe1f"
+    },
+    {
+      "path": "lib/features/schoolbook/widgets/schoolbook_task_widgets.dart",
+      "bytes": 34664,
+      "sha256": "b6decf9f718cba0341fa15786d2d2d5f5330e970112ca0a5834f907a3bd413f0"
+    },
+    {
+      "path": "lib/features/sections/lumo_learning_hub.dart",
+      "bytes": 25372,
+      "sha256": "41cb19be3ba84582552ceded469eef799c9e72027b44c7d1457f64a13f53e22f"
+    },
+    {
+      "path": "lib/features/story/lumo_quest_hub_screen.dart",
+      "bytes": 13560,
+      "sha256": "f41cf32d4f2217eca728800b44c33844f73e703dd43c5d39c16cdc4262e0dcb5"
+    },
+    {
+      "path": "lib/features/story/lumo_story_library_screen.dart",
+      "bytes": 27583,
+      "sha256": "5cbcddd3d8e232b078bdb53275c7566f478937ce7c05d416c927da239690735f"
+    },
+    {
+      "path": "lib/features/story/lumo_story_reader_screen.dart",
+      "bytes": 85423,
+      "sha256": "a27ae5233496d5a1cc7b7ac25955913f3e1cc5e463de82bb08969c7374036288"
+    },
+    {
+      "path": "lib/features/story/lumo_story_setup_screen.dart",
+      "bytes": 14376,
+      "sha256": "96d0b6b19e6805ceb9b15dca1dbf7f9589b76807ac0074061c79e4bbb5c5efa4"
+    },
+    {
+      "path": "lib/features/teacher/student_assignments_card.dart",
+      "bytes": 7428,
+      "sha256": "9dca51dd356021992bb8b2c6569daeb012634a0da84670d2267ce2c6f6535698"
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "bytes": 30078,
+      "sha256": "efec5a4398778e9306e7beadbdae15251ddca7b7ad27c7804ac244ff06925f4b"
+    },
+    {
+      "path": "lib/features/teacher_mode/lumo_akademie_screen.dart",
+      "bytes": 47804,
+      "sha256": "b8ab8c0cffc25deae568e700aee64e9c95661db24109ea1360cda95fcd0e2e1d"
+    },
+    {
+      "path": "lib/features/teacher_mode/lumo_teacher_screen.dart",
+      "bytes": 37761,
+      "sha256": "94415a30a5a398b16faad8886cf64737d2e7580a256f8b3fa90429e9a14108e1"
+    },
+    {
+      "path": "lib/features/tests/cognitive_profile_screen.dart",
+      "bytes": 26501,
+      "sha256": "d80a8c2cd747ced1758cc2a91a5832c95b0359d65df2ee9e21c13e508d166635"
+    },
+    {
+      "path": "lib/features/tests/iq/exam_companion_scope.dart",
+      "bytes": 7556,
+      "sha256": "47e72282d52dbad41f922c43ed64d79781565364c5805934e37a6fcde300291c"
+    },
+    {
+      "path": "lib/features/tests/iq_test_screen.dart",
+      "bytes": 18848,
+      "sha256": "86fc24e7dd1a4d1270e66dc18d63c477f25cf4eea960329c9c303501a265157e"
+    },
+    {
+      "path": "lib/features/tests/lumo_tests_screen.dart",
+      "bytes": 31774,
+      "sha256": "baa28fd2bf25ae2dbd14207412221afa9b1167e0fd1de7345ae380eb9ac541d7"
+    },
+    {
+      "path": "lib/features/tutoring/guided_learning_hub.dart",
+      "bytes": 10258,
+      "sha256": "966cecd801264d0c95b491d395c434740cc268837a0b1c4ed391a5a4af890637"
+    },
+    {
+      "path": "lib/features/tutoring/guided_lesson_screen.dart",
+      "bytes": 47954,
+      "sha256": "b05f803a4c8e7bf3019569f61378f3127c1baa1c8b51ff6acb7476a1cb8e1d91"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "bytes": 28091,
+      "sha256": "3365cae7a1137ce57a573971fa40e20b55f7f9434ee721d79f2fd0978b16ed10"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "bytes": 38878,
+      "sha256": "e08c2b8acd274eb201f1cd6dd164e9f22b569a1478cdff9295f0ea4fbe6c82bd"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "bytes": 8155,
+      "sha256": "f748e40fb47bff603bc8de53ce59c1b398c1fed6765b7cdbb3a2a367abf24091"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "bytes": 39576,
+      "sha256": "d2c5308eb820799245975695a720173179d63144b89cc3feb0d9aabce5865dea"
+    },
+    {
+      "path": "lib/features/writing/writing_engine.dart",
+      "bytes": 57931,
+      "sha256": "d1df3e186a6189f4b05594b407ebee01578ca474669292440617d7ff1aad3274"
+    },
+    {
+      "path": "lib/features/writing/writing_feature_flags.dart",
+      "bytes": 1534,
+      "sha256": "7a42a9dfb693da76a53d6b25eede144acab75bce27a22f7fc446f6f9b7f1ac76"
+    },
+    {
+      "path": "lib/widgets/design/lumo_learning_module_frame.dart",
+      "bytes": 52524,
+      "sha256": "8ee3afae2a3604c6ac59b34af552f7b8388fa363201e0726d36d321ff34084e6"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_companion_requests.dart",
+      "bytes": 15806,
+      "sha256": "ab8052e29ffdcee748b8aff73859289805bab6d45197a57d48b60917295ccfcb"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_free_companion.dart",
+      "bytes": 27242,
+      "sha256": "a361c60177ef9e8f7a011178b74d135604a135659839e0c3edf9d300ee5f2643"
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "bytes": 13747,
+      "sha256": "fc3e7e0d40c71902ffefae70853c7cbd32c8a0bac7b8d675d505710b6f06df09"
+    },
+    {
+      "path": "scripts/prepare_offline_voice.py",
+      "bytes": 5050,
+      "sha256": "d10f2de36f68b60b1d981a024979006833fdad99cf490fa7be988674cd995d16"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/LICENSE-MODEL.txt",
+      "bytes": 15007,
+      "sha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/OfflineVoiceTokenizerContract.java",
+      "bytes": 4306,
+      "sha256": "58cefe49e1a915cff24246eafe6ed3b291e93bda66df817c377fb3f6dbdf9e5a"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/README.md",
+      "bytes": 1631,
+      "sha256": "38ffdea523d03543f5c9e5470a7294e9756b2217bc85fb2e3ef8c986154be4d5"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OnnxTensor.java",
+      "bytes": 659,
+      "sha256": "5518b937512704d887558e5689a6e67c82c954bad1be6a937354f977cce0cd9b"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtEnvironment.java",
+      "bytes": 373,
+      "sha256": "5ce0ac5da02cb70f37a166b173ce014afb0bbd99fe048b728b515c8769a22fdb"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtException.java",
+      "bytes": 146,
+      "sha256": "1d65ade065a9bce7fb8ae31c2024e01faff6abaeef1a089ff2504ef19dbfb232"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtSession.java",
+      "bytes": 1369,
+      "sha256": "a6469585042d54418e8b22ab14af725624d86c27c13fb3f6409503b2159bfcd3"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/unicode_indexer.bin",
+      "bytes": 262144,
+      "sha256": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechFailureContract.kt",
+      "bytes": 2810,
+      "sha256": "badcd128e17694c0b3a9fb7e5d9cd3cb2a4f889508cde865fede34b5130d072a"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+      "bytes": 163,
+      "sha256": "229d1a4f838a73eca31a17e2a78eaa0c9e0cae6306e5e804cb8ba5f2ac02be6d"
+    },
+    {
+      "path": "scripts/tests/test_prepare_offline_voice.py",
+      "bytes": 7142,
+      "sha256": "a03d3fb441580447bf2eb785627f3d8650388421c7959e430ae2a60f117caab6"
+    },
+    {
+      "path": "scripts/tests/test_speech_envelope_contract.py",
+      "bytes": 3941,
+      "sha256": "0fe53f3aaf620809cc51691a76e6a4087e5118da8eaf8d2ca1d9ab155a30bce0"
+    },
+    {
+      "path": "test/cognitive_profile_premium_ui_test.dart",
+      "bytes": 2471,
+      "sha256": "c3f3068fb269631fa2710bcf5f3e1274c088a378ed966404a16468d84d24670e"
+    },
+    {
+      "path": "test/cognitive_profile_test.dart",
+      "bytes": 4862,
+      "sha256": "8f2dba9625b68f1127df2e43bc2b4292fe1eff4288821c52e03d3ac457711432"
+    },
+    {
+      "path": "test/cross_grade_practice_storage_hardening_test.dart",
+      "bytes": 7979,
+      "sha256": "b473301729ce94fa640fd8091c7a3f3b13e1b1af3c70dadebf3e0f1656733689"
+    },
+    {
+      "path": "test/cross_grade_second_chance_test.dart",
+      "bytes": 3395,
+      "sha256": "4e6e580141554090bff4e5e5596bea1eabac2f22b6d76ab61dbdfffc8e9112ca"
+    },
+    {
+      "path": "test/design/all_learning_module_routes_test.dart",
+      "bytes": 8437,
+      "sha256": "ee13fecb8481c008658b38edf39083c35e6c794b006e4cf4c7c29fbc7252ec92"
+    },
+    {
+      "path": "test/design/creative_learning_visual_test.dart",
+      "bytes": 5093,
+      "sha256": "1926c73fad40e74b98938b64fabb71c6165e266996cdc4e05d6e8ce7acd7e15b"
+    },
+    {
+      "path": "test/design/learning_adventure_layout_test.dart",
+      "bytes": 18410,
+      "sha256": "b99e4a52c917fa99ae9b0504b1ceef374190baf4b00a18f7b3c6fc10deeb07ad"
+    },
+    {
+      "path": "test/design/learning_registered_routes_test.dart",
+      "bytes": 5081,
+      "sha256": "85bd8257fabbb3e63362f1d41958f840b6c3b40f54afb93a8588cee0a87898e1"
+    },
+    {
+      "path": "test/design/legacy_learning_assignment_test.dart",
+      "bytes": 17214,
+      "sha256": "4d44f19f023b7d8816f6e92b341f344fb3cb63d0ef8d053e99f8be8c2fcae954"
+    },
+    {
+      "path": "test/design/lumo_learning_tree_fold_visual_test.dart",
+      "bytes": 16168,
+      "sha256": "4701d78bd5af83cbb29dd9e81cff534828fff45092f39bb936057da6a2a39d17"
+    },
+    {
+      "path": "test/design/modern_learning_navigation_test.dart",
+      "bytes": 4561,
+      "sha256": "b33af37c71bdd6c0c65538b5dcebaae4d974f3600408efdf9627a3a511f24e0b"
+    },
+    {
+      "path": "test/design/shape_question_runtime_test.dart",
+      "bytes": 5574,
+      "sha256": "9a6143033fe5a18a605bb26612f868172f217b7dcc4b8c31449798ba98ef02fe"
+    },
+    {
+      "path": "test/deutsch_gap_sentence_test.dart",
+      "bytes": 3147,
+      "sha256": "e493091e843ba53cc8e56ca2bedbae2d3df783ebfb5300f0abc2c99c681da6dd"
+    },
+    {
+      "path": "test/feature_permission_regression_test.dart",
+      "bytes": 27057,
+      "sha256": "76c21ed711729ba765aeefb2132bde221a6c46b4e2a8dee349321801942c6e1b"
+    },
+    {
+      "path": "test/games/board_game_premium_test.dart",
+      "bytes": 5675,
+      "sha256": "384605568aa6bdf9b280feca2b38b7efe945009e5d07631c5d03d62330ff3bef"
+    },
+    {
+      "path": "test/games/cards_learning_grade_test.dart",
+      "bytes": 1453,
+      "sha256": "7bb65e9a85786e2cdb70163f9cee7740fed0d47c30e00eabb428b3a5472ebd21"
+    },
+    {
+      "path": "test/games/flame_adventure_flow_test.dart",
+      "bytes": 8300,
+      "sha256": "a9a25a9987cc1d221da7a05f95c56df5d4cf43e9eb7c8d9e0f24ca6e45d9858c"
+    },
+    {
+      "path": "test/games/flame_adventure_round_test.dart",
+      "bytes": 16138,
+      "sha256": "a55efb24269f64c9f1658251be8f1b5324b24bc7e284ce826954f5ae70156a70"
+    },
+    {
+      "path": "test/games/flame_question_coach_test.dart",
+      "bytes": 7869,
+      "sha256": "c3d84fadd3dacca0a91f8168a9ce04aae5f0e11139e971dddc7102689ccad552"
+    },
+    {
+      "path": "test/games/game_round_regression_test.dart",
+      "bytes": 11117,
+      "sha256": "fb8d8deb83095273a6195539a1267903b0f0e56c9ab31e9d53dc864c018e238a"
+    },
+    {
+      "path": "test/games/learning_question_coach_flow_test.dart",
+      "bytes": 10346,
+      "sha256": "eda8f6ae3cc7490d7f4470033cc1e715b4427874723cd5a66da3ec8dee7ac0ab"
+    },
+    {
+      "path": "test/games/learning_question_coach_lifecycle_test.dart",
+      "bytes": 12993,
+      "sha256": "3a6053e7e062d86e3687f160ca6bce1403a314bdb22d1ac9037e30bb026e444e"
+    },
+    {
+      "path": "test/games/lesson_trail_completion_test.dart",
+      "bytes": 3844,
+      "sha256": "477b6f11c85faecca8c0cab98b6a88c18f58ee3f42b580d2405b8235dee84ace"
+    },
+    {
+      "path": "test/games/mini_game_audio_owner_regression_test.dart",
+      "bytes": 7672,
+      "sha256": "fa72eb77b8bf408fc3b56c58522a1303bf5859806167a834e5f7d0624d74a977"
+    },
+    {
+      "path": "test/games/mini_games_flow_test.dart",
+      "bytes": 7957,
+      "sha256": "91351aeb229cea9a55c447ff85a8e02e6052111ed879169be171e374e4db3601"
+    },
+    {
+      "path": "test/games/small_games_layout_test.dart",
+      "bytes": 3354,
+      "sha256": "a9671e60359cd2ff87c411f818dc7dab49a0acbcc01954a2e737805653fe4006"
+    },
+    {
+      "path": "test/iq/iq_test_screen_test.dart",
+      "bytes": 42455,
+      "sha256": "201f8122bd53103ac97bace8186432e606a000cb4ddf0a9f59cf8271401817b0"
+    },
+    {
+      "path": "test/iq/nextgen_thinking_flow_test.dart",
+      "bytes": 15749,
+      "sha256": "5e763a3127d9d3d5f5b0a573d56d54be2205543e2a34502f743cd625405732f0"
+    },
+    {
+      "path": "test/learning/core_conversation_route_test.dart",
+      "bytes": 17971,
+      "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42"
+    },
+    {
+      "path": "test/learning/cross_grade_contract_test.dart",
+      "bytes": 6932,
+      "sha256": "375529173b8a7f7f77be1a30359e019a7eeea1477088d0ffde91881fd614b2cb"
+    },
+    {
+      "path": "test/learning/lab_conversation_return_test.dart",
+      "bytes": 10314,
+      "sha256": "f3f6856d394e72cff189f4c5b5d5df437144bfcfa5f9e8c8ec3c90788ac67f52"
+    },
+    {
+      "path": "test/learning/lab_native_entry_test.dart",
+      "bytes": 9057,
+      "sha256": "3ffa23dbeb7784ad0fb75ed40ab78562518c233f8ae272aa16fa68a5de6f6906"
+    },
+    {
+      "path": "test/learning/learning_content_commands_test.dart",
+      "bytes": 10145,
+      "sha256": "fd14e76020c90b24ec78e3951b7f173fb0f06695122abf4681e75b40bb54e727"
+    },
+    {
+      "path": "test/learning/learning_exact_selection_test.dart",
+      "bytes": 2701,
+      "sha256": "c7c29db55aa5121ae6f9d23bde48e5a6f220ed5218efa22fcb1803d0352755e7"
+    },
+    {
+      "path": "test/learning/learning_voice_owner_test.dart",
+      "bytes": 13641,
+      "sha256": "e6044ed3bcc532a670fa26117392718fec672a97a6bd655d4c61bb7824ea10a3"
+    },
+    {
+      "path": "test/learning/lumo_place_value_transfer_test.dart",
+      "bytes": 3745,
+      "sha256": "7c29df82ad21fbad3700ea45283c3b713486adb43adc45f8528caa9a372bbebc"
+    },
+    {
+      "path": "test/learning/lumo_place_value_workshop_test.dart",
+      "bytes": 3143,
+      "sha256": "46dc209d11af300b4dc504d250050f9aee41f5f56613458bf056761c34a93242"
+    },
+    {
+      "path": "test/learning/lumo_quantity_workbenches_test.dart",
+      "bytes": 5658,
+      "sha256": "a2aa1ea46cc6053e8dc67a3ad8c6df72bbb4b077b268b2ac83305a7e36a2e5fc"
+    },
+    {
+      "path": "test/learning/module_coach_confirmation_test.dart",
+      "bytes": 8030,
+      "sha256": "870d1dd2f21f60c4eabfe5b4adc1b8343177ce22b550fa4b66a8e1bb029582e4"
+    },
+    {
+      "path": "test/learning/module_frame_practical_links_test.dart",
+      "bytes": 5600,
+      "sha256": "e511febd6207b1271ee5c2e50d56c674bee5fe50b7da464de7ca755563525ee2"
+    },
+    {
+      "path": "test/learning/money_clock_truth_test.dart",
+      "bytes": 4037,
+      "sha256": "98763b65cf0f4f861a80dd8f6632283c0e4711d11aa31ca30d72cec0ef8bb4be"
+    },
+    {
+      "path": "test/learning/nextgen_lab_boards_test.dart",
+      "bytes": 11776,
+      "sha256": "17d58e19a96796109f334914d65c337ae955ab4735480ef8b04d577d60fed721"
+    },
+    {
+      "path": "test/learning/nextgen_lab_bus_integration_test.dart",
+      "bytes": 15428,
+      "sha256": "badfce38dccd51131845a390485a63a563aed554dd7aedfaa601e2ada327bc78"
+    },
+    {
+      "path": "test/learning/nextgen_pattern_pipeline_test.dart",
+      "bytes": 2220,
+      "sha256": "d409adedfc98ae9fad447fce33d3f82640aa7da54b44f23d9d4d9a1d96ff210c"
+    },
+    {
+      "path": "test/learning/remaining_native_entry_test.dart",
+      "bytes": 9231,
+      "sha256": "6fa70642f64887790c6743a79bbf9c128bda50e897378a972dc4627abae936a3"
+    },
+    {
+      "path": "test/learning/resumable_lesson_reset_test.dart",
+      "bytes": 1738,
+      "sha256": "17f5c6e1e335c7fb9b404e0d0a1bad6887aef9852299be3a5da2606c85aa72d5"
+    },
+    {
+      "path": "test/learning/sentence_prompt_privacy_test.dart",
+      "bytes": 4237,
+      "sha256": "300cd10de14737d336208cac70a281ceccffaeb325f9d139bd2f91ec71891f4a"
+    },
+    {
+      "path": "test/learning_answer_reward_test.dart",
+      "bytes": 4069,
+      "sha256": "98c5a9275b06636da72de5ed8d4547d1f39fb0a6be79635e798a45cf534dfa17"
+    },
+    {
+      "path": "test/learning_lab_catalog_test.dart",
+      "bytes": 4401,
+      "sha256": "ef48ec239ecb9527ca679cf0d1d0d78caf3bb7b9b5063c0a6ad214f024dbb228"
+    },
+    {
+      "path": "test/learning_lab_manipulatives_test.dart",
+      "bytes": 10286,
+      "sha256": "b0f5769ee6738e2c1f8a955241581236a3e1b3c80fac0493afb06eba5b3fe15f"
+    },
+    {
+      "path": "test/learning_lab_progress_test.dart",
+      "bytes": 4770,
+      "sha256": "eaf97515a5de95edc80164616f6575d26a9175d3056a9d7210443b0718218eb8"
+    },
+    {
+      "path": "test/learning_lab_runtime_test.dart",
+      "bytes": 6776,
+      "sha256": "824e6f695a2b2f2ddbca73d24ca1941f93c061d43983fbaac2bab089100308c2"
+    },
+    {
+      "path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+      "bytes": 21155,
+      "sha256": "5e173bbd60a2ab025168eb255e78920ea9e2bb32d5e046aaf7b80db9c49f61b8"
+    },
+    {
+      "path": "test/learning_modules/learning_module_progress_test.dart",
+      "bytes": 11129,
+      "sha256": "12bd96332408a16f4d4bcbfa65d5925328e84da5d5ad12d2135d4352b1b84744"
+    },
+    {
+      "path": "test/learning_modules/math_module_progress_test.dart",
+      "bytes": 14054,
+      "sha256": "7707a49a48158be94c8a839595468ab0bb3fae90b65ad522516d6c41f790d2d5"
+    },
+    {
+      "path": "test/learning_profile_isolation_test.dart",
+      "bytes": 10799,
+      "sha256": "06dfa837004d32a79ce808b363b04f7f91eec2289acd4ae1f6755788f1f98f0f"
+    },
+    {
+      "path": "test/learning_question_repository_test.dart",
+      "bytes": 5943,
+      "sha256": "913e6e7c099648173d56b736fd81b0a7822adf4aefe638597ecdfd40c075d9b7"
+    },
+    {
+      "path": "test/learning_test_session_result_test.dart",
+      "bytes": 4129,
+      "sha256": "b4de96bf0a82a22de5ef76b04339c9c9b9cf02762bee1f7d75e56df83c1f8e6f"
+    },
+    {
+      "path": "test/live_pro_question_coach_test.dart",
+      "bytes": 7601,
+      "sha256": "cb3ac6f330bd74eba85caff0c0d3992ba516d710c53b960dbcdce33cd141cf19"
+    },
+    {
+      "path": "test/lumo_agent_final_result_lifecycle_test.dart",
+      "bytes": 4791,
+      "sha256": "10f6fda4a1f87585ce926e356897379ad2992e1b01e31d67c8fdfe2aa872a852"
+    },
+    {
+      "path": "test/lumo_agent_microphone_lifecycle_test.dart",
+      "bytes": 4826,
+      "sha256": "2e123459a7e3aa28f8097d2174c85381e8547f95d47c8f6b8ca4622ad1622938"
+    },
+    {
+      "path": "test/lumo_assessment_reading_contract_test.dart",
+      "bytes": 3578,
+      "sha256": "cfae1fe595fe104401d5ab8f6b0a689c960474f95a5bf284d3800fd74666e12c"
+    },
+    {
+      "path": "test/lumo_speech_listener_plugin_boundary_test.dart",
+      "bytes": 2596,
+      "sha256": "5bea29f5c1379c384408c700415ff52edc82afa7b99e04bad99c4f8507e54f2a"
+    },
+    {
+      "path": "test/lumo_speech_listener_runtime_test.dart",
+      "bytes": 14395,
+      "sha256": "dff33a126d76dcb524a76a8ca24d2d2587be4eafe4f3b47bdca5949d98453e86"
+    },
+    {
+      "path": "test/photo_lesson_learning_flow_test.dart",
+      "bytes": 9051,
+      "sha256": "42030e2da3262b89db550b6b272644667f66141762480d7abddf0f1544e19b10"
+    },
+    {
+      "path": "test/photo_lesson_practice_test.dart",
+      "bytes": 3691,
+      "sha256": "eca22dd804117913dcb946fecfdecfd2a88b0380f0d7905e94aa6dec9d62b012"
+    },
+    {
+      "path": "test/photo_lesson_session_test.dart",
+      "bytes": 5437,
+      "sha256": "61dbb7e3bfd6984def428f07d2a5deb3d1d506e4208557e7fdc74207aaf9916b"
+    },
+    {
+      "path": "test/photo_lesson_subject_flow_test.dart",
+      "bytes": 4794,
+      "sha256": "b366ab7cba1d4e9c11f037c8e34a0d04abec3724722b5eba9330db9d943f1252"
+    },
+    {
+      "path": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "bytes": 14514,
+      "sha256": "3436faf0dfdc0ba386f2881c057b265b2419aacaff53892d106dac70270b57de"
+    },
+    {
+      "path": "test/quiz_question_bank_test.dart",
+      "bytes": 1000,
+      "sha256": "0521b3cf26b81e52735c2d704968ef5ef611c42b6bf99662749f9992923404e9"
+    },
+    {
+      "path": "test/quiz_show_live_ladder_lockin_test.dart",
+      "bytes": 2720,
+      "sha256": "bd599297c7a22257c339e0707db97b8d0a8d451cb3f465e22211377095dbca7f"
+    },
+    {
+      "path": "test/reading_active_sentence_view_test.dart",
+      "bytes": 1873,
+      "sha256": "c96fa3619c959144c254ad62ffdd0d7a2370d56a7e1c40f98e319ff9bc65dd10"
+    },
+    {
+      "path": "test/reading_audio_owner_regression_test.dart",
+      "bytes": 7482,
+      "sha256": "334999cec1d723afea6dce36c36a7b707e076280bcc68b3d3841057c494f3b18"
+    },
+    {
+      "path": "test/reading_buddy_assessment_test.dart",
+      "bytes": 13224,
+      "sha256": "58714cdd9818c67bc029d94a4be3fcd2e877148fd842e456ef7a54f4deeffe66"
+    },
+    {
+      "path": "test/reading_writing_content_test.dart",
+      "bytes": 2895,
+      "sha256": "44e74199bc2c0c3f6050b503760d75163a9144e23129f2c6eb157a24ee470ca8"
+    },
+    {
+      "path": "test/story_answer_retry_test.dart",
+      "bytes": 2698,
+      "sha256": "2f44e27e175f5d3a0615d989c807510b778da8957821c8d2601ede2ce0ef1411"
+    },
+    {
+      "path": "test/story_audio_owner_regression_test.dart",
+      "bytes": 9737,
+      "sha256": "790202dda8660e4b9a109a6b77591a8ed573e93b9824b46ab9cb1ab6bbb0e7ae"
+    },
+    {
+      "path": "test/story_book_adventure_test.dart",
+      "bytes": 5108,
+      "sha256": "d15d9d529ba51522f0517db087cbee82857eaab3ddc0cf097da8c67b815b8c0e"
+    },
+    {
+      "path": "test/story_book_evidence_hint_test.dart",
+      "bytes": 3733,
+      "sha256": "304038e1aef749bac80b025dabfa8601c1f282bf59789a55d57ddf4407d9f536"
+    },
+    {
+      "path": "test/story_completion_storage_test.dart",
+      "bytes": 9066,
+      "sha256": "459bdc73c2ff4b6a9fafdb9df5fa260375b840a09fdbf628888ea78733020bc4"
+    },
+    {
+      "path": "test/story_entry_navigation_test.dart",
+      "bytes": 14122,
+      "sha256": "3ceae21538ce7f5b586e485937849971f92f5c70cbb4fa49bec2c29289c60384"
+    },
+    {
+      "path": "test/story_library_grade_filter_test.dart",
+      "bytes": 3268,
+      "sha256": "53d015f5007c60bbcbc9f716a17404d5ad0ff03f5fa4102e33fa0154c9fc2c2c"
+    },
+    {
+      "path": "test/story_nextgen_flow_test.dart",
+      "bytes": 22020,
+      "sha256": "86c93a4503d5c435a20f18c7ee1cad1472a703d1af232d3f08fe1299931a7c90"
+    },
+    {
+      "path": "test/story_setup_learning_path_grade_test.dart",
+      "bytes": 6684,
+      "sha256": "6ae58e915af758eef851ce47ae144fe127efcdbb9a66bb8cfd6687a051b072cb"
+    },
+    {
+      "path": "test/story_summary_reward_integrity_test.dart",
+      "bytes": 3729,
+      "sha256": "b9f114fd66a32b86934f5fcf21c22ab5d58be9d571a1639d4aca258ac0846fac"
+    },
+    {
+      "path": "test/task_help_integration_test.dart",
+      "bytes": 8567,
+      "sha256": "e3c7ff379b3f78da12efbd0e3f4da325827551b947b3c5e87e11a7238cdb4536"
+    },
+    {
+      "path": "test/tutoring/guided_coach_binding_test.dart",
+      "bytes": 10330,
+      "sha256": "a49746170e727ecb9e708b979ccb408548b78743e34ccda8add602be4a64cc5c"
+    },
+    {
+      "path": "test/tutoring/guided_lesson_evidence_test.dart",
+      "bytes": 4791,
+      "sha256": "f7daa1cb52f8f6197d22f4be5c36bfae68077a3c853b14111f2eebc397ca876c"
+    },
+    {
+      "path": "test/tutoring/guided_lesson_runtime_test.dart",
+      "bytes": 36122,
+      "sha256": "5a89868f82e1aed3ecbb6de30d53f31a775b7567f6e9d076c8319f0d2267a16f"
+    },
+    {
+      "path": "test/tutoring/guided_ten_frame_playback_test.dart",
+      "bytes": 12095,
+      "sha256": "819e4e79603e15f53dfe2294a6f2f3ed73f853af1fa86a08dc511037f3d605e5"
+    },
+    {
+      "path": "test/tutoring/learning_profile_boundaries_test.dart",
+      "bytes": 18422,
+      "sha256": "a285a63d26d691854ae0f9ee484cc100c7d9a5383b8275171a045874026e694f"
+    },
+    {
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "bytes": 8117,
+      "sha256": "7eb4aec5413e4c8f612bea6b31225030e647570d4f69dccf2685fb1b1a751815"
+    },
+    {
+      "path": "test/tutoring/native_learning_launch_test.dart",
+      "bytes": 22893,
+      "sha256": "2cedabc9ea999806714574907fe1c7fc5f6295be2cb226788095bd80ac7ce6b4"
+    },
+    {
+      "path": "test/tutoring/native_learning_serialized_contract_test.dart",
+      "bytes": 13642,
+      "sha256": "d6c9bf843d9095bc2c0ae9b7ed0ccddee2808005be6860dae75f5e1ff050c691"
+    },
+    {
+      "path": "test/tutoring/native_sharing_activity_test.dart",
+      "bytes": 14805,
+      "sha256": "3dc937c2aed87acafe700168ac3cfc74123073a2a2056e71827ff41ad25ec056"
+    },
+    {
+      "path": "test/tutoring/tutor_parent_reset_test.dart",
+      "bytes": 13652,
+      "sha256": "b04a082306805236c74a1be15a9fce47b40dbff0ec0db6381b3592b9306b0059"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9-ocr.json",
+      "bytes": 19373,
+      "sha256": "45dbbdc4dec317ce4bcc5e3b72d9767a7390302f54bb7186b12ada2dfee32c2e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9.png",
+      "bytes": 660918,
+      "sha256": "4e2486f2c838f7391f56c14b62b60b610b27d87b43ff4184875cb5a013e5fbf8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/manifest.json",
+      "bytes": 1254,
+      "sha256": "d3e43abe10c20bc9927127cec0c8f9d28dbde0ca0e5bfeacc4850a12e3ac64ff"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/0181-bridge-resize-compact.mp4",
+      "bytes": 93539,
+      "sha256": "8f436741a6b25fbccef4ee7784ef54ae41786bcbbc5e4c342352db9355c0300a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/README.md",
+      "bytes": 1115,
+      "sha256": "6ac544b39970d05c85e4b1538a2538faa71f7d1d1b32eaaf67f3ef704463bbfc"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/ffprobe-original.json",
+      "bytes": 5513,
+      "sha256": "7802e4d4f1d0771e1c5d1831d6b990592380e6f83f3b896988e9aa83bc40790e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/manifest.json",
+      "bytes": 533,
+      "sha256": "6388aadf1ce219bc8ea1bb083bd3222bc606021a413d6e487ab0dd250fbcca75"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_current_candidate.py",
+      "bytes": 15487,
+      "sha256": "b48002a7916ae856b30c715318ecf98fde2dceaf0ee63a598c95744d8eb7bb48"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_current_native_stop.py",
+      "bytes": 14231,
+      "sha256": "1ebb3bf459324a7b7418f5beb12b2dd9d2a65e43723bedd4a0d4d8a91465deb4"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "bytes": 92612,
+      "sha256": "bfb4da34651acc7059055d0a49f47d7b55ec86b694a7c3c7b92d7b16d3861075"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_native_reader.py",
+      "bytes": 14646,
+      "sha256": "514b5b9ceedd8f6128ea9e459adb9dc31a7327970a88aba89dbf54a7e2ef6664"
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 10628,
+      "sha256": "6855fcf77abada42a7b59178e013108ef641f523007200be5c916d4e39e096c8"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 15895,
+      "sha256": "72e09c511b9fa35606a8fc5024f1333c5a0b10bbab02d4be9c8cbac37d0430f2"
+    },
+    {
+      "path": "tools/nextgen/build_coverage.py",
+      "bytes": 110254,
+      "sha256": "a16fa8dbee7e1afb41e6875187a56322d84f50752bf8ebfe9bc8330dbf513dc6"
+    },
+    {
+      "path": "tools/nextgen/export_learning_catalog_test.dart",
+      "bytes": 8242,
+      "sha256": "877eb49e5af10bcaf1c59085521ac9f65c83d9e3f84da41a17c0db256d42e81d"
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "bytes": 11429,
+      "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441"
+    }
+  ],
+  "protectedBase": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
+  "protectedCount": 18,
+  "protected": [
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "bytes": 3785,
+      "sha256": "9cbea3120444ae0011719f42b341690b82a4568f1774345dc0ed7657a68a99a3",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/core/writing_target_parser.dart",
+      "bytes": 2449,
+      "sha256": "8830cb2241bc46b7dc948795f8206c5664fd7c9a0a137594f5a18e3d7fde8121",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/domain/writing/expanded_writing_template_repository.dart",
+      "bytes": 8968,
+      "sha256": "93c9010c923751900591c899cf0ca984c5af52a7d6ec4811353d2a40b05baa0b",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/domain/writing/letter_practice_rules.dart",
+      "bytes": 3041,
+      "sha256": "cf04686db75dec076bc9df4f918eab5a444aea2f8417194b90e01ca0de4ec0e3",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/domain/writing/writing_domain.dart",
+      "bytes": 11011,
+      "sha256": "1263772507004fd3cbfd2613bafd96c65c123ca945d69c9493e29d396c7f82d5",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/domain/writing/writing_path_geometry.dart",
+      "bytes": 3648,
+      "sha256": "4138e8389d0113734a0f8a8ee9b348ee8140f18400c609b4be45da00e047a929",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/domain/writing/writing_progress.dart",
+      "bytes": 5996,
+      "sha256": "4999aca194975399a4a9cbc746f6c38e338262823816a0aba227ca809db8f777",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/domain/writing/writing_word_bank.dart",
+      "bytes": 9063,
+      "sha256": "0fd0870b20769e8d3e1b2a188751f0bc048ef864acc39e0ce00fac296a9f6295",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "bytes": 3696,
+      "sha256": "9b6e404d8312ed9ffb874eac2fea06e0fdf45024b308392e1ef58b5a85e13753",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "bytes": 33174,
+      "sha256": "389270e2a26df93cbc76ec0e028efaa804210236c5d57647afb60023db054aa4",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/learning/renderers/writing_task_renderer.dart",
+      "bytes": 18198,
+      "sha256": "2ab4338e9b862292f35f50b95cfc4aa2cb719009a5f4e5f5f73b7e654cde4395",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "bytes": 30078,
+      "sha256": "efec5a4398778e9306e7beadbdae15251ddca7b7ad27c7804ac244ff06925f4b",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "bytes": 28091,
+      "sha256": "3365cae7a1137ce57a573971fa40e20b55f7f9434ee721d79f2fd0978b16ed10",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "bytes": 38878,
+      "sha256": "e08c2b8acd274eb201f1cd6dd164e9f22b569a1478cdff9295f0ea4fbe6c82bd",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "bytes": 8155,
+      "sha256": "f748e40fb47bff603bc8de53ce59c1b398c1fed6765b7cdbb3a2a367abf24091",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "bytes": 39576,
+      "sha256": "d2c5308eb820799245975695a720173179d63144b89cc3feb0d9aabce5865dea",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/writing/writing_engine.dart",
+      "bytes": 57931,
+      "sha256": "d1df3e186a6189f4b05594b407ebee01578ca474669292440617d7ff1aad3274",
+      "identicalToProtectedBase": true
+    },
+    {
+      "path": "lib/features/writing/writing_feature_flags.dart",
+      "bytes": 1534,
+      "sha256": "7a42a9dfb693da76a53d6b25eede144acab75bce27a22f7fc446f6f9b7f1ac76",
+      "identicalToProtectedBase": true
+    }
+  ]
+}

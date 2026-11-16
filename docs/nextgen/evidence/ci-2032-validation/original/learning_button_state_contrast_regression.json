@@ -1,0 +1,259 @@
+{
+	"callback_activations": 6,
+	"checks": 79,
+	"display_driver": "headless",
+	"engine": {
+		"build": "official",
+		"hash": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+		"hex": 263683,
+		"major": 4,
+		"minor": 6,
+		"patch": 3,
+		"status": "stable",
+		"string": "4.6.3-stable (official)",
+		"timestamp": 0
+	},
+	"failures": [],
+	"input_observations": [
+		{
+			"caption": "Stimme stoppen",
+			"disabled": false,
+			"draw_mode": 0,
+			"focused": false,
+			"hovered": false,
+			"pressed": false,
+			"state": "normal"
+		},
+		{
+			"caption": "Stimme stoppen",
+			"disabled": false,
+			"draw_mode": 0,
+			"focused": true,
+			"hovered": false,
+			"pressed": false,
+			"state": "focus"
+		},
+		{
+			"caption": "Stimme stoppen",
+			"disabled": false,
+			"draw_mode": 2,
+			"focused": false,
+			"hovered": true,
+			"pressed": false,
+			"state": "hover"
+		},
+		{
+			"caption": "Stimme stoppen",
+			"disabled": false,
+			"draw_mode": 2,
+			"focused": true,
+			"hovered": true,
+			"pressed": false,
+			"state": "hover+focus"
+		},
+		{
+			"caption": "Stimme stoppen",
+			"disabled": false,
+			"draw_mode": 1,
+			"focused": true,
+			"hovered": true,
+			"pressed": true,
+			"state": "mouse-held+hover+focus"
+		},
+		{
+			"caption": "Stimme stoppen",
+			"disabled": false,
+			"draw_mode": 1,
+			"focused": true,
+			"hovered": true,
+			"pressed": true,
+			"state": "key-held+hover+focus"
+		},
+		{
+			"caption": "Stimme stoppen",
+			"disabled": false,
+			"draw_mode": 1,
+			"focused": true,
+			"hovered": false,
+			"pressed": true,
+			"state": "key-held+focus"
+		},
+		{
+			"caption": "Stimme stoppen",
+			"disabled": false,
+			"draw_mode": 0,
+			"focused": true,
+			"hovered": false,
+			"pressed": false,
+			"state": "released+focus"
+		},
+		{
+			"caption": "Ein Objekt zeigen",
+			"disabled": false,
+			"draw_mode": 0,
+			"focused": false,
+			"hovered": false,
+			"pressed": false,
+			"state": "normal"
+		},
+		{
+			"caption": "Ein Objekt zeigen",
+			"disabled": false,
+			"draw_mode": 0,
+			"focused": true,
+			"hovered": false,
+			"pressed": false,
+			"state": "focus"
+		},
+		{
+			"caption": "Ein Objekt zeigen",
+			"disabled": false,
+			"draw_mode": 2,
+			"focused": false,
+			"hovered": true,
+			"pressed": false,
+			"state": "hover"
+		},
+		{
+			"caption": "Ein Objekt zeigen",
+			"disabled": false,
+			"draw_mode": 2,
+			"focused": true,
+			"hovered": true,
+			"pressed": false,
+			"state": "hover+focus"
+		},
+		{
+			"caption": "Ein Objekt zeigen",
+			"disabled": false,
+			"draw_mode": 1,
+			"focused": true,
+			"hovered": true,
+			"pressed": true,
+			"state": "mouse-held+hover+focus"
+		},
+		{
+			"caption": "Ein Objekt zeigen",
+			"disabled": false,
+			"draw_mode": 1,
+			"focused": true,
+			"hovered": true,
+			"pressed": true,
+			"state": "key-held+hover+focus"
+		},
+		{
+			"caption": "Ein Objekt zeigen",
+			"disabled": false,
+			"draw_mode": 1,
+			"focused": true,
+			"hovered": false,
+			"pressed": true,
+			"state": "key-held+focus"
+		},
+		{
+			"caption": "Ein Objekt zeigen",
+			"disabled": false,
+			"draw_mode": 0,
+			"focused": true,
+			"hovered": false,
+			"pressed": false,
+			"state": "released+focus"
+		}
+	],
+	"limits": [
+		"Exact production factory tested in isolation; no full learning scene or 3D assets",
+		"Theme colors and actual input states; no framebuffer or Android pixel measurement",
+		"Original Android draw mode unknown; this run does not identify it",
+		"Non-toggle hover+press uses DRAW_PRESSED; hover_pressed font is palette-tested only",
+		"Disabled palette reported only; disabled behavior and styles remain unchanged",
+		"No speech, acoustic stop, mouth timing, or device touch claim"
+	],
+	"minimum_required_contrast": 4.5,
+	"palettes": [
+		{
+			"backgrounds": {
+				"focus": "dce9d4ff",
+				"hover": "e0ebd8ff",
+				"normal": "dce9d4ff",
+				"pressed": "c2cdbbff"
+			},
+			"caption": "Stimme stoppen",
+			"colors": {
+				"font_color": "234537ff",
+				"font_focus_color": "234537ff",
+				"font_hover_color": "234537ff",
+				"font_hover_pressed_color": "234537ff",
+				"font_pressed_color": "234537ff"
+			},
+			"contrast_ratios": {
+				"focus/font_color": 8.41779070681693,
+				"focus/font_focus_color": 8.41779070681693,
+				"focus/font_hover_color": 8.41779070681693,
+				"focus/font_hover_pressed_color": 8.41779070681693,
+				"focus/font_pressed_color": 8.41779070681693,
+				"hover/font_color": 8.6225791493053,
+				"hover/font_focus_color": 8.6225791493053,
+				"hover/font_hover_color": 8.6225791493053,
+				"hover/font_hover_pressed_color": 8.6225791493053,
+				"hover/font_pressed_color": 8.6225791493053,
+				"normal/font_color": 8.41779070681693,
+				"normal/font_focus_color": 8.41779070681693,
+				"normal/font_hover_color": 8.41779070681693,
+				"normal/font_hover_pressed_color": 8.41779070681693,
+				"normal/font_pressed_color": 8.41779070681693,
+				"pressed/font_color": 6.43793072776729,
+				"pressed/font_focus_color": 6.43793072776729,
+				"pressed/font_hover_color": 6.43793072776729,
+				"pressed/font_hover_pressed_color": 6.43793072776729,
+				"pressed/font_pressed_color": 6.43793072776729
+			},
+			"disabled_font_observed_only": "dfdfdf80",
+			"minimum_contrast": 6.43793072776729
+		},
+		{
+			"backgrounds": {
+				"focus": "dca847ff",
+				"hover": "e0b159ff",
+				"normal": "dca847ff",
+				"pressed": "c2943eff"
+			},
+			"caption": "Ein Objekt zeigen",
+			"colors": {
+				"font_color": "1d3540ff",
+				"font_focus_color": "1d3540ff",
+				"font_hover_color": "1d3540ff",
+				"font_hover_pressed_color": "1d3540ff",
+				"font_pressed_color": "1d3540ff"
+			},
+			"contrast_ratios": {
+				"focus/font_color": 5.95235117220918,
+				"focus/font_focus_color": 5.95235117220918,
+				"focus/font_hover_color": 5.95235117220918,
+				"focus/font_hover_pressed_color": 5.95235117220918,
+				"focus/font_pressed_color": 5.95235117220918,
+				"hover/font_color": 6.45929523309065,
+				"hover/font_focus_color": 6.45929523309065,
+				"hover/font_hover_color": 6.45929523309065,
+				"hover/font_hover_pressed_color": 6.45929523309065,
+				"hover/font_pressed_color": 6.45929523309065,
+				"normal/font_color": 5.95235117220918,
+				"normal/font_focus_color": 5.95235117220918,
+				"normal/font_hover_color": 5.95235117220918,
+				"normal/font_hover_pressed_color": 5.95235117220918,
+				"normal/font_pressed_color": 5.95235117220918,
+				"pressed/font_color": 4.6345262419692,
+				"pressed/font_focus_color": 4.6345262419692,
+				"pressed/font_hover_color": 4.6345262419692,
+				"pressed/font_hover_pressed_color": 4.6345262419692,
+				"pressed/font_pressed_color": 4.6345262419692
+			},
+			"disabled_font_observed_only": "dfdfdf80",
+			"minimum_contrast": 4.6345262419692
+		}
+	],
+	"production_factory_sha256": "fb17dbbb4b58541a72eb0cf794c7342b459d42f9c8f4f6ed57f9c992aca0986e",
+	"production_source_sha256": "1e12a51ee1264c86bdf7e83fc0073e36aae766b777b56923ff80e3a8cf449fca",
+	"renderer": "forward_plus",
+	"status": "PASS",
+	"test_sha256": "56aca033f3b19a8063145b6a603be3c8d26a2ae4508ea1789ce35eb7ae9a0567"
+}

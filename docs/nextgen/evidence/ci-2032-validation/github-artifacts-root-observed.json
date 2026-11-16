@@ -1,0 +1,27 @@
+{
+  "observedAtUtc": "2026-11-16T09:38:59.612Z",
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "apiResult": {
+    "artifacts": [
+      {
+        "id": 14212363195,
+        "name": "lumo-nextgen-validation",
+        "size_in_bytes": 264077,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14212363195",
+        "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14212363195/zip",
+        "expired": false,
+        "created_at": "2026-11-16T09:28:19Z",
+        "expires_at": "2026-12-16T09:28:18Z",
+        "updated_at": "2026-11-16T09:28:19Z",
+        "digest": "sha256:167bed7006a1fcad952685f92f9583f6158a5f5bc1434a9c153484e24b3d41cd",
+        "workflow_run": {
+          "id": 43837592237,
+          "repository_id": 1222433959,
+          "head_repository_id": 1222433959,
+          "head_branch": "integration/lumo-nextgen-learning-20261115",
+          "head_sha": "9b38360ca5f21919dce4a2b99e605ee39bbbf454"
+        }
+      }
+    ]
+  }
+}

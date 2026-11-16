@@ -1,0 +1,41 @@
+{
+  "observedAtUtc": "2026-11-16T09:36:42.846007+00:00",
+  "status": "PASS_ORIGINAL_VALIDATION_EVIDENCE_ONLY",
+  "rootBefore": "7b2cabc89ace083eb7f30d9d06f19c7d840406e5",
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "runId": 43837592237,
+  "jobId": 133197989015,
+  "handoffSha256": "3fd8e851d0a15884e9f8f27548e4133a51221d8d21cffffd08f7001f6cb1953e",
+  "all69HandoffFilesRetainedExactly": true,
+  "archiveSha256": "167bed7006a1fcad952685f92f9583f6158a5f5bc1434a9c153484e24b3d41cd",
+  "all58ArchiveMembersCrcAndBytesVerified": true,
+  "sourceHashesIndependentlyVerified": 364,
+  "protectedBytesIndependentlyVerified": 18,
+  "flutterTerminalSummaryVerified": true,
+  "hostTerminalSummaryVerified": true,
+  "native13OriginalSummariesVerified": true,
+  "nativeChecks": 55631,
+  "rawJobLogBytes": 1739643,
+  "rawJobLogSha256": "fce7d09999355a493d28604e989a6e431a0461c21d2b0d1c13cc325ad2c6ffac",
+  "rawJobLogBomAndNewlinesUnchanged": true,
+  "gzipBytes": 200415,
+  "gzipSha256": "aac7481054c0271fc780e2678004acf819a89e61acf2ef580893334e6b6faa9b",
+  "gzipRoundtripByteEqual": true,
+  "newTestsRun": false,
+  "androidAcceptanceClaimed": false,
+  "publicDownloadClaimed": false,
+  "formatReview": {
+    "allStagedCheckExit": 2,
+    "findingsOnlyInUnchangedOriginalLogs": [
+      "docs/nextgen/evidence/ci-2032-validation/job-133197989015.log",
+      "docs/nextgen/evidence/ci-2032-validation/original/analyze.log"
+    ],
+    "trailingWhitespaceFindings": 576,
+    "authoredDocumentationCheckExit": 0,
+    "originalLogWhitespacePreserved": true,
+    "normalizationApplied": false,
+    "diagnosticSha256": "3a65465261faf54838f2e773fdb9623d21208ed88d4de100aacf36ec7549ed98"
+  }
+}
