@@ -1,21 +1,43 @@
-# LUMO Next Generation – korrigierter Android-Kandidat 2028
+# LUMO Next Generation – gebauter Kandidat 2028, Androidwiederholung ausstehend
 
-Stand: 15. November 2026. Auf `integration/lumo-nextgen-learning-20261115` wird **0.13.16+2028** mit Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef** zusammengeführt. Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, bestehende Testsignatur und `main` bleiben erhalten. Die vorherige 2027-APK wurde gebaut, wegen tatsächlich beobachteter Produktfehler aber nicht veröffentlicht. Sie ist kein Ersatz für diesen Kandidaten.
+Stand: 16. November 2026. APK-Quelle **fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**, Version **0.13.16+2028**. Der Integrationszweig ist `integration/lumo-nextgen-learning-20261115`. Paket `dev.ullmann.lumo.lumo_lernen.coachpreview` und bestehende Testsignatur bleiben erhalten; `main` wurde nicht zusammengeführt.
 
-Der echte Androidlauf 43769283861 verlor beim eigenen Lab-Gespräch die Aufgabe; die native Diagnose 43770887936 erreichte Banane ohne nutzbare Sprachschnittstelle. Unveränderte Originalbilder/-logs samt Hashes stehen unter `docs/nextgen/evidence/lab-conversation-context-failure-20261115/` und `native-audio-capability-failure-20261115/`. Die eigene Modalroute und der Besitz asynchroner Sprachaufträge sind korrigiert; 56 gezielte Flutterprüfungen bestehen. Der geroutete native Capability-Test besteht 43/43, der produktive Kotlin-/Java-Dialogtest 81 Integrationschecks plus 26 unveränderte Java-Dialogchecks. Diese gezielten Ergebnisse sind keine Freigabe des neuen Androidartefakts.
+## Tatsächlicher vollständiger Quell- und Buildlauf
 
-`docs/nextgen/COVERAGE.json` und `COVERAGE.md` werden aus dem aktuellen sauberen Produktstand erneuert. `fullModernizationComplete` bleibt **false**: Gemeinsame Aufgabenoberflächen/3D-Aufgabenkarten bedeuten keine individuelle räumliche Simulation jeder Variante. Die Figur läuft über die bestehende separate Godot-Activity. 18 geschützte Schreib-/Journaldateien müssen bytegleich zum Basisstand bleiben; Kart-/Dschungel-Folgearbeiten sind ausgeschlossen.
+[Lauf 43774460935](https://github.com/Ullmann27/lumo-lernen/actions/runs/43774460935) hat die Quellvalidierung und beide Builds bestanden. Die originale Androidtour ist fehlgeschlagen; deshalb wurde nichts veröffentlicht.
 
-Der vollständige Buildpfad prüft Analyse, sämtliche Fluttertests, Hostverträge, echten Godot-Import und zwölf native Programme. Danach muss eine frisch installierte x86_64-APK die vollständige Lerntour einschließlich tatsächlich getippter nativer Warum-zwei-Frage bestehen; erst anschließend folgen native Banane-Wiederholung und Muster. Der Publisher verlangt beide aktuellen Berichte mit identischer APK-/Quellbindung und erzeugt erst dann einen neuen direkten ARM64-Testdownload. Physische Geräte, reale gesprochene Erkennung, Akustik und 60 FPS sind vor entsprechenden Messungen nicht belegt.
+- Flutter: **2.884 PASS, 0 FAIL, 202 vorhandene SKIP**. Analyzer: **0 Fehler, 4 Warnungen, 274 Hinweise**.
+- Host: **73 Python-Testmethoden PASS**; enthaltene JVM-Prüfaussagen sind keine zusätzlichen Androidtests.
+- Tatsächlicher Godot-4.6.3-Import erfolgreich; zwölf native Programme mit zusammen **55.552 Prüfaussagen**. Projektvalidator **118 PASS / 0 WARN / 0 FAIL**. Der ObjectDB-Hinweis am Ende des isolierten Avatar-Vertragstests ist im Original erhalten; er wird weder als belegter App-Leak noch als leakfreier Lauf umgedeutet.
+- Alle **245 Quellhashes** des aktuellen Inventars und **18 geschützte Schreib-/Journaldateien** wurden geprüft.
+- ARM64: **535.020.882 Byte**, SHA-256 `3bc5255101fe28ad62881a8aab478fd02650dc6e92a6abbe0d0d137367f06238`.
+- x86_64: **538.184.315 Byte**, SHA-256 `6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9`.
+- Gemeinsamer nativer Pack: SHA-256 `69899113f134c04550a5073cd9657315e0cb0bb418f9e06fa76a482041757bc0`.
+- Bestehendes Testzertifikat: SHA-256 `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`. Die ARM64-Datei wurde zusätzlich vollständig heruntergeladen und unabhängig erneut verifiziert. Das ist kein physischer ARM64-Laufzeitnachweis.
 
-Details: `docs/nextgen/ANDROID_DELIVERY_2028.md`, Vertrag `docs/nextgen/INTEGRATION_V1.md`. Dieser Vorlaufstatus enthält noch keinen neuen APK-Hash, kein behauptetes CI-Endergebnis und keinen erfundenen Download.
+Originale und vollständige Logs: `docs/nextgen/evidence/ci-2028-validation/`, `ci-2028-build/`, `ci-2028-permission-transition-failure/`. Große Original-ZIP-Dateien sind gegebenenfalls verlustfrei geteilt; Teilreihenfolge und Originalhash sind dokumentiert.
 
-## Wiederaufnahme dieses Kandidaten
+## Tatsächlicher Androidstand und nächste Abnahme
 
-1. Branch, HEAD und unveränderte Arbeitsdateien prüfen; vorhandene Arbeit sichern. Keine Reset-/Clean-/Force-Befehle. Der aktuelle veröffentlichte Produktkopf steht in `COVERAGE.json.sourceSnapshot` beziehungsweise im letzten tatsächlichen Integrationscommit.
-2. Den vollständigen Workflow `lumo-nextgen-learning-apk.yml` am exakten `head_sha` verfolgen. `config/nextgen-release.json` löst nach Erneuerung des Inventars die neue Version aus. Alle fehlgeschlagenen Originale erhalten und die konkrete Ursache korrigieren.
-3. Beide neuen APKs unabhängig prüfen; Quelle, Native-Pin, Signatur, Paket, Version, ABI, Bytezahl und SHA-256 müssen zu den neuen Buildartefakten passen. Historische 2027-Hashes oder Diagnoseläufe dürfen kein neues Gate erfüllen.
-4. Erst nach tatsächlicher vollständiger Androidtour die neue öffentliche einzelne `.apk` mit Größe und heruntergeladenem Bytehash bestätigen; echte Bilder/Video und gemessene Grenzen auswerten. Frühere Releases und `main` bleiben unverändert.
+Die reale x86-Tour erreichte die korrigierte aufgabenbezogene Lab-Antwort auf „Warum zuerst zwei?“ und anschließend Stopp. Bei der Mikrofonfreigabe wurde ein unsichtbarer Android-Permission-Container mit Höhe null zu früh als fertige Abfrage geprüft. Der folgende Original-Screenshot zeigt die richtige Audioaufnahme-Abfrage für LUMO mit einer sichtbaren Zulassen-Taste. **Der Lauf bleibt FAIL**, die vollständige Tour und die zusätzlichen nativen Banane-/Musterszenen sind damit nicht bestanden.
+
+Die eng begrenzte Leser-Korrektur und ein expliziter unveränderlicher 2028-Replay werden getrennt vorbereitet. Er muss dieselbe installierte x86-APK zunächst durch die gesamte Originaltour führen und danach durch die nativen Referenzszenen. APK-Quellcommit, QA-Commit, ursprünglicher Buildlauf und neuer Prüflauf werden getrennt ausgewiesen. Ein neuer ARM64-Download ist erst nach diesen Gates zulässig; die gesamte öffentliche Datei wird anschließend ohne Anmeldung bytegeprüft. Zum Stand dieses Status ist kein Replay-PASS und kein öffentlicher Download behauptet.
+
+## Abdeckung und Grenzen
+
+`docs/nextgen/COVERAGE.json` und `COVERAGE.md` erfassen den Produkt-Snapshot `daf6ca5e9f7df7b32a32ef987d067035ddb5328c`; bis zur APK-Quelle fc5 gibt es keine weitere Änderung an `lib` oder `tools/auto_install`. Erfasst sind 61 Inventareinträge, 236 Curriculum-Familien, 19 aktive Fachmoduleinstiege in 18 Oberflächen, sechs Lab-Modi und sieben geführte Lektionen. Diese Zahlen sind keine Zahl einzeln vollständig modernisierter oder auf Android durchgespielter Varianten.
+
+`fullModernizationComplete` bleibt **false**. Elf native Spezialmodelle ergänzen eine gemeinsame Aufgabenkarte. Zahlreiche Fachmodule und Lab-Einstiege nutzen diese Karte. Die Figur läuft über die bestehende separate Godot-Activity, nicht eingebettet in jede Flutter-Aufgabe. Physische Fold7-/ARM64-Nutzung, echte gesprochene Erkennung, hörbare Qualität, umfassende Variantenabdeckung, Update-/Prozesstod-Erhaltung und 60 FPS sind ohne ihre jeweiligen tatsächlichen Nachweise offen. Kart- und native Dschungel-Folgearbeiten sind ausgeschlossen.
+
+Vertrag: `docs/nextgen/INTEGRATION_V1.md`. Aktueller Lieferpfad: `docs/nextgen/ANDROID_DELIVERY_2028.md`.
+
+## Verbindliche Wiederaufnahme
+
+1. Branch, HEAD und Arbeitsdateien sichern; kein Reset, Clean oder Force-Push. Der letzte tatsächliche Remote-Checkpoint ist über die Branchreferenz zu prüfen. APK-Quelle bleibt fc5; Dokumentations-/QA-Commits ändern diese bereits gebauten Bytes nicht.
+2. Die begrenzte Mikrofon-Permission-Leserkorrektur und den neuen Pfad `.github/workflows/lumo-nextgen-2028-replay.yml` nach gezielter Prüfung auf `qa/lumo-nextgen-2028-android-20261116` veröffentlichen. Der Replay verwendet das bestehende x86-Artefakt **14185954865** aus Lauf **43774460935**. `config/nextgen-release.json` hierfür nicht verändern und die alte 2027-Wiederholung nicht starten.
+3. Den neuen tatsächlichen Lauf verfolgen. Originalfehler, echte Screenshots/XML, installierte Byteidentität, aktuelle Aufgaben-/Profilbindung und komplette Ton-/Figur-/Effektfenster erhalten. Nach jedem Fehler Ursache prüfen; keine fehlenden Szenen als PASS setzen. Eine weitere Produktänderung würde neue APKs und eine entsprechend neue Version erfordern.
+4. Erst nach vollständigem erfolgreichen Replay `config/nextgen-2028-replay-publish.json` mit dessen exaktem QA-Commit, Lauf und Artefakt-ID/Größe/Hash auf `delivery/lumo-nextgen-2028-replay-20261116` aktivieren. Der separate Publisher verifiziert erneut beide Lerntouren, ursprüngliche Buildjobs, originale fehlgeschlagene Androidbelege und die unveränderte ARM64-Datei. Danach den echten öffentlichen Download und seine vollständige anonyme SHA-Prüfung bestätigen.
+5. `STATUS.md`, diese Übergabe und `ANDROID_DELIVERY_2028.md` mit den tatsächlichen Ergebnissen ergänzen. `fullModernizationComplete=false` und sämtliche konkreten Grenzen bleiben bestehen, solange ihre eigene Abnahme fehlt. Frühere Releases und `main` bleiben unverändert.
 
 ## Archiv: ursprünglicher 2027-Vorlauf
 

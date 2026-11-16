@@ -24,6 +24,14 @@ Der historische 2027-Download-/Replaypfad bleibt auf seine alten Bytes festgeleg
 
 `fullModernizationComplete` bleibt ausdrücklich `false`. Die gemeinsame Aufgabenkarte ist keine individuelle räumliche Fachsimulation jeder inventarisierten Variante. Die native Figur läuft in der vorhandenen separaten Godot-Activity. Physische ARM64-/Fold7-Geräte, echte gesprochene Erkennung, hörbare Qualität, Langzeitbetrieb und 60 FPS sind ohne entsprechende aktuelle Messung nicht nachgewiesen.
 
-## Noch keine Artefaktbehauptung
+## Tatsächlicher Build und unveränderliche Wiederholung
 
-Diese Datei beschreibt den vorbereiteten Nachfolgepfad. Der neue App-Commit, tatsächliche CI-Ergebnisse, APK-Hash, Dateigröße und der geprüfte direkte Download werden nach dem neuen Build ergänzt. Die alten 2027-Hashes werden nicht als Identität der Nachfolgeversion verwendet. `main` bleibt unverändert.
+Der volle Lauf [43774460935](https://github.com/Ullmann27/lumo-lernen/actions/runs/43774460935) verwendet APK-Quelle `fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242` und Native `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`. Quellvalidierung und beide Builds sind erfolgreich: 2.884 Fluttertests bestehen, 202 bestehende Tests sind übersprungen; 73 Host-Testmethoden und zwölf native Programme bestehen. Die vollständigen unveränderten Prüfprotokolle stehen in `evidence/ci-2028-validation/` und `evidence/ci-2028-build/`.
+
+Die ARM64-APK umfasst 535.020.882 Byte, SHA-256 `3bc5255101fe28ad62881a8aab478fd02650dc6e92a6abbe0d0d137367f06238`. Die x86-APK umfasst 538.184.315 Byte, SHA-256 `6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9`. Die ARM64-Datei wurde vollständig heruntergeladen und zusätzlich lokal anhand ihrer ursprünglichen Quell-/Versions-/Paket-/Signatur-/ABI-/Alignmentvorgaben geprüft.
+
+Die erste Androidtour scheiterte nach der tatsächlichen korrigierten Lab-Erklärung und Stopp beim Lesen der noch einblendenden Mikrofonberechtigung. Der unveränderte UI-Baum enthält einen unsichtbaren Systemcontainer ohne Höhe; das folgende Bild zeigt den fertigen passenden Audiodialog. Originale liegen in `evidence/ci-2028-permission-transition-failure/`. Dieses FAIL wird nicht ersetzt.
+
+Der neue 2028-Replay ist ausdrücklich von historischem 2027-Replay und frischem Buildpfad getrennt. Er bindet denselben vorhandenen APK-Hash an einen eigenen QA-Commit und einen eigenen Lauf. Erst die komplette neu ausgeführte Originaltour und anschließend die tatsächlichen nativen Banane-/Musterszenen dürfen die unveränderte 2028-ARM64-Datei freigeben. Der gemeinsame Beobachtungsgateblock bleibt erhalten; der reguläre Buildpfad verlangt weiterhin QA-Commit gleich APK-Quellcommit. Replaybefunde werden nicht zum Erfüllen dieses anderen Modus umgeschrieben.
+
+Die separate Veröffentlichung prüft beide Ergebnisse, dieselbe native Pack-Datei, den ursprünglichen erfolgreichen Validate-/Buildjob, dessen tatsächlichen fehlgeschlagenen Androidjob, unveränderte QA-Gates und exakte Artefaktgrößen/-hashes. Eine neue Release- oder Tagüberschreibung ist ausgeschlossen. Nach Veröffentlichung muss die vollständige öffentliche APK ohne Anmeldung abgerufen und ihr Bytehash bestätigt werden. Beim Schreiben dieses Zwischenstands ist der neue Replay noch nicht erfolgreich abgeschlossen und kein direkter Download bestätigt.
