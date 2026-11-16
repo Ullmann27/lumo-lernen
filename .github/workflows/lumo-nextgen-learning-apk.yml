@@ -123,13 +123,17 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji python3-venv ffmpeg
           test -f /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
           flutter pub get --enforce-lockfile
           git diff --exit-code -- pubspec.yaml pubspec.lock
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee evidence/validation/analyze.log
           flutter test --no-pub --reporter=expanded --timeout=120s --concurrency=2 2>&1 | tee evidence/validation/flutter-tests.log
-          python3 -m unittest -v \
+          python3 -m venv "$RUNNER_TEMP/lumo-nextgen-host-tests"
+          LUMO_NEXTGEN_TEST_PYTHON="$RUNNER_TEMP/lumo-nextgen-host-tests/bin/python"
+          "$LUMO_NEXTGEN_TEST_PYTHON" -m pip install --disable-pip-version-check Pillow==12.3.0
+          "$LUMO_NEXTGEN_TEST_PYTHON" -c 'import json, platform, PIL; from pathlib import Path; Path("evidence/validation/host-python.json").write_text(json.dumps({"python": platform.python_version(), "Pillow": PIL.__version__, "scope": "isolated host and recorded-image contract tests"}, indent=2) + "\n")'
+          "$LUMO_NEXTGEN_TEST_PYTHON" -m unittest -v \
             scripts.tests.test_learning_conversation_contract \
             scripts.tests.test_learning_dialog_logic \
             scripts.tests.test_local_recognition_contract \
@@ -137,7 +141,10 @@ jobs:
             scripts.tests.test_studio_learning_contract \
             scripts.tests.test_game_return_contract \
             scripts.tests.test_prepare_android \
+            scripts.tests.test_prepare_offline_voice \
             tools.android_qa.tests.test_nextgen_learning_android_probe \
+            tools.android_qa.tests.test_nextgen_native_reader \
+            tools.android_qa.tests.test_nextgen_current_candidate \
             tools.nextgen.test_public_learning_download \
             2>&1 | tee evidence/validation/host-contracts.log
       - uses: actions/checkout@v4

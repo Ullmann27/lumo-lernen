@@ -1,0 +1,41 @@
+test_original_banana_sentence_with_exact_pinned_tokenizer (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_original_banana_sentence_with_exact_pinned_tokenizer) ... FAIL
+test_current_failure_has_private_content_free_owner_and_stale_guard (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_current_failure_has_private_content_free_owner_and_stale_guard) ... FAIL
+
+======================================================================
+FAIL: test_original_banana_sentence_with_exact_pinned_tokenizer (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_original_banana_sentence_with_exact_pinned_tokenizer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-banana-speech-fix/scripts/tests/test_prepare_offline_voice.py", line 59, in test_original_banana_sentence_with_exact_pinned_tokenizer
+    result = self.run_checked([
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-banana-speech-fix/scripts/tests/test_prepare_offline_voice.py", line 54, in run_checked
+    raise AssertionError(result.stdout + result.stderr)
+AssertionError: PINNED_INDEXER sha256=8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30 bytes=262144
+Exception in thread "main" java.lang.IllegalArgumentException: Unsupported speech character
+	at dev.ullmann.lumo.LumoOfflineSpeechEngine.ids(LumoOfflineSpeechEngine.java:140)
+	at dev.ullmann.lumo.LumoOfflineSpeechEngine.synthesize(LumoOfflineSpeechEngine.java:166)
+	at OfflineVoiceTokenizerContract.accepts(OfflineVoiceTokenizerContract.java:23)
+	at OfflineVoiceTokenizerContract.main(OfflineVoiceTokenizerContract.java:50)
+
+
+======================================================================
+FAIL: test_current_failure_has_private_content_free_owner_and_stale_guard (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_current_failure_has_private_content_free_owner_and_stale_guard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-banana-speech-fix/scripts/tests/test_speech_envelope_contract.py", line 84, in test_current_failure_has_private_content_free_owner_and_stale_guard
+    self.run_contract(
+  File "/workspace/scratch/4fa97167812c/agent-banana-speech-fix/scripts/tests/test_speech_envelope_contract.py", line 58, in run_contract
+    result = self.run_checked([
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-banana-speech-fix/scripts/tests/test_speech_envelope_contract.py", line 54, in run_checked
+    raise AssertionError(result.stdout + result.stderr)
+AssertionError: Exception in thread "main" java.lang.IllegalStateException: Current synthesis failure leaves an actual diagnostic
+	at dev.ullmann.lumo.LearningSpeechFailureContractKt.verify(LearningSpeechFailureContract.kt:9)
+	at dev.ullmann.lumo.LearningSpeechFailureContractKt.main(LearningSpeechFailureContract.kt:22)
+	at dev.ullmann.lumo.LearningSpeechFailureContractKt.main(LearningSpeechFailureContract.kt)
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 6.124s
+
+FAILED (failures=2)

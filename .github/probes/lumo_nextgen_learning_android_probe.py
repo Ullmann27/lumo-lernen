@@ -733,6 +733,7 @@ class LearningProbe:
                 self.base.adb("pull", remote, str(local), timeout=90)
                 metadata = read_json(self.base.command("ffprobe", "-v", "error", "-show_streams", "-show_format",
                                                       "-of", "json", str(local)))
+                self.save(name + "-ffprobe", metadata)
                 videos = [s for s in metadata.get("streams", []) if s.get("codec_type") == "video"]
                 require(len(videos) == 1 and float(metadata.get("format", {}).get("duration", 0)) > 0,
                         "No decodable actual video was recorded")
@@ -894,24 +895,27 @@ class LearningProbe:
         states = []
         try:
             for name, width, height, density in DISPLAY_LAYOUTS:
-                self.base.display(width, height, density)
-                actual_size = self.base.adb("shell", "wm", "size")
-                actual_density = self.base.adb("shell", "wm", "density")
-                sizes = re.findall(r"(?m)^(?:Physical|Override) size:\s*(\d+)x(\d+)\s*$", actual_size)
-                densities = re.findall(r"(?m)^(?:Physical|Override) density:\s*(\d+)\s*$", actual_density)
-                require(sizes and tuple(map(int, sizes[-1])) == (width, height) and
-                        densities and int(densities[-1]) == density,
-                        "Actual Android display configuration differs from requested test layout")
-                display = {"layout": name, "width": width, "height": height,
-                           "android_test_density_dpi": density, "wm_size": actual_size,
-                           "wm_density": actual_density, "physical_ppi_claimed": False}
-                self.save(self.fresh(name + "-display"), display)
                 with self.recording("bridge-resize-" + name):
+                    # Film the real display transition. Recording only its settled
+                    # result can produce one valid frame with zero video duration.
+                    initial_capture = self.capture("bridge-" + name + "-before-resize")
+                    self.base.display(width, height, density)
+                    actual_size = self.base.adb("shell", "wm", "size")
+                    actual_density = self.base.adb("shell", "wm", "density")
+                    sizes = re.findall(r"(?m)^(?:Physical|Override) size:\s*(\d+)x(\d+)\s*$", actual_size)
+                    densities = re.findall(r"(?m)^(?:Physical|Override) density:\s*(\d+)\s*$", actual_density)
+                    require(sizes and tuple(map(int, sizes[-1])) == (width, height) and
+                            densities and int(densities[-1]) == density,
+                            "Actual Android display configuration differs from requested test layout")
+                    display = {"layout": name, "width": width, "height": height,
+                               "android_test_density_dpi": density, "wm_size": actual_size,
+                               "wm_density": actual_density, "physical_ppi_claimed": False}
+                    self.save(self.fresh(name + "-display"), display)
                     self.see(BRIDGE_PROMPT, "bridge-" + name + "-prompt", scroll=True, exact=True)
                     self.see("Verschobener Stein 1, zurück in den Vorrat", "bridge-" + name + "-model", scroll=True)
                     capture = self.capture("bridge-" + name)
                     require((capture["width"], capture["height"]) == (width, height), "Resize did not produce requested pixels")
-                    states.append({**display, "screenshot": capture,
+                    states.append({**display, "initial_screenshot": initial_capture, "screenshot": capture,
                                    "preservation": require_preserved(
                                        before, learning_snapshot(self.preferences(name + "-prefs")),
                                        before_task, self.checkpoint("bridge", moved=1))})
@@ -925,6 +929,7 @@ class LearningProbe:
                                      before_task, self.checkpoint("bridge", moved=1))
         return {"layouts": [f"{w}x{h}@{d}dpi" for _, w, h, d in DISPLAY_LAYOUTS],
                 "observations": states, "restored_display_preservation": restored,
+                "video_dimension_scope": "The encoder size stays fixed within each clip and is recorded from ffprobe. Target display pixels are verified independently by WM and full-size PNGs.",
                 "fold7_pixel_specification_source": FOLD7_SPECIFICATION,
                 "fold7_scope": "Emulated Galaxy Z Fold7 portrait resolutions with a chosen Android 420-dpi test density. This logical density is not the physical pixel density (PPI).",
                 "physical_fold_verified": False, "hinge_verified": False}

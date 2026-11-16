@@ -1,0 +1,23 @@
+{
+  "checkedFiles": [
+    "tools/nextgen/build_coverage.py",
+    ".github/probes/lumo_nextgen_learning_android_probe.py",
+    ".github/probes/lumo_nextgen_native_reader.py"
+  ],
+  "syntax": "PASS",
+  "workflowYaml": "PASS",
+  "workflowJobs": [
+    "validate",
+    "build",
+    "android",
+    "publish"
+  ],
+  "scope": "Parse-only current integration, no runtime result inferred",
+  "pythonPillowHostDependency": "Pillow==12.3.0 in isolated CI venv; original-video test requires ffprobe via ffmpeg package",
+  "hostTestModulesAdded": [
+    "scripts.tests.test_prepare_offline_voice",
+    "tools.android_qa.tests.test_nextgen_native_reader",
+    "tools.android_qa.tests.test_nextgen_current_candidate"
+  ],
+  "producerTestsPreservedSeparately": true
+}

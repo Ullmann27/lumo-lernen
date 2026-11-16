@@ -1309,6 +1309,45 @@ def markdown(doc):
     ]
     return "\n".join(lines)
 
+# These host templates enter the generated APK; the current QA readers and
+# their raw evidence also belong to this source snapshot. Python/JVM logs are
+# hashed only, never interpreted as Flutter runs or new acceptance results.
+for path in (
+    "tools/auto_install/LumoOfflineSpeechEngine.java",
+    "tools/auto_install/LumoLearningSpeech.kt",
+    "scripts/prepare_android.py",
+    "scripts/prepare_offline_voice.py",
+    "config/lumo-offline-voice.json",
+    ".github/probes/lumo_nextgen_learning_android_probe.py",
+    ".github/probes/lumo_nextgen_reference_android_probe.py",
+    ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+    ".github/probes/lumo_nextgen_native_reader.py",
+    ".github/probes/creative_android_probe.py",
+    ".github/probes/run_lumo_nextgen_current_android.sh",
+    "scripts/tests/test_prepare_offline_voice.py",
+    "scripts/tests/test_speech_envelope_contract.py",
+    "tools/android_qa/tests/test_nextgen_native_reader.py",
+    "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+    "tools/android_qa/tests/test_nextgen_current_candidate.py",
+    "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechFailureContract.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+    ".github/workflows/lumo-nextgen-learning-apk.yml",
+):
+    source(path)
+
+# Enumerate committed fixture/evidence files so sparse checkouts retain the
+# existing source_bytes() fallback instead of silently omitting absent folders.
+for path in subprocess.check_output([
+    "git", "ls-tree", "-r", "--name-only", HEAD, "--",
+    "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991",
+    "tools/android_qa/tests/fixtures/nextgen_resize_43790915460",
+    "scripts/tests/fixtures/offline_voice_tokenizer",
+    "docs/nextgen/evidence/pattern_wrapped_reader_20261116",
+    "docs/nextgen/evidence/banana_speech_quote_20261116",
+    "docs/nextgen/evidence/resize_capture_20261116",
+], cwd=ROOT, text=True).splitlines():
+    source(path)
+
 for component in document["modernComponents"]:
     source(component["source"])
 document["sources"] = sorted(SOURCES.values(), key=lambda row: row["path"])

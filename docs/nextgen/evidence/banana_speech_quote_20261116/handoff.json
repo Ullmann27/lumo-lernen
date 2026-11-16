@@ -1,0 +1,135 @@
+{
+  "schema": "lumo.native_banana_speech_quote_fix.v1",
+  "producer_commit": "5b539569bab806e8d002bdfdd6bd694a70a6a00f",
+  "tree": "0f90158ee1683e6c2d7df7bd86decddd847bcf43",
+  "base": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "branch": "fix/lumo-banana-speech-quote-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-banana-speech-fix",
+  "worktree_clean": true,
+  "files": {
+    "scripts/tests/fixtures/offline_voice_tokenizer/LICENSE-MODEL.txt": {
+      "bytes": 15007,
+      "sha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f"
+    },
+    "scripts/tests/fixtures/offline_voice_tokenizer/OfflineVoiceTokenizerContract.java": {
+      "bytes": 4306,
+      "sha256": "58cefe49e1a915cff24246eafe6ed3b291e93bda66df817c377fb3f6dbdf9e5a"
+    },
+    "scripts/tests/fixtures/offline_voice_tokenizer/README.md": {
+      "bytes": 1631,
+      "sha256": "38ffdea523d03543f5c9e5470a7294e9756b2217bc85fb2e3ef8c986154be4d5"
+    },
+    "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OnnxTensor.java": {
+      "bytes": 659,
+      "sha256": "5518b937512704d887558e5689a6e67c82c954bad1be6a937354f977cce0cd9b"
+    },
+    "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtEnvironment.java": {
+      "bytes": 373,
+      "sha256": "5ce0ac5da02cb70f37a166b173ce014afb0bbd99fe048b728b515c8769a22fdb"
+    },
+    "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtException.java": {
+      "bytes": 146,
+      "sha256": "1d65ade065a9bce7fb8ae31c2024e01faff6abaeef1a089ff2504ef19dbfb232"
+    },
+    "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtSession.java": {
+      "bytes": 1369,
+      "sha256": "a6469585042d54418e8b22ab14af725624d86c27c13fb3f6409503b2159bfcd3"
+    },
+    "scripts/tests/fixtures/offline_voice_tokenizer/unicode_indexer.bin": {
+      "bytes": 262144,
+      "sha256": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechFailureContract.kt": {
+      "bytes": 2810,
+      "sha256": "badcd128e17694c0b3a9fb7e5d9cd3cb2a4f889508cde865fede34b5130d072a"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt": {
+      "bytes": 163,
+      "sha256": "229d1a4f838a73eca31a17e2a78eaa0c9e0cae6306e5e804cb8ba5f2ac02be6d"
+    },
+    "scripts/tests/test_prepare_offline_voice.py": {
+      "bytes": 7142,
+      "sha256": "a03d3fb441580447bf2eb785627f3d8650388421c7959e430ae2a60f117caab6"
+    },
+    "scripts/tests/test_speech_envelope_contract.py": {
+      "bytes": 3941,
+      "sha256": "0fe53f3aaf620809cc51691a76e6a4087e5118da8eaf8d2ca1d9ab155a30bce0"
+    },
+    "tools/auto_install/LumoLearningSpeech.kt": {
+      "bytes": 10628,
+      "sha256": "6855fcf77abada42a7b59178e013108ef641f523007200be5c916d4e39e096c8"
+    },
+    "tools/auto_install/LumoOfflineSpeechEngine.java": {
+      "bytes": 15895,
+      "sha256": "72e09c511b9fa35606a8fc5024f1333c5a0b10bbab02d4be9c8cbac37d0430f2"
+    }
+  },
+  "production_files": [
+    "tools/auto_install/LumoOfflineSpeechEngine.java",
+    "tools/auto_install/LumoLearningSpeech.kt"
+  ],
+  "native_source_unchanged": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "original_android": {
+    "run": 43790709991,
+    "job": 133048238984,
+    "artifact": 14192477999,
+    "apk_source": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+    "outcome": "DIAGNOSTIC_ONLY_FAILED",
+    "throwable_captured": false
+  },
+  "local_cause": "Exact original sentence reaches production synthesize/ids and rejects U+201E against the actual pinned indexer before inference. The existing quote normalization omitted U+201E.",
+  "original_sentence": "Baue Banane. Als Nächstes kommt die Silbe „Ba“.",
+  "fix": "Map only U+201E to the same ASCII quote already used for other typographic double quotes. Unknown-character rejection remains.",
+  "diagnostics": "Current-generation failed-only JSON with numeric playback id/generation and fixed phase/code enums. No text, transcript, child/device fields, exception message or arbitrary details. Existing started/completed source records byte-equal.",
+  "red": {
+    "tests": 2,
+    "failed": 2,
+    "passed": 0,
+    "skipped": 0,
+    "actual_java_error": "IllegalArgumentException: Unsupported speech character at LumoOfflineSpeechEngine.ids",
+    "production_was_base": true
+  },
+  "green": {
+    "python_tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0,
+    "actual_java_tokenizer_checks": 11,
+    "existing_java_guards": 11,
+    "kotlin_pcm_checks": 23,
+    "kotlin_lifecycle_checks": 17,
+    "kotlin_build_consent_rate_checks": 30,
+    "kotlin_failure_checks": 15,
+    "actual_template_copy_namespaces": 2
+  },
+  "first_green_attempt": "10/11 passed; new control assertion incorrectly expected an added period after a closing quote. Production behavior was preserved; only that expectation was corrected. Original failed log retained.",
+  "commands": {
+    "JAVA_HOME": "/workspace/scratch/5d87eafb90be/native-toolchain/jdk17",
+    "LUMO_KOTLIN_LIB_DIR": "/workspace/scratch/5d87eafb90be/native-toolchain/gradle-8.11.1/lib",
+    "tests": "python3 -m unittest -v scripts.tests.test_prepare_offline_voice scripts.tests.test_speech_envelope_contract scripts.tests.test_prepare_android.AndroidHostTest.test_actual_local_voice_templates_preserve_host_namespace_and_user_files"
+  },
+  "limits": [
+    "ONNX session/tensor boundary is explicit synthetic; no ONNX run is permitted.",
+    "No new Android playback, mouth, gesture or acoustic proof.",
+    "Original Android Throwable not captured; local deterministic rejection supports the cause.",
+    "No version, native pin, release, workflow, normal QA gate or remote changes."
+  ],
+  "logs": {
+    "red.log": {
+      "bytes": 3291,
+      "sha256": "7ff9f5929e5c1c7e5cc56340a23f2beac6ec9e81bb8d420d050b48364d6c7cc6"
+    },
+    "green-first-control-expectation-failure.log": {
+      "bytes": 4357,
+      "sha256": "f07b85ef9fafb2d47df679d24bfc64a3f01b011c78eafef5b231a611edb265cd"
+    },
+    "green.log": {
+      "bytes": 4069,
+      "sha256": "f329df40bf25bb219b16214ab54f29021b889b6dff092c2b8aef93f0091f7787"
+    },
+    "source-check.json": {
+      "bytes": 160,
+      "sha256": "d8ba8272441b4d202b8a8cc32e6f66c1cbcc3e0c93c087f8ed4afcd0d7b89efc"
+    }
+  }
+}

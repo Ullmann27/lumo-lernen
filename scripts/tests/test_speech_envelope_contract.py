@@ -80,6 +80,12 @@ class SpeechEnvelopeContractTest(unittest.TestCase):
             'LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
         )
 
+    def test_current_failure_has_private_content_free_owner_and_stale_guard(self):
+        self.run_contract(
+            'LearningSpeechFailureContractKt',
+            'LUMO_SPEECH_FAILURE_PASS checks=15 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

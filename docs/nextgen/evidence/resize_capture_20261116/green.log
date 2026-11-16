@@ -1,0 +1,8 @@
+test_original_single_frame_is_still_rejected_by_actual_recording_gate (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_original_single_frame_is_still_rejected_by_actual_recording_gate) ... ok
+test_recording_and_initial_view_precede_every_wm_change (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_recording_and_initial_view_precede_every_wm_change) ... ok
+test_target_pixel_and_progress_gates_still_fail_and_restore_display (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_target_pixel_and_progress_gates_still_fail_and_restore_display) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.142s
+
+OK

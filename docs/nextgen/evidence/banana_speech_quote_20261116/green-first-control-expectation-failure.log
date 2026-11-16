@@ -1,0 +1,66 @@
+test_existing_marker_cannot_hide_a_changed_runtime (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_existing_marker_cannot_hide_a_changed_runtime) ... ok
+test_missing_or_modified_model_license_is_not_silently_ignored (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_missing_or_modified_model_license_is_not_silently_ignored) ... ok
+test_pinned_bytes_license_dependency_and_idempotence (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_pinned_bytes_license_dependency_and_idempotence) ... ok
+test_unbalanced_dependency_marker_is_refused (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_unbalanced_dependency_marker_is_refused) ... ok
+test_wrong_archive_is_refused_before_payload_use (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_wrong_archive_is_refused_before_payload_use) ... ok
+test_existing_java_voice_guards (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_existing_java_voice_guards) ... ok
+test_original_banana_sentence_with_exact_pinned_tokenizer (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_original_banana_sentence_with_exact_pinned_tokenizer) ... FAIL
+test_build_consent_rate_and_activity_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_build_consent_rate_and_activity_contract) ... ok
+test_current_failure_has_private_content_free_owner_and_stale_guard (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_current_failure_has_private_content_free_owner_and_stale_guard) ... ok
+test_original_learning_lifecycle_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_original_learning_lifecycle_contract) ... ok
+test_original_pcm_envelope_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_original_pcm_envelope_contract) ... ok
+
+======================================================================
+FAIL: test_original_banana_sentence_with_exact_pinned_tokenizer (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_original_banana_sentence_with_exact_pinned_tokenizer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-banana-speech-fix/scripts/tests/test_prepare_offline_voice.py", line 59, in test_original_banana_sentence_with_exact_pinned_tokenizer
+    result = self.run_checked([
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-banana-speech-fix/scripts/tests/test_prepare_offline_voice.py", line 54, in run_checked
+    raise AssertionError(result.stdout + result.stderr)
+AssertionError: PINNED_INDEXER sha256=8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30 bytes=262144
+Exception in thread "main" java.lang.AssertionError: Existing quote normalization remains
+	at OfflineVoiceTokenizerContract.check(OfflineVoiceTokenizerContract.java:19)
+	at OfflineVoiceTokenizerContract.main(OfflineVoiceTokenizerContract.java:58)
+
+
+----------------------------------------------------------------------
+Ran 11 tests in 6.079s
+
+FAILED (failures=1)
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+PASS local voice Java guards: 11
+LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_FAILURE_PASS checks=15 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47

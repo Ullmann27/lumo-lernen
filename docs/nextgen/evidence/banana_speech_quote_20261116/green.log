@@ -1,0 +1,59 @@
+test_existing_marker_cannot_hide_a_changed_runtime (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_existing_marker_cannot_hide_a_changed_runtime) ... ok
+test_missing_or_modified_model_license_is_not_silently_ignored (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_missing_or_modified_model_license_is_not_silently_ignored) ... ok
+test_pinned_bytes_license_dependency_and_idempotence (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_pinned_bytes_license_dependency_and_idempotence) ... ok
+test_unbalanced_dependency_marker_is_refused (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_unbalanced_dependency_marker_is_refused) ... ok
+test_wrong_archive_is_refused_before_payload_use (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_wrong_archive_is_refused_before_payload_use) ... ok
+test_existing_java_voice_guards (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_existing_java_voice_guards) ... ok
+test_original_banana_sentence_with_exact_pinned_tokenizer (scripts.tests.test_prepare_offline_voice.OfflineSpeechTokenizerTest.test_original_banana_sentence_with_exact_pinned_tokenizer) ... ok
+test_build_consent_rate_and_activity_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_build_consent_rate_and_activity_contract) ... ok
+test_current_failure_has_private_content_free_owner_and_stale_guard (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_current_failure_has_private_content_free_owner_and_stale_guard) ... ok
+test_original_learning_lifecycle_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_original_learning_lifecycle_contract) ... ok
+test_original_pcm_envelope_contract (scripts.tests.test_speech_envelope_contract.SpeechEnvelopeContractTest.test_original_pcm_envelope_contract) ... ok
+test_actual_local_voice_templates_preserve_host_namespace_and_user_files (scripts.tests.test_prepare_android.AndroidHostTest.test_actual_local_voice_templates_preserve_host_namespace_and_user_files)
+Real new source templates; fixtures do not prove Android compilation. ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 5.926s
+
+OK
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+PASS local voice Java guards: 11
+PINNED_INDEXER sha256=8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30 bytes=262144
+LUMO_OFFLINE_TOKENIZER_PASS checks=11 production_normalizer_and_ids=true real_pinned_indexer=true onnx_boundary=synthetic inference=false Android_playback=false
+LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_FAILURE_PASS checks=15 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true
+LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: example.retained.host; distribution=family; 3D bridge connected
+Android host prepared: example.retained.host; distribution=family; 3D bridge connected
