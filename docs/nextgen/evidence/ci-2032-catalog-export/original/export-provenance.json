@@ -1,0 +1,2445 @@
+{
+  "schema": "lumo.nextgen.current.catalog.export",
+  "version": 1,
+  "status": "PASS",
+  "sourceHead": "a5ea7422b1152576b34cf80519856129ff264ac1",
+  "workflowRun": 43836322226,
+  "startedUtc": "2026-11-16T09:05:41.089449+00:00",
+  "configuration": {
+    "schemaVersion": 1,
+    "versionName": "0.13.20",
+    "versionCode": 2032,
+    "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+    "exportAttempt": 1
+  },
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--no-test-assets",
+    "--reporter",
+    "expanded",
+    "tools/nextgen/export_learning_catalog_test.dart",
+    "--dart-define=LUMO_CATALOG_OUTPUT=/home/runner/work/lumo-lernen/lumo-lernen/evidence/catalog/catalog.json"
+  ],
+  "sources": [
+    {
+      "path": ".github/workflows/lumo-nextgen-catalog-export.yml",
+      "bytes": 4982,
+      "sha256": "10304be797565faa24c612b1bb693635849231fe146c2aa7404d2fbb5acbf00a"
+    },
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "0d283f6e3be921ed8fca734de66001df1c2c18f4786b10ab918a080d6d52e8b6"
+    },
+    {
+      "path": "config/nextgen-catalog-export.json",
+      "bytes": 160,
+      "sha256": "56ee5524065554710e8f3a290f24388afaa428edd99e6c6883a53f40585cb7cf"
+    },
+    {
+      "path": "lib/app/app_design.dart",
+      "bytes": 12480,
+      "sha256": "ac9e87f7932cc56aedb976cb7dbfadee99509e0822ff7641cc225603df408f5f"
+    },
+    {
+      "path": "lib/app/app_shell.dart",
+      "bytes": 39210,
+      "sha256": "1d2be251542a1733c6638326db87df09f4e2c7edb541f6c916e405f3cf21882a"
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "bytes": 58711,
+      "sha256": "ddd16be7d4d43104fee3f0c476f1de4691d2afcc157f208646a8931c68b8a93f"
+    },
+    {
+      "path": "lib/app/app_theme.dart",
+      "bytes": 11506,
+      "sha256": "c0f00bdcf125967b7188a3af350938d58597626b39c7938fe2a0def199688833"
+    },
+    {
+      "path": "lib/app/lumo_companion_host.dart",
+      "bytes": 12781,
+      "sha256": "bfcab61255f60e62826ba60558f75b1341a125eee78a9a92704fe8502e63fd18"
+    },
+    {
+      "path": "lib/core/achievements/achievement_repository.dart",
+      "bytes": 3415,
+      "sha256": "70ef49906992e742d043acc1535b4896381cfa3d5460e36414fb7e1ad0692154"
+    },
+    {
+      "path": "lib/core/achievements/achievement_tracker.dart",
+      "bytes": 4530,
+      "sha256": "af1c1e3a7f3c8a68c89d2e49aad552629f02a57cbae9f6a7a234c843cf6bfe7c"
+    },
+    {
+      "path": "lib/core/achievements/lumo_achievement.dart",
+      "bytes": 6937,
+      "sha256": "18e326cee3b7018896401209fb8f56aebf92b0a3458a9f3beb870d867e655ffb"
+    },
+    {
+      "path": "lib/core/adventure/adventure_word_data.dart",
+      "bytes": 17913,
+      "sha256": "0838dc64899879d9e95dbbb7d5e6a130f94610ad018fc2c6b632979af72bd5a8"
+    },
+    {
+      "path": "lib/core/adventure/lumo_adventure_tasks.dart",
+      "bytes": 32429,
+      "sha256": "0a1727e6c9782086d9b2140498d1548394dda83fe5ba4714667ef3d2663177df"
+    },
+    {
+      "path": "lib/core/ai_task_cache.dart",
+      "bytes": 6902,
+      "sha256": "257dda1a5aa74d2d44ee4b64e3f317add3fa094a81188e59c487ef69d38b45b6"
+    },
+    {
+      "path": "lib/core/ai_tutor_service.dart",
+      "bytes": 5229,
+      "sha256": "cbbd3c4d282456876db3dbc4cfdd6288f9ef5aadf5094931b90b9b82e2a2df81"
+    },
+    {
+      "path": "lib/core/app_install_helper.dart",
+      "bytes": 4075,
+      "sha256": "891c229719c4a983664a3b0d30fb209de8adfb7d917e6a49b31fba76bdd1ddfc"
+    },
+    {
+      "path": "lib/core/app_settings.dart",
+      "bytes": 11518,
+      "sha256": "f2ab011d6189845e9f424fa10539148584566020c149f4ed955a739c9406fd4d"
+    },
+    {
+      "path": "lib/core/app_update_service.dart",
+      "bytes": 19810,
+      "sha256": "4d643c4b2204fe7952e724f535368ac6a798bc6f112b076e5beb7a6036b2c75c"
+    },
+    {
+      "path": "lib/core/attempt_log_repository.dart",
+      "bytes": 2550,
+      "sha256": "ab5896f1e8b0b67b6a34f6c1879cabe926ce29bf385e2627fd77a8d1ce5f8790"
+    },
+    {
+      "path": "lib/core/checked_task_patterns.dart",
+      "bytes": 2509,
+      "sha256": "c7ac6258139e8c12dd8d0903304e1dbe9d959abe2ef91fd71687eeed3c9d98ac"
+    },
+    {
+      "path": "lib/core/choice_question_quality.dart",
+      "bytes": 20577,
+      "sha256": "5585069db39803124425aee997eac4eb5f16bceb1a0dc456ae84d6bdc252a2cc"
+    },
+    {
+      "path": "lib/core/cognitive_profile_generator.dart",
+      "bytes": 19799,
+      "sha256": "1a2d52215e64e029d0db057e3548424741ca30b46aee3440a68ed5d01c92a991"
+    },
+    {
+      "path": "lib/core/cognitive_profile_repository.dart",
+      "bytes": 2768,
+      "sha256": "d73c46b1bc6e61df56a6ebbf8db465955b9b2c1a4e8b45cfcd642124039ca2f5"
+    },
+    {
+      "path": "lib/core/cognitive_profile_scorer.dart",
+      "bytes": 1660,
+      "sha256": "cef38dc5dc5bd1939dbf6fe543fc346f5bec785e813f8137440cfd063e740793"
+    },
+    {
+      "path": "lib/core/curriculum/academy_topic_units.dart",
+      "bytes": 1942,
+      "sha256": "8bbd138dc33431f273cc4fa611e8dac34b762049decd84822c7a987601b102d7"
+    },
+    {
+      "path": "lib/core/curriculum/primary_activity_catalog.dart",
+      "bytes": 18536,
+      "sha256": "11a35f16fb3106c54acadee86d21ce5e06d4dfaee8ddf4a9fdbfe65df8b5788a"
+    },
+    {
+      "path": "lib/core/daily_mission_repository.dart",
+      "bytes": 9821,
+      "sha256": "49ee93edfb5df1618715805ca01b2ab2f1ed2b5ca7ed74358563b6d33d0baad5"
+    },
+    {
+      "path": "lib/core/deep_link_router.dart",
+      "bytes": 2230,
+      "sha256": "f52698d9c6d54f25aa11de8a3a1fd43cc42c16594ed17f1b7b9d457ead734b95"
+    },
+    {
+      "path": "lib/core/discovery_progress.dart",
+      "bytes": 8031,
+      "sha256": "c949f3b141d644556bbf434161e08e6158b620ff697fd6a3c948a3d2cec83705"
+    },
+    {
+      "path": "lib/core/embedded_game_service.dart",
+      "bytes": 4109,
+      "sha256": "1ed92caa82d678cf7b97badfa4f1dab6934449f3c0727d72b2eac00b6f816449"
+    },
+    {
+      "path": "lib/core/english_vocabulary_extensions.dart",
+      "bytes": 9182,
+      "sha256": "64c326e8fb27eab9adeacc778e1ff9d95e27901de55da902a0b46041d70d5e16"
+    },
+    {
+      "path": "lib/core/error_breakdown_repository.dart",
+      "bytes": 3616,
+      "sha256": "d2e6c1b2f11ab513dc56880c26687513113382454529eb2aab6b663a3627b18f"
+    },
+    {
+      "path": "lib/core/game_progress_repository.dart",
+      "bytes": 9590,
+      "sha256": "1838d8bdc9ee99c6b07a5e430c0d4b3bc7380f177a2e844a27e8376536cbcfd9"
+    },
+    {
+      "path": "lib/core/german_curriculum_extensions.dart",
+      "bytes": 36835,
+      "sha256": "3da15e9c4fcd114517f8a98b791977934b9f3f5c481433db4d56937ce680faaf"
+    },
+    {
+      "path": "lib/core/german_task_templates.dart",
+      "bytes": 46860,
+      "sha256": "744e55d8551aecb8d1cea7f6f6fb3eb43991d432285e8ea0fb443b86e0a32361"
+    },
+    {
+      "path": "lib/core/iq/exam_session_owner.dart",
+      "bytes": 1901,
+      "sha256": "81483ccae3244e428a3d9037d679ae5e4b0e3a662e6c111ef129defe21dfa7ab"
+    },
+    {
+      "path": "lib/core/iq/iq_puzzle_generator.dart",
+      "bytes": 23726,
+      "sha256": "766963d31f9eb6b1cd73bc7191790fc4f65f7a6d64d9a240da64f3f1e4859974"
+    },
+    {
+      "path": "lib/core/iq/iq_puzzle_quality.dart",
+      "bytes": 10272,
+      "sha256": "4bad72709437722202e20ec54c14ef9694a977a72f6193d06afd5caa0ca471d9"
+    },
+    {
+      "path": "lib/core/iq/iq_test_repository.dart",
+      "bytes": 2478,
+      "sha256": "125a77d422cfc218fe2caff07be9099a2aa506e0d351a45ab28a32fcd9379961"
+    },
+    {
+      "path": "lib/core/iq/iq_test_session.dart",
+      "bytes": 4299,
+      "sha256": "3460e8f169e68ae6b0e3ba2b84345e455b504d488902c411eae792cf6f244bb0"
+    },
+    {
+      "path": "lib/core/iq/test_history_queue.dart",
+      "bytes": 695,
+      "sha256": "5143e5dafda72c813171fb539dbc43c9874c5cf8c302d331973d2c6e3570970a"
+    },
+    {
+      "path": "lib/core/learning_attempt_id.dart",
+      "bytes": 353,
+      "sha256": "138daee9c54064ba87af3ba81a86db6119b7d54a6a1e1d2b744252b5d71b0eda"
+    },
+    {
+      "path": "lib/core/learning_journey.dart",
+      "bytes": 14990,
+      "sha256": "92d9753ca275800810067339d8499a26d719e8cdff137988c08cd77429020f94"
+    },
+    {
+      "path": "lib/core/learning_profile_engine.dart",
+      "bytes": 17450,
+      "sha256": "af40237d4f43d2cb195337aacdbd3de8abefb14094ecc31be06e1da9fe5c49be"
+    },
+    {
+      "path": "lib/core/legacy_learning_data.dart",
+      "bytes": 13768,
+      "sha256": "4a97ae4829b7f64a7f68ca61d77e97951d4cb0fef5c5b8806bf3595ac6955ea3"
+    },
+    {
+      "path": "lib/core/lumo_ai_learning_access.dart",
+      "bytes": 1539,
+      "sha256": "239a620940e8933033e0f7cf4365bbbdff6237340541c4cb5945a41f0c85b960"
+    },
+    {
+      "path": "lib/core/lumo_ai_learning_policy_bridge.dart",
+      "bytes": 1365,
+      "sha256": "b6b70c46f4e685185b5b626ae6af5a762430f00252c6d796abcd94d0b4df41f2"
+    },
+    {
+      "path": "lib/core/lumo_ai_proxy_client.dart",
+      "bytes": 40885,
+      "sha256": "09512bb247e4dfeb31f8f02296166cd8203bb7edfc9598961f704eb6e2508710"
+    },
+    {
+      "path": "lib/core/lumo_asset_diagnostics.dart",
+      "bytes": 392,
+      "sha256": "2c26acfbd36109dc18754fff1b7910174e479c999f84a801726837afd6fbb364"
+    },
+    {
+      "path": "lib/core/lumo_asset_paths.dart",
+      "bytes": 4966,
+      "sha256": "e758fa3426600bd26ae1ed688c0952b2b3e21f8c0bfc7c249ca768577ea85fa6"
+    },
+    {
+      "path": "lib/core/lumo_brain.dart",
+      "bytes": 46810,
+      "sha256": "3db0869f5061ea6654fd9c7bba5b9d70b607e0a30b73f5e8d821b49d147c364f"
+    },
+    {
+      "path": "lib/core/lumo_child_speech_normalizer.dart",
+      "bytes": 10095,
+      "sha256": "14d7d977043a4874bb4c7e807209296cfa68529456a0a92f0ba83c78ebf94e09"
+    },
+    {
+      "path": "lib/core/lumo_companion_agent.dart",
+      "bytes": 5694,
+      "sha256": "95e021fb9f8c78b6fb56ddad93ce1191850bd943839245831dbebac2a591ed59"
+    },
+    {
+      "path": "lib/core/lumo_companion_engine.dart",
+      "bytes": 13873,
+      "sha256": "52ad6e57bc67116fdf544daddabdd757c47e446ec3c092e7e51b15b2c8c1c161"
+    },
+    {
+      "path": "lib/core/lumo_companion_guide.dart",
+      "bytes": 8654,
+      "sha256": "1e611d40f08ea9386cc1960aa9d28d5c5d5bb8ab6438566fce39124e003f1fc9"
+    },
+    {
+      "path": "lib/core/lumo_companion_pose.dart",
+      "bytes": 3343,
+      "sha256": "43fe4f8cd273ac44bafa9e7256f84e8f6dfb0769f103a30211e4080c5f2fdbcd"
+    },
+    {
+      "path": "lib/core/lumo_companion_state.dart",
+      "bytes": 5928,
+      "sha256": "28ea04ff8e4ed0f4b0c66f392e963952bd5827a8c3197ed2f1c1605afcfce095"
+    },
+    {
+      "path": "lib/core/lumo_context_engine.dart",
+      "bytes": 4563,
+      "sha256": "bfad3d3c3f3c36a5fd32e056071bc5c6ed8515c298d964641a42c797cbeebff1"
+    },
+    {
+      "path": "lib/core/lumo_conversation_controller.dart",
+      "bytes": 20507,
+      "sha256": "4adafc441d2f58145306d2dc57784f523d414c34406b998b5e03855127ede105"
+    },
+    {
+      "path": "lib/core/lumo_cosmos.dart",
+      "bytes": 14920,
+      "sha256": "8d48259e8f1ac8d232aad75b922a68b5e50b5243bcd3b84774c322c45ed59c1a"
+    },
+    {
+      "path": "lib/core/lumo_error_log.dart",
+      "bytes": 3346,
+      "sha256": "5719e3efdd2eb1f2dc7d949ddc2caae4e43c043e78b2fb3528b3973a47b69313"
+    },
+    {
+      "path": "lib/core/lumo_feature_permissions.dart",
+      "bytes": 1182,
+      "sha256": "dbc18aa8a923e72f9f173609407cb92e08fc665f1d24c8dd1f60ec695bc4ac65"
+    },
+    {
+      "path": "lib/core/lumo_image_generator.dart",
+      "bytes": 16216,
+      "sha256": "0ef4a90b39fe41a6e28f2e3348a3e3e4fabd73ebf32c3c77e11e3f00787178c6"
+    },
+    {
+      "path": "lib/core/lumo_interaction_feedback_policy.dart",
+      "bytes": 723,
+      "sha256": "c2373fa7d0653b8c71bb4bae36f566379413c77b46acc07a81d977b8fb2ee09f"
+    },
+    {
+      "path": "lib/core/lumo_learning_dialogue_intent.dart",
+      "bytes": 4198,
+      "sha256": "1ff69f0a8cd8799d6105dba4ed5d637c5699ec1f32f7dd85715b27ff00aa8145"
+    },
+    {
+      "path": "lib/core/lumo_learning_narration.dart",
+      "bytes": 4271,
+      "sha256": "32cc9792a665f5bdb802d6662a0e6c04e0b2c400c56af0068aeec644dd897bb6"
+    },
+    {
+      "path": "lib/core/lumo_learning_session_contract.dart",
+      "bytes": 3686,
+      "sha256": "1c8d8f2655faef057089d845a89920822409bfa91c9388e5bed7c70d62caf18d"
+    },
+    {
+      "path": "lib/core/lumo_music.dart",
+      "bytes": 6369,
+      "sha256": "1397a882fdda8d4cffacfe5a26db202087c73adad6c2564e06a429ff065bccbb"
+    },
+    {
+      "path": "lib/core/lumo_offline_voice_client.dart",
+      "bytes": 2609,
+      "sha256": "2df65c64508d60f3eb4136ce1489451ec9c5005293954a85b2d00af357f0e170"
+    },
+    {
+      "path": "lib/core/lumo_personal_daily_tutor_planner.dart",
+      "bytes": 11391,
+      "sha256": "0a5ecef3bdb85bacdd433bc8f18a1749e53ebea0d0889b30a49b3d9607e20d01"
+    },
+    {
+      "path": "lib/core/lumo_quest_library.dart",
+      "bytes": 16272,
+      "sha256": "900b30057c22ebfaf0ad1e9ebad01ce427680eb7b52a8fbeb223678d12b09826"
+    },
+    {
+      "path": "lib/core/lumo_sound.dart",
+      "bytes": 5382,
+      "sha256": "034468c9f2d6a6516aefcb19feb6a828facc6f0cd48b72aefabd4690c2fa148f"
+    },
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "bytes": 19020,
+      "sha256": "c05c85d68b95b77732bb48d52d371baec5516b189477813ab36c46f2c3d0c9fb"
+    },
+    {
+      "path": "lib/core/lumo_speech_readiness.dart",
+      "bytes": 3163,
+      "sha256": "bc529b06ed53ffd12d7369b0a2eaa922ed23dd0fc47c02adf53a52804c72ebe0"
+    },
+    {
+      "path": "lib/core/lumo_story_generator.dart",
+      "bytes": 34813,
+      "sha256": "defbc8e24af00a562892da2dcaabec9ca7d7b95ed3f5261bb5001f4592992e1f"
+    },
+    {
+      "path": "lib/core/lumo_story_library.dart",
+      "bytes": 8608,
+      "sha256": "8431bc9ab87340b021efd05ccf01315c2655b93f8b6fc41b023a9527cba6e5ca"
+    },
+    {
+      "path": "lib/core/lumo_story_summary_scoring.dart",
+      "bytes": 3436,
+      "sha256": "441828ec5f59bc0ff77ac22619c4c2d8d8a33a4979daa91a85431d148e4b2717"
+    },
+    {
+      "path": "lib/core/lumo_sulafat_client.dart",
+      "bytes": 7015,
+      "sha256": "370c8f77d83cbb37ca9c23a8008dd060c490e6e63f0cd991831c9de8c4ae9c92"
+    },
+    {
+      "path": "lib/core/lumo_tutor_contracts.dart",
+      "bytes": 4922,
+      "sha256": "998fbad5236e050a1841f5e98fc5995a1addd0e9d811ff3d9aeab369f888ee22"
+    },
+    {
+      "path": "lib/core/lumo_tutor_engine.dart",
+      "bytes": 7400,
+      "sha256": "02c7c98913e7126e3b3b9ff1e33a135f6acf7375b30c0032e503d654a80f5553"
+    },
+    {
+      "path": "lib/core/lumo_tutor_offer_coordinator.dart",
+      "bytes": 1757,
+      "sha256": "fdc4f4af3f18391bca3615d957b392cf7139991f4670f927e267367c290e5ab4"
+    },
+    {
+      "path": "lib/core/lumo_visual_aid_service.dart",
+      "bytes": 14010,
+      "sha256": "22f596b73ff96683ad7d6da2bcdd5c703a2be98358e7f46d5d686537b4e1dc0d"
+    },
+    {
+      "path": "lib/core/lumo_voice.dart",
+      "bytes": 27691,
+      "sha256": "d7331cbe4f59fa148b9c86cd43d5860c0b50ca2ab9eff453e1d4e3dbcacaf503"
+    },
+    {
+      "path": "lib/core/lumo_voice_clips.dart",
+      "bytes": 5320,
+      "sha256": "41b54a039e6ef7b9c1c732d0c5c5c49031f8e30124a0ede00bdac74bc8edfc2e"
+    },
+    {
+      "path": "lib/core/lumo_voice_policy.dart",
+      "bytes": 641,
+      "sha256": "2d43c6454b1ffb3e346ea5ffa03ea759a830bbbb8c6c285efae8564f059c3f05"
+    },
+    {
+      "path": "lib/core/lumo_wav_audio.dart",
+      "bytes": 3867,
+      "sha256": "cd249f23a2a8dfa63e6deaa71f35387ac86541b1a89dafcd1eb0df8a27c6ceb4"
+    },
+    {
+      "path": "lib/core/math/lumo_rechentricks.dart",
+      "bytes": 14976,
+      "sha256": "99961b84bbe8bfcb1a6443c1ecf9c688e451636b3f5e81bebfa5edf7eafca998"
+    },
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "bytes": 49784,
+      "sha256": "5db29aaa2d18a8b8eb3dc4f3dffd433b13ec364e7768fb27a90a7d16926854d2"
+    },
+    {
+      "path": "lib/core/native_profile_key_repository.dart",
+      "bytes": 10553,
+      "sha256": "27790a3fecd569a57a0c6fb6905636773bc95938fe22f9c8bbe84b677603471c"
+    },
+    {
+      "path": "lib/core/primary_school_word_data.dart",
+      "bytes": 27170,
+      "sha256": "e43b7352c2051ee32d50b9c60ddf0c7bc9adfc18df0afc087805a016e92aa723"
+    },
+    {
+      "path": "lib/core/profile_repository.dart",
+      "bytes": 3877,
+      "sha256": "0aec803483aecbf6b34ef95c8807c5895d859ceba8a0bfe404a2868ab85af6e8"
+    },
+    {
+      "path": "lib/core/progress_recommendation_service.dart",
+      "bytes": 9078,
+      "sha256": "acb3742230fff11ca7e89f1a8940ccb9af4271fc3d47f13c42084ca2fc13ee54"
+    },
+    {
+      "path": "lib/core/progress_repository.dart",
+      "bytes": 14238,
+      "sha256": "081d3a3217849d8d53dbe290700c78c457f34c4767045bc7389ef8b30690aee4"
+    },
+    {
+      "path": "lib/core/reading_comprehension_data.dart",
+      "bytes": 23019,
+      "sha256": "a0f97c7baaef85605cd7513a7836f4e0310391038b700b051d64f10660ebfa9b"
+    },
+    {
+      "path": "lib/core/reading_progress_repository.dart",
+      "bytes": 3408,
+      "sha256": "a940e16b271d04a6bf174f87b52182df8ac7c1cde7158f7daa66209b48dbd08f"
+    },
+    {
+      "path": "lib/core/reading_story_memory_repository.dart",
+      "bytes": 1707,
+      "sha256": "97cb81772622091943158907f550bba97e6f9e75eb8e3b912c33b024b15d0495"
+    },
+    {
+      "path": "lib/core/reading_text_cleaner.dart",
+      "bytes": 1126,
+      "sha256": "ae262cc35060222c6c6123041ed10e0ecea8d7d3466fa7bb0738e313f1032923"
+    },
+    {
+      "path": "lib/core/reading_v2_pronunciation_analyzer.dart",
+      "bytes": 7580,
+      "sha256": "fc5a55ba64c3775cb9701ee36cac2e7699dd62390cbe0beb906c7a300cbd97a1"
+    },
+    {
+      "path": "lib/core/recent_task_repository.dart",
+      "bytes": 2882,
+      "sha256": "b7b27ba90dd9b354f5dbea97f12c9050f84da22474560969963dacc0adb512cb"
+    },
+    {
+      "path": "lib/core/recommendation_engine.dart",
+      "bytes": 5450,
+      "sha256": "4f6739a7dfadbda163093b3e81b34cb46a79b911ab9a90d8a8271769b93033db"
+    },
+    {
+      "path": "lib/core/reward_shop_repository.dart",
+      "bytes": 1140,
+      "sha256": "beac3bd4b4420c6099a455144160e61b1f9bb195c9697f5ec8d5539f75f65187"
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "bytes": 14366,
+      "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045"
+    },
+    {
+      "path": "lib/core/safe_fallback_pool.dart",
+      "bytes": 11656,
+      "sha256": "34ac128ec76d0b313ea7445e1221c9385baf7d82a9bac6a7eac7cc8e3c4168ad"
+    },
+    {
+      "path": "lib/core/scanned_work_analysis.dart",
+      "bytes": 14962,
+      "sha256": "1374a9813bf39eb0e8f9e1f89c732b2b8d1a7bbc3f8487433c409eb49ef40f72"
+    },
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "bytes": 84548,
+      "sha256": "623895c04db1a554a64136c9c67ce9857d304695ff90f3120461909d286c4332"
+    },
+    {
+      "path": "lib/core/school_repository.dart",
+      "bytes": 8279,
+      "sha256": "c7fb332684b64339b70428d84d3e1485534e5029dafec8fabec5517e789756e5"
+    },
+    {
+      "path": "lib/core/science_quality_extension.dart",
+      "bytes": 8398,
+      "sha256": "a0ef18562143b18230014f913745d32d312d3697251d3feed18de3451c691a01"
+    },
+    {
+      "path": "lib/core/science_task_data.dart",
+      "bytes": 27687,
+      "sha256": "aad041f03b6ac34020cdbef054ce7bb2753a08a605574d140bffb17d9c1237f8"
+    },
+    {
+      "path": "lib/core/session_variety_guard.dart",
+      "bytes": 5114,
+      "sha256": "32146d03e87ffd9534a42f3f309325a688c64d43afbe94c1044deab622d234c7"
+    },
+    {
+      "path": "lib/core/settings_repository.dart",
+      "bytes": 1746,
+      "sha256": "7ded536f1674c0e12d965046a3b471805f5253be70c1fa887084b104a470f256"
+    },
+    {
+      "path": "lib/core/shape_question_data.dart",
+      "bytes": 4836,
+      "sha256": "c2f48349423a08237cc43ebfd6833cf340d93377792448fd53c991765085ec97"
+    },
+    {
+      "path": "lib/core/spelling_context_data.dart",
+      "bytes": 15724,
+      "sha256": "b5f605d79ba1aced1f1be030bb33f49c1428fc1f2ab6835b1b99d88741d40099"
+    },
+    {
+      "path": "lib/core/task_hint_service.dart",
+      "bytes": 25713,
+      "sha256": "518c99017e6826f70baf5948f43eb643782d73954fb1383c579f0c44d81d7c8d"
+    },
+    {
+      "path": "lib/core/task_quality_guard.dart",
+      "bytes": 26311,
+      "sha256": "3aabb2f01e9617ed4fc237aadcbbccbdaff2c6fce3ae867c4ef54baef4f93360"
+    },
+    {
+      "path": "lib/core/test_result_repository.dart",
+      "bytes": 3723,
+      "sha256": "d759385818de363a8c55ca8c8486609bf364379137e3abc26cb79b204436e7b2"
+    },
+    {
+      "path": "lib/core/tutor_coordination_engine.dart",
+      "bytes": 5777,
+      "sha256": "973e10535645ca59637cd5db666d5a02d69649c9ce83da859041e1781741636a"
+    },
+    {
+      "path": "lib/core/user_profile.dart",
+      "bytes": 2041,
+      "sha256": "31393eef4051a895b01eb450b40664477b76644861e8713738f28a93648d5e5f"
+    },
+    {
+      "path": "lib/core/weakness_detection_engine.dart",
+      "bytes": 2776,
+      "sha256": "b79357f6a53fd92d6d57fb1d9cc27c2e12a56339efb53ee1602ccd1bc2f912af"
+    },
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "bytes": 3785,
+      "sha256": "9cbea3120444ae0011719f42b341690b82a4568f1774345dc0ed7657a68a99a3"
+    },
+    {
+      "path": "lib/core/writing_target_parser.dart",
+      "bytes": 2449,
+      "sha256": "8830cb2241bc46b7dc948795f8206c5664fd7c9a0a137594f5a18e3d7fde8121"
+    },
+    {
+      "path": "lib/domain/agent/lumo_agent_domain.dart",
+      "bytes": 3408,
+      "sha256": "e1580e9d7d2b92723f587d598117bc9a5099acac06a0d9c5e0c325330b59f295"
+    },
+    {
+      "path": "lib/domain/agent/lumo_orchestrator.dart",
+      "bytes": 8092,
+      "sha256": "3ae9477c488c1096cb5f72a5413e11be02de6b26ee247e2c538227dedf5d6e8a"
+    },
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "bytes": 10182,
+      "sha256": "c61b38d70fa7aed9f34d1945e8715d8ab8b520c43d744ea6c0e3799788229553"
+    },
+    {
+      "path": "lib/domain/analysis/lumo_analysis_domain.dart",
+      "bytes": 4324,
+      "sha256": "09befffdc16417e41fc96f8410952b34187a9439c1b33dd263bc1a81837643be"
+    },
+    {
+      "path": "lib/domain/cognitive/cognitive_profile.dart",
+      "bytes": 4846,
+      "sha256": "ee8b051128579ba5ca97c02996402a66a0bc5dbc1a7d0e3d67dad52733f89746"
+    },
+    {
+      "path": "lib/domain/companion/lumo_companion_core.dart",
+      "bytes": 15178,
+      "sha256": "ea2d2f74519f38db24e37827f501f5c7340c89497ad6da3e872e86effacac754"
+    },
+    {
+      "path": "lib/domain/games/game_lesson_tasks.dart",
+      "bytes": 16718,
+      "sha256": "4476f9f08c03a0b74846e5a4b277103117c677571595c0e8355b33e20b292916"
+    },
+    {
+      "path": "lib/domain/games/game_level_catalog.dart",
+      "bytes": 12497,
+      "sha256": "dcc2fafeb808b87f554d11e49635914673cbd5a3a079f96ec3c7ecbdd3cc4976"
+    },
+    {
+      "path": "lib/domain/games/game_level_model.dart",
+      "bytes": 3388,
+      "sha256": "d1ea9231973b2fdc67fea5c485f49e2e26d7ed41c88fad611ebbd25caeb1380d"
+    },
+    {
+      "path": "lib/domain/games/game_math_tasks.dart",
+      "bytes": 7726,
+      "sha256": "b485fad2b982a75d7cec6457a388c51003bbf1d544ecadf9e47031bf772bb915"
+    },
+    {
+      "path": "lib/domain/games/game_world.dart",
+      "bytes": 7403,
+      "sha256": "6abf5476e12b003b007222618266858ac304ffc313e390f6addee1f3fc2254a6"
+    },
+    {
+      "path": "lib/domain/games/memory_board.dart",
+      "bytes": 5469,
+      "sha256": "d4780c694fec21967a1da0e4b6efacd4f2cd87f97be6fd65ee2d85e47b27d948"
+    },
+    {
+      "path": "lib/domain/games/mini_game_learning_task.dart",
+      "bytes": 20695,
+      "sha256": "07f8580a28a9e3c74e917de9d5e8c81a8b4a4f06ca0e0182a9256377bd7b5751"
+    },
+    {
+      "path": "lib/domain/games/mini_game_round.dart",
+      "bytes": 18932,
+      "sha256": "3f3467eb7b4fd2828fb5b4d12760a1a938ed220f5595abd359e2097ddd5f0f58"
+    },
+    {
+      "path": "lib/domain/iq/iq_puzzle.dart",
+      "bytes": 17094,
+      "sha256": "cbd9e8c8769ed1b722a72272d8233ab884715ef9a76e7220d060ab05a5174571"
+    },
+    {
+      "path": "lib/domain/learning/adaptive_learning_engine.dart",
+      "bytes": 9812,
+      "sha256": "296bd392fdbc0f57618c939ab866538a4d447498f6d030471cfb34d5f85566ba"
+    },
+    {
+      "path": "lib/domain/learning/error_detective.dart",
+      "bytes": 11432,
+      "sha256": "4a80a54e3b4708fca552531d03d5c78093c5c78214aa851acd763629931d85b6"
+    },
+    {
+      "path": "lib/domain/learning/independent_evidence.dart",
+      "bytes": 2855,
+      "sha256": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d"
+    },
+    {
+      "path": "lib/domain/learning/learning_dna.dart",
+      "bytes": 10285,
+      "sha256": "49a3305385d0cca0f268aba42a6a9238bca49e0a3c9ee49f639633eadc2153ef"
+    },
+    {
+      "path": "lib/domain/learning/learning_dna_engine.dart",
+      "bytes": 4164,
+      "sha256": "a4502d305ffdc4960d11404de0faefc260bac458082087f35d48ee9c3b0f181a"
+    },
+    {
+      "path": "lib/domain/learning/lumo_learning_domain.dart",
+      "bytes": 9458,
+      "sha256": "5c7ace9e4ed6471800a28d39be18095e3964d7a48c63a74bc3690bc569d615ec"
+    },
+    {
+      "path": "lib/domain/learning/lumo_learning_feedback_engine.dart",
+      "bytes": 16283,
+      "sha256": "2621925e9c38a0f3a46c58eb2e89f1d5fa75883a7d89ff800849396d77f55a30"
+    },
+    {
+      "path": "lib/domain/learning/reward_engine.dart",
+      "bytes": 8209,
+      "sha256": "ca5a1a43ff53984d83d19e6e7d49bdc0715ebf7c7100bb45c785ddb6df95f7f5"
+    },
+    {
+      "path": "lib/domain/learning/seed_memory_service.dart",
+      "bytes": 5230,
+      "sha256": "662b6f48b66fe260fa6167e24159320f53bd85f5ae599eac50ee491b7b6f1a2f"
+    },
+    {
+      "path": "lib/domain/learning_intelligence/concept_graph.dart",
+      "bytes": 6658,
+      "sha256": "27496aa9bd86e7260db5ab58b33ec8063fee4c957653bb4b4ce986f32626923d"
+    },
+    {
+      "path": "lib/domain/learning_intelligence/learning_scene_contract.dart",
+      "bytes": 8825,
+      "sha256": "f3f6dde4a40358f8cc1bceb9737410310155011603ad2adb23ae95e9f3b64185"
+    },
+    {
+      "path": "lib/domain/learning_intelligence/lesson_scene_engine.dart",
+      "bytes": 7601,
+      "sha256": "d8707a94f8031bbc56aa2b0281ffdec24c90103e4b879777a900f2c0e07cb5bc"
+    },
+    {
+      "path": "lib/domain/learning_intelligence/lumo_intelligence_engine.dart",
+      "bytes": 6633,
+      "sha256": "efc9ef9586832a44a44ad70cd4884dbe3bea7d9c89f5b4dedd9d11a3d1a23853"
+    },
+    {
+      "path": "lib/domain/learning_intelligence/scene_memory.dart",
+      "bytes": 9250,
+      "sha256": "177f180a893b8202b4723bb7100f50ea8ab612d96ffeb8ae1ae1168b6194e19a"
+    },
+    {
+      "path": "lib/domain/quiz/quiz_question_bank.dart",
+      "bytes": 40606,
+      "sha256": "58d33107d5768d7eabfe1bc7d3aeede7ecea9a01377b851ad01d422771eebbcd"
+    },
+    {
+      "path": "lib/domain/quiz/quiz_rewards.dart",
+      "bytes": 6065,
+      "sha256": "3762514b3d51e13c31937f6714568a4a875071f5e11ad44aefd67fd663900803"
+    },
+    {
+      "path": "lib/domain/quiz/quiz_show.dart",
+      "bytes": 8874,
+      "sha256": "912736e2264178ac24f274651699602cd5d34bd185c2acf6eb50dbbd5464d0da"
+    },
+    {
+      "path": "lib/domain/reading/reading_attempt_history.dart",
+      "bytes": 8185,
+      "sha256": "b69d86e508c77532f344a828cbae770bd7f2886a39321ab18508014c67aaa009"
+    },
+    {
+      "path": "lib/domain/reading/reading_domain.dart",
+      "bytes": 29997,
+      "sha256": "af11da477d7544b2e5cad6f0057b81df834e68afb347b3c3e306f74dae0391e0"
+    },
+    {
+      "path": "lib/domain/rewards/reward_catalog.dart",
+      "bytes": 12728,
+      "sha256": "1fcb2f2c950c07bbfd53e1ec06dbb6d0cc4c8c8a67280bce110094fccb56e308"
+    },
+    {
+      "path": "lib/domain/rewards/reward_shop.dart",
+      "bytes": 16690,
+      "sha256": "3dfecd7dd70101598686d086472155c98af566d024bcc9898323aa20d80d1c31"
+    },
+    {
+      "path": "lib/domain/school/attempt.dart",
+      "bytes": 2320,
+      "sha256": "9edc72d666877631ca20ddaa670882e71b77beef6d1e8f341c771ac8596adf99"
+    },
+    {
+      "path": "lib/domain/school/competency.dart",
+      "bytes": 1373,
+      "sha256": "21da0819586e27909408cde9308abcb56f4a65c44eb657ad1ca4e4258cdd66c3"
+    },
+    {
+      "path": "lib/domain/school/error_patterns.dart",
+      "bytes": 2715,
+      "sha256": "3899e65c04c49a16cd90fbe3008d1dac3e6d8a60fea866cd31cb7820fcd9fd02"
+    },
+    {
+      "path": "lib/domain/school/learning_analysis.dart",
+      "bytes": 12191,
+      "sha256": "b147e3dc2fd7ee969469afc928a01eb77aa023ad92d20a7239b98eb88b3182af"
+    },
+    {
+      "path": "lib/domain/school/school_model.dart",
+      "bytes": 9514,
+      "sha256": "b690ee890c89c89b2fef5354352a87499ae4c7d59aa3f4654922fbda9c52889c"
+    },
+    {
+      "path": "lib/domain/tutoring/guided_lesson_catalog.dart",
+      "bytes": 33657,
+      "sha256": "4abfbd2fb3bd5deaa3062ff8fa0dacf48dacfd278fff8fe7e8c5ac17a2759e7f"
+    },
+    {
+      "path": "lib/domain/tutoring/guided_lesson_evidence.dart",
+      "bytes": 2930,
+      "sha256": "24801af43793f1e0e322f9c4c18b7cf264a802fc141a49a4988af1af68d156c3"
+    },
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "bytes": 3323,
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f"
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "bytes": 13770,
+      "sha256": "6ab61d2b533fd23e60c5f86214310f5cde2848cf07d2330bfe9e4dbe5023144e"
+    },
+    {
+      "path": "lib/domain/tutoring/tutoring_session_planner.dart",
+      "bytes": 7651,
+      "sha256": "31ecd4820521945cb3b92e76b714595d0308fb32ca88a8ef16324e83aeef057f"
+    },
+    {
+      "path": "lib/domain/writing/expanded_writing_template_repository.dart",
+      "bytes": 8968,
+      "sha256": "93c9010c923751900591c899cf0ca984c5af52a7d6ec4811353d2a40b05baa0b"
+    },
+    {
+      "path": "lib/domain/writing/letter_practice_rules.dart",
+      "bytes": 3041,
+      "sha256": "cf04686db75dec076bc9df4f918eab5a444aea2f8417194b90e01ca0de4ec0e3"
+    },
+    {
+      "path": "lib/domain/writing/writing_domain.dart",
+      "bytes": 11011,
+      "sha256": "1263772507004fd3cbfd2613bafd96c65c123ca945d69c9493e29d396c7f82d5"
+    },
+    {
+      "path": "lib/domain/writing/writing_path_geometry.dart",
+      "bytes": 3648,
+      "sha256": "4138e8389d0113734a0f8a8ee9b348ee8140f18400c609b4be45da00e047a929"
+    },
+    {
+      "path": "lib/domain/writing/writing_progress.dart",
+      "bytes": 5996,
+      "sha256": "4999aca194975399a4a9cbc746f6c38e338262823816a0aba227ca809db8f777"
+    },
+    {
+      "path": "lib/domain/writing/writing_word_bank.dart",
+      "bytes": 9063,
+      "sha256": "0fd0870b20769e8d3e1b2a188751f0bc048ef864acc39e0ce00fac296a9f6295"
+    },
+    {
+      "path": "lib/features/agent/lumo_agent_content.dart",
+      "bytes": 31892,
+      "sha256": "835d8ad20a2870459e0b78c44de21c85ed76bb1c54866c75060a272bf23a232b"
+    },
+    {
+      "path": "lib/features/companion/lumo_companion_pose_image.dart",
+      "bytes": 4185,
+      "sha256": "5757f7c6d050d9b1df88ae26ade0fff90f3460cf38fa722c151cfd24295855fb"
+    },
+    {
+      "path": "lib/features/companion/lumo_lottie.dart",
+      "bytes": 2434,
+      "sha256": "69bc6fea5d90112823ab35d88c9343766087dad65548b7249f12e0afa06c1f2f"
+    },
+    {
+      "path": "lib/features/cosmos/lumo_cosmos_screen.dart",
+      "bytes": 19725,
+      "sha256": "80133fa3699d04f09b0c3992fc886b6c95222d1a33acc85190952ba4476a9c4a"
+    },
+    {
+      "path": "lib/features/deutsch/deutsch_gap_sentences.dart",
+      "bytes": 5727,
+      "sha256": "c6446b2fc3a9805d0d560c5babc57e2f49d3b6d74e72a9073ad63c50aa34eeed"
+    },
+    {
+      "path": "lib/features/deutsch/lumo_deutsch_screen.dart",
+      "bytes": 24553,
+      "sha256": "d93a1b051cfbea29fb4f5cce8d32b155db00d90df5c97803a7780147cf669df5"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_engine.dart",
+      "bytes": 9755,
+      "sha256": "d08eb72cdc131ab764510b346d509a0c5d24592f3e3bbeafb7db47fdfe49f334"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "bytes": 12082,
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "bytes": 9737,
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 43368,
+      "sha256": "f7b7abddc4766fd46da7d4ca278e38d27c709d11a5ed68bee908ee5ba70de21f"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+      "bytes": 10519,
+      "sha256": "d8d0909567cb0726a55b6108a6bc78ed2ac2b384026becdaa1b3f01a3ec3a190"
+    },
+    {
+      "path": "lib/features/games/dice_race/lumo_dice_race_game.dart",
+      "bytes": 19753,
+      "sha256": "6ad1d7a3a3c386e8c965498567a61fa4ca32565d070bffd2d2ce0b2439ef27b9"
+    },
+    {
+      "path": "lib/features/games/flame/lumo_jump_game.dart",
+      "bytes": 115068,
+      "sha256": "14fad69c63e59a61de3b13bf7ff9619f14eeecb71fb850a1e3f2363c52621fb3"
+    },
+    {
+      "path": "lib/features/games/games_content.dart",
+      "bytes": 60394,
+      "sha256": "7349825672c6d3e7a43e5398fd644ed70cdc65c057385f5ad2c3a8beff2d2ad1"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/learning_question_repository.dart",
+      "bytes": 9783,
+      "sha256": "2d88123e96bb1bb52183ed90b5b8132b61d74f43541970029e59a22026f24942"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_assets.dart",
+      "bytes": 5828,
+      "sha256": "fed56d291f1e8712e111eca379d33279c84b95fd028588bd1f452197b02e88bf"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_bot_policy.dart",
+      "bytes": 6430,
+      "sha256": "0e514306b92ed8daa761f631c519f50a9184973f97783af3dbd3f1848f55eace"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_cup.dart",
+      "bytes": 5323,
+      "sha256": "470c5995e2a21d5ed0d7259b9852fa72e7926991514f00bba755a95fde73d5fe"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_cup_screen.dart",
+      "bytes": 8831,
+      "sha256": "c864aa171f2efae43e64ce89c011bb41dcd968e4e958764e4619fedd6ef3f6ed"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_deck.dart",
+      "bytes": 4778,
+      "sha256": "71b6d267ae542d58e88f47edc2c90367bddb39f97a069f88b72239249da18f79"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "bytes": 17240,
+      "sha256": "f1b6469e120de3f62a39b280b28604cc9a800a0ef2548376dda607a61b742245"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_models.dart",
+      "bytes": 7913,
+      "sha256": "b1d745138c254a1b0d7d4675b11c3095fc158e98c240a68956c079c4f268d845"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_rules.dart",
+      "bytes": 18226,
+      "sha256": "b7fac3db86b229aaf75e1a3cace448c16dffe8146715ba292f67539b23496b35"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_screen.dart",
+      "bytes": 56525,
+      "sha256": "9ceba304ee6e66b323e5fee36cacbc267ab0b0ae621c9a738802745989482ec2"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_session.dart",
+      "bytes": 9395,
+      "sha256": "cd19945680da64379a571f32218684079427de884f926ef1580f88f02d241daa"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_showcase_screen.dart",
+      "bytes": 18224,
+      "sha256": "0d9386e87c426e375559c89e7ec1b8ec14dbbd0b7d9e99540aa0809523e539b1"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_table_session.dart",
+      "bytes": 11296,
+      "sha256": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_avatar_picker.dart",
+      "bytes": 6529,
+      "sha256": "b05aa394e33156ac572283d197ebd21f7cf45f0e459dd7b611585d4dc9cde3bd"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_card_burst.dart",
+      "bytes": 6122,
+      "sha256": "dc340a9d9930710973e1582ddd61bbcf67bdab40ec76ff48798ba8b80d640599"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_card_fly.dart",
+      "bytes": 4941,
+      "sha256": "77559b1fae9c8ca23380143b1ecb23a3cf7590c96a1551f5d33ffeb063d8e448"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_card_table.dart",
+      "bytes": 10969,
+      "sha256": "ed55557c33dcfcf2fb0fbd7d9aac5db4e833ae90a8540ac3de22c1240a3b6583"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_cards_opponent_settings.dart",
+      "bytes": 4779,
+      "sha256": "105518e375e3e8813018a8883a9a18f166da4bfb644de14d538c86c7d3115e87"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_cards_parlor.dart",
+      "bytes": 4549,
+      "sha256": "bf3b21509f5956776a3d8e4dc2370dacbe9772c85a51e8cf614aff0f55707847"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_cards_score_header.dart",
+      "bytes": 4445,
+      "sha256": "75937a561cd79b7d6a81dea0ebbae315fc3e7f17627f9e18a8531231c1eee43a"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_color_arrows.dart",
+      "bytes": 4929,
+      "sha256": "f9b95bf54c283b28faf64029c0cfa1a99c7022bcc9e3db9dd7ed60c1618491ca"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_color_picker.dart",
+      "bytes": 5314,
+      "sha256": "80f9153863f4ba96d6e9d6cd9ec71c15ad9bd34bc9e9d9ce9744c15cb5067ebe"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_confetti.dart",
+      "bytes": 5253,
+      "sha256": "2b90953194d26c79b9c1aa520ed98d429a603256afc88265a722d34bf5314cd6"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_discard_pile.dart",
+      "bytes": 5490,
+      "sha256": "30406332ec5f8555bef06ea8f7a0892572c438ed2734f1b19012b1b8971ae9ba"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_draw_pile.dart",
+      "bytes": 4517,
+      "sha256": "cd1218645e3d42089434528dc8574e4a297be27963a03534b4bb45020506c0b2"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_intro_splash.dart",
+      "bytes": 9245,
+      "sha256": "52c08f681ca11c787fadd9e3e7fb9aa601a112ce590b9eabea024cfe5c36881d"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_jump_celebration.dart",
+      "bytes": 2397,
+      "sha256": "c4c82e0894c7d616247b6b9ad740d0bc7348460bfefd68b9afeffc6f4a9e0221"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_learning_card_overlay.dart",
+      "bytes": 13734,
+      "sha256": "f369c77b7418a5fafe0922df2792af312d78283554709f238d8cb585e8c63f7b"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_opponent_hand.dart",
+      "bytes": 4044,
+      "sha256": "c9f026b3debbcebbbd0eabfc37cab34acecfb47e8357bc7ca36c515f662bdefc"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_pass_device_overlay.dart",
+      "bytes": 3715,
+      "sha256": "0a2c335f63042cd5c040b435c47c03520a7b77d097f98468a9d4f43b0e5b0b6d"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_player_hand.dart",
+      "bytes": 6741,
+      "sha256": "0eb078cfef665d9fd7b83f83f81c6f7d954c176b9dbbe05e3557d923843cd095"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_player_hud.dart",
+      "bytes": 9089,
+      "sha256": "50f093a8c4e66cdb73340d8119c8f61adcad9c78f5f774d21caaac7bded7edbe"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_playing_card.dart",
+      "bytes": 19874,
+      "sha256": "139fc85c6dc741626706df024b05c2755e720dc6b38e7744115add2027784a16"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_result_dialog.dart",
+      "bytes": 10293,
+      "sha256": "9fe0ee2adc37477c76a422a3b2c5ecbc899d99be94bace5cfc3516d917338d7b"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_turn_banner.dart",
+      "bytes": 4446,
+      "sha256": "146bdc57a9f818be44175f179b8ead80476448f0fda17f1ad43872706694fb56"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/widgets/lumo_turn_pill.dart",
+      "bytes": 4821,
+      "sha256": "a94be0afa83ee189244c60089957b2e07738b25806623d69b2c348e61544ba08"
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380"
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_garden.dart",
+      "bytes": 6762,
+      "sha256": "59a6e0422759aba58c922ea42714829c1b11fc1208e71ada441c1f4d998609a2"
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_stage.dart",
+      "bytes": 5224,
+      "sha256": "d481f95c383dd0092807965d96996afe878f909ac4065bc405f0d8b8599855b2"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2146,
+      "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b"
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c"
+    },
+    {
+      "path": "lib/features/games/memory/memory_rules.dart",
+      "bytes": 14413,
+      "sha256": "0e8ccb76df51394d732ace433b1f15f295775aca7f34fefb81d5ece8d906dc90"
+    },
+    {
+      "path": "lib/features/games/memory/memory_table_session.dart",
+      "bytes": 9373,
+      "sha256": "08fb0ae23a3ed5c532072e411102dd9ef9f2a5f430d1de954d1de42da5328b64"
+    },
+    {
+      "path": "lib/features/games/memory/memory_turn_scheduler.dart",
+      "bytes": 1675,
+      "sha256": "eb59de38e44f1ad434d5a52b2cb873c53eceda596a8b5dba7b5efe8a2cbc195d"
+    },
+    {
+      "path": "lib/features/games/mini_games/color_boxes_game.dart",
+      "bytes": 639,
+      "sha256": "ebb72f5defba9bddbbe69262e5f86f4eddc067e37729adc8aa20c0264906c080"
+    },
+    {
+      "path": "lib/features/games/mini_games/fox_sprite.dart",
+      "bytes": 23033,
+      "sha256": "cb8fdf35c05c25cae0148607436a35e38100c94efbe471c8283138d2ebb66bcc"
+    },
+    {
+      "path": "lib/features/games/mini_games/lesson_trail_game.dart",
+      "bytes": 714,
+      "sha256": "70cdfd3a815c442f1b13d1f0f165708fb0d307b1e3f8530286ddbd95da4364c0"
+    },
+    {
+      "path": "lib/features/games/mini_games/letter_fill_game.dart",
+      "bytes": 639,
+      "sha256": "656a7e5438631b3b0fd01e86d4758bb1718759d9d17cebbf39dd9a0ffc0662bf"
+    },
+    {
+      "path": "lib/features/games/mini_games/mini_game_learning_screen.dart",
+      "bytes": 77221,
+      "sha256": "a4b59189a6c7268c207863e153103ba617f78e29e7af613e1253ca3a7a53f215"
+    },
+    {
+      "path": "lib/features/games/mini_games/number_house_game.dart",
+      "bytes": 714,
+      "sha256": "f7ed3f1fddc9528c6a4be148a8188114685901b1a6e0009b2788b341af13515a"
+    },
+    {
+      "path": "lib/features/games/mini_games/stars_path_game.dart",
+      "bytes": 710,
+      "sha256": "4871b1f6c5a3d60c8c328e943fa963f753675734d226ddfa57ea87e809551ae8"
+    },
+    {
+      "path": "lib/features/games/shared/lumo_board_game_stage.dart",
+      "bytes": 7717,
+      "sha256": "4dd7aefa1f57420abbfb5a8d3a9b7eaee813c15a5fe3de660a9ca1ec37045a5a"
+    },
+    {
+      "path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+      "bytes": 12273,
+      "sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6"
+    },
+    {
+      "path": "lib/features/games/shared/lumo_opponent_roster.dart",
+      "bytes": 3578,
+      "sha256": "d5dfe5aaa7759e162cc4bba719576fff03ae768ed0a60ad94cc35df78bef423e"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+      "bytes": 11910,
+      "sha256": "0e5dd5c39ce1f60a56943c2aa6abb3dd956df1b80015e9c482fd0b461c7cb9bc"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 31775,
+      "sha256": "8a10bff946ecd4fd92964709d595bc7b3dde1912c12480dff60762a3fedf03a9"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "bytes": 6778,
+      "sha256": "bbbd9aaf38dd1034005c05c5a6f78869b50932aead3a2c18d4b1703c100f8a67"
+    },
+    {
+      "path": "lib/features/games/star_trail/star_trail_rules.dart",
+      "bytes": 4420,
+      "sha256": "184310ff48efd9b10a9c2fc77cd2c61147ff58ba8b8998163623c57c9514b7ed"
+    },
+    {
+      "path": "lib/features/games/star_trail/star_trail_screen.dart",
+      "bytes": 13779,
+      "sha256": "665d8a89350c8ae8070531c07fc8ac1eb643b52c26143493cd75b649186d12a9"
+    },
+    {
+      "path": "lib/features/games/widgets/lumo_creative_game_shelf.dart",
+      "bytes": 3265,
+      "sha256": "d59c0eb678707e48108067b197ce16018af41fa45d98df9134ad3e592c337f18"
+    },
+    {
+      "path": "lib/features/games/widgets/lumo_game_spotlights.dart",
+      "bytes": 20073,
+      "sha256": "d18ef855d355178780ee6640faeb4e14d45db9b28c19d7b3567d50344e8a0de8"
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "bytes": 47640,
+      "sha256": "46c695aa6a7d52daccc3d47e2c4792cfb508e3dc1890094fab579805e71902f7"
+    },
+    {
+      "path": "lib/features/home/widgets/lumo_home_hero.dart",
+      "bytes": 8022,
+      "sha256": "1364bb4d984e6432441205b606243142866adbe532e51b567c21cf3adfe4b49e"
+    },
+    {
+      "path": "lib/features/home/widgets/lumo_personal_daily_plan_card.dart",
+      "bytes": 4570,
+      "sha256": "2430d0bb2d4c85f5932e6dd2c9efacbaf84040ec909c0f1299e7dd44170e8691"
+    },
+    {
+      "path": "lib/features/home/widgets/lumo_subject_showcase_card.dart",
+      "bytes": 17052,
+      "sha256": "c6f11f223bec4489c8dad11ef7bb562aeb325043a77081fcd1beb69743c68240"
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "bytes": 3696,
+      "sha256": "9b6e404d8312ed9ffb874eac2fea06e0fdf45024b308392e1ef58b5a85e13753"
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "bytes": 33174,
+      "sha256": "389270e2a26df93cbc76ec0e028efaa804210236c5d57647afb60023db054aa4"
+    },
+    {
+      "path": "lib/features/learning/adapters/legacy_lumo_task_adapter.dart",
+      "bytes": 47529,
+      "sha256": "c96f688d4d8c1f06729b0175de8ab93caafb74c5cdb7955c484d9d705e06455f"
+    },
+    {
+      "path": "lib/features/learning/cross_grade_practice_screen.dart",
+      "bytes": 49986,
+      "sha256": "e58cdb454aa1f97e4e4fd0ca794c397992d0f8a1b85474c9af96d5460d08e713"
+    },
+    {
+      "path": "lib/features/learning/cross_grade_writing_screen.dart",
+      "bytes": 7001,
+      "sha256": "a66696803c600e74d58ca343a7e8f77d76e29157abb3fc45e9e9613104c36797"
+    },
+    {
+      "path": "lib/features/learning/curriculum_activities_screen.dart",
+      "bytes": 15707,
+      "sha256": "ec417bab98d6fda60ae686622b66ad3191aa8298df17f9fa7da88bbb43ddb2bd"
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_catalog.dart",
+      "bytes": 17357,
+      "sha256": "54b8a6489805f0dc83a3f6d11c42d239f7aea86f8bebcdc7070914684c6ad0be"
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_hub.dart",
+      "bytes": 12638,
+      "sha256": "ac44a1a019666daf412e4ef124ba298c63f1a924316fc3ae1c212cea85a49415"
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_screen.dart",
+      "bytes": 56493,
+      "sha256": "5770aea4b73db3fab1cbb7faa14321546d2cfaaaedd6964d51f571a37099870f"
+    },
+    {
+      "path": "lib/features/learning/lab/learning_manipulatives.dart",
+      "bytes": 52096,
+      "sha256": "0857af09548a4526a18846229414994bc8840a93c0f9243465b8886fc385c148"
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "bytes": 155423,
+      "sha256": "c9e8fcfcefa63864264aef0d8d3ad7c479f4c1cd0f4fbae1197f921b8622ed50"
+    },
+    {
+      "path": "lib/features/learning/learning_dna_card.dart",
+      "bytes": 12683,
+      "sha256": "31e09417853e0c09949368bb9adadd69c47a5f083b1933f78772273ee3ed32d9"
+    },
+    {
+      "path": "lib/features/learning/learning_navigation.dart",
+      "bytes": 715,
+      "sha256": "3a75272cb508b31772b75ae0255b635e4f3d68c425172fe912a4610f11a52fe4"
+    },
+    {
+      "path": "lib/features/learning/lumo_abc_tafel_screen.dart",
+      "bytes": 17877,
+      "sha256": "f9f244e1c58d61aaf4de240abee9c435b49a3e0b191245141eb04a7cbfb11797"
+    },
+    {
+      "path": "lib/features/learning/lumo_rechentricks_poster_screen.dart",
+      "bytes": 25402,
+      "sha256": "a0a2a0d0dd7210fe6a06889f505f9be3275fcffbb9dbb85a650d70b4d90e0a66"
+    },
+    {
+      "path": "lib/features/learning/nextgen/learning_coach_binding.dart",
+      "bytes": 5218,
+      "sha256": "15d92d3249953cfe3e5a062cb0372642eef11690b13da12eb36424bbab5fa8a8"
+    },
+    {
+      "path": "lib/features/learning/nextgen/learning_lab_resume.dart",
+      "bytes": 8216,
+      "sha256": "12947a976a311d7e542cdaae1e08ebb89eec7f974da7733a85bbc4fa0d8406d3"
+    },
+    {
+      "path": "lib/features/learning/nextgen/module_task_scope.dart",
+      "bytes": 24049,
+      "sha256": "4f291593257e70468add023ba448ca8fe2ee071d9bc7feae421bff5c026eec3c"
+    },
+    {
+      "path": "lib/features/learning/renderers/adaptive_task_renderer.dart",
+      "bytes": 65909,
+      "sha256": "30ca1b54887a10a015af77943136a872142ccd1f9927b1efbf996fbf4fbaab8f"
+    },
+    {
+      "path": "lib/features/learning/renderers/lumo_premium_visuals.dart",
+      "bytes": 68574,
+      "sha256": "1e929d800a3880dae44e419c4c47a7b2ecebcd0686f08199ff19061b46056cd6"
+    },
+    {
+      "path": "lib/features/learning/renderers/reading_passage_card.dart",
+      "bytes": 2412,
+      "sha256": "a1b60639f935ac9a25a075264ec15a9298dac695b4f1275ce75df57e0f6d3b87"
+    },
+    {
+      "path": "lib/features/learning/renderers/shape_trace_task_renderer.dart",
+      "bytes": 2989,
+      "sha256": "b27ec7332e31b0038448b7b0a9632338259d7dec2d24a7e6b5d1330f7ab0f75a"
+    },
+    {
+      "path": "lib/features/learning/renderers/writing_task_renderer.dart",
+      "bytes": 18198,
+      "sha256": "2ab4338e9b862292f35f50b95cfc4aa2cb719009a5f4e5f5f73b7e654cde4395"
+    },
+    {
+      "path": "lib/features/learning/scenes/learning_scene_contract.dart",
+      "bytes": 4637,
+      "sha256": "2e5cef9ee7a82015f99f425cbffd57250b1a7c84dd0e76dd008160ef5a51041c"
+    },
+    {
+      "path": "lib/features/learning/scenes/learning_scene_motion.dart",
+      "bytes": 2971,
+      "sha256": "ad332c30b667e8513e2994cada9720067869f477ab3167273b06a6509d4a536a"
+    },
+    {
+      "path": "lib/features/learning/scenes/place_value/place_value_material.dart",
+      "bytes": 13950,
+      "sha256": "6eda619cc92fd3386cca79106f1721994900b618cc8cc162c3b852f2bf31e76b"
+    },
+    {
+      "path": "lib/features/learning/scenes/place_value/place_value_scene_director.dart",
+      "bytes": 11771,
+      "sha256": "f058c6a19bc617ed1c4cb5f95cc262bf64fe8e1dc0a31ebcb535d8dea959f444"
+    },
+    {
+      "path": "lib/features/learning/scenes/place_value/zehner_werkstatt_view.dart",
+      "bytes": 59281,
+      "sha256": "6eaf97fd408728c84874345da356c6687b6271623ece0c972c256838ba57c364"
+    },
+    {
+      "path": "lib/features/learning/widgets/cross_grade_visual_scene.dart",
+      "bytes": 5505,
+      "sha256": "11b33e6bd84a9b33a4b24003685ae13903f3bbdf98c0c9a9b2aed73b0b9c8939"
+    },
+    {
+      "path": "lib/features/learning/widgets/interactive_task_workspace.dart",
+      "bytes": 74137,
+      "sha256": "32fd1deb7b15c46757d3824894c38e5c37528c31cfb6154fb50acb286a0d56ac"
+    },
+    {
+      "path": "lib/features/learning/widgets/learning_question_coach.dart",
+      "bytes": 21056,
+      "sha256": "0ee7696387509059d29185aaa7c5cc82311c282969a965c296fcb5cb38afa8e9"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_learning_scene_card.dart",
+      "bytes": 9429,
+      "sha256": "c3dddadc45e88a66077b6cfeeb951d52c054440006fe5d1cbc3cc0a6f16afe9d"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_learning_tree_card.dart",
+      "bytes": 19195,
+      "sha256": "ed19d087cf7f9042bc5a8e53a3d1746b2c9b0b91171b36bbeba145126e01e0d0"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_math_visuals.dart",
+      "bytes": 14487,
+      "sha256": "b20c04ab3a202ae3aa8839583c08c4059644823773494bc995de4dd27665da44"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_place_value_blocks.dart",
+      "bytes": 4717,
+      "sha256": "8ccadb8fb8f9c8812dda2770ec7904c996bfdb4e37f1b34fb102316117536224"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_place_value_workshop.dart",
+      "bytes": 2588,
+      "sha256": "3d5b2b53aa2de45f55987572dc3e949615000c6750b9f145da595e631cb40e1c"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_quantity_workbenches.dart",
+      "bytes": 12046,
+      "sha256": "e53daa3d0b0e74663da9ef0a36c1ddc717a62ccdce9076162f6aadbcf80ee3f6"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+      "bytes": 20226,
+      "sha256": "ddb82957a8ef36da438b8a8e1c1496039a763903858a3869133eeee4fa568c32"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_tutor_hint_card.dart",
+      "bytes": 7146,
+      "sha256": "2ea4442da680d9608b8d3cd5aacdce491ab4dddb6f315c784ebd92f2168b7614"
+    },
+    {
+      "path": "lib/features/learning/widgets/lumo_tutor_offer_card.dart",
+      "bytes": 5561,
+      "sha256": "8a1800f992e9ca5b9748d5a49995cae7c54ba7ca7f849cb2c6b1cdc1e5c398f5"
+    },
+    {
+      "path": "lib/features/learning/widgets/rechentricks_mentor_card.dart",
+      "bytes": 7811,
+      "sha256": "7defccb043346f23962879e754e035bb8438d5e1f026c783ad05cae5ffc4dcd6"
+    },
+    {
+      "path": "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart",
+      "bytes": 14167,
+      "sha256": "c6c436beb3aac11f10da851d15559cd533e29cc191740dcb7d6eff7049c0fb3e"
+    },
+    {
+      "path": "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart",
+      "bytes": 19312,
+      "sha256": "3ebafd28a0398ae83efe27cd2c23c0733e8d6b27553c029b118d66465814cc62"
+    },
+    {
+      "path": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart",
+      "bytes": 15033,
+      "sha256": "8d06dd4f85f4399e7acf0d01fc74e35a6cd2140872c94c553739e6693673b49c"
+    },
+    {
+      "path": "lib/features/learning_modules/farben/farben_screen.dart",
+      "bytes": 23621,
+      "sha256": "862022e4d886b57d5f9fe5fdaa9db81593d1fff25d3e56e2f5fbfb25652dbded"
+    },
+    {
+      "path": "lib/features/learning_modules/formen/formen_screen.dart",
+      "bytes": 17678,
+      "sha256": "f41d5b4083ad186e62ba69cd1f67990ff37da32668243699c5021c8a5ea7e589"
+    },
+    {
+      "path": "lib/features/learning_modules/geld/geld_screen.dart",
+      "bytes": 21471,
+      "sha256": "d9c027bbe040fe4d9a431d9e6f2dd87bf231698fcc6d7041fa385eb4ed522f66"
+    },
+    {
+      "path": "lib/features/learning_modules/jahreszeiten/jahreszeiten_screen.dart",
+      "bytes": 17525,
+      "sha256": "ed4e5fa1f675666ef4ee6e6e8efaff8d4f5cfff6bee7ca98fbd663117be9d754"
+    },
+    {
+      "path": "lib/features/learning_modules/jahreszeiten/season_question_deck.dart",
+      "bytes": 5060,
+      "sha256": "e7b17d65fb275b91690180669a763b4c2b22954b136d3931aa1df0d1323da36d"
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_progress.dart",
+      "bytes": 21443,
+      "sha256": "8e7ee4bf4845153cdc2ed1f3b8b9e117625a4874f9a3c72fe575cc599cd28dfc"
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_registry.dart",
+      "bytes": 4664,
+      "sha256": "a8c272577b4ff6d33bfe5c97327243d36ffdc77b1b2cf7d5a5fa5f05b0eec890"
+    },
+    {
+      "path": "lib/features/learning_modules/lumo_phrases.dart",
+      "bytes": 4432,
+      "sha256": "cb01351f76f6b127c99055f4620ffc119add0cd097cc797886642fd7059b2a55"
+    },
+    {
+      "path": "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart",
+      "bytes": 16394,
+      "sha256": "e8434659878c6aa47dca30485ef3c30e8f63edb65daa0f4d91f3c5a86aa755e2"
+    },
+    {
+      "path": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+      "bytes": 15179,
+      "sha256": "621e27be21059d66ea34f6d094ece254b30cf86b09cb0ef764753d2ea5cd762d"
+    },
+    {
+      "path": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+      "bytes": 62925,
+      "sha256": "31ad5bde3d8cb897d3feebf85edf21f60e7a5643d1bb3f98c92053db4c7b3872"
+    },
+    {
+      "path": "lib/features/learning_modules/tiere/tiere_screen.dart",
+      "bytes": 20379,
+      "sha256": "06335fa4649bc559d68b2f7c50bed9c0876b76f7c52c5a5e07e60536b3b2cc12"
+    },
+    {
+      "path": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+      "bytes": 19164,
+      "sha256": "d75005c24c4c34bc6d5628a3bba6c44c3f63dc56610b6e3bcf2ab0f70368ec63"
+    },
+    {
+      "path": "lib/features/learning_modules/verkehr/verkehr_screen.dart",
+      "bytes": 23299,
+      "sha256": "4d035b56ad5d402bf0fb72f0074b8f55cff0d8e2d679d8d0d955053bf6b92c1e"
+    },
+    {
+      "path": "lib/features/learning_modules/wetter/wetter_screen.dart",
+      "bytes": 25449,
+      "sha256": "f85bd00c961bf5de8351d59c4ca32b4d8621405c5375905f4cf9a79729be108e"
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "bytes": 26157,
+      "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e"
+    },
+    {
+      "path": "lib/features/learning_modules/wortarten/wortarten_screen.dart",
+      "bytes": 21071,
+      "sha256": "876d14c168fe3f2941ba0bfb5dbc5beb49f36c7bdd17b61e838ce958555f7696"
+    },
+    {
+      "path": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+      "bytes": 17565,
+      "sha256": "2cd5083572830dc8b6d2462a314e4356716cd31b868300e17030eee36d1bfa57"
+    },
+    {
+      "path": "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart",
+      "bytes": 20006,
+      "sha256": "136fc4f02d9aa9f43b9a0626c147ca505eb82626390a9c0f897d7219c4ff5963"
+    },
+    {
+      "path": "lib/features/learning_modules/zeitformen/zeitformen_screen.dart",
+      "bytes": 20441,
+      "sha256": "399a03a682d68829c65d7be2d79fae62006747a59486407bf0439328b6e21769"
+    },
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "bytes": 39711,
+      "sha256": "56fc1f1f69f332d69c71b83cf8b0601aaa3507b70442a2b4baddc068b52e92a1"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 12533,
+      "sha256": "56e7915170e3f0a4ed341631f99674380e28a8b4c0510d6f84175f570da2e104"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+      "bytes": 13724,
+      "sha256": "c8445a1808f38957f73d776ab3c97d8319b94b000a91f3abfd9985aa4f48c316"
+    },
+    {
+      "path": "lib/features/lumo3d/native_game_saves_screen.dart",
+      "bytes": 15444,
+      "sha256": "05e45625de473f6dddbe81567e3412a441e29d2a335a121be115ddb855065d9b"
+    },
+    {
+      "path": "lib/features/lumo3d/native_method_table_transport.dart",
+      "bytes": 1677,
+      "sha256": "5edeffb1f9748d4739ac92bdb89a3683ffbfd1386caaa7a39249343e0d15eee5"
+    },
+    {
+      "path": "lib/features/lumo3d/native_table_transport.dart",
+      "bytes": 502,
+      "sha256": "dcd4826bb7903e575220537dd0b477d32d8fee810bf5523eb3c33c51df324ae1"
+    },
+    {
+      "path": "lib/features/lumo_welt/lumo_welt_screen.dart",
+      "bytes": 23170,
+      "sha256": "b225c681bf623aaa095d73915db293a5cf1b6823444ce4513f346252f5f67145"
+    },
+    {
+      "path": "lib/features/magic_hub/lumo_magic_hub_screen.dart",
+      "bytes": 22163,
+      "sha256": "8a64dbdaddb250efc1c2b7124f75be373d89e95c0ae350ddc9cd0a14b0531a7e"
+    },
+    {
+      "path": "lib/features/onboarding/lumo_onboarding_holo_screen.dart",
+      "bytes": 33762,
+      "sha256": "627dc90faffd9eea2efbdb1f1df725094cbfbd957003907c2029222f24cbfd49"
+    },
+    {
+      "path": "lib/features/onboarding/lumo_onboarding_screen.dart",
+      "bytes": 15213,
+      "sha256": "62725f2c65a4ce1e3f540e667a5d16a083f541d6ef926cfe8b353ec2afe36ce6"
+    },
+    {
+      "path": "lib/features/onboarding/widgets/lumo_step_indicator.dart",
+      "bytes": 3699,
+      "sha256": "08b9a2eec4023023da339b118f2c345c0724a4925a561152d6831d44affcc34f"
+    },
+    {
+      "path": "lib/features/parents/lumo_insight_dashboard.dart",
+      "bytes": 21819,
+      "sha256": "3ce62d0326c37aef2996b393f1245d06899276bc02ba18be7c789194917490fd"
+    },
+    {
+      "path": "lib/features/parents/widgets/lumo_ai_policy_selector.dart",
+      "bytes": 6390,
+      "sha256": "9525111b7cbdd1e222287c8318c9f94cd77e643575a3609cc830a310acd85239"
+    },
+    {
+      "path": "lib/features/parents/widgets/lumo_insight_heatmap.dart",
+      "bytes": 11383,
+      "sha256": "f5f6347e4e36e1e533f0125cf280dd1a979d53f15b7b09d797b0aefcd6b77a9b"
+    },
+    {
+      "path": "lib/features/parents/widgets/lumo_tutor_evidence_card.dart",
+      "bytes": 8677,
+      "sha256": "c4048cec1a9179cdc197daedcd109b744cf3f88d6291243de0a8fcb1ccf4ff08"
+    },
+    {
+      "path": "lib/features/photo_lesson/lumo_photo_lesson_screen.dart",
+      "bytes": 25883,
+      "sha256": "25d28c744d2a06fef828ba2ee92d94c8f8f126ac59ce9ae6e44319eafaa1aff7"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_practice.dart",
+      "bytes": 2626,
+      "sha256": "74e0ff5c44c2cb429133af3dc3c173bbf80438ff492fab87567d44506494d67a"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_practice_screen.dart",
+      "bytes": 32330,
+      "sha256": "9c1f93d2b8e418efc2c9e898ce9dade6672c0406ec9ac4c1e9a2129d25ae3c5d"
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_session.dart",
+      "bytes": 11334,
+      "sha256": "672438f8e0e67cd0d7af72df5f696534fa38472e8d3920baa56582dc3b73ad3c"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "bytes": 65234,
+      "sha256": "a9736e917b2029c74cf7c8a77b2549d0353698a29bf2ae2a74a720acbd74f044"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_music.dart",
+      "bytes": 1398,
+      "sha256": "5af0f9f1cf87a6b91c1b44d5b69b0d512075f87b17d3d4530f49c076daab9b8c"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_repository.dart",
+      "bytes": 1371,
+      "sha256": "509973ae13ac25a0010578832b170dd52ccafd317d2f2805a194892fe78b381b"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_round.dart",
+      "bytes": 14125,
+      "sha256": "ed036809b409b44d72cfbd6be275ff64a949a8701f31891c46131034fa758676"
+    },
+    {
+      "path": "lib/features/quiz/quiz_studio_scene.dart",
+      "bytes": 8446,
+      "sha256": "7c3171e5683caf5805af4c20fa82989e6f57fbaac89d9999af1042552c10a7c9"
+    },
+    {
+      "path": "lib/features/quiz/quiz_table_session.dart",
+      "bytes": 8689,
+      "sha256": "94711cbc566b3863b0660569ddb68f9b728b3705a4c0e2fa67b84a19fba38ea5"
+    },
+    {
+      "path": "lib/features/reading/lumo_reading_buddy_screen.dart",
+      "bytes": 34972,
+      "sha256": "b7fb8c93739e20c8ce30d3c4f402bda0465cefa139d1050f0b5cf0640ddf49a2"
+    },
+    {
+      "path": "lib/features/reading/reading_comprehension.dart",
+      "bytes": 6163,
+      "sha256": "dde553516561f3112e2ae55bd027a278f0584045faea2ab700aff2086b994bb8"
+    },
+    {
+      "path": "lib/features/reading/reading_content.dart",
+      "bytes": 42887,
+      "sha256": "d3e66bee722341a44465071a9516c4f2a5c5f9a35993626cd254e3b984329ec8"
+    },
+    {
+      "path": "lib/features/reading/reading_lesson_companion.dart",
+      "bytes": 15698,
+      "sha256": "11e908b4866cb16c41975787f49f401006c5710249d77f330a372b927fd3e43b"
+    },
+    {
+      "path": "lib/features/reading/reading_text_library.dart",
+      "bytes": 10500,
+      "sha256": "aee0e7ed2e4a3d72d7622c780967c25e3f2f72a269187425c5afda8ee785fe1f"
+    },
+    {
+      "path": "lib/features/reading/voice_reading_evaluator.dart",
+      "bytes": 5429,
+      "sha256": "7c3ebfeeab8e220afa539b55012de6985d72b010d365d425dbe493381b97ab83"
+    },
+    {
+      "path": "lib/features/reading/widgets/reading_active_sentence_view.dart",
+      "bytes": 1215,
+      "sha256": "ef12de9e929760ed71a75170494da829f15fede3e9d12bb618c1b5217b66670c"
+    },
+    {
+      "path": "lib/features/reading/widgets/reading_syllable_chip.dart",
+      "bytes": 1754,
+      "sha256": "3bff12fbbb73500772b1b6f8ce3a9ed5a45f92c3aacc6a589d768440058e7796"
+    },
+    {
+      "path": "lib/features/report/lernbericht_screen.dart",
+      "bytes": 3171,
+      "sha256": "0ddf4c493f0a06ec09ba370f7c3f0d2dd523fb10cf7e472d16a1fe0287328548"
+    },
+    {
+      "path": "lib/features/report/lumo_coach_card.dart",
+      "bytes": 4027,
+      "sha256": "8fd8226d04c90b348dd436c10f9bede2aa1b5f0311176a7cc5f4f45bbb3fe556"
+    },
+    {
+      "path": "lib/features/report/student_report_view.dart",
+      "bytes": 13966,
+      "sha256": "93a683909789f9d525a2533bb09f988864da6b3de4caabc92c516e36af75e177"
+    },
+    {
+      "path": "lib/features/rewards/achievements_wall_screen.dart",
+      "bytes": 11624,
+      "sha256": "5604a3e51cce36c0f79a02883fc075575e6464afa7892aad1d30673e769575f7"
+    },
+    {
+      "path": "lib/features/rewards/reward_shop_content.dart",
+      "bytes": 31072,
+      "sha256": "f7b57e8ff373afb607e91968e801a74c8ef08a0b0621757ca256861a0ed5a571"
+    },
+    {
+      "path": "lib/features/rewards/test_photo_entry_card.dart",
+      "bytes": 14661,
+      "sha256": "5a5887f270bef6b35eb0e5527d9b6bbeae63ede6dcf8e8f832ee37f530aa253a"
+    },
+    {
+      "path": "lib/features/schoolbook/widgets/schoolbook_task_widgets.dart",
+      "bytes": 34664,
+      "sha256": "b6decf9f718cba0341fa15786d2d2d5f5330e970112ca0a5834f907a3bd413f0"
+    },
+    {
+      "path": "lib/features/sections/lumo_learning_hub.dart",
+      "bytes": 25372,
+      "sha256": "41cb19be3ba84582552ceded469eef799c9e72027b44c7d1457f64a13f53e22f"
+    },
+    {
+      "path": "lib/features/sections/section_content.dart",
+      "bytes": 35174,
+      "sha256": "e62830104a817e0c3b538fc7f674d8d10c6c03183cf39d73dead0f48052ce5b4"
+    },
+    {
+      "path": "lib/features/settings/discovery_settings_card.dart",
+      "bytes": 9282,
+      "sha256": "e694bf10794f6bbd50f41a225c7bacd6f586300836b840d31f826bc27fce0fe5"
+    },
+    {
+      "path": "lib/features/settings/legacy_learning_data_card.dart",
+      "bytes": 12544,
+      "sha256": "80dd1626f708f90f7c2c138e89c49b32b3a166faa68f95bab49fea1be856b969"
+    },
+    {
+      "path": "lib/features/settings/local_voice_license_dialog.dart",
+      "bytes": 3686,
+      "sha256": "bd8e8135f0f774cfd6db28eed8486db357bdafdd037a94cb7fce38160ce95ea5"
+    },
+    {
+      "path": "lib/features/settings/lumo_voice_diagnostics_card.dart",
+      "bytes": 4675,
+      "sha256": "13b6ef327acb40a72155693155545bc3c88f91bf676bb401909018a3e1a9a5a7"
+    },
+    {
+      "path": "lib/features/settings/native_game_saves_card.dart",
+      "bytes": 1986,
+      "sha256": "1678bb967c1177a17a0e36e5995c416c15e2095356191637cea667e37c4025d7"
+    },
+    {
+      "path": "lib/features/settings/parent_report_card.dart",
+      "bytes": 21164,
+      "sha256": "7bc9f55e4c77cd4fd35e9fa035b40a9c64d712ecb37214a4c3ab24d9a21fe568"
+    },
+    {
+      "path": "lib/features/settings/settings_content.dart",
+      "bytes": 93219,
+      "sha256": "8f1467dca55ba455cd168da3ad8e8a584175cb9b76228afcaa0c6065100df75a"
+    },
+    {
+      "path": "lib/features/settings/writing_report_card.dart",
+      "bytes": 9690,
+      "sha256": "b89fe190afb2ba344d481f0ea6763c2648b9bb89fdc4ada529714af0c3693332"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_audio_settings_sheet.dart",
+      "bytes": 7194,
+      "sha256": "74e2ed7c75c017fd230833e0ab653f9c0ebd35819112a43838653754b582f892"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_big_cta_button.dart",
+      "bytes": 5410,
+      "sha256": "66f7e0c53f53543dfbe69a53958b96ce6ee47ea5cb4c65e0e6eab40715f84483"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_companion_avatar.dart",
+      "bytes": 9678,
+      "sha256": "96d35f657bb5e39b51ea8dbc61b8e87a172977788e607bb3837ffa052b1280f7"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_daily_mission_card.dart",
+      "bytes": 8637,
+      "sha256": "73d71d85398accd81bde2e607da8a579ab04c30d70bfea596c127211c3bf26e3"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_encourage_card.dart",
+      "bytes": 5328,
+      "sha256": "dbc63f1cf7639d121ed9c54367a9a6e0227e6a86bef790d085efe7a1df441832"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_hero_header.dart",
+      "bytes": 15806,
+      "sha256": "325e29941a2e1997708d14cdce17cbe57de616837067609b98cc478c5125bf14"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_level_strip.dart",
+      "bytes": 7179,
+      "sha256": "8f1d6a9486377e7555ae7aac9b38470f2dc30c33c3cac91497dd7000d15a988f"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_living_world.dart",
+      "bytes": 18169,
+      "sha256": "a37bc98bf62d8be94e19d57c03a423817c98b66c9fc36a2f94cc1bd9dbafef74"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_mission_journey.dart",
+      "bytes": 6953,
+      "sha256": "30b8708eecfc80cd0d12d2c85353b90a9f14bcf4915ffee4bd2b63d2b8263fa3"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_modern_card.dart",
+      "bytes": 2027,
+      "sha256": "e9445b24a2f9b7a0d482a4d7da6984f138619603a90a2e21e49211110b5ae8ac"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_premium_effects.dart",
+      "bytes": 13643,
+      "sha256": "d0ba632530e78e53912ac232a070612ce11059f700b54f46daaf729c118d2a99"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_section_transition.dart",
+      "bytes": 2568,
+      "sha256": "791ad92d9744214d1d399ab42e33408211377a53e643abc27ad2578d5b7d7dc6"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_streak_calendar.dart",
+      "bytes": 7558,
+      "sha256": "eb51bfa8a5ddac9a00082dc69414152a3dda9ca2b418e41676c085de0548ff98"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_subject_dashboard.dart",
+      "bytes": 5664,
+      "sha256": "e49570278561fea41b8167cf2ac96c850a8c1518fea41def72f4d4950f5e6f00"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_subject_tile.dart",
+      "bytes": 11258,
+      "sha256": "45c46734eb328e194de40d34c95c6323c3338c0f69eb2500f1c7fc649abba23c"
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_tagestipp_card.dart",
+      "bytes": 8245,
+      "sha256": "a424312f568a92ed6db3c884b08b8e0eb5c8984b47e030621b053588f8275c5f"
+    },
+    {
+      "path": "lib/features/story/lumo_quest_hub_screen.dart",
+      "bytes": 13560,
+      "sha256": "f41cf32d4f2217eca728800b44c33844f73e703dd43c5d39c16cdc4262e0dcb5"
+    },
+    {
+      "path": "lib/features/story/lumo_story_library_screen.dart",
+      "bytes": 27583,
+      "sha256": "5cbcddd3d8e232b078bdb53275c7566f478937ce7c05d416c927da239690735f"
+    },
+    {
+      "path": "lib/features/story/lumo_story_reader_screen.dart",
+      "bytes": 85423,
+      "sha256": "a27ae5233496d5a1cc7b7ac25955913f3e1cc5e463de82bb08969c7374036288"
+    },
+    {
+      "path": "lib/features/story/lumo_story_setup_screen.dart",
+      "bytes": 14376,
+      "sha256": "96d0b6b19e6805ceb9b15dca1dbf7f9589b76807ac0074061c79e4bbb5c5efa4"
+    },
+    {
+      "path": "lib/features/story/widgets/lumo_story_scene.dart",
+      "bytes": 19932,
+      "sha256": "a6914f67d38a77be78335c95dc16e6e77fa89cb9859531ee86db772f7986942e"
+    },
+    {
+      "path": "lib/features/teacher/assign_task_sheet.dart",
+      "bytes": 9054,
+      "sha256": "711f4e138d544b5f3a652638f5ed38bb841f1af5b079a71abe9162de3c440026"
+    },
+    {
+      "path": "lib/features/teacher/student_assignments_card.dart",
+      "bytes": 7428,
+      "sha256": "9dca51dd356021992bb8b2c6569daeb012634a0da84670d2267ce2c6f6535698"
+    },
+    {
+      "path": "lib/features/teacher/teacher_dashboard_screen.dart",
+      "bytes": 22418,
+      "sha256": "c2db4a526e976412dd11216816ac89edea576b521cdf0bd6f91e45ebc3ac9f08"
+    },
+    {
+      "path": "lib/features/teacher/teacher_student_screen.dart",
+      "bytes": 12656,
+      "sha256": "f661dfc24b81527ec2427d6822b29c14319985f71665b423df9cb1f870585349"
+    },
+    {
+      "path": "lib/features/teacher/teacher_widgets.dart",
+      "bytes": 5274,
+      "sha256": "102df2b34e1531f0f9f5646c2974f272a16fc5ddf2522de65f376388165fc93b"
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "bytes": 30078,
+      "sha256": "efec5a4398778e9306e7beadbdae15251ddca7b7ad27c7804ac244ff06925f4b"
+    },
+    {
+      "path": "lib/features/teacher_mode/lumo_akademie_screen.dart",
+      "bytes": 47804,
+      "sha256": "b8ab8c0cffc25deae568e700aee64e9c95661db24109ea1360cda95fcd0e2e1d"
+    },
+    {
+      "path": "lib/features/teacher_mode/lumo_teacher_screen.dart",
+      "bytes": 37761,
+      "sha256": "94415a30a5a398b16faad8886cf64737d2e7580a256f8b3fa90429e9a14108e1"
+    },
+    {
+      "path": "lib/features/teacher_mode/topic_curriculum.dart",
+      "bytes": 37701,
+      "sha256": "cdab83f2c0d58550b68f75da4563fe234c09b1dff1bbe5208d0ccf4565767efe"
+    },
+    {
+      "path": "lib/features/teacher_mode/widgets/academy_subject_art.dart",
+      "bytes": 8370,
+      "sha256": "b527cdf36b2c1710251585b87339337ea1c22a790ee561f29487dcf3734ed3ba"
+    },
+    {
+      "path": "lib/features/tests/cognitive_profile_screen.dart",
+      "bytes": 26501,
+      "sha256": "d80a8c2cd747ced1758cc2a91a5832c95b0359d65df2ee9e21c13e508d166635"
+    },
+    {
+      "path": "lib/features/tests/cognitive_profile_start_view.dart",
+      "bytes": 6286,
+      "sha256": "9bdc204403163d2d6709356c8f1350dadfebd56d73efda74bf08ff060d802874"
+    },
+    {
+      "path": "lib/features/tests/cognitive_profile_visual_prompt.dart",
+      "bytes": 4452,
+      "sha256": "9efc5500ddc7cf2a80ff136632b568279cde3c4088f4f984b64b4c1f65c18381"
+    },
+    {
+      "path": "lib/features/tests/iq/exam_companion_scope.dart",
+      "bytes": 7556,
+      "sha256": "47e72282d52dbad41f922c43ed64d79781565364c5805934e37a6fcde300291c"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_boards.dart",
+      "bytes": 28844,
+      "sha256": "92fb3979ae343c6f314beda5046178d4a9b389ea8181e75edb8910e1150d2b42"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_figure_painter.dart",
+      "bytes": 15701,
+      "sha256": "bebea35425045de03bb67bd56038f65dc27ef3e8d5aee4886f19b66f3c6cd6c7"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_memory.dart",
+      "bytes": 12923,
+      "sha256": "56254f68c373f5cb7a579b3946609fa23ddb4898513454ab7289a55e4337eaa6"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_puzzle_view.dart",
+      "bytes": 16426,
+      "sha256": "4d2e7887bf2e65bad25c0db3287c30b5faf6aa0d3636a65f6a50366654b22acd"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_result_view.dart",
+      "bytes": 30480,
+      "sha256": "5705a7df0629eac62bc3994b6a91bf094fe9cec334eec0011ffc1ca7ea8a896b"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_review_view.dart",
+      "bytes": 8143,
+      "sha256": "7aa5d2ad54725f9b0c7f86c023a9038c9ab6e24d7bb15270e59923d3825060c1"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_reward.dart",
+      "bytes": 1073,
+      "sha256": "7dd7aa1b65d4eab7ae9050b43d8134b2e369005aa97bd1bee8994d9106001928"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_start_view.dart",
+      "bytes": 19926,
+      "sha256": "8cf51c3ed37ae824111080c6ea3e86bfbd7b63929ffc9600be23177e5adce6c7"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_style.dart",
+      "bytes": 4685,
+      "sha256": "e9d56899ee4badbd6cebcc275a0ed1bbebb769b3d7b6f8b8f3c97645c35b4489"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_tests_card.dart",
+      "bytes": 12431,
+      "sha256": "3fe27140211e3fe6f7e8731a8a9aa5cad0da9da49b97adeb602ec99d32a37cf3"
+    },
+    {
+      "path": "lib/features/tests/iq/iq_widgets.dart",
+      "bytes": 26730,
+      "sha256": "053ac31da06ea7673c2c2a2a5dc2eb10e5a1d1da343a88e01ad82a77e22b5db1"
+    },
+    {
+      "path": "lib/features/tests/iq_test_screen.dart",
+      "bytes": 18848,
+      "sha256": "86fc24e7dd1a4d1270e66dc18d63c477f25cf4eea960329c9c303501a265157e"
+    },
+    {
+      "path": "lib/features/tests/lumo_tests_screen.dart",
+      "bytes": 31774,
+      "sha256": "baa28fd2bf25ae2dbd14207412221afa9b1167e0fd1de7345ae380eb9ac541d7"
+    },
+    {
+      "path": "lib/features/tutoring/guided_advanced_math_illustration.dart",
+      "bytes": 9073,
+      "sha256": "92331b2bb636630d93ce7b2b4205c0820cbe776e62621ae4b94ff4e70c46277e"
+    },
+    {
+      "path": "lib/features/tutoring/guided_language_nature_illustration.dart",
+      "bytes": 8408,
+      "sha256": "b47989a6b9084864c05400f6c9b561cfa26f27c05a28d0116e5e5dbe51258c8f"
+    },
+    {
+      "path": "lib/features/tutoring/guided_learning_hub.dart",
+      "bytes": 10258,
+      "sha256": "966cecd801264d0c95b491d395c434740cc268837a0b1c4ed391a5a4af890637"
+    },
+    {
+      "path": "lib/features/tutoring/guided_lesson_screen.dart",
+      "bytes": 47954,
+      "sha256": "b05f803a4c8e7bf3019569f61378f3127c1baa1c8b51ff6acb7476a1cb8e1d91"
+    },
+    {
+      "path": "lib/features/tutoring/guided_math_illustration.dart",
+      "bytes": 15391,
+      "sha256": "ba8f27960ed8c8ed7c431d5c2bfd5e4707f28ca780fb298451b5acbfe1fb0de8"
+    },
+    {
+      "path": "lib/features/tutoring/guided_ten_frame_animation.dart",
+      "bytes": 15207,
+      "sha256": "f0cb3cecddb29897096c4bf424de1d2daa6f439e9c26b672253e6decfb4d2ca4"
+    },
+    {
+      "path": "lib/features/tutoring/tutoring_flow_card.dart",
+      "bytes": 18690,
+      "sha256": "b75740052c9d43e08a1203d3981dc54007d5627128ae72453e3cced98bb501b7"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "bytes": 28091,
+      "sha256": "3365cae7a1137ce57a573971fa40e20b55f7f9434ee721d79f2fd0978b16ed10"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "bytes": 38878,
+      "sha256": "e08c2b8acd274eb201f1cd6dd164e9f22b569a1478cdff9295f0ea4fbe6c82bd"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "bytes": 8155,
+      "sha256": "f748e40fb47bff603bc8de53ce59c1b398c1fed6765b7cdbb3a2a367abf24091"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "bytes": 39576,
+      "sha256": "d2c5308eb820799245975695a720173179d63144b89cc3feb0d9aabce5865dea"
+    },
+    {
+      "path": "lib/features/writing/writing_engine.dart",
+      "bytes": 57931,
+      "sha256": "d1df3e186a6189f4b05594b407ebee01578ca474669292440617d7ff1aad3274"
+    },
+    {
+      "path": "lib/features/writing/writing_feature_flags.dart",
+      "bytes": 1534,
+      "sha256": "7a42a9dfb693da76a53d6b25eede144acab75bce27a22f7fc446f6f9b7f1ac76"
+    },
+    {
+      "path": "lib/l10n/app_de.arb",
+      "bytes": 11525,
+      "sha256": "ad896ab59dc8025589d0b2abb3acf6ad0b8feee4986417f71ca0b6dffd57a960"
+    },
+    {
+      "path": "lib/main.dart",
+      "bytes": 11937,
+      "sha256": "eccf16e62bcd00e5ebd1c158dada8a2eefd537179bdb44c7865ba2cf30e0f519"
+    },
+    {
+      "path": "lib/theme/lumo_colors.dart",
+      "bytes": 5429,
+      "sha256": "8a9e31f0c7120075a54c2917fae658883470e575e4ac5b0f8013c20366492c85"
+    },
+    {
+      "path": "lib/theme/lumo_design_tokens.dart",
+      "bytes": 3396,
+      "sha256": "0c00fcf6efd93d6c696444ccbc4b1119624f0aa904d7e6fbb484297678a72990"
+    },
+    {
+      "path": "lib/theme/lumo_motion.dart",
+      "bytes": 2686,
+      "sha256": "a0ca789c86b937296623a81222ae556484743511ef901dff1aece48309ef6174"
+    },
+    {
+      "path": "lib/theme/lumo_shadows.dart",
+      "bytes": 2589,
+      "sha256": "4e7e297aec8e67bafc191d4a55f6415b472398dc02bfce319f71e4b080267b3d"
+    },
+    {
+      "path": "lib/theme/lumo_typography.dart",
+      "bytes": 4359,
+      "sha256": "292c1b3914a5f232039b3114d6ed4f5d01f168933276e9c3f7e45a73bb371a7a"
+    },
+    {
+      "path": "lib/theme/lumo_visual_tokens.dart",
+      "bytes": 993,
+      "sha256": "d46c725ccd670a8fc8e31fc9d9b279a3f2dbfc6adc52fb5b8e9c2ecc003a4015"
+    },
+    {
+      "path": "lib/widgets/design/lumo_adventure_card.dart",
+      "bytes": 5459,
+      "sha256": "62fc76e990ad1ee21096f8619637a7739618d6e2005251d5b4394e985948ed2d"
+    },
+    {
+      "path": "lib/widgets/design/lumo_answer_crystal.dart",
+      "bytes": 13681,
+      "sha256": "7cd5d077e76daff8bdcf6da2454ed99abfc11461bb0b2b6263fe7a49d3956e0d"
+    },
+    {
+      "path": "lib/widgets/design/lumo_character_stage.dart",
+      "bytes": 1770,
+      "sha256": "0f044ca1b337093a215e10fa99a720d83931c7892a9a0dbcea27d79a9cf01048"
+    },
+    {
+      "path": "lib/widgets/design/lumo_design_system.dart",
+      "bytes": 58867,
+      "sha256": "2ecd5be524b6f833197e12af0c3ccb453d5b8af4377e7b02eff9dcd2c190ad7a"
+    },
+    {
+      "path": "lib/widgets/design/lumo_glass_optics.dart",
+      "bytes": 4364,
+      "sha256": "8936036ab7bbc0e59cfe08dd0efb3e4f588810eaf5bfaf014c0dc19a4fd2f222"
+    },
+    {
+      "path": "lib/widgets/design/lumo_learning_module_frame.dart",
+      "bytes": 52524,
+      "sha256": "8ee3afae2a3604c6ac59b34af552f7b8388fa363201e0726d36d321ff34084e6"
+    },
+    {
+      "path": "lib/widgets/design/lumo_lesson_progress.dart",
+      "bytes": 3236,
+      "sha256": "6f69e68df6bc329578cfcd2aa4e79b28227802a6b22eec03be08e6641b41878c"
+    },
+    {
+      "path": "lib/widgets/design/lumo_materials.dart",
+      "bytes": 4492,
+      "sha256": "a560434a2ed3aacd7aac384297cc15d91cd2ec5d63021e7b0968eb56c78151a6"
+    },
+    {
+      "path": "lib/widgets/design/lumo_math_stage.dart",
+      "bytes": 1255,
+      "sha256": "e84bf1b93ababaddd8646fc2a48edc85146ea3cd85091188cc5a51807067f8d2"
+    },
+    {
+      "path": "lib/widgets/design/lumo_motion.dart",
+      "bytes": 8177,
+      "sha256": "d4c3a71824966f8b3d7e1be0aa9157b36b0497a0f55dfa44ecf730d511c4ef93"
+    },
+    {
+      "path": "lib/widgets/design/lumo_night_scope.dart",
+      "bytes": 4559,
+      "sha256": "199f96498390994453340c996d28f2777c5d6d581d45f059a4df044b9c2279a4"
+    },
+    {
+      "path": "lib/widgets/design/lumo_quantity_art.dart",
+      "bytes": 894,
+      "sha256": "b02cd1dbf22e3227f43b1b40509657d9e00117ef41a733379d159edfcd8bd1cf"
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_art_panel.dart",
+      "bytes": 6642,
+      "sha256": "720997c76915d3755ef939c96bbdfa9d0d3ff1c6a49344668028be9de5b894c1"
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_artwork.dart",
+      "bytes": 771,
+      "sha256": "862e02de131f1d15364fcc8e54e5f66828b50eddc89cf0433447b52583a67f40"
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_atmosphere.dart",
+      "bytes": 13033,
+      "sha256": "23ce0845e7be91bf6a22c4b600729f13edebb0d56be4018fb6547ec0ec728d39"
+    },
+    {
+      "path": "lib/widgets/design/lumo_section_heading.dart",
+      "bytes": 2185,
+      "sha256": "b9033191c6f210d0749ac57783fa4440f412ff20ac5c3a5575c9ec3596d99972"
+    },
+    {
+      "path": "lib/widgets/design/lumo_task_object_art.dart",
+      "bytes": 6135,
+      "sha256": "9d640314e6dfcb3160f397c66e5d550660d8374fe17b04abb9c787639ee54dfc"
+    },
+    {
+      "path": "lib/widgets/fox/living/lumo_fox_mesh.dart",
+      "bytes": 10928,
+      "sha256": "35ed0f1a2aaa75eed60c9771b0779e442fbfa2e09aa60e60d71635ead6270ac6"
+    },
+    {
+      "path": "lib/widgets/fox/living/lumo_fox_rig.dart",
+      "bytes": 9630,
+      "sha256": "03f39e309e5c3149076eb1fe9add48e19954cb2f3e4f14326e8b4b6b8ac043af"
+    },
+    {
+      "path": "lib/widgets/fox/living/lumo_living_character.dart",
+      "bytes": 27802,
+      "sha256": "910b2754249993b059aee9b48a5450844a8f24038ebfde16fb0a0493a105bb1f"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_animated_fox.dart",
+      "bytes": 19612,
+      "sha256": "1634e363cbec601f446d2404f234be6db2c8e98b09df1c767d1c457979cd9044"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_character.dart",
+      "bytes": 17665,
+      "sha256": "54fc9ed9f9aed6493e5530d5c6c7db70bfa2d94b063c78fe0f6ac2e641ee3e68"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_companion_requests.dart",
+      "bytes": 15806,
+      "sha256": "ab8052e29ffdcee748b8aff73859289805bab6d45197a57d48b60917295ccfcb"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_free_companion.dart",
+      "bytes": 27242,
+      "sha256": "a361c60177ef9e8f7a011178b74d135604a135659839e0c3edf9d300ee5f2643"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_idle_fox.dart",
+      "bytes": 895,
+      "sha256": "069f7a0cdcf57edd807323fd1bd96cbc41f85ed4e9c087f88cfe6e14b8bad355"
+    },
+    {
+      "path": "lib/widgets/fox/lumo_reaction_companion.dart",
+      "bytes": 1118,
+      "sha256": "ab8cdbe4e76d9e4e6703385f034b21843b887dcda5e6d0b41a2f002ed2e5c9fe"
+    },
+    {
+      "path": "lib/widgets/lumo/lumo.dart",
+      "bytes": 918,
+      "sha256": "47e37e839bd2d30256bfd64e6fbfc6f00c652e4849b436ff3c02f8b3741d5d56"
+    },
+    {
+      "path": "lib/widgets/lumo/lumo_chip.dart",
+      "bytes": 5686,
+      "sha256": "d965aabb731a552c36ea272a7dce527ed3a4b8be81714fe7299fb408f4bb40dc"
+    },
+    {
+      "path": "lib/widgets/lumo/lumo_design_kit.dart",
+      "bytes": 7598,
+      "sha256": "3d0a43bfb2a7f60ad759af919675d9928cd1b4e9a0b9c807623f1803a1c2c66f"
+    },
+    {
+      "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+      "bytes": 4255,
+      "sha256": "8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70"
+    },
+    {
+      "path": "lib/widgets/lumo_mirror.dart",
+      "bytes": 15150,
+      "sha256": "3bff1fcd37091bcf39e3c907ff7518754b690a0af21d660a945153c004b9a8a0"
+    },
+    {
+      "path": "lib/widgets/lumo_speech_controls.dart",
+      "bytes": 3436,
+      "sha256": "ba5767406753f2547ef28e2b6c6ebf63732d177c49ad2d7847ddfec0d2077831"
+    },
+    {
+      "path": "lib/widgets/parent_approval_dialog.dart",
+      "bytes": 1486,
+      "sha256": "f25d087ad5ff6a18ff44c4737a78e641cf831e58202b9bcc519a6d361583b28d"
+    },
+    {
+      "path": "lib/widgets/premium/lumo_empty_error_state.dart",
+      "bytes": 3960,
+      "sha256": "1ab119180bd17a56116cc79f96d1393dd5bfd7ed517568f4dd91edc623e510bb"
+    },
+    {
+      "path": "lib/widgets/premium/lumo_hero_card.dart",
+      "bytes": 5305,
+      "sha256": "c591380eb306c3ded9dce74d83b93666f4594132cf13d425c3c30cfc60e3919e"
+    },
+    {
+      "path": "lib/widgets/premium/lumo_magic_background.dart",
+      "bytes": 7324,
+      "sha256": "89fd5b16b79adaf9540a7ec160d828ddd30f8db1ea4093384136e33c4e23a37e"
+    },
+    {
+      "path": "lib/widgets/premium/lumo_premium_card.dart",
+      "bytes": 3450,
+      "sha256": "7afd7156a7be2a88d01f690054a0086996b9b66933af18fcd29687dd51517fb4"
+    },
+    {
+      "path": "lib/widgets/premium/lumo_reward_burst.dart",
+      "bytes": 8408,
+      "sha256": "88a781241ba151d8d306829641aafc253c3d10676b9769a7654df6fd1c0d084a"
+    },
+    {
+      "path": "lib/widgets/premium/lumo_stage_header.dart",
+      "bytes": 4885,
+      "sha256": "94bd338880e0ce952e4cbb792d8ad6268a68719c53063ad42188b7af7a91cc5c"
+    },
+    {
+      "path": "lib/widgets/profile_screen.dart",
+      "bytes": 34479,
+      "sha256": "2dd0c89a1570b0bcf8dce029ed2ff56f7cd3bee3ac05c8545a26c4dd6c6a357c"
+    },
+    {
+      "path": "lib/widgets/scan_screen.dart",
+      "bytes": 6952,
+      "sha256": "9cb629d829e9b59f744bad760c6bc884bd1bc10d815459d58de346c2eb191795"
+    },
+    {
+      "path": "lib/widgets/shell/left_navigation.dart",
+      "bytes": 16048,
+      "sha256": "ab1c0adfffa3092fb135bf8466f387608c6be3a24ca86f7b81dd25b9800a7580"
+    },
+    {
+      "path": "pubspec.lock",
+      "bytes": 24469,
+      "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2719,
+      "sha256": "b9974efc95ccd73136d786bad9e140b32270120b282184bd9079c4af7b59e74b"
+    },
+    {
+      "path": "tools/nextgen/build_coverage.py",
+      "bytes": 110254,
+      "sha256": "a16fa8dbee7e1afb41e6875187a56322d84f50752bf8ebfe9bc8330dbf513dc6"
+    },
+    {
+      "path": "tools/nextgen/export_learning_catalog_test.dart",
+      "bytes": 8242,
+      "sha256": "877eb49e5af10bcaf1c59085521ac9f65c83d9e3f84da41a17c0db256d42e81d"
+    }
+  ],
+  "scope": "Finite actual Dart catalogs only; no Android, student-data, rendering or all-variant acceptance.",
+  "exitCode": 0,
+  "finishedUtc": "2026-11-16T09:05:49.172827+00:00",
+  "sourcesUnchanged": true,
+  "export.log": {
+    "bytes": 216,
+    "sha256": "d36bb464bee0ca014b91bb65e1460c4bfb42bec342fff7f83dcedf93146319d8"
+  },
+  "catalog.json": {
+    "bytes": 115256,
+    "sha256": "f0eb68a8e9c2e697885e3e635b48e3b62d84bf54eb9d7ba5e143951157ad8541"
+  },
+  "flutter-version.json": {
+    "bytes": 635,
+    "sha256": "fa870a17f35a877ccff979e8e27a1922732ecc7b53bef245c5f82b2b49286a08"
+  },
+  "catalogSourceHeadMatches": true,
+  "trackedSourceClean": true
+}

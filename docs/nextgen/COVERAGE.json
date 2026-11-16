@@ -2,9 +2,9 @@
   "schema": "lumo.nextgen.learning.coverage",
   "version": 2,
   "asOf": "2026-11-15",
-  "exportedAtUtc": "2026-11-16T03:51:45.483676+00:00",
+  "exportedAtUtc": "2026-11-16T09:08:28.056528+00:00",
   "sourceBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
-  "localSourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
+  "localSourceHead": "a5ea7422b1152576b34cf80519856129ff264ac1",
   "scope": {
     "fullModernizationComplete": false,
     "allTaskVariantsReviewed": false,
@@ -4344,7 +4344,7 @@
     }
   ],
   "catalogs": {
-    "sourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
+    "sourceHead": "a5ea7422b1152576b34cf80519856129ff264ac1",
     "semantics": "Finite catalogs are enumerated; generated task variants are not.",
     "curriculumFamilies": [
       {
@@ -21503,7 +21503,7 @@
       "id": "avatar_reference_followup",
       "status": "pinned_native_visual_device_review",
       "owner": "avatar + Root",
-      "description": "Published native source is pinned to 678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof.",
+      "description": "Published native source is pinned to 9d6ef1d704a0e54098a8f8f0818f36deae0e3789. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof.",
       "classification": "pinned_native_visual_runtime_evidence_pending"
     },
     {
@@ -23101,13 +23101,23 @@
       "readFrom": "worktree"
     },
     {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8",
+      "readFrom": "worktree"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_native_stop.py",
+      "sha256": "2d8e70a2ab3e9a8d0756b6a20341d5d639833c9854e4e087556cf81bb2776b56",
+      "readFrom": "worktree"
+    },
+    {
       "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
-      "sha256": "7f5074b592e4dde1b8159575ec578ec36a2fae36d50d8e3642715ce8ca01b97c",
+      "sha256": "81efab46dbb85c4d22745bbfbf637ea5389548cb19508ec424948c2bb221c449",
       "readFrom": "worktree"
     },
     {
       "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
-      "sha256": "f4f4b1426cc99a69aab5850f388f4b40b3c95464eaccc8f112eb00c13bf09157",
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
       "readFrom": "worktree"
     },
     {
@@ -23117,7 +23127,7 @@
     },
     {
       "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
-      "sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2",
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
       "readFrom": "worktree"
     },
     {
@@ -23126,8 +23136,13 @@
       "readFrom": "worktree"
     },
     {
+      "path": ".github/workflows/lumo-nextgen-catalog-export.yml",
+      "sha256": "10304be797565faa24c612b1bb693635849231fe146c2aa7404d2fbb5acbf00a",
+      "readFrom": "worktree"
+    },
+    {
       "path": ".github/workflows/lumo-nextgen-learning-apk.yml",
-      "sha256": "cf118bb96e12c7b81b35497329e471f327050b19bd69650cfd3854287913f2d1",
+      "sha256": "848c868ff7a785220073aa34822ebf7ee2b6d4250ff15216b80a2193759bc2ef",
       "readFrom": "worktree"
     },
     {
@@ -24861,13 +24876,18 @@
       "readFrom": "worktree"
     },
     {
+      "path": "tools/android_qa/tests/test_nextgen_current_native_stop.py",
+      "sha256": "1ebb3bf459324a7b7418f5beb12b2dd9d2a65e43723bedd4a0d4d8a91465deb4",
+      "readFrom": "worktree"
+    },
+    {
       "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
-      "sha256": "487aa7923a89a685c4a41e1ca28827d3d059c5ff6cec2d13bad5ef69d7880b79",
+      "sha256": "bfb4da34651acc7059055d0a49f47d7b55ec86b694a7c3c7b92d7b16d3861075",
       "readFrom": "worktree"
     },
     {
       "path": "tools/android_qa/tests/test_nextgen_native_reader.py",
-      "sha256": "7278cc973050f2f3db82ce6a1e4c7960630875163965104101142a85bcdd940b",
+      "sha256": "514b5b9ceedd8f6128ea9e459adb9dc31a7327970a88aba89dbf54a7e2ef6664",
       "readFrom": "worktree"
     },
     {
@@ -24882,12 +24902,17 @@
     },
     {
       "path": "tools/nextgen/build_coverage.py",
-      "sha256": "3747eef237869a9822d691db92a36037f78a33560de8edda6635407b663d1d3b",
+      "sha256": "a16fa8dbee7e1afb41e6875187a56322d84f50752bf8ebfe9bc8330dbf513dc6",
       "readFrom": "worktree"
     },
     {
       "path": "tools/nextgen/export_learning_catalog_test.dart",
       "sha256": "877eb49e5af10bcaf1c59085521ac9f65c83d9e3f84da41a17c0db256d42e81d",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441",
       "readFrom": "worktree"
     }
   ],
@@ -29672,17 +29697,17 @@
     "activeSpecialistRoutes": "Actual specialist Academy entries with recorded widget route checks; separate from the general inventory count."
   },
   "sourceSnapshot": {
-    "committedProductHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
+    "committedProductHead": "a5ea7422b1152576b34cf80519856129ff264ac1",
     "productWorkingTreeClean": true,
-    "catalogSourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
-    "rawCatalogSha256": "ed4cdafda16a03cee80d170da8b2a0491934409c098dbe06b11017f97bd0d67d",
+    "catalogSourceHead": "a5ea7422b1152576b34cf80519856129ff264ac1",
+    "rawCatalogSha256": "f0eb68a8e9c2e697885e3e635b48e3b62d84bf54eb9d7ba5e143951157ad8541",
     "exporter": {
       "path": "tools/nextgen/export_learning_catalog_test.dart"
     },
     "builder": {
       "path": "tools/nextgen/build_coverage.py"
     },
-    "publishedNativeSourcePin": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+    "publishedNativeSourcePin": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
     "finalReleaseSourceCommit": null,
     "releaseStatus": "Root supplies final release SHA, APK provenance and CI/device results after integration."
   }

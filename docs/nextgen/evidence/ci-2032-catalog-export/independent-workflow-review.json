@@ -1,0 +1,19 @@
+{
+  "reviewer": "conversation",
+  "source": "a5ea7422b1152576b34cf80519856129ff264ac1",
+  "tree": "e72c53feed7e5360f7f677b6bc49c58bfd50cd5d",
+  "verdict": "No concrete blocker",
+  "workflowSha256": "10304be797565faa24c612b1bb693635849231fe146c2aa7404d2fbb5acbf00a",
+  "configSha256": "56ee5524065554710e8f3a290f24388afaa428edd99e6c6883a53f40585cb7cf",
+  "reviewScope": [
+    "Actual unchanged Dart exporter",
+    "Pinned Flutter and unchanged lock",
+    "Actual exit and same source/head/clean conditions",
+    "No rewriting old catalog",
+    "No APK gate or release changes",
+    "Narrow integration branch/config trigger and contents read"
+  ],
+  "newTests": false,
+  "newAndroid": false,
+  "limit": "Timeout or uncaught exception may retain RUNNING manifest, but the job fails and no PASS is created."
+}

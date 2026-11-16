@@ -1,3 +1,15 @@
+# Wiederaufnahme 2032 — Vollbuild aktivieren
+
+Stand: 16.11.2026, 09:09 UTC. Native ist **9d6ef1d704a0e54098a8f8f0818f36deae0e3789**. Der vollständige echte Katalogexport an Host **a5ea7422b1152576b34cf80519856129ff264ac1** ist jetzt erfolgreich übernommen, alle 480 Quellhashes stimmen. Der Coverage-Builder lief am selben HEAD: 364 gebundene Quellen, 61 Inventareinträge, 55 Screens, 236 Lehrplanfamilien, 18 bytegleiche Schutzdateien. Originale unter `docs/nextgen/evidence/ci-2032-catalog-export/`, lokale Fehler und Builder unter `coverage_refresh_20261116_2032/`.
+
+1. Den aktuellen Katalog-/Reviewcheckpoint gezielt committen und exakt remote sichern. Root darf nach dem abgeschlossenen Builder nun fortschreiten; kein erneuter lokaler Dart-Test oder Katalog-HEAD-Umschreiben nötig.
+2. Danach `config/nextgen-release.json` konsistent auf **0.13.20 / 2032 / lumo-nextgen-learning-0.13.20-2032 / buildAttempt 1** setzen. Genau diese Datei startet den bestehenden vollständigen APK-Workflow auf dem Integrationsbranch. Der zusätzliche Katalogworkflow ist abgeschlossen und wird dabei nicht erneut ausgelöst.
+3. Tatsächliche Run-/Commit-/Tree-/Nativebindung sichern. Vollständige Host-/Nativevalidierung, neue signierte ARM64/x86-APKs, vollständige Original- und Referenztour einschließlich aktuellem aktiven Stopp sowie anonymen vollständigen APK-Download abwarten. Neue kontrastbezogene Regression ist als dreizehntes natives Programm enthalten. Kein alter 2031-PASS ersetzt den neuen Lauf.
+4. Paket/Signatur/Version prüfen, neue echte Medien und Originalfehler erhalten. Finalen Bericht mit genauen Commit-/Geräte-/Varianten-/Leistungsgrenzen erstellen. `fullModernizationComplete=false` bleibt, solange die dokumentierten Abdeckungs-/Gerätelücken bestehen. Main und frühere Releases nicht verändern.
+5. Drei fremde Story-PNGs und 405 native generierte UID-Dateien unangetastet lassen. Höchstens drei aktive Sessions; gezielte Commits und Autosave/exakter API-Publisher. Die aktuell dematerialisierten alten ZIP-Teile sind vollständig in Git und remote bewahrt; keine Gitobjekte gelöscht.
+
+## Archiv: vorherige Katalogwiederherstellung
+
 # Wiederaufnahme 2032 — frischen CI-Katalog übernehmen, dann APK aktivieren
 
 Stand: 16.11.2026, 09:02 UTC. Native ist exakt `9d6ef1d704a0e54098a8f8f0818f36deae0e3789`, Host-Produkt/Stopanschluss bis `394f9f7574f6e6b20e979a26bdae4c5a60fb742d` gesichert. Beide unabhängigen Reviews sind abgeschlossen. Pubspec und Pin-Policy sind bereits 0.13.20+2032; `config/nextgen-release.json` ist absichtlich noch 2031, um keinen unvollständigen APK-Lauf auszulösen.

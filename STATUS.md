@@ -1,3 +1,13 @@
+# LUMO 2032 — geprüfte Quellen und frischer Katalog, Build bereit
+
+Stand: 16.11.2026, 09:09 UTC. Native **9d6ef1d704a0e54098a8f8f0818f36deae0e3789** enthält ausschließlich die geprüften zusätzlichen dunklen Button-Schriftzustände. Godot-Regression **79/79**, bestehende Produktionslogik unverändert. Der neue aktuelle Stoppanschluss besitzt **26/26 gezielte Hostprüfungen** und zwei unabhängige Quellreviews; der aktuelle Publisher verlangt seinen tatsächlichen Androidbefund ab 2032.
+
+Frischer Katalog-CI-Lauf **43836322226 / Job 133193729169 SUCCESS**, Quelle **a5ea7422b1152576b34cf80519856129ff264ac1**, tatsächlicher Dart-Export **1 PASS** mit Flutter 3.44.9. Alle fünf Originalartefaktmitglieder und der Rohjoblog sind erhalten. Root prüfte **480** CI-Quellbindungen; der neue Coverage-Builder bindet **364** Quellen, **61** Inventareinträge, **55** Screens und **236** Lehrplanfamilien. **18 Schutzdateien** sind weiterhin bytegleich. [Nachweise](docs/nextgen/evidence/ci-2032-catalog-export/README.md).
+
+Die Quellen sind für die neue Version **0.13.20+2032** vorbereitet. Der nächste Schritt ist die bewusste Aktualisierung der bestehenden Releasekonfiguration und damit der vollständige signierte Build einschließlich Native-Import, vollständiger Tests, aktueller Androidtouren und erst danach öffentlicher Byteprüfung. **Noch keine neue APK, kein neuer Android-PASS, keine Veröffentlichung von 2032.** `fullModernizationComplete=false` bleibt bestehen.
+
+## Archiv: Katalogwiederherstellung und vorherige Stände
+
 # LUMO 2032 — exakter Katalogexport in frischer CI-Umgebung
 
 Stand: 16.11.2026, 09:02 UTC. Der Native-Kontrastfix ist als `9d6ef1d704a0e54098a8f8f0818f36deae0e3789` integriert. Der aktuelle Stopanschluss ist unabhängig geprüft und in Host `394f9f7574f6e6b20e979a26bdae4c5a60fb742d` gesichert; 26/26 gezielte Hostprüfungen, noch kein neuer Androidlauf. Die vollständige APK-Pipeline verlangt dieses Stoppergebnis ab 2032.

@@ -1,6 +1,6 @@
 # Lernabdeckung – belegter integrierter Quellstand
 
-**Produkt-Snapshot: `cc4197e622c42dc5387ba06b7e57ac4964e1a07b`. `fullModernizationComplete` bleibt `false`.**
+**Produkt-Snapshot: `a5ea7422b1152576b34cf80519856129ff264ac1`. `fullModernizationComplete` bleibt `false`.**
 Diese Matrix inventarisiert den ausgeführten Dart-Katalog, Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Ihre Einträge umfassen aktive und bedingte Lernwege, Navigation, Verträge, geschützte sowie inaktive Legacy-Pfade; ihre Gesamtzahl ist keine Zahl aktuell erreichbarer bewerteter Aufgaben. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält IDs, Quellenhashes, klassifizierte Einträge, Typen, Adapter und Nachweisgrenzen.
 
 ## Tatsächlich erfasster Umfang
@@ -86,7 +86,7 @@ Die Satz-Privacy-Neuprüfung ersetzt die alte Behauptung eines offenen Lösungsl
 
 - Der frühere C5-Lauf 44/5 und die abgebrochene erste native Fixture bleiben Fehlerhistorie. Der korrigierte gemeinsame Native-Lauf hat **35/35**, der gelieferte Frage-Coach **56/56**, der neue Lab-Anschluss **24/24** aufgezeichnete Erfolge. Sie ersetzen die alten Pending-Aussagen für diese gezielten Bereiche, ergeben zusammen aber keinen vollständigen aktuellen Root-Testlauf.
 - Die 35-Test-Lieferung `b193899565110e5c7a26f73520a943b261887e63` enthält nach diesem Lauf noch eine enge Ablehnung mehrdeutiger normalisierter Auswahlwerte. Die finale CI muss deshalb den exakten integrierten Quellstand einschließlich dieser Verschärfung prüfen. Live, 2D Flame und der Quiz-/Cards-Coach sind in `3123d3247775fcdc42a16c2bcc5c51e1ab98c4c9` integriert; ihre Producer-/Test-Provenienz ist im JSON getrennt erfasst.
-- Der veröffentlichte native Quell-Pin lautet **`678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`**. Dieser Flutter-Bestand allein belegt nicht die finale Banane-/Kartenoptik auf einem Gerät. Ein früherer Desktop-Review meldete **8 FPS**; das ist ein historischer Producer-Befund und keine Leistungsmessung der aktuellen Android-APK. Physischer Fold, reale Mikrofon-/Audioabläufe und die vollständige Android-Tour benötigen ihre eigenen aktuellen Belege.
+- Der veröffentlichte native Quell-Pin lautet **`9d6ef1d704a0e54098a8f8f0818f36deae0e3789`**. Dieser Flutter-Bestand allein belegt nicht die finale Banane-/Kartenoptik auf einem Gerät. Ein früherer Desktop-Review meldete **8 FPS**; das ist ein historischer Producer-Befund und keine Leistungsmessung der aktuellen Android-APK. Physischer Fold, reale Mikrofon-/Audioabläufe und die vollständige Android-Tour benötigen ihre eigenen aktuellen Belege.
 - Die alten Deutsch-Lückensätze bleiben ohne App-Einstieg, weil mehrdeutiger Inhalt und direkte Belohnungsbuchung noch überprüft werden müssen. Exakte UI-Auswahl aller 236 Generatorfamilien und jede generierte Variante sind nicht durchgespielt.
 - **18 geschützte Schreib-/Journaldateien sind bytegleich** zu `6f4a8c4753f4d06d0b392da0789b8162b2faa71b`; Einzelhashes stehen in JSON. Kart und nativer Dschungel bleiben ausgeschlossen. Der eigenständige 2D-Flame-Lernpfad bleibt im Inventar.
 - Finaler Release-SHA, signierte APK-Provenienz, CI-Ergebnis und Download werden von Root nach Integration ergänzt. Aus dieser Bestandsaufnahme folgt keine neue APK-Freigabe.

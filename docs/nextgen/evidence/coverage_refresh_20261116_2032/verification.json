@@ -1,0 +1,57 @@
+{
+  "utc": "2026-11-16T09:08:28.715216+00:00",
+  "sourceHead": "a5ea7422b1152576b34cf80519856129ff264ac1",
+  "actualCatalogSource": "docs/nextgen/evidence/ci-2032-catalog-export/original/catalog.json",
+  "catalogWorkflowRun": 43836322226,
+  "catalogJob": 133193729169,
+  "actualCatalogTestPassed": 1,
+  "catalogSourcesIndependentlyVerified": 480,
+  "sourceHashesVerified": 364,
+  "protectedFilesByteEqual": 18,
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "counts": {
+    "curriculumFamilies": 236,
+    "mathTemplates": 60,
+    "germanTemplates": 32,
+    "academyTopics": 79,
+    "registeredModuleIds": 20,
+    "practicalActivities": 60,
+    "labTopics": 6,
+    "guidedLessons": 7,
+    "gameLevels": 50,
+    "readingTexts": 24,
+    "quests": 4,
+    "cognitiveQuestions": 200,
+    "reviewedInventoryEntries": 61,
+    "reviewedRoutes": 61,
+    "screenInventoryFiles": 55,
+    "activeSpecialistScreens": 18,
+    "activeSpecialistRoutes": 19,
+    "protectedShadowedRegistryRoutes": 1,
+    "labModes": 6,
+    "labProblemIds": 35,
+    "miniGameLevels": 49,
+    "quizFinalLevels": 1,
+    "nativeKinds": 12,
+    "protectedByteIdenticalFiles": 18,
+    "quizDeclaredQuestionIds": 108,
+    "cardsBankItems": 200
+  },
+  "fullModernizationComplete": false,
+  "localFailuresPreserved": [
+    "local-attempt1",
+    "local-attempt2"
+  ],
+  "docs/nextgen/COVERAGE.json": {
+    "bytes": 998937,
+    "sha256": "1aaef7e1cf9ffcc3f2b93b2abac65709b41437e389874d1de54392f4eb38ad2a"
+  },
+  "docs/nextgen/COVERAGE.md": {
+    "bytes": 15142,
+    "sha256": "f6cee7f20ace421ffeed2f87f93e7de43987a8f698d86dd9567e26c25ce80bf8"
+  },
+  "docs/nextgen/evidence/coverage_refresh_20261116_2032/builder.log": {
+    "bytes": 826,
+    "sha256": "30f88c996943462e67688596ee33825a0e688ba3cbbccaf686035f9508aab641"
+  }
+}
