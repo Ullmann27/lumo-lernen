@@ -451,6 +451,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
       LumoCompanionRequests.instance.clearTask(_published);
       return;
     }
+    final previousIdentity = _coach.identity;
     final revision = ++_revision;
     final p = _current;
     final task = LumoCompanionTaskContext(
@@ -501,7 +502,13 @@ class _LearningLabScreenState extends State<LearningLabScreen>
     final requests = LumoCompanionRequests.instance;
     requests.tutor.enterTask(task.tutorScope);
     if (_safe && revision == _revision && identical(_published, task)) {
-      _coach.publish(task);
+      final identity = _coach.publish(task);
+      if (identity != null && !identity.matches(previousIdentity)) {
+        // Route return and resume can publish after this page was built with
+        // no task lease. Rebuild its callbacks only after our new lease exists;
+        // callbacks from the covered/previous scope must remain invalid.
+        setState(() {});
+      }
       if (_focusObjectId != null && _objectIds.contains(_focusObjectId)) {
         _coach.present(objectId: _focusObjectId, point: true, state: 'explain');
       }

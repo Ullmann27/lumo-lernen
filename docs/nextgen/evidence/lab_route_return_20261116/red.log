@@ -1,0 +1,84 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart
+00:00 +0: visible lab resume rebinds without a resize
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:40:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart line 40
+The test description was:
+  visible lab resume rebinds without a resize
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: visible lab resume rebinds without a resize [E]
+  Test failed. See exception logs above.
+  The test description was: visible lab resume rebinds without a resize
+  
+00:01 +0 -1: own conversation return rebinds visible model (permission interruption: false)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <1>
+  Actual: <0>
+The visible stone must move after return. The same frame had lab-next enabled=false.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:139:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart line 139
+The test description was:
+  own conversation return rebinds visible model (permission interruption: false)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +0 -2: own conversation return rebinds visible model (permission interruption: false) [E]
+  Test failed. See exception logs above.
+  The test description was: own conversation return rebinds visible model (permission interruption: false)
+  
+00:02 +0 -2: own conversation return rebinds visible model (permission interruption: true)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <1>
+  Actual: <0>
+The visible stone must move after return. The same frame had lab-next enabled=false.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:139:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart line 139
+The test description was:
+  own conversation return rebinds visible model (permission interruption: true)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +0 -3: own conversation return rebinds visible model (permission interruption: true) [E]
+  Test failed. See exception logs above.
+  The test description was: own conversation return rebinds visible model (permission interruption: true)
+  
+00:03 +0 -3: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart: own conversation return rebinds visible model (permission interruption: false)
+  /workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart: own conversation return rebinds visible model (permission interruption: true)
+  /workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart: visible lab resume rebinds without a resize

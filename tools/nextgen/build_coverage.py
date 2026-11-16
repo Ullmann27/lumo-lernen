@@ -772,6 +772,13 @@ RUN_SPECS = [
      "earlier_targeted_integration", None, []),
     ("minigame_original_routes", "remaining_integration_20261115/mini_game_routes_initial.log",
      "root_original_routes_before_native_followup", None, ["test/games/mini_games_flow_test.dart"]),
+    ("lab_route_return", "lab_route_return_20261116/green.log",
+     "owner_worktree_verified_by_recorded_source_hashes", None, [
+         "test/learning/lab_conversation_return_test.dart",
+         "test/learning/nextgen_lab_bus_integration_test.dart",
+         "test/learning/lab_native_entry_test.dart",
+         "test/learning_lab_runtime_test.dart",
+     ]),
     ("lab_native", "lab_native_20261115/tests.log",
      "owner_sources_integrated", "6757f8c2b0758519c44c3606215f2f4fae3fc5a5", [
          "test/learning/lab_native_entry_test.dart",
@@ -924,7 +931,7 @@ CHILD_TASK_ROUTES = {
 EXTRA_ROUTE_TESTS = {
     "core": ["test/learning/learning_content_commands_test.dart"],
     "guided": ["test/tutoring/guided_coach_binding_test.dart", "test/tutoring/guided_ten_frame_playback_test.dart"],
-    "lab": ["test/learning/nextgen_lab_bus_integration_test.dart", "test/learning/nextgen_lab_boards_test.dart", "test/learning/lab_native_entry_test.dart"],
+    "lab": ["test/learning/nextgen_lab_bus_integration_test.dart", "test/learning/nextgen_lab_boards_test.dart", "test/learning/lab_native_entry_test.dart", "test/learning/lab_conversation_return_test.dart"],
     "iq": ["test/iq/nextgen_thinking_flow_test.dart"],
     "cognitive": ["test/iq/nextgen_thinking_flow_test.dart"],
     "game:learning_round": ["test/games/mini_games_flow_test.dart"],

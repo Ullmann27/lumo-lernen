@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "components": [
+    {
+      "branch": "fix/lumo-lab-route-scope-20261116",
+      "producerCommit": "6a038b3ab2db5bde79ef9376dc913d62d1a2512c",
+      "publishedCommit": "b730a2b8fb1933471a3aed01a434842f46a0fe69",
+      "tree": "9e371d7d16ea5bf13f8d9b623dc47ac8f5590c9e",
+      "rootCherryPick": "b27ef06",
+      "tests": "27/27 targeted Flutter methods; original 3/3 RED preserved; no Android pass claimed"
+    },
+    {
+      "branch": "fix/lumo-source-public-download-20261116",
+      "producerCommit": "380f19e6c223ccb8e7df8fb698abab4a84508d14",
+      "publishedCommit": "79258ab7878cb1a9b1e31924dcd02a6b6c6ecdb0",
+      "tree": "9637a8d2e784d86f62675a373e81593113cfe67d",
+      "rootCherryPick": "3909269",
+      "tests": "13/13 synthetic host transport/metadata tests; no public download claimed"
+    }
+  ],
+  "fullTreeEqualityVerifiedForEachPublication": true,
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "newApkBuilt": false
+}
