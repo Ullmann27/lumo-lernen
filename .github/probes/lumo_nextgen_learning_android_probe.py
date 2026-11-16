@@ -63,6 +63,7 @@ DISPLAY_LAYOUTS = (
     ("fold7-cover-emulated", 1080, 2520, 420),
     ("fold7-inner-emulated", 1968, 2184, 420),
 )
+PERMISSION_PACKAGES = ("com.android.permissioncontroller", "com.google.android.permissioncontroller")
 
 
 def require(condition: bool, message: str) -> None:
@@ -207,6 +208,45 @@ def observed_control(nodes, label: str, *, package: str = PACKAGE,
         return min(matches, key=lambda b: ((b[2] - b[0]) * (b[3] - b[1]), b))
     require(len(matches) <= 1, "Ambiguous enabled visible control: " + label)
     return next(iter(matches), None)
+
+
+def observed_microphone_allow(nodes) -> tuple[str, tuple] | None:
+    """Read one visible system audio grant; a loading container is not a button.
+
+    Match the permission purpose and app, not a generic Allow caption shared
+    with camera/location requests. Case aliases and duplicate semantics at the
+    same system control count once; distinct controls remain an error.
+    """
+    visible = [node for node in nodes if node.get("package") in PERMISSION_PACKAGES
+               and node.get("visible-to-user") == "true" and bounds(node)]
+    normalize = lambda text: " ".join(text.casefold().split())
+    captions = {"while using the app", "bei nutzung der app"}
+    requests = {"allow lumo lernen neu to record audio?",
+                "lumo lernen neu erlauben, audio aufzunehmen?"}
+    controls = {}
+    for node in visible:
+        if node.get("enabled") != "true" or node.get("clickable") != "true":
+            continue
+        box = bounds(node, min_height=32)
+        labels = [label for label in node_labels([node]) if normalize(label) in captions]
+        if box and labels:
+            key = (node["package"], node.get("resource-id", ""), box)
+            controls.setdefault(key, labels[0])
+    require(len(controls) <= 1, "Ambiguous visible microphone permission allow controls")
+    if not controls:
+        return None
+    (package, _, box), caption = next(iter(controls.items()))
+    prompts = {normalize(label) for node in visible if node["package"] == package
+               for label in node_labels([node])}
+    if not prompts & requests:
+        readable_request = any(node["package"] == package and
+                               node.get("resource-id", "").endswith(":id/permission_message") and
+                               node_labels([node]) for node in visible)
+        require(not readable_request, "Visible control is not a verified Lumo Lernen Neu audio permission")
+        # The button can arrive before its request text, or outlive it during
+        # dismissal. No verified purpose means no gesture; observe again.
+        return None
+    return caption, box
 
 
 def observed_scroll_bounds(nodes) -> tuple | None:
@@ -897,29 +937,38 @@ class LearningProbe:
         # English and German captions are Android system UI, not app fallbacks.
         deadline = time.monotonic() + 35
         observed = []
+        observed_state = None
+        permission_tapped = False
         while time.monotonic() < deadline:
             nodes = self.nodes("microphone-outcome")
+            # A hierarchy read must not authorize a late gesture or success
+            # after the original budget, even if the transport itself stalled.
+            if time.monotonic() >= deadline:
+                break
             labels = node_labels(nodes)
             observed = labels
-            system = [n for n in nodes if n.get("package") in ("com.android.permissioncontroller", "com.google.android.permissioncontroller")]
+            system = [n for n in nodes if n.get("package") in PERMISSION_PACKAGES]
             if system:
-                allowed = []
-                for caption in ("While using the app", "WHILE USING THE APP", "Bei Nutzung der App", "BEI NUTZUNG DER APP"):
-                    for package in ("com.android.permissioncontroller", "com.google.android.permissioncontroller"):
-                        box = observed_control(system, caption, package=package)
-                        if box:
-                            allowed.append((caption, box))
-                require(len(allowed) == 1, "Observed microphone permission has no unambiguous allow control")
-                self.touch(allowed[0][1], "microphone-permission", allowed[0][0])
-                continue
-            observed_state = microphone_outcome(labels)
-            if observed_state is not None:
-                break
-            time.sleep(.6)
-        else:
-            raise RuntimeError("Microphone request produced neither listening state nor explicit device limitation")
+                allowed = observed_microphone_allow(system)
+                if allowed and not permission_tapped:
+                    self.touch(allowed[1], "microphone-permission", allowed[0])
+                    permission_tapped = True
+                # The original 0138 hierarchy contains only an invisible,
+                # zero-height container. Observe fresh frames while loading,
+                # and after the one grant wait for the dialog to disappear.
+                # An underlying app label is not an outcome through a modal.
+            else:
+                observed_state = microphone_outcome(labels)
+                if observed_state is not None:
+                    break
+            time.sleep(min(.6, max(0, deadline - time.monotonic())))
+        require(observed_state is not None,
+                "Microphone permission did not transition to listening state or explicit device limitation before deadline"
+                if permission_tapped else
+                "Microphone request produced neither listening state nor explicit device limitation")
         self.save("microphone-observation", {"labels": observed, "services": services,
-                                             "observed_state": observed_state})
+                                             "observed_state": observed_state,
+                                             "permission_tapped": permission_tapped})
         self.capture("actual-microphone-outcome")
         self.tap("Stopp", "microphone-stop")
         self.see(stop_label, "microphone-stopped", scroll=True)

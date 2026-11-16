@@ -1,0 +1,54 @@
+{
+  "schema": "lumo.android.qa.recorded.permission.v1",
+  "workflowRun": 43774460935,
+  "jobId": 133004691086,
+  "artifactId": 14186359772,
+  "artifactArchiveBytes": 13472105,
+  "artifactArchiveSha256": "275aed0ea814438c8e4ddb845fc3a5e12eb835586866823036930696c94821f7",
+  "apkSourceCommit": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "nativeSourceCommit": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "readerBaseCommit": "dd89719f84405cd6b570c094042d2c71ca30c731",
+  "files": [
+    {
+      "file": "0138-microphone-outcome.xml",
+      "originalMember": "original-android/0138-microphone-outcome.xml",
+      "bytes": 13382,
+      "sha256": "0de622cb2f0a1d562d0cf4bfa3bf19b9ef8eecbac7ca92106c51660953168006",
+      "copy": "byte-identical, including CRLF"
+    }
+  ],
+  "scope": "Original intermediate hierarchy only: permission container invisible with zero height. No ready permission hierarchy or successful microphone transition was captured. Synthetic ready/transition nodes in unit tests are explicitly not Android evidence.",
+  "runtimePass": false,
+  "checkerRuns": [
+    {
+      "file": "permission-reader-red-final.log",
+      "bytes": 24382,
+      "sha256": "096748351a9cf3543cb63ff7a381c1f8071deed604c56035a6e7996807ec2021"
+    },
+    {
+      "file": "permission-reader-green.log",
+      "bytes": 10415,
+      "sha256": "f8e04ce939f7b5894059c253a4fad19b18e0875324ad35444487293d5a18277c"
+    }
+  ],
+  "checkerScope": {
+    "green": {
+      "tests": 63,
+      "newPermissionFlowTests": 14,
+      "result": "PASS"
+    },
+    "red": {
+      "tests": 14,
+      "readerCommit": "dd89719f84405cd6b570c094042d2c71ca30c731",
+      "result": "FAIL_EXPECTED"
+    },
+    "androidExecutedByThisCorrection": false
+  },
+  "relatedOriginalScreenshot": {
+    "artifactMember": "original-android/0139-failure-current-screen.png",
+    "bytes": 417327,
+    "sha256": "c41b1072c5c6b4e831b14cd84231fbcbb3573da205230728523e475c4b71dc11",
+    "copiedIntoFixture": false,
+    "finding": "Visible record-audio request for Lumo Lernen Neu with one While using the app button. It is later than 0138 and is not a ready hierarchy or permission-grant success."
+  }
+}
