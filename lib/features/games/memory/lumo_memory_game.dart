@@ -34,6 +34,7 @@ class LumoMemoryScreen extends StatefulWidget {
     this.difficulty,
     this.pack,
     this.nativeTransport = const NativeMethodTableTransport(),
+    this.autoLaunchNative = false,
     this.turnMilliseconds,
   });
   final int? seed;
@@ -41,6 +42,10 @@ class LumoMemoryScreen extends StatefulWidget {
   final MemoryDifficulty? difficulty;
   final MemoryThemePack? pack;
   final NativeTableTransport nativeTransport;
+  /// Keep the complete Flutter round playable on Android by default. A child
+  /// may explicitly request the optional native 3D table; never auto-enter a
+  /// different Activity before the first card can be played.
+  final bool autoLaunchNative;
   final int Function()? turnMilliseconds;
 
   @override
@@ -153,7 +158,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
         _speak(controller.restored
             ? 'Deine gespeicherte Runde wartet auf dich.'
             : controller.state.line);
-        if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+        if (widget.autoLaunchNative && !kIsWeb &&
+            defaultTargetPlatform == TargetPlatform.android) {
           await _openNative();
         }
       });
@@ -167,8 +173,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
     }
   }
 
-  Future<void> _openNative() async {
-    if (!_canPlay || _nativePreparing || _pendingActions != 0) return;
+  Future<void> _openNative({bool userRequested = false}) async {
+    if (!_canPlay || _nativePreparing || _pendingActions != 0 || _clock.value) return;
     final attempt = ++_nativeAttempt;
     _turnScheduler.cancelElapsed();
     setState(() => _nativePreparing = true);
@@ -176,17 +182,19 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
       controller: _game, transport: widget.nativeTransport, reduceMotion: _reduceMotion,
     );
     _session = session;
+    var nativeReturned = false;
     try {
       await session.open();
       if (!_leaseCurrent || !mounted || attempt != _nativeAttempt || _pendingActions != 0) return;
       setState(() => _nativeLaunching = true);
-      await launchLumo3D(context, scene: 'memory', appState: _statsApp, tableToken: session.token);
+      nativeReturned = await launchLumo3D(context, scene: 'memory',
+          appState: _statsApp, tableToken: session.token);
     } catch (_) {
       // Missing native support keeps the same authoritative round available
       // in Flutter. No synthetic native success or new board is introduced.
     } finally {
       try {
-        await session.close(persist: identical(_session, session) && _nativeLaunching);
+        await session.close(persist: identical(_session, session) && _nativeLaunching && nativeReturned);
       } catch (_) {}
       // A Flutter turn may already have detached this automatic opening.
       // Its late reply must not cancel or restart that turn's local timer.
@@ -195,6 +203,14 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
         if (_leaseCurrent) {
           setState(() { _nativePreparing = false; _nativeLaunching = false; });
           _sync();
+          if (userRequested && !nativeReturned && attempt == _nativeAttempt && mounted) {
+            // The optional 3D renderer can fail without losing the same
+            // authoritative round or blocking the child's Flutter cards.
+            ScaffoldMessenger.maybeOf(context)?.showSnackBar(const SnackBar(
+              content: Text('Der 3D-Tisch ist gerade nicht verfügbar. '
+                  'Du kannst hier direkt Memory weiterspielen.'),
+            ));
+          }
         }
       }
     }
@@ -482,6 +498,16 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
               ),
             ),
           ),
+        ),
+        _RoundIconButton(
+          key: const ValueKey('memory-open-native-3d'),
+          icon: Icons.view_in_ar_rounded,
+          tooltip: '3D-Tisch ausprobieren (optional)',
+          onTap: () {
+            if (_canPlay && !_clock.value && !_nativePreparing) {
+              unawaited(_openNative(userRequested: true));
+            }
+          },
         ),
         _RoundIconButton(
           key: const ValueKey('memory-restart'),

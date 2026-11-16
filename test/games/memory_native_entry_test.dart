@@ -16,6 +16,7 @@ class _Unavailable implements NativeTableTransport {
   int opens = 0;
   final closed = <String>[];
   Completer<void>? openGate;
+  bool allowOpen = false;
   @override
   Future<void> open(String token, Map<String, Object?> state) async {
     opens++;
@@ -23,6 +24,7 @@ class _Unavailable implements NativeTableTransport {
       await openGate!.future;
       return;
     }
+    if (allowOpen) return;
     throw MissingPluginException('No native renderer in this widget test');
   }
   @override
@@ -66,7 +68,7 @@ Future<void> _open(WidgetTester tester, LumoAppState app, _Unavailable transport
   await tester.pumpWidget(MaterialApp(
     home: LumoMemoryScreen(key: UniqueKey(), appState: app, seed: 4,
         difficulty: MemoryDifficulty.leicht, nativeTransport: transport,
-        turnMilliseconds: turnMilliseconds),
+        autoLaunchNative: true, turnMilliseconds: turnMilliseconds),
   ));
   await _until(tester, () => find.byKey(const ValueKey('memory-card-7')).evaluate().length == 1,
       'actual loaded Memory board');
@@ -87,6 +89,108 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
   tearDown(() => SharedPreferences.setMockInitialValues({}));
+
+
+  testWidgets('Memory starts in the playable Flutter board without automatic native launch',
+      (tester) async {
+    final app = await _app();
+    final transport = _Unavailable();
+    addTearDown(app.dispose);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.binding.setSurfaceSize(const Size(412, 915));
+    await tester.pumpWidget(MaterialApp(home: LumoMemoryScreen(
+      key: UniqueKey(), appState: app, seed: 4,
+      difficulty: MemoryDifficulty.leicht, nativeTransport: transport,
+    )));
+    await _until(tester,
+        () => find.byKey(const ValueKey('memory-card-7')).evaluate().isNotEmpty,
+        'Memory Flutter round opens normally');
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(transport.opens, 0, reason: 'No native Activity before a child explicitly chooses 3D');
+    expect(find.byKey(const ValueKey('memory-open-native-3d')), findsOneWidget);
+    expect(find.byKey(const ValueKey('memory-card-0')).hitTestable(), findsOneWidget);
+    await _tapAndSave(tester, app, 0);
+    expect((await _round(app))['revision'], greaterThan(1));
+    expect(transport.opens, 0);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('Optional 3D failure returns to the same saved Flutter round',
+      (tester) async {
+    final app = await _app();
+    final transport = _Unavailable();
+    addTearDown(app.dispose);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.binding.setSurfaceSize(const Size(412, 915));
+    await tester.pumpWidget(MaterialApp(home: LumoMemoryScreen(
+      key: UniqueKey(), appState: app, seed: 4,
+      difficulty: MemoryDifficulty.leicht, nativeTransport: transport,
+    )));
+    await _until(tester,
+        () => find.byKey(const ValueKey('memory-card-7')).evaluate().isNotEmpty,
+        'initial Flutter board');
+    final initial = await _round(app);
+    await tester.tap(find.byKey(const ValueKey('memory-open-native-3d')));
+    await _until(tester, () => transport.closed.isNotEmpty, 'failed opt-in token closed');
+    await _until(tester,
+        () => find.textContaining('direkt Memory weiterspielen').evaluate().isNotEmpty,
+        'optional native failure returns with a visible child-friendly explanation');
+    expect(transport.opens, 1);
+    expect((await _round(app))['id'], initial['id']);
+    expect(find.byKey(const ValueKey('memory-card-0')).hitTestable(), findsOneWidget);
+    expect(find.textContaining('direkt Memory weiterspielen'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+
+  testWidgets('A failed native Activity launch does not force-pause the saved Flutter game',
+      (tester) async {
+    final app = await _app();
+    final transport = _Unavailable()..allowOpen = true;
+    var launches = 0;
+    const bridge = MethodChannel('lumo_lernen/bridge');
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(bridge, (call) async {
+      if (call.method == 'launch3D') {
+        launches++;
+        throw PlatformException(code: 'native_start_failed',
+            message: 'Test: native Activity was not entered');
+      }
+      return null;
+    });
+    addTearDown(() => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(bridge, null));
+    addTearDown(app.dispose);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.binding.setSurfaceSize(const Size(412, 915));
+    await tester.pumpWidget(MaterialApp(home: LumoMemoryScreen(
+      key: UniqueKey(), appState: app, seed: 4,
+      difficulty: MemoryDifficulty.leicht, nativeTransport: transport,
+    )));
+    await _until(tester,
+        () => find.byKey(const ValueKey('memory-card-7')).evaluate().isNotEmpty,
+        'Flutter memory initial round');
+    final before = await _round(app);
+    await tester.tap(find.byKey(const ValueKey('memory-open-native-3d')));
+    await _until(tester, () => transport.closed.isNotEmpty,
+        'Activity launch failure releases the exact table token');
+    await _until(tester,
+        () => find.byKey(const ValueKey('memory-native-opening')).evaluate().isEmpty,
+        'Native launch cover is removed');
+    expect(launches, 1);
+    expect(transport.opens, 1);
+    final after = await _round(app);
+    expect(after['id'], before['id']);
+    expect(after['paused'], false,
+        reason: 'An Activity that never opened cannot suspend a playable memory round');
+    expect(find.byKey(const ValueKey('lumo-pause-panel')), findsNothing);
+    expect(find.byKey(const ValueKey('memory-card-0')).hitTestable(), findsOneWidget);
+    await _tapAndSave(tester, app, 0);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 
   testWidgets('Missing native plugin leaves real Flutter cards usable with no cover or snackbar',
       (tester) async {
