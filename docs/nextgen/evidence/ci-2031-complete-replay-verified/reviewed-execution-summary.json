@@ -1,0 +1,34 @@
+{
+  "originalStatus": "PASS_WITH_LIMITATIONS",
+  "referenceStatus": "PASS_WITH_LIMITATIONS",
+  "checkerGroups": {
+    "current-gates.log": 12,
+    "original-gates.log": 91,
+    "public-download-gates.log": 13,
+    "publication-gates.log": 9,
+    "reference-gates.log": 35,
+    "replay-gates.log": 55,
+    "wrapped-reader.log": 15
+  },
+  "totalHostTests": 230,
+  "originalScreenshots": 34,
+  "originalVideos": 14,
+  "referenceScreenshots": 18,
+  "referenceVideos": 12,
+  "sampleCount": 49,
+  "measuredWindowSeconds": 36.516349000000005,
+  "meanProcessIntervalMs": 745.2316122448982,
+  "meanProcessRateHz": 1.3418647083255772,
+  "weightedRenderDrawCalls": 268.3265306122448,
+  "weightedRenderPrimitives": 318104.4285714287,
+  "weightedProcessMs": 725.2227142857145,
+  "jointSpeechFoxEffectsSamples": 14,
+  "frameBudgetMisses": 49,
+  "physicalDevice60fpsVerified": false,
+  "allTaskVariantsReviewed": false,
+  "sttOutcome": "NOT_VERIFIED",
+  "corePatternSubmission": {
+    "status": "NOT_EXERCISED",
+    "reason": "No simultaneous unique observed Core answer heading and four enabled shape cards; ungraded roundtrip remains separately evidenced."
+  }
+}

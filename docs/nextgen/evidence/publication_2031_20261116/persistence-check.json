@@ -1,0 +1,9 @@
+{
+  "scope": "Authored text formatting; original evidence is deliberately byte-preserved including whitespace and CRLF",
+  "authoredFormattingPass": true,
+  "authoredFilesChecked": 38,
+  "stagedEvidenceBytesMatchWorkingCopy": true,
+  "stagedEvidenceFilesChecked": 185,
+  "unrelatedStoryStorageFilesStaged": false,
+  "note": "An initial unfiltered git diff --cached --check reported whitespace in original raw CI logs/XML; no originals were edited or normalized. The scoped authored-text check and exact staged-byte checks passed."
+}

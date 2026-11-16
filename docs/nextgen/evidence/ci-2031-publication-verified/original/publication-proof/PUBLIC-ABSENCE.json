@@ -1,0 +1,37 @@
+{
+  "candidate": {
+    "repository": "Ullmann27/lumo-lernen",
+    "source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "native": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+    "workflowRun": 43800892196,
+    "versionName": "0.13.19",
+    "versionCode": 2031,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "tag": "lumo-nextgen-learning-0.13.19-2031",
+    "asset": "Lumo-Lernen-Neu-0.13.19-2031.apk",
+    "sha256": "e6ca8e512ddc56755ae8664b3438b0e78b87a7f0e77f1cd55cac592b20b316d7",
+    "bytes": 535026362,
+    "url": "https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-nextgen-learning-0.13.19-2031/Lumo-Lernen-Neu-0.13.19-2031.apk"
+  },
+  "observations": [
+    {
+      "path": "releases/tags/lumo-nextgen-learning-0.13.19-2031",
+      "httpStatuses": [
+        "404"
+      ],
+      "exitCode": 1,
+      "response": "HTTP/2.0 404 Not Found\nAccess-Control-Allow-Origin: *\nAccess-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset, Warning\nContent-Security-Policy: default-src 'none'\nContent-Type: application/json; charset=utf-8\nDate: Mon, 16 Nov 2026 07:27:04 GMT\nReferrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin\nServer: github.com\nStrict-Transport-Security: max-age=31536000; includeSubdomains; preload\nVary: Accept-Encoding, Accept, X-Requested-With\nX-Accepted-Github-Permissions: contents=read\nX-Content-Type-Options: nosniff\nX-Frame-Options: deny\nX-Github-Api-Version-Selected: 2022-11-28\nX-Github-Edge-Region: westus2\nX-Github-Media-Type: github.v3; format=json\nX-Github-Request-Id: F249:1744A3:171DE8:253374:6AFAB048\nX-Ratelimit-Limit: 5000\nX-Ratelimit-Remaining: 4983\nX-Ratelimit-Reset: 1794817050\nX-Ratelimit-Resource: core\nX-Ratelimit-Used: 17\nX-Xss-Protection: 0\n\n{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+      "error": "gh: Not Found (HTTP 404)\n"
+    },
+    {
+      "path": "git/ref/tags/lumo-nextgen-learning-0.13.19-2031",
+      "httpStatuses": [
+        "404"
+      ],
+      "exitCode": 1,
+      "response": "HTTP/2.0 404 Not Found\nAccess-Control-Allow-Origin: *\nAccess-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset, Warning\nContent-Security-Policy: default-src 'none'\nContent-Type: application/json; charset=utf-8\nDate: Mon, 16 Nov 2026 07:27:04 GMT\nReferrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin\nServer: github.com\nStrict-Transport-Security: max-age=31536000; includeSubdomains; preload\nVary: Accept-Encoding, Accept, X-Requested-With\nX-Accepted-Github-Permissions: contents=read\nX-Content-Type-Options: nosniff\nX-Frame-Options: deny\nX-Github-Api-Version-Selected: 2022-11-28\nX-Github-Edge-Region: westus2\nX-Github-Media-Type: github.v3; format=json\nX-Github-Request-Id: 5B00:1BDEAC:177DF6:2571BE:6AFAB048\nX-Poll-Interval: 300\nX-Ratelimit-Limit: 5000\nX-Ratelimit-Remaining: 4982\nX-Ratelimit-Reset: 1794817050\nX-Ratelimit-Resource: core\nX-Ratelimit-Used: 18\nX-Xss-Protection: 0\n\n{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}",
+      "error": "gh: Not Found (HTTP 404)\n"
+    }
+  ]
+}

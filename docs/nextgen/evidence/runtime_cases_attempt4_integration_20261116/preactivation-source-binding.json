@@ -1,0 +1,462 @@
+{
+  "observedAtUtc": "2026-11-16T07:16:47.445736+00:00",
+  "scope": "Supplemental-only academy navigation; full replay 4 and its 31 publisher-bound files unchanged",
+  "fullQa": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+  "fullRun": 43819768411,
+  "rootLocalIntegration": "85be33f46845397244fc9d25e5c9d81d551b5695",
+  "qaLocalProducer": "6dc9c122bacd563f91693a5f04b186620e67b2fb",
+  "ownerProducer": "530faefb5a9f2a828386c110c7a9b89b429247f7",
+  "ownerPublished": "625729d751a7612b068cb8e81c828dc8214cb549",
+  "ownerTree": "e56baeb3ce80dcd941ec9380ffbed3bf026337a3",
+  "caseAttempt": 4,
+  "changedExistingBindings": [
+    ".github/probes/lumo_nextgen_2031_runtime_cases.json",
+    ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+    "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py"
+  ],
+  "bindings": [
+    {
+      "path": ".github/workflows/lumo-nextgen-2031-replay.yml",
+      "sha256": "325b0cbdc6f0af416ca3f5481599a9918b52daaeedb90c10cfcac20f5cb9c5d7",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2031-replay-publish.yml",
+      "sha256": "eb1d4f1af74a5d6fb290d25e731cd69f89e74940f9ca8b717c4b22421cbaad3e",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/run_lumo_nextgen_2031_replay_android.sh",
+      "sha256": "535ffcc68ad4242c66f97ec36ca230f38e53e191a0ad84e80e9320971ca55088",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "sha256": "7c9cc53a453acb14e0be0c9badbeb8253a88637c984c6b1ec3f264b1a3a49892",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_native_reader.py",
+      "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "scripts/verify_android_apk.py",
+      "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/rooted_emulator.py",
+      "sha256": "93131a46afe4f1a4987ab36323541007ff15f5cb3579f2cd677f049091b7444b",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/native_ocr_tiles.py",
+      "sha256": "0365c7f57551c3f2b5efb2c4d5f7d16886cd93638f7e4be7a75c6d0fc6838704",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py",
+      "sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "sha256": "4943b286dde1c44eb7236341bb6c16b25ccbfe27e2ed6cec7cbb623c86d19994",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/nextgen/prepare_learning_replay_release.py",
+      "sha256": "7f9c6688cf4681e07b74d2aa71234d7e241f1e7bbf72c0fff8d5b8acecfab6b7",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/nextgen/prepare_2031_learning_replay_release.py",
+      "sha256": "acdfa74f980a4e017724792e55740465182b24249031a4f8479eb421b5e7f347",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/nextgen/public_learning_download.py",
+      "sha256": "662bab0e72ea81baa69ee5acc4e5a120af4339cc2d6d2a6d5db5d7e939c57656",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/nextgen/test_prepare_2031_learning_replay_release.py",
+      "sha256": "89d7daf02c500134da2dc6ac71c5df1befaecd816ee876b3d037ccf22e46c0de",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/nextgen/test_public_learning_download.py",
+      "sha256": "f987f98f383b3a601d9f8988226e80e24265cf4371eb1170598461c1d47270af",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_replay.py",
+      "sha256": "5a3f985095fb156ecb85a82eb0665fbac962ebd931077c209828d540925878e1",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "sha256": "bfb4da34651acc7059055d0a49f47d7b55ec86b694a7c3c7b92d7b16d3861075",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_reference_android_probe.py",
+      "sha256": "bc904c33ab00f449e61ef8b62fbf33ec71bb33dd0bdbac6e2868a95a6b5f93bf",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_current_candidate.py",
+      "sha256": "b48002a7916ae856b30c715318ecf98fde2dceaf0ee63a598c95744d8eb7bb48",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_native_reader.py",
+      "sha256": "514b5b9ceedd8f6128ea9e459adb9dc31a7327970a88aba89dbf54a7e2ef6664",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9.png",
+      "sha256": "4e2486f2c838f7391f56c14b62b60b610b27d87b43ff4184875cb5a013e5fbf8",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9-ocr.json",
+      "sha256": "45dbbdc4dec317ce4bcc5e3b72d9767a7390302f54bb7186b12ada2dfee32c2e",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/manifest.json",
+      "sha256": "d3e43abe10c20bc9927127cec0c8f9d28dbde0ca0e5bfeacc4850a12e3ac64ff",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "config/nextgen-2031-replay.json",
+      "sha256": "06ff7bc5f572f293b2d6cd29f8121f4eed751fe8f1e516fc06df0a67f1a040d7",
+      "group": "publisher_bound",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_banana_wrapped_43806736020/0138-banana-syllable-status-3-9-ocr.json",
+      "sha256": "a03e26e5fbbc21635e1dc36dd7722a5a17afd1b590fb4fe4905904d22712905a",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_banana_wrapped_43806736020/0138-banana-syllable-status-3-9.png",
+      "sha256": "bfbc8b9c904d991106d1c596854ef6b0d4e4922cb16c5a53e116feb3229a1e1a",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_banana_wrapped_43806736020/manifest.json",
+      "sha256": "98fafe1567d6dce6ee003f1e7faf963f5f924b5feb0be2af5aa52dc3a1a2ce92",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_banana_wrapped_43806736020/reference-android-result.json",
+      "sha256": "d564f845768d6f26493efbb65b41158c874da3a4d8a9ff8ba20c055372c8823a",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/0091-banana-guided-navigation-recording-error.json",
+      "sha256": "860a599a7e234eccb76216f71971154dc70785726406f376cc1a143fddcb3598",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/0091-banana-guided-navigation-screenrecord.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/README.md",
+      "sha256": "2c16f86172fc29dd8a96284d0fff937a1c5ef4f8e03894e781b72b23f0d20e38",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/manifest.json",
+      "sha256": "c9b5fa63c8395e268888a62c2564b6261343541fae1e2eac67471bb58f497605",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/reference-android-result.json",
+      "sha256": "cdbba8d719886b56b54f672fd53e7935fc444c8fbebcf4e3d5997b223cbafeb6",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-recording-error.json",
+      "sha256": "9423f41509214d85cc8849e62093fabeabcc39ba3418ea78df7b4ff97ada53a9",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-screenrecord.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-video-transfer.json",
+      "sha256": "4a8317b77266ccdd78d29ea2da0221b10434818e47d7fbcac07b33eb42f8c408",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/manifest.json",
+      "sha256": "6f2404af49a53a861fe54e127002d015f2ac73ed822ac9df8c53396025c82482",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0342-runtime-banana-open-question-surface-readiness.json",
+      "sha256": "84ffc09909ebcafe9f055eaaf977959ba456a73dc650fa6d3425eedf1bc8750c",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0343-runtime-banana-slower-panel.png",
+      "sha256": "9419d773b43857ade01de637758e028017c3857a96857b32ab675a595ac7a54c",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/0344-runtime-failure-current-screen.png",
+      "sha256": "fca950e7623a57f7e417c715b66daf881a67a84690d699e888d93158931d7d1e",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_panel_43816667737/manifest.json",
+      "sha256": "97e14aec8009c721955c25874a5f02cf1db5b90e683ef7e02e857477529fe8b4",
+      "group": "additional_full_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2031-runtime-cases.yml",
+      "sha256": "a98ff0d6dd6a4895587665892e61c1cc1f05c8fd345df407f69cee48150fbdbd",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases.json",
+      "sha256": "771bfe5f6eb0a3a4e690847edaab6a917566d4edc16d8390945c8a7b0de23443",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": false
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "sha256": "2869bba0ac0c9a028653254cbd4627b961b2dbc7cf9a580b429cdf40f1face90",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "sha256": "79d5ba3ebf954ccdd48a4264f58017cf69e7f172fd30c3acbe5c69e02bb40c43",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py",
+      "sha256": "507d0e9b94a9807c61a5ef5515c83c69c442fc1b2dfe63acff654631417cf85d",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": false
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0199-switch-check-built-word.xml",
+      "sha256": "7e1574e31eb3ef2b6a6f6d55c8a99c22c89f8f85a839f4ccaac0daaeb54bec1d",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0200-switch-check-built-word.xml",
+      "sha256": "16e33de633c97546672bf7c1d55f45bbec65839e55067f53702982b0617f4f97",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0204-switch-next-is-offered.xml",
+      "sha256": "bc08c28bca0bc2a22d6145a5342e1126965e774402398864d8219fec6ac4720c",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0212-switch-start-fresh-syllable-replay-touch.json",
+      "sha256": "fb14df6b6e5a18796f07f922b959d10d187e95c5d47f35e88c2c10fea10e4d84",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0213-switch-live-active-and-next.xml",
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/manifest.json",
+      "sha256": "ebf7891fca233947935a4cdeb4b5db5d22551af8a34fffa67b97e9a33357f31d",
+      "group": "supplemental_source_or_fixture",
+      "rootEqualsQa": true,
+      "unchangedFromFullQa": true
+    }
+  ],
+  "all14ComponentFilesMatchProducerRootAndQa": true,
+  "additionalOriginalFixtures": 5,
+  "ownerTests": {
+    "focusedRedExpectedErrors": 1,
+    "affectedRuntimeGreen": 45,
+    "rootRetestPerformed": false,
+    "originalRawLogsRetained": true
+  },
+  "independentReviews": [
+    {
+      "reviewer": "root",
+      "mode": "source diff and exact frozen-file provenance review",
+      "result": "no concrete blocker; only supplemental entry replaces repeated toggle with current exact UI checks; all downstream gates retained"
+    },
+    {
+      "reviewer": "learning",
+      "mode": "read-only original XML, file bytes, full function AST and retained log review",
+      "result": "no concrete blocker; five original fixtures byte-exact; unchanged function tail and all other function ASTs; no tests rerun"
+    }
+  ],
+  "newAndroidResult": "NOT_RUN",
+  "originalRun43819768114Status": "FAIL",
+  "localProvenanceCheckCorrection": "First analysis tried to read sparse-excluded QA documentation from the working directory; the completed check compares all QA files against committed HEAD Git blobs. No source or gate changed."
+}

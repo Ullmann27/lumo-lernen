@@ -295,7 +295,10 @@ def banana_slower(probe):
 
 
 def bridge_active_stop(probe):
-    probe.academy()
+    # The preceding Banana return retains the open tools panel. academy()
+    # toggles it closed; require the current return surface before continuing.
+    probe.see("LUMO AKADEMIE", "runtime-bridge-current-academy", exact=True)
+    probe.see("Dein Lernatelier", "runtime-bridge-open-tools", scroll=True, exact=True)
     probe.guided_course()
     before = learning.learning_snapshot(probe.preferences("runtime-bridge-before-native"))
     pid = probe.enter_native("runtime-bridge", "Zahlen zum Anfassen")

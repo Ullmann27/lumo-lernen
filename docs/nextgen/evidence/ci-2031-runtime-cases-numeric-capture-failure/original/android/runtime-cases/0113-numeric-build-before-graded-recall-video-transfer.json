@@ -1,0 +1,49 @@
+{
+  "status": "VERIFIED_TRANSFER",
+  "remote": "/sdcard/lumo-learning-2dd41e45478b45e19a13fcf6baa27bf2-0113-numeric-build-before-graded-recall.mp4",
+  "owned_recorder_pid": "5191",
+  "maximum_seconds": 90,
+  "maximum_transfers": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "local": "0113-numeric-build-before-graded-recall.mp4.pull-1.partial",
+      "adb_output": "/sdcard/lumo-learning-2dd41e45478b45e19a13fcf6baa27bf2-0113-numeric-build-before-graded-recall.mp4: 1 file pulled, 0 skipped. 113.2 MB/s (1351831 bytes in 0.011s)",
+      "status": "VERIFIED_TRANSFER",
+      "bytes": 1351831,
+      "sha256": "70d7aedde9280c924dba4e06934a6ab385ac95366d81e1c7586d8c841a8ef78b",
+      "verified_file": "0113-numeric-build-before-graded-recall.mp4"
+    }
+  ],
+  "remote_observations": [
+    {
+      "stage": "before-transfer",
+      "screenrecord_pids": "",
+      "serial_output": "emulator-5554",
+      "boot_id_output": "e59ef6f9-cfef-4b37-af34-c35eaa42bfa8",
+      "size_output": "1351831",
+      "sha256_output": "70d7aedde9280c924dba4e06934a6ab385ac95366d81e1c7586d8c841a8ef78b  /sdcard/lumo-learning-2dd41e45478b45e19a13fcf6baa27bf2-0113-numeric-build-before-graded-recall.mp4"
+    },
+    {
+      "stage": "after-complete-transfer",
+      "screenrecord_pids": "",
+      "serial_output": "emulator-5554",
+      "boot_id_output": "e59ef6f9-cfef-4b37-af34-c35eaa42bfa8",
+      "size_output": "1351831",
+      "sha256_output": "70d7aedde9280c924dba4e06934a6ab385ac95366d81e1c7586d8c841a8ef78b  /sdcard/lumo-learning-2dd41e45478b45e19a13fcf6baa27bf2-0113-numeric-build-before-graded-recall.mp4"
+    }
+  ],
+  "recording_or_ui_repeated": false,
+  "device_identity": {
+    "serial": "emulator-5554",
+    "boot_id": "e59ef6f9-cfef-4b37-af34-c35eaa42bfa8"
+  },
+  "expected": {
+    "bytes": 1351831,
+    "sha256": "70d7aedde9280c924dba4e06934a6ab385ac95366d81e1c7586d8c841a8ef78b"
+  },
+  "file": "0113-numeric-build-before-graded-recall.mp4",
+  "bytes": 1351831,
+  "sha256": "70d7aedde9280c924dba4e06934a6ab385ac95366d81e1c7586d8c841a8ef78b",
+  "elapsed_seconds": 0.203
+}
