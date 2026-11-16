@@ -1,0 +1,157 @@
+{
+  "archiveReassemblyByteEqual": true,
+  "all335OriginalMemberBytesShaAndCrcVerified": true,
+  "jobLogGzipRoundTripByteEqual": true,
+  "files": [
+    {
+      "path": "archive-parts.json",
+      "bytes": 967,
+      "sha256": "8a9135e16e1c4bf7137a46639cac2eed242b1b40d314d096cd5bde00217d9a88"
+    },
+    {
+      "path": "artifact-14197925395.zip.part01",
+      "bytes": 8388608,
+      "sha256": "04a3caeeeb2afff94f77eeb0acbe8e317113a95755e67c4a1a36cf26fd474f48"
+    },
+    {
+      "path": "artifact-14197925395.zip.part02",
+      "bytes": 8388608,
+      "sha256": "d9899822b22b66dfd8d5de08aa3ae23069e1336ff603b9dfa79dde96d0b5722b"
+    },
+    {
+      "path": "artifact-14197925395.zip.part03",
+      "bytes": 8388608,
+      "sha256": "60eab60d09d0243e3e15f31ced9a2c7a359777efcbf49d95b8298103a35a7dfd"
+    },
+    {
+      "path": "artifact-14197925395.zip.part04",
+      "bytes": 4207734,
+      "sha256": "3fe6878b675f54f7ef4f38ad1e801aef742a76e86049f3e0abcdc5441b97fb48"
+    },
+    {
+      "path": "artifact-verification.json",
+      "bytes": 71421,
+      "sha256": "7c19243fcf8c4e17b21ba00b318f6ead51f79b8e99f3279091f4cfe611e267cb"
+    },
+    {
+      "path": "job-133088843594.log.gz",
+      "bytes": 64594,
+      "sha256": "9a70c305833b95c5450dfe095b27d2ef6fab8cf993be4997af5e1bfd66fac21c"
+    },
+    {
+      "path": "job-log-manifest.json",
+      "bytes": 462,
+      "sha256": "70fde95cf4097e3d956caf7cd4b995ac6c17c7b1dbb7007a5e54054282ef5349"
+    },
+    {
+      "path": "selected-originals/0163-bridge-paused-activity.txt",
+      "bytes": 225,
+      "sha256": "6af66e3d052d864726c772d5c75b890469f26d09088f3e4391b5c5957c8d36dd"
+    },
+    {
+      "path": "selected-originals/0189-bridge-compact.png",
+      "bytes": 387437,
+      "sha256": "9b4524f9aaf1c62c161189d265d989ad69a40e56869d211ce0e8087fae9672f1"
+    },
+    {
+      "path": "selected-originals/0199-bridge-expanded.png",
+      "bytes": 835798,
+      "sha256": "4c53b01b634d4772273c468feaa9d42f01d704194a806c7eab52efe742deadc1"
+    },
+    {
+      "path": "selected-originals/0209-bridge-fold7-cover-emulated.png",
+      "bytes": 819257,
+      "sha256": "6542d20bfd7cc34013e5e8d776c72bc88606e7531e6161fa349bd99bd9258d30"
+    },
+    {
+      "path": "selected-originals/0219-bridge-fold7-inner-emulated.png",
+      "bytes": 846839,
+      "sha256": "78fdea9f5dec6482db837404e77cca736b89afb3b98e3e7b512ba1beb4b46c85"
+    },
+    {
+      "path": "selected-originals/0267-banane-slower-stopped-same-task.png",
+      "bytes": 521172,
+      "sha256": "15951617a80e54a8b92d4b5435521ebaf55386777066ea9fae1379db568df9b1"
+    },
+    {
+      "path": "selected-originals/0268-words-checkpoint-preferences.xml",
+      "bytes": 3667,
+      "sha256": "7eec587ea9e20279643986d38635920be22102369d926b057fba32d228adc7e6"
+    },
+    {
+      "path": "selected-originals/0269-words-before-roundtrips-preferences.xml",
+      "bytes": 3667,
+      "sha256": "7eec587ea9e20279643986d38635920be22102369d926b057fba32d228adc7e6"
+    },
+    {
+      "path": "selected-originals/0270-words-pause-return-ffprobe.json",
+      "bytes": 4225,
+      "sha256": "e1a41b9edc2fb90dbbf5ce55ff3042b390e1cb3af02852da61f35ab7c0c94f0e"
+    },
+    {
+      "path": "selected-originals/0270-words-pause-return-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "selected-originals/0270-words-pause-return.mp4",
+      "bytes": 120524,
+      "sha256": "3a30f75438608975984850032dd7f59469ac2f9e1288f6745cebec0f23c592a5"
+    },
+    {
+      "path": "selected-originals/0271-words-before-pause.png",
+      "bytes": 521172,
+      "sha256": "15951617a80e54a8b92d4b5435521ebaf55386777066ea9fae1379db568df9b1"
+    },
+    {
+      "path": "selected-originals/0272-failure-current-screen.png",
+      "bytes": 1023571,
+      "sha256": "3a644d8df873720a6b565d4b8700cef3ee94ca6be24c8018da216a0794686149"
+    },
+    {
+      "path": "selected-originals/candidate-BUILD-PROVENANCE.json",
+      "bytes": 9642,
+      "sha256": "6cdc195140ce78b02d0895854b2327bf15e89dab84b17beca3a5d60649d28d38"
+    },
+    {
+      "path": "selected-originals/candidate-manifest.txt",
+      "bytes": 5778,
+      "sha256": "0f8c41be54e0a0e03387f890a1ebda398d53954b8cfd18a4e8e917464e8d9c43"
+    },
+    {
+      "path": "selected-originals/candidate-signature.txt",
+      "bytes": 314,
+      "sha256": "7075dd546122a7dbe8dbfd071c94caa00bebc4a5db90c9bdd2df24e19659ef41"
+    },
+    {
+      "path": "selected-originals/display-original.json",
+      "bytes": 79,
+      "sha256": "106c7b42ae13a2d7eb0ba87f5e2f9cdce4af8a3f8f1209c6bc6295203e7f21d2"
+    },
+    {
+      "path": "selected-originals/installed-apk-sha256.txt",
+      "bytes": 178,
+      "sha256": "8ba2f1abc56a4dc76b44ae6cf6057dd8854199a1ef7b68ddb1592b99099a2f6e"
+    },
+    {
+      "path": "selected-originals/learning-android-result.json",
+      "bytes": 26858,
+      "sha256": "5f31c9edcea7c27e6e794db2d7ea2b6f8ecfb3746211435e44aa6889843a3ba8"
+    },
+    {
+      "path": "selected-originals/microphone-observation.json",
+      "bytes": 1411,
+      "sha256": "9e58207d3fa79edd8f5423dff573296278e07c7f72286acfc8dfbf488ed98b10"
+    },
+    {
+      "path": "selected-originals.json",
+      "bytes": 5089,
+      "sha256": "4237b083e7e51a96a7bef7fd53675d9acf1ca252a1f5cd06a765c5bec738c6d3"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 13757,
+      "sha256": "0b1876a72e493066db970d5d3a1cacef4e40b2119bab1e8619ff4469acb31db7"
+    }
+  ]
+}

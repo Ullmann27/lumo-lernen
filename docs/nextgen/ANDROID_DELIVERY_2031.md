@@ -2,6 +2,10 @@
 
 ## Tatsächliche Aktivierung
 
+### Aktueller Nachtrag: Androidtour unterbrochen, Veröffentlichung übersprungen
+
+Androidjob **`133088843594` ist FAILURE**, Publisher **`133091481323` ist SKIPPED**. Alle vier emulierten Größenwechsel erhielten denselben Bridge-Checkpoint und positive Videodauern. Danach scheiterte in der Wortwerkstatt die einmalige unmittelbare Vordergrundabfrage nach Home; die spätere Originalaufnahme zeigt den Android-Launcher. Die frühe fehlgeschlagene Rohabfrage wurde vom damaligen Code nicht gespeichert. Zusätzlich scheiterte beim Aufräumen das bestehende positive Videodauer-Gate. Ein Produkt-Relaunch ist daraus nicht belegt. Die Wort-Rückkehr und die anschließenden nativen Referenzen sind noch nicht abgenommen. Alle **335 Originaldateien**, das gesamte geteilte ZIP und das vollständige Joblog bleiben verlustfrei erhalten: [Originalfehler und genaue Grenze](evidence/ci-2031-android-home-transition-failure/README.md). Build und unabhängige vollständige APK-Byteprüfung bleiben bestanden; ein öffentlicher 2031-Download ist weiterhin nicht freigegeben.
+
 ### Nachtrag: signierte APKs gebaut und überprüft
 
 Buildjob **`133085378884` ist SUCCESS**. Die tatsächliche ARM64-APK hat **535.026.362 Bytes**, SHA-256 **`e6ca8e512ddc56755ae8664b3438b0e78b87a7f0e77f1cd55cac592b20b316d7`**. Die x86-APK hat **538.191.823 Bytes**, SHA-256 **`8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a`**. Beide enthalten dieselbe native PCK `94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef`. Paket, Version, bestehendes Testzertifikat, ABI, Ausrichtung und Sprachassets sind am tatsächlichen Paket geprüft. Root hat außerdem das vollständige ARM64-Artifact und die gesamte APK unabhängig heruntergeladen und bytegeprüft; die Originalmetadaten stimmen mit der aktiven APK-Quelle überein. [Vollständiger Buildbeleg](evidence/ci-2031-build/README.md). Der Androidjob **`133088843594`** läuft; eine öffentliche Downloadfreigabe liegt zu diesem Nachtrag noch nicht vor.
