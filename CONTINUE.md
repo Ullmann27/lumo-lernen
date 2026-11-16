@@ -1,3 +1,17 @@
+# LUMO Next Generation – vollständiger Nachfolgekandidat 2030 vorbereitet
+
+Stand: 16. November 2026. **0.13.18+2030** integriert die nachgewiesene Korrektur der ersten Lab-Bedienung nach der Gesprächsrückkehr. Der veröffentlichte Produktcheckpoint und neue Katalog-Snapshot ist **83038afc19365196eeaa49432e0025bba0975518**. Alle sechs Lab-Modellanschlüsse verlangen jetzt eine gültige eigene Aufgabenbindung; die vorhandene verzögerte Rückkehrveröffentlichung fordert einen Frame ausdrücklich an. Die bisherigen Scope-, Audio-, Bewertungs- und Speichergrenzen bleiben erhalten.
+
+Die verschärfte Regression reproduziert zwei Fehler gegen die unveränderte 2029-Quelle und prüft jeden tatsächlich angeforderten Rückkehrframe. Genau der erste aktiv angebotene Stein wird einmal getappt und muss moved1 speichern. **27/27 gezielte Flutterprüfungen bestehen**, ebenso die Analyse der beiden geänderten Dateien. Der neue echte Katalogexport besteht 1 Test; **248 Quellhashes und 18 unveränderte geschützte Dateien** sind geprüft. **40 Versionspolicy-Tests** bestehen. Die genaue Produzenten-/API-/Integrationskarte steht in `docs/nextgen/evidence/2030-product-integration-20261116/`, der Exportnachweis in `docs/nextgen/evidence/coverage_refresh_20261116_2030/`.
+
+Der neue vollständige Quell-/Build-/Androidlauf wird durch die aktualisierte `config/nextgen-release.json` gestartet. **Beim Schreiben dieses Vorlaufstands existieren noch keine verifizierte2030-APK, kein2030-Android-PASS und kein2030-Download.** Die ursprünglichen2029- und2028-Fehler bleiben unverändert erhalten. Der Publisher verlangt weiterhin beide vollständigen tatsächlichen Androidtouren derselben neu gebauten APK und danach den vollständigen anonymen Downloadhash.
+
+Native bleibt **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**, Paket **dev.ullmann.lumo.lumo_lernen.coachpreview**, vorhandene Testsignatur. Der zusätzlich vorbereitete getrennte Diagnosebranch `qa/lumo-nextgen-2029-native-diagnostic-20261116` ist als **e04e29437e2c28f40e492191f430cd49ddc456fa** veröffentlicht. Seine drei Szenen prüfen ausschließlich die vorhandenen2029-Bytes und bleiben immer `DIAGNOSTIC_ONLY`, `release_eligible=false`. Sie ersetzen keine Gesamtprüfung und können keine APK veröffentlichen.
+
+Aktueller Lieferpfad: `docs/nextgen/ANDROID_DELIVERY_2030.md`. Die Modernisierung bleibt als `fullModernizationComplete=false` ausgewiesen; allgemeine Aufgabenkarte, separate optionale Godot-Activity sowie tatsächliche Varianten-/Geräte-/Sprachgrenzen bleiben sichtbar. `main` bleibt unberührt.
+
+## Archiv: gebaute Version2029 und tatsächlicher Erstbedienungsfehler
+
 # LUMO Next Generation – Android-Erstbedienung 2029 noch fehlerhaft
 
 Stand: 16. November 2026. **Kandidat 2029 wird nicht veröffentlicht.** Der vollständige Lauf [43785937519](https://github.com/Ullmann27/lumo-lernen/actions/runs/43785937519) auf APK-/QA-Quelle **684f54a6d11cfb5eccaec30f39fe34d6c17c82cc** hat Quellvalidierung und beide APK-Builds bestanden, aber Androidjob **133040408296** ist beim ersten Stein-Tap nach der eigenen Gesprächsrückkehr erneut fehlgeschlagen. Veröffentlichung wurde übersprungen.
