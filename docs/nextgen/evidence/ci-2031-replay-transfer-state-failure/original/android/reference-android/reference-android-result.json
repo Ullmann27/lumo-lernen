@@ -1,0 +1,295 @@
+{
+  "schema": "lumo.nextgen.reference.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "mode": "immutable-replay",
+  "run_id": "cb9cff8d064c49f3a3a3519a1acf3146",
+  "started_utc": "2026-11-16T06:23:03Z",
+  "qa_commit": "e2713c27599b6659a6ad2fd31355effeae9f88c9",
+  "qa_workflow_run": 43814971553,
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "source_build_run": 43800892196,
+  "probe_sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c",
+  "reference_probe_sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "apk_rebuilt_by_probe": false,
+  "fullModernizationComplete": false,
+  "previous_complete_probe": {
+    "original_result_sha256": "307bf548a14df5b71a99bda0e9a2274e5aa03b7ed6d493ffb7f43e264bfbb3b7",
+    "original_result": "evidence/android/original-android/learning-android-result.json",
+    "original_status": "PASS_WITH_LIMITATIONS",
+    "original_run_id": "647b59233a804e979aedaaef07d35423",
+    "installed_before_reset": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2031,
+      "versionName": "0.13.19",
+      "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+    },
+    "synthetic_profile_before_reset": {
+      "id": "1794809702906414",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T06:15:02.906414"
+    },
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "reason": "Fresh UI-created fixture for additional scenes after complete original PASS",
+    "uninstall_output": "Success"
+  },
+  "candidate": {
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "flutter_source_commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "versionCode": 2031,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.19",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef",
+      "bytes": 278589756
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2031,
+    "versionName": "0.13.19",
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794810227068189",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T06:23:47.068189"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0024-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "ad7b9c3dc0d987aab9d832eda9ce6645a2818b6afee7b92ccef65fb38658828c",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.992,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0059-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2e203dc6f873450c812c16d11a7b2c7bbbcb7642a17d0b8cee93343065d0ac91",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0075-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "1d7ed52f22ae2f99c8e38f3097d905a1d6143d2f77818029c2940253c6109a0e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.097,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0096-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "9eabd9cf0507e65805535cf35410282d39a3d9da70b9e4100814773511b0ee9c",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.567,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0102-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "049053c5659846efae27ec5d5d6961bea2e84884cfce144b262dfd60e651f4ee",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.57,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0108-banana-guided-before-native.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "52aca64ed4d8b5da1000d3417424350cb3ad7ca327b04a835d3e662b977ec57c",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.51,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0109-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "52aca64ed4d8b5da1000d3417424350cb3ad7ca327b04a835d3e662b977ec57c"
+    }
+  ],
+  "recording_transfers": [
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0002-onboarding.mp4",
+      "owned_recorder_pid": "8446",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0002-onboarding.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0002-onboarding.mp4: 1 file pulled, 0 skipped. 47.2 MB/s (1791573 bytes in 0.036s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1791573,
+          "sha256": "ff7800a288e4403dca9a3bd5a9576552ab6859027741f3bc68e656ea07dbea9a",
+          "verified_file": "0002-onboarding.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "size_output": "1791573",
+          "sha256_output": "ff7800a288e4403dca9a3bd5a9576552ab6859027741f3bc68e656ea07dbea9a  /sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0002-onboarding.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "size_output": "1791573",
+          "sha256_output": "ff7800a288e4403dca9a3bd5a9576552ab6859027741f3bc68e656ea07dbea9a  /sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0002-onboarding.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "expected": {
+        "bytes": 1791573,
+        "sha256": "ff7800a288e4403dca9a3bd5a9576552ab6859027741f3bc68e656ea07dbea9a"
+      },
+      "file": "0002-onboarding.mp4",
+      "bytes": 1791573,
+      "sha256": "ff7800a288e4403dca9a3bd5a9576552ab6859027741f3bc68e656ea07dbea9a",
+      "elapsed_seconds": 0.234
+    },
+    {
+      "status": "FAIL",
+      "remote": "/sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0090-banana-guided-navigation.mp4",
+      "owned_recorder_pid": "8941",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0090-banana-guided-navigation.mp4.pull-1.partial",
+          "status": "TRANSFER_FAILED",
+          "error": "Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0090-banana-guided-navigation.mp4', 'evidence/android/reference-android/0090-banana-guided-navigation.mp4.pull-1.partial')\n",
+          "error_type": "RuntimeError"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "size_output": "830450",
+          "sha256_output": "36f05562925beab6528816bdf26776e4c4e338781108620c9bdb15196c08f931  /sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0090-banana-guided-navigation.mp4"
+        },
+        {
+          "stage": "after-failed-transfer",
+          "screenrecord_pids": "adb: device offline"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "expected": {
+        "bytes": 830450,
+        "sha256": "36f05562925beab6528816bdf26776e4c4e338781108620c9bdb15196c08f931"
+      },
+      "error": "Owned recorder is still running or its state is unobservable",
+      "error_type": "RuntimeError",
+      "elapsed_seconds": 0.192
+    }
+  ],
+  "videos": [
+    {
+      "file": "0002-onboarding.mp4",
+      "sha256": "ff7800a288e4403dca9a3bd5a9576552ab6859027741f3bc68e656ea07dbea9a",
+      "bytes": 1791573,
+      "duration_seconds": 18.5123,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0002-onboarding-video-transfer.json",
+      "block_elapsed_seconds": 19.74,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "recording_errors": [
+    {
+      "recording": "0090-banana-guided-navigation",
+      "error": "Owned recorder is still running or its state is unobservable",
+      "error_type": "RuntimeError",
+      "secondary_to_primary": false,
+      "primary_error": null,
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 812, in _pull_recording\n    record[\"adb_output\"] = self.base.adb(\"pull\", remote, str(partial), timeout=remaining())\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 44, in adb\n    return command('adb', *args, timeout=timeout, check=check)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 39, in command\n    raise RuntimeError(f'Command failed ({result.returncode}): {args}\\n{text}')\nRuntimeError: Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0090-banana-guided-navigation.mp4', 'evidence/android/reference-android/0090-banana-guided-navigation.mp4.pull-1.partial')\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 874, in recording\n    self._pull_recording(name, remote, local, owned)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 820, in _pull_recording\n    require(remote_identity(\"after-failed-transfer\") == expected,\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 789, in remote_identity\n    require(all(pid.isdigit() for pid in pids) and owned not in pids,\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 71, in require\n    raise RuntimeError(message)\nRuntimeError: Owned recorder is still running or its state is unobservable\n"
+    }
+  ],
+  "error": "Owned recorder is still running or its state is unobservable",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 812, in _pull_recording\n    record[\"adb_output\"] = self.base.adb(\"pull\", remote, str(partial), timeout=remaining())\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 44, in adb\n    return command('adb', *args, timeout=timeout, check=check)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 39, in command\n    raise RuntimeError(f'Command failed ({result.returncode}): {args}\\n{text}')\nRuntimeError: Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-cb9cff8d064c49f3a3a3519a1acf3146-0090-banana-guided-navigation.mp4', 'evidence/android/reference-android/0090-banana-guided-navigation.mp4.pull-1.partial')\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2031_replay_reference_android_probe.py\", line 307, in run\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 660, in run\n    self.banana()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 510, in banana\n    with self.recording(\"banana-guided-navigation\"):\n  File \"/usr/lib/python3.12/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 874, in recording\n    self._pull_recording(name, remote, local, owned)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 820, in _pull_recording\n    require(remote_identity(\"after-failed-transfer\") == expected,\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 789, in remote_identity\n    require(all(pid.isdigit() for pid in pids) and owned not in pids,\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 71, in require\n    raise RuntimeError(message)\nRuntimeError: Owned recorder is still running or its state is unobservable\n",
+  "finished_utc": "2026-11-16T06:24:46Z"
+}
