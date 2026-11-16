@@ -1,0 +1,67 @@
+name: "LUMO Memory – child-safe entry and saved-round QA"
+
+on:
+  push:
+    branches: [fix/lumo-memory-child-safe-start-20261116]
+    paths:
+      - lib/features/games/memory/**
+      - test/games/memory_*.dart
+      - .github/workflows/lumo-memory-child-safe-qa.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-memory-child-safe-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  memory-flutter:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/fix/lumo-memory-child-safe-start-20261116'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Source identity and locked Flutter dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          mkdir -p lumo-memory-qa
+          git rev-parse HEAD > lumo-memory-qa/source.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee lumo-memory-qa/dependencies.log
+      - name: Analyze Memory and test-source null safety
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings \
+            lib/features/games/memory/lumo_memory_game.dart \
+            test/games/memory_native_entry_test.dart \
+            2>&1 | tee lumo-memory-qa/analyze.log
+      - name: Real saved-round, crash-fallback and screen regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=90s --concurrency=1 \
+            test/games/memory_native_entry_test.dart \
+            test/games/memory_profile_storage_test.dart \
+            test/games/memory_screen_test.dart \
+            test/games/memory_controls_hittest_test.dart \
+            2>&1 | tee lumo-memory-qa/tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-Memory-child-safe-QA
+          path: lumo-memory-qa
+          if-no-files-found: error
+          retention-days: 7
