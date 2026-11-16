@@ -1,0 +1,102 @@
+
+name: LUMO 2033 – geprüfte Lernwerkstatt-APK direkt veröffentlichen
+on:
+  push:
+    branches: [delivery/lumo-2033-workshop-from-published-2032-20261116]
+    paths: [config/lumo-2033-workshop-publish-trigger.json]
+permissions:
+  actions: read
+  contents: write
+concurrency:
+  group: lumo-2033-workshop-direct-apk-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: lumo-2033-workshop-test-20261116
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify requested exact successful build identity
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          d=json.loads(Path('config/lumo-2033-workshop-publish-trigger.json').read_text())
+          assert set(d)=={'build_run_id','build_head_sha','build_artifact'}
+          assert isinstance(d['build_run_id'],int) and d['build_run_id']>0
+          assert re.fullmatch(r'[0-9a-f]{40}',d['build_head_sha'])
+          assert d['build_artifact']=='LUMO-2033-Werkstatt-Android-Test-APK'
+          print('[2033Publish] validated trigger')
+          PY
+          export RUN_ID="$(python3 -c 'import json;print(json.load(open("config/lumo-2033-workshop-publish-trigger.json"))["build_run_id"])')"
+          export SHA="$(python3 -c 'import json;print(json.load(open("config/lumo-2033-workshop-publish-trigger.json"))["build_head_sha"])')"
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq .conclusion)" = success
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq .head_sha)" = "$SHA"
+      - name: Download exactly the signed verified APK artifact
+        run: |
+          set -euo pipefail
+          RUN_ID="$(python3 -c 'import json;print(json.load(open("config/lumo-2033-workshop-publish-trigger.json"))["build_run_id"])')"
+          gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" --name LUMO-2033-Werkstatt-Android-Test-APK --dir artifact
+          test -s artifact/dist/Lumo-Lernen-Neu.apk
+          test -s artifact/dist/x86_64/Lumo-Lernen-Neu.apk
+          test -s artifact/build-proof/VERIFY-arm64.json
+          test -s artifact/build-proof/BUILD-PROVENANCE.json
+          (cd artifact && sha256sum -c build-proof/SHA256SUMS.txt)
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          trigger=json.loads(Path('config/lumo-2033-workshop-publish-trigger.json').read_text())
+          source=json.loads(Path('artifact/build-proof/GODOT-SOURCE.json').read_text())
+          provenance=json.loads(Path('artifact/build-proof/BUILD-PROVENANCE.json').read_text())
+          assert source['revision']=='f07b007c2c0169ceeba75349420a47493a63569e'
+          assert provenance['flutter_source_commit']==trigger['build_head_sha']
+          assert Path('artifact/build-proof/VERSION.txt').read_text().strip()=='version: 0.13.21+2033'
+          print('[2033Publish] successful exact-source verification')
+          PY
+      - name: Publish direct ARM64 APK and verifiable evidence
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          cp artifact/dist/Lumo-Lernen-Neu.apk release/Lumo-Lernen-Neu-2033.apk
+          cp artifact/build-proof/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
+          cp artifact/build-proof/VERIFY-arm64.json release/APK-VERIFICATION.json
+          (cd release && sha256sum Lumo-Lernen-Neu-2033.apk > SHA256SUMS.txt)
+          SOURCE="$(python3 -c 'import json;print(json.load(open("config/lumo-2033-workshop-publish-trigger.json"))["build_head_sha"])')"
+          cat > release-notes.md <<'EOF'
+          # LUMO Werkstatt 2033 – geprüfte Android ARM64-Test-APK
+
+          Basiert auf dem **öffentlich veröffentlichten LUMO 2032-Quellstand** und ergänzt die tatsächlich geprüfte neue holografische Godot-Lernwelt, die echte Uhr mit Zeigern, bedienbare Antwortmöglichkeiten und eine Aufgaben-zu-3D-Schutzlogik. Signatur, Geräteidentität und Android-Update bleiben durch die bestehenden APK-Prüfungen geschützt.
+
+          Diese Testversion enthält **nicht automatisch** die bislang ausschließlich im separaten, nicht zu GitHub übertragenen Original-2032-Quellenarchiv vorhandenen Modelle und Extras. Keine Behauptung einer vollständigen physischen Fold7-Abnahme.
+          EOF
+          gh release create "$TAG" \
+            release/Lumo-Lernen-Neu-2033.apk \
+            release/SHA256SUMS.txt \
+            release/APK-VERIFICATION.json \
+            release/BUILD-PROVENANCE.json \
+            --repo "$GITHUB_REPOSITORY" --target "$SOURCE" --prerelease \
+            --title "LUMO 0.13.21 (2033) – 3D-Lernwerkstatt Android Test" \
+            --notes-file release-notes.md
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets,tagName,url > published-release.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('published-release.json'))
+          assert any(a['name']=='Lumo-Lernen-Neu-2033.apk' for a in d['assets'])
+          print('[2033Publish] direct downloadable APK:',d['url'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2033-workshop-publication-proof
+          path: |
+            published-release.json
+            release-notes.md
+            release/SHA256SUMS.txt
+          if-no-files-found: warn
+          retention-days: 30
