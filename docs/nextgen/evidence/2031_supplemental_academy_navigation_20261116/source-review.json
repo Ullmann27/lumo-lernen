@@ -1,0 +1,31 @@
+{
+  "baseCommit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+  "changedExistingFiles": [
+    ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+    "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py"
+  ],
+  "productionDelta": "Only replace the second academy() call with exact current academy/open-tools observations. Existing guided-course path and every later stop/video/result gate unchanged.",
+  "sharedPublisherBoundFileCount": 31,
+  "sharedPublisherBoundFilesChanged": [],
+  "productionSha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8",
+  "testSha256": "507d0e9b94a9807c61a5ef5515c83c69c442fc1b2dfe63acff654631417cf85d",
+  "redTestBytesEqualFinal": true,
+  "red": {
+    "tests": 1,
+    "expectedErrors": 1,
+    "sha256": "980303f17b913612cab69571025867d307814d10e425335ff48a0a603e700c12"
+  },
+  "green": {
+    "tests": 45,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "sha256": "edf2d3d6d4f094c1512e0d7a193421b2f8e686c2679fc49bbb2d0627e596fcc8"
+  },
+  "setupFailureRetainedSeparately": true,
+  "astParse": "PASS",
+  "androidExecution": "NOT_RUN",
+  "remoteActions": false,
+  "sourceDiffCheck": "PASS",
+  "retainedOriginalFormatting": "Original XML CRLF and one raw setup-log trailing space are preserved byte-for-byte; these evidence files are not whitespace-normalized."
+}
