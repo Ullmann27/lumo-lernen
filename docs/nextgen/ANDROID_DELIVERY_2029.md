@@ -29,3 +29,7 @@ Der normale Publisher verlangt weiterhin QA-Quelle gleich APK-Quelle. Er überpr
 Der neue Katalogexport besteht 1 Test. 27 gezielte Produktprüfungen und 13 Downloadprüferfälle bestehen; die gemeinsame lokale Versions-/Publikationsprüfung besteht 53 Testmethoden. Ein kompletter 2029-Quelllauf, 2029-APK, 2029-Android-PASS oder öffentlicher 2029-Download ist beim Schreiben noch nicht nachgewiesen. Keine alte APK und kein altes Ergebnis werden umetikettiert.
 
 `fullModernizationComplete=false` bleibt zutreffend. Die Inventarzahlen sind keine vollständige Abnahme sämtlicher Varianten. Viele Einstiege nutzen die allgemeine native Aufgabenkarte; die Figur läuft über die bestehende separate Godot-Activity. Physische Fold7-/ARM64-Laufzeit, echte gesprochene Erkennung, hörbare Qualität, langfristig 60 FPS, Upgrade-/Prozesstod-Erhaltung und alle Varianten benötigen ihre jeweiligen tatsächlichen Nachweise. Kart- und native Dschungel-Folgearbeiten bleiben außerhalb dieser Runde.
+
+## Tatsächliche Aktivierung
+
+Der vollständige neue Lauf [43785937519](https://github.com/Ullmann27/lumo-lernen/actions/runs/43785937519) wurde am Quellcommit **684f54a6d11cfb5eccaec30f39fe34d6c17c82cc** tatsächlich gestartet. Native bleibt `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`. Die beobachtete Run-Quelle stimmt mit dem veröffentlichten Commit überein; der API-Commit besitzt exakt den lokal geprüften Tree. Originale Aktivierungsbindung: `evidence/2029-build-activation-20261116/activation.json`. Laufstatus bei diesem Eintrag: **in_progress**, noch kein Gesamt-/Android-/Download-PASS.
