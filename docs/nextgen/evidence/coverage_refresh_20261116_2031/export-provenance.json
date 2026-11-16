@@ -1,0 +1,28 @@
+{
+  "sourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
+  "command": [
+    "flock",
+    "--close",
+    "/workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock",
+    "/workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--no-test-assets",
+    "--reporter",
+    "expanded",
+    "tools/nextgen/export_learning_catalog_test.dart",
+    "--dart-define=LUMO_CATALOG_OUTPUT=/workspace/scratch/4fa97167812c/lumo-lernen/docs/nextgen/evidence/coverage_refresh_20261116_2031/catalog.json"
+  ],
+  "startedAt": "2026-11-16T03:51:29.616646+00:00",
+  "semantics": "Actual finite catalog source export only; no widget, rendering, device, student-answer or all-variant test claim.",
+  "exitCode": 0,
+  "finishedAt": "2026-11-16T03:51:45.140827+00:00",
+  "export.log": {
+    "bytes": 218,
+    "sha256": "61046bd4a371512f9e68fcb090d3a208059cb00589466cec75edfa0a31b68364"
+  },
+  "catalog.json": {
+    "bytes": 115256,
+    "sha256": "ed4cdafda16a03cee80d170da8b2a0491934409c098dbe06b11017f97bd0d67d"
+  }
+}

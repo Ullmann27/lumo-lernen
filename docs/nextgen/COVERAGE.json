@@ -2,9 +2,9 @@
   "schema": "lumo.nextgen.learning.coverage",
   "version": 2,
   "asOf": "2026-11-15",
-  "exportedAtUtc": "2026-11-16T02:10:53.799213+00:00",
+  "exportedAtUtc": "2026-11-16T03:51:45.483676+00:00",
   "sourceBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
-  "localSourceHead": "83038afc19365196eeaa49432e0025bba0975518",
+  "localSourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
   "scope": {
     "fullModernizationComplete": false,
     "allTaskVariantsReviewed": false,
@@ -57,7 +57,7 @@
       "acceptanceAndPersistence": {
         "path": "lib/features/learning/learning_content.dart",
         "symbol": "_completeAnswer(",
-        "line": 1324
+        "line": 1497
       },
       "description": "Existing local task answer/evaluator feeds TaskResult, adaptive/reward/feedback engines and profile-bound app recording. Renderer callbacks do not create a second progress store."
     },
@@ -232,7 +232,7 @@
       "entry": {
         "path": "lib/app/app_shell.dart",
         "symbol": "case LumoSection.learn:",
-        "line": 533
+        "line": 551
       },
       "reachable": {
         "status": "source_reachable",
@@ -278,7 +278,7 @@
       "entry": {
         "path": "lib/app/app_shell.dart",
         "symbol": "LearningContent(",
-        "line": 546
+        "line": 572
       },
       "reachable": {
         "status": "source_reachable",
@@ -807,7 +807,7 @@
       "entry": {
         "path": "lib/features/learning/learning_content.dart",
         "symbol": "_openNativeLearning(",
-        "line": 846
+        "line": 1021
       },
       "reachable": {
         "status": "source_reachable",
@@ -872,7 +872,7 @@
       "entry": {
         "path": "lib/features/learning/learning_content.dart",
         "symbol": "PlaceValue",
-        "line": 154
+        "line": 204
       },
       "reachable": {
         "status": "contract_consumed_by_core_not_standalone_route",
@@ -926,7 +926,7 @@
       "entry": {
         "path": "lib/app/app_shell.dart",
         "symbol": "ReadingContent(",
-        "line": 540
+        "line": 558
       },
       "reachable": {
         "status": "source_reachable",
@@ -1444,7 +1444,7 @@
       "entry": {
         "path": "lib/app/app_shell.dart",
         "symbol": "LumoTestsScreen(",
-        "line": 529
+        "line": 547
       },
       "reachable": {
         "status": "source_reachable",
@@ -4344,7 +4344,7 @@
     }
   ],
   "catalogs": {
-    "sourceHead": "83038afc19365196eeaa49432e0025bba0975518",
+    "sourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
     "semantics": "Finite catalogs are enumerated; generated task variants are not.",
     "curriculumFamilies": [
       {
@@ -23022,8 +23022,9 @@
       "branch": "integration/lumo-learning-generation-20261115-ea41",
       "head": "ce8c93fc8f78d3f07c217567902b8190c3b2ac77",
       "readOnly": true,
-      "sameReviewedLibraryFiles": 49,
+      "sameReviewedLibraryFiles": 48,
       "changedReviewedLibraryFiles": [
+        "lib/app/app_shell.dart",
         "lib/core/cognitive_profile_generator.dart",
         "lib/core/cognitive_profile_repository.dart",
         "lib/core/cognitive_profile_scorer.dart",
@@ -23095,6 +23096,41 @@
   ],
   "sources": [
     {
+      "path": ".github/probes/creative_android_probe.py",
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "readFrom": "worktree"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "sha256": "7f5074b592e4dde1b8159575ec578ec36a2fae36d50d8e3642715ce8ca01b97c",
+      "readFrom": "worktree"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "sha256": "f4f4b1426cc99a69aab5850f388f4b40b3c95464eaccc8f112eb00c13bf09157",
+      "readFrom": "worktree"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_native_reader.py",
+      "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97",
+      "readFrom": "worktree"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2",
+      "readFrom": "worktree"
+    },
+    {
+      "path": ".github/probes/run_lumo_nextgen_current_android.sh",
+      "sha256": "a54f2ec1ca5a64eb7ea1f2d3dc80f19db55354cf2137aaec1c175667b8740d47",
+      "readFrom": "worktree"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-learning-apk.yml",
+      "sha256": "cf118bb96e12c7b81b35497329e471f327050b19bd69650cfd3854287913f2d1",
+      "readFrom": "worktree"
+    },
+    {
       "path": "assets/learning_questions/grade1_german.json",
       "sha256": "196446c24c5b47beb95321c7152da6ef332e53ca3708f3142065b7789c515a7d",
       "readFrom": "worktree"
@@ -23115,6 +23151,11 @@
       "readFrom": "worktree"
     },
     {
+      "path": "config/lumo-offline-voice.json",
+      "sha256": "9d0593c11a9dfa3db5683feedbc692cb5b79db6799b05a49b044c4226849fd12",
+      "readFrom": "worktree"
+    },
+    {
       "path": "docs/evidence/lumo-nextgen-game-questions/focused-tests.log",
       "sha256": "59f9b16e734b79c9e07b01bc5d7d69e8837c7814d48bab981f02269f812f7685",
       "readFrom": "committed_head_blob"
@@ -23125,8 +23166,88 @@
       "readFrom": "worktree"
     },
     {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/core-dialog-component.json",
+      "sha256": "6206da432363ba837357a40a8a473e98be29b1707aae5ac11fa2cf74c3601fa6",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/core-menu-component.json",
+      "sha256": "1e8edeedf9199a3099fd0a0f4f24da966b4944fb401342e0110b5852a9174a68",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/core-menu-handoff.json",
+      "sha256": "3092de748d301d27bf00ac46362377674168dbf1b6a122ecc93bcfe1ca399297",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/core-resize-component.json",
+      "sha256": "841920b1659e7a02d0224256f9686469934552ee757f3e10224d2236880eefe4",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/joined-host-contracts.json",
+      "sha256": "8d9a1dab62fde2ebd46ac8e0bfcf3ccc9f45998e99bc53ee68a031f65ad8cba8",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/joined-host-contracts.log",
+      "sha256": "11a2dbe7978b93547ba215db4232e27cd80a99961713376c7a5129fc3f46f03e",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/native-performance-interpretation.json",
+      "sha256": "eb4be8f83231d0f30019e00ebd36e3d41e4912d443691d82caa28c35ffb2b7c7",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/pattern-component.json",
+      "sha256": "901beb797977b6eb69f8b71235ac9f358e7529c722314f31c2c05ab6ab2b9481",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031-qa-integration-20261116/preflight.json",
+      "sha256": "3c4dbed6d8f693e54ae5b99823df8a066195f48400f2975749249245764a64a9",
+      "readFrom": "worktree"
+    },
+    {
       "path": "docs/nextgen/evidence/assessment-contract/flutter-tests.log",
       "sha256": "115cb2ff52e78c8d9d592e9b87178722213f651fe54f5298f2f6873dc7b8dc2f",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/README.md",
+      "sha256": "fa45514175a7cde82b49948b493817b336d228f687ac14834ce076570f992144",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/component.json",
+      "sha256": "04e488db4942e43b86bfa30161bbe4540dfd984534d4edcf75d6ff6985a6a013",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/green-first-control-expectation-failure.log",
+      "sha256": "f07b85ef9fafb2d47df679d24bfc64a3f01b011c78eafef5b231a611edb265cd",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/green.log",
+      "sha256": "f329df40bf25bb219b16214ab54f29021b889b6dff092c2b8aef93f0091f7787",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/handoff.json",
+      "sha256": "c221dc0e222c99332ab0cd6461e6241188d3146898cddfa2b91f3484496a75ca",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/red.log",
+      "sha256": "7ff9f5929e5c1c7e5cc56340a23f2beac6ec9e81bb8d420d050b48364d6c7cc6",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/banana_speech_quote_20261116/source-check.json",
+      "sha256": "d8ba8272441b4d202b8a8cc32e6f66c1cbcc3e0c93c087f8ed4afcd0d7b89efc",
       "readFrom": "worktree"
     },
     {
@@ -23175,6 +23296,206 @@
       "readFrom": "worktree"
     },
     {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/README.md",
+      "sha256": "97717ba8dac19f9819e097ef61607650a0ec550cd032c85ae0900760015ad5d2",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/analyze-initial.log",
+      "sha256": "2eb1f02e71e398e143cb8533783c8f4fb0f3a4b48a8089de462a51eb3525e9d5",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/analyze.log",
+      "sha256": "0419496a543d882390bfc22515282d139567b28abb2ec2c6cef14f141aea5d25",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red-provenance.json",
+      "sha256": "a6d23ac4d097aa3f4e055c544db345cd935c6eb6c3e9c1ec766392e97e0d760c",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red-test.dart.txt",
+      "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/closing-pause-red.log",
+      "sha256": "e1ddacf500110522e2981174a6f3b5ce5690c6ffe3d421601c1e3a65abdadadc",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/final-green.log",
+      "sha256": "22c6d06a491e3002bb30d9cc68354369738e5cf5166a33dec488b2faf9c0e4c4",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/green-initial.log",
+      "sha256": "41560d8e7cc4c3b6167f618a8d8493ace92355e947a841f986f87427f9f1e65f",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/joined-green-provenance.json",
+      "sha256": "eafb6072be369178150e23066cdf251db654cf4ca3d8686349ef79ae13034727",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/joined-green.log",
+      "sha256": "0b458bcdda4ff7b3c6a7340663f3508cb54058292a142f71f85c38f8b6b20541",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/red-provenance.json",
+      "sha256": "4b2a388190ffb3cb3b1f11ba7ca7d93b78147b634718972e0b3cba94c8ea920d",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/red-test.dart.txt",
+      "sha256": "b2c50635dcdbb6cd3fe5f42f1377a79e935688d0db89b9c48ec232775f1bd6a6",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/red.log",
+      "sha256": "3638d5f06f622320dcf5c440badb3d085435c33c8fb8b15435845e2b5a3680ea",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_companion_menu_scope_20261116/source.json",
+      "sha256": "8a92fe1fd98e13d83ad971e83f869953c49bcc9869cae6f770ea7857c48c20f2",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/README.md",
+      "sha256": "fbe2cea4352eda0fb442f358586bcf32a1d14e0752e92af48fa952a22bda2e6c",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/analyze-initial.log",
+      "sha256": "3cd6f5ba8ca6802c2c2d13d65eeca055c086d7b49c4d1fb8aefff371702c0b91",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/analyze.log",
+      "sha256": "5e715e6ca69f27c394afc08ba68f81f6d4ff4695a470c48a7fe8757556ca33c4",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/existing-targeted.log",
+      "sha256": "5fdefdb51c6da36b38bfdab77919f54662e4e644a9e83e5c0a490201f72e0030",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/green-initial.log",
+      "sha256": "38cdc82d5d09751661c1d8c4d4746544f2fa95cdbca497976f86e7446a6e7b8d",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/green.log",
+      "sha256": "b205c7b2e494e7ab43f570925b724ad875345ffbb4357d451494277abf4b7e77",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/joined-green.log",
+      "sha256": "a89fd2ca07a4bab1eddfe510e44c7d7a55e40fd79e5608004d117c31d7114e77",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red-first.log",
+      "sha256": "2a67c24410a328c6751f10aaa1e0b0f68fc43c349bd92405989f0290370b2d70",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red-provenance.json",
+      "sha256": "262fbb0dc39f78a0337f6f45d662cc84c7ad3b0fc22807f3e4751ce5dc3cc2ec",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red-shader-setup.log",
+      "sha256": "41fcbca71ced88eb070cb32681fc686900bbaa4fb72ed1821c6d8f9882ae705f",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red-test.dart.txt",
+      "sha256": "99ca990647f4090da914951af4a1cbec41522e86159db1f74a77e9c58ec69770",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/red.log",
+      "sha256": "d05455d9fee6e455696d2b1d86f8b293fd94e7d0ddc66173fd60195fa82f8a5e",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_conversation_scope_20261116/source.json",
+      "sha256": "da9c0ff6d9ffffae130f3b2c8099ed1d32b47acb8081f90a26a13747c5e7f18c",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/component.json",
+      "sha256": "6a23ebb465c2596753d608ab1ac799d213ff717ca356011dfa79b6dd722e6b65",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/handoff.json",
+      "sha256": "feab0f5f890e6eaec7ef3a994ac1aed19694ed46b5129dccad0ec51c562edc6b",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/source-format-review.json",
+      "sha256": "84c6b59073675febac3ff0f26e3964c8fe1f010d0bda6bde7536f27759a2f0fa",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/style-handoff.json",
+      "sha256": "fa79ed2f7c3e51a01857cb0c9424671b921349931b192933274c3e7597c2ce19",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_menu_presenter_20261116/style-publication.json",
+      "sha256": "bce37c22a203e464d9b512b3406962db13d558057c4800fd472e9d65def16932",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/README.md",
+      "sha256": "065dac2a112eed8a3cbc0b9d361e65ea1e52f7e3d58c6de71190135aca432a8a",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/analyze.log",
+      "sha256": "3d1b8e5f21c3a232381c958c2022d476bb93f386ca5eb05448d071bf05ea33e7",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/green.log",
+      "sha256": "047d1955af68c949880df3a23b26ba8451f30b9620236cd7fd0a81592bbb50ae",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/joined-green.log",
+      "sha256": "d4ea594d113c571b9ba18f3d2dd19af10cdc3611f1b2e01e64393a3ce9b60e84",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/red-provenance.json",
+      "sha256": "80f7dc973f79f5f8ba145a4a500a77051dd8e8a8d8385eb5e3525e1adefcaef4",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/red-test.dart.txt",
+      "sha256": "6e956cdc117d6fb1367383e3d3f936af466fe9fe384531bdc695911d4e17e8ad",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/red.log",
+      "sha256": "b9d3e7f8677320031c89131a0f86ba3a6ba468d69bfc020221a43f57e9e50089",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/core_resize_scope_20261116/source.json",
+      "sha256": "57ebe7287148cc90c7c5e3680b897c94b4233c088f5e415bd9069d6e70234282",
+      "readFrom": "worktree"
+    },
+    {
       "path": "docs/nextgen/evidence/coverage_refresh_20261115/catalog_export.log",
       "sha256": "61046bd4a371512f9e68fcb090d3a208059cb00589466cec75edfa0a31b68364",
       "readFrom": "worktree"
@@ -23210,6 +23531,56 @@
       "readFrom": "worktree"
     },
     {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/README.md",
+      "sha256": "85a1c14d0a9b573b7ace6503d9b8d064d99fcfbeb2dd3a1d2d909d3426f493b9",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/current-candidate.log",
+      "sha256": "9e74196e64286eda4fd4ca89afe292e8529361cf4f6b844851407c8e43e1edd7",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-green.log",
+      "sha256": "ea60caf75a0df2b3e407b875568cec6954885b41213e9555a0c25660c5259ada",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-provenance.json",
+      "sha256": "60505cf4479f5ef35f49d5dc3b2007a02aaba66691935bf1359ebffe013491c0",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/final-fixture-red.log",
+      "sha256": "759dcd45881c6cd607cb9df2340aa5ab7e1fc613ac6693d6aff3511fba798909",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/green.log",
+      "sha256": "4f00286d7f5021efbb2dd65050cfccd8133be8a456f1ea20b43e052ffe6a1d14",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/handoff.json",
+      "sha256": "b5c51d58e49c0b278360b42700f39f86d3baec1d9d5e5ad08721010db759e2cb",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/red-provenance.json",
+      "sha256": "ad586f6139bf22c14e7127c5dfa823c70d999fa3bcaae1416db1f1d3b05598fb",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/red.log",
+      "sha256": "d1075af024abf835632e2dbd27f01050fd39520012e25bc2c3b9fcaad2055a1a",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/pattern_wrapped_reader_20261116/setup-import.log",
+      "sha256": "da77260c85b465bbe39b8e8c72df6ac46714f03ee2c5948a7773633944c5ec9f",
+      "readFrom": "worktree"
+    },
+    {
       "path": "docs/nextgen/evidence/reading_audio_owner_20261115/tests.log",
       "sha256": "f0054fcddaf4144c43794d298ffea5f193113d82700f737805a06eaf2268b69f",
       "readFrom": "worktree"
@@ -23230,6 +23601,46 @@
       "readFrom": "worktree"
     },
     {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/README.md",
+      "sha256": "bbe5e85921556cbd706754c20866f3f551ebc437c507f61236e8b4d32e3583b0",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/component.json",
+      "sha256": "318cbc39fce22c063d3488de7ec908586f1bad5bec5af396877e58159e98bf0d",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/green.log",
+      "sha256": "bff2cfdbd9b6f9acad239977746e2430dc75b691a6cbfcdcbf3e5d14a50eb4b0",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/handoff.json",
+      "sha256": "addf0004af531688f7050c404f7710f47d119f04d4d138bdbeeea4419a75ada5",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/independent-review.json",
+      "sha256": "2b0d7b6c6f2efd23fef1ed40c4ce39459654f5ea121d8b70c46ae9c961994c1a",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/red-first-test-boundary-error.log",
+      "sha256": "9ae4bdda74dacfb9b614b3db6f07224cd70db8df52a7c462ebea6d4d1ceb7317",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/red.log",
+      "sha256": "c38c85f4b99ae8c803151dfd884ec73f9d7c327fc88e190115f1681108307d51",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "docs/nextgen/evidence/resize_capture_20261116/source-check.json",
+      "sha256": "54cbf16c4ea94c098aca87d782679369de0b6011450b67627f9449bb932600ef",
+      "readFrom": "worktree"
+    },
+    {
       "path": "docs/nextgen/evidence/root_joined_20261115/joined-native-boundary-tests-final.log",
       "sha256": "41a4bce3ddad58007bae23956e34983dad5229cdacc813decee70ccb07cf42d7",
       "readFrom": "worktree"
@@ -23246,7 +23657,12 @@
     },
     {
       "path": "lib/app/app_shell.dart",
-      "sha256": "f7989ba9b40d431d48a1fbeb7535d0cfdd7cb15666b0d1fd68aeb024cc1b3731",
+      "sha256": "1d2be251542a1733c6638326db87df09f4e2c7edb541f6c916e405f3cf21882a",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "lib/app/lumo_companion_host.dart",
+      "sha256": "bfcab61255f60e62826ba60558f75b1341a125eee78a9a92704fe8502e63fd18",
       "readFrom": "worktree"
     },
     {
@@ -23521,7 +23937,7 @@
     },
     {
       "path": "lib/features/learning/learning_content.dart",
-      "sha256": "90b2768678d916dd7a13f811ba8290a9759870fdbbf77f6943c105cb89aa0cb2",
+      "sha256": "c9e8fcfcefa63864264aef0d8d3ad7c479f4c1cd0f4fbae1197f921b8622ed50",
       "readFrom": "worktree"
     },
     {
@@ -23850,6 +24266,81 @@
       "readFrom": "worktree"
     },
     {
+      "path": "lib/widgets/fox/lumo_free_companion.dart",
+      "sha256": "a361c60177ef9e8f7a011178b74d135604a135659839e0c3edf9d300ee5f2643",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "sha256": "fc3e7e0d40c71902ffefae70853c7cbd32c8a0bac7b8d675d505710b6f06df09",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/prepare_offline_voice.py",
+      "sha256": "d10f2de36f68b60b1d981a024979006833fdad99cf490fa7be988674cd995d16",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/LICENSE-MODEL.txt",
+      "sha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/OfflineVoiceTokenizerContract.java",
+      "sha256": "58cefe49e1a915cff24246eafe6ed3b291e93bda66df817c377fb3f6dbdf9e5a",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/README.md",
+      "sha256": "38ffdea523d03543f5c9e5470a7294e9756b2217bc85fb2e3ef8c986154be4d5",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OnnxTensor.java",
+      "sha256": "5518b937512704d887558e5689a6e67c82c954bad1be6a937354f977cce0cd9b",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtEnvironment.java",
+      "sha256": "5ce0ac5da02cb70f37a166b173ce014afb0bbd99fe048b728b515c8769a22fdb",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtException.java",
+      "sha256": "1d65ade065a9bce7fb8ae31c2024e01faff6abaeef1a089ff2504ef19dbfb232",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/onnx/ai/onnxruntime/OrtSession.java",
+      "sha256": "a6469585042d54418e8b22ab14af725624d86c27c13fb3f6409503b2159bfcd3",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/offline_voice_tokenizer/unicode_indexer.bin",
+      "sha256": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechFailureContract.kt",
+      "sha256": "badcd128e17694c0b3a9fb7e5d9cd3cb2a4f889508cde865fede34b5130d072a",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+      "sha256": "229d1a4f838a73eca31a17e2a78eaa0c9e0cae6306e5e804cb8ba5f2ac02be6d",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/test_prepare_offline_voice.py",
+      "sha256": "a03d3fb441580447bf2eb785627f3d8650388421c7959e430ae2a60f117caab6",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "scripts/tests/test_speech_envelope_contract.py",
+      "sha256": "0fe53f3aaf620809cc51691a76e6a4087e5118da8eaf8d2ca1d9ab155a30bce0",
+      "readFrom": "worktree"
+    },
+    {
       "path": "test/cognitive_profile_premium_ui_test.dart",
       "sha256": "c3f3068fb269631fa2710bcf5f3e1274c088a378ed966404a16468d84d24670e",
       "readFrom": "worktree"
@@ -23987,6 +24478,11 @@
     {
       "path": "test/iq/nextgen_thinking_flow_test.dart",
       "sha256": "5e763a3127d9d3d5f5b0a573d56d54be2205543e2a34502f743cd625405732f0",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "test/learning/core_conversation_route_test.dart",
+      "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42",
       "readFrom": "worktree"
     },
     {
@@ -24325,8 +24821,68 @@
       "readFrom": "worktree"
     },
     {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9-ocr.json",
+      "sha256": "45dbbdc4dec317ce4bcc5e3b72d9767a7390302f54bb7186b12ada2dfee32c2e",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9.png",
+      "sha256": "4e2486f2c838f7391f56c14b62b60b610b27d87b43ff4184875cb5a013e5fbf8",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/manifest.json",
+      "sha256": "d3e43abe10c20bc9927127cec0c8f9d28dbde0ca0e5bfeacc4850a12e3ac64ff",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/0181-bridge-resize-compact.mp4",
+      "sha256": "8f436741a6b25fbccef4ee7784ef54ae41786bcbbc5e4c342352db9355c0300a",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/README.md",
+      "sha256": "6ac544b39970d05c85e4b1538a2538faa71f7d1d1b32eaaf67f3ef704463bbfc",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/ffprobe-original.json",
+      "sha256": "7802e4d4f1d0771e1c5d1831d6b990592380e6f83f3b896988e9aa83bc40790e",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/manifest.json",
+      "sha256": "6388aadf1ce219bc8ea1bb083bd3222bc606021a413d6e487ab0dd250fbcca75",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_current_candidate.py",
+      "sha256": "b48002a7916ae856b30c715318ecf98fde2dceaf0ee63a598c95744d8eb7bb48",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "sha256": "487aa7923a89a685c4a41e1ca28827d3d059c5ff6cec2d13bad5ef69d7880b79",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_native_reader.py",
+      "sha256": "7278cc973050f2f3db82ce6a1e4c7960630875163965104101142a85bcdd940b",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "sha256": "6855fcf77abada42a7b59178e013108ef641f523007200be5c916d4e39e096c8",
+      "readFrom": "worktree"
+    },
+    {
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "sha256": "72e09c511b9fa35606a8fc5024f1333c5a0b10bbab02d4be9c8cbac37d0430f2",
+      "readFrom": "worktree"
+    },
+    {
       "path": "tools/nextgen/build_coverage.py",
-      "sha256": "c5642ebadb2accdd3c19c5c6c53ad0ac5cbd4154b672f0b019137c4e1c3addab",
+      "sha256": "3747eef237869a9822d691db92a36037f78a33560de8edda6635407b663d1d3b",
       "readFrom": "worktree"
     },
     {
@@ -24402,12 +24958,12 @@
             "editable": {
               "path": "lib/features/learning/learning_content.dart",
               "symbol": "learning-answer-candidate",
-              "line": 1773
+              "line": 1947
             },
             "confirm": {
               "path": "lib/features/learning/learning_content.dart",
               "symbol": "learning-confirm-candidate",
-              "line": 1789
+              "line": 1963
             }
           }
         ],
@@ -24451,7 +25007,7 @@
             "source": {
               "path": "lib/features/learning/learning_content.dart",
               "symbol": "adaptive-open-3d",
-              "line": 2132
+              "line": 2306
             },
             "buttonKeys": [
               "adaptive-open-3d"
@@ -29116,10 +29672,10 @@
     "activeSpecialistRoutes": "Actual specialist Academy entries with recorded widget route checks; separate from the general inventory count."
   },
   "sourceSnapshot": {
-    "committedProductHead": "83038afc19365196eeaa49432e0025bba0975518",
+    "committedProductHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
     "productWorkingTreeClean": true,
-    "catalogSourceHead": "83038afc19365196eeaa49432e0025bba0975518",
-    "rawCatalogSha256": "0e8fd6d3e27bf6f8536f403d566a48a78aaf67a860b171f503684a8a91fc05d4",
+    "catalogSourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
+    "rawCatalogSha256": "ed4cdafda16a03cee80d170da8b2a0491934409c098dbe06b11017f97bd0d67d",
     "exporter": {
       "path": "tools/nextgen/export_learning_catalog_test.dart"
     },

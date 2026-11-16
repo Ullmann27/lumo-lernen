@@ -1,6 +1,6 @@
 # Lernabdeckung – belegter integrierter Quellstand
 
-**Produkt-Snapshot: `83038afc19365196eeaa49432e0025bba0975518`. `fullModernizationComplete` bleibt `false`.**
+**Produkt-Snapshot: `cc4197e622c42dc5387ba06b7e57ac4964e1a07b`. `fullModernizationComplete` bleibt `false`.**
 Diese Matrix inventarisiert den ausgeführten Dart-Katalog, Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Ihre Einträge umfassen aktive und bedingte Lernwege, Navigation, Verträge, geschützte sowie inaktive Legacy-Pfade; ihre Gesamtzahl ist keine Zahl aktuell erreichbarer bewerteter Aufgaben. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält IDs, Quellenhashes, klassifizierte Einträge, Typen, Adapter und Nachweisgrenzen.
 
 ## Tatsächlich erfasster Umfang

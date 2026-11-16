@@ -166,6 +166,9 @@ APPROVED = {
     2029: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
     # 2030: enable Lab model input only after the actual current task is bound.
     2030: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+    # 2031: reviewed Core owner/menu/resize fixes and offline speech normalization.
+    # Preserve native identity; require a fresh signed APK and complete Android tour.
+    2031: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
