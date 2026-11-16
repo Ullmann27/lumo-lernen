@@ -257,6 +257,19 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
     def listening(self):
         return [self.node("Lumo hört dir zu.")]
 
+    def postgrant_ready(self, locale="de-DE"):
+        # A conditional post-grant fixture, NOT an observed Android outcome.
+        # Parse XML into the same ET.Element representation as live_nodes.
+        frame = ET.Element("hierarchy")
+        for index, label in enumerate(("Mit Lumo sprechen", "Deine Aufgabe", probe.BRIDGE_PROMPT,
+                                       "Spracherkennung: " + locale, "Sprechen")):
+            frame.append(self.node(label, **{
+                "bounds": f"[40,{100 + index * 150}][1040,{200 + index * 150}]",
+                "clickable": "true" if label == "Sprechen" else "false",
+                "class": "android.widget.Button" if label == "Sprechen" else "android.view.View",
+            }))
+        return list(ET.fromstring(ET.tostring(frame)).iter("node"))
+
     def scenario(self, frames, *, read_seconds=1):
         instance = probe.LearningProbe.__new__(probe.LearningProbe)
         instance.args = SimpleNamespace(conversation_ui="freevoice")
@@ -416,6 +429,112 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
                 run = self.scenario([[self.node(label)]])
                 self.assertEqual(run.run()["microphone_ui_outcome"], outcome)
                 self.assertEqual(run.touches, [])
+
+    def test_postgrant_current_german_ready_requires_one_new_explicit_tap(self):
+        for locale in ("de-DE", "de_AT", "de", "Deutsch"):
+            with self.subTest(locale=locale):
+                ready = self.postgrant_ready(locale)
+                self.assertTrue(all(isinstance(node, ET.Element) for node in ready))
+                run = self.scenario([self.permission(), ready, ready, self.listening()])
+                result = run.run()
+                self.assertEqual(result["microphone_ui_outcome"], "listening_ui_observed")
+                self.assertEqual([touch[1] for touch in run.touches],
+                                 ["microphone-permission", "microphone-postgrant-start"])
+                self.assertTrue(result["postgrant_explicit_start"])
+                self.assertEqual(run.touches[1][:3], ((40, 700, 1040, 800), "microphone-postgrant-start", "Sprechen"))
+                event = run.saved["microphone-postgrant-explicit-start"]
+                self.assertEqual(event["task_prompt"], probe.BRIDGE_PROMPT)
+                self.assertEqual(event["ready_status"], "Spracherkennung: " + locale)
+                self.assertTrue(event["permission_grant_observed"])
+                self.assertGreater(event["remaining_seconds_before_tap"], 0)
+                self.assertTrue(run.saved["microphone-observation"]["postgrant_explicit_start"])
+
+    def test_postgrant_readiness_is_never_success_and_new_tap_is_not_repeated(self):
+        run = self.scenario([self.permission(), self.postgrant_ready()])
+        with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+            run.run()
+        self.assertEqual(len(run.touches), 2)
+        self.assertEqual(sum(t[1] == "microphone-postgrant-start" for t in run.touches), 1)
+        self.assertNotIn("microphone-observation", run.saved)
+        self.assertIn("microphone-postgrant-explicit-start", run.saved)
+        self.assertGreaterEqual(run.clock.now, 35)
+        self.assertLessEqual(run.clock.now, 36)
+
+    def test_ready_without_own_grant_never_restarts(self):
+        run = self.scenario([self.postgrant_ready()])
+        with self.assertRaisesRegex(RuntimeError, "Microphone request produced neither"):
+            run.run()
+        self.assertEqual(run.touches, [])
+
+    def test_postgrant_requires_all_fresh_visible_owned_task_and_german_ready_anchors(self):
+        for index in range(5):
+            for changes in ({"package": "another.app"}, {"visible-to-user": "false"},
+                            {"enabled": "false"}, {"bounds": "[40,100][1040,100]"}):
+                with self.subTest(index=index, changes=changes):
+                    frame = self.postgrant_ready()
+                    frame[index].attrib.update(changes)
+                    run = self.scenario([self.permission(), frame])
+                    with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+                        run.run()
+                    self.assertEqual(len(run.touches), 1)
+        for index, label in ((0, "Andere Ansicht"), (1, "Eine alte Aufgabe"),
+                             (2, "7 + 5 = ? Rechne zuerst bis zur Zehn."),
+                             (3, "Spracherkennung: en-US"), (3, "Spracherkennung: nach Tippen auf Sprechen"),
+                             (3, "Spracherkennung: de-DE nicht bereit")):
+            with self.subTest(index=index, label=label):
+                frame = self.postgrant_ready()
+                frame[index].set("text", label)
+                run = self.scenario([self.permission(), frame])
+                with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+                    run.run()
+                self.assertEqual(len(run.touches), 1)
+
+    def test_postgrant_does_not_use_hidden_or_still_present_permission_overlay(self):
+        for visible, box in (("true", "[30,40][1030,180]"), ("false", "[27,1205][1053,1205]")):
+            with self.subTest(visible=visible):
+                overlay = self.node("", package=probe.PERMISSION_PACKAGES[0],
+                                    **{"visible-to-user": visible, "bounds": box})
+                run = self.scenario([self.permission(), self.postgrant_ready() + [overlay]])
+                with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+                    run.run()
+                self.assertEqual(len(run.touches), 1)
+
+    def test_postgrant_does_not_tap_after_listening_or_explicit_limitation(self):
+        for label, outcome in (("Sprich jetzt. Lumo sendet die Frage automatisch.", "listening_ui_observed"),
+                              ("Mikrofon konnte nicht gestartet werden: fixture", "explicit_device_limitation")):
+            with self.subTest(label=label):
+                run = self.scenario([self.permission(), self.postgrant_ready() + [self.node(label)]])
+                self.assertEqual(run.run()["microphone_ui_outcome"], outcome)
+                self.assertEqual(len(run.touches), 1)
+        for label in ("Zuhören …", "🎤", "Das Mikrofon wird jetzt in einer anderen Ansicht verwendet."):
+            with self.subTest(label=label):
+                run = self.scenario([self.permission(), self.postgrant_ready() + [self.node(label)]])
+                with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+                    run.run()
+                self.assertEqual(len(run.touches), 1)
+
+    def test_postgrant_ambiguous_or_nonclickable_speaking_control_is_not_tapped(self):
+        frame = self.postgrant_ready()
+        frame[-1].set("clickable", "false")
+        run = self.scenario([self.permission(), frame])
+        with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+            run.run()
+        self.assertEqual(len(run.touches), 1)
+        frame = self.postgrant_ready()
+        other = copy.deepcopy(frame[-1])
+        other.set("bounds", "[40,900][1040,1000]")
+        run = self.scenario([self.permission(), frame + [other]])
+        with self.assertRaisesRegex(RuntimeError, "[Aa]mbiguous"):
+            run.run()
+        self.assertEqual(len(run.touches), 1)
+
+    def test_postgrant_ready_frame_after_original_deadline_cannot_authorize_a_new_tap(self):
+        run = self.scenario([self.permission(), self.postgrant_ready()], read_seconds=17)
+        with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+            run.run()
+        self.assertEqual(len(run.touches), 1)
+        self.assertNotIn("microphone-postgrant-explicit-start", run.saved)
+        self.assertGreaterEqual(run.clock.now, 35)
 
     def test_recorded_ready_dialog_uses_actual_runtime_xml_parser_and_element_nodes(self):
         fixture = ROOT / "tools/android_qa/tests/fixtures/nextgen_permission_43781148281"
