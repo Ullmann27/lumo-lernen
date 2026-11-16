@@ -194,7 +194,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
       // in Flutter. No synthetic native success or new board is introduced.
     } finally {
       try {
-        await session.close(persist: identical(_session, session) && _nativeLaunching);
+        await session.close(persist: identical(_session, session) && _nativeLaunching && nativeReturned);
       } catch (_) {}
       // A Flutter turn may already have detached this automatic opening.
       // Its late reply must not cancel or restart that turn's local timer.
