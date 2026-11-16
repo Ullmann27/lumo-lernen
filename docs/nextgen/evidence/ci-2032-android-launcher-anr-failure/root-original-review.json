@@ -1,0 +1,153 @@
+{
+  "observedAtUtc": "2026-11-16T09:51:49.453205+00:00",
+  "status": "ORIGINAL_ANDROID_FAIL_RETAINED",
+  "workflowRun": 43837592237,
+  "workflowAttempt": 1,
+  "jobId": 133211685356,
+  "publication": "SKIPPED",
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "probeRunId": "83b3ac99f0144bd3b2ef334a357b1d53",
+  "probeStartedUtc": "2026-11-16T09:44:57Z",
+  "probeFinishedUtc": "2026-11-16T09:46:04Z",
+  "artifactId": 14213881427,
+  "archiveBytes": 924212,
+  "archiveSha256": "9afa0569f8dd18ec34e651ce38e29441c7cc8d6e738fb205c841a1fa4d5d49a6",
+  "all42ArchiveMembersCrcSizeShaAndCopiesVerified": true,
+  "installedCurrentCandidateVerified": true,
+  "probeSourceShaMatched": true,
+  "failure": "No unique enabled live Flutter control: Los geht's!",
+  "rootActuallyViewedScreenshot": "0025-failure-current-screen.png",
+  "visibleBlockingDialog": "Pixel Launcher isn't responding",
+  "dialogOwnerPackage": "android",
+  "dialogReportedApplication": "Pixel Launcher",
+  "all22WelcomeXmlsConfirmDialog": true,
+  "xmlObservations": [
+    {
+      "path": "original-android/0002-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0003-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0004-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0005-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0006-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0007-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0008-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0009-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0010-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0011-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0012-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0013-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0014-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0015-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0016-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0017-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0018-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0019-welcome.xml",
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a"
+    },
+    {
+      "path": "original-android/0020-welcome.xml",
+      "sha256": "e61586927ce548aa6f128398abf62b74ed5ae8bce5f2921bebdbb7d33b7b8f31"
+    },
+    {
+      "path": "original-android/0021-welcome.xml",
+      "sha256": "e61586927ce548aa6f128398abf62b74ed5ae8bce5f2921bebdbb7d33b7b8f31"
+    },
+    {
+      "path": "original-android/0022-welcome.xml",
+      "sha256": "e61586927ce548aa6f128398abf62b74ed5ae8bce5f2921bebdbb7d33b7b8f31"
+    },
+    {
+      "path": "original-android/0023-welcome.xml",
+      "sha256": "e61586927ce548aa6f128398abf62b74ed5ae8bce5f2921bebdbb7d33b7b8f31"
+    }
+  ],
+  "noLumoPackageNodesInTheseXmls": true,
+  "scrollSearch": {
+    "status": "NOT_FOUND",
+    "strategy": "forward_then_observed_boundary_reverse",
+    "non_scroll_observations": 21,
+    "gestures": [],
+    "reason": "bounded wait without target or scrollable viewport"
+  },
+  "welcomeButtonVisibleUnderModalInScreenshot": true,
+  "recordingValidAndTransferred": true,
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1",
+      "bytes": 84165,
+      "duration_seconds": 28.598056,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0001-onboarding-video-transfer.json",
+      "block_elapsed_seconds": 18.18,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "0025-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e7eefc9530a550af8c2f90b888eb4784cd771306ac8b3707bad9e68964eacace"
+    }
+  ],
+  "noOnboardingOrLearningSceneCompleted": true,
+  "launcherAnrRootCause": "Not established by these originals; no process CPU/memory/ANR trace captured",
+  "noProductControlFailureInferred": true,
+  "noSystemDialogDismissed": true,
+  "retryDecision": "At most one fresh unchanged Android attempt after preserving original result; all APK bytes and gates unchanged. Not yet triggered by this review."
+}

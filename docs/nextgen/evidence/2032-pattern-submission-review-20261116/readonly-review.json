@@ -1,0 +1,181 @@
+{
+  "schema": "lumo.nextgen.pattern.submission.readonly_review",
+  "version": 1,
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "runtimeOutcome": "NOT_OBSERVED_BY_THIS_REVIEW",
+  "sources": [
+    {
+      "path": ".github/probes/run_lumo_nextgen_current_android.sh",
+      "bytes": 1168,
+      "sha256": "a54f2ec1ca5a64eb7ea1f2d3dc80f19db55354cf2137aaec1c175667b8740d47",
+      "anchors": {
+        "--submit-core-answer": [
+          7
+        ]
+      }
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "bytes": 7595,
+      "sha256": "81efab46dbb85c4d22745bbfbf637ea5389548cb19508ec424948c2bb221c449",
+      "anchors": {
+        "class CurrentCandidateProbe": [
+          74
+        ],
+        "--submit-core-answer": [
+          101
+        ]
+      }
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "bytes": 44802,
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
+      "anchors": {
+        "def observed_pattern(": [
+          195
+        ],
+        "def attempts(": [
+          357
+        ],
+        "def verify_core_submission(": [
+          365
+        ],
+        "def pattern(self):": [
+          587
+        ],
+        "def submit_pattern_answer(": [
+          639
+        ],
+        "def run(self):": [
+          667
+        ]
+      }
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 92469,
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+      "anchors": {
+        "def observed_control(": [
+          215
+        ],
+        "def learning_snapshot(": [
+          307
+        ],
+        "def require_preserved(": [
+          329
+        ],
+        "def wait(self,": [
+          557
+        ],
+        "def touch(self,": [
+          566
+        ],
+        "def nodes(self,": [
+          554
+        ]
+      }
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "anchors": {
+        "def prefs(": [
+          765
+        ]
+      }
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "bytes": 11429,
+      "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441",
+      "anchors": {
+        "def verify_tours(": [
+          19
+        ],
+        "def verify_observed_execution(": [
+          44
+        ]
+      }
+    }
+  ],
+  "entry": "Aktuelle Shell setzt --submit-core-answer. CurrentCandidateProbe erbt pattern/submit_pattern_answer unverändert; vollständige Banane und aktueller Stopp ab2032 laufen davor.",
+  "native_roundtrip_before_any_submission": {
+    "task": "Exakte aktuelle Frage, vier sichtbare Sequenzelemente aus Kreis/Dreieck/Stern/Quadrat, genau zwei Formen und kleinste Periode2.",
+    "native": "Gruppe entdecken plus neues Playback; wirkliche Formauswahl nur Vorschlag; keine native Bewertung.",
+    "return": "Exakte gleiche Frage, wieder aktiviertes unbeantwortetes Native-Einstiegscontrol und gleicher kanonischer Lern-/Profilbestand.",
+    "separate_evidence": "pattern-ungraded-roundtrip.json wird vor dem optionalen Core-Tap geschrieben."
+  },
+  "not_exercised_conditions": [
+    "Aktuelle Frage und Überschrift müssen zuvor erfolgreich wiedergefunden werden; sonst FAIL.",
+    "In keiner der maximal8 frischen XML-Beobachtungen liegt gleichzeitig die exakte Überschrift als kompletter node_label und für alle vier Formen je ein erlaubtes enabled/clickable Control derselben App mit positiven Bounds und Mindesthöhe32 vor.",
+    "Die vier Controls müssen vier verschiedene Bounds haben; fehlende, deaktivierte, außerhalb des beobachteten Ausschnitts liegende oder zusammengefasste Controls bzw. eine nicht als kompletter node_label vorhandene Überschrift können die Bedingung verfehlen.",
+    "Zwischen den Beobachtungen wird abwärts gescrollt. Nach der achten erfolglosen Beobachtung gibt es noch einen Scrollaufruf, aber keine neunte Prüfung; ein erst danach passender Ausschnitt ist nicht belegt.",
+    "Mehrere verschiedene passende Bounds für dieselbe Form lösen über observed_control dagegen einen harten Fehler aus; das ist kein NOT_EXERCISED-Fall."
+  ],
+  "not_exercised_result": {
+    "pattern.core_answer_submitted": false,
+    "pattern.core_submission.status": "NOT_EXERCISED",
+    "reason": "No simultaneous unique observed Core answer heading and four enabled shape cards; ungraded roundtrip remains separately evidenced.",
+    "touch_performed": false
+  },
+  "actual_submission": {
+    "action": "Ein realer Tap auf die aktuell beobachtete Core-Antwortkarte task.next. Dieser Core-Weg bewertet direkt; kein zusätzlicher Bestätigungsknopf wird erfunden.",
+    "deadlineSeconds": 45,
+    "savedKey": "flutter.lumo_attempt_log_v1",
+    "requirements": [
+      "Gleiches vollständiges ausgewähltes Profil im learning_snapshot.",
+      "Alle vorherigen Versuchseinträge unverändert erhalten; IDs eindeutig.",
+      "Genau ein neuer Versuch mit frischer id.",
+      "Felder sub=Logik, unit=Muster, q=task.prompt, a=task.next, e=task.next, ok=true, hint=true; Gleichheit einschließlich tatsächlicher Typen."
+    ],
+    "resultFields": [
+      "pattern.core_answer_submitted=true",
+      "pattern.core_submission.status=PASS",
+      "pattern.core_submission.submission_control=observed Core answer card",
+      "pattern.core_submission.stored_attempt",
+      "pattern.core_submission.changed_learning_keys",
+      "pattern.core_submission.native_was_ungraded_before_submission=true"
+    ],
+    "failureBoundary": "Kein gespeicherter Versuch innerhalb45s, falsche Bewertung, Profilwechsel, umgeschriebene Vorversuche oder mehrere neue Versuche -> FAIL. Auch Recorder-/Capturefehler bleiben FAIL.",
+    "resultAssignmentBoundary": "core_answer_submitted=true und core_submission=assessed werden erst nach erfolgreichem Ende des recording-Kontexts gesetzt. Bei späterem Capture-/Recorderfehler kann ein wirklicher Tap/gespeicherter Versuch schon vorhanden sein, während die Gesamtprobe FAIL und das Flag noch false ist. Ein false-Flag allein beweist deshalb bei FAIL keine unterlassene Abgabe; NOT_EXERCISED ist der explizite Vor-Tap-Zweig."
+  },
+  "original_evidence_files": {
+    "result": "reference-android-result.json",
+    "ungraded": "pattern-ungraded-roundtrip.json",
+    "observedControls": "pattern-core-observed-answer-controls.json",
+    "answerUi": "NNNN-pattern-observed-core-answer-cards.xml",
+    "touch": "NNNN-pattern-explicit-core-answer-touch.json",
+    "beforePreferences": "NNNN-pattern-after-native-preferences.xml",
+    "afterPreferences": "NNNN-pattern-after-explicit-core-answer-preferences.xml (ggf mehrere frische Beobachtungen)",
+    "beforePng": "NNNN-pattern-before-explicit-core-answer.png",
+    "afterPng": "NNNN-pattern-after-explicit-core-assessment.png",
+    "video": "NNNN-pattern-explicit-core-answer-after-ungraded-return.mp4 nebst bestehender Recorder-/ffprobe-Evidenz"
+  },
+  "publisher": {
+    "alwaysRequired": [
+      "Aktuelle Kandidat-/Quell-/Probe-/Workflowidentität; tatsächlicher vollständiger Originaltourbezug und frische Installationen.",
+      "Unveränderte Musterfrage bei Rückkehr, native_confirmation_performed=false, vorhandenes Hint-Playback, beobachtete Gruppe und erhaltenes Profil.",
+      "Aktuelles Stoppresultat ab2032 zusätzlich."
+    ],
+    "conditionalRequirement": "Nur wenn pattern.core_answer_submitted is True, muss pattern.core_submission.status PASS sein. Der Publisher wertet den gespeicherten Versuch nicht nochmals selbst nach allen q/a/e-Feldern aus; dies geschieht im gebundenen Probequellpfad.",
+    "notExercisedCanPublish": true,
+    "fullRunPassIsNotProofOfCoreSubmission": true,
+    "flagNotRecordedAsIndependentMandatoryResultGate": true
+  },
+  "limits": [
+    "Keine aktuelle Androidbeobachtung oder CI-Abfrage vorgenommen.",
+    "changed_learning_keys protokolliert die Änderungen, ist aber keine separate exakte Wallet-/Mastery-Deltaprüfung.",
+    "Keine Aussagen über STT-Bestätigung: native Auswahl bleibt ungewertet, Core-Kartentap ist die separate echte fachliche Abgabe.",
+    "Ein späterer PASS muss für den Abgabeclaim mit Original-XML, Touch, Prefs und Video gelesen werden; NOT_EXERCISED bleibt eine ausdrücklich offene Teilprüfung."
+  ],
+  "mutations": {
+    "repo": false,
+    "frozenValidationPackage": false,
+    "remote": false,
+    "testsRun": false
+  }
+}

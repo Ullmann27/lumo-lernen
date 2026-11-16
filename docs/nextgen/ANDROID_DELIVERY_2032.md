@@ -4,9 +4,9 @@
 
 **Dokumentstand: 16. November 2026. `fullModernizationComplete=false`.**
 
-Dieser Entwurf beschreibt den belegten Quellstand, den abgeschlossenen Katalogexport und die vollständige neue Quellvalidierung für Kandidat 2032. Er ist noch keine APK-Auslieferung oder Android-Abnahme. Validate-Job 133197989015 ist SUCCESS; Buildjob 133206155437 läuft. Aktuelle Android-Originale und ein verifizierter öffentlicher Download liegen diesem Dokument noch nicht zugrunde.
+Dieser Entwurf beschreibt den belegten Quellstand, den abgeschlossenen Katalogexport und die vollständige neue Quellvalidierung für Kandidat 2032. Er ist noch keine APK-Auslieferung oder Android-Abnahme. Validate-Job 133197989015 und Buildjob 133206155437 sind SUCCESS. Der erste Androidversuch scheiterte am blockierenden Systemdialog für Pixel Launcher; seine vollständigen Originale sind gesichert. Eine bestandene aktuelle Androidtour und ein verifizierter öffentlicher Download liegen noch nicht vor.
 
-Die aktivierte APK-Quelle ist `9b38360ca5f21919dce4a2b99e605ee39bbbf454`, der native Pin `9d6ef1d704a0e54098a8f8f0818f36deae0e3789`. Der vollständige Lauf [43837592237](https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237) ist im gesicherten [Aktivierungsbeleg](evidence/2032-build-activation-20261116/activation.json) noch nicht abgeschlossen. Alle folgenden Aussagen sind an den dokumentierten Quell- und Belegstand gebunden.
+Die aktivierte APK-Quelle ist `9b38360ca5f21919dce4a2b99e605ee39bbbf454`, der native Pin `9d6ef1d704a0e54098a8f8f0818f36deae0e3789`. Der vollständige Lauf [43837592237](https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237) ist im ersten Versuch mit Android-FAIL und übersprungener Veröffentlichung abgeschlossen; der [Aktivierungsbeleg](evidence/2032-build-activation-20261116/activation.json) hält seinen ursprünglichen Start fest. Alle folgenden Aussagen sind an den dokumentierten Quell- und Belegstand gebunden.
 
 ## 1. Welche Lernbereiche vollständig modernisiert und erreichbar sind
 
@@ -107,7 +107,7 @@ Die folgenden Funktionen gehören zum integrierten Next-Generation-Stand. Die ko
 | Kontrastregression: zuerst 32 erwartete Fehler, danach 79/79 | Lokale Godot-4.6.3-Laufzeit mit echten Buttons, Themezuständen und Eingaben; keine neue Androidaufnahme |
 | Anschluss der aktuellen Stopp-Prüfung: 26/26 | Gezielte Hostprüfungen; Ablauf-/Vertragskontrolle, kein tatsächlicher Stopp eines Android-MediaPlayers in diesem Testlauf |
 | Quell-/Hashvergleiche: 480 Exportquellen, 364 Coverage-Quellhashes, 18 geschützte Dateien | Git-/Dateivergleich; keine zusätzlichen Geräte- oder Akustikaussagen |
-| Vollständige neue Pipeline 43837592237 | Validate 133197989015 SUCCESS; Build 133206155437 läuft, Android und Veröffentlichung ausstehend |
+| Vollständige neue Pipeline 43837592237, Versuch 1 | Validate und Build SUCCESS; Android 133211685356 FAIL beim fremden Launcher-Dialog, Veröffentlichung SKIPPED |
 
 ### Abgeschlossene aktuelle Quellvalidierung
 
@@ -127,6 +127,12 @@ Die 202 Skips bleiben ausgewiesen; einzelne Skipgründe sind dem parallelen expa
 
 Die aufgezeichneten Gruppen werden nicht zu einer vermeintlichen aktuellen Gesamttestzahl addiert. Frühere Flutter-, JVM-, Desktop- und Androidläufe behalten ihre eigene Quelle und Umgebung. [Vorprüfung](evidence/2032-build-activation-20261116/preflight.json), [Katalogbelege](evidence/ci-2032-catalog-export/README.md), [Quellenvergleich](evidence/2032-native-contrast-integration-20261116/host-product-boundary-review.json).
 
+### Tatsächlicher erster Androidversuch
+
+Androidjob **133211685356** prüfte die frisch installierte aktuelle x86-APK auf API 35. Die installierten Bytes, Version, Paket und Signaturbindung stimmen. Beim ersten Onboarding lag jedoch der Android-Systemdialog **„Pixel Launcher isn't responding“** über der sichtbaren Lumo-Oberfläche. Alle **22** XML-Beobachtungen zeigen diesen Dialog und keine Lumo-Knoten. Deshalb fand die unveränderte Probe keinen erlaubten Startknopf und führte keinen Tap aus. Die Tour endete **FAIL** am 16.11.2026 um **09:46:04 UTC**; die Veröffentlichung wurde übersprungen.
+
+Der [vollständige Fehlerbeleg](evidence/ci-2032-android-launcher-anr-failure/README.md) enthält alle **42** Originaldateien, vollständiges ZIP/Rohlog, echtes Bild und Video sowie zwei unabhängige Reviews. Kein Lernablauf wurde erreicht. Die genaue Launcherursache und ein Lumo-ANR sind nicht belegt; daraus folgt kein Produkt- oder Readerpatch. Ein einmaliger frischer unveränderter Androidversuch wird erst nach Sicherung der Originale gestartet. Der alte FAIL bleibt bestehen.
+
 ## 4. Repositories, Branches und genaue Commits des integrierten Stands
 
 | Repository / Rolle | Branch | Genauer integrierter beziehungsweise zugeordneter Stand |
@@ -145,8 +151,16 @@ Die aufgezeichneten Gruppen werden nicht zu einer vermeintlichen aktuellen Gesam
 
 ## 5. APK und echte Screenshots beziehungsweise Videos
 
-- **Eine neue APK wird erst mit ihren tatsächlich erzeugten Bytes beschrieben.** Aktuell ist nur die Absicht `0.13.20+2032` aus dem aktivierten Quellstand belegt. Neue Artefakt-IDs, APK-/PCK-Hashes, Bytezahlen sowie installierte Paket-, Versions- und Zertifikatsbefunde sind noch nicht in diesen Entwurf aufgenommen.
-- **Für 2032 sind hier noch keine Gerätescreenshots oder Videos als Abnahme verlinkt.** Künftige Bilder und Videos müssen aus dem aktuellen Lauf stammen und an dessen tatsächlich installierte APK gebunden sein. Die Referenzbilder beziehungsweise historischen 2031-Aufnahmen bleiben als solche gekennzeichnet; sie dienen nicht als Ersatz für neue Originale.
+- **Die signierten APKs 0.13.20+2032 sind tatsächlich gebaut und geprüft.** Buildjob **133206155437 SUCCESS**, APK-Quelle **9b38360ca5f21919dce4a2b99e605ee39bbbf454**. Die vollständigen [Build-Originale](evidence/ci-2032-build/README.md) und der [Root-Bytecheck](evidence/ci-2032-build/root-integration-review.json) unterscheiden CI-Paketprüfung und zusätzlichen vollständigen ARM64-Dateivergleich.
+
+| Variante | APK-Bytes | APK-SHA-256 | Actions-Artefakt |
+|---|---:|---|---:|
+| ARM64 | 535.026.462 | `cfa6709547ed82ffe6f081568c3bc454e1cc41afbfea2ecf9c85f534a6ea42de` | 14213570777 |
+| x86_64 | 538.191.855 | `388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1` | 14213246542 |
+
+Paket **`dev.ullmann.lumo.lumo_lernen.coachpreview`**, bestehendes Testzertifikat **`a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`**, minSdk 24 und targetSdk 36 stimmen. Beide ABIs enthalten dasselbe PCK: **278.589.884 Bytes**, SHA-256 **`e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7`**. ELF-16-KiB- und Ressourcen-Ausrichtung sind im tatsächlichen Paketprüfer bestätigt. Root hat sämtliche ARM64-Archiv-/APK-Bytes und die Originalsidecars zusätzlich abgeglichen; `apksigner` wurde lokal nicht nochmals ausgeführt. Das belegt keine physische Geräteausführung.
+
+- **Der erste neue Androidversuch besitzt ein echtes Fehlerbild und einen Onboardingfilm.** Sie dokumentieren den fremden Launcher-Dialog, keine bestandene Lernszene. [Originalbild](evidence/ci-2032-android-launcher-anr-failure/original/original-android/0025-failure-current-screen.png), [Originalfilm ohne Ton](evidence/ci-2032-android-launcher-anr-failure/original/original-android/0001-onboarding.mp4). Neue erfolgreiche Lernmedien müssen aus einem tatsächlich bestandenen aktuellen Versuch stammen; historische 2031-Medien ersetzen sie nicht.
 - **Es gibt noch keinen verifizierten direkten 2032-Downloadlink.** Die spätere Auslieferung erfordert das tatsächliche Release-Asset und die vollständige anonym heruntergeladene Datei mit passender Bytezahl und SHA-256. Aus einem konfigurierten Tagnamen wird keine Downloadadresse konstruiert.
 
 Diese Abschlussliste bleibt offen, bis Root die neuen unveränderten Originale übergeben und geprüft hat:
@@ -154,12 +168,12 @@ Diese Abschlussliste bleibt offen, bis Root die neuen unveränderten Originale �
 | Für den Abschluss von Kandidat 2032 | Stand dieses Entwurfs |
 | --- | --- |
 | Vollständige Flutter-, Analyse-, Host- und Native-Ergebnisse am aktivierten Source-HEAD | **Abgeschlossen und aus sämtlichen Originalen übernommen; Details in Abschnitt 3** |
-| Signierte ARM64- und x86-APK: Artefakt-ID, Bytezahl, SHA-256, Paket, Version, Zertifikat, native/PCK-Provenienz | Noch nicht belegt |
-| Frische Installation und tatsächliche Paket-/Versions-/Signatur-/Dateiprüfung | Ausstehend |
+| Signierte ARM64- und x86-APK: Artefakt-ID, Bytezahl, SHA-256, Paket, Version, Zertifikat, native/PCK-Provenienz | **Belegt; beide Original-VERIFY-Dateien und zusätzlicher vollständiger ARM64-Bytevergleich** |
+| Frische Installation und tatsächliche Paket-/Versions-/Signatur-/Dateiprüfung | **Im ersten Androidversuch belegt; spätere Onboarding-Blockade bleibt FAIL** |
 | Originaltour: 8 + 5, „Warum zuerst zwei?“, Stop, Rückkehr, Pause und Größenwechsel mit erhaltenem Profil/Lernstand | Neue 2032-Originale ausstehend |
 | Referenztour: Banane, Wiederholen, aktueller nativer Stopp und Muster samt ungewerteter Rückkehr | Neue 2032-Originale ausstehend |
 | Langsamer, erkannte oder verhörte Sprache, Korrektur und ausdrückliche Fachabgabe | Je Fall nur bei tatsächlich vorhandenem aktuellen Beleg ergänzen |
-| Screenshots, decodierbare Videos, aktuelle Wiedergabeereignisse und gemessene Performancefenster | Noch keine aktuellen Dateien in diesen Bericht übernommen |
+| Screenshots, decodierbare Videos, aktuelle Wiedergabeereignisse und gemessene Performancefenster | Echter erster Fehler-Screenshot/Film erhalten; erfolgreiche Lernmedien und neue Performancefenster noch offen |
 | Öffentliche Veröffentlichung: tatsächliches Release/Asset, vollständiger anonymer Download, exakte Größe und SHA-256 | Ausstehend; noch kein verifizierter direkter APK-Link |
 | Endstatus und verbleibende Grenzen | Weiterhin `DRAFT_PENDING_CURRENT_ANDROID_AND_PUBLICATION` |
 

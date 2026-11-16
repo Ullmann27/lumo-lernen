@@ -1,0 +1,29 @@
+{
+  "schema": "lumo.ci.original_job_log.verification",
+  "version": 1,
+  "repo": "Ullmann27/lumo-lernen",
+  "run_id": 43837592237,
+  "job_id": 133206155437,
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "path": "job-133206155437.log",
+  "bytes": 1227723,
+  "sha256": "f013b293279a587bc3ec38afe6d5c96f296fd55bf1ecefbf945a0825aeeeb41f",
+  "transport": "fetch_workflow_job_logs decoded content, encoded to UTF-8 without normalization",
+  "source_content_statistics": {
+    "code_points": 1227479,
+    "utf8_bytes": 1227723,
+    "lf": 11325,
+    "cr": 0,
+    "bom": true,
+    "chunks": 31
+  },
+  "saved_content_statistics": {
+    "code_points": 1227479,
+    "utf8_bytes": 1227723,
+    "lf": 11325,
+    "cr": 0,
+    "bom": true
+  },
+  "source_content_matched": true,
+  "scope": "Original decoded content preserved including leading BOM and exact newlines; no claim about inaccessible raw HTTP transfer encoding."
+}

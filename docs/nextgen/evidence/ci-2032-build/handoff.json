@@ -1,0 +1,86 @@
+{
+  "schema": "lumo.ci.original_build.handoff",
+  "version": 1,
+  "directory": "/workspace/scratch/4fa97167812c/agent-ci-2032-build",
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "source_tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "run_id": 43837592237,
+  "job_id": 133206155437,
+  "job_conclusion": "success",
+  "artifact_id": 14213960166,
+  "all_member_size_crc_sha256_verified": true,
+  "large_apk_artifacts_downloaded": false,
+  "tests_or_builds_executed_by_reviewer": false,
+  "repo_or_remote_mutation": false,
+  "package_manifest_excludes_itself": true,
+  "file_count_excluding_handoff": 13,
+  "bytes_excluding_handoff": 2065160,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4564,
+      "sha256": "7b22e02ee72fd7e9822a437d8569d6ce146d77718d6b9375af8abcc8a4702c9f"
+    },
+    {
+      "path": "artifact-verification.json",
+      "bytes": 1531,
+      "sha256": "2a198b16983345e760f254dad1520e4a1c30bdc17d2b8a0c55b875cd9b040a05"
+    },
+    {
+      "path": "github-build-metadata.json",
+      "bytes": 5113,
+      "sha256": "43f29092f8cde0c7dabede11e956b20394526f7bcea126f67a5e71db4be0b5db"
+    },
+    {
+      "path": "job-133206155437.log",
+      "bytes": 1227723,
+      "sha256": "f013b293279a587bc3ec38afe6d5c96f296fd55bf1ecefbf945a0825aeeeb41f"
+    },
+    {
+      "path": "job-log-verification.json",
+      "bytes": 922,
+      "sha256": "5e273ab962169a75c490d0d8471c42a9d87981c5b2cf01fe356e6520b1b8752a"
+    },
+    {
+      "path": "lumo-nextgen-build-proof-14213960166.zip",
+      "bytes": 63232,
+      "sha256": "08139630b7229ff1d99c71e5f8f9952be082df0e5fe266d172cd9bf541899898"
+    },
+    {
+      "path": "original/VERIFY-arm64.json",
+      "bytes": 3835,
+      "sha256": "c2f45d47a23861278de99bb00f71daf6c8208124a425e05a83ca9a89785269ef"
+    },
+    {
+      "path": "original/VERIFY-x86.json",
+      "bytes": 3832,
+      "sha256": "922a1c6a551951b741b43c53cf927b2daa0f63593d6715e5bd29a11be3271afb"
+    },
+    {
+      "path": "original/build.log",
+      "bytes": 727538,
+      "sha256": "ad0606e8448d7288616fa454d551126fca141881b61e58840abf220368de77cb"
+    },
+    {
+      "path": "original/ndk/ndk-28.2.13676358.95uxME/clang-1.log",
+      "bytes": 338,
+      "sha256": "205100126882343afcaa1f95956f7fc53d0c72a521402d4963239c9d4f18e677"
+    },
+    {
+      "path": "original/ndk/ndk-28.2.13676358.95uxME/sdkmanager-install-1.log",
+      "bytes": 7373,
+      "sha256": "ee5600cb059f810efeab9316b2703dc28beede3caf6cf50acd900b2e7871c749"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 5622,
+      "sha256": "a1b8358196af59f781d6296e9b1828af33751963ed501b0aa45b963013d8d4bf"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 13537,
+      "sha256": "eff159ffdb2328b1d87c4a7775dd23d4d26553cd97d38bd178524110d81403fd"
+    }
+  ]
+}

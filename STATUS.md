@@ -1,6 +1,6 @@
-# LUMO 2032 — Quellvalidierung bestanden, APK-Build läuft
+# LUMO 2032 — APK gebaut, erster Androidversuch durch Launcher blockiert
 
-Stand: **16. November 2026, 09:37 UTC**. Der vollständige Lauf [43837592237](https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237) hat die Validierung abgeschlossen. **Buildjob 133206155437 kompiliert derzeit die integrierte Android-App. Androidtour und Veröffentlichung sind noch nicht abgeschlossen.**
+Stand: **16. November 2026, 09:55 UTC**. Lauf [43837592237](https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237), Versuch 1: **Validate und Build SUCCESS, Android 133211685356 FAIL, Veröffentlichung SKIPPED**. Ein fremder Android-Dialog „Pixel Launcher isn’t responding“ blockierte das Onboarding. Alle Originale sind gesichert; genau ein frischer unveränderter Androidversuch wird nach diesem Checkpoint gestartet. **2032 ist noch nicht veröffentlicht.**
 
 ## Exakte Identität
 
@@ -35,6 +35,23 @@ Die 202 Skips bleiben Skips; individuelle Gründe sind aus dem parallelen expand
 
 Artefakt **14212363195**, vollständiges ZIP **264.077 Bytes**, SHA-256 `167bed7006a1fcad952685f92f9583f6158a5f5bc1434a9c153484e24b3d41cd`. Alle **58 Originalmitglieder** und der vollständige Rohjoblog sind erhalten. Root hat das gesamte Übergabepaket, ZIP/Originalbytes, Schlussresultate und Quellbindungen unabhängig nachgeprüft.
 
+## Tatsächlich gebaute und geprüfte APKs
+
+Buildjob **133206155437 SUCCESS**. Beide Original-VERIFY-Dateien bestätigen Paket, Version, bestehendes Testzertifikat, ABI, 16-KiB-ELF-Ausrichtung und gepinnte Native-/Sprachinhalte. [Build-Originale](docs/nextgen/evidence/ci-2032-build/README.md), [Root-Bytebindung](docs/nextgen/evidence/ci-2032-build/root-integration-review.json).
+
+| APK | Bytes | SHA-256 |
+|---|---:|---|
+| ARM64 | 535.026.462 | `cfa6709547ed82ffe6f081568c3bc454e1cc41afbfea2ecf9c85f534a6ea42de` |
+| x86_64 | 538.191.855 | `388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1` |
+
+Das PCK ist in beiden Varianten identisch: **278.589.884 Bytes**, SHA-256 `e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7`. Root hat zusätzlich das vollständige ARM64-Archiv und alle APK-Bytes überprüft. Dies ist keine physische ARM64-Ausführung.
+
+## Ursprünglicher Androidfehler und begrenzter nächster Versuch
+
+Die installierte x86-APK stimmt bytegenau. Alle **22** Welcome-XMLs enthalten jedoch ausschließlich den blockierenden Android-ANR-Dialog für Pixel Launcher und SystemUI. Das echte Bild zeigt Lumo samt Startknopf dahinter. Es wurde kein Startknopf gedrückt und keine Lernszene erreicht. Die konkrete Ursache des Launcher-Hängers ist nicht belegt; aus diesen Daten folgt kein Produkt- oder Readerpatch. **42 vollständige Originaldateien**, ZIP, Rohjoblog, echtes Video/Bild und zwei unabhängige Reviews: [Fehlerbeleg](docs/nextgen/evidence/ci-2032-android-launcher-anr-failure/README.md).
+
+Genau ein frischer Versuch mit denselben APKs und unveränderten Prüfbedingungen ist vorbereitet. Der ursprüngliche FAIL bleibt erhalten. Keine Systemmodalität wird weggeklickt, kein Gate gelockert. Erst dessen eigene tatsächliche Originale können einen neuen Androidbefund liefern.
+
 ## Inhalt und Abdeckung
 
 Die integrierte Lernwelt besitzt den versionierten Aufgaben-/Gesprächsvertrag, den ursprünglichen weiterbearbeiteten Lumo-Fuchs und aufgabenbezogene native Erklärwege. Die konkrete neue Produktänderung für 2032 korrigiert die Schriftfarben interaktiver nativer Lernbuttons. Der neue aktuelle Stoppfall gehört verpflichtend zur Referenztour und zur Veröffentlichungsprüfung.
@@ -45,6 +62,6 @@ Der [Bericht 2032](docs/nextgen/ANDROID_DELIVERY_2032.md) bleibt **DRAFT_PENDING
 
 ## Nächster Schritt und Historie
 
-Den laufenden Build, beide tatsächlichen Androidtouren samt aktivem Stopp und den vollständigen anonymen Download begleiten. Neue APK-/PCK-Hashes, Paket-/Signaturprüfung und echte Medien ausschließlich aus dem aktuellen Lauf ergänzen. [Konkrete Wiederaufnahme](CONTINUE.md).
+Den begründeten frischen Androidversuch mit beiden vollständigen Touren samt aktivem Stopp und anschließend den vollständigen anonymen Download begleiten. Neue APK-/PCK-Hashes, Paket-/Signaturprüfung und echte Medien ausschließlich aus dem aktuellen Lauf ergänzen. [Konkrete Wiederaufnahme](CONTINUE.md).
 
 Die bereits veröffentlichte [APK 2031 und ihre Befunde](docs/nextgen/ANDROID_DELIVERY_2031.md) bleiben historisch; sie ersetzen keine Abnahme der korrigierten 2032-Bytes. Alle alten Originalfehler und Archive bleiben in Git/remote erhalten. Die zuvor langen laufenden Statusnotizen sind vollständig im [gesicherten Statusstand vor dieser Kürzung](https://github.com/Ullmann27/lumo-lernen/blob/7b2cabc89ace083eb7f30d9d06f19c7d840406e5/STATUS.md) nachlesbar.

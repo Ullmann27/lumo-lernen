@@ -1,0 +1,7 @@
+{
+  "status": "NOT_FOUND",
+  "strategy": "forward_then_observed_boundary_reverse",
+  "non_scroll_observations": 21,
+  "gestures": [],
+  "reason": "bounded wait without target or scrollable viewport"
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "lumo.ci.build_source_review",
+  "version": 1,
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "source_tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "source_hashes": [
+    {
+      "path": ".github/workflows/lumo-nextgen-learning-apk.yml",
+      "bytes": 19883,
+      "sha256": "848c868ff7a785220073aa34822ebf7ee2b6d4250ff15216b80a2193759bc2ef",
+      "git_blob": "c27b3250923b5bc2cd25f73123e87a4c21b9294c"
+    },
+    {
+      "path": "scripts/build_unified_apk.sh",
+      "bytes": 4563,
+      "sha256": "fe3abd93e2b7c24403df25a41897588bedb2fdaf0ab83d9f1785ab83650094b5",
+      "git_blob": "44f6957c904d074e5a0ce2c604b50ad546c1ecf0"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "bytes": 13676,
+      "sha256": "8089083e35978c701a4694a7f189beee2c91c076d78d51af1909d4f275427620",
+      "git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40"
+    },
+    {
+      "path": "scripts/verify_android_apk.py",
+      "bytes": 3688,
+      "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc",
+      "git_blob": "02b08f5aff49e9dc71c30ff9f37fa686c4d73d64"
+    },
+    {
+      "path": "scripts/LumoApkCertificateVerifier.java",
+      "bytes": 2007,
+      "sha256": "caf87af2279cf8d6d453487b39bc240e8a56feb4d021e0c221c8f48064bd82ca",
+      "git_blob": "2267e553326a4034677a3a94c17fda71d7e543e0"
+    },
+    {
+      "path": "scripts/package_notices.py",
+      "bytes": 6926,
+      "sha256": "2a0a2bc6bd4ccd4f6aedc92b91349aceee0f44f6d5d0f2008f81c105c9c156ce",
+      "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2719,
+      "sha256": "b9974efc95ccd73136d786bad9e140b32270120b282184bd9079c4af7b59e74b",
+      "git_blob": "1b46fe486da06a8843260a9f5a8e43103ea5129e"
+    },
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "0d283f6e3be921ed8fca734de66001df1c2c18f4786b10ab918a080d6d52e8b6",
+      "git_blob": "a50a18f33396a44d989b52bd0f2a680f27e52cf5"
+    },
+    {
+      "path": "config/lumo-offline-voice.json",
+      "bytes": 1877,
+      "sha256": "9d0593c11a9dfa3db5683feedbc692cb5b79db6799b05a49b044c4226849fd12",
+      "git_blob": "200b67029cd4e19f27118f77b52e683c49461a6b"
+    },
+    {
+      "path": "config/lumo-notices.json",
+      "bytes": 1313,
+      "sha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+      "git_blob": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+    },
+    {
+      "path": "assets/audio/voice/lumo_free/catalog.json",
+      "bytes": 64441,
+      "sha256": "4d2eee9fe4aaada720d029f2c9161c2fb29773bb1bc2bf768d8a66f6b81f428c",
+      "git_blob": "a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315"
+    }
+  ],
+  "checks": {
+    "verify_jsons_match_exact_source_expectations": true,
+    "reported_pck_equal_for_both_abis": true,
+    "reported_voice_equal_for_both_abis": true,
+    "reported_notices_equal_for_both_abis": true,
+    "artifact_metadata_matches_job_upload_log": true,
+    "source_checkout_and_successful_provenance_assertions_present": true
+  },
+  "artifact_bindings": [
+    {
+      "artifact_id": 14213960166,
+      "name": "lumo-nextgen-build-proof",
+      "bytes": 63232,
+      "sha256": "08139630b7229ff1d99c71e5f8f9952be082df0e5fe266d172cd9bf541899898",
+      "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "job_log_matches": [
+        {
+          "line": 11290,
+          "text": "2026-11-16T09:39:23.4406193Z SHA256 digest of uploaded artifact zip is 08139630b7229ff1d99c71e5f8f9952be082df0e5fe266d172cd9bf541899898"
+        },
+        {
+          "line": 11293,
+          "text": "2026-11-16T09:39:23.8310695Z Artifact lumo-nextgen-build-proof has been successfully uploaded! Final size is 63232 bytes. Artifact ID is 14213960166"
+        }
+      ],
+      "downloaded_by_reviewer": true
+    },
+    {
+      "artifact_id": 14213570777,
+      "name": "lumo-nextgen-arm64",
+      "bytes": 535040568,
+      "sha256": "1782ece5bf30a32165f87f6f6d435d4d5d3467036060fe46c3ce6120cdaa12bd",
+      "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "job_log_matches": [
+        {
+          "line": 11152,
+          "text": "2026-11-16T09:39:10.6503528Z SHA256 digest of uploaded artifact zip is 1782ece5bf30a32165f87f6f6d435d4d5d3467036060fe46c3ce6120cdaa12bd"
+        },
+        {
+          "line": 11155,
+          "text": "2026-11-16T09:39:11.1850227Z Artifact lumo-nextgen-arm64 has been successfully uploaded! Final size is 535040568 bytes. Artifact ID is 14213570777"
+        }
+      ],
+      "downloaded_by_reviewer": false
+    },
+    {
+      "artifact_id": 14213246542,
+      "name": "lumo-nextgen-x86",
+      "bytes": 538205955,
+      "sha256": "d2cd0e5fd84fd963108a33e1ef4d84995c10f2139071984374d30e56ffb3fdb3",
+      "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "job_log_matches": [
+        {
+          "line": 11253,
+          "text": "2026-11-16T09:39:21.6854903Z SHA256 digest of uploaded artifact zip is d2cd0e5fd84fd963108a33e1ef4d84995c10f2139071984374d30e56ffb3fdb3"
+        },
+        {
+          "line": 11256,
+          "text": "2026-11-16T09:39:22.2876840Z Artifact lumo-nextgen-x86 has been successfully uploaded! Final size is 538205955 bytes. Artifact ID is 14213246542"
+        }
+      ],
+      "downloaded_by_reviewer": false
+    }
+  ],
+  "source_binding_scope": "VERIFY JSONs do not contain a Flutter commit field. Source is bound by immutable Actions artifact metadata, recorded exact checkout, and successful workflow assertions against BUILD-PROVENANCE. Large APK artifacts/BUILD-PROVENANCE contents were not independently downloaded by this reviewer."
+}

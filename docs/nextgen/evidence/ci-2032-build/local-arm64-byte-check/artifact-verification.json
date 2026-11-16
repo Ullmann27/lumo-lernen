@@ -1,0 +1,62 @@
+{
+  "artifactId": 14213570777,
+  "workflowRun": 43837592237,
+  "identityMetadataSource": "caller-provided Actions metadata; exact archive bytes verified",
+  "archiveBytes": 535040568,
+  "archiveSha256": "1782ece5bf30a32165f87f6f6d435d4d5d3467036060fe46c3ce6120cdaa12bd",
+  "wholeArchiveVerified": true,
+  "allMemberSizesVerified": true,
+  "allMemberCRCsVerified": true,
+  "allMemberSha256Computed": true,
+  "archiveRetainedLocally": false,
+  "allOriginalsRetainedLocally": false,
+  "selectedOriginalsOnly": true,
+  "memberCount": 4,
+  "uncompressedBytes": 535040028,
+  "selectedPaths": [
+    "BUILD-PROVENANCE.json",
+    "APK-VERIFICATION.json",
+    "SHA256SUMS.txt"
+  ],
+  "selectedFileCount": 3,
+  "selectedBytes": 13566,
+  "diskReserveBytes": 10485760,
+  "members": [
+    {
+      "path": "BUILD-PROVENANCE.json",
+      "directory": false,
+      "compressedBytes": 9645,
+      "selected": true,
+      "bytes": 9645,
+      "sha256": "7e3aa0a7a3b0becce6916dc749d87103202798b0a125381c85938c904732aeea",
+      "crc32": "23fc16c6"
+    },
+    {
+      "path": "Lumo-Lernen-Neu.apk",
+      "directory": false,
+      "compressedBytes": 535026462,
+      "selected": false,
+      "bytes": 535026462,
+      "sha256": "cfa6709547ed82ffe6f081568c3bc454e1cc41afbfea2ecf9c85f534a6ea42de",
+      "crc32": "ade3c71b"
+    },
+    {
+      "path": "APK-VERIFICATION.json",
+      "directory": false,
+      "compressedBytes": 3835,
+      "selected": true,
+      "bytes": 3835,
+      "sha256": "c2f45d47a23861278de99bb00f71daf6c8208124a425e05a83ca9a89785269ef",
+      "crc32": "f6dfdff7"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "directory": false,
+      "compressedBytes": 86,
+      "selected": true,
+      "bytes": 86,
+      "sha256": "ed6bacf5d86e449ca0e82175cf38dfb7b6e70a24027e408059e9eed70fa699f4",
+      "crc32": "3018adfc"
+    }
+  ]
+}

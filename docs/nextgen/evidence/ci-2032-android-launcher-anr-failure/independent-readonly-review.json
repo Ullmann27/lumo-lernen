@@ -1,0 +1,289 @@
+{
+  "schema": "lumo.nextgen.android.launcher_anr.readonly_review",
+  "version": 1,
+  "recorded_utc": "2026-11-16T09:53:06.945599+00:00",
+  "status": "COMPLETED_READ_ONLY_REVIEW",
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "source_tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "workflow_run_id": 43837592237,
+  "android_job_id": 133211685356,
+  "original_probe_run_id": "83b3ac99f0144bd3b2ef334a357b1d53",
+  "original_status": "FAIL",
+  "original_started_utc": "2026-11-16T09:44:57Z",
+  "original_finished_utc": "2026-11-16T09:46:04Z",
+  "original_error": "No unique enabled live Flutter control: Los geht's!",
+  "installed_identity": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2032,
+    "versionName": "0.13.20",
+    "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "source_files": [
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "bytes": 92469,
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+      "git_blob": "a0564a627163ca29b0eebae95d0b442e7ee60421"
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8"
+    },
+    {
+      "path": ".github/probes/run_lumo_nextgen_current_android.sh",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "bytes": 1168,
+      "sha256": "a54f2ec1ca5a64eb7ea1f2d3dc80f19db55354cf2137aaec1c175667b8740d47",
+      "git_blob": "4cdaea8175dd44a7c45d72ccd7b79859012c528d"
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "bytes": 11429,
+      "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441",
+      "git_blob": "cfc64cf8101f86f50a6e9e529795bde56329cb89"
+    }
+  ],
+  "source_binding": {
+    "recorded_probe_sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+    "matches_exact_source_probe": true,
+    "script_and_publisher_hashes_are_provenance_only": true
+  },
+  "original_files": [
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/artifact-verification.json",
+      "bytes": 8596,
+      "sha256": "ec49a1d09246bb514122a87e9f5d431899647ceed6a041c48b68211871ec20fc"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/artifact-14213881427.zip",
+      "bytes": 924212,
+      "sha256": "9afa0569f8dd18ec34e651ce38e29441c7cc8d6e738fb205c841a1fa4d5d49a6"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/learning-android-result.json",
+      "bytes": 5414,
+      "sha256": "b7df7df2b59ba43d6f0f7bd82ee50a7e802d6184ed34280f2ab31c11ab98a71e"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0024-welcome-scroll-search.json",
+      "bytes": 201,
+      "sha256": "9ffde49402580cd20f133d4d28bdc6e0678647ffee4da47cd0a2c9f7788924ac"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0025-failure-current-screen.png",
+      "bytes": 811387,
+      "sha256": "e7eefc9530a550af8c2f90b888eb4784cd771306ac8b3707bad9e68964eacace"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/fresh-first-launch-launch.txt",
+      "bytes": 547,
+      "sha256": "0d5ce89319abcb2f7bb20c3b752b120c21bd3de147370f9f0be9a22735be8c76"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/fresh-install.txt",
+      "bytes": 35,
+      "sha256": "e434c330baf4a001ae065fffc9b4c8b82f5d3cb975220f8b93038fda72b4b90c"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/candidate-BUILD-PROVENANCE.json",
+      "bytes": 9642,
+      "sha256": "5a4ef67c7bc53ca591614d74067f08c405d0191511dc6c4a53cbf69ff033f391"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/installed-package.txt",
+      "bytes": 9341,
+      "sha256": "a751c29e6f0f640f8b3f6c4d2f64aef2f36cd02fa57ab9d0f8cd7d69c40a9adf"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/installed-apk-sha256.txt",
+      "bytes": 178,
+      "sha256": "22d267b7d1134b6dff1767bb1c19edd30d65fefc16d67776a8b26c98db1c4924"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0001-onboarding-video.json",
+      "bytes": 401,
+      "sha256": "0130316a5f5de9bee1dffcaf4f64b9cceca849696d2ed502fdea72a27730f2eb"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0001-onboarding-video-transfer.json",
+      "bytes": 1888,
+      "sha256": "6dc0e6f2bb3e1207a5577e52021475601fd13eb18655329e1833fd7ca439332d"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0001-onboarding-ffprobe.json",
+      "bytes": 4330,
+      "sha256": "5810526a82730ec500697e17fa3c96ed19ac7ffca8d9d41494ca419d1d9e613d"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0001-onboarding.mp4",
+      "bytes": 84165,
+      "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0001-onboarding-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-joblog/job.log",
+      "bytes": 392898,
+      "sha256": "56d7d5d734bb6377ea7e58b80111ad22165c5f6c8935d1082be5aa89cea32371"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2032-android-original-joblog/job-log-manifest.json",
+      "bytes": 462,
+      "sha256": "4233948305453208e07ccfac582e2613fec3faea9de61c8b290672bc140a6d47"
+    }
+  ],
+  "welcome_xml_groups": [
+    {
+      "sha256": "f2be5b86962e1d50181b5ca5d664c4d9c57d229c08cf476a7ce3d0a63faa8d2a",
+      "bytes_each": 17189,
+      "count": 18,
+      "paths": [
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0002-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0003-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0004-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0005-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0006-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0007-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0008-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0009-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0010-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0011-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0012-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0013-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0014-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0015-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0016-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0017-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0018-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0019-welcome.xml"
+      ]
+    },
+    {
+      "sha256": "e61586927ce548aa6f128398abf62b74ed5ae8bce5f2921bebdbb7d33b7b8f31",
+      "bytes_each": 17189,
+      "count": 4,
+      "paths": [
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0020-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0021-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0022-welcome.xml",
+        "/workspace/scratch/4fa97167812c/ci-2032-android-original-failure/original/original-android/0023-welcome.xml"
+      ]
+    }
+  ],
+  "findings": {
+    "modal": {
+      "observations": 22,
+      "first": "0002-welcome.xml",
+      "last": "0023-welcome.xml",
+      "every_title": "Pixel Launcher isn't responding",
+      "each_node_count": 38,
+      "each_package_node_counts": {
+        "com.android.systemui": 26,
+        "android": 12
+      },
+      "each_lumo_node_count": 0,
+      "each_lumo_welcome_label_node_count": 0,
+      "observed_modal_controls": [
+        {
+          "resource_id": "android:id/aerr_close",
+          "text": "Close app",
+          "bounds": "[71,1141][1009,1273]",
+          "visible": true,
+          "enabled": true,
+          "clickable": true
+        },
+        {
+          "resource_id": "android:id/aerr_wait",
+          "text": "Wait",
+          "bounds": "[71,1273][1009,1405]",
+          "visible": true,
+          "enabled": true,
+          "clickable": true
+        }
+      ],
+      "only_difference_between_xml_groups": {
+        "text": [
+          "9:45",
+          "9:46"
+        ],
+        "content_desc": [
+          "9:45 AM",
+          "9:46 AM"
+        ]
+      },
+      "screenshot_personally_viewed": "0025-failure-current-screen.png",
+      "screenshot_observation": "Rendered Lumo onboarding and Los geht's! button are visible behind a dimmed Android Pixel Launcher ANR modal."
+    },
+    "reader": {
+      "non_scroll_observations": 21,
+      "gestures": [],
+      "reason": "bounded wait without target or scrollable viewport",
+      "touch_evidence_files": 0,
+      "observed_control_source": "LearningProbe module observed_control, lines 215-231: requires exact Lumo package, enabled and clickable control. No candidate exists in the recorded XMLs.",
+      "classification": "zero matching controls, not ambiguous duplicate controls",
+      "seek_source": "LearningProbe.seek_scrolled, lines 582-638: bounded wait without an observed app viewport; no fabricated gesture."
+    },
+    "launch": {
+      "monkey_record": "Events injected: 1",
+      "source": "scripts/probes/pr207_android_smoke.py: launch lines 134-147; pid lines 105-109; foreground lines 96-102",
+      "boundary": "The reached onboard call implies the existing numeric PID and resumed-activity checks returned, but launch does not guarantee a modal-free subsequent UI. Concrete PID/Activity raw values are not retained by this path."
+    },
+    "recording": {
+      "transfer_status": "VERIFIED_TRANSFER",
+      "duration_seconds": 28.598056,
+      "block_elapsed_seconds": 18.18,
+      "secondary_recording_error": false
+    },
+    "diagnostic_limits": {
+      "saved_logcat_files": 0,
+      "saved_activity_dump_files": 0,
+      "job_log_matched_fault_markers": {
+        "FATAL EXCEPTION": 0,
+        "ANR in ": 0,
+        "am_anr": 0,
+        "AndroidRuntime": 0,
+        "ResumedActivity": 0,
+        "am_proc_died": 0,
+        "lowmemorykiller": 0,
+        "OutOfMemory": 0
+      },
+      "libunwind_warning_count": 774,
+      "libunwind_first_utc": "2026-11-16T09:44:12.8805096Z",
+      "libunwind_last_utc": "2026-11-16T09:46:00.0715030Z",
+      "warning_causality": "Not established; these emulator warnings begin before the probe.",
+      "emulator_booted_log_utc": "2026-11-16T09:44:48.8201311Z",
+      "failure_capture_log_utc": "2026-11-16T09:46:04.5847357Z"
+    }
+  },
+  "conclusion": {
+    "proven": "A visible Android Pixel Launcher ANR dialog blocks access to Lumo controls throughout all recorded welcome XML observations.",
+    "not_proven": [
+      "Lumo ANR or app crash",
+      "Missing or changed Lumo welcome label",
+      "Failure to render the Lumo onboarding",
+      "Root cause of the Pixel Launcher hang",
+      "Causal relation between libunwind warnings and the modal"
+    ],
+    "change_justified_by_this_review": false,
+    "review_decision": "No product or reader change justified by these originals. Parent may authorize one fresh unchanged Android attempt after preserving the original FAIL; no system-dialog dismissal or acceptance relaxation is implied."
+  },
+  "review_actions": {
+    "new_test_execution": false,
+    "ci_query_or_rerun": false,
+    "product_or_probe_change": false,
+    "repository_or_remote_change": false,
+    "originals_modified": false,
+    "new_artifact": "This single derived Scratch JSON only."
+  }
+}

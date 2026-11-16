@@ -1,0 +1,44 @@
+{
+  "observedAtUtc": "2026-11-16T09:47:45.328509+00:00",
+  "status": "PASS_BUILD_ORIGINALS_AND_LOCAL_ARM64_BYTES",
+  "rootBefore": "034729802e76794a73c1479a72e2a6483eb3a27c",
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "sourceTree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "runId": 43837592237,
+  "jobId": 133206155437,
+  "all14HandoffFilesRetainedExactly": true,
+  "handoffSha256": "09899a4f371ece2dc54b0f1809d9645db05cbac9c84c34a29b8a19b099858e66",
+  "all5BuildProofMembersCrcAndBytesVerified": true,
+  "sourceFilesCompared": 11,
+  "noticeSourceFilesCompared": 5,
+  "bothAbisExpected": true,
+  "identicalPckVoiceNoticesAcrossAbis": true,
+  "localArm64ArchiveAndApkBytesFullyVerified": true,
+  "localApkSidecarEqualsOriginalBuildVerify": true,
+  "localProvenanceSourceAndCleanChecked": true,
+  "localSignatureToolRerun": false,
+  "arm64": {
+    "bytes": 535026462,
+    "sha256": "cfa6709547ed82ffe6f081568c3bc454e1cc41afbfea2ecf9c85f534a6ea42de"
+  },
+  "x86": {
+    "bytes": 538191855,
+    "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1"
+  },
+  "pck": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+    "engine": "4.6.3",
+    "pck_sha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+    "bytes": 278589884
+  },
+  "jobLogBytes": 1227723,
+  "jobLogSha256": "f013b293279a587bc3ec38afe6d5c96f296fd55bf1ecefbf945a0825aeeeb41f",
+  "jobLogGzipBytes": 145161,
+  "jobLogGzipSha256": "0afdd6bd81052521d3501aa3fe24a2464d863aea07569722a9728682372af7cd",
+  "jobLogBomAndNewlinesUnchanged": true,
+  "patternReviewSourceBindingsVerified": 6,
+  "androidAcceptanceClaimed": false,
+  "publicDownloadClaimed": false
+}

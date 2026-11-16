@@ -1,0 +1,122 @@
+{
+  "schema": "lumo.nextgen.learning.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "run_id": "83b3ac99f0144bd3b2ef334a357b1d53",
+  "started_utc": "2026-11-16T09:44:57Z",
+  "probe_sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "synthetic_profile": "LumoNextTest",
+  "candidate": {
+    "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+    "flutter_source_commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+    "versionCode": 2032,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.20",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+      "engine": "4.6.3",
+      "pck_sha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+      "bytes": 278589884
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2032,
+    "versionName": "0.13.20",
+    "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "recording_transfers": [
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-83b3ac99f0144bd3b2ef334a357b1d53-0001-onboarding.mp4",
+      "owned_recorder_pid": "4089",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0001-onboarding.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-83b3ac99f0144bd3b2ef334a357b1d53-0001-onboarding.mp4: 1 file pulled, 0 skipped. 46.9 MB/s (84165 bytes in 0.002s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 84165,
+          "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1",
+          "verified_file": "0001-onboarding.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6d526861-1add-45cf-826c-762756e728cd",
+          "size_output": "84165",
+          "sha256_output": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1  /sdcard/lumo-learning-83b3ac99f0144bd3b2ef334a357b1d53-0001-onboarding.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6d526861-1add-45cf-826c-762756e728cd",
+          "size_output": "84165",
+          "sha256_output": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1  /sdcard/lumo-learning-83b3ac99f0144bd3b2ef334a357b1d53-0001-onboarding.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6d526861-1add-45cf-826c-762756e728cd"
+      },
+      "expected": {
+        "bytes": 84165,
+        "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1"
+      },
+      "file": "0001-onboarding.mp4",
+      "bytes": 84165,
+      "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1",
+      "elapsed_seconds": 0.236
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1",
+      "bytes": 84165,
+      "duration_seconds": 28.598056,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0001-onboarding-video-transfer.json",
+      "block_elapsed_seconds": 18.18,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "error": "No unique enabled live Flutter control: Los geht's!",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1560, in main\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1523, in run\n    self.onboard()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 979, in onboard\n    self.tap(\"Los geht's!\", \"welcome\")\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 678, in tap\n    raise RuntimeError(\"No unique enabled live Flutter control: \" + text)\nRuntimeError: No unique enabled live Flutter control: Los geht's!\n",
+  "screenshots": [
+    {
+      "file": "0025-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e7eefc9530a550af8c2f90b888eb4784cd771306ac8b3707bad9e68964eacace"
+    }
+  ],
+  "finished_utc": "2026-11-16T09:46:04Z"
+}

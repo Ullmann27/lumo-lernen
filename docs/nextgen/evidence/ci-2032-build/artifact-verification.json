@@ -1,0 +1,50 @@
+{
+  "schema": "lumo.ci.original_artifact.verification",
+  "version": 1,
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "run_id": 43837592237,
+  "job_id": 133206155437,
+  "artifact_id": 14213960166,
+  "archive": {
+    "path": "lumo-nextgen-build-proof-14213960166.zip",
+    "bytes": 63232,
+    "sha256": "08139630b7229ff1d99c71e5f8f9952be082df0e5fe266d172cd9bf541899898",
+    "github_digest_matches": true
+  },
+  "file_count": 5,
+  "uncompressed_bytes": 742916,
+  "all_member_crc_size_sha256_verified": true,
+  "all_written_members_read_back_equal": true,
+  "members": [
+    {
+      "path": "VERIFY-arm64.json",
+      "bytes": 3835,
+      "sha256": "c2f45d47a23861278de99bb00f71daf6c8208124a425e05a83ca9a89785269ef",
+      "crc32": "f6dfdff7"
+    },
+    {
+      "path": "VERIFY-x86.json",
+      "bytes": 3832,
+      "sha256": "922a1c6a551951b741b43c53cf927b2daa0f63593d6715e5bd29a11be3271afb",
+      "crc32": "0486249d"
+    },
+    {
+      "path": "build.log",
+      "bytes": 727538,
+      "sha256": "ad0606e8448d7288616fa454d551126fca141881b61e58840abf220368de77cb",
+      "crc32": "b0757b24"
+    },
+    {
+      "path": "ndk/ndk-28.2.13676358.95uxME/clang-1.log",
+      "bytes": 338,
+      "sha256": "205100126882343afcaa1f95956f7fc53d0c72a521402d4963239c9d4f18e677",
+      "crc32": "ee9f2086"
+    },
+    {
+      "path": "ndk/ndk-28.2.13676358.95uxME/sdkmanager-install-1.log",
+      "bytes": 7373,
+      "sha256": "ee5600cb059f810efeab9316b2703dc28beede3caf6cf50acd900b2e7871c749",
+      "crc32": "a14ba713"
+    }
+  ]
+}

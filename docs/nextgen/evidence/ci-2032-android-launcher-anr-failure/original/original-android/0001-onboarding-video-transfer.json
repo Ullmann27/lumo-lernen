@@ -1,0 +1,49 @@
+{
+  "status": "VERIFIED_TRANSFER",
+  "remote": "/sdcard/lumo-learning-83b3ac99f0144bd3b2ef334a357b1d53-0001-onboarding.mp4",
+  "owned_recorder_pid": "4089",
+  "maximum_seconds": 90,
+  "maximum_transfers": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "local": "0001-onboarding.mp4.pull-1.partial",
+      "adb_output": "/sdcard/lumo-learning-83b3ac99f0144bd3b2ef334a357b1d53-0001-onboarding.mp4: 1 file pulled, 0 skipped. 46.9 MB/s (84165 bytes in 0.002s)",
+      "status": "VERIFIED_TRANSFER",
+      "bytes": 84165,
+      "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1",
+      "verified_file": "0001-onboarding.mp4"
+    }
+  ],
+  "remote_observations": [
+    {
+      "stage": "before-transfer",
+      "screenrecord_pids": "",
+      "serial_output": "emulator-5554",
+      "boot_id_output": "6d526861-1add-45cf-826c-762756e728cd",
+      "size_output": "84165",
+      "sha256_output": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1  /sdcard/lumo-learning-83b3ac99f0144bd3b2ef334a357b1d53-0001-onboarding.mp4"
+    },
+    {
+      "stage": "after-complete-transfer",
+      "screenrecord_pids": "",
+      "serial_output": "emulator-5554",
+      "boot_id_output": "6d526861-1add-45cf-826c-762756e728cd",
+      "size_output": "84165",
+      "sha256_output": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1  /sdcard/lumo-learning-83b3ac99f0144bd3b2ef334a357b1d53-0001-onboarding.mp4"
+    }
+  ],
+  "recording_or_ui_repeated": false,
+  "device_identity": {
+    "serial": "emulator-5554",
+    "boot_id": "6d526861-1add-45cf-826c-762756e728cd"
+  },
+  "expected": {
+    "bytes": 84165,
+    "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1"
+  },
+  "file": "0001-onboarding.mp4",
+  "bytes": 84165,
+  "sha256": "e6f8fdcb611375cb536ce996a73d3e2ef14854141f8a299c047e48db881e5fa1",
+  "elapsed_seconds": 0.236
+}
