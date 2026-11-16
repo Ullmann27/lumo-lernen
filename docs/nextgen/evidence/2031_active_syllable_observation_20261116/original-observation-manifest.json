@@ -1,0 +1,4069 @@
+{
+  "workflowRun": 43812538819,
+  "artifactId": 14201531176,
+  "archiveSha256": "8290ce1dfcd5779df8e2de1c3900fb8eada31ed6f48cf7236c23ad666da1dac8",
+  "observationCount": 270,
+  "uniqueXmlSha256Histogram": {
+    "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a": 101,
+    "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba": 24,
+    "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf": 145
+  },
+  "individualSyllableNodeCount": 0,
+  "activeSyllableNodeCount": 0,
+  "allNextVisibleEnabled": true,
+  "nextBounds": "[83,858][998,1001]",
+  "originalOutcome": "FAIL",
+  "inference": "The observation loop stayed on a viewport containing Next and Replay but no individual syllable nodes. Missing offscreen syllables does not establish absent playback.",
+  "observations": [
+    {
+      "member": "android/runtime-cases/0213-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0214-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0215-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0216-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0217-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0218-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0219-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0220-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0221-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0222-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0223-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0224-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0225-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0226-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0227-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0228-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0229-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0230-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0231-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0232-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0233-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0234-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0235-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0236-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0237-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0238-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0239-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0240-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0241-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0242-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0243-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0244-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0245-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0246-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0247-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0248-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0249-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0250-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0251-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0252-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0253-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0254-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0255-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "3ec2f90ee06a542b3d180c3832ce9441a77f25d3e06b26e4b856feebd5e31aba",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,918][998,1061]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0256-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0257-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0258-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0259-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0260-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0261-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0262-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0263-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0264-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0265-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0266-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0267-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0268-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0269-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0270-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0271-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0272-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0273-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0274-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0275-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0276-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0277-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0278-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0279-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0280-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0281-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0282-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0283-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0284-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0285-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0286-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0287-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0288-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0289-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0290-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0291-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0292-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0293-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0294-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0295-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0296-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0297-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0298-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0299-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0300-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0301-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0302-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0303-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0304-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0305-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0306-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0307-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0308-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0309-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0310-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0311-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0312-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0313-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0314-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0315-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0316-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0317-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0318-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0319-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0320-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0321-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0322-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0323-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0324-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0325-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0326-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0327-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0328-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0329-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0330-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0331-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0332-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0333-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0334-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0335-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0336-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0337-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0338-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0339-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0340-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0341-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0342-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0343-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0344-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0345-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0346-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0347-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0348-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0349-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0350-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0351-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0352-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0353-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0354-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0355-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0356-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0357-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0358-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0359-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0360-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0361-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0362-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0363-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0364-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0365-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0366-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0367-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0368-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0369-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0370-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0371-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0372-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0373-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0374-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0375-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0376-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0377-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0378-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0379-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0380-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0381-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0382-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0383-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0384-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0385-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0386-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0387-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0388-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0389-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0390-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0391-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0392-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0393-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0394-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0395-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0396-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0397-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0398-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0399-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0400-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0401-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0402-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0403-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0404-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0405-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0406-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0407-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0408-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0409-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0410-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0411-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0412-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0413-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0414-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0415-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0416-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0417-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0418-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0419-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0420-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0421-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0422-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0423-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0424-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0425-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0426-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0427-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0428-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0429-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0430-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0431-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0432-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0433-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0434-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0435-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0436-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0437-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0438-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0439-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0440-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0441-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0442-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0443-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0444-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0445-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0446-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0447-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0448-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0449-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0450-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0451-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0452-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0453-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0454-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0455-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0456-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0457-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0458-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0459-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0460-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0461-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0462-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0463-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0464-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0465-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0466-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0467-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0468-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0469-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0470-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0471-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0472-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0473-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0474-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0475-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0476-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0477-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0478-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0479-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0480-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0481-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    },
+    {
+      "member": "android/runtime-cases/0482-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf",
+      "syllableNodeCount": 0,
+      "activeSyllableNodeCount": 0,
+      "next": [
+        {
+          "bounds": "[83,858][998,1001]",
+          "visible-to-user": "true",
+          "enabled": "true",
+          "clickable": "true"
+        }
+      ]
+    }
+  ]
+}

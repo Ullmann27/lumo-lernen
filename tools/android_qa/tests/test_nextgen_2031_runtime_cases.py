@@ -1,7 +1,8 @@
-"""Constructed Python/ET.Element fixtures only; no Android run or fake original XML."""
+"""Original failed-view XML plus labelled constructed host cases; no Android execution."""
 from __future__ import annotations
 
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -85,7 +86,7 @@ def word_case():
            "lastSavedAttemptId": "word-fixture-1", "pendingAttemptId": None}
     new = {**old, "problemId": "word-rakete", "phase": "recall", "tokens": [], "done": False,
            "answer": "", "lastSavedAttemptId": None}
-    return {"status": "PASS", "before": before, "after": copy.deepcopy(before),
+    result = {"status": "PASS", "before": before, "after": copy.deepcopy(before),
             "checkpoint_before": old, "checkpoint_after": new, "explicit_stop_before_switch": False,
             "old_active_marker_absent": True, "capture_to_touch_seconds": .101,
             "observation": {"active_label": "Silbe 2: na, gerade aktiv", "next_label": probe.NEXT,
@@ -93,6 +94,21 @@ def word_case():
                             "capture_started_monotonic": 10.0, "capture_finished_monotonic": 10.1,
                             "touch_requested_monotonic": 10.101}, "video": video(),
             "verification": probe.verify_word_switch(before, before, old, new)}
+    original = probe.switch_display("Physical size: 1080x2340\n", "Physical density: 440\n")
+    enlarged = probe.switch_display("Physical size: 1080x2340\n", "Physical density: 440\nOverride density: 320\n")
+    shot = {"file": "constructed-not-a-real-screen.png", "width": 1080, "height": 2340, "sha256": "4" * 64}
+    result["viewport"] = {"mode": "larger_logical_emulator_view", "standard_density_case": False,
+        "physical_device_evidence": False, "original": {"display": original, "screenshot": shot}}
+    for key, display, checkpoint_value in (("prepared", enlarged, old), ("restored", original, new)):
+        result["viewport"][key] = {"display": display, "snapshot": copy.deepcopy(before),
+            "checkpoint": copy.deepcopy(checkpoint_value), "screenshot": shot,
+            "preservation": probe.learning.require_preserved(before, before, checkpoint_value, checkpoint_value)}
+    result["viewport"]["restored"]["status"] = "RESTORED"
+    ready = probe.observed_switch_ready(ready_ui())
+    ready.update(xml="constructed-ready.xml", xml_sha256="5" * 64, replay_taps=1,
+                 capture_started_monotonic=8.0, capture_finished_monotonic=8.1, replay_requested_monotonic=8.1)
+    result["replay_preparation"] = ready
+    return result
 
 
 def complete_result():
@@ -136,6 +152,32 @@ def ui(active="Silbe 2: na, gerade aktiv", *, next_enabled=True):
         ET.SubElement(root, "node", {"package": probe.learning.PACKAGE, "content-desc": caption, "bounds": box,
             "visible-to-user": "true", "clickable": str(clickable).lower(), "enabled": str(enabled).lower()})
     return list(ET.fromstring(ET.tostring(root)).iter("node"))
+
+
+def ready_ui():
+    """Constructed enlarged layout only; never represented as original Android XML."""
+    root = ET.Element("hierarchy")
+    for caption, box, clickable, enabled, cls, scrollable in (
+        ("Die Wortwerkstatt", "[0,0][1080,120]", False, True, "android.view.View", False),
+        ("", "[0,120][1080,2220]", False, True, "android.widget.ScrollView", True),
+        (probe.WORD_BUILD_PROMPT, "[20,160][1060,280]", False, True, "android.view.View", False),
+        ("Silbe 1: Ba", "[100,400][300,540]", False, False, "android.widget.Button", False),
+        ("Silbe 2: na", "[400,400][600,540]", False, False, "android.widget.Button", False),
+        ("Silbe 3: ne", "[700,400][900,540]", False, False, "android.widget.Button", False),
+        (probe.NEXT, "[20,1550][1060,1660]", True, True, "android.widget.Button", False),
+        ("Noch einmal", "[20,1900][510,2010]", True, True, "android.widget.Button", False),
+    ):
+        ET.SubElement(root, "node", {"package": probe.learning.PACKAGE, "content-desc": caption,
+            "bounds": box, "class": cls, "visible-to-user": "true", "clickable": str(clickable).lower(),
+            "enabled": str(enabled).lower(), "scrollable": str(scrollable).lower()})
+    return list(ET.fromstring(ET.tostring(root)).iter("node"))
+
+
+FIXTURES = ROOT / "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819"
+
+
+def original_nodes(name="0213-switch-live-active-and-next.xml"):
+    return list(ET.fromstring((FIXTURES / name).read_bytes()).iter("node"))
 
 
 class RuntimeCaseGates(unittest.TestCase):
@@ -297,6 +339,148 @@ class RuntimeCaseGates(unittest.TestCase):
             native.return_value.verify_native_cases.side_effect = RuntimeError("constructed missing native audio evidence")
             with self.assertRaisesRegex(RuntimeError, "missing native audio evidence"):
                 probe.verify_runtime_cases(result, qa_commit=QA, workflow_run_id=RUN)
+
+    def test_switch_without_joint_viewport_and_restored_density_cannot_pass(self):
+        # The recorded run sampled a viewport containing Next but no syllable
+        # nodes. A separately claimed active result must not omit the new
+        # same-view preparation and actual density-restoration evidence.
+        result = complete_result()
+        result["flutter_switch_during_syllable_playback"].pop("viewport", None)
+        with patch.object(probe, "native_cases_module"), self.assertRaisesRegex(RuntimeError, "viewport"):
+            probe.verify_runtime_cases(result, qa_commit=QA, workflow_run_id=RUN)
+
+    def test_original_xml_proves_visible_next_without_a_syllable_viewport(self):
+        manifest = json.loads((FIXTURES / "manifest.json").read_text())
+        for item in manifest["fixtures"]:
+            raw = (FIXTURES / item["file"]).read_bytes()
+            self.assertEqual(len(raw), item["bytes"])
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), item["sha256"])
+        nodes = original_nodes()
+        self.assertEqual(probe.learning.observed_control(nodes, probe.NEXT), (83, 858, 998, 1001))
+        self.assertEqual(probe.learning.observed_control(nodes, "Noch einmal"), (39, 1713, 459, 1856))
+        self.assertFalse(any(probe.SYLLABLE.fullmatch(label) for label in probe.learning.node_labels(nodes)))
+        self.assertIsNone(probe.observed_active_next(nodes))
+        self.assertIsNone(probe.observed_switch_ready(nodes))
+        self.assertIsNone(probe.observed_switch_ready(original_nodes("0199-switch-check-built-word.xml")))
+
+    def test_joint_ready_view_requires_owner_all_syllables_and_enabled_controls(self):
+        self.assertIsNotNone(probe.observed_switch_ready(ready_ui()))
+        merged = ready_ui()
+        merged[2].set("content-desc", "Gemeinsam bauen\n" + probe.WORD_BUILD_PROMPT + "\nWort und Sprechstücke")
+        self.assertIsNotNone(probe.observed_switch_ready(merged))
+        for scenario in ("foreign", "hidden", "missing", "disabled", "outside", "wrong-owner", "other-task"):
+            nodes = ready_ui()
+            if scenario == "foreign": nodes[3].set("package", "other.app")
+            elif scenario == "hidden": nodes[3].set("visible-to-user", "false")
+            elif scenario == "missing": nodes.pop(4)
+            elif scenario == "disabled": nodes[-1].set("enabled", "false")
+            elif scenario == "outside": nodes[3].set("bounds", "[100,10][300,110]")
+            elif scenario == "wrong-owner": nodes[0].set("content-desc", "Another lesson")
+            else: nodes[2].set("content-desc", probe.WORD_RECALL_PROMPT)
+            with self.subTest(scenario=scenario):
+                self.assertIsNone(probe.observed_switch_ready(nodes))
+        nodes = ready_ui()
+        duplicate = copy.deepcopy(nodes[-1]); duplicate.set("bounds", "[540,1900][1060,2010]")
+        with self.assertRaisesRegex(RuntimeError, "Ambiguous"):
+            probe.observed_switch_ready(nodes + [duplicate])
+
+    def test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip(self):
+        for scenario in ("ready", "missing", "lost-final", "slow-final", "late-preparation"):
+            with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as directory:
+                item = object.__new__(probe.RuntimeCasesProbe)
+                item.out, item.counter = Path(directory), 0
+                clock, touches, gestures = [0.0], [], []
+                def layout(_):
+                    if scenario == "late-preparation":
+                        clock[0] += 46
+                        return ready_ui()
+                    return original_nodes() if not gestures or scenario == "missing" else ready_ui()
+                item.nodes = layout
+                item.base = SimpleNamespace(adb=lambda *args: gestures.append(args))
+                item.capture = lambda _: {"file": "constructed.png", "width": 1080, "height": 2340, "sha256": "4" * 64}
+                item.touch = lambda *args: touches.append(args)
+                item.tap = lambda *args, **kwargs: self.fail("Replay must not use a new scrolling tap search")
+                def observe(out, name):
+                    clock[0] += 1.1 if scenario == "slow-final" else .1
+                    root = ET.Element("hierarchy")
+                    root.extend(original_nodes() if scenario == "lost-final" else ready_ui())
+                    raw = ET.tostring(root)
+                    (out / (name + ".xml")).write_bytes(raw)
+                    return list(ET.fromstring(raw).iter("node"))
+                item.live = SimpleNamespace(live_nodes=observe)
+                with patch.object(probe.time, "monotonic", side_effect=lambda: clock[0]), \
+                     patch.object(probe.time, "sleep", side_effect=lambda n: clock.__setitem__(0, clock[0] + n)):
+                    if scenario == "ready":
+                        result = item.start_visible_syllable_replay()
+                        self.assertEqual(result["replay_taps"], 1)
+                        self.assertEqual(touches, [((20, 1900, 510, 2010), "switch-start-observed-syllable-replay", "Noch einmal")])
+                        self.assertEqual(result["xml_sha256"], probe.digest(item.out / result["xml"]))
+                    else:
+                        with self.assertRaises(RuntimeError): item.start_visible_syllable_replay()
+                        self.assertEqual(touches, [])
+                if scenario == "late-preparation":
+                    self.assertEqual(gestures, [])
+                    continue
+                self.assertTrue(gestures)
+                # First scroll uses the actual original ScrollView, not copied
+                # source coordinates: center x540/y1282, downward swipe to1381.
+                self.assertEqual(gestures[0], ("shell", "input", "swipe", "540", "1282", "540", "1381", "400"))
+
+    def test_density_context_restores_original_override_and_preserves_primary_failure(self):
+        for scenario in ("success", "body-failure", "body-and-restore-failure", "restore-failure", "reset-original"):
+            with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as directory:
+                case = word_case()
+                report = {"before": case["before"], "checkpoint_before": case["checkpoint_before"]}
+                original_density = "Physical density: 440\n" + ("" if scenario == "reset-original" else "Override density: 480\n")
+                current = {"density": original_density, "snapshot": case["before"], "checkpoint": case["checkpoint_before"]}
+                commands = []
+                item = object.__new__(probe.RuntimeCasesProbe)
+                item.out, item.counter = Path(directory), 0
+                def adb(*args):
+                    if args == ("shell", "wm", "size"): return "Physical size: 1080x2340\n"
+                    if args == ("shell", "wm", "density"): return current["density"]
+                    commands.append(args)
+                    if args[-1] != "320" and "restore-failure" in scenario: raise RuntimeError("constructed restore failure")
+                    current["density"] = ("Physical density: 440\nOverride density: 320\n" if args[-1] == "320" else original_density)
+                    return ""
+                item.base = SimpleNamespace(adb=adb)
+                item.capture = lambda _: {"file": "constructed.png", "width": 1080, "height": 2340, "sha256": "4" * 64}
+                item.preferences = lambda _: copy.deepcopy(current["snapshot"])
+                item.checkpoint = lambda *args, **kwargs: copy.deepcopy(current["checkpoint"])
+                body_error = RuntimeError("constructed primary body failure")
+                try:
+                    # Only the preference transport is isolated; restoration
+                    # command, raw WM parser, task/preservation checks are real.
+                    with patch.object(probe.learning, "learning_snapshot", side_effect=lambda x: x):
+                        with item.word_switch_viewport(report):
+                            if scenario.startswith("body"): raise body_error
+                            current["checkpoint"] = case["checkpoint_after"]
+                            report.update(after=case["after"], checkpoint_after=case["checkpoint_after"])
+                except RuntimeError as error:
+                    if scenario.startswith("body"): self.assertIs(error, body_error)
+                    elif scenario == "restore-failure": self.assertIn("restore failure", str(error))
+                    else: raise
+                else:
+                    self.assertIn(scenario, ("success", "reset-original"))
+                    self.assertEqual(report["viewport"]["restored"]["status"], "RESTORED")
+                    self.assertEqual(report["viewport"]["restored"]["checkpoint"]["problemId"], "word-rakete")
+                self.assertEqual(commands[0], ("shell", "wm", "density", "320"))
+                self.assertEqual(commands[-1], ("shell", "wm", "density", "reset" if scenario == "reset-original" else "480"))
+                if "restore-failure" in scenario: self.assertIn("restoration_error", report["viewport"])
+
+    def test_viewport_gate_rejects_wrong_density_changed_task_old_capture_or_missing_restore(self):
+        for scenario in ("density", "not-restored", "changed-checkpoint", "reward", "old-capture", "repeat-twice", "offscreen", "ambiguous-wm"):
+            case = word_case()
+            if scenario == "density": case["viewport"]["prepared"]["display"]["density_dpi"] = 440
+            elif scenario == "not-restored": case["viewport"]["restored"]["status"] = "FAILED"
+            elif scenario == "changed-checkpoint": case["viewport"]["prepared"]["checkpoint"]["done"] = False
+            elif scenario == "reward": case["viewport"]["restored"]["snapshot"]["learning"]["flutter.lumo_reward_wallet_v1"] = '{"stars":1}'
+            elif scenario == "old-capture": case["replay_preparation"]["replay_requested_monotonic"] = 11.0
+            elif scenario == "repeat-twice": case["replay_preparation"]["replay_taps"] = 2
+            elif scenario == "ambiguous-wm": case["viewport"]["prepared"]["display"]["wm_density"] += "Override density: 480\n"
+            else: case["replay_preparation"]["syllables"][0]["bounds"] = [100, 0, 300, 110]
+            with self.subTest(scenario=scenario), self.assertRaises(RuntimeError):
+                probe.verify_switch_viewport(case)
 
     def test_pure_gate_rejects_slow_capture_even_with_zero_post_capture_delay(self):
         for scenario in ("slow-capture", "hidden-capture-age", "nonfinite", "reversed"):
