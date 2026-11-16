@@ -298,11 +298,8 @@ class _LumoConversationRoute<T> extends ModalBottomSheetRoute<T> {
     required super.barrierOnTapHint,
     required super.modalBarrierColor,
     required this.onRouteChanged,
-    bool useSafeArea = true,
-  }) : super(
-            isScrollControlled: true,
-            useSafeArea: useSafeArea,
-            showDragHandle: true);
+    super.useSafeArea = true,
+  }) : super(isScrollControlled: true, showDragHandle: true);
 
   final ValueChanged<ModalRoute<dynamic>?> onRouteChanged;
   bool? _reportedCurrent;
