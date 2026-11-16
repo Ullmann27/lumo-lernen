@@ -34,8 +34,9 @@ class NativeConnectFourTransport implements ConnectFourTransport {
   Future<Map<String, dynamic>> poll(String token) async {
     final raw = await _channel.invokeMethod<String>('poll', {'token': token});
     final parsed = jsonDecode(raw ?? '{}');
-    if (parsed is! Map<String, dynamic>)
+    if (parsed is! Map<String, dynamic>) {
       throw StateError('Ungültige Spielverbindung');
+    }
     return parsed;
   }
 
@@ -197,8 +198,9 @@ class ConnectFourTableSession {
       final epoch = life is Map ? life['pauseEpoch'] : null;
       final active =
           life is Map && life['active'] == true && age >= 0 && age < 2500;
-      if ((epoch is int && epoch > _pauseEpoch) || (!active && _active))
+      if ((epoch is int && epoch > _pauseEpoch) || (!active && _active)) {
         _paused = true;
+      }
       if (epoch is int && epoch > _pauseEpoch) _pauseEpoch = epoch;
       _active = active;
       final request = box['request'];
@@ -246,7 +248,9 @@ class ConnectFourTableSession {
         seq is! int ||
         seq <= _ack ||
         seq <= _rejected ||
-        seq > 1000000000) return;
+        seq > 1000000000) {
+      return;
+    }
     // A slot accepted before an Activity pause/revision change must receive
     // a negative acknowledgement. Otherwise it would block a later Resume.
     if (request['roundId'] != controller.round.id ||
@@ -279,19 +283,23 @@ class ConnectFourTableSession {
           _paused = true;
           _exit = true;
         case 'restart':
-          if (!paused && controller.engine.phase == ConnectPhase.playing)
+          if (!paused && controller.engine.phase == ConnectPhase.playing) {
             return;
+          }
           await controller.restart();
           _remaining = 0;
           _paused = false;
         case 'level':
-          if (!ConnectLumoLevel.values.any((l) => l.name == request['level']))
+          if (!ConnectLumoLevel.values.any((l) => l.name == request['level'])) {
             return;
+          }
           await controller.setLevel(ConnectLumoLevel.values
               .firstWhere((l) => l.name == request['level']));
         case 'mode':
           if (request['twoPlayers'] is! bool ||
-              (!paused && controller.engine.moves > 0)) return;
+              (!paused && controller.engine.moves > 0)) {
+            return;
+          }
           await controller.restart(twoPlayers: request['twoPlayers'] as bool);
           _remaining = 0;
           _paused = false;
