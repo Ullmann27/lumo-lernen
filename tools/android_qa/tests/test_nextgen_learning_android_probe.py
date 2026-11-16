@@ -2,10 +2,13 @@
 from __future__ import annotations
 
 import copy
+from contextlib import contextmanager
 import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import shutil
+import subprocess
 import sys
 import tempfile
 from types import SimpleNamespace
@@ -21,6 +24,147 @@ SPEC = importlib.util.spec_from_file_location(
 )
 probe = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(probe)
+
+
+class ResizeRecordingTest(unittest.TestCase):
+    """One unchanged Android MP4 plus constructed call-order schedules, not a device replay."""
+
+    fixture = Path(__file__).parent / 'fixtures/nextgen_resize_43790915460/0181-bridge-resize-compact.mp4'
+
+    def test_original_single_frame_is_still_rejected_by_actual_recording_gate(self):
+        self.assertEqual(self.fixture.stat().st_size, 93539)
+        self.assertEqual(probe.digest(self.fixture),
+                         '8f436741a6b25fbccef4ee7784ef54ae41786bcbbc5e4c342352db9355c0300a')
+        # Run ffprobe on the unchanged original bytes, not invented metadata.
+        metadata = json.loads(subprocess.run([
+            'ffprobe', '-v', 'error', '-count_frames', '-show_streams', '-show_format',
+            '-of', 'json', str(self.fixture),
+        ], check=True, capture_output=True, text=True).stdout)
+        videos = [s for s in metadata['streams'] if s['codec_type'] == 'video']
+        self.assertEqual(len(videos), 1)
+        self.assertEqual(videos[0]['nb_read_frames'], '1')
+        self.assertEqual((videos[0]['width'], videos[0]['height']), (720, 1600))
+        self.assertEqual(float(metadata['format'].get('duration', 0)), 0)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            item = object.__new__(probe.LearningProbe)
+            item.out, item.result, item.counter, item.recordings = Path(tmp), {'run_id': 'fixture'}, 0, []
+            running = False
+            calls = []
+
+            class Process:
+                def __init__(self, command, **kwargs):
+                    nonlocal running
+                    calls.append(command)
+                    running = True
+                def wait(self, **kwargs): return 0
+
+            def adb(*args, **kwargs):
+                nonlocal running
+                if args == ('shell', 'pidof', 'screenrecord'):
+                    return '4321' if running else ''
+                if args == ('shell', 'kill', '-2', '4321'):
+                    running = False
+                    return ''
+                if args[0] == 'pull':
+                    shutil.copyfile(self.fixture, args[2])
+                    return 'copied unchanged fixture, no Android transport'
+                raise AssertionError(args)
+
+            def command(*args):
+                return subprocess.run(args, check=True, capture_output=True, text=True).stdout
+
+            item.base = SimpleNamespace(adb=adb, command=command)
+            with patch.object(probe, 'subprocess', SimpleNamespace(
+                    Popen=Process, TimeoutExpired=subprocess.TimeoutExpired, STDOUT=subprocess.STDOUT)):
+                with self.assertRaisesRegex(RuntimeError, 'No decodable actual video was recorded'):
+                    with item.recording('unchanged-original'):
+                        pass
+            self.assertEqual(item.recordings, [])
+            self.assertNotIn('videos', item.result)
+            raw = probe.read_json((item.out / '0001-unchanged-original-ffprobe.json').read_text())
+            self.assertEqual(float(raw['format'].get('duration', 0)), 0)
+            self.assertEqual(calls[0][:5], ['adb', 'shell', 'screenrecord', '--time-limit', '180'])
+
+    def resize_schedule(self, *, wrong_pixels=False, changed_progress=False):
+        fixture = PreservationTest()
+        fixture.setUp()
+        item = object.__new__(probe.LearningProbe)
+        calls = []
+        state = {'size': (1080, 2340), 'density': 440, 'recording': False, 'initial': False}
+        def adb(*args):
+            self.assertEqual(args[:2], ('shell', 'wm'))
+            key = args[2]
+            if len(args) == 4:
+                self.assertEqual(args[3], 'reset')
+                calls.append(('restore', key))
+                state[key] = (1080, 2340) if key == 'size' else 440
+                return ''
+            current = state[key]
+            if key == 'size':
+                return 'Physical size: 1080x2340' + (
+                    '' if current == (1080, 2340) else f'\nOverride size: {current[0]}x{current[1]}')
+            return 'Physical density: 440' + ('' if current == 440 else f'\nOverride density: {current}')
+        def display(width, height, density):
+            self.assertTrue(state['recording'], 'WM mutation must be inside the owned recording')
+            self.assertTrue(state['initial'], 'Observe the actual initial view before WM mutation')
+            calls.append(('display', width, height, density))
+            state.update(size=(width, height), density=density)
+        @contextmanager
+        def recording(tag):
+            self.assertFalse(state['recording'])
+            state.update(recording=True, initial=False)
+            calls.append(('start', tag))
+            try:
+                yield
+            finally:
+                state['recording'] = False
+                calls.append(('stop', tag))
+        def capture(tag):
+            self.assertTrue(state['recording'])
+            initial = tag.endswith('-before-resize')
+            if initial:
+                state['initial'] = True
+            calls.append(('capture', tag, state['size']))
+            width, height = state['size']
+            return {'file': tag + '.png', 'width': width + (2 if wrong_pixels and not initial else 0),
+                    'height': height, 'sha256': 'a' * 64}
+        def preferences(tag):
+            result = copy.deepcopy(fixture.prefs)
+            if changed_progress and tag == 'compact-prefs':
+                result['flutter.lumo_reward_wallet_v1'] = '{"stars":1}'
+            return result
+        item.base = SimpleNamespace(adb=adb, display=display)
+        item.recording, item.capture, item.preferences = recording, capture, preferences
+        item.checkpoint = lambda topic, **model: copy.deepcopy(fixture.task)
+        item.see = lambda text, tag, **kwargs: calls.append(('see', text, tag))
+        item.save = lambda *args: None
+        item.fresh = lambda tag: tag
+        return item, calls
+
+    def test_recording_and_initial_view_precede_every_wm_change(self):
+        item, calls = self.resize_schedule()
+        with patch.object(probe.time, 'sleep'):
+            result = item.resize_bridge()
+        self.assertEqual(len(result['observations']), len(probe.DISPLAY_LAYOUTS))
+        self.assertEqual([c[1:] for c in calls if c[0] == 'display'],
+                         [(w, h, d) for _, w, h, d in probe.DISPLAY_LAYOUTS])
+        for observation in result['observations']:
+            self.assertIn('initial_screenshot', observation)
+            self.assertTrue(observation['preservation']['same_task_checkpoint'])
+        self.assertTrue(result['restored_display_preservation']['same_task_checkpoint'])
+        self.assertEqual([c for c in calls if c[0] == 'restore'],
+                         [('restore', 'size'), ('restore', 'density')])
+
+    def test_target_pixel_and_progress_gates_still_fail_and_restore_display(self):
+        for options, message in (({'wrong_pixels': True}, 'requested pixels'),
+                                 ({'changed_progress': True}, 'Profile/learning/reward')):
+            with self.subTest(options=options):
+                item, calls = self.resize_schedule(**options)
+                with patch.object(probe.time, 'sleep'), self.assertRaisesRegex(RuntimeError, message):
+                    item.resize_bridge()
+                self.assertEqual([c for c in calls if c[0] == 'restore'],
+                                 [('restore', 'size'), ('restore', 'density')])
 
 
 class ArtifactIdentityTest(unittest.TestCase):
