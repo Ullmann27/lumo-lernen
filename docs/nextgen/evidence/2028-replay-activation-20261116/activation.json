@@ -1,0 +1,51 @@
+{
+  "qaCommit": "6f8532940693cbba7059bed4037f9aa6d924bac4",
+  "qaTree": "53d19c591d7d2164c58eb28594882194b4d08a6f",
+  "qaBranch": "qa/lumo-nextgen-2028-android-20261116",
+  "qaWorkflowRun": 43781148281,
+  "createdUtc": "2026-11-16T00:34:13Z",
+  "observedUtc": "2026-11-16T00:34:26Z",
+  "initialObservedStatus": "in_progress",
+  "apkSourceCommit": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "nativeSourceCommit": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "sourceBuildRun": 43774460935,
+  "x86Sha256": "6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9",
+  "localHostTestsPassed": 123,
+  "apkRebuilt": false,
+  "mainMerged": false,
+  "fullModernizationComplete": false,
+  "sourceFiles": [
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "sha256": "f4a06a139a6bc814b31cee70d2b1654d60bdcd2498a8d340bfc5a8a90c916488"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2028_replay_reference_android_probe.py",
+      "sha256": "235a05d6369d8c332cd8e4824dccc37c37ab40c6bbb8a3752c1b2ba5c9e98f81"
+    },
+    {
+      "path": ".github/probes/run_lumo_nextgen_2028_replay_android.sh",
+      "sha256": "61a0dd14a55350e1340a7d869695689d0ce60ee9cae8b60881dd707d2cef8a0a"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2028-replay.yml",
+      "sha256": "4dae859ba94a854af628d77f06a3474ca6e6d21a275555109f085933198461c2"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2028-replay-publish.yml",
+      "sha256": "631426fb44b05817a7cb16d5b22187966f2448628fe7e05cdbc178267962011b"
+    },
+    {
+      "path": "tools/nextgen/prepare_2028_learning_replay_release.py",
+      "sha256": "53fdee942ab83930d063d5f15195da89944b48879c66fa77b1d86341963d6413"
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "sha256": "4943b286dde1c44eb7236341bb6c16b25ccbfe27e2ed6cec7cbb623c86d19994"
+    },
+    {
+      "path": "config/nextgen-2028-replay.json",
+      "sha256": "3f4ff9c6b9d33a92878fb741337837068b211698c12483a64e4dce242f29d32e"
+    }
+  ]
+}
