@@ -1,0 +1,238 @@
+{
+  "schema": "lumo.nextgen.learning.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "run_id": "b4de295ec7a5445ea12155ac4ce48b25",
+  "started_utc": "2026-11-16T00:56:37Z",
+  "probe_sha256": "f96a12f3aebd1803c05f154197a38b680a128c0e7508a36f4f0bb887549fa256",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "synthetic_profile": "LumoNextTest",
+  "candidate": {
+    "sha256": "6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9",
+    "flutter_source_commit": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+    "versionCode": 2028,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.16",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "69899113f134c04550a5073cd9657315e0cb0bb418f9e06fa76a482041757bc0",
+      "bytes": 278589708
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2028,
+    "versionName": "0.13.16",
+    "sha256": "6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794790673994229",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T00:57:53.994229"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0023-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "f289fd9681fcaca70d76bbd22e1de6b09f180f2b03b31f3a98b4748e4d34ddc4",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.526,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0056-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "230f632ec620328a43d557d4cc472c3d359aed333a4eca10aeb7a65d9b68c98b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0072-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "8845d7329c993fa0631fc539aacd36431ff2e9821a5ed40a859e1cbffbc771b8",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.215,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0104-bridge-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "1ea41a96ae8280572ef567ef8c74a7b714cb893af60c32e02d36b3c04d5e9e17",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.891,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0127-typed-why-response.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "fb17edf462e103258ea08ccef38a3678d46430d038077b95c9bca449550b7d96",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.077,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0136-conversation-stopped.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "daaa5910ebfdae17398f12fc06668ed10a4c25c9924b417449b46936e163074e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.679,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0146-actual-microphone-outcome.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "255f04a7cb56422392e627ac83ededb76d1d7458e16fb7ab7f35f4056f569105",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.686,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0236-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "889630972f65d385d80124a3c7f970160f4ab9e988672ef34686e14e654a72cc"
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "3892b4982939c511e9db1f0f0e938a826d2177bb4d523772f2c75cbb954d87dc",
+      "bytes": 2006235,
+      "duration_seconds": 29.8679,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 32.89,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0092-eight-plus-five-explanation.mp4",
+      "sha256": "de96a6d987ffb54be961506d9d427b0ad7d9776096a58972919d3c208762dacc",
+      "bytes": 4727633,
+      "duration_seconds": 95.989589,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 87.08,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "conversation": {
+    "ui_contract": "ea",
+    "typed_question": "Warum zuerst zwei?",
+    "visible_explanation": "Im Zehnerfeld sind 8 Plätze besetzt. Bis zur Zehn fehlen 2, denn 10 minus 8 ist 2. Von den 5 zusätzlichen Objekten ergänzen wir deshalb zuerst 2. Dann bleiben 3 übrig.",
+    "task_grounding_label_observed": true,
+    "stop_visible": true,
+    "microphone_request_observed": true,
+    "microphone_ui_outcome": "explicit_device_limitation",
+    "postgrant_explicit_start": false,
+    "recognition": "NOT_VERIFIED",
+    "recognition_observations": [
+      "Dismiss",
+      "Mit Lumo sprechen",
+      "Zurück zur Aufgabe",
+      "8 + 5 = ? Rechne zuerst bis zur Zehn.",
+      "Frag nach, wiederhole einen Schritt oder ändere deinen Antwortvorschlag.",
+      "Lumo antwortet",
+      "Wir sind bei einer neuen Aufgabe. Was möchtest du dazu wissen?",
+      "Lumo",
+      "Vorlesen",
+      "Stopp",
+      "Frag Lumo",
+      "Senden",
+      "Sprechen",
+      "Spracherkennung: nach Tippen auf Sprechen",
+      "..",
+      "Eine deutsche Spracherkennung ist auf diesem Gerät noch nicht bestätigt. Du kannst tippen; deine Eltern können die lokale deutsche Sprache in den Geräteeinstellungen prüfen.",
+      "Erklären",
+      "Noch einmal",
+      "Scrim",
+      "12:59",
+      "12:59 AM",
+      "Android System notification:",
+      "Wifi signal full.",
+      "Phone signal full.",
+      "Battery charging, 100 percent."
+    ],
+    "limitation": "No real spoken utterance was supplied; emulator recognizer availability is recorded separately."
+  },
+  "error": "Current persisted bridge task/model not observed before deadline; last={'topicId': 'bridge', 'seed': 0, 'sessionId': 'lab-attempt-b8e56581242b46549fbdfddde25176c8', 'phase': 'example', 'problemId': 'bridge-8-5', 'moved': 0, 'pieces': [], 'tokens': [], 'patternChoice': None, 'hint': 3, 'support': 3, 'wrongBefore': False, 'attempt': 0, 'answer': '', 'done': False, 'pendingAttemptId': None, 'lastSavedAttemptId': None}",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1376, in main\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1342, in run\n    self.labs()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1043, in labs\n    self.checkpoint(\"bridge\", problemId=\"bridge-8-5\", moved=1, phase=\"example\")\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 678, in checkpoint\n    return self.wait(\"Current persisted \" + topic + \" task/model\", observe,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 543, in wait\n    raise RuntimeError(description + \" not observed before deadline; last=\" + repr(last)[:1200])\nRuntimeError: Current persisted bridge task/model not observed before deadline; last={'topicId': 'bridge', 'seed': 0, 'sessionId': 'lab-attempt-b8e56581242b46549fbdfddde25176c8', 'phase': 'example', 'problemId': 'bridge-8-5', 'moved': 0, 'pieces': [], 'tokens': [], 'patternChoice': None, 'hint': 3, 'support': 3, 'wrongBefore': False, 'attempt': 0, 'answer': '', 'done': False, 'pendingAttemptId': None, 'lastSavedAttemptId': None}\n",
+  "finished_utc": "2026-11-16T01:00:14Z"
+}

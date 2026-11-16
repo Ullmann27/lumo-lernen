@@ -1,0 +1,16 @@
+{
+  "workflowRun": 43783036351,
+  "jobId": 133024363592,
+  "qaCommit": "0919f32431ce07491e0e182b3ea12b21aaaf9540",
+  "apkSource": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "version": "0.13.16+2028",
+  "status": "FAIL",
+  "artifactId": 14189855923,
+  "members": 274,
+  "actualMicrophoneOutcome": "explicit_device_limitation",
+  "postgrantExplicitStart": false,
+  "actualSpokenRecognitionVerified": false,
+  "remainingFailure": "Expected persisted bridge moved=1 after real observed first-stone tap; remained moved=0.",
+  "causeStatus": "Under source and widget-regression investigation; no new PASS."
+}
