@@ -18,13 +18,16 @@ jobs:
     outputs:
       ready: ${{ steps.source.outputs.ready }}
     steps:
-      - name: Ensure a dedicated source upload release exists
+      - name: Read upload-release status without claiming unavailable GitHub permissions
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if ! gh release view lumo-2032-source-intake --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
-            gh release create lumo-2032-source-intake --repo Ullmann27/lumo-lernen --target "$GITHUB_SHA" --draft --prerelease --title "LUMO 2032 – geprüftes Original-Quellarchiv" --notes "Nur das Original Lumo_2032_Quellen_und_Pruefnachweise.zip mit SHA-256 7b478507249b38bc3cca324a7c5fbc55948160daaa854c9efb0770802a03e281 und genau 218511846 Bytes hochladen. Kein Android-APK. Main unverändert."
+          if gh release view lumo-2032-source-intake --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo 'LUMO 2032 source intake release exists.'
+          else
+            echo 'No LUMO 2032 source intake release yet. No upload or APK is claimed.'
+            echo 'A repository owner can create source-intake release at https://github.com/Ullmann27/lumo-lernen/releases/new'
           fi
       - name: Determine whether original signed-off source archive is uploaded
         id: source
@@ -37,8 +40,8 @@ jobs:
           from pathlib import Path
           tag="lumo-2032-source-intake"
           expected="Lumo_2032_Quellen_und_Pruefnachweise.zip"
-          raw=subprocess.check_output(["gh","release","view",tag,"--repo","Ullmann27/lumo-lernen","--json","assets"],text=True)
-          assets=json.loads(raw)["assets"]
+          probe=subprocess.run(["gh","release","view",tag,"--repo","Ullmann27/lumo-lernen","--json","assets"],text=True,capture_output=True)
+          assets=json.loads(probe.stdout)["assets"] if probe.returncode==0 else []
           files=[a for a in assets if a["name"]==expected]
           if len(files)>1:raise SystemExit("Duplicate LUMO 2032 source archives")
           ready=bool(files)
