@@ -1,0 +1,230 @@
+{
+	"attempts": 0,
+	"background_depth": [
+		34.9988555908203,
+		44.7971038818359
+	],
+	"complete": false,
+	"controls": [
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"text": "1"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				82.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				82.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"text": "2"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				138.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				138.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"text": "3"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				194.0,
+				282.0,
+				73.0,
+				52.0
+			],
+			"rect_px": [
+				194.0,
+				282.0,
+				73.0,
+				52.0
+			],
+			"text": "Hinweis"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				271.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				271.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"text": "Neu"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				327.0,
+				282.0,
+				80.0,
+				52.0
+			],
+			"rect_px": [
+				327.0,
+				282.0,
+				80.0,
+				52.0
+			],
+			"text": "Anhören"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				411.0,
+				282.0,
+				65.0,
+				52.0
+			],
+			"rect_px": [
+				411.0,
+				282.0,
+				65.0,
+				52.0
+			],
+			"text": "Fragen"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				480.0,
+				282.0,
+				109.0,
+				52.0
+			],
+			"rect_px": [
+				480.0,
+				282.0,
+				109.0,
+				52.0
+			],
+			"text": "Zur Aufgabe"
+		}
+	],
+	"density": 1.0,
+	"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+	"footer_px": [
+		12.0,
+		268.0,
+		616.0,
+		80.0
+	],
+	"foreground_far_depth": 18.1102828979492,
+	"header_px": [
+		12.0,
+		12.0,
+		616.0,
+		83.0
+	],
+	"hint_level": 0,
+	"lumo_px": [
+		117.721328735352,
+		107.709991455078,
+		86.5359649658203,
+		142.894470214844
+	],
+	"name": "english-ruler-640x360-start",
+	"objects": [
+		{
+			"bounds_px": [
+				213.14436340332,
+				193.672790527344,
+				99.2282867431641,
+				61.47412109375
+			],
+			"spatial_48dp_target_px": [
+				238.758514404297,
+				163.960571289062,
+				48.0,
+				48.0
+			],
+			"triangles": 924,
+			"word": "ruler"
+		},
+		{
+			"bounds_px": [
+				318.097351074219,
+				159.361099243164,
+				99.228271484375,
+				95.7858123779297
+			],
+			"spatial_48dp_target_px": [
+				343.711486816406,
+				163.960571289062,
+				48.0,
+				48.0
+			],
+			"triangles": 3572,
+			"word": "apple"
+		},
+		{
+			"bounds_px": [
+				423.050354003906,
+				135.061767578125,
+				99.228271484375,
+				120.228240966797
+			],
+			"spatial_48dp_target_px": [
+				448.664489746094,
+				163.960571289062,
+				48.0,
+				48.0
+			],
+			"triangles": 5812,
+			"word": "sun"
+		}
+	],
+	"objects_order": [
+		"ruler",
+		"apple",
+		"sun"
+	],
+	"observation_source": "platform_fixture",
+	"stage_px": [
+		16.0,
+		103.0,
+		608.0,
+		157.0
+	],
+	"status": "Tippe den Gegenstand oder seine Zahl an.",
+	"title": "Englisch · ruler",
+	"window_px": [
+		640,
+		360
+	],
+	"word": "ruler"
+}

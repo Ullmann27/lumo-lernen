@@ -6,6 +6,10 @@ Der normale vollständige Lauf [43800892196](https://github.com/Ullmann27/lumo-l
 
 ## Status vor Aktivierung
 
+### Nachtrag: vollständige Validierung bestanden
+
+Job **`133080632526`** des exakten neuen Laufs ist erfolgreich abgeschlossen: **2.896 Fluttertests bestanden, 202 vorhandene Skips, 0 fehlgeschlagen; 143 Host-Python-Testmethoden bestanden; echter Godot-Import; 12 native Prüfprogramme mit 55.552 Assertions; 118 Projektprüfungen bestanden**. Die Analyse enthält 0 Fehler, 4 Warnungen und 274 Hinweise. Alle 359 erfassten Quellhashes und 18 geschützten Dateien stimmen. Die 56 Original-Mitglieder des Validierungsartefakts sowie das vollständige unveränderte Jobprotokoll sind bytegeprüft erhalten: [ci-2031-validation](evidence/ci-2031-validation/README.md). Zum Zeitpunkt dieses Nachtrags läuft der APK-Build; ein Android- oder Download-PASS ist noch nicht festgestellt.
+
 Der tatsächlich integrierte Produktstand ist auf `integration/lumo-nextgen-learning-20261115` gesichert: **`cc4197e622c42dc5387ba06b7e57ac4964e1a07b`**, Tree **`6a1b4009969bdb1ad04aefbe00bd3730372b8aa7`**. Der neue vollständige APK-/QA-Lauf wird erst durch die anschließende Änderung von `config/nextgen-release.json` aktiviert. Seine exakte Quelle wird nach dem beobachteten Start ergänzt. Zu diesem Vorlaufzeitpunkt sind noch kein 2031-APK-Build, Android-PASS oder öffentlicher Download belegt.
 
 Native bleibt **`678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`** aus `Ullmann27/lumo-godot`, Branch `integration/lumo-nextgen-learning-20261115`, Engine **Godot 4.6.3**. `main` wurde nicht verändert; Kart- und native Dschungel-Folgearbeiten bleiben ausgeschlossen.

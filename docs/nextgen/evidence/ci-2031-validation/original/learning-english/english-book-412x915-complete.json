@@ -1,0 +1,230 @@
+{
+	"attempts": 2,
+	"background_depth": [
+		34.9988555908203,
+		44.7971038818359
+	],
+	"complete": true,
+	"controls": [
+		{
+			"enabled": false,
+			"exposed_px": [
+				26.0,
+				717.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				717.0,
+				52.0,
+				52.0
+			],
+			"text": "1"
+		},
+		{
+			"enabled": false,
+			"exposed_px": [
+				86.0,
+				717.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				86.0,
+				717.0,
+				52.0,
+				52.0
+			],
+			"text": "2"
+		},
+		{
+			"enabled": false,
+			"exposed_px": [
+				146.0,
+				717.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				146.0,
+				717.0,
+				52.0,
+				52.0
+			],
+			"text": "3"
+		},
+		{
+			"enabled": false,
+			"exposed_px": [
+				206.0,
+				717.0,
+				73.0,
+				52.0
+			],
+			"rect_px": [
+				206.0,
+				717.0,
+				73.0,
+				52.0
+			],
+			"text": "Hinweis"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				287.0,
+				717.0,
+				58.0,
+				52.0
+			],
+			"rect_px": [
+				287.0,
+				717.0,
+				58.0,
+				52.0
+			],
+			"text": "Neu"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				777.0,
+				153.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				777.0,
+				153.0,
+				52.0
+			],
+			"text": "Schritt anhören"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				187.0,
+				777.0,
+				129.0,
+				52.0
+			],
+			"rect_px": [
+				187.0,
+				777.0,
+				129.0,
+				52.0
+			],
+			"text": "Lumo fragen"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				837.0,
+				125.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				837.0,
+				125.0,
+				52.0
+			],
+			"text": "Zur Aufgabe"
+		}
+	],
+	"density": 1.0,
+	"explanation": "Richtig: „Buch“. Wähle jetzt „Zur Aufgabe“.",
+	"footer_px": [
+		12.0,
+		675.0,
+		388.0,
+		228.0
+	],
+	"foreground_far_depth": 20.1649494171143,
+	"header_px": [
+		12.0,
+		12.0,
+		388.0,
+		125.0
+	],
+	"hint_level": 2,
+	"lumo_px": [
+		27.4000301361084,
+		169.200073242188,
+		148.444686889648,
+		268.8955078125
+	],
+	"name": "english-book-412x915-complete",
+	"objects": [
+		{
+			"bounds_px": [
+				250.189758300781,
+				281.897155761719,
+				130.947662353516,
+				85.8465881347656
+			],
+			"spatial_48dp_target_px": [
+				291.66357421875,
+				250.358947753906,
+				48.0,
+				48.0
+			],
+			"triangles": 924,
+			"word": "ruler"
+		},
+		{
+			"bounds_px": [
+				250.189758300781,
+				379.469909667969,
+				130.947662353516,
+				149.976684570312
+			],
+			"spatial_48dp_target_px": [
+				291.66357421875,
+				412.061859130859,
+				48.0,
+				48.0
+			],
+			"triangles": 2576,
+			"word": "pen"
+		},
+		{
+			"bounds_px": [
+				246.727203369141,
+				541.1728515625,
+				137.872772216797,
+				101.627014160156
+			],
+			"spatial_48dp_target_px": [
+				291.66357421875,
+				525.131713867188,
+				48.0,
+				48.0
+			],
+			"triangles": 2804,
+			"word": "book"
+		}
+	],
+	"objects_order": [
+		"ruler",
+		"pen",
+		"book"
+	],
+	"observation_source": "platform_fixture",
+	"stage_px": [
+		16.0,
+		145.0,
+		380.0,
+		522.0
+	],
+	"status": "book = Buch · Passend zugeordnet",
+	"title": "Englisch · book",
+	"window_px": [
+		412,
+		915
+	],
+	"word": "book"
+}

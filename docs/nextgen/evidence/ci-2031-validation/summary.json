@@ -1,0 +1,115 @@
+{
+  "observedAtUtc": "2026-11-16T04:12:20.709414+00:00",
+  "runId": 43800892196,
+  "jobId": 133080632526,
+  "status": "PASS",
+  "flutterSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "flutter": {
+    "passed": 2896,
+    "failed": 0,
+    "existingSkipped": 202
+  },
+  "analyzer": {
+    "errors": 0,
+    "warnings": 4,
+    "infos": 274
+  },
+  "hostPythonMethodsPassed": 143,
+  "hostPythonDurationSeconds": 27.493,
+  "hostPython": {
+    "python": "3.12.3",
+    "Pillow": "12.3.0",
+    "scope": "isolated host and recorded-image contract tests"
+  },
+  "nestedJvmAssertionsAreNotAdditionalAndroidTests": true,
+  "godotEngine": "4.6.3.stable.official.7d41c59c4",
+  "actualGodotImportPassed": true,
+  "nativePrograms": [
+    {
+      "log": "learning_android_host_capability_regression.log",
+      "assertions": 43
+    },
+    {
+      "log": "learning_companion_scope_regression.log",
+      "assertions": 56
+    },
+    {
+      "log": "learning_english_regression.log",
+      "assertions": 7239
+    },
+    {
+      "log": "learning_generation_regression.log",
+      "assertions": 47
+    },
+    {
+      "log": "learning_host_payload_regression.log",
+      "assertions": 135
+    },
+    {
+      "log": "learning_pattern_regression.log",
+      "assertions": 33077
+    },
+    {
+      "log": "learning_sharing_regression.log",
+      "assertions": 1811
+    },
+    {
+      "log": "learning_wonder_details_regression.log",
+      "assertions": 100
+    },
+    {
+      "log": "learning_world_regression.log",
+      "assertions": 5351
+    },
+    {
+      "log": "nextgen_avatar_contract_review.log",
+      "assertions": 300
+    },
+    {
+      "log": "nextgen_learning_base_audio_regression.log",
+      "assertions": 69
+    },
+    {
+      "log": "nextgen_learning_route_review.log",
+      "assertions": 7324
+    }
+  ],
+  "nativeAssertionsTotal": 55552,
+  "projectValidator": {
+    "pass": 118,
+    "warn": 0,
+    "fail": 0
+  },
+  "nativeWarnings": [
+    {
+      "log": "nextgen_avatar_contract_review.log",
+      "message": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+    }
+  ],
+  "nonfatalImportMessages": [
+    "cannot connect to daemon at tcp:5037: Connection refused"
+  ],
+  "protectedFilesVerified": 18,
+  "coverageSourceHashesVerified": 359,
+  "apkBuildCompletedAtObservation": false,
+  "androidTourPassedAtObservation": false,
+  "physicalDeviceTest": false,
+  "jobLog": {
+    "repository": "Ullmann27/lumo-lernen",
+    "runId": 43800892196,
+    "jobId": 133080632526,
+    "source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "expectedUtf8Bytes": 1730323,
+    "decodedLogPreservedExactly": true,
+    "normalizationApplied": false,
+    "rawBytes": 1730323,
+    "rawSha256": "58956d14cf067f84a74a0672a491f7d0223606842ca6e140c8f624894343e756",
+    "gzipBytes": 199560,
+    "gzipSha256": "ff527a0108637738b73061b0bfdd0649bd1b128080cd64bd51a5ce4900410399"
+  },
+  "artifactId": 14196419377,
+  "archiveBytes": 261315,
+  "archiveSha256": "ccea7a5476dcdf8c4b2f56dd7f49104955e092b7fd78c60e6d3aa819dc9b84c4",
+  "allOriginalMembersReverified": 56
+}
