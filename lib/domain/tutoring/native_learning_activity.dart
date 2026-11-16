@@ -1,4 +1,5 @@
 import 'guided_lesson_catalog.dart';
+import '../../features/learning/lab/learning_lab_catalog.dart';
 import 'native_english_vocabulary.dart';
 import '../learning/lumo_learning_domain.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
@@ -20,6 +21,125 @@ class NativeLearningActivity {
     LumoCompanionTaskContext context,
   ) {
     return null;
+  }
+
+  /// Only reviewed, semantically checked Lab problems can open a spatial
+  /// manipulative. Text-only companion contexts deliberately fail closed.
+  /// The model illustrates; Flutter still owns answers, scores and rewards.
+  static NativeLearningActivity? fromLabProblem(
+    LabProblem problem, {
+    required String visiblePrompt,
+  }) {
+    if (!problem.isValid ||
+        problem.id.length > 120 ||
+        visiblePrompt.length > 800 ||
+        (visiblePrompt != problem.prompt &&
+            visiblePrompt != problem.guidedPrompt)) {
+      return null;
+    }
+    NativeLearningActivity? visual;
+    switch (problem.mode) {
+      case LabMode.bridge:
+        if (problem.start < 1 ||
+            problem.start > 9 ||
+            problem.addend < 1 ||
+            problem.addend > 9 ||
+            problem.start + problem.addend <= 10) {
+          return null;
+        }
+        visual = NativeLearningActivity._('bridge_ten', {
+          'kind': 'bridge_ten',
+          'a': problem.start,
+          'b': problem.addend,
+        });
+        break;
+      case LabMode.word:
+        final syllables = [
+          for (final index in problem.tokenOrder) problem.tokens[index],
+        ];
+        if (syllables.length < 2 ||
+            syllables.length > 5 ||
+            syllables.any((part) => part.isEmpty || part.length > 12) ||
+            problem.expected.length > 24 ||
+            syllables.join() != problem.expected) {
+          return null;
+        }
+        visual = NativeLearningActivity._('syllables', {
+          'kind': 'syllables',
+          'word': problem.expected,
+          'syllables': List<String>.unmodifiable(syllables),
+        });
+        break;
+      case LabMode.english:
+        const meanings = {
+          'cat': 'Katze',
+          'dog': 'Hund',
+          'bird': 'Vogel',
+          'apple': 'Apfel',
+          'book': 'Buch',
+          'ball': 'Ball',
+        };
+        final word = problem.expected;
+        final meaning = meanings[word];
+        if (meaning == null ||
+            problem.id != 'english-$word' ||
+            problem.prompt !=
+                'Was heißt „$meaning“ auf Englisch? Schreibe nur das englische Wort.') {
+          return null;
+        }
+        final objects = const {'cat', 'dog', 'bird'}.contains(word)
+            ? const <String>['cat', 'dog', 'bird']
+            : const <String>['apple', 'book', 'ball'];
+        visual = NativeLearningActivity._('english_objects', {
+          'kind': 'english_objects',
+          'word': word,
+          'meaning': meaning,
+          'objects': objects,
+        });
+        break;
+      case LabMode.nature:
+        const parts = {
+          'Wurzel': 'root',
+          'Stängel': 'stem',
+          'Blatt': 'leaf',
+          'Blüte': 'flower',
+        };
+        final part = parts[problem.expected];
+        if (part == null || problem.id != 'nature-$part') return null;
+        visual = NativeLearningActivity._('plant_parts', {
+          'kind': 'plant_parts',
+          'plantPart': part,
+        });
+        break;
+      case LabMode.fraction:
+        if (problem.denominator < 2 ||
+            problem.denominator > 8 ||
+            problem.modelTarget < 1 ||
+            problem.modelTarget >= problem.denominator) {
+          return null;
+        }
+        visual = NativeLearningActivity._('fraction_parts', {
+          'kind': 'fraction_parts',
+          'a': 1,
+          'b': problem.denominator,
+          'extra': problem.modelTarget - 1,
+        });
+        break;
+      case LabMode.pattern:
+        visual = fromPattern(
+          sequence: problem.pattern,
+          choices: problem.tokens,
+          period: problem.repeatLength,
+          expected: problem.expected,
+        );
+        break;
+    }
+    if (visual == null) return null;
+    return NativeLearningActivity._(visual.kind, {
+      ...visual._payload,
+      'sourceTaskId': problem.id,
+      'prompt': visiblePrompt,
+    });
   }
 
   /// Only consume the checked renderer payload and verify its arithmetic
