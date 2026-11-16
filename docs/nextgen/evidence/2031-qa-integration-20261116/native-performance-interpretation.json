@@ -1,0 +1,39 @@
+{
+  "schema": "lumo.performance.interpretation.v1",
+  "originalRun": 43790709991,
+  "originalJob": 133048238970,
+  "originalAPKSource": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "sourceFiles": [
+    {
+      "path": "scripts/learning/learning_frame_probe.gd",
+      "sha256": "8531f67483a69337ecd48788c2b2d1c11b946567f4f436b7749b93dbfd2fecd9"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "sha256": "c2855613e79f7fd233190eb56e1f7379e780c1979c629e536e49690bbc4608e3"
+    }
+  ],
+  "originalPerformanceFile": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/native-learning-performance.json",
+  "originalPerformanceSha256": "9069fb54add45b7e0f66845e208c9a88d8263162522391a5e19e145ee3e4fa23",
+  "nativeProcessFrameSampleCount": 45,
+  "measuredWindows": 8,
+  "weightedMeanProcessFrameIntervalMs": 978.2910666666667,
+  "inverseMeanProcessFrameRateHz": 1.022190669089213,
+  "weightedGodotTimeProcessMonitorMs": 946.6674444444445,
+  "weightedDrawCalls": 268.17777777777775,
+  "weightedPrimitives": 318060.3333333333,
+  "audibleSpeechSamples": 12,
+  "speechFoxEffectsSamples": 10,
+  "measurementMeaning": "Every active _process call is sampled; five seconds control JSON window emission only. This is not a display presentation timeline.",
+  "renderer": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+  "limits": [
+    "Original2029 diagnostic; not a new2031 Android result.",
+    "No physical device FPS prediction.",
+    "TIME_PROCESS is a monitor value, not CPU utilization or per-function profiling.",
+    "No justified individual mesh/effect/JNI bottleneck attribution from these aggregate data.",
+    "High per-window percentiles with5or6samples do not establish global tail latency.",
+    "Accepted native audible status is not an acoustic recording or human listening test."
+  ],
+  "review": "Independent source and original-artifact review; root checked exact pinned source bytes and independently recomputed weighted metrics. No native optimization or test rerun made from unsupported attribution."
+}

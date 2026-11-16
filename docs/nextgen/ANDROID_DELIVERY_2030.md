@@ -1,4 +1,16 @@
-# Vollständiger Nachfolgekandidat 0.13.18 (2030)
+# Android-Kandidat 0.13.18 (2030)
+
+## Abgeschlossenes Ergebnis des ursprünglichen Laufs
+
+Der Lauf [43790915460](https://github.com/Ullmann27/lumo-lernen/actions/runs/43790915460) auf **c4e330faa61e231dd3fd44c21085c95ddcd5b7c9** ist abgeschlossen: **Quellprüfung PASS, Build PASS, Android FAIL, Veröffentlichung SKIPPED**. Es gibt aus diesem Lauf keinen freigegebenen öffentlichen APK-Download. Die nachfolgenden Vorlaufabschnitte dokumentieren den damaligen Plan; diese abgeschlossene Beobachtung ist der aktuelle Stand für 2030.
+
+Die tatsächliche Quellprüfung umfasst 2.887 bestandene Fluttertests und 202 vorhandene Skips, 109 bestandene Host-Testmethoden, echten Godot-4.6.3-Import, 55.552 native Assertions und 118 bestandene Projektprüfungen. Alle 248 erfassten Quellenhashes und 18 geschützten Dateien stimmen. Die Analyzer-Ausgabe enthält 0 Fehler, 4 Warnungen und 274 Hinweise; die isolierte native ObjectDB-Abschlusswarnung bleibt im Originalprotokoll erhalten. Die vollständigen ursprünglichen Belege stehen unter [ci-2030-validation](evidence/ci-2030-validation/summary.json).
+
+Die tatsächlich gebaute und in CI geprüfte ARM64-APK ist 535.021.298 Bytes groß, SHA-256 `96e4bcd060df8f18b015532f7a58f2073d6a9225e7c6d32af50bd219b6a01fa3`. Für den Emulator wurde die 538.184.607-Byte-x86-APK mit SHA-256 `66870e9232eaf05e5cad893d410cb8046318ae6d226c0bd0e90e1af0a178a4f2` tatsächlich installiert und zurückgelesen. Der Buildbeleg enthält die Prüfungen von Paket, Version, vorhandenem Testzertifikat, ABI, 16-KiB-Ausrichtung, PCK und Offline-Sprachassets. Das ist kein lokaler Root-Download der ganzen ARM64-Datei und keine Downloadfreigabe. Vollständiger Beleg: [ci-2030-build](evidence/ci-2030-build/summary.json).
+
+Im Android-API-35-Emulator bewirkt der erste Stein-Tipp nach dem Gespräch jetzt `moved: 0 → 1`. Pause, Rückkehr und die kompakte Zielansicht bewahren diesen Aufgabenstand und das Testprofil. Die Kompaktansicht erreicht tatsächlich 720 × 1600 Pixel bei 320 dpi. Der Lauf scheitert anschließend am bestehenden positiven Videodauer-Gate: Die Aufnahme enthält einen lesbaren H.264-Frame, aber keine positive Dauer. Erweiterte/Fold7-Ansichten und die nachfolgenden nativen Referenzen wurden in diesem Lauf nicht erreicht. Alle 225 Originaldateien und das vollständige Jobprotokoll sind verlustfrei archiviert: [ci-2030-android-resize-recording-failure](evidence/ci-2030-android-resize-recording-failure/README.md).
+
+Die separate 2029-Diagnose ist ebenfalls abgeschlossen: 8+5 wurde diagnostisch durchlaufen; Banane scheiterte vor akzeptierter Wiedergabe und Muster an einem später bestätigten Leserproblem bei der umgebrochenen Überschrift. Sie verwendet die älteren APK-Bytes und hat keine Releaseberechtigung. Originale: [Bridge](evidence/ci-2029-native-diagnostic-bridge/summary.json), [Banane](evidence/ci-2029-native-diagnostic-banana/summary.json), [Muster](evidence/ci-2029-native-diagnostic-pattern/summary.json).
 
 ## Belegter Defekt und Produktänderung
 
