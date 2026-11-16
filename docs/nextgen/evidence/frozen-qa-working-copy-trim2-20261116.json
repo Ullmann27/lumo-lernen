@@ -1,0 +1,28 @@
+{
+  "observedAtUtc": "2026-11-16T07:01:30.031614+00:00",
+  "scope": "Only two unused committed working copies trimmed by reversible sparse checkout; branch, commit, tree and complete Git history preserved; no active worktree touched",
+  "records": [
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-reference-qa",
+      "commit": "c600e1e02745931cc1dd0a17e528a60f8ed4abf3",
+      "treeUnchanged": "eb77fc2710e59bc09a8721eee719499059cc4b3b",
+      "priorSparseSelection": "/*\n!/*/\n/.github/\n!/.github/*/\n/tools/\n!/tools/*/\n/.github/probes/\n/.github/workflows/\n/scripts/\n/tools/android_qa/\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 61820828,
+      "workingCopyBytesAfter": 1199932,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    },
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-2028-replay",
+      "commit": "79258ab7878cb1a9b1e31924dcd02a6b6c6ecdb0",
+      "treeUnchanged": "9637a8d2e784d86f62675a373e81593113cfe67d",
+      "priorSparseSelection": "/.github/probes/\n/.github/workflows/\n/tools/android_qa/\n/tools/nextgen/\n/scripts/probes/\n/scripts/verify_android_apk.py\n/config/\n/AGENTS.md\n/CLAUDE.md\n/pubspec.yaml\n/pubspec.lock\n/analysis_options.yaml\n/.gitignore\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 54292191,
+      "workingCopyBytesAfter": 1404757,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    }
+  ]
+}
