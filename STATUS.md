@@ -1,3 +1,13 @@
+# LUMO 2032 — exakter Katalogexport in frischer CI-Umgebung
+
+Stand: 16.11.2026, 09:02 UTC. Der Native-Kontrastfix ist als `9d6ef1d704a0e54098a8f8f0818f36deae0e3789` integriert. Der aktuelle Stopanschluss ist unabhängig geprüft und in Host `394f9f7574f6e6b20e979a26bdae4c5a60fb742d` gesichert; 26/26 gezielte Hostprüfungen, noch kein neuer Androidlauf. Die vollständige APK-Pipeline verlangt dieses Stoppergebnis ab 2032.
+
+Der frische lokale Katalogexport scheiterte zunächst an 99 fehlenden Paketpfaden. Ein vorhandener exakter Versionscache wurde geprüft und nur die ignorierte Root-Paketpfadkonfiguration umgestellt; die Lockdatei blieb unverändert. Der zweite Export brach beim Laden mit „The Dart compiler exited unexpectedly“ ab und wurde anschließend mit Wrapper-Exit 130 beendet. Eine konkrete Compiler-Todesursache ist nicht nachgewiesen. Beide Originalfehler bleiben unter `coverage_refresh_20261116_2032/` erhalten.
+
+Eine vorbereitete enge CI-Aufgabe exportiert ausschließlich den tatsächlichen Dart-Katalog am aktuellen Git-HEAD, mit derselben Flutter-Version 3.44.9 und unveränderter Lockdatei. Sie baut oder veröffentlicht keine APK und ersetzt keine bestehende Abnahme. Nach erfolgreichem exaktem Export wird Root die Abdeckung lokal erzeugen und erst danach die neue vollständige 2032-APK-Pipeline aktivieren. `fullModernizationComplete=false` bleibt bestehen.
+
+## Archiv: vorheriger Vorbereitungsstand
+
 # LUMO Next Generation — Kontrastkorrektur für neuen Kandidaten 2032
 
 Stand: 16.11.2026, 08:38 UTC. APK 2031 ist öffentlich vollständig bytegeprüft und bleibt unverändert. Der Zusatzlauf 6 hat jedoch einen sichtbaren Produktmangel aufgezeigt: Die Beschriftung „Stimme stoppen“ und später „Schritt anhören“ erscheint sehr hell auf sehr hellem Grün. Der Quellreview am exakten Native-Stand `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef` zeigt, dass die bestehende Buttonfactory nur die normale Schriftfarbe setzt, obwohl sie auch die interaktiven Hintergründe ersetzt. Die genaue ursprüngliche Drawmode-Kombination wurde im Androidlauf nicht protokolliert.

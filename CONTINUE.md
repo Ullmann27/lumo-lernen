@@ -1,3 +1,15 @@
+# Wiederaufnahme 2032 — frischen CI-Katalog übernehmen, dann APK aktivieren
+
+Stand: 16.11.2026, 09:02 UTC. Native ist exakt `9d6ef1d704a0e54098a8f8f0818f36deae0e3789`, Host-Produkt/Stopanschluss bis `394f9f7574f6e6b20e979a26bdae4c5a60fb742d` gesichert. Beide unabhängigen Reviews sind abgeschlossen. Pubspec und Pin-Policy sind bereits 0.13.20+2032; `config/nextgen-release.json` ist absichtlich noch 2031, um keinen unvollständigen APK-Lauf auszulösen.
+
+1. Die neue `.github/workflows/lumo-nextgen-catalog-export.yml` wird ausschließlich durch `config/nextgen-catalog-export.json` auf dem Integrationszweig ausgelöst. Sie nutzt vorhandene Actions/Flutter 3.44.9, gesperrte Abhängigkeiten und den unveränderten tatsächlichen Dart-Exporter. Nur Leserechte, keine Veröffentlichung. Genaue Run-/Job-/Artefaktidentität nach Start sichern.
+2. Root am aktivierten CI-HEAD unverändert lassen, bis der echte `catalog.json` übernommen wurde: `build_coverage.py` verlangt exakt denselben `sourceHead == HEAD`. Provenienz, alle Quellhashes, echtes Testresultat und Workflowstatus prüfen; keinen alten Katalog mit neuem HEAD umetikettieren. Danach Builder ausführen, aktuelle Abdeckung/Schutzdateien prüfen und gezielt sichern.
+3. Beide lokalen Exportfehler unter `docs/nextgen/evidence/coverage_refresh_20261116_2032/` bleiben erhalten. Root-Lockfile unverändert. Die ignorierte lokale Paketkonfiguration zeigt nun auf den bereits vorhandenen `/dev/shm/lumo-host-2032-pub-cache`; keine Cachedateien oder fremden Projekte wurden verändert. Kein weiterer unveränderter lokaler Compilerlauf.
+4. Danach `config/nextgen-release.json` auf konsistentes 0.13.20/2032/Tag setzen und normalen vollständigen Build auslösen. Native Import/13 Programme, Hosttests, neue APKs, vollständige Original-/Referenztour samt neuem aktiven Stopp und voller öffentlicher Byte-Download bleiben erforderlich. 2031-Belege sind keine 2032-Freigabe.
+5. Main, frühere Releases, drei fremde Story-PNGs und native generierte UIDs bleiben geschützt. Höchstens drei aktive Sessions. Autosave und exakten API-Publisher verwenden. Jüngste Sparse-Operationen dematerialisieren ausschließlich exakt überprüfte und remote gesicherte alte ZIP-Teile; keine Gitobjekte oder Originale gelöscht.
+
+## Archiv: vorheriger Vorbereitungsstand
+
 # Wiederaufnahme 2032 — native Buttonkontraste korrigieren und neu bauen
 
 Stand: 16.11.2026, 08:38 UTC. Gesicherte Root-Quelle vor diesem Dokument: `362b6ac36fb645bb5266205f17c5504a8fbf22a3`. Native-Integration: `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`. APK 2031 ist bereits öffentlich verifiziert; keine ihrer Dateien oder historischen Prüfer umetikettieren.

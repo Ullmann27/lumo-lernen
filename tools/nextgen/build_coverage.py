@@ -1339,6 +1339,7 @@ for path in (
     "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechFailureContract.kt",
     "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
     ".github/workflows/lumo-nextgen-learning-apk.yml",
+    ".github/workflows/lumo-nextgen-catalog-export.yml",
 ):
     source(path)
 
