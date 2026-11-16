@@ -1,0 +1,123 @@
+{
+  "schema": "lumo.nextgen.2032.delivery.draft.handoff",
+  "version": 1,
+  "status": "DRAFT_PENDING_CURRENT_ANDROID_AND_PUBLICATION",
+  "createdUtc": "2026-11-16T09:30:10.791159+00:00",
+  "producerCommit": "de658dcefe70a7ded1d6ffc80f624d7a7aa5307d",
+  "tree": "4ee97f942f9b31712b3efbfe782c4bc7b83b545b",
+  "parent": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+  "branch": "docs/lumo-nextgen-2032-delivery-draft-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-delivery-docs-2032",
+  "clean": true,
+  "frozen": true,
+  "files": [
+    {
+      "path": "docs/nextgen/ANDROID_DELIVERY_2032.md",
+      "bytes": 34341,
+      "sha256": "7eb8b073b2d65f4286b1c0ec698909b13685b41ebc9c76697a7d727d8404f9e6"
+    }
+  ],
+  "scope": "One new Markdown delivery draft; no existing file, product, test, workflow, config or publisher change",
+  "sixUserRequestedSections": [
+    "1. Welche Lernbereiche vollständig modernisiert und erreichbar sind",
+    "2. Welche Figur-, Animations- und Gesprächsfunktionen neu angeschlossen sind",
+    "3. Welche Prüfungen tatsächlich liefen und auf welchem Gerät beziehungsweise welcher Umgebung",
+    "4. Repositories, Branches und genaue Commits des integrierten Stands",
+    "5. APK und echte Screenshots beziehungsweise Videos",
+    "6. Konkrete verbleibende Grenzen, falls eine Anforderung noch nicht nachgewiesen ist"
+  ],
+  "bindings": {
+    "intendedApkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+    "intendedApkSourceTree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+    "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+    "nativeTree": "26b6e5301372d4ade91ca8955f7c1ccf5d0dee78",
+    "versionName": "0.13.20",
+    "versionCode": 2032,
+    "activatedWorkflowRun": 43837592237,
+    "catalogSource": "a5ea7422b1152576b34cf80519856129ff264ac1",
+    "catalogWorkflowRun": 43836322226,
+    "catalogJob": 133193729169,
+    "catalogArtifact": 14210758550
+  },
+  "documentReview": {
+    "pinnedOrRepositoryLinksResolved": 42,
+    "missingSourceLinks": 0,
+    "sixSections": true,
+    "stagedDiffCheck": "clean",
+    "hostProductPathsByteUnchangedSince2031": [
+      "lib",
+      "android",
+      "assets",
+      "tools/auto_install",
+      "pubspec.lock"
+    ],
+    "protectedFilesCheckedAtIntendedApkSource": 18,
+    "protectedBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
+    "protectedAllByteEqual": true,
+    "avatarNewLearningClips": 14,
+    "avatarRetainedOriginalClips": 9,
+    "avatarGlbAnimationsReadFromActualBlob": 23,
+    "avatarGlbSha256": "cc210fb03bd831f21f0ba99aa12c7b7ef60f2fb5a38e0ca30a8b059d51f08163"
+  },
+  "boundSources": [
+    {
+      "path": "docs/nextgen/COVERAGE.json",
+      "commit": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+      "bytes": 998937,
+      "sha256": "1aaef7e1cf9ffcc3f2b93b2abac65709b41437e389874d1de54392f4eb38ad2a"
+    },
+    {
+      "path": "docs/nextgen/COVERAGE.md",
+      "commit": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+      "bytes": 15142,
+      "sha256": "f6cee7f20ace421ffeed2f87f93e7de43987a8f698d86dd9567e26c25ce80bf8"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2032-catalog-export/README.md",
+      "commit": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+      "bytes": 2448,
+      "sha256": "9e102210a4ceedb3744bfdc55e62b5d1c2b795c64d75f5fabdcfbbcd824f401b"
+    },
+    {
+      "path": "docs/nextgen/evidence/coverage_refresh_20261116_2032/verification.json",
+      "commit": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+      "bytes": 1791,
+      "sha256": "d86f3c36a217f1dc32818da667e929272f1f40fe1a7f02ade73bb4f3f70a9116"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032-build-activation-20261116/activation.json",
+      "commit": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+      "bytes": 621,
+      "sha256": "9cd0026feaf977bad0cd4693afde935837c7632161e661532ce9eaabbb1e682f"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032-build-activation-20261116/preflight.json",
+      "commit": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+      "bytes": 1787,
+      "sha256": "8b3f62955c2a4c850b96ef636782ec6035475bed41cd53c8cef680fefe8eac55"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032-native-contrast-integration-20261116/host-product-boundary-review.json",
+      "commit": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+      "bytes": 3675,
+      "sha256": "8173f9fd74663ca67a1bad8b3616d6c5c0bec3b8c837f98da53f87293121418f"
+    }
+  ],
+  "newTestsRun": false,
+  "androidRunPerformed": false,
+  "ciPollingPerformed": false,
+  "remoteActionsPerformed": false,
+  "fullModernizationComplete": false,
+  "notClaimed": [
+    "new APK availability or hashes",
+    "current Android acceptance",
+    "current public download URL",
+    "physical Fold7 or ARM64 acceptance",
+    "60 FPS",
+    "all task variants",
+    "verified German STT",
+    "acoustic or joint mouth/gesture stop"
+  ],
+  "historical2031Evidence": "Referenced only as historical context; never transferred to 2032",
+  "nextActionOwner": "Root supplies current completed original validation/build/Android/publication evidence before converting draft into delivery report"
+}

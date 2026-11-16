@@ -1,0 +1,23 @@
+{
+  "observedAtUtc": "2026-11-16T09:31:38.701956+00:00",
+  "status": "EXACT_DRAFT_INTEGRATION",
+  "rootBefore": "bf94cd739ed48cef89640c5f7c8fd3b7395826d2",
+  "ownerBranch": "docs/lumo-nextgen-2032-delivery-draft-20261116",
+  "ownerApiCommit": "05e0b3a97cfbcee7db5d1aaf48cd499ff9f2d153",
+  "ownerTree": "4ee97f942f9b31712b3efbfe782c4bc7b83b545b",
+  "producerCommit": "de658dcefe70a7ded1d6ffc80f624d7a7aa5307d",
+  "allOwnerFilesByteEqual": true,
+  "ownerFileCount": 1,
+  "boundSourceFilesChecked": 7,
+  "sixUserSectionsExact": true,
+  "inventoryGroupingTotal": 61,
+  "draftRetainedWithoutEdits": true,
+  "documentSha256": "7eb8b073b2d65f4286b1c0ec698909b13685b41ebc9c76697a7d727d8404f9e6",
+  "handoffSha256": "d001ed3836ef092c42d7bba58230e668a3b1bdc603a4ae22a310f0233c5167d1",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "newProductTestsPerformed": false,
+  "currentAndroidAcceptanceClaimed": false,
+  "fullModernizationComplete": false,
+  "nextStep": "Add completed current validation, build, Android and public-byte proof after their actual results; original draft remains at the owner API commit."
+}
