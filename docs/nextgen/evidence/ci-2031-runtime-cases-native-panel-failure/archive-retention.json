@@ -1,0 +1,32 @@
+{
+  "artifactId": 14203032627,
+  "workflowRun": 43816667737,
+  "archiveBytes": 29082573,
+  "archiveSha256": "663d9f34fcfbbcf12360ee03dfd889df9469bbd13f3ef7ca67dcfa11ec09411a",
+  "format": "Ordered byte-exact concatenation of listed parts reconstructs original ZIP",
+  "partSizeLimit": 8388608,
+  "allOriginalsRetainedInArchiveParts": true,
+  "memberVerification": "artifact-verification.json",
+  "parts": [
+    {
+      "path": "archive-parts/artifact.zip.part001",
+      "bytes": 8388608,
+      "sha256": "2d7c391708aadf0be79e8a13094b53097ff1d281301088da4fb276fee3c5a219"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part002",
+      "bytes": 8388608,
+      "sha256": "4d4e6773ae556eccf8d5da51d3a3e9bc69a961c27520f5555d2cbcebea7f0875"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part003",
+      "bytes": 8388608,
+      "sha256": "0093fa5a5b6c2b3a7503dee0bbd8a42e765eb00cde251cf1d088b92d91d73cc1"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part004",
+      "bytes": 3916749,
+      "sha256": "edcd40090442d26cc514be2cfac6b24d555dde5bb01b68f56a6e5c5a2d022068"
+    }
+  ]
+}

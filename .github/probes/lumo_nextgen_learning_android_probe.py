@@ -780,14 +780,38 @@ class LearningProbe:
             require(left > 0, "Recording transfer exceeded its original 90-second budget")
             return min(limit, left)
 
-        def remote_identity(stage):
-            record = {"stage": stage}
-            proof["remote_observations"].append(record)
-            record["screenrecord_pids"] = self.base.adb(
-                "shell", "pidof", "screenrecord", check=False, timeout=remaining(5))
+        def remote_identity(stage, *, observe_offline=False):
+            while True:
+                record = {"stage": stage}
+                proof["remote_observations"].append(record)
+                record["screenrecord_pids"] = self.base.adb(
+                    "shell", "pidof", "screenrecord", check=False, timeout=remaining(5))
+                if observe_offline and record["screenrecord_pids"] == "adb: device offline":
+                    # Only the observed transport state after a failed copy may
+                    # be observed again. Do not reconnect or repeat any UI.
+                    record["passive_offline_observation"] = True
+                    record["elapsed_seconds"] = round(time.monotonic() - began, 3)
+                    self.save(name + "-video-transfer", proof)
+                    time.sleep(min(.25, remaining()))
+                    continue
+                break
             pids = record["screenrecord_pids"].split()
             require(all(pid.isdigit() for pid in pids) and owned not in pids,
                     "Owned recorder is still running or its state is unobservable")
+            record["serial_output"] = self.base.adb("get-serialno", check=False, timeout=remaining(5))
+            serial = record["serial_output"].strip()
+            require(re.fullmatch(r"[A-Za-z0-9._:-]+", serial) is not None and
+                    serial not in ("unknown", "offline", "unauthorized"),
+                    "Recording device serial is unobservable")
+            record["boot_id_output"] = self.base.adb(
+                "shell", "cat", "/proc/sys/kernel/random/boot_id", check=False, timeout=remaining(5))
+            boot_id = record["boot_id_output"].strip()
+            require(re.fullmatch(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}", boot_id) is not None,
+                    "Recording device boot ID is unobservable")
+            identity = {"serial": serial, "boot_id": boot_id}
+            if "device_identity" not in proof:
+                proof["device_identity"] = identity
+            require(identity == proof["device_identity"], "Recording device serial or boot ID changed")
             record["size_output"] = self.base.adb(
                 "shell", "toybox", "stat", "-c", "%s", remote, timeout=remaining(5))
             require(re.fullmatch(r"[1-9][0-9]*", record["size_output"].strip()) is not None,
@@ -817,7 +841,7 @@ class LearningProbe:
                     self.save(name + "-video-transfer", proof)
                     if attempt == 2 or time.monotonic() >= deadline:
                         raise
-                    require(remote_identity("after-failed-transfer") == expected,
+                    require(remote_identity("after-failed-transfer", observe_offline=True) == expected,
                             "Remote recording changed after the aborted transfer")
                     continue
                 require(partial.is_file(), "Successful transfer did not produce a local recording")

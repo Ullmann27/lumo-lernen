@@ -30,16 +30,24 @@ class RecordingTransferTest(unittest.TestCase):
     """Original ADB error plus explicitly simulated transport; no Android replay."""
 
     fixtures = Path(__file__).parent / 'fixtures/nextgen_recording_pull_43811505799'
+    offline_fixtures = Path(__file__).parent / 'fixtures/nextgen_recording_offline_43814971553'
 
     def exercise(self, mode='first-transfer-aborts'):
         original = json.loads((self.fixtures / '0091-banana-guided-navigation-recording-error.json').read_text())
+        offline = json.loads((self.offline_fixtures / '0090-banana-guided-navigation-video-transfer.json').read_text())
         clock, running, starts, pulls, body_calls, commands = [0.0], [False], [], [], [], []
+        offline_reads = [0]
+        offline_case = mode.startswith('offline-')
+        recorder_pid = offline['owned_recorder_pid'] if offline_case else '4321'
         payload = b'Constructed complete transport bytes, not an Android video.' * 10
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
         item = object.__new__(probe.LearningProbe)
         item.out, item.result, item.counter, item.recordings = Path(directory.name), {
             'run_id': '0a847067d3a043f5ae658c14f37de61c'}, 90, []
+        if offline_case:
+            item.result['run_id'] = 'cb9cff8d064c49f3a3a3519a1acf3146'
+            item.counter = 89
 
         class Process:
             def __init__(self, command, **kwargs):
@@ -50,9 +58,24 @@ class RecordingTransferTest(unittest.TestCase):
         def adb(*args, **kwargs):
             clock[0] += .01
             commands.append(args)
+            if args == ('get-serialno',):
+                if mode == 'offline-invalid-serial' and pulls: return 'unknown'
+                return 'emulator-5556' if mode == 'offline-serial-change' and pulls else 'emulator-5554'
+            if args == ('shell', 'cat', '/proc/sys/kernel/random/boot_id'):
+                if mode == 'offline-invalid-boot' and pulls: return 'unavailable'
+                return ('00000000-0000-4000-8000-000000000002' if mode == 'offline-boot-change' and pulls
+                        else '00000000-0000-4000-8000-000000000001')
             if args == ('shell', 'pidof', 'screenrecord'):
-                return '4321' if running[0] else ''
-            if args == ('shell', 'kill', '-2', '4321'):
+                if offline_case and len(pulls) == 1:
+                    offline_reads[0] += 1
+                    if mode == 'offline-persistent' or offline_reads[0] <= 2:
+                        return offline['remote_observations'][1]['screenrecord_pids']
+                    if mode == 'offline-invalid-status': return 'unrecognized transport state'
+                    if mode == 'offline-owned-recorder': return recorder_pid
+                if mode == 'offline-after-complete' and len(pulls) == 2:
+                    return offline['remote_observations'][1]['screenrecord_pids']
+                return recorder_pid if running[0] else ''
+            if args == ('shell', 'kill', '-2', recorder_pid):
                 running[0] = mode == 'still-recording'
                 return ''
             if args[:5] == ('shell', 'toybox', 'stat', '-c', '%s'):
@@ -60,22 +83,22 @@ class RecordingTransferTest(unittest.TestCase):
                     raise RuntimeError('Constructed missing stopped recording')
                 if mode == 'empty-remote':
                     return '0'
-                return str(len(payload) + (1 if mode == 'changed-remote' and pulls else 0))
+                return str(len(payload) + (1 if mode in ('changed-remote', 'offline-changed-remote') and pulls else 0))
             if args[:2] == ('shell', 'sha256sum'):
                 if mode == 'invalid-remote-hash':
                     return 'not a hash'
-                data = payload + b'x' if mode == 'changed-remote' and pulls else payload
+                data = payload + b'x' if mode in ('changed-remote', 'offline-changed-remote') and pulls else payload
                 return hashlib.sha256(data).hexdigest() + '  ' + args[2]
             if args[0] == 'pull':
                 pulls.append(args)
                 target = Path(args[2])
                 aborted = mode in ('persistent-abort', 'expired') or (
-                    len(pulls) == 1 and mode in ('first-transfer-aborts', 'changed-remote'))
+                    len(pulls) == 1 and (offline_case or mode in ('first-transfer-aborts', 'changed-remote')))
                 target.write_bytes(payload[:7] if aborted or mode == 'truncated-success' else payload)
                 if aborted:
                     if mode == 'expired':
                         clock[0] += 90
-                    raise RuntimeError(original['error'])
+                    raise RuntimeError(offline['attempts'][0]['error'] if offline_case else original['error'])
                 return 'Constructed complete transfer; no Android execution'
             raise AssertionError(args)
 
@@ -174,6 +197,89 @@ class RecordingTransferTest(unittest.TestCase):
         self.assertEqual(item.recordings, [])
         self.assertEqual(item.result['recording_transfers'][0]['maximum_seconds'], 90)
 
+    def test_original_offline_response_is_not_a_running_recorder_or_a_timeout(self):
+        manifest = json.loads((self.offline_fixtures / 'manifest.json').read_text())
+        for name, record in manifest['files'].items():
+            raw = (self.offline_fixtures / name).read_bytes()
+            self.assertEqual(len(raw), record['bytes'])
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), record['sha256'])
+        original = json.loads((self.offline_fixtures / '0090-banana-guided-navigation-video-transfer.json').read_text())
+        self.assertEqual(original['status'], 'FAIL')
+        self.assertEqual(original['remote_observations'][0]['screenrecord_pids'], '')
+        self.assertEqual(original['expected']['bytes'], 830450)
+        self.assertEqual(original['remote_observations'][1]['screenrecord_pids'], 'adb: device offline')
+        self.assertEqual(original['elapsed_seconds'], .192)
+        self.assertEqual(len(original['attempts']), 1)
+        self.assertTrue(original['attempts'][0]['error'].endswith(".partial')\n"))
+
+    def test_original_offline_then_same_device_retries_only_the_same_stopped_recording(self):
+        item, starts, pulls, body, commands, error = self.exercise('offline-recovers')
+        self.assertIsNone(error)
+        self.assertEqual(len(starts), 1)
+        self.assertEqual(body, ['the sole UI block'])
+        self.assertEqual(len(pulls), 2)
+        self.assertEqual(pulls[0][1], pulls[1][1])
+        self.assertTrue(Path(pulls[0][2]).is_file())
+        self.assertEqual(len(item.recordings), 1)
+        self.assertEqual(commands.count(('shell', 'kill', '-2', '8941')), 1)
+        transfer = item.result['recording_transfers'][0]
+        self.assertEqual(transfer['status'], 'VERIFIED_TRANSFER')
+        self.assertEqual(transfer['maximum_seconds'], 90)
+        self.assertEqual(transfer['maximum_transfers'], 2)
+        self.assertLess(transfer['elapsed_seconds'], 90)
+        self.assertFalse(transfer['recording_or_ui_repeated'])
+        self.assertEqual(transfer['device_identity'], {'serial': 'emulator-5554',
+                         'boot_id': '00000000-0000-4000-8000-000000000001'})
+        observations = transfer['remote_observations']
+        offline = [o for o in observations if o.get('passive_offline_observation')]
+        self.assertEqual(len(offline), 2)
+        self.assertTrue(all(o['screenrecord_pids'] == 'adb: device offline' for o in offline))
+        bound = [o for o in observations if 'boot_id_output' in o]
+        self.assertEqual(len(bound), 3)
+        self.assertTrue(all(o['serial_output'] == 'emulator-5554' and
+                           o['boot_id_output'] == transfer['device_identity']['boot_id'] for o in bound))
+        original = json.loads((self.offline_fixtures / '0090-banana-guided-navigation-video-transfer.json').read_text())
+        self.assertEqual(transfer['attempts'][0]['error'], original['attempts'][0]['error'])
+        self.assertEqual(transfer['sha256'], item.recordings[0]['sha256'])
+        self.assertFalse(any(c[0] in ('reconnect', 'kill-server', 'start-server', 'wait-for-device') for c in commands))
+
+    def test_offline_recovery_rejects_changed_device_boot_file_owned_pid_and_unknown_states(self):
+        for mode, message in (('offline-serial-change', 'serial or boot ID changed'),
+                              ('offline-boot-change', 'serial or boot ID changed'),
+                              ('offline-invalid-serial', 'serial is unobservable'),
+                              ('offline-invalid-boot', 'boot ID is unobservable'),
+                              ('offline-invalid-status', 'state is unobservable'),
+                              ('offline-owned-recorder', 'still running'),
+                              ('offline-changed-remote', 'Remote recording changed'),
+                              ('offline-after-complete', 'state is unobservable')):
+            with self.subTest(mode=mode):
+                item, starts, pulls, body, commands, error = self.exercise(mode)
+                self.assertIsInstance(error, RuntimeError)
+                self.assertIn(message, str(error))
+                self.assertEqual(len(pulls), 2 if mode == 'offline-after-complete' else 1)
+                self.assertEqual(len(starts), 1)
+                self.assertEqual(len(body), 1)
+                self.assertEqual(item.recordings, [])
+                transfer = item.result['recording_transfers'][0]
+                self.assertEqual(transfer['status'], 'FAIL')
+                self.assertEqual(transfer['attempts'][0]['status'], 'TRANSFER_FAILED')
+
+    def test_persistent_offline_uses_only_the_original_total_budget_without_second_copy(self):
+        item, starts, pulls, body, commands, error = self.exercise('offline-persistent')
+        self.assertIsInstance(error, RuntimeError)
+        self.assertIn('original 90-second budget', str(error))
+        self.assertEqual(len(pulls), 1)
+        self.assertEqual(len(starts), 1)
+        self.assertEqual(len(body), 1)
+        self.assertEqual(item.recordings, [])
+        transfer = item.result['recording_transfers'][0]
+        self.assertEqual(transfer['maximum_seconds'], 90)
+        self.assertGreaterEqual(transfer['elapsed_seconds'], 90)
+        self.assertLess(transfer['elapsed_seconds'], 90.02)
+        offline = [o for o in transfer['remote_observations'] if o.get('passive_offline_observation')]
+        self.assertGreater(len(offline), 2)
+        self.assertTrue(all(o['screenrecord_pids'] == 'adb: device offline' for o in offline))
+
 
 class ResizeRecordingTest(unittest.TestCase):
     """One unchanged Android MP4 plus constructed call-order schedules, not a device replay."""
@@ -210,6 +316,9 @@ class ResizeRecordingTest(unittest.TestCase):
 
             def adb(*args, **kwargs):
                 nonlocal running
+                if args == ('get-serialno',): return 'emulator-5554'
+                if args == ('shell', 'cat', '/proc/sys/kernel/random/boot_id'):
+                    return '00000000-0000-4000-8000-000000000001'
                 if args == ('shell', 'pidof', 'screenrecord'):
                     return '4321' if running else ''
                 if args == ('shell', 'kill', '-2', '4321'):
@@ -437,6 +546,9 @@ class ForegroundTransitionTest(unittest.TestCase):
             def wait(self, **kwargs): return 0
         def adb(*args, **kwargs):
             nonlocal running
+            if args == ('get-serialno',): return 'emulator-5554'
+            if args == ('shell', 'cat', '/proc/sys/kernel/random/boot_id'):
+                return '00000000-0000-4000-8000-000000000001'
             if args == ('shell', 'pidof', 'screenrecord'):
                 return '4321' if running else ''
             if args == ('shell', 'kill', '-2', '4321'):

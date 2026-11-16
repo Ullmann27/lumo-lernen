@@ -1,0 +1,136 @@
+{
+  "sourceResultSha256": "ffa99517188be56b3916154a505145fe8fbb473563fdae4597b6a26e42d5cd45",
+  "qaCommit": "25d4aa1eb3b684eb10e38b4fa7e0270d02e8f9b3",
+  "qaRun": 43816667737,
+  "sourceByteBindings": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "sha256": "2869bba0ac0c9a028653254cbd4627b961b2dbc7cf9a580b429cdf40f1face90"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "sha256": "4fbd6c664be7f90a0975ad29c85b58d39247b040928eeeaf15885f3c0f6ad38c"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "sha256": "5edad1d34a25b2d9a3bd4fc46ffdf51840defa7609943d07996cd3df8efb6fb5"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2"
+    }
+  ],
+  "overallOriginalStatusUnchanged": "FAIL",
+  "notAFullRuntimeCasePass": true,
+  "numericWrongThenCorrectVerified": [
+    {
+      "status": "PASS",
+      "stored_attempt": {
+        "id": "1794810667566097-0",
+        "sid": "self",
+        "sub": "Mathematik",
+        "unit": "Plus bis 20",
+        "comp": "Addition mit Zehner\u00fcbergang",
+        "ok": false,
+        "at": "2026-11-16T06:31:07.566097",
+        "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+        "a": "15",
+        "e": "16",
+        "ms": 12290
+      },
+      "lab_attempt_id": "lab-attempt-ed760ece9c4a81b66d06851482147b13-2",
+      "journey_key": "flutter.lumo_progress_journey_v1::local-53a57d98f15aa6283cd854993b8d6b9a",
+      "journey_attempts": 2,
+      "support": {
+        "checkpoint_support": 0,
+        "prior_wrong_answer": false,
+        "stored_hint_used": false,
+        "assisted_correct_delta": 0
+      },
+      "attempt_log_id_is_separate_from_lab_evidence_id": true
+    },
+    {
+      "status": "PASS",
+      "stored_attempt": {
+        "id": "1794810673780321-1",
+        "sid": "self",
+        "sub": "Mathematik",
+        "unit": "Plus bis 20",
+        "comp": "Addition mit Zehner\u00fcbergang",
+        "ok": true,
+        "at": "2026-11-16T06:31:13.780321",
+        "hint": true,
+        "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+        "a": "16",
+        "e": "16",
+        "ms": 6221
+      },
+      "lab_attempt_id": "lab-attempt-ed760ece9c4a81b66d06851482147b13-3",
+      "journey_key": "flutter.lumo_progress_journey_v1::local-53a57d98f15aa6283cd854993b8d6b9a",
+      "journey_attempts": 3,
+      "support": {
+        "checkpoint_support": 0,
+        "prior_wrong_answer": true,
+        "stored_hint_used": true,
+        "assisted_correct_delta": 1
+      },
+      "attempt_log_id_is_separate_from_lab_evidence_id": true
+    }
+  ],
+  "wordSwitchVerified": {
+    "status": "PASS",
+    "preservation": {
+      "profile_id": "1794810561873860",
+      "learning_keys_compared": 7,
+      "same_task_checkpoint": false
+    },
+    "from_problem": "word-banane",
+    "to_problem": "word-rakete",
+    "same_session": true,
+    "no_new_attempt_or_reward": true
+  },
+  "observedActiveLabel": "Silbe 1: Ba, gerade aktiv",
+  "captureToRequestedTouchSeconds": 0.13265639200000123,
+  "observedOriginalDensity": {
+    "wm_size": "Physical size: 1080x2340",
+    "wm_density": "Physical density: 440",
+    "size": [
+      1080,
+      2340
+    ],
+    "density_dpi": 440,
+    "physical_density_dpi": 440,
+    "density_override": null
+  },
+  "observedPreparedDensity": {
+    "wm_size": "Physical size: 1080x2340",
+    "wm_density": "Physical density: 440\nOverride density: 320",
+    "size": [
+      1080,
+      2340
+    ],
+    "density_dpi": 320,
+    "physical_density_dpi": 440,
+    "density_override": 320
+  },
+  "observedRestoredDensity": {
+    "wm_size": "Physical size: 1080x2340",
+    "wm_density": "Physical density: 440",
+    "size": [
+      1080,
+      2340
+    ],
+    "density_dpi": 440,
+    "physical_density_dpi": 440,
+    "density_override": null
+  },
+  "actualXmlAndScreenshotHashesVerified": true,
+  "newAndroidExecution": false,
+  "localVerificationCorrection": "Initial derived check compared Python tuple bounds to persisted JSON arrays; exact JSON-normalized numeric bounds match. No original changed.",
+  "limitations": [
+    "Subset verification only; native slower and stop did not pass",
+    "320 dpi larger logical emulator view, not original-density or physical-fold case",
+    "Requested touch timing is not measured event delivery",
+    "No acoustic recording or speech-recognition claim"
+  ]
+}
