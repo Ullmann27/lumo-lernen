@@ -145,6 +145,7 @@ jobs:
             tools.android_qa.tests.test_nextgen_learning_android_probe \
             tools.android_qa.tests.test_nextgen_native_reader \
             tools.android_qa.tests.test_nextgen_current_candidate \
+            tools.android_qa.tests.test_nextgen_current_native_stop \
             tools.nextgen.test_public_learning_download \
             2>&1 | tee evidence/validation/host-contracts.log
       - uses: actions/checkout@v4
@@ -167,9 +168,9 @@ jobs:
         timeout-minutes: 20
         run: |
           set -euo pipefail
-          for script in learning_android_host_capability_regression learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_generation_regression learning_companion_scope_regression learning_wonder_details_regression nextgen_avatar_contract_review nextgen_learning_route_review nextgen_learning_base_audio_regression; do
+          for script in learning_android_host_capability_regression learning_pattern_regression learning_world_regression learning_sharing_regression learning_host_payload_regression learning_generation_regression learning_companion_scope_regression learning_wonder_details_regression nextgen_avatar_contract_review nextgen_learning_route_review nextgen_learning_base_audio_regression learning_button_state_contrast_regression; do
             printf 'Running native regression: %s\n' "$script"
-            timeout --signal=TERM --kill-after=15s 3m godot --headless --path native-source --script "res://scripts/tests/$script.gd" 2>&1 | tee "evidence/validation/$script.log"
+            LUMO_CONTRAST_OUTPUT="$GITHUB_WORKSPACE/evidence/validation/$script.json" timeout --signal=TERM --kill-after=15s 3m godot --headless --path native-source --script "res://scripts/tests/$script.gd" 2>&1 | tee "evidence/validation/$script.log"
             if grep -F 'SCRIPT ERROR:' "evidence/validation/$script.log"; then exit 1; fi
           done
           timeout --signal=TERM --kill-after=15s 3m godot --headless --path native-source --script res://scripts/tests/learning_english_regression.gd \
@@ -290,7 +291,7 @@ jobs:
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           python3 -m py_compile .github/probes/lumo_nextgen_learning_android_probe.py .github/probes/lumo_nextgen_reference_android_probe.py .github/probes/lumo_nextgen_current_reference_android_probe.py tools/nextgen/prepare_current_learning_release.py
-          .probe-venv/bin/python -m unittest -v tools.android_qa.tests.test_nextgen_learning_android_probe tools.android_qa.tests.test_nextgen_reference_android_probe tools.android_qa.tests.test_nextgen_current_candidate
+          .probe-venv/bin/python -m unittest -v tools.android_qa.tests.test_nextgen_learning_android_probe tools.android_qa.tests.test_nextgen_reference_android_probe tools.android_qa.tests.test_nextgen_current_candidate tools.android_qa.tests.test_nextgen_current_native_stop
       - name: Enable the disposable accelerated emulator
         run: |
           set -euo pipefail

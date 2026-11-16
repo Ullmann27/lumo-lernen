@@ -169,6 +169,9 @@ APPROVED = {
     # 2031: reviewed Core owner/menu/resize fixes and offline speech normalization.
     # Preserve native identity; require a fresh signed APK and complete Android tour.
     2031: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+    # 2032: reviewed native learning-button text contrast in interactive states.
+    # Source identity only; a new signed APK and current Android gates are required.
+    2032: "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

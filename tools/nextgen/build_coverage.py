@@ -21,7 +21,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = "6f4a8c4753f4d06d0b392da0789b8162b2faa71b"
-NATIVE_PUBLISHED_PIN = "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef"
+NATIVE_PUBLISHED_PIN = "9d6ef1d704a0e54098a8f8f0818f36deae0e3789"
 CATALOG_PATH = Path(sys.argv[1])
 CATALOG = json.loads(CATALOG_PATH.read_text())
 HEAD = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
@@ -1323,6 +1323,8 @@ for path in (
     ".github/probes/lumo_nextgen_learning_android_probe.py",
     ".github/probes/lumo_nextgen_reference_android_probe.py",
     ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+    ".github/probes/lumo_nextgen_current_native_stop.py",
+    ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
     ".github/probes/lumo_nextgen_native_reader.py",
     ".github/probes/creative_android_probe.py",
     ".github/probes/run_lumo_nextgen_current_android.sh",
@@ -1331,6 +1333,8 @@ for path in (
     "tools/android_qa/tests/test_nextgen_native_reader.py",
     "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
     "tools/android_qa/tests/test_nextgen_current_candidate.py",
+    "tools/android_qa/tests/test_nextgen_current_native_stop.py",
+    "tools/nextgen/prepare_current_learning_release.py",
     "test/learning/core_conversation_route_test.dart",
     "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechFailureContract.kt",
     "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
