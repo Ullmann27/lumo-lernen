@@ -1,0 +1,36 @@
+name: LUMO Lernwerkstatt – fachspezifische 3D-Übergabe
+on:
+  push:
+    branches: [repair/lumo-learning-workshop-relevance-20261116]
+    paths:
+      - lib/domain/tutoring/native_learning_activity.dart
+      - lib/features/lumo3d/lumo3d_launcher.dart
+      - test/native_learning_workshop_relevance_test.dart
+      - .github/workflows/lumo-learning-workshop-qa.yml
+  pull_request:
+    branches: [chatgpt/lumo-nextgen-blender-flutter-apk-20261115]
+    paths:
+      - lib/domain/tutoring/native_learning_activity.dart
+      - lib/features/lumo3d/lumo3d_launcher.dart
+      - test/native_learning_workshop_relevance_test.dart
+      - .github/workflows/lumo-learning-workshop-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  flutter-learning-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Restore exact Flutter dependencies
+        run: flutter pub get
+      - name: Analyze native handoff and new regression
+        run: flutter analyze lib/domain/tutoring/native_learning_activity.dart lib/features/lumo3d/lumo3d_launcher.dart test/native_learning_workshop_relevance_test.dart
+      - name: Verify real clock and unsupported-task gating
+        run: flutter test test/native_learning_workshop_relevance_test.dart --reporter expanded
