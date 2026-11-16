@@ -32,6 +32,17 @@ def verify_tours(original, extra, *, source, native, version, version_name,
     require(extra.get("probe_sha256") == digest(PROBES / "lumo_nextgen_current_reference_android_probe.py") and
             extra.get("reference_probe_sha256") == digest(PROBES / "lumo_nextgen_reference_android_probe.py"),
             "Reference tour was produced by different probe sources")
+    return verify_observed_execution(original, extra, identity=identity,
+                                     original_result_sha256=original_result_sha256)
+
+
+def verify_observed_execution(original, extra, *, identity, original_result_sha256):
+    """Shared runtime gates after a caller validates its exact source/run mode.
+
+    The current-build caller above still requires QA == APK source. A separate
+    immutable replay caller must validate its distinct QA commit and source run;
+    neither caller may rewrite records to satisfy another mode's identity gate.
+    """
     for flag in ("historical_tour_pass_used", "private_app_data_written_by_probe", "apk_rebuilt_by_probe",
                  "fullModernizationComplete"):
         require(extra.get(flag) is False, "Reference evidence contract changed: " + flag)
@@ -44,7 +55,7 @@ def verify_tours(original, extra, *, source, native, version, version_name,
             previous.get("original_status") == original["status"] and
             previous.get("original_result_sha256") == original_result_sha256 and
             learning.valid_hex(original_result_sha256, 64), "Reference reset is not bound to the complete original result")
-    require(previous.get("installed_before_reset", {}).get("sha256") == x86_sha256 and
+    require(previous.get("installed_before_reset", {}).get("sha256") == identity["sha256"] and
             previous.get("synthetic_profile_before_reset") == original["final_profile"],
             "Original candidate/profile was not reverified before reference reset")
     device, extra_device = original.get("device", {}), extra.get("device", {})
