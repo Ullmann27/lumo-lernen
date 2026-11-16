@@ -1,0 +1,54 @@
+{
+  "sourceRun": 43819768114,
+  "jobId": 133139916176,
+  "qaCommit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "artifactId": 14204766749,
+  "archiveBytes": 37623671,
+  "archiveSha256": "660794dab77f440a7af869e60e51bfd310c014706570f37344a3a40447736ee0",
+  "originalStatus": "FAIL",
+  "selectedOriginalsOnly": true,
+  "allOriginalsRetainedInRootArchive": true,
+  "files": {
+    "0399-academy-open.xml": {
+      "member": "android/runtime-cases/0399-academy-open.xml",
+      "bytes": 32234,
+      "sha256": "adebe037630cf39c269b0695ada2ffb111f24adf7bad177a34694ef0b545216c",
+      "crc32": "4d8af0b9"
+    },
+    "0407-academy-tools.xml": {
+      "member": "android/runtime-cases/0407-academy-tools.xml",
+      "bytes": 31342,
+      "sha256": "1b066f94e1c5afff98523794e6bb3cb17821b7f517523847f55483c01130d7e0",
+      "crc32": "9da2bb24"
+    },
+    "0409-academy-tools-touch.json": {
+      "member": "android/runtime-cases/0409-academy-tools-touch.json",
+      "bytes": 107,
+      "sha256": "13625042c7ee5a7da8acdc512876739859e2e815bd76d73124606a024a0b3105",
+      "crc32": "f3e6cac7"
+    },
+    "0410-academy-tools-open.xml": {
+      "member": "android/runtime-cases/0410-academy-tools-open.xml",
+      "bytes": 31765,
+      "sha256": "6232ff708592881d1ac31815f3a34fec2bd3f0776cfcc1e6bbbbc5ba3a1d8284",
+      "crc32": "57a4a617"
+    },
+    "0417-academy-tools-open-scroll-search.json": {
+      "member": "android/runtime-cases/0417-academy-tools-open-scroll-search.json",
+      "bytes": 2117,
+      "sha256": "867d4e2dcb560b02bbb1f75401631a5ba2c9bfc40b7c6d3d4b0aa007c098d943",
+      "crc32": "eab9fd31"
+    }
+  },
+  "failureScreenshotReference": {
+    "path": "android/runtime-cases/0418-runtime-failure-current-screen.png",
+    "directory": false,
+    "compressedBytes": 1837726,
+    "selected": true,
+    "bytes": 1839125,
+    "sha256": "452cad84d59e6c3d02c52e307439b3dc413b71d02745570959ec4e568000e16d",
+    "crc32": "879c31ab"
+  },
+  "testBoundary": "Original XML/touch/search records are unchanged. Subsequent UI transport, scroll delivery and counterexamples are explicitly simulated host boundaries, not a new Android run."
+}

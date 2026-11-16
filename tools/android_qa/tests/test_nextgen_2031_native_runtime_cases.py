@@ -12,6 +12,7 @@ from pathlib import Path
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[3]
 SPEC = importlib.util.spec_from_file_location("native_runtime_cases_under_test",
@@ -366,6 +367,128 @@ class SlowerPanelReadinessTest(unittest.TestCase):
             self.execute(sequence)
         self.assertEqual(sequence.now, 90)
         self.assertEqual(sum(kind == "question" for kind, _ in sequence.inputs), 1)
+
+
+ACADEMY_FIXTURE = Path(__file__).parent / "fixtures/nextgen_academy_return_43819768114"
+
+
+class GuidedEntryReached(Exception):
+    """Stop the host harness after the real selector accepts the guided entry."""
+
+
+class AcademyReturnSequence(cases.learning.LearningProbe):
+    """Actual recorded XML; UI delivery and clock are explicitly simulated.
+
+    The original tools tap closes the recorded open panel. No native playback,
+    route execution or Android success is supplied by this navigation harness.
+    """
+    def __init__(self, state="open", mutate=None):
+        self.state, self.mutate = state, mutate
+        self.clock, self.counter = Clock(), 0
+        self.inputs, self.reads, self.saved = [], [], {}
+        self.base = self
+        self.source = {
+            "open": "0399-academy-open.xml",
+            "toggle-visible": "0407-academy-tools.xml",
+            "closed": "0410-academy-tools-open.xml",
+        }
+
+    def nodes(self, tag):
+        self.clock.sleep(.01)
+        self.reads.append(tag)
+        nodes = list(ET.fromstring((ACADEMY_FIXTURE / self.source[self.state]).read_bytes()).iter("node"))
+        return self.mutate(nodes) if self.mutate else nodes
+
+    def fresh(self, tag):
+        self.counter += 1
+        return f"{self.counter:04d}-{tag}"
+
+    def save(self, name, value):
+        self.saved[name] = copy.deepcopy(value)
+
+    def scroll(self, nodes, direction):
+        self.clock.sleep(.01)
+        if self.state == "open" and self.reads[-1] == "academy-tools":
+            self.state = "toggle-visible"
+        return True
+
+    def touch(self, box, tag, label):
+        self.inputs.append((label, tuple(box)))
+        if label == "Lernwerkzeuge & Geschichten":
+            original = json.loads((ACADEMY_FIXTURE / "0409-academy-tools-touch.json").read_text())
+            if tuple(box) != tuple(original["observed_bounds"]):
+                raise AssertionError("Simulated toggle is not the recorded original touch")
+            self.state = "closed"
+
+    def guided_course(self):
+        # This is the existing guided_course() first action, using its unchanged
+        # real unique/enabled selector. Stop before the unexecuted course route.
+        self.tap("Lumo erklärt es mir", "guided-entry")
+        raise GuidedEntryReached()
+
+
+class AcademyReturnNavigationTest(unittest.TestCase):
+    def run_to_entry(self, probe):
+        with patch.object(cases.time, "monotonic", probe.clock.monotonic), \
+                patch.object(cases.time, "sleep", probe.clock.sleep):
+            cases.bridge_active_stop(probe)
+
+    def test_recorded_fixtures_keep_original_bytes_and_closed_after_toggle(self):
+        manifest = json.loads((ACADEMY_FIXTURE / "manifest.json").read_text())
+        for name, record in manifest["files"].items():
+            raw = (ACADEMY_FIXTURE / name).read_bytes()
+            self.assertEqual(len(raw), record["bytes"])
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), record["sha256"])
+        probe = AcademyReturnSequence()
+        self.assertIn("Dein Lernatelier", cases.learning.node_labels(probe.nodes("fixture")))
+        # Replaying the unchanged generic academy() on this already-open state
+        # demonstrates the original toggle error; that shared helper is not edited.
+        with patch.object(cases.time, "monotonic", probe.clock.monotonic), \
+                patch.object(cases.time, "sleep", probe.clock.sleep), \
+                self.assertRaisesRegex(RuntimeError, "Current visible Flutter text missing: Dein Lernatelier"):
+            probe.academy()
+        self.assertEqual(probe.state, "closed")
+        self.assertEqual([label for label, _ in probe.inputs], ["Lernen", "Lernwerkzeuge & Geschichten"])
+
+    def test_open_original_return_reaches_current_guided_entry_without_toggling(self):
+        probe = AcademyReturnSequence()
+        with self.assertRaises(GuidedEntryReached):
+            self.run_to_entry(probe)
+        self.assertEqual([label for label, _ in probe.inputs], ["Lumo erklärt es mir"])
+        self.assertEqual(probe.state, "open")
+
+    def test_closed_original_state_remains_failure_without_taps_or_reopening(self):
+        probe = AcademyReturnSequence("closed")
+        with self.assertRaisesRegex(RuntimeError, "Current visible Flutter text missing: Dein Lernatelier"):
+            self.run_to_entry(probe)
+        self.assertEqual(probe.inputs, [])
+
+    def test_other_current_screen_cannot_reuse_the_old_academy_observation(self):
+        def replace_academy(nodes):
+            for node in nodes:
+                if node.get("content-desc") == "LUMO AKADEMIE":
+                    node.set("content-desc", "CONSTRUCTED OTHER SCREEN")
+            return nodes
+        probe = AcademyReturnSequence(mutate=replace_academy)
+        with self.assertRaisesRegex(RuntimeError, "Current visible Flutter text missing: LUMO AKADEMIE"):
+            self.run_to_entry(probe)
+        self.assertEqual(probe.inputs, [])
+
+    def test_disabled_or_ambiguous_current_guided_entry_never_gets_tapped(self):
+        for mode in ("disabled", "ambiguous"):
+            def alter_entry(nodes):
+                entry = next(node for node in nodes if node.get("content-desc") == "Lumo erklärt es mir")
+                if mode == "disabled":
+                    entry.set("enabled", "false")
+                else:
+                    duplicate = copy.deepcopy(entry)
+                    duplicate.set("bounds", "[96,1570][984,1724]")
+                    nodes.append(duplicate)
+                return nodes
+            probe = AcademyReturnSequence(mutate=alter_entry)
+            with self.subTest(mode=mode), self.assertRaises(RuntimeError):
+                self.run_to_entry(probe)
+            self.assertEqual(probe.inputs, [])
 
 
 if __name__ == "__main__":

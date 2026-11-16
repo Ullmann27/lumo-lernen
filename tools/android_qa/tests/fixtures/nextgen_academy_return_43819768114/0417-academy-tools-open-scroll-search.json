@@ -1,0 +1,80 @@
+{
+  "status": "NOT_FOUND",
+  "strategy": "forward_then_observed_boundary_reverse",
+  "non_scroll_observations": 0,
+  "gestures": [
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "dacd143f72000c8f61ab3c6f7d88d486e3031a9ccabe9ea7770f85be0b39e6a3",
+      "after": "39b3222cf9b9776a07ec13fbccfe3eb6d1e9ef90d4c5ac8b63d404a91912bda8",
+      "content_changed": true
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "39b3222cf9b9776a07ec13fbccfe3eb6d1e9ef90d4c5ac8b63d404a91912bda8",
+      "after": "39b3222cf9b9776a07ec13fbccfe3eb6d1e9ef90d4c5ac8b63d404a91912bda8",
+      "content_changed": false
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "39b3222cf9b9776a07ec13fbccfe3eb6d1e9ef90d4c5ac8b63d404a91912bda8",
+      "after": "39b3222cf9b9776a07ec13fbccfe3eb6d1e9ef90d4c5ac8b63d404a91912bda8",
+      "content_changed": false
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "39b3222cf9b9776a07ec13fbccfe3eb6d1e9ef90d4c5ac8b63d404a91912bda8",
+      "after": "9a3003e684d94b8da0ab0cf60c481aed7babd301a80f8d8f388c23dc9f7baeca",
+      "content_changed": true
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "9a3003e684d94b8da0ab0cf60c481aed7babd301a80f8d8f388c23dc9f7baeca",
+      "after": "9a3003e684d94b8da0ab0cf60c481aed7babd301a80f8d8f388c23dc9f7baeca",
+      "content_changed": false
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "9a3003e684d94b8da0ab0cf60c481aed7babd301a80f8d8f388c23dc9f7baeca",
+      "after": "9a3003e684d94b8da0ab0cf60c481aed7babd301a80f8d8f388c23dc9f7baeca",
+      "content_changed": false
+    }
+  ],
+  "reason": "target absent after both observed boundaries"
+}
