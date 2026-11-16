@@ -14,7 +14,7 @@ Produkt-/Tagquelle **e05a96a52aaf57e466e79831f15aaffd144284ee**, Native **678cb3
 | Zusatzlauf 3 | **43819768114 FAIL** vor Stopp durch erneuten Akademie-Toggle; Zahlenfehler/Korrektur, aktiver Wortwechsel und native Langsamer-Aktion getrennt belegt |
 | Zusatzlauf 4 | **43822740773 FAIL** vor erster Zahlenabgabe: 12 Wallpaper-Standbilder während Videoaufnahme; Video und späteres Fehlerbild zeigen tatsächliche Aufgabe. Keine belegte Entropie-Fehlentscheidung. Stopp weiterhin offen |
 | Zusatzlauf 5 | **43826704611 FAIL** um 07:55:52 UTC; erster Onboarding-Videotransfer scheitert mit ADB offline → Gerät nicht gefunden; alle vier Zusatzfälle noch nicht erreicht |
-| Zusatzlauf 6 | **43828196598** seit08:03:13UTC in_progress, QA **1c84838538f79100f660fefc776d8ba7472a61a2**; nur Laufnummer geändert, Quelle/Hostprüfer bestanden, Androidergebnis offen |
+| Zusatzlauf 6 | **43828196598 FAIL** um08:20:01UTC; Zahlenkorrektur, aktiverWortwechsel und nativeLangsamer-Teilfälle abgeschlossen. AktiveID13/PID7013 beobachtet, Stopptap wegenOCR-Timeout nicht ausgeführt |
 
 Alle vollständigen Originalarchive, Rohjoblogs, Metadaten und ausgewählte echte Bilder/Videos sind unter `docs/nextgen/evidence/ci-2031-complete-replay-verified/`, `ci-2031-publication-verified/` und `ci-2031-runtime-cases-numeric-capture-failure/` erhalten. Die erfolgreiche vollständige Tour besitzt **52 registrierte Screenshots und 26 Videos ohne Tonspur**, 230/230 aktuelle Hostprüfungen und zusätzlich unabhängig erneut geprüfte Originalresultate. Der Publisher bindet seine 31 Quellen an die erfolgreiche QA; Root prüfte zusätzlich 17 Replay-Fixtures. Zusatzfälle werden nicht zu einem fremden Gesamt-PASS zusammengesetzt.
 
