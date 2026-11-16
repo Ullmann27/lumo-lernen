@@ -172,6 +172,9 @@ APPROVED = {
     # 2032: reviewed native learning-button text contrast in interactive states.
     # Source identity only; a new signed APK and current Android gates are required.
     2032: "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+    # 2033 isolated workshop APK candidate, from public 2032 source with 3D
+    # clock, active holographic stage and inherited button-state contrast.
+    2033: "f07b007c2c0169ceeba75349420a47493a63569e",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
