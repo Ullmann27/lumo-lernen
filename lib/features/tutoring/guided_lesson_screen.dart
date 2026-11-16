@@ -1181,7 +1181,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
                       },
                       reduceMotion: _quiet),
             ),
-            if (_published != null)
+            if (NativeLearningActivity.fromLesson(widget.lesson, step) != null)
               Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: FilledButton.icon(
