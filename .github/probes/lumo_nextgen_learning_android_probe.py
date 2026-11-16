@@ -230,16 +230,16 @@ def observed_microphone_allow(nodes) -> tuple[str, tuple] | None:
         box = bounds(node, min_height=32)
         labels = [label for label in node_labels([node]) if normalize(label) in captions]
         if box and labels:
-            key = (node["package"], node.get("resource-id", ""), box)
+            key = (node.get("package"), node.get("resource-id", ""), box)
             controls.setdefault(key, labels[0])
     require(len(controls) <= 1, "Ambiguous visible microphone permission allow controls")
     if not controls:
         return None
     (package, _, box), caption = next(iter(controls.items()))
-    prompts = {normalize(label) for node in visible if node["package"] == package
+    prompts = {normalize(label) for node in visible if node.get("package") == package
                for label in node_labels([node])}
     if not prompts & requests:
-        readable_request = any(node["package"] == package and
+        readable_request = any(node.get("package") == package and
                                node.get("resource-id", "").endswith(":id/permission_message") and
                                node_labels([node]) for node in visible)
         require(not readable_request, "Visible control is not a verified Lumo Lernen Neu audio permission")
@@ -373,6 +373,36 @@ def microphone_outcome(labels: list[str]) -> str | None:
     )):
         return "explicit_device_limitation"
     return None
+
+
+def observed_postgrant_microphone_start(nodes) -> dict | None:
+    """An inactive-cancelled tap may be replaced only in this live EA task.
+
+    Permission readiness is not listening. This selector only permits a new
+    explicit UI tap; the caller must have granted permission in this attempt
+    and must still enforce the original outcome gate and time budget.
+    """
+    if any(node.get("package") in PERMISSION_PACKAGES for node in nodes):
+        return None
+    visible = [node for node in nodes if node.get("package") == PACKAGE and
+               node.get("enabled") == "true" and node.get("visible-to-user") == "true" and bounds(node)]
+    labels = node_labels(visible)
+    if not {"Mit Lumo sprechen", "Deine Aufgabe", BRIDGE_PROMPT} <= set(labels):
+        return None
+    ready = {label for label in labels if label.startswith("Spracherkennung:")}
+    if len(ready) != 1:
+        return None
+    status = next(iter(ready))
+    if not re.fullmatch(r"Spracherkennung: (?:de(?:[-_][A-Za-z0-9]{2,8})*|Deutsch)", status):
+        return None
+    # The EA error panel always includes the microphone text symbol. Also
+    # reject visible busy/error text; no second gesture may replace its state.
+    if microphone_outcome(labels) is not None or any(
+            "🎤" in label or re.search(r"\b(?:Zuhören|Fehler|Error)\b|^Erkannt:|in einer anderen Ansicht verwendet", label, re.I)
+            for label in labels):
+        return None
+    box = observed_control(visible, "Sprechen")
+    return {"bounds": box, "ready_status": status, "task_prompt": BRIDGE_PROMPT} if box else None
 
 
 PERFORMANCE_COUNTERS = (
@@ -939,6 +969,7 @@ class LearningProbe:
         observed = []
         observed_state = None
         permission_tapped = False
+        postgrant_started = False
         while time.monotonic() < deadline:
             nodes = self.nodes("microphone-outcome")
             # A hierarchy read must not authorize a late gesture or success
@@ -961,6 +992,20 @@ class LearningProbe:
                 observed_state = microphone_outcome(labels)
                 if observed_state is not None:
                     break
+                if permission_tapped and not chat4 and not postgrant_started:
+                    ready = observed_postgrant_microphone_start(nodes)
+                    remaining = deadline - time.monotonic()
+                    if ready and remaining > 0:
+                        # The app deliberately cancels pre-inactive microphone
+                        # preparation. This is one NEW observed UI request,
+                        # never automatic recording after a permission grant.
+                        self.touch(ready["bounds"], "microphone-postgrant-start", "Sprechen")
+                        postgrant_started = True
+                        self.save("microphone-postgrant-explicit-start", {
+                            **ready, "permission_grant_observed": True,
+                            "remaining_seconds_before_tap": remaining,
+                            "reason": "New explicit tap after observed grant and task-bound ready UI",
+                        })
             time.sleep(min(.6, max(0, deadline - time.monotonic())))
         require(observed_state is not None,
                 "Microphone permission did not transition to listening state or explicit device limitation before deadline"
@@ -968,7 +1013,8 @@ class LearningProbe:
                 "Microphone request produced neither listening state nor explicit device limitation")
         self.save("microphone-observation", {"labels": observed, "services": services,
                                              "observed_state": observed_state,
-                                             "permission_tapped": permission_tapped})
+                                             "permission_tapped": permission_tapped,
+                                             "postgrant_explicit_start": postgrant_started})
         self.capture("actual-microphone-outcome")
         self.tap("Stopp", "microphone-stop")
         self.see(stop_label, "microphone-stopped", scroll=True)
@@ -979,6 +1025,7 @@ class LearningProbe:
                 "visible_explanation": response, "task_grounding_label_observed": True,
                 "stop_visible": True, "microphone_request_observed": True,
                 "microphone_ui_outcome": observed_state,
+                "postgrant_explicit_start": postgrant_started,
                 "recognition": "NOT_VERIFIED", "recognition_observations": observed,
                 "limitation": "No real spoken utterance was supplied; emulator recognizer availability is recorded separately."}
 
