@@ -20,8 +20,10 @@ Ihr Manifest enthält die Originalpfade, Größen, Einzelhashes und Herkunft.
 ### Was die tatsächlichen Beobachtungen zeigen
 
 Alle **270 XMLs** `0213` bis `0482-switch-live-active-and-next.xml` enthalten
-den sichtbaren, aktivierten Knopf **„Jetzt selbstständig antworten“** bei
-`[83,858][998,1001]`. Sie enthalten **keinen einzigen individuellen Silbenknoten**,
+den sichtbaren, aktivierten Knopf **„Jetzt selbstständig antworten“**: **246**
+Beobachtungen bei `[83,858][998,1001]`, **24** bei `[83,918][998,1061]`
+(beispielsweise `0226-switch-live-active-and-next.xml`). Sie enthalten
+**keinen einzigen individuellen Silbenknoten**,
 weder aktiv noch inaktiv. Das selbst betrachtete Originalbild
 `0483-runtime-failure-current-screen.png` zeigt ebenfalls den unteren Teil der
 Werkbank, den Weiter-Knopf und die Gesprächsaktionen; die Silbenleiste liegt

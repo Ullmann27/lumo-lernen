@@ -11,7 +11,10 @@
   "individualSyllableNodeCount": 0,
   "activeSyllableNodeCount": 0,
   "allNextVisibleEnabled": true,
-  "nextBounds": "[83,858][998,1001]",
+  "nextBoundsHistogram": {
+    "[83,858][998,1001]": 246,
+    "[83,918][998,1061]": 24
+  },
   "originalOutcome": "FAIL",
   "inference": "The observation loop stayed on a viewport containing Next and Replay but no individual syllable nodes. Missing offscreen syllables does not establish absent playback.",
   "observations": [
