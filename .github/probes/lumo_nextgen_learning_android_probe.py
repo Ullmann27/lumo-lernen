@@ -230,16 +230,16 @@ def observed_microphone_allow(nodes) -> tuple[str, tuple] | None:
         box = bounds(node, min_height=32)
         labels = [label for label in node_labels([node]) if normalize(label) in captions]
         if box and labels:
-            key = (node["package"], node.get("resource-id", ""), box)
+            key = (node.get("package"), node.get("resource-id", ""), box)
             controls.setdefault(key, labels[0])
     require(len(controls) <= 1, "Ambiguous visible microphone permission allow controls")
     if not controls:
         return None
     (package, _, box), caption = next(iter(controls.items()))
-    prompts = {normalize(label) for node in visible if node["package"] == package
+    prompts = {normalize(label) for node in visible if node.get("package") == package
                for label in node_labels([node])}
     if not prompts & requests:
-        readable_request = any(node["package"] == package and
+        readable_request = any(node.get("package") == package and
                                node.get("resource-id", "").endswith(":id/permission_message") and
                                node_labels([node]) for node in visible)
         require(not readable_request, "Visible control is not a verified Lumo Lernen Neu audio permission")

@@ -1,0 +1,16 @@
+{
+  "workflowRun": 43781148281,
+  "jobId": 133018387128,
+  "qaCommit": "6f8532940693cbba7059bed4037f9aa6d924bac4",
+  "apkSource": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "version": "0.13.16+2028",
+  "conclusion": "failure",
+  "artifactId": 14188204109,
+  "members": 177,
+  "componentFix": {
+    "producerCommit": "7ec6e995bb517f3b8fd74b39522404db3f1f594d",
+    "publishedCommit": "842285f1fb7458f72a8491e34ceed922a96fa77a",
+    "tree": "4488c4b41b2fb3cb7d1f50a06f8cea1a9da4cece"
+  }
+}

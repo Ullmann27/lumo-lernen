@@ -1,0 +1,63 @@
+{
+  "schema": "lumo.android.qa.recorded.permission.v1",
+  "workflowRun": 43781148281,
+  "jobId": 133018387128,
+  "artifactId": 14188204109,
+  "artifactArchiveBytes": 13415788,
+  "artifactArchiveSha256": "3764ad4df03464c277d7340beaa487eccfc1e64230155ea757164e1083e97a87",
+  "apkSourceCommit": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "nativeSourceCommit": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "readerBaseCommit": "a6ff8f6dc1c99f9ed962233d5ebdb3adcf4f7f0f",
+  "files": [
+    {
+      "file": "0139-microphone-outcome.xml",
+      "originalMember": "android/original-android/0139-microphone-outcome.xml",
+      "bytes": 30798,
+      "sha256": "3b4d7f4b79585edb0bbeb0e7e7bcdc102cd06e1b797c213dc60b8f34845e6e6b",
+      "copy": "byte-identical, including original line endings"
+    }
+  ],
+  "scope": "Actual ready microphone permission hierarchy. The runtime parser returns xml.etree.ElementTree.Element nodes, not dictionaries. This failed run did not grant the permission or complete the microphone flow.",
+  "runtimePass": false,
+  "checkerRuns": [
+    {
+      "file": "permission-element-red.log",
+      "bytes": 1321,
+      "sha256": "60faa517ea76c322bb462f7a886fd308ebd6a48dcfca44339260917d2ef61226"
+    },
+    {
+      "file": "permission-element-green.log",
+      "bytes": 10614,
+      "sha256": "2a0636289c8504e2838e173b9f19830384fb63f6f04eb4ca831179abace15ffe"
+    }
+  ],
+  "checkerScope": {
+    "red": {
+      "tests": 1,
+      "result": "FAIL_EXPECTED",
+      "error": "TypeError: element indices must be integers"
+    },
+    "green": {
+      "tests": 64,
+      "result": "PASS",
+      "newRecordedElementParserCase": 1,
+      "existingPermissionCasesNowUsingElements": 14
+    },
+    "androidExecutedByThisCorrection": false
+  },
+  "checkedSources": [
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "sha256": "3c33df265f5893644b18dd92ec225eab314d8dd0b370d99684f7a07ac41ca8af"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "sha256": "a404dd8dc574bfafd130d909865f90f164d08d761fdb083415e2a5d3830ac787"
+    },
+    {
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4"
+    }
+  ],
+  "recordedRuntimeReaderSha256": "f4a06a139a6bc814b31cee70d2b1654d60bdcd2498a8d340bfc5a8a90c916488"
+}

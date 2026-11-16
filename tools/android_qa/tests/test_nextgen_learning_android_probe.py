@@ -6,6 +6,7 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import sys
 import tempfile
 from types import SimpleNamespace
 import unittest
@@ -220,7 +221,7 @@ class ObservationTest(unittest.TestCase):
 
 
 class MicrophonePermissionFlowTest(unittest.TestCase):
-    """Original loading XML plus explicitly synthetic later frames; no device run."""
+    """Runtime Element nodes: original XML and labelled synthetic frames; no device run."""
     fixtures = ROOT / "tools/android_qa/tests/fixtures/nextgen_permission_43774460935"
 
     @classmethod
@@ -230,7 +231,7 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
         data = (cls.fixtures / member["file"]).read_bytes()
         assert len(data) == member["bytes"]
         assert hashlib.sha256(data).hexdigest() == member["sha256"]
-        cls.original = [n.attrib for n in ET.fromstring(data).iter("node")]
+        cls.original = list(ET.fromstring(data).iter("node"))
 
     def setUp(self):
         temporary = tempfile.TemporaryDirectory()
@@ -238,9 +239,9 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
         self.out = Path(temporary.name)
 
     def node(self, text, **changes):
-        return {"text": text, "content-desc": "", "enabled": "true", "clickable": "false",
+        return ET.Element("node", {"text": text, "content-desc": "", "enabled": "true", "clickable": "false",
                 "visible-to-user": "true", "package": probe.PACKAGE,
-                "bounds": "[30,40][1030,180]", **changes}
+                "bounds": "[30,40][1030,180]", **changes})
 
     def permission(self, prompt="Allow Lumo Lernen Neu to record audio?", **button_changes):
         # Synthetic transport fixtures. Their geometry/text is not a recorded
@@ -287,8 +288,8 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
     def test_original_zero_height_dialog_is_polled_until_a_fresh_visible_audio_target(self):
         system = [n for n in self.original if "permissioncontroller" in n.get("package", "")]
         self.assertEqual(len(system), 1)
-        self.assertEqual(system[0]["visible-to-user"], "false")
-        self.assertEqual(system[0]["bounds"], "[27,1205][1053,1205]")
+        self.assertEqual(system[0].get("visible-to-user"), "false")
+        self.assertEqual(system[0].get("bounds"), "[27,1205][1053,1205]")
         ready = self.permission()
         run = self.scenario([self.original, ready, ready, self.listening()])
         result = run.run()
@@ -299,7 +300,7 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
 
     def test_case_aliases_and_duplicate_semantics_are_one_real_allow_target(self):
         ready = self.permission(**{"content-desc": "WHILE USING THE APP"})
-        ready.append(dict(ready[1]))
+        ready.append(copy.deepcopy(ready[1]))
         run = self.scenario([ready, self.listening()])
         self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
         self.assertEqual(len(run.touches), 1)
@@ -313,15 +314,17 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
                 with self.subTest(package=package, caption=caption):
                     ready = self.permission(prompt)
                     for node in ready:
-                        node["package"] = package
-                    ready[1]["text"] = caption
+                        node.set("package", package)
+                    ready[1].set("text", caption)
                     run = self.scenario([ready, self.listening()])
                     self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
                     self.assertEqual(len(run.touches), 1)
 
     def test_two_different_allow_buttons_remain_ambiguous(self):
         ready = self.permission()
-        ready.append({**ready[1], "bounds": "[130,1400][950,1560]"})
+        other = copy.deepcopy(ready[1])
+        other.set("bounds", "[130,1400][950,1560]")
+        ready.append(other)
         run = self.scenario([ready, self.listening()])
         with self.assertRaisesRegex(RuntimeError, "[Aa]mbiguous"):
             run.run()
@@ -342,7 +345,7 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
                         {"package": probe.PACKAGE}):
             with self.subTest(changes=changes):
                 ready = self.permission()
-                ready[0].update(changes)
+                ready[0].attrib.update(changes)
                 run = self.scenario([ready])
                 with self.assertRaisesRegex(RuntimeError, "Microphone request produced neither"):
                     run.run()
@@ -352,7 +355,7 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
     def test_visible_button_waits_for_fresh_audio_prompt_before_grant(self):
         ready = self.permission()
         partial = copy.deepcopy(ready)
-        partial[0]["visible-to-user"] = "false"
+        partial[0].set("visible-to-user", "false")
         run = self.scenario([partial, ready, self.listening()])
         self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
         self.assertEqual(len(run.observations), 3)
@@ -413,6 +416,38 @@ class MicrophonePermissionFlowTest(unittest.TestCase):
                 run = self.scenario([[self.node(label)]])
                 self.assertEqual(run.run()["microphone_ui_outcome"], outcome)
                 self.assertEqual(run.touches, [])
+
+    def test_recorded_ready_dialog_uses_actual_runtime_xml_parser_and_element_nodes(self):
+        fixture = ROOT / "tools/android_qa/tests/fixtures/nextgen_permission_43781148281"
+        manifest = json.loads((fixture / "manifest.json").read_text())
+        member = manifest["files"][0]
+        data = (fixture / member["file"]).read_bytes()
+        self.assertEqual(len(data), member["bytes"])
+        self.assertEqual(hashlib.sha256(data).hexdigest(), member["sha256"])
+        scripts = ROOT / "scripts/probes"
+        base_spec = importlib.util.spec_from_file_location("permission_runtime_smoke", scripts / "pr207_android_smoke.py")
+        base = importlib.util.module_from_spec(base_spec)
+        base_spec.loader.exec_module(base)
+        spec = importlib.util.spec_from_file_location("permission_runtime_ui", scripts / "pr207_android_ui_probe.py")
+        live = importlib.util.module_from_spec(spec)
+        # Only the Android transport is substituted. The actual live_nodes
+        # function parses the unchanged recorded XML and returns its Elements.
+        with patch.dict(sys.modules, {"uiautomator2": SimpleNamespace(), "pr207_android_smoke": base}):
+            spec.loader.exec_module(live)
+        def dump_hierarchy(**kwargs):
+            self.assertEqual(kwargs, {"compressed": False, "pretty": False})
+            return data.decode("utf-8")
+        live._device = SimpleNamespace(dump_hierarchy=dump_hierarchy)
+        instance = probe.LearningProbe.__new__(probe.LearningProbe)
+        instance.out, instance.counter, instance.live = self.out, 0, live
+        nodes = instance.nodes("recorded-ready-permission")
+        self.assertTrue(nodes and all(isinstance(node, ET.Element) for node in nodes))
+        self.assertEqual(probe.observed_microphone_allow(nodes),
+                         ("While using the app", (137, 1127, 943, 1281)))
+        run = self.scenario([self.original, nodes, nodes, self.listening()])
+        self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
+        self.assertEqual(len(run.touches), 1)
+        self.assertEqual(run.touches[0][0], (137, 1127, 943, 1281))
 
 
 class RecordedConversationHintTest(unittest.TestCase):

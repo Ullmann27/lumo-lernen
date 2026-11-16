@@ -1,0 +1,185 @@
+{
+  "schema": "lumo.nextgen.learning.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "run_id": "5f6ff988ad9044e69a429b7a5a9b82dc",
+  "started_utc": "2026-11-16T00:37:06Z",
+  "probe_sha256": "f4a06a139a6bc814b31cee70d2b1654d60bdcd2498a8d340bfc5a8a90c916488",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "synthetic_profile": "LumoNextTest",
+  "candidate": {
+    "sha256": "6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9",
+    "flutter_source_commit": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+    "versionCode": 2028,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.16",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "69899113f134c04550a5073cd9657315e0cb0bb418f9e06fa76a482041757bc0",
+      "bytes": 278589708
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2028,
+    "versionName": "0.13.16",
+    "sha256": "6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794789488931779",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T00:38:08.931779"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0023-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "630b1926485da133ee3193e73127675ed4dfdc3e46c6a027b668b975b9596706",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.082,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0057-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "7c7284ff8ff54de7d96d0789d16d416d70b7ef84d039e09df5ca5f3f78a60b9b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0073-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "9f5a00a323c0f5c00ab96054d1ded498789362ded2401f6d4d072f575e87f4be",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.093,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0106-bridge-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "d0d60cb230dca5bede2095f69940f4e873e806861001a13d50393ead076ef38b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.891,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0125-typed-why-response.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2e5ed23daad54d0ba3fc52c4b5fe09ef65048c15e0a9226afa867f4a19a1984e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.928,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0133-conversation-stopped.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "075255e808e0d9d859202271818448a7d651d1c06710f2c57c946703cb072ff6",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.758,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0140-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "54a9d3a1e09ee8fc6ec05d1a21691315d8d7e9e60104b814c15e3438ab7201a0"
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "ee9a7fabb0a6cd28de7b3bc0adecd3f4a7ba64ddf792d00af763bbc8a55e89bf",
+      "bytes": 2097891,
+      "duration_seconds": 26.434011,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 32.4,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0094-eight-plus-five-explanation.mp4",
+      "sha256": "483b1216eb302641169636e35d29ddfa76ede2cdaf8674380a9d2be2d5dc0e02",
+      "bytes": 3113724,
+      "duration_seconds": 27.154267,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 28.88,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "error": "element indices must be integers",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1329, in main\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1295, in run\n    self.labs()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 993, in labs\n    self.result[\"conversation\"] = self.conversation()\n                                  ^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 952, in conversation\n    allowed = observed_microphone_allow(system)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 233, in observed_microphone_allow\n    key = (node[\"package\"], node.get(\"resource-id\", \"\"), box)\n           ~~~~^^^^^^^^^^^\nTypeError: element indices must be integers\n",
+  "finished_utc": "2026-11-16T00:39:55Z"
+}
