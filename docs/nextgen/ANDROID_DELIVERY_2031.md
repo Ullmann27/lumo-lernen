@@ -53,6 +53,8 @@ Diese Nachweise haben unterschiedliche Quellen und Prüfumfänge. Sie sind keine
 
 ## Erhaltene Fehlerbelege und konkrete Grenzen
 
+Eine zusätzliche rein lesende Auswertung der vier tatsächlichen Flutter-Modell-XMLs zeigt 29 von 35 aktivierten sichtbaren Klickrechtecken mit mindestens 48 × 48 dp. Sechs weitere Rechtecke sind am unteren Scrollrand teilweise abgeschnitten. Dies ist keine Vollabnahme aller Berührungsflächen und kein nativer 3D-Nachweis; alle Einzelwerte und Originaldateihashes stehen in [ci-2031-layout-touch-inspection](evidence/ci-2031-layout-touch-inspection/README.md).
+
 Kandidat 2030 endete mit **Validierung PASS, Build PASS, Android FAIL, Veröffentlichung SKIPPED**. Sein erster Modell-Tipp nach dem Gespräch bewahrte den Lernstand; das bestehende Aufnahmedauer-Gate stoppte anschließend die Tour. Die 225 Originaldateien und das vollständige Jobprotokoll bleiben verlustfrei archiviert: [ci-2030-android-resize-recording-failure](evidence/ci-2030-android-resize-recording-failure/README.md). Die getrennten 2029-Diagnosen sind ausdrücklich keine Freigabe für 2031.
 
 **`fullModernizationComplete=false` bleibt bestehen.** Die inventarisierten Einstiege sind kein vollständiger Test aller generierten Aufgabenvarianten. Viele Bereiche verwenden eine gemeinsame native Aufgabenkarte; die 3D-Figur läuft über die vorhandene separate Godot-Activity. Praktische Beobachtungsaufgaben behalten ihren absichtlichen manuellen Journalnachweis.
