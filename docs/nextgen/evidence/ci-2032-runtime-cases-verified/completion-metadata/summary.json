@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "status": "METADATA_ONLY_COMPLETED_SUCCESS",
+  "observedAt": "2026-11-16T11:16:47.001Z",
+  "run": {
+    "id": 43853317375,
+    "attempt": 1,
+    "head_sha": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+    "branch": "qa/lumo-nextgen-2032-runtime-cases-20261116",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43853317375"
+  },
+  "job": {
+    "id": 133251156609,
+    "name": "android-runtime-cases",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-11-16T10:56:44Z",
+    "completed_at": "2026-11-16T11:15:03Z",
+    "allFourCasesGate": {
+      "name": "Require all four current observed cases",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-16T11:14:54Z",
+      "completed_at": "2026-11-16T11:14:54Z"
+    }
+  },
+  "artifact": {
+    "id": 14220263387,
+    "name": "lumo-nextgen-2032-runtime-cases-evidence",
+    "size_in_bytes": 65735724,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14220263387",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14220263387/zip",
+    "expired": false,
+    "created_at": "2026-11-16T11:14:59Z",
+    "expires_at": "2026-12-16T11:14:55Z",
+    "updated_at": "2026-11-16T11:14:59Z",
+    "digest": "sha256:17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed",
+    "workflow_run": {
+      "id": 43853317375,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "qa/lumo-nextgen-2032-runtime-cases-20261116",
+      "head_sha": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc"
+    }
+  },
+  "metadataSources": {
+    "run": "GitHub REST JSON returned by github_fetch",
+    "jobs": "GitHub REST JSON returned by github_fetch at run/jobs?filter=latest",
+    "artifacts": "GitHub connector structured artifact metadata; not artifact bytes"
+  },
+  "limits": {
+    "artifactDownloaded": false,
+    "artifactBytesLocallyVerified": false,
+    "originalResultJsonRead": false,
+    "imagesOrVideosRead": false,
+    "jobLogsRead": false,
+    "rerunTriggered": false,
+    "remoteMutation": false,
+    "rootOrWorktreeMutation": false
+  },
+  "retrievalNote": "The direct job URL was rejected by github_fetch's endpoint allowlist (HTTP 400). Complete final job metadata was subsequently fetched through the permitted run/jobs subresource; the rejected URL was not used as evidence."
+}

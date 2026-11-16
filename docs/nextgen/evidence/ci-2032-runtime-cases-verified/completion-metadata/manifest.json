@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "scope": "GitHub completion metadata only; no artifact ZIP or original runtime files downloaded",
+  "files": [
+    {
+      "path": "artifacts-metadata.json",
+      "bytes": 886,
+      "sha256": "0f4cd44e59701e431a061881efacfea4f196f7138cae17d70a7ea75ac3872eb4"
+    },
+    {
+      "path": "status-observations.json",
+      "bytes": 3959,
+      "sha256": "38539b2bb1b20e25d60e4b19c913f0519de987366baefc7ebac19be548028891"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2522,
+      "sha256": "d448f2da21bcc06320ac24404da717153356bbc3eb5ff25ba881a2ec4f3660cb"
+    },
+    {
+      "path": "workflow-jobs.json",
+      "bytes": 3490,
+      "sha256": "250b59fda664dcb84805140f0f44eb96c24c98e7c7ff078a6491471f8a7f9654"
+    },
+    {
+      "path": "workflow-run.json",
+      "bytes": 12971,
+      "sha256": "517375db8ff9888f00d2d15bb71777370d8037955d4156010465fa4731c416b0"
+    }
+  ]
+}

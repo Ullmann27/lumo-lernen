@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-16T11:24:08.811067+00:00",
+  "status": "ORIGINAL_RESULT_AND_ARCHIVE_BOUND_INDEPENDENT_RAW_REVIEW_PENDING",
+  "workflowRun": 43853317375,
+  "jobId": 133251156609,
+  "artifactId": 14220263387,
+  "qaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "apkSha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+  "originalResult": {
+    "path": "original/android/runtime-cases/runtime-cases-result.json",
+    "bytes": 129055,
+    "sha256": "8dd0a99e5da7266a3470a9408e5e58b4f47d17d3f408baaedc7967e64120dd98",
+    "runId": "3a939492793b4036b7a6289cf7923ea4",
+    "startedUtc": "2026-11-16T11:00:03Z",
+    "finishedUtc": "2026-11-16T11:14:53Z",
+    "status": "PASS_WITH_LIMITATIONS",
+    "verification": {
+      "cases": [
+        "numeric_wrong_then_correct",
+        "flutter_switch_during_syllable_playback",
+        "native_banana_slower",
+        "native_pattern_then_explicit_core_answer"
+      ],
+      "release_eligible": false,
+      "full_replay_replaced": false,
+      "current_pattern_core_submission": "PASS"
+    }
+  },
+  "numericWrong": {
+    "status": "PASS",
+    "stored_attempt": {
+      "id": "1794826984412138-0",
+      "sid": "self",
+      "sub": "Mathematik",
+      "unit": "Plus bis 20",
+      "comp": "Addition mit Zehnerübergang",
+      "ok": false,
+      "at": "2026-11-16T11:03:04.412138",
+      "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+      "a": "15",
+      "e": "16",
+      "ms": 12610
+    },
+    "lab_attempt_id": "lab-attempt-a1e024e383cfce4766bbbb513268d734-2",
+    "journey_key": "flutter.lumo_progress_journey_v1::local-27bd43515949cfddeb8e48f1cae1293b",
+    "journey_attempts": 2,
+    "support": {
+      "checkpoint_support": 0,
+      "prior_wrong_answer": false,
+      "stored_hint_used": false,
+      "assisted_correct_delta": 0
+    },
+    "attempt_log_id_is_separate_from_lab_evidence_id": true
+  },
+  "numericCorrected": {
+    "status": "PASS",
+    "stored_attempt": {
+      "id": "1794826989702794-1",
+      "sid": "self",
+      "sub": "Mathematik",
+      "unit": "Plus bis 20",
+      "comp": "Addition mit Zehnerübergang",
+      "ok": true,
+      "at": "2026-11-16T11:03:09.702794",
+      "hint": true,
+      "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+      "a": "16",
+      "e": "16",
+      "ms": 5299
+    },
+    "lab_attempt_id": "lab-attempt-a1e024e383cfce4766bbbb513268d734-3",
+    "journey_key": "flutter.lumo_progress_journey_v1::local-27bd43515949cfddeb8e48f1cae1293b",
+    "journey_attempts": 3,
+    "support": {
+      "checkpoint_support": 0,
+      "prior_wrong_answer": true,
+      "stored_hint_used": true,
+      "assisted_correct_delta": 1
+    },
+    "attempt_log_id_is_separate_from_lab_evidence_id": true
+  },
+  "wordSwitch": {
+    "captureToTouchSeconds": 0.13834299899997404,
+    "observation": {
+      "active_label": "Silbe 1: Ba, gerade aktiv",
+      "next_bounds": [
+        60,
+        1474,
+        1020,
+        1578
+      ],
+      "next_label": "Jetzt selbstständig antworten",
+      "evidence": "same fresh Android accessibility hierarchy",
+      "xml": "0242-switch-live-active-and-next.xml",
+      "xml_sha256": "e7da845a5514edaa5ed6bf61a5eaa8354637aa74dd4cec27081e21313598afa8",
+      "capture_started_monotonic": 619.545031869,
+      "capture_finished_monotonic": 619.682987693,
+      "touch_requested_monotonic": 619.683374868
+    },
+    "verification": {
+      "status": "PASS",
+      "preservation": {
+        "profile_id": "1794826885736046",
+        "learning_keys_compared": 7,
+        "same_task_checkpoint": false
+      },
+      "from_problem": "word-banane",
+      "to_problem": "word-rakete",
+      "same_session": true,
+      "no_new_attempt_or_reward": true
+    }
+  },
+  "nativeSlower": {
+    "previousIds": [
+      3
+    ],
+    "playback": {
+      "pid": 6177,
+      "utterance_ids": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "segments": 4,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "acousticSpeedVerified": false
+  },
+  "patternCore": {
+    "status": "PASS",
+    "submission_control": "observed Core answer card",
+    "stored_attempt": {
+      "id": "1794827688610310-2",
+      "sid": "self",
+      "sub": "Logik",
+      "unit": "Muster",
+      "comp": "Muster",
+      "ok": true,
+      "at": "2026-11-16T11:14:48.610310",
+      "hint": true,
+      "q": "Das Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?",
+      "a": "Quadrat",
+      "e": "Quadrat",
+      "ms": 287804
+    },
+    "changed_learning_keys": [
+      "flutter.lumo_attempt_log_v1",
+      "flutter.lumo_progress_daily::local-27bd43515949cfddeb8e48f1cae1293b",
+      "flutter.lumo_progress_journey_v1::local-27bd43515949cfddeb8e48f1cae1293b",
+      "flutter.lumo_progress_last::local-27bd43515949cfddeb8e48f1cae1293b",
+      "flutter.lumo_progress_skills::local-27bd43515949cfddeb8e48f1cae1293b",
+      "flutter.lumo_reward_wallet_v1"
+    ],
+    "native_was_ungraded_before_submission": true
+  },
+  "resultScreenCount": 28,
+  "resultVideoCount": 12,
+  "fullModernizationComplete": false,
+  "independentRawAndMediaReviewComplete": false
+}

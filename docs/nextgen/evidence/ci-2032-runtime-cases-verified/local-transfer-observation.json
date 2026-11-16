@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "artifactId": 14220263387,
+  "workflowRun": 43853317375,
+  "originalAndroidJobResult": "SUCCESS",
+  "firstLocalTransfer": {
+    "reader": "download_verified_artifact.py",
+    "buffering": "whole ZIP in Python BytesIO",
+    "childExitCode": -9,
+    "outerExitCode": 247,
+    "stderrAvailable": false,
+    "evidenceDestinationCreated": false,
+    "retainedFiles": 0,
+    "bytesReceivedBeforeTermination": "unknown",
+    "cause": "not established"
+  },
+  "secondLocalTransfer": {
+    "reader": "verification-tools/download_verified_artifact_stream.py",
+    "bufferBytes": 1048576,
+    "wholeArchiveInPythonMemory": false,
+    "status": "PASS",
+    "archiveBytes": 65735724,
+    "archiveSha256": "17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed",
+    "members": 1889,
+    "uncompressedBytes": 76019541,
+    "allMemberCrcAndShaVerified": true
+  },
+  "androidRunRepeated": false,
+  "originalFilesModified": false
+}

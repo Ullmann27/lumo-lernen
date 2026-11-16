@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "id": 14220263387,
+      "name": "lumo-nextgen-2032-runtime-cases-evidence",
+      "size_in_bytes": 65735724,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14220263387",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14220263387/zip",
+      "expired": false,
+      "created_at": "2026-11-16T11:14:59Z",
+      "expires_at": "2026-12-16T11:14:55Z",
+      "updated_at": "2026-11-16T11:14:59Z",
+      "digest": "sha256:17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed",
+      "workflow_run": {
+        "id": 43853317375,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-nextgen-2032-runtime-cases-20261116",
+        "head_sha": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc"
+      }
+    }
+  ]
+}

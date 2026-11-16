@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-16T11:21:58.894249+00:00",
+  "workflowRun": 43853317375,
+  "jobId": 133251156609,
+  "artifactId": 14220263387,
+  "qaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "archiveBytes": 65735724,
+  "archiveSha256": "17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed",
+  "memberCount": 1889,
+  "uncompressedBytes": 76019541,
+  "allOriginalsRetainedInArchiveParts": true,
+  "archiveFormat": "Ordered byte-exact concatenation of listed Git blobs reconstructs original Actions ZIP",
+  "archivePartsMaterializedInRootWorktree": false,
+  "rootWorktreeSparseRuleAdded": "!/docs/nextgen/evidence/ci-2032-runtime-cases-verified/archive-parts/",
+  "originalArchiveAndAllMembersRemainAt": "/dev/shm/lumo-2032-runtime-cases-originals",
+  "parts": [
+    {
+      "path": "archive-parts/artifact.zip.part001",
+      "bytes": 8388608,
+      "sha256": "1484e09cad756d135affee5b64c6fa5cf9d005b4f40cd0a609bdf1f6c56a1950",
+      "gitBlob": "6dc7b5385019ab8c30f362f481637ed228b2419b"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part002",
+      "bytes": 8388608,
+      "sha256": "ec787ddecf9fea9ce5d56b61725faf041bcbc004eb33e428d99b0e345dfeac9f",
+      "gitBlob": "b3924e238412c1c111487394257b2543569eee4c"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part003",
+      "bytes": 8388608,
+      "sha256": "b3664a010a1b1ce0557c9fae025e9b7d7f6683e862730076340761b0a5055815",
+      "gitBlob": "f3e2f48c2eda3566c838ecbea6a18af28e7e2052"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part004",
+      "bytes": 8388608,
+      "sha256": "dd258e47cf99bd5030590e1dfaf007d67c263076613af9c27844e5c638be60dd",
+      "gitBlob": "cc36a24635c1f58d11c7b49fc1911fda5e761735"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part005",
+      "bytes": 8388608,
+      "sha256": "094353f9fe4e2f44452e557ac42c0cdc487ed2e2a0cd040f5c62365339562ec7",
+      "gitBlob": "7d0566eb4b4d46d602d2793cb0a741835c44f2b8"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part006",
+      "bytes": 8388608,
+      "sha256": "94006c37191efca746dd21770678ecf3155c02d323db0c103f0e8366c377b641",
+      "gitBlob": "b16dc0bb4f96ad689a18cad821d3ae3517c892cb"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part007",
+      "bytes": 8388608,
+      "sha256": "e5ad07a5cfaa85fd449554c6f8e45ceb990794ffa7ad2ea5cd0bc6c70be6e471",
+      "gitBlob": "a7aef83b55c9a0b6fa8ecf608810c39f1f6cf5f8"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part008",
+      "bytes": 7015468,
+      "sha256": "f57224f9f762eb67bfc81b5abafcdb969e29020188a9342d45103ffecca53905",
+      "gitBlob": "ac6bd7828630cd53b285b6ea2d6b8d9f44a95eb6"
+    }
+  ],
+  "selectedOriginals": [
+    {
+      "path": "download/verified-download.json",
+      "bytes": 22544,
+      "sha256": "34e3ac174b2376228a76d973193ced3c03856905aea862a003973e9de4bf6232",
+      "crc32": "8fc1025d"
+    },
+    {
+      "path": "source/qa-source-binding.json",
+      "bytes": 20245,
+      "sha256": "bdbb80f6b63a58eb5b84b88ebc1b9596a69547a1ed4924e48267b86ad0a6b0bd",
+      "crc32": "edbfab99"
+    },
+    {
+      "path": "android/runtime-cases/runtime-cases-result.json",
+      "bytes": 129055,
+      "sha256": "8dd0a99e5da7266a3470a9408e5e58b4f47d17d3f408baaedc7967e64120dd98",
+      "crc32": "f4d2768a"
+    },
+    {
+      "path": "android/runtime-cases/qa-source-binding.json",
+      "bytes": 20245,
+      "sha256": "bdbb80f6b63a58eb5b84b88ebc1b9596a69547a1ed4924e48267b86ad0a6b0bd",
+      "crc32": "edbfab99"
+    },
+    {
+      "path": "android/runtime-cases/0149-numeric-before-wrong-answer.png",
+      "bytes": 442968,
+      "sha256": "fea4fc2b43849a312457b370c5846a4ddb108b38142ca24e6d49eb978007d667",
+      "crc32": "253f3fdb"
+    },
+    {
+      "path": "android/runtime-cases/0155-numeric-wrong-before-explicit-check.png",
+      "bytes": 443680,
+      "sha256": "5d1fe7b9c43fb7cd984ca0cd197ed7dd1444acc0b91896712624c2e03cd98d98",
+      "crc32": "d91697b8"
+    },
+    {
+      "path": "android/runtime-cases/0163-numeric-wrong-after-assessment.png",
+      "bytes": 458119,
+      "sha256": "d72af0dde591c5a02a24022e46be1fc2a7a9fd9a1c696f1ffda02189d60d0a31",
+      "crc32": "ba7586df"
+    },
+    {
+      "path": "android/runtime-cases/0169-numeric-corrected-before-explicit-check.png",
+      "bytes": 459567,
+      "sha256": "bb13b36212dab35669bbb3976e3f2d1635a670876fd8e22a23d3098dee931292",
+      "crc32": "51e2b3f5"
+    },
+    {
+      "path": "android/runtime-cases/0177-numeric-corrected-after-assessment.png",
+      "bytes": 503554,
+      "sha256": "ec218c9a50eb48751735f26c203969b674f38071c15df722ec37fdc9f5641aa8",
+      "crc32": "3cb17341"
+    },
+    {
+      "path": "android/runtime-cases/0223-switch-joint-viewport-before-replay.png",
+      "bytes": 642763,
+      "sha256": "6d417acb802da2f8ec44b06ac9221f6930d3f4f3bf72a2fa47a5f8be03cae7fd",
+      "crc32": "b176d5b0"
+    },
+    {
+      "path": "android/runtime-cases/0249-switch-new-unanswered-rakete.png",
+      "bytes": 293321,
+      "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+      "crc32": "8063fc93"
+    },
+    {
+      "path": "android/runtime-cases/0253-switch-original-density-restored.png",
+      "bytes": 293321,
+      "sha256": "348128e53407b7fb480e761bad3a27ab099d628d5eb1de74661dac6b4a7868ca",
+      "crc32": "8063fc93"
+    },
+    {
+      "path": "android/runtime-cases/0342-runtime-banana-before-slower.png",
+      "bytes": 583805,
+      "sha256": "330c174a8ad65dd795db6448eb42be2c302084de1e07e9463edc93465d69acad",
+      "crc32": "83984017"
+    },
+    {
+      "path": "android/runtime-cases/0389-runtime-banana-after-slower.png",
+      "bytes": 620380,
+      "sha256": "1912cdff6e096843fa4875014a57e38cf3c62402006f08cc86d7f83d5a03f315",
+      "crc32": "23085076"
+    },
+    {
+      "path": "android/runtime-cases/0460-pattern-two-sign-group.png",
+      "bytes": 645241,
+      "sha256": "b30f77994c0e98876429e6b39831213930dea60c6e74f52ea7fdc51179829045",
+      "crc32": "8ad7874b"
+    },
+    {
+      "path": "android/runtime-cases/0488-pattern-before-explicit-core-answer.png",
+      "bytes": 2070993,
+      "sha256": "0d46d2c04ae6664f5c572714917f03b08bc0244b6f842430a123a2e804b27636",
+      "crc32": "b61faa0a"
+    },
+    {
+      "path": "android/runtime-cases/0492-pattern-after-explicit-core-assessment.png",
+      "bytes": 2122281,
+      "sha256": "049a8b2bb7200910754a49c98437df5fe1e8e2b4526fcd75d396ef193c53b4cf",
+      "crc32": "e8a2ddb3"
+    },
+    {
+      "path": "android/runtime-cases/0150-numeric-wrong-submission.mp4",
+      "bytes": 617178,
+      "sha256": "d43563c4da5b5401e941bd56ffdb4b5d426a3df537683ff130794b194f1009e1",
+      "crc32": "2a740d55"
+    },
+    {
+      "path": "android/runtime-cases/0164-numeric-corrected-submission.mp4",
+      "bytes": 561389,
+      "sha256": "55797e591fdcc9b1f4c27e297bad3f6536e9fdd80340e5c8fbe3635a55b63371",
+      "crc32": "692a3d8d"
+    },
+    {
+      "path": "android/runtime-cases/0221-switch-during-actual-active-syllable.mp4",
+      "bytes": 818355,
+      "sha256": "a599ded00234bf58d04d1059288e52b41ad19fb0fc1cf7db6ba5f71b7db62263",
+      "crc32": "94ed91e4"
+    },
+    {
+      "path": "android/runtime-cases/0350-runtime-banana-four-slower-segments.mp4",
+      "bytes": 1140656,
+      "sha256": "ec59d17a5d3b5fb693360ee3b9ae31b8ca42e0d3d5ee91d4f45d7b2023bbac84",
+      "crc32": "45bf6736"
+    },
+    {
+      "path": "android/runtime-cases/0487-pattern-explicit-core-answer-after-ungraded-return.mp4",
+      "bytes": 482524,
+      "sha256": "7536c4a7f1528a080f76b174f85051560e95884389ade7e7681c1e5838c44194",
+      "crc32": "e92d379f"
+    }
+  ],
+  "textArchive": {
+    "path": "original-text-evidence.zip",
+    "bytes": 1404325,
+    "sha256": "a787a30bc05bf353495f53b92a794e89cdfe69f0e938ada67340786ae6a8584f",
+    "fileCount": 1288,
+    "allMemberCrcAndShaRechecked": true,
+    "format": "Derived ZIP; all original non-PNG/non-MP4 bytes preserved without normalization"
+  }
+}

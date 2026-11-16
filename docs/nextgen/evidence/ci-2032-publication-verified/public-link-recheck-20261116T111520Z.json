@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-11-16 11:15:20 UTC",
+  "releaseId": 446893589,
+  "tag": "lumo-nextgen-learning-0.13.20-2032",
+  "draft": false,
+  "prerelease": true,
+  "immutable": false,
+  "tagObject": {
+    "sha": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+    "type": "commit",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/9b38360ca5f21919dce4a2b99e605ee39bbbf454"
+  },
+  "apkAsset": {
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/releases/assets/754429456",
+    "id": 754429456,
+    "node_id": "RA_kwDOSNzcp84s964Q",
+    "name": "Lumo-Lernen-Neu-0.13.20-2032.apk",
+    "label": "",
+    "uploader": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "content_type": "application/vnd.android.package-archive",
+    "state": "uploaded",
+    "size": 535026462,
+    "digest": "sha256:cfa6709547ed82ffe6f081568c3bc454e1cc41afbfea2ecf9c85f534a6ea42de",
+    "download_count": 3,
+    "created_at": "2026-11-16T10:33:15Z",
+    "updated_at": "2026-11-16T10:33:28Z",
+    "browser_download_url": "https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-nextgen-learning-0.13.20-2032/Lumo-Lernen-Neu-0.13.20-2032.apk"
+  },
+  "comparison": {
+    "sameAssetId": true,
+    "sameBytes": true,
+    "sameDigest": true,
+    "sameTagCommit": true,
+    "newCompleteDownloadPerformed": false,
+    "previousCompleteAnonymousDownloadVerifiedAt": "2026-11-16T10:33:37Z"
+  }
+}

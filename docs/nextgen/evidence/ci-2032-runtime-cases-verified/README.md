@@ -1,0 +1,26 @@
+# Vier zusätzliche Androidfälle an der unveränderten APK 2032
+
+[Run 43853317375](https://github.com/Ullmann27/lumo-lernen/actions/runs/43853317375), Versuch 1, Job **133251156609 SUCCESS**. Tatsächliche Fallausführung **16.11.2026, 11:00:03–11:14:53 UTC**. QA-Commit **ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc**, APK-Quelle **9b38360ca5f21919dce4a2b99e605ee39bbbf454**, Native **9d6ef1d704a0e54098a8f8f0818f36deae0e3789**.
+
+Das aktuelle Originalresultat lautet **PASS_WITH_LIMITATIONS**. Der verpflichtende Abschlussprüfer verlangt alle vier Fälle; die tatsächliche Core-Musterabgabe ist **PASS**. Eine neue APK wurde weder gebaut noch veröffentlicht. Der Nachlauf ersetzt die vollständige Haupttour nicht und gibt nicht rückwirkend deren Musterabgabe frei. [Originalresultat](original/android/runtime-cases/runtime-cases-result.json).
+
+## Tatsächliche Ergebnisse aus dem Originalresultat
+
+- **9 + 7:** ausdrückliche getippte Abgabe 15 als falsch gespeichert, danach 16 als richtig und unterstützt; zwei verschiedene Datensätze. Keine Sprachzahl und kein zusätzlicher 8+5-Abgabetest.
+- **Wechsel während einer aktiven Silbe:** „Silbe 1: Ba, gerade aktiv“ und die aktive Weiterfläche stehen in demselben frischen XML. Anforderung des tatsächlichen Taps nach **0,138342999 s** ab Erfassungsbeginn; Wechsel zur unbeantworteten Rakete in derselben Session ohne neuen Versuch oder neue Belohnung. Temporär 320 dpi statt 440 dpi, anschließend ausdrücklich wiederhergestellt. Kein Standarddichte- oder akustischer Nachweis.
+- **Native Banane / Langsamer:** PID **6177**, vier neue geordnete MediaPlayer-Paare, IDs **7–10**. Modell vor und nach Wiedergabe unverändert 0/3; Quellvertrag und gepackte Nativequelle gebunden. Keine gemessene akustische Geschwindigkeit oder Phonemprüfung.
+- **Native Musterhilfe und spätere Fachabgabe:** Quadrat–Kreis–Quadrat–Kreis, kleinste Gruppe zwei; nativer Hinweis und unbewerteter Vorschlag. Erst der spätere ausdrückliche Core-Kartentipp speichert genau einen passenden richtigen, unterstützten Versuch, ID **1794827688610310-2**. Native Hilfe selbst ist keine Fachabgabe.
+
+Der neue unveränderte Prüfer wurde bereits separat am echten Originalresultat erfolgreich ausgeführt. Die weitergehenden unabhängigen Rohdaten- und Medienreviews werden gesondert ergänzt; dieser erste Archivcheckpoint behauptet ihre Fertigstellung nicht.
+
+## Vollständige Originale und Bindung
+
+Artefakt **14220263387**, ZIP **65.735.724 Bytes**, SHA-256 **17ccdb2993b814c96a986fe6d36515713877c7e178a2a52f7f6db38c25a59eed**. Alle **1.889 Originalmitglieder** mit **76.019.541 unkomprimierten Bytes** wurden einschließlich Größe, CRC und SHA geprüft. Das vollständige unveränderte Actions-ZIP ist als **acht geordnete Git-Archivteile** erhalten. Ihre Verkettung stellt das Original-ZIP exakt wieder her; Reihenfolge, Einzelhashes und Git-Blobs stehen in [archive-retention.json](archive-retention.json). Die großen Teile sind im lokalen Root-Worktree nicht zusätzlich materialisiert.
+
+[original-text-evidence.zip](original-text-evidence.zip) enthält außerdem sämtliche **1.288 ursprünglichen Nicht-PNG-/Nicht-MP4-Dateien** unverändert. Es ist ein abgeleitetes ZIP, nicht das ursprüngliche Actions-ZIP. **22 ausgewählte Originale** sind direkt zugänglich, darunter Ergebnis-/Quellbelege, 13 Bilder und fünf Filme. Das vollständige Mitgliederverzeichnis ist [artifact-verification.json](artifact-verification.json). Kein Original wurde normalisiert oder überschrieben.
+
+Vollständiger unveränderter [Joblog](job-log/job.log), dessen [Byte-/Gzipnachweis](job-log/job-log-manifest.json), vollständige [Abschlussmetadaten](completion-metadata/manifest.json) und tatsächlich verwendete Retentionsskripte sind gesichert. Der erste lokale In-Memory-Kopierprozess endete mit SIGKILL ohne erhaltene Dateien; die anschließende Übertragung mit 1-MiB-Puffern war vollständig erfolgreich. Ursache des ersten lokalen Abbruchs bleibt unbekannt; kein Androidfall wurde deshalb wiederholt. [Lokale Beobachtung](local-transfer-observation.json).
+
+## Aussagegrenzen
+
+Frischer synthetischer Testnutzer, Android API 35, x86_64, Pixel-5-Emulator und Software-Renderer. Alle Bildschirmfilme haben laut Resultat keine Tonspur; die unabhängige Medienauswertung folgt getrennt. Echte deutsche Spracherkennung, akustischer Wort-/Tempo-/Mundabgleich, physischer Fold7, 60 FPS und vollständige individuelle Modernisierung aller Aufgaben werden damit nicht belegt. `release_eligible=false`, `full_replay_replaced=false` und `fullModernizationComplete=false` bleiben ausdrücklich bestehen.
