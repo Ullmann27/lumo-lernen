@@ -1,0 +1,635 @@
+{
+  "schema": "lumo.root-materialization/v1",
+  "createdAt": "2026-11-16T10:07:30.557077+00:00",
+  "sourceCommit": "517349eeecf6d6b990f40db50560786733072baa",
+  "remoteHeadVerifiedBeforeAction": "517349eeecf6d6b990f40db50560786733072baa",
+  "action": "Dematerialize only root-owned exact-HEAD historical evidence; all Git objects and remote files retained",
+  "materializedFilesVerified": 103,
+  "verifiedBytes": 59281910,
+  "freeBefore": 203743232,
+  "freeAfter": 205189120,
+  "patternsBefore": "/*\n!/docs/evidence/*\n/docs/evidence/conversation-lifecycle-20261115/\n!/docs/nextgen/evidence/ci-2031-replay-banana-reader-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-replay-transfer-state-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-replay-video-transfer-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-onboarding-transfer-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-native-panel-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-active-observation-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-complete-replay-verified/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-numeric-capture-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-academy-navigation-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-001\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-002\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-003\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-004\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-005\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-001\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-002\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-003\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-004\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-001\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-002\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-003\n!/docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part01\n!/docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part02\n!/docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part03\n!/docs/nextgen/evidence/ci-2029-android-bridge-return-failure/artifact-14191731263.zip.part01\n!/docs/nextgen/evidence/ci-2029-android-bridge-return-failure/artifact-14191731263.zip.part02\n!/docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part01\n!/docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part02\n!/docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part03\n!/docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part04\n",
+  "patternsAfter": "/*\n!/docs/evidence/*\n/docs/evidence/conversation-lifecycle-20261115/\n!/docs/nextgen/evidence/ci-2031-replay-banana-reader-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-replay-transfer-state-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-replay-video-transfer-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-onboarding-transfer-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-native-panel-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-active-observation-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-complete-replay-verified/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-numeric-capture-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-academy-navigation-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-001\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-002\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-003\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-004\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-005\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-001\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-002\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-003\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-004\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-001\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-002\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-003\n!/docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part01\n!/docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part02\n!/docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part03\n!/docs/nextgen/evidence/ci-2029-android-bridge-return-failure/artifact-14191731263.zip.part01\n!/docs/nextgen/evidence/ci-2029-android-bridge-return-failure/artifact-14191731263.zip.part02\n!/docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part01\n!/docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part02\n!/docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part03\n!/docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part04\n!/docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/\n!/docs/nextgen/evidence/ci-2028-permission-transition-failure/\n!/docs/nextgen/evidence/ci-2028-replay-xml-node-failure/\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/\n!/docs/nextgen/evidence/ci-2029-native-diagnostic-banana/\n",
+  "files": [
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/0146-actual-microphone-outcome.png",
+      "bytes": 1080570,
+      "gitBlob": "2ddc6edb6063f2a1dd6bdd143032cfcefc465ee0",
+      "sha256": "255f04a7cb56422392e627ac83ededb76d1d7458e16fb7ab7f35f4056f569105"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/0156-conversation-return-touch.json",
+      "bytes": 101,
+      "gitBlob": "a0688f7cde86f1f84b1faa3b06487f3df5707ab8",
+      "sha256": "d71ad5270342ee224e0e496b0ad7b0761d366f3ed756953cce746d3b20a15ea0"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/0157-conversation-returned-task.xml",
+      "bytes": 27094,
+      "gitBlob": "1f2c34c19820dfb3f35207ddf5b7a28505d353d1",
+      "sha256": "54952d9c3b77c2f13701e54d5e7a253cf0af74cba20e9bf6579a58eccd8be851"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/0160-bridge-move-one.xml",
+      "bytes": 27094,
+      "gitBlob": "1f2c34c19820dfb3f35207ddf5b7a28505d353d1",
+      "sha256": "54952d9c3b77c2f13701e54d5e7a253cf0af74cba20e9bf6579a58eccd8be851"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/0162-bridge-move-one-touch.json",
+      "bytes": 117,
+      "gitBlob": "825eeefe7b19abbfc96c5af1070aac1a620aaa70",
+      "sha256": "7ee7e3a265ab7fa49ce43dbf20c6d3c126177ce1aeecf6968506234f4518ee05"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/0163-bridge-checkpoint-preferences.xml",
+      "bytes": 3107,
+      "gitBlob": "5a49c8da23b4fd286c47c3a4d541ec115f70d96d",
+      "sha256": "3a505e3572ecb09e44d85bb07c5d1decec5c3fd98a227ca552d02a9af952bb73"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/0235-bridge-checkpoint-preferences.xml",
+      "bytes": 3107,
+      "gitBlob": "5a49c8da23b4fd286c47c3a4d541ec115f70d96d",
+      "sha256": "3a505e3572ecb09e44d85bb07c5d1decec5c3fd98a227ca552d02a9af952bb73"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/0236-failure-current-screen.png",
+      "bytes": 589187,
+      "gitBlob": "6bf68f18f2a51c0fd0a3c79910713d2182f2eed2",
+      "sha256": "889630972f65d385d80124a3c7f970160f4ab9e988672ef34686e14e654a72cc"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/README.md",
+      "bytes": 2580,
+      "gitBlob": "c4de2a12f7cdcee4af13ed47505145dbfb24ef91",
+      "sha256": "b2644dcd6255106c78539986550e617ee040084056d8aae3dc60322add0fb3b0"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/archive-parts.json",
+      "bytes": 627,
+      "gitBlob": "5b6cbe894de09fd69b9632d095da441ff0dba860",
+      "sha256": "cd1a54cdaeb095800b27227a3de5b553ed9008d735f4aa880dbff728ecfa433f"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/artifact-14189855923.zip.part01",
+      "bytes": 8388608,
+      "gitBlob": "a23ddd5cc880ad1e0e49f4ddab48641cb5beaa2a",
+      "sha256": "2aefb470b105c23794d5ab409ffab4006f2a6771de325e4bcac2622d9bece15e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/artifact-14189855923.zip.part02",
+      "bytes": 6692809,
+      "gitBlob": "ed04ba54993a57d56204b805a6ba04a15ab0314c",
+      "sha256": "c7a4eb163c311b5dfea33217734028072a49575a5cc39ac03e0e4a380c382f85"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/artifact-verification.json",
+      "bytes": 60067,
+      "gitBlob": "a400ea5d6dac54fd28bf77433cd6a74c15827f38",
+      "sha256": "b1d06a2454b50e6be117935573dfd1a9b3a87cf50b472341a88c47226c60a98b"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/job-133024363592.log.gz",
+      "bytes": 81499,
+      "gitBlob": "9962b44618bfb9090aa436735f2d13d2199622bc",
+      "sha256": "200c59cf55ea7d67f8a9f1441085eeba979afa7b9fe6eacb80b9c1fbea21c0af"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/job-log-verification.json",
+      "bytes": 353,
+      "gitBlob": "b3d36f9a51efe6b6836ffb539031bbb55c3caa07",
+      "sha256": "77dddd77939a4c4c8955180c35887831210845223c2f35ef20ad27551c7bd903"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/learning-android-result.json",
+      "bytes": 9934,
+      "gitBlob": "feda79a89b1d0cbad5b44f6c809a520399784791",
+      "sha256": "ec75293aeb84da7c75ae4f707384ef5090b149259922db268e1ba247c75a6929"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/microphone-observation.json",
+      "bytes": 1392,
+      "gitBlob": "2f1c0c097bb74052ca0bd42493f565b6f21b5fe2",
+      "sha256": "d0ca749d91df03ea7ae303d06690f4d2a7eb8ed03fa750c8ddebd31d4cdf23ee"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/source.json",
+      "bytes": 668,
+      "gitBlob": "2d710ab177565e5fa13167adcb27f9d710038f36",
+      "sha256": "1b1d787c5a389d09e9ae49ba15a688d949655d955681158a88fee2fefcecb722"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/0125-typed-why-response.png",
+      "bytes": 1208271,
+      "gitBlob": "b8e922cd8ab9b8273457be586af4d566fd411110",
+      "sha256": "6b9f193720de3f66896d1720771b3b64968047e5d013be119cf670287214d76e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/0137-microphone-outcome.xml",
+      "bytes": 26005,
+      "gitBlob": "cd409f7c1f21e157f720f3cc97439e0dcd0a563e",
+      "sha256": "6c8ef031f3e29e78c2ac5de54cca9db18343d2d35ff1aa22ec92233b64a14061"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/0138-microphone-outcome.xml",
+      "bytes": 13382,
+      "gitBlob": "10e48c14eebc3efb69ba6dd52c45e1ef0afdfcdb",
+      "sha256": "0de622cb2f0a1d562d0cf4bfa3bf19b9ef8eecbac7ca92106c51660953168006"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/0139-failure-current-screen.png",
+      "bytes": 417327,
+      "gitBlob": "f979272a77ee8abfc9a3c455d8c4f501c9c56395",
+      "sha256": "c41b1072c5c6b4e831b14cd84231fbcbb3573da205230728523e475c4b71dc11"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/README.md",
+      "bytes": 1961,
+      "gitBlob": "32c29d69911fd086cc6493e1ea8649d74bb7f2c8",
+      "sha256": "d9de2ecc9a1c4303e15ef66ae6cb265a8a417eefac6f92890f1baa244a75cb88"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/archive-parts.json",
+      "bytes": 627,
+      "gitBlob": "a6bf884d25c33655b2d3bfb41393efea29e29132",
+      "sha256": "00335f15df105a3b35841fa75935cd349faf0da2a41f75841ba70b88832a0ab4"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/artifact-14186359772.zip.part01",
+      "bytes": 8388608,
+      "gitBlob": "d88181106198fe5b86d8aca0a22f4d71814c7575",
+      "sha256": "602093ca7c2b856de5d130a4da310f3cf552290b9963a3b36a7aa3227c7f3d45"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/artifact-14186359772.zip.part02",
+      "bytes": 5083497,
+      "gitBlob": "44c633470922b0f6c273bac116250b2519c55f35",
+      "sha256": "215b211089cf8b2dbef4435d5b52adccbfd0d613941bf176c8acb929ab42a63d"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/artifact-verification.json",
+      "bytes": 34696,
+      "gitBlob": "cec6b7d4b738edd89c78514f5e6b8f49a4654e36",
+      "sha256": "909b6c1f90a3c60b22a1be4902e77d6e36e6f49f0e89344e9b72ba24583f79c7"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/job-133004691086.log.gz",
+      "bytes": 61877,
+      "gitBlob": "757ded61cbb7e6c45d8eb96f7e8c6f005218d78b",
+      "sha256": "dfeb747a47e88dd54f67a1fc94ac7c247a392e7706d59b278a9e753f2e057769"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/job-log-verification.json",
+      "bytes": 305,
+      "gitBlob": "8ca588b2db3989a9c3ea8c68fcf6b35c973024ab",
+      "sha256": "ea146f07d9cc5dddbda5c67c07d2da457d826a09e7026a3cce87e92f18f66dc8"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/learning-android-result.json",
+      "bytes": 7098,
+      "gitBlob": "b2fb1469e1a74274d84b8f24746941013ca580f1",
+      "sha256": "b4d9f75bc7f1f523e7604474e64febb7dc9114dc68f9ddde0284fbc3eb373961"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-permission-transition-failure/source.json",
+      "bytes": 402,
+      "gitBlob": "17eef0886c4ec4fec48e65dc353c9bd57e713028",
+      "sha256": "35c1894f38aac1066d2888b8786e30134f10a311979536b6eb4a1438abb1e80d"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/0139-microphone-outcome.xml",
+      "bytes": 30798,
+      "gitBlob": "c3eef458e89e921b246e0c3c072cdfe84301fda9",
+      "sha256": "3b4d7f4b79585edb0bbeb0e7e7bcdc102cd06e1b797c213dc60b8f34845e6e6b"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/0140-failure-current-screen.png",
+      "bytes": 417747,
+      "gitBlob": "3c4c1d54c8c7334ab59642442f2813d8b1293f79",
+      "sha256": "54a9d3a1e09ee8fc6ec05d1a21691315d8d7e9e60104b814c15e3438ab7201a0"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/README.md",
+      "bytes": 2988,
+      "gitBlob": "70e9f7761574e9ff28636d69ac5641bcb7a92f1c",
+      "sha256": "3a814c906bfb35a9bb08528ea99d19b56a5d1f149ba18e1aab9e0f4ae673bc83"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/archive-parts.json",
+      "bytes": 627,
+      "gitBlob": "e097774dbb1d48e9b209b752dd8513cfa21bacd9",
+      "sha256": "e1e7e5ea3fbb9f2de553bcbb1a105b5fbe97c98d0f64bfb73468cb79e2fd4482"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/artifact-14188204109.zip.part01",
+      "bytes": 8388608,
+      "gitBlob": "d4da0c68d0fa60dec62dc48d48deb55fafe3673b",
+      "sha256": "fdf5e7151cb02ecce71ce0adf11aee2f4f3c9fff3afe6ea258c1691eda67f873"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/artifact-14188204109.zip.part02",
+      "bytes": 5027180,
+      "gitBlob": "19400c46891ff8604bd03f406b65052510464d0b",
+      "sha256": "420f6ab2509a01dec619b4eff6eed0632c67b8d3e1b87da718fdb26eb9d1ba17"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/artifact-verification.json",
+      "bytes": 38330,
+      "gitBlob": "1340000b9d4712d28a6b478eff995725cbeae52e",
+      "sha256": "283be57802aa18a7238e2cd9bbe9590ecd1713f6ee929a89fab79f69ce296c88"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/job-133018387128.log.gz",
+      "bytes": 81154,
+      "gitBlob": "6f2aa0c2cefda7eaf2a46807b9ec67ce320cec6a",
+      "sha256": "aca75e3e04eada221846a5d2fe8557a198079d0dd7a48eb51291f90e59c45deb"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/job-log-verification.json",
+      "bytes": 353,
+      "gitBlob": "07c6489ec234574bb40a393ef589eaf71896c0ed",
+      "sha256": "a6ea82dc2c28282bcc762f1c13882f9522bca3ac9828127d415aef49d1ac3f57"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/learning-android-result.json",
+      "bytes": 7112,
+      "gitBlob": "9449555f9865b897fb8de5d763ce9435b10a1fc9",
+      "sha256": "9f08ec5702d339a18d918386ee128847896fae2b46ebcad6d718f3971ce39f22"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/qa-source-binding.json",
+      "bytes": 5586,
+      "gitBlob": "fcc7dce6af82a781907bf7fd8fc2d82d67045e49",
+      "sha256": "e27a83599eabfe3c549d81e16d1aa3e1a8ac759b1485ef8f0520019c609e2ed5"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2028-replay-xml-node-failure/source.json",
+      "bytes": 553,
+      "gitBlob": "05080f2f888876d4627fd00cb0977d1cb29e0770",
+      "sha256": "97f41a194bd52e03f6d5392ef956c7d508afbdc57ba90e3c4c435d8bbf39a0fa"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/README.md",
+      "bytes": 1865,
+      "gitBlob": "1e9095d9b69596b9672605388d16ef1b76ed2c56",
+      "sha256": "5a430d435bec463e62eb6e22b23a7bbd02ccafaef5ff15c33489bb953bdcb394"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/archive-reassembly.json",
+      "bytes": 1155,
+      "gitBlob": "e1b79279f8893ac6744c076ce04294c92d65955b",
+      "sha256": "fced766c93e8c319cd57122d961bf74af04daabf7115d52c05ca5cd5e2611522"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-verification.json",
+      "bytes": 165486,
+      "gitBlob": "4917ed71c224a560c7a14b156b7dfd974e7f0179",
+      "sha256": "115966dd999470734de981a2abb994cf839c66c0bc7c307f57cf48cde6a7bfd3"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/job-133048238970.log.gz",
+      "bytes": 78460,
+      "gitBlob": "91cc24aa4e30f4011a9b6e24af0f8bb195ec9c54",
+      "sha256": "d64433347ea1e335d591b6b69d916142f9036246c38e78cfd2cb4312171d2b1e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0154-native-why-two-question-and-demonstration.mp4",
+      "bytes": 2255930,
+      "gitBlob": "1b65ae9ea7ae004e46fd63cbe8a8fae7cf13c5b4",
+      "sha256": "1b76c58862dcf382428438eb2ac63c92143b7e5181a558b49b2d51a78c1b6bb1"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0157-why-native-eight-and-five-before-question.png",
+      "bytes": 642406,
+      "gitBlob": "d270c97b78c6401f1fbc47e6c83197c7fe215509",
+      "sha256": "e637347f3ddbf48a7a9b3fa753ebd250e456eded23ae0b7941d31d2271789a05"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0162-why-native-written-before-send.png",
+      "bytes": 446997,
+      "gitBlob": "852ee98bbf740b370c94e67ed54ef13863b8e7dc",
+      "sha256": "92aa2a661e9e67fb5b3fa0e34e01d851054fef334acdf219ea77cde1b4a49e25"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0167-why-native-current-explanation.png",
+      "bytes": 681868,
+      "gitBlob": "4be37f28c568405440426e023818ae33b40fcff6",
+      "sha256": "5dd1dacb9eb65dba0641e222390bae72948057059393c15d7ed087015b4a7dfb"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0169-why-native-ten-and-three-after-explanation.png",
+      "bytes": 681779,
+      "gitBlob": "08682e2b89288b6f070141ed025b162fa24d1b0e",
+      "sha256": "4b4e3b120edbc48d3b7c09038c951ab57903b7c80898e0e6a3f4ec12cc4d3f48"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0170-native-three-dimensional-performance.mp4",
+      "bytes": 604795,
+      "gitBlob": "ffeb3d1915adb330b3d26f09fd2879e1900a55e0",
+      "sha256": "fbeab478d78d701f185707a7fc8a219b897f0feeb5512931d754b433349ae08f"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0223-native-performance-observed-scene.png",
+      "bytes": 676602,
+      "gitBlob": "db61ccbb9be29eb8c5b02d4de365b24d5819a2d4",
+      "sha256": "9c6d363617b3f2252b24c9dd9c10140958775d2a77b169fd36c570ac7660ade8"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0224-native-return-1.png",
+      "bytes": 676744,
+      "gitBlob": "34bbb346a04e010f3bd8ad65ea30c657d1034788",
+      "sha256": "057ef8399e010fcc960e4f7e3525775ee5fe252610fbedfd1affb76df103a816"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/0231-native-return-current-task.png",
+      "bytes": 1532669,
+      "gitBlob": "bf9fa6a0be152e76d08852dcf7d2f893124a743d",
+      "sha256": "008b78f797441f31a896c21a7f3dd19a4229349fff28e2f623d03bab739f3ae9"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/diagnostic-android-result.json",
+      "bytes": 76859,
+      "gitBlob": "c5b8d6662fd7e17bd44e5d09909223d002132994",
+      "sha256": "3ebe5d8786b3821c27d56b3901430da633eaa8ba61084c565e1f78c590f265cf"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/native-learning-performance.json",
+      "bytes": 56799,
+      "gitBlob": "0ee117574dec5a2afde41e4af995a3278d8fb52a",
+      "sha256": "9069fb54add45b7e0f66845e208c9a88d8263162522391a5e19e145ee3e4fa23"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/diagnostic-android/native-why-two-result.json",
+      "bytes": 2176,
+      "gitBlob": "5b1453b5c05a21a7e9bd8a3a57aeb8e305337223",
+      "sha256": "4ea46ad3fd4ce479d5053a940cfb7bb3f7920ff874e20aab34646160dcee7467"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/origin/qa-source-binding.json",
+      "bytes": 955,
+      "gitBlob": "ae79ab10bae9e468ea00294e1aa609f9bcc81f86",
+      "sha256": "5177b2c3c104fb628fe0bf403f9abcf1ba5ff9a6d02ee16d782b4bc63af60cf6"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/origin/source-artifact.json",
+      "bytes": 810,
+      "gitBlob": "4acc276567ab4f61869e851385a7f5a00da239a4",
+      "sha256": "f3156f958cb728b70b42214db8f937d3e93286328df893c4f151ae65703ac5db"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/origin/source-build-job.json",
+      "bytes": 4514,
+      "gitBlob": "ff57b44c2f8989ef338bfd4fa8575195d4e82b29",
+      "sha256": "88579975f353888921a7b94c2910b9e11b5da04484707015055dc5b453ba5377"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/origin/source-failed-android-job.json",
+      "bytes": 4294,
+      "gitBlob": "f799597b5f99a0a7d9cc340a93c35c3f07c23ea8",
+      "sha256": "f9bf89e0396c8b65768a38d379281eacb9cf8df10605bd1fc6e7079d60771f3e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/origin/source-run.json",
+      "bytes": 13764,
+      "gitBlob": "d82ae56bdf27c0bb26946038077701a901da83f3",
+      "sha256": "93f56c17b02cf0273d48b750580058bd444aa747e96222cd4003f287db28104a"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/origin/source-validate-job.json",
+      "bytes": 5726,
+      "gitBlob": "68b1d8c414dd15aab27179b9f040e5a2fdb981d4",
+      "sha256": "1ec9ccfb88fa49d17eea8b0337d07f1b753b276caa966ab7e0fec1919bd89b77"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/selected-original/origin/verified-download.json",
+      "bytes": 2713,
+      "gitBlob": "2ea73405a0317a435a75724cbabd03963675cb52",
+      "sha256": "19ddec4d2b4f630dce8942df3fa0a8a704de0f461d3b35a10042196b00691f83"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/summary.json",
+      "bytes": 5417,
+      "gitBlob": "ff9b25d523b306a02287d77287dad6911574ad68",
+      "sha256": "febf9c307804aa7b2248e5355d589ad998d4f3fcbd96471bd5c71632823c9d81"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/README.md",
+      "bytes": 1250,
+      "gitBlob": "572c485addc40168a1648ce08542a9e6c1477e6c",
+      "sha256": "3c4b4bc32187da476a6c396ed839b53ab961460f7aa2b878a123204429e3f61e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/archive-reassembly.json",
+      "bytes": 1002,
+      "gitBlob": "3e2cf2ab26de27b3a23fcdfdfbda0de1bbf47342",
+      "sha256": "e116761b40753b6d743ced441e383e0f882ec201994efef4ee4e86217620adfe"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-verification.json",
+      "bytes": 243733,
+      "gitBlob": "01aa176bade2e81335f2fb91703d15922200d276",
+      "sha256": "48490ba24cb5f13403648b39394f72413c29dbf513547c63323d9e3f3c3c5c94"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/job-133048238645.log.gz",
+      "bytes": 76848,
+      "gitBlob": "ef8f0b09f8cf92d0dedc300a59bb34d6c08fa788",
+      "sha256": "3f1bfec98af5e5c8f3c38c6712bd7beca2b30dea55cc0dcffc3275cd0ddf7b81"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/diagnostic-android/0113-pattern-native-entry.png",
+      "bytes": 662261,
+      "gitBlob": "b9a92481cd7e11113ebb35c2b361b6fa2d8cb1d5",
+      "sha256": "8ea521e66276d16aa5725f956a9069d5df205aad0d99ec841b63b584f4d7d5cc"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/diagnostic-android/0114-pattern-native-question-9-ocr.json",
+      "bytes": 19373,
+      "gitBlob": "b6065869c7dedbcbb4e0df98421fd1ff58bbe121",
+      "sha256": "45dbbdc4dec317ce4bcc5e3b72d9767a7390302f54bb7186b12ada2dfee32c2e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/diagnostic-android/0114-pattern-native-question-9.png",
+      "bytes": 660918,
+      "gitBlob": "33cfb037ab1b0ef2796cdb2ffefa1c7d339c215c",
+      "sha256": "4e2486f2c838f7391f56c14b62b60b610b27d87b43ff4184875cb5a013e5fbf8"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/diagnostic-android/0115-diagnostic-failure-screen.png",
+      "bytes": 660563,
+      "gitBlob": "997f25138820e5d92284fc6a0240db04a8ce347a",
+      "sha256": "b96ae4426aed8be00bb7fa235db421d40831c5cb68912338ff5fd4dfee63ba33"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/diagnostic-android/0116-native-speech.txt",
+      "bytes": 36780,
+      "gitBlob": "61e8873bdc4e7346fd5badaf5857b06e02ea05af",
+      "sha256": "487bdc13b87d5699ee91ece15620729860fb4277f84769ce3361c68eac92d1d8"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/diagnostic-android/diagnostic-android-result.json",
+      "bytes": 8310,
+      "gitBlob": "02fe6ec86adb6ec16b3a244f32f922430bfd1065",
+      "sha256": "f0718e380f9d3800d8b0a3a3cca02d9bed71e60120e512185f350d321f880822"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/origin/qa-source-binding.json",
+      "bytes": 956,
+      "gitBlob": "ffc6a28ae9e326760892d52e8965cab0f661f8bd",
+      "sha256": "d14ed3eb5d0b907b543ee238fd5adfeaed1d3a002e13e63e6c6cc54860be5b6f"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/origin/source-artifact.json",
+      "bytes": 810,
+      "gitBlob": "4acc276567ab4f61869e851385a7f5a00da239a4",
+      "sha256": "f3156f958cb728b70b42214db8f937d3e93286328df893c4f151ae65703ac5db"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/origin/source-build-job.json",
+      "bytes": 4514,
+      "gitBlob": "ff57b44c2f8989ef338bfd4fa8575195d4e82b29",
+      "sha256": "88579975f353888921a7b94c2910b9e11b5da04484707015055dc5b453ba5377"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/origin/source-failed-android-job.json",
+      "bytes": 4294,
+      "gitBlob": "f799597b5f99a0a7d9cc340a93c35c3f07c23ea8",
+      "sha256": "f9bf89e0396c8b65768a38d379281eacb9cf8df10605bd1fc6e7079d60771f3e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/origin/source-run.json",
+      "bytes": 13764,
+      "gitBlob": "d82ae56bdf27c0bb26946038077701a901da83f3",
+      "sha256": "93f56c17b02cf0273d48b750580058bd444aa747e96222cd4003f287db28104a"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/origin/source-validate-job.json",
+      "bytes": 5726,
+      "gitBlob": "68b1d8c414dd15aab27179b9f040e5a2fdb981d4",
+      "sha256": "1ec9ccfb88fa49d17eea8b0337d07f1b753b276caa966ab7e0fec1919bd89b77"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/selected-original/origin/verified-download.json",
+      "bytes": 2715,
+      "gitBlob": "a352ea4c94a56d754018c3787d7d09dee0a3e014",
+      "sha256": "2944861d902538862d2aa3e0e2110a158c9220a21b7d37c952f73b66c89ae547"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/summary.json",
+      "bytes": 3516,
+      "gitBlob": "27d62e0a5541ffd024e822068d6ff41e9292cdfa",
+      "sha256": "73649ad11dbdaaf44e936bb7a00ea8a9af36995f547a45f437656676a7a86e6c"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/README.md",
+      "bytes": 1179,
+      "gitBlob": "e1ec64bb84f85a886fa86f67b8868224c255bf55",
+      "sha256": "adcba66bc12bf802b51fab3dfa7aa2ca10ec46582395c8f0cbdef0d063c5e54e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/archive-reassembly.json",
+      "bytes": 831,
+      "gitBlob": "b4175849dbe2c2e8013fe1cc175ce2c78846fffa",
+      "sha256": "3a2e99154fe6b43b9d6d1ac39323fe57be5462b3564fea2f261bf0fadd1ab6f6"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-verification.json",
+      "bytes": 121958,
+      "gitBlob": "0625fd0114810faaaf19a00085184af3aca3bc0a",
+      "sha256": "0bdb87c9bbb45d2545a639abea6ebf3dd604aed7eaf5f6cb2517ae2e73e68281"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/job-133048238984.log.gz",
+      "bytes": 78113,
+      "gitBlob": "ce6e2903bcf32e8cb686aeaccb956a7a34fcd74e",
+      "sha256": "6700b36aee1e7d099b95f95629930eeaef9ddfd4080f367f7c560700a09debeb"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/diagnostic-android/0123-banana-native-entry.png",
+      "bytes": 584223,
+      "gitBlob": "3a95b8730de9669d11a66e878f5e446ce7434478",
+      "sha256": "fe7900783cfd0460a82df48f1b34a87c2fe4bc318de9a85a9e1ce76dd0152ba1"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/diagnostic-android/0125-banana-first-syllable.png",
+      "bytes": 583921,
+      "gitBlob": "ae5ff6508aa8bb473b11f6c9b7ea9048b7d08647",
+      "sha256": "e9abc5e6ad5c0e43d7fae927b8345149652ce8ff0f414f60aa67d27386b2feb4"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/diagnostic-android/0126-native-speech.txt",
+      "bytes": 9503,
+      "gitBlob": "c41422151a24bd027b458077a82c295191102ee7",
+      "sha256": "247d898fc77382d67c0ade25f20ffd6e412714ba592a9d059a36bd56da7e4a2f"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/diagnostic-android/0314-diagnostic-failure-screen.png",
+      "bytes": 583066,
+      "gitBlob": "f79e759ad99f844c5428b0916afefeae0bad64f9",
+      "sha256": "5d879a57e73d2156c11042d0af715bd3350b6cae62176ae796bda8b380a31d8c"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/diagnostic-android/0315-native-speech.txt",
+      "bytes": 31446,
+      "gitBlob": "f8b6c2f062fb46aaefc82eb06d9005293bcdcd8d",
+      "sha256": "b5371dfd2a509dd2ad9c74358467b14c32ee6a67e73d1dee4f82ed048be531c6"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/diagnostic-android/diagnostic-android-result.json",
+      "bytes": 9351,
+      "gitBlob": "ac88e19c6dca27354d46a083ca14d85a58e425c3",
+      "sha256": "f3a5711a1472164f1d3018e8b482d3ad5ee229074b65414cfb7e366c488f92aa"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/origin/qa-source-binding.json",
+      "bytes": 955,
+      "gitBlob": "4bcda0a5cdae495452ca11ee1ae21ab0d8fb1f56",
+      "sha256": "0315178093076590997550c25d8ca424cc24416309c52c0718f8f10f18f6328e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/origin/source-artifact.json",
+      "bytes": 810,
+      "gitBlob": "4acc276567ab4f61869e851385a7f5a00da239a4",
+      "sha256": "f3156f958cb728b70b42214db8f937d3e93286328df893c4f151ae65703ac5db"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/origin/source-build-job.json",
+      "bytes": 4514,
+      "gitBlob": "ff57b44c2f8989ef338bfd4fa8575195d4e82b29",
+      "sha256": "88579975f353888921a7b94c2910b9e11b5da04484707015055dc5b453ba5377"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/origin/source-failed-android-job.json",
+      "bytes": 4294,
+      "gitBlob": "f799597b5f99a0a7d9cc340a93c35c3f07c23ea8",
+      "sha256": "f9bf89e0396c8b65768a38d379281eacb9cf8df10605bd1fc6e7079d60771f3e"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/origin/source-run.json",
+      "bytes": 13764,
+      "gitBlob": "d82ae56bdf27c0bb26946038077701a901da83f3",
+      "sha256": "93f56c17b02cf0273d48b750580058bd444aa747e96222cd4003f287db28104a"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/origin/source-validate-job.json",
+      "bytes": 5726,
+      "gitBlob": "68b1d8c414dd15aab27179b9f040e5a2fdb981d4",
+      "sha256": "1ec9ccfb88fa49d17eea8b0337d07f1b753b276caa966ab7e0fec1919bd89b77"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/selected-original/origin/verified-download.json",
+      "bytes": 2713,
+      "gitBlob": "23d81e96d3a95ffc00e33853fe3ab505a5de0fc2",
+      "sha256": "ecc6cf73e7f3ffefd1cade3f568805f5cb6f355bf06cb2392df8cc7f0ef05724"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/summary.json",
+      "bytes": 3421,
+      "gitBlob": "16b51af7ebcee236402d14d5a76fb5c07129ab4c",
+      "sha256": "084254868e53715754e5f56166e140b849ab1ae51bfbb27fbdd7a5c56f1a5919"
+    }
+  ],
+  "foreignFilesChanged": false,
+  "trackedDiffAfter": []
+}

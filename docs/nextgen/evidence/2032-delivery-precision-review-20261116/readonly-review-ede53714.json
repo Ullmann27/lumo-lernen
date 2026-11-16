@@ -1,0 +1,60 @@
+{
+  "schema": "lumo.nextgen.2032.delivery.readonly.precision.review",
+  "version": 1,
+  "reviewedAtUtc": "2026-11-16T10:02:07.530004+00:00",
+  "commit": "ede53714a5622f92b87a547842f079d5c2c80a20",
+  "tree": "d4d8af58966142c54198ad02aa8870474f70c598",
+  "document": {
+    "path": "docs/nextgen/ANDROID_DELIVERY_2032.md",
+    "bytes": 38710,
+    "sha256": "3809b577f30f12ac695c4c9289bdcbce03724bd64b124c7da46cefbc3347f62c"
+  },
+  "verdict": "No material factual error in the pinned completed-attempt-1 report; one current-status sentence predates the now-running attempt 2.",
+  "findings": [
+    {
+      "severity": "status_update_only",
+      "section": "3 / Tatsächlicher erster Androidversuch / final paragraph",
+      "text": "Ein einmaliger frischer unveränderter Androidversuch wird erst nach Sicherung der Originale gestartet.",
+      "observation": "This is consistent with the checkpoint decision before the rerun. Parent now reports attempt 2 started at 09:58:59 UTC with Android job 133221738048 on the same 9b38360 source; its outcome is unknown.",
+      "suggestedFactualUpdate": "After preservation of attempt 1, attempt 2 is running; its result remains unknown. Preserve attempt-1 FAIL and SKIPPED publication.",
+      "currentAttempt2InformationSource": "Parent task message only; no CI query performed."
+    }
+  ],
+  "reviewedClaims": {
+    "buildAndApkValuesMatchOriginalVerifyAndRootByteCheck": true,
+    "localArm64CompleteArchiveAndApkByteCheckDistinctFromPublicDownload": true,
+    "localSignatureToolRerunNotClaimed": true,
+    "firstAndroidInstallIdentityMatchesCurrentBuild": true,
+    "firstAndroidOriginalGitFilesCount": 42,
+    "firstAndroidXmlReadFromExactCommit": 22,
+    "allXmlsShowPixelLauncherDialog": true,
+    "lumoPackageNodesInThoseXmls": 0,
+    "actualScreenshotViewed": true,
+    "screenshotPath": "docs/nextgen/evidence/ci-2032-android-launcher-anr-failure/original/original-android/0025-failure-current-screen.png",
+    "screenshotSha256": "e7eefc9530a550af8c2f90b888eb4784cd771306ac8b3707bad9e68964eacace",
+    "screenshotOnDiskEqualsPinnedBlob": true,
+    "noLumoAnrRootCauseAsserted": true,
+    "no2031RuntimeTransferredTo2032": true,
+    "new14AndRetained9ClipsCorrectlySeparated": true,
+    "modernizationSTTFold7PhysicalArm64SixtyFps48DpAndJointStopLimitsRemainExplicit": true,
+    "pendingAndroidAndPublicReleaseStatusRetained": true
+  },
+  "sourcesRead": [
+    "docs/nextgen/evidence/ci-2032-validation/summary.json",
+    "docs/nextgen/evidence/ci-2032-validation/root-integration-review.json",
+    "docs/nextgen/evidence/ci-2032-build/summary.json",
+    "docs/nextgen/evidence/ci-2032-build/root-integration-review.json",
+    "docs/nextgen/evidence/ci-2032-build/local-arm64-byte-check/artifact-byte-verification.json",
+    "docs/nextgen/evidence/ci-2032-build/original/VERIFY-arm64.json",
+    "docs/nextgen/evidence/ci-2032-build/original/VERIFY-x86.json",
+    "docs/nextgen/evidence/ci-2032-android-launcher-anr-failure/README.md",
+    "docs/nextgen/evidence/ci-2032-android-launcher-anr-failure/root-original-review.json",
+    "docs/nextgen/evidence/ci-2032-android-launcher-anr-failure/original/original-android/learning-android-result.json"
+  ],
+  "testsRun": false,
+  "ciOrRemoteActions": false,
+  "rootFilesOrIndexChanged": false,
+  "apkDownloadedOrRevalidatedByThisReview": false,
+  "archiveCrcRecheckByThisReview": false,
+  "scope": "Read-only document/evidence comparison, exact Git XML parsing and actual original screenshot inspection; this scratch note is the only output."
+}
