@@ -1,0 +1,61 @@
+name: LUMO 2028 – publish immutable APK after complete fresh replay
+
+on:
+  push:
+    branches: [delivery/lumo-nextgen-2028-replay-20261116]
+    paths: [config/nextgen-2028-replay-publish.json]
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: lumo-2028-immutable-publication
+  cancel-in-progress: false
+
+jobs:
+  publish_verified_2028_replay:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'delivery/lumo-nextgen-2028-replay-20261116'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Require exact original source, artifacts and complete successful replay
+        id: prepare
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/nextgen/prepare_2028_learning_replay_release.py
+      - name: Publish a new immutable test release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.prepare.outputs.tag }}
+          APK_SOURCE: ${{ steps.prepare.outputs.source }}
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" release/*.apk release/BUILD-PROVENANCE.json release/APK-VERIFICATION.json release/COVERAGE.json release/DELIVERY.json release/Android-Lernpruefung.tar.gz --repo "$GITHUB_REPOSITORY" --target "$APK_SOURCE" --prerelease --title "LUMO Lernwelt 0.13.16 (2028)" --notes-file release-notes.md
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG" > publication-proof/PUBLIC-DOWNLOAD.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('publication-proof/PUBLIC-DOWNLOAD.json').read_text())
+          assert data['tag_name'] == 'lumo-nextgen-learning-0.13.16-2028'
+          assert data['draft'] is False and data['prerelease'] is True
+          assets = [a for a in data['assets'] if a['name'] == 'Lumo-Lernen-Neu-0.13.16-2028.apk']
+          assert len(assets) == 1 and assets[0]['size'] == 535020882
+          assert assets[0]['state'] == 'uploaded'
+          assert assets[0]['browser_download_url'] == 'https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-nextgen-learning-0.13.16-2028/Lumo-Lernen-Neu-0.13.16-2028.apk'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-2028-publication-proof
+          path: |
+            publication-proof/*.json
+            release/DELIVERY.json
+            release-notes.md
+          if-no-files-found: error
+          retention-days: 30
