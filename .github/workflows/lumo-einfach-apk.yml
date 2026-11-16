@@ -1,0 +1,96 @@
+name: "LUMO – APK mit einem Bauvorgang"
+on:
+  push:
+    branches: [delivery/lumo-apk-einfach-20261116]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lumo-einfache-apk-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  apk:
+    name: LUMO – eine signierte Android-APK
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      LUMO_SPLIT_PER_ABI: '0'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Identität und Quellstand sichern
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python3 scripts/verify_legacy_release_pin.py
+          mkdir -p build-proof
+          git rev-parse HEAD > build-proof/FLUTTER-COMMIT.txt
+          cp config/godot-source.json build-proof/GODOT-SOURCE.json
+      - name: Verfügbare Android- und Godot-Werkzeuge einrichten
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh build-proof/ndk
+          bash scripts/install_godot_for_build.sh
+      - name: Eine einzige originalsignierte Flutter-Godot-APK bauen
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          test -s dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          mkdir -p release
+          cp dist/Lumo-Lernen-Neu.apk release/Lumo-Lernen-Neu.apk
+          cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
+          cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
+          (cd release && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
+      - name: Direkten APK-Download ohne weiteren manuellen Auftrag bereitstellen
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="lumo-einfach-${GITHUB_RUN_ID}"
+          VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
+          cat > release/README.txt <<EOF
+          LUMO Android Test-APK
+          Stand: ${GITHUB_SHA}
+          Version: ${VERSION}
+          Inhalt: Original Flutter- und Godot-Quellen des festgelegten APK-Kandidaten.
+          Paketkennung/Signatur: im beigefügten APK-VERIFICATION.json geprüft.
+          Keine Behauptung einer physischen Fold7-Geräteabnahme.
+          EOF
+          gh release create "$TAG"             release/Lumo-Lernen-Neu.apk             release/SHA256SUMS.txt             release/APK-VERIFICATION.json             release/BUILD-PROVENANCE.json             release/README.txt             --repo "$GITHUB_REPOSITORY"             --target "$GITHUB_SHA"             --title "LUMO APK (${VERSION}) – Direktdownload"             --notes "Eine geprüfte installierbare LUMO-Test-APK ohne zusätzliche Uploads, PR-Merges, Versionsnummer-Eingaben oder zweite Veröffentlichungs-Pipeline. Device AI Continuum ist ein eigenständiges Repository."             --prerelease --latest=false
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url
+      - name: APK auch als Actions-Artefakt sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-EINFACH-APK-${{ github.run_id }}
+          path: |
+            release/
+            build-proof/
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 0
