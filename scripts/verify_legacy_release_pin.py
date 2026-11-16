@@ -182,6 +182,9 @@ APPROVED = {
     # native English animal geometry + validated subject-specific Lab launches.
     # Source approval is not physical-device acceptance.
     2035: "bb4788803180544525b6f23540a134016a1399a8",
+    # 2036 preserves the exact native 2035 tree. Only Flutter task-entry
+    # guards and regression coverage change; Android verification remains required.
+    2036: "bb4788803180544525b6f23540a134016a1399a8",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

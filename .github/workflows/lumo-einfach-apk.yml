@@ -1,7 +1,7 @@
-name: "LUMO 2035 – Lernwerkstatt, Bauwelt, Kart APK"
+name: "LUMO 2036 – Lernwerkstatt, Bauwelt, Kart APK"
 on:
   push:
-    branches: [delivery/lumo-2035-konkrete-3d-lernwelt-20261116]
+    branches: [delivery/lumo-2036-gesicherte-3d-einstiege-20261116]
   workflow_dispatch:
 
 permissions:
@@ -54,6 +54,15 @@ jobs:
           flutter pub get --enforce-lockfile
           bash scripts/install_ndk_for_build.sh build-proof/ndk
           bash scripts/install_godot_for_build.sh
+      - name: Fachliche Regression – 3D-Einstieg, Lernaufgaben, Englisch
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter expanded \
+            test/learning/remaining_native_entry_test.dart \
+            test/games/flame_question_coach_test.dart \
+            test/tutoring/native_english_activity_test.dart \
+            test/learning/lab_native_model_contract_test.dart
       - name: Eine einzige originalsignierte Flutter-Godot-APK bauen
         shell: bash
         run: |
@@ -67,13 +76,13 @@ jobs:
           cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
           cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
           (cd release && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
-      - name: Signierte 2035-APK mit belegtem Quellstand für Android ausliefern
+      - name: Signierte 2036-APK mit belegtem Quellstand für Android ausliefern
         shell: bash
         run: |
           set -euo pipefail
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
           cat > release/README.txt <<EOF
-          LUMO 2035 Android APK - Flutter and Godot
+          LUMO 2036 Android APK - Flutter and Godot
           Version: $VERSION
           Flutter commit: $GITHUB_SHA
           Godot commit: $(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')
@@ -81,12 +90,14 @@ jobs:
           neon Kart menu, and six validated native 3D learning models.
           New procedural cat/dog/bird objects in the English learning world.
           Existing Workshop and public Jungle geometry remain included.
+          Runtime guard: 3D entry only for matched validated spatial models.
+          Regression: 3D bridge, mini game, story and English widget tests.
           Protected: original package and Android signing certificate.
           Unavailable from this public source: separate authoring ZIP with
           jungle V2 complete dressing and R02 ten vehicle GLBs.
           Fold7 physical acceptance: NOT RUN.
           EOF
-          TAG="lumo-2035-einfach-$GITHUB_RUN_ID"
+          TAG="lumo-2036-einfach-$GITHUB_RUN_ID"
           if gh release create "$TAG" \
             release/Lumo-Lernen-Neu.apk \
             release/SHA256SUMS.txt \
@@ -94,7 +105,7 @@ jobs:
             release/BUILD-PROVENANCE.json \
             release/README.txt \
             --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
-            --title "LUMO 2035 – Lernwerkstatt, Bauwelt und Kart APK" \
+            --title "LUMO 2036 – Lernwerkstatt, Bauwelt und Kart APK" \
             --notes "Geprüftes LUMO Android Update aus eigenem Flutter- und Godot-Projekt. 2033 + Bauwelt-Geschichte und Neon-Kart. Separate V2-Dschungel-/R02-Blenderarchive noch nicht integriert." \
             --prerelease --latest=false; then
             URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"

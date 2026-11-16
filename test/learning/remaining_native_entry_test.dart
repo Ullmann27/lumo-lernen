@@ -142,7 +142,12 @@ void main() {
     testWidgets(
         '$kind: real native entry preserves exact task through pause and return',
         (tester) async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      // Only an actual native 3D launch needs Android platform emulation.
+      // Story/mini have no validated spatial model and return early; leaving
+      // this override set breaks Flutter's framework invariant before tearDown.
+      if (kind == 'cross' || kind == 'photo') {
+        debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      }
       const bridge = MethodChannel('lumo_lernen/bridge');
       final returned = Completer<Map<String, Object?>>();
       Map<dynamic, dynamic>? payload;
