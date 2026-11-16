@@ -1,0 +1,215 @@
+{
+  "schema": "lumo.nextgen.reference.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "mode": "immutable-replay",
+  "run_id": "0a847067d3a043f5ae658c14f37de61c",
+  "started_utc": "2026-11-16T05:49:58Z",
+  "qa_commit": "c2518e4bad105fcc3d867ae54a5fc93744e03842",
+  "qa_workflow_run": 43811505799,
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "source_build_run": 43800892196,
+  "probe_sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c",
+  "reference_probe_sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "apk_rebuilt_by_probe": false,
+  "fullModernizationComplete": false,
+  "previous_complete_probe": {
+    "original_result_sha256": "0a5c5a72a0f282fd3ef67ad13f7187868fc77083ac61be72fb880ae7b730db0f",
+    "original_result": "evidence/android/original-android/learning-android-result.json",
+    "original_status": "PASS_WITH_LIMITATIONS",
+    "original_run_id": "f4e88a35b57f4b71871dafab7d34fd65",
+    "installed_before_reset": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2031,
+      "versionName": "0.13.19",
+      "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+    },
+    "synthetic_profile_before_reset": {
+      "id": "1794807717531527",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T05:41:57.531527"
+    },
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "reason": "Fresh UI-created fixture for additional scenes after complete original PASS",
+    "uninstall_output": "Success"
+  },
+  "candidate": {
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "flutter_source_commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "versionCode": 2031,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.19",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef",
+      "bytes": 278589756
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2031,
+    "versionName": "0.13.19",
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794808237256562",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T05:50:37.256562"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0024-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "a845d1d6a95dac7f8ec75c79f46de9fe22a3814c11ca30dbb4e6111b90f45fdc",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.054,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0059-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "4bd1cccfeb0b65c953acbbc1f1236033d2ad25f519f766f8ae312fddd6a6e918",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0076-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "f33188cbee40f78677dbb97d3c9c00c831d95fe230dae55fe1628e867f42197f",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.215,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0097-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "f7b2efa4471ab346b5a8ad22671366311f6ab194e2fc6e5954aa90580213f6e8",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.567,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0103-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "522d948f6113d94e13af25ec5a1ddc6ea05e44e32bbebc60bdf2f4c1bd98d6dc",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.57,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0109-banana-guided-before-native.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "73851a96c4c4bf068d4f30018cfc345cdd6d86e2da8b8864455e6070cd223695",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.51,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0110-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "73851a96c4c4bf068d4f30018cfc345cdd6d86e2da8b8864455e6070cd223695"
+    }
+  ],
+  "videos": [
+    {
+      "file": "0002-onboarding.mp4",
+      "sha256": "2ed45da25a816d6c40e1637e6bc179855254d3e1dbecf87dafe28c7f7605ae9b",
+      "bytes": 1750542,
+      "duration_seconds": 15.8558,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 16.92,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "recording_errors": [
+    {
+      "recording": "0091-banana-guided-navigation",
+      "error": "Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4', 'evidence/android/reference-android/0091-banana-guided-navigation.mp4')\n[  7%] /sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4\n",
+      "error_type": "RuntimeError",
+      "secondary_to_primary": false,
+      "primary_error": null,
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 797, in recording\n    self.base.adb(\"pull\", remote, str(local), timeout=90)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 44, in adb\n    return command('adb', *args, timeout=timeout, check=check)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 39, in command\n    raise RuntimeError(f'Command failed ({result.returncode}): {args}\\n{text}')\nRuntimeError: Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4', 'evidence/android/reference-android/0091-banana-guided-navigation.mp4')\n[  7%] /sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4\n\n"
+    }
+  ],
+  "error": "Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4', 'evidence/android/reference-android/0091-banana-guided-navigation.mp4')\n[  7%] /sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4\n",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2031_replay_reference_android_probe.py\", line 307, in run\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 660, in run\n    self.banana()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 510, in banana\n    with self.recording(\"banana-guided-navigation\"):\n  File \"/usr/lib/python3.12/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 797, in recording\n    self.base.adb(\"pull\", remote, str(local), timeout=90)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 44, in adb\n    return command('adb', *args, timeout=timeout, check=check)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/probes/pr207_android_smoke.py\", line 39, in command\n    raise RuntimeError(f'Command failed ({result.returncode}): {args}\\n{text}')\nRuntimeError: Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4', 'evidence/android/reference-android/0091-banana-guided-navigation.mp4')\n[  7%] /sdcard/lumo-learning-0a847067d3a043f5ae658c14f37de61c-0091-banana-guided-navigation.mp4\n\n",
+  "finished_utc": "2026-11-16T05:51:36Z"
+}

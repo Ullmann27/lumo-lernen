@@ -1,0 +1,102 @@
+{
+  "artifactId": 14201531176,
+  "workflowRun": 43812538819,
+  "archiveSha256": "8290ce1dfcd5779df8e2de1c3900fb8eada31ed6f48cf7236c23ad666da1dac8",
+  "byteExactOriginals": [
+    {
+      "path": "checkers/current-gates.log",
+      "bytes": 2382,
+      "sha256": "09bd74ca69978b560c964506eebc0cf31b0aaa75ee4f171ea1d70481aaa799c1"
+    },
+    {
+      "path": "checkers/original-gates.log",
+      "bytes": 15823,
+      "sha256": "be11cb6010bd6edc0028c56f2956b83642daff284156dfcb9042ee6211589dc5"
+    },
+    {
+      "path": "checkers/reference-gates.log",
+      "bytes": 5274,
+      "sha256": "4c95ce4aff6637ebdf79d2248679b72f3cf9186b6ff9b9ac1080170093ff6ae3"
+    },
+    {
+      "path": "checkers/runtime-case-gates.log",
+      "bytes": 8306,
+      "sha256": "18b497744b753d2e01e2124ea477a87184268603836d71caf709cfe6d0a06d53"
+    },
+    {
+      "path": "checkers/public-download-gates.log",
+      "bytes": 2755,
+      "sha256": "db6b086f105386777ef75d502db2eaaac0001271cbc8884b634f9a6384b6b25c"
+    },
+    {
+      "path": "checkers/publication-gates.log",
+      "bytes": 1902,
+      "sha256": "f67109e49036f617ed7a4fdb2bdcb08792a8c19044f7187eb62d1f7e7fbd2b39"
+    },
+    {
+      "path": "checkers/wrapped-reader.log",
+      "bytes": 2824,
+      "sha256": "b3cc6c0e653f083b969c844ed0d6b2c886637d8a5b442152cabb4ce204beb7b9"
+    },
+    {
+      "path": "download/original-build-job.json",
+      "bytes": 4514,
+      "sha256": "1905f9a78cb2085451bcd7e5e26a4b018459942e811aaba9360021e8a2e2773e"
+    },
+    {
+      "path": "download/original-validate-job.json",
+      "bytes": 5726,
+      "sha256": "d5f557e1c706ec9505aaa7e6e45624ad6b27bb0692b51ecaed3ad3a740d729a7"
+    },
+    {
+      "path": "download/original-run.json",
+      "bytes": 13802,
+      "sha256": "0148a252c8f7833dbec7fbcbb12c170fc9b4bba14c122ff0df1bfc37e2269d46"
+    },
+    {
+      "path": "download/original-x86-artifact.json",
+      "bytes": 810,
+      "sha256": "3e898baecfa54d1d0e9ce0001e408ab7188bfd2a9f28089188f02d6a50d86959"
+    },
+    {
+      "path": "download/verified-download.json",
+      "bytes": 21843,
+      "sha256": "7f8e47c6d8ee1660fa61041f11ac56ae16c3b5009a13a587880299e8ab14df91"
+    },
+    {
+      "path": "emulator/mesa-renderer.txt",
+      "bytes": 1774,
+      "sha256": "ff994f0c1d9aba115ec425bc99c8c710c4e82ebb62237a05e6674d0d1f9a12d6"
+    },
+    {
+      "path": "emulator/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    },
+    {
+      "path": "source/qa-source-binding.json",
+      "bytes": 19557,
+      "sha256": "7d88582db58b0308bb40b2dc51e024b9857b5c96c46311fb6c751474e6ae67d9"
+    },
+    {
+      "path": "android/runtime-cases/0213-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a"
+    },
+    {
+      "path": "android/runtime-cases/0482-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "fe3fa6603a270a3fca23905ad95cde5412fe91a3a91d6bcd099f27107586a6bf"
+    },
+    {
+      "path": "android/runtime-cases/0156-numeric-wrong-after-assessment.png",
+      "bytes": 457920,
+      "sha256": "f68ff731df544c1bdc92c20944ed6d946db97c387170c4179fc7214d466751be"
+    },
+    {
+      "path": "android/runtime-cases/0170-numeric-corrected-after-assessment.png",
+      "bytes": 503458,
+      "sha256": "7ff51a332e06a331fd7bdda3284ff5f9e80b8c154c5e8711534cf9c57a47868f"
+    }
+  ]
+}

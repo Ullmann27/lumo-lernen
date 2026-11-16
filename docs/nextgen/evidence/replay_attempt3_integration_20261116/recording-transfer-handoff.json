@@ -1,0 +1,113 @@
+{
+  "producer_commit": "1407c37384ccf26bf6618903049918d3e7bc92e5",
+  "tree": "2e09e4e646f535aafe027b815c55d5b725d7e3fc",
+  "parent": "428619f45ccd945a11b806765245302aee9bcffb",
+  "branch": "qa/lumo-recording-start-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-recording-start",
+  "files": {
+    ".github/probes/lumo_nextgen_learning_android_probe.py": {
+      "bytes": 90802,
+      "sha256": "5edad1d34a25b2d9a3bd4fc46ffdf51840defa7609943d07996cd3df8efb6fb5"
+    },
+    "docs/nextgen/evidence/recording_transfer_2031_20261116/README.md": {
+      "bytes": 3736,
+      "sha256": "ee9d549c6160dcbd3377014f916f47b9b239827cac1fc4bdc8ad6f2b41a98a59"
+    },
+    "docs/nextgen/evidence/recording_transfer_2031_20261116/first-green-missing-sparse-fixtures.log": {
+      "bytes": 11840,
+      "sha256": "a076e3ef39b63a4c2f1c551e68215be58a0b6c5acc7623c9482a95fd9908a206"
+    },
+    "docs/nextgen/evidence/recording_transfer_2031_20261116/green.log": {
+      "bytes": 3459,
+      "sha256": "5fe31aaae26d2fd567988b1f8c532addc66a48a54b11e631bd1060552492243b"
+    },
+    "docs/nextgen/evidence/recording_transfer_2031_20261116/red-source.json": {
+      "bytes": 1012,
+      "sha256": "a05b8d46ab9c2d1b9bb2fc2d6e4f9187a2371afe93d0889d28d8e28e4f0ad047"
+    },
+    "docs/nextgen/evidence/recording_transfer_2031_20261116/red-test.patch": {
+      "bytes": 6153,
+      "sha256": "15e0f65a7d11fd15f33726b49b627650a3753eac08c85f4549e291a4718bd72e"
+    },
+    "docs/nextgen/evidence/recording_transfer_2031_20261116/red.log": {
+      "bytes": 1681,
+      "sha256": "2652f4804fe229df9d809c97934b50a10125e006f488261f980ce14a5fa5f91b"
+    },
+    "docs/nextgen/evidence/recording_transfer_2031_20261116/source.json": {
+      "bytes": 5271,
+      "sha256": "28c2605f2aecf9a5eee717b76830e4fd146cfd1b3b905003a79ccde2530a997a"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/0091-banana-guided-navigation-recording-error.json": {
+      "bytes": 1448,
+      "sha256": "860a599a7e234eccb76216f71971154dc70785726406f376cc1a143fddcb3598"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/0091-banana-guided-navigation-screenrecord.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/README.md": {
+      "bytes": 1126,
+      "sha256": "2c16f86172fc29dd8a96284d0fff937a1c5ef4f8e03894e781b72b23f0d20e38"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/manifest.json": {
+      "bytes": 1250,
+      "sha256": "c9b5fa63c8395e268888a62c2564b6261343541fae1e2eac67471bb58f497605"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_recording_pull_43811505799/reference-android-result.json": {
+      "bytes": 10514,
+      "sha256": "cdbba8d719886b56b54f672fd53e7935fc444c8fbebcf4e3d5997b223cbafeb6"
+    },
+    "tools/android_qa/tests/test_nextgen_learning_android_probe.py": {
+      "bytes": 84888,
+      "sha256": "3b47ebd18df8e98388d6b51396cc1d8d1cf7864c63c7302f817d5febeb4523c5"
+    }
+  },
+  "source_failure": {
+    "qa_commit": "c2518e4bad105fcc3d867ae54a5fc93744e03842",
+    "workflow_run": 43811505799,
+    "artifact_id": 14201128406,
+    "archive_bytes": 74671895,
+    "archive_sha256": "cbd6a659a292804df4c81928c6c4b942c94a67c969055f05b556393788253609",
+    "root_evidence": "docs/nextgen/evidence/ci-2031-replay-video-transfer-failure/",
+    "classification": "adb pull failed after7% during recording finalization; deeper transport cause unknown",
+    "recorder_start_failure_proven": false,
+    "historical_fail_changed": false
+  },
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "tests": {
+    "red_registered": 2,
+    "red_failed": 1,
+    "red_log": "docs/nextgen/evidence/recording_transfer_2031_20261116/red.log",
+    "green_passed": 15,
+    "green_failed": 0,
+    "green_skipped": 0,
+    "green_log": "docs/nextgen/evidence/recording_transfer_2031_20261116/green.log",
+    "scope": "6 synthetic transport/original-error checks +3 existing Resize +6 existing Foreground; actual existing null-duration MP4s inspected with ffprobe",
+    "earlier_setup_errors_retained": 6,
+    "android_execution": false
+  },
+  "gate_preservation": {
+    "transfer_budget_seconds": 90,
+    "transfer_attempts_max": 2,
+    "same_stopped_remote_bytes_and_sha_required": true,
+    "full_local_bytes_and_sha_required": true,
+    "first_partial_and_error_retained": true,
+    "own_pid_only": true,
+    "no_ui_or_recording_replay": true,
+    "positive_video_duration_required": true,
+    "recording_limit_seconds": 180,
+    "primary_body_error_preserved": true
+  },
+  "existing_files_changed": [
+    ".github/probes/lumo_nextgen_learning_android_probe.py",
+    "tools/android_qa/tests/test_nextgen_learning_android_probe.py"
+  ],
+  "product_change": false,
+  "workflow_change": false,
+  "publisher_change": false,
+  "remote_actions": false,
+  "new_runtime_pass": false,
+  "worktree_clean": true,
+  "all_committed_blobs_equal": true
+}
