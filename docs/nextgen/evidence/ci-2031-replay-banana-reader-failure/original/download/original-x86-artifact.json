@@ -1,0 +1,20 @@
+{
+  "id": 14197503039,
+  "node_id": "MDg6QXJ0aWZhY3QxNDE5NzUwMzAzOQ==",
+  "name": "lumo-nextgen-x86",
+  "size_in_bytes": 538205923,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14197503039",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14197503039/zip",
+  "expired": false,
+  "digest": "sha256:fb6cd632881655755a1ac013c508226a57a735418b1884e01c7caa1aa06bd6e5",
+  "created_at": "2026-11-16T04:20:08Z",
+  "updated_at": "2026-11-16T04:20:08Z",
+  "expires_at": "2026-12-16T04:20:01Z",
+  "workflow_run": {
+    "id": 43800892196,
+    "repository_id": 1222433959,
+    "head_repository_id": 1222433959,
+    "head_branch": "integration/lumo-nextgen-learning-20261115",
+    "head_sha": "e05a96a52aaf57e466e79831f15aaffd144284ee"
+  }
+}
