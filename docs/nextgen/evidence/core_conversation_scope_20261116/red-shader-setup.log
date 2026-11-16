@@ -1,0 +1,58 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: actual Core header dialog retains current task and permitted help
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following _Exception was thrown running a test:
+Exception: Asset 'shaders/ink_sparkle.frag' not found
+
+When the exception was thrown, this was the stack:
+#0      new FragmentProgram._fromAsset (dart:ui/painting.dart:5433:7)
+#1      FragmentProgram.fromAsset.<anonymous closure> (dart:ui/painting.dart:5461:39)
+#12     FakeAsync.run.<anonymous closure>.<anonymous closure> (package:fake_async/fake_async.dart:189:18)
+#13     FakeAsync.flushMicrotasks (package:fake_async/fake_async.dart:200:32)
+#14     AutomatedTestWidgetsFlutterBinding.runTest.<anonymous closure> (package:flutter_test/src/binding.dart:2509:19)
+<asynchronous suspension>
+#15     Declarer.test.<anonymous closure>.<anonymous closure> (package:test_api/src/backend/declarer.dart:253:15)
+<asynchronous suspension>
+#16     Declarer.test.<anonymous closure> (package:test_api/src/backend/declarer.dart:250:11)
+<asynchronous suspension>
+#17     Invoker._waitForOutstandingCallbacks.<anonymous closure> (package:test_api/src/backend/invoker.dart:318:9)
+<asynchronous suspension>
+(elided 10 frames from dart:async and package:stack_trace)
+
+The test description was:
+  actual Core header dialog retains current task and permitted help
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: actual Core header dialog retains current task and permitted help [E]
+  Test failed. See exception logs above.
+  The test description was: actual Core header dialog retains current task and permitted help
+  
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test (but after the test had completed):
+Expected: 'legacy_4ed09633a50eb3aa'
+  Actual: <null>
+   Which: not an <Instance of 'String'>
+The Core owner must retain its exact task in its own dialog.
+
+When the exception was thrown, this was the stack:
+#0      fail (package:matcher/src/expect/expect.dart:187:31)
+#1      _expect (package:matcher/src/expect/expect.dart:182:3)
+#2      expect (package:matcher/src/expect/expect.dart:65:3)
+#3      expect (package:flutter_test/src/widget_tester.dart:473:18)
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart:123:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+  Test failed. See exception logs above.
+  The test description was: actual Core header dialog retains current task and permitted help
+  
+00:02 +0 -1: (tearDownAll)
+00:02 +0 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help

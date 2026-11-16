@@ -1,0 +1,11 @@
+{
+  "baseCommit": "fd4a1eea31bcf1aeff41086e3e739da1136933d2",
+  "productUnchanged": true,
+  "files": {
+    "lib/app/app_shell.dart": "84cb2a7653c33a169b768a2cd5313c5d09d27210f7076833a462ad62608913c2",
+    "lib/features/learning/learning_content.dart": "0a96884deb2e214e557ecb8c200aa81aad92c8a74df7c98bfd35fcc5c001cf18",
+    "test/learning/core_conversation_route_test.dart": "6e956cdc117d6fb1367383e3d3f936af466fe9fe384531bdc695911d4e17e8ad"
+  },
+  "case": "Actual AppShell/Core and its own conversation, 430→1000dp. Core State replaced, renderer task ID changed, bound task becomes null.",
+  "result": "One failed assertion, no transport/asset/layout exception."
+}

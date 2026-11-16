@@ -1,0 +1,37 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: pause and resume while menu closes retire its pending action
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: no matching candidates
+  Actual: _TypeWidgetFinder:<Found 1 widget with type "LumoAgentContent": [
+            LumoAgentContent(dependencies: [_ModalScopeStatus], state:
+_LumoAgentContentState#0ff58),
+          ]>
+   Which: means one was found but none were expected
+Returning to foreground must not revive a pending old choice.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart:402:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart line 402
+The test description was:
+  pause and resume while menu closes retire its pending action
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +0 -1: pause and resume while menu closes retire its pending action [E]
+  Test failed. See exception logs above.
+  The test description was: pause and resume while menu closes retire its pending action
+  
+00:02 +0 -1: (tearDownAll)
+00:02 +0 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-core-conversation-scope/test/learning/core_conversation_route_test.dart: pause and resume while menu closes retire its pending action

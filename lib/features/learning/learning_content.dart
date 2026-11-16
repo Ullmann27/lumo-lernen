@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
+import '../../app/lumo_companion_host.dart';
 import '../../app/app_theme.dart';
 import '../../app/app_design.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
+import '../../widgets/fox/lumo_free_companion.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
 import '../../core/test_result_repository.dart';
@@ -54,16 +57,52 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
 
+/// The shell companion delegates to the visible Core owner. This only routes a
+/// UI action; task identity and permitted actions still belong to the bus.
+class LearningConversationEntry {
+  Object? _owner;
+  Future<void> Function(ValueChanged<LumoSection>)? _open;
+  LumoCompanionMenuPresenter? _presentMenu;
+
+  void _bind(
+      Object owner,
+      Future<void> Function(ValueChanged<LumoSection>) open,
+      LumoCompanionMenuPresenter presentMenu) {
+    _owner = owner;
+    _open = open;
+    _presentMenu = presentMenu;
+  }
+
+  void _release(Object owner) {
+    if (!identical(owner, _owner)) return;
+    _owner = null;
+    _open = null;
+    _presentMenu = null;
+  }
+
+  Future<void> open(ValueChanged<LumoSection> onSection) async {
+    final open = _open;
+    if (open != null) await open(onSection);
+  }
+
+  Future<LumoCompanionAction?> presentMenu(WidgetBuilder builder) async {
+    final presentMenu = _presentMenu;
+    return presentMenu == null ? null : await presentMenu(builder);
+  }
+}
+
 class LearningContent extends StatefulWidget {
   const LearningContent({
     super.key,
     required this.appState,
     this.aiProxy = const LumoAiProxyClient(),
     this.voice,
+    this.conversationEntry,
   });
   final LumoAppState appState;
   final LumoAiProxyClient aiProxy;
   final LumoVoice? voice;
+  final LearningConversationEntry? conversationEntry;
 
   @override
   State<LearningContent> createState() => _LearningContentState();
@@ -87,7 +126,12 @@ class _LearningContentState extends State<LearningContent>
   bool _showHelp = true;
   bool _slow = false;
   bool _foreground = true;
+  int _foregroundRevision = 0;
   bool _routeVisible = true;
+  Object? _conversationToken;
+  ModalRoute<dynamic>? _conversationRoute;
+  String? _conversationTaskId;
+  String? _conversationScope;
   late final LumoVoice _voice = widget.voice ?? LumoVoice.instance;
   int? _voiceRequest;
   int _speechSerial = 0;
@@ -124,6 +168,12 @@ class _LearningContentState extends State<LearningContent>
     final state = widget.appState.state;
     return '${widget.appState.profileGeneration}|$_childId|$_taskGrade|${state.subject}|${state.unit}|${state.sessionKind.name}';
   }
+
+  bool get _taskRouteActive => _conversationToken == null
+      ? _routeVisible && (ModalRoute.of(context)?.isCurrent ?? true)
+      : _conversationRoute?.isCurrent == true &&
+          _conversationScope == _sessionScope &&
+          _conversationTaskId == _taskInstance.taskInstanceId;
 
   static const int _recentTaskMemory = RecentTaskRepository.maxTaskKeys;
   static const int _recentUnitMemory = 10;
@@ -235,9 +285,9 @@ class _LearningContentState extends State<LearningContent>
       isActive: () =>
           mounted &&
           (_foreground || _nativeLearningOpen) &&
-          _routeVisible &&
+          _taskRouteActive &&
           _activeSessionScope == _sessionScope &&
-          (ModalRoute.of(context)?.isCurrent ?? true),
+          !widget.appState.resetting,
       onHint: _requestTaskHelp,
       onExplain: _requestTaskHelp,
       onRepeat: _repeatCurrentStep,
@@ -252,6 +302,8 @@ class _LearningContentState extends State<LearningContent>
         _coach.present(objectId: id, point: action == LumoLearningAction.point);
       },
     );
+    widget.conversationEntry
+        ?._bind(this, _openConversation, _presentCompanionMenu);
     LumoCompanionRequests.instance.helpRequested.addListener(_requestTaskHelp);
     _loadNextTask(resetCounter: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -280,18 +332,134 @@ class _LearningContentState extends State<LearningContent>
     _routeVisible = ModalRoute.isCurrentOf(context) ?? true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      if (_routeVisible) {
-        _publishTaskContext();
-      } else {
-        _cancelCoachMedia();
-        _coach.clear();
-      }
+      _refreshConversationScope();
     });
+  }
+
+  void _refreshConversationScope() {
+    if (!mounted) return;
+    if (_taskRouteActive) {
+      _publishTaskContext(immediately: true);
+    } else {
+      _cancelCoachMedia();
+      _coach.clear();
+    }
+  }
+
+  Object? _beginConversationLease() {
+    if (!mounted ||
+        !_foreground ||
+        !_taskRouteActive ||
+        _conversationToken != null ||
+        !_coach.ownsCurrentTask) {
+      return null;
+    }
+    final token = Object();
+    _conversationToken = token;
+    _conversationTaskId = _taskInstance.taskInstanceId;
+    _conversationScope = _sessionScope;
+    return token;
+  }
+
+  void _conversationRouteChanged(Object token, ModalRoute<dynamic>? route) {
+    if (!mounted || !identical(_conversationToken, token)) return;
+    _conversationRoute = route;
+    if (SchedulerBinding.instance.schedulerPhase ==
+        SchedulerPhase.persistentCallbacks) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && identical(_conversationToken, token)) {
+          _refreshConversationScope();
+        }
+      });
+    } else {
+      _refreshConversationScope();
+    }
+  }
+
+  Future<void> _endConversationLease(Object token) async {
+    if (!identical(_conversationToken, token)) return;
+    _conversationToken = null;
+    _conversationRoute = null;
+    _conversationTaskId = null;
+    _conversationScope = null;
+    final refreshed = Completer<void>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _conversationToken == null) {
+        _refreshConversationScope();
+      }
+      refreshed.complete();
+    });
+    WidgetsBinding.instance.ensureVisualUpdate();
+    await refreshed.future;
+  }
+
+  Future<void> _openConversation(ValueChanged<LumoSection> onSection) async {
+    final token = _beginConversationLease();
+    if (token == null) return;
+    try {
+      await showLumoConversation(context,
+          appState: widget.appState,
+          onSection: onSection,
+          onRouteChanged: (route) => _conversationRouteChanged(token, route));
+    } finally {
+      await _endConversationLease(token);
+    }
+  }
+
+  Future<LumoCompanionAction?> _presentCompanionMenu(
+      WidgetBuilder builder) async {
+    final identity = _coach.identity;
+    if (identity == null) return null;
+    final token = _beginConversationLease();
+    if (token == null) return null;
+    final scope = _sessionScope;
+    final foregroundRevision = _foregroundRevision;
+    var validSelection = false;
+    LumoCompanionAction? action;
+    try {
+      action = await showLumoCompanionMenu(context, builder: builder,
+          onRouteChanged: (route) {
+        if (route == null) {
+          // Check before normal closing releases the lease. A stop, pause,
+          // foreign route or replacement task invalidates the old selection.
+          validSelection = mounted &&
+              identical(_conversationToken, token) &&
+              _foreground &&
+              scope == _sessionScope &&
+              LumoCompanionRequests.instance
+                  .isCurrentLearningIdentity(identity);
+        }
+        _conversationRouteChanged(token, route);
+      });
+    } finally {
+      await _endConversationLease(token);
+    }
+    // The current task was freshly published above. Let the visible companion
+    // rebuild with it before its strict sameLearningScope check dispatches.
+    final reboundIdentity = _coach.identity;
+    await WidgetsBinding.instance.endOfFrame;
+    if (!validSelection ||
+        !mounted ||
+        !_foreground ||
+        foregroundRevision != _foregroundRevision ||
+        _conversationToken != null ||
+        scope != _sessionScope ||
+        identity.taskId != _taskInstance.taskInstanceId ||
+        reboundIdentity == null ||
+        !_coach.matches(reboundIdentity)) {
+      return null;
+    }
+    return action;
   }
 
   @override
   void didUpdateWidget(covariant LearningContent oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (oldWidget.conversationEntry != widget.conversationEntry) {
+      oldWidget.conversationEntry?._release(this);
+      widget.conversationEntry
+          ?._bind(this, _openConversation, _presentCompanionMenu);
+    }
     if (_activeSessionScope == _sessionScope) return;
     _skillStates.clear();
     _feedbackEngine = LumoLearningFeedbackEngine();
@@ -603,7 +771,12 @@ class _LearningContentState extends State<LearningContent>
     _publishedTaskContext = context;
     void publish() {
       if (!mounted || !identical(_publishedTaskContext, context)) return;
-      if (_coach.publish(context) != null) afterPublish?.call();
+      if (_coach.publish(context) != null) {
+        afterPublish?.call();
+      } else {
+        // A task change must not leave the old dialog's snapshot on the bus.
+        _coach.clear();
+      }
     }
 
     if (immediately) {
@@ -827,7 +1000,9 @@ class _LearningContentState extends State<LearningContent>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    _foreground = state == AppLifecycleState.resumed;
+    final foreground = state == AppLifecycleState.resumed;
+    if (foreground != _foreground) _foregroundRevision++;
+    _foreground = foreground;
     if (!_foreground) {
       _cancelCoachMedia(discardCandidate: !_nativeLearningOpen);
       if (!_nativeLearningOpen) {
@@ -925,8 +1100,7 @@ class _LearningContentState extends State<LearningContent>
     }
 
     await LumoVoiceClips.ensureFreeLoaded();
-    if (!isCurrent() ||
-        _voice.requestRevision != transportBeforePreparation) {
+    if (!isCurrent() || _voice.requestRevision != transportBeforePreparation) {
       return;
     }
     final recorded = LumoVoiceClips.freeLookup(text) != null;
@@ -953,8 +1127,7 @@ class _LearningContentState extends State<LearningContent>
       }
       return;
     }
-    if (!isCurrent() ||
-        _voice.requestRevision != transportBeforePreparation) {
+    if (!isCurrent() || _voice.requestRevision != transportBeforePreparation) {
       return;
     }
     await _playOwnedVoice(text,
@@ -1698,6 +1871,7 @@ class _LearningContentState extends State<LearningContent>
 
   @override
   void dispose() {
+    widget.conversationEntry?._release(this);
     WidgetsBinding.instance.removeObserver(this);
     _cancelCoachMedia(rebuild: false);
     _coach.dispose();

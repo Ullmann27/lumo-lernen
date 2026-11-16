@@ -7,6 +7,7 @@ import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import 'lumo_companion_host.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
+import '../widgets/fox/lumo_free_companion.dart';
 import '../core/lumo_asset_paths.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
@@ -64,6 +65,9 @@ class _AppShellState extends State<AppShell>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   final _appState = LumoAppState();
   final _learningNavigation = LearningNavigation();
+  final _coreConversation = LearningConversationEntry();
+  GlobalKey _coreSubtreeKey = GlobalKey(debugLabel: 'core-learning-content');
+  String? _coreSubtreeScope;
   int _browsingProfileGeneration = 0;
   late final _embeddedGames = EmbeddedGameService(
     appState: _appState,
@@ -327,6 +331,15 @@ class _AppShellState extends State<AppShell>
     });
   }
 
+  Future<void> _openConversation() async {
+    if (_appState.state.section == LumoSection.exercises && !_isReadingMode()) {
+      await _coreConversation.open(_navigateTo);
+      return;
+    }
+    await showLumoConversation(context,
+        appState: _appState, onSection: _navigateTo);
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
@@ -505,6 +518,11 @@ class _AppShellState extends State<AppShell>
 
   Widget _buildContent({bool fullBleed = false}) {
     final section = _appState.state.section;
+    if (section != LumoSection.exercises || _isReadingMode()) {
+      // A later real navigation gets its own subtree, even while the previous
+      // section is still fading out. Width-only reparenting retains this key.
+      _coreSubtreeScope = null;
+    }
     switch (section) {
       case LumoSection.home:
         return HomeContent(
@@ -543,10 +561,19 @@ class _AppShellState extends State<AppShell>
           );
         }
         final state = _appState.state;
-        return LearningContent(
-          key: ValueKey(
-              '${state.grade}:${state.subject}:${state.unit}:${state.sessionKind.name}'),
-          appState: _appState,
+        final scope =
+            '${state.grade}:${state.subject}:${state.unit}:${state.sessionKind.name}';
+        if (_coreSubtreeScope != scope) {
+          _coreSubtreeScope = scope;
+          _coreSubtreeKey = GlobalKey(debugLabel: 'core-learning-content');
+        }
+        return KeyedSubtree(
+          key: _coreSubtreeKey,
+          child: LearningContent(
+            key: ValueKey(scope),
+            appState: _appState,
+            conversationEntry: _coreConversation,
+          ),
         );
       case LumoSection.reading:
         return ReadingContent(
@@ -646,6 +673,11 @@ class _AppShellState extends State<AppShell>
                               _appState.state.section == LumoSection.home;
                           final navWidth = width < 980 ? 160.0 : 200.0;
                           final gap = width < 980 ? 6.0 : 10.0;
+                          final coreMenuPresenter =
+                              section == LumoSection.exercises &&
+                                      !_isReadingMode()
+                                  ? _coreConversation.presentMenu
+                                  : null;
 
                           if (mobile) {
                             final fullBleed = fullBleedScene != null;
@@ -660,10 +692,7 @@ class _AppShellState extends State<AppShell>
                               if (section != LumoSection.games)
                                 _MobileLumoHeader(
                                     appState: _appState,
-                                    onFoxTap: () => showLumoConversation(
-                                        context,
-                                        appState: _appState,
-                                        onSection: _navigateTo)),
+                                    onFoxTap: _openConversation),
                               Expanded(
                                   child: fullBleed
                                       // Zielbild-Seiten: Lumo steht als kleiner
@@ -678,11 +707,15 @@ class _AppShellState extends State<AppShell>
                               if (fullBleed)
                                 _LumoHelpDock(
                                     appState: _appState,
-                                    onSection: _navigateTo),
+                                    onSection: _navigateTo,
+                                    onAskLumo: _openConversation,
+                                    menuPresenter: coreMenuPresenter),
                               if (!fullBleed)
                                 LumoCompanionHost(
                                     appState: _appState,
                                     onSection: _navigateTo,
+                                    onAskLumo: _openConversation,
+                                    menuPresenter: coreMenuPresenter,
                                     compact: constraints.maxHeight < 650),
                               LumoBottomNavigation(
                                   active: _appState.state.section,
@@ -721,18 +754,8 @@ class _AppShellState extends State<AppShell>
                                                 16, 10, 16, 6),
                                             child: LumoTopBar(
                                               appState: _appState,
-                                              onTapStatus: () =>
-                                                  showLumoConversation(
-                                                context,
-                                                appState: _appState,
-                                                onSection: _navigateTo,
-                                              ),
-                                              onTapFox: () =>
-                                                  showLumoConversation(
-                                                context,
-                                                appState: _appState,
-                                                onSection: _navigateTo,
-                                              ),
+                                              onTapStatus: _openConversation,
+                                              onTapFox: _openConversation,
                                             ),
                                           ),
                                         Expanded(
@@ -748,11 +771,14 @@ class _AppShellState extends State<AppShell>
                                             section == LumoSection.games)
                                           _LumoHelpDock(
                                               appState: _appState,
-                                              onSection: _navigateTo)
+                                              onSection: _navigateTo,
+                                              onAskLumo: _openConversation)
                                         else
                                           LumoCompanionHost(
                                               appState: _appState,
                                               onSection: _navigateTo,
+                                              onAskLumo: _openConversation,
+                                              menuPresenter: coreMenuPresenter,
                                               compact:
                                                   constraints.maxHeight < 600),
                                       ]),
@@ -785,9 +811,16 @@ class _AppShellState extends State<AppShell>
 /// Lumo keeps his initiative/menu listeners, with his own space outside the
 /// scrolling page. No game card or answer can be hidden behind the fox.
 class _LumoHelpDock extends StatelessWidget {
-  const _LumoHelpDock({required this.appState, required this.onSection});
+  const _LumoHelpDock({
+    required this.appState,
+    required this.onSection,
+    required this.onAskLumo,
+    this.menuPresenter,
+  });
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
+  final VoidCallback onAskLumo;
+  final LumoCompanionMenuPresenter? menuPresenter;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -817,7 +850,11 @@ class _LumoHelpDock extends StatelessWidget {
                         TextStyle(color: LumoVisualTokens.muted, fontSize: 12)),
               ])),
           LumoCompanionHost(
-              appState: appState, onSection: onSection, floating: true),
+              appState: appState,
+              onSection: onSection,
+              onAskLumo: onAskLumo,
+              menuPresenter: menuPresenter,
+              floating: true),
         ]),
       );
 }

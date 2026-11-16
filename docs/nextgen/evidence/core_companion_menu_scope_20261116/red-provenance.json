@@ -1,0 +1,12 @@
+{
+  "base_commit": "7c42d6da303ba42de2c7e94707dd187ff3660f1f",
+  "product_unchanged_before_red": true,
+  "source_sha256": {
+    "lib/app/app_shell.dart": "37171d78e5651117ce6b300ca943c244d519a544b6cba2016515d4865e7a4ac2",
+    "lib/features/learning/learning_content.dart": "0a96884deb2e214e557ecb8c200aa81aad92c8a74df7c98bfd35fcc5c001cf18",
+    "lib/app/lumo_companion_host.dart": "5de69ed0e5d34c134871cc6120ed9ef1fb5e38d7bfc783294b0a02014732124e",
+    "lib/widgets/fox/lumo_free_companion.dart": "d28d73158c9bec5dda6197d4b597eb06e67c1805a9cc55db97fb1c0f826d518d"
+  },
+  "test_sha256": "b2c50635dcdbb6cd3fe5f42f1377a79e935688d0db89b9c48ec232775f1bd6a6",
+  "claim": "Actual AppShell/Core floating-menu route, synthetic artwork/font transport; no Android claim."
+}
