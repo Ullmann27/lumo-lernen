@@ -1,3 +1,17 @@
+# LUMO Next Generation – vollständiger Android-Replay 3 läuft
+
+Stand: 16. November 2026, 06:22 UTC. Die unveränderte **0.13.19+2031** stammt aus **e05a96a52aaf57e466e79831f15aaffd144284ee**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**. Die signierte ARM64-Datei und ihre vollständigen Bytes sind geprüft; **noch kein öffentlicher Download**. `fullModernizationComplete=false` bleibt maßgeblich.
+
+Der dritte vollständige Replay [43814971553](https://github.com/Ullmann27/lumo-lernen/actions/runs/43814971553), Job **133124836818**, läuft an QA **e2713c27599b6659a6ad2fd31355effeae9f88c9**. Herkunft, unveränderlicher APK-Download, Prüfer und Displayvorbereitung sind erfolgreich; die gemeinsame Androidtour läuft noch. Kein Ergebnis einer früheren Tour wird als neuer PASS verwendet.
+
+Die zwei vorherigen vollständigen Replays bleiben FAIL: **43806736020** erkannte einen tatsächlich umgebrochenen Banane-Statustext nicht; **43811505799** brach beim Kopieren eines bereits aufgenommenen Videos ab. Beide Originaltouren hatten zuvor `PASS_WITH_LIMITATIONS` erreicht, ihre anschließenden Referenztouren nicht. Die vollständigen Artefakte, Originalprotokolle und eng begrenzten QA-Korrekturen sind gesichert. Der aktuelle integrierte Archiv-/Transfercheckpoint ist **efd4600897679ba38c4c165b1fff4d552a4acd9f**, Tree **48fb8afd8f25dd15e43b02c696832b094adf8df8**. Die sieben integrierten Prüfergruppen bestanden **205/205 Hosttests**; das ist kein Android-PASS.
+
+Der getrennte Zusatzlauf **43812538819** belegte eine tatsächlich falsch abgegebene **15** zu **9+7** und die anschließend getrennt gespeicherte korrekte **16**. Er endete danach FAIL, weil beim vorgesehenen Aufgabenwechsel die Silbenleiste außerhalb des beobachteten Bildausschnitts lag. Native Langsamer- und Stopp-Zusatzfälle wurden nicht erreicht. Der dazugehörige Ansichtsfix befindet sich in unabhängiger Prüfung und ist noch nicht erneut auf Android gelaufen. Alle Originale liegen unter `docs/nextgen/evidence/ci-2031-runtime-cases-active-observation-failure/`.
+
+Die bekannten Grenzen bleiben: zahlreiche native Einstiege verwenden eine allgemeine Aufgabenkarte; Godot läuft in der vorhandenen separaten Activity. Echte Spracheingabe, physische ARM64-/Fold7-Nutzung, sämtliche Aufgabenvarianten, alle 48-dp-Ziele sowie 60 FPS sind nicht vollständig nachgewiesen. Die ältere Aufnahme eines vollständigen 2031-Originalreplays ergab im Software-Emulator rund **813 ms je gemessenem Godot-Prozessintervall**, keine Hardware-FPS-Messung. `main` wurde durch diese Arbeit nicht zusammengeführt.
+
+## Archiv: erster Replay und ursprünglicher Buildstand
+
 # LUMO Next Generation – 2031 gebaut, vollständige Androidabnahme offen
 
 Stand: 16. November 2026. APK-Quelle **e05a96a52aaf57e466e79831f15aaffd144284ee**, Version **0.13.19+2031**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**. Der tatsächliche Lauf [43800892196](https://github.com/Ullmann27/lumo-lernen/actions/runs/43800892196) hat **Validate und Build bestanden; Android ist FAIL, Veröffentlichung SKIPPED**. Kein öffentlicher 2031-Download ist freigegeben.

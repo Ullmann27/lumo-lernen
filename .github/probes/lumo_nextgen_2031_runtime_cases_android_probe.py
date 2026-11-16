@@ -9,6 +9,7 @@ complete original/reference tour and never writes private application data.
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 import importlib.util
 import json
 import math
@@ -43,6 +44,7 @@ WORD_BUILD_PROMPT = "Baue „Banane“ aus seinen Sprechstücken. Ein Baustein b
 WORD_RECALL_PROMPT = "Schreibe das Namenwort: Ra – ke – te."
 NEXT = "Jetzt selbstständig antworten"
 ACTIVE_SYLLABLE = re.compile(r"^Silbe ([123]): (Ba|na|ne), gerade aktiv$")
+SYLLABLE = re.compile(r"^Silbe ([123]): (Ba|na|ne)(?:, gerade aktiv)?$")
 
 
 def native_cases_module():
@@ -159,6 +161,108 @@ def observed_active_next(nodes):
             "evidence": "same fresh Android accessibility hierarchy"}
 
 
+def switch_display(wm_size, wm_density):
+    """Parse observed WM state, retaining the original override for restoration."""
+    def values(raw, kind, pattern):
+        lines = [line.strip() for line in raw.splitlines() if line.strip()]
+        found = [re.fullmatch(r"(Physical|Override) " + kind + r":\s*(" + pattern + r")", line)
+                 for line in lines]
+        require(found and all(found) and found[0][1] == "Physical" and
+                len({item[1] for item in found}) == len(found), "Ambiguous viewport WM " + kind)
+        return {item[1]: item[2] for item in found}
+    size, density = values(wm_size, "size", r"[1-9][0-9]*x[1-9][0-9]*"), values(wm_density, "density", r"[1-9][0-9]*")
+    return {"wm_size": wm_size, "wm_density": wm_density,
+            "size": list(map(int, size.get("Override", size["Physical"]).split("x"))),
+            "density_dpi": int(density.get("Override", density["Physical"])),
+            "physical_density_dpi": int(density["Physical"]),
+            "density_override": int(density["Override"]) if "Override" in density else None}
+
+
+def observed_switch_ready(nodes):
+    """Require the syllable strip, Next and Replay in this same actual viewport."""
+    visible = [node for node in nodes if node.get("package") == learning.PACKAGE and
+               node.get("visible-to-user") == "true" and learning.bounds(node, min_height=32)]
+    # Flutter merges this column's static text into one multiline description.
+    # Match an entire recorded line, not an arbitrary substring or old caption.
+    labels = {line.strip() for label in learning.node_labels(visible) for line in label.splitlines()}
+    if not {"Die Wortwerkstatt", WORD_BUILD_PROMPT} <= labels:
+        return None
+    viewport = learning.observed_scroll_bounds(visible)
+    next_box = learning.observed_control(visible, NEXT)
+    replay_box = learning.observed_control(visible, "Noch einmal")
+    syllables = {}
+    for node in visible:
+        for label in learning.node_labels([node]):
+            match = SYLLABLE.fullmatch(label)
+            if match:
+                index, word = int(match[1]), match[2]
+                require((index, word) in ((1, "Ba"), (2, "na"), (3, "ne")), "Contradictory viewport syllable")
+                item = {"label": label, "bounds": learning.bounds(node, min_height=32)}
+                require(index not in syllables or syllables[index] == item, "Ambiguous viewport syllable")
+                syllables[index] = item
+    if viewport is None or next_box is None or replay_box is None or set(syllables) != {1, 2, 3}:
+        return None
+    boxes = [next_box, replay_box] + [item["bounds"] for item in syllables.values()]
+    if not all(viewport[0] <= box[0] < box[2] <= viewport[2] and
+               viewport[1] <= box[1] < box[3] <= viewport[3] for box in boxes):
+        return None
+    return {"heading": "Die Wortwerkstatt", "prompt": WORD_BUILD_PROMPT,
+            "syllables": [syllables[i] for i in (1, 2, 3)], "scroll_bounds": viewport,
+            "next_bounds": next_box, "next_label": NEXT,
+            "replay_bounds": replay_box, "replay_label": "Noch einmal"}
+
+
+def verify_switch_viewport(case):
+    viewport = case.get("viewport", {})
+    require(viewport.get("mode") == "larger_logical_emulator_view" and
+            viewport.get("standard_density_case") is False and viewport.get("physical_device_evidence") is False,
+            "Missing explicit larger logical emulator viewport boundary")
+    displays = []
+    for name in ("original", "prepared", "restored"):
+        record = viewport.get(name, {})
+        display = record.get("display", {})
+        require(display == switch_display(display.get("wm_size", ""), display.get("wm_density", "")),
+                "Viewport display differs from its raw WM observation")
+        shot = record.get("screenshot", {})
+        require(display["size"] == [1080, 2340] and (shot.get("width"), shot.get("height")) == (1080, 2340) and
+                learning.valid_hex(shot.get("sha256", ""), 64), "Viewport requires unchanged real pixel dimensions")
+        displays.append(display)
+    require(displays[0]["density_dpi"] > 320 and displays[1]["density_dpi"] == 320 and
+            displays[1]["wm_size"] == displays[0]["wm_size"] and
+            displays[1]["physical_density_dpi"] == displays[0]["physical_density_dpi"] and
+            displays[2] == displays[0] and viewport["restored"].get("status") == "RESTORED",
+            "Viewport density was not observed at 320 and restored exactly")
+    for name, snapshot_key, checkpoint_key in (("prepared", "before", "checkpoint_before"),
+                                              ("restored", "after", "checkpoint_after")):
+        record = viewport[name]
+        expected = learning.require_preserved(case[snapshot_key], record["snapshot"],
+                                             case[checkpoint_key], record["checkpoint"])
+        require(record.get("preservation") == expected, "Viewport changed the current task or learning state")
+    ready = case.get("replay_preparation", {})
+    require(ready.get("heading") == "Die Wortwerkstatt" and ready.get("prompt") == WORD_BUILD_PROMPT and
+            ready.get("next_label") == NEXT and ready.get("replay_label") == "Noch einmal" and
+            learning.valid_hex(ready.get("xml_sha256", ""), 64) and
+            type(ready.get("replay_taps")) is int and ready["replay_taps"] == 1,
+            "Replay lacks one freshly observed joint viewport")
+    syllables = ready.get("syllables", [])
+    require(len(syllables) == 3 and all(SYLLABLE.fullmatch(item.get("label", "")) and
+            SYLLABLE.fullmatch(item["label"]).groups() == (str(i), word)
+            for item, (i, word) in zip(syllables, ((1, "Ba"), (2, "na"), (3, "ne")))),
+            "Replay viewport lacks all three actual syllable labels")
+    box = ready.get("scroll_bounds", [])
+    targets = [ready.get("next_bounds", []), ready.get("replay_bounds", [])] + [s.get("bounds", []) for s in syllables]
+    require(len(box) == 4 and all(type(v) is int for v in box) and
+            all(len(b) == 4 and all(type(v) is int for v in b) and
+                box[0] <= b[0] < b[2] <= box[2] and box[1] <= b[1] < b[3] <= box[3] for b in targets),
+            "Replay controls were not observed together inside the viewport")
+    start, finish, requested = (ready.get(key) for key in
+        ("capture_started_monotonic", "capture_finished_monotonic", "replay_requested_monotonic"))
+    require(all(type(v) in (int, float) and math.isfinite(v) for v in (start, finish, requested)) and
+            0 <= start <= finish <= requested and requested - start <= 1 and
+            case["observation"]["capture_started_monotonic"] >= requested,
+            "Replay viewport observation became stale before its single requested tap")
+
+
 def verify_word_switch(before, after, checkpoint_before, checkpoint_after):
     preserved = learning.require_preserved(before, after)
     require(checkpoint_before.get("topicId") == "words" and checkpoint_before.get("problemId") == "word-banane" and
@@ -250,6 +354,7 @@ def verify_runtime_cases(result, *, qa_commit, workflow_run_id):
             "Active playback capture through requested touch exceeded its freshness budget")
     require(switch.get("verification") == verify_word_switch(switch["before"], switch["after"],
                 switch["checkpoint_before"], switch["checkpoint_after"]), "Word-switch preservation mismatch")
+    verify_switch_viewport(switch)
     videos.append(switch.get("video", {}))
     require(all(video.get("whole_block_within_recording_limit") is True and
                 type(video.get("duration_seconds")) in (int, float) and video["duration_seconds"] > 0 and
@@ -265,6 +370,108 @@ def verify_runtime_cases(result, *, qa_commit, workflow_run_id):
 
 
 class RuntimeCasesProbe(immutable.ReplayProbe):
+    def switch_display_observation(self, tag):
+        raw = {"wm_size": self.base.adb("shell", "wm", "size"),
+               "wm_density": self.base.adb("shell", "wm", "density")}
+        self.save(self.fresh(tag), raw)
+        return switch_display(**raw)
+
+    @contextmanager
+    def word_switch_viewport(self, report):
+        original = self.switch_display_observation("switch-original-display")
+        require(original["size"] == [1080, 2340] and original["density_dpi"] > 320,
+                "Unexpected original switch viewport size/density")
+        viewport = {"mode": "larger_logical_emulator_view", "standard_density_case": False,
+                    "physical_device_evidence": False, "original": {"display": original,
+                    "screenshot": self.capture("switch-original-density")}}
+        report["viewport"] = viewport
+        require((viewport["original"]["screenshot"]["width"], viewport["original"]["screenshot"]["height"]) == (1080, 2340),
+                "Original viewport PNG pixel dimensions differ")
+        primary = None
+        try:
+            self.base.adb("shell", "wm", "density", "320")
+            display = self.wait("Observed switch density 320", lambda: self.switch_display_observation("switch-density-320"),
+                lambda item: item["density_dpi"] == 320 and item["wm_size"] == original["wm_size"] and
+                item["physical_density_dpi"] == original["physical_density_dpi"], timeout=15)
+            checkpoint = self.checkpoint("words", **report["checkpoint_before"])
+            snapshot = learning.learning_snapshot(self.preferences("switch-density-320-learning"))
+            viewport["prepared"] = {"display": display, "snapshot": snapshot, "checkpoint": checkpoint,
+                "preservation": learning.require_preserved(report["before"], snapshot,
+                    report["checkpoint_before"], checkpoint), "screenshot": self.capture("switch-density-320")}
+            require((viewport["prepared"]["screenshot"]["width"], viewport["prepared"]["screenshot"]["height"]) == (1080, 2340),
+                    "Prepared viewport PNG pixel dimensions differ")
+            yield
+        except BaseException as error:
+            primary = error
+            raise
+        finally:
+            try:
+                restored_to = str(original["density_override"]) if original["density_override"] is not None else "reset"
+                viewport["restore_command"] = ["wm", "density", restored_to]
+                self.base.adb("shell", "wm", "density", restored_to)
+                display = self.wait("Original switch density restored", lambda: self.switch_display_observation("switch-density-restored"),
+                                    lambda item: item == original, timeout=15)
+                viewport["restored_display_observation"] = display
+                expected_checkpoint = report.get("checkpoint_after", report["checkpoint_before"])
+                expected_snapshot = report.get("after", report["before"])
+                checkpoint = self.checkpoint("words", **expected_checkpoint)
+                snapshot = learning.learning_snapshot(self.preferences("switch-restored-learning"))
+                viewport["restored"] = {"status": "RESTORED", "display": display, "snapshot": snapshot,
+                    "checkpoint": checkpoint, "preservation": learning.require_preserved(expected_snapshot, snapshot,
+                    expected_checkpoint, checkpoint), "screenshot": self.capture("switch-original-density-restored")}
+                require((viewport["restored"]["screenshot"]["width"], viewport["restored"]["screenshot"]["height"]) == (1080, 2340),
+                        "Restored viewport PNG pixel dimensions differ")
+            except BaseException as error:
+                viewport["restoration_error"] = {"type": type(error).__name__, "message": str(error)}
+                if primary is None:
+                    raise
+
+    def start_visible_syllable_replay(self):
+        # A replay from the footer at the original density leaves every syllable
+        # offscreen. Position all three targets before this single new playback.
+        deadline, gestures = time.monotonic() + 45, []
+        while time.monotonic() < deadline:
+            nodes = self.nodes("switch-joint-viewport")
+            labels = learning.node_labels([n for n in nodes if n.get("package") == learning.PACKAGE and
+                                          n.get("visible-to-user") == "true" and learning.bounds(n, min_height=32)])
+            require(time.monotonic() < deadline, "Joint switch viewport arrived after its preparation deadline")
+            require({"Die Wortwerkstatt", WORD_BUILD_PROMPT} <=
+                    {line.strip() for label in labels for line in label.splitlines()},
+                    "Word viewport owner/task is no longer visible")
+            if observed_switch_ready(nodes) is not None:
+                break
+            viewport = learning.observed_scroll_bounds(nodes)
+            require(viewport is not None and len(gestures) < 30, "No observed joint switch viewport before replay")
+            has_syllable = any(SYLLABLE.fullmatch(label) for label in labels)
+            lower_visible = learning.observed_control(nodes, NEXT) is not None or learning.observed_control(nodes, "Noch einmal") is not None
+            direction = -1 if lower_visible and not has_syllable else 1
+            x, y = (viewport[0] + viewport[2]) // 2, (viewport[1] + viewport[3]) // 2
+            end = y - direction * max(1, (viewport[3] - viewport[1]) // 20)
+            gesture = {"observed_scroll_bounds": viewport, "start": [x, y], "end": [x, end],
+                       "direction": direction, "before_replay": True}
+            self.save(self.fresh("switch-joint-viewport-scroll"), gesture)
+            gestures.append(gesture)
+            self.base.adb("shell", "input", "swipe", str(x), str(y), str(x), str(end), "400")
+            time.sleep(.2)
+        else:
+            raise RuntimeError("No observed joint switch viewport before replay; no playback was requested")
+        screenshot = self.capture("switch-joint-viewport-before-replay")
+        name = self.fresh("switch-final-joint-viewport")
+        started = time.monotonic()
+        nodes = self.live.live_nodes(self.out, name)
+        finished = time.monotonic()
+        ready = observed_switch_ready(nodes)
+        require(ready is not None, "Joint switch viewport changed before replay")
+        ready.update(xml=name + ".xml", xml_sha256=digest(self.out / (name + ".xml")),
+                     screenshot=screenshot, gestures=gestures, capture_started_monotonic=started,
+                     capture_finished_monotonic=finished)
+        requested = time.monotonic()
+        require(requested < deadline and requested - started <= 1,
+                "Replay viewport observation became stale before its requested tap")
+        ready.update(replay_requested_monotonic=requested, replay_taps=1)
+        self.touch(ready["replay_bounds"], "switch-start-observed-syllable-replay", "Noch einmal")
+        return ready
+
     def switch_on_active_syllable(self, *, timeout=45):
         require(0 < timeout <= 45, "Unexpected active Flutter observation budget")
         deadline = time.monotonic() + timeout
@@ -365,19 +572,22 @@ class RuntimeCasesProbe(immutable.ReplayProbe):
                   "explicit_stop_before_switch": False, "flutter_media_callbacks_in_native_log": False,
                   "acoustic_playback_verified": False}
         self.result["flutter_switch_during_syllable_playback"] = report
-        with self.recording("switch-during-actual-active-syllable"):
-            self.tap("Noch einmal", "switch-start-fresh-syllable-replay")
-            report.update(self.switch_on_active_syllable())
-            checkpoint = self.checkpoint("words", problemId="word-rakete", phase="recall", done=False, answer="")
-            self.see(WORD_RECALL_PROMPT, "switch-new-rakete-prompt", scroll=True, exact=True)
-            after_nodes = self.nodes("switch-no-old-active-syllable")
-            require(not any("gerade aktiv" in label for label in learning.node_labels(after_nodes)),
-                    "Old active syllable survived task replacement")
-            after = learning.learning_snapshot(self.preferences("switch-learning-after"))
-            verification = verify_word_switch(before, after, before_checkpoint, checkpoint)
-            screenshot = self.capture("switch-new-unanswered-rakete")
-        report.update(status="PASS", after=after, checkpoint_after=checkpoint, verification=verification,
-                      old_active_marker_absent=True, screenshot=screenshot, video=self.recordings[-1])
+        with self.word_switch_viewport(report):
+            with self.recording("switch-during-actual-active-syllable"):
+                report["replay_preparation"] = self.start_visible_syllable_replay()
+                report.update(self.switch_on_active_syllable())
+                checkpoint = self.checkpoint("words", problemId="word-rakete", phase="recall", done=False, answer="")
+                self.see(WORD_RECALL_PROMPT, "switch-new-rakete-prompt", scroll=True, exact=True)
+                after_nodes = self.nodes("switch-no-old-active-syllable")
+                require(not any("gerade aktiv" in label for label in learning.node_labels(after_nodes)),
+                        "Old active syllable survived task replacement")
+                after = learning.learning_snapshot(self.preferences("switch-learning-after"))
+                verification = verify_word_switch(before, after, before_checkpoint, checkpoint)
+                screenshot = self.capture("switch-new-unanswered-rakete")
+                report.update(after=after, checkpoint_after=checkpoint, verification=verification,
+                              old_active_marker_absent=True, screenshot=screenshot)
+            report["video"] = self.recordings[-1]
+        report["status"] = "PASS"
         self.close_task()
         self.base.adb("shell", "input", "keyevent", "KEYCODE_BACK")
         self.see("LUMO AKADEMIE", "switch-back-to-academy")
@@ -410,6 +620,7 @@ class RuntimeCasesProbe(immutable.ReplayProbe):
             "The graded numeric task is 9+7, not the ungraded 8+5 demonstration; no spoken or misheard number was supplied.",
             "The Flutter switch observes the player's active syllable semantics, not native speech-log events or acoustic audio.",
             "The full XML-capture-to-requested-touch interval must stay within one second; a slower capture fails closed.",
+            "The Flutter playback switch uses a larger logical emulator view at 1080x2340 pixels / 320dpi, restored before native cases; it does not establish this case at the original density or on physical Fold hardware.",
             "Auto-read is temporarily disabled through real settings to retain explicit syllable replay, then restored before native cases.",
             "Emulator videos contain no audio; no physical-device, pronunciation, acoustic speed, millisecond-stop or lip-sync claim.",
         ]
