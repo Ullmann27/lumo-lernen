@@ -464,13 +464,17 @@ class NativeLearningActivity {
           'kind': 'clock',
           'hour': hour,
           'minute': minute,
-          'sourceTaskId': task.taskInstanceId.substring(
-              0, task.taskInstanceId.length.clamp(0, 180)),
+          'sourceTaskId': task.taskInstanceId.length <= 180
+              ? task.taskInstanceId
+              : task.taskInstanceId.substring(0, 180),
           'subject': 'Mathematik',
           'unit': 'Uhrzeit',
-          'prompt': task.prompt.substring(0, task.prompt.length.clamp(0, 800)),
-          'explanation': (task.helpPayload.shortHint ?? '').substring(
-              0, (task.helpPayload.shortHint ?? '').length.clamp(0, 1200)),
+          'prompt': task.prompt.length <= 800
+              ? task.prompt
+              : task.prompt.substring(0, 800),
+          'explanation': (task.helpPayload.shortHint ?? '').length <= 1200
+              ? (task.helpPayload.shortHint ?? '')
+              : (task.helpPayload.shortHint ?? '').substring(0, 1200),
           'answerChoices': optionLabels,
         });
       }
