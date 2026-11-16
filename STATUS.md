@@ -1,3 +1,15 @@
+# LUMO Next Generation — Kontrastkorrektur für neuen Kandidaten 2032
+
+Stand: 16.11.2026, 08:38 UTC. APK 2031 ist öffentlich vollständig bytegeprüft und bleibt unverändert. Der Zusatzlauf 6 hat jedoch einen sichtbaren Produktmangel aufgezeigt: Die Beschriftung „Stimme stoppen“ und später „Schritt anhören“ erscheint sehr hell auf sehr hellem Grün. Der Quellreview am exakten Native-Stand `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef` zeigt, dass die bestehende Buttonfactory nur die normale Schriftfarbe setzt, obwohl sie auch die interaktiven Hintergründe ersetzt. Die genaue ursprüngliche Drawmode-Kombination wurde im Androidlauf nicht protokolliert.
+
+Conversation bearbeitet ausschließlich die Textfarben der interaktiven Zustände in der bestehenden nativen Lern-Buttonfactory samt gezielter echter Godot-Regression. Learning bereitet einen an den aktuellen Kandidaten gebundenen aktiven Stoppfall innerhalb der vollständigen Referenztour vor. Root verantwortet Review, exakten Native-Pin, Versionsschema und Build. Geplant ist `0.13.20+2032`; Release und Tag waren bei der Leseprüfung tatsächlich nicht vorhanden. **Noch keine neue APK, kein neuer Android-PASS und keine neue Veröffentlichung.**
+
+Die abgeschlossenen Teilfälle aus Zusatzlauf 6 sind unabhängig an 51 Originaldateien und neun exakten QA-Quellen nachgeprüft: gespeicherte falsche/richtige Zahlenantwort, aktiver Flutter-Wortwechsel und vier native Langsamer-Segmente. Der [abgeleitete Prüfbericht](docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/independent-completed-subcases-review.json) ist kein weiterer Androidlauf. Das Gesamtergebnis bleibt FAIL, weil kein Stopptastendruck ausgeführt wurde.
+
+`fullModernizationComplete=false` bleibt bestehen. Main, frühere Releases, geschützte Module und fremde Arbeitsdateien bleiben erhalten. Der folgende Abschnitt ist der unveränderte dokumentierte Stand der gelieferten APK 2031.
+
+## Archiv: Auslieferung und Zusatzprüfung 2031
+
 # LUMO Next Generation — APK 2031 öffentlich verifiziert
 
 Stand: 16.11.2026, 07:39 UTC. Die signierte **ARM64-Test-APK 0.13.19+2031** ist veröffentlicht und am 16.11.2026 um **07:27:47 UTC vollständig anonym heruntergeladen und bytegeprüft**: HTTP 200, 535.026.362 Bytes, SHA-256 **e6ca8e512ddc56755ae8664b3438b0e78b87a7f0e77f1cd55cac592b20b316d7**.
