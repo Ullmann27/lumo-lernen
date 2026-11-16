@@ -1,0 +1,122 @@
+{
+  "schema": "lumo.lab.return-frame.fix.v1",
+  "baseCommit": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "executionSourceCommit": null,
+  "executionScope": "owner_worktree_verified_by_recorded_source_hashes",
+  "currentHeadSuiteRerun": false,
+  "originalAndroidRun": 43785937519,
+  "originalAndroidJob": 133040408296,
+  "artifact": {
+    "artifactId": 14191731263,
+    "archiveBytes": 13841919,
+    "archiveSha256": "4381306eec02830668ca2127fce3fdb78312a62b657f7c66e23b92357721ffbd",
+    "allMemberCRCsVerified": true
+  },
+  "originalEvidence": [
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2029-android-bridge-return-failure/original/original-android/0153-conversation-returned-task.xml",
+      "sha256": "ff3d294cd8724361797dad362ee9c810a1c4152f8b92a7ec5f7285324feeaf15",
+      "bytes": 26632
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2029-android-bridge-return-failure/original/original-android/0156-bridge-move-one.xml",
+      "sha256": "ff3d294cd8724361797dad362ee9c810a1c4152f8b92a7ec5f7285324feeaf15",
+      "bytes": 26632
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2029-android-bridge-return-failure/original/original-android/0158-bridge-move-one-touch.json",
+      "sha256": "7ee7e3a265ab7fa49ce43dbf20c6d3c126177ce1aeecf6968506234f4518ee05",
+      "bytes": 117
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2029-android-bridge-return-failure/original/original-android/0233-failure-current-screen.png",
+      "sha256": "6da6b55d052f088558575b3d6042dac42217d461a1c1410342dcd11dd0543982",
+      "bytes": 524889
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2029-android-bridge-return-failure/original/original-android/microphone-observation.json",
+      "sha256": "e7c886002c9bc03fcb3fe9c7f19b1fb2e82f9f2c152d705e412a49f2ab77d351",
+      "bytes": 1411
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2029-android-bridge-return-failure/original/original-android/learning-android-result.json",
+      "sha256": "b4af2a501da737c5f326b6f9c131282a3ea0b725d7c69edf7c2ad2e7e156a485",
+      "bytes": 9957
+    }
+  ],
+  "red": {
+    "passed": 1,
+    "failed": 2,
+    "productSourceUnchanged": true,
+    "finalTestFileSameAsGreen": true
+  },
+  "green": {
+    "passed": 27,
+    "failed": 0,
+    "existingTestGroupRetained": true,
+    "firstEnabledFrameStoneTaps": 1,
+    "tests": [
+      "test/learning/lab_conversation_return_test.dart",
+      "test/learning/nextgen_lab_bus_integration_test.dart",
+      "test/learning/lab_native_entry_test.dart",
+      "test/learning_lab_runtime_test.dart"
+    ]
+  },
+  "analysis": {
+    "files": 2,
+    "issues": 0
+  },
+  "provenDefect": "An enabled Lab model can capture no task identity during route return and discard the first tap.",
+  "schedulingHardening": "Request the frame needed by the existing deferred publish; permanent frame starvation was not independently reproduced.",
+  "nativeAudioOrRecognitionTested": false,
+  "newAndroidRuntimePass": false,
+  "qaProbeChanged": false,
+  "apkBuilt": false,
+  "files": [
+    {
+      "path": "lib/features/learning/lab/learning_lab_screen.dart",
+      "sha256": "5770aea4b73db3fab1cbb7faa14321546d2cfaaaedd6964d51f571a37099870f",
+      "bytes": 56493
+    },
+    {
+      "path": "test/learning/lab_conversation_return_test.dart",
+      "sha256": "f3f6856d394e72cff189f4c5b5d5df437144bfcfa5f9e8c8ec3c90788ac67f52",
+      "bytes": 10314
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_return_frames_20261116/README.md",
+      "sha256": "d63df5b98e6b55d6b62618df907436a2af4973f6103cd89c2f455bf297d5b4dc",
+      "bytes": 3863
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_return_frames_20261116/analyze.log",
+      "sha256": "cd1554ec4bb9f8e54b7dcee89794ad3d1a45a3eb220a1d12e9c07e42460e884c",
+      "bytes": 96
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_return_frames_20261116/green.log",
+      "sha256": "d002b1b3d2674eb2e9c82efa2f6cdcd7087d6c42a6a4a930f4dc951bec668cf7",
+      "bytes": 4824
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_return_frames_20261116/original-invariant-red.log",
+      "sha256": "82fbfcb44db168b1b4b0afc915b8db1cfdf5efac9208af6b70dc5f8c689c808f",
+      "bytes": 5060
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_return_frames_20261116/original-red-provenance.json",
+      "sha256": "545b73fd189aa5c83f9e63f356f9cced429679bbf2971de0f0e9b44dc14160ab",
+      "bytes": 672
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_return_frames_20261116/red-provenance.json",
+      "sha256": "f42202f3d391779788e04dd2b3a2937299890c353a37a22122ce61a2a7abdc2b",
+      "bytes": 690
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_return_frames_20261116/red.log",
+      "sha256": "07e49297b2788d0e8e728dbfd2803e678e8f59db65d442f078312c111cdadbed",
+      "bytes": 5060
+    }
+  ]
+}
