@@ -2,6 +2,10 @@
 
 ## Tatsächliche Aktivierung
 
+### Vollständiger unveränderlicher Replay vorbereitet
+
+Die Home-Beobachtung und der getrennte 2031-Replay sind zusammengeführt. **168/168 Hostprüfungen** der sieben tatsächlich im Replay verwendeten Prüfmodule bestehen, einschließlich sämtlicher 81 ursprünglicher Probeprüfungen und der 24 neuen Replay-/Publikationsprüfungen; überlappende Läufe werden nicht addiert. Der vollständige Git-Tree-Vergleich gegen die APK-Quelle e05a96a enthält ausschließlich zugelassene QA-/Dokumentationsänderungen. Der neue Replay verlangt beide vollständigen Androidtouren an genau denselben 2031-Bytes; sein Publisher bindet 31 Prüferquellen und den OriginalFAIL, bevor eine neue Veröffentlichung und vollständige anonyme Downloadprüfung zulässig werden. Die aktuelle mehrzeilige Musterlesefunktion wird tatsächlich geerbt. Exakte Komponenten-/API-/Testquellen: [2031-replay-integration-20261116](evidence/2031-replay-integration-20261116/). Beim Schreiben dieses Vorlaufeintrags ist noch kein neuer Android-PASS beobachtet.
+
 ### Aktueller Nachtrag: Androidtour unterbrochen, Veröffentlichung übersprungen
 
 Androidjob **`133088843594` ist FAILURE**, Publisher **`133091481323` ist SKIPPED**. Alle vier emulierten Größenwechsel erhielten denselben Bridge-Checkpoint und positive Videodauern. Danach scheiterte in der Wortwerkstatt die einmalige unmittelbare Vordergrundabfrage nach Home; die spätere Originalaufnahme zeigt den Android-Launcher. Die frühe fehlgeschlagene Rohabfrage wurde vom damaligen Code nicht gespeichert. Zusätzlich scheiterte beim Aufräumen das bestehende positive Videodauer-Gate. Ein Produkt-Relaunch ist daraus nicht belegt. Die Wort-Rückkehr und die anschließenden nativen Referenzen sind noch nicht abgenommen. Alle **335 Originaldateien**, das gesamte geteilte ZIP und das vollständige Joblog bleiben verlustfrei erhalten: [Originalfehler und genaue Grenze](evidence/ci-2031-android-home-transition-failure/README.md). Build und unabhängige vollständige APK-Byteprüfung bleiben bestanden; ein öffentlicher 2031-Download ist weiterhin nicht freigegeben.

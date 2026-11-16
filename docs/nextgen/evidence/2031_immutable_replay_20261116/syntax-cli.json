@@ -1,0 +1,62 @@
+{
+  "scope": "Static syntax and CLI help only; no Android, GitHub API, download or publication executed",
+  "checks": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py",
+      "pythonAst": "PASS"
+    },
+    {
+      "path": "tools/nextgen/prepare_2031_learning_replay_release.py",
+      "pythonAst": "PASS"
+    },
+    {
+      "path": "tools/nextgen/test_prepare_2031_learning_replay_release.py",
+      "pythonAst": "PASS"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_replay.py",
+      "pythonAst": "PASS"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2031-replay.yml",
+      "yaml": "PASS",
+      "allRunBlocksBashSyntax": "PASS",
+      "trigger": {
+        "push": {
+          "branches": [
+            "qa/lumo-nextgen-2031-android-20261116"
+          ],
+          "paths": [
+            "config/nextgen-2031-replay.json"
+          ]
+        },
+        "workflow_dispatch": null
+      }
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2031-replay-publish.yml",
+      "yaml": "PASS",
+      "allRunBlocksBashSyntax": "PASS",
+      "trigger": {
+        "push": {
+          "branches": [
+            "delivery/lumo-nextgen-2031-replay-20261116"
+          ],
+          "paths": [
+            "config/nextgen-2031-replay-publish.json"
+          ]
+        },
+        "workflow_dispatch": null
+      }
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py",
+      "cliHelp": "PASS"
+    },
+    {
+      "path": "tools/nextgen/prepare_2031_learning_replay_release.py",
+      "cliHelp": "PASS"
+    }
+  ],
+  "publicationActivationConfigPresent": false
+}
