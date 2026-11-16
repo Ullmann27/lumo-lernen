@@ -547,6 +547,14 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       return;
     }
     final serial = _taskSerial;
+    // A free-form module context cannot authorize an unrelated 3D task card.
+    // Give the existing, interactive apple explanation instead.
+    if (_publishedContext == null ||
+        NativeLearningActivity.fromCompanionContext(_publishedContext!) ==
+            null) {
+      _requestTaskHelp();
+      return;
+    }
     _cancelCoach();
     setState(() {
       _nativeLearningOpen = true;
@@ -607,7 +615,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                   : () => unawaited(_openNativeLearning()),
               style: FilledButton.styleFrom(minimumSize: const Size(48, 52)),
               icon: const Icon(Icons.view_in_ar_rounded),
-              label: const Text('Mit Lumo in 3D ausprobieren')),
+              label: const Text('Lumo erklärt mit Äpfeln')),
           if (_nativeNotice != null)
             Text(_nativeNotice!,
                 style: const TextStyle(color: LumoVisualTokens.white)),

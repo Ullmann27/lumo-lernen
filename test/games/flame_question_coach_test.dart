@@ -126,8 +126,10 @@ void main() {
     expect(find.text('8 + 5 = ?'), findsOneWidget);
     expect(bus.taskContext.value!.ownerSection, 'games');
     final original = bus.learningIdentity.value!;
-    final entry = find.widgetWithText(OutlinedButton, 'Mit Lumo in 3D');
-    expect(tester.getSize(entry).height, greaterThanOrEqualTo(48));
+    // This exercise is assessed by the existing card-check callback.
+    // No reviewed spatial model may be inferred from a text-only prompt.
+    expect(find.widgetWithText(OutlinedButton, 'Mit Lumo in 3D'),
+        findsNothing);
 
     await propose(tester, '12');
     expect(solved, isNull);

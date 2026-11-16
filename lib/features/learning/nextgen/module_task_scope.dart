@@ -352,6 +352,12 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
   Future<void> _openNativeLearning() async {
     if (!_canHelp || !_ownsTask || _nativeLearningOpen) return;
     final revision = _taskRevision;
+    // Text-only questions retain their actual module and verified local hint.
+    if (_published == null ||
+        NativeLearningActivity.fromCompanionContext(_published!) == null) {
+      _nextHelp();
+      return;
+    }
     _discardCandidate();
     _cancelNarration();
     // The local hint is visible before I/O; the same attempt is already marked
@@ -545,7 +551,10 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
               : null,
           style: FilledButton.styleFrom(minimumSize: const Size(48, 52)),
           icon: const Icon(Icons.view_in_ar_rounded),
-          label: const Text('Mit Lumo in 3D ausprobieren'),
+          label: Text(_published != null &&
+                  NativeLearningActivity.fromCompanionContext(_published!) != null
+              ? 'Mit Lumo in 3D ausprobieren'
+              : 'Mit Lumo Schritt für Schritt'),
         ),
         if (_nativeNotice != null)
           Padding(
