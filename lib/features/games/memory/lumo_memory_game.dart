@@ -314,7 +314,9 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
       final revision = _game.round.revision;
       _turnScheduler.schedule(_game.state.remainingMs, (elapsed) {
         if (!_canPlay || _clock.value || _game.round.id != round ||
-            _game.round.revision != revision) return;
+            _game.round.revision != revision) {
+          return;
+        }
         unawaited(_run(() async { await _game.advance(elapsed); }));
       });
     }

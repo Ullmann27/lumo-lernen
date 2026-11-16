@@ -39,7 +39,7 @@ jobs:
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain --untracked-files=normal)"
-          test "$(git hash-object lib/features/games/memory/lumo_memory_game.dart)" = 77c2542238d78b48a18cca41b2f93dec65406f17
+          test "$(git hash-object lib/features/games/memory/lumo_memory_game.dart)" = 4cc02edc3bc409a151428aa1f316ea085a38ae4b
           test "$(git hash-object test/games/memory_native_entry_test.dart)" = ca27e9849feee6f49ba6b416ed6eec9a2faf07f8
       - name: Resolve pinned Flutter dependencies
         shell: bash
