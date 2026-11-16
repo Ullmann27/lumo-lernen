@@ -1329,6 +1329,7 @@ for path in (
     "tools/android_qa/tests/test_nextgen_native_reader.py",
     "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
     "tools/android_qa/tests/test_nextgen_current_candidate.py",
+    "test/learning/core_conversation_route_test.dart",
     "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechFailureContract.kt",
     "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
     ".github/workflows/lumo-nextgen-learning-apk.yml",
@@ -1346,6 +1347,7 @@ for path in subprocess.check_output([
     "docs/nextgen/evidence/banana_speech_quote_20261116",
     "docs/nextgen/evidence/resize_capture_20261116",
     "docs/nextgen/evidence/2031-qa-integration-20261116",
+    "docs/nextgen/evidence/core_conversation_scope_20261116",
 ], cwd=ROOT, text=True).splitlines():
     source(path)
 

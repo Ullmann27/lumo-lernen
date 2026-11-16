@@ -1,0 +1,12 @@
+{
+  "producerCommit": "fd4a1eea31bcf1aeff41086e3e739da1136933d2",
+  "producerTree": "62c6e15114c47bea61b5d008d13d01305a803c22",
+  "producerBase": "b49cf9c7e1e60c4e3901883d1c6bfc4a46e9ede4",
+  "producerWorkingBranch": "fix/lumo-core-conversation-scope-20261116",
+  "rootCherryPick": "8367b295799d9ea93db12296ec23f3f6d996f80b",
+  "all16ProducerFileHashesMatchIntegratedFiles": true,
+  "independentReview": "No concrete blocker; route, task, session and owner release checked. Entry synchronously requires real active route via ownsCurrentTask.",
+  "recordedOwnerWidgetTestsPassed": 14,
+  "newAndroidResultClaimed": false,
+  "resizeAndMenuAreSeparateFollowupComponents": true
+}
