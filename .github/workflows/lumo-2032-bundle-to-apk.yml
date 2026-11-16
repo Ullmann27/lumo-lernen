@@ -1,0 +1,222 @@
+name: LUMO 2032 – complete original bundle to one APK
+on:
+  push:
+    branches:
+      - delivery/lumo-2032-complete-source-to-apk-20261116
+    paths:
+      - .github/workflows/lumo-2032-bundle-to-apk.yml
+      - config/lumo-2032-intake-trigger.json
+permissions:
+  contents: write
+concurrency:
+  group: lumo-2032-complete-immutable-source
+  cancel-in-progress: false
+jobs:
+  intake:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      ready: ${{ steps.source.outputs.ready }}
+    steps:
+      - name: Read upload-release status without claiming unavailable GitHub permissions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view lumo-2032-source-intake --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo 'LUMO 2032 source intake release exists.'
+          else
+            echo 'No LUMO 2032 source intake release yet. No upload or APK is claimed.'
+            echo 'A repository owner can create source-intake release at https://github.com/Ullmann27/lumo-lernen/releases/new'
+          fi
+      - name: Determine whether original signed-off source archive is uploaded
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          tag="lumo-2032-source-intake"
+          expected="Lumo_2032_Quellen_und_Pruefnachweise.zip"
+          probe=subprocess.run(["gh","release","view",tag,"--repo","Ullmann27/lumo-lernen","--json","assets"],text=True,capture_output=True)
+          assets=json.loads(probe.stdout)["assets"] if probe.returncode==0 else []
+          files=[a for a in assets if a["name"]==expected]
+          if len(files)>1:raise SystemExit("Duplicate LUMO 2032 source archives")
+          ready=bool(files)
+          if ready and int(files[0]["size"])!=218511846:raise SystemExit("Source size mismatch; rejecting without building")
+          with open(os.environ["GITHUB_OUTPUT"],"a") as f:f.write("ready="+("true" if ready else "false")+"\n")
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+              f.write("Original 2032-Quellarchiv bereit: **"+str(ready)+"**\n\n")
+              f.write("Nur ein nach dem exakten Dateihash verifiziertes Original darf in die Baupipeline.\n")
+          print("Source ready:",ready)
+          if not ready:
+              print("BLOCKED: exact original 2032 ZIP is missing from GitHub source-intake release.", flush=True)
+              raise SystemExit(2)
+          PY
+
+  build2032:
+    needs: intake
+    if: needs.intake.outputs.ready == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 115
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      GRADLE_USER_HOME: ${{ github.workspace }}/.gradle-build-lumo2032
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install exact Flutter and Android build toolchain
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Retrieve and verify exact 2032 original archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p source-intake evidence dist
+          gh release download lumo-2032-source-intake --repo Ullmann27/lumo-lernen --pattern 'Lumo_2032_Quellen_und_Pruefnachweise.zip' --dir source-intake
+          test "$(stat -c %s source-intake/Lumo_2032_Quellen_und_Pruefnachweise.zip)" = 218511846
+          echo '7b478507249b38bc3cca324a7c5fbc55948160daaa854c9efb0770802a03e281  source-intake/Lumo_2032_Quellen_und_Pruefnachweise.zip' | sha256sum -c
+          python3 - <<'PY'
+          import pathlib, zipfile
+          archive=pathlib.Path("source-intake/Lumo_2032_Quellen_und_Pruefnachweise.zip")
+          root=pathlib.Path("source-intake/extracted")
+          with zipfile.ZipFile(archive) as z:
+              for member in z.infolist():
+                  p=pathlib.PurePosixPath(member.filename)
+                  if p.is_absolute() or ".." in p.parts:raise SystemExit("Unsafe input member: "+member.filename)
+              z.extractall(root)
+          for n in ["wiederherstellen.py","LUMO_2032_MANIFEST.json","Lumo_2032_Lernen.bundle","Lumo_2032_Native.bundle"]:
+              assert (root/n).is_file(),n
+          PY
+      - name: Restore both immutable 2032 source commits from public prerequisites
+        run: |
+          set -euo pipefail
+          python3 source-intake/extracted/wiederherstellen.py "$GITHUB_WORKSPACE/restored2032"
+          test "$(git -C restored2032/lumo-lernen rev-parse HEAD)" = 9e4f3f51761fb85c329722d4bc70f52fc0193748
+          test "$(git -C restored2032/lumo-godot rev-parse HEAD)" = d50c8a224021ed7509972f4aa05566a2b1ed74dd
+          test -z "$(git -C restored2032/lumo-lernen status --porcelain)"
+          test -z "$(git -C restored2032/lumo-godot status --porcelain)"
+          cp source-intake/extracted/LUMO_2032_MANIFEST.json evidence/source-bundle-manifest.json
+          cat restored2032/lumo-lernen/config/godot-source.json
+          grep -Fx 'version: 0.13.20+2032' restored2032/lumo-lernen/pubspec.yaml
+      - name: Prepare a stable disk-backed Gradle runtime with adequate memory
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=3 update -qq
+          sudo apt-get -o Acquire::Retries=3 install -y python3-venv ffmpeg fonts-noto-color-emoji
+          mkdir -p "$GRADLE_USER_HOME"
+          cd restored2032/lumo-lernen
+          flutter precache --android
+          flutter pub get --enforce-lockfile
+          test -z "$(git status --porcelain --untracked-files=no)"
+          scaffold="$(mktemp -d)"
+          flutter create --no-pub --project-name lumo_lernen --platforms=android --org dev.ullmann.lumo "$scaffold/scaffold"
+          cp -a "$scaffold/scaffold/android" android
+          cat > android/gradle.properties <<'PROPS'
+          org.gradle.jvmargs=-Xmx3072m -XX:MaxMetaspaceSize=768m -Dfile.encoding=UTF-8
+          org.gradle.daemon=false
+          org.gradle.parallel=false
+          org.gradle.workers.max=2
+          kotlin.compiler.execution.strategy=in-process
+          PROPS
+          mkdir -p build
+          ln -s "$GITHUB_WORKSPACE/restored2032/lumo-godot" build/godot-source
+          bash scripts/install_ndk_for_build.sh "$GITHUB_WORKSPACE/evidence/ndk"
+          bash scripts/install_godot_for_build.sh
+          godot --version
+      - name: Run complete Flutter tests without changing protected source
+        working-directory: restored2032/lumo-lernen
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee "$GITHUB_WORKSPACE/evidence/flutter-analyze.log"
+          flutter test --no-pub --reporter=expanded --timeout=120s --concurrency=2 2>&1 | tee "$GITHUB_WORKSPACE/evidence/flutter-tests.log"
+          python3 -m unittest -v scripts.tests.test_legacy_release_pin tools.android_qa.tests.test_nextgen_current_candidate tools.android_qa.tests.test_nextgen_jungle_android 2>&1 | tee "$GITHUB_WORKSPACE/evidence/2032-contracts.log"
+      - name: Build one unified LUMO 2032 app including original native 3D content
+        working-directory: restored2032/lumo-lernen
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee "$GITHUB_WORKSPACE/evidence/android-2032-build.log"
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/x86_64/Lumo-Lernen-Neu.apk
+          sha256sum android/app/src/main/assets/lumo_game.pck > "$GITHUB_WORKSPACE/evidence/actual-2032-godot-pack.sha256"
+          cp dist/APK-VERIFICATION.json "$GITHUB_WORKSPACE/evidence/arm64-verification.json"
+          cp dist/BUILD-PROVENANCE.json "$GITHUB_WORKSPACE/evidence/arm64-provenance.json"
+          cp dist/x86_64/APK-VERIFICATION.json "$GITHUB_WORKSPACE/evidence/x86-verification.json"
+          python3 - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          proof=json.loads(Path("dist/BUILD-PROVENANCE.json").read_text())
+          assert proof["flutter_source_commit"]=="9e4f3f51761fb85c329722d4bc70f52fc0193748"
+          assert proof["tracked_source_clean"] is True
+          assert Path("dist/Lumo-Lernen-Neu.apk").stat().st_size>400_000_000
+          assert Path("android/app/src/main/assets/lumo_game.pck").stat().st_size>300_000_000
+          print("2032 original host/native source and large unified APK VERIFIED")
+          PY
+      - name: Preserve actual build evidence even if blocked
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2032-compile-evidence
+          path: evidence/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Preserve newly built 2032 APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2032-arm64-and-x86
+          path: |
+            restored2032/lumo-lernen/dist/
+          compression-level: 0
+          retention-days: 30
+          if-no-files-found: error
+      - name: Publish signed pre-release only after verified build
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag='lumo-0.13.20-2032-complete'
+          if gh release view "$tag" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Release tag already exists; refusing to replace uploaded APK bytes" >&2
+            exit 1
+          fi
+          gh release create "$tag" \
+            "restored2032/lumo-lernen/dist/Lumo-Lernen-Neu.apk#Lumo-Lernen-Neu-0.13.20-2032.apk" \
+            "restored2032/lumo-lernen/dist/APK-VERIFICATION.json#APK-VERIFICATION.json" \
+            "restored2032/lumo-lernen/dist/BUILD-PROVENANCE.json#BUILD-PROVENANCE.json" \
+            "restored2032/lumo-lernen/dist/SHA256SUMS.txt#SHA256SUMS.txt" \
+            --repo Ullmann27/lumo-lernen --target "$GITHUB_SHA" \
+            --title "LUMO Lernen + Spiele 0.13.20 (2032) – gemeinsame Android-Test-APK" \
+            --notes "Einzige Flutter-Android-App; Original-Host-Commit 9e4f3f51761fb85c329722d4bc70f52fc0193748 und originaler Godot-Commit d50c8a224021ed7509972f4aa05566a2b1ed74dd. PCK, Tests, geprüfte Signatur und Android-APK zusammengebaut. Physischer Fold7-Test und stabile 60 FPS sind damit nicht behauptet. Native Zusatz-Autorenvarianten jenseits dieses Original-2032-Quellstands sind weiterhin gesondert zu prüfen." \
+            --prerelease
+          gh release view "$tag" --repo Ullmann27/lumo-lernen --json assets,url
+
+      - name: Record publication status without losing verified APK
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag='lumo-0.13.20-2032-complete'
+          if gh release view "$tag" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Published GitHub Release: https://github.com/Ullmann27/lumo-lernen/releases/tag/$tag" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No verified public Release published. APK availability (if build succeeded) is via the GitHub Actions artifact of this run." >> "$GITHUB_STEP_SUMMARY"
+          fi
