@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "producerReviewed": "f2a5ee8d2cb18f5bc9d3922559b8966181f5482a",
+  "treeReviewed": "24b83e7f0464a344bdfab26565856a368f841ff3",
+  "status": "NO_CONCRETE_BLOCKER_IN_REVIEWED_ADAPTER",
+  "directory": "/workspace/scratch/4fa97167812c/agent-2032-runtime-cases-review",
+  "files": [
+    {
+      "path": "binding.json",
+      "bytes": 11928,
+      "sha256": "aad7bc1df3b6d3b0b08eb3c1eddf56851ae16a610e1e2085bb1adb675a6adfe2"
+    },
+    {
+      "path": "independent-focused-tests.log",
+      "bytes": 2628,
+      "sha256": "5bacc2f2fb07073d0e35cfa95706b079ed0370e4be43cc3d75ecb7c833d9f642"
+    },
+    {
+      "path": "review.json",
+      "bytes": 5478,
+      "sha256": "0dc7f3868ce2f195d0e9871e0c1a318065813e88ffad96bd29ca4b366b909626"
+    },
+    {
+      "path": "test-run.json",
+      "bytes": 684,
+      "sha256": "c2fc1f74bc12aec76d06821174a09afba15ef2d0a426a9ab843f513a40310539"
+    }
+  ],
+  "fileCountExcludingHandoff": 4,
+  "bytesExcludingHandoff": 20718
+}

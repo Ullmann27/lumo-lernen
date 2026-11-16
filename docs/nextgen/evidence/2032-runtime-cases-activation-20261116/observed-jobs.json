@@ -1,0 +1,92 @@
+{
+  "jobs": [
+    {
+      "id": 133251156609,
+      "name": "android-runtime-cases",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 43853317375,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Verify unchanged source boundary and download immutable APK 2032",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run android-actions/setup-android@v3",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Prepare observed UI readers and the same software renderer",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 6
+        },
+        {
+          "name": "Check the inherited and current supplemental boundaries",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7
+        },
+        {
+          "name": "Start the observed software display",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8
+        },
+        {
+          "name": "Run additional cases with a fresh fictional profile",
+          "status": "pending",
+          "conclusion": null,
+          "number": 9
+        },
+        {
+          "name": "Require all four current observed cases",
+          "status": "pending",
+          "conclusion": null,
+          "number": 10
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 22
+        }
+      ]
+    }
+  ]
+}

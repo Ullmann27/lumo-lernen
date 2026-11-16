@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "status": "NO_CONCRETE_BLOCKER_IN_REVIEWED_ADAPTER",
+  "producerCommit": "f2a5ee8d2cb18f5bc9d3922559b8966181f5482a",
+  "tree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+  "implementationCommit": "ff8243d80b68065c9e97b05c4fe1025b59683bf0",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "independentReviewUtc": "2026-11-16T10:54:48.617661+00:00",
+  "handoffSha256": "2c29948caa3030d89d477c937e5b95c736cdd40b67dd91931cc2d1085cb774a8",
+  "changedFiles": 21,
+  "allFinalFilesMatchCommitHandoffAndWorktree": true,
+  "finalSixFilesEvidenceOnly": true,
+  "historicalFilesAlsoCompared": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 47419,
+      "sha256": "97017f2121fb47f2ada40bf108b26b76fd5101fe30d6689d48b2057fd7d469be",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "bytes": 26339,
+      "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "bytes": 44802,
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 92469,
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "bytes": 7595,
+      "sha256": "81efab46dbb85c4d22745bbfbf637ea5389548cb19508ec424948c2bb221c449",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_native_stop.py",
+      "bytes": 10248,
+      "sha256": "2d8e70a2ab3e9a8d0756b6a20341d5d639833c9854e4e087556cf81bb2776b56",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2031-runtime-cases.yml",
+      "bytes": 5673,
+      "sha256": "a98ff0d6dd6a4895587665892e61c1cc1f05c8fd345df407f69cee48150fbdbd",
+      "equalToApkSource": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases.json",
+      "bytes": 411,
+      "sha256": "42e137bf9fe7a8cbf7c38b17b20d72dde44dcd4c0e0bcf1dc272f66b02c562ae",
+      "equalToApkSource": true
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "bytes": 11429,
+      "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441",
+      "equalToApkSource": true
+    }
+  ],
+  "observations": [
+    "APK source/run/jobs/artifact/ZIP/APK/PCK/certificate constants match the independently retained actual 2032 validation/build/runtime originals.",
+    "Exactly the new QA paths and documentation differ from source9b; original product/probes/publisher and immutable2031 gates remain byte-identical.",
+    "The three existing actions are invoked through inherited methods; current native multiline reader remains in the actual class ancestry. No successful previous tour/reset is fabricated.",
+    "The added Core selector requires exact heading line, same parsed current pattern, own enabled/visible nodes, four distinct enabled controls wholly inside the currently observed viewport, then a fresh final XML before one direct answer.",
+    "Current domain submission uses unchanged verify_core_submission: exactly one added attempt; earlier attempts unchanged; identical profile, exact Logik/Muster prompt, actual and expected next shape, ok=true and hint=true. NOT_EXERCISED fails this supplemental result.",
+    "Eight XML fixtures are byte-identical to original current2032 files. Three historical subcase dictionaries match original2031 FAIL-result exactly and are declared host data; the extra successful Core attempt is expressly synthetic.",
+    "Current Langsamer source contract hashes match exact9b Host and9d native blobs. Historical metadata remains explicitly labeled; no runtime rate or acoustic speed is claimed.",
+    "Workflow has contents:read and actions:read only, downloads the pinned completed-build artifact, verifies source/installed identity, uses a fresh disposable API35 x86_64 emulator, and has no APK build or publisher.",
+    "All four supplemental cases are mandatory; release_eligible and original_probe_requirement_satisfied remain false."
+  ],
+  "tests": {
+    "independentlyExecuted": {
+      "module": "test_nextgen_2032_runtime_cases.py",
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "log": "independent-focused-tests.log",
+      "logSha256": "5bacc2f2fb07073d0e35cfa95706b079ed0370e4be43cc3d75ecb7c833d9f642"
+    },
+    "authorLogsReadOnly": {
+      "focusedPassed": 13,
+      "joinedPassed": 64,
+      "originalHeaderRedExpectedFailures": 1
+    },
+    "countsAreNotAddedAcrossRuns": true
+  },
+  "limits": [
+    "No new Android execution, CI activation, APK download or remote action by this review.",
+    "Host tests bind selectors and acceptance logic, not future timing/rendering or actual physical/acoustic behavior.",
+    "Current native rate proof is source/installed-pack binding, not a measured MediaPlayer rate or heard tempo.",
+    "The new supplemental run remains separate from the already completed full tour and cannot replace or publish it."
+  ],
+  "worktreeCleanAfterIndependentTests": true
+}

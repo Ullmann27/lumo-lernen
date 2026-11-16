@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "status": "CURRENT_FOUR_CASE_ANDROID_RUN_IN_PROGRESS",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "publishedQa": {
+    "sha": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+    "tree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+    "oldLocal": "f2a5ee8d2cb18f5bc9d3922559b8966181f5482a",
+    "parent": "c32061ee51bdad88579c7faefe8438f712eed26d",
+    "branch": "qa/lumo-nextgen-2032-runtime-cases-20261116"
+  },
+  "run": {
+    "id": 43853317375,
+    "attempt": 1,
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43853317375",
+    "event": "push",
+    "createdAt": "2026-11-16T10:56:42Z",
+    "headSha": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+    "statusAtObservation": "in_progress"
+  },
+  "jobId": 133251156609,
+  "branchCreation": "Observed GitHub NOT_FOUND before creating at c32061ee51bdad88579c7faefe8438f712eed26d; non-force compare-and-swap publish.",
+  "rootBinding": {
+    "handoffSha256": "2c29948caa3030d89d477c937e5b95c736cdd40b67dd91931cc2d1085cb774a8",
+    "files": 21,
+    "allAdded": true,
+    "treeMatchesReviewedProducer": true,
+    "unchangedSharedFilesCompared": 9,
+    "rootRepeatedHostTests": false
+  },
+  "independentReview": {
+    "producer": "f2a5ee8d2cb18f5bc9d3922559b8966181f5482a",
+    "tree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+    "status": "NO_CONCRETE_BLOCKER_IN_REVIEWED_ADAPTER",
+    "focusedPassed": 13,
+    "reviewSha256": "0dc7f3868ce2f195d0e9871e0c1a318065813e88ffad96bd29ca4b366b909626",
+    "countsNotAddedToAuthor64": true
+  },
+  "cases": [
+    "numeric_wrong_then_correct",
+    "flutter_switch_during_syllable_playback",
+    "native_banana_slower",
+    "native_pattern_then_explicit_core_answer"
+  ],
+  "limits": [
+    "No current supplemental Android PASS at activation.",
+    "Unchanged APK; no rebuild or publisher.",
+    "Original main tour and historical FAIL/NOT_EXERCISED results unchanged.",
+    "No physical device, acoustic recognition, or 60 FPS claim."
+  ]
+}

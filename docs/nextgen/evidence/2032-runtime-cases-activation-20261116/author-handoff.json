@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_PENDING_INDEPENDENT_REVIEW_AND_CURRENT_ANDROID_RUN",
+  "producerCommit": "f2a5ee8d2cb18f5bc9d3922559b8966181f5482a",
+  "tree": "24b83e7f0464a344bdfab26565856a368f841ff3",
+  "parent": "ff8243d80b68065c9e97b05c4fe1025b59683bf0",
+  "implementationCommit": "ff8243d80b68065c9e97b05c4fe1025b59683bf0",
+  "baseCommit": "c32061ee51bdad88579c7faefe8438f712eed26d",
+  "branch": "qa/lumo-nextgen-2032-runtime-cases-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-2032-runtime-cases",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2032_runtime_cases.json",
+      "bytes": 1023,
+      "sha256": "349bda32b7093679ce5cb4477f83fa2241fe9fbc840cf2760131bb10b7bfae21"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2032_runtime_cases_android_probe.py",
+      "bytes": 38617,
+      "sha256": "9d75fcb4d3316921eb38b914553e70efd62e4c4867dedb68cc3e6474ac527157"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2032-runtime-cases.yml",
+      "bytes": 5058,
+      "sha256": "5597d8e33b9d6c4bc518bc0ce5d989eb833641ee4e6e1fc7f0fbd485d474880c"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032_runtime_cases_20261116/README.md",
+      "bytes": 4107,
+      "sha256": "924e0383d8d359104e21831ebea3add74ec75b9e54da76f78b704e4d916b2d57"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032_runtime_cases_20261116/focused-green.log",
+      "bytes": 2628,
+      "sha256": "0feef6d88aa7bff435451c1762bf00176a0e9a337b36be64d6d4c454ad8f3c2b"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032_runtime_cases_20261116/joined-green.log",
+      "bytes": 14742,
+      "sha256": "f520dcb110f630e250aff060ae4b5ae9c334bf6ee72e02fe0632d477dd682e6f"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032_runtime_cases_20261116/recorded-pattern-red-final.log",
+      "bytes": 1144,
+      "sha256": "82ea1c06758f1e6bafd9835cfd3764e84626729ade9574d6b4f6443cde9fa03e"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032_runtime_cases_20261116/source.json",
+      "bytes": 6543,
+      "sha256": "249220fe3d731d62973f38eca0e599e13173cece24721dd6c5f55a642ba98b0d"
+    },
+    {
+      "path": "docs/nextgen/evidence/2032_runtime_cases_20261116/syntax-cli-workflow.json",
+      "bytes": 1341,
+      "sha256": "ac6399631f591ae4c849b4edd008ed11acf74fee6c9dd3fd078b50df33f7b45d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0450-pattern-observed-core-answer-cards.xml",
+      "bytes": 33214,
+      "sha256": "a363ba8d012c2e9fff8bc9ce50eea0f7a2440777f5e1512cc8aeb3a320609a82"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0451-pattern-observed-core-answer-cards.xml",
+      "bytes": 30617,
+      "sha256": "0f3926613b837a762cbcc0149237e6d5ebed04888c7f41e1ca6b7626e1a00e78"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0452-pattern-observed-core-answer-cards.xml",
+      "bytes": 30615,
+      "sha256": "5c78afa90f6e8ad330677d35f63c6cdb2ab0cc823402c7f36174b6e7ac05ba43"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0453-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0454-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0455-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0456-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/0457-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/README.md",
+      "bytes": 1065,
+      "sha256": "2071eac827ffa41cb44642574fb5476e86e3d6e2fd760ccfced28d441794f660"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/manifest.json",
+      "bytes": 2441,
+      "sha256": "3cd4cccb462aa37c8cd5572e3135baac4af28f189f4182dbfd7d2363a22bf314"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_2032_runtime_cases/observed-subcases.json",
+      "bytes": 46400,
+      "sha256": "c5a7daabd169642ccb47c10c938b067a56d7127fb3dc09503da81922e40b32fc"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2032_runtime_cases.py",
+      "bytes": 18927,
+      "sha256": "19f11808beff092ffddec2ef3f3740ec1c987319e7dee2fc5d74f4cf8a62990f"
+    }
+  ],
+  "codeAndTestsSameAsTestedCommit": true,
+  "historicalFilesChanged": false,
+  "productFilesChanged": false,
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "tests": {
+    "recordedOriginalMethodRed": {
+      "tests": 1,
+      "failures": 1,
+      "error": "0 explicit submissions instead of1",
+      "isSetupError": false
+    },
+    "newFocusedPassed": 13,
+    "joinedPassed": 64,
+    "failed": 0,
+    "skipped": 0,
+    "syntax": {
+      "pythonAST": "PASS",
+      "yaml": "PASS",
+      "bashBlocks": 6,
+      "cliHelpCommands": 4
+    },
+    "earlierSparseSetupFailureRetained": true
+  },
+  "scratchLogs": [
+    {
+      "file": "focused-first.log",
+      "bytes": 4140,
+      "sha256": "e2a82f07a0e64e286e714c7c67ecec32d1dc99f665be04c49caae850d2f84e96"
+    },
+    {
+      "file": "focused-green.log",
+      "bytes": 2628,
+      "sha256": "0feef6d88aa7bff435451c1762bf00176a0e9a337b36be64d6d4c454ad8f3c2b"
+    },
+    {
+      "file": "joined-green.log",
+      "bytes": 14742,
+      "sha256": "f520dcb110f630e250aff060ae4b5ae9c334bf6ee72e02fe0632d477dd682e6f"
+    },
+    {
+      "file": "joined-sparse-setup-failure.log",
+      "bytes": 1932,
+      "sha256": "dafc5edbe6b162f591e15f7abf9c0e8d7248efdb22934ff750068d3993a64b44"
+    },
+    {
+      "file": "recorded-pattern-red-final.log",
+      "bytes": 1144,
+      "sha256": "82ea1c06758f1e6bafd9835cfd3764e84626729ade9574d6b4f6443cde9fa03e"
+    },
+    {
+      "file": "recorded-pattern-red.log",
+      "bytes": 1144,
+      "sha256": "fde8099f2c9d4261938624ae816e1151047ac9777211cd9aaf948122c992345b"
+    },
+    {
+      "file": "syntax-cli-workflow.json",
+      "bytes": 1341,
+      "sha256": "ac6399631f591ae4c849b4edd008ed11acf74fee6c9dd3fd078b50df33f7b45d"
+    }
+  ],
+  "workflow": {
+    "path": ".github/workflows/lumo-nextgen-2032-runtime-cases.yml",
+    "branch": "qa/lumo-nextgen-2032-runtime-cases-20261116",
+    "pushPath": ".github/probes/lumo_nextgen_2032_runtime_cases.json",
+    "caseAttempt": 1,
+    "artifactName": "lumo-nextgen-2032-runtime-cases-evidence",
+    "result": "evidence/android/runtime-cases/runtime-cases-result.json",
+    "config": ".github/probes/lumo_nextgen_2032_runtime_cases.json",
+    "permissions": {
+      "contents": "read",
+      "actions": "read"
+    },
+    "cases": [
+      "numeric_wrong_then_correct",
+      "flutter_switch_during_syllable_playback",
+      "native_banana_slower",
+      "native_pattern_then_explicit_core_answer"
+    ]
+  },
+  "execution": {
+    "newAndroidRun": false,
+    "apkDownloaded": false,
+    "apkRebuilt": false,
+    "remoteActions": false,
+    "publisherAdded": false,
+    "rootFilesChanged": false,
+    "autosaveOnce": "Executed after each local commit; clean tree returned Nothing new to save, no push attempted."
+  },
+  "limits": [
+    "Historical 2031 successes are fixtures, never current Android PASS.",
+    "The original current full tour has core_submission=NOT_EXERCISED; this new mandatory Core case has not run on Android.",
+    "Slower metadata binds current source/PCK and reviewed native fingerprint; no runtime rate or acoustic phoneme verification.",
+    "Active Flutter switch retains 45s/1s and temporary320dpi restored; no physical Fold or standard-density claim.",
+    "The four-case result has no full-tour or publication approval effect."
+  ]
+}

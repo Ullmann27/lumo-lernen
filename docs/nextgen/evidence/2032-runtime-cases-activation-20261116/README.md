@@ -1,0 +1,9 @@
+# Aktueller Android-Nachlauf für vier offene 2032-Fälle
+
+Der unabhängig geprüfte neue Adapter ist auf `qa/lumo-nextgen-2032-runtime-cases-20261116` als **ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc** veröffentlicht. Sein Tree **24b83e7f0464a344bdfab26565856a368f841ff3** ist bytegleich zum eingefrorenen Producer **f2a5ee8d2cb18f5bc9d3922559b8966181f5482a**. Alle 21 ausschließlich neuen Dateien und neun unveränderte gemeinsame Prüf-/Publisherdateien wurden zusätzlich durch Root gebunden.
+
+[Run 43853317375](https://github.com/Ullmann27/lumo-lernen/actions/runs/43853317375), Versuch 1, Job **133251156609**, startete tatsächlich am **16.11.2026 um 10:56:42 UTC** per Push. Status bei Sicherung: **IN_PROGRESS**, kein behaupteter neuer Android-PASS. Die feste bestehende x86-APK stammt unverändert von **9b38360ca5f21919dce4a2b99e605ee39bbbf454**, Native **9d6ef1d704a0e54098a8f8f0818f36deae0e3789**. Die erste CI-Quell-/Downloadprüfung ist erfolgreich abgeschlossen.
+
+Der Nachlauf verlangt falsche Zahlenabgabe mit Korrektur, Wechsel während aktueller Flutter-Silbenwiedergabe, native Banane langsamer sowie eine ausdrücklich abgegebene und fachlich gespeicherte Musterantwort. Alle vier Fälle sind Pflicht. Der neue Selektor behebt ausschließlich das nachgewiesene zeilenweise Headerproblem der Prüfsoftware. Die Produktdateien, historischen Prüfpfade und der Publisher bleiben unverändert. Dieser Lauf erstellt oder veröffentlicht keine APK und ersetzt die vollständige Haupttour nicht.
+
+Der Owner dokumentiert einen erwarteten Originalfixture-Fehler, 13 neue beziehungsweise 64 gemeinsame relevante Hostprüfungen PASS. Der unabhängige Reviewer hat die 13 neuen Hosttests separat ausgeführt. Wiederholte Testzahlen werden nicht addiert. Originalübergabe, unabhängiger Review und die tatsächlichen Startmetadaten sind hier unverändert gesichert.

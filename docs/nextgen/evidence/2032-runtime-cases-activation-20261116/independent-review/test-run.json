@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_nextgen_2032_runtime_cases.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/4fa97167812c/agent-2032-runtime-cases",
+  "source_commit": "f2a5ee8d2cb18f5bc9d3922559b8966181f5482a",
+  "started_utc": "2026-11-16T10:53:44.111985+00:00",
+  "finished_utc": "2026-11-16T10:53:44.445902+00:00",
+  "returncode": 0,
+  "worktree_clean_after": true,
+  "log_bytes": 2628,
+  "log_sha256": "5bacc2f2fb07073d0e35cfa95706b079ed0370e4be43cc3d75ecb7c833d9f642",
+  "no_android_execution": true
+}
