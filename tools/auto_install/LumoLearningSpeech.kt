@@ -17,6 +17,11 @@ import java.util.concurrent.Future
 /** Original F2 synthesis and real playback for the native lesson and village.
  * No microphone, system TTS, online service or learning score is involved. */
 class LumoLearningSpeech(context: Context, options: JSONObject) {
+    private enum class FailurePhase { SYNTHESIS, ENVELOPE, MEDIA_PREPARE, MEDIA_START, MEDIA_PLAYBACK }
+    private enum class FailureCode {
+        UNAVAILABLE, INVALID_WAVE, CANCELLED, INVALID_INPUT, LICENSE_REQUIRED,
+        NOT_IMPLEMENTED, EXCEPTION, MEDIA_ERROR
+    }
     private val main = Handler(Looper.getMainLooper())
     private val bridge = LumoOfflineSpeechBridge(context.applicationContext)
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
@@ -98,7 +103,7 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
                     if (token != generation || !active || destroyed) return
                     val bytes = (result as? Map<*, *>)?.get("wav") as? ByteArray
                     if (bytes == null || bytes.size < 44) {
-                        failed(token)
+                        failed(token, FailurePhase.SYNTHESIS, FailureCode.INVALID_WAVE)
                         return
                     }
                     // Synthesis is complete, but there is no audible playback
@@ -115,13 +120,23 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
                         } catch (_: CancellationException) {
                             // Stop/pause owns the published idle state.
                         } catch (_: Exception) {
-                            main.post { failed(token) }
+                            main.post { failed(token, FailurePhase.ENVELOPE, FailureCode.EXCEPTION) }
                         }
                     }
                 }
 
-                override fun error(code: String, message: String?, details: Any?) { failed(token) }
-                override fun notImplemented() { failed(token) }
+                override fun error(code: String, message: String?, details: Any?) {
+                    val reason = when (code) {
+                        "local_cancelled" -> FailureCode.CANCELLED
+                        "local_input" -> FailureCode.INVALID_INPUT
+                        "local_license" -> FailureCode.LICENSE_REQUIRED
+                        else -> FailureCode.UNAVAILABLE
+                    }
+                    failed(token, FailurePhase.SYNTHESIS, reason)
+                }
+                override fun notImplemented() {
+                    failed(token, FailurePhase.SYNTHESIS, FailureCode.NOT_IMPLEMENTED)
+                }
             })
         }
         return true
@@ -145,7 +160,7 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
                     state = "playing"
                     Log.i("LumoLearningSpeech", "started id=$id profile=${LumoOfflineSpeechEngine.PROFILE}")
                     main.post(pulse)
-                } catch (_: Exception) { failed(token) }
+                } catch (_: Exception) { failed(token, FailurePhase.MEDIA_START, FailureCode.EXCEPTION) }
             }
             playback.setOnCompletionListener {
                 if (token != generation) return@setOnCompletionListener
@@ -154,9 +169,11 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
                 publish()
                 Log.i("LumoLearningSpeech", "completed id=$id")
             }
-            playback.setOnErrorListener { _, _, _ -> failed(token); true }
+            playback.setOnErrorListener { _, _, _ ->
+                failed(token, FailurePhase.MEDIA_PLAYBACK, FailureCode.MEDIA_ERROR); true
+            }
             playback.prepareAsync()
-        } catch (_: Exception) { failed(token) }
+        } catch (_: Exception) { failed(token, FailurePhase.MEDIA_PREPARE, FailureCode.EXCEPTION) }
     }
 
     fun stop() { main.post { if (!destroyed) stopOnMain() } }
@@ -169,8 +186,13 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
         publish()
     }
 
-    private fun failed(token: Long) {
+    private fun failed(token: Long, phase: FailurePhase, code: FailureCode) {
         if (token != generation || destroyed) return
+        // Keep the original playback records intact. Only the current owner may
+        // log a failure; never include source text, exception messages or details.
+        Log.i("LumoLearningSpeech", "failed " + JSONObject()
+            .put("id", utterance).put("generation", token)
+            .put("phase", phase.name.lowercase()).put("code", code.name.lowercase()).toString())
         releasePlayer()
         state = "unavailable"
         publish()
