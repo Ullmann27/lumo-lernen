@@ -526,12 +526,25 @@ class RuntimeCasesProbe(immutable.ReplayProbe):
             self.checkpoint("bridge", problemId="bridge-8-5", phase="build", done=True, pendingAttemptId=None)
             self.tap(NEXT, "numeric-recall-phase")
             self.see(RECALL_PROMPT, "numeric-nine-plus-seven", scroll=True, exact=True)
-            self.capture("numeric-before-wrong-answer")
-        before_checkpoint = self.checkpoint("bridge", problemId="bridge-9-7", phase="recall", done=False, wrongBefore=False)
-        before = learning.learning_snapshot(self.preferences("numeric-before-first-check"))
+            before_checkpoint = self.checkpoint("bridge", problemId="bridge-9-7", phase="recall",
+                done=False, wrongBefore=False, answer="", pendingAttemptId=None)
+            before = learning.learning_snapshot(self.preferences("numeric-before-first-check"))
+        # In run 43822740773 the concurrent screencaps contained wallpaper,
+        # although this video and the later, post-recorder PNG showed the task.
+        # Finish and validate that same video, then bind the unchanged task anew.
+        self.see(RECALL_PROMPT, "numeric-nine-plus-seven-after-video", exact=True)
+        ready_checkpoint = self.checkpoint("bridge", problemId="bridge-9-7", phase="recall",
+            done=False, wrongBefore=False, answer="", pendingAttemptId=None)
+        ready = learning.learning_snapshot(self.preferences("numeric-after-build-video"))
+        preservation = learning.require_preserved(before, ready, before_checkpoint, ready_checkpoint)
+        initial_screenshot = self.capture("numeric-before-wrong-answer")
         report = {"status": "RUNNING", "prompt": RECALL_PROMPT, "problem_id": "bridge-9-7",
                   "submission_control": "Antwort prüfen", "input_method": "real Android text input",
-                  "spoken_recognition_exercised": False, "exact_eight_plus_five_numeric_case": False}
+                  "spoken_recognition_exercised": False, "exact_eight_plus_five_numeric_case": False,
+                  "pre_submission_capture": {"before": before, "after": ready,
+                      "checkpoint_before": before_checkpoint, "checkpoint_after": ready_checkpoint,
+                      "preservation": preservation, "screenshot": initial_screenshot,
+                      "video": self.recordings[-1], "capture_after_video_finalization": True}}
         self.result["numeric_wrong_then_correct"] = report
         for given, correct, name in (("15", False, "wrong"), ("16", True, "corrected")):
             with self.recording("numeric-" + name + "-submission"):

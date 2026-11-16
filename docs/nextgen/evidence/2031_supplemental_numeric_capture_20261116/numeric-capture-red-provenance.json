@@ -1,0 +1,15 @@
+{
+  "base": "7b811531ecd3034c0689edd3b39e44223d966857",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "test_nextgen_2031_runtime_cases.NumericCaptureOrderTests.test_first_still_capture_follows_verified_video_and_preserves_numeric_submission",
+    "-v"
+  ],
+  "exit_code": 1,
+  "production_sha256": "2869bba0ac0c9a028653254cbd4627b961b2dbc7cf9a580b429cdf40f1face90",
+  "test_sha256": "17ad78d122e5cebc405ad87ac5cae6b22dcb83a437b747879c843f8fde3050ec",
+  "log_sha256": "c1eaf8a9afac57d6f3d6fb81febd82da63bd138e2959ac75135df62575e8391b",
+  "android_executed": false
+}
