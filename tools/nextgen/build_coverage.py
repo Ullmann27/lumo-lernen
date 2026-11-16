@@ -779,6 +779,13 @@ RUN_SPECS = [
          "test/learning/lab_native_entry_test.dart",
          "test/learning_lab_runtime_test.dart",
      ]),
+    ("lab_return_frames", "lab_return_frames_20261116/green.log",
+     "owner_worktree_verified_by_recorded_source_hashes", None, [
+         "test/learning/lab_conversation_return_test.dart",
+         "test/learning/nextgen_lab_bus_integration_test.dart",
+         "test/learning/lab_native_entry_test.dart",
+         "test/learning_lab_runtime_test.dart",
+     ]),
     ("lab_native", "lab_native_20261115/tests.log",
      "owner_sources_integrated", "6757f8c2b0758519c44c3606215f2f4fae3fc5a5", [
          "test/learning/lab_native_entry_test.dart",

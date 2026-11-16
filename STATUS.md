@@ -10,6 +10,10 @@ Die signierten neuen APKs sind gebaut und überprüft: Version **0.13.17+2029**,
 
 Nächster Schritt: strengere Reproduktion des beobachteten Frame-/Erstbedienungsablaufs, minimaler Produktfix nur bei belegter Ursache, anschließender neuer vollständiger Build mit eigener Version. Keine zweite automatische Eingabe, kein geänderter Checkpoint und keine abgeschwächte Abnahmebedingung. `main` bleibt unberührt; `fullModernizationComplete=false` bleibt zutreffend.
 
+## Integrierte Produktkorrektur für den nächsten Kandidaten
+
+Die tatsächliche Übergangslücke ist jetzt durch zwei neue RED-Fälle auf unveränderter 684-Quelle reproduziert: Das Modell erschien bedienbar, obwohl seine Aufgabenidentität fehlte. Der geprüfte Fix aktiviert alle Lab-Modelle erst mit gültiger eigener Bindung und fordert den Frame für die bisherige Rückkehrveröffentlichung ausdrücklich an. Die finale Regression verwendet das echte Systemanimationsflag, stellt die Frage und prüft jeden angeforderten Rückkehrframe. Genau ein Tap im ersten aktiv angebotenen Frame muss moved1 speichern. **27/27 gezielte Prüfungen bestehen**, Analyse ohne Befunde. Der separate Teamstand `a4e73ccf5b7ea0686d941d9160957230a94b93a6` ist veröffentlicht und übernommen; exakte Komponentenbindung unter `docs/nextgen/evidence/2030-product-integration-20261116/`. Die Aktualisierung des Inventars und ein neuer vollständiger Build **0.13.18+2030** folgen. Noch kein neuer Android-PASS.
+
 ## Archiv: tatsächlicher Quell-/Buildfortschritt 2029 vor Androidabschluss
 
 # LUMO Next Generation – vollständiger Kandidat 2029 vorbereitet

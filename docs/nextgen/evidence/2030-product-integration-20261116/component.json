@@ -1,0 +1,19 @@
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "branch": "fix/lumo-lab-requested-return-frame-20261116",
+  "baseCommit": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "producerCommit": "5f2020a49a4ea9bd935bbd582ef44201e6058ca1",
+  "publishedCommit": "a4e73ccf5b7ea0686d941d9160957230a94b93a6",
+  "identicalTree": "c63544ea2271b18555e498f5b360ecabb5d82a7e",
+  "rootCherryPick": "b7f12e6c1bce0f5fa4c0b5506b65868e96dd12a2",
+  "rootFilesMatchHandoff": true,
+  "greenTargetedFlutterTests": 27,
+  "originalRed": {
+    "passed": 1,
+    "failed": 2,
+    "productSource": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc"
+  },
+  "rootFullSuiteRerun": false,
+  "androidRuntimePassed": false,
+  "sourceReview": "Root read exact product delta, full final regression, original RED and final Handoff. No concrete blocker found. Runtime and final source suite remain separate gates."
+}

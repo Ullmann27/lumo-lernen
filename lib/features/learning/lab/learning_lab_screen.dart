@@ -843,6 +843,9 @@ class _LearningLabScreenState extends State<LearningLabScreen>
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted && _conversationToken == null) _publish();
         });
+        // route.completed can run after the last transition frame. Registering
+        // a post-frame callback alone does not request its required frame.
+        WidgetsBinding.instance.ensureVisualUpdate();
       }
     }
   }
@@ -1055,6 +1058,8 @@ class _LearningLabScreenState extends State<LearningLabScreen>
 
   Widget _model(LabProblem p, bool enabled) {
     final captured = _coach.identity;
+    final modelEnabled =
+        enabled && captured != null && _coach.matches(captured);
     void change(VoidCallback update, String focus) {
       if (captured != null && _coach.matches(captured)) {
         _modelChanged(update, focus);
@@ -1069,7 +1074,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
           maxMoved: p.modelTarget,
           onChanged: (n) => change(
               () => _moved = n, n == p.modelTarget ? 'addend' : 'ten_frame'),
-          enabled: enabled,
+          enabled: modelEnabled,
           reduceMotion: _reduced,
           reveal: !_selfTry && (_hint >= 3 || _moved == p.modelTarget),
         ),
@@ -1077,7 +1082,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
           denominator: p.denominator,
           selected: _pieces,
           onChanged: (n) => change(() => _pieces = n, 'fraction-disc'),
-          enabled: enabled,
+          enabled: modelEnabled,
           reduceMotion: _reduced,
         ),
       LabMode.pattern => PatternBuildBoard(
@@ -1086,7 +1091,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
           groupLength: p.repeatLength,
           selected: _patternChoice,
           onChanged: (n) => change(() => _patternChoice = n, 'pattern_next'),
-          enabled: enabled,
+          enabled: modelEnabled,
           revealGroup: !_selfTry && _hint > 0,
           reduceMotion: _reduced,
         ),
@@ -1108,7 +1113,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
               onReadWord: widget.appState.state.settings.voiceEnabled
                   ? _bound(() => unawaited(_readSyllables(slow: _slow)))
                   : null,
-              enabled: enabled,
+              enabled: modelEnabled,
               reduceMotion: _reduced,
             ),
             const SizedBox(height: 14),
@@ -1117,7 +1122,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
               selected: _tokens,
               onChanged: (n) =>
                   change(() => _tokens = n, 'syllable_${n.length.clamp(0, 2)}'),
-              enabled: enabled,
+              enabled: modelEnabled,
               reduceMotion: _reduced,
             ),
           ],
@@ -1127,7 +1132,7 @@ class _LearningLabScreenState extends State<LearningLabScreen>
           selected: _tokens,
           onChanged: (n) => change(() => _tokens = n,
               n.isEmpty ? 'task_prompt' : 'token-work-${n.last}'),
-          enabled: enabled,
+          enabled: modelEnabled,
           reduceMotion: _reduced,
         ),
     };

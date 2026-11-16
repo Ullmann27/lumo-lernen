@@ -1,0 +1,67 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart
+00:00 +0: visible lab resume rebinds without a resize
+00:00 +1: own conversation return rebinds visible model (permission interruption: false)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: not null
+  Actual: <null>
+An enabled model must own a usable task identity in every return frame, before a child can tap its
+stone.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure>.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:156:11)
+#5      pumpRequestedFrames (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:22:17)
+<asynchronous suspension>
+#6      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:152:28)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart line 156
+The test description was:
+  own conversation return rebinds visible model (permission interruption: false)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +1 -1: own conversation return rebinds visible model (permission interruption: false) [E]
+  Test failed. See exception logs above.
+  The test description was: own conversation return rebinds visible model (permission interruption: false)
+  
+00:02 +1 -1: own conversation return rebinds visible model (permission interruption: true)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: not null
+  Actual: <null>
+An enabled model must own a usable task identity in every return frame, before a child can tap its
+stone.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure>.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:156:11)
+#5      pumpRequestedFrames (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:22:17)
+<asynchronous suspension>
+#6      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart:152:28)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart line 156
+The test description was:
+  own conversation return rebinds visible model (permission interruption: true)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +1 -2: own conversation return rebinds visible model (permission interruption: true) [E]
+  Test failed. See exception logs above.
+  The test description was: own conversation return rebinds visible model (permission interruption: true)
+  
+00:03 +1 -2: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart: own conversation return rebinds visible model (permission interruption: false)
+  /workspace/scratch/4fa97167812c/agent-lab-route-scope/test/learning/lab_conversation_return_test.dart: own conversation return rebinds visible model (permission interruption: true)
