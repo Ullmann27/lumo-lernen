@@ -131,6 +131,9 @@ void main() {
     final initial = await _round(app);
     await tester.tap(find.byKey(const ValueKey('memory-open-native-3d')));
     await _until(tester, () => transport.closed.isNotEmpty, 'failed opt-in token closed');
+    await _until(tester,
+        () => find.textContaining('direkt Memory weiterspielen').evaluate().isNotEmpty,
+        'optional native failure returns with a visible child-friendly explanation');
     expect(transport.opens, 1);
     expect((await _round(app))['id'], initial['id']);
     expect(find.byKey(const ValueKey('memory-card-0')).hitTestable(), findsOneWidget);
