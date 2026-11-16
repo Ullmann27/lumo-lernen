@@ -1095,13 +1095,15 @@ class _MiniGameLearningScreenState extends State<MiniGameLearningScreen>
 
   Widget _controls(MiniGameLearningTask task) =>
       Wrap(spacing: 8, runSpacing: 8, children: [
-        _smallControl(
-            'mini-game-native-learning',
-            'Mit Lumo in 3D',
-            Icons.view_in_ar_rounded,
-            _canWork && !_nativeOpen
-                ? () => unawaited(_openNativeLearning())
-                : null),
+        if (_workspace != null &&
+            NativeLearningActivity.forTask(_workspace!) != null)
+          _smallControl(
+              'mini-game-native-learning',
+              'Mit Lumo in 3D',
+              Icons.view_in_ar_rounded,
+              _canWork && !_nativeOpen
+                  ? () => unawaited(_openNativeLearning())
+                  : null),
         _smallControl(
             'mini-game-help',
             _round!.response.help == 0 ? 'Hilf mir' : 'Anders erklären',

@@ -128,7 +128,7 @@ void main() {
   );
 
   _androidWidgetTest(
-    'all fourteen English descriptors use the existing learning bridge',
+    'all reviewed English descriptors use the existing learning bridge',
     (tester) async {
       final app = _EnglishLaunchState();
       addTearDown(app.dispose);
@@ -162,7 +162,7 @@ void main() {
         expect(current.taskInstanceId, originalId);
         expect(current.correctAnswer, originalAnswer);
       }
-      expect(calls, hasLength(14));
+      expect(calls, hasLength(NativeEnglishVocabulary.meanings.length));
       expect(tester.takeException(), isNull);
     },
   );

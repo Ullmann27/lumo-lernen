@@ -585,8 +585,11 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(children: [
-        action('story-native-learning', Icons.view_in_ar_rounded,
-            'Mit Lumo in 3D', () => unawaited(_openNativeLearning())),
+        if (_publishedContext != null &&
+            NativeLearningActivity.fromCompanionContext(_publishedContext!) !=
+                null)
+          action('story-native-learning', Icons.view_in_ar_rounded,
+              'Mit Lumo in 3D', () => unawaited(_openNativeLearning())),
         action('story-help', Icons.lightbulb_outline, 'Hilf mir',
             _requestStoryHelp),
         action(
