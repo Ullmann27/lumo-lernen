@@ -26,6 +26,9 @@ SPEC.loader.exec_module(reference)
 READER_SPEC = importlib.util.spec_from_file_location("current_native_reader", HERE / "lumo_nextgen_native_reader.py")
 native_reader = importlib.util.module_from_spec(READER_SPEC)
 READER_SPEC.loader.exec_module(native_reader)
+STOP_SPEC = importlib.util.spec_from_file_location("current_native_stop", HERE / "lumo_nextgen_current_native_stop.py")
+native_stop = importlib.util.module_from_spec(STOP_SPEC)
+STOP_SPEC.loader.exec_module(native_stop)
 learning = reference.learning
 require, digest, read_json = reference.require, reference.digest, reference.read_json
 
@@ -69,6 +72,11 @@ def verify_ci_context(args, environment):
 
 
 class CurrentCandidateProbe(reference.ReferenceProbe):
+    def banana(self):
+        super().banana()
+        if self.args.expected_version >= 2032:
+            native_stop.run_current_native_stop(self)
+
     def native_see(self, label, tag, *, exact=False):
         if label in ("Was kommt als Nächstes", "Das Wort hat 3 Silben") and not exact:
             return native_reader.see_wrapped_text(self.reader, self.out, label, self.fresh(tag))

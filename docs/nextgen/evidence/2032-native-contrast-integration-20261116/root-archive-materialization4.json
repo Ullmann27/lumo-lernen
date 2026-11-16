@@ -1,0 +1,140 @@
+{
+  "utc": "2026-11-16T08:51:26.943755+00:00",
+  "head": "b76dda206cd57c4de72ecf514247a065eaf1614a",
+  "freshRemoteHead": "b76dda206cd57c4de72ecf514247a065eaf1614a",
+  "action": "Reversibly dematerialized only individually byte-verified committed ZIP parts from older evidence; preserved every Git blob, selected original and provenance file",
+  "files": [
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-001",
+      "bytes": 8388608,
+      "sha256": "0296d9df7f239b8274996655823468aaf35015205704dd5fb006e384c16843d9",
+      "gitBlob": "61ed2bce5e192d4d8250c0fa77a169ff7a341806"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-002",
+      "bytes": 8388608,
+      "sha256": "5b6d4cd77de3513c9d30485138589725fd9d0540357b19e0db206453461449c0",
+      "gitBlob": "05b6b31100b3cb5e1018cd89bdd800b60562c243"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-003",
+      "bytes": 8388608,
+      "sha256": "b95fe32dd1c26eb04eec1df6775b81f9316ff53c187155adae7833d8c410e713",
+      "gitBlob": "47a81901c81a5fa90f705da755572eb9aa9a6d3d"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-004",
+      "bytes": 8388608,
+      "sha256": "db2c599ec39ce7fc38cab3ca5b662059e84ed424547baab0e1481bb69f46f70d",
+      "gitBlob": "c3fbe4b1e692e57fd39e571df52f3c6c1d84b766"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-bridge/artifact-14193300868.zip.part-005",
+      "bytes": 1678618,
+      "sha256": "42fedc25b62be3fe4a24be57bdacedb18da01f68c090346d0a19000cb87eef24",
+      "gitBlob": "cbe8ed79bc4e50378141d6829abd4b1b39b02ca6"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-001",
+      "bytes": 8388608,
+      "sha256": "456c0f20982d9122cefc24857108bc68e81ef7938dc7d86973271ad9c887b41a",
+      "gitBlob": "f72c9ffd609be00ba27bbbe7b0a63eceea746aad"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-002",
+      "bytes": 8388608,
+      "sha256": "a6d7aa8d4eab2646f6794c60d25ef59ac2758c3fc55de54cb8e0c19e924509f1",
+      "gitBlob": "df95654eca0bf6c8a5bf0800b86b3cc4fae6aa50"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-003",
+      "bytes": 8388608,
+      "sha256": "fb295351dd3a6ff38ca5b0af5bf4be59602473c3e79c359701fefd67b44683a4",
+      "gitBlob": "5f86e6bece7b9fa83d7dcae3f61a0a17b005fc63"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-pattern/artifact-14191988638.zip.part-004",
+      "bytes": 5511638,
+      "sha256": "f13079b73f1a89a6bfb18c3dc45e69a1eccc67b84cf409dab9152efe6aec1389",
+      "gitBlob": "b2557977cb5d9792f9846bee972a3f252082e262"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-001",
+      "bytes": 8388608,
+      "sha256": "4d5c22556b417b6db5a7e3da8cbeca974a7e7c78f457789af3520b2e18ead732",
+      "gitBlob": "84d65e8cad1d4d21845446918557f50ee744ca37"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-002",
+      "bytes": 8388608,
+      "sha256": "54a531de51caa138d50024c81da4073a87a7f2f38405b5c6babc1cf8c2b99404",
+      "gitBlob": "99f435aab01903f225bb930d4415ef264e9d8fd6"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-native-diagnostic-banana/artifact-14192477999.zip.part-003",
+      "bytes": 2252163,
+      "sha256": "359314e05a07f86ba8e575e97920b88e0d87653140126d2b52b931e4af48a8f3",
+      "gitBlob": "db1fbe8deeaec7cf9bffc87a6d53fa0ee7484149"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part01",
+      "bytes": 8388608,
+      "sha256": "cfa726788746269f6bb9bdf344b36e26494c91efe299ca06c93fe22ea3f0ae0d",
+      "gitBlob": "2f8137596e51c7fca960786bcc3c93e41d21e81d"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part02",
+      "bytes": 8388608,
+      "sha256": "6b4d0d1ed8b925cd5eccca7aba01fdc5ae0d1b2cd15514801fa230f794ac2525",
+      "gitBlob": "93412aa0df54a9af3f7b3db0044d0e363613988c"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2030-android-resize-recording-failure/artifact-14192539626.zip.part03",
+      "bytes": 2690507,
+      "sha256": "f7ed71e2fc1d023fe08cce112f0fdff2e975918bcaadd91d8a8ee481580e98d3",
+      "gitBlob": "3d40c89ef279fab2b5ceab7530de761e008c3d76"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-android-bridge-return-failure/artifact-14191731263.zip.part01",
+      "bytes": 8388608,
+      "sha256": "352b058e727bea8e9d25b4f8475300f220ae19a1ac3f81c4cafb25df3ca7cb14",
+      "gitBlob": "1b9bb7693bd0e3239fd522638a3c597ee0999707"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2029-android-bridge-return-failure/artifact-14191731263.zip.part02",
+      "bytes": 5453311,
+      "sha256": "762964049b46d9d34f4b7ae24c7fbc28d063c0207876c4e97aa62644754667a2",
+      "gitBlob": "b961d40ae2971b4871e7784ec4f0a7cd5b808c9b"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part01",
+      "bytes": 8388608,
+      "sha256": "04a3caeeeb2afff94f77eeb0acbe8e317113a95755e67c4a1a36cf26fd474f48",
+      "gitBlob": "3add8b4cbe2eb634593958fa3d424afb6f7fa142"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part02",
+      "bytes": 8388608,
+      "sha256": "d9899822b22b66dfd8d5de08aa3ae23069e1336ff603b9dfa79dde96d0b5722b",
+      "gitBlob": "80f8332f69f1f707ac0cb43a86651cb71c2ac5b2"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part03",
+      "bytes": 8388608,
+      "sha256": "60eab60d09d0243e3e15f31ced9a2c7a359777efcbf49d95b8298103a35a7dfd",
+      "gitBlob": "e968575ed9575f34aa6412d08a4acfcd728f8c8a"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-android-home-transition-failure/artifact-14197925395.zip.part04",
+      "bytes": 4207734,
+      "sha256": "3fe6878b675f54f7ef4f38ad1e801aef742a76e86049f3e0abcdc5441b97fb48",
+      "gitBlob": "f5ec5ab1dc51bab6261425ec5c22ab8543dc0be7"
+    }
+  ],
+  "bytesDematerialized": 147623091,
+  "freeAfter": 231075840,
+  "gitObjectsRemoved": false,
+  "sourceOrHistoryChanged": false,
+  "otherWorkspacesTouched": false,
+  "postActionDiagnostic": "The first command verified every materialized part against HEAD and completed sparse checkout, then its postcondition used an invalid Path subscript and raised TypeError before writing a report. This recovery independently confirms every exact exclusion, absence, remaining Git blob SHA256 and unchanged tracked history."
+}

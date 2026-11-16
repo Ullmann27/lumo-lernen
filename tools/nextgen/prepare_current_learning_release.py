@@ -32,8 +32,13 @@ def verify_tours(original, extra, *, source, native, version, version_name,
     require(extra.get("probe_sha256") == digest(PROBES / "lumo_nextgen_current_reference_android_probe.py") and
             extra.get("reference_probe_sha256") == digest(PROBES / "lumo_nextgen_reference_android_probe.py"),
             "Reference tour was produced by different probe sources")
-    return verify_observed_execution(original, extra, identity=identity,
-                                     original_result_sha256=original_result_sha256)
+    performance = verify_observed_execution(original, extra, identity=identity,
+                                            original_result_sha256=original_result_sha256)
+    if version >= 2032:
+        current.native_stop.verify_current_native_stop(extra.get("current_native_active_stop", {}),
+            candidate=identity, qa_commit=source, workflow_run_id=workflow_run,
+            profile_id=extra.get("final_profile", {}).get("id"), banana=extra.get("banana", {}))
+    return performance
 
 
 def verify_observed_execution(original, extra, *, identity, original_result_sha256):
