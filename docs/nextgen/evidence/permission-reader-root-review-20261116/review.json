@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_nextgen_learning_android_probe.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "fixtureEqualsOriginal": true,
+  "originalXmlSha256": "0de622cb2f0a1d562d0cf4bfa3bf19b9ef8eecbac7ca92106c51660953168006",
+  "runtimeAndroidAcceptance": false,
+  "producerCommit": "e28061d28d5afac9e43c01df29bc7e38ba1835c0",
+  "publishedComponentCommit": "a6ff8f6dc1c99f9ed962233d5ebdb3adcf4f7f0f",
+  "componentTree": "61d7248a2f82c1b7d647a21f6f0a84875fe4a0be",
+  "apkSourceCommit": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242"
+}

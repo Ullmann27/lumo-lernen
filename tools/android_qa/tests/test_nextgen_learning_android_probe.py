@@ -219,6 +219,202 @@ class ObservationTest(unittest.TestCase):
                 self.assertIsNone(probe.microphone_outcome(labels))
 
 
+class MicrophonePermissionFlowTest(unittest.TestCase):
+    """Original loading XML plus explicitly synthetic later frames; no device run."""
+    fixtures = ROOT / "tools/android_qa/tests/fixtures/nextgen_permission_43774460935"
+
+    @classmethod
+    def setUpClass(cls):
+        manifest = json.loads((cls.fixtures / "manifest.json").read_text())
+        member = manifest["files"][0]
+        data = (cls.fixtures / member["file"]).read_bytes()
+        assert len(data) == member["bytes"]
+        assert hashlib.sha256(data).hexdigest() == member["sha256"]
+        cls.original = [n.attrib for n in ET.fromstring(data).iter("node")]
+
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.out = Path(temporary.name)
+
+    def node(self, text, **changes):
+        return {"text": text, "content-desc": "", "enabled": "true", "clickable": "false",
+                "visible-to-user": "true", "package": probe.PACKAGE,
+                "bounds": "[30,40][1030,180]", **changes}
+
+    def permission(self, prompt="Allow Lumo Lernen Neu to record audio?", **button_changes):
+        # Synthetic transport fixtures. Their geometry/text is not a recorded
+        # post-0138 hierarchy, and cannot serve as Android runtime evidence.
+        package = "com.google.android.permissioncontroller"
+        return [self.node(prompt, package=package,
+                          **{"resource-id": package + ":id/permission_message"}),
+                self.node("While using the app",
+                          **{"package": package, "clickable": "true",
+                             "resource-id": package + ":id/permission_allow_foreground_only_button",
+                             "bounds": "[130,1120][950,1280]", **button_changes})]
+
+    def listening(self):
+        return [self.node("Lumo hört dir zu.")]
+
+    def scenario(self, frames, *, read_seconds=1):
+        instance = probe.LearningProbe.__new__(probe.LearningProbe)
+        instance.args = SimpleNamespace(conversation_ui="freevoice")
+        instance.out = self.out
+        instance.base = SimpleNamespace(adb=lambda *args, **kwargs: "synthetic.recognizer/Service")
+        instance.tap = instance.see = instance.type_text = instance.capture = lambda *args, **kwargs: None
+        clock, touches, observations, saved = SimpleNamespace(now=0), [], [], {}
+        instance.save = lambda name, value: saved.update({name: value})
+        def nodes(tag):
+            if tag == "typed-why-answer":
+                return [self.node("Weil von acht bis zehn zwei freie Plätze fehlen.")]
+            self.assertEqual(tag, "microphone-outcome")
+            frame = frames[min(len(observations), len(frames) - 1)]
+            observations.append(frame)
+            clock.now += read_seconds
+            return frame
+        def touch(box, tag, label):
+            touches.append((box, tag, label, clock.now))
+            clock.now += .6
+        def sleep(seconds):
+            self.assertGreaterEqual(seconds, 0)
+            clock.now += seconds
+        instance.nodes, instance.touch = nodes, touch
+        def run():
+            with patch.object(probe.time, "monotonic", lambda: clock.now), patch.object(probe.time, "sleep", sleep):
+                return instance.conversation()
+        return SimpleNamespace(run=run, clock=clock, touches=touches, observations=observations, saved=saved)
+
+    def test_original_zero_height_dialog_is_polled_until_a_fresh_visible_audio_target(self):
+        system = [n for n in self.original if "permissioncontroller" in n.get("package", "")]
+        self.assertEqual(len(system), 1)
+        self.assertEqual(system[0]["visible-to-user"], "false")
+        self.assertEqual(system[0]["bounds"], "[27,1205][1053,1205]")
+        ready = self.permission()
+        run = self.scenario([self.original, ready, ready, self.listening()])
+        result = run.run()
+        self.assertEqual(result["microphone_ui_outcome"], "listening_ui_observed")
+        self.assertEqual(len(run.observations), 4)
+        self.assertEqual(len(run.touches), 1)
+        self.assertEqual(run.touches[0][:2], ((130, 1120, 950, 1280), "microphone-permission"))
+
+    def test_case_aliases_and_duplicate_semantics_are_one_real_allow_target(self):
+        ready = self.permission(**{"content-desc": "WHILE USING THE APP"})
+        ready.append(dict(ready[1]))
+        run = self.scenario([ready, self.listening()])
+        self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
+        self.assertEqual(len(run.touches), 1)
+
+    def test_system_packages_and_caption_case_variants_keep_one_target(self):
+        for package in ("com.android.permissioncontroller", "com.google.android.permissioncontroller"):
+            for prompt, caption in (("Allow Lumo Lernen Neu to record audio?", "While using the app"),
+                                    ("Allow Lumo Lernen Neu to record audio?", "WHILE USING THE APP"),
+                                    ("Lumo Lernen Neu erlauben, Audio aufzunehmen?", "Bei Nutzung der App"),
+                                    ("Lumo Lernen Neu erlauben, Audio aufzunehmen?", "BEI NUTZUNG DER APP")):
+                with self.subTest(package=package, caption=caption):
+                    ready = self.permission(prompt)
+                    for node in ready:
+                        node["package"] = package
+                    ready[1]["text"] = caption
+                    run = self.scenario([ready, self.listening()])
+                    self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
+                    self.assertEqual(len(run.touches), 1)
+
+    def test_two_different_allow_buttons_remain_ambiguous(self):
+        ready = self.permission()
+        ready.append({**ready[1], "bounds": "[130,1400][950,1560]"})
+        run = self.scenario([ready, self.listening()])
+        with self.assertRaisesRegex(RuntimeError, "[Aa]mbiguous"):
+            run.run()
+        self.assertEqual(run.touches, [])
+
+    def test_unrelated_permission_and_other_app_are_refused_before_touch(self):
+        for prompt in ("Allow Lumo Lernen Neu to take pictures and record video?",
+                       "Allow Lumo Lernen Neu to access this device's location?",
+                       "Allow Another App to record audio?", "Allow Lumo Lernen Neu to record audio and access location?"):
+            with self.subTest(prompt=prompt):
+                run = self.scenario([self.permission(prompt), self.listening()])
+                with self.assertRaisesRegex(RuntimeError, "audio permission"):
+                    run.run()
+                self.assertEqual(run.touches, [])
+
+    def test_audio_prompt_must_itself_be_visible_in_the_same_system_package(self):
+        for changes in ({"visible-to-user": "false"}, {"bounds": "[30,40][1030,40]"},
+                        {"package": probe.PACKAGE}):
+            with self.subTest(changes=changes):
+                ready = self.permission()
+                ready[0].update(changes)
+                run = self.scenario([ready])
+                with self.assertRaisesRegex(RuntimeError, "Microphone request produced neither"):
+                    run.run()
+                self.assertEqual(run.touches, [])
+                self.assertGreaterEqual(run.clock.now, 35)
+
+    def test_visible_button_waits_for_fresh_audio_prompt_before_grant(self):
+        ready = self.permission()
+        partial = copy.deepcopy(ready)
+        partial[0]["visible-to-user"] = "false"
+        run = self.scenario([partial, ready, self.listening()])
+        self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
+        self.assertEqual(len(run.observations), 3)
+        self.assertEqual(len(run.touches), 1)
+        self.assertGreater(run.touches[0][3], 2)
+
+    def test_invisible_disabled_or_zero_height_allow_cannot_be_tapped(self):
+        for changes in ({"visible-to-user": "false"}, {"enabled": "false"},
+                        {"clickable": "false"}, {"bounds": "[130,1120][950,1120]"}):
+            with self.subTest(changes=changes):
+                run = self.scenario([self.permission(**changes)])
+                with self.assertRaisesRegex(RuntimeError, "Microphone request produced neither"):
+                    run.run()
+                self.assertEqual(run.touches, [])
+                self.assertGreaterEqual(run.clock.now, 35)
+                self.assertLessEqual(run.clock.now, 36)
+
+    def test_visible_permission_after_tap_waits_for_transition_without_retapping(self):
+        ready = self.permission()
+        run = self.scenario([ready, ready, ready, self.listening()])
+        self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
+        self.assertEqual(len(run.touches), 1)
+        self.assertEqual(len(run.observations), 4)
+
+    def test_permission_transition_timeout_fails_after_only_one_touch(self):
+        run = self.scenario([self.permission()])
+        with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+            run.run()
+        self.assertEqual(len(run.touches), 1)
+        self.assertGreaterEqual(run.clock.now, 35)
+        self.assertLessEqual(run.clock.now, 36)
+        self.assertNotIn("microphone-observation", run.saved)
+
+    def test_permission_disappearance_alone_is_not_a_microphone_outcome(self):
+        run = self.scenario([self.permission(), [self.node("Sprechen")]])
+        with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+            run.run()
+        self.assertEqual(len(run.touches), 1)
+
+    def test_underlying_app_outcome_does_not_pass_while_dialog_is_present(self):
+        ready = self.permission() + self.listening()
+        run = self.scenario([ready, ready, self.listening()])
+        self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
+        self.assertEqual(len(run.observations), 3)
+        self.assertEqual(len(run.touches), 1)
+
+    def test_late_ready_hierarchy_cannot_extend_original_deadline_or_trigger_touch(self):
+        run = self.scenario([self.permission()], read_seconds=36)
+        with self.assertRaisesRegex(RuntimeError, "Microphone request produced neither"):
+            run.run()
+        self.assertEqual(run.touches, [])
+        self.assertEqual(len(run.observations), 1)
+
+    def test_already_authorized_listening_ui_or_explicit_limitation_needs_no_grant(self):
+        for label, outcome in (("Lumo hört dir zu.", "listening_ui_observed"),
+                               ("Lokale Spracherkennung ist auf diesem Gerät nicht bereit.", "explicit_device_limitation")):
+            with self.subTest(label=label):
+                run = self.scenario([[self.node(label)]])
+                self.assertEqual(run.run()["microphone_ui_outcome"], outcome)
+                self.assertEqual(run.touches, [])
+
+
 class RecordedConversationHintTest(unittest.TestCase):
     """Replay the actual empty EA field; this is not a new Android run."""
     fixtures = ROOT / "tools/android_qa/tests/fixtures/nextgen_conversation_43768151118"
