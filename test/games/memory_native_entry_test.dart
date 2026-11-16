@@ -16,6 +16,7 @@ class _Unavailable implements NativeTableTransport {
   int opens = 0;
   final closed = <String>[];
   Completer<void>? openGate;
+  bool allowOpen = false;
   @override
   Future<void> open(String token, Map<String, Object?> state) async {
     opens++;
@@ -23,6 +24,7 @@ class _Unavailable implements NativeTableTransport {
       await openGate!.future;
       return;
     }
+    if (allowOpen) return;
     throw MissingPluginException('No native renderer in this widget test');
   }
   @override
@@ -138,6 +140,54 @@ void main() {
     expect((await _round(app))['id'], initial['id']);
     expect(find.byKey(const ValueKey('memory-card-0')).hitTestable(), findsOneWidget);
     expect(find.textContaining('direkt Memory weiterspielen'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+
+  testWidgets('A failed native Activity launch does not force-pause the saved Flutter game',
+      (tester) async {
+    final app = await _app();
+    final transport = _Unavailable()..allowOpen = true;
+    var launches = 0;
+    const bridge = MethodChannel('lumo_lernen/bridge');
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(bridge, (call) async {
+      if (call.method == 'launch3D') {
+        launches++;
+        throw PlatformException(code: 'native_start_failed',
+            message: 'Test: native Activity was not entered');
+      }
+      return null;
+    });
+    addTearDown(() => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(bridge, null));
+    addTearDown(app.dispose);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.binding.setSurfaceSize(const Size(412, 915));
+    await tester.pumpWidget(MaterialApp(home: LumoMemoryScreen(
+      key: UniqueKey(), appState: app, seed: 4,
+      difficulty: MemoryDifficulty.leicht, nativeTransport: transport,
+    )));
+    await _until(tester,
+        () => find.byKey(const ValueKey('memory-card-7')).evaluate().isNotEmpty,
+        'Flutter memory initial round');
+    final before = await _round(app);
+    await tester.tap(find.byKey(const ValueKey('memory-open-native-3d')));
+    await _until(tester, () => transport.closed.isNotEmpty,
+        'Activity launch failure releases the exact table token');
+    await _until(tester,
+        () => find.byKey(const ValueKey('memory-native-opening')).evaluate().isEmpty,
+        'Native launch cover is removed');
+    expect(launches, 1);
+    expect(transport.opens, 1);
+    final after = await _round(app);
+    expect(after['id'], before['id']);
+    expect(after['paused'], false,
+        reason: 'An Activity that never opened cannot suspend a playable memory round');
+    expect(find.byKey(const ValueKey('lumo-pause-panel')), findsNothing);
+    expect(find.byKey(const ValueKey('memory-card-0')).hitTestable(), findsOneWidget);
+    await _tapAndSave(tester, app, 0);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
