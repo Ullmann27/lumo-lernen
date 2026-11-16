@@ -1028,6 +1028,7 @@ class _LearningContentState extends State<LearningContent>
       return;
     }
     final activity = NativeLearningActivity.forTask(_taskInstance);
+    if (activity == null) return;
     final taskId = _taskInstance.taskInstanceId;
     final generation = widget.appState.profileGeneration;
     final stopping = _cancelCoachMedia();
@@ -2300,7 +2301,9 @@ class _LearningContentState extends State<LearningContent>
                               explainAvailability: true)),
                         ),
                       ],
-                      if (_allowHelp && !_answered) ...[
+                      if (_allowHelp &&
+                          !_answered &&
+                          NativeLearningActivity.forTask(_taskInstance) != null) ...[
                         const SizedBox(height: 12),
                         FilledButton.icon(
                           key: const ValueKey('adaptive-open-3d'),
