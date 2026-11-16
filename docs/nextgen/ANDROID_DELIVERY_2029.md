@@ -33,3 +33,7 @@ Der neue Katalogexport besteht 1 Test. 27 gezielte Produktprüfungen und 13 Down
 ## Tatsächliche Aktivierung
 
 Der vollständige neue Lauf [43785937519](https://github.com/Ullmann27/lumo-lernen/actions/runs/43785937519) wurde am Quellcommit **684f54a6d11cfb5eccaec30f39fe34d6c17c82cc** tatsächlich gestartet. Native bleibt `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`. Die beobachtete Run-Quelle stimmt mit dem veröffentlichten Commit überein; der API-Commit besitzt exakt den lokal geprüften Tree. Originale Aktivierungsbindung: `evidence/2029-build-activation-20261116/activation.json`. Laufstatus bei diesem Eintrag: **in_progress**, noch kein Gesamt-/Android-/Download-PASS.
+
+## Bestanden: vollständige Quellvalidierung 2029
+
+Job `133033472392` des aktuellen Laufs ist erfolgreich: **2.887 Flutter PASS / 0 FAIL / 202 vorhandene SKIP**, Analyzer **0 Fehler / 4 Warnungen / 274 Hinweise**, **109 Host-Testmethoden**, tatsächlicher Godot-4.6.3-Import und zwölf native Programme mit **55.552 Prüfaussagen**. Projektvalidator **118 PASS / 0 WARN / 0 FAIL**. Die 247 Inventar-Hashes und 18 Schutzdateien wurden am tatsächlichen CI-Quellstand geprüft. Alle 55 Originalartefaktdateien und der vollständige verlustfrei komprimierte Joblog stehen in `evidence/ci-2029-validation/`. Der isolierte Avatar-ObjectDB-Hinweis bleibt unverändert dokumentiert. Der neue APK-Build läuft; Android und Download sind noch nicht bestanden.

@@ -1,0 +1,86 @@
+{
+  "observedAtUtc": "2026-11-16T01:39:28.016508+00:00",
+  "runId": 43785937519,
+  "jobId": 133033472392,
+  "status": "PASS",
+  "flutterSource": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "flutter": {
+    "passed": 2887,
+    "failed": 0,
+    "existingSkipped": 202
+  },
+  "analyzer": {
+    "errors": 0,
+    "warnings": 4,
+    "infos": 274
+  },
+  "hostPythonMethodsPassed": 109,
+  "nestedJvmAssertionsAreNotAdditionalAndroidTests": true,
+  "godotEngine": "4.6.3",
+  "actualGodotImportPassed": true,
+  "nativePrograms": [
+    {
+      "log": "learning_generation_regression.log",
+      "assertions": 47
+    },
+    {
+      "log": "learning_host_payload_regression.log",
+      "assertions": 135
+    },
+    {
+      "log": "nextgen_learning_route_review.log",
+      "assertions": 7324
+    },
+    {
+      "log": "learning_sharing_regression.log",
+      "assertions": 1811
+    },
+    {
+      "log": "learning_companion_scope_regression.log",
+      "assertions": 56
+    },
+    {
+      "log": "learning_android_host_capability_regression.log",
+      "assertions": 43
+    },
+    {
+      "log": "nextgen_avatar_contract_review.log",
+      "assertions": 300
+    },
+    {
+      "log": "learning_pattern_regression.log",
+      "assertions": 33077
+    },
+    {
+      "log": "learning_world_regression.log",
+      "assertions": 5351
+    },
+    {
+      "log": "nextgen_learning_base_audio_regression.log",
+      "assertions": 69
+    },
+    {
+      "log": "learning_wonder_details_regression.log",
+      "assertions": 100
+    },
+    {
+      "log": "learning_english_regression.log",
+      "assertions": 7239
+    }
+  ],
+  "nativeAssertionsTotal": 55552,
+  "projectValidator": {
+    "pass": 118,
+    "warn": 0,
+    "fail": 0
+  },
+  "nativeWarnings": [
+    "ObjectDB instances leaked at exit in isolated nextgen_avatar_contract_review. Original retained; neither proved app leak nor leak-free app run."
+  ],
+  "protectedFilesVerified": 18,
+  "coverageSourceHashesVerified": 247,
+  "apkBuildCompleted": false,
+  "androidTourPassed": false,
+  "physicalDeviceTest": false
+}

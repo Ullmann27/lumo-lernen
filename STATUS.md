@@ -10,6 +10,10 @@ Der normale Veröffentlichungspfad prüft jetzt Release und Tag auf tatsächlich
 
 Die Aktivierung dieser Konfiguration startet die vollständige Quellvalidierung, neue signierte ARM64-/x86-Builds, die unveränderten vollständigen Androidtouren und erst danach die Veröffentlichung. **Es gibt zum Zeitpunkt dieses Vorlaufdokuments keine verifizierte 2029-APK, keinen Android-PASS und keinen neuen öffentlichen Download.** Aktueller Lieferpfad: `docs/nextgen/ANDROID_DELIVERY_2029.md`. `fullModernizationComplete=false` bleibt bestehen; allgemeine Aufgabenkarte, separate optionale Godot-Activity und tatsächliche Geräte-/Variantenlücken bleiben ausgewiesen. `main` und frühere Releases bleiben unverändert.
 
+## Bestanden: vollständige Quellvalidierung 2029
+
+Job `133033472392` des aktuellen Laufs ist erfolgreich: **2.887 Flutter PASS / 0 FAIL / 202 vorhandene SKIP**, Analyzer **0 Fehler / 4 Warnungen / 274 Hinweise**, **109 Host-Testmethoden**, tatsächlicher Godot-4.6.3-Import und zwölf native Programme mit **55.552 Prüfaussagen**. Projektvalidator **118 PASS / 0 WARN / 0 FAIL**. Die 247 Inventar-Hashes und 18 Schutzdateien wurden am tatsächlichen CI-Quellstand geprüft. Alle 55 Originalartefaktdateien und der vollständige verlustfrei komprimierte Joblog stehen in `docs/nextgen/evidence/ci-2029-validation/`. Der isolierte Avatar-ObjectDB-Hinweis bleibt unverändert dokumentiert. Der neue APK-Build läuft; Android und Download sind noch nicht bestanden.
+
 ## Tatsächliche Aktivierung
 
 Der vollständige neue Lauf [43785937519](https://github.com/Ullmann27/lumo-lernen/actions/runs/43785937519) wurde am Quellcommit **684f54a6d11cfb5eccaec30f39fe34d6c17c82cc** tatsächlich gestartet. Native bleibt `678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef`. Die beobachtete Run-Quelle stimmt mit dem veröffentlichten Commit überein; der API-Commit besitzt exakt den lokal geprüften Tree. Originale Aktivierungsbindung: `docs/nextgen/evidence/2029-build-activation-20261116/activation.json`. Laufstatus bei diesem Eintrag: **in_progress**, noch kein Gesamt-/Android-/Download-PASS.
