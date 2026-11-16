@@ -1,0 +1,24 @@
+{
+  "python_ast": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "parsed": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "parsed": true
+    }
+  ],
+  "cli_help": {
+    "command": [
+      "python3",
+      "-B",
+      ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "--help"
+    ],
+    "exit_code": 0,
+    "stdout": "usage: lumo_nextgen_2031_runtime_cases_android_probe.py [-h] --candidate\n                                                        CANDIDATE\n                                                        --download-evidence\n                                                        DOWNLOAD_EVIDENCE\n                                                        --out OUT --qa-commit\n                                                        QA_COMMIT\n                                                        --workflow-run-id\n                                                        WORKFLOW_RUN_ID\n                                                        [--serial SERIAL]\n\nAdditional observed cases on immutable APK 2031; never release acceptance. The\nunchanged 2031 downloader supplies candidate/source evidence. This entry\nrequires its own disposable, initially uninstalled emulator and creates a\nfictional profile through onboarding. It neither consumes nor replaces the\ncomplete original/reference tour and never writes private application data.\n\noptions:\n  -h, --help            show this help message and exit\n  --candidate CANDIDATE\n  --download-evidence DOWNLOAD_EVIDENCE\n  --out OUT\n  --qa-commit QA_COMMIT\n  --workflow-run-id WORKFLOW_RUN_ID\n  --serial SERIAL\n",
+    "stderr": ""
+  },
+  "android_executed": false
+}

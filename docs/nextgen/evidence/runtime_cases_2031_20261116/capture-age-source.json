@@ -1,0 +1,86 @@
+{
+  "recorded_utc": "2026-11-16T05:41:49.842456+00:00",
+  "base_commit": "9cfa4b0760403ac4b489bea440d3ea6040e09dc0",
+  "base_tree": "3be1dc24579b1e56b98ec7becbd93db034bec6de",
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "test_provenance": {
+    "source_state": "working-tree follow-up delta on committed first component; file hashes bind tested bytes",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_nextgen_2031_runtime_cases.py",
+      "-v"
+    ],
+    "red": {
+      "exit_code": 1,
+      "registered_tests": 14,
+      "failures": 1,
+      "failing_subcase": "slow-capture",
+      "log": "capture-age-red.log"
+    },
+    "green": {
+      "exit_code": 0,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "log": "capture-age-green.log"
+    },
+    "scope": "constructed ET.Element/transport/pure-validator regression, no Android; native dependency isolated",
+    "android_executed": false
+  },
+  "tested_files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 31882,
+      "sha256": "d02e861e0f16ec4489053e6598765307880d3604690358ac1be3c97f512f9369"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 22211,
+      "sha256": "45455bd9ced8b57ad8541b7882c1b75d66c4953e5912cb6b87294071bb97441d"
+    }
+  ],
+  "raw_evidence": [
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red.log",
+      "bytes": 4044,
+      "sha256": "4b30eb4c19fb9b861c128859808d8f1cc5c7f5f4848f2f515505c928eb58f2b2"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-green.log",
+      "bytes": 3172,
+      "sha256": "92e3f7dd4ac6ac8e7f9610c9029c1279f552cd289e75c5d41b873efc6bb70cbf"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red-source.json",
+      "bytes": 801,
+      "sha256": "50b2454667be13eb1b99309c3454aa625ef080aa4109091b1252447dcf251630"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red-test.patch",
+      "bytes": 1827,
+      "sha256": "dfaff6f304946c6ce92a99f13d8cee7b8dd0af4f53b45a69d4aa4324ba118b98"
+    }
+  ],
+  "checks": {
+    "python_ast": true,
+    "cli_help": true,
+    "git_diff_check": true
+  },
+  "budgets": {
+    "search_seconds_max": 45,
+    "capture_to_requested_touch_seconds_max": 1,
+    "changed": false
+  },
+  "no_remote_action": true,
+  "no_product_or_shared_probe_change": true,
+  "runtime_pass_claimed": false,
+  "release_eligible": false
+}

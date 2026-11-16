@@ -1,0 +1,66 @@
+{
+  "kind": "pinned source excerpts, not Android observations",
+  "labels": {
+    "slower": "Langsamer",
+    "stop": "Stimme stoppen",
+    "idle": "Schritt anhören"
+  },
+  "contracts": [
+    {
+      "commit": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "path": "scripts/learning/learning_conversation_panel.gd",
+      "sha256": "3c68e16ab970f6839232e9b5f048f9557b9c9c97a3244be6fde98d99a8f1551a",
+      "exact_source_lines": [
+        {
+          "line": 85,
+          "text": "\t_button(shortcuts, \"Langsamer\", func(): requested.emit(\"\", \"slower\"))"
+        }
+      ]
+    },
+    {
+      "commit": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "path": "scripts/learning/learning_world.gd",
+      "sha256": "c2855613e79f7fd233190eb56e1f7379e780c1979c629e536e49690bbc4608e3",
+      "exact_source_lines": [
+        {
+          "line": 974,
+          "text": "\t\t\t\"%d / %d bewegt · Ziehen oder antippen\""
+        },
+        {
+          "line": 1530,
+          "text": "\t_speech_segments.append(activity.word)"
+        },
+        {
+          "line": 1533,
+          "text": "\t\t_speech_segments.append(activity.syllables[index])"
+        },
+        {
+          "line": 1683,
+          "text": "\t\t\t\"Stimme stoppen\" if _speech_state in [\"preparing\", \"playing\"] else \"Schritt anhören\""
+        }
+      ]
+    },
+    {
+      "commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+      "path": "tools/auto_install/LumoLearningConversation.kt",
+      "sha256": "f3a09318752f819e65be5c8de7486dba1287ae71b5ae5831aed17d5f298904fc",
+      "exact_source_lines": [
+        {
+          "line": 207,
+          "text": "                    if (reply.slower) (baseRate * 0.75).coerceAtLeast(0.70) else baseRate)"
+        }
+      ]
+    },
+    {
+      "commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "sha256": "6855fcf77abada42a7b59178e013108ef641f523007200be5c916d4e39e096c8",
+      "exact_source_lines": [
+        {
+          "line": 158,
+          "text": "                    playback.playbackParams = playback.playbackParams.setSpeed(utteranceSpeed)"
+        }
+      ]
+    }
+  ]
+}

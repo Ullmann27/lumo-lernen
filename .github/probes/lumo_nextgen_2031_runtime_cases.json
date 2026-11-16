@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "sourceBuildRun": 43800892196,
+  "versionName": "0.13.19",
+  "versionCode": 2031,
+  "caseAttempt": 1,
+  "cases": [
+    "numeric_wrong_then_correct",
+    "flutter_switch_during_syllable_playback",
+    "native_banana_slower",
+    "native_stop_during_playback"
+  ]
+}
