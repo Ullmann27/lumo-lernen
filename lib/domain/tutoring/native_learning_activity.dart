@@ -11,72 +11,17 @@ class NativeLearningActivity {
   final String kind;
   final Map<String, Object> _payload;
 
-  /// Every reviewed task can use the existing native companion. Specialised
-  /// object scenes take precedence; other tasks retain their exact prompt and
-  /// choices. This descriptor deliberately has no answer or reward field.
-  static NativeLearningActivity forTask(TaskInstance task) =>
-      fromTask(task) ??
-      _taskCard(
-        taskId: task.taskInstanceId,
-        subject: task.subject.name,
-        unit: task.parameters['unit']?.toString() ?? '',
-        prompt: task.prompt,
-        explanation: task.helpPayload.shortHint ?? '',
-        choices: task.options.map((option) => option.label).toList(),
-      );
+  /// Open native 3D only if there is a genuinely interactive, task-specific
+  /// illustration. Unsupported tasks retain their tested Flutter renderer and
+  /// its existing task-aware Lumo help; do not display the empty task-card stage.
+  static NativeLearningActivity? forTask(TaskInstance task) => fromTask(task);
 
-  /// Adapts specialist, reading and guided screens without changing their
-  /// authoritative evaluators, storage keys or protected writing internals.
+  /// The companion context intentionally does not carry verified visual data.
+  /// Creating a generic 3D card from just prompt/choices would be misleading.
   static NativeLearningActivity? fromCompanionContext(
     LumoCompanionTaskContext context,
   ) {
-    if (context.isExam ||
-        context.taskId.isEmpty ||
-        context.prompt.trim().isEmpty) {
-      return null;
-    }
-    return _taskCard(
-      taskId: context.taskId,
-      subject: context.subject,
-      unit: context.unit,
-      prompt: context.prompt,
-      explanation: context.explanation ?? context.localHelp ?? '',
-      choices: context.answerChoices,
-      stepId: context.stepId,
-    );
-  }
-
-  static NativeLearningActivity _taskCard({
-    required String taskId,
-    required String subject,
-    required String unit,
-    required String prompt,
-    required String explanation,
-    required List<String> choices,
-    String? stepId,
-  }) {
-    String bounded(String value, int length) =>
-        value.length <= length ? value : value.substring(0, length);
-    final visibleChoices = choices
-        .where((choice) => choice.trim().isNotEmpty)
-        .take(8)
-        .map((choice) => bounded(choice, 120))
-        .toList(growable: false);
-    return NativeLearningActivity._('task_card', {
-      'kind': 'task_card',
-      'sourceTaskId': bounded(taskId, 180),
-      'subject': bounded(subject, 80),
-      'unit': bounded(unit, 80),
-      'prompt': bounded(prompt, 800),
-      'explanation': bounded(explanation, 1200),
-      'answerChoices': visibleChoices,
-      'objectIds': [
-        'task_prompt',
-        'task_model',
-        for (var i = 0; i < visibleChoices.length; i++) 'answer_$i',
-      ],
-      if (stepId != null) 'stepId': bounded(stepId, 120),
-    });
+    return null;
   }
 
   /// Only consume the checked renderer payload and verify its arithmetic
