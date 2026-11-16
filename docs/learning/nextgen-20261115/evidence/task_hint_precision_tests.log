@@ -1,0 +1,25 @@
+00:00 +0: loading /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart
+00:00 +0: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: mixed decimal and integer operands retain their actual place value
+00:00 +1: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: decimal precision and subtraction survive prefixes and punctuation
+00:00 +2: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: embedded or fractional formulas never become whole-number groups
+00:00 +3: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: fraction addition counts like-sized parts and leaves the result open
+00:00 +4: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: unlike denominators are converted before the numerators are added
+00:00 +5: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: fraction expansion uses the requested factor for both numbers
+00:00 +6: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: only a visible half question receives the half instruction
+00:00 +7: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: a written-operation label is never mistaken for division
+00:00 +8: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart: all active fractional families receive three task-specific stages
+00:00 +9: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: third help uses the actual ten bridge without supplying the result
+00:00 +10: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: subtraction bridge takes away exactly the requested quantity
+00:00 +11: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: counting strategy understands a visible expression without equals
+00:00 +12: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: repeated wrong answers change the unchanged local explanation
+00:00 +13: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: hundred boundary decomposes the actual second quantity
+00:00 +14: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: missing-number tutoring changes methods and never states the answer
+00:00 +15: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: invalid missing-number arithmetic is not treated as valid addition
+00:00 +16: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: a fraction without equals is not misread as integer addition
+00:00 +17: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/adaptive_task_help_test.dart: a new module-specific explanation is retained
+00:02 +18: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/task_help_integration_test.dart: fox help respects LumoSessionKind.quickPractice and stays on the current task
+00:03 +19: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/task_help_integration_test.dart: fox help respects LumoSessionKind.test and stays on the current task
+00:04 +20: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/task_help_integration_test.dart: fox help respects LumoSessionKind.schoolwork and stays on the current task
+00:04 +21: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/task_help_integration_test.dart: changing the selected activity replaces the active task and help
+00:04 +22: /workspace/scratch/c5a7dadab95f/lumo-lernen/test/task_help_integration_test.dart: a ten-task practice session ends instead of silently looping
+00:06 +23: All tests passed!

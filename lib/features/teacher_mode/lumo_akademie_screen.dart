@@ -898,6 +898,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
     if (_selectedGrade != widget.appState.state.grade) {
       Navigator.of(context).push<void>(MaterialPageRoute(
           builder: (_) => CrossGradePracticeScreen(
+              appState: widget.appState,
               profileName: widget.appState.state.childName,
               enrolledGrade: widget.appState.state.grade,
               lessonGrade: _selectedGrade,
@@ -942,12 +943,35 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                 title: const Text('Geschichten und Rätsel',
                     style: TextStyle(color: Colors.white)),
                 onTap: _openStories),
+            if (_selectedGrade == 1 &&
+                widget.appState.state.grade == 1)
+              ListTile(
+                key: const ValueKey('academy-tool-s1_farben'),
+                leading: const Icon(Icons.palette_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                title: const Text('Farben entdecken',
+                    style: TextStyle(color: Colors.white)),
+                subtitle: const Text('Interaktive Farbenübung',
+                    style: TextStyle(color: LumoVisualTokens.muted)),
+                onTap: () {
+                  final module = LearningModuleRegistry.builderFor(
+                      's1_farben', widget.appState);
+                  if (module != null) {
+                    Navigator.of(context).push<void>(
+                        MaterialPageRoute(builder: (_) => module));
+                  }
+                }),
             for (final subject in _currentGrade.subjects)
               for (final topic in subject.topics.where((t) =>
                   t.isWriting ||
                   t.id == 'd1_schreibcoach' ||
                   t.id == 'd1_woerter' ||
-                  t.id == 'd4_aufsatz'))
+                  t.id == 'd4_aufsatz' ||
+                  // The existing colour module has its own real task flow.
+                  // Only open it for the enrolled grade so browsing another
+                  // grade never writes into the child's school-grade record.
+                  (t.id == 's1_farben' &&
+                      _selectedGrade == widget.appState.state.grade)))
                 ListTile(
                     key: ValueKey('academy-tool-${topic.id}'),
                     leading:
@@ -957,6 +981,27 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                     subtitle: Text(topic.shortDesc,
                         style: const TextStyle(color: LumoVisualTokens.muted)),
                     onTap: () => _openTopic(topic, subject)),
+            // Visible direct routes for the real language/science
+            // activity catalog of whichever grade the child is browsing.
+            // These remain separate from writing and never advance grades.
+            for (final subject in _currentGrade.subjects.where((subject) =>
+                const {'Deutsch', 'Englisch', 'Sachunterricht'}
+                    .contains(subject.name)))
+              ListTile(
+                  key: ValueKey('academy-activity-${subject.name}'),
+                  leading: Icon(subject.icon,
+                      color: LumoVisualTokens.cyanBright),
+                  title: Text('${subject.name} – Lernaktivitäten',
+                      style: const TextStyle(color: Colors.white)),
+                  subtitle: Text('${_selectedGrade}. Klasse · ausprobieren',
+                      style:
+                          const TextStyle(color: LumoVisualTokens.muted)),
+                  onTap: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute(
+                          builder: (_) => CurriculumActivitiesScreen(
+                              appState: widget.appState,
+                              grade: _selectedGrade,
+                              subject: subject.name)))),
             ListTile(
                 key: const ValueKey('akademie-learning-lab'),
                 leading: const Icon(Icons.science_rounded,
@@ -1007,6 +1052,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                     onPracticalSubject: (subject) => Navigator.of(context)
                         .push<void>(MaterialPageRoute(
                             builder: (_) => CurriculumActivitiesScreen(
+                                appState: widget.appState,
                                 grade: _selectedGrade, subject: subject))),
                     onAdvanced: () => setState(() => _showTools = !_showTools),
                     tools: _showTools ? _tools() : null))));
@@ -1072,6 +1118,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
       }
       Navigator.of(context).push<void>(MaterialPageRoute(
         builder: (_) => CrossGradePracticeScreen(
+          appState: widget.appState,
           profileName: widget.appState.state.childName,
           enrolledGrade: widget.appState.state.grade,
           lessonGrade: _selectedGrade,

@@ -22,6 +22,11 @@ class LumoContextEngine extends ChangeNotifier {
   String _scope = '';
   int revision = 0;
 
+  /// An updated attempt/hint is a new context revision of the same task.
+  /// Only an actual task, profile, policy or navigation change clears memory.
+  String get conversationScope => '$_scope|${task?.taskId ?? "chat"}|'
+      '${task?.tutorScope.problemId ?? ""}';
+
   LumoCompanionTaskContext? get task {
     final current = requests.taskContext.value;
     return current?.belongsTo(

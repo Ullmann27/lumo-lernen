@@ -5,6 +5,12 @@ class TaskHintService {
   const TaskHintService();
 
   String explain(LumoTask task, {int level = 1}) {
+    // Fractional values need their own unit before any integer counting or
+    // ten-bridge strategy is considered. Hints use only the visible givens.
+    final fraction = _fractionHint(task, level);
+    if (fraction != null) return fraction;
+    final decimal = _decimalHint(task, level);
+    if (decimal != null) return decimal;
     // Offline-Stellenwerthilfe mit drei verschiedenen Erklärungsformen.
     final placeValue = _placeValueHint(task, level);
     if (placeValue != null) return placeValue;
@@ -34,15 +40,6 @@ class TaskHintService {
       }
       if (unit.contains('flächen')) {
         return 'Beim Flächeninhalt zählst du die Kästchen im Inneren. Multipliziere beim Rechteck die Länge mit der Breite.';
-      }
-      if (unit.contains('bruch')) {
-        if (unit.contains('erweiter')) {
-          return 'Multipliziere die obere und die untere Zahl mit derselben vorgegebenen Zahl. Der Wert des Bruchs bleibt dabei gleich.';
-        }
-        if (prompt.contains('+')) {
-          return 'Die unteren Zahlen sind gleich: Die Teile bleiben also gleich groß. Addiere nur die oberen Zahlen und behalte die untere Zahl bei.';
-        }
-        return 'Teile die ganze Menge in zwei gleich große Gruppen. Eine dieser Gruppen ist die Hälfte.';
       }
       if (unit.contains('uhrzeit')) {
         return 'Bei einer Uhrzeit steht zuerst die Stunde und nach dem Doppelpunkt die Minute. Eine volle Stunde hat dort 00 Minuten.';
@@ -86,7 +83,11 @@ class TaskHintService {
       if (prompt.contains('×') || unit.contains('einmaleins')) {
         return 'Denke an gleich große Gruppen. Zähle in Schritten der ersten Zahl oder nutze eine Malaufgabe, die du schon kennst.';
       }
-      if (prompt.contains(':') || unit.contains('division')) {
+      if (unit.contains('division') ||
+          RegExp(
+            r'^\s*(?:(?:Schriftlich|Blitzlicht):\s*|Rechne\s+)?\d+\s*[:÷]\s*\d+\s*(?:=\s*\?)?[.?]?\s*$',
+            caseSensitive: false,
+          ).hasMatch(task.prompt)) {
         return 'Verteile die Menge in gleich große Gruppen. Prüfe mit der passenden Malaufgabe, ob deine Aufteilung stimmt.';
       }
       final missing = _MissingNumber.parse(task.prompt);
@@ -147,6 +148,144 @@ class TaskHintService {
     return 'Sprich das Wort langsam. Achte auf die Stelle, nach der gefragt wird, und vergleiche die Schreibweisen Buchstabe für Buchstabe.';
   }
 
+  String? _decimalHint(LumoTask task, int level) {
+    if (task.subject != 'Mathematik') return null;
+    final expression = RegExp(
+      r'^\s*(?:(?:Schriftlich|Blitzlicht):\s*|Rechne\s+)?([+-]?\d+(?:[.,]\d+)?)\s*([+\-−])\s*([+-]?\d+(?:[.,]\d+)?)\s*(?:=\s*\?)?[.?]?\s*$',
+    ).firstMatch(task.prompt);
+    if (expression == null) return null;
+    final leftText = expression[1]!.replaceAll('.', ',');
+    final rightText = expression[3]!.replaceAll('.', ',');
+    if (!leftText.contains(',') && !rightText.contains(',')) return null;
+    int precision(String text) =>
+        text.contains(',') ? text.split(',')[1].length : 0;
+    final leftPlaces = precision(leftText), rightPlaces = precision(rightText);
+    final places = leftPlaces > rightPlaces ? leftPlaces : rightPlaces;
+    if (places > 6) {
+      return 'Ordne die Zahlen nach ihren Stellenwerten. Das Komma bleibt an seiner Stelle; Nachkommastellen sind keine ganzen Gegenstände.';
+    }
+    String padded(String text) {
+      final parts = text.split(',');
+      return '${parts[0]},${(parts.length > 1 ? parts[1] : '').padRight(places, '0')}';
+    }
+
+    int? scaled(String text) {
+      final digits = padded(text).replaceAll(',', '');
+      if (digits.replaceAll(RegExp(r'[+-]'), '').length > 12) return null;
+      return int.tryParse(digits);
+    }
+
+    final left = scaled(leftText), right = scaled(rightText);
+    const units = [
+      '',
+      'Zehntel',
+      'Hundertstel',
+      'Tausendstel',
+      'Zehntausendstel',
+      'Hunderttausendstel',
+      'Millionstel'
+    ];
+    final unit = units[places];
+    final subtraction = expression[2] != '+';
+    if (level <= 1) {
+      return 'Achte auf das Komma. Einer stehen unter Einern, $unit unter $unit. '
+          'Die Ziffern rechts vom Komma bezeichnen Teile eines Ganzen.';
+    }
+    if (level == 2 || left == null || right == null) {
+      return 'Schreibe beide Zahlen mit gleich vielen Nachkommastellen: '
+          '${padded(leftText)} und ${padded(rightText)}. '
+          'Eine angehängte Null rechts ändert den Wert nicht. '
+          '${subtraction ? "Ziehe Stellen mit gleichem Wert voneinander ab." : "Addiere Stellen mit gleichem Wert."}';
+    }
+    return '$leftText entspricht $left $unit; $rightText entspricht $right $unit. '
+        'Rechne $left ${subtraction ? "−" : "+"} $right in $unit. '
+        'Schreibe dein Ergebnis anschließend wieder mit $places Nachkommastellen. '
+        'Die Einheit bleibt $unit, nicht ganze Gegenstände.';
+  }
+
+  String? _fractionHint(LumoTask task, int level) {
+    if (task.subject != 'Mathematik') return null;
+    final prompt = task.prompt.trim();
+    final expansion = RegExp(
+      r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\. Wie heißt der neue Bruch\?$',
+    ).firstMatch(prompt);
+    if (expansion != null) {
+      final numerator = int.tryParse(expansion[1]!);
+      final denominator = int.tryParse(expansion[2]!);
+      final factor = int.tryParse(expansion[3]!);
+      if (numerator != null &&
+          denominator != null &&
+          denominator > 0 &&
+          factor != null &&
+          factor > 0) {
+        if (level <= 1) {
+          return 'Beim Erweitern bleibt der Anteil gleich. Multipliziere Zähler UND Nenner mit demselben vorgegebenen Faktor.';
+        }
+        if (level == 2) {
+          return 'Der Faktor ist $factor. Rechne oben $numerator · $factor und unten $denominator · $factor. Beide Zahlen ändern sich gemeinsam.';
+        }
+        return 'Teile jedes der $denominator gleich großen Stücke nochmals in $factor gleiche Teile. '
+            'Auch jedes der $numerator gemeinten Stücke bekommt $factor Teile. '
+            'Schreibe die beiden neuen Anzahlen als Bruch.';
+      }
+    }
+    final expression = RegExp(
+      r'^\s*(?:Rechne\s+)?(\d+)\s*/\s*(\d+)\s*([+\-−])\s*(\d+)\s*/\s*(\d+)\s*(?:=\s*\?)?[.?]?\s*$',
+    ).firstMatch(prompt);
+    if (expression != null) {
+      final left = int.tryParse(expression[1]!);
+      final denominator = int.tryParse(expression[2]!);
+      final right = int.tryParse(expression[4]!);
+      final rightDenominator = int.tryParse(expression[5]!);
+      if (left != null &&
+          right != null &&
+          denominator != null &&
+          denominator > 0 &&
+          rightDenominator != null &&
+          rightDenominator > 0) {
+        final subtraction = expression[3] != '+';
+        if (denominator != rightDenominator) {
+          if (level <= 1) {
+            return 'Die Nenner sind verschieden. Die Teile sind noch nicht gleich groß. Erweitere beide Brüche zuerst auf einen gemeinsamen Nenner.';
+          }
+          return level == 2
+              ? 'Erweitere den ersten Bruch mit $rightDenominator und den zweiten mit $denominator. So beschreiben beide gleich große Teile.'
+              : 'Der gemeinsame Nenner kann $denominator · $rightDenominator sein. Oben rechnest du zuerst $left · $rightDenominator und $right · $denominator. '
+                  '${subtraction ? "Ziehe danach die neuen Zähler voneinander ab." : "Addiere danach die neuen Zähler."} Der gemeinsame Nenner bleibt stehen.';
+        }
+        if (level <= 1) {
+          return 'Beide Brüche haben denselben Nenner. Die Teile sind gleich groß. '
+              '${subtraction ? "Ziehe nur die oberen Zahlen voneinander ab." : "Addiere nur die oberen Zahlen."} Der Nenner bleibt gleich.';
+        }
+        if (level == 2) {
+          return 'Der Nenner $denominator bedeutet: Jedes Ganze ist in $denominator gleich große Teile geteilt. '
+              '${subtraction ? "Starte mit $left ${left == 1 ? 'Teil' : 'Teilen'} und nimm $right davon weg." : "Lege $left ${left == 1 ? 'Teil' : 'Teile'} hin. Lege dann $right ${right == 1 ? 'gleich großes Teil' : 'gleich große Teile'} dazu."}';
+        }
+        return 'Rechne mit den Zählern: $left ${subtraction ? "−" : "+"} $right. '
+            'Schreibe darunter wieder $denominator. Prüfe deinen Anteil mit gleich großen Teilen eines Ganzen.';
+      }
+    }
+    final family =
+        task.unit.toLowerCase().replaceAll('ü', 'u').contains('bruch') ||
+            task.visual.startsWith('fraction');
+    if (!family) return null;
+    final half = RegExp(r'^Was ist die Hälfte von (\d+)\?$').firstMatch(prompt);
+    if (half != null) {
+      if (level <= 1) {
+        return 'Teile die ganze Menge in zwei gleich große Gruppen. Eine dieser Gruppen ist die Hälfte.';
+      }
+      return level == 2
+          ? 'Verteile die ${half[1]} Dinge abwechselnd auf zwei Gruppen. Beide Gruppen müssen gleich groß sein.'
+          : 'Prüfe deine Hälfte: Wenn du die beiden gleich großen Gruppen wieder zusammenlegst, müssen es insgesamt ${half[1]} sein.';
+    }
+    if (level <= 1) {
+      return 'Ein Bruch beschreibt einen Anteil. Der Nenner unten sagt, in wie viele gleich große Teile jedes Ganze geteilt ist. Der Zähler oben sagt, wie viele Teile gemeint sind.';
+    }
+    return level == 2
+        ? 'Teile jedes gezeichnete Ganze in genau so viele gleich große Stücke, wie der Nenner angibt. Markiere die Anzahl aus dem Zähler. Zeichne bei Bedarf mehrere Ganze.'
+        : 'Prüfe einen Schritt nach dem anderen: zuerst die Größe eines Teils mit dem Nenner, dann die gemeinten Teile mit dem Zähler. Die Teile müssen gleich groß bleiben.';
+  }
+
   String? _placeValueHint(LumoTask task, int level) {
     if (task.subject != 'Mathematik') return null;
     final prompt = task.prompt.toLowerCase();
@@ -175,11 +314,11 @@ class TaskHintService {
     final check = tens * 10 + ((ones + 1) % 10);
     return wantsOnes
         ? 'Sieh $number als $tens Zehnerstangen und $ones einzelne Würfel. '
-          'Jede Stange enthält genau zehn Würfel. Die einzelnen $ones Würfel '
-          'sind die Einer. Probiere danach $check: Welche Einer bleiben dort?'
+            'Jede Stange enthält genau zehn Würfel. Die einzelnen $ones Würfel '
+            'sind die Einer. Probiere danach $check: Welche Einer bleiben dort?'
         : 'Sieh $number als $tens Zehnerstangen und $ones einzelne Würfel. '
-          'Jede Stange enthält genau zehn Würfel. Es sind $tens volle '
-          'Zehnerstangen. Probiere danach $check: Wie viele Zehnerstangen brauchst du?';
+            'Jede Stange enthält genau zehn Würfel. Es sind $tens volle '
+            'Zehnerstangen. Probiere danach $check: Wie viele Zehnerstangen brauchst du?';
   }
 
   String _guidedHint(LumoTask task, int level) {
@@ -187,7 +326,8 @@ class TaskHintService {
     if (task.subject == 'Mathematik') {
       final missing = _MissingNumber.parse(task.prompt);
       if (missing != null) return missing.hint(level);
-      final expression = RegExp(r'(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*=')
+      final expression = RegExp(
+                  r'^\s*(?:(?:Schriftlich|Blitzlicht):\s*)?(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*=\s*\?\s*$')
               .firstMatch(task.prompt) ??
           RegExp(r'^\s*(?:Rechne\s+)?(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*[.?]?\s*$',
                   caseSensitive: false)
@@ -262,7 +402,6 @@ class TaskHintService {
   }
 }
 
-
 /// Mathematically valid missing-number expression such as 7 + ? = 12.
 ///
 /// The explanation guides counting without revealing the unknown quantity.
@@ -274,8 +413,9 @@ class _MissingNumber {
   final bool plus;
 
   static _MissingNumber? parse(String prompt) {
-    final match =
-        RegExp(r'(\d+)\s*([+−\-])\s*\?\s*=\s*(\d+)').firstMatch(prompt);
+    final match = RegExp(
+            r'^\s*(?:(?:Rechne|Ergänze):?\s*)?(\d+)\s*([+−\-])\s*\?\s*=\s*(\d+)\s*[.?]?\s*$')
+        .firstMatch(prompt);
     if (match == null) return null;
     final start = int.parse(match.group(1)!);
     final result = int.parse(match.group(3)!);

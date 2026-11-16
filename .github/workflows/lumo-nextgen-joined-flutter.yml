@@ -1,0 +1,81 @@
+name: LUMO NextGen – joined Flutter learning and speech regressions
+on:
+  push:
+    branches: [integration/lumo-learning-nextgen-20261115]
+    paths:
+      - lib/**
+      - test/**
+      - tools/auto_install/**
+      - scripts/prepare_android.py
+      - .github/workflows/lumo-nextgen-joined-flutter.yml
+  pull_request:
+    branches: [delivery/lumo-2023-complete-update-20261115]
+    paths:
+      - lib/**
+      - test/**
+      - tools/auto_install/**
+      - scripts/prepare_android.py
+      - .github/workflows/lumo-nextgen-joined-flutter.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-nextgen-joined-flutter-20261115
+  cancel-in-progress: true
+env:
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+jobs:
+  joined-learning-speech:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Capture exact app source and existing native pin
+        run: |
+          set -euo pipefail
+          mkdir -p proof/learning-nextgen-flutter
+          git rev-parse HEAD | tee proof/learning-nextgen-flutter/host-sha.txt
+          cp config/godot-source.json proof/learning-nextgen-flutter/godot-pin.json
+          grep '^version:' pubspec.yaml | tee proof/learning-nextgen-flutter/app-version.txt
+      - name: Locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Analyze all app Dart source, errors fail
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings \
+            2>&1 | tee proof/learning-nextgen-flutter/analyze.log
+      - name: Joined curriculum, 3D, conversation and state tests
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --concurrency=2 --timeout=90s \
+            test/design/learning_registered_routes_test.dart \
+            test/tutoring/native_pattern_activity_test.dart \
+            test/learning/nextgen_answer_payload_test.dart \
+            test/learning/nextgen_task_hint_precision_test.dart \
+            test/learning/nextgen_task_quality_test.dart \
+            test/learning/interactive_task_workspace_test.dart \
+            test/learning_lab_catalog_test.dart \
+            test/learning_lab_manipulatives_test.dart \
+            test/learning_modules/learning_module_progress_test.dart \
+            test/lumo_task_dialogue_test.dart \
+            test/lumo_task_conversation_widget_test.dart \
+            test/lumo_speech_listener_runtime_test.dart \
+            test/lumo_speech_listener_plugin_boundary_test.dart \
+            test/lumo_context_conversation_test.dart \
+            test/lumo_agent_microphone_lifecycle_test.dart \
+            2>&1 | tee proof/learning-nextgen-flutter/tests.log
+      - name: Export exact source test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen-joined-flutter-qa
+          path: proof/learning-nextgen-flutter/
+          if-no-files-found: warn
+          retention-days: 30

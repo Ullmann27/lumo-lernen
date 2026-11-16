@@ -88,58 +88,69 @@ class QuantityBridgeBoard extends StatelessWidget {
           const SizedBox(height: 16),
           _InsetDeck(
             child: LayoutBuilder(builder: (context, constraints) {
-              final cell = (constraints.maxWidth - 16) / 5;
-              return Column(
-                children: List.generate(2, (row) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: row == 0 ? 4 : 0),
-                    child: Row(
-                      children: List.generate(5, (column) {
-                        final index = row * 5 + column;
-                        final isFixed = index < initial;
-                        final movedIndex = index - initial;
-                        final isMoved = movedIndex >= 0 && movedIndex < inFrame;
-                        return Padding(
-                          padding: EdgeInsets.only(right: column < 4 ? 4 : 0),
-                          child: SizedBox(
-                            width: cell,
-                            height: math.max(48, cell),
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF061B38),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: const Color(0xFF325578),
+              final cell = math.max(48.0, (constraints.maxWidth - 16) / 5);
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SizedBox(
+                  width: cell * 5 + 16,
+                  child: Column(
+                    children: List.generate(2, (row) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: row == 0 ? 4 : 0),
+                        child: Row(
+                          children: List.generate(5, (column) {
+                            final index = row * 5 + column;
+                            final isFixed = index < initial;
+                            final movedIndex = index - initial;
+                            final isMoved =
+                                movedIndex >= 0 && movedIndex < inFrame;
+                            return Padding(
+                              padding:
+                                  EdgeInsets.only(right: column < 4 ? 4 : 0),
+                              child: SizedBox(
+                                width: cell,
+                                height: math.max(48, cell),
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF061B38),
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: const Color(0xFF325578),
+                                    ),
+                                  ),
+                                  child: isFixed
+                                      ? Semantics(
+                                          label:
+                                              'Stein ${index + 1}, liegt schon da',
+                                          child: ExcludeSemantics(
+                                            child: Center(
+                                              child: _Counter(
+                                                color: _gold,
+                                                diameter:
+                                                    math.min(34, cell - 6),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : isMoved
+                                          ? placedCounter(movedIndex,
+                                              size: cell)
+                                          : Semantics(
+                                              label:
+                                                  'Freier Platz ${index + 1}',
+                                              child: const Center(
+                                                child: _EmptySocket(),
+                                              ),
+                                            ),
                                 ),
                               ),
-                              child: isFixed
-                                  ? Semantics(
-                                      label:
-                                          'Stein ${index + 1}, liegt schon da',
-                                      child: ExcludeSemantics(
-                                        child: Center(
-                                          child: _Counter(
-                                            color: _gold,
-                                            diameter: math.min(34, cell - 6),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  : isMoved
-                                      ? placedCounter(movedIndex, size: cell)
-                                      : Semantics(
-                                          label: 'Freier Platz ${index + 1}',
-                                          child: const Center(
-                                            child: _EmptySocket(),
-                                          ),
-                                        ),
-                            ),
-                          ),
-                        );
-                      }),
-                    ),
-                  );
-                }),
+                            );
+                          }),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
               );
             }),
           ),
@@ -214,7 +225,10 @@ class QuantityBridgeBoard extends StatelessWidget {
             const SizedBox(height: 12),
             Semantics(
               liveRegion: true,
-              child: Text('Bis 10 fehlen ${10 - initial}.',
+              child: Text(
+                  inFrame == 10 - initial
+                      ? 'Das Zehnerfeld ist voll. Im Vorrat bleiben ${supply - placed}.'
+                      : 'Bis 10 fehlen noch ${10 - initial - inFrame}.',
                   textAlign: TextAlign.center,
                   style: _labelStyle.copyWith(color: _gold)),
             ),
@@ -223,6 +237,198 @@ class QuantityBridgeBoard extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Shapes stay distinguishable by contour and name, including monochrome mode.
+/// The hint groups the existing objects; it never adds countable decorations.
+class LearningPatternBoard extends StatelessWidget {
+  const LearningPatternBoard({
+    super.key,
+    required this.sequence,
+    required this.choices,
+    required this.onSelected,
+    this.selected,
+    this.repeatLength = 2,
+    this.showGroups = false,
+    this.enabled = true,
+  });
+  final List<String> sequence, choices;
+  final int repeatLength;
+  final int? selected;
+  final ValueChanged<int> onSelected;
+  final bool showGroups, enabled;
+
+  Widget _shape(String name, {double size = 32}) => SizedBox.square(
+        dimension: size,
+        child: CustomPaint(painter: _PatternShapePainter(name)),
+      );
+
+  @override
+  Widget build(BuildContext context) => _LabSurface(
+        accent: _violet,
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          const _BoardHeading(
+              icon: Icons.category_outlined,
+              title: 'Entdecke die Wiederholung',
+              subtitle: 'Die Form und ihr Name helfen dir.',
+              accent: _violet),
+          const SizedBox(height: 16),
+          Wrap(spacing: 8, runSpacing: 10, children: [
+            for (var i = 0; i < sequence.length; i++)
+              Semantics(
+                  label: 'Form ${i + 1}: ${sequence[i]}',
+                  child: Container(
+                    key: ValueKey(
+                        'pattern_item_${i.toString().padLeft(2, '0')}'),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 10),
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF09213D),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                            color: showGroups ? _gold : _violet,
+                            width: showGroups ? 2 : 1)),
+                    child: ExcludeSemantics(
+                        child:
+                            Column(mainAxisSize: MainAxisSize.min, children: [
+                      _shape(sequence[i]),
+                      const SizedBox(height: 6),
+                      Text(sequence[i], style: _labelStyle),
+                      if (showGroups)
+                        Text('Gruppe ${i ~/ repeatLength + 1}',
+                            style: _bodyStyle.copyWith(color: _gold))
+                    ])),
+                  )),
+            Container(
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                    border: Border.all(color: _cyan, width: 2),
+                    borderRadius: BorderRadius.circular(14)),
+                child: const Text('?',
+                    style: TextStyle(
+                        color: _cyan,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900))),
+          ]),
+          const SizedBox(height: 18),
+          const Text('Welche Form kommt als Nächstes?', style: _labelStyle),
+          const SizedBox(height: 10),
+          Wrap(spacing: 8, runSpacing: 10, children: [
+            for (var i = 0; i < choices.length; i++)
+              OutlinedButton(
+                key: ValueKey('lab-pattern-choice-$i'),
+                onPressed: enabled ? () => onSelected(i) : null,
+                style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(72, 60),
+                    foregroundColor: _ink,
+                    backgroundColor:
+                        selected == i ? const Color(0xFF174B71) : null,
+                    side: BorderSide(
+                        color: selected == i ? _gold : _violet,
+                        width: selected == i ? 2.5 : 1)),
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      _shape(choices[i]),
+                      const SizedBox(height: 6),
+                      Text(choices[i], style: _labelStyle),
+                      if (selected == i)
+                        const Icon(Icons.check_rounded,
+                            semanticLabel: 'Ausgewählt',
+                            color: _gold,
+                            size: 20),
+                    ])),
+              ),
+          ]),
+        ]),
+      );
+}
+
+class _PatternShapePainter extends CustomPainter {
+  const _PatternShapePainter(this.name);
+  final String name;
+  @override
+  void paint(Canvas canvas, Size size) {
+    final bounds = Offset.zero & size;
+    final fill = Paint()
+      ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFFFFE1A0), Color(0xFFF2A34B)]).createShader(bounds);
+    final outline = Paint()
+      ..color = const Color(0xFFFFF3D3)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+    if (name == 'Kreis') {
+      canvas.drawCircle(
+          size.center(Offset.zero), size.shortestSide / 2 - 2, fill);
+      canvas.drawCircle(
+          size.center(Offset.zero), size.shortestSide / 2 - 2, outline);
+    } else if (name == 'Dreieck') {
+      final path = Path()
+        ..moveTo(size.width / 2, 2)
+        ..lineTo(size.width - 2, size.height - 2)
+        ..lineTo(2, size.height - 2)
+        ..close();
+      canvas.drawPath(path, fill);
+      canvas.drawPath(path, outline);
+    } else {
+      final rect =
+          RRect.fromRectAndRadius(bounds.deflate(2), const Radius.circular(3));
+      canvas.drawRRect(rect, fill);
+      canvas.drawRRect(rect, outline);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _PatternShapePainter oldDelegate) =>
+      name != oldDelegate.name;
+}
+
+/// The caller sets [activeIndex] from actual speech playback, never from a
+/// guessed duration. Every syllable stays visible while another is spoken.
+class LearningSyllableStrip extends StatelessWidget {
+  const LearningSyllableStrip(
+      {super.key,
+      required this.syllables,
+      required this.onSelected,
+      this.activeIndex = -1,
+      this.enabled = true});
+  final List<String> syllables;
+  final ValueChanged<int> onSelected;
+  final int activeIndex;
+  final bool enabled;
+  @override
+  Widget build(BuildContext context) => Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 8,
+        runSpacing: 8,
+        children: List.generate(
+            syllables.length,
+            (i) => OutlinedButton(
+                  key: ValueKey('syllable_$i'),
+                  onPressed: enabled ? () => onSelected(i) : null,
+                  style: OutlinedButton.styleFrom(
+                      minimumSize: const Size(64, 56),
+                      backgroundColor:
+                          activeIndex == i ? const Color(0xFF194C73) : null,
+                      foregroundColor: _ink,
+                      side: BorderSide(
+                          color: activeIndex == i ? _gold : _violet,
+                          width: activeIndex == i ? 3 : 1.5)),
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    Text(syllables[i],
+                        style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 24,
+                            fontWeight: FontWeight.w900)),
+                    if (activeIndex == i)
+                      const Icon(Icons.volume_up_rounded,
+                          size: 16, semanticLabel: 'Wird gerade gesprochen'),
+                  ]),
+                )),
+      );
 }
 
 /// A controlled fraction model with equal, independently selectable pieces.
@@ -476,9 +682,8 @@ class LearningTokenWorkbench extends StatelessWidget {
           const Text('Deine Reihe', style: _labelStyle),
           const SizedBox(height: 8),
           _InsetDeck(
-            child: AnimatedSize(
-              duration: _duration(context, reduceMotion),
-              alignment: Alignment.topLeft,
+            child: _fitWorkbench(
+              context,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 80),
                 child: Align(
@@ -539,6 +744,19 @@ class LearningTokenWorkbench extends StatelessWidget {
               textAlign: TextAlign.center, style: _bodyStyle),
         ],
       ),
+    );
+  }
+
+  Widget _fitWorkbench(BuildContext context, {required Widget child}) {
+    final duration = _duration(context, reduceMotion);
+    // A zero-duration RenderAnimatedSize can re-dirty itself during layout
+    // when the first token changes the workbench height. Quiet mode does not
+    // need an animation render object at all.
+    if (duration == Duration.zero) return child;
+    return AnimatedSize(
+      duration: duration,
+      alignment: Alignment.topLeft,
+      child: child,
     );
   }
 }

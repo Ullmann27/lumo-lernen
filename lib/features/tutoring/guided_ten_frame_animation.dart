@@ -1,3 +1,4 @@
+import '../../widgets/fox/lumo_dialogue_focus.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -236,20 +237,22 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
                             top: (index ~/ 5) * cell,
                             width: cell - 3,
                             height: cell - 3,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF103966),
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  width: _phase >= 3 ? 2 : 1,
-                                  color: _phase >= 3
-                                      ? LumoVisualTokens.gold
-                                      : LumoVisualTokens.cyan.withValues(
-                                          alpha: .55,
-                                        ),
-                                ),
-                              ),
-                            ),
+                            child: LumoDialogueFocusTarget(
+                                objectId: 'guided-ten-slot-$index',
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF103966),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      width: _phase >= 3 ? 2 : 1,
+                                      color: _phase >= 3
+                                          ? LumoVisualTokens.gold
+                                          : LumoVisualTokens.cyan.withValues(
+                                              alpha: .55,
+                                            ),
+                                    ),
+                                  ),
+                                )),
                           ),
                         for (var index = 0;
                             index < widget.left + widget.right;

@@ -121,9 +121,8 @@ void main() {
     expect(proxy.entered.isCompleted, false);
   });
 
-  test('task change cancels a pending answer and discards its memory',
+  test('entering a task cancels a pending general answer and its memory',
       () async {
-    task();
     app.updateSettings(const AppSettings(
         aiProxyEnabled: true, aiLearningMode: AiLearningMode.learningHelp));
     final proxy = ControlledProxy();
@@ -131,7 +130,7 @@ void main() {
     conversation = LumoConversationController(context, proxy: proxy);
     final pending = conversation.ask('Lumo, was muss ich hier machen?');
     await proxy.entered.future;
-    expect(proxy.extras?['taskPrompt'], 'Rechne 4 + 3.');
+    expect(proxy.extras?['taskPrompt'], isNull);
     task(attempts: 2);
     expect(proxy.request?.cancelled, true);
     proxy.reply.complete(const LumoAiProxyResponse(

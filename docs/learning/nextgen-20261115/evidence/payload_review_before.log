@@ -1,0 +1,53 @@
+00:00 +0: loading /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_answer_payload_test.dart
+00:00 +0: decimal, currency and time choices keep distinct scoring identities
+00:00 +1: only whole integer answers become numeric counts
+00:00 +2: decimal arithmetic exposes exact place values, never integer dots
+00:00 +2 -1: decimal arithmetic exposes exact place values, never integer dots [E]
+  Expected: VisualType:<VisualType.none>
+    Actual: VisualType:<VisualType.dots>
+  
+  package:matcher                                       expect
+  package:flutter_test/src/widget_tester.dart 473:18    expect
+  test/learning/nextgen_answer_payload_test.dart 119:5  main.<fn>
+  
+00:00 +2 -1: different decimal precision is scaled without floating point rounding
+00:00 +2 -2: different decimal precision is scaled without floating point rounding [E]
+  Expected: <2>
+    Actual: <null>
+  
+  package:matcher                                       expect
+  package:flutter_test/src/widget_tester.dart 473:18    expect
+  test/learning/nextgen_answer_payload_test.dart 156:7  main.<fn>
+  
+00:00 +2 -2: all generated decimal variants preserve their exact arithmetic
+00:00 +2 -3: all generated decimal variants preserve their exact arithmetic [E]
+  Expected: 'decimal_addition'
+    Actual: <null>
+     Which: not an <Instance of 'String'>
+  4,9 + 3,6 = ?
+  
+  package:matcher                                       expect
+  package:flutter_test/src/widget_tester.dart 473:18    expect
+  test/learning/nextgen_answer_payload_test.dart 179:7  main.<fn>
+  
+00:00 +2 -3: whole-object formula is complete and still reaches native 8 plus 5
+00:00 +3 -3: one decimal digit in an amount means tenths of a euro
+00:00 +3 -4: one decimal digit in an amount means tenths of a euro [E]
+  Expected: empty
+    Actual: {'cents': 50000, 'amount': 50000}
+  Do not silently parse a substring as 500 euros.
+  
+  package:matcher                                       expect
+  package:flutter_test/src/widget_tester.dart 473:18    expect
+  test/learning/nextgen_answer_payload_test.dart 243:5  main.<fn>
+  
+00:00 +3 -4: actual answer renderer rejects a colliding distractor: 1,2
+00:00 +4 -4: actual answer renderer rejects a colliding distractor: 1 €
+00:00 +5 -4: actual answer renderer rejects a colliding distractor: 1:30 Uhr
+00:00 +6 -4: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_answer_payload_test.dart: all generated decimal variants preserve their exact arithmetic
+  /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_answer_payload_test.dart: decimal arithmetic exposes exact place values, never integer dots
+  /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_answer_payload_test.dart: different decimal precision is scaled without floating point rounding
+  /workspace/scratch/c5a7dadab95f/lumo-lernen/test/learning/nextgen_answer_payload_test.dart: one decimal digit in an amount means tenths of a euro
