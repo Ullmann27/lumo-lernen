@@ -41,3 +41,9 @@ Job `133033472392` des aktuellen Laufs ist erfolgreich: **2.887 Flutter PASS / 0
 ## Bestanden: neue signierte APKs 2029
 
 Buildjob `133037491223` ist erfolgreich. ARM64: **535.021.166 Byte**, SHA-256 `bc8fdd9c1f70d7d6e374b5424029e127531525deb4f2dec1e69de4ea8f6ee0c3`; x86_64: **538.184.171 Byte**, SHA-256 `01e0c126930b48cb8089f0671ed9238b5dc6ded903e288ad7c1fda452ed3cf0f`. Paket, Version, vorhandene Testsignatur, ABI, 16-KiB-Ausrichtung, Native-Pin und lokale Sprachassets sind an den tatsächlichen APKs geprüft. Der vollständige ARM64-Artefakt- und APK-Bytehash wurde zusätzlich lokal bestätigt. Originalnachweise: `evidence/ci-2029-build/`. Androidjob `133040408296` läuft; ein Android-PASS oder öffentlicher Download ist noch nicht bestätigt.
+
+## Tatsächlicher Androidfehler; keine Veröffentlichung
+
+Androidjob 133040408296 von Lauf43785937519 endete mit FAIL. Die erste sichtbare Steinbewegung nach Gesprächsrückkehr bleibt ungespeichert (moved0 statt1). Die aktuellen Original-XMLs zeigen beim Tap noch deaktivierte Coach-/Bautasten; das spätere Original-PNG zeigt sie aktiv. Der korrekte Tappunkt und das geschlossene Modal sind unabhängig geprüft. Eine zeitliche Frame-/Rebinding-Ursache wird noch untersucht; die bestehende Widgetprüfung reicht für diese echte Erstbedienung nicht aus.
+
+Alle260 Originaldateien und der vollständige Joblog sind in `evidence/ci-2029-android-bridge-return-failure/` unverändert erhalten. Die nachfolgenden Größenwechsel-/Native-/Banane-/Muster-/Performanceabschnitte wurden nicht erreicht. Der Publisher wurde übersprungen; die gebaute2029-APK ist nicht freigegeben. Eine notwendige weitere Produktkorrektur bekommt einen neuen vollständigen Build und eine eigene Version.

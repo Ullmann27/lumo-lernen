@@ -1,0 +1,20 @@
+{
+  "artifactId": 14191731263,
+  "workflowRun": 43785937519,
+  "archiveBytes": 13841919,
+  "archiveSha256": "4381306eec02830668ca2127fce3fdb78312a62b657f7c66e23b92357721ffbd",
+  "members": 260,
+  "partsInOrder": [
+    {
+      "path": "artifact-14191731263.zip.part01",
+      "bytes": 8388608,
+      "sha256": "352b058e727bea8e9d25b4f8475300f220ae19a1ac3f81c4cafb25df3ca7cb14"
+    },
+    {
+      "path": "artifact-14191731263.zip.part02",
+      "bytes": 5453311,
+      "sha256": "762964049b46d9d34f4b7ae24c7fbc28d063c0207876c4e97aa62644754667a2"
+    }
+  ],
+  "reassembly": "Concatenate parts in listed order; verify original size/SHA before reading ZIP. All original XML/JSON/PNG/video/log members are retained in this lossless archive."
+}

@@ -1,3 +1,17 @@
+# LUMO Next Generation – Android-Erstbedienung 2029 noch fehlerhaft
+
+Stand: 16. November 2026. **Kandidat 2029 wird nicht veröffentlicht.** Der vollständige Lauf [43785937519](https://github.com/Ullmann27/lumo-lernen/actions/runs/43785937519) auf APK-/QA-Quelle **684f54a6d11cfb5eccaec30f39fe34d6c17c82cc** hat Quellvalidierung und beide APK-Builds bestanden, aber Androidjob **133040408296** ist beim ersten Stein-Tap nach der eigenen Gesprächsrückkehr erneut fehlgeschlagen. Veröffentlichung wurde übersprungen.
+
+Die echte gespeicherte Aufgabe bleibt `bridge-8-5`, Phase example, hint/support3, moved0 statt1. Der Tap liegt im tatsächlich beobachteten ersten Stein (204,731 innerhalb [138,665]–[270,797]); kein Zwischen-Scroll und kein sichtbares Gesprächs-Overlay. Die XML-Dateien vor dem Tap zeigen gewöhnliche Coach-/Bautasten deaktiviert, das abschließende Originalbild zeigt sie bereits aktiv. Damit ist eine dauerhaft unveränderte Sperre nicht belegt. Die zeitliche Folge von Rückkehr, deferred publish und angefordertem Frame wird gezielt untersucht. Eine konkrete Ursache oder neue Reparatur wird hier noch nicht als bewiesen bezeichnet.
+
+**Alle 260 Originaldateien, beide Originalvideos und der vollständige Joblog sind erhalten** unter `docs/nextgen/evidence/ci-2029-android-bridge-return-failure/`. Die früheren Fehler bleiben ebenfalls unverändert. Die tatsächlich bestandenen 2.887 Fluttertests,109 Hosttests und native Prüfungen gelten weiterhin als Quellprüfung; sie decken diesen realen Erst-Tap-Ablauf noch nicht ausreichend ab.
+
+Die signierten neuen APKs sind gebaut und überprüft: Version **0.13.17+2029**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**. ARM64 **535.021.166 Byte**, SHA-256 `bc8fdd9c1f70d7d6e374b5424029e127531525deb4f2dec1e69de4ea8f6ee0c3`. Die vollständigen ARM64-Bytes wurden zusätzlich lokal gegen Artefakt und Originalmetadaten geprüft. Das ersetzt den fehlenden Android-PASS nicht.
+
+Nächster Schritt: strengere Reproduktion des beobachteten Frame-/Erstbedienungsablaufs, minimaler Produktfix nur bei belegter Ursache, anschließender neuer vollständiger Build mit eigener Version. Keine zweite automatische Eingabe, kein geänderter Checkpoint und keine abgeschwächte Abnahmebedingung. `main` bleibt unberührt; `fullModernizationComplete=false` bleibt zutreffend.
+
+## Archiv: tatsächlicher Quell-/Buildfortschritt 2029 vor Androidabschluss
+
 # LUMO Next Generation – vollständiger Kandidat 2029 vorbereitet
 
 Stand: 16. November 2026. **0.13.17+2029** enthält die minimale Produktkorrektur für den tatsächlich blockierten Lab-Rückweg. APK 2028 wird nicht veröffentlicht. Ihr zweiter Replay [43783036351](https://github.com/Ullmann27/lumo-lernen/actions/runs/43783036351) bleibt FAIL; alle 274 Originaldateien und der vollständige Log sind in `docs/nextgen/evidence/ci-2028-replay-bridge-checkpoint-failure/` erhalten.
