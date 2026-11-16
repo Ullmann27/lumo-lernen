@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "scope": "Existing pure verify_tours evaluated once on saved original results, including >=2032 current_native_active_stop; not a new device/test-suite execution.",
+  "original_result": {
+    "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/learning-android-result.json",
+    "bytes": 126175,
+    "sha256": "c3a13283027e12fe3a7553bd2c48b9e23d09b9494643cda40012c1ffb58263e7"
+  },
+  "reference_result": {
+    "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/reference-android-result.json",
+    "bytes": 91724,
+    "sha256": "5815863d0a9cb59ba025291196250418c3e529b1e830e17a347232e63548008f"
+  },
+  "current_native_stop_helper_hashes": {
+    "helper_sha256": "2d8e70a2ab3e9a8d0756b6a20341d5d639833c9854e4e087556cf81bb2776b56",
+    "observed_helper_sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8",
+    "completed_banana_sha256": "43fc68ff467fb88c73b1a874106786cc95fda8e4e0d9b9011108a57b4bf3d93b"
+  },
+  "both_status": [
+    "PASS_WITH_LIMITATIONS",
+    "PASS_WITH_LIMITATIONS"
+  ],
+  "no_main_or_publish_called": true
+}

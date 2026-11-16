@@ -1,0 +1,515 @@
+{
+  "status": "PASS_WITH_LIMITATIONS",
+  "evaluation": "Unchanged pure snapshot/checkpoint/foreground guards reapplied to original preference XML and activity dumps; no device action.",
+  "comparisons": [
+    {
+      "case": "own_conversation",
+      "before": "original-android/0111-conversation-learning-before-preferences.xml",
+      "after": "original-android/0166-conversation-learning-after-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": null
+    },
+    {
+      "case": "bridge_home_resume",
+      "before": "original-android/0172-bridge-before-roundtrips-preferences.xml",
+      "after": "original-android/0182-bridge-after-pause-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+        "phase": "example",
+        "problemId": "bridge-8-5",
+        "moved": 1,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 3,
+        "support": 3,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "bridge_route_return",
+      "before": "original-android/0172-bridge-before-roundtrips-preferences.xml",
+      "after": "original-android/0190-bridge-after-return-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+        "phase": "example",
+        "problemId": "bridge-8-5",
+        "moved": 1,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 3,
+        "support": 3,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "words_home_resume",
+      "before": "original-android/0281-words-before-roundtrips-preferences.xml",
+      "after": "original-android/0291-words-after-pause-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "words",
+        "seed": 0,
+        "sessionId": "lab-attempt-67280d8a2f93f2e0ac5777b94aca0c4e",
+        "phase": "example",
+        "problemId": "word-banane",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [
+          2,
+          3,
+          0
+        ],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "words_route_return",
+      "before": "original-android/0281-words-before-roundtrips-preferences.xml",
+      "after": "original-android/0300-words-after-return-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "words",
+        "seed": 0,
+        "sessionId": "lab-attempt-67280d8a2f93f2e0ac5777b94aca0c4e",
+        "phase": "example",
+        "problemId": "word-banane",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [
+          2,
+          3,
+          0
+        ],
+        "patternChoice": null,
+        "hint": 0,
+        "support": 0,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "patterns_home_resume",
+      "before": "original-android/0334-patterns-before-roundtrips-preferences.xml",
+      "after": "original-android/0344-patterns-after-pause-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "patterns",
+        "seed": 0,
+        "sessionId": "lab-attempt-8c41d28ba16bf6dd75f6ad97b19cf541",
+        "phase": "example",
+        "problemId": "pattern-kreis-dreieck-5",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": 1,
+        "hint": 1,
+        "support": 1,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "patterns_route_return",
+      "before": "original-android/0334-patterns-before-roundtrips-preferences.xml",
+      "after": "original-android/0353-patterns-after-return-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "patterns",
+        "seed": 0,
+        "sessionId": "lab-attempt-8c41d28ba16bf6dd75f6ad97b19cf541",
+        "phase": "example",
+        "problemId": "pattern-kreis-dreieck-5",
+        "moved": 0,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": 1,
+        "hint": 1,
+        "support": 1,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "resize_compact",
+      "before": "original-android/0193-bridge-before-resize-preferences.xml",
+      "after": "original-android/0202-compact-prefs-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+        "phase": "example",
+        "problemId": "bridge-8-5",
+        "moved": 1,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 3,
+        "support": 3,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "resize_expanded",
+      "before": "original-android/0193-bridge-before-resize-preferences.xml",
+      "after": "original-android/0212-expanded-prefs-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+        "phase": "example",
+        "problemId": "bridge-8-5",
+        "moved": 1,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 3,
+        "support": 3,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "resize_fold7-cover-emulated",
+      "before": "original-android/0193-bridge-before-resize-preferences.xml",
+      "after": "original-android/0222-fold7-cover-emulated-prefs-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+        "phase": "example",
+        "problemId": "bridge-8-5",
+        "moved": 1,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 3,
+        "support": 3,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "resize_fold7-inner-emulated",
+      "before": "original-android/0193-bridge-before-resize-preferences.xml",
+      "after": "original-android/0232-fold7-inner-emulated-prefs-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+        "phase": "example",
+        "problemId": "bridge-8-5",
+        "moved": 1,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 3,
+        "support": 3,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "display_restore",
+      "before": "original-android/0193-bridge-before-resize-preferences.xml",
+      "after": "original-android/0236-bridge-restored-display-prefs-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+        "phase": "example",
+        "problemId": "bridge-8-5",
+        "moved": 1,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 3,
+        "support": 3,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    {
+      "case": "original_native",
+      "before": "original-android/0378-native-learning-before-preferences.xml",
+      "after": "original-android/0520-native-learning-after-preferences.xml",
+      "profile_id": "1794823506268424",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": null
+    },
+    {
+      "case": "reference_banana",
+      "before": "reference-android/0112-banana-before-native-preferences.xml",
+      "after": "reference-android/0208-banana-after-native-preferences.xml",
+      "profile_id": "1794824016843427",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": null
+    },
+    {
+      "case": "reference_stop",
+      "before": "reference-android/0212-current-stop-learning-before-preferences.xml",
+      "after": "reference-android/0370-current-stop-learning-after-preferences.xml",
+      "profile_id": "1794824016843427",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": null
+    },
+    {
+      "case": "reference_stop_guided_return",
+      "before": "reference-android/0236-runtime-bridge-before-native-preferences.xml",
+      "after": "reference-android/0366-runtime-bridge-after-native-preferences.xml",
+      "profile_id": "1794824016843427",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": null
+    },
+    {
+      "case": "reference_pattern_ungraded",
+      "before": "reference-android/0392-pattern-before-native-preferences.xml",
+      "after": "reference-android/0444-pattern-after-native-preferences.xml",
+      "profile_id": "1794824016843427",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": null
+    },
+    {
+      "case": "reference_pattern_final",
+      "before": "reference-android/0392-pattern-before-native-preferences.xml",
+      "after": "reference-android/0458-final-profile-and-progress-preferences.xml",
+      "profile_id": "1794824016843427",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false,
+      "learning_keys": [
+        "flutter.lumo_learning_local_student_id_v1",
+        "flutter.lumo_reward_wallet_v1"
+      ],
+      "checkpoint": null
+    }
+  ],
+  "foreground_raw_observations": [
+    {
+      "file": "original-android/0176-bridge-paused-activity.txt",
+      "component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+      "elapsed_seconds": 0.123
+    },
+    {
+      "file": "original-android/0285-words-paused-activity.txt",
+      "component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+      "elapsed_seconds": 0.143
+    },
+    {
+      "file": "original-android/0338-patterns-paused-activity.txt",
+      "component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+      "elapsed_seconds": 0.081
+    }
+  ],
+  "pattern_stored_attempt_counts": {
+    "before": 0,
+    "returned": 0,
+    "final": 0
+  },
+  "pattern_no_new_assessed_attempt": true,
+  "original_profile_id": "1794823506268424",
+  "reference_profile_id": "1794824016843427",
+  "profile_reset_between_tours_explicit_and_intentional": true,
+  "resize_configuration": [
+    {
+      "layout": "compact",
+      "width": 720,
+      "height": 1600,
+      "android_test_density_dpi": 320,
+      "wm_size": "Physical size: 1080x2340\nOverride size: 720x1600",
+      "wm_density": "Physical density: 440\nOverride density: 320",
+      "physical_ppi_claimed": false
+    },
+    {
+      "layout": "expanded",
+      "width": 1768,
+      "height": 2208,
+      "android_test_density_dpi": 360,
+      "wm_size": "Physical size: 1080x2340\nOverride size: 1768x2208",
+      "wm_density": "Physical density: 440\nOverride density: 360",
+      "physical_ppi_claimed": false
+    },
+    {
+      "layout": "fold7-cover-emulated",
+      "width": 1080,
+      "height": 2520,
+      "android_test_density_dpi": 420,
+      "wm_size": "Physical size: 1080x2340\nOverride size: 1080x2520",
+      "wm_density": "Physical density: 440\nOverride density: 420",
+      "physical_ppi_claimed": false
+    },
+    {
+      "layout": "fold7-inner-emulated",
+      "width": 1968,
+      "height": 2184,
+      "android_test_density_dpi": 420,
+      "wm_size": "Physical size: 1080x2340\nOverride size: 1968x2184",
+      "wm_density": "Physical density: 440\nOverride density: 420",
+      "physical_ppi_claimed": false
+    }
+  ],
+  "limits": [
+    "Only the two actually present canonical learning/reward records and listed checkpoints were compared; not a populated real-child history migration.",
+    "Foreground transition, UI return and resizing do not prove process-death recovery, upgrades, physical hinge transitions or a physical Fold7.",
+    "The fresh reference profile has zero stored assessed attempts before/after/final pattern return."
+  ]
+}

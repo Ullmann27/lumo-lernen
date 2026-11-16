@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "source_commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "native_commit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "versionName": "0.13.20",
+  "versionCode": 2032,
+  "original_and_reference_installations": [
+    {
+      "tour": "original-android",
+      "status": "MATCH",
+      "installed_apk_path": "/data/app/~~oEPiud3tXWYIngc0rwxb1A==/dev.ullmann.lumo.lumo_lernen.coachpreview-HUmzbNcJn3UJ6WL8VkWnPg==/base.apk",
+      "candidate": {
+        "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+        "flutter_source_commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+        "versionCode": 2032,
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "versionName": "0.13.20",
+        "godot": {
+          "repository": "https://github.com/Ullmann27/lumo-godot.git",
+          "revision": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+          "engine": "4.6.3",
+          "pck_sha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+          "bytes": 278589884
+        },
+        "abis": [
+          "x86_64"
+        ],
+        "tracked_source_clean": true
+      },
+      "installed_metadata": {
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "versionCode": 2032,
+        "versionName": "0.13.20",
+        "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+      },
+      "fresh_package_absent_claimed_and_required_by_current_gate": true
+    },
+    {
+      "tour": "reference-android",
+      "status": "MATCH",
+      "installed_apk_path": "/data/app/~~B6AphPCst_7atSlSjM6k5g==/dev.ullmann.lumo.lumo_lernen.coachpreview-Nc3DQsLJdkwoARFURYKV_g==/base.apk",
+      "candidate": {
+        "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+        "flutter_source_commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+        "versionCode": 2032,
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "versionName": "0.13.20",
+        "godot": {
+          "repository": "https://github.com/Ullmann27/lumo-godot.git",
+          "revision": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+          "engine": "4.6.3",
+          "pck_sha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+          "bytes": 278589884
+        },
+        "abis": [
+          "x86_64"
+        ],
+        "tracked_source_clean": true
+      },
+      "installed_metadata": {
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "versionCode": 2032,
+        "versionName": "0.13.20",
+        "sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+      },
+      "fresh_package_absent_claimed_and_required_by_current_gate": true
+    }
+  ],
+  "reset_bound_to_complete_original_result": true,
+  "stop_reobserved_installed_identity_verified_by_exact_current_helper": true,
+  "limits": [
+    "Original apksigner/manifest/install/dumpsys/sha256sum evidence was read; no fresh APK download or apksigner rerun.",
+    "Android recordings cover the x86_64 APK. The ARM64 byte check is a separate Root evidence package."
+  ]
+}

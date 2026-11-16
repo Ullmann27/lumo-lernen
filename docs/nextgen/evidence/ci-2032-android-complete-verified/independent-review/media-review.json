@@ -1,0 +1,810 @@
+{
+  "status": "PASS",
+  "scope": "Saved original media read-only verification, no new Android recording. Each listed video was traversed completely by ffprobe -count_frames without read_intervals, with no decoder stderr.",
+  "videos": [
+    {
+      "path": "original-android/0001-onboarding.mp4",
+      "bytes": 2419414,
+      "sha256": "d27ad5290495138310893a910c1eed4428760d4254989107ece7683e1e669cbb",
+      "duration_seconds": 26.099489,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 85,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0001-onboarding-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0001-onboarding.json",
+      "fresh_ffprobe_sha256": "4e1cb596f1fdef438cec45c499b8d4e9f8a443814617cd76b2ff83ba24fc93d5",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 30.12
+    },
+    {
+      "path": "original-android/0098-eight-plus-five-explanation.mp4",
+      "bytes": 3968013,
+      "sha256": "1dd31a1cbcc22ef91c985f32ed3820adc9c39a0a55f7f80565f957f1be6728bf",
+      "duration_seconds": 34.646033,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 158,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0098-eight-plus-five-explanation-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0098-eight-plus-five-explanation.json",
+      "fresh_ffprobe_sha256": "a667b99a3e1a087b543ee2ea51ca2c603f407b1b23c8c992ce0e5a26533bab02",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 36.25
+    },
+    {
+      "path": "original-android/0173-bridge-pause-return.mp4",
+      "bytes": 1241748,
+      "sha256": "be573277b76c29d96a3f4ba721bb9e62981f481c032f9530b34939ccbe51cdc1",
+      "duration_seconds": 5.740522,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 37,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0173-bridge-pause-return-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0173-bridge-pause-return.json",
+      "fresh_ffprobe_sha256": "bbd70f17a353c68b992ff3db6c994bf918cde3580d9a36e05f1093dd225e43dd",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 11.95
+    },
+    {
+      "path": "original-android/0194-bridge-resize-compact.mp4",
+      "bytes": 1181681,
+      "sha256": "6179dfb775344393db089da93329e06e39f623d7acfcb03e726242801df2f6a3",
+      "duration_seconds": 4.685911,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 29,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0194-bridge-resize-compact-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0194-bridge-resize-compact.json",
+      "fresh_ffprobe_sha256": "9d52db161a9a83775e5ed9224b4c8e5fe1a4bb28174dd7fa13b8bf91d6236b43",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 5.98
+    },
+    {
+      "path": "original-android/0204-bridge-resize-expanded.mp4",
+      "bytes": 500498,
+      "sha256": "375958e00bd5c3d08bd8864a092d2a59d3a12ac115f0959f5b6a4b945504a871",
+      "duration_seconds": 3.731333,
+      "width": 720,
+      "height": 1600,
+      "all_frames_read": 29,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0204-bridge-resize-expanded-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0204-bridge-resize-expanded.json",
+      "fresh_ffprobe_sha256": "26635325682529e40efe9fbcd1823e51fc61b886950a96539570504db5abb2f5",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 5.6
+    },
+    {
+      "path": "original-android/0214-bridge-resize-fold7-cover-emulated.mp4",
+      "bytes": 998182,
+      "sha256": "2c8dbd651a1ea5bea4709254e944d37fca0f27179ea00532da195c527587beeb",
+      "duration_seconds": 4.875733,
+      "width": 1768,
+      "height": 2208,
+      "all_frames_read": 31,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0214-bridge-resize-fold7-cover-emulated-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0214-bridge-resize-fold7-cover-emulated.json",
+      "fresh_ffprobe_sha256": "16517e906fc88cff1bb9985109f4d26dd0393ba65a3232dea84c6cd183b18d0e",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 6.71
+    },
+    {
+      "path": "original-android/0224-bridge-resize-fold7-inner-emulated.mp4",
+      "bytes": 397384,
+      "sha256": "97ce792577d38d7b6dfd8b68ec5f1b1ae18c9e2e1b58def315b69c67d342d8de",
+      "duration_seconds": 2.698378,
+      "width": 1080,
+      "height": 2520,
+      "all_frames_read": 12,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0224-bridge-resize-fold7-inner-emulated-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0224-bridge-resize-fold7-inner-emulated.json",
+      "fresh_ffprobe_sha256": "d48878ff9909825861f2de68bdd710c84fcd533e894cdaee67968208ea1f6bb4",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 5.75
+    },
+    {
+      "path": "original-android/0244-banane-syllables.mp4",
+      "bytes": 1039664,
+      "sha256": "4c950aca9b0d5212d5d1eca477b69d1569d84081a6505417a70999d837b74fa3",
+      "duration_seconds": 10.096511,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 54,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0244-banane-syllables-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0244-banane-syllables.json",
+      "fresh_ffprobe_sha256": "355655f1b946b2de230a21b3e06e944890de8c6675d6a7f2d9985b85ed71327f",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 11.62
+    },
+    {
+      "path": "original-android/0282-words-pause-return.mp4",
+      "bytes": 1211695,
+      "sha256": "978583704c04ce782e63bed5bf616c3dcf37cef2b8e155f7965e8c7c7b0822f5",
+      "duration_seconds": 7.766933,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 48,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0282-words-pause-return-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0282-words-pause-return.json",
+      "fresh_ffprobe_sha256": "0edfe7d01556e3da268dfc900f1136922b8540c7f0e1b1d5532ba60a5e81b58a",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 11.85
+    },
+    {
+      "path": "original-android/0309-pattern-hint-and-correction.mp4",
+      "bytes": 1179064,
+      "sha256": "0b04a4f9cb89993c033e5649337e2e5f824bff22d7fea7678caba5b5a587b22a",
+      "duration_seconds": 5.842133,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 37,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0309-pattern-hint-and-correction-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0309-pattern-hint-and-correction.json",
+      "fresh_ffprobe_sha256": "8e9a032decf60bbe199deb59960e9e047502e28b36716274e41d2b7bc4313482",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 7.29
+    },
+    {
+      "path": "original-android/0335-patterns-pause-return.mp4",
+      "bytes": 1037310,
+      "sha256": "9af35fed4367ec7156c992d88e83e7eee6fb29cedf9ed8912f80bd7e2f8ceb85",
+      "duration_seconds": 5.2797,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 44,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0335-patterns-pause-return-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0335-patterns-pause-return.json",
+      "fresh_ffprobe_sha256": "83b206276ae16a0d93ac68cf74d1bfb324dca62aedff983f3ec93f3712d5b739",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 11.49
+    },
+    {
+      "path": "original-android/0379-native-three-dimensional-learning.mp4",
+      "bytes": 1577077,
+      "sha256": "c51922c7398a13841004c1c477099ce8946d41ee66fcf90f24dd4b62f2581efb",
+      "duration_seconds": 35.238189,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 80,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0379-native-three-dimensional-learning-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0379-native-three-dimensional-learning.json",
+      "fresh_ffprobe_sha256": "15d723718dffba0078a0609b311d6c2427126bdcd9bd1af6d4dafd8b908e0c9f",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 89.86
+    },
+    {
+      "path": "original-android/0435-native-why-two-question-and-demonstration.mp4",
+      "bytes": 2201872,
+      "sha256": "5c28bb64a6a62b3f5b32c6eb443fa9a84061a827752813c4f30351f01074c946",
+      "duration_seconds": 112.401156,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 128,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0435-native-why-two-question-and-demonstration-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0435-native-why-two-question-and-demonstration.json",
+      "fresh_ffprobe_sha256": "f134218ad4c58bc312a7fe6dc1812ebfb578110ef8717269f098ccb600c7189a",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 114.33
+    },
+    {
+      "path": "original-android/0463-native-three-dimensional-performance.mp4",
+      "bytes": 637577,
+      "sha256": "d8a5773359ca4eb68d339843aad7853dd6e24930b4f73b23c6e8dabfa6054742",
+      "duration_seconds": 44.453244,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 60,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "original-android/0463-native-three-dimensional-performance-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/original-android--0463-native-three-dimensional-performance.json",
+      "fresh_ffprobe_sha256": "3405154dd70dd28ba727f8b824ec015d61ce4cd059e144fbdb247cac05f48c7e",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 44.05
+    },
+    {
+      "path": "reference-android/0002-onboarding.mp4",
+      "bytes": 1661905,
+      "sha256": "b8be215a062c9514c78aab1f8c25047fba2202ede79e443e2f38bf686c46ccf0",
+      "duration_seconds": 13.634844,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 64,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0002-onboarding-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0002-onboarding.json",
+      "fresh_ffprobe_sha256": "ab83a52e8fe5f06d9e724678b09d14599ccd21a877ae703121ce04491889ce4f",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 16.66
+    },
+    {
+      "path": "reference-android/0093-banana-guided-navigation.mp4",
+      "bytes": 917099,
+      "sha256": "2e6516728d84a4c7605670f2af6d4fcb5f3f1381d89120a8c8e65207156a1cf7",
+      "duration_seconds": 7.957722,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 21,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0093-banana-guided-navigation-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0093-banana-guided-navigation.json",
+      "fresh_ffprobe_sha256": "19766e0c243a183a20f55047a444c97c3426a7cc77524384d24f207e9bf6245e",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 10.2
+    },
+    {
+      "path": "reference-android/0113-banana-native-entry-and-first-playback.mp4",
+      "bytes": 1744338,
+      "sha256": "a1daee3835b9273118de437da0273d551d7cbb213313a3a5f63f5adfb733aa0b",
+      "duration_seconds": 49.190478,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 106,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0113-banana-native-entry-and-first-playback-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0113-banana-native-entry-and-first-playback.json",
+      "fresh_ffprobe_sha256": "0f97151e5724b5e89c227250af85b146bcf66bfd8796854a7ff3f5cf9b79da46",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 48.78
+    },
+    {
+      "path": "reference-android/0125-banana-visible-syllable-step-1.mp4",
+      "bytes": 900861,
+      "sha256": "26e17d3ac67c92969b23e9f625bfb20a23a7df3eeb80375cd44a5c209277fc0c",
+      "duration_seconds": 60.6086,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 72,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0125-banana-visible-syllable-step-1-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0125-banana-visible-syllable-step-1.json",
+      "fresh_ffprobe_sha256": "15d4863701de205c750464e36ddf925574c0cf7ce8f585a08d1dcd9c0271f1ad",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 60.7
+    },
+    {
+      "path": "reference-android/0131-banana-visible-syllable-step-2.mp4",
+      "bytes": 926542,
+      "sha256": "503daa3b8c4a23b61dca67ebb0d9954a8d71d220284b45dead9375fe9f7affbe",
+      "duration_seconds": 62.603222,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 78,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0131-banana-visible-syllable-step-2-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0131-banana-visible-syllable-step-2.json",
+      "fresh_ffprobe_sha256": "a3d67c59f2df89c3d058c9bb263fafcf49bb182df62711fcfe5ca61cad4e57b7",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 63.32
+    },
+    {
+      "path": "reference-android/0137-banana-visible-syllable-step-3.mp4",
+      "bytes": 1033471,
+      "sha256": "389916dce39edca7baa9321c83cfda6860d6a0ec1c4a613b2ad1efed15412541",
+      "duration_seconds": 64.088089,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 76,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0137-banana-visible-syllable-step-3-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0137-banana-visible-syllable-step-3.json",
+      "fresh_ffprobe_sha256": "bc548d481e45bed043fc83217a28d6cf8fd19a16693d5cfb5d5bbabf7849a5d4",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 64.84
+    },
+    {
+      "path": "reference-android/0165-banana-four-segment-repeat.mp4",
+      "bytes": 915576,
+      "sha256": "fcab548f74a243d354c91d15d2b94bebf5b121c6f5c54d5c6e2f9a159f8ffccb",
+      "duration_seconds": 42.219978,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 57,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0165-banana-four-segment-repeat-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0165-banana-four-segment-repeat.json",
+      "fresh_ffprobe_sha256": "40564f63f948e964fb11f843477a3b03872cdeabfc9271c93069b7e952f9f693",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 42.97
+    },
+    {
+      "path": "reference-android/0199-banana-return-to-same-guided-step.mp4",
+      "bytes": 1715603,
+      "sha256": "8f7315f34fc0d491510e1b5f504424d545fbd5e05937f769cb2a613e7377ce62",
+      "duration_seconds": 39.337944,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 94,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0199-banana-return-to-same-guided-step-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0199-banana-return-to-same-guided-step.json",
+      "fresh_ffprobe_sha256": "4b71a05bb16f5017894009b076d50ecbcd31279a6b9aa765908150ccc0a8e635",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 42.56
+    },
+    {
+      "path": "reference-android/0265-native-why-two-question-and-demonstration.mp4",
+      "bytes": 2149256,
+      "sha256": "528f57ef35c137f66fbdce92f681b592644d81e8b1db7ecd8ea8e8ad3cb1d042",
+      "duration_seconds": 107.9455,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 120,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0265-native-why-two-question-and-demonstration-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0265-native-why-two-question-and-demonstration.json",
+      "fresh_ffprobe_sha256": "ea4435fcc4e6a9d692c4b59cce97eab3a03d491687998b64c1e9f9521f580ddc",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 107.99
+    },
+    {
+      "path": "reference-android/0287-runtime-bridge-current-playback-direct-stop.mp4",
+      "bytes": 934466,
+      "sha256": "dd098e10f75abc7fe1d5282ae1136c3010a0535145c39753bf1d5d788cf0f96f",
+      "duration_seconds": 79.118767,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 96,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0287-runtime-bridge-current-playback-direct-stop-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0287-runtime-bridge-current-playback-direct-stop.json",
+      "fresh_ffprobe_sha256": "25131fff59712df34e0e3e3c26ddea97c9f4c326b598d39f3a3aba40d4281d96",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 80.97
+    },
+    {
+      "path": "reference-android/0371-pattern-visible-academy-navigation.mp4",
+      "bytes": 1022120,
+      "sha256": "26830113aee82f664d0af6d7d6c0f940af60a8783de906a9ad07d5ad1ce3d5be",
+      "duration_seconds": 6.828911,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 40,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0371-pattern-visible-academy-navigation-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0371-pattern-visible-academy-navigation.json",
+      "fresh_ffprobe_sha256": "e9bc03aeba7458a667bad266dbf8e6c175e477ffcf292dc1634d7370929f99a5",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 8.47
+    },
+    {
+      "path": "reference-android/0393-pattern-native-entry-and-playback.mp4",
+      "bytes": 2038637,
+      "sha256": "a86a1b81a60f103e87ee120c6395d79d3402b1ee7fab556538e0a7b247de6143",
+      "duration_seconds": 44.670178,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 90,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0393-pattern-native-entry-and-playback-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0393-pattern-native-entry-and-playback.json",
+      "fresh_ffprobe_sha256": "365ef338e11e3b84610e9427294c7ad581db6d0f1b1f31cb6c7d7cbc27b51690",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 44.32
+    },
+    {
+      "path": "reference-android/0403-pattern-observed-group-and-unconfirmed-proposal.mp4",
+      "bytes": 1655642,
+      "sha256": "f7fcd2f2aace3c92ba200881aba677bd3c713a77e6ad8db3e403d8959fc4b877",
+      "duration_seconds": 112.1636,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 153,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0403-pattern-observed-group-and-unconfirmed-proposal-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0403-pattern-observed-group-and-unconfirmed-proposal.json",
+      "fresh_ffprobe_sha256": "866af1b85898ca00922b8d4deeb758aeebee27485c158e35915bdfd12faa9a1a",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 112.72
+    },
+    {
+      "path": "reference-android/0432-pattern-return-to-same-unanswered-question.mp4",
+      "bytes": 1346258,
+      "sha256": "e6a1e83ab420cfff6a9e5b6eb597ee6362c9440c5706704829ed2cc88d218d5e",
+      "duration_seconds": 34.246256,
+      "width": 1080,
+      "height": 2340,
+      "all_frames_read": 70,
+      "audio_streams": 0,
+      "ffprobe_exit": 0,
+      "ffprobe_stderr_empty": true,
+      "stored_original_ffprobe": "reference-android/0432-pattern-return-to-same-unanswered-question-ffprobe.json",
+      "fresh_ffprobe": "ffprobe/reference-android--0432-pattern-return-to-same-unanswered-question.json",
+      "fresh_ffprobe_sha256": "8fa513e166501c567f7d874d1934d8604c845fd5ee85acd8d8d2850872c8cad4",
+      "whole_block_within_recording_limit": true,
+      "block_elapsed_seconds": 36.66
+    }
+  ],
+  "video_count": 28,
+  "video_bytes": 38552953,
+  "video_duration_seconds": 1028.169354,
+  "total_video_frames_read": 1969,
+  "result_referenced_images": [
+    {
+      "path": "original-android/0023-home-after-onboarding.png",
+      "bytes": 3022846,
+      "sha256": "0ced2b75dec4d88c604b8c71ad5821c667552aca60041b2cedfc3492e4540685"
+    },
+    {
+      "path": "original-android/0057-local-model-conditions.png",
+      "bytes": 556622,
+      "sha256": "465351b53b2018f0613920c98f7d142ced149b1d079fd2d098a61cb09bc7a980"
+    },
+    {
+      "path": "original-android/0073-local-voice-ready.png",
+      "bytes": 1402372,
+      "sha256": "9c1683406579648db711bc3136c85c6bb91398cb2dcabff331a664b8dec97894"
+    },
+    {
+      "path": "original-android/0110-bridge-stopped-same-task.png",
+      "bytes": 482269,
+      "sha256": "4181fc218a199979afd41672e59a8ae39534d392f1c7b87796b80ab7525853bb"
+    },
+    {
+      "path": "original-android/0133-typed-why-response.png",
+      "bytes": 1682174,
+      "sha256": "f3124e02046330fd6c50f21881a934ca56f20d6b05de5c9f937260f354ca47fb"
+    },
+    {
+      "path": "original-android/0142-conversation-stopped.png",
+      "bytes": 1133549,
+      "sha256": "bb29a9625d98563249f63b0d33ce37f074048ff92388fa1475ccb97e0e93daaf"
+    },
+    {
+      "path": "original-android/0153-actual-microphone-outcome.png",
+      "bytes": 1079922,
+      "sha256": "1820b7cd4201a5b2421518785d0919de316e15dc0014a6de1e259ddd14b647cb"
+    },
+    {
+      "path": "original-android/0174-bridge-before-pause.png",
+      "bytes": 514162,
+      "sha256": "caf5a558336c10b4efeba2398ad2d24fc432965ae49c0410f8153a87f561ab63"
+    },
+    {
+      "path": "original-android/0180-bridge-after-pause.png",
+      "bytes": 514162,
+      "sha256": "caf5a558336c10b4efeba2398ad2d24fc432965ae49c0410f8153a87f561ab63"
+    },
+    {
+      "path": "original-android/0191-bridge-same-model-after-return.png",
+      "bytes": 750935,
+      "sha256": "fd30c17767d9df67079eaba2cc18c91cc5ac8118a9f7d547cda24903d5887635"
+    },
+    {
+      "path": "original-android/0195-bridge-compact-before-resize.png",
+      "bytes": 750935,
+      "sha256": "fd30c17767d9df67079eaba2cc18c91cc5ac8118a9f7d547cda24903d5887635"
+    },
+    {
+      "path": "original-android/0201-bridge-compact.png",
+      "bytes": 379730,
+      "sha256": "ab6f3f1c0b5b2318e4ba089f85095e37c17f5bcf7cb589895128c15e740f3600"
+    },
+    {
+      "path": "original-android/0205-bridge-expanded-before-resize.png",
+      "bytes": 379730,
+      "sha256": "ab6f3f1c0b5b2318e4ba089f85095e37c17f5bcf7cb589895128c15e740f3600"
+    },
+    {
+      "path": "original-android/0211-bridge-expanded.png",
+      "bytes": 819026,
+      "sha256": "f6b9ff0e58c85a5c018a73b89748e2b71432502e3d61e32ee6691fda500970f0"
+    },
+    {
+      "path": "original-android/0215-bridge-fold7-cover-emulated-before-resize.png",
+      "bytes": 819026,
+      "sha256": "f6b9ff0e58c85a5c018a73b89748e2b71432502e3d61e32ee6691fda500970f0"
+    },
+    {
+      "path": "original-android/0221-bridge-fold7-cover-emulated.png",
+      "bytes": 806667,
+      "sha256": "8c715cca8bd093de7c5255378c3815ff71376df481002d9cb321a42b1f6ed4c2"
+    },
+    {
+      "path": "original-android/0225-bridge-fold7-inner-emulated-before-resize.png",
+      "bytes": 806667,
+      "sha256": "8c715cca8bd093de7c5255378c3815ff71376df481002d9cb321a42b1f6ed4c2"
+    },
+    {
+      "path": "original-android/0231-bridge-fold7-inner-emulated.png",
+      "bytes": 818532,
+      "sha256": "0fc40c60e2c933e829f2dad30c7f8ac3f03b19aa201dfd5cca2bffdeb6e7601b"
+    },
+    {
+      "path": "original-android/0279-banane-slower-stopped-same-task.png",
+      "bytes": 491590,
+      "sha256": "7f5063892d10751478dab73e728c8c151fb8b16e78ec7d2e9666409fb37d7b8a"
+    },
+    {
+      "path": "original-android/0283-words-before-pause.png",
+      "bytes": 491590,
+      "sha256": "7f5063892d10751478dab73e728c8c151fb8b16e78ec7d2e9666409fb37d7b8a"
+    },
+    {
+      "path": "original-android/0289-words-after-pause.png",
+      "bytes": 494492,
+      "sha256": "1ea4f99833f78bfc0715c781d325ab7f6054ad3ccb9c4d3d54ccb4da85024175"
+    },
+    {
+      "path": "original-android/0301-words-same-model-after-return.png",
+      "bytes": 820510,
+      "sha256": "a07a91028329eb58713235d8bfbaee4585dc6223d51386c6db4aa26424ec7740"
+    },
+    {
+      "path": "original-android/0331-pattern-stopped-same-task.png",
+      "bytes": 548466,
+      "sha256": "c9e32dfe8a11a265cc24a156fd733564bceea6e7751263306e0c52f30a7b2dce"
+    },
+    {
+      "path": "original-android/0336-patterns-before-pause.png",
+      "bytes": 548466,
+      "sha256": "c9e32dfe8a11a265cc24a156fd733564bceea6e7751263306e0c52f30a7b2dce"
+    },
+    {
+      "path": "original-android/0342-patterns-after-pause.png",
+      "bytes": 548466,
+      "sha256": "c9e32dfe8a11a265cc24a156fd733564bceea6e7751263306e0c52f30a7b2dce"
+    },
+    {
+      "path": "original-android/0354-patterns-same-model-after-return.png",
+      "bytes": 851004,
+      "sha256": "1e9361608383ec9dc446b302076db5500557ac21b634f6ca24ba258a961dea33"
+    },
+    {
+      "path": "original-android/0377-native-entry-same-guided-task.png",
+      "bytes": 1822199,
+      "sha256": "eced3dc6401a5ed032d7e4f8fb68c1b40dbd6df8e2af24ce2912a24147dc2b9d"
+    },
+    {
+      "path": "original-android/0387-native-current-eight-plus-five.png",
+      "bytes": 647199,
+      "sha256": "e801ae7e01151d1fee32c970cb8797f4291943a1182eb0800fb36d393d09012a"
+    },
+    {
+      "path": "original-android/0414-native-ten-and-three.png",
+      "bytes": 664312,
+      "sha256": "34d4ababbce8ec62a5265291e1a224951f287928aea97ec1d229491c8c0ce4ba"
+    },
+    {
+      "path": "original-android/0438-why-native-eight-and-five-before-question.png",
+      "bytes": 641033,
+      "sha256": "30008d3d73953b41f3148d318b9f803e82de8c267b01e0c70dd36de5732bf435"
+    },
+    {
+      "path": "original-android/0443-why-native-written-before-send.png",
+      "bytes": 445361,
+      "sha256": "0314b42100a16fbd9211bad18ad541d5248d276dc070c281dc2c845aa7228730"
+    },
+    {
+      "path": "original-android/0462-why-native-ten-and-three-after-explanation.png",
+      "bytes": 681626,
+      "sha256": "67c7cd507f8ae310956b25c522b5806e58cd515e69e2948f9064b336e18f63f3"
+    },
+    {
+      "path": "original-android/0512-native-performance-observed-scene.png",
+      "bytes": 681437,
+      "sha256": "f1654fb62d595f9f0ad5971fcb007a6934b4f08373e4e612e4e039ddb118791e"
+    },
+    {
+      "path": "original-android/0519-native-return-current-task.png",
+      "bytes": 1532251,
+      "sha256": "22628f1eb6d3297c82d40fc780340d9e3ef39204258c9b80022b27dbc7464363"
+    },
+    {
+      "path": "original-android/0448-why-native-current-explanation.png",
+      "bytes": 681469,
+      "sha256": "a7dc4d90be3e011121b02bdf3df0896e13597da5b3d8072f24d181321f7d3401"
+    },
+    {
+      "path": "reference-android/0024-home-after-onboarding.png",
+      "bytes": 3022280,
+      "sha256": "45717901d3016ce9a88ca653eeff52d2e9b657457392909edf5209fa05824b55"
+    },
+    {
+      "path": "reference-android/0061-local-model-conditions.png",
+      "bytes": 555803,
+      "sha256": "11d0c43e5efaaf5491dfae2d29ae3bda2ea216e7d1ac6e617a7315d9a86823a3"
+    },
+    {
+      "path": "reference-android/0078-local-voice-ready.png",
+      "bytes": 1452115,
+      "sha256": "18f4c39870259b7fed3106bb3935d4c50a0971407ae128bb7ec337179f81501d"
+    },
+    {
+      "path": "reference-android/0099-banana-guided-step.png",
+      "bytes": 1752027,
+      "sha256": "2f6868de1603d1175751da4e0d7369537baf2e3c53ef8940b3c9da02f8e8a197"
+    },
+    {
+      "path": "reference-android/0105-banana-guided-step.png",
+      "bytes": 1768177,
+      "sha256": "64dc6482109a7b3a1fb9e15d7a5fc152662ec79ecd1bce1cc1dbd8fc24f57fb3"
+    },
+    {
+      "path": "reference-android/0111-banana-guided-before-native.png",
+      "bytes": 1745756,
+      "sha256": "1c19f84a21d51d0ff5ef4b6961255dcdbe76ebb220f335495dc3dc1e348d01d8"
+    },
+    {
+      "path": "reference-android/0121-banana-native-entry.png",
+      "bytes": 582389,
+      "sha256": "bf8be543fa99f53a04802c85df0dd7438ffb89db4462c0a3c88eb3a6f1f27de5"
+    },
+    {
+      "path": "reference-android/0130-banana-syllable-1.png",
+      "bytes": 590333,
+      "sha256": "c64ee8df47045e248de595bec30e916ed8b380fa7efe8d7d158209fe0c29bca3"
+    },
+    {
+      "path": "reference-android/0136-banana-syllable-2.png",
+      "bytes": 593279,
+      "sha256": "98e90597331a345d3a785f65f71106d8eb2ed330316f02d67c0e1cd791965826"
+    },
+    {
+      "path": "reference-android/0143-banana-syllable-3.png",
+      "bytes": 592871,
+      "sha256": "70bb53c789e07bdcee6a6033569ed2881936c1c25e58376112646d0fe46d10b9"
+    },
+    {
+      "path": "reference-android/0197-banana-repeat-completed.png",
+      "bytes": 650477,
+      "sha256": "28b2d4622479abc806efaf85a9b024c954973855e7318097596667213fed9c4c"
+    },
+    {
+      "path": "reference-android/0207-banana-flutter-return.png",
+      "bytes": 1345445,
+      "sha256": "de44296be257fba26b4d1e047300529c9854792d9572d582a43346798fa1c4c9"
+    },
+    {
+      "path": "reference-android/0243-runtime-bridge-native-entry.png",
+      "bytes": 645149,
+      "sha256": "7791bca89c8d5a774831f515d4b9ac4257ade578bf18c2b811bc3b7da75d65c3"
+    },
+    {
+      "path": "reference-android/0268-why-native-eight-and-five-before-question.png",
+      "bytes": 643560,
+      "sha256": "9d115cb120589078b40b46193c49e4ea3331ace15fc23922465121e32816ea0a"
+    },
+    {
+      "path": "reference-android/0273-why-native-written-before-send.png",
+      "bytes": 446770,
+      "sha256": "74d5dc52b3c1a4b714c60324d847d8c912cbb651d96d92d038974b21b80577a7"
+    },
+    {
+      "path": "reference-android/0282-why-native-ten-and-three-after-explanation.png",
+      "bytes": 681632,
+      "sha256": "5af4c5ec677f97e7eaa9f48ca13e062ffc958bb31df9753ae80d37166ee412e9"
+    },
+    {
+      "path": "reference-android/0285-runtime-bridge-before-replay-stop.png",
+      "bytes": 681879,
+      "sha256": "eb839264db66fbfbe5638145badb1fea29ff64c5ff5720674d32e288a57a3604"
+    },
+    {
+      "path": "reference-android/0354-runtime-bridge-after-stop.png",
+      "bytes": 684672,
+      "sha256": "d3819cd42603e014afe5b2b1b0fb5332fc2d40f09a61ac488b053bf4d9f970f2"
+    },
+    {
+      "path": "reference-android/0363-runtime-bridge-flutter-return.png",
+      "bytes": 1850709,
+      "sha256": "ca587f628bd9ee89e6ad8c203ce950490507dfbfb67702c46d4b79d9edbd4513"
+    },
+    {
+      "path": "reference-android/0369-runtime-bridge-return-academy.png",
+      "bytes": 879448,
+      "sha256": "78998b2c2f24107f59126e6d28b383f006d2b01dbbf4305afc9b6fa0fbcb6c06"
+    },
+    {
+      "path": "reference-android/0391-pattern-unanswered-before-native.png",
+      "bytes": 2172879,
+      "sha256": "aebb799d14c8357016df342875f577feb99955af6745042b143d7314967a5a72"
+    },
+    {
+      "path": "reference-android/0400-pattern-native-entry.png",
+      "bytes": 661659,
+      "sha256": "9c632862912bc1c6a42c0aef24daa5764dec6f2369d52f1547943474f39d08cd"
+    },
+    {
+      "path": "reference-android/0427-pattern-two-sign-group.png",
+      "bytes": 646857,
+      "sha256": "5906e880c82fb0e1aeb762579c67db34b2bf4cee0c3601aed3a438e7735ed661"
+    },
+    {
+      "path": "reference-android/0431-pattern-unconfirmed-native-proposal.png",
+      "bytes": 644632,
+      "sha256": "a4dc3aab3fe7ba883efccc92bfd7fb0ea117d29271f7358a8f3dcb58be638cde"
+    },
+    {
+      "path": "reference-android/0436-pattern-flutter-return.png",
+      "bytes": 2173039,
+      "sha256": "30803d4db999fce544ab5ad5a56634ee31b7e5586a2d2f172f7151b710384f19"
+    },
+    {
+      "path": "reference-android/0443-pattern-current-unanswered-return.png",
+      "bytes": 2173039,
+      "sha256": "30803d4db999fce544ab5ad5a56634ee31b7e5586a2d2f172f7151b710384f19"
+    },
+    {
+      "path": "reference-android/0336-runtime-voice-stop.png",
+      "bytes": 682630,
+      "sha256": "267436ccce2c75024946487db7f377bc7ed6cd3847857af03f71665029250951"
+    },
+    {
+      "path": "reference-android/0351-runtime-voice-idle.png",
+      "bytes": 683961,
+      "sha256": "e1f3ced54f31a2792515a325ef09d3ff5b71446669f42947e68ea14e7deada07"
+    },
+    {
+      "path": "reference-android/0278-why-native-current-explanation.png",
+      "bytes": 682067,
+      "sha256": "d4fd595a9f38dd30c99c7675261869df989c5bbe6af54326fa893204ed02e360"
+    }
+  ],
+  "result_referenced_image_count": 64,
+  "elapsed_seconds": 3.1724952009972185
+}

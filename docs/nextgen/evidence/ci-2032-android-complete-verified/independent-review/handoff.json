@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent read-only review of saved 2032 Android attempt2 originals",
+  "directory": "/workspace/scratch/4fa97167812c/agent-ci-2032-android-review",
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "native_source": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "workflow_run": 43837592237,
+  "run_attempt": 2,
+  "android_job": 133221738048,
+  "artifact_id": 14216997362,
+  "status": "VERIFIED_WITH_LIMITATIONS",
+  "created_files": [
+    {
+      "path": "SUMMARY.md",
+      "bytes": 6776,
+      "sha256": "e1c9d6bee607da542f0abb668b2b29e7817d17f4eb16dd98b93a2e9517e19966"
+    },
+    {
+      "path": "ffprobe/original-android--0001-onboarding.json",
+      "bytes": 5615,
+      "sha256": "4e1cb596f1fdef438cec45c499b8d4e9f8a443814617cd76b2ff83ba24fc93d5"
+    },
+    {
+      "path": "ffprobe/original-android--0098-eight-plus-five-explanation.json",
+      "bytes": 5634,
+      "sha256": "a667b99a3e1a087b543ee2ea51ca2c603f407b1b23c8c992ce0e5a26533bab02"
+    },
+    {
+      "path": "ffprobe/original-android--0173-bridge-pause-return.json",
+      "bytes": 5618,
+      "sha256": "bbd70f17a353c68b992ff3db6c994bf918cde3580d9a36e05f1093dd225e43dd"
+    },
+    {
+      "path": "ffprobe/original-android--0194-bridge-resize-compact.json",
+      "bytes": 5619,
+      "sha256": "9d52db161a9a83775e5ed9224b4c8e5fe1a4bb28174dd7fa13b8bf91d6236b43"
+    },
+    {
+      "path": "ffprobe/original-android--0204-bridge-resize-expanded.json",
+      "bytes": 5612,
+      "sha256": "26635325682529e40efe9fbcd1823e51fc61b886950a96539570504db5abb2f5"
+    },
+    {
+      "path": "ffprobe/original-android--0214-bridge-resize-fold7-cover-emulated.json",
+      "bytes": 5632,
+      "sha256": "16517e906fc88cff1bb9985109f4d26dd0393ba65a3232dea84c6cd183b18d0e"
+    },
+    {
+      "path": "ffprobe/original-android--0224-bridge-resize-fold7-inner-emulated.json",
+      "bytes": 5631,
+      "sha256": "d48878ff9909825861f2de68bdd710c84fcd533e894cdaee67968208ea1f6bb4"
+    },
+    {
+      "path": "ffprobe/original-android--0244-banane-syllables.json",
+      "bytes": 5617,
+      "sha256": "355655f1b946b2de230a21b3e06e944890de8c6675d6a7f2d9985b85ed71327f"
+    },
+    {
+      "path": "ffprobe/original-android--0282-words-pause-return.json",
+      "bytes": 5615,
+      "sha256": "0edfe7d01556e3da268dfc900f1136922b8540c7f0e1b1d5532ba60a5e81b58a"
+    },
+    {
+      "path": "ffprobe/original-android--0309-pattern-hint-and-correction.json",
+      "bytes": 5623,
+      "sha256": "8e9a032decf60bbe199deb59960e9e047502e28b36716274e41d2b7bc4313482"
+    },
+    {
+      "path": "ffprobe/original-android--0335-patterns-pause-return.json",
+      "bytes": 5618,
+      "sha256": "83b206276ae16a0d93ac68cf74d1bfb324dca62aedff983f3ec93f3712d5b739"
+    },
+    {
+      "path": "ffprobe/original-android--0379-native-three-dimensional-learning.json",
+      "bytes": 5636,
+      "sha256": "15d723718dffba0078a0609b311d6c2427126bdcd9bd1af6d4dafd8b908e0c9f"
+    },
+    {
+      "path": "ffprobe/original-android--0435-native-why-two-question-and-demonstration.json",
+      "bytes": 5652,
+      "sha256": "f134218ad4c58bc312a7fe6dc1812ebfb578110ef8717269f098ccb600c7189a"
+    },
+    {
+      "path": "ffprobe/original-android--0463-native-three-dimensional-performance.json",
+      "bytes": 5636,
+      "sha256": "3405154dd70dd28ba727f8b824ec015d61ce4cd059e144fbdb247cac05f48c7e"
+    },
+    {
+      "path": "ffprobe/reference-android--0002-onboarding.json",
+      "bytes": 5611,
+      "sha256": "ab83a52e8fe5f06d9e724678b09d14599ccd21a877ae703121ce04491889ce4f"
+    },
+    {
+      "path": "ffprobe/reference-android--0093-banana-guided-navigation.json",
+      "bytes": 5620,
+      "sha256": "19766e0c243a183a20f55047a444c97c3426a7cc77524384d24f207e9bf6245e"
+    },
+    {
+      "path": "ffprobe/reference-android--0113-banana-native-entry-and-first-playback.json",
+      "bytes": 5643,
+      "sha256": "0f97151e5724b5e89c227250af85b146bcf66bfd8796854a7ff3f5cf9b79da46"
+    },
+    {
+      "path": "ffprobe/reference-android--0125-banana-visible-syllable-step-1.json",
+      "bytes": 5629,
+      "sha256": "15d4863701de205c750464e36ddf925574c0cf7ce8f585a08d1dcd9c0271f1ad"
+    },
+    {
+      "path": "ffprobe/reference-android--0131-banana-visible-syllable-step-2.json",
+      "bytes": 5629,
+      "sha256": "a3d67c59f2df89c3d058c9bb263fafcf49bb182df62711fcfe5ca61cad4e57b7"
+    },
+    {
+      "path": "ffprobe/reference-android--0137-banana-visible-syllable-step-3.json",
+      "bytes": 5632,
+      "sha256": "bc548d481e45bed043fc83217a28d6cf8fd19a16693d5cfb5d5bbabf7849a5d4"
+    },
+    {
+      "path": "ffprobe/reference-android--0165-banana-four-segment-repeat.json",
+      "bytes": 5628,
+      "sha256": "40564f63f948e964fb11f843477a3b03872cdeabfc9271c93069b7e952f9f693"
+    },
+    {
+      "path": "ffprobe/reference-android--0199-banana-return-to-same-guided-step.json",
+      "bytes": 5631,
+      "sha256": "4b71a05bb16f5017894009b076d50ecbcd31279a6b9aa765908150ccc0a8e635"
+    },
+    {
+      "path": "ffprobe/reference-android--0265-native-why-two-question-and-demonstration.json",
+      "bytes": 5649,
+      "sha256": "ea4435fcc4e6a9d692c4b59cce97eab3a03d491687998b64c1e9f9521f580ddc"
+    },
+    {
+      "path": "ffprobe/reference-android--0287-runtime-bridge-current-playback-direct-stop.json",
+      "bytes": 5643,
+      "sha256": "25131fff59712df34e0e3e3c26ddea97c9f4c326b598d39f3a3aba40d4281d96"
+    },
+    {
+      "path": "ffprobe/reference-android--0371-pattern-visible-academy-navigation.json",
+      "bytes": 5634,
+      "sha256": "e9bc03aeba7458a667bad266dbf8e6c175e477ffcf292dc1634d7370929f99a5"
+    },
+    {
+      "path": "ffprobe/reference-android--0393-pattern-native-entry-and-playback.json",
+      "bytes": 5639,
+      "sha256": "365ef338e11e3b84610e9427294c7ad581db6d0f1b1f31cb6c7d7cbc27b51690"
+    },
+    {
+      "path": "ffprobe/reference-android--0403-pattern-observed-group-and-unconfirmed-proposal.json",
+      "bytes": 5658,
+      "sha256": "866af1b85898ca00922b8d4deeb758aeebee27485c158e35915bdfd12faa9a1a"
+    },
+    {
+      "path": "ffprobe/reference-android--0432-pattern-return-to-same-unanswered-question.json",
+      "bytes": 5646,
+      "sha256": "8fa513e166501c567f7d874d1934d8604c845fd5ee85acd8d8d2850872c8cad4"
+    },
+    {
+      "path": "installation-identity-review.json",
+      "bytes": 3775,
+      "sha256": "5cc6bac1887f45b2375659f30f2abed9972dc7aef79ccf0f56f8620c4a632ecb"
+    },
+    {
+      "path": "lifecycle-persistence-review.json",
+      "bytes": 16795,
+      "sha256": "f8176f4a2b914b23f6293b7253bb49642ffd93c1dbd06ea39195e8c6774cc66e"
+    },
+    {
+      "path": "media-review.json",
+      "bytes": 34137,
+      "sha256": "6b6b18defabab795d5f6cc2d65db058d97f6c4efaca6c284421b81dcf6f38596"
+    },
+    {
+      "path": "native-stop-raw-review.json",
+      "bytes": 55842,
+      "sha256": "f0ce426b2a589baadfd2dbd76b8d67738657fc7dfbab2682038281f37516c5c0"
+    },
+    {
+      "path": "pattern-observation-review.json",
+      "bytes": 28433,
+      "sha256": "b12be6c7c09c5678dbd12eb9af151dd9d68020433c14e4d2a30882578eaa5a7c"
+    },
+    {
+      "path": "performance-raw-review.json",
+      "bytes": 1447,
+      "sha256": "2d65ecd17da30fb821118d2390f65df20d04be26995ff425f0ad28788e2a012a"
+    },
+    {
+      "path": "pure-gate-review.json",
+      "bytes": 1133,
+      "sha256": "c8445844567fe518826d69bd72b0b7a039284dd18e2244a6ab6f61281947385f"
+    },
+    {
+      "path": "raw-input-binding.json",
+      "bytes": 26092,
+      "sha256": "f350d9fe1e45cbcae9864bfae9fe335378cb218d3e729a777c1e9eda36202de8"
+    },
+    {
+      "path": "review.json",
+      "bytes": 8153,
+      "sha256": "baa50ee3535889c1d8f81dea07a412b47b10140bcef7fce687993569f0b7b044"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 2414,
+      "sha256": "262077311d00b9d9b07652363c0bac639f159e110b5a92ec11d17e121bfd1cd2"
+    },
+    {
+      "path": "speech-and-why-review.json",
+      "bytes": 2702,
+      "sha256": "fad5fd182f951ebb3993e9fc8362e3216aa789ab53530039ef611f30bf6d9b0f"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 2910,
+      "sha256": "f11a2b6dfff46f83208c9717e9a7e0a8d53c37cc49b82d2464a2bdb0947fe6df"
+    }
+  ],
+  "created_file_count_excluding_handoff": 41,
+  "created_bytes_excluding_handoff": 348259,
+  "no_new_android_or_testsuite_execution": true,
+  "no_api_or_repository_mutation": true
+}

@@ -1,0 +1,218 @@
+{
+  "schema": "lumo.nextgen.2032.android.originals.independent_review",
+  "version": 1,
+  "status": "VERIFIED_WITH_LIMITATIONS",
+  "reviewed_utc": "2026-11-16T10:46:16.694741+00:00",
+  "workflow_run": 43837592237,
+  "run_attempt": 2,
+  "android_job": 133221738048,
+  "artifact_id": 14216997362,
+  "artifact_archive_bytes": 158127888,
+  "artifact_archive_sha256": "b925e0ed41110053bf4ad07dd1d1f27c015598bd1b6669b3342a5073ef2a7db7",
+  "artifact_members": 4066,
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "source_tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "native_source": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "version_name": "0.13.20",
+  "version_code": 2032,
+  "apk_abi": "x86_64",
+  "apk_sha256": "388c03118b2677817eba130610d9a8e32e964d91f644f61a9a2bcf5141465ad1",
+  "pck_sha256": "e7313f1cd28dd00ee324e6798aec6be65e91b28a09bb2b5d2a012a45de5953e7",
+  "original_status": "PASS_WITH_LIMITATIONS",
+  "reference_status": "PASS_WITH_LIMITATIONS",
+  "result_bindings": {
+    "original": {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/learning-android-result.json",
+      "bytes": 126175,
+      "sha256": "c3a13283027e12fe3a7553bd2c48b9e23d09b9494643cda40012c1ffb58263e7"
+    },
+    "reference": {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/reference-android-result.json",
+      "bytes": 91724,
+      "sha256": "5815863d0a9cb59ba025291196250418c3e529b1e830e17a347232e63548008f"
+    }
+  },
+  "pure_acceptance_reassessment": "PASS: unchanged verify_tours including the >=2032 current native active-stop requirement, evaluated only on saved originals.",
+  "no_new_android_run": true,
+  "no_api_or_download": true,
+  "no_root_or_product_change": true,
+  "no_publication_called_or_reviewed": true,
+  "why_two": {
+    "status": "OBSERVED",
+    "native_question": "Warum zuerst zwei?",
+    "typed_not_recognized_speech": true,
+    "moved_before": 0,
+    "moved_after": 2,
+    "manual_move_buttons_after_question": false,
+    "original_playback_pid": 7096,
+    "original_playback_id": 19,
+    "repeated_in_current_stop_preparation": true
+  },
+  "banana": {
+    "status": "OBSERVED_WITH_LIMITATIONS",
+    "syllables": [
+      "Ba",
+      "na",
+      "ne"
+    ],
+    "steps": 3,
+    "repeat_pid": 9392,
+    "repeat_utterance_ids": [
+      19,
+      20,
+      21,
+      22
+    ],
+    "each_started_and_completed_in_order": true,
+    "native_slower_exercised_in_this_run": false,
+    "acoustic_words_or_tempo_verified": false
+  },
+  "pattern": {
+    "status": "NATIVE_HINT_AND_UNGRADED_RETURN_OBSERVED",
+    "period": 2,
+    "native_proposal": "Quadrat",
+    "native_confirmation_performed": false,
+    "same_returned_prompt": true,
+    "core_submission": "NOT_EXERCISED",
+    "stored_assessed_attempt_counts": {
+      "before": 0,
+      "returned": 0,
+      "final": 0
+    },
+    "reader_limit": "Whole-node heading equality rejects a heading embedded as an exact line in merged semantics; four actual answer cards are reachable after normal scrolling."
+  },
+  "current_native_active_stop": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "pid": 10808,
+    "active_started_id": 13,
+    "profile": "lumo-free-supertonic-de-v1",
+    "last_active_previous_ids": [
+      3,
+      11
+    ],
+    "fresh_stop_frames": [
+      "0333-runtime-voice-stop.png",
+      "0336-runtime-voice-stop.png"
+    ],
+    "recorded_stop_control": "Stimme stoppen",
+    "returned_control": "Schritt anhören",
+    "elapsed_before_input_seconds": 25.75739522599997,
+    "quiet_observation_seconds": 13.578335915000025,
+    "raw_pid_speech_observations_revalidated": 59,
+    "no_completed_or_later_segment_observed": true,
+    "native_model_before_and_after": "2 / 5 bewegt",
+    "learning_and_profile_unchanged": true,
+    "acoustic_stop_or_latency_claim": false
+  },
+  "lifecycle_and_saved_state": {
+    "comparisons": 18,
+    "exact_checkpoint_comparisons": 11,
+    "home_transitions_to_actual_launcher": 3,
+    "actual_learning_keys_per_snapshot": 2,
+    "distinct_fresh_profiles_between_original_and_reference_intentional": true,
+    "layout_configs": [
+      {
+        "layout": "compact",
+        "width": 720,
+        "height": 1600,
+        "android_test_density_dpi": 320,
+        "wm_size": "Physical size: 1080x2340\nOverride size: 720x1600",
+        "wm_density": "Physical density: 440\nOverride density: 320",
+        "physical_ppi_claimed": false
+      },
+      {
+        "layout": "expanded",
+        "width": 1768,
+        "height": 2208,
+        "android_test_density_dpi": 360,
+        "wm_size": "Physical size: 1080x2340\nOverride size: 1768x2208",
+        "wm_density": "Physical density: 440\nOverride density: 360",
+        "physical_ppi_claimed": false
+      },
+      {
+        "layout": "fold7-cover-emulated",
+        "width": 1080,
+        "height": 2520,
+        "android_test_density_dpi": 420,
+        "wm_size": "Physical size: 1080x2340\nOverride size: 1080x2520",
+        "wm_density": "Physical density: 440\nOverride density: 420",
+        "physical_ppi_claimed": false
+      },
+      {
+        "layout": "fold7-inner-emulated",
+        "width": 1968,
+        "height": 2184,
+        "android_test_density_dpi": 420,
+        "wm_size": "Physical size: 1080x2340\nOverride size: 1968x2184",
+        "wm_density": "Physical density: 440\nOverride density: 420",
+        "physical_ppi_claimed": false
+      }
+    ]
+  },
+  "media": {
+    "videos_hashed_and_full_ffprobe_counted": 28,
+    "video_bytes": 38552953,
+    "video_duration_seconds": 1028.169354,
+    "decoded_video_frames_read": 1969,
+    "referenced_png_hashes_checked": 64,
+    "pngs_directly_viewed": 7,
+    "all_ffprobe_returns_zero_and_empty_errors": true,
+    "audio_tracks_recorded": false
+  },
+  "performance": {
+    "native_pid": 7096,
+    "window_indices": [
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "window_samples": [
+      6,
+      6,
+      7,
+      7,
+      7,
+      7,
+      7
+    ],
+    "sample_count": 47,
+    "measured_window_seconds": 38.689638,
+    "scene_observed_seconds": 43.90826878300004,
+    "mean_process_frame_interval_ms": 823.1837872340425,
+    "mean_process_frame_rate_hz": 1.2147955480999848,
+    "process_frames_over_16_7_ms": 47,
+    "process_frames_over_16_7_fraction": 1.0,
+    "worst_window_p95_ms": 1012.011,
+    "worst_window_p99_ms": 1012.011,
+    "joint_speech_fox_effect_samples": 12,
+    "renderer": "gl_compatibility",
+    "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))"
+  },
+  "remaining_limits": [
+    "No assessed Core pattern submission: NOT_EXERCISED is independently confirmed by all three saved snapshots and the missing touch/control records.",
+    "Microphone UI reports explicit_device_limitation; no real German utterance, recognized wrong number or recognition correction is proven.",
+    "This complete 2032 tour does not exercise native Langsamer or an active Flutter task switch; older supplemental results must stay separately source-bound.",
+    "Video has no audio track. Callback pairs do not prove spoken word correctness, acoustic tempo, acoustic silence or mouth/gesture cancellation.",
+    "Native process intervals average about 823 ms on software-rendered x86 emulator; all exceed 16.7 ms. No 60 FPS or physical-device performance claim.",
+    "Emulated size/density classes do not establish physical Fold7 hinge behavior, real hardware, upgrade or process-death recovery.",
+    "Persistence covers the synthetic profiles, two present canonical learning/reward records and the listed checkpoints, not a populated child history migration.",
+    "No full inventory modernization or inline native figure on every Flutter task follows from these tours."
+  ],
+  "detail_files": [
+    "source-binding.json",
+    "pure-gate-review.json",
+    "installation-identity-review.json",
+    "speech-and-why-review.json",
+    "native-stop-raw-review.json",
+    "lifecycle-persistence-review.json",
+    "pattern-observation-review.json",
+    "performance-raw-review.json",
+    "media-review.json",
+    "visual-review.json",
+    "raw-input-binding.json"
+  ]
+}

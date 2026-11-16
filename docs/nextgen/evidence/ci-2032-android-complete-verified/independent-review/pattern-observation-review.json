@@ -1,0 +1,866 @@
+{
+  "status": "NOT_EXERCISED",
+  "xml_observation_count": 8,
+  "observations": [
+    {
+      "file": "0450-pattern-observed-core-answer-cards.xml",
+      "sha256": "a363ba8d012c2e9fff8bc9ce50eea0f7a2440777f5e1512cc8aeb3a320609a82",
+      "heading_exact_node_label": false,
+      "heading_in_splitlines": true,
+      "controls": {
+        "Kreis": null,
+        "Dreieck": null,
+        "Stern": null,
+        "Quadrat": null
+      },
+      "selected_scroll_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "scrollable_nodes": [
+        {
+          "class": "android.widget.ScrollView",
+          "bounds": "[0,356][1080,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "true",
+          "content-desc": ""
+        }
+      ],
+      "matching_nodes": [
+        {
+          "text": "0.0",
+          "content-desc": "0, Level 1, Klasse 1, 0 Sterne, 0 von 400 XP\nLevel 1\n0\n1. Klasse\n0 / 400 XP",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ProgressBar",
+          "bounds": "[501,158][1047,334]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Aktuelle Lernaufgabe\nLogik\nDein Lernziel: Die wiederkehrende Gruppe finden und das Muster fortsetzen.\nDas Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?\nWähle die richtige Antwort:\n.. Ein Tipp von Lumo\nSchau dir die Formen der Reihe nach an. Welche Gruppe kommt immer wieder?",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ImageView",
+          "bounds": "[39,1723][1042,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "false"
+        }
+      ]
+    },
+    {
+      "file": "0451-pattern-observed-core-answer-cards.xml",
+      "sha256": "0f3926613b837a762cbcc0149237e6d5ebed04888c7f41e1ca6b7626e1a00e78",
+      "heading_exact_node_label": false,
+      "heading_in_splitlines": true,
+      "controls": {
+        "Kreis": null,
+        "Dreieck": null,
+        "Stern": null,
+        "Quadrat": null
+      },
+      "selected_scroll_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "scrollable_nodes": [
+        {
+          "class": "android.widget.ScrollView",
+          "bounds": "[0,356][1080,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "true",
+          "content-desc": ""
+        }
+      ],
+      "matching_nodes": [
+        {
+          "text": "0.0",
+          "content-desc": "0, Level 1, Klasse 1, 0 Sterne, 0 von 400 XP\nLevel 1\n0\n1. Klasse\n0 / 400 XP",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ProgressBar",
+          "bounds": "[501,158][1047,334]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Aktuelle Lernaufgabe\nLogik\nDein Lernziel: Die wiederkehrende Gruppe finden und das Muster fortsetzen.\nDas Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?\nWähle die richtige Antwort:\n.. Ein Tipp von Lumo\nSchau dir die Formen der Reihe nach an. Welche Gruppe kommt immer wieder?",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ImageView",
+          "bounds": "[39,812][1042,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Platz 1: Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[80,1598][223,1741]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Platz 2: Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[245,1598][388,1741]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Platz 3: Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[410,1598][553,1741]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Platz 4: Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[575,1598][718,1741]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        }
+      ]
+    },
+    {
+      "file": "0452-pattern-observed-core-answer-cards.xml",
+      "sha256": "5c78afa90f6e8ad330677d35f63c6cdb2ab0cc823402c7f36174b6e7ac05ba43",
+      "heading_exact_node_label": false,
+      "heading_in_splitlines": true,
+      "controls": {
+        "Kreis": [
+          557,
+          1704,
+          1042,
+          1914
+        ],
+        "Dreieck": [
+          557,
+          1451,
+          1042,
+          1671
+        ],
+        "Stern": [
+          39,
+          1704,
+          524,
+          1914
+        ],
+        "Quadrat": [
+          39,
+          1451,
+          524,
+          1671
+        ]
+      },
+      "selected_scroll_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "scrollable_nodes": [
+        {
+          "class": "android.widget.ScrollView",
+          "bounds": "[0,356][1080,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "true",
+          "content-desc": ""
+        }
+      ],
+      "matching_nodes": [
+        {
+          "text": "0.0",
+          "content-desc": "0, Level 1, Klasse 1, 0 Sterne, 0 von 400 XP\nLevel 1\n0\n1. Klasse\n0 / 400 XP",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ProgressBar",
+          "bounds": "[501,158][1047,334]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Aktuelle Lernaufgabe\nLogik\nDein Lernziel: Die wiederkehrende Gruppe finden und das Muster fortsetzen.\nDas Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?\nWähle die richtige Antwort:\n.. Ein Tipp von Lumo\nSchau dir die Formen der Reihe nach an. Welche Gruppe kommt immer wieder?",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ImageView",
+          "bounds": "[39,356][1042,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Platz 1: Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[80,686][223,829]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Platz 2: Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[245,686][388,829]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Platz 3: Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[410,686][553,829]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Platz 4: Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[575,686][718,829]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,1451][524,1671]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Dreieck",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,1451][1042,1671]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Stern",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,1704][524,1914]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,1704][1042,1914]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        }
+      ]
+    },
+    {
+      "file": "0453-pattern-observed-core-answer-cards.xml",
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "heading_exact_node_label": false,
+      "heading_in_splitlines": true,
+      "controls": {
+        "Kreis": [
+          557,
+          1001,
+          1042,
+          1221
+        ],
+        "Dreieck": [
+          557,
+          748,
+          1042,
+          968
+        ],
+        "Stern": [
+          39,
+          1001,
+          524,
+          1221
+        ],
+        "Quadrat": [
+          39,
+          748,
+          524,
+          968
+        ]
+      },
+      "selected_scroll_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "scrollable_nodes": [
+        {
+          "class": "android.widget.ScrollView",
+          "bounds": "[0,356][1080,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "true",
+          "content-desc": ""
+        }
+      ],
+      "matching_nodes": [
+        {
+          "text": "0.0",
+          "content-desc": "0, Level 1, Klasse 1, 0 Sterne, 0 von 400 XP\nLevel 1\n0\n1. Klasse\n0 / 400 XP",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ProgressBar",
+          "bounds": "[501,158][1047,334]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Aktuelle Lernaufgabe\nLogik\nDein Lernziel: Die wiederkehrende Gruppe finden und das Muster fortsetzen.\nDas Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?\nWähle die richtige Antwort:\n.. Ein Tipp von Lumo\nSchau dir die Formen der Reihe nach an. Welche Gruppe kommt immer wieder?",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ImageView",
+          "bounds": "[39,356][1042,1694]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,748][524,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Dreieck",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,748][1042,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Stern",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,1001][524,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,1001][1042,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        }
+      ]
+    },
+    {
+      "file": "0454-pattern-observed-core-answer-cards.xml",
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "heading_exact_node_label": false,
+      "heading_in_splitlines": true,
+      "controls": {
+        "Kreis": [
+          557,
+          1001,
+          1042,
+          1221
+        ],
+        "Dreieck": [
+          557,
+          748,
+          1042,
+          968
+        ],
+        "Stern": [
+          39,
+          1001,
+          524,
+          1221
+        ],
+        "Quadrat": [
+          39,
+          748,
+          524,
+          968
+        ]
+      },
+      "selected_scroll_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "scrollable_nodes": [
+        {
+          "class": "android.widget.ScrollView",
+          "bounds": "[0,356][1080,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "true",
+          "content-desc": ""
+        }
+      ],
+      "matching_nodes": [
+        {
+          "text": "0.0",
+          "content-desc": "0, Level 1, Klasse 1, 0 Sterne, 0 von 400 XP\nLevel 1\n0\n1. Klasse\n0 / 400 XP",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ProgressBar",
+          "bounds": "[501,158][1047,334]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Aktuelle Lernaufgabe\nLogik\nDein Lernziel: Die wiederkehrende Gruppe finden und das Muster fortsetzen.\nDas Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?\nWähle die richtige Antwort:\n.. Ein Tipp von Lumo\nSchau dir die Formen der Reihe nach an. Welche Gruppe kommt immer wieder?",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ImageView",
+          "bounds": "[39,356][1042,1694]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,748][524,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Dreieck",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,748][1042,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Stern",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,1001][524,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,1001][1042,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        }
+      ]
+    },
+    {
+      "file": "0455-pattern-observed-core-answer-cards.xml",
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "heading_exact_node_label": false,
+      "heading_in_splitlines": true,
+      "controls": {
+        "Kreis": [
+          557,
+          1001,
+          1042,
+          1221
+        ],
+        "Dreieck": [
+          557,
+          748,
+          1042,
+          968
+        ],
+        "Stern": [
+          39,
+          1001,
+          524,
+          1221
+        ],
+        "Quadrat": [
+          39,
+          748,
+          524,
+          968
+        ]
+      },
+      "selected_scroll_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "scrollable_nodes": [
+        {
+          "class": "android.widget.ScrollView",
+          "bounds": "[0,356][1080,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "true",
+          "content-desc": ""
+        }
+      ],
+      "matching_nodes": [
+        {
+          "text": "0.0",
+          "content-desc": "0, Level 1, Klasse 1, 0 Sterne, 0 von 400 XP\nLevel 1\n0\n1. Klasse\n0 / 400 XP",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ProgressBar",
+          "bounds": "[501,158][1047,334]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Aktuelle Lernaufgabe\nLogik\nDein Lernziel: Die wiederkehrende Gruppe finden und das Muster fortsetzen.\nDas Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?\nWähle die richtige Antwort:\n.. Ein Tipp von Lumo\nSchau dir die Formen der Reihe nach an. Welche Gruppe kommt immer wieder?",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ImageView",
+          "bounds": "[39,356][1042,1694]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,748][524,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Dreieck",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,748][1042,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Stern",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,1001][524,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,1001][1042,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        }
+      ]
+    },
+    {
+      "file": "0456-pattern-observed-core-answer-cards.xml",
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "heading_exact_node_label": false,
+      "heading_in_splitlines": true,
+      "controls": {
+        "Kreis": [
+          557,
+          1001,
+          1042,
+          1221
+        ],
+        "Dreieck": [
+          557,
+          748,
+          1042,
+          968
+        ],
+        "Stern": [
+          39,
+          1001,
+          524,
+          1221
+        ],
+        "Quadrat": [
+          39,
+          748,
+          524,
+          968
+        ]
+      },
+      "selected_scroll_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "scrollable_nodes": [
+        {
+          "class": "android.widget.ScrollView",
+          "bounds": "[0,356][1080,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "true",
+          "content-desc": ""
+        }
+      ],
+      "matching_nodes": [
+        {
+          "text": "0.0",
+          "content-desc": "0, Level 1, Klasse 1, 0 Sterne, 0 von 400 XP\nLevel 1\n0\n1. Klasse\n0 / 400 XP",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ProgressBar",
+          "bounds": "[501,158][1047,334]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Aktuelle Lernaufgabe\nLogik\nDein Lernziel: Die wiederkehrende Gruppe finden und das Muster fortsetzen.\nDas Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?\nWähle die richtige Antwort:\n.. Ein Tipp von Lumo\nSchau dir die Formen der Reihe nach an. Welche Gruppe kommt immer wieder?",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ImageView",
+          "bounds": "[39,356][1042,1694]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,748][524,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Dreieck",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,748][1042,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Stern",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,1001][524,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,1001][1042,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        }
+      ]
+    },
+    {
+      "file": "0457-pattern-observed-core-answer-cards.xml",
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "heading_exact_node_label": false,
+      "heading_in_splitlines": true,
+      "controls": {
+        "Kreis": [
+          557,
+          1001,
+          1042,
+          1221
+        ],
+        "Dreieck": [
+          557,
+          748,
+          1042,
+          968
+        ],
+        "Stern": [
+          39,
+          1001,
+          524,
+          1221
+        ],
+        "Quadrat": [
+          39,
+          748,
+          524,
+          968
+        ]
+      },
+      "selected_scroll_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "scrollable_nodes": [
+        {
+          "class": "android.widget.ScrollView",
+          "bounds": "[0,356][1080,1914]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "true",
+          "content-desc": ""
+        }
+      ],
+      "matching_nodes": [
+        {
+          "text": "0.0",
+          "content-desc": "0, Level 1, Klasse 1, 0 Sterne, 0 von 400 XP\nLevel 1\n0\n1. Klasse\n0 / 400 XP",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ProgressBar",
+          "bounds": "[501,158][1047,334]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Aktuelle Lernaufgabe\nLogik\nDein Lernziel: Die wiederkehrende Gruppe finden und das Muster fortsetzen.\nDas Muster wiederholt sich immer gleich: Quadrat – Kreis – Quadrat – Kreis – ? Welche Form folgt?\nWähle die richtige Antwort:\n.. Ein Tipp von Lumo\nSchau dir die Formen der Reihe nach an. Welche Gruppe kommt immer wieder?",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.ImageView",
+          "bounds": "[39,356][1042,1694]",
+          "clickable": "false",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Quadrat",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,748][524,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Dreieck",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,748][1042,968]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Stern",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[39,1001][524,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        },
+        {
+          "text": "",
+          "content-desc": "Kreis",
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "class": "android.widget.Button",
+          "bounds": "[557,1001][1042,1221]",
+          "clickable": "true",
+          "enabled": "true",
+          "scrollable": "false"
+        }
+      ]
+    }
+  ],
+  "controls_json_exists": false,
+  "explicit_touch_files": [],
+  "post_submission_preferences": [],
+  "source_selector": "ReferenceProbe.submit_pattern_answer: exact heading in node_labels plus all four enabled clickable shape controls in the same observation; 8 current XMLs, then no tap.",
+  "conclusion": {
+    "core_submission": "NOT_EXERCISED",
+    "root_cause_of_this_reader_decision": "All eight current XML observations expose the exact heading as a line inside a merged content-desc, never as a complete node label. The unchanged submit_pattern_answer membership test therefore remains false even when all four controls are present.",
+    "scroll_reachability": "Exactly one observed enabled ScrollView, bounds [0,356,1080,1914]. Four separate enabled/clickable answer buttons are present from 0452 onward; 0453–0457 show all four entirely inside the viewport.",
+    "first_four_card_observation": "0452-pattern-observed-core-answer-cards.xml",
+    "fully_visible_observation": "0453-pattern-observed-core-answer-cards.xml",
+    "historically_observed_selector": "android.widget.Button, exact content-desc Quadrat, enabled=true, clickable=true; full prompt and exact heading line coexist in the same XML.",
+    "bounds_are_historical_only": "No reuse as blind tap coordinates is authorized or performed. Any future test needs its own fresh same-task/profile/UI observation.",
+    "stored_attempt_counts": {
+      "before_native": 0,
+      "after_native": 0,
+      "final": 0
+    },
+    "existing_publisher_boundary": "verify_observed_execution requires PASS only if core_answer_submitted is true; --submit-core-answer alone does not force an actual assessed attempt.",
+    "not_a_missing_product_answer_route": true
+  }
+}

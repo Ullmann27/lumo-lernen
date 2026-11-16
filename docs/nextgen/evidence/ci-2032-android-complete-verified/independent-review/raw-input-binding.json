@@ -1,0 +1,529 @@
+{
+  "artifact_manifest": {
+    "path": "/dev/shm/lumo-2032-android-attempt2-originals/artifact-verification.json",
+    "bytes": 922910,
+    "sha256": "3d74135fb9dbafa545740d84db922d0d5ad701be699fea819d64ad6b4bd4d58a"
+  },
+  "artifact_id": 14216997362,
+  "archive_sha256": "b925e0ed41110053bf4ad07dd1d1f27c015598bd1b6669b3342a5073ef2a7db7",
+  "archive_bytes": 158127888,
+  "archive_crc_validation": "Already performed by Root; no second archive validation or download in this review",
+  "read_and_hash_checked_originals": [
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0111-conversation-learning-before-preferences.xml",
+      "bytes": 3107,
+      "sha256": "ec26ae8fbe501dad81c843e21932661dc364fb1436cad6c32baeedd51f0c398f",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0166-conversation-learning-after-preferences.xml",
+      "bytes": 3107,
+      "sha256": "697bb3d6a4327867774c1eb2a24db6f587acd9f2541b273b0f46a508eff3fa37",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0172-bridge-before-roundtrips-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0176-bridge-paused-activity.txt",
+      "bytes": 31889,
+      "sha256": "42cdb9592263c41f1e9ff95e4b3565e3554c992c9e5121c1eaec40cd319e111b",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0182-bridge-after-pause-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0190-bridge-after-return-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0193-bridge-before-resize-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0202-compact-prefs-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0212-expanded-prefs-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0222-fold7-cover-emulated-prefs-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0232-fold7-inner-emulated-prefs-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0236-bridge-restored-display-prefs-preferences.xml",
+      "bytes": 3107,
+      "sha256": "0c30cda8df63df23ba3c06811368d3eaba12f01abf0b25d0b63f8d0198a0c3eb",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0281-words-before-roundtrips-preferences.xml",
+      "bytes": 3667,
+      "sha256": "f30faeeea80ad0ebe05eb4c209ee591b73d2682a8216e57e013d02e64d12ecb0",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0285-words-paused-activity.txt",
+      "bytes": 31640,
+      "sha256": "63c382853fb490cdcf8399ada1e5c9cb9f93250f02c594a84d51ccbde423e1e4",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0291-words-after-pause-preferences.xml",
+      "bytes": 3667,
+      "sha256": "f30faeeea80ad0ebe05eb4c209ee591b73d2682a8216e57e013d02e64d12ecb0",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0300-words-after-return-preferences.xml",
+      "bytes": 3667,
+      "sha256": "f30faeeea80ad0ebe05eb4c209ee591b73d2682a8216e57e013d02e64d12ecb0",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0334-patterns-before-roundtrips-preferences.xml",
+      "bytes": 4237,
+      "sha256": "ee1d65d06baff7565d32ff6953527de0cdfbb17c991825681e8b9bf893e7d4f4",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0338-patterns-paused-activity.txt",
+      "bytes": 31864,
+      "sha256": "dd5ded0851b0899386f4411f82068964b01838d98bf07af8b286877feceff42f",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0344-patterns-after-pause-preferences.xml",
+      "bytes": 4237,
+      "sha256": "ee1d65d06baff7565d32ff6953527de0cdfbb17c991825681e8b9bf893e7d4f4",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0353-patterns-after-return-preferences.xml",
+      "bytes": 4237,
+      "sha256": "ee1d65d06baff7565d32ff6953527de0cdfbb17c991825681e8b9bf893e7d4f4",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0378-native-learning-before-preferences.xml",
+      "bytes": 4237,
+      "sha256": "ee1d65d06baff7565d32ff6953527de0cdfbb17c991825681e8b9bf893e7d4f4",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0438-why-native-eight-and-five-before-question.png",
+      "bytes": 641033,
+      "sha256": "30008d3d73953b41f3148d318b9f803e82de8c267b01e0c70dd36de5732bf435",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0462-why-native-ten-and-three-after-explanation.png",
+      "bytes": 681626,
+      "sha256": "67c7cd507f8ae310956b25c522b5806e58cd515e69e2948f9064b336e18f63f3",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0506-native-speech.txt",
+      "bytes": 36290,
+      "sha256": "e7ff9f952e43c0faaf783c660d6d391fec619fae5c7b5bb230f55e03b0627f50",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0520-native-learning-after-preferences.xml",
+      "bytes": 4602,
+      "sha256": "89e8ebded49bd97a13d0d03a6d73435ba856858efbee1ed04c485aae8d4d0cae",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/candidate-BUILD-PROVENANCE.json",
+      "bytes": 9642,
+      "sha256": "5a4ef67c7bc53ca591614d74067f08c405d0191511dc6c4a53cbf69ff033f391",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/candidate-manifest.txt",
+      "bytes": 5778,
+      "sha256": "db2c4190d0aa5e772a85ea71ffceb9bacd0a214bdc739de94a059405a0a89d76",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/candidate-signature.txt",
+      "bytes": 314,
+      "sha256": "7075dd546122a7dbe8dbfd071c94caa00bebc4a5db90c9bdd2df24e19659ef41",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/fresh-install.txt",
+      "bytes": 35,
+      "sha256": "e434c330baf4a001ae065fffc9b4c8b82f5d3cb975220f8b93038fda72b4b90c",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/installed-apk-sha256.txt",
+      "bytes": 178,
+      "sha256": "27bac6656d1beb53e99bb9d351f4fc027ee3e1718bbbb5ada6af8f530577c2c0",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/installed-package.txt",
+      "bytes": 9338,
+      "sha256": "72dc9363f3cb3d27f67de1342335bbec9c82a2cd03e53ca6c9174365b69d8af5",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/installed-pm-path.txt",
+      "bytes": 120,
+      "sha256": "63ff2386e471d8e5980a8b6e1c93ce18b05133bfdd2f953499509eb73daae41e",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/learning-android-result.json",
+      "bytes": 126175,
+      "sha256": "c3a13283027e12fe3a7553bd2c48b9e23d09b9494643cda40012c1ffb58263e7",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0112-banana-before-native-preferences.xml",
+      "bytes": 2399,
+      "sha256": "959a0d471517319822de0382e7d864ead329ccdad46f6952167564badc2ae812",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0143-banana-syllable-3.png",
+      "bytes": 592871,
+      "sha256": "70bb53c789e07bdcee6a6033569ed2881936c1c25e58376112646d0fe46d10b9",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0164-native-speech.txt",
+      "bytes": 56006,
+      "sha256": "c32a06fd1cd1b701717853b9c2b614046dcc0a1386af1694f377463d962ab943",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0195-native-speech.txt",
+      "bytes": 60677,
+      "sha256": "87db8365b06fc8cf095cf4c39294abcef7a3631437dbe2b6b36c37fcc40085ea",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0208-banana-after-native-preferences.xml",
+      "bytes": 2764,
+      "sha256": "ca21c047587096199300fdfb3b8de08645da3d5afa0f06fe065b8969a3c5d654",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0211-current-stop-installed-pm-path.txt",
+      "bytes": 120,
+      "sha256": "92fdf6b1b1be11706c8c965aa94ebfba5d7ef3ac1ea7608c8867f3b4812e974f",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0212-current-stop-learning-before-preferences.xml",
+      "bytes": 2764,
+      "sha256": "ca21c047587096199300fdfb3b8de08645da3d5afa0f06fe065b8969a3c5d654",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0236-runtime-bridge-before-native-preferences.xml",
+      "bytes": 2764,
+      "sha256": "ca21c047587096199300fdfb3b8de08645da3d5afa0f06fe065b8969a3c5d654",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0286-native-speech.txt",
+      "bytes": 22498,
+      "sha256": "d2a5bdc49a3cb6fbf3da9e29c36a78d7d73968621325cc4f4c65366cfeaf0e06",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0289-runtime-active-stop.json",
+      "bytes": 14271,
+      "sha256": "c9658cc0ce3ba5aadf2db0dfd265ad03f28f0317a3a91c4d764460d2f65ae5c7",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0290-native-speech.txt",
+      "bytes": 27450,
+      "sha256": "38636709ab4af2122f913d14d2c74351762794d393cdffb0d4290e329fcb7a34",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0292-native-speech.txt",
+      "bytes": 28302,
+      "sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0304-native-speech.txt",
+      "bytes": 29163,
+      "sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0318-native-speech.txt",
+      "bytes": 29997,
+      "sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0330-native-speech.txt",
+      "bytes": 30830,
+      "sha256": "29810cf77991f17cb39ffa7c81e6a3bbcda0f103d32e59c7fd37ff3a8a5494cf",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0331-native-speech.txt",
+      "bytes": 30908,
+      "sha256": "6360133730e48af1b84bdf61ac8a41e80b1cc529dae973f926017124a0548a12",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0333-runtime-voice-stop-target.json",
+      "bytes": 1300,
+      "sha256": "e20c9b1f6719ac5b2381f91855ebf9ca2b40feee8ec903bdcf9239bd4423563c",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0333-runtime-voice-stop.png",
+      "bytes": 682945,
+      "sha256": "8e94f0e5bcbba8f40fd80b964404ceedb94f3b89018bad5ade9ee2ab1d70b321",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0336-runtime-voice-stop-target.json",
+      "bytes": 1237,
+      "sha256": "7e413e9abf953f27f77311439caa115f324831f051a27d5a9ad878936fccff25",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0336-runtime-voice-stop.png",
+      "bytes": 682630,
+      "sha256": "267436ccce2c75024946487db7f377bc7ed6cd3847857af03f71665029250951",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0337-native-speech.txt",
+      "bytes": 31726,
+      "sha256": "8cf03c1b0c7cdba46ec9fbb37ffa417ba2952f74a8420d00665bf4604ebca4a6",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0344-native-speech.txt",
+      "bytes": 32561,
+      "sha256": "ef9d74a38f99dad43a3009a02660515423f8abaa24a582d8d5b70fb22bade938",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0350-runtime-voice-idle-target.json",
+      "bytes": 1308,
+      "sha256": "f4825df91c0424c9dad13239a51853c9635faeb0236fc3bf8a2941320790b4c0",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0350-runtime-voice-idle.png",
+      "bytes": 684101,
+      "sha256": "78d426b98c8bf2d3994c54d990627972836d0b08b9b63eef22fe4d7ded76d738",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0351-runtime-voice-idle-target.json",
+      "bytes": 1245,
+      "sha256": "95562bac0b4894dc61e5a056f2a7e7070be203a9d87ded2e06e208f9968720c8",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0351-runtime-voice-idle.png",
+      "bytes": 683961,
+      "sha256": "e1f3ced54f31a2792515a325ef09d3ff5b71446669f42947e68ea14e7deada07",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0352-native-speech.txt",
+      "bytes": 34230,
+      "sha256": "19cb38496cc3f67d6810ecbe94f230ea4a8fc8727ee8f957510a23339a1b4d50",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0354-runtime-bridge-after-stop.png",
+      "bytes": 684672,
+      "sha256": "d3819cd42603e014afe5b2b1b0fb5332fc2d40f09a61ac488b053bf4d9f970f2",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0366-runtime-bridge-after-native-preferences.xml",
+      "bytes": 2764,
+      "sha256": "ca21c047587096199300fdfb3b8de08645da3d5afa0f06fe065b8969a3c5d654",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0370-current-stop-learning-after-preferences.xml",
+      "bytes": 2764,
+      "sha256": "ca21c047587096199300fdfb3b8de08645da3d5afa0f06fe065b8969a3c5d654",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0392-pattern-before-native-preferences.xml",
+      "bytes": 2963,
+      "sha256": "f821d7094f4d4c09c1e66a5e02f7abbe3e392441da4939096d9343a253cca8bd",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0427-pattern-two-sign-group.png",
+      "bytes": 646857,
+      "sha256": "5906e880c82fb0e1aeb762579c67db34b2bf4cee0c3601aed3a438e7735ed661",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0443-pattern-current-unanswered-return.png",
+      "bytes": 2173039,
+      "sha256": "30803d4db999fce544ab5ad5a56634ee31b7e5586a2d2f172f7151b710384f19",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0444-pattern-after-native-preferences.xml",
+      "bytes": 2963,
+      "sha256": "f821d7094f4d4c09c1e66a5e02f7abbe3e392441da4939096d9343a253cca8bd",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0450-pattern-observed-core-answer-cards.xml",
+      "bytes": 33214,
+      "sha256": "a363ba8d012c2e9fff8bc9ce50eea0f7a2440777f5e1512cc8aeb3a320609a82",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0451-pattern-observed-core-answer-cards.xml",
+      "bytes": 30617,
+      "sha256": "0f3926613b837a762cbcc0149237e6d5ebed04888c7f41e1ca6b7626e1a00e78",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0452-pattern-observed-core-answer-cards.xml",
+      "bytes": 30615,
+      "sha256": "5c78afa90f6e8ad330677d35f63c6cdb2ab0cc823402c7f36174b6e7ac05ba43",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0453-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0454-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0455-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0456-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0457-pattern-observed-core-answer-cards.xml",
+      "bytes": 28797,
+      "sha256": "5329c95a94d27a033839292e6a9c74e125682a2c715bbb9304dbc8aadb7aa591",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0458-final-profile-and-progress-preferences.xml",
+      "bytes": 2963,
+      "sha256": "f821d7094f4d4c09c1e66a5e02f7abbe3e392441da4939096d9343a253cca8bd",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/candidate-BUILD-PROVENANCE.json",
+      "bytes": 9642,
+      "sha256": "5a4ef67c7bc53ca591614d74067f08c405d0191511dc6c4a53cbf69ff033f391",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/candidate-manifest.txt",
+      "bytes": 5778,
+      "sha256": "db2c4190d0aa5e772a85ea71ffceb9bacd0a214bdc739de94a059405a0a89d76",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/candidate-signature.txt",
+      "bytes": 314,
+      "sha256": "7075dd546122a7dbe8dbfd071c94caa00bebc4a5db90c9bdd2df24e19659ef41",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/fresh-install.txt",
+      "bytes": 35,
+      "sha256": "e434c330baf4a001ae065fffc9b4c8b82f5d3cb975220f8b93038fda72b4b90c",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/installed-apk-sha256.txt",
+      "bytes": 178,
+      "sha256": "76f106c3c08b95af6927c8990cb33edbfbaa9c50569c17380a0df161ee71d86f",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/installed-package.txt",
+      "bytes": 9340,
+      "sha256": "4ca07d938d9b04c514f60dcf0d86b222b72462f0731ccb4f5fa62a7c81149eb5",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/installed-pm-path.txt",
+      "bytes": 120,
+      "sha256": "92fdf6b1b1be11706c8c965aa94ebfba5d7ef3ac1ea7608c8867f3b4812e974f",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/original-before-reset-package.txt",
+      "bytes": 10073,
+      "sha256": "0993e6ba4798912fea3b7ae4f8250b5c1718d7214ddafb8d319aa6c25c4d459f",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/reference-android-result.json",
+      "bytes": 91724,
+      "sha256": "5815863d0a9cb59ba025291196250418c3e529b1e830e17a347232e63548008f",
+      "matches_root_verified_artifact_manifest": true
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/verified-synthetic-installation-reset.json",
+      "bytes": 1081,
+      "sha256": "b93883656810d59f350ac17d089843df7e7905e8ffb2caba43fcaf67eb7df58c",
+      "matches_root_verified_artifact_manifest": true
+    }
+  ]
+}

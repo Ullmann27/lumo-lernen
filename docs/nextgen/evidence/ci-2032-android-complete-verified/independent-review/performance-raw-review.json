@@ -1,0 +1,46 @@
+{
+  "status": "RECALCULATED_FROM_ORIGINAL_PID_BOUND_WINDOWS",
+  "raw_log": "original-android/0506-native-speech.txt",
+  "native_pid": 7096,
+  "windows_match_original_result_exactly": true,
+  "window_indices": [
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41
+  ],
+  "window_samples": [
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7
+  ],
+  "sample_count": 47,
+  "measured_window_seconds": 38.689638,
+  "scene_observed_seconds": 43.90826878300004,
+  "mean_process_frame_interval_ms": 823.1837872340425,
+  "mean_process_frame_rate_hz": 1.2147955480999848,
+  "process_frames_over_16_7_ms": 47,
+  "process_frames_over_16_7_fraction": 1.0,
+  "worst_window_p95_ms": 1012.011,
+  "worst_window_p99_ms": 1012.011,
+  "joint_speech_fox_effect_samples": 12,
+  "joint_windows": [
+    40,
+    41
+  ],
+  "renderer": "gl_compatibility",
+  "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+  "limits": [
+    "Native process-frame interval counters on the API35 x86 emulator using llvmpipe; not display presentation timestamps or physical-device FPS.",
+    "Small windows of six or seven samples: P99 equals the maximum in each window, not a stable tail-latency estimate.",
+    "Counters reflect accepted native speech playback, figure and effects state; no acoustic waveform or human listening proof.",
+    "All 47 intervals exceeded 16.7 ms; neither smooth 60 FPS nor physical Fold7 performance is established."
+  ]
+}

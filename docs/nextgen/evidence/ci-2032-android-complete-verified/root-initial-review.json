@@ -374,6 +374,12 @@
     "reference-android/0354-runtime-bridge-after-stop.png",
     "reference-android/0443-pattern-current-unanswered-return.png"
   ],
-  "independentDetailedReview": "pending; source-bound agent review to be retained separately",
+  "independentDetailedReview": {
+    "path": "independent-review/review.json",
+    "sha256": "baa50ee3535889c1d8f81dea07a412b47b10140bcef7fce687993569f0b7b044",
+    "status": "VERIFIED_WITH_LIMITATIONS",
+    "fileCount": 42,
+    "bytes": 356602
+  },
   "fullModernizationComplete": false
 }

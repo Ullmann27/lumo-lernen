@@ -1,0 +1,47 @@
+{
+  "scope": "Seven original PNG files directly viewed; other referenced PNGs hash/dimension checked, not all visually inspected.",
+  "observations": [
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0438-why-native-eight-and-five-before-question.png",
+      "sha256": "30008d3d73953b41f3148d318b9f803e82de8c267b01e0c70dd36de5732bf435",
+      "bytes": 641033,
+      "direct_visual_observation": "Native 8+5 before question: 8 blue field objects, 5 yellow supply objects, visible 0 / 5 bewegt."
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/original-android/0462-why-native-ten-and-three-after-explanation.png",
+      "sha256": "67c7cd507f8ae310956b25c522b5806e58cd515e69e2948f9064b336e18f63f3",
+      "bytes": 681626,
+      "direct_visual_observation": "Native explanation states 10 minus 8 equals 2; visible filled ten field with two yellow objects, three remaining, 2 / 5 bewegt."
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0143-banana-syllable-3.png",
+      "sha256": "70bb53c789e07bdcee6a6033569ed2881936c1c25e58376112646d0fe46d10b9",
+      "bytes": 592871,
+      "direct_visual_observation": "Banane: Ba – na – ne; three syllable pieces and full wrapped three-syllable statement visible; next-syllable action disabled at completion."
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0336-runtime-voice-stop.png",
+      "sha256": "267436ccce2c75024946487db7f377bc7ed6cd3847857af03f71665029250951",
+      "bytes": 682630,
+      "direct_visual_observation": "Bright-background Stimme stoppen caption visibly readable before tap; 2 / 5 moved model."
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0354-runtime-bridge-after-stop.png",
+      "sha256": "d3819cd42603e014afe5b2b1b0fb5332fc2d40f09a61ac488b053bf4d9f970f2",
+      "bytes": 684672,
+      "direct_visual_observation": "Same 2 / 5 moved model; control now Schritt anhören."
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0427-pattern-two-sign-group.png",
+      "sha256": "5906e880c82fb0e1aeb762579c67db34b2bf4cee0c3601aed3a438e7735ed661",
+      "bytes": 646857,
+      "direct_visual_observation": "Two-sign group hint displayed and first square/circle group framed; native answer proposal choices visible."
+    },
+    {
+      "path": "/dev/shm/lumo-2032-android-attempt2-originals/original/reference-android/0443-pattern-current-unanswered-return.png",
+      "sha256": "30803d4db999fce544ab5ad5a56634ee31b7e5586a2d2f172f7151b710384f19",
+      "bytes": 2173039,
+      "direct_visual_observation": "Core return at upper scroll position with explanation/help actions. Answer cards are farther below; screenshot alone does not show them."
+    }
+  ]
+}

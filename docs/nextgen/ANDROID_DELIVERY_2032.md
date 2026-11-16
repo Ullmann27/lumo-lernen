@@ -141,6 +141,8 @@ Die Lerntour lief am **16.11.2026 von 10:03:55 bis 10:12:59 UTC**, die zusätzli
 
 Die vier logischen Displaykonfigurationen waren **720×1600 @ 320 dpi**, **1768×2208 @ 360 dpi**, **1080×2520 @ 420 dpi** und **1968×2184 @ 420 dpi**, anschließend Rückstellung. Die beiden letzten Konfigurationen sind als emulierte Fold7-Außen-/Innenansicht bezeichnet. Die Dichte ist eine gewählte Android-Testdichte, keine Behauptung physischer PPI. Geprüft wurde dabei die Flutter-Laboraufgabe; ein physischer Faltvorgang oder eine vollständige native 3D-Prüfung in allen Größen folgt daraus nicht.
 
+Die [unabhängige Originalauswertung](evidence/ci-2032-android-complete-verified/independent-review/SUMMARY.md) bestätigt den unveränderten aktuellen Abschlussprüfer einschließlich Pflichtstopp, **18** Profil-/Lernwertvergleiche mit **elf** tatsächlichen Checkpointvergleichen sowie drei beobachtete Home-Rückwege. Alle **28 Videos** wurden bis Dateiende mit `ffprobe -count_frames` gelesen (**1.969 Frames**, **1.028,169354 s**, **38.552.953 Bytes**, keine Decoderfehler); **64 PNG-Hashes** stimmen. Ihre Sichtprüfung umfasst sieben wesentliche Originalbilder.
+
 ### Gemessene Leistung
 
 Die aktuelle 3D-Szene wurde mit Fuchs, Effekten und tatsächlichen Wiedergabestatus erfasst: **47 Prozessintervalle in sieben Messfenstern**, zusammen **38,689638 s**, bei **43,908268783 s** beobachteter Szene. Der gewichtete Mittelwert ist **823,183787234 ms** pro Godot-Prozessintervall, entsprechend **1,214795548 Hz**. Alle 47 Intervalle liegen über 16,7 ms; zwölf Samples enthalten gleichzeitig gemeldete Sprache, einen nutzbaren Fuchs und Effekte. Die Mittelwerte betragen **268 Draw Calls** und **318.007,51 Primitive**.

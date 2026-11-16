@@ -1,0 +1,93 @@
+{
+  "status": "PASS_WITH_LIMITATIONS",
+  "banana_repeat": {
+    "pid": 9392,
+    "previous_ids": [
+      3,
+      7,
+      11,
+      15
+    ],
+    "result_reproduced_exactly": true,
+    "playback": {
+      "pid": 9392,
+      "utterance_ids": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "segments": 4,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "raw_before": "reference-android/0164-native-speech.txt",
+    "raw_after": "reference-android/0195-native-speech.txt",
+    "segment_order_source_contract": [
+      "Banane",
+      "Ba",
+      "na",
+      "ne"
+    ],
+    "words_verified_acoustically": false,
+    "native_slower_exercised_in_this_tour": false
+  },
+  "why_two": [
+    {
+      "tour": "original-android",
+      "raw_log": "original-android/0506-native-speech.txt",
+      "question": "Warum zuerst zwei?",
+      "events": [
+        [
+          "started",
+          19,
+          "lumo-free-supertonic-de-v1"
+        ],
+        [
+          "completed",
+          19,
+          ""
+        ]
+      ],
+      "pid": 7096,
+      "observed_initial_moved": 0,
+      "observed_final_moved": 2,
+      "manual_move_buttons_pressed_after_question": false,
+      "initial_screenshot": "0438-why-native-eight-and-five-before-question.png",
+      "written_question_screenshot": "0443-why-native-written-before-send.png",
+      "response_screenshot": "0448-why-native-current-explanation.png",
+      "final_screenshot": "0462-why-native-ten-and-three-after-explanation.png"
+    },
+    {
+      "tour": "reference-android",
+      "raw_log": "reference-android/0286-native-speech.txt",
+      "question": "Warum zuerst zwei?",
+      "events": [
+        [
+          "started",
+          11,
+          "lumo-free-supertonic-de-v1"
+        ],
+        [
+          "completed",
+          11,
+          ""
+        ]
+      ],
+      "pid": 10808,
+      "observed_initial_moved": 0,
+      "observed_final_moved": 2,
+      "manual_move_buttons_pressed_after_question": false,
+      "initial_screenshot": "0268-why-native-eight-and-five-before-question.png",
+      "written_question_screenshot": "0273-why-native-written-before-send.png",
+      "response_screenshot": "0278-why-native-current-explanation.png",
+      "final_screenshot": "0282-why-native-ten-and-three-after-explanation.png"
+    }
+  ],
+  "limits": [
+    "The recorded typed German question is not a recognized spoken utterance.",
+    "Four ordered MediaPlayer start/completion pairs support the segment sequence contract; no audio track or acoustic word/tempo verification."
+  ]
+}

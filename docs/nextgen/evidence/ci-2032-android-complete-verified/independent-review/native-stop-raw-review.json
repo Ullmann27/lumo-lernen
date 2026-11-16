@@ -1,0 +1,1314 @@
+{
+  "status": "PASS_WITH_LIMITATIONS",
+  "evaluation": "Pure guards reapplied to saved originals; no new Android execution",
+  "pid": 10808,
+  "previous_ids": [
+    3,
+    11
+  ],
+  "active_before_stop": {
+    "pid": 10808,
+    "utterance_id": 13,
+    "profile": "lumo-free-supertonic-de-v1",
+    "started_observed": true,
+    "completed_observed": false
+  },
+  "stop_touch": {
+    "label": "Stimme stoppen",
+    "bounds": [
+      106.0,
+      1952.0,
+      472.0,
+      1997.0
+    ],
+    "capture": {
+      "file": "0336-runtime-voice-stop.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "267436ccce2c75024946487db7f377bc7ed6cd3847857af03f71665029250951"
+    },
+    "source_sha256": "267436ccce2c75024946487db7f377bc7ed6cd3847857af03f71665029250951",
+    "stable_observed_target": true,
+    "point": [
+      289,
+      1974
+    ],
+    "elapsed_before_input": 25.75739522599997
+  },
+  "recorded_input_method": "Same-point adb input swipe, 120 ms, executed by unchanged source after final active check",
+  "explicit_stop_callback_available": false,
+  "before_last_observation_elapsed_seconds": 25.68717985300009,
+  "first_after_observation_elapsed_seconds": 25.976544714000056,
+  "observation_seconds_reported": 13.578335915000025,
+  "minimum_quiet_seconds": 5,
+  "observations_revalidated": [
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 0.08118396999998367,
+      "speech_log_sha256": "38636709ab4af2122f913d14d2c74351762794d393cdffb0d4290e329fcb7a34",
+      "original_log": "reference-android/0290-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0290-native-speech.txt",
+        "reference-android/0291-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 0.45716653900012716,
+      "speech_log_sha256": "38636709ab4af2122f913d14d2c74351762794d393cdffb0d4290e329fcb7a34",
+      "original_log": "reference-android/0290-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0290-native-speech.txt",
+        "reference-android/0291-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 1.5262873290000698,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 1.9641953469999862,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 2.295588476000148,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 2.6551792990001104,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 3.017199075999997,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 3.3673424090000026,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 3.718007942999975,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 4.186205884000174,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 5.140169968000009,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 5.492189349,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 5.8531932240000515,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 6.211259793000181,
+      "speech_log_sha256": "f69d2f0fdb8e4325f89edaf3166fe002e40f9277eec17c2daee9962a82b6e2d0",
+      "original_log": "reference-android/0292-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0292-native-speech.txt",
+        "reference-android/0293-native-speech.txt",
+        "reference-android/0294-native-speech.txt",
+        "reference-android/0295-native-speech.txt",
+        "reference-android/0296-native-speech.txt",
+        "reference-android/0297-native-speech.txt",
+        "reference-android/0298-native-speech.txt",
+        "reference-android/0299-native-speech.txt",
+        "reference-android/0300-native-speech.txt",
+        "reference-android/0301-native-speech.txt",
+        "reference-android/0302-native-speech.txt",
+        "reference-android/0303-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 6.549198058999991,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 6.893180852000114,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 7.239156215000094,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 7.643530406000082,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 7.986593884000058,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 8.351198536000084,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 8.708175851000078,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 9.051193870000134,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 9.386158165000097,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 9.736645078000038,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 10.12741419200006,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 10.49152733599999,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 10.835255555000003,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 11.19176501600009,
+      "speech_log_sha256": "4f82f1b7e1e4481c1a484555696ace71ec1182b6b9628ecb17f33493a8fe52fc",
+      "original_log": "reference-android/0304-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0304-native-speech.txt",
+        "reference-android/0305-native-speech.txt",
+        "reference-android/0306-native-speech.txt",
+        "reference-android/0307-native-speech.txt",
+        "reference-android/0308-native-speech.txt",
+        "reference-android/0309-native-speech.txt",
+        "reference-android/0310-native-speech.txt",
+        "reference-android/0311-native-speech.txt",
+        "reference-android/0312-native-speech.txt",
+        "reference-android/0313-native-speech.txt",
+        "reference-android/0314-native-speech.txt",
+        "reference-android/0315-native-speech.txt",
+        "reference-android/0316-native-speech.txt",
+        "reference-android/0317-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 11.576464160000114,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 11.944535825000003,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 12.308984491000047,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 13.145770588000005,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 13.897883873000183,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 14.247515438000164,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 14.624002003999976,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 14.961171785000033,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 15.303995722000082,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 15.762974156000155,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 16.729661723000163,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 17.082185454000182,
+      "speech_log_sha256": "78fa52979bcfffab3e2ff567b774723aa1a70bb6f26f7ce624924616c74e32da",
+      "original_log": "reference-android/0318-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0318-native-speech.txt",
+        "reference-android/0319-native-speech.txt",
+        "reference-android/0320-native-speech.txt",
+        "reference-android/0321-native-speech.txt",
+        "reference-android/0322-native-speech.txt",
+        "reference-android/0323-native-speech.txt",
+        "reference-android/0324-native-speech.txt",
+        "reference-android/0325-native-speech.txt",
+        "reference-android/0326-native-speech.txt",
+        "reference-android/0327-native-speech.txt",
+        "reference-android/0328-native-speech.txt",
+        "reference-android/0329-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 17.436182333000033,
+      "speech_log_sha256": "29810cf77991f17cb39ffa7c81e6a3bbcda0f103d32e59c7fd37ff3a8a5494cf",
+      "original_log": "reference-android/0330-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0330-native-speech.txt"
+      ],
+      "pure_result": null
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "10808",
+      "elapsed_seconds": 17.809173670000064,
+      "speech_log_sha256": "6360133730e48af1b84bdf61ac8a41e80b1cc529dae973f926017124a0548a12",
+      "original_log": "reference-android/0331-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0331-native-speech.txt",
+        "reference-android/0332-native-speech.txt",
+        "reference-android/0334-native-speech.txt",
+        "reference-android/0335-native-speech.txt"
+      ],
+      "pure_result": {
+        "pid": 10808,
+        "utterance_id": 13,
+        "profile": "lumo-free-supertonic-de-v1",
+        "started_observed": true,
+        "completed_observed": false
+      }
+    },
+    {
+      "phase": "fresh-active-check",
+      "raw_pid": "10808",
+      "elapsed_seconds": 17.92359142700002,
+      "speech_log_sha256": "6360133730e48af1b84bdf61ac8a41e80b1cc529dae973f926017124a0548a12",
+      "original_log": "reference-android/0331-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0331-native-speech.txt",
+        "reference-android/0332-native-speech.txt",
+        "reference-android/0334-native-speech.txt",
+        "reference-android/0335-native-speech.txt"
+      ],
+      "pure_result": {
+        "pid": 10808,
+        "utterance_id": 13,
+        "profile": "lumo-free-supertonic-de-v1",
+        "started_observed": true,
+        "completed_observed": false
+      }
+    },
+    {
+      "phase": "fresh-active-check",
+      "raw_pid": "10808",
+      "elapsed_seconds": 21.613104267000153,
+      "speech_log_sha256": "6360133730e48af1b84bdf61ac8a41e80b1cc529dae973f926017124a0548a12",
+      "original_log": "reference-android/0331-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0331-native-speech.txt",
+        "reference-android/0332-native-speech.txt",
+        "reference-android/0334-native-speech.txt",
+        "reference-android/0335-native-speech.txt"
+      ],
+      "pure_result": {
+        "pid": 10808,
+        "utterance_id": 13,
+        "profile": "lumo-free-supertonic-de-v1",
+        "started_observed": true,
+        "completed_observed": false
+      }
+    },
+    {
+      "phase": "fresh-active-check",
+      "raw_pid": "10808",
+      "elapsed_seconds": 21.7548466610001,
+      "speech_log_sha256": "6360133730e48af1b84bdf61ac8a41e80b1cc529dae973f926017124a0548a12",
+      "original_log": "reference-android/0331-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0331-native-speech.txt",
+        "reference-android/0332-native-speech.txt",
+        "reference-android/0334-native-speech.txt",
+        "reference-android/0335-native-speech.txt"
+      ],
+      "pure_result": {
+        "pid": 10808,
+        "utterance_id": 13,
+        "profile": "lumo-free-supertonic-de-v1",
+        "started_observed": true,
+        "completed_observed": false
+      }
+    },
+    {
+      "phase": "fresh-active-check",
+      "raw_pid": "10808",
+      "elapsed_seconds": 25.554572580000013,
+      "speech_log_sha256": "8cf03c1b0c7cdba46ec9fbb37ffa417ba2952f74a8420d00665bf4604ebca4a6",
+      "original_log": "reference-android/0337-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0337-native-speech.txt",
+        "reference-android/0338-native-speech.txt",
+        "reference-android/0339-native-speech.txt",
+        "reference-android/0340-native-speech.txt",
+        "reference-android/0341-native-speech.txt",
+        "reference-android/0342-native-speech.txt",
+        "reference-android/0343-native-speech.txt"
+      ],
+      "pure_result": {
+        "pid": 10808,
+        "utterance_id": 13,
+        "profile": "lumo-free-supertonic-de-v1",
+        "started_observed": true,
+        "completed_observed": false
+      }
+    },
+    {
+      "phase": "fresh-active-check",
+      "raw_pid": "10808",
+      "elapsed_seconds": 25.68717985300009,
+      "speech_log_sha256": "8cf03c1b0c7cdba46ec9fbb37ffa417ba2952f74a8420d00665bf4604ebca4a6",
+      "original_log": "reference-android/0337-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0337-native-speech.txt",
+        "reference-android/0338-native-speech.txt",
+        "reference-android/0339-native-speech.txt",
+        "reference-android/0340-native-speech.txt",
+        "reference-android/0341-native-speech.txt",
+        "reference-android/0342-native-speech.txt",
+        "reference-android/0343-native-speech.txt"
+      ],
+      "pure_result": {
+        "pid": 10808,
+        "utterance_id": 13,
+        "profile": "lumo-free-supertonic-de-v1",
+        "started_observed": true,
+        "completed_observed": false
+      }
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 25.976544714000056,
+      "speech_log_sha256": "8cf03c1b0c7cdba46ec9fbb37ffa417ba2952f74a8420d00665bf4604ebca4a6",
+      "original_log": "reference-android/0337-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0337-native-speech.txt",
+        "reference-android/0338-native-speech.txt",
+        "reference-android/0339-native-speech.txt",
+        "reference-android/0340-native-speech.txt",
+        "reference-android/0341-native-speech.txt",
+        "reference-android/0342-native-speech.txt",
+        "reference-android/0343-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 26.344514305000075,
+      "speech_log_sha256": "8cf03c1b0c7cdba46ec9fbb37ffa417ba2952f74a8420d00665bf4604ebca4a6",
+      "original_log": "reference-android/0337-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0337-native-speech.txt",
+        "reference-android/0338-native-speech.txt",
+        "reference-android/0339-native-speech.txt",
+        "reference-android/0340-native-speech.txt",
+        "reference-android/0341-native-speech.txt",
+        "reference-android/0342-native-speech.txt",
+        "reference-android/0343-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 26.682609342999967,
+      "speech_log_sha256": "8cf03c1b0c7cdba46ec9fbb37ffa417ba2952f74a8420d00665bf4604ebca4a6",
+      "original_log": "reference-android/0337-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0337-native-speech.txt",
+        "reference-android/0338-native-speech.txt",
+        "reference-android/0339-native-speech.txt",
+        "reference-android/0340-native-speech.txt",
+        "reference-android/0341-native-speech.txt",
+        "reference-android/0342-native-speech.txt",
+        "reference-android/0343-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 27.028941670999984,
+      "speech_log_sha256": "8cf03c1b0c7cdba46ec9fbb37ffa417ba2952f74a8420d00665bf4604ebca4a6",
+      "original_log": "reference-android/0337-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0337-native-speech.txt",
+        "reference-android/0338-native-speech.txt",
+        "reference-android/0339-native-speech.txt",
+        "reference-android/0340-native-speech.txt",
+        "reference-android/0341-native-speech.txt",
+        "reference-android/0342-native-speech.txt",
+        "reference-android/0343-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 27.383168260000048,
+      "speech_log_sha256": "8cf03c1b0c7cdba46ec9fbb37ffa417ba2952f74a8420d00665bf4604ebca4a6",
+      "original_log": "reference-android/0337-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0337-native-speech.txt",
+        "reference-android/0338-native-speech.txt",
+        "reference-android/0339-native-speech.txt",
+        "reference-android/0340-native-speech.txt",
+        "reference-android/0341-native-speech.txt",
+        "reference-android/0342-native-speech.txt",
+        "reference-android/0343-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 27.737758001999964,
+      "speech_log_sha256": "ef9d74a38f99dad43a3009a02660515423f8abaa24a582d8d5b70fb22bade938",
+      "original_log": "reference-android/0344-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0344-native-speech.txt",
+        "reference-android/0345-native-speech.txt",
+        "reference-android/0346-native-speech.txt",
+        "reference-android/0347-native-speech.txt",
+        "reference-android/0348-native-speech.txt",
+        "reference-android/0349-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 28.07167130200014,
+      "speech_log_sha256": "ef9d74a38f99dad43a3009a02660515423f8abaa24a582d8d5b70fb22bade938",
+      "original_log": "reference-android/0344-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0344-native-speech.txt",
+        "reference-android/0345-native-speech.txt",
+        "reference-android/0346-native-speech.txt",
+        "reference-android/0347-native-speech.txt",
+        "reference-android/0348-native-speech.txt",
+        "reference-android/0349-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 28.555347337000057,
+      "speech_log_sha256": "ef9d74a38f99dad43a3009a02660515423f8abaa24a582d8d5b70fb22bade938",
+      "original_log": "reference-android/0344-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0344-native-speech.txt",
+        "reference-android/0345-native-speech.txt",
+        "reference-android/0346-native-speech.txt",
+        "reference-android/0347-native-speech.txt",
+        "reference-android/0348-native-speech.txt",
+        "reference-android/0349-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 29.823969224000166,
+      "speech_log_sha256": "ef9d74a38f99dad43a3009a02660515423f8abaa24a582d8d5b70fb22bade938",
+      "original_log": "reference-android/0344-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0344-native-speech.txt",
+        "reference-android/0345-native-speech.txt",
+        "reference-android/0346-native-speech.txt",
+        "reference-android/0347-native-speech.txt",
+        "reference-android/0348-native-speech.txt",
+        "reference-android/0349-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 30.683607644000176,
+      "speech_log_sha256": "ef9d74a38f99dad43a3009a02660515423f8abaa24a582d8d5b70fb22bade938",
+      "original_log": "reference-android/0344-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0344-native-speech.txt",
+        "reference-android/0345-native-speech.txt",
+        "reference-android/0346-native-speech.txt",
+        "reference-android/0347-native-speech.txt",
+        "reference-android/0348-native-speech.txt",
+        "reference-android/0349-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-direct-stop",
+      "raw_pid": "10808",
+      "elapsed_seconds": 31.54154326800017,
+      "speech_log_sha256": "ef9d74a38f99dad43a3009a02660515423f8abaa24a582d8d5b70fb22bade938",
+      "original_log": "reference-android/0344-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0344-native-speech.txt",
+        "reference-android/0345-native-speech.txt",
+        "reference-android/0346-native-speech.txt",
+        "reference-android/0347-native-speech.txt",
+        "reference-android/0348-native-speech.txt",
+        "reference-android/0349-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    },
+    {
+      "phase": "after-visible-idle",
+      "raw_pid": "10808",
+      "elapsed_seconds": 39.44265471200015,
+      "speech_log_sha256": "19cb38496cc3f67d6810ecbe94f230ea4a8fc8727ee8f957510a23339a1b4d50",
+      "original_log": "reference-android/0352-native-speech.txt",
+      "same_hash_original_log_paths": [
+        "reference-android/0352-native-speech.txt"
+      ],
+      "pure_result": "same_started_id_only_no_completed_or_later_segment"
+    }
+  ],
+  "two_frame_controls": [
+    {
+      "control": "stop",
+      "label": "Stimme stoppen",
+      "two_separate_hash_bound_frames": true,
+      "bounds": [
+        106.0,
+        1952.0,
+        472.0,
+        1997.0
+      ],
+      "files": [
+        "0333-runtime-voice-stop.png",
+        "0336-runtime-voice-stop.png"
+      ]
+    },
+    {
+      "control": "idle",
+      "label": "Schritt anhören",
+      "two_separate_hash_bound_frames": true,
+      "bounds": [
+        106.0,
+        1952.0,
+        454.0,
+        1986.0
+      ],
+      "files": [
+        "0350-runtime-voice-idle.png",
+        "0351-runtime-voice-idle.png"
+      ]
+    }
+  ],
+  "model_before": {
+    "kind": "bridge_ten",
+    "a": 8,
+    "b": 5,
+    "placed": 2,
+    "visible_label": "2 / 5 bewegt"
+  },
+  "model_after": {
+    "kind": "bridge_ten",
+    "a": 8,
+    "b": 5,
+    "placed": 2,
+    "visible_label": "2 / 5 bewegt"
+  },
+  "no_completed_or_later_segment_in_observed_window": true,
+  "limits": [
+    "MediaPlayer callbacks and visible return to Schritt anhören establish this bounded stop case, not acoustic silence or spoken words.",
+    "No mouth/gesture-stop, millisecond stop latency, continuous silence beyond the finite observed window, or physical-device claim."
+  ]
+}

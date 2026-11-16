@@ -1,0 +1,61 @@
+{
+  "source": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "source_tree": "1c572ff37dde942229e8ae8b1f141ec95df50545",
+  "root_files_byte_equal_at_review": true,
+  "files": [
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "bytes": 11429,
+      "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441",
+      "git_blob": "cfc64cf8101f86f50a6e9e529795bde56329cb89"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "bytes": 7595,
+      "sha256": "81efab46dbb85c4d22745bbfbf637ea5389548cb19508ec424948c2bb221c449",
+      "git_blob": "836a0954a793fde933064b9b1c446ad4b519a360"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_native_stop.py",
+      "bytes": 10248,
+      "sha256": "2d8e70a2ab3e9a8d0756b6a20341d5d639833c9854e4e087556cf81bb2776b56",
+      "git_blob": "7e3862d4e8fd434a0b0943a43d9f1adf0af74e36"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "bytes": 26339,
+      "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8",
+      "git_blob": "035a574163eaa3c831a3a1f1a5f5e9687c46bd9b"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "bytes": 44802,
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
+      "git_blob": "3e37ed885be6f155fcf40696af56f087efc332c5"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 92469,
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+      "git_blob": "a0564a627163ca29b0eebae95d0b442e7ee60421"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_native_reader.py",
+      "bytes": 5817,
+      "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97",
+      "git_blob": "ffa65474bf7e2274186a183882408f1d2e91872d"
+    },
+    {
+      "path": ".github/probes/run_lumo_nextgen_current_android.sh",
+      "bytes": 1168,
+      "sha256": "a54f2ec1ca5a64eb7ea1f2d3dc80f19db55354cf2137aaec1c175667b8740d47",
+      "git_blob": "4cdaea8175dd44a7c45d72ccd7b79859012c528d"
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8"
+    }
+  ]
+}
