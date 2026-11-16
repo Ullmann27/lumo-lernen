@@ -33,6 +33,10 @@ Future<bool> launchLumo3D(
   if (!context.mounted || appState?.resetting == true) return false;
   // Only reviewed, bounded lesson descriptors open the educational route.
   if ((scene == 'learning') != (learning != null)) return false;
+  // A prompt-only card is not a meaningful 3D learning world.
+  if (scene == 'learning' && learning?.kind == 'task_card') {
+    return false;
+  }
   // The economy is opt-in. Never silently open Kart or classic settlements.
   if ((scene == 'settlement') != livingVillage) return false;
   if (legacyGameKey != null &&
@@ -47,7 +51,9 @@ Future<bool> launchLumo3D(
   }
   if ((scene == 'connect_four') != (connectFourToken != null) ||
       (connectFourToken != null &&
-          !RegExp(r'^[a-f0-9]{32}$').hasMatch(connectFourToken))) return false;
+          !RegExp(r'^[a-f0-9]{32}$').hasMatch(connectFourToken))) {
+    return false;
+  }
   final tableGame = const {'memory', 'quiz'}.contains(scene);
   if (tableGame != (tableToken != null) ||
       (tableGame && appState == null) ||
