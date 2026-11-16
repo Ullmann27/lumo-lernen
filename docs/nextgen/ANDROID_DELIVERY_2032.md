@@ -133,6 +133,8 @@ Androidjob **133211685356** prüfte die frisch installierte aktuelle x86-APK auf
 
 Der [vollständige Fehlerbeleg](evidence/ci-2032-android-launcher-anr-failure/README.md) enthält alle **42** Originaldateien, vollständiges ZIP/Rohlog, echtes Bild und Video sowie zwei unabhängige Reviews. Kein Lernablauf wurde erreicht. Die genaue Launcherursache und ein Lumo-ANR sind nicht belegt; daraus folgt kein Produkt- oder Readerpatch. Ein einmaliger frischer unveränderter Androidversuch wird erst nach Sicherung der Originale gestartet. Der alte FAIL bleibt bestehen.
 
+Der genau einmalige unveränderte neue Androidversuch ist inzwischen tatsächlich gestartet: **Run 43837592237, Versuch 2, Job 133221738048, seit 16.11.2026 09:58:59 UTC**. Die vollständigen ursprünglichen Fehler- und Buildbelege wurden vorher im Checkpoint **ede53714a5622f92b87a547842f079d5c2c80a20** gesichert. [Aktivierung und genaue Bindung](evidence/2032-android-retry-20261116/activation.json). Die Probe benutzt dieselben APKs und unveränderten Prüfbedingungen; ein neuer Erfolg oder Download wird bis zum tatsächlichen Abschluss nicht behauptet.
+
 ## 4. Repositories, Branches und genaue Commits des integrierten Stands
 
 | Repository / Rolle | Branch | Genauer integrierter beziehungsweise zugeordneter Stand |

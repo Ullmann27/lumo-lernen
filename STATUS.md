@@ -1,6 +1,12 @@
-# LUMO 2032 — APK gebaut, erster Androidversuch durch Launcher blockiert
+# LUMO 2032 — APK geprüft, unveränderter Androidversuch 2 läuft
 
-Stand: **16. November 2026, 09:55 UTC**. Lauf [43837592237](https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237), Versuch 1: **Validate und Build SUCCESS, Android 133211685356 FAIL, Veröffentlichung SKIPPED**. Ein fremder Android-Dialog „Pixel Launcher isn’t responding“ blockierte das Onboarding. Alle Originale sind gesichert; genau ein frischer unveränderter Androidversuch wird nach diesem Checkpoint gestartet. **2032 ist noch nicht veröffentlicht.**
+Stand: **16. November 2026, 09:55 UTC**. Lauf [43837592237](https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237), Versuch 1: **Validate und Build SUCCESS, Android 133211685356 FAIL, Veröffentlichung SKIPPED**. Ein fremder Android-Dialog „Pixel Launcher isn’t responding“ blockierte das Onboarding. Alle Originale sind gesichert; der zuvor vorbereitete frische Versuch ist inzwischen wie unten beschrieben gestartet. **2032 ist noch nicht veröffentlicht.**
+
+## Tatsächlich gestarteter zweiter Versuch
+
+**Versuch 2 läuft seit 16.11.2026, 09:58:59 UTC**, Androidjob **133221738048**, unveränderte APK-/QA-Quelle **9b38360ca5f21919dce4a2b99e605ee39bbbf454**. Der einmalige Failed-Jobs-Rerun wurde über die vorhandene GitHub-Funktion angenommen und anschließend anhand tatsächlicher Run-/Jobmetadaten bestätigt. Originalfehler und vollständiger Build-Beleg sind zuvor im Checkpoint **ede53714a5622f92b87a547842f079d5c2c80a20** gesichert. [Aktivierungsbeleg](docs/nextgen/evidence/2032-android-retry-20261116/activation.json).
+
+Produkt, Probe, Workflow, Publisher und sämtliche Prüfbedingungen bleiben unverändert. Keine neue Kompilierung oder neue APK-Version wird behauptet. Noch kein neuer Android-PASS und kein öffentlicher 2032-Download. Bei erneutem Fehler zuerst die neuen Originale prüfen; keine weitere unveränderte Wiederholung.
 
 ## Exakte Identität
 
