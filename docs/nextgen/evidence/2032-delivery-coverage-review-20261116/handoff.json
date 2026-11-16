@@ -1,0 +1,23 @@
+{
+  "schema": "lumo.readonly_review.handoff",
+  "version": 1,
+  "folder": "/workspace/scratch/4fa97167812c/agent-delivery-2032-coverage-review",
+  "reportCommit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "files": [
+    {
+      "path": "review.json",
+      "bytes": 22208,
+      "sha256": "6339e10a03cd9b46bb37e2f43168595192133a296abefd59f61d7e1091303a65"
+    },
+    {
+      "path": "suggested-wording.md",
+      "bytes": 9669,
+      "sha256": "ba2a146107f46706f621cfa948953bbd4d91ed4694dd3afd1a567b589beaeb36"
+    }
+  ],
+  "no_tests": true,
+  "no_root_changes": true,
+  "no_network_actions": true,
+  "no_new_android_results": true
+}

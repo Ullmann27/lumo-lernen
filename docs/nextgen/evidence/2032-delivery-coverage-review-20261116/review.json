@@ -1,0 +1,552 @@
+{
+  "schema": "lumo.nextgen.2032.delivery.coverage.readonly_review",
+  "version": 1,
+  "status": "DOCUMENT_CORRECTIONS_RECOMMENDED_NO_NEW_RUNTIME_FINDING",
+  "reviewedUtc": "2026-11-16T11:06:20.889126+00:00",
+  "reportCommit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "nativeSource": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "newSupplementalQaCommit": "ce8458e88d16e7c3b97fafcf34c4d29b0c1d9fdc",
+  "newSupplementalWorkflowRun": 43853317375,
+  "newSupplementalEvidenceStatus": "RUNNING_AS_REPORTED_BY_ROOT; no original result reviewed; four-case acceptance remains NOT_RUN until originals",
+  "allSixRequiredSectionsPresent": true,
+  "fullModernizationComplete": false,
+  "allTaskVariantsReviewed": false,
+  "method": "Read committed delivery/coverage/contract/source and already secured independent evidence. No test execution, device action, network call, root/product mutation or new runtime gate evaluation.",
+  "counts": {
+    "curriculumFamilies": 236,
+    "mathTemplates": 60,
+    "germanTemplates": 32,
+    "academyTopics": 79,
+    "registeredModuleIds": 20,
+    "practicalActivities": 60,
+    "labTopics": 6,
+    "guidedLessons": 7,
+    "gameLevels": 50,
+    "readingTexts": 24,
+    "quests": 4,
+    "cognitiveQuestions": 200,
+    "reviewedInventoryEntries": 61,
+    "reviewedRoutes": 61,
+    "screenInventoryFiles": 55,
+    "activeSpecialistScreens": 18,
+    "activeSpecialistRoutes": 19,
+    "protectedShadowedRegistryRoutes": 1,
+    "labModes": 6,
+    "labProblemIds": 35,
+    "miniGameLevels": 49,
+    "quizFinalLevels": 1,
+    "nativeKinds": 12,
+    "protectedByteIdenticalFiles": 18,
+    "quizDeclaredQuestionIds": 108,
+    "cardsBankItems": 200
+  },
+  "countSemantics": {
+    "reviewedInventoryEntries": "All reviewed entries, including contracts/navigation, protected, conditional and inactive legacy paths; not a live-task route total.",
+    "reviewedRoutes": "Compatibility alias of reviewedInventoryEntries; never all currently reachable assessed routes.",
+    "activeSpecialistRoutes": "Actual specialist Academy entries with recorded widget route checks; separate from the general inventory count."
+  },
+  "catalogBinding": {
+    "catalogSource": "a5ea7422b1152576b34cf80519856129ff264ac1",
+    "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+    "comparedPaths": [
+      "lib",
+      "assets",
+      "android",
+      "tools/nextgen/export_learning_catalog_test.dart",
+      "pubspec.lock"
+    ],
+    "changedPaths": [],
+    "semantics": "Same catalog-relevant source; historical exporter provenance retained."
+  },
+  "sectionReview": [
+    {
+      "section": 1,
+      "status": "CORRECT_INVENTORY_WITH_OVERSTRONG_HEADING_AND_MISSING_PER_AREA_CLASSIFICATION",
+      "corrections": [
+        "Überschrift vollständig modernisiert durch Erreichbare modernisierte Lernwege und verbleibende Abdeckung ersetzen.",
+        "Die vorhandene Inventartabelle um eine knappe Zuordnung vorhandene Fachoberfläche / gemeinsame Bindung / spezielle native Darstellung oder task_card ergänzen. Registrierungen sind kein Nachweis komplett neu gebauter Lernmodelle.",
+        "19 aktive Fach-Einstiege auf 18 Oberflächen verständlich benennen; d1_woerter bleibt als geschützter Vorrang außerhalb dieser aktiven Moduloberflächen."
+      ],
+      "manifest_fields": [
+        "counts",
+        "countSemantics",
+        "routes[*].entry",
+        "routes[*].reachable",
+        "capabilityMatrix[*].nativeLearningEntry",
+        "scope.fullModernizationComplete"
+      ]
+    },
+    {
+      "section": 2,
+      "status": "NO_CONCRETE_OVERCLAIM_FOUND",
+      "corrections": [
+        "Die bereits vorhandene Trennung lokaler aufgabenbezogener Dialog / optionaler generativer Proxy und separate native Activity beibehalten. Eine gültige Aufgabenbindung ist keine Garantie für jede frei formulierte Frage.",
+        "Prüfungsbedingte Begrenzung von Hilfen und Native-Einstieg ausdrücklich als beabsichtigte Regel behandeln."
+      ],
+      "manifest_fields": [
+        "authorities",
+        "capabilityMatrix[*].canonicalTaskBinding",
+        "capabilityMatrix[*].answerProposal",
+        "capabilityMatrix[*].policy"
+      ]
+    },
+    {
+      "section": 3,
+      "status": "COUNTS_CONSISTENT_WITH_SECURED_REVIEWS_PAUSE_SCOPE_CAN_BE_MORE_EXPLICIT",
+      "corrections": [
+        "Die drei Home-Rückwege als konkrete Flutter-Lab-Aufgaben benennen: bridge-8-5, word-banane, pattern-kreis-dreieck-5.",
+        "Die vier Größenwechsel und Rückstellung betreffen nur bridge-8-5 mit moved=1; keine native Resize-Serie und kein physisches Fold7.",
+        "Quelltests, registrierte/erreichbare Routen, reale Androidtour und noch ergebnisoffener Zusatzlauf getrennt halten."
+      ],
+      "evidence": [
+        "independent-review/review.json",
+        "independent-review/lifecycle-persistence-review.json"
+      ]
+    },
+    {
+      "section": 4,
+      "status": "NO_CONCRETE_IDENTITY_ERROR_FOUND",
+      "corrections": [
+        "Katalogquelle a5ea7422, APKquelle 9b38360 und QA-Quelle ce8458e8 weiterhin getrennt führen. Der geprüfte katalogrelevante Source-Diff ist leer; der alte Katalogexport wird dadurch nicht auf eine andere Export-SHA umgestempelt.",
+        "Die separat gebundene selektive Teamübernahme beibehalten, keine Gesamtübernahme alter Arbeitszweige behaupten."
+      ]
+    },
+    {
+      "section": 5,
+      "status": "NO_CONCRETE_DELIVERY_OR_MEDIA_OVERCLAIM_FOUND",
+      "corrections": [
+        "Veröffentlichte ARM64-APK, geprüfte x86-Emulatortour und authentische Originalmedien weiter getrennt benennen.",
+        "Öffentlichen Downloadbeleg von der neuen Vierfall-Tour unabhängig halten; die laufende Tour ist noch kein neuer PASS."
+      ]
+    },
+    {
+      "section": 6,
+      "status": "LIMITS_SUBSTANTIALLY_CORRECT_WITH_ONE_STALE_STATUS_SENTENCE",
+      "corrections": [
+        "Der QA-Zweig wird erstellt ist nach dem neuen Einleitungsstatus veraltet; stattdessen vier Fälle laufen separat, noch keine Originalresultate ausgewertet.",
+        "Strukturelle Restabdeckung getrennt von offenen Nachweisen ausweisen: generische task_card für viele Bereiche und separate Activity sind echte Grenzen der gewünschten individuellen räumlichen Modernisierung.",
+        "Praktische Journalbeobachtung, geschützte Schreib-/Journaldateien und Prüfungsregeln sind beabsichtigt; die inaktive alte Lückenbank muss vor eventueller Reaktivierung fachlich/ownerbezogen geprüft werden.",
+        "Flame verwendet feste frühe Einheitenlisten; die vollständige höhere-Klassen-Auswahl ist eine offene Inhaltsprüfung, kein daraus bewiesener Laufzeitfehler."
+      ]
+    }
+  ],
+  "pauseBoundary": {
+    "actualHomeResumeCases": [
+      {
+        "case": "bridge_home_resume",
+        "before": "original-android/0172-bridge-before-roundtrips-preferences.xml",
+        "after": "original-android/0182-bridge-after-pause-preferences.xml",
+        "same_task_checkpoint": true,
+        "checkpoint": {
+          "topicId": "bridge",
+          "seed": 0,
+          "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+          "phase": "example",
+          "problemId": "bridge-8-5",
+          "moved": 1,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": null,
+          "hint": 3,
+          "support": 3,
+          "wrongBefore": false,
+          "attempt": 0,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        }
+      },
+      {
+        "case": "words_home_resume",
+        "before": "original-android/0281-words-before-roundtrips-preferences.xml",
+        "after": "original-android/0291-words-after-pause-preferences.xml",
+        "same_task_checkpoint": true,
+        "checkpoint": {
+          "topicId": "words",
+          "seed": 0,
+          "sessionId": "lab-attempt-67280d8a2f93f2e0ac5777b94aca0c4e",
+          "phase": "example",
+          "problemId": "word-banane",
+          "moved": 0,
+          "pieces": [],
+          "tokens": [
+            2,
+            3,
+            0
+          ],
+          "patternChoice": null,
+          "hint": 0,
+          "support": 0,
+          "wrongBefore": false,
+          "attempt": 0,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        }
+      },
+      {
+        "case": "patterns_home_resume",
+        "before": "original-android/0334-patterns-before-roundtrips-preferences.xml",
+        "after": "original-android/0344-patterns-after-pause-preferences.xml",
+        "same_task_checkpoint": true,
+        "checkpoint": {
+          "topicId": "patterns",
+          "seed": 0,
+          "sessionId": "lab-attempt-8c41d28ba16bf6dd75f6ad97b19cf541",
+          "phase": "example",
+          "problemId": "pattern-kreis-dreieck-5",
+          "moved": 0,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": 1,
+          "hint": 1,
+          "support": 1,
+          "wrongBefore": false,
+          "attempt": 0,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        }
+      }
+    ],
+    "resizeCases": [
+      {
+        "case": "resize_compact",
+        "before": "original-android/0193-bridge-before-resize-preferences.xml",
+        "after": "original-android/0202-compact-prefs-preferences.xml",
+        "same_task_checkpoint": true,
+        "checkpoint": {
+          "topicId": "bridge",
+          "seed": 0,
+          "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+          "phase": "example",
+          "problemId": "bridge-8-5",
+          "moved": 1,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": null,
+          "hint": 3,
+          "support": 3,
+          "wrongBefore": false,
+          "attempt": 0,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        }
+      },
+      {
+        "case": "resize_expanded",
+        "before": "original-android/0193-bridge-before-resize-preferences.xml",
+        "after": "original-android/0212-expanded-prefs-preferences.xml",
+        "same_task_checkpoint": true,
+        "checkpoint": {
+          "topicId": "bridge",
+          "seed": 0,
+          "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+          "phase": "example",
+          "problemId": "bridge-8-5",
+          "moved": 1,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": null,
+          "hint": 3,
+          "support": 3,
+          "wrongBefore": false,
+          "attempt": 0,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        }
+      },
+      {
+        "case": "resize_fold7-cover-emulated",
+        "before": "original-android/0193-bridge-before-resize-preferences.xml",
+        "after": "original-android/0222-fold7-cover-emulated-prefs-preferences.xml",
+        "same_task_checkpoint": true,
+        "checkpoint": {
+          "topicId": "bridge",
+          "seed": 0,
+          "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+          "phase": "example",
+          "problemId": "bridge-8-5",
+          "moved": 1,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": null,
+          "hint": 3,
+          "support": 3,
+          "wrongBefore": false,
+          "attempt": 0,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        }
+      },
+      {
+        "case": "resize_fold7-inner-emulated",
+        "before": "original-android/0193-bridge-before-resize-preferences.xml",
+        "after": "original-android/0232-fold7-inner-emulated-prefs-preferences.xml",
+        "same_task_checkpoint": true,
+        "checkpoint": {
+          "topicId": "bridge",
+          "seed": 0,
+          "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+          "phase": "example",
+          "problemId": "bridge-8-5",
+          "moved": 1,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": null,
+          "hint": 3,
+          "support": 3,
+          "wrongBefore": false,
+          "attempt": 0,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        }
+      },
+      {
+        "case": "display_restore",
+        "before": "original-android/0193-bridge-before-resize-preferences.xml",
+        "after": "original-android/0236-bridge-restored-display-prefs-preferences.xml",
+        "same_task_checkpoint": true,
+        "checkpoint": {
+          "topicId": "bridge",
+          "seed": 0,
+          "sessionId": "lab-attempt-34f6f0b53a98fffbf95158521e1fd9e6",
+          "phase": "example",
+          "problemId": "bridge-8-5",
+          "moved": 1,
+          "pieces": [],
+          "tokens": [],
+          "patternChoice": null,
+          "hint": 3,
+          "support": 3,
+          "wrongBefore": false,
+          "attempt": 0,
+          "answer": "",
+          "done": false,
+          "pendingAttemptId": null,
+          "lastSavedAttemptId": null
+        }
+      }
+    ],
+    "foregroundOriginals": [
+      {
+        "file": "original-android/0176-bridge-paused-activity.txt",
+        "component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+        "elapsed_seconds": 0.123
+      },
+      {
+        "file": "original-android/0285-words-paused-activity.txt",
+        "component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+        "elapsed_seconds": 0.143
+      },
+      {
+        "file": "original-android/0338-patterns-paused-activity.txt",
+        "component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+        "elapsed_seconds": 0.081
+      }
+    ],
+    "comparisonScope": "Two actually present canonical learning/reward records and listed checkpoints in synthetic profiles; not migration, process-death recovery, every route, native resize or physical folding."
+  },
+  "sources": [
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/ANDROID_DELIVERY_2032.md",
+      "bytes": 45702,
+      "sha256": "dd125ba7d025945c90e373d9a9a203271ad561858bcf82ec3493dc48aa985f97",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/COVERAGE.json",
+      "bytes": 998937,
+      "sha256": "1aaef7e1cf9ffcc3f2b93b2abac65709b41437e389874d1de54392f4eb38ad2a",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/COVERAGE.md",
+      "bytes": 15142,
+      "sha256": "f6cee7f20ace421ffeed2f87f93e7de43987a8f698d86dd9567e26c25ce80bf8",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/INTEGRATION_V1.md",
+      "bytes": 13955,
+      "sha256": "db624b8f3b29359138ce20bcb2c24435b5d5fa30c06c4bdf1c91f57c55b76229",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/evidence/coverage_refresh_20261116_2032/verification.json",
+      "bytes": 1791,
+      "sha256": "d86f3c36a217f1dc32818da667e929272f1f40fe1a7f02ade73bb4f3f70a9116",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/evidence/2032-native-contrast-integration-20261116/host-product-boundary-review.json",
+      "bytes": 3675,
+      "sha256": "8173f9fd74663ca67a1bad8b3616d6c5c0bec3b8c837f98da53f87293121418f",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/evidence/2032-original-team-integration-review-20261116/root-byte-review.json",
+      "bytes": 21317,
+      "sha256": "5b0a91c0c0e95cc06b096cc04de397cc691df8fac44f4beabbb217ca013a4a22",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/evidence/ci-2032-android-complete-verified/independent-review/review.json",
+      "bytes": 8153,
+      "sha256": "baa50ee3535889c1d8f81dea07a412b47b10140bcef7fce687993569f0b7b044",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/evidence/ci-2032-android-complete-verified/independent-review/lifecycle-persistence-review.json",
+      "bytes": 16795,
+      "sha256": "f8176f4a2b914b23f6293b7253bb49642ffd93c1dbd06ea39195e8c6774cc66e",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "8649ac8d4bc86deadbe5a64b9dc925dd95cc007a",
+      "path": "docs/nextgen/evidence/ci-2032-publication-verified/original/PUBLIC-DOWNLOAD-VERIFIED.json",
+      "bytes": 1568,
+      "sha256": "a2ffc0bcff56fa644e61fcd2fe6eb0409441c5ac0a35634db3ecf4f8a61c6c2c",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "bytes": 13770,
+      "sha256": "6ab61d2b533fd23e60c5f86214310f5cde2848cf07d2330bfe9e4dbe5023144e",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/domain/tutoring/guided_lesson_catalog.dart",
+      "bytes": 33657,
+      "sha256": "4abfbd2fb3bd5deaa3062ff8fa0dacf48dacfd278fff8fe7e8c5ac17a2759e7f",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/learning/learning_content.dart",
+      "bytes": 155423,
+      "sha256": "c9e8fcfcefa63864264aef0d8d3ad7c479f4c1cd0f4fbae1197f921b8622ed50",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/learning/cross_grade_practice_screen.dart",
+      "bytes": 49986,
+      "sha256": "e58cdb454aa1f97e4e4fd0ca794c397992d0f8a1b85474c9af96d5460d08e713",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/learning/lab/learning_lab_screen.dart",
+      "bytes": 56493,
+      "sha256": "5770aea4b73db3fab1cbb7faa14321546d2cfaaaedd6964d51f571a37099870f",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/learning/lab/learning_lab_catalog.dart",
+      "bytes": 17357,
+      "sha256": "54b8a6489805f0dc83a3f6d11c42d239f7aea86f8bebcdc7070914684c6ad0be",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/learning/nextgen/module_task_scope.dart",
+      "bytes": 24049,
+      "sha256": "4f291593257e70468add023ba448ca8fe2ee071d9bc7feae421bff5c026eec3c",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/learning_modules/learning_module_registry.dart",
+      "bytes": 4664,
+      "sha256": "a8c272577b4ff6d33bfe5c97327243d36ffdc77b1b2cf7d5a5fa5f05b0eec890",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+      "bytes": 62925,
+      "sha256": "31ad5bde3d8cb897d3feebf85edf21f60e7a5643d1bb3f98c92053db4c7b3872",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/tutoring/guided_lesson_screen.dart",
+      "bytes": 47954,
+      "sha256": "b05f803a4c8e7bf3019569f61378f3127c1baa1c8b51ff6acb7476a1cb8e1d91",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/learning/widgets/learning_question_coach.dart",
+      "bytes": 21056,
+      "sha256": "0ee7696387509059d29185aaa7c5cc82311c282969a965c296fcb5cb38afa8e9",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/reading/reading_lesson_companion.dart",
+      "bytes": 15698,
+      "sha256": "11e908b4866cb16c41975787f49f401006c5710249d77f330a372b927fd3e43b",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/photo_lesson/photo_lesson_practice_screen.dart",
+      "bytes": 32330,
+      "sha256": "9c1f93d2b8e418efc2c9e898ce9dade6672c0406ec9ac4c1e9a2129d25ae3c5d",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/games/mini_games/mini_game_learning_screen.dart",
+      "bytes": 77221,
+      "sha256": "a4b59189a6c7268c207863e153103ba617f78e29e7af613e1253ca3a7a53f215",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/story/lumo_story_reader_screen.dart",
+      "bytes": 85423,
+      "sha256": "a27ae5233496d5a1cc7b7ac25955913f3e1cc5e463de82bb08969c7374036288",
+      "readFrom": "committed_git_blob"
+    },
+    {
+      "commit": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+      "path": "lib/features/teacher_mode/lumo_akademie_screen.dart",
+      "bytes": 47804,
+      "sha256": "b8ab8c0cffc25deae568e700aee64e9c95661db24109ea1360cda95fcd0e2e1d",
+      "readFrom": "committed_git_blob"
+    }
+  ],
+  "limits": [
+    "No additional Android or source tests were run.",
+    "Runtime assertions rest on the already completed independent original review; no new screenshot/video inspection.",
+    "Source paths and factory routing show implementations and reachable controls, not every task variant exercised.",
+    "The four newly activated cases have no accepted result in this document review."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "status": "TWO_ORIGINAL_STATIC_FRAMES_REVIEWED",
+  "checkedAt": "2026-11-16T11:07:04.358491+00:00",
+  "workflowRun": 43837592237,
+  "attempt": 2,
+  "job": 133221738048,
+  "artifactId": 14216997362,
+  "apkSource": "9b38360ca5f21919dce4a2b99e605ee39bbbf454",
+  "files": [
+    {
+      "path": "original-android/0221-bridge-fold7-cover-emulated.png",
+      "bytes": 806667,
+      "sha256": "8c715cca8bd093de7c5255378c3815ff71376df481002d9cb321a42b1f6ed4c2",
+      "pixelDimensions": [
+        1080,
+        2520
+      ]
+    },
+    {
+      "path": "original-android/0231-bridge-fold7-inner-emulated.png",
+      "bytes": 818532,
+      "sha256": "0fc40c60e2c933e829f2dad30c7f8ac3f03b19aa201dfd5cca2bffdeb6e7601b",
+      "pixelDimensions": [
+        1968,
+        2184
+      ]
+    }
+  ],
+  "visualObservations": [
+    "Both images show the Flutter Zehnerbruecke example for 8+5, with eight yellow original tokens, one blue transferred token and four blue reserve tokens.",
+    "The same unfinished one-token checkpoint is visible in both layouts; data persistence is separately verified from original saved checkpoints.",
+    "Title, task text and the visible ten-frame tokens are readable in both static images.",
+    "The broader inner layout still requires scrolling to reach all remaining controls; the static image alone does not prove their reachability."
+  ],
+  "limits": [
+    "Emulator logical size and configured Android density, not a physical Fold7 display or hinge action.",
+    "These images show the Flutter learning lab, not native 3D resize behavior.",
+    "No complete touch-target, font-scaling, rotation, acoustic or performance acceptance is derived from these two images."
+  ],
+  "productFilesChanged": false
+}
