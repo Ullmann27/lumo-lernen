@@ -175,6 +175,9 @@ APPROVED = {
     # 2033 isolated workshop APK candidate, from public 2032 source with 3D
     # clock, active holographic stage and inherited button-state contrast.
     2033: "f07b007c2c0169ceeba75349420a47493a63569e",
+    # The unified 2034 native line adds reviewed Kart neon previews and child-guided Bauwelt.
+    # Actual Godot scenes, Android bundle and signature remain independent test gates.
+    2034: "fe28a9c820c28c6433caff06bbef945a6e5759b3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

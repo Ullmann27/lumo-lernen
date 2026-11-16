@@ -1,11 +1,11 @@
 name: "LUMO – APK mit einem Bauvorgang"
 on:
   push:
-    branches: [delivery/lumo-apk-einfach-20261116]
+    branches: [delivery/lumo-apk-einfach-20261116, delivery/lumo-2034-gesamt-20261116]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: lumo-einfache-apk-${{ github.ref }}
@@ -21,7 +21,6 @@ jobs:
       FLUTTER_SUPPRESS_ANALYTICS: 'true'
       LUMO_SPLIT_PER_ABI: '0'
       LUMO_NDK_DISPOSABLE_RUNNER: '1'
-      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -67,30 +66,23 @@ jobs:
           cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
           cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
           (cd release && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
-      - name: Direkten APK-Download ohne weiteren manuellen Auftrag bereitstellen
+      - name: Eine installierbare APK statt eines gesperrten Release-Uploads liefern
         shell: bash
         run: |
           set -euo pipefail
-          TAG="lumo-einfach-${GITHUB_RUN_ID}"
-          VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
-          cat > release/README.txt <<EOF
-          LUMO Android Test-APK
-          Stand: ${GITHUB_SHA}
-          Version: ${VERSION}
-          Inhalt: Original Flutter- und Godot-Quellen des festgelegten APK-Kandidaten.
-          Paketkennung/Signatur: im beigefügten APK-VERIFICATION.json geprüft.
-          Keine Behauptung einer physischen Fold7-Geräteabnahme.
-          EOF
-          gh release create "$TAG"             release/Lumo-Lernen-Neu.apk             release/SHA256SUMS.txt             release/APK-VERIFICATION.json             release/BUILD-PROVENANCE.json             release/README.txt             --repo "$GITHUB_REPOSITORY"             --target "$GITHUB_SHA"             --title "LUMO APK (${VERSION}) – Direktdownload"             --notes "Eine geprüfte installierbare LUMO-Test-APK ohne zusätzliche Uploads, PR-Merges, Versionsnummer-Eingaben oder zweite Veröffentlichungs-Pipeline. Device AI Continuum ist ein eigenständiges Repository."             --prerelease --latest=false
-          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url
+          test -s release/Lumo-Lernen-Neu.apk
+          echo "## LUMO APK bereit" >> "$GITHUB_STEP_SUMMARY"
+          echo "Version: $(grep '^version:' pubspec.yaml | cut -d' ' -f2)" >> "$GITHUB_STEP_SUMMARY"
+          echo "GitHub Actions → Artefakte → LUMO-2034-APK dieses Laufs" >> "$GITHUB_STEP_SUMMARY"
+          echo "Originalsignatur, APK-Paket und eingebettetes Godot-PCK sind im Build geprüft." >> "$GITHUB_STEP_SUMMARY"
       - name: APK auch als Actions-Artefakt sichern
-        if: always()
+        if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: LUMO-EINFACH-APK-${{ github.run_id }}
+          name: LUMO-2034-APK-${{ github.run_id }}
           path: |
             release/
             build-proof/
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 30
           compression-level: 0
