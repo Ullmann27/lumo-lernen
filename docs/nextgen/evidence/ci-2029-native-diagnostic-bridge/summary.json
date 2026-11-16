@@ -1,0 +1,152 @@
+{
+  "schema": "lumo.diagnostic.original-evidence",
+  "version": 1,
+  "runId": 43790709991,
+  "jobId": 133048238970,
+  "artifactId": 14193300868,
+  "qaCommit": "e04e29437e2c28f40e492191f430cd49ddc456fa",
+  "apkCommit": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "nativeCommit": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "status": "DIAGNOSTIC_ONLY",
+  "diagnosticOutcome": "COMPLETED",
+  "releaseEligible": false,
+  "original2029AndroidReclassified": false,
+  "archiveBytes": 35233050,
+  "archiveSha256": "c81b97b2bc7c9f4874a698664f44dd7610df1aa56ce428608467aef8fe2a65a3",
+  "originalMembers": 734,
+  "selectedOriginalMembers": [
+    {
+      "path": "diagnostic-android/diagnostic-android-result.json",
+      "bytes": 76859,
+      "sha256": "3ebe5d8786b3821c27d56b3901430da633eaa8ba61084c565e1f78c590f265cf"
+    },
+    {
+      "path": "diagnostic-android/native-why-two-result.json",
+      "bytes": 2176,
+      "sha256": "4ea46ad3fd4ce479d5053a940cfb7bb3f7920ff874e20aab34646160dcee7467"
+    },
+    {
+      "path": "diagnostic-android/native-learning-performance.json",
+      "bytes": 56799,
+      "sha256": "9069fb54add45b7e0f66845e208c9a88d8263162522391a5e19e145ee3e4fa23"
+    },
+    {
+      "path": "diagnostic-android/0157-why-native-eight-and-five-before-question.png",
+      "bytes": 642406,
+      "sha256": "e637347f3ddbf48a7a9b3fa753ebd250e456eded23ae0b7941d31d2271789a05"
+    },
+    {
+      "path": "diagnostic-android/0162-why-native-written-before-send.png",
+      "bytes": 446997,
+      "sha256": "92aa2a661e9e67fb5b3fa0e34e01d851054fef334acdf219ea77cde1b4a49e25"
+    },
+    {
+      "path": "diagnostic-android/0167-why-native-current-explanation.png",
+      "bytes": 681868,
+      "sha256": "5dd1dacb9eb65dba0641e222390bae72948057059393c15d7ed087015b4a7dfb"
+    },
+    {
+      "path": "diagnostic-android/0169-why-native-ten-and-three-after-explanation.png",
+      "bytes": 681779,
+      "sha256": "4b4e3b120edbc48d3b7c09038c951ab57903b7c80898e0e6a3f4ec12cc4d3f48"
+    },
+    {
+      "path": "diagnostic-android/0223-native-performance-observed-scene.png",
+      "bytes": 676602,
+      "sha256": "9c6d363617b3f2252b24c9dd9c10140958775d2a77b169fd36c570ac7660ade8"
+    },
+    {
+      "path": "diagnostic-android/0224-native-return-1.png",
+      "bytes": 676744,
+      "sha256": "057ef8399e010fcc960e4f7e3525775ee5fe252610fbedfd1affb76df103a816"
+    },
+    {
+      "path": "diagnostic-android/0231-native-return-current-task.png",
+      "bytes": 1532669,
+      "sha256": "008b78f797441f31a896c21a7f3dd19a4229349fff28e2f623d03bab739f3ae9"
+    },
+    {
+      "path": "diagnostic-android/0154-native-why-two-question-and-demonstration.mp4",
+      "bytes": 2255930,
+      "sha256": "1b76c58862dcf382428438eb2ac63c92143b7e5181a558b49b2d51a78c1b6bb1"
+    },
+    {
+      "path": "diagnostic-android/0170-native-three-dimensional-performance.mp4",
+      "bytes": 604795,
+      "sha256": "fbeab478d78d701f185707a7fc8a219b897f0feeb5512931d754b433349ae08f"
+    },
+    {
+      "path": "origin/qa-source-binding.json",
+      "bytes": 955,
+      "sha256": "5177b2c3c104fb628fe0bf403f9abcf1ba5ff9a6d02ee16d782b4bc63af60cf6"
+    },
+    {
+      "path": "origin/source-artifact.json",
+      "bytes": 810,
+      "sha256": "f3156f958cb728b70b42214db8f937d3e93286328df893c4f151ae65703ac5db"
+    },
+    {
+      "path": "origin/source-build-job.json",
+      "bytes": 4514,
+      "sha256": "88579975f353888921a7b94c2910b9e11b5da04484707015055dc5b453ba5377"
+    },
+    {
+      "path": "origin/source-failed-android-job.json",
+      "bytes": 4294,
+      "sha256": "f9bf89e0396c8b65768a38d379281eacb9cf8df10605bd1fc6e7079d60771f3e"
+    },
+    {
+      "path": "origin/source-run.json",
+      "bytes": 13764,
+      "sha256": "93f56c17b02cf0273d48b750580058bd444aa747e96222cd4003f287db28104a"
+    },
+    {
+      "path": "origin/source-validate-job.json",
+      "bytes": 5726,
+      "sha256": "1ec9ccfb88fa49d17eea8b0337d07f1b753b276caa966ab7e0fec1919bd89b77"
+    },
+    {
+      "path": "origin/verified-download.json",
+      "bytes": 2713,
+      "sha256": "19ddec4d2b4f630dce8942df3fa0a8a704de0f461d3b35a10042196b00691f83"
+    }
+  ],
+  "jobLog": {
+    "bytes": 533647,
+    "sha256": "71640297fd22d8a1f49aa27707cfa3b1ebbac30dbe4382cca20616d1824a37ee",
+    "gzipSha256": "d64433347ea1e335d591b6b69d916142f9036246c38e78cfd2cb4312171d2b1e",
+    "whitespaceNormalized": false
+  },
+  "observedWhyQuestion": {
+    "question": "Warum zuerst zwei?",
+    "typedViaRealAndroidInput": true,
+    "automaticModelMovedFrom": 0,
+    "automaticModelMovedTo": 2,
+    "playbackIds": [
+      19
+    ],
+    "manualMoveAfterQuestion": false,
+    "gradingApiCalled": false,
+    "acousticWordsVerified": false
+  },
+  "performance": {
+    "window_count": 8,
+    "sample_count": 45,
+    "measured_window_seconds": 44.023098,
+    "mean_process_frame_interval_ms": 978.2910666666667,
+    "mean_process_frame_rate_hz": 1.022190669089213,
+    "combined_audio_figure_effect_windows": [
+      47,
+      48,
+      49
+    ],
+    "physical_device_60fps_verified": false
+  },
+  "preservation": {
+    "profile_id": "1794795988985413",
+    "learning_keys_compared": 2,
+    "same_task_checkpoint": false
+  },
+  "preservationBoundary": "Actual current guided-task UI returned; stored profile and available learning keys compared. same_task_checkpoint=false means this helper did not compare a Lab checkpoint, not a failed comparison.",
+  "current2030RunAccepted": false
+}

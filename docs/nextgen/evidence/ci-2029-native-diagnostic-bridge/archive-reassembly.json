@@ -1,0 +1,33 @@
+{
+  "archiveName": "artifact-14193300868.zip",
+  "bytes": 35233050,
+  "sha256": "c81b97b2bc7c9f4874a698664f44dd7610df1aa56ce428608467aef8fe2a65a3",
+  "parts": [
+    {
+      "file": "artifact-14193300868.zip.part-001",
+      "bytes": 8388608,
+      "sha256": "0296d9df7f239b8274996655823468aaf35015205704dd5fb006e384c16843d9"
+    },
+    {
+      "file": "artifact-14193300868.zip.part-002",
+      "bytes": 8388608,
+      "sha256": "5b6d4cd77de3513c9d30485138589725fd9d0540357b19e0db206453461449c0"
+    },
+    {
+      "file": "artifact-14193300868.zip.part-003",
+      "bytes": 8388608,
+      "sha256": "b95fe32dd1c26eb04eec1df6775b81f9316ff53c187155adae7833d8c410e713"
+    },
+    {
+      "file": "artifact-14193300868.zip.part-004",
+      "bytes": 8388608,
+      "sha256": "db2c599ec39ce7fc38cab3ca5b662059e84ed424547baab0e1481bb69f46f70d"
+    },
+    {
+      "file": "artifact-14193300868.zip.part-005",
+      "bytes": 1678618,
+      "sha256": "42fedc25b62be3fe4a24be57bdacedb18da01f68c090346d0a19000cb87eef24"
+    }
+  ],
+  "instruction": "Concatenate parts in listed order; verify bytes and SHA-256 before extracting. Every original member is retained."
+}

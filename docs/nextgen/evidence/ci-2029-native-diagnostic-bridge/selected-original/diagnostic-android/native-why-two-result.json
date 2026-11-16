@@ -1,0 +1,58 @@
+{
+  "question": "Warum zuerst zwei?",
+  "input_method": "observed Godot input plus real Android keyboard text",
+  "observed_initial_moved": 0,
+  "observed_final_moved": 2,
+  "manual_move_buttons_pressed_after_question": false,
+  "answer_or_score_api_called": false,
+  "initial_screenshot": {
+    "file": "0157-why-native-eight-and-five-before-question.png",
+    "width": 1080,
+    "height": 2340,
+    "sha256": "e637347f3ddbf48a7a9b3fa753ebd250e456eded23ae0b7941d31d2271789a05"
+  },
+  "written_question_screenshot": {
+    "file": "0162-why-native-written-before-send.png",
+    "width": 1080,
+    "height": 2340,
+    "sha256": "92aa2a661e9e67fb5b3fa0e34e01d851054fef334acdf219ea77cde1b4a49e25"
+  },
+  "response": {
+    "variant": "contrast",
+    "text": "2:31 U VAG Zahlen zum Anfassen : 8 + > Im Zehnerfeld liegen 8. Bis zehn fehlen 2, denn 10 minus 8 ist 2. fehlen Deshalb nehmen wir zuerst 2 von den 5. Danach bleiben 3 übrig w SER | — Dolls \\ iat u... ® < oe OOOO CO Pd Ä N 10 Mm uhr 2/5 bewegt Ziehen oder antippen Ein Objekt zeigen Noch einmal Stimme stoppen Lumo fragen Zur Aufgabe",
+    "screenshot": {
+      "file": "0167-why-native-current-explanation.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "5dd1dacb9eb65dba0641e222390bae72948057059393c15d7ed087015b4a7dfb"
+    }
+  },
+  "playback": {
+    "pid": 4999,
+    "utterance_ids": [
+      19
+    ],
+    "profile": "lumo-free-supertonic-de-v1",
+    "evidence": "Android MediaPlayer callbacks",
+    "audible_quality_verified": false
+  },
+  "final_screenshot": {
+    "file": "0169-why-native-ten-and-three-after-explanation.png",
+    "width": 1080,
+    "height": 2340,
+    "sha256": "4b4e3b120edbc48d3b7c09038c951ab57903b7c80898e0e6a3f4ec12cc4d3f48"
+  },
+  "video": {
+    "file": "0154-native-why-two-question-and-demonstration.mp4",
+    "sha256": "1b76c58862dcf382428438eb2ac63c92143b7e5181a558b49b2d51a78c1b6bb1",
+    "bytes": 2255930,
+    "duration_seconds": 142.986056,
+    "width": 1080,
+    "height": 2340,
+    "audio_recorded": false,
+    "maximum_seconds": 180,
+    "block_elapsed_seconds": 143.88,
+    "whole_block_within_recording_limit": true
+  },
+  "acoustic_words_verified": false
+}

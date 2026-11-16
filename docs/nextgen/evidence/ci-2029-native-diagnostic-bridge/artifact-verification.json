@@ -1,0 +1,4414 @@
+{
+  "artifactId": 14193300868,
+  "workflowRun": 43790709991,
+  "archiveBytes": 35233050,
+  "archiveSha256": "c81b97b2bc7c9f4874a698664f44dd7610df1aa56ce428608467aef8fe2a65a3",
+  "allMemberCRCsVerified": true,
+  "archiveRetainedLocally": true,
+  "members": [
+    {
+      "path": "checkers/diagnostic-checkers.log",
+      "bytes": 2379,
+      "sha256": "37720e6c76648710380401c6d2c6a092e2b0c5d1b5a03567c5ee1e7c178c87ac",
+      "crc32": "e5b65b9e"
+    },
+    {
+      "path": "diagnostic-android/0001-onboarding-video.json",
+      "bytes": 337,
+      "sha256": "b3f51ccce2a9cf074666c7419be87a7e36fd8cb24341f6393bf495d543ba5bc1",
+      "crc32": "998a7790"
+    },
+    {
+      "path": "diagnostic-android/0001-onboarding-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "diagnostic-android/0001-onboarding.mp4",
+      "bytes": 1935132,
+      "sha256": "c6a6635cc9f73e65639f01f1689fae194e51f6b6e1c414556280ca7913a7441a",
+      "crc32": "d5331887"
+    },
+    {
+      "path": "diagnostic-android/0002-welcome.xml",
+      "bytes": 22890,
+      "sha256": "ae6f995990793b3ff70aa3f8d039de31483221fc835c08156aece09c1752a3f3",
+      "crc32": "27121b67"
+    },
+    {
+      "path": "diagnostic-android/0003-welcome-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0004-welcome-touch.json",
+      "bytes": 94,
+      "sha256": "765d11464b1bb515d8e36e2478ed0f6830a57feb5f6923e743051bf1debbda7e",
+      "crc32": "35cd070f"
+    },
+    {
+      "path": "diagnostic-android/0005-profile-name.xml",
+      "bytes": 23225,
+      "sha256": "47410866fe2777d75d6564d0e6b7342b81da4c40fa28a7ca5f0e1b525d183b3d",
+      "crc32": "e26bc845"
+    },
+    {
+      "path": "diagnostic-android/0006-fictional-name.xml",
+      "bytes": 23225,
+      "sha256": "47410866fe2777d75d6564d0e6b7342b81da4c40fa28a7ca5f0e1b525d183b3d",
+      "crc32": "e26bc845"
+    },
+    {
+      "path": "diagnostic-android/0007-fictional-name-touch.json",
+      "bytes": 100,
+      "sha256": "65746bf3ec9f5e582c5a1335657c28910759dab5253bf889c44f92fae6cf8360",
+      "crc32": "f7cb7ca0"
+    },
+    {
+      "path": "diagnostic-android/0008-fictional-name-written.xml",
+      "bytes": 96398,
+      "sha256": "ccaf36e9131c70a9792895eb88b9adc9faa488bc0028d7ae87dfa622fe83f8e3",
+      "crc32": "4fd114b9"
+    },
+    {
+      "path": "diagnostic-android/0009-fictional-name-ime.xml",
+      "bytes": 96398,
+      "sha256": "ccaf36e9131c70a9792895eb88b9adc9faa488bc0028d7ae87dfa622fe83f8e3",
+      "crc32": "4fd114b9"
+    },
+    {
+      "path": "diagnostic-android/0010-name-next.xml",
+      "bytes": 22336,
+      "sha256": "819a3317ee594a6d0acfa62c2a53af3c5e2589cf88da3e26354c485a7dfd6bd2",
+      "crc32": "0fc018f2"
+    },
+    {
+      "path": "diagnostic-android/0011-name-next.xml",
+      "bytes": 23215,
+      "sha256": "90904ca59fed542f994190cb8dc8d4a107e0322bb728c2fa79dba39d3c30542a",
+      "crc32": "92c02b12"
+    },
+    {
+      "path": "diagnostic-android/0012-name-next-scroll-search.json",
+      "bytes": 130,
+      "sha256": "9f8696f7221620237a9d9d2cdfe33bdbc6f886a4da9076344f451c04496aabb5",
+      "crc32": "9a1542d9"
+    },
+    {
+      "path": "diagnostic-android/0013-name-next-touch.json",
+      "bytes": 89,
+      "sha256": "8feda90c2490ab2375db4bbf4b86ae1eebc92628494a2a24ee4b0f20f0e4dc81",
+      "crc32": "06a2f476"
+    },
+    {
+      "path": "diagnostic-android/0014-profile-age.xml",
+      "bytes": 24517,
+      "sha256": "6ba453b8c1b41bddc2463d32daeeec4b07fbe784112035c6e02d2ccfa8922234",
+      "crc32": "575b841d"
+    },
+    {
+      "path": "diagnostic-android/0015-age-next.xml",
+      "bytes": 24517,
+      "sha256": "6ba453b8c1b41bddc2463d32daeeec4b07fbe784112035c6e02d2ccfa8922234",
+      "crc32": "575b841d"
+    },
+    {
+      "path": "diagnostic-android/0016-age-next-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0017-age-next-touch.json",
+      "bytes": 89,
+      "sha256": "bccee889b29f7c0c54862cdea340a966152c9ab1920209af0226f8ddfd253f38",
+      "crc32": "4e4e6b32"
+    },
+    {
+      "path": "diagnostic-android/0018-profile-grade.xml",
+      "bytes": 23711,
+      "sha256": "55444762a2ec432c078101cb2d5c13b9987b783b494a9f58214c83f856d5b987",
+      "crc32": "3b9c01a9"
+    },
+    {
+      "path": "diagnostic-android/0019-profile-save.xml",
+      "bytes": 23711,
+      "sha256": "55444762a2ec432c078101cb2d5c13b9987b783b494a9f58214c83f856d5b987",
+      "crc32": "3b9c01a9"
+    },
+    {
+      "path": "diagnostic-android/0020-profile-save-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0021-profile-save-touch.json",
+      "bytes": 99,
+      "sha256": "ade362c211cc8428f686de84d601b1fa5f86192344375e0c99ef8063c934bc81",
+      "crc32": "d8440f75"
+    },
+    {
+      "path": "diagnostic-android/0022-synthetic-home.xml",
+      "bytes": 32235,
+      "sha256": "e57164f9336c24e4209f55f537e64bad283a46f1597b15fdd0fdb567275b53cf",
+      "crc32": "2dd90143"
+    },
+    {
+      "path": "diagnostic-android/0023-synthetic-profile-preferences.xml",
+      "bytes": 1360,
+      "sha256": "03377b7bceee2d3b86b19be7cc06d6c297951e496fa38876388ee9d0a289f113",
+      "crc32": "03702df9"
+    },
+    {
+      "path": "diagnostic-android/0024-home-after-onboarding-render-candidate-1.png",
+      "bytes": 20423,
+      "sha256": "da72b8524c37dbf34892f17f2e0aa537f50b3b903874fd3c306121429ac44246",
+      "crc32": "73da5af6"
+    },
+    {
+      "path": "diagnostic-android/0024-home-after-onboarding-render-readiness.json",
+      "bytes": 953,
+      "sha256": "85d591e507bfec9d02d7b09af2b688e00a2029d0d16d4830f43ef73f34b9ea1f",
+      "crc32": "c4544af1"
+    },
+    {
+      "path": "diagnostic-android/0024-home-after-onboarding.png",
+      "bytes": 1520396,
+      "sha256": "b44ab6a3fc27d34bee22ba81f555552fb8ce7ca8f5337b273d461fd7c3fd7e1c",
+      "crc32": "f671f2f1"
+    },
+    {
+      "path": "diagnostic-android/0025-home-game-hub.xml",
+      "bytes": 32235,
+      "sha256": "e57164f9336c24e4209f55f537e64bad283a46f1597b15fdd0fdb567275b53cf",
+      "crc32": "2dd90143"
+    },
+    {
+      "path": "diagnostic-android/0026-home-game-hub-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0027-home-game-hub-touch.json",
+      "bytes": 90,
+      "sha256": "52fd17c2c1e7beb2295b81a9044b29936c296712e9033b725928a71c4ca7c1c9",
+      "crc32": "e1fe6302"
+    },
+    {
+      "path": "diagnostic-android/0028-parent-settings.xml",
+      "bytes": 32235,
+      "sha256": "e57164f9336c24e4209f55f537e64bad283a46f1597b15fdd0fdb567275b53cf",
+      "crc32": "2dd90143"
+    },
+    {
+      "path": "diagnostic-android/0029-parent-settings.xml",
+      "bytes": 21483,
+      "sha256": "93a9d33be1fa207e6e07c7d8c33179a6bf211dbc6b1cbbe512d42c9b4697606b",
+      "crc32": "e9ebe5cf"
+    },
+    {
+      "path": "diagnostic-android/0030-parent-settings.xml",
+      "bytes": 28597,
+      "sha256": "824269257c8853ebd34e34493168df6511825cedc6c8f0a4f2379a2216c9fddd",
+      "crc32": "40ff716f"
+    },
+    {
+      "path": "diagnostic-android/0031-parent-settings.xml",
+      "bytes": 26201,
+      "sha256": "3d1c7e43d6e8b50791a7e5a87dc4e8148ab06bd0d4aedb88ba106b35736e3d1a",
+      "crc32": "cb0b93e7"
+    },
+    {
+      "path": "diagnostic-android/0032-parent-settings.xml",
+      "bytes": 27565,
+      "sha256": "9ff476db4987aa91bf74bf8d9f447cf93f07cc42344acb64bca02c2be874c98c",
+      "crc32": "c1b062bd"
+    },
+    {
+      "path": "diagnostic-android/0033-parent-settings-scroll-search.json",
+      "bytes": 1089,
+      "sha256": "14c3a1b1bbc4e61d037dbbfe3b594cf916a35598d02c0cbbd880af7c834e791e",
+      "crc32": "82fd4022"
+    },
+    {
+      "path": "diagnostic-android/0034-parent-settings-touch.json",
+      "bytes": 97,
+      "sha256": "0d4dd69a5d4d1f30a05fdded57dea2317a4d9ba2a4d481fa871563653fc950ff",
+      "crc32": "d5acfbd1"
+    },
+    {
+      "path": "diagnostic-android/0035-parent-settings-open.xml",
+      "bytes": 30081,
+      "sha256": "b507a74a57cd6ae3705ad7302a746063e0543d020c741d546bde56e42618b1cc",
+      "crc32": "1915add9"
+    },
+    {
+      "path": "diagnostic-android/0036-voice-before-preferences.xml",
+      "bytes": 1654,
+      "sha256": "7412d6bcb7b4c037c1f985c1625d0053aba3ad3800ed4bf9abe627861031aa13",
+      "crc32": "464c2a42"
+    },
+    {
+      "path": "diagnostic-android/0037-local-license.xml",
+      "bytes": 30081,
+      "sha256": "b507a74a57cd6ae3705ad7302a746063e0543d020c741d546bde56e42618b1cc",
+      "crc32": "1915add9"
+    },
+    {
+      "path": "diagnostic-android/0038-local-license.xml",
+      "bytes": 29178,
+      "sha256": "e61848074c5f9c9886c199e3ee56a1f7b886f2a06544be694ab16f1c13a4f042",
+      "crc32": "7b81978f"
+    },
+    {
+      "path": "diagnostic-android/0039-local-license.xml",
+      "bytes": 29353,
+      "sha256": "712431d2b1cef6fe7b376f0a94fdc4d2ce530607b4ad13ab842f07dd2ff89ea9",
+      "crc32": "d7d53086"
+    },
+    {
+      "path": "diagnostic-android/0040-local-license.xml",
+      "bytes": 29359,
+      "sha256": "d6a93e7f4355b9005c861c7f20d7a60254fed1648a8982798b95ec01affc2aea",
+      "crc32": "0355c316"
+    },
+    {
+      "path": "diagnostic-android/0041-local-license.xml",
+      "bytes": 30176,
+      "sha256": "044523ea27cabdcb6820c87e07cbb5aeb26518bb74ce90df2d733e2fb9a46c6e",
+      "crc32": "e7cc7af8"
+    },
+    {
+      "path": "diagnostic-android/0042-local-license.xml",
+      "bytes": 30523,
+      "sha256": "2d141f9c3d4984345c63bc97157f3afec491cdacbc5ffefce449d5aeee045d6d",
+      "crc32": "09546a54"
+    },
+    {
+      "path": "diagnostic-android/0043-local-license.xml",
+      "bytes": 27530,
+      "sha256": "618444f66a06354862430bb6e955269b3310fe0e9526a5c2ae8fa930ca2a987b",
+      "crc32": "388dbb47"
+    },
+    {
+      "path": "diagnostic-android/0044-local-license.xml",
+      "bytes": 30122,
+      "sha256": "1a330fcb67fce511478c080ca69d0cab1d3562af84198dec3d5f1da619cee17c",
+      "crc32": "d63aa1c7"
+    },
+    {
+      "path": "diagnostic-android/0045-local-license.xml",
+      "bytes": 29774,
+      "sha256": "675cf717343c532494b6ca3094939a30721d678ab634f817461f5d31d4bcf73f",
+      "crc32": "b6ddacb8"
+    },
+    {
+      "path": "diagnostic-android/0046-local-license.xml",
+      "bytes": 32288,
+      "sha256": "4db28b93d026ff8aa8d8495c6cfe920a99a36671057ab692eea4d6c6333095df",
+      "crc32": "892a51e6"
+    },
+    {
+      "path": "diagnostic-android/0047-local-license.xml",
+      "bytes": 33402,
+      "sha256": "3527f4c9387a4a7a3a598613ae68e832e0f7a73d52a9bd187ac85b76a44e1cea",
+      "crc32": "5aa04405"
+    },
+    {
+      "path": "diagnostic-android/0048-local-license.xml",
+      "bytes": 31807,
+      "sha256": "a06bfb8c0461656227f4ef3f54d176c01fbf64430a294d640deb581f4cfbb77f",
+      "crc32": "b099ed39"
+    },
+    {
+      "path": "diagnostic-android/0049-local-license.xml",
+      "bytes": 30969,
+      "sha256": "3e3ec181e3c200c83f9c010586878ac8cba7bc9fa91500ad111cd2417c19d81e",
+      "crc32": "6174539d"
+    },
+    {
+      "path": "diagnostic-android/0050-local-license.xml",
+      "bytes": 28483,
+      "sha256": "a82e9739dd7c5271a9fe53740f51b1491a1b5733161dc72d7669649c436264b9",
+      "crc32": "f47b460e"
+    },
+    {
+      "path": "diagnostic-android/0051-local-license.xml",
+      "bytes": 29262,
+      "sha256": "7a09be2b0ed1f89df618e4c4b9d3dfd0f38aa5356cda391c1801a374ab0413e1",
+      "crc32": "0c97dc4a"
+    },
+    {
+      "path": "diagnostic-android/0052-local-license.xml",
+      "bytes": 28718,
+      "sha256": "847704980e1af3884a324a24c774052439f40c30befae4467a3bef3c75b4ae19",
+      "crc32": "be878666"
+    },
+    {
+      "path": "diagnostic-android/0053-local-license-scroll-search.json",
+      "bytes": 4917,
+      "sha256": "f313a367053562b04ec12775ff99961bc4475481d123a06c68a56cce3e9b66a8",
+      "crc32": "90312365"
+    },
+    {
+      "path": "diagnostic-android/0054-local-license-touch.json",
+      "bytes": 110,
+      "sha256": "8ac39c39fb3fd55153a44efdf97602b3966a6010a6789ca229d2e29c8f059c6d",
+      "crc32": "07558cb4"
+    },
+    {
+      "path": "diagnostic-android/0055-license-dialog.xml",
+      "bytes": 37128,
+      "sha256": "f812bd0f6701a64ae7aec455fed5fec3eb92051ed63e79a36c324b747f2ec096",
+      "crc32": "b5abb81d"
+    },
+    {
+      "path": "diagnostic-android/0056-license-checkbox.xml",
+      "bytes": 37128,
+      "sha256": "f812bd0f6701a64ae7aec455fed5fec3eb92051ed63e79a36c324b747f2ec096",
+      "crc32": "b5abb81d"
+    },
+    {
+      "path": "diagnostic-android/0058-license-checkbox-touch.json",
+      "bytes": 230,
+      "sha256": "db10d7f009182556ffdd1ce3b885c3a56ed58049525391affce0217a2311a87f",
+      "crc32": "72fb0624"
+    },
+    {
+      "path": "diagnostic-android/0057-license-checkbox-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0059-local-model-conditions-render-readiness.json",
+      "bytes": 564,
+      "sha256": "702f381d217a6a2bcaf6e5041f8b153fa9c4d17dd1cb485b8e4bb3d114cf5ef6",
+      "crc32": "9a828f99"
+    },
+    {
+      "path": "diagnostic-android/0059-local-model-conditions.png",
+      "bytes": 555803,
+      "sha256": "4ae00bf2dd6bf5a04c2fa19a9bc97cbb7faeaf2d880dbdf581515220cee34848",
+      "crc32": "1a3f5799"
+    },
+    {
+      "path": "diagnostic-android/0060-license-confirm.xml",
+      "bytes": 37125,
+      "sha256": "37bdca8ef8f87ad726d8ac9446d0745a00b5a19d7e63f6636d5df69070129d37",
+      "crc32": "50b77137"
+    },
+    {
+      "path": "diagnostic-android/0061-license-confirm-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0065-read-autoReadEnabled-preferences.xml",
+      "bytes": 2400,
+      "sha256": "38c950edd19421d4e657951ec815a7305f587224c20547afe1a66660de269a1a",
+      "crc32": "70b40baf"
+    },
+    {
+      "path": "diagnostic-android/0062-license-confirm-touch.json",
+      "bytes": 106,
+      "sha256": "5f87506ccc6c6cf6cf91a22f263f48469d3b14ef431fb23a4c96e9401e30bf51",
+      "crc32": "535959ba"
+    },
+    {
+      "path": "diagnostic-android/0063-license-saved-preferences.xml",
+      "bytes": 2400,
+      "sha256": "38c950edd19421d4e657951ec815a7305f587224c20547afe1a66660de269a1a",
+      "crc32": "70b40baf"
+    },
+    {
+      "path": "diagnostic-android/0064-read-voiceEnabled-preferences.xml",
+      "bytes": 2400,
+      "sha256": "38c950edd19421d4e657951ec815a7305f587224c20547afe1a66660de269a1a",
+      "crc32": "70b40baf"
+    },
+    {
+      "path": "diagnostic-android/0066-read-microphoneEnabled-preferences.xml",
+      "bytes": 2400,
+      "sha256": "38c950edd19421d4e657951ec815a7305f587224c20547afe1a66660de269a1a",
+      "crc32": "70b40baf"
+    },
+    {
+      "path": "diagnostic-android/0067-set-microphoneEnabled.xml",
+      "bytes": 29143,
+      "sha256": "7cbf2aad252afa571c8e3341a8b1e2ca70f40d47e9728410b4508c96b386d8c1",
+      "crc32": "83b66de3"
+    },
+    {
+      "path": "diagnostic-android/0069-set-microphoneEnabled.xml",
+      "bytes": 28458,
+      "sha256": "278af9d5d9093c3f299f2d1c22616c7fa0485a3c7505f6d57bbc91c2285591de",
+      "crc32": "f0053b99"
+    },
+    {
+      "path": "diagnostic-android/0070-set-microphoneEnabled-scroll-search.json",
+      "bytes": 770,
+      "sha256": "7e4135e16ae3af960f4f51f450ae3356f8f180c332b0e39c86730979709a6136",
+      "crc32": "9744cce3"
+    },
+    {
+      "path": "diagnostic-android/0068-set-microphoneEnabled.xml",
+      "bytes": 29574,
+      "sha256": "af7c4a62afc5f927894b3b7dca1fe9e7b99522c6dff03438453b4feb23430a92",
+      "crc32": "d2471b01"
+    },
+    {
+      "path": "diagnostic-android/0071-set-microphoneEnabled-touch.json",
+      "bytes": 99,
+      "sha256": "d0bf13f5fe3c009710643cd897bc7da67e958f7748d1c4e91e9c70b73bcae43d",
+      "crc32": "20d7bf28"
+    },
+    {
+      "path": "diagnostic-android/0072-saved-microphoneEnabled-preferences.xml",
+      "bytes": 2399,
+      "sha256": "e614ae699fff16bd538afe6af42d6b04e4c30f06dfa40c2eb2d6557710d9464c",
+      "crc32": "01590f91"
+    },
+    {
+      "path": "diagnostic-android/0073-read-calmMode-preferences.xml",
+      "bytes": 2399,
+      "sha256": "e614ae699fff16bd538afe6af42d6b04e4c30f06dfa40c2eb2d6557710d9464c",
+      "crc32": "01590f91"
+    },
+    {
+      "path": "diagnostic-android/0074-voice-after-preferences.xml",
+      "bytes": 2399,
+      "sha256": "e614ae699fff16bd538afe6af42d6b04e4c30f06dfa40c2eb2d6557710d9464c",
+      "crc32": "01590f91"
+    },
+    {
+      "path": "diagnostic-android/0075-local-voice-ready-render-readiness.json",
+      "bytes": 553,
+      "sha256": "a4e4b84f6a34376633aa27d6965f0436cf3b6725d01d96ac5ac5cf5d1734aaf6",
+      "crc32": "40995c03"
+    },
+    {
+      "path": "diagnostic-android/0075-local-voice-ready.png",
+      "bytes": 1448042,
+      "sha256": "44acff1acd40c3f8217dd24f2cd60f333ba1891ce7151fb57e6363ff7125b619",
+      "crc32": "9ed39550"
+    },
+    {
+      "path": "diagnostic-android/0076-academy-tab.xml",
+      "bytes": 28514,
+      "sha256": "b6f19af1fdec159b4e53b047947960ed043604d0b175a1403e41c824771c8a86",
+      "crc32": "5b11f9de"
+    },
+    {
+      "path": "diagnostic-android/0077-academy-tab-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0079-academy-open.xml",
+      "bytes": 31766,
+      "sha256": "8c3888f18087f02d6dd3f0d1a4930131112de3f3728ffea193dccfa4ce5a290c",
+      "crc32": "4a0f109f"
+    },
+    {
+      "path": "diagnostic-android/0080-academy-tools.xml",
+      "bytes": 31766,
+      "sha256": "8c3888f18087f02d6dd3f0d1a4930131112de3f3728ffea193dccfa4ce5a290c",
+      "crc32": "4a0f109f"
+    },
+    {
+      "path": "diagnostic-android/0078-academy-tab-touch.json",
+      "bytes": 89,
+      "sha256": "acbfa48767335c9ca56c5eac0dd3bfa8caa4a52b011e231709a9d9f1e24f8ba9",
+      "crc32": "7d5094aa"
+    },
+    {
+      "path": "diagnostic-android/0081-academy-tools-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0082-academy-tools-touch.json",
+      "bytes": 109,
+      "sha256": "9f67625b7b152a58fcec2660809133893dd4dc4a7eef200c00c839143f8ffe59",
+      "crc32": "f11e764b"
+    },
+    {
+      "path": "diagnostic-android/0083-academy-tools-open.xml",
+      "bytes": 30359,
+      "sha256": "13a2ee7f6bcf0b0ea3442e8fb9fb1a25520e589018e6d2144e53c294ed3be429",
+      "crc32": "00d15100"
+    },
+    {
+      "path": "diagnostic-android/0085-guided-entry.xml",
+      "bytes": 30359,
+      "sha256": "13a2ee7f6bcf0b0ea3442e8fb9fb1a25520e589018e6d2144e53c294ed3be429",
+      "crc32": "00d15100"
+    },
+    {
+      "path": "diagnostic-android/0086-guided-entry.xml",
+      "bytes": 29988,
+      "sha256": "c8d6b07fe95df0cab1cd2e3cf2ba9b5fde0ef131a12c3096bdb692cdb24fdadc",
+      "crc32": "aa92db36"
+    },
+    {
+      "path": "diagnostic-android/0084-academy-tools-open-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0087-guided-entry-scroll-search.json",
+      "bytes": 451,
+      "sha256": "9f9a28ef96758c48b50d89e2aaebafe4d9f42b9b01afb8a4cbc809530c3b63a2",
+      "crc32": "97b579fb"
+    },
+    {
+      "path": "diagnostic-android/0088-guided-entry-touch.json",
+      "bytes": 102,
+      "sha256": "e1a2133e674d360171a79ff5cd0835d9926388fd60117f2fb4fcae035d845f45",
+      "crc32": "124311a0"
+    },
+    {
+      "path": "diagnostic-android/0089-guided-course.xml",
+      "bytes": 22892,
+      "sha256": "b60ba135b0549efaa50a5d575f95b4e2b0711f6dcd793e4446dfce429c42c864",
+      "crc32": "c41224b4"
+    },
+    {
+      "path": "diagnostic-android/0090-guided-bridge-start-touch.json",
+      "bytes": 118,
+      "sha256": "ff7ef1e72e68aa1ad79b4fab0c01c6ebeb21b373eed97a9981a18e4e0dd505e2",
+      "crc32": "a7746fdf"
+    },
+    {
+      "path": "diagnostic-android/0091-guided-greeting.xml",
+      "bytes": 29250,
+      "sha256": "4061fb34b5b88500a10fa42ac6dfcfd6444f45124d1af7d8f0437521409ec4a2",
+      "crc32": "e5432650"
+    },
+    {
+      "path": "diagnostic-android/0092-guided-greeting-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0093-guided-foundation.xml",
+      "bytes": 29250,
+      "sha256": "4061fb34b5b88500a10fa42ac6dfcfd6444f45124d1af7d8f0437521409ec4a2",
+      "crc32": "e5432650"
+    },
+    {
+      "path": "diagnostic-android/0094-guided-foundation-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0095-guided-foundation-touch.json",
+      "bytes": 89,
+      "sha256": "4b0a3688ba2cfb36ad993f8e19ddc613a715a40d80f50a7c380f10cb7dd56dcc",
+      "crc32": "142f85c8"
+    },
+    {
+      "path": "diagnostic-android/0096-guided-foundation-prompt.xml",
+      "bytes": 31377,
+      "sha256": "52983698f67e52f058ccba9f5c0a27378e6eb479ee822128244517825c34e9a5",
+      "crc32": "d2e7c6a3"
+    },
+    {
+      "path": "diagnostic-android/0097-guided-foundation-prompt-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0098-guided-answer-six.xml",
+      "bytes": 31377,
+      "sha256": "52983698f67e52f058ccba9f5c0a27378e6eb479ee822128244517825c34e9a5",
+      "crc32": "d2e7c6a3"
+    },
+    {
+      "path": "diagnostic-android/0099-guided-answer-six-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0100-guided-answer-six-touch.json",
+      "bytes": 85,
+      "sha256": "e342e28b42dbfb94579482a07f32c6412e0c12f35cf5a16e0b1ac20b014fa038",
+      "crc32": "caf8d163"
+    },
+    {
+      "path": "diagnostic-android/0101-guided-example.xml",
+      "bytes": 31826,
+      "sha256": "2f4ec20558da501e65233ac6ebe6bd38f47a267a40df37dd52cf257246590654",
+      "crc32": "eb618fce"
+    },
+    {
+      "path": "diagnostic-android/0102-guided-example-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0103-guided-example-touch.json",
+      "bytes": 89,
+      "sha256": "4b0a3688ba2cfb36ad993f8e19ddc613a715a40d80f50a7c380f10cb7dd56dcc",
+      "crc32": "142f85c8"
+    },
+    {
+      "path": "diagnostic-android/0104-guided-eight-plus-five.xml",
+      "bytes": 30997,
+      "sha256": "f7e86145d5164585e26c38fc90e0d6c259445ffe99b5cc3e5dc7eecd5b28abfc",
+      "crc32": "d0405795"
+    },
+    {
+      "path": "diagnostic-android/0106-native-entry-same-guided-task-render-readiness.json",
+      "bytes": 577,
+      "sha256": "bdf8f5e0f3757baff7901668aa946028dd1e6036f053f30615e0b1090db28837",
+      "crc32": "2d698f38"
+    },
+    {
+      "path": "diagnostic-android/0105-guided-eight-plus-five-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "diagnostic-android/0106-native-entry-same-guided-task.png",
+      "bytes": 1821470,
+      "sha256": "5fc42bcb75e730b77c3be8ea0087e9cea6b04df6a9d03f8bd37ac0bb273ae54d",
+      "crc32": "8a0c021a"
+    },
+    {
+      "path": "diagnostic-android/0107-native-learning-before-preferences.xml",
+      "bytes": 2399,
+      "sha256": "e614ae699fff16bd538afe6af42d6b04e4c30f06dfa40c2eb2d6557710d9464c",
+      "crc32": "01590f91"
+    },
+    {
+      "path": "diagnostic-android/0108-native-three-dimensional-learning-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "diagnostic-android/0108-native-three-dimensional-learning-video.json",
+      "bytes": 361,
+      "sha256": "e0e756f56eb2dd64d211e9c40856d60bc106ddfa1f5aeaeb23723273aac0da01",
+      "crc32": "a140700c"
+    },
+    {
+      "path": "diagnostic-android/0108-native-three-dimensional-learning.mp4",
+      "bytes": 2047894,
+      "sha256": "d356534bda7b26926d400eca17fa0626bcafc832808a5ad3d8016763c9ab8455",
+      "crc32": "7a86954d"
+    },
+    {
+      "path": "diagnostic-android/0109-native-existing-entry.xml",
+      "bytes": 30997,
+      "sha256": "f7e86145d5164585e26c38fc90e0d6c259445ffe99b5cc3e5dc7eecd5b28abfc",
+      "crc32": "d0405795"
+    },
+    {
+      "path": "diagnostic-android/0110-native-existing-entry.xml",
+      "bytes": 28624,
+      "sha256": "562844052b03a643ad427c82977d711ae5372d51dc5b3bdd22323984ecb6face",
+      "crc32": "93365aa8"
+    },
+    {
+      "path": "diagnostic-android/0111-native-existing-entry-scroll-search.json",
+      "bytes": 451,
+      "sha256": "8a1e15f1ff2b604b59bf4aac91c4be0affcbe57377c6da4eb49434a0ae44dcb2",
+      "crc32": "bc5a5917"
+    },
+    {
+      "path": "diagnostic-android/0112-native-existing-entry-touch.json",
+      "bytes": 109,
+      "sha256": "3ebfb2ab9e2eb001ffcfde92d839d9971dcb59d10f4c65c5135805df46980f0f",
+      "crc32": "00c0ee8f"
+    },
+    {
+      "path": "diagnostic-android/0114-original-guided-native-start-observation.json",
+      "bytes": 39156,
+      "sha256": "7be37be60d5247cf0e5a84b41035a8fd7e02369c44993af33cb3b0001642e635",
+      "crc32": "050d9aa2"
+    },
+    {
+      "path": "diagnostic-android/0113-original-guided-native-start-observation.json",
+      "bytes": 37623,
+      "sha256": "a2346221ce15e691030240a93a51cf838b7d6eeb254a89e0ae313c14abe904db",
+      "crc32": "e772b9fa"
+    },
+    {
+      "path": "diagnostic-android/0115-original-guided-native-start-observation.json",
+      "bytes": 39324,
+      "sha256": "437e197c8373a80e160d70d5a080112807696761c3866a5162c60afab8666f05",
+      "crc32": "8abd2e81"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-components.json",
+      "bytes": 458,
+      "sha256": "4058086394f369eb2091b2226bf5e9290864fc625189e8e9d721649ee7908d90",
+      "crc32": "ccf5e83f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-contrast.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "74a2c8aac1dde5ef2051cf8e2d08c5ceda6d3956fe277462793df3edbcaa0ec6",
+      "crc32": "98b04dcd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-raw.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-tiles.json",
+      "bytes": 2457,
+      "sha256": "80a40537db0353c609b51b824a8cb212e9b73d4e951b82d279d980ad5af0c8b2",
+      "crc32": "d9d04864"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-0.png",
+      "bytes": 4880,
+      "sha256": "daafd94c1d25acb27c4bce94e35a57162095e2b1f2bef6a512f3e9274062f2fc",
+      "crc32": "0cdf2ad7"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-1.png",
+      "bytes": 4880,
+      "sha256": "daafd94c1d25acb27c4bce94e35a57162095e2b1f2bef6a512f3e9274062f2fc",
+      "crc32": "0cdf2ad7"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-2.png",
+      "bytes": 5751,
+      "sha256": "155d5903f9a8e37e9ca7d4a46e867a5f3015726b2c54faac068e6a0187731a1e",
+      "crc32": "8a50ce08"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-3.png",
+      "bytes": 5751,
+      "sha256": "155d5903f9a8e37e9ca7d4a46e867a5f3015726b2c54faac068e6a0187731a1e",
+      "crc32": "8a50ce08"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-4.png",
+      "bytes": 4880,
+      "sha256": "daafd94c1d25acb27c4bce94e35a57162095e2b1f2bef6a512f3e9274062f2fc",
+      "crc32": "0cdf2ad7"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-5.png",
+      "bytes": 4880,
+      "sha256": "daafd94c1d25acb27c4bce94e35a57162095e2b1f2bef6a512f3e9274062f2fc",
+      "crc32": "0cdf2ad7"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr-white-text.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0-ocr.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "crc32": "0d4cbb29"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-0.png",
+      "bytes": 15197,
+      "sha256": "12de577c17842599d281b008ff77a0869a796099737ca85da90f1ce67921af92",
+      "crc32": "d3a7b08c"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-components.json",
+      "bytes": 458,
+      "sha256": "faa802d0b920d826b0dc7f76739393f9a13300d10e1402f96aca1c6054e155d4",
+      "crc32": "ded23062"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-contrast.tsv",
+      "bytes": 421,
+      "sha256": "60abcc018667067f55067a8861ef199d2f167e740f9068b571f41088ec78698c",
+      "crc32": "dbd82dc2"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "74a2c8aac1dde5ef2051cf8e2d08c5ceda6d3956fe277462793df3edbcaa0ec6",
+      "crc32": "98b04dcd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-raw.tsv",
+      "bytes": 424,
+      "sha256": "ea9200db372c70fded201d4d5887021ce605ffc64803a6a36e8d91608ab4b233",
+      "crc32": "ddc35e86"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-teal-text-1x.tsv",
+      "bytes": 409,
+      "sha256": "dfa94761e42cd0af70a2a64501dc90a9f5de7db7f4e5f4b23e43115dc7af8fa8",
+      "crc32": "17dfedf5"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-0.png",
+      "bytes": 14046,
+      "sha256": "8ca374186645ad002d3efb19d89c1148c47af0af8f77a796c0f7a1b3a2d6e683",
+      "crc32": "32f59773"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-tiles.json",
+      "bytes": 4695,
+      "sha256": "6dc5e05ff9ac4bf8a610260630a0d19ed97fe640b98b75a63e3077c498d40299",
+      "crc32": "64e889e2"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 291,
+      "sha256": "a5a20bb053fe453ca17f167eeaa0f0e22a90308003424b24521e3a7a01fab237",
+      "crc32": "ae1297a1"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-1.png",
+      "bytes": 11805,
+      "sha256": "3a0c487eb589adc2142f7887efe41aa2f6894067b4e55bead225cc09f4fcff6e",
+      "crc32": "49285a6d"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-2.png",
+      "bytes": 12622,
+      "sha256": "2ef6943ab9333e51af529fefee5701e25326de1202e0633e27d8196f18815af7",
+      "crc32": "2408b815"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-3.png",
+      "bytes": 12274,
+      "sha256": "a3c126ac62f76c67551877608480c2ff2d039d3f5d85d268f69708b6b34eb65f",
+      "crc32": "a489e7cd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-4.png",
+      "bytes": 14103,
+      "sha256": "06d0103771f7c0cda98ae8eec39c5062d3d5299975676cdb79a486893391908d",
+      "crc32": "93b55f02"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 251,
+      "sha256": "b83ae7e9653f38b7fbce5d4bb328b3847f820371bb386dde4888e8753cf0000b",
+      "crc32": "d1b38086"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-5.png",
+      "bytes": 11805,
+      "sha256": "3a0c487eb589adc2142f7887efe41aa2f6894067b4e55bead225cc09f4fcff6e",
+      "crc32": "49285a6d"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-0.png",
+      "bytes": 14112,
+      "sha256": "d986bb90ebe8ad3d57250ce6f329a981857207b56b6d8a1758909d4811b36977",
+      "crc32": "32c0c878"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-0.tsv",
+      "bytes": 292,
+      "sha256": "074ef174f9fdfbf04b0a1e3c54cfd27db8f6ecd95203d2b84132c5f905dc4e00",
+      "crc32": "285e771b"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-1.png",
+      "bytes": 11805,
+      "sha256": "3a0c487eb589adc2142f7887efe41aa2f6894067b4e55bead225cc09f4fcff6e",
+      "crc32": "49285a6d"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-2.png",
+      "bytes": 12559,
+      "sha256": "2f7a4d3f8df1f003c0fedbf6efd53cb7ac5a54397a5cbc4e1122c2397c85728d",
+      "crc32": "a046c49e"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-3.png",
+      "bytes": 12274,
+      "sha256": "a3c126ac62f76c67551877608480c2ff2d039d3f5d85d268f69708b6b34eb65f",
+      "crc32": "a489e7cd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-4.png",
+      "bytes": 14103,
+      "sha256": "a0d8ce52cd75f203c9a3500964b64ca87bbe21878f9f670df5cabd0c8d6f9fb3",
+      "crc32": "dc3c703c"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-4.tsv",
+      "bytes": 251,
+      "sha256": "de130c8f5d3b3804604b110421a752db92c2cf6938e6b871105f34577bc40ab0",
+      "crc32": "96961792"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-5.png",
+      "bytes": 11805,
+      "sha256": "3a0c487eb589adc2142f7887efe41aa2f6894067b4e55bead225cc09f4fcff6e",
+      "crc32": "49285a6d"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-latin.tsv",
+      "bytes": 423,
+      "sha256": "92a03ab16ee3adb546d5f5967b43e2acbfde916dfe545ff96c364579bc0849f6",
+      "crc32": "36584f6e"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr-white-text.tsv",
+      "bytes": 386,
+      "sha256": "2dcd0f170ca93b6fb08f4bd702f700c1f16ed302c3f34032523dc705ccb9101e",
+      "crc32": "bbeff78a"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1-ocr.json",
+      "bytes": 1026,
+      "sha256": "94ecac8c9f88c7b3870ec2ee375b769a2776a6506a8d7a4d8f99d63dbd9ba282",
+      "crc32": "4cff7393"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-1.png",
+      "bytes": 19527,
+      "sha256": "91f88e6e8e6fcc59f99ce7dcd4bc17c557f00f2a028368a1f1bb19dd2ccba3d5",
+      "crc32": "a3eea6cd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-components.json",
+      "bytes": 458,
+      "sha256": "7789eb54850d442a53710ad855935e21dbce7044573f372f9d31aa84eef98862",
+      "crc32": "aa04d382"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-contrast.tsv",
+      "bytes": 386,
+      "sha256": "d51d7b07c8cd079077f99affa3ee989e49fce2252a89f0e1a6704c9b4554a4e5",
+      "crc32": "7bddf19f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "74a2c8aac1dde5ef2051cf8e2d08c5ceda6d3956fe277462793df3edbcaa0ec6",
+      "crc32": "98b04dcd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-raw.tsv",
+      "bytes": 424,
+      "sha256": "e5310fe29dfb8d4ab4bd66a01c417dc53d1cd76163302046ea18f795f9bc60fa",
+      "crc32": "7add62d0"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-teal-text-1x.tsv",
+      "bytes": 238,
+      "sha256": "4088642f62d33b1edddd5f89bf22303f58bedae655bb3eeb96fde89f5b5d07d1",
+      "crc32": "8443a3a1"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-tiles.json",
+      "bytes": 4695,
+      "sha256": "517b350102d9da8c98d609ef7a501d98c6cd22e66fd90d8750e194e2333e9904",
+      "crc32": "baf55e64"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-0.png",
+      "bytes": 14099,
+      "sha256": "90db7bbef67798fd0788dbac4c6fb3a886632d598a8ff0da3864c60e1792f01f",
+      "crc32": "372b22b4"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 291,
+      "sha256": "b72c8329adc2d861564c008bb6fd75ae5d9bcdd4410f4162cafa731254467a1d",
+      "crc32": "49d03810"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-1.png",
+      "bytes": 12065,
+      "sha256": "5676b3fa937765a9bf10d9f4b3653d50d7380b703ce59ba533d6d4f6151a971b",
+      "crc32": "0b7d7362"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-2.png",
+      "bytes": 12628,
+      "sha256": "7d0780c803e1cfd84fab314971d67cf409bb84c05b116b8efa0ea04382fd1a4b",
+      "crc32": "a7b9d2f9"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-3.png",
+      "bytes": 12728,
+      "sha256": "a9789f15a09093d94d9eff1562db4ba1c9d5e68308d8ca0fc9fd7fe8da5cd0a9",
+      "crc32": "28ce2fff"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-4.png",
+      "bytes": 14134,
+      "sha256": "89d2e3644d69146e30e4958769fda331bf987a95556e5869be0b138f89e56daa",
+      "crc32": "8c2a8eae"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 251,
+      "sha256": "56b3f2e646c12dc3ef2b1551b4ea1253fdb0207d3b89cfa5c593dccd8afab622",
+      "crc32": "513238a1"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-5.png",
+      "bytes": 12082,
+      "sha256": "b28e50e22ee06f849401ad1d39b1d4c4eacac6e69aa0090f233114d7a99303b0",
+      "crc32": "9973e13d"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-0.png",
+      "bytes": 14106,
+      "sha256": "afc0dbb1550de6160f334c6d82e973ad1f7a6d081ac376818455dcb43e5b5adc",
+      "crc32": "e96b7f81"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-0.tsv",
+      "bytes": 292,
+      "sha256": "726ab8fa00552f7e22cf13deeb95062720806ff53c48a63ba4ea56d3835a3ee2",
+      "crc32": "fa8a885e"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-1.png",
+      "bytes": 12028,
+      "sha256": "f104e4c596b71aebc2a57d0c570531872f855f7edb0b0075f4aba2af7c01bb42",
+      "crc32": "2f16f5c1"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-2.png",
+      "bytes": 12559,
+      "sha256": "2f7a4d3f8df1f003c0fedbf6efd53cb7ac5a54397a5cbc4e1122c2397c85728d",
+      "crc32": "a046c49e"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-3.png",
+      "bytes": 12678,
+      "sha256": "52a67ab3ba10760daf0167a21481fa9fb5fa9dc4ebfa793aca38ee2d493eb769",
+      "crc32": "f9afade8"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "sha256": "22442fe9b20c801c9ab8058fe2ca9879ad2603c6f215bd4424839cdd6e83a33b",
+      "crc32": "59e83ccd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-4.png",
+      "bytes": 14103,
+      "sha256": "a0d8ce52cd75f203c9a3500964b64ca87bbe21878f9f670df5cabd0c8d6f9fb3",
+      "crc32": "dc3c703c"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-5.png",
+      "bytes": 12054,
+      "sha256": "20b29bc48c270312602bdac35e0626dfc6486cc04d87f9241b03d983da534da8",
+      "crc32": "7f3a825d"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-4.tsv",
+      "bytes": 251,
+      "sha256": "de130c8f5d3b3804604b110421a752db92c2cf6938e6b871105f34577bc40ab0",
+      "crc32": "96961792"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "a283c9b01511f96e420e9664b3603e979f59131a83d2e21d16af25e99907262e",
+      "crc32": "fa0bd86f"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-latin.tsv",
+      "bytes": 423,
+      "sha256": "5c8838baac633427f725f9850690b0c678058391abf684da5553ad885eb75122",
+      "crc32": "277609fe"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr-white-text.tsv",
+      "bytes": 386,
+      "sha256": "2d57c22a0c5e657565ecdf7fb0532a8055d46f27aa0fa6e8a0178a39314cae5f",
+      "crc32": "12793cf6"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2-ocr.json",
+      "bytes": 1149,
+      "sha256": "a5c2317f14d5f57fb90be7b9d620195c326d0d3573465aca8ae8b190100ecc73",
+      "crc32": "a3c48d56"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-2.png",
+      "bytes": 19594,
+      "sha256": "3c1f9539c226209b1d991573a441937a74533105ac6a6d7de6226e6930ef5c67",
+      "crc32": "bd83f3bd"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-3-ocr.json",
+      "bytes": 3253,
+      "sha256": "1af80685cbe7f76ef748bbfe4a975bfda1910056036fc62b367ebe2d900653d9",
+      "crc32": "6559f39a"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-3.png",
+      "bytes": 647938,
+      "sha256": "0568b1d9e98e9bdde6dbd14fa7b6ce3746dd8c596bc9aaa3c229fa9a58063501",
+      "crc32": "842e82d3"
+    },
+    {
+      "path": "diagnostic-android/0117-native-current-eight-plus-five.png",
+      "bytes": 645217,
+      "sha256": "05b047aaafbb6fc88b24d10848c47bb1f4a501646be6fa2e6dcb75868bad232d",
+      "crc32": "bd945b4e"
+    },
+    {
+      "path": "diagnostic-android/0116-native-title-3-ocr-contrast.tsv",
+      "bytes": 4304,
+      "sha256": "35de831301f8f0108d6b4d40eee9b828dc768e5332613ca4e90b68cd2392b484",
+      "crc32": "3e45e59f"
+    },
+    {
+      "path": "diagnostic-android/0118-native-speech.txt",
+      "bytes": 2180,
+      "sha256": "63ba79d93cbcee2d0bbb34bb8704df18575ccd835a5e819d7ab6f2452c4ecf80",
+      "crc32": "3f00513a"
+    },
+    {
+      "path": "diagnostic-android/0119-native-speech.txt",
+      "bytes": 2180,
+      "sha256": "63ba79d93cbcee2d0bbb34bb8704df18575ccd835a5e819d7ab6f2452c4ecf80",
+      "crc32": "3f00513a"
+    },
+    {
+      "path": "diagnostic-android/0120-native-speech.txt",
+      "bytes": 2994,
+      "sha256": "fff299e44033925df564cb5ddd26eee922d8d96fcde33f3b2ac2246f7f673409",
+      "crc32": "1bc7c718"
+    },
+    {
+      "path": "diagnostic-android/0122-native-speech.txt",
+      "bytes": 2994,
+      "sha256": "fff299e44033925df564cb5ddd26eee922d8d96fcde33f3b2ac2246f7f673409",
+      "crc32": "1bc7c718"
+    },
+    {
+      "path": "diagnostic-android/0123-native-speech.txt",
+      "bytes": 2994,
+      "sha256": "fff299e44033925df564cb5ddd26eee922d8d96fcde33f3b2ac2246f7f673409",
+      "crc32": "1bc7c718"
+    },
+    {
+      "path": "diagnostic-android/0121-native-speech.txt",
+      "bytes": 2994,
+      "sha256": "fff299e44033925df564cb5ddd26eee922d8d96fcde33f3b2ac2246f7f673409",
+      "crc32": "1bc7c718"
+    },
+    {
+      "path": "diagnostic-android/0124-native-speech.txt",
+      "bytes": 2994,
+      "sha256": "fff299e44033925df564cb5ddd26eee922d8d96fcde33f3b2ac2246f7f673409",
+      "crc32": "1bc7c718"
+    },
+    {
+      "path": "diagnostic-android/0125-native-speech.txt",
+      "bytes": 2994,
+      "sha256": "fff299e44033925df564cb5ddd26eee922d8d96fcde33f3b2ac2246f7f673409",
+      "crc32": "1bc7c718"
+    },
+    {
+      "path": "diagnostic-android/0126-native-speech.txt",
+      "bytes": 2994,
+      "sha256": "fff299e44033925df564cb5ddd26eee922d8d96fcde33f3b2ac2246f7f673409",
+      "crc32": "1bc7c718"
+    },
+    {
+      "path": "diagnostic-android/0127-native-speech.txt",
+      "bytes": 2994,
+      "sha256": "fff299e44033925df564cb5ddd26eee922d8d96fcde33f3b2ac2246f7f673409",
+      "crc32": "1bc7c718"
+    },
+    {
+      "path": "diagnostic-android/0128-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0130-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0131-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0129-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0132-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0134-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0133-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0135-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0136-native-speech.txt",
+      "bytes": 3820,
+      "sha256": "346a2865835226f73641acd02c00088d049b0da65ecc43e36a80b68af2673417",
+      "crc32": "3ab3ac50"
+    },
+    {
+      "path": "diagnostic-android/0137-native-speech.txt",
+      "bytes": 4643,
+      "sha256": "a2769b94e217fff9f3ae9c942bc62897eed895d3006a62fb9c7aa918a0166c9a",
+      "crc32": "f224ca34"
+    },
+    {
+      "path": "diagnostic-android/0139-native-speech.txt",
+      "bytes": 4643,
+      "sha256": "a2769b94e217fff9f3ae9c942bc62897eed895d3006a62fb9c7aa918a0166c9a",
+      "crc32": "f224ca34"
+    },
+    {
+      "path": "diagnostic-android/0138-native-speech.txt",
+      "bytes": 4643,
+      "sha256": "a2769b94e217fff9f3ae9c942bc62897eed895d3006a62fb9c7aa918a0166c9a",
+      "crc32": "f224ca34"
+    },
+    {
+      "path": "diagnostic-android/0141-native-speech.txt",
+      "bytes": 4643,
+      "sha256": "a2769b94e217fff9f3ae9c942bc62897eed895d3006a62fb9c7aa918a0166c9a",
+      "crc32": "f224ca34"
+    },
+    {
+      "path": "diagnostic-android/0140-native-speech.txt",
+      "bytes": 4643,
+      "sha256": "a2769b94e217fff9f3ae9c942bc62897eed895d3006a62fb9c7aa918a0166c9a",
+      "crc32": "f224ca34"
+    },
+    {
+      "path": "diagnostic-android/0142-native-speech.txt",
+      "bytes": 4643,
+      "sha256": "a2769b94e217fff9f3ae9c942bc62897eed895d3006a62fb9c7aa918a0166c9a",
+      "crc32": "f224ca34"
+    },
+    {
+      "path": "diagnostic-android/0143-native-speech.txt",
+      "bytes": 4720,
+      "sha256": "cbb8ab796e55fad03e1d6f433b8d2860e47c851a9fdcba4d1a779512ef63487b",
+      "crc32": "e0623c4c"
+    },
+    {
+      "path": "diagnostic-android/0144-native-speech.txt",
+      "bytes": 5545,
+      "sha256": "6ffe70dab6bc7abbcb4dfdc17062c1f7f9fd58c939cb7ddd02b859cd63abb558",
+      "crc32": "9de6fd9e"
+    },
+    {
+      "path": "diagnostic-android/0145-native-speech.txt",
+      "bytes": 5545,
+      "sha256": "6ffe70dab6bc7abbcb4dfdc17062c1f7f9fd58c939cb7ddd02b859cd63abb558",
+      "crc32": "9de6fd9e"
+    },
+    {
+      "path": "diagnostic-android/0146-native-speech.txt",
+      "bytes": 5545,
+      "sha256": "6ffe70dab6bc7abbcb4dfdc17062c1f7f9fd58c939cb7ddd02b859cd63abb558",
+      "crc32": "9de6fd9e"
+    },
+    {
+      "path": "diagnostic-android/0147-native-speech.txt",
+      "bytes": 5545,
+      "sha256": "6ffe70dab6bc7abbcb4dfdc17062c1f7f9fd58c939cb7ddd02b859cd63abb558",
+      "crc32": "9de6fd9e"
+    },
+    {
+      "path": "diagnostic-android/0149-native-move-one-0-ocr-contrast.tsv",
+      "bytes": 4014,
+      "sha256": "559e157b79e8f102938737e8db08665a26e2850ab5b3137702e542f0357833d5",
+      "crc32": "289eb5fe"
+    },
+    {
+      "path": "diagnostic-android/0148-native-speech.txt",
+      "bytes": 5589,
+      "sha256": "13c749b98bb192f94f4b6e765e09b05f16cbbe59c5665fc168922f86ac90bd9e",
+      "crc32": "1dcc53d7"
+    },
+    {
+      "path": "diagnostic-android/0149-native-move-one-0-ocr.json",
+      "bytes": 2855,
+      "sha256": "09798f695d1822d8edd016ccd4c4d5611225773d1030bba756df4a2af3d79a71",
+      "crc32": "e2f90d77"
+    },
+    {
+      "path": "diagnostic-android/0149-native-move-one-0.png",
+      "bytes": 647405,
+      "sha256": "3b99ff0aeaae1cd2dd3e966cc3e55ca781d9eabd17f478860c94b96cf6bc63de",
+      "crc32": "d8b0467d"
+    },
+    {
+      "path": "diagnostic-android/0149-native-move-one-1-ocr-contrast.tsv",
+      "bytes": 4305,
+      "sha256": "4bf933c12e419c7b6fdc5c6a27c0151eb3ef7cb10a12ff4e395dffa50b7ea6c7",
+      "crc32": "3e1297a6"
+    },
+    {
+      "path": "diagnostic-android/0149-native-move-one-1-ocr.json",
+      "bytes": 3110,
+      "sha256": "47d9848cbc14425f3276f74faa22dd7e22e911b9379f10f7ec52f3f3de34921a",
+      "crc32": "ddc188ec"
+    },
+    {
+      "path": "diagnostic-android/0149-native-move-one-1.png",
+      "bytes": 646857,
+      "sha256": "77480e8bed2369fe7bf00473abaf3d737375bd47c69d7f1668083ca180a49607",
+      "crc32": "3fcefe87"
+    },
+    {
+      "path": "diagnostic-android/0149-native-move-one-surface-readiness.json",
+      "bytes": 2773,
+      "sha256": "e930ed2dd8516cbd72151266e91819006896f827f771690bea28769e6d3fe53a",
+      "crc32": "e8f80023"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-0-ocr-contrast.tsv",
+      "bytes": 4305,
+      "sha256": "010e8ce3324a5dff8149048478e15ab9459b99ee00cd56a5fcaa64ee9ff9eeb6",
+      "crc32": "85153d01"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-0-ocr.json",
+      "bytes": 3110,
+      "sha256": "91a103263ab074a786d2e613818eebb48f0a21c9f18bb6a298633adbea3d8378",
+      "crc32": "63fb9159"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-0.png",
+      "bytes": 646747,
+      "sha256": "a645ef4e6533e1db263c77c13d609e1323acbbd8ab952779fa5d993e361d55b9",
+      "crc32": "9402b06c"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-components.json",
+      "bytes": 13996,
+      "sha256": "2f2758fe98628667ca4db1a0c879287ac9b0843d7e42197fb770b87f83a20c58",
+      "crc32": "3c2e1e39"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-contrast.tsv",
+      "bytes": 4617,
+      "sha256": "62fbd8c9c81c8414e30f462800fdffc66001ad88fa32464700899abcd2be1f6e",
+      "crc32": "27db12a8"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-0.png",
+      "bytes": 78862,
+      "sha256": "8a77c1b30bc2d6aab506c655c9c60b71b49843a527ecc4c97b4fe3692b3a8034",
+      "crc32": "0209c333"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-0.tsv",
+      "bytes": 514,
+      "sha256": "79aba8389a33e72d6a936956c72375284bae96be1eba31feba31bb91bd22234f",
+      "crc32": "56985dd8"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-1.png",
+      "bytes": 14931,
+      "sha256": "ffa330a55bc76d6a4156e2199c08e93d6e46866d8fc90807cb9aa57bd7013ad7",
+      "crc32": "8ffc6091"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-10.png",
+      "bytes": 3609,
+      "sha256": "74113add73ec04675c5dba29d4d4b46ed55652e039e88ace2ff7277208bc3128",
+      "crc32": "a4429130"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-1.tsv",
+      "bytes": 322,
+      "sha256": "0ec18dcd7279e2a9dbb516fcab5ac5a9c3c0b61dda6e38c07378070c332c4969",
+      "crc32": "0b369e59"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-10.tsv",
+      "bytes": 328,
+      "sha256": "b57b9a49d55979a80ab77e2891bb463176b81a773b8bcee7f0a70b54555337ed",
+      "crc32": "9ab6515f"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-11.png",
+      "bytes": 6715,
+      "sha256": "6073fac2592ed3f2b78155bd2c10f1063357503c05066129b9081249efff6cb6",
+      "crc32": "7a3e98b0"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-11.tsv",
+      "bytes": 228,
+      "sha256": "cedae6863b09ebcadd1787af99f8c442ca6c0822282cf74d17d3a320517e84ac",
+      "crc32": "71a675fc"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-12.png",
+      "bytes": 3668,
+      "sha256": "594f9bc71fdb362b088e97315376375d2dc526b0364388082f9f11a56b67e6e5",
+      "crc32": "2215202d"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-12.tsv",
+      "bytes": 227,
+      "sha256": "a87aaa8c15bcb2b9b3426a6f5eb4bb3f3966685f15c1db84ec9d81df69faed95",
+      "crc32": "9d11f190"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-13.png",
+      "bytes": 2280,
+      "sha256": "a2e827ee8dabe67e1ee304850443c8836cc733bd433fd5db07e798fede309998",
+      "crc32": "e68931a5"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-13.tsv",
+      "bytes": 227,
+      "sha256": "89a68a6657a38d147c73534cb3efb663d8fab2828b4980ccc6a728bef91e4d7e",
+      "crc32": "10f9f901"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-14.png",
+      "bytes": 1365,
+      "sha256": "415910504b659b5e5ffe8734d0d0a3cd35e9aa0f065443b9e02a547b79620ad7",
+      "crc32": "05858992"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-14.tsv",
+      "bytes": 227,
+      "sha256": "158f0897c4121e9dd51f78b1a328fd73ed96b5bcf6a59a004f8350e8f4550424",
+      "crc32": "046cdf62"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-15.png",
+      "bytes": 1840,
+      "sha256": "b818f6c78e919b2d6c13c2f14626a417476e14aa4ff9a7b6adcff68987067ad9",
+      "crc32": "be50e70b"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-15.tsv",
+      "bytes": 227,
+      "sha256": "0a808f7bbdaac88e32c08c789caa002654c9284e85b042b8dfc19b1a692b8267",
+      "crc32": "b272c626"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-16.png",
+      "bytes": 1822,
+      "sha256": "b151e33b54244d78e229b0f886093b3017ce0c9bb6fbbdb94ef1b4ec02231a52",
+      "crc32": "fe2ca7f7"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-16.tsv",
+      "bytes": 227,
+      "sha256": "2131fc901ae8259a462176305a2c2217e0e56f8ea20442bd9bb1c082d4a93744",
+      "crc32": "393cb3f3"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-17.png",
+      "bytes": 2152,
+      "sha256": "9b42b22188436bbc21c0e7e8feb5f7e36e39920609b441b609fa248095a94546",
+      "crc32": "95a8e1d8"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-17.tsv",
+      "bytes": 226,
+      "sha256": "3571a29eb85528097573ec0e7c44cc0a636779e8fd85eec2a0d225fcd2a1b2cf",
+      "crc32": "f9299311"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-18.png",
+      "bytes": 1438,
+      "sha256": "a0cca60407c89a34abf927ab651f240fb25896334f4f075b4678b512c720a120",
+      "crc32": "e18ef18e"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-18.tsv",
+      "bytes": 225,
+      "sha256": "c8d77aeb77085e34806fd802c0652802f9543f87eddad676dee8e41e3189841a",
+      "crc32": "ec038f52"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-19.png",
+      "bytes": 2624,
+      "sha256": "e239af9ae56eed3d16c146b0136662ab11446a0953171bb4b9e5f15b6978e7f6",
+      "crc32": "57b2f77b"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-19.tsv",
+      "bytes": 226,
+      "sha256": "6be3c3f54b887e55c808687f4ed7bc4e6862d18d328d89dff550515708c24d05",
+      "crc32": "eebe11f2"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-2.png",
+      "bytes": 4556,
+      "sha256": "ee3134f9750990258c068c88b2480f3d1a38f1cb14e4bcabbf8051c224c0d69c",
+      "crc32": "f5d9425d"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-2.tsv",
+      "bytes": 232,
+      "sha256": "2f3c08d23091252689359713c71494965d54da7f947a0a7142b7fd2e69315126",
+      "crc32": "4d9997ca"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-20.png",
+      "bytes": 2558,
+      "sha256": "6521489553b559a296d0272ed3eef39866fad8436f8c00796c3ecb6bd135da75",
+      "crc32": "174da573"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-20.tsv",
+      "bytes": 228,
+      "sha256": "c705972bd7013befb24fc7fbc65bb8d53fb5a59047f8d4e33ee463c18792f514",
+      "crc32": "32e55e70"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-21.png",
+      "bytes": 1702,
+      "sha256": "23f70dbc290b2f9ca5d4067dabd8a41cbf39d20c0ba36ec37c054285270004ca",
+      "crc32": "34c73a74"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-21.tsv",
+      "bytes": 227,
+      "sha256": "98e8df31ce5edcaa8ca05cd75a1c9cf74284d1a76cdf4da876842407b282ba07",
+      "crc32": "4d3e92eb"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-22.png",
+      "bytes": 2047,
+      "sha256": "4ad21db5606bda549b6fb732dc12f2c1969feed5b84f3f3d5956058562511f60",
+      "crc32": "a1ec415c"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-23.png",
+      "bytes": 10908,
+      "sha256": "669b0545d03f1375fcf2fb68170ddbef1040d3a74685a04c947b6b6d2e403a85",
+      "crc32": "9edd8fe7"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-22.tsv",
+      "bytes": 262,
+      "sha256": "ce9047a7158256b44286933aa130890acd5bb5a8c518396250f1e11605ec9ae6",
+      "crc32": "4f8526e6"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-23.tsv",
+      "bytes": 230,
+      "sha256": "2ee7a0d4053ad69f7ce3eb6c5002f4a1c96dd09c19ca3f1a67af345f2825d2e0",
+      "crc32": "e0fc4855"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-24.png",
+      "bytes": 1762,
+      "sha256": "cafb780446c7b3bd5abf9de6bea14242d78c7d3df0e727ba37f1fa196af22186",
+      "crc32": "914a4a2b"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-24.tsv",
+      "bytes": 226,
+      "sha256": "ac65aa9964c25ee334eb28d439cf8d0d65d9a91e829898dc28140d64285c0a08",
+      "crc32": "8d705898"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-25.png",
+      "bytes": 4082,
+      "sha256": "440465b6e52c5ca98c51d97ef5b8cb2b147de1a5ba6122b3849c9401e27405a6",
+      "crc32": "13fdc366"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-25.tsv",
+      "bytes": 221,
+      "sha256": "97866b81afb4cab761755209a07c79d4d872481ff428b50ef433fa93f53ff67a",
+      "crc32": "3490f54f"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-26.png",
+      "bytes": 4202,
+      "sha256": "318a7242bcf163d01f11826c8a99859ab2b3e9e298b9beef823c1362c5621fc4",
+      "crc32": "0c12a399"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-26.tsv",
+      "bytes": 223,
+      "sha256": "4bdb3f2db8ee121444500bea27ad20746339583163f610036aca0b6aaa306907",
+      "crc32": "d837220e"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-27.png",
+      "bytes": 4021,
+      "sha256": "429e08715ac6cfbeae380aaaf45469622ed45a0d6130693636893e093bac6afa",
+      "crc32": "aae24ec3"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-27.tsv",
+      "bytes": 221,
+      "sha256": "fab2697796bff54b41bbafa1cca491c2802fba2e309212ae8bb336ba317d2060",
+      "crc32": "d7d40cc2"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-28.png",
+      "bytes": 4208,
+      "sha256": "c5d5faf305c119493f6ac78775fedd5e25c7356b199852cda4b60a1dbdbe32a0",
+      "crc32": "6dc23efa"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-28.tsv",
+      "bytes": 261,
+      "sha256": "0c708e47dc5d1eca9f1210f33c49606df49e4d92bde588a9f81a602f7bf80927",
+      "crc32": "b0b72a92"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-29.png",
+      "bytes": 958,
+      "sha256": "18444a1ce573f1f8d388681a9ad2dbc35005c78c71211680926ee4a3d2b537d7",
+      "crc32": "79f91b42"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-29.tsv",
+      "bytes": 221,
+      "sha256": "e691794d01cbc912f3c8c39382e0a6ce1f848325165b9664d58b65bffb6260e4",
+      "crc32": "3d04eb50"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-3.png",
+      "bytes": 37505,
+      "sha256": "25a66e527708435e8ed0eaa11e89bfa0100829b6e39edb2ac2062a753a93a985",
+      "crc32": "7db94af0"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-3.tsv",
+      "bytes": 376,
+      "sha256": "36d041605acaa14ab37297d58798b441253256cede82502527a021496245f968",
+      "crc32": "313bdb52"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-30.png",
+      "bytes": 14955,
+      "sha256": "62302e30eacdb345950294a740734f4c5053f2bd708d49c6daa32043d58ee642",
+      "crc32": "e9b87045"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-30.tsv",
+      "bytes": 229,
+      "sha256": "ebbf60008f953263ac3620f16979b7438860d034ea9cc1c179ea5a185dedd822",
+      "crc32": "62a11b18"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-31.png",
+      "bytes": 810,
+      "sha256": "87f71acda0502b2f564ae724b6fda65d72f28c9301c07b079d9c2a2063fcf06b",
+      "crc32": "11f9b6fd"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-31.tsv",
+      "bytes": 221,
+      "sha256": "4ce68ab0353ad38d58a59f53d1db1c200133714032b6d567a040531441a18f5a",
+      "crc32": "1a2da214"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-32.png",
+      "bytes": 676,
+      "sha256": "db6de2b1269c203dde8c4dae80891719bb6db5101a836b62532bd689dfce474c",
+      "crc32": "76abdd04"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-32.tsv",
+      "bytes": 221,
+      "sha256": "96ebdff712e2dcffb52cfa69b056056635e441a49841050f62fa6bd2aa30a8ed",
+      "crc32": "d9ff6c9d"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-33.png",
+      "bytes": 6483,
+      "sha256": "93da2f04626d92b69f6130899b05a9543a2af5fbad6a3af510b2adc1bb162834",
+      "crc32": "8dd779c5"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-33.tsv",
+      "bytes": 292,
+      "sha256": "446b830fde406cc783ea51374e9b62ed48add47c3962d7c851769f416df46f66",
+      "crc32": "e40a8865"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-34.png",
+      "bytes": 2108,
+      "sha256": "65bf4ee1a34e4dcaf370d85b061f6e7cc07b16ba3a18183ed9ba2e301b77fd60",
+      "crc32": "82f161e5"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-34.tsv",
+      "bytes": 223,
+      "sha256": "b09c499937a9cac8023d9cf9e50735bc52b988b20825e46c711f7ac3e63860e3",
+      "crc32": "10f41c98"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-4.png",
+      "bytes": 54889,
+      "sha256": "42f149a3511b65af0ab95114f53f4a723fc9db4a47bf65caf55e0176c8bbc7f7",
+      "crc32": "4d3d7c07"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-4.tsv",
+      "bytes": 301,
+      "sha256": "f1d6f0826a884d5f2e724f77be39846fc4cbd52a0ce25b2a78d354caac44b513",
+      "crc32": "54f21275"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-5.png",
+      "bytes": 4428,
+      "sha256": "430415ff7fcda37a9c99e486e271aa51bb47d689f3574536ac42601bc64dffdf",
+      "crc32": "611ee76e"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-5.tsv",
+      "bytes": 233,
+      "sha256": "8157bc564f8392545889279028e0065004641bf3db40768d112d341f15beb1c8",
+      "crc32": "b45f0302"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-6.png",
+      "bytes": 9174,
+      "sha256": "ecd8b07ef5d1b9780e7cbc49eb8bb77bfc484a28d6b54f958191954bf8f97eb6",
+      "crc32": "d29d74fe"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-7.png",
+      "bytes": 3982,
+      "sha256": "ba4d0412e89e91b4c7d62de4a32c31bc8950f482f84fd7edd4cbbfcfe915d0f8",
+      "crc32": "88e49c3b"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-6.tsv",
+      "bytes": 231,
+      "sha256": "59d681f01bbc5b5a402f8809bf97126b168d87834d0bb12a6359496a55f37745",
+      "crc32": "e44137d4"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-7.tsv",
+      "bytes": 229,
+      "sha256": "9280672aaa6fb31336740fdc31dcdd612dc8194a9090164cb64de6ecc3583758",
+      "crc32": "01edde09"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-8.png",
+      "bytes": 7416,
+      "sha256": "ac7da836f70f743e40a6613ad37ec6a760fa5a6fb4f1ae69fdd24aeb8dfd7556",
+      "crc32": "acf25b9a"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-8.tsv",
+      "bytes": 263,
+      "sha256": "ec863fa2bb2a03ded6cc5a9ed62c0797fec1ffcfb7bac4ed0f27846d0926c4b8",
+      "crc32": "13f7f2f7"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-9.png",
+      "bytes": 6865,
+      "sha256": "f3f105c90d16e4fb3ffde0e6f43dc3227c454616cd97a2c5758c6bb4a1e4a196",
+      "crc32": "7209cd15"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-gold-component-9.tsv",
+      "bytes": 227,
+      "sha256": "cb48a85bebcd7f16bed513d3d54de44b0a21a9d91ede5d5e0088db3c623ef1cf",
+      "crc32": "457e98e2"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "74a2c8aac1dde5ef2051cf8e2d08c5ceda6d3956fe277462793df3edbcaa0ec6",
+      "crc32": "98b04dcd"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-raw.tsv",
+      "bytes": 4194,
+      "sha256": "86870ff485faa7ea8d2f5f84a0e53566615922226f9f73febfdba3133f53084f",
+      "crc32": "7f201eb1"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-teal-text-1x.tsv",
+      "bytes": 5289,
+      "sha256": "324523ecbf85aa2b17e2397a363f9ea78c565cf7c9e107f8bbd4d9cf2d5a2e25",
+      "crc32": "c9d26914"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-white-latin.tsv",
+      "bytes": 3379,
+      "sha256": "a94df0d9cebafa41ea56b128f452421a6e2a2de4a3b968577a77884523e2c192",
+      "crc32": "b624d451"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr-white-text.tsv",
+      "bytes": 3341,
+      "sha256": "451ad5113a837793ef155590435aaa6c9ab44d2f0d15f65628548a6026c880a8",
+      "crc32": "e9040f63"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1-ocr.json",
+      "bytes": 13690,
+      "sha256": "ec3641eb37bd4c88000ecc2e438401ac1eb216035072a9924af133b166ac01c8",
+      "crc32": "971218dc"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-1.png",
+      "bytes": 653122,
+      "sha256": "5c9ce3c4459b717a4a8b7e0664c9f0b6e69ea6138f16a5e175fb4d4b5fa8aa28",
+      "crc32": "0fe3b353"
+    },
+    {
+      "path": "diagnostic-android/0150-native-move-two-surface-readiness.json",
+      "bytes": 2773,
+      "sha256": "54daf6b3d5778b61396db888897265072e5a2143cf68374ea5bc25a23992f908",
+      "crc32": "cac8bcca"
+    },
+    {
+      "path": "diagnostic-android/0151-native-ten-full-0-ocr-contrast.tsv",
+      "bytes": 4624,
+      "sha256": "16130f6df1920a820f49f84adb3873c8e73ce582a3b535b1047a6d8ca7864758",
+      "crc32": "419d77e1"
+    },
+    {
+      "path": "diagnostic-android/0151-native-ten-full-0-ocr.json",
+      "bytes": 3229,
+      "sha256": "300d3a9b85ebfa64140657d82802802b377c594826b910d0e0b6f3b92bfe19a7",
+      "crc32": "6d20f183"
+    },
+    {
+      "path": "diagnostic-android/0151-native-ten-full-0.png",
+      "bytes": 661349,
+      "sha256": "3d32a8862248c29a3e3a45cdf2d973b0bb0894d72008363962f9f327ccdda2d6",
+      "crc32": "bebc7019"
+    },
+    {
+      "path": "diagnostic-android/0152-native-ten-and-three.png",
+      "bytes": 663092,
+      "sha256": "d054681f5f2a39e1fee982b8f534aca5e5c4e3fe540494b545fa627ba3ada121",
+      "crc32": "be4ad409"
+    },
+    {
+      "path": "diagnostic-android/0153-native-speech.txt",
+      "bytes": 12547,
+      "sha256": "3768cf1511fccdbd7d10590279c3eaa0330257798f1647c93be6ca7930f4ebd3",
+      "crc32": "af5b0336"
+    },
+    {
+      "path": "diagnostic-android/0154-native-why-two-question-and-demonstration-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "diagnostic-android/0154-native-why-two-question-and-demonstration-video.json",
+      "bytes": 370,
+      "sha256": "181842baabb570cafbe38a0edb49d36922a5e0263e9033d911532d8e7c512a88",
+      "crc32": "9fb604e3"
+    },
+    {
+      "path": "diagnostic-android/0154-native-why-two-question-and-demonstration.mp4",
+      "bytes": 2255930,
+      "sha256": "1b76c58862dcf382428438eb2ac63c92143b7e5181a558b49b2d51a78c1b6bb1",
+      "crc32": "0ab1cf62"
+    },
+    {
+      "path": "diagnostic-android/0155-why-native-reset-0-ocr.json",
+      "bytes": 2974,
+      "sha256": "f0323161324112abdf6aa081e7b682f8eb60236318cb65e5266e5766a108f54f",
+      "crc32": "304d0d6a"
+    },
+    {
+      "path": "diagnostic-android/0155-why-native-reset-0-ocr-contrast.tsv",
+      "bytes": 4357,
+      "sha256": "788155c1ca7a71faf478e9b4d23ab0268b58e063053402fc842ee6afe408f3f6",
+      "crc32": "3a587727"
+    },
+    {
+      "path": "diagnostic-android/0155-why-native-reset-0.png",
+      "bytes": 661341,
+      "sha256": "a47d2df2b7f1926acf0f120cdf90d3434ba51eff0efa50fbaa0493d23a2d214e",
+      "crc32": "48901ac9"
+    },
+    {
+      "path": "diagnostic-android/0155-why-native-reset-1-ocr-contrast.tsv",
+      "bytes": 4486,
+      "sha256": "6793d4f2c06dc4c715447f85244e81a4f6d7ca82c1eabbfe435c536bd614c9b0",
+      "crc32": "317553de"
+    },
+    {
+      "path": "diagnostic-android/0155-why-native-reset-1-ocr.json",
+      "bytes": 2839,
+      "sha256": "942b6e7d6e0670536c29413d74951081cb649b5c2b2e7136bfe89bab17008572",
+      "crc32": "2bc0694a"
+    },
+    {
+      "path": "diagnostic-android/0155-why-native-reset-1.png",
+      "bytes": 660067,
+      "sha256": "9a28a959294e80b2bcae6f136745ff2451cc28ff3542c8635e6a5f61d6a7362f",
+      "crc32": "9b09282f"
+    },
+    {
+      "path": "diagnostic-android/0155-why-native-reset-surface-readiness.json",
+      "bytes": 2768,
+      "sha256": "e82676abac54c5618f086baec18d5eb46cbbee797bd894cfc41481f079226728",
+      "crc32": "502c9336"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-components.json",
+      "bytes": 13385,
+      "sha256": "a134ba967f2d4f5f1931b783f90b4dbd34c93300e8fa60695f2436084351a993",
+      "crc32": "04197a56"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-contrast.tsv",
+      "bytes": 4389,
+      "sha256": "1855c15dedec214421f06fe855d9eafeb9d932b1a9b9b38e30c1858462109a71",
+      "crc32": "e92607bb"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-0.png",
+      "bytes": 78028,
+      "sha256": "3e8882c01a7dd349ab9fc59eae4c3550160f69bf8ca524f6980e15317da2a8b1",
+      "crc32": "6c21b3da"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-0.tsv",
+      "bytes": 816,
+      "sha256": "4aaca9e334cbaee17605f40e72368203d3e42152109a8660c95e29a4fb25c725",
+      "crc32": "1936dc8a"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-1.png",
+      "bytes": 15908,
+      "sha256": "a61b5c1eae6ffcae8061240a12a322ba49d4cc5dc09c3524c6b795383a51fc0c",
+      "crc32": "12389410"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-1.tsv",
+      "bytes": 322,
+      "sha256": "f28ae716b9004f7c0aafadad2cca940160dac5d6be955ed87193c537f0d922b9",
+      "crc32": "2963bbd1"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-10.png",
+      "bytes": 3609,
+      "sha256": "74113add73ec04675c5dba29d4d4b46ed55652e039e88ace2ff7277208bc3128",
+      "crc32": "a4429130"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-10.tsv",
+      "bytes": 328,
+      "sha256": "b57b9a49d55979a80ab77e2891bb463176b81a773b8bcee7f0a70b54555337ed",
+      "crc32": "9ab6515f"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-11.png",
+      "bytes": 6715,
+      "sha256": "6073fac2592ed3f2b78155bd2c10f1063357503c05066129b9081249efff6cb6",
+      "crc32": "7a3e98b0"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-12.png",
+      "bytes": 3701,
+      "sha256": "e7e4c1ea09780a19f05cb01cd00804d4eb7f288735a285989a2c5ac5348ed827",
+      "crc32": "a9293fc2"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-12.tsv",
+      "bytes": 227,
+      "sha256": "54506fa1b6517f92a770cdbf306e5111a301ffc26eb68f4fa93ef51fa5a9de15",
+      "crc32": "e03d40b2"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-13.png",
+      "bytes": 2280,
+      "sha256": "a2e827ee8dabe67e1ee304850443c8836cc733bd433fd5db07e798fede309998",
+      "crc32": "e68931a5"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-11.tsv",
+      "bytes": 228,
+      "sha256": "cedae6863b09ebcadd1787af99f8c442ca6c0822282cf74d17d3a320517e84ac",
+      "crc32": "71a675fc"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-13.tsv",
+      "bytes": 227,
+      "sha256": "89a68a6657a38d147c73534cb3efb663d8fab2828b4980ccc6a728bef91e4d7e",
+      "crc32": "10f9f901"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-14.png",
+      "bytes": 1365,
+      "sha256": "415910504b659b5e5ffe8734d0d0a3cd35e9aa0f065443b9e02a547b79620ad7",
+      "crc32": "05858992"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-14.tsv",
+      "bytes": 227,
+      "sha256": "158f0897c4121e9dd51f78b1a328fd73ed96b5bcf6a59a004f8350e8f4550424",
+      "crc32": "046cdf62"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-15.png",
+      "bytes": 1840,
+      "sha256": "b818f6c78e919b2d6c13c2f14626a417476e14aa4ff9a7b6adcff68987067ad9",
+      "crc32": "be50e70b"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-15.tsv",
+      "bytes": 227,
+      "sha256": "0a808f7bbdaac88e32c08c789caa002654c9284e85b042b8dfc19b1a692b8267",
+      "crc32": "b272c626"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-16.png",
+      "bytes": 1822,
+      "sha256": "b151e33b54244d78e229b0f886093b3017ce0c9bb6fbbdb94ef1b4ec02231a52",
+      "crc32": "fe2ca7f7"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-16.tsv",
+      "bytes": 227,
+      "sha256": "2131fc901ae8259a462176305a2c2217e0e56f8ea20442bd9bb1c082d4a93744",
+      "crc32": "393cb3f3"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-17.png",
+      "bytes": 2152,
+      "sha256": "9b42b22188436bbc21c0e7e8feb5f7e36e39920609b441b609fa248095a94546",
+      "crc32": "95a8e1d8"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-17.tsv",
+      "bytes": 226,
+      "sha256": "3571a29eb85528097573ec0e7c44cc0a636779e8fd85eec2a0d225fcd2a1b2cf",
+      "crc32": "f9299311"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-18.png",
+      "bytes": 1438,
+      "sha256": "a0cca60407c89a34abf927ab651f240fb25896334f4f075b4678b512c720a120",
+      "crc32": "e18ef18e"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-18.tsv",
+      "bytes": 225,
+      "sha256": "c8d77aeb77085e34806fd802c0652802f9543f87eddad676dee8e41e3189841a",
+      "crc32": "ec038f52"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-19.png",
+      "bytes": 2624,
+      "sha256": "71ae4c99cd09e9343fe684ad273190511127f9363f21ef0a1023f81ef90fe28c",
+      "crc32": "1bb0c121"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-19.tsv",
+      "bytes": 226,
+      "sha256": "6be3c3f54b887e55c808687f4ed7bc4e6862d18d328d89dff550515708c24d05",
+      "crc32": "eebe11f2"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-2.png",
+      "bytes": 4570,
+      "sha256": "e9b8ef76eb98a58c347d260b23319f0c937e568d5cc0de49cd8fbe4a0a3a513e",
+      "crc32": "c0ec9611"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-2.tsv",
+      "bytes": 232,
+      "sha256": "2f3c08d23091252689359713c71494965d54da7f947a0a7142b7fd2e69315126",
+      "crc32": "4d9997ca"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-20.tsv",
+      "bytes": 228,
+      "sha256": "c705972bd7013befb24fc7fbc65bb8d53fb5a59047f8d4e33ee463c18792f514",
+      "crc32": "32e55e70"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-20.png",
+      "bytes": 2558,
+      "sha256": "6521489553b559a296d0272ed3eef39866fad8436f8c00796c3ecb6bd135da75",
+      "crc32": "174da573"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-21.png",
+      "bytes": 7985,
+      "sha256": "bfd28a48d80904d32effb75c1864698511f636abead443d0f41b5e2f404487cf",
+      "crc32": "9552db7c"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-21.tsv",
+      "bytes": 295,
+      "sha256": "71f645f8d900c8078dd3aa08db5227eafd0f0a7fd0acc8a5e49e9005134701e4",
+      "crc32": "e2e9967d"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-22.png",
+      "bytes": 1702,
+      "sha256": "23f70dbc290b2f9ca5d4067dabd8a41cbf39d20c0ba36ec37c054285270004ca",
+      "crc32": "34c73a74"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-22.tsv",
+      "bytes": 227,
+      "sha256": "98e8df31ce5edcaa8ca05cd75a1c9cf74284d1a76cdf4da876842407b282ba07",
+      "crc32": "4d3e92eb"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-23.tsv",
+      "bytes": 262,
+      "sha256": "ce9047a7158256b44286933aa130890acd5bb5a8c518396250f1e11605ec9ae6",
+      "crc32": "4f8526e6"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-24.tsv",
+      "bytes": 226,
+      "sha256": "ac65aa9964c25ee334eb28d439cf8d0d65d9a91e829898dc28140d64285c0a08",
+      "crc32": "8d705898"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-24.png",
+      "bytes": 1762,
+      "sha256": "cafb780446c7b3bd5abf9de6bea14242d78c7d3df0e727ba37f1fa196af22186",
+      "crc32": "914a4a2b"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-23.png",
+      "bytes": 2047,
+      "sha256": "4ad21db5606bda549b6fb732dc12f2c1969feed5b84f3f3d5956058562511f60",
+      "crc32": "a1ec415c"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-25.tsv",
+      "bytes": 223,
+      "sha256": "4bdb3f2db8ee121444500bea27ad20746339583163f610036aca0b6aaa306907",
+      "crc32": "d837220e"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-26.png",
+      "bytes": 4021,
+      "sha256": "429e08715ac6cfbeae380aaaf45469622ed45a0d6130693636893e093bac6afa",
+      "crc32": "aae24ec3"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-26.tsv",
+      "bytes": 221,
+      "sha256": "fab2697796bff54b41bbafa1cca491c2802fba2e309212ae8bb336ba317d2060",
+      "crc32": "d7d40cc2"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-25.png",
+      "bytes": 4202,
+      "sha256": "318a7242bcf163d01f11826c8a99859ab2b3e9e298b9beef823c1362c5621fc4",
+      "crc32": "0c12a399"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-27.png",
+      "bytes": 4208,
+      "sha256": "c5d5faf305c119493f6ac78775fedd5e25c7356b199852cda4b60a1dbdbe32a0",
+      "crc32": "6dc23efa"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-27.tsv",
+      "bytes": 261,
+      "sha256": "0c708e47dc5d1eca9f1210f33c49606df49e4d92bde588a9f81a602f7bf80927",
+      "crc32": "b0b72a92"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-28.png",
+      "bytes": 958,
+      "sha256": "18444a1ce573f1f8d388681a9ad2dbc35005c78c71211680926ee4a3d2b537d7",
+      "crc32": "79f91b42"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-28.tsv",
+      "bytes": 221,
+      "sha256": "e691794d01cbc912f3c8c39382e0a6ce1f848325165b9664d58b65bffb6260e4",
+      "crc32": "3d04eb50"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-29.png",
+      "bytes": 14461,
+      "sha256": "7dcc60348411cd2707f1ed651aeed28017e1e8ce0e50be4ece59ecfa8f7a9312",
+      "crc32": "db393f04"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-29.tsv",
+      "bytes": 330,
+      "sha256": "85f6f49cae96bea439533ee50b83504995d0a1638a09dcf3f28649cad92d1036",
+      "crc32": "98469da9"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-3.png",
+      "bytes": 37505,
+      "sha256": "25a66e527708435e8ed0eaa11e89bfa0100829b6e39edb2ac2062a753a93a985",
+      "crc32": "7db94af0"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-30.png",
+      "bytes": 810,
+      "sha256": "87f71acda0502b2f564ae724b6fda65d72f28c9301c07b079d9c2a2063fcf06b",
+      "crc32": "11f9b6fd"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-30.tsv",
+      "bytes": 221,
+      "sha256": "4ce68ab0353ad38d58a59f53d1db1c200133714032b6d567a040531441a18f5a",
+      "crc32": "1a2da214"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-3.tsv",
+      "bytes": 376,
+      "sha256": "36d041605acaa14ab37297d58798b441253256cede82502527a021496245f968",
+      "crc32": "313bdb52"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-31.png",
+      "bytes": 676,
+      "sha256": "db6de2b1269c203dde8c4dae80891719bb6db5101a836b62532bd689dfce474c",
+      "crc32": "76abdd04"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-31.tsv",
+      "bytes": 221,
+      "sha256": "96ebdff712e2dcffb52cfa69b056056635e441a49841050f62fa6bd2aa30a8ed",
+      "crc32": "d9ff6c9d"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-32.png",
+      "bytes": 5111,
+      "sha256": "2f5a1041beb66436c2a38f35c051851a8ebbe7309e12369e43129b967cf4db5d",
+      "crc32": "280225d2"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-32.tsv",
+      "bytes": 291,
+      "sha256": "9f893708e7d3653e01cdb0b85ed6f7ac33072fdc156f8c5eeb6c2eb521668c3a",
+      "crc32": "2c81cb58"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-4.png",
+      "bytes": 54047,
+      "sha256": "86803baadd3021b3c56a68f7e972ab9b15e24f9bc1f908d75d8cc927af697cf6",
+      "crc32": "5f8535c5"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-4.tsv",
+      "bytes": 506,
+      "sha256": "bc1eb5466a6898a79846e73cf8ca7e438426858a0b17e530f12def64bbb87ce8",
+      "crc32": "e575e889"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-5.png",
+      "bytes": 4428,
+      "sha256": "430415ff7fcda37a9c99e486e271aa51bb47d689f3574536ac42601bc64dffdf",
+      "crc32": "611ee76e"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-5.tsv",
+      "bytes": 233,
+      "sha256": "8157bc564f8392545889279028e0065004641bf3db40768d112d341f15beb1c8",
+      "crc32": "b45f0302"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-6.tsv",
+      "bytes": 231,
+      "sha256": "59d681f01bbc5b5a402f8809bf97126b168d87834d0bb12a6359496a55f37745",
+      "crc32": "e44137d4"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-6.png",
+      "bytes": 9174,
+      "sha256": "ecd8b07ef5d1b9780e7cbc49eb8bb77bfc484a28d6b54f958191954bf8f97eb6",
+      "crc32": "d29d74fe"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-7.png",
+      "bytes": 3982,
+      "sha256": "ba4d0412e89e91b4c7d62de4a32c31bc8950f482f84fd7edd4cbbfcfe915d0f8",
+      "crc32": "88e49c3b"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-7.tsv",
+      "bytes": 229,
+      "sha256": "9280672aaa6fb31336740fdc31dcdd612dc8194a9090164cb64de6ecc3583758",
+      "crc32": "01edde09"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-8.png",
+      "bytes": 7416,
+      "sha256": "ac7da836f70f743e40a6613ad37ec6a760fa5a6fb4f1ae69fdd24aeb8dfd7556",
+      "crc32": "acf25b9a"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-8.tsv",
+      "bytes": 263,
+      "sha256": "ec863fa2bb2a03ded6cc5a9ed62c0797fec1ffcfb7bac4ed0f27846d0926c4b8",
+      "crc32": "13f7f2f7"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-9.png",
+      "bytes": 6640,
+      "sha256": "d56a042badf2637389a906b9b84a42f77f89387d7f14b82d2863d2d751180ab8",
+      "crc32": "0b897d30"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-gold-component-9.tsv",
+      "bytes": 226,
+      "sha256": "936506cdaf6e26a07304a4dc64a046211a338171bb88b3a56e2b562d6f00b48b",
+      "crc32": "6a3f80e6"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "74a2c8aac1dde5ef2051cf8e2d08c5ceda6d3956fe277462793df3edbcaa0ec6",
+      "crc32": "98b04dcd"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-raw.tsv",
+      "bytes": 4944,
+      "sha256": "a827ac2520f4cbdc66b0162285f618e4bfd68d31775289b189944fc635c7ddce",
+      "crc32": "254fd7c2"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-teal-text-1x.tsv",
+      "bytes": 5159,
+      "sha256": "5f1d1798da2da2517f3839b3191c7d20bea1f1decf04f51bdc2b589cb971c582",
+      "crc32": "738bc0e3"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-tiles.json",
+      "bytes": 5159,
+      "sha256": "371520b9800d170c735a81b9ebb696f2b3d07b69a636e67f1cfd45589ff7bbe8",
+      "crc32": "a880e7e9"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 65285,
+      "sha256": "1773081e83d8a123a0af2f8cf213e45e54990cfa51d4ebaf7296746f5ea4d441",
+      "crc32": "9c743a19"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1979,
+      "sha256": "044342d923291655127462b62183cfefcdc8d8cfd523a4320a481bb3bfd70990",
+      "crc32": "eaf8200c"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 35346,
+      "sha256": "32067fb007982c88f813ee43c8477c18b6f2a7b2dbebfa2e977332e9c3c69a27",
+      "crc32": "c7e8c55e"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 899,
+      "sha256": "23b2e65c5ccd92913b9f3be801f2ba57ca4e77c7aa91a37192079182b38ebeeb",
+      "crc32": "58b50326"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 66396,
+      "sha256": "4205228a070e977927e3bd89f6dca4ae523614ea01d547573dd42fb0a1c74dd7",
+      "crc32": "5fd2d2d0"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1474,
+      "sha256": "560c6284900fbabf66b4dd82c6248705870b32f5d835204c8e0ff72a0f70a498",
+      "crc32": "7e53d1ec"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 32747,
+      "sha256": "85229bf05cc6e44199c8ef59f422e23541be84de4b8aaab3b67bf577a6c2fc5e",
+      "crc32": "1c4c1036"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 845,
+      "sha256": "816694583c6e36e6eeac196b8c1bc120b9c7e2461f4a6ff902a807731a3a260b",
+      "crc32": "3b62d55e"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 38587,
+      "sha256": "8519c0e1b1ccaa10a6f48d6141d44bd35ba28367bf38f2c6ae9f67a36a5f0c9a",
+      "crc32": "f4efe3b7"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 945,
+      "sha256": "61bcc506f5e3f5a9d06e2e27cdfed95e5100a3f318f098131901cce101a566cb",
+      "crc32": "0feeddef"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 25134,
+      "sha256": "b344fb667c3c1c2afdc47c31b41c73b1c479962bf813da917100fb4c71d7bc96",
+      "crc32": "288a130f"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 436,
+      "sha256": "81b399e08c8f3b3444b48d92f1f5407552cce7329467c9573adcaa9ca8a63beb",
+      "crc32": "22a1f57c"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-0.png",
+      "bytes": 61275,
+      "sha256": "66514047978b9fd14e422f5f5e0c898fa724021cdadd5c752eef1d078e4f5b3b",
+      "crc32": "4519e376"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1619,
+      "sha256": "870a27388b2fa9946265328f3d963c098f57b46f92904ec463dfea2dc8d06488",
+      "crc32": "fd9ef4e3"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-1.png",
+      "bytes": 35210,
+      "sha256": "c87fec70d26d55a7cf96c212a03139a7f298ede3642c7c503b56f19e4fc9be7c",
+      "crc32": "dffe30fd"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 726,
+      "sha256": "779b9be9607fdb65cd2bd83bc1cfa1349142af7c245a2d2e6cd825dd076418d4",
+      "crc32": "d6b28664"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-2.png",
+      "bytes": 61528,
+      "sha256": "386ef80852388e0ab9378a71fac0299ae30410b7e53dd752e0c502f9f9ecf623",
+      "crc32": "6e568623"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1296,
+      "sha256": "2eb095a2fad93961b965f9b11b00b3e555b979416afc5d6911618874a698eb8a",
+      "crc32": "01d6921e"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-3.png",
+      "bytes": 33446,
+      "sha256": "cf9d9b2820e998c20a671cc7c219dda21c33f709c60a8e04ce8f1bfc89677537",
+      "crc32": "6bb172ac"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 856,
+      "sha256": "97fae7ac9663ade59ea092691d0c0e96c6a6cc6ae6d5e6d83c8d6c55f25f7469",
+      "crc32": "01cf3736"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-4.png",
+      "bytes": 39370,
+      "sha256": "503d6847683b883028b65763495e742a021d2a3553c2eb7d089640cc3ebd3a3f",
+      "crc32": "7038795e"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 983,
+      "sha256": "1ce53d498f55fb6493c8edcc5d885485d4b111ece2df64a0bcfe03fb8120dc59",
+      "crc32": "337f39ae"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-5.png",
+      "bytes": 25240,
+      "sha256": "adad89dbe84603e0cccb3f5e6911eee2d4cbb9d20361e5c75b9d267cda36d92b",
+      "crc32": "89babdfd"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 436,
+      "sha256": "4553640206b897a8f367201db5fce38aef8217116179169c7870b3069c08f3f8",
+      "crc32": "82e078f2"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-latin.tsv",
+      "bytes": 3685,
+      "sha256": "358085ab96ec7bdd9669569aa56756d09c3588c7b036abb76b4f8e2e9f8cc902",
+      "crc32": "bf4a1f02"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr-white-text.tsv",
+      "bytes": 3647,
+      "sha256": "2fb54c25e0f89fd5ec059afdc835e06f462a89696e4f54cb21b73d8a708c5f54",
+      "crc32": "9f2718c2"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0-ocr.json",
+      "bytes": 13584,
+      "sha256": "db0d043fcb960bdddf7c3c2db1bbbd0a4fd4407f2d44627ceaf0a4d02e45c35e",
+      "crc32": "61deae5a"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-0.png",
+      "bytes": 657282,
+      "sha256": "473b3f117f609e9e2d1da84d794457320159d666bf9292d6a951158bd9f140d9",
+      "crc32": "80ed9579"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-1-ocr-contrast.tsv",
+      "bytes": 4310,
+      "sha256": "3bd4f68aa84d995378dd768d7c69e3a1b70aac8664bb36338e37cdf0683d5c3d",
+      "crc32": "4aeb2260"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-1-ocr.json",
+      "bytes": 3104,
+      "sha256": "59aea784f4db63a437ff627c22ce793a915b2518ee4e57e695c1a4c3d8157465",
+      "crc32": "3ebf97a9"
+    },
+    {
+      "path": "diagnostic-android/0156-why-native-initial-model-1.png",
+      "bytes": 642371,
+      "sha256": "9e530e2cab5413581ec7401b91d17877d290c9436922cca06c538a241875e5c2",
+      "crc32": "1227efb5"
+    },
+    {
+      "path": "diagnostic-android/0157-why-native-eight-and-five-before-question.png",
+      "bytes": 642406,
+      "sha256": "e637347f3ddbf48a7a9b3fa753ebd250e456eded23ae0b7941d31d2271789a05",
+      "crc32": "5d1e23ec"
+    },
+    {
+      "path": "diagnostic-android/0158-why-native-open-question-0-ocr-contrast.tsv",
+      "bytes": 4168,
+      "sha256": "cf73d03840327ebba5b8f133ffe7380f431d34939b4fa59922924bfc0571521a",
+      "crc32": "9cf2e1d0"
+    },
+    {
+      "path": "diagnostic-android/0158-why-native-open-question-0-ocr.json",
+      "bytes": 2981,
+      "sha256": "36da03c927c8c05f4c21696e92233a8937d757ee9da673447c9af34cfa42ed2a",
+      "crc32": "03679e7e"
+    },
+    {
+      "path": "diagnostic-android/0158-why-native-open-question-0.png",
+      "bytes": 642201,
+      "sha256": "e5b1ac7f6bd2325d938fbb37f5918bacfff94afb31309a45d4fd0efe128da448",
+      "crc32": "cf1af9e7"
+    },
+    {
+      "path": "diagnostic-android/0158-why-native-open-question-1-ocr-contrast.tsv",
+      "bytes": 4165,
+      "sha256": "0d2accae68c6f42795e853beb34e5d330b756e9499ff02dd6db3183604f883ec",
+      "crc32": "8668b0af"
+    },
+    {
+      "path": "diagnostic-android/0158-why-native-open-question-1-ocr.json",
+      "bytes": 2852,
+      "sha256": "78232165682635735bec2a18deb48407834802c9d9053d4190196da410edc2b8",
+      "crc32": "9fdc7b44"
+    },
+    {
+      "path": "diagnostic-android/0158-why-native-open-question-surface-readiness.json",
+      "bytes": 2783,
+      "sha256": "b758863907c47929d264048f10af975197dd3a85ac65f7108c5a62053da0d34b",
+      "crc32": "8fea423e"
+    },
+    {
+      "path": "diagnostic-android/0158-why-native-open-question-1.png",
+      "bytes": 642389,
+      "sha256": "e69c2c63332d86a6f559119f4c5de47d2cb119d025b97453aef441dffb926880",
+      "crc32": "8285625a"
+    },
+    {
+      "path": "diagnostic-android/0159-why-native-question-heading-0-ocr-contrast.tsv",
+      "bytes": 3130,
+      "sha256": "19e5764a79e90d307fcf0cabe074f9a288c7b63e2580e7408140cbeadd3256f8",
+      "crc32": "271ca77f"
+    },
+    {
+      "path": "diagnostic-android/0159-why-native-question-heading-0-ocr.json",
+      "bytes": 2117,
+      "sha256": "332d84e984b6f56e532eb20b52163b7f7701b364042b52009203bac077edc7af",
+      "crc32": "cc99ca1f"
+    },
+    {
+      "path": "diagnostic-android/0159-why-native-question-heading-0.png",
+      "bytes": 444203,
+      "sha256": "2812decac5f96b3c2e3de691be1599e2a0278fb1b79151895350a2bc01855e49",
+      "crc32": "0eee1359"
+    },
+    {
+      "path": "diagnostic-android/0160-why-native-observed-input-0-ocr-contrast.tsv",
+      "bytes": 3130,
+      "sha256": "19e5764a79e90d307fcf0cabe074f9a288c7b63e2580e7408140cbeadd3256f8",
+      "crc32": "271ca77f"
+    },
+    {
+      "path": "diagnostic-android/0160-why-native-observed-input-0-ocr.json",
+      "bytes": 2294,
+      "sha256": "c5bd6a96a7771025658bc51f4c60ab106ad80b5bff400befbf13ce1869fac132",
+      "crc32": "621fe11c"
+    },
+    {
+      "path": "diagnostic-android/0160-why-native-observed-input-0.png",
+      "bytes": 444151,
+      "sha256": "457bae1d848db3838158c2f6e71932c3502e2b3a1f9de1f526d4b28847dcbf16",
+      "crc32": "54139a56"
+    },
+    {
+      "path": "diagnostic-android/0160-why-native-observed-input-1-ocr-contrast.tsv",
+      "bytes": 3130,
+      "sha256": "19e5764a79e90d307fcf0cabe074f9a288c7b63e2580e7408140cbeadd3256f8",
+      "crc32": "271ca77f"
+    },
+    {
+      "path": "diagnostic-android/0160-why-native-observed-input-1-ocr.json",
+      "bytes": 2294,
+      "sha256": "c5bd6a96a7771025658bc51f4c60ab106ad80b5bff400befbf13ce1869fac132",
+      "crc32": "621fe11c"
+    },
+    {
+      "path": "diagnostic-android/0160-why-native-observed-input-1.png",
+      "bytes": 444144,
+      "sha256": "4d3d72bdbfe72049b3d6bf654daf994af70abbba8bad8276fffdcc46ed1c59ff",
+      "crc32": "b9b32e9b"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-components.json",
+      "bytes": 478,
+      "sha256": "fc83c7c16604349a780c4ffb80d49046145ca060505d9d33eca20802c66587a2",
+      "crc32": "0d74a467"
+    },
+    {
+      "path": "diagnostic-android/0160-why-native-observed-input-surface-readiness.json",
+      "bytes": 2803,
+      "sha256": "c1806361d13972d3e1aa44c8e36351a21de6601596b0b57e68f17843c404d6da",
+      "crc32": "6348fdbf"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-contrast.tsv",
+      "bytes": 3130,
+      "sha256": "60d9bbb412021eec03c1eb50fd4b627c9fbe1825f822e9c43d59bf15d45b9940",
+      "crc32": "db21db0f"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "74a2c8aac1dde5ef2051cf8e2d08c5ceda6d3956fe277462793df3edbcaa0ec6",
+      "crc32": "98b04dcd"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-teal-text-1x.tsv",
+      "bytes": 3999,
+      "sha256": "17c30741bd9aeb79410dd5bbaf433bcd8e81f1b5e59669daca48213d274663bf",
+      "crc32": "23e4f5d6"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-raw.tsv",
+      "bytes": 3127,
+      "sha256": "9d9033674401d5f622cf4f616010b7e57418378dd153a498d3b1f6771330684a",
+      "crc32": "adc5a7be"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-tiles.json",
+      "bytes": 5416,
+      "sha256": "44c0bd6517c559f1697aa02216ed5df3987c57b0365a5bcbc0834adc941d4a12",
+      "crc32": "63ca97b0"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 41166,
+      "sha256": "f6d5262990f7f1ebda24880c2cc9d388e03abaeb25e9990c5023d0f25c408353",
+      "crc32": "6491911b"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1182,
+      "sha256": "b5f7ec98dee8e4fd47ef356e22bb7b5ce36adaf97a83b3573e2b78807aebc991",
+      "crc32": "c6878261"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 39272,
+      "sha256": "8016060b562e6d6a3c25a7edb8a5218b70707ec25f18cee501d1dd8d2078fb04",
+      "crc32": "3f19c9be"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1309,
+      "sha256": "de15d06b326999720003c8174c77c70106639ff6d0dbf095a4a55352926e8e66",
+      "crc32": "0b7bb89a"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 42589,
+      "sha256": "90e83fb1b8e65fd68d382188c7631e212589926d149f3a94b1e4d5e54264ff9f",
+      "crc32": "9f852596"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 39317,
+      "sha256": "19941a5eafc982feef12f200863acf4278e386f50a094fcf137d770bab79b434",
+      "crc32": "b462a017"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1094,
+      "sha256": "4b92e7baaf25a57b8d0c790bfd926a36c8f1fe4e1479cf3d4ad1a048d0bc769b",
+      "crc32": "2fa5e571"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 32793,
+      "sha256": "be4bda0e32a9d365d51f8632139c8b6b82d5d4a4a038ec1925021583bad62c7e",
+      "crc32": "7d8a70c5"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1606,
+      "sha256": "b368640e1a84a2a84a3af75196d820b9211931ccea232565c2ed44daf769a3f7",
+      "crc32": "4a816871"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 900,
+      "sha256": "bb5ab9a0b22fcfab3069104f20cd6c8ee7926ffe863c2ce176365fe431192520",
+      "crc32": "aaede525"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 27967,
+      "sha256": "61fe004d820c2bf1f980b6ca8e9a1643a3ecc29e31d1a1bd1c3cb91eb823275b",
+      "crc32": "a003ca00"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 959,
+      "sha256": "c586ead768942dfce3b3f7e63f52d824ee6f346b851b570afcc0787e2821f8c9",
+      "crc32": "269148e8"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-0.png",
+      "bytes": 41561,
+      "sha256": "fe42efaa4ff7552c31e4b501289afc96be4d20f607f86a42833fb116dc760444",
+      "crc32": "8b342377"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1181,
+      "sha256": "cef29656f03215f69795e8fe9b817a24c024b3cdc79d77e12598790910f25f47",
+      "crc32": "789b1fed"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 1364,
+      "sha256": "3d25d852901f212d5a8ce589025563347e23e6cee1acfb1a195351a1f743e9df",
+      "crc32": "a01f4a49"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-1.png",
+      "bytes": 39224,
+      "sha256": "80dad5bb9ab446537448c7aed51766ca1ba325d64008eeb306d6d44d908a92aa",
+      "crc32": "748f062e"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-2.png",
+      "bytes": 42446,
+      "sha256": "de3cc3f0c4481c68de1d680369e53315539a74687d120d37ff57e41e2cb74166",
+      "crc32": "b70f5fce"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 958,
+      "sha256": "700fb1001e13caae293a2fbf6a4b2635ddfd31dcb94c9bd1ba804b2f8d12476e",
+      "crc32": "108b228e"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-3.png",
+      "bytes": 39866,
+      "sha256": "4bb41433f17930409bb676048d4ab7a4a910424323a834866d08d50b1dd495ed",
+      "crc32": "b94525cf"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 1577,
+      "sha256": "1b2504adfde8c28e446afadee5923372b538eee36fb15def665ff16b1d68f30b",
+      "crc32": "a964d650"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-4.png",
+      "bytes": 33370,
+      "sha256": "084297a794b15a6299c41066bb684822a5567ef2e4eae5a2a9a28c724c3d09c7",
+      "crc32": "7f1dee04"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 906,
+      "sha256": "01aaa5709cd88104ad71e710c96c065ad4c929838c0675424c9bf0d1c6f9df97",
+      "crc32": "d6c1d9b2"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-5.png",
+      "bytes": 28244,
+      "sha256": "d6e5a5b44dc6823c2e677fe69f5b4f5668a4d293b293fcf102d3e9817620345b",
+      "crc32": "79620350"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 845,
+      "sha256": "b9a07d1c7ed0c8fed9dcc49ca3cdb15cec8745730e85db2e108cb7ef9e92ea97",
+      "crc32": "47b2a4d2"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-latin.tsv",
+      "bytes": 3168,
+      "sha256": "30958d2188e1e03a53771f6475428794916738fc7d5bd1efaa4833c3717a597a",
+      "crc32": "e6ae77c1"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr-white-text.tsv",
+      "bytes": 3130,
+      "sha256": "0ae95824b5c1e827bd51142b9d20238e0257827aa244824ae014e6add5ab0840",
+      "crc32": "eccad013"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0-ocr.json",
+      "bytes": 10884,
+      "sha256": "bc747d06eed0d19430972f4d7291f36b395bf34edeec9aee3f5810d0c7df9e21",
+      "crc32": "aa7062ea"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-0.png",
+      "bytes": 447152,
+      "sha256": "ec3175ceac849e2c526300ab9440eb31ae32c8b019f250fe3954d5054969e75c",
+      "crc32": "bb344ed5"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-1-ocr-contrast.tsv",
+      "bytes": 3037,
+      "sha256": "bc10c1d2c86780300651e807b029d59d37d58ed80afa356663d6afa76c16c96b",
+      "crc32": "8b0c73d4"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-1-ocr.json",
+      "bytes": 2117,
+      "sha256": "6099c8f6c589518abcef964575587d5611ed38f6ecb904d75f38b6d38d2bcd2b",
+      "crc32": "4c579c86"
+    },
+    {
+      "path": "diagnostic-android/0161-why-native-actual-written-question-1.png",
+      "bytes": 447017,
+      "sha256": "e8a2ed7da078d74ae838994c26f4d073114fe3644461666f6aa4121bc9a17695",
+      "crc32": "3cb60097"
+    },
+    {
+      "path": "diagnostic-android/0162-why-native-written-before-send.png",
+      "bytes": 446997,
+      "sha256": "92aa2a661e9e67fb5b3fa0e34e01d851054fef334acdf219ea77cde1b4a49e25",
+      "crc32": "8ced97dd"
+    },
+    {
+      "path": "diagnostic-android/0163-why-native-keyboard.xml",
+      "bytes": 15208,
+      "sha256": "f2971dcf14b1f96b8c2f637c380f2e5012551cab34729333f883c10dbd5f79b7",
+      "crc32": "038822a2"
+    },
+    {
+      "path": "diagnostic-android/0164-native-speech.txt",
+      "bytes": 26654,
+      "sha256": "898063594395d4cbfabe51611afe03e5fdf875281b4949b429f08f4e42e81cc7",
+      "crc32": "5a64f6e7"
+    },
+    {
+      "path": "diagnostic-android/0165-why-native-send-observed-question-0-ocr-contrast.tsv",
+      "bytes": 3037,
+      "sha256": "bc10c1d2c86780300651e807b029d59d37d58ed80afa356663d6afa76c16c96b",
+      "crc32": "8b0c73d4"
+    },
+    {
+      "path": "diagnostic-android/0165-why-native-send-observed-question-0-ocr.json",
+      "bytes": 2111,
+      "sha256": "717d81abbbdca8b5fd46925db26e06daa44bbce6c8eb4bd680642e9c77e50adb",
+      "crc32": "bd5a26a1"
+    },
+    {
+      "path": "diagnostic-android/0165-why-native-send-observed-question-0.png",
+      "bytes": 447038,
+      "sha256": "127be63be76e767c5e9913c2109e94b7dbd7d2b7b95ead8134b272a8fede23ec",
+      "crc32": "7b743c39"
+    },
+    {
+      "path": "diagnostic-android/0165-why-native-send-observed-question-1-ocr-contrast.tsv",
+      "bytes": 3036,
+      "sha256": "2baa9e65e8c5cc5d6099f0762fa107d9f124b761a46b708f94a4e2dfa0082d01",
+      "crc32": "87a85e6d"
+    },
+    {
+      "path": "diagnostic-android/0165-why-native-send-observed-question-1-ocr.json",
+      "bytes": 2110,
+      "sha256": "8e788b985afacecba1378a49030f32643526baea975fa5172fe7fcd3fb7c4b87",
+      "crc32": "70207f39"
+    },
+    {
+      "path": "diagnostic-android/0165-why-native-send-observed-question-1.png",
+      "bytes": 446433,
+      "sha256": "fb5bcb2fc7f274b5dbd262dd43ad32dabf81f8fabdc06efa403e202e234ab24b",
+      "crc32": "a87de8c1"
+    },
+    {
+      "path": "diagnostic-android/0165-why-native-send-observed-question-surface-readiness.json",
+      "bytes": 2802,
+      "sha256": "e835f1edfa92c9bf73d1f7620032c47b78d3fba13227b28167a6e8c29144233c",
+      "crc32": "22f14e23"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-components.json",
+      "bytes": 12908,
+      "sha256": "7cfeddafe36334d414c73499c2c85115673d3a40e284709f0b5e2aed0e984146",
+      "crc32": "e4921d5e"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-contrast.tsv",
+      "bytes": 5094,
+      "sha256": "42f67568908402bbe12cc4a1783383230ed61e1960116e7485062aa0ebd34e49",
+      "crc32": "edd5a012"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-0.png",
+      "bytes": 11625,
+      "sha256": "03114f76fb7a30251f4249a464d0edb9a048037dd474341dc5c6c6400db4493f",
+      "crc32": "b216ef15"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-0.tsv",
+      "bytes": 111,
+      "sha256": "b7d6f5314af2a5829fe2a2dcb3a7908f0b5fedad8177f097425a10639d37b7b0",
+      "crc32": "7c0e778b"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-1.png",
+      "bytes": 41587,
+      "sha256": "81b883eda4ad0d05f20bdede003173a8d417ecb5ffe8c8b1d8364d9ed8951e99",
+      "crc32": "29e87293"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-1.tsv",
+      "bytes": 566,
+      "sha256": "505b20e3187f15430f6a9cf5e7e78047d93c68d7b0e6e891e4b2867c66f350aa",
+      "crc32": "6c658d94"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-10.png",
+      "bytes": 6475,
+      "sha256": "761ce001a0874c86007015cc4f0a95d11168ba129e9494aa87e744e0fecf7384",
+      "crc32": "86173981"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-10.tsv",
+      "bytes": 291,
+      "sha256": "64a7a1993d1aebccb2d3e9c9f66f040726ff36c915c7c8435009d34912a133dd",
+      "crc32": "d25fee2f"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-11.png",
+      "bytes": 3930,
+      "sha256": "9e970aaca8988e40bc1c54da3725b108e252899c5e9a066438666bf8f59798c5",
+      "crc32": "ce451b9e"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-13.png",
+      "bytes": 2887,
+      "sha256": "37830ea6d8759f9ab44c4634aae81a130c265e17ae2a6f69d1668005b979f717",
+      "crc32": "097e5ba6"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-11.tsv",
+      "bytes": 303,
+      "sha256": "090de993772986f7b339044c0a2fa65fc4ed69d07bf57c41e2f675f9edc24c47",
+      "crc32": "7eb5af86"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-12.png",
+      "bytes": 1961,
+      "sha256": "ab8ea2f0474f9d57f4bd0515783a792c88ae1aa33a3e7b18bc773915bbe2c444",
+      "crc32": "69fe4478"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-12.tsv",
+      "bytes": 226,
+      "sha256": "32fae361b551ed07b6e9d557c14911dc3e8052e8a9dd7979d58b1d4b36205906",
+      "crc32": "18de2c59"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-13.tsv",
+      "bytes": 259,
+      "sha256": "315427c060eae5c6750beed0de3ff26b922476749c0754a60dd9082df2fcaab7",
+      "crc32": "21efc07c"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-14.png",
+      "bytes": 1809,
+      "sha256": "abe6dca832c70a3fdb825e8a1c3231bd28cdac4cd6f59d10d9060bb94eadb8e6",
+      "crc32": "b5768065"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-14.tsv",
+      "bytes": 227,
+      "sha256": "3e2d83cb0119982780989de621e6930d77802e7515857ddbd07780f5e20fa9d9",
+      "crc32": "72134f24"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-15.png",
+      "bytes": 2553,
+      "sha256": "8b782d81301c67e50da56ebfc4f6d5caaa15f9607e8214fe3f0477b0db368d35",
+      "crc32": "0424481e"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-16.png",
+      "bytes": 2010,
+      "sha256": "4cd87ade1d8942465b960111935de84d0ed961c0390759bc27a3d7be30249538",
+      "crc32": "c8b72801"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-15.tsv",
+      "bytes": 226,
+      "sha256": "687e9435ac0604559591990e98ee6856b4ca6a0a813a29697fab222de2f66553",
+      "crc32": "1506929f"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-16.tsv",
+      "bytes": 225,
+      "sha256": "c78177f25f70d14143af6e72f96ae6bf69d6db15120a60d8b81ddcfed32177b9",
+      "crc32": "179721ff"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-17.png",
+      "bytes": 1520,
+      "sha256": "b62bbe693579f10859bb8aebcb79eeefa5fbe2eddf6c26dc7d73b70de3d1f95a",
+      "crc32": "021af6d7"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-19.png",
+      "bytes": 9324,
+      "sha256": "aba63e6df6aeb89297f2dcfbca92215b4b305a5c7cc6d4095edcb0532fc5d49b",
+      "crc32": "96255b4c"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-17.tsv",
+      "bytes": 227,
+      "sha256": "d2f08c3f1d35abcbd9bc04b1f1cfe8bb41cec1b831814b630a8b03f4db16b0e8",
+      "crc32": "b180e5f7"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-18.png",
+      "bytes": 1516,
+      "sha256": "33e78ff9884ec0d73a9c6f17417401be60b9671b6ddc4fc6eceae425a09920c0",
+      "crc32": "113de737"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-18.tsv",
+      "bytes": 226,
+      "sha256": "4b911fac7ff477a5a967ca50452683778a506c8e1a80e82ab99aba534c8ceb24",
+      "crc32": "fa413912"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-19.tsv",
+      "bytes": 226,
+      "sha256": "ea5df107f4a068253e88b4bdfc6bcb32d8fb29ccbd7d89d965519a4c18f75bda",
+      "crc32": "6f7b30a5"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-2.png",
+      "bytes": 33522,
+      "sha256": "6d35afa5a8ce3fadead0c588c2258a88c41565bb75490e204705bcb700a8070d",
+      "crc32": "d3112f92"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-2.tsv",
+      "bytes": 275,
+      "sha256": "4e316cf576d60f02fd3bd8566e2f5e3268052dd7fe8543ad3761f44fd4b6c451",
+      "crc32": "ab5c7717"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-20.png",
+      "bytes": 3248,
+      "sha256": "cf64f45f1247de64daa387a6643321a24ab0e4be4a0c6d95157c5be8f8fe1fd8",
+      "crc32": "1b87ae80"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-22.png",
+      "bytes": 1535,
+      "sha256": "bcc52657ec9e55b69aba250a2076c933d0cc27995138d8abffe6de7c09408245",
+      "crc32": "be87240d"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-20.tsv",
+      "bytes": 221,
+      "sha256": "6f57dae0327e0b3adb325d8d7770cb869b284a84544635de81e247c4a7539a12",
+      "crc32": "5d5433aa"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-21.png",
+      "bytes": 3241,
+      "sha256": "a10b62aa18f4c14abafae1facfb9b53b3cbe2a8b3aec143a43f23c0ded810dbb",
+      "crc32": "99b989ad"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-21.tsv",
+      "bytes": 258,
+      "sha256": "174e10f1c656cc34310371f2bcd90756574bb08d2f38e5e1d1330b4cbe08e14b",
+      "crc32": "62bf4b8d"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-22.tsv",
+      "bytes": 226,
+      "sha256": "111749a7a3b83f6d119999486c27b4258f8899bf565c7cf3fd73848788119247",
+      "crc32": "41113340"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-23.tsv",
+      "bytes": 390,
+      "sha256": "ee5f690bedfd5c37ebad48adb2063596d309077213fa0bee497f2457b2c90c90",
+      "crc32": "1a954af7"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-24.png",
+      "bytes": 803,
+      "sha256": "1b220074a9c2f72e7bafb8d8d22fe7826f5c237e234254c5d58c3e777ccec5c9",
+      "crc32": "4b48ca25"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-23.png",
+      "bytes": 10897,
+      "sha256": "45ea0111a51a63416ede57861b41c2ba8fcc55f534b43b5a3a2f1f5b5c5c0f50",
+      "crc32": "0753577b"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-24.tsv",
+      "bytes": 221,
+      "sha256": "ad7b31bb440fc3033b09d8fe46124913dfe6afbe2f35023b43c3c193ea1c72fc",
+      "crc32": "7c874968"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-25.png",
+      "bytes": 660,
+      "sha256": "c5a115fc2ec190c7fc1356ef5164a1a517a24bdf4a5c794acf8a508a02578c2a",
+      "crc32": "f617625a"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-25.tsv",
+      "bytes": 109,
+      "sha256": "d9bd6684eac0fb2c9b7cd43a5d9d7c0e3994ae39119ea14756a96113159c23cc",
+      "crc32": "d856f648"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-26.png",
+      "bytes": 581,
+      "sha256": "f173911bbe9bf0de9282f212cbdad2424587fbd937624c23c20e14ad1e3ddfff",
+      "crc32": "d55b7b30"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-26.tsv",
+      "bytes": 109,
+      "sha256": "f9cb53ce67fb87df31f8d28ab5f23bc2c5dc9e9d1dcac567e385fcd5ee826827",
+      "crc32": "af943633"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-27.png",
+      "bytes": 3688,
+      "sha256": "3241cedf042d14c7d02ad782cbd53f1a833c8aeb998a402bae07a916040d4a51",
+      "crc32": "28646888"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-27.tsv",
+      "bytes": 221,
+      "sha256": "d0cc10bd6fa15500861fddf840e49362bf702661c27955efd2f4ead547c713f2",
+      "crc32": "35adc7f5"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-28.png",
+      "bytes": 6502,
+      "sha256": "d0ca49c0631dcb983cc7e7ec29813b7ba1fd389322fe7aa4894a8e0d38369d23",
+      "crc32": "16aeef0b"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-29.png",
+      "bytes": 3475,
+      "sha256": "9bd0a72e9d15bdd9d3350ce3d0d0de900760f482ac199e4fe9bf8598a9feddeb",
+      "crc32": "95aa2ba6"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-29.tsv",
+      "bytes": 222,
+      "sha256": "fa462c51766cf1726454daff6222ad2b5062b044d8f9921a4ccc19c63db8fe02",
+      "crc32": "37e276db"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-28.tsv",
+      "bytes": 229,
+      "sha256": "014543ffd8ce421e8a5da4c33370130afb236184c15d26e88edc61972b219113",
+      "crc32": "9c33df21"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-3.png",
+      "bytes": 11310,
+      "sha256": "c52f075ed2ca98a3151296501899f16bb10e3736c17170bdaf28cd8405d3f48d",
+      "crc32": "d8f88021"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-3.tsv",
+      "bytes": 111,
+      "sha256": "ea455ca41461979eee6b2accfd363809d181fa41cfce0fa2d55efc42cc3a6a90",
+      "crc32": "3a00fdc7"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-4.png",
+      "bytes": 8637,
+      "sha256": "86ba2f86c21644281bbb708ee13cc80e667fd263f2747ff62b7021aa66dd8e3e",
+      "crc32": "f4504129"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-4.tsv",
+      "bytes": 111,
+      "sha256": "bc52bfa533192b6c502056ed67bccf08d4111162cc323c57d551d434406727b8",
+      "crc32": "e51a7b5e"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-5.png",
+      "bytes": 44752,
+      "sha256": "90a03d2ae200593315712160f233c8cb361782aeeafa730828b7ccfe2bbb6043",
+      "crc32": "19bcce70"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-5.tsv",
+      "bytes": 223,
+      "sha256": "4f3dc0991d79757539e4588c6e5d518c59f423c04d898f81577e67323ce48276",
+      "crc32": "9c0f6047"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-6.tsv",
+      "bytes": 111,
+      "sha256": "5d8b85556cdc90a7b796bf6628fa84c7d29edae5037ab2188e376f34af5673d5",
+      "crc32": "7db557cd"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-6.png",
+      "bytes": 6310,
+      "sha256": "dd63300bb38cee47b6f59b84ee41f995aa27fd76a6eed60d0f3b57579c2916ae",
+      "crc32": "9604a37a"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-7.png",
+      "bytes": 8352,
+      "sha256": "0c44aa699986481ec2ad58f99aa6d1a3471ba9782aaecccd7d5ad83af2849c84",
+      "crc32": "146a6d36"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-7.tsv",
+      "bytes": 110,
+      "sha256": "b5a0823316d5e5c75edd106d62ed81b5175af2f82930d31c8128d0681991f835",
+      "crc32": "6a250a0d"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-8.tsv",
+      "bytes": 325,
+      "sha256": "a22072559f98c79900253744b6105eb95e65fc74de39c0145db3b4af56df1b1f",
+      "crc32": "12beade6"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-8.png",
+      "bytes": 6287,
+      "sha256": "65f2a7fca8f4ee3084b0c96dd35d9de98e5e34bc15fb673b98f1b8c1aba82787",
+      "crc32": "7975c108"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-9.png",
+      "bytes": 7926,
+      "sha256": "b11120021f3a76587e66265d5a7933c7ce090946d40dce922d806a95e249f3a2",
+      "crc32": "82b4897b"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-gold-component-9.tsv",
+      "bytes": 226,
+      "sha256": "842205726c3d86706d9435c0636ed16a40ad3317b8a05698497a5cf5488b9abc",
+      "crc32": "f62b3de1"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d",
+      "crc32": "2c2c7f17"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "74a2c8aac1dde5ef2051cf8e2d08c5ceda6d3956fe277462793df3edbcaa0ec6",
+      "crc32": "98b04dcd"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-raw.tsv",
+      "bytes": 5608,
+      "sha256": "eec8b108923d216ee222194d975fbcbeea9f2fc4356bbe68f8a99d6c2bafb6ac",
+      "crc32": "3282df0c"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-teal-text-1x.tsv",
+      "bytes": 5565,
+      "sha256": "8128b86aaeccb5d7ab49a3813860533da69d1237ffc6e9aa834a9d960e8860cf",
+      "crc32": "c87be17d"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-tiles.json",
+      "bytes": 5436,
+      "sha256": "07f233ae6b0b8e9b8d97ac4bce7eabbddfb95da0a05a311f7a13e34cb80ffea7",
+      "crc32": "88bb3083"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 63919,
+      "sha256": "76dd5d0bf347756b2ed437f0ee8b0ea405561b2cec236850b6e9341b072a88cb",
+      "crc32": "916900af"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 2004,
+      "sha256": "c2aece9d643167fa3661f77d514af33773b65241512646ad85821b4adc899649",
+      "crc32": "ef6772a5"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 38120,
+      "sha256": "390790900ee8fac3eada61bbf1223547d025528bcad46b76fc4c94cfbe38f583",
+      "crc32": "0c1578c3"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 75645,
+      "sha256": "2130f2c0d85f8751a261928fe9eb1e2522548261f28e5cee9c7f342034adf360",
+      "crc32": "f1bce487"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 762,
+      "sha256": "275c8eef6163b92f12a3d0ade5f80736f50b8ad09a77d7c87f8d8455147e0f42",
+      "crc32": "ee3ecaa3"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 2024,
+      "sha256": "7f45ce964d8ae21f67777203d56c076dad424b19193df4b22096d2d47095f8b1",
+      "crc32": "a68ef639"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 42273,
+      "sha256": "a1461187a33dfc1df9055561f97a57c9706d919319d6b61a329687a5b4426b0f",
+      "crc32": "c588c632"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1460,
+      "sha256": "aa9e1d4fe2146f641f4c72a20c72925f7af04ead803314332163290e5eabdd01",
+      "crc32": "6d5b9bc5"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 50372,
+      "sha256": "747f6824ba9191608a64bde6299c02c8941a4cc7a86edea9850c03b753514486",
+      "crc32": "5b7b3580"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1499,
+      "sha256": "420f620e8b21d93d29b255fba60c7a9919357812d2275ee3c3572f24aa80f34b",
+      "crc32": "1937d812"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 31868,
+      "sha256": "5f08061d492eb215308a3d1853569b5ed49f065a538e6ba6b040e389ffc44217",
+      "crc32": "149f7997"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 710,
+      "sha256": "d18db4c6d05f0f44980982ee6d1ee9fcf853b68a02b6cb384ca8c50beb5f5404",
+      "crc32": "eb32af1e"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-0.png",
+      "bytes": 65956,
+      "sha256": "8655ac3545f51c1c621dcf803acd3ee170eb3c8e71482baedeca6e495138fe36",
+      "crc32": "5081f288"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1935,
+      "sha256": "f34efd39856f2842c9961399dc3cae475b48d5e59da8a7ebbc10bd8946b01281",
+      "crc32": "47e0fac4"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-1.png",
+      "bytes": 37067,
+      "sha256": "603cfc51353dbb8c746b8fad305e9fdc2bafe38ca214a082291c4308ebe7d64d",
+      "crc32": "41577504"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 767,
+      "sha256": "3723829f1b47542961cc3c461da062a1023c741bd40352e6f04cb5720c817ff2",
+      "crc32": "ad91d15e"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-2.png",
+      "bytes": 75064,
+      "sha256": "bfa59d6e2055f7a6471358a448b36f1fc542d0a27c696b908b588a4c862b2c36",
+      "crc32": "540b93a3"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 2074,
+      "sha256": "af85ad34771af423ba6fbf779d07ea4fbb68c6e04434cdfcbc9caed1727914d1",
+      "crc32": "36e2c8d2"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-3.png",
+      "bytes": 39521,
+      "sha256": "cf5d097958f2f3d8dc27b76fe5d771230bb0e207a518d588795e2f3ba3852771",
+      "crc32": "434727d1"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 1304,
+      "sha256": "2a20d44c96759731f05a93df8892aa3484993b9b0a73c3a1c866b92958868b87",
+      "crc32": "450cfe9b"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-4.png",
+      "bytes": 54748,
+      "sha256": "0e18b957a98bed629dd1c1b0f9c3c1afe3f27b6f31e823d2ed4e1ce810e9828b",
+      "crc32": "d50ebcdc"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1633,
+      "sha256": "0c61e5cc9247445497443330b397189b8c3ea352df0e70fa8d5f4facabcb2704",
+      "crc32": "dc3e8a01"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-5.png",
+      "bytes": 31851,
+      "sha256": "44c69c6dc23288bfe57500924751b735ab9483bd4ea7e529566ab4f92838672f",
+      "crc32": "8c92aafd"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 577,
+      "sha256": "53a3822702d9972e32f7fcf7ab0b322d3c94d4a87ce6ef157d094bf1e334dcf5",
+      "crc32": "94ec9e32"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-latin.tsv",
+      "bytes": 4474,
+      "sha256": "6cca701e7701156ade8a32d950b5bb3449b1e738fa5cb85a700c683f0c1ca7a1",
+      "crc32": "947284c3"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr-white-text.tsv",
+      "bytes": 4393,
+      "sha256": "904062dabd61e52109f43363bac351581814b3553756c1419ea5c9d72d37dd7c",
+      "crc32": "152c94d3"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0-ocr.json",
+      "bytes": 14316,
+      "sha256": "30a7888ce01333ce868c40673983c198e8d2e1662e5d2563de5d4a10303e4052",
+      "crc32": "0c062cf5"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-0.png",
+      "bytes": 676209,
+      "sha256": "e62664f3a59a58e56ecd6f7014c87caee50010ef887cb9e6237898503b97006b",
+      "crc32": "c12aa9dc"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-1-ocr-contrast.tsv",
+      "bytes": 6340,
+      "sha256": "6faceabf5a41b2cb40abc0858b8dda550db14fd4acd3a9285b4b21aa7097c1a5",
+      "crc32": "c9c39768"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-1-ocr.json",
+      "bytes": 4213,
+      "sha256": "c1451c2032d7f4eacc941971faff4e0f674f2468cc40f5ea1e4cb64df7073ed2",
+      "crc32": "ae8257b1"
+    },
+    {
+      "path": "diagnostic-android/0166-why-native-two-moved-by-explanation-1.png",
+      "bytes": 681817,
+      "sha256": "847acf50d4385a54104d0849914dc8fc321ba2eeda1c085588d63de795448ac2",
+      "crc32": "64d70df4"
+    },
+    {
+      "path": "diagnostic-android/0167-why-native-current-explanation-ocr-contrast.tsv",
+      "bytes": 6618,
+      "sha256": "5547e0170407bcfabdd614d3d8f89dc789c430f514dd1a89e9fe8197d9f0b1ed",
+      "crc32": "002239a3"
+    },
+    {
+      "path": "diagnostic-android/0167-why-native-current-explanation-ocr.json",
+      "bytes": 4463,
+      "sha256": "9746e6081640bf1e17c29e3ed14fbb434d7f2cc93113bf208b639eed1249868a",
+      "crc32": "2947f936"
+    },
+    {
+      "path": "diagnostic-android/0168-native-speech.txt",
+      "bytes": 34098,
+      "sha256": "2803b4d4ac30e2c96ff9736c6ee540bccaacee8d14244a80f01d3a2d068c0959",
+      "crc32": "cc3fbe6e"
+    },
+    {
+      "path": "diagnostic-android/0167-why-native-current-explanation.png",
+      "bytes": 681868,
+      "sha256": "5dd1dacb9eb65dba0641e222390bae72948057059393c15d7ed087015b4a7dfb",
+      "crc32": "cdefddcf"
+    },
+    {
+      "path": "diagnostic-android/0169-why-native-ten-and-three-after-explanation.png",
+      "bytes": 681779,
+      "sha256": "4b4e3b120edbc48d3b7c09038c951ab57903b7c80898e0e6a3f4ec12cc4d3f48",
+      "crc32": "a96e1a9e"
+    },
+    {
+      "path": "diagnostic-android/0170-native-three-dimensional-performance-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "diagnostic-android/0170-native-three-dimensional-performance-video.json",
+      "bytes": 362,
+      "sha256": "934baa4a1e1cc89f4c08f7f62ce9c9356f10d89aa1106dd242c8cda50aff45aa",
+      "crc32": "c0958b72"
+    },
+    {
+      "path": "diagnostic-android/0170-native-three-dimensional-performance.mp4",
+      "bytes": 604795,
+      "sha256": "fbeab478d78d701f185707a7fc8a219b897f0feeb5512931d754b433349ae08f",
+      "crc32": "c4e0b857"
+    },
+    {
+      "path": "diagnostic-android/0171-native-speech.txt",
+      "bytes": 34912,
+      "sha256": "9a90425d25a265076dc324092171d08e8a5f5bbe816c8a9c101e29970a3de308",
+      "crc32": "a61f2dce"
+    },
+    {
+      "path": "diagnostic-android/0172-native-speech.txt",
+      "bytes": 34912,
+      "sha256": "9a90425d25a265076dc324092171d08e8a5f5bbe816c8a9c101e29970a3de308",
+      "crc32": "a61f2dce"
+    },
+    {
+      "path": "diagnostic-android/0173-native-speech.txt",
+      "bytes": 34912,
+      "sha256": "9a90425d25a265076dc324092171d08e8a5f5bbe816c8a9c101e29970a3de308",
+      "crc32": "a61f2dce"
+    },
+    {
+      "path": "diagnostic-android/0174-native-speech.txt",
+      "bytes": 34912,
+      "sha256": "9a90425d25a265076dc324092171d08e8a5f5bbe816c8a9c101e29970a3de308",
+      "crc32": "a61f2dce"
+    },
+    {
+      "path": "diagnostic-android/0175-native-speech.txt",
+      "bytes": 34912,
+      "sha256": "9a90425d25a265076dc324092171d08e8a5f5bbe816c8a9c101e29970a3de308",
+      "crc32": "a61f2dce"
+    },
+    {
+      "path": "diagnostic-android/0176-native-speech.txt",
+      "bytes": 35723,
+      "sha256": "87d6e3290cdd77a5e0ee76ee1534b7fae742713454d971a0037577abdf67fd0c",
+      "crc32": "36a28593"
+    },
+    {
+      "path": "diagnostic-android/0177-performance-current-step-audio-0-ocr-contrast.tsv",
+      "bytes": 6661,
+      "sha256": "4f1a26faf6e0edb5b9f5f6db74371b038c510f0f7d34dfa73c9befa137d38f28",
+      "crc32": "5a44991e"
+    },
+    {
+      "path": "diagnostic-android/0177-performance-current-step-audio-0-ocr.json",
+      "bytes": 4480,
+      "sha256": "90bf4de1c8db4c04cedd0b8ae1163ae6f192ef3409290529d3504bd6bed05085",
+      "crc32": "1ccc3526"
+    },
+    {
+      "path": "diagnostic-android/0177-performance-current-step-audio-0.png",
+      "bytes": 681709,
+      "sha256": "2e25e53e7e60ddfe8d11a6465c2934fcf2d9d64cf041033682bd914ea2c7336f",
+      "crc32": "5ffe9226"
+    },
+    {
+      "path": "diagnostic-android/0177-performance-current-step-audio-1-ocr-contrast.tsv",
+      "bytes": 6669,
+      "sha256": "6693294c75186fcf997f41f178da6e02a75eda700dfd1250e1937a2952b2a83f",
+      "crc32": "9de06af7"
+    },
+    {
+      "path": "diagnostic-android/0177-performance-current-step-audio-1-ocr.json",
+      "bytes": 4351,
+      "sha256": "0e2d76a7a041e9bde52208908a1ca9209f19d8ffd68021d6366ab1242a5494e4",
+      "crc32": "0723a9eb"
+    },
+    {
+      "path": "diagnostic-android/0177-performance-current-step-audio-1.png",
+      "bytes": 681898,
+      "sha256": "54ca64161f5ed05a11ba48c31521ab7ad0a29766f9d48651dd9d4bee32f70a7e",
+      "crc32": "09902fad"
+    },
+    {
+      "path": "diagnostic-android/0178-native-speech.txt",
+      "bytes": 37347,
+      "sha256": "7cdefca7ea4992db6d50e89ebf3f7f9426f0dd3eaca02a87ad32c935f95cc436",
+      "crc32": "a52af84b"
+    },
+    {
+      "path": "diagnostic-android/0179-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0177-performance-current-step-audio-surface-readiness.json",
+      "bytes": 2800,
+      "sha256": "40ce25900aa72d07ea1b1a20e2ca242d9cf1b92c4a8e9658c3e43741d3823b67",
+      "crc32": "c35457bb"
+    },
+    {
+      "path": "diagnostic-android/0180-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0181-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0182-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0183-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0184-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0185-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0186-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0187-native-speech.txt",
+      "bytes": 38161,
+      "sha256": "68ad46dc0dc0186773448ae1a18213c27e29e4290e5df55e507e75dd4c77a74b",
+      "crc32": "6f92c9d4"
+    },
+    {
+      "path": "diagnostic-android/0188-native-speech.txt",
+      "bytes": 38986,
+      "sha256": "21036f3c61e29288f53e1e65d958747d008305f8a8c8c81a066ed64ef0fb28e2",
+      "crc32": "913a7470"
+    },
+    {
+      "path": "diagnostic-android/0189-native-speech.txt",
+      "bytes": 38986,
+      "sha256": "21036f3c61e29288f53e1e65d958747d008305f8a8c8c81a066ed64ef0fb28e2",
+      "crc32": "913a7470"
+    },
+    {
+      "path": "diagnostic-android/0190-native-speech.txt",
+      "bytes": 38986,
+      "sha256": "21036f3c61e29288f53e1e65d958747d008305f8a8c8c81a066ed64ef0fb28e2",
+      "crc32": "913a7470"
+    },
+    {
+      "path": "diagnostic-android/0191-native-speech.txt",
+      "bytes": 38986,
+      "sha256": "21036f3c61e29288f53e1e65d958747d008305f8a8c8c81a066ed64ef0fb28e2",
+      "crc32": "913a7470"
+    },
+    {
+      "path": "diagnostic-android/0192-native-speech.txt",
+      "bytes": 38986,
+      "sha256": "21036f3c61e29288f53e1e65d958747d008305f8a8c8c81a066ed64ef0fb28e2",
+      "crc32": "913a7470"
+    },
+    {
+      "path": "diagnostic-android/0193-native-speech.txt",
+      "bytes": 38986,
+      "sha256": "21036f3c61e29288f53e1e65d958747d008305f8a8c8c81a066ed64ef0fb28e2",
+      "crc32": "913a7470"
+    },
+    {
+      "path": "diagnostic-android/0194-native-speech.txt",
+      "bytes": 38986,
+      "sha256": "21036f3c61e29288f53e1e65d958747d008305f8a8c8c81a066ed64ef0fb28e2",
+      "crc32": "913a7470"
+    },
+    {
+      "path": "diagnostic-android/0195-native-speech.txt",
+      "bytes": 38986,
+      "sha256": "21036f3c61e29288f53e1e65d958747d008305f8a8c8c81a066ed64ef0fb28e2",
+      "crc32": "913a7470"
+    },
+    {
+      "path": "diagnostic-android/0196-native-speech.txt",
+      "bytes": 39802,
+      "sha256": "cebb0906582e730643ae15d43d049706c8b9860b2107dddc7210e85cf97d9a2b",
+      "crc32": "f203a8d3"
+    },
+    {
+      "path": "diagnostic-android/0197-native-speech.txt",
+      "bytes": 39802,
+      "sha256": "cebb0906582e730643ae15d43d049706c8b9860b2107dddc7210e85cf97d9a2b",
+      "crc32": "f203a8d3"
+    },
+    {
+      "path": "diagnostic-android/0198-native-speech.txt",
+      "bytes": 39802,
+      "sha256": "cebb0906582e730643ae15d43d049706c8b9860b2107dddc7210e85cf97d9a2b",
+      "crc32": "f203a8d3"
+    },
+    {
+      "path": "diagnostic-android/0199-native-speech.txt",
+      "bytes": 39802,
+      "sha256": "cebb0906582e730643ae15d43d049706c8b9860b2107dddc7210e85cf97d9a2b",
+      "crc32": "f203a8d3"
+    },
+    {
+      "path": "diagnostic-android/0200-native-speech.txt",
+      "bytes": 39802,
+      "sha256": "cebb0906582e730643ae15d43d049706c8b9860b2107dddc7210e85cf97d9a2b",
+      "crc32": "f203a8d3"
+    },
+    {
+      "path": "diagnostic-android/0201-native-speech.txt",
+      "bytes": 39802,
+      "sha256": "cebb0906582e730643ae15d43d049706c8b9860b2107dddc7210e85cf97d9a2b",
+      "crc32": "f203a8d3"
+    },
+    {
+      "path": "diagnostic-android/0202-native-speech.txt",
+      "bytes": 39802,
+      "sha256": "cebb0906582e730643ae15d43d049706c8b9860b2107dddc7210e85cf97d9a2b",
+      "crc32": "f203a8d3"
+    },
+    {
+      "path": "diagnostic-android/0203-native-speech.txt",
+      "bytes": 39880,
+      "sha256": "cd53203cce8337b2548420a1533951ed76680d65629e7269c65e0f3d32714fcf",
+      "crc32": "caabe664"
+    },
+    {
+      "path": "diagnostic-android/0204-native-speech.txt",
+      "bytes": 40716,
+      "sha256": "d7224e2d51518b507b035bac38bb911243bf099231767535b73ae5c71e286d94",
+      "crc32": "46b215bf"
+    },
+    {
+      "path": "diagnostic-android/0205-native-speech.txt",
+      "bytes": 40716,
+      "sha256": "d7224e2d51518b507b035bac38bb911243bf099231767535b73ae5c71e286d94",
+      "crc32": "46b215bf"
+    },
+    {
+      "path": "diagnostic-android/0206-native-speech.txt",
+      "bytes": 40716,
+      "sha256": "d7224e2d51518b507b035bac38bb911243bf099231767535b73ae5c71e286d94",
+      "crc32": "46b215bf"
+    },
+    {
+      "path": "diagnostic-android/0207-native-speech.txt",
+      "bytes": 40716,
+      "sha256": "d7224e2d51518b507b035bac38bb911243bf099231767535b73ae5c71e286d94",
+      "crc32": "46b215bf"
+    },
+    {
+      "path": "diagnostic-android/0209-native-speech.txt",
+      "bytes": 40716,
+      "sha256": "d7224e2d51518b507b035bac38bb911243bf099231767535b73ae5c71e286d94",
+      "crc32": "46b215bf"
+    },
+    {
+      "path": "diagnostic-android/0208-native-speech.txt",
+      "bytes": 40716,
+      "sha256": "d7224e2d51518b507b035bac38bb911243bf099231767535b73ae5c71e286d94",
+      "crc32": "46b215bf"
+    },
+    {
+      "path": "diagnostic-android/0211-native-speech.txt",
+      "bytes": 41561,
+      "sha256": "502d5f65d05757a05b085c2edfa8ecded77fd25587d4e6c112b7543a4edb4b1c",
+      "crc32": "2d1afb53"
+    },
+    {
+      "path": "diagnostic-android/0210-native-speech.txt",
+      "bytes": 40716,
+      "sha256": "d7224e2d51518b507b035bac38bb911243bf099231767535b73ae5c71e286d94",
+      "crc32": "46b215bf"
+    },
+    {
+      "path": "diagnostic-android/0212-native-speech.txt",
+      "bytes": 41561,
+      "sha256": "502d5f65d05757a05b085c2edfa8ecded77fd25587d4e6c112b7543a4edb4b1c",
+      "crc32": "2d1afb53"
+    },
+    {
+      "path": "diagnostic-android/0213-native-speech.txt",
+      "bytes": 41561,
+      "sha256": "502d5f65d05757a05b085c2edfa8ecded77fd25587d4e6c112b7543a4edb4b1c",
+      "crc32": "2d1afb53"
+    },
+    {
+      "path": "diagnostic-android/0215-native-speech.txt",
+      "bytes": 41561,
+      "sha256": "502d5f65d05757a05b085c2edfa8ecded77fd25587d4e6c112b7543a4edb4b1c",
+      "crc32": "2d1afb53"
+    },
+    {
+      "path": "diagnostic-android/0214-native-speech.txt",
+      "bytes": 41561,
+      "sha256": "502d5f65d05757a05b085c2edfa8ecded77fd25587d4e6c112b7543a4edb4b1c",
+      "crc32": "2d1afb53"
+    },
+    {
+      "path": "diagnostic-android/0217-native-speech.txt",
+      "bytes": 42419,
+      "sha256": "4bc8d418761a688cf3af36deb5c765b1576978b05d60713809854e76964330d7",
+      "crc32": "877eec72"
+    },
+    {
+      "path": "diagnostic-android/0216-native-speech.txt",
+      "bytes": 41561,
+      "sha256": "502d5f65d05757a05b085c2edfa8ecded77fd25587d4e6c112b7543a4edb4b1c",
+      "crc32": "2d1afb53"
+    },
+    {
+      "path": "diagnostic-android/0218-gfxinfo-native.txt",
+      "bytes": 8084,
+      "sha256": "d1e733d669c5cde44446a28c9fe8e781a3901bbc6f8adf4d503c8aa80c0f9824",
+      "crc32": "f169d2ff"
+    },
+    {
+      "path": "diagnostic-android/0219-gfxinfo-package.txt",
+      "bytes": 7323,
+      "sha256": "842aa2c3c09aaaeb0ab1267f3a894751294ae762058c0340d24612227cec9f16",
+      "crc32": "87c5c787"
+    },
+    {
+      "path": "diagnostic-android/0220-surfaceflinger-observed-layers.txt",
+      "bytes": 7727,
+      "sha256": "ea5e0e450df439b795d9bd946cd2783f399f086549ab5e97094ee554de931536",
+      "crc32": "4750cfdc"
+    },
+    {
+      "path": "diagnostic-android/0221-surfaceflinger-native-0.txt",
+      "bytes": 8,
+      "sha256": "6fd2611c7a362532b38aa19e2e437abece3734fad25d5e67f5760a2455b22424",
+      "crc32": "a8b48fc7"
+    },
+    {
+      "path": "diagnostic-android/0222-surfaceflinger-native-1.txt",
+      "bytes": 8,
+      "sha256": "6fd2611c7a362532b38aa19e2e437abece3734fad25d5e67f5760a2455b22424",
+      "crc32": "a8b48fc7"
+    },
+    {
+      "path": "diagnostic-android/0223-native-performance-observed-scene.png",
+      "bytes": 676602,
+      "sha256": "9c6d363617b3f2252b24c9dd9c10140958775d2a77b169fd36c570ac7660ade8",
+      "crc32": "62ee0201"
+    },
+    {
+      "path": "diagnostic-android/0224-native-return-0-ocr.json",
+      "bytes": 4332,
+      "sha256": "5974ebefde3dc35d348202772578552efbcc177e591f43e4dc217e3842ac8658",
+      "crc32": "3adc0e4e"
+    },
+    {
+      "path": "diagnostic-android/0224-native-return-0-ocr-contrast.tsv",
+      "bytes": 6472,
+      "sha256": "28051c2336aa8b5ed398844800ede7f813e1737a2890993ca409ca002b1d0835",
+      "crc32": "14310ddd"
+    },
+    {
+      "path": "diagnostic-android/0224-native-return-0.png",
+      "bytes": 676510,
+      "sha256": "cd2dd3a8bf1c4c9957f8ae3cce1034072b46893a32d06019c6e54464c0f61ca6",
+      "crc32": "2293b1ef"
+    },
+    {
+      "path": "diagnostic-android/0224-native-return-1-ocr-contrast.tsv",
+      "bytes": 6196,
+      "sha256": "2982ba7b28074b12c6d53e246a18350538aba0e9f50cc62a230af44a8b7c002a",
+      "crc32": "c30584b6"
+    },
+    {
+      "path": "diagnostic-android/0224-native-return-1-ocr.json",
+      "bytes": 4077,
+      "sha256": "17aad084d2732a0b45d277fc1d69bac4059cc5175be423ed24b6200950e5feee",
+      "crc32": "b36409b2"
+    },
+    {
+      "path": "diagnostic-android/0224-native-return-1.png",
+      "bytes": 676744,
+      "sha256": "057ef8399e010fcc960e4f7e3525775ee5fe252610fbedfd1affb76df103a816",
+      "crc32": "92573aa9"
+    },
+    {
+      "path": "diagnostic-android/0225-same-guided-task-returned.xml",
+      "bytes": 29293,
+      "sha256": "cfd2351ebe809f2a6dcc2f3067f7b8b5e36c4e52dc166fce51c80f651005dd6c",
+      "crc32": "af610f33"
+    },
+    {
+      "path": "diagnostic-android/0226-same-guided-task-returned.xml",
+      "bytes": 28624,
+      "sha256": "b6f0895f2dcbccfcfdc5c207def5bd616cf40efb6d4a21a3567ae5257a0d1407",
+      "crc32": "3249c8ae"
+    },
+    {
+      "path": "diagnostic-android/0227-same-guided-task-returned.xml",
+      "bytes": 28624,
+      "sha256": "b6f0895f2dcbccfcfdc5c207def5bd616cf40efb6d4a21a3567ae5257a0d1407",
+      "crc32": "3249c8ae"
+    },
+    {
+      "path": "diagnostic-android/0228-same-guided-task-returned.xml",
+      "bytes": 28624,
+      "sha256": "b6f0895f2dcbccfcfdc5c207def5bd616cf40efb6d4a21a3567ae5257a0d1407",
+      "crc32": "3249c8ae"
+    },
+    {
+      "path": "diagnostic-android/0224-native-return-surface-readiness.json",
+      "bytes": 2762,
+      "sha256": "6b70a8ef4f0fea1aa7fa121ed68fbc840bdcb9b5c8640bfe79676c84222c08e9",
+      "crc32": "92824291"
+    },
+    {
+      "path": "diagnostic-android/0230-same-guided-task-returned-scroll-search.json",
+      "bytes": 1411,
+      "sha256": "e88c78b3a3df80c1c92cf60ebdbe84daa79edaa4cc59f3f8d6c6cb0a268d4c13",
+      "crc32": "c67aba8e"
+    },
+    {
+      "path": "diagnostic-android/0231-native-return-current-task-render-readiness.json",
+      "bytes": 572,
+      "sha256": "2d96134a1ebb620c254590f619ad1e944f7a8a05b9aeed938b00e16711a14e65",
+      "crc32": "39378e6a"
+    },
+    {
+      "path": "diagnostic-android/0229-same-guided-task-returned.xml",
+      "bytes": 30022,
+      "sha256": "5279518dc9748ca6b5eb708418d3edf21cc61a35984e2b2d15d933282f804bd5",
+      "crc32": "9ea3d73a"
+    },
+    {
+      "path": "diagnostic-android/0231-native-return-current-task.png",
+      "bytes": 1532669,
+      "sha256": "008b78f797441f31a896c21a7f3dd19a4229349fff28e2f623d03bab739f3ae9",
+      "crc32": "9885960b"
+    },
+    {
+      "path": "diagnostic-android/0233-diagnostic-final-profile-and-progress-preferences.xml",
+      "bytes": 2764,
+      "sha256": "f2447765bef4c32bcfadfaf842ed37df040be9dc1f727b643f0bd9a4c4c3940b",
+      "crc32": "62bd6139"
+    },
+    {
+      "path": "diagnostic-android/0232-native-learning-after-preferences.xml",
+      "bytes": 2764,
+      "sha256": "f2447765bef4c32bcfadfaf842ed37df040be9dc1f727b643f0bd9a4c4c3940b",
+      "crc32": "62bd6139"
+    },
+    {
+      "path": "diagnostic-android/candidate-BUILD-PROVENANCE.json",
+      "bytes": 9642,
+      "sha256": "404d79fe1182dc31c0c1f967bf016668fc6da707e5779ed944985efa7b487d29",
+      "crc32": "18975e65"
+    },
+    {
+      "path": "diagnostic-android/candidate-manifest.txt",
+      "bytes": 5778,
+      "sha256": "54c75f0f5c9f4ec32e795808c86b83b8d22376134d04b55b7f43c92bdcc3e190",
+      "crc32": "f2a6e56d"
+    },
+    {
+      "path": "diagnostic-android/candidate-signature.txt",
+      "bytes": 314,
+      "sha256": "7075dd546122a7dbe8dbfd071c94caa00bebc4a5db90c9bdd2df24e19659ef41",
+      "crc32": "8046e3b2"
+    },
+    {
+      "path": "diagnostic-android/diagnostic-android-result.json",
+      "bytes": 76859,
+      "sha256": "3ebe5d8786b3821c27d56b3901430da633eaa8ba61084c565e1f78c590f265cf",
+      "crc32": "ff18b348"
+    },
+    {
+      "path": "diagnostic-android/fresh-first-launch-launch.txt",
+      "bytes": 547,
+      "sha256": "d28f7de08d4e4b1b0a47d56f94f11c1b0253b488f5115fc499e3a046b1d1b5fd",
+      "crc32": "8e9892a9"
+    },
+    {
+      "path": "diagnostic-android/fresh-install.txt",
+      "bytes": 35,
+      "sha256": "e434c330baf4a001ae065fffc9b4c8b82f5d3cb975220f8b93038fda72b4b90c",
+      "crc32": "f3d6e759"
+    },
+    {
+      "path": "diagnostic-android/installed-apk-sha256.txt",
+      "bytes": 178,
+      "sha256": "689dd9a43bbd0f7489b4aea82943b349f75e87e2a973e058a37d4f2dd78fd8ff",
+      "crc32": "dfccab47"
+    },
+    {
+      "path": "diagnostic-android/installed-package.txt",
+      "bytes": 9107,
+      "sha256": "d33aa227969cd04c5aa5949327a83305f535c17036a33289234a6f0ba201a690",
+      "crc32": "7b1f7098"
+    },
+    {
+      "path": "diagnostic-android/installed-pm-path.txt",
+      "bytes": 120,
+      "sha256": "529ffbc46b280a47b794adda53e91a63b1ef36e25619c246782792e6b36d54f3",
+      "crc32": "45062af0"
+    },
+    {
+      "path": "diagnostic-android/native-learning-performance.json",
+      "bytes": 56799,
+      "sha256": "9069fb54add45b7e0f66845e208c9a88d8263162522391a5e19e145ee3e4fa23",
+      "crc32": "f58ae5b5"
+    },
+    {
+      "path": "diagnostic-android/native-system-rendering-observation.json",
+      "bytes": 1160,
+      "sha256": "6653198fd58d750fcfc790de7a5e7abbecec83ed38a7afc3a48d6f14665b8c6c",
+      "crc32": "614dfbcd"
+    },
+    {
+      "path": "diagnostic-android/native-why-two-result.json",
+      "bytes": 2176,
+      "sha256": "4ea46ad3fd4ce479d5053a940cfb7bb3f7920ff874e20aab34646160dcee7467",
+      "crc32": "53208e23"
+    },
+    {
+      "path": "diagnostic-android/ocr-work.png",
+      "bytes": 129599,
+      "sha256": "2f95b7d6ca10c61970efce6a8ec347d987c9a8ae62f20952067b26847465c70d",
+      "crc32": "58c6ae2b"
+    },
+    {
+      "path": "diagnostic-android/rooted-emulator.json",
+      "bytes": 1545,
+      "sha256": "2de8a61ed4313346dac1856bff7fdd955d8b72f1777b57411775fbe2c334cd68",
+      "crc32": "13d238a0"
+    },
+    {
+      "path": "diagnostic-android/uiautomator-config.json",
+      "bytes": 189,
+      "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe",
+      "crc32": "bc079679"
+    },
+    {
+      "path": "emulator/mesa-renderer.txt",
+      "bytes": 1724,
+      "sha256": "78656f3b34020ab949f4110020eff5cf580169ca5275bd72937e087c0e1b704c",
+      "crc32": "098255ea"
+    },
+    {
+      "path": "emulator/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc",
+      "crc32": "ef9e06c9"
+    },
+    {
+      "path": "origin/qa-source-binding.json",
+      "bytes": 955,
+      "sha256": "5177b2c3c104fb628fe0bf403f9abcf1ba5ff9a6d02ee16d782b4bc63af60cf6",
+      "crc32": "be8b89ca"
+    },
+    {
+      "path": "origin/source-artifact.json",
+      "bytes": 810,
+      "sha256": "f3156f958cb728b70b42214db8f937d3e93286328df893c4f151ae65703ac5db",
+      "crc32": "87a02bc4"
+    },
+    {
+      "path": "origin/source-run.json",
+      "bytes": 13764,
+      "sha256": "93f56c17b02cf0273d48b750580058bd444aa747e96222cd4003f287db28104a",
+      "crc32": "794351ab"
+    },
+    {
+      "path": "origin/source-failed-android-job.json",
+      "bytes": 4294,
+      "sha256": "f9bf89e0396c8b65768a38d379281eacb9cf8df10605bd1fc6e7079d60771f3e",
+      "crc32": "685605af"
+    },
+    {
+      "path": "origin/source-build-job.json",
+      "bytes": 4514,
+      "sha256": "88579975f353888921a7b94c2910b9e11b5da04484707015055dc5b453ba5377",
+      "crc32": "195483b9"
+    },
+    {
+      "path": "origin/source-validate-job.json",
+      "bytes": 5726,
+      "sha256": "1ec9ccfb88fa49d17eea8b0337d07f1b753b276caa966ab7e0fec1919bd89b77",
+      "crc32": "09c27761"
+    },
+    {
+      "path": "origin/verified-download.json",
+      "bytes": 2713,
+      "sha256": "19ddec4d2b4f630dce8942df3fa0a8a704de0f461d3b35a10042196b00691f83",
+      "crc32": "7bee1678"
+    }
+  ]
+}

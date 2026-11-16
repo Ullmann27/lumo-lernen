@@ -1,0 +1,19 @@
+{
+  "schema": "lumo.component.integration",
+  "version": 1,
+  "component": "current-candidate wrapped pattern heading reader",
+  "baseCommit": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "producerLocalCommit": "5315a2fd7766dd9faf377c2723b7d614aaa0742f",
+  "publishedComponentCommit": "5d5ba41b3504d4c72cb2b27ca2a4b68bac3a0262",
+  "componentTree": "b7ed9d45a40e32819759f566d25e9cf2aec69b2d",
+  "componentBranch": "qa/lumo-nextgen-pattern-reader-20261116",
+  "rootCherryPick": "b9df3b986e8b957a9fc37ba8e66a785a5923c7a0",
+  "review": "Root read complete reader, eight-line current-candidate integration, provenance, original fixture and all targeted test cases; no blocker found. Original image_lines has the same 225-second frame budget.",
+  "productDelta": false,
+  "tests": {
+    "newReaderPassed": 11,
+    "existingCurrentCandidatePassed": 12,
+    "redOriginalFixtureFailurePreserved": true,
+    "rootAndroidPassClaim": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "qa_commit": "e04e29437e2c28f40e492191f430cd49ddc456fa",
+  "qa_workflow_run": 43790709991,
+  "scene": "bridge",
+  "apk_source": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "source_build_run": 43785937519,
+  "apk_source_tree": "8c40380b93147a7c3ff87769d74605132fcdf191",
+  "qa_tree": "0db92d99d263f16fd42f27ed0865893c13f56518",
+  "changes": [
+    {
+      "status": "A",
+      "path": ".github/probes/lumo_nextgen_2029_native_diagnostic.py"
+    },
+    {
+      "status": "A",
+      "path": ".github/probes/run_lumo_nextgen_2029_native_diagnostic.sh"
+    },
+    {
+      "status": "A",
+      "path": ".github/workflows/lumo-nextgen-2029-native-diagnostic.yml"
+    },
+    {
+      "status": "A",
+      "path": "docs/nextgen/NATIVE_DIAGNOSTIC_2029.md"
+    },
+    {
+      "status": "A",
+      "path": "tools/android_qa/tests/test_nextgen_2029_native_diagnostic.py"
+    }
+  ],
+  "runtime_source_changed": false,
+  "existing_acceptance_gates_changed": false
+}

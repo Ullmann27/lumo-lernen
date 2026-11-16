@@ -1,0 +1,18 @@
+test_current_candidate_reads_complete_question_from_actual_wrapped_frame (test_nextgen_native_reader.OriginalFrameTests.test_current_candidate_reads_complete_question_from_actual_wrapped_frame) ... ERROR
+
+======================================================================
+ERROR: test_current_candidate_reads_complete_question_from_actual_wrapped_frame (test_nextgen_native_reader.OriginalFrameTests.test_current_candidate_reads_complete_question_from_actual_wrapped_frame)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-nextgen-pattern-reader/tools/android_qa/tests/test_nextgen_native_reader.py", line 80, in test_current_candidate_reads_complete_question_from_actual_wrapped_frame
+    probe.native_see(QUESTION, "pattern-native-question")
+  File "/workspace/scratch/4fa97167812c/agent-nextgen-pattern-reader/.github/probes/lumo_nextgen_reference_android_probe.py", line 417, in native_see
+    self.reader.native_text(self.out, label, self.fresh(tag), exact=exact, orientation="responsive")
+  File "/workspace/scratch/4fa97167812c/agent-nextgen-pattern-reader/.github/probes/creative_android_probe.py", line 695, in native_text
+    raise RuntimeError('Current native screenshot lacks '+label)
+RuntimeError: Current native screenshot lacks Was kommt als Nächstes
+
+----------------------------------------------------------------------
+Ran 1 test in 0.031s
+
+FAILED (errors=1)
