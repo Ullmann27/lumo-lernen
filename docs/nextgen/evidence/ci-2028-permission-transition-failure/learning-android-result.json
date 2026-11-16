@@ -1,0 +1,185 @@
+{
+  "schema": "lumo.nextgen.learning.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "run_id": "799aee6fb91943eda360e29c7865ed48",
+  "started_utc": "2026-11-15T23:50:58Z",
+  "probe_sha256": "91ccd91d3e92f73cedcb312b3ab3059fcb4e9daf458e695ce5b7e894b1cbf0ba",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "synthetic_profile": "LumoNextTest",
+  "candidate": {
+    "sha256": "6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9",
+    "flutter_source_commit": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+    "versionCode": 2028,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.16",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "69899113f134c04550a5073cd9657315e0cb0bb418f9e06fa76a482041757bc0",
+      "bytes": 278589708
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2028,
+    "versionName": "0.13.16",
+    "sha256": "6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794786715684340",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-15T23:51:55.684340"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0023-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "882103739a8f3221368d20017914bdc50dc1cb228f40ace926bd1ebe21e6ea9b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.082,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0057-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "0ce861914d2e735ad7547af27b3eb8240fb8b2ef2e951533a43637b4186f0143",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0074-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "7e6564e55b13475f69ad967c5a829066d5ab48980ae7139e2a336696d1cd7c4a",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.184,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0106-bridge-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "aa74eb28fa090444aaa3a023dc09d91eefa58884147e4be189d47af5dbaaa1cb",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.891,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0125-typed-why-response.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "6b9f193720de3f66896d1720771b3b64968047e5d013be119cf670287214d76e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.928,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0133-conversation-stopped.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "3184ca5ffc84e23d8bcbdcd174aec769714ec31d02a25e37932506d6ec7947d5",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.758,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0139-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "c41b1072c5c6b4e831b14cd84231fbcbb3573da205230728523e475c4b71dc11"
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "377ed6104c5cb72bc4ea119d1495f7215ac2c78ada5cd0951aa91b6425d99fac",
+      "bytes": 2560707,
+      "duration_seconds": 25.614022,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 28.66,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0094-eight-plus-five-explanation.mp4",
+      "sha256": "57b0824385b8b1d89cc7b1b0a4ae05d433c09c535ce3b34a2c5b86be524b7a5d",
+      "bytes": 2715450,
+      "duration_seconds": 21.560178,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 23.43,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "error": "Observed microphone permission has no unambiguous allow control",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1280, in main\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1246, in run\n    self.labs()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 944, in labs\n    self.result[\"conversation\"] = self.conversation()\n                                  ^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 912, in conversation\n    require(len(allowed) == 1, \"Observed microphone permission has no unambiguous allow control\")\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 70, in require\n    raise RuntimeError(message)\nRuntimeError: Observed microphone permission has no unambiguous allow control\n",
+  "finished_utc": "2026-11-15T23:53:28Z"
+}

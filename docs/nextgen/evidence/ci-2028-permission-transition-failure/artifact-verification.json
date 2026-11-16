@@ -1,0 +1,1000 @@
+{
+  "artifactId": 14186359772,
+  "workflowRun": 43774460935,
+  "archiveBytes": 13472105,
+  "archiveSha256": "275aed0ea814438c8e4ddb845fc3a5e12eb835586866823036930696c94821f7",
+  "allMemberCRCsVerified": true,
+  "archiveRetainedLocally": true,
+  "members": [
+    {
+      "path": "mesa-renderer.txt",
+      "bytes": 1774,
+      "sha256": "9542c6ba3f0cb355e29099027c95d388f3e854d45992017d6b09a5ce13b3515c",
+      "crc32": "5647c5b3"
+    },
+    {
+      "path": "original-android/0001-onboarding-video.json",
+      "bytes": 337,
+      "sha256": "397471a81425c5adcfdaaa72a49f7a860de9629192828742158688fad2e441b7",
+      "crc32": "e3b1e2a0"
+    },
+    {
+      "path": "original-android/0001-onboarding-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "original-android/0001-onboarding.mp4",
+      "bytes": 2560707,
+      "sha256": "377ed6104c5cb72bc4ea119d1495f7215ac2c78ada5cd0951aa91b6425d99fac",
+      "crc32": "1ef2ca82"
+    },
+    {
+      "path": "original-android/0002-welcome.xml",
+      "bytes": 22891,
+      "sha256": "0352d311f0592f599dd3324dc5a1fb14e49b528abfffd9d560b4a176867a65a3",
+      "crc32": "ca34c79a"
+    },
+    {
+      "path": "original-android/0003-welcome-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0004-welcome-touch.json",
+      "bytes": 94,
+      "sha256": "765d11464b1bb515d8e36e2478ed0f6830a57feb5f6923e743051bf1debbda7e",
+      "crc32": "35cd070f"
+    },
+    {
+      "path": "original-android/0005-profile-name.xml",
+      "bytes": 23227,
+      "sha256": "906b7c0a2182890741f025b6ac70ee0264674fab31490d46c51c8fa1fdf3c472",
+      "crc32": "8255e479"
+    },
+    {
+      "path": "original-android/0006-fictional-name.xml",
+      "bytes": 23227,
+      "sha256": "906b7c0a2182890741f025b6ac70ee0264674fab31490d46c51c8fa1fdf3c472",
+      "crc32": "8255e479"
+    },
+    {
+      "path": "original-android/0007-fictional-name-touch.json",
+      "bytes": 100,
+      "sha256": "65746bf3ec9f5e582c5a1335657c28910759dab5253bf889c44f92fae6cf8360",
+      "crc32": "f7cb7ca0"
+    },
+    {
+      "path": "original-android/0008-fictional-name-written.xml",
+      "bytes": 96400,
+      "sha256": "2d8f20e66a060811b25dec8152e2e42db7a0b971910fa263b8e1307f3e60370d",
+      "crc32": "79bc32d4"
+    },
+    {
+      "path": "original-android/0009-fictional-name-ime.xml",
+      "bytes": 96400,
+      "sha256": "2d8f20e66a060811b25dec8152e2e42db7a0b971910fa263b8e1307f3e60370d",
+      "crc32": "79bc32d4"
+    },
+    {
+      "path": "original-android/0010-name-next.xml",
+      "bytes": 23217,
+      "sha256": "9bc15d352337741077feae48e4cf1f77f4f1d652d651b5ceefbcb8706ad2b996",
+      "crc32": "1c072f5a"
+    },
+    {
+      "path": "original-android/0011-name-next-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0012-name-next-touch.json",
+      "bytes": 89,
+      "sha256": "8feda90c2490ab2375db4bbf4b86ae1eebc92628494a2a24ee4b0f20f0e4dc81",
+      "crc32": "06a2f476"
+    },
+    {
+      "path": "original-android/0013-profile-age.xml",
+      "bytes": 24519,
+      "sha256": "99dd00fda88947827a2bd54c67429b200f47ff56e01c2edda74c511fe7586144",
+      "crc32": "de26c148"
+    },
+    {
+      "path": "original-android/0014-age-next.xml",
+      "bytes": 24519,
+      "sha256": "99dd00fda88947827a2bd54c67429b200f47ff56e01c2edda74c511fe7586144",
+      "crc32": "de26c148"
+    },
+    {
+      "path": "original-android/0015-age-next-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0016-age-next-touch.json",
+      "bytes": 89,
+      "sha256": "bccee889b29f7c0c54862cdea340a966152c9ab1920209af0226f8ddfd253f38",
+      "crc32": "4e4e6b32"
+    },
+    {
+      "path": "original-android/0017-profile-grade.xml",
+      "bytes": 23713,
+      "sha256": "ae51bc77ca5e756bbccaf414201b8b989aac2e81b512b676decd6d4a27927cf2",
+      "crc32": "f06b57b4"
+    },
+    {
+      "path": "original-android/0018-profile-save.xml",
+      "bytes": 23713,
+      "sha256": "ae51bc77ca5e756bbccaf414201b8b989aac2e81b512b676decd6d4a27927cf2",
+      "crc32": "f06b57b4"
+    },
+    {
+      "path": "original-android/0019-profile-save-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0020-profile-save-touch.json",
+      "bytes": 99,
+      "sha256": "ade362c211cc8428f686de84d601b1fa5f86192344375e0c99ef8063c934bc81",
+      "crc32": "d8440f75"
+    },
+    {
+      "path": "original-android/0021-synthetic-home.xml",
+      "bytes": 32237,
+      "sha256": "110461457472a3499b66b4dc5abe55606c75a42c7ba4957f3bd41c507b25c14b",
+      "crc32": "2f5bfe37"
+    },
+    {
+      "path": "original-android/0022-synthetic-profile-preferences.xml",
+      "bytes": 1366,
+      "sha256": "7710c062a862646f2095d0d2350df15c9ec75e21b6377d6ba736d37a6c5c46f4",
+      "crc32": "36747c11"
+    },
+    {
+      "path": "original-android/0023-home-after-onboarding-render-candidate-1.png",
+      "bytes": 19727,
+      "sha256": "8cd05cdd5671d5b409ceaf94d4627ad65e4ab9f1b5448a17aac72903600be509",
+      "crc32": "09789bfa"
+    },
+    {
+      "path": "original-android/0023-home-after-onboarding-render-candidate-2.png",
+      "bytes": 19727,
+      "sha256": "8cd05cdd5671d5b409ceaf94d4627ad65e4ab9f1b5448a17aac72903600be509",
+      "crc32": "09789bfa"
+    },
+    {
+      "path": "original-android/0023-home-after-onboarding-render-readiness.json",
+      "bytes": 1344,
+      "sha256": "c49771d9c70f31bed486db03c2618d5045b532c61ab6e6c9e8309b6d900c7c8f",
+      "crc32": "e033e4d2"
+    },
+    {
+      "path": "original-android/0023-home-after-onboarding.png",
+      "bytes": 3022459,
+      "sha256": "882103739a8f3221368d20017914bdc50dc1cb228f40ace926bd1ebe21e6ea9b",
+      "crc32": "072ca174"
+    },
+    {
+      "path": "original-android/0024-home-game-hub.xml",
+      "bytes": 32237,
+      "sha256": "f2866584ae5055eb5a63d43a629ac71a0dd71d8bc1f7c4b4f8171497c87e9a11",
+      "crc32": "d7d059bb"
+    },
+    {
+      "path": "original-android/0025-home-game-hub-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0026-home-game-hub-touch.json",
+      "bytes": 90,
+      "sha256": "52fd17c2c1e7beb2295b81a9044b29936c296712e9033b725928a71c4ca7c1c9",
+      "crc32": "e1fe6302"
+    },
+    {
+      "path": "original-android/0027-parent-settings.xml",
+      "bytes": 21485,
+      "sha256": "0f7df74b1f51b413808fc8849caed242591f154d71af5c9a490d5535fceac491",
+      "crc32": "b8d91c1a"
+    },
+    {
+      "path": "original-android/0028-parent-settings.xml",
+      "bytes": 28599,
+      "sha256": "2877d8191ce5c864bef0f56047ffea7631ac537361cafa9842129f08ee3d15a4",
+      "crc32": "7a4770d1"
+    },
+    {
+      "path": "original-android/0029-parent-settings.xml",
+      "bytes": 26210,
+      "sha256": "a670e5ead460d2df002488f15284834f4ab270fd30106e908c691795280f1c57",
+      "crc32": "c0442f6e"
+    },
+    {
+      "path": "original-android/0030-parent-settings.xml",
+      "bytes": 27567,
+      "sha256": "8f80741a89059129fda9660051828e274892b9abcd117fe3ce1f6d4661ca147d",
+      "crc32": "76511ce4"
+    },
+    {
+      "path": "original-android/0031-parent-settings-scroll-search.json",
+      "bytes": 770,
+      "sha256": "cd08796b0811ea9a169ed9809ca1980179e67170eebbdeb50b96ec4b6880b172",
+      "crc32": "0e2b0d36"
+    },
+    {
+      "path": "original-android/0032-parent-settings-touch.json",
+      "bytes": 97,
+      "sha256": "0d4dd69a5d4d1f30a05fdded57dea2317a4d9ba2a4d481fa871563653fc950ff",
+      "crc32": "d5acfbd1"
+    },
+    {
+      "path": "original-android/0033-parent-settings-open.xml",
+      "bytes": 30083,
+      "sha256": "efd6d352a53bc381e7f7353abd640814969e26228ef3cb8505d25f762b496a9d",
+      "crc32": "dd0cb699"
+    },
+    {
+      "path": "original-android/0034-voice-before-preferences.xml",
+      "bytes": 1660,
+      "sha256": "bda852cfbecc94adaf176d19e14dae3974f422f9ddfb9408227f3272788d2e3c",
+      "crc32": "8f8ae5dc"
+    },
+    {
+      "path": "original-android/0035-local-license.xml",
+      "bytes": 30083,
+      "sha256": "efd6d352a53bc381e7f7353abd640814969e26228ef3cb8505d25f762b496a9d",
+      "crc32": "dd0cb699"
+    },
+    {
+      "path": "original-android/0036-local-license.xml",
+      "bytes": 29203,
+      "sha256": "7b3726b92ddcad0fe1c1250fb24edf669b0e9b16c187d35d6cfbc6c113be1cff",
+      "crc32": "b7c97f7e"
+    },
+    {
+      "path": "original-android/0037-local-license.xml",
+      "bytes": 28911,
+      "sha256": "e0e0fe92fb7e2646ba2bad2a7d5e06a8b1548adac7e40b8826f30f37b6775543",
+      "crc32": "9ca38c68"
+    },
+    {
+      "path": "original-android/0039-local-license.xml",
+      "bytes": 30179,
+      "sha256": "ac753751aac9def4f9ef64d6d3d87d67d57cf2bf672185669a4105a5d1fe58b6",
+      "crc32": "0f864bb5"
+    },
+    {
+      "path": "original-android/0038-local-license.xml",
+      "bytes": 28910,
+      "sha256": "6c2fd9f1aea7f6ef1f488a0f2a8ec4dd3dc1f4386591486d2175198b43852173",
+      "crc32": "42359aef"
+    },
+    {
+      "path": "original-android/0040-local-license.xml",
+      "bytes": 31389,
+      "sha256": "5d906c117240e37369ed036385c12ae786d50c67be8599ad2d644c5cd477c169",
+      "crc32": "711ceb5a"
+    },
+    {
+      "path": "original-android/0041-local-license.xml",
+      "bytes": 28877,
+      "sha256": "602033214cc5f3c44d1e6fad203849c689b780ba7ec56ac891bdae7337993116",
+      "crc32": "0cbe698b"
+    },
+    {
+      "path": "original-android/0042-local-license.xml",
+      "bytes": 29261,
+      "sha256": "7f75e6ae386c5de9bd2e9725430341f45b23edf3d594e8e837de82ed715d0480",
+      "crc32": "b4a870b9"
+    },
+    {
+      "path": "original-android/0043-local-license.xml",
+      "bytes": 32443,
+      "sha256": "8f13261135e3d50bb5d443e193a7b032d97bd6ee5e4b7049a5c91522302c9b71",
+      "crc32": "6b8f7448"
+    },
+    {
+      "path": "original-android/0044-local-license.xml",
+      "bytes": 30716,
+      "sha256": "1d2dae0e2438bd46e3607b95171041c57383241e99307e8a940d74c3b66a335a",
+      "crc32": "654ccd87"
+    },
+    {
+      "path": "original-android/0045-local-license.xml",
+      "bytes": 32578,
+      "sha256": "cbf5fcccfee1d2ed85f41e4812a6892997d1d5d42f9add8bbb194d9d2cf54618",
+      "crc32": "e300f452"
+    },
+    {
+      "path": "original-android/0046-local-license.xml",
+      "bytes": 31362,
+      "sha256": "a457599464d18a76a489a040f31b938788e4b7e49deeca1d7086318134f53500",
+      "crc32": "b9c17c3f"
+    },
+    {
+      "path": "original-android/0048-local-license.xml",
+      "bytes": 29727,
+      "sha256": "0b529d91761be612d87624f2b4c6dbf70ef28c25566cc9dc26effbbda8bde47b",
+      "crc32": "6200951e"
+    },
+    {
+      "path": "original-android/0049-local-license.xml",
+      "bytes": 28467,
+      "sha256": "365e9fa4333912de2334b2973b7bc3ceb2f9ce26649b1153c19e682c280bfea0",
+      "crc32": "3184ed3b"
+    },
+    {
+      "path": "original-android/0050-local-license.xml",
+      "bytes": 29234,
+      "sha256": "fc0b82aac9b6e3b193db48b28fe58180f481eec32616781c0c8fb9ae1e2e8f7c",
+      "crc32": "fe46539f"
+    },
+    {
+      "path": "original-android/0047-local-license.xml",
+      "bytes": 31818,
+      "sha256": "7f0c9114d1ca6bc0618cd4b28c6e442a4de0215cf25e3e14e4941a5a7f9aef54",
+      "crc32": "104499c5"
+    },
+    {
+      "path": "original-android/0051-local-license-scroll-search.json",
+      "bytes": 4917,
+      "sha256": "f75ba0f43aa8e9b36a2a7f95a97a7d89b9d6316433f7e0e0ca40f91897a5b9ad",
+      "crc32": "11f84ce3"
+    },
+    {
+      "path": "original-android/0052-local-license-touch.json",
+      "bytes": 110,
+      "sha256": "d0ec3dfeb8d0a8bca0ae7df4194e50c957102861654275ec1fcb3ba5969026c8",
+      "crc32": "672c681b"
+    },
+    {
+      "path": "original-android/0053-license-dialog.xml",
+      "bytes": 37130,
+      "sha256": "5cd62e150afe2c8fd29e0bd86f3e48dd8736f1a8bfbf643044b39f30b4370a18",
+      "crc32": "5b0290de"
+    },
+    {
+      "path": "original-android/0054-license-checkbox.xml",
+      "bytes": 37130,
+      "sha256": "5cd62e150afe2c8fd29e0bd86f3e48dd8736f1a8bfbf643044b39f30b4370a18",
+      "crc32": "5b0290de"
+    },
+    {
+      "path": "original-android/0055-license-checkbox-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0056-license-checkbox-touch.json",
+      "bytes": 230,
+      "sha256": "db10d7f009182556ffdd1ce3b885c3a56ed58049525391affce0217a2311a87f",
+      "crc32": "72fb0624"
+    },
+    {
+      "path": "original-android/0057-local-model-conditions-render-readiness.json",
+      "bytes": 564,
+      "sha256": "ca85f9bae3244d3be152913a821a50513bd2663950e59d332b1c7146bbb8450d",
+      "crc32": "0324c478"
+    },
+    {
+      "path": "original-android/0057-local-model-conditions.png",
+      "bytes": 557843,
+      "sha256": "0ce861914d2e735ad7547af27b3eb8240fb8b2ef2e951533a43637b4186f0143",
+      "crc32": "dc4731d4"
+    },
+    {
+      "path": "original-android/0058-license-confirm.xml",
+      "bytes": 37127,
+      "sha256": "2660d22ea6247e44fb48b5d70ceb671e8956b32672967cd99bc12c16b1a23942",
+      "crc32": "6531baa3"
+    },
+    {
+      "path": "original-android/0059-license-confirm-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0060-license-confirm-touch.json",
+      "bytes": 106,
+      "sha256": "5f87506ccc6c6cf6cf91a22f263f48469d3b14ef431fb23a4c96e9401e30bf51",
+      "crc32": "535959ba"
+    },
+    {
+      "path": "original-android/0061-license-saved-preferences.xml",
+      "bytes": 2406,
+      "sha256": "0133db91bd6f3a0dbb0f0c0d85d7de88206f67a936a5b16ac6e28aa4267175a8",
+      "crc32": "fef573a9"
+    },
+    {
+      "path": "original-android/0062-read-voiceEnabled-preferences.xml",
+      "bytes": 2406,
+      "sha256": "0133db91bd6f3a0dbb0f0c0d85d7de88206f67a936a5b16ac6e28aa4267175a8",
+      "crc32": "fef573a9"
+    },
+    {
+      "path": "original-android/0064-read-microphoneEnabled-preferences.xml",
+      "bytes": 2406,
+      "sha256": "0133db91bd6f3a0dbb0f0c0d85d7de88206f67a936a5b16ac6e28aa4267175a8",
+      "crc32": "fef573a9"
+    },
+    {
+      "path": "original-android/0063-read-autoReadEnabled-preferences.xml",
+      "bytes": 2406,
+      "sha256": "0133db91bd6f3a0dbb0f0c0d85d7de88206f67a936a5b16ac6e28aa4267175a8",
+      "crc32": "fef573a9"
+    },
+    {
+      "path": "original-android/0065-set-microphoneEnabled.xml",
+      "bytes": 29659,
+      "sha256": "a50aaa37aa61698da731f50e78e71354466e7e40252340f1b22b4833e4ad7cb2",
+      "crc32": "b05c13be"
+    },
+    {
+      "path": "original-android/0066-set-microphoneEnabled.xml",
+      "bytes": 29672,
+      "sha256": "68ecf1cddf56d04e562311abd4fb54945e0ab4dc2f2d1ba130cd052d6482527f",
+      "crc32": "b3077729"
+    },
+    {
+      "path": "original-android/0067-set-microphoneEnabled.xml",
+      "bytes": 28849,
+      "sha256": "64924b1a53daaddf1b77588e3652a574e78e61ec5221eb6ebba8e94756adfdb8",
+      "crc32": "e83c997d"
+    },
+    {
+      "path": "original-android/0068-set-microphoneEnabled.xml",
+      "bytes": 28842,
+      "sha256": "bce56f13261691989624357b6cd02622bea986b88bcc77c2a29dc4bc415216ad",
+      "crc32": "8df5f1cf"
+    },
+    {
+      "path": "original-android/0069-set-microphoneEnabled-scroll-search.json",
+      "bytes": 1089,
+      "sha256": "4117b92656211d9a3a212308b7d822dddc523bb4735ca95ff9e98bcfe671b5d9",
+      "crc32": "371aac8b"
+    },
+    {
+      "path": "original-android/0070-set-microphoneEnabled-touch.json",
+      "bytes": 98,
+      "sha256": "1eb966f18f14c859f1702db0592686b6bddad9a81433f7da79339f9a12687a24",
+      "crc32": "17560566"
+    },
+    {
+      "path": "original-android/0071-saved-microphoneEnabled-preferences.xml",
+      "bytes": 2405,
+      "sha256": "63b2b84dfc0efdc2f4ba0ccc8605a8fda0f813246113cd952c8b4f50ab6661ad",
+      "crc32": "fecef00c"
+    },
+    {
+      "path": "original-android/0072-read-calmMode-preferences.xml",
+      "bytes": 2405,
+      "sha256": "63b2b84dfc0efdc2f4ba0ccc8605a8fda0f813246113cd952c8b4f50ab6661ad",
+      "crc32": "fecef00c"
+    },
+    {
+      "path": "original-android/0073-voice-after-preferences.xml",
+      "bytes": 2405,
+      "sha256": "63b2b84dfc0efdc2f4ba0ccc8605a8fda0f813246113cd952c8b4f50ab6661ad",
+      "crc32": "fecef00c"
+    },
+    {
+      "path": "original-android/0074-local-voice-ready-render-readiness.json",
+      "bytes": 554,
+      "sha256": "d0cfba34710c9cd24aaaa31c7e5898f0bd5864d51b84bdc7cf0d28042fd2ea86",
+      "crc32": "2abb4df7"
+    },
+    {
+      "path": "original-android/0074-local-voice-ready.png",
+      "bytes": 1448661,
+      "sha256": "7e6564e55b13475f69ad967c5a829066d5ab48980ae7139e2a336696d1cd7c4a",
+      "crc32": "119db8d7"
+    },
+    {
+      "path": "original-android/0075-academy-tab.xml",
+      "bytes": 28516,
+      "sha256": "39bb3dccf556c8c14d9e2ffa3604f8be86e17502307e1996646d1d5872768e5b",
+      "crc32": "7ed920e7"
+    },
+    {
+      "path": "original-android/0076-academy-tab-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0077-academy-tab-touch.json",
+      "bytes": 89,
+      "sha256": "acbfa48767335c9ca56c5eac0dd3bfa8caa4a52b011e231709a9d9f1e24f8ba9",
+      "crc32": "7d5094aa"
+    },
+    {
+      "path": "original-android/0078-academy-open.xml",
+      "bytes": 31768,
+      "sha256": "2d0e9d99189c342b44b8baf47e9976a16c1ceb5b4db76ddf0035230d3ba10fbc",
+      "crc32": "1071f25d"
+    },
+    {
+      "path": "original-android/0079-academy-tools.xml",
+      "bytes": 31768,
+      "sha256": "2d0e9d99189c342b44b8baf47e9976a16c1ceb5b4db76ddf0035230d3ba10fbc",
+      "crc32": "1071f25d"
+    },
+    {
+      "path": "original-android/0080-academy-tools-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0081-academy-tools-touch.json",
+      "bytes": 109,
+      "sha256": "9f67625b7b152a58fcec2660809133893dd4dc4a7eef200c00c839143f8ffe59",
+      "crc32": "f11e764b"
+    },
+    {
+      "path": "original-android/0082-academy-tools-open.xml",
+      "bytes": 30361,
+      "sha256": "f0c604c41d417197f14b06cb40a92b2f0e1e0a2e9210ac178b73d9ef93785961",
+      "crc32": "d8b46a02"
+    },
+    {
+      "path": "original-android/0083-academy-tools-open-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0084-lab-entry.xml",
+      "bytes": 30361,
+      "sha256": "f0c604c41d417197f14b06cb40a92b2f0e1e0a2e9210ac178b73d9ef93785961",
+      "crc32": "d8b46a02"
+    },
+    {
+      "path": "original-android/0085-lab-entry.xml",
+      "bytes": 29990,
+      "sha256": "04e8404ecc38397567c1a4f043e28a51dbe2515870bfe3cafe2805731e753276",
+      "crc32": "4a5e7d08"
+    },
+    {
+      "path": "original-android/0086-lab-entry-scroll-search.json",
+      "bytes": 451,
+      "sha256": "abe96dd451fbf3d349d901b6abeb7663e0976d9e50134d1d82e9c38ba2637917",
+      "crc32": "4368dacd"
+    },
+    {
+      "path": "original-android/0087-lab-entry-touch.json",
+      "bytes": 112,
+      "sha256": "a6dad54d70de270cae18e4f8b68e42ccf81d7c460131cf2e2ee66b0ce4efa947",
+      "crc32": "b344eca8"
+    },
+    {
+      "path": "original-android/0089-bridge-entry.xml",
+      "bytes": 22584,
+      "sha256": "b9983ee61327d931608f35e7d2901064987759ba35aa2428991eb42d78d1ef51",
+      "crc32": "1e35cc4b"
+    },
+    {
+      "path": "original-android/0088-lab-hub.xml",
+      "bytes": 22584,
+      "sha256": "b9983ee61327d931608f35e7d2901064987759ba35aa2428991eb42d78d1ef51",
+      "crc32": "1e35cc4b"
+    },
+    {
+      "path": "original-android/0090-bridge-entry-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0091-bridge-entry-touch.json",
+      "bytes": 100,
+      "sha256": "cd4aaa1926a2cd78fd0c678f72be01398f4d826ec68327ac42892345c5472027",
+      "crc32": "3be67352"
+    },
+    {
+      "path": "original-android/0093-current-eight-plus-five-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0092-current-eight-plus-five.xml",
+      "bytes": 24963,
+      "sha256": "f6cff6f462467d6086603dfc39d8a200d95feea1289d49b15885d9209c1e90e3",
+      "crc32": "a192d464"
+    },
+    {
+      "path": "original-android/0094-eight-plus-five-explanation-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "original-android/0094-eight-plus-five-explanation-video.json",
+      "bytes": 354,
+      "sha256": "81d47b056c9e7393a4d1f5c25df2b65c5489638cd8814a40d6a07ed58f9559ae",
+      "crc32": "b8b96fc3"
+    },
+    {
+      "path": "original-android/0094-eight-plus-five-explanation.mp4",
+      "bytes": 2715450,
+      "sha256": "57b0824385b8b1d89cc7b1b0a4ae05d433c09c535ce3b34a2c5b86be524b7a5d",
+      "crc32": "ae54cf1d"
+    },
+    {
+      "path": "original-android/0095-bridge-hint.xml",
+      "bytes": 24963,
+      "sha256": "f6cff6f462467d6086603dfc39d8a200d95feea1289d49b15885d9209c1e90e3",
+      "crc32": "a192d464"
+    },
+    {
+      "path": "original-android/0096-bridge-hint.xml",
+      "bytes": 27035,
+      "sha256": "d710b3d42bcce236d2e95010fd636d0e583d2184ffc9d31c21a9f62f2a54faff",
+      "crc32": "3b7ab42f"
+    },
+    {
+      "path": "original-android/0097-bridge-hint-scroll-search.json",
+      "bytes": 451,
+      "sha256": "265bd7f08a19f4cc5394efe869ccb705f34ed6228d907005ecbb1fcfb30aa12d",
+      "crc32": "03081cb9"
+    },
+    {
+      "path": "original-android/0098-bridge-hint-touch.json",
+      "bytes": 91,
+      "sha256": "f2bf5f43e623b0d503223e197eaf680bca66922f4f48790baeed963173ca2c3c",
+      "crc32": "04639d58"
+    },
+    {
+      "path": "original-android/0099-bridge-stop.xml",
+      "bytes": 27069,
+      "sha256": "f73696dcd800dc070ac2ff58072933ccdbbb4d70c8c197bfd5b9f2ae7ff9d9b9",
+      "crc32": "efc3b96b"
+    },
+    {
+      "path": "original-android/0100-bridge-stop-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0101-bridge-stop-touch.json",
+      "bytes": 88,
+      "sha256": "0ee0b6db94c4a627fa71cbf50f0ea1e55effc3b42ddbc38383235d53ad26d51b",
+      "crc32": "5ebbfd09"
+    },
+    {
+      "path": "original-android/0102-bridge-stopped.xml",
+      "bytes": 27099,
+      "sha256": "d259e70a634e271faf8011267c1918f7e474c6ddc3dab2476fd1b582c50f8f69",
+      "crc32": "c2b0bbfe"
+    },
+    {
+      "path": "original-android/0103-bridge-stopped-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0104-bridge-same-prompt.xml",
+      "bytes": 27099,
+      "sha256": "d259e70a634e271faf8011267c1918f7e474c6ddc3dab2476fd1b582c50f8f69",
+      "crc32": "c2b0bbfe"
+    },
+    {
+      "path": "original-android/0105-bridge-same-prompt-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0106-bridge-stopped-same-task-render-readiness.json",
+      "bytes": 568,
+      "sha256": "418b7a3c4427c2e7a475aedb39fa127211aef6dd6c82ddb74637371c19873a54",
+      "crc32": "93461609"
+    },
+    {
+      "path": "original-android/0106-bridge-stopped-same-task.png",
+      "bytes": 482149,
+      "sha256": "aa74eb28fa090444aaa3a023dc09d91eefa58884147e4be189d47af5dbaaa1cb",
+      "crc32": "46875fdd"
+    },
+    {
+      "path": "original-android/0107-conversation-learning-before-preferences.xml",
+      "bytes": 3113,
+      "sha256": "d6bfc590c061e3be80345a31f8f9a915c601fa5bde07d93c434060b426cdb029",
+      "crc32": "8ad10b31"
+    },
+    {
+      "path": "original-android/0108-task-conversation.xml",
+      "bytes": 27099,
+      "sha256": "d259e70a634e271faf8011267c1918f7e474c6ddc3dab2476fd1b582c50f8f69",
+      "crc32": "c2b0bbfe"
+    },
+    {
+      "path": "original-android/0109-task-conversation-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0110-task-conversation-touch.json",
+      "bytes": 97,
+      "sha256": "e936b77bd2fdf0603495a75e837b8d7eebed3983e5a73ce68f4224c5e7a9a013",
+      "crc32": "1655e8db"
+    },
+    {
+      "path": "original-android/0111-current-conversation-input.xml",
+      "bytes": 26970,
+      "sha256": "32705fac3b1ef0ace3b6e10873b1c1011e452bbadd1f22ca250a61289bdfb6ba",
+      "crc32": "6670353e"
+    },
+    {
+      "path": "original-android/0112-current-conversation-input-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0113-why-first-two.xml",
+      "bytes": 26970,
+      "sha256": "32705fac3b1ef0ace3b6e10873b1c1011e452bbadd1f22ca250a61289bdfb6ba",
+      "crc32": "6670353e"
+    },
+    {
+      "path": "original-android/0114-why-first-two-touch.json",
+      "bytes": 99,
+      "sha256": "458e57442dfb59a6c36c207c0570dc29338cf5cac9e7ea3217edaaad6bf87ef4",
+      "crc32": "bb81e2c8"
+    },
+    {
+      "path": "original-android/0115-why-first-two-written.xml",
+      "bytes": 98365,
+      "sha256": "f4d44c7df27d2fe2d520cba7540e46e7feb60896de45e74e7e0ddd72bc128126",
+      "crc32": "7c25b349"
+    },
+    {
+      "path": "original-android/0116-why-first-two-ime.xml",
+      "bytes": 98365,
+      "sha256": "f4d44c7df27d2fe2d520cba7540e46e7feb60896de45e74e7e0ddd72bc128126",
+      "crc32": "7c25b349"
+    },
+    {
+      "path": "original-android/0117-why-send.xml",
+      "bytes": 26391,
+      "sha256": "a5afb88006508a5215066d15be212a62a3e6e3a44ca2006ae75e6e050b25e402",
+      "crc32": "67afb895"
+    },
+    {
+      "path": "original-android/0118-why-send-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0120-grounded-task-dialogue.xml",
+      "bytes": 26876,
+      "sha256": "33826af431c188f8a66a7c78b38310c8f8d87ec7cc67ad2a92bce361d35349dc",
+      "crc32": "1ae70684"
+    },
+    {
+      "path": "original-android/0119-why-send-touch.json",
+      "bytes": 88,
+      "sha256": "2058f923c98418cfbd9f96f179c99cb594aabd210d9b4e35084300f450891a9b",
+      "crc32": "17642328"
+    },
+    {
+      "path": "original-android/0121-grounded-task-dialogue-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0122-conversation-current-task.xml",
+      "bytes": 26876,
+      "sha256": "33826af431c188f8a66a7c78b38310c8f8d87ec7cc67ad2a92bce361d35349dc",
+      "crc32": "1ae70684"
+    },
+    {
+      "path": "original-android/0123-conversation-current-task-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0124-typed-why-answer.xml",
+      "bytes": 26876,
+      "sha256": "33826af431c188f8a66a7c78b38310c8f8d87ec7cc67ad2a92bce361d35349dc",
+      "crc32": "1ae70684"
+    },
+    {
+      "path": "original-android/0125-typed-why-response-render-readiness.json",
+      "bytes": 556,
+      "sha256": "6333076d9e4844c51bab5817030452fb905eb1957a20adecf0eed91acd6999b1",
+      "crc32": "5e0766df"
+    },
+    {
+      "path": "original-android/0125-typed-why-response.png",
+      "bytes": 1208271,
+      "sha256": "6b9f193720de3f66896d1720771b3b64968047e5d013be119cf670287214d76e",
+      "crc32": "0da0e44e"
+    },
+    {
+      "path": "original-android/0126-conversation-stop.xml",
+      "bytes": 26876,
+      "sha256": "33826af431c188f8a66a7c78b38310c8f8d87ec7cc67ad2a92bce361d35349dc",
+      "crc32": "1ae70684"
+    },
+    {
+      "path": "original-android/0127-conversation-stop-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0128-conversation-stop-touch.json",
+      "bytes": 88,
+      "sha256": "7c314cf582a0f94c86adc8e67a3dbce2ade5b719db49f35f1ab6b1ec6c1ecca0",
+      "crc32": "42fd802a"
+    },
+    {
+      "path": "original-android/0130-conversation-stopped-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0129-conversation-stopped.xml",
+      "bytes": 26759,
+      "sha256": "c731ec2f292cf6d1a2dd86e3ff26fbd8b86703c9a7119bf9d8ee5d960c582631",
+      "crc32": "6c0f499f"
+    },
+    {
+      "path": "original-android/0131-conversation-mic-off.xml",
+      "bytes": 26759,
+      "sha256": "c731ec2f292cf6d1a2dd86e3ff26fbd8b86703c9a7119bf9d8ee5d960c582631",
+      "crc32": "6c0f499f"
+    },
+    {
+      "path": "original-android/0132-conversation-mic-off-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0133-conversation-stopped-render-readiness.json",
+      "bytes": 560,
+      "sha256": "fe41d9f0c7035d514d8cdcd249c322438e60e7b394aef586502992b7ec4b4b38",
+      "crc32": "a1787554"
+    },
+    {
+      "path": "original-android/0134-real-microphone-request.xml",
+      "bytes": 26759,
+      "sha256": "c731ec2f292cf6d1a2dd86e3ff26fbd8b86703c9a7119bf9d8ee5d960c582631",
+      "crc32": "6c0f499f"
+    },
+    {
+      "path": "original-android/0135-real-microphone-request-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "original-android/0133-conversation-stopped.png",
+      "bytes": 1164741,
+      "sha256": "3184ca5ffc84e23d8bcbdcd174aec769714ec31d02a25e37932506d6ec7947d5",
+      "crc32": "9ee0938f"
+    },
+    {
+      "path": "original-android/0136-real-microphone-request-touch.json",
+      "bytes": 90,
+      "sha256": "c8b76133ac847f14c33b5c90f300f7314da0c2767c8b2ea432ddde8eaefebc0e",
+      "crc32": "ed11270c"
+    },
+    {
+      "path": "original-android/0137-microphone-outcome.xml",
+      "bytes": 26005,
+      "sha256": "6c8ef031f3e29e78c2ac5de54cca9db18343d2d35ff1aa22ec92233b64a14061",
+      "crc32": "3205e93a"
+    },
+    {
+      "path": "original-android/0138-microphone-outcome.xml",
+      "bytes": 13382,
+      "sha256": "0de622cb2f0a1d562d0cf4bfa3bf19b9ef8eecbac7ca92106c51660953168006",
+      "crc32": "76c7e73b"
+    },
+    {
+      "path": "original-android/0139-failure-current-screen.png",
+      "bytes": 417327,
+      "sha256": "c41b1072c5c6b4e831b14cd84231fbcbb3573da205230728523e475c4b71dc11",
+      "crc32": "e797b78b"
+    },
+    {
+      "path": "original-android/candidate-BUILD-PROVENANCE.json",
+      "bytes": 9642,
+      "sha256": "f7e5d675e3ec4b9c83de8354d543cb02ca061d6865e09b0bf3dd1e03073d7554",
+      "crc32": "6ea78051"
+    },
+    {
+      "path": "original-android/candidate-manifest.txt",
+      "bytes": 5778,
+      "sha256": "00aa38332475c31f5e040ad174c209cec58dcee01f626e26cd45e9531271cdc2",
+      "crc32": "a352a008"
+    },
+    {
+      "path": "original-android/candidate-signature.txt",
+      "bytes": 314,
+      "sha256": "7075dd546122a7dbe8dbfd071c94caa00bebc4a5db90c9bdd2df24e19659ef41",
+      "crc32": "8046e3b2"
+    },
+    {
+      "path": "original-android/fresh-first-launch-launch.txt",
+      "bytes": 547,
+      "sha256": "f3db822c040548ea80f247e22a2b7ae9de5c6ffb7e7c466bac6672185ccd6493",
+      "crc32": "d147e71a"
+    },
+    {
+      "path": "original-android/fresh-install.txt",
+      "bytes": 35,
+      "sha256": "e434c330baf4a001ae065fffc9b4c8b82f5d3cb975220f8b93038fda72b4b90c",
+      "crc32": "f3d6e759"
+    },
+    {
+      "path": "original-android/installed-apk-sha256.txt",
+      "bytes": 178,
+      "sha256": "5cca7cc5412338241d9528b5a971b87edcab43765c40ca01a0798ffc146a1c1f",
+      "crc32": "ef1651ad"
+    },
+    {
+      "path": "original-android/installed-package.txt",
+      "bytes": 9341,
+      "sha256": "b4e4668e9202e97d29064383475dbad542227b9fd22616e4271f0669508d535b",
+      "crc32": "e7f5ab86"
+    },
+    {
+      "path": "original-android/installed-pm-path.txt",
+      "bytes": 120,
+      "sha256": "3a8341addcc5755e2bfa91e9c2547b0d6014cb2ec89442b8d3efb97a0e90aef6",
+      "crc32": "e06d75c7"
+    },
+    {
+      "path": "original-android/recognition-services.txt",
+      "bytes": 407,
+      "sha256": "6bd4039eb7af96389fa1859a60cc553e8a563fab285e12a79241855f83a8c039",
+      "crc32": "3f01d633"
+    },
+    {
+      "path": "original-android/learning-android-result.json",
+      "bytes": 7098,
+      "sha256": "b4d9f75bc7f1f523e7604474e64febb7dc9114dc68f9ddde0284fbc3eb373961",
+      "crc32": "24be06d6"
+    },
+    {
+      "path": "original-android/rooted-emulator.json",
+      "bytes": 1545,
+      "sha256": "95fd3342785c5378b20a282c72c98435c853b4d212bd28424a18ddafc77884a4",
+      "crc32": "dbb008d7"
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc",
+      "crc32": "ef9e06c9"
+    },
+    {
+      "path": "original-android/uiautomator-config.json",
+      "bytes": 189,
+      "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe",
+      "crc32": "bc079679"
+    }
+  ]
+}
