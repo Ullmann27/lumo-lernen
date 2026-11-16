@@ -1,0 +1,24 @@
+usage: lumo_nextgen_2031_runtime_cases_android_probe.py [-h] --candidate
+                                                        CANDIDATE
+                                                        --download-evidence
+                                                        DOWNLOAD_EVIDENCE
+                                                        --out OUT --qa-commit
+                                                        QA_COMMIT
+                                                        --workflow-run-id
+                                                        WORKFLOW_RUN_ID
+                                                        [--serial SERIAL]
+
+Additional observed cases on immutable APK 2031; never release acceptance. The
+unchanged 2031 downloader supplies candidate/source evidence. This entry
+requires its own disposable, initially uninstalled emulator and creates a
+fictional profile through onboarding. It neither consumes nor replaces the
+complete original/reference tour and never writes private application data.
+
+options:
+  -h, --help            show this help message and exit
+  --candidate CANDIDATE
+  --download-evidence DOWNLOAD_EVIDENCE
+  --out OUT
+  --qa-commit QA_COMMIT
+  --workflow-run-id WORKFLOW_RUN_ID
+  --serial SERIAL

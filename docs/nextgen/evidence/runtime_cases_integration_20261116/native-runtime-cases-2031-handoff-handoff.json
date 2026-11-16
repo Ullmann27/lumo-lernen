@@ -1,0 +1,83 @@
+{
+  "producer_commit": "9f9aa391e61720feb920bc908f448b6daf70a9e7",
+  "tree": "fb4e0bcbde23eb4c87cdf2fdc442168593ab302d",
+  "parent": "51a3bfdedf4d6a745fb574ae9186c1094eb11abf",
+  "branch": "qa/lumo-2031-native-runtime-cases-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-native-runtime-cases",
+  "files": {
+    ".github/probes/lumo_nextgen_2031_native_runtime_cases.py": {
+      "bytes": 25683,
+      "sha256": "4fbd6c664be7f90a0975ad29c85b58d39247b040928eeeaf15885f3c0f6ad38c"
+    },
+    "docs/nextgen/evidence/2031_native_runtime_cases_20261116/README.md": {
+      "bytes": 5244,
+      "sha256": "54ab025e601ef1ffd7af8318b54baceeaebf7b8f64b5ec7b36c9d63d1ec1af18"
+    },
+    "docs/nextgen/evidence/2031_native_runtime_cases_20261116/host-tests-final.log": {
+      "bytes": 2775,
+      "sha256": "9a723b88872d922cd5fb4dbea5327e6dadee66a66287954e9fdf8833748cf60f"
+    },
+    "docs/nextgen/evidence/2031_native_runtime_cases_20261116/host-tests-first.log": {
+      "bytes": 2060,
+      "sha256": "28450fe6b64d37bb308ca8e21bd3b9f888ef59dd71053afa0bae739251bebb15"
+    },
+    "docs/nextgen/evidence/2031_native_runtime_cases_20261116/source.json": {
+      "bytes": 3375,
+      "sha256": "71ff7b2c3e23d5fc2e0c2c31e5d79ec4a4670c168de6f8cc863d6aa2f6e8e760"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/0116-native-title-3-ocr.json": {
+      "bytes": 3253,
+      "sha256": "1af80685cbe7f76ef748bbfe4a975bfda1910056036fc62b367ebe2d900653d9"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/0143-native-speech.txt": {
+      "bytes": 4720,
+      "sha256": "cbb8ab796e55fad03e1d6f433b8d2860e47c851a9fdcba4d1a779512ef63487b"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/0148-native-speech.txt": {
+      "bytes": 5589,
+      "sha256": "13c749b98bb192f94f4b6e765e09b05f16cbbe59c5665fc168922f86ac90bd9e"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/0149-native-move-one-0-ocr.json": {
+      "bytes": 2855,
+      "sha256": "09798f695d1822d8edd016ccd4c4d5611225773d1030bba756df4a2af3d79a71"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/README.md": {
+      "bytes": 1433,
+      "sha256": "e105d496790da20c91215949d058f9af5c638acd3350a76bc4b9439ea934772a"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/manifest.json": {
+      "bytes": 1466,
+      "sha256": "9af14b57c1165b7ba15014eab0f56190294d3d81a50202e23fe7338800fbc306"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_native_runtime_2031/source-contract.json": {
+      "bytes": 2167,
+      "sha256": "1506ebe4ad24e05068d4849f6b1f2841a3ca929fce1b3488ebac2f7d953384db"
+    },
+    "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py": {
+      "bytes": 15429,
+      "sha256": "fb9fc3a66477fd2e64a3a556332ed0cd0b1ed7e58e8aa2bd246b71e0a25bea59"
+    }
+  },
+  "api": {
+    "run": "run_native_cases(probe)",
+    "verify": "verify_native_cases(native_result, *, candidate)",
+    "result": "probe.result[native_runtime_cases]",
+    "artifact_file": "native-runtime-cases.json",
+    "visible_start_and_end": "LUMO AKADEMIE"
+  },
+  "tests": {
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0,
+    "log": "docs/nextgen/evidence/2031_native_runtime_cases_20261116/host-tests-final.log",
+    "scope": "host checks with real historical callback/OCR fixtures and explicitly simulated timing/ADB; no Android execution"
+  },
+  "scope": "Only new native QA helper, focused tests, small original fixtures and evidence; no existing files modified",
+  "installed_apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "android_execution": false,
+  "remote_actions": false,
+  "release_eligible": false,
+  "raw_fixture_trailing_spaces_preserved": true,
+  "worktree_clean": true
+}

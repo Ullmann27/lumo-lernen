@@ -1,0 +1,107 @@
+{
+  "sourceCommit": "262269cdeeefad619da0c7c5a7d6a3a7c21f504f",
+  "recordedUtc": "2026-11-16T05:44:52.215666+00:00",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_learning_android_probe.py",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_reference_android_probe.py",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_current_candidate.py",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_native_reader.py",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_2031*.py",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/nextgen",
+        "-p",
+        "test_prepare_2031_learning_replay_release.py",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/nextgen",
+        "-p",
+        "test_public_learning_download.py",
+        "-v"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "logBytes": 40177,
+  "logSha256": "ffdbf37cd34fa46d615c588bad2730bbaf82e685cf3b15c271e171b6b732bdc5",
+  "AndroidExecution": false
+}

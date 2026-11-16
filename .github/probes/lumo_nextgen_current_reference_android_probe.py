@@ -70,7 +70,7 @@ def verify_ci_context(args, environment):
 
 class CurrentCandidateProbe(reference.ReferenceProbe):
     def native_see(self, label, tag, *, exact=False):
-        if label == "Was kommt als Nächstes" and not exact:
+        if label in ("Was kommt als Nächstes", "Das Wort hat 3 Silben") and not exact:
             return native_reader.see_wrapped_text(self.reader, self.out, label, self.fresh(tag))
         return super().native_see(label, tag, exact=exact)
 
