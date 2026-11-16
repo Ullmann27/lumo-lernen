@@ -1,3 +1,13 @@
+# LUMO 2032 — vollständiger neuer Build läuft
+
+Der vollständige Lauf [**43837592237**](https://github.com/Ullmann27/lumo-lernen/actions/runs/43837592237) wurde am **16.11.2026 um 09:12:00 UTC** tatsächlich gestartet. Quelle **9b38360ca5f21919dce4a2b99e605ee39bbbf454**, Tree **1c572ff37dde942229e8ae8b1f141ec95df50545**, Native **9d6ef1d704a0e54098a8f8f0818f36deae0e3789**, Version **0.13.20+2032**. Run, Quelle und Tree sind gegen die tatsächlichen GitHub-Metadaten geprüft. Validate-Job **133197989015** läuft; Build, Android und Veröffentlichung sind noch ausstehend.
+
+Der aktuelle Stand enthält die ursprüngliche integrierte Lernwelt, Figur und Gesprächsanbindung sowie die enge native Buttonkontrastkorrektur. Der neue aktuelle Stoppnachweis ist Bestandteil der vollständigen Referenztour und Voraussetzung der Veröffentlichung. Frischer tatsächlicher Katalogexport und erneuerte 364 Quellhashes/18 Schutzdateien sind gesichert. Details der Vorprüfung folgen unten; aktuelle Aktivierungsdaten stehen unter [2032-build-activation-20261116](docs/nextgen/evidence/2032-build-activation-20261116/activation.json).
+
+**Noch keine geprüfte neue 2032-APK und kein neuer Android-PASS.** Alle späteren Aussagen müssen an diesen neuen Lauf gebunden sein. APK 2031 bleibt unverändert öffentlich verfügbar; sie ist keine Abnahme des korrigierten Produktstands. `fullModernizationComplete=false` bleibt bestehen.
+
+## Archiv: vollständig gesicherter Vorlauf
+
 # LUMO 2032 — geprüfte Quellen und frischer Katalog, Build bereit
 
 Stand: 16.11.2026, 09:09 UTC. Native **9d6ef1d704a0e54098a8f8f0818f36deae0e3789** enthält ausschließlich die geprüften zusätzlichen dunklen Button-Schriftzustände. Godot-Regression **79/79**, bestehende Produktionslogik unverändert. Der neue aktuelle Stoppanschluss besitzt **26/26 gezielte Hostprüfungen** und zwei unabhängige Quellreviews; der aktuelle Publisher verlangt seinen tatsächlichen Androidbefund ab 2032.

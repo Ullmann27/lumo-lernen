@@ -1,3 +1,15 @@
+# Wiederaufnahme 2032 — aktiven Vollbuild bis zum echten Download begleiten
+
+Aktueller vollständiger Lauf: **43837592237**, gestartet **16.11.2026 09:12:00 UTC**. Exakte APK-Quellabsicht **9b38360ca5f21919dce4a2b99e605ee39bbbf454**, Tree **1c572ff37dde942229e8ae8b1f141ec95df50545**, Native **9d6ef1d704a0e54098a8f8f0818f36deae0e3789**, Version **0.13.20+2032**, Tag `lumo-nextgen-learning-0.13.20-2032`. Quell-/Treebindung des gestarteten Runs ist bestätigt. Root-Metadatencommits nach diesem Stand ändern die Quelle des laufenden Builds nicht.
+
+1. Learning beobachtet ausschließlich Validate-Job **133197989015** und sichert nach Abschluss dessen Originallog/kleines Validationartefakt in `agent-ci-2032-validation`. Root beobachtet Build/Android/Publisher. Keine zusätzlichen Tests oder Reruns ohne konkreten neuen Befund. Keine Live-Joblogs vor Abschluss anfordern; diese liefern bekanntlich noch 404.
+2. Alle verpflichtenden Quelltests, echter Native-Import/13 Programme, signierte ARM64/x86-Builds und tatsächliche aktuelle Androidtouren samt aktivem Stopp müssen bestehen. Package, Signatur, Version, Native-PCK, Quellen und Artefakthashes gegen die tatsächlichen Resultate prüfen. Publish verlangt danach den ganzen anonymen öffentlichen APK-Download.
+3. Originalfehler und Originalmedien sichern. Eine Desktopaufnahme oder bestehende 2031-Erfolge ersetzen weder neuen Androidlauf noch physischen Fold7-/ARM64-/Spracherkennungs-/60-FPS-Nachweis. `fullModernizationComplete=false` bleibt, solange dokumentierte Lücken bestehen.
+4. Erfolgreicher echter Katalog-CI-Lauf **43836322226**, Job **133193729169**, Artefakt **14210758550**, fünf vollständige Originaldateien, Quelle **a5ea7422b1152576b34cf80519856129ff264ac1**. 480 Exportquellen und 364 aktuelle Coveragequellen sind geprüft; 18 Schutzdateien unverändert. Alle lokalen Vorfehler und der unabhängige CI-Review sind unter `docs/nextgen/evidence/ci-2032-catalog-export/` und `coverage_refresh_20261116_2032/` remote gesichert.
+5. Main/alte Releases/fremde Story-PNGs/native generierte UIDs schützen; maximal drei aktive Sessions. Nach nützlichen Änderungen gezielt committen, Autosave und exakten API-Publisher mit frisch beobachtetem Parent verwenden. Alte ZIP-Teile sind ausschließlich reversibel dematerialisiert, vollständig in Git/remote vorhanden. Keine fremden Dateien oder Gitobjekte löschen.
+
+## Archiv: Voraktivierung und Katalogwiederherstellung
+
 # Wiederaufnahme 2032 — Vollbuild aktivieren
 
 Stand: 16.11.2026, 09:09 UTC. Native ist **9d6ef1d704a0e54098a8f8f0818f36deae0e3789**. Der vollständige echte Katalogexport an Host **a5ea7422b1152576b34cf80519856129ff264ac1** ist jetzt erfolgreich übernommen, alle 480 Quellhashes stimmen. Der Coverage-Builder lief am selben HEAD: 364 gebundene Quellen, 61 Inventareinträge, 55 Screens, 236 Lehrplanfamilien, 18 bytegleiche Schutzdateien. Originale unter `docs/nextgen/evidence/ci-2032-catalog-export/`, lokale Fehler und Builder unter `coverage_refresh_20261116_2032/`.
