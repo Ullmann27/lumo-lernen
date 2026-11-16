@@ -1,7 +1,7 @@
-name: "LUMO 2034 – Lernwerkstatt, Bauwelt, Kart APK"
+name: "LUMO 2035 – Lernwerkstatt, Bauwelt, Kart APK"
 on:
   push:
-    branches: [delivery/lumo-2034-kombination-20261116]
+    branches: [delivery/lumo-2035-konkrete-3d-lernwelt-20261116]
   workflow_dispatch:
 
 permissions:
@@ -67,24 +67,26 @@ jobs:
           cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
           cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
           (cd release && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
-      - name: Signierte 2034-APK mit belegtem Quellstand für Android ausliefern
+      - name: Signierte 2035-APK mit belegtem Quellstand für Android ausliefern
         shell: bash
         run: |
           set -euo pipefail
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
           cat > release/README.txt <<EOF
-          LUMO 2034 Android APK - Flutter and Godot
+          LUMO 2035 Android APK - Flutter and Godot
           Version: $VERSION
           Flutter commit: $GITHUB_SHA
           Godot commit: $(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')
-          New public integrations: guided Bauwelt chapter/plot navigation and
-          neon Kart menu; existing Workshop and public Jungle geometry.
+          New public integrations: guided Bauwelt chapter/plot navigation,
+          neon Kart menu, and six validated native 3D learning models.
+          New procedural cat/dog/bird objects in the English learning world.
+          Existing Workshop and public Jungle geometry remain included.
           Protected: original package and Android signing certificate.
           Unavailable from this public source: separate authoring ZIP with
           jungle V2 complete dressing and R02 ten vehicle GLBs.
           Fold7 physical acceptance: NOT RUN.
           EOF
-          TAG="lumo-2034-einfach-$GITHUB_RUN_ID"
+          TAG="lumo-2035-einfach-$GITHUB_RUN_ID"
           if gh release create "$TAG" \
             release/Lumo-Lernen-Neu.apk \
             release/SHA256SUMS.txt \
@@ -92,7 +94,7 @@ jobs:
             release/BUILD-PROVENANCE.json \
             release/README.txt \
             --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
-            --title "LUMO 2034 – Lernwerkstatt, Bauwelt und Kart APK" \
+            --title "LUMO 2035 – Lernwerkstatt, Bauwelt und Kart APK" \
             --notes "Geprüftes LUMO Android Update aus eigenem Flutter- und Godot-Projekt. 2033 + Bauwelt-Geschichte und Neon-Kart. Separate V2-Dschungel-/R02-Blenderarchive noch nicht integriert." \
             --prerelease --latest=false; then
             URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"

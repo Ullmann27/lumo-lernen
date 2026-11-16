@@ -178,6 +178,10 @@ APPROVED = {
     # 2034: same 2033 source plus public Bauwelt story guide and Kart neon UI.
     # Exact source is still subject to native combined QA and Android acceptance.
     2034: "bceaa1138915a1fe0591820c43339c3b63702771",
+    # 2035 preserves the 2034 integrated world and adds reviewed, source-pinned
+    # native English animal geometry + validated subject-specific Lab launches.
+    # Source approval is not physical-device acceptance.
+    2035: "bb4788803180544525b6f23540a134016a1399a8",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
