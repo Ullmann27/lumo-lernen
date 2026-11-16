@@ -1,3 +1,17 @@
+# LUMO Next Generation – 2031 gebaut, vollständige Androidabnahme offen
+
+Stand: 16. November 2026. APK-Quelle **e05a96a52aaf57e466e79831f15aaffd144284ee**, Version **0.13.19+2031**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**. Der tatsächliche Lauf [43800892196](https://github.com/Ullmann27/lumo-lernen/actions/runs/43800892196) hat **Validate und Build bestanden; Android ist FAIL, Veröffentlichung SKIPPED**. Kein öffentlicher 2031-Download ist freigegeben.
+
+Die vollständige Quellvalidierung ergab **2.896 Flutter PASS, 202 vorhandene SKIP, 0 FAIL; 143 Host-Testmethoden; echten Godot-Import und 55.552 native Prüfaussagen; 118 Projektprüfungen**. Die 359 Inventar-Quellhashes und 18 geschützten Dateien stimmen. Die signierte ARM64-Datei besitzt **535.026.362 Bytes**, SHA-256 **e6ca8e512ddc56755ae8664b3438b0e78b87a7f0e77f1cd55cac592b20b316d7**; sämtliche APK-Bytes wurden zusätzlich unabhängig heruntergeladen und verifiziert. Originalbelege: `docs/nextgen/evidence/ci-2031-validation/` und `ci-2031-build/`.
+
+Die Androidtour erhielt den Bridge-Checkpoint bei der ersten Modellbedienung, Pause/Rückkehr, Routenrückkehr und **allen vier emulierten Größenwechseln**, einschließlich Fold7-Außen-/Innenauflösung. In der Wortwerkstatt scheiterte anschließend eine unmittelbare Einzelabfrage des Vordergrunds nach Home. Die spätere Originalaufnahme zeigt den Android-Launcher; die frühe fehlgeschlagene Rohabfrage wurde vom damaligen Code nicht gespeichert. Beim Aufräumen überdeckte ein sekundäres Nullzeit-Videogate den primären Fehler im Ergebnisfeld. Alle **335 Originalmitglieder**, das volle ZIP und Joblog sind unverändert unter `docs/nextgen/evidence/ci-2031-android-home-transition-failure/` erhalten, publizierter Archivcheckpoint **2da964795369cd7c877329fa5bf374f379264575**.
+
+Die enge QA-Korrektur und ein ausdrücklich an dieselben 2031-Bytes gebundener vollständiger Wiederholungslauf werden vorbereitet. Die normale `current-build`-Bedingung QA-Quelle == APK-Quelle wird nicht umgangen: ein Replay muss seine separate Quelle, beide vollständigen aktuellen Androidtouren, alle Artefakte und die unveränderten Produktbytes eigenständig nachweisen. Noch kein Replay-PASS.
+
+Aktueller Lieferstand und Grenzen: `docs/nextgen/ANDROID_DELIVERY_2031.md`. **`fullModernizationComplete=false`** bleibt bestehen. Viele Einstiege nutzen die gemeinsame Aufgabenkarte; die Figur läuft über die vorhandene separate Godot-Activity. Physische Fold7-/ARM64-Nutzung, echte Erkennung gesprochener Eingaben, Klangqualität, sämtliche Varianten und 60 FPS sind nicht vollständig nachgewiesen. `main` bleibt unverändert.
+
+## Archiv: früherer Vorlaufstand 2030
+
 # LUMO Next Generation – vollständiger Nachfolgekandidat 2030 vorbereitet
 
 Stand: 16. November 2026. **0.13.18+2030** integriert die nachgewiesene Korrektur der ersten Lab-Bedienung nach der Gesprächsrückkehr. Der veröffentlichte Produktcheckpoint und neue Katalog-Snapshot ist **83038afc19365196eeaa49432e0025bba0975518**. Alle sechs Lab-Modellanschlüsse verlangen jetzt eine gültige eigene Aufgabenbindung; die vorhandene verzögerte Rückkehrveröffentlichung fordert einen Frame ausdrücklich an. Die bisherigen Scope-, Audio-, Bewertungs- und Speichergrenzen bleiben erhalten.

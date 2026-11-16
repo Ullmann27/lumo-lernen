@@ -1,3 +1,17 @@
+# Aktuelle Wiederaufnahme 2031 – unveränderte APK, neue vollständige QA erforderlich
+
+Stand: 16. November 2026. Der Produktstand ist **e05a96a52aaf57e466e79831f15aaffd144284ee**, Version **0.13.19+2031**, Native **678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef**. Aktueller gesicherter Archivcheckpoint: **2da964795369cd7c877329fa5bf374f379264575** auf `integration/lumo-nextgen-learning-20261115`. Branch/HEAD und vorhandene Dateien vor weiterer Arbeit erneut prüfen; kein Reset, Clean, Force-Push oder Main-Merge.
+
+1. Originalrun **43800892196** bleibt Validate SUCCESS (**133080632526**), Build SUCCESS (**133085378884**), Android FAILURE (**133088843594**) und Publish SKIPPED (**133091481323**). Alle 335 Originaldateien und das vollständige Joblog sind unter `docs/nextgen/evidence/ci-2031-android-home-transition-failure/` verlustfrei veröffentlicht. Der genaue früh fehlgeschlagene Wort-Activity-Dump fehlt im Original; keine Rekonstruktion als Tatsachenbeleg ausgeben.
+2. ARM64-APK: **535.026.362 Bytes**, SHA-256 **e6ca8e512ddc56755ae8664b3438b0e78b87a7f0e77f1cd55cac592b20b316d7**. x86: **538.191.823 Bytes**, SHA-256 **8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a**. Beide tatsächlichen PCKs: **94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef**. Paket und bestehendes Testzertifikat bleiben unverändert; Originalbelege in `ci-2031-build/`.
+3. Die abgegrenzte QA-Korrektur synchronisiert nach einem Home-Befehl mit frischen Rohbeobachtungen und erhält den Primärfehler bei zusätzlichem Recorderfehler. Leere/mehrdeutige Vordergrundbefunde dürfen nicht bestehen, das positive Videodauer-Gate bleibt. Ownerbranch `qa/lumo-foreground-transition-20261116`; erst exakte Handoff-/Test-/Commitprüfung, dann übernehmen. Beim Schreiben dieser Notiz noch nicht als integriert oder veröffentlicht behauptet.
+4. Der neue reine QA-Replay wird aus dem bestehenden strengen 2028-Muster als eigene 2031-Dateien vorbereitet, mit aktueller CurrentCandidateProbe für die mehrzeilige Musterfrage. APK-, QA- und Publikationsquelle bleiben getrennt. Historische Replay-Konstanten und `current-build`-Gates bleiben unverändert. Noch kein neuer Replay gestartet oder bestanden.
+5. Nur mit vollständig neu bestandener Originaltour und anschließender Referenztour an genau diesen Bytes darf der zugehörige Publisher ein neues Release erzeugen. OriginalFAIL muss erhalten bleiben. Danach Release-/Tag-/Assetidentität sowie vollständigen anonymen APK-Download nachweisen, erst dann den tatsächlich vorhandenen direkten HTTPS-Link ausgeben.
+
+Alle Quellen-, Geräte-, Varianten- und Leistungsgrenzen in `docs/nextgen/ANDROID_DELIVERY_2031.md` bleiben maßgeblich; `fullModernizationComplete=false`. Die älteren Abschnitte darunter sind chronologische Originalstände und keine aktuelle Freigabe.
+
+## Archiv früherer Wiederaufnahmestände
+
 # LUMO Next Generation – vollständiger Nachfolgekandidat 2030 vorbereitet
 
 Stand: 16. November 2026. **0.13.18+2030** integriert die nachgewiesene Korrektur der ersten Lab-Bedienung nach der Gesprächsrückkehr. Der veröffentlichte Produktcheckpoint und neue Katalog-Snapshot ist **83038afc19365196eeaa49432e0025bba0975518**. Alle sechs Lab-Modellanschlüsse verlangen jetzt eine gültige eigene Aufgabenbindung; die vorhandene verzögerte Rückkehrveröffentlichung fordert einen Frame ausdrücklich an. Die bisherigen Scope-, Audio-, Bewertungs- und Speichergrenzen bleiben erhalten.
