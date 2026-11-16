@@ -186,20 +186,16 @@ void main() {
     expect(find.byKey(const ValueKey('adaptive-open-3d')), findsNothing);
   });
 
-  testWidgets('non-specialised adaptive family exposes the canonical 3D card',
+  testWidgets('non-specialised adaptive task keeps the real Flutter learning UI',
       (tester) async {
     await _mount(tester, grade: 2, unit: 'Plus bis 100');
     final task = tester
         .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))
         .task;
     expect(NativeLearningActivity.fromTask(task), isNull);
-    expect(NativeLearningActivity.forTask(task).kind, 'task_card');
-    final action = find.byKey(const ValueKey('adaptive-open-3d'));
-    expect(action, findsOneWidget);
-    await tester.ensureVisible(action);
-    await tester.pump();
-    expect(action.hitTestable(), findsOneWidget);
-    expect(tester.getSize(action).height, greaterThanOrEqualTo(48));
+    expect(NativeLearningActivity.forTask(task), isNull);
+    expect(find.byKey(const ValueKey('adaptive-open-3d')), findsNothing,
+        reason: 'An empty 3D card is not a subject-specific learning activity');
   });
 
   testWidgets(

@@ -168,7 +168,9 @@ APPROVED = {
     2030: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
     # 2031: reviewed Core owner/menu/resize fixes and offline speech normalization.
     # Preserve native identity; require a fresh signed APK and complete Android tour.
-    2031: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+    # Isolated workshop TEST branch only, preserving the original 2031 delivery.
+    # Native exact source passed complete Godot learning regression run 43869878937.
+    2031: "1ade09d40b7788bd513d1f30c82fda7dcb316267",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

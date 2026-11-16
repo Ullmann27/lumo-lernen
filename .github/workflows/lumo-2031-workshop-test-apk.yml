@@ -1,0 +1,125 @@
+name: LUMO 2031 Werkstatt – signierte Android-Test-APK aus beiden Quellen
+on:
+  push:
+    branches: [delivery/lumo-2031-workshop-test-apk-20261116]
+    paths:
+      - .github/workflows/lumo-2031-workshop-test-apk.yml
+      - config/godot-source.json
+      - scripts/verify_legacy_release_pin.py
+      - lib/domain/tutoring/native_learning_activity.dart
+      - lib/features/learning/learning_content.dart
+      - lib/features/tutoring/guided_lesson_screen.dart
+      - lib/features/lumo3d/lumo3d_launcher.dart
+      - test/native_learning_workshop_relevance_test.dart
+      - test/learning/learning_content_commands_test.dart
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-2031-workshop-test-android
+  cancel-in-progress: false
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  LUMO_SPLIT_PER_ABI: '1'
+  LUMO_NDK_DISPOSABLE_RUNNER: '1'
+jobs:
+  learning-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Verify precisely pinned native and original Android identity
+        run: |
+          set -euo pipefail
+          test "$(grep '^version:' pubspec.yaml)" = 'version: 0.13.19+2031'
+          python3 scripts/verify_legacy_release_pin.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          source=json.loads(Path('config/godot-source.json').read_text())
+          assert source['revision']=='1ade09d40b7788bd513d1f30c82fda7dcb316267'
+          assert source['engine']=='4.6.3'
+          print('PASS: exact native Godot workshop source pinned')
+          PY
+      - name: Flutter locked install and diagnostics
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Run real lesson, profile, game and native contracts
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter expanded --timeout 120s --concurrency 2 \
+            test/native_learning_workshop_relevance_test.dart \
+            test/learning/learning_content_commands_test.dart \
+            test/tutoring/native_learning_generation_contract_test.dart \
+            test/tutoring/native_learning_launch_test.dart \
+            test/tutoring/native_learning_serialized_contract_test.dart \
+            test/tutoring/guided_lesson_runtime_test.dart \
+            test/learning/nextgen_task_quality_test.dart \
+            test/learning_lab_runtime_test.dart \
+            test/learning_modules/clock_and_number_quality_test.dart
+  sign-and-package:
+    needs: learning-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 115
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Verify distinct test package source and original signing contract
+        run: |
+          set -euo pipefail
+          mkdir -p build-proof
+          python3 scripts/verify_legacy_release_pin.py
+          git rev-parse HEAD > build-proof/FLUTTER-SOURCE.txt
+          cp config/godot-source.json build-proof/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml > build-proof/VERSION.txt
+      - name: Install Android NDK and original pinned Godot 4.6.3
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh build-proof/ndk
+          bash scripts/install_godot_for_build.sh
+      - name: Build one genuine Flutter+Godot APK package per ABI
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/x86_64/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/VERIFY-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > build-proof/VERIFY-x86.json
+          sha256sum dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk > build-proof/SHA256SUMS.txt
+          cp dist/BUILD-PROVENANCE.json build-proof/BUILD-PROVENANCE.json
+      - name: Retain exact signed test APK and provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2031-Werkstatt-Android-Test-APK
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/x86_64/Lumo-Lernen-Neu.apk
+            build-proof/
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 0
