@@ -33,6 +33,8 @@ Future<bool> launchLumo3D(
   if (!context.mounted || appState?.resetting == true) return false;
   // Only reviewed, bounded lesson descriptors open the educational route.
   if ((scene == 'learning') != (learning != null)) return false;
+  // A prompt-only card is not a meaningful 3D learning world.
+  if (scene == 'learning' && learning?.kind == 'task_card') return false;
   // The economy is opt-in. Never silently open Kart or classic settlements.
   if ((scene == 'settlement') != livingVillage) return false;
   if (legacyGameKey != null &&
