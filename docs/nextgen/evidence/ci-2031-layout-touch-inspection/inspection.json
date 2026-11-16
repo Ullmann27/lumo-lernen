@@ -1,0 +1,663 @@
+{
+  "scope": "Read-only extraction from original 2031 emulator UIAutomator XML and exact WM test density; not a new Android run, physical-device measurement, native-3D target measurement, or complete app touch acceptance.",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "workflowRun": 43800892196,
+  "artifactId": 14197925395,
+  "sourceFiles": [
+    {
+      "path": "0187-bridge-compact-model.xml",
+      "bytes": 24494,
+      "sha256": "610e141bce7cacf0d48812dd8837b78a5120e2212bcf0ac7a1887756e35a17e3"
+    },
+    {
+      "path": "0184-compact-display.json",
+      "bytes": 258,
+      "sha256": "da494a9b3efd76113d9f8c21210e009bcc086534311392a09c0dcbf0a632df8a"
+    },
+    {
+      "path": "0197-bridge-expanded-model.xml",
+      "bytes": 25467,
+      "sha256": "5dba94e73c12099b30204b9a6d838e3000c71b2a261292395d13c5f51d4d506c"
+    },
+    {
+      "path": "0194-expanded-display.json",
+      "bytes": 261,
+      "sha256": "36d39eb7242433737c345da68850cff9c6e121a6842450de3fc0bb72a51c1cc2"
+    },
+    {
+      "path": "0207-bridge-fold7-cover-emulated-model.xml",
+      "bytes": 25909,
+      "sha256": "7ae08a1867b1f93c1aa8a7f9cbc1370903066a8463d8ec80d833386fff7e21e5"
+    },
+    {
+      "path": "0204-fold7-cover-emulated-display.json",
+      "bytes": 273,
+      "sha256": "71d48581d0484b6143a939312a0129e2db8259794728d1dd8a8eeeb369a3acd9"
+    },
+    {
+      "path": "0217-bridge-fold7-inner-emulated-model.xml",
+      "bytes": 24558,
+      "sha256": "9a933c7453530169516567f86b9af2642c4cc6140b4fb108e1bd4eeab55e6247"
+    },
+    {
+      "path": "0214-fold7-inner-emulated-display.json",
+      "bytes": 273,
+      "sha256": "1567cda8d3fcaec185b9e01ac5d7ad3080fe6a836469a403ec40f3ab401ecffb"
+    }
+  ],
+  "unitConversion": "dp = observed pixels * 160 / actual Android test density DPI; DPI is not physical PPI.",
+  "enabledClickableObservations": 35,
+  "observationsAtLeast48Dp": 29,
+  "observationsBelow48Dp": 6,
+  "below48AllAtScrollableBottom": true,
+  "allAppTouchTargetsVerified": false,
+  "observations": [
+    {
+      "xml": "0187-bridge-compact-model.xml",
+      "label": "Back",
+      "boundsPx": [
+        8,
+        56,
+        104,
+        152
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0187-bridge-compact-model.xml",
+      "label": "Verschobener Stein 1, zurück in den Vorrat",
+      "boundsPx": [
+        420,
+        1176,
+        524,
+        1280
+      ],
+      "observedVisibleDp": [
+        52.0,
+        52.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0187-bridge-compact-model.xml",
+      "label": "Vorratsstein 2, ins Feld verschieben",
+      "boundsPx": [
+        100,
+        1380,
+        196,
+        1476
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0187-bridge-compact-model.xml",
+      "label": "Vorratsstein 3, ins Feld verschieben",
+      "boundsPx": [
+        208,
+        1380,
+        304,
+        1476
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0187-bridge-compact-model.xml",
+      "label": "Vorratsstein 4, ins Feld verschieben",
+      "boundsPx": [
+        316,
+        1380,
+        412,
+        1476
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0187-bridge-compact-model.xml",
+      "label": "Vorratsstein 5, ins Feld verschieben",
+      "boundsPx": [
+        424,
+        1380,
+        520,
+        1476
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0187-bridge-compact-model.xml",
+      "label": "Einen Stein zurücklegen",
+      "boundsPx": [
+        124,
+        1516,
+        316,
+        1552
+      ],
+      "observedVisibleDp": [
+        96.0,
+        18.0
+      ],
+      "observedAtLeast48Dp": false,
+      "atScrollableBottom": true,
+      "matchingScrollBoundsPx": [
+        "[0,160][719,1552]"
+      ]
+    },
+    {
+      "xml": "0187-bridge-compact-model.xml",
+      "label": "Einen Stein ins Feld verschieben",
+      "boundsPx": [
+        332,
+        1516,
+        596,
+        1552
+      ],
+      "observedVisibleDp": [
+        132.0,
+        18.0
+      ],
+      "observedAtLeast48Dp": false,
+      "atScrollableBottom": true,
+      "matchingScrollBoundsPx": [
+        "[0,160][719,1552]"
+      ]
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Back",
+      "boundsPx": [
+        9,
+        63,
+        117,
+        171
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Verschobener Stein 1, zurück in den Vorrat",
+      "boundsPx": [
+        1047,
+        1265,
+        1356,
+        1573
+      ],
+      "observedVisibleDp": [
+        137.33333,
+        136.88889
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Vorratsstein 2, ins Feld verschieben",
+      "boundsPx": [
+        113,
+        1686,
+        221,
+        1794
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Vorratsstein 3, ins Feld verschieben",
+      "boundsPx": [
+        234,
+        1686,
+        342,
+        1794
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Vorratsstein 4, ins Feld verschieben",
+      "boundsPx": [
+        356,
+        1686,
+        464,
+        1794
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Vorratsstein 5, ins Feld verschieben",
+      "boundsPx": [
+        477,
+        1686,
+        585,
+        1794
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Einen Stein zurücklegen",
+      "boundsPx": [
+        618,
+        1839,
+        835,
+        1947
+      ],
+      "observedVisibleDp": [
+        96.44444,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Einen Stein ins Feld verschieben",
+      "boundsPx": [
+        853,
+        1839,
+        1150,
+        1947
+      ],
+      "observedVisibleDp": [
+        132.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0197-bridge-expanded-model.xml",
+      "label": "Sichtbaren Schritt anhören",
+      "boundsPx": [
+        68,
+        2073,
+        1701,
+        2136
+      ],
+      "observedVisibleDp": [
+        725.77778,
+        28.0
+      ],
+      "observedAtLeast48Dp": false,
+      "atScrollableBottom": true,
+      "matchingScrollBoundsPx": [
+        "[0,180][1767,2136]"
+      ]
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Back",
+      "boundsPx": [
+        11,
+        74,
+        137,
+        200
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Verschobener Stein 1, zurück in den Vorrat",
+      "boundsPx": [
+        632,
+        1466,
+        796,
+        1629
+      ],
+      "observedVisibleDp": [
+        62.47619,
+        62.09524
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Vorratsstein 2, ins Feld verschieben",
+      "boundsPx": [
+        131,
+        1760,
+        257,
+        1886
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Vorratsstein 3, ins Feld verschieben",
+      "boundsPx": [
+        273,
+        1760,
+        399,
+        1886
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Vorratsstein 4, ins Feld verschieben",
+      "boundsPx": [
+        415,
+        1760,
+        541,
+        1886
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Vorratsstein 5, ins Feld verschieben",
+      "boundsPx": [
+        557,
+        1760,
+        683,
+        1886
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Einen Stein zurücklegen",
+      "boundsPx": [
+        230,
+        1939,
+        483,
+        2065
+      ],
+      "observedVisibleDp": [
+        96.38095,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Einen Stein ins Feld verschieben",
+      "boundsPx": [
+        504,
+        1939,
+        850,
+        2065
+      ],
+      "observedVisibleDp": [
+        131.80952,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Sichtbaren Schritt anhören",
+      "boundsPx": [
+        79,
+        2212,
+        1001,
+        2348
+      ],
+      "observedVisibleDp": [
+        351.2381,
+        51.80952
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0207-bridge-fold7-cover-emulated-model.xml",
+      "label": "Jetzt gemeinsam bauen",
+      "boundsPx": [
+        79,
+        2375,
+        1001,
+        2457
+      ],
+      "observedVisibleDp": [
+        351.2381,
+        31.2381
+      ],
+      "observedAtLeast48Dp": false,
+      "atScrollableBottom": true,
+      "matchingScrollBoundsPx": [
+        "[0,210][1080,2457]"
+      ]
+    },
+    {
+      "xml": "0217-bridge-fold7-inner-emulated-model.xml",
+      "label": "Back",
+      "boundsPx": [
+        11,
+        74,
+        137,
+        200
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0217-bridge-fold7-inner-emulated-model.xml",
+      "label": "Verschobener Stein 1, zurück in den Vorrat",
+      "boundsPx": [
+        1165,
+        1457,
+        1506,
+        1798
+      ],
+      "observedVisibleDp": [
+        129.90476,
+        129.90476
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0217-bridge-fold7-inner-emulated-model.xml",
+      "label": "Vorratsstein 2, ins Feld verschieben",
+      "boundsPx": [
+        131,
+        1929,
+        257,
+        2055
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0217-bridge-fold7-inner-emulated-model.xml",
+      "label": "Vorratsstein 3, ins Feld verschieben",
+      "boundsPx": [
+        273,
+        1929,
+        399,
+        2055
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0217-bridge-fold7-inner-emulated-model.xml",
+      "label": "Vorratsstein 4, ins Feld verschieben",
+      "boundsPx": [
+        415,
+        1929,
+        541,
+        2055
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0217-bridge-fold7-inner-emulated-model.xml",
+      "label": "Vorratsstein 5, ins Feld verschieben",
+      "boundsPx": [
+        557,
+        1929,
+        683,
+        2055
+      ],
+      "observedVisibleDp": [
+        48.0,
+        48.0
+      ],
+      "observedAtLeast48Dp": true,
+      "atScrollableBottom": false,
+      "matchingScrollBoundsPx": []
+    },
+    {
+      "xml": "0217-bridge-fold7-inner-emulated-model.xml",
+      "label": "Einen Stein zurücklegen",
+      "boundsPx": [
+        674,
+        2108,
+        927,
+        2121
+      ],
+      "observedVisibleDp": [
+        96.38095,
+        4.95238
+      ],
+      "observedAtLeast48Dp": false,
+      "atScrollableBottom": true,
+      "matchingScrollBoundsPx": [
+        "[0,210][1968,2121]"
+      ]
+    },
+    {
+      "xml": "0217-bridge-fold7-inner-emulated-model.xml",
+      "label": "Einen Stein ins Feld verschieben",
+      "boundsPx": [
+        948,
+        2108,
+        1294,
+        2121
+      ],
+      "observedVisibleDp": [
+        131.80952,
+        4.95238
+      ],
+      "observedAtLeast48Dp": false,
+      "atScrollableBottom": true,
+      "matchingScrollBoundsPx": [
+        "[0,210][1968,2121]"
+      ]
+    }
+  ]
+}

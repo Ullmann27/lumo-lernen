@@ -167,6 +167,171 @@ class ResizeRecordingTest(unittest.TestCase):
                                  [('restore', 'size'), ('restore', 'density')])
 
 
+class ForegroundTransitionTest(unittest.TestCase):
+    """Original evidence plus constructed schedules; no Android replay claim."""
+
+    fixtures = Path(__file__).parent / 'fixtures/nextgen_foreground_43800892196'
+
+    def setUp(self):
+        manifest = json.loads((self.fixtures / 'manifest.json').read_text())
+        for name, expected in manifest['files'].items():
+            self.assertEqual(probe.digest(self.fixtures / name), expected['sha256'])
+            self.assertEqual((self.fixtures / name).stat().st_size, expected['bytes'])
+        self.launcher = (self.fixtures / '0163-bridge-paused-activity.txt').read_text()
+        # The rejected words dump is absent from the original artifact. This
+        # app-first schedule is constructed, not an invented recorded dump.
+        self.app = self.launcher.replace(
+            'com.google.android.apps.nexuslauncher/.NexusLauncherActivity',
+            probe.PACKAGE + '/.MainActivity')
+
+    def roundtrip(self, directory, observed):
+        item = object.__new__(probe.LearningProbe)
+        item.out, item.result, item.counter = Path(directory), {'run_id': 'schedule'}, 0
+        calls, clock = [], SimpleNamespace(now=0.0)
+        clock.monotonic = lambda: clock.now
+        clock.sleep = lambda seconds: setattr(clock, 'now', clock.now + seconds)
+        index = 0
+        def adb(*args, **kwargs):
+            nonlocal index
+            calls.append(args)
+            if args == ('shell', 'input', 'keyevent', 'KEYCODE_HOME'):
+                return ''
+            self.assertEqual(args, ('shell', 'dumpsys', 'activity', 'activities'))
+            value = observed[min(index, len(observed) - 1)]
+            index += 1
+            delay, raw = value if isinstance(value, tuple) else (.1, value)
+            clock.now += delay
+            return raw
+        item.base = SimpleNamespace(adb=adb, launch=lambda *args: calls.append(('resume',)))
+        @contextmanager
+        def no_video(tag):
+            yield  # Recorder behavior is exercised separately with real MP4 bytes.
+        item.recording = no_video
+        item.capture = lambda *args, **kwargs: None
+        item.see = lambda *args, **kwargs: None
+        item.close_task = lambda: None
+        item.tap = lambda *args, **kwargs: None
+        task = {'topicId': 'words', 'problemId': 'words-banane', 'sessionId': 'schedule',
+                'phase': 'example', 'tokens': [2, 3, 0]}
+        item.checkpoint = lambda *args, **kwargs: dict(task)
+        preferences = {'flutter.lumo_active_profile': json.dumps({
+            'id': 'constructed-profile', 'name': probe.PROFILE_NAME,
+            'age': 7, 'grade': 1, 'createdAt': '2026-11-16'}),
+            'flutter.lumo_reward_wallet_v1': '{"stars":0}'}
+        item.preferences = lambda *args: dict(preferences)
+        return item, calls, clock
+
+    def test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            item, calls, clock = self.roundtrip(tmp, [self.app, self.launcher])
+            with patch.object(probe, 'time', clock):
+                result = item.task_roundtrips('words', 'Die Wortwerkstatt', probe.WORD_PROMPT, tokens=[2, 3, 0])
+            self.assertTrue(result['pause_resume']['same_task_checkpoint'])
+            self.assertEqual(calls.count(('shell', 'input', 'keyevent', 'KEYCODE_HOME')), 1)
+            self.assertEqual(calls.count(('shell', 'dumpsys', 'activity', 'activities')), 2)
+            self.assertEqual(calls.count(('resume',)), 1)
+            raw = [path.read_text() for path in Path(tmp).glob('*.txt')]
+            self.assertIn(self.app, raw)
+            self.assertIn(self.launcher, raw)
+            proof = item.result['foreground_transitions'][0]
+            self.assertEqual(proof['status'], 'PASS')
+            self.assertEqual(proof['observed_component'],
+                             'com.google.android.apps.nexuslauncher/.NexusLauncherActivity')
+
+    def test_empty_malformed_or_ambiguous_foreground_never_passes(self):
+        for raw in ('', 'Activity manager is still loading',
+                    'topResumedActivity=null\n', self.launcher + self.app,
+                    self.launcher + '  ResumedActivity: unknown\n'):
+            with self.subTest(raw=raw), tempfile.TemporaryDirectory() as tmp:
+                item, calls, clock = self.roundtrip(tmp, [raw])
+                with patch.object(probe, 'time', clock), self.assertRaisesRegex(
+                        RuntimeError, 'App did not actually leave the foreground'):
+                    item.task_roundtrips('words', 'Die Wortwerkstatt', probe.WORD_PROMPT, tokens=[2, 3, 0])
+                self.assertNotIn(('resume',), calls)
+                self.assertEqual(calls.count(('shell', 'input', 'keyevent', 'KEYCODE_HOME')), 1)
+                self.assertIn(raw, [p.read_text() for p in Path(tmp).glob('*.txt')])
+
+    def test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            item, calls, clock = self.roundtrip(tmp, [self.app])
+            with patch.object(probe, 'time', clock), self.assertRaisesRegex(
+                    RuntimeError, 'App did not actually leave the foreground'):
+                item.task_roundtrips('words', 'Die Wortwerkstatt', probe.WORD_PROMPT, tokens=[2, 3, 0])
+            self.assertGreater(clock.now, 1)
+            self.assertLessEqual(clock.now, 16)
+            self.assertNotIn(('resume',), calls)
+            self.assertEqual(item.result['foreground_transitions'][0]['status'], 'FAIL')
+            self.assertIn(self.app, [p.read_text() for p in Path(tmp).glob('*.txt')])
+
+    def test_observation_returning_after_deadline_cannot_pass(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            item, calls, clock = self.roundtrip(tmp, [(16, self.launcher)])
+            with patch.object(probe, 'time', clock), self.assertRaisesRegex(
+                    RuntimeError, 'App did not actually leave the foreground'):
+                item.task_roundtrips('words', 'Die Wortwerkstatt', probe.WORD_PROMPT, tokens=[2, 3, 0])
+            self.assertNotIn(('resume',), calls)
+            self.assertIn(self.launcher, [p.read_text() for p in Path(tmp).glob('*.txt')])
+
+    @contextmanager
+    def recorded_video_fixture(self, directory):
+        item = object.__new__(probe.LearningProbe)
+        item.out, item.result, item.counter, item.recordings = Path(directory), {'run_id': 'fixture'}, 0, []
+        running = False
+        class Process:
+            def __init__(self, command, **kwargs):
+                nonlocal running
+                running = True
+            def wait(self, **kwargs): return 0
+        def adb(*args, **kwargs):
+            nonlocal running
+            if args == ('shell', 'pidof', 'screenrecord'):
+                return '4321' if running else ''
+            if args == ('shell', 'kill', '-2', '4321'):
+                running = False
+                return ''
+            if args[0] == 'pull':
+                shutil.copyfile(self.fixtures / '0270-words-pause-return.mp4', args[2])
+                return 'copied original fixture; no Android transport'
+            raise AssertionError(args)
+        def command(*args):
+            return subprocess.run(args, check=True, capture_output=True, text=True).stdout
+        item.base = SimpleNamespace(adb=adb, command=command)
+        with patch.object(probe, 'subprocess', SimpleNamespace(
+                Popen=Process, TimeoutExpired=subprocess.TimeoutExpired, STDOUT=subprocess.STDOUT)):
+            yield item
+
+    def test_original_zero_duration_video_cannot_mask_primary_home_failure(self):
+        original = json.loads((self.fixtures / 'learning-android-result.json').read_text())
+        primary = 'App did not actually leave the foreground'
+        secondary = 'No decodable actual video was recorded'
+        self.assertEqual(original['status'], 'FAIL')
+        self.assertEqual(original['error'], secondary)
+        self.assertLess(original['traceback'].index(primary), original['traceback'].index(secondary))
+        with tempfile.TemporaryDirectory() as tmp, self.recorded_video_fixture(tmp) as item:
+            error = RuntimeError(primary)
+            with self.assertRaisesRegex(RuntimeError, primary) as caught:
+                with item.recording('original-failure'):
+                    raise error
+            self.assertIs(caught.exception, error)
+            self.assertEqual(item.recordings, [])
+            recorded = item.result['recording_errors'][0]
+            self.assertEqual(recorded['error'], secondary)
+            self.assertEqual(recorded['primary_error'], primary)
+            self.assertTrue(recorded['secondary_to_primary'])
+            raw = probe.read_json((Path(tmp) / '0001-original-failure-ffprobe.json').read_text())
+            self.assertEqual(float(raw['format'].get('duration', 0)), 0)
+            self.assertEqual(raw['streams'][0]['nb_frames'], '1')
+            self.assertTrue((Path(tmp) / '0001-original-failure-recording-error.json').is_file())
+
+    def test_original_zero_duration_video_still_fails_an_otherwise_successful_body(self):
+        with tempfile.TemporaryDirectory() as tmp, self.recorded_video_fixture(tmp) as item:
+            with self.assertRaisesRegex(RuntimeError, 'No decodable actual video was recorded'):
+                with item.recording('successful-body'):
+                    pass
+            self.assertEqual(item.recordings, [])
+            self.assertNotIn('videos', item.result)
+
+
 class ArtifactIdentityTest(unittest.TestCase):
     def setUp(self):
         self.expected = {"sha256": "a" * 64, "source": "b" * 40, "native": "c" * 40,

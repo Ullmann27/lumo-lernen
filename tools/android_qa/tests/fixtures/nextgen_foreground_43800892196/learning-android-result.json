@@ -1,0 +1,712 @@
+{
+  "schema": "lumo.nextgen.learning.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "run_id": "87f0774314da4f5f85029dad21ead5c9",
+  "started_utc": "2026-11-16T04:24:29Z",
+  "probe_sha256": "f4f4b1426cc99a69aab5850f388f4b40b3c95464eaccc8f112eb00c13bf09157",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "synthetic_profile": "LumoNextTest",
+  "candidate": {
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "flutter_source_commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "versionCode": 2031,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.19",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef",
+      "bytes": 278589756
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2031,
+    "versionName": "0.13.19",
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794803141511965",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T04:25:41.511965"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0023-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "5c3f67e7dda6acb8b9aa2fc5f97d73785a04fcd116ed68b918f3684cdf01071e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.076,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0057-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "d9ef6914615c99ff5eb038471576886a620faf6750ff309f01b81b2ac95fa4d8",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.247,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0073-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "aae4b28e610bc7719260eaf92f298fed4a32ae3a293beb39fa17c575f803dfc4",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.065,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0105-bridge-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "076eaff7d552316bf7b11c9d63e6b2a1709efb19859e3921813b805aa2a0ea57",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.042,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0124-typed-why-response.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "47d1f59aa5b6f8b121b5465ecacf71b955c72a2e234fac2904196472acdc15c8",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.985,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0132-conversation-stopped.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "7ba4f09fbc4795c4129df0d5f0b0fb4f55e835911c5c69003243406b29fff5dc",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.803,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0141-actual-microphone-outcome.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "4fe2f79e60b373c2d5d04f90db6baeada61da20f49340e9a135c2bc6654695d8",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.813,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0162-bridge-before-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "b2a3abe5cdc1ea0c91dd7b8576bb7fab5893287e70d161f072c38b11c55108a6",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.183,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0167-bridge-after-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "b2a3abe5cdc1ea0c91dd7b8576bb7fab5893287e70d161f072c38b11c55108a6",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.183,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0179-bridge-same-model-after-return.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2657cff76612f01f9dee517f9ca58c1dac205f4a715a9d024e3778e02765ce84",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.055,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0183-bridge-compact-before-resize.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2657cff76612f01f9dee517f9ca58c1dac205f4a715a9d024e3778e02765ce84",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.055,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0189-bridge-compact.png",
+      "width": 720,
+      "height": 1600,
+      "sha256": "9b4524f9aaf1c62c161189d265d989ad69a40e56869d211ce0e8087fae9672f1",
+      "render_readiness": {
+        "width": 720,
+        "height": 1600,
+        "content_entropy_bits": 6.01,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0193-bridge-expanded-before-resize.png",
+      "width": 720,
+      "height": 1600,
+      "sha256": "9b4524f9aaf1c62c161189d265d989ad69a40e56869d211ce0e8087fae9672f1",
+      "render_readiness": {
+        "width": 720,
+        "height": 1600,
+        "content_entropy_bits": 6.01,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0199-bridge-expanded.png",
+      "width": 1768,
+      "height": 2208,
+      "sha256": "4c53b01b634d4772273c468feaa9d42f01d704194a806c7eab52efe742deadc1",
+      "render_readiness": {
+        "width": 1768,
+        "height": 2208,
+        "content_entropy_bits": 4.801,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0203-bridge-fold7-cover-emulated-before-resize.png",
+      "width": 1768,
+      "height": 2208,
+      "sha256": "4c53b01b634d4772273c468feaa9d42f01d704194a806c7eab52efe742deadc1",
+      "render_readiness": {
+        "width": 1768,
+        "height": 2208,
+        "content_entropy_bits": 4.801,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0209-bridge-fold7-cover-emulated.png",
+      "width": 1080,
+      "height": 2520,
+      "sha256": "6542d20bfd7cc34013e5e8d776c72bc88606e7531e6161fa349bd99bd9258d30",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2520,
+        "content_entropy_bits": 6.055,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0213-bridge-fold7-inner-emulated-before-resize.png",
+      "width": 1080,
+      "height": 2520,
+      "sha256": "6542d20bfd7cc34013e5e8d776c72bc88606e7531e6161fa349bd99bd9258d30",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2520,
+        "content_entropy_bits": 6.055,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0219-bridge-fold7-inner-emulated.png",
+      "width": 1968,
+      "height": 2184,
+      "sha256": "78fdea9f5dec6482db837404e77cca736b89afb3b98e3e7b512ba1beb4b46c85",
+      "render_readiness": {
+        "width": 1968,
+        "height": 2184,
+        "content_entropy_bits": 4.694,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0267-banane-slower-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "15951617a80e54a8b92d4b5435521ebaf55386777066ea9fae1379db568df9b1",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.804,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0271-words-before-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "15951617a80e54a8b92d4b5435521ebaf55386777066ea9fae1379db568df9b1",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.804,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0272-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "3a644d8df873720a6b565d4b8700cef3ee94ca6be24c8018da216a0794686149"
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "9c0a8b1b1afe220a537d381299c11182bfdea1c9eb8ae2561f68f12f03cec005",
+      "bytes": 2207289,
+      "duration_seconds": 26.538122,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 29.46,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0093-eight-plus-five-explanation.mp4",
+      "sha256": "c55d610cde0701fd9c3b6999c221176bddb0608f9c03f4dd314e3e8302df7e11",
+      "bytes": 3984800,
+      "duration_seconds": 37.773478,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 38.43,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0161-bridge-pause-return.mp4",
+      "sha256": "b837b076fc606f2d6ba3a855eede2730e26a7cad558b42e49e5e922b216a928e",
+      "bytes": 1331133,
+      "duration_seconds": 6.779956,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 12.75,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0182-bridge-resize-compact.mp4",
+      "sha256": "b14aa91b16cca126da4417a15c05f9e3161c38b822044943f1f18562023529e2",
+      "bytes": 889741,
+      "duration_seconds": 4.375311,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 5.86,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0192-bridge-resize-expanded.mp4",
+      "sha256": "30b18dde2a9eedaee2050a9029d2bf966e2fad7521e02cacb9010437f22ceee9",
+      "bytes": 406718,
+      "duration_seconds": 4.520133,
+      "width": 720,
+      "height": 1600,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 6.03,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0202-bridge-resize-fold7-cover-emulated.mp4",
+      "sha256": "36bed58eed13f2de972665997c14848cdbb72bd4d66a9eeccf49f637c2889407",
+      "bytes": 952504,
+      "duration_seconds": 4.844989,
+      "width": 1768,
+      "height": 2208,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 6.35,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0212-bridge-resize-fold7-inner-emulated.mp4",
+      "sha256": "992ab96f47ded45eff19015d24d092c34fba949ee012b044ec382449f7d840e7",
+      "bytes": 556404,
+      "duration_seconds": 4.3263,
+      "width": 1080,
+      "height": 2520,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 6.21,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0232-banane-syllables.mp4",
+      "sha256": "7b9a1f56b08af3a70f22665a784eb00d2f9803d50a56d82cc6d7c26636b8bbb0",
+      "bytes": 1035323,
+      "duration_seconds": 10.935467,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 12.82,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "conversation": {
+    "ui_contract": "ea",
+    "typed_question": "Warum zuerst zwei?",
+    "visible_explanation": "Im Zehnerfeld sind 8 Plätze besetzt. Bis zur Zehn fehlen 2, denn 10 minus 8 ist 2. Von den 5 zusätzlichen Objekten ergänzen wir deshalb zuerst 2. Dann bleiben 3 übrig.",
+    "task_grounding_label_observed": true,
+    "stop_visible": true,
+    "microphone_request_observed": true,
+    "microphone_ui_outcome": "explicit_device_limitation",
+    "postgrant_explicit_start": false,
+    "recognition": "NOT_VERIFIED",
+    "recognition_observations": [
+      "Dismiss",
+      "Mit Lumo sprechen",
+      "Zurück zur Aufgabe",
+      "Deine Aufgabe",
+      "8 + 5 = ? Rechne zuerst bis zur Zehn.",
+      "Frag nach, wiederhole einen Schritt oder ändere deinen Antwortvorschlag.",
+      "Lumo antwortet",
+      "Wir sind bei einer neuen Aufgabe. Was möchtest du dazu wissen?",
+      "Lumo",
+      "Vorlesen",
+      "Stopp",
+      "Frag Lumo",
+      "Senden",
+      "Sprechen",
+      "Spracherkennung: nach Tippen auf Sprechen",
+      "..",
+      "Eine deutsche Spracherkennung ist auf diesem Gerät noch nicht bestätigt. Du kannst tippen; deine Eltern können die lokale deutsche Sprache in den Geräteeinstellungen prüfen.",
+      "Erklären",
+      "Noch einmal",
+      "Scrim",
+      "4:27",
+      "4:27 AM",
+      "Android System notification:",
+      "Wifi signal full.",
+      "Phone signal full.",
+      "Battery charging, 100 percent."
+    ],
+    "limitation": "No real spoken utterance was supplied; emulator recognizer availability is recorded separately."
+  },
+  "bridge": {
+    "checkpoint": {
+      "topicId": "bridge",
+      "seed": 0,
+      "sessionId": "lab-attempt-560005aac04603d476969096ed358aca",
+      "phase": "example",
+      "problemId": "bridge-8-5",
+      "moved": 1,
+      "pieces": [],
+      "tokens": [],
+      "patternChoice": null,
+      "hint": 3,
+      "support": 3,
+      "wrongBefore": false,
+      "attempt": 0,
+      "answer": "",
+      "done": false,
+      "pendingAttemptId": null,
+      "lastSavedAttemptId": null
+    },
+    "pause_resume": {
+      "profile_id": "1794803141511965",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "route_return": {
+      "profile_id": "1794803141511965",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "resize": {
+      "layouts": [
+        "720x1600@320dpi",
+        "1768x2208@360dpi",
+        "1080x2520@420dpi",
+        "1968x2184@420dpi"
+      ],
+      "observations": [
+        {
+          "layout": "compact",
+          "width": 720,
+          "height": 1600,
+          "android_test_density_dpi": 320,
+          "wm_size": "Physical size: 1080x2340\nOverride size: 720x1600",
+          "wm_density": "Physical density: 440\nOverride density: 320",
+          "physical_ppi_claimed": false,
+          "initial_screenshot": {
+            "file": "0183-bridge-compact-before-resize.png",
+            "width": 1080,
+            "height": 2340,
+            "sha256": "2657cff76612f01f9dee517f9ca58c1dac205f4a715a9d024e3778e02765ce84",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2340,
+              "content_entropy_bits": 6.055,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "screenshot": {
+            "file": "0189-bridge-compact.png",
+            "width": 720,
+            "height": 1600,
+            "sha256": "9b4524f9aaf1c62c161189d265d989ad69a40e56869d211ce0e8087fae9672f1",
+            "render_readiness": {
+              "width": 720,
+              "height": 1600,
+              "content_entropy_bits": 6.01,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "preservation": {
+            "profile_id": "1794803141511965",
+            "learning_keys_compared": 2,
+            "same_task_checkpoint": true
+          }
+        },
+        {
+          "layout": "expanded",
+          "width": 1768,
+          "height": 2208,
+          "android_test_density_dpi": 360,
+          "wm_size": "Physical size: 1080x2340\nOverride size: 1768x2208",
+          "wm_density": "Physical density: 440\nOverride density: 360",
+          "physical_ppi_claimed": false,
+          "initial_screenshot": {
+            "file": "0193-bridge-expanded-before-resize.png",
+            "width": 720,
+            "height": 1600,
+            "sha256": "9b4524f9aaf1c62c161189d265d989ad69a40e56869d211ce0e8087fae9672f1",
+            "render_readiness": {
+              "width": 720,
+              "height": 1600,
+              "content_entropy_bits": 6.01,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "screenshot": {
+            "file": "0199-bridge-expanded.png",
+            "width": 1768,
+            "height": 2208,
+            "sha256": "4c53b01b634d4772273c468feaa9d42f01d704194a806c7eab52efe742deadc1",
+            "render_readiness": {
+              "width": 1768,
+              "height": 2208,
+              "content_entropy_bits": 4.801,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "preservation": {
+            "profile_id": "1794803141511965",
+            "learning_keys_compared": 2,
+            "same_task_checkpoint": true
+          }
+        },
+        {
+          "layout": "fold7-cover-emulated",
+          "width": 1080,
+          "height": 2520,
+          "android_test_density_dpi": 420,
+          "wm_size": "Physical size: 1080x2340\nOverride size: 1080x2520",
+          "wm_density": "Physical density: 440\nOverride density: 420",
+          "physical_ppi_claimed": false,
+          "initial_screenshot": {
+            "file": "0203-bridge-fold7-cover-emulated-before-resize.png",
+            "width": 1768,
+            "height": 2208,
+            "sha256": "4c53b01b634d4772273c468feaa9d42f01d704194a806c7eab52efe742deadc1",
+            "render_readiness": {
+              "width": 1768,
+              "height": 2208,
+              "content_entropy_bits": 4.801,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "screenshot": {
+            "file": "0209-bridge-fold7-cover-emulated.png",
+            "width": 1080,
+            "height": 2520,
+            "sha256": "6542d20bfd7cc34013e5e8d776c72bc88606e7531e6161fa349bd99bd9258d30",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2520,
+              "content_entropy_bits": 6.055,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "preservation": {
+            "profile_id": "1794803141511965",
+            "learning_keys_compared": 2,
+            "same_task_checkpoint": true
+          }
+        },
+        {
+          "layout": "fold7-inner-emulated",
+          "width": 1968,
+          "height": 2184,
+          "android_test_density_dpi": 420,
+          "wm_size": "Physical size: 1080x2340\nOverride size: 1968x2184",
+          "wm_density": "Physical density: 440\nOverride density: 420",
+          "physical_ppi_claimed": false,
+          "initial_screenshot": {
+            "file": "0213-bridge-fold7-inner-emulated-before-resize.png",
+            "width": 1080,
+            "height": 2520,
+            "sha256": "6542d20bfd7cc34013e5e8d776c72bc88606e7531e6161fa349bd99bd9258d30",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2520,
+              "content_entropy_bits": 6.055,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "screenshot": {
+            "file": "0219-bridge-fold7-inner-emulated.png",
+            "width": 1968,
+            "height": 2184,
+            "sha256": "78fdea9f5dec6482db837404e77cca736b89afb3b98e3e7b512ba1beb4b46c85",
+            "render_readiness": {
+              "width": 1968,
+              "height": 2184,
+              "content_entropy_bits": 4.694,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "preservation": {
+            "profile_id": "1794803141511965",
+            "learning_keys_compared": 2,
+            "same_task_checkpoint": true
+          }
+        }
+      ],
+      "restored_display_preservation": {
+        "profile_id": "1794803141511965",
+        "learning_keys_compared": 2,
+        "same_task_checkpoint": true
+      },
+      "video_dimension_scope": "The encoder size stays fixed within each clip and is recorded from ffprobe. Target display pixels are verified independently by WM and full-size PNGs.",
+      "fold7_pixel_specification_source": "https://news.samsung.com/global/samsung-galaxy-z-fold7-raising-the-bar-for-smartphones",
+      "fold7_scope": "Emulated Galaxy Z Fold7 portrait resolutions with a chosen Android 420-dpi test density. This logical density is not the physical pixel density (PPI).",
+      "physical_fold_verified": false,
+      "hinge_verified": false
+    }
+  },
+  "error": "No decodable actual video was recorded",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 720, in recording\n    yield\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 871, in task_roundtrips\n    require(PACKAGE not in resumed, \"App did not actually leave the foreground\")\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 71, in require\n    raise RuntimeError(message)\nRuntimeError: App did not actually leave the foreground\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1381, in main\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1347, in run\n    self.labs()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1065, in labs\n    self.result[\"word\"] = self.task_roundtrips(\"words\", \"Die Wortwerkstatt\", WORD_PROMPT, tokens=[2, 3, 0])\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 866, in task_roundtrips\n    with self.recording(topic + \"-pause-return\"):\n  File \"/usr/lib/python3.12/contextlib.py\", line 158, in __exit__\n    self.gen.throw(value)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 738, in recording\n    require(len(videos) == 1 and float(metadata.get(\"format\", {}).get(\"duration\", 0)) > 0,\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 71, in require\n    raise RuntimeError(message)\nRuntimeError: No decodable actual video was recorded\n",
+  "finished_utc": "2026-11-16T04:28:20Z"
+}

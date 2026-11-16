@@ -1,0 +1,93 @@
+{
+  "producer_commit": "b542db502b43c3efe384527450fdf0bb9c0dcd6a",
+  "tree": "77c31c76dfecd9557e607b4591f8321bc214432b",
+  "parent": "9886f6637589c23cbae23ccca311090c35cdea8e",
+  "branch": "qa/lumo-foreground-transition-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-foreground-transition",
+  "files": {
+    ".github/probes/lumo_nextgen_learning_android_probe.py": {
+      "bytes": 86111,
+      "sha256": "5c5c8a7483c9d4c6e860febcf660613a10acee8ba07e1e3dec5c1cd0eb0c88a9"
+    },
+    "docs/nextgen/evidence/android_foreground_transition_20261116/README.md": {
+      "bytes": 3256,
+      "sha256": "c498105ce88057c7b0e6bde40e5c9ae6ed74190c289be4005e8f5020097cb033"
+    },
+    "docs/nextgen/evidence/android_foreground_transition_20261116/final-green.log": {
+      "bytes": 2102,
+      "sha256": "f491c4b5da5cb4ff022f01cfcbfb3c3fd5f9d0a845bc7c7ddde94af8b8b01428"
+    },
+    "docs/nextgen/evidence/android_foreground_transition_20261116/green-initial-fixture-key-error.log": {
+      "bytes": 2869,
+      "sha256": "fc7d5ec6134a1268f69fdc39cd00b7e0be2c647e90de21a354478bcb9477d59e"
+    },
+    "docs/nextgen/evidence/android_foreground_transition_20261116/green.log": {
+      "bytes": 2102,
+      "sha256": "8adacdd11934732a794270d6163188a714bdf60ae95339937b3297e212962df5"
+    },
+    "docs/nextgen/evidence/android_foreground_transition_20261116/red-provenance.json": {
+      "bytes": 742,
+      "sha256": "510f170947485452b2b6eb900e75d85a152a1ea13801ab11657a1688dcc8a978"
+    },
+    "docs/nextgen/evidence/android_foreground_transition_20261116/red-test.py.txt": {
+      "bytes": 76017,
+      "sha256": "f7bc63cc98ce1cd08df90f030ad96e65984db564eaa48f99996d3d8b6065a854"
+    },
+    "docs/nextgen/evidence/android_foreground_transition_20261116/red.log": {
+      "bytes": 12635,
+      "sha256": "7178567f3a7e0239792647bb0ab8765cf6d14ac699a2bb0c3750b8b342af33ee"
+    },
+    "docs/nextgen/evidence/android_foreground_transition_20261116/source.json": {
+      "bytes": 2088,
+      "sha256": "733315139e30b4f5a661551a4038b91db7209e37c17d000447c05b68daea0520"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0163-bridge-paused-activity.txt": {
+      "bytes": 225,
+      "sha256": "6af66e3d052d864726c772d5c75b890469f26d09088f3e4391b5c5957c8d36dd"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0270-words-pause-return-ffprobe.json": {
+      "bytes": 4225,
+      "sha256": "e1a41b9edc2fb90dbbf5ce55ff3042b390e1cb3af02852da61f35ab7c0c94f0e"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0270-words-pause-return.mp4": {
+      "bytes": 120524,
+      "sha256": "3a30f75438608975984850032dd7f59469ac2f9e1288f6745cebec0f23c592a5"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/README.md": {
+      "bytes": 1325,
+      "sha256": "dce824e479f235ea811132a849233511a9e30707b139afeb547d02e7e348b989"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/learning-android-result.json": {
+      "bytes": 26858,
+      "sha256": "5f31c9edcea7c27e6e794db2d7ea2b6f8ecfb3746211435e44aa6889843a3ba8"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json": {
+      "bytes": 1496,
+      "sha256": "1e410f82edc61c31a8fa0c08de6aba4a257103d428a7f8821e0e2bce9976d629"
+    },
+    "tools/android_qa/tests/test_nextgen_learning_android_probe.py": {
+      "bytes": 76024,
+      "sha256": "3dd4e9767c61e2fdc66ac823b85e027c5f43ebf6308fbd38e6d4db72d405f69e"
+    }
+  },
+  "tests": {
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "log": "docs/nextgen/evidence/android_foreground_transition_20261116/final-green.log",
+    "overlapping_intermediate_runs_not_added": true
+  },
+  "original_android": {
+    "source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "run": 43800892196,
+    "job": 133088843594,
+    "artifact": 14197925395,
+    "status": "FAIL",
+    "archiveSha256": "f2d1ca9232685fe4d25fcd8d6bd745a687f08ac7eb4ef1c5ec36e469d0ba03f4"
+  },
+  "remote_actions": false,
+  "product_sources_changed": false,
+  "new_android_execution": false,
+  "worktree_clean": true,
+  "raw_log_trailing_whitespace_preserved": true
+}

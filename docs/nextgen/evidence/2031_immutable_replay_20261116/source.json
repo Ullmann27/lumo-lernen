@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "9886f6637589c23cbae23ccca311090c35cdea8e",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "productSourceUnchanged": true,
+  "testedBeforeCommit": true,
+  "testWorkingTreeDirty": true,
+  "componentFiles": {
+    ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py": {
+      "bytes": 21096,
+      "sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c"
+    },
+    ".github/probes/run_lumo_nextgen_2031_replay_android.sh": {
+      "bytes": 944,
+      "sha256": "535ffcc68ad4242c66f97ec36ca230f38e53e191a0ad84e80e9320971ca55088"
+    },
+    ".github/workflows/lumo-nextgen-2031-replay.yml": {
+      "bytes": 6214,
+      "sha256": "325b0cbdc6f0af416ca3f5481599a9918b52daaeedb90c10cfcac20f5cb9c5d7"
+    },
+    ".github/workflows/lumo-nextgen-2031-replay-publish.yml": {
+      "bytes": 2034,
+      "sha256": "eb1d4f1af74a5d6fb290d25e731cd69f89e74940f9ca8b717c4b22421cbaad3e"
+    },
+    "config/nextgen-2031-replay.json": {
+      "bytes": 851,
+      "sha256": "ef86eb63f316252d9a7b5dafb6a13e982f449c428a1b58cd9ba6b67bc7a49001"
+    },
+    "tools/nextgen/prepare_2031_learning_replay_release.py": {
+      "bytes": 17952,
+      "sha256": "acdfa74f980a4e017724792e55740465182b24249031a4f8479eb421b5e7f347"
+    },
+    "tools/nextgen/test_prepare_2031_learning_replay_release.py": {
+      "bytes": 9851,
+      "sha256": "89d7daf02c500134da2dc6ac71c5df1befaecd816ee876b3d037ccf22e46c0de"
+    },
+    "tools/android_qa/tests/test_nextgen_2031_replay.py": {
+      "bytes": 19097,
+      "sha256": "5a3f985095fb156ecb85a82eb0665fbac962ebd931077c209828d540925878e1"
+    }
+  },
+  "qaBoundFilesAtComponentTest": {
+    ".github/workflows/lumo-nextgen-2031-replay.yml": {
+      "bytes": 6214,
+      "sha256": "325b0cbdc6f0af416ca3f5481599a9918b52daaeedb90c10cfcac20f5cb9c5d7"
+    },
+    ".github/workflows/lumo-nextgen-2031-replay-publish.yml": {
+      "bytes": 2034,
+      "sha256": "eb1d4f1af74a5d6fb290d25e731cd69f89e74940f9ca8b717c4b22421cbaad3e"
+    },
+    ".github/probes/run_lumo_nextgen_2031_replay_android.sh": {
+      "bytes": 944,
+      "sha256": "535ffcc68ad4242c66f97ec36ca230f38e53e191a0ad84e80e9320971ca55088"
+    },
+    ".github/probes/lumo_nextgen_learning_android_probe.py": {
+      "bytes": 82520,
+      "sha256": "f4f4b1426cc99a69aab5850f388f4b40b3c95464eaccc8f112eb00c13bf09157"
+    },
+    ".github/probes/lumo_nextgen_current_reference_android_probe.py": {
+      "bytes": 7200,
+      "sha256": "7f5074b592e4dde1b8159575ec578ec36a2fae36d50d8e3642715ce8ca01b97c"
+    },
+    ".github/probes/lumo_nextgen_reference_android_probe.py": {
+      "bytes": 44199,
+      "sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2"
+    },
+    ".github/probes/lumo_nextgen_native_reader.py": {
+      "bytes": 5817,
+      "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97"
+    },
+    ".github/probes/creative_android_probe.py": {
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced"
+    },
+    ".github/probes/flutter_surface_readiness.py": {
+      "bytes": 4078,
+      "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc"
+    },
+    "scripts/probes/pr207_android_smoke.py": {
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e"
+    },
+    "scripts/probes/pr207_android_ui_probe.py": {
+      "bytes": 2032,
+      "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4"
+    },
+    "scripts/verify_android_apk.py": {
+      "bytes": 3688,
+      "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc"
+    },
+    "tools/android_qa/rooted_emulator.py": {
+      "bytes": 12111,
+      "sha256": "93131a46afe4f1a4987ab36323541007ff15f5cb3579f2cd677f049091b7444b"
+    },
+    "tools/android_qa/native_ocr_tiles.py": {
+      "bytes": 8243,
+      "sha256": "0365c7f57551c3f2b5efb2c4d5f7d16886cd93638f7e4be7a75c6d0fc6838704"
+    },
+    "tools/android_qa/native_surface_readiness.py": {
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+    },
+    ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py": {
+      "bytes": 21096,
+      "sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c"
+    },
+    "tools/nextgen/prepare_current_learning_release.py": {
+      "bytes": 11091,
+      "sha256": "4943b286dde1c44eb7236341bb6c16b25ccbfe27e2ed6cec7cbb623c86d19994"
+    },
+    "tools/nextgen/prepare_learning_replay_release.py": {
+      "bytes": 12087,
+      "sha256": "7f9c6688cf4681e07b74d2aa71234d7e241f1e7bbf72c0fff8d5b8acecfab6b7"
+    },
+    "tools/nextgen/prepare_2031_learning_replay_release.py": {
+      "bytes": 17952,
+      "sha256": "acdfa74f980a4e017724792e55740465182b24249031a4f8479eb421b5e7f347"
+    },
+    "tools/nextgen/public_learning_download.py": {
+      "bytes": 10945,
+      "sha256": "662bab0e72ea81baa69ee5acc4e5a120af4339cc2d6d2a6d5db5d7e939c57656"
+    },
+    "tools/nextgen/test_prepare_2031_learning_replay_release.py": {
+      "bytes": 9851,
+      "sha256": "89d7daf02c500134da2dc6ac71c5df1befaecd816ee876b3d037ccf22e46c0de"
+    },
+    "tools/nextgen/test_public_learning_download.py": {
+      "bytes": 16318,
+      "sha256": "f987f98f383b3a601d9f8988226e80e24265cf4371eb1170598461c1d47270af"
+    },
+    "tools/android_qa/tests/test_nextgen_2031_replay.py": {
+      "bytes": 19097,
+      "sha256": "5a3f985095fb156ecb85a82eb0665fbac962ebd931077c209828d540925878e1"
+    },
+    "tools/android_qa/tests/test_nextgen_learning_android_probe.py": {
+      "bytes": 66485,
+      "sha256": "487aa7923a89a685c4a41e1ca28827d3d059c5ff6cec2d13bad5ef69d7880b79"
+    },
+    "tools/android_qa/tests/test_nextgen_reference_android_probe.py": {
+      "bytes": 21398,
+      "sha256": "37d05a50da8cab01af9d7d08a8122d8745d722041573ddb71b84eee59649b2fb"
+    },
+    "tools/android_qa/tests/test_nextgen_current_candidate.py": {
+      "bytes": 15487,
+      "sha256": "b48002a7916ae856b30c715318ecf98fde2dceaf0ee63a598c95744d8eb7bb48"
+    },
+    "tools/android_qa/tests/test_nextgen_native_reader.py": {
+      "bytes": 10808,
+      "sha256": "7278cc973050f2f3db82ce6a1e4c7960630875163965104101142a85bcdd940b"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9.png": {
+      "bytes": 660918,
+      "sha256": "4e2486f2c838f7391f56c14b62b60b610b27d87b43ff4184875cb5a013e5fbf8"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/0114-pattern-native-question-9-ocr.json": {
+      "bytes": 19373,
+      "sha256": "45dbbdc4dec317ce4bcc5e3b72d9767a7390302f54bb7186b12ada2dfee32c2e"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_pattern_wrapped_43790709991/manifest.json": {
+      "bytes": 1254,
+      "sha256": "d3e43abe10c20bc9927127cec0c8f9d28dbde0ca0e5bfeacc4850a12e3ac64ff"
+    },
+    "config/nextgen-2031-replay.json": {
+      "bytes": 851,
+      "sha256": "ef86eb63f316252d9a7b5dafb6a13e982f449c428a1b58cd9ba6b67bc7a49001"
+    }
+  },
+  "logs": {
+    "original-arm64-artifact.json": {
+      "bytes": 763,
+      "sha256": "f675685081c714f836cc0644a3d7a818e2169f844747ae6a9e8c4427b23c58a9"
+    },
+    "original-x86-upload.log": {
+      "bytes": 1206,
+      "sha256": "61db61f623c1b054d6d300880679909180e2f6e9405bc3622e9b0c3f7dfb6723"
+    },
+    "syntax-cli.json": {
+      "bytes": 1671,
+      "sha256": "3d1838255ce47ae51b1385a82a85d8b40d0bf056258049f3e6ce6a6e40786892"
+    },
+    "component-gates.log": {
+      "bytes": 5108,
+      "sha256": "7bef337190d20920eccdc076e22ecdc2d635b9e2affaa670ad3c7a95be3415a0"
+    },
+    "original-android-failure-artifact.json": {
+      "bytes": 773,
+      "sha256": "d0a3d6711677ba86100954b35833ed59c44a0fae3ddc6ab3ec6a3aee31257b06"
+    }
+  },
+  "originalFailureRetained": "FAIL",
+  "tests": {
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "kind": "local Python gate fixtures and Git/shell processes; no Android execution"
+  },
+  "pendingIntegration": "Home-transition reader and its original fixtures are separate; root must integrate and check before QA activation.",
+  "newAndroidExecution": false,
+  "apkRebuilt": false,
+  "remoteActions": false,
+  "publicationActivationConfigPresent": false
+}
