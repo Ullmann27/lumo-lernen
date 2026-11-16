@@ -65,15 +65,45 @@ void main() {
       expect(tester.getSize(entry).width, greaterThanOrEqualTo(48));
       await tap(tester, 'lab-open-3d');
       expect(native.payload, isNotNull);
-      expect(native.payload!['kind'], 'task_card');
+      expect(native.payload!['kind'], switch (mode) {
+        LabMode.bridge => 'bridge_ten',
+        LabMode.word => 'syllables',
+        LabMode.english => 'english_objects',
+        LabMode.nature => 'plant_parts',
+        LabMode.fraction => 'fraction_parts',
+        LabMode.pattern => 'pattern',
+      });
       expect(native.payload!['sourceTaskId'], before.taskId);
       expect(native.payload!['prompt'], before.prompt);
-      expect(native.payload!['answerChoices'], before.answerChoices);
       expect(native.payload!['scope'], bus.learningIdentity.value!.toJson());
-      expect(
-          (native.payload!['objectIds'] as List)
-              .every(bus.taskContext.value!.objectIds.contains),
-          isTrue);
+      final problem = topic.problems.first;
+      switch (mode) {
+        case LabMode.bridge:
+          expect(native.payload!['a'], problem.start);
+          expect(native.payload!['b'], problem.addend);
+          break;
+        case LabMode.word:
+          expect(native.payload!['word'], problem.expected);
+          expect(native.payload!['syllables'], [
+            for (final index in problem.tokenOrder) problem.tokens[index],
+          ]);
+          break;
+        case LabMode.english:
+          expect(native.payload!['word'], problem.expected);
+          expect(native.payload!['objects'], contains(problem.expected));
+          break;
+        case LabMode.nature:
+          expect(native.payload!['plantPart'], 'root');
+          break;
+        case LabMode.fraction:
+          expect(native.payload!['b'], problem.denominator);
+          expect(native.payload!['extra'], problem.modelTarget - 1);
+          break;
+        case LabMode.pattern:
+          expect(native.payload!['sequence'], problem.pattern);
+          expect(native.payload!['choices'], problem.tokens);
+          break;
+      }
       expect(native.payload!.containsKey('correctAnswer'), isFalse);
       expect(native.payload!.containsKey('reward'), isFalse);
       expect(bus.taskContext.value!.helpLevel, greaterThanOrEqualTo(1));

@@ -167,6 +167,25 @@ void main() {
       });
       final taskId = bus.taskContext.value!.taskId;
       final native = find.widgetWithText(OutlinedButton, 'Mit Lumo in 3D');
+      if (kind == 'story' || kind == 'mini') {
+        // These task contexts contain no independently validated 3D model.
+        // Do not revive the former universal text board.
+        expect(native, findsNothing);
+        expect(payload, isNull);
+        final identity = bus.learningIdentity.value!;
+        final choice = bus.taskContext.value!.answerChoices.first;
+        expect(
+            bus.requestLearningAction(LumoLearningAction.proposeAnswer,
+                identity: identity, candidate: choice),
+            isTrue);
+        await _frames(tester);
+        expect(_proposal(kind), findsOneWidget);
+        expect(bus.taskContext.value!.taskId, taskId);
+        expect(bus.taskContext.value!.attempts, 0);
+        expect(app.state.stars, 0);
+        expect(tester.takeException(), isNull);
+        return;
+      }
       expect(tester.getSize(native).height, greaterThanOrEqualTo(48));
       await _tap(tester, native);
       expect(payload, isNotNull);

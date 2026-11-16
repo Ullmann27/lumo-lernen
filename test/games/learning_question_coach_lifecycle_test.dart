@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
@@ -290,23 +289,8 @@ void main() {
   });
 
   testWidgets(
-      'native entry records existing help and keeps the exact scope during native pause',
+      'text-only questions never open a generic native card; existing hint stays scoped',
       (tester) async {
-    const channel = MethodChannel('lumo_lernen/bridge');
-    final messenger = tester.binding.defaultBinaryMessenger;
-    final returned = Completer<Map<String, dynamic>>();
-    Map<Object?, Object?>? launch;
-    messenger.setMockMethodCallHandler(channel, (call) async {
-      if (call.method == 'launch3D') {
-        launch = Map<Object?, Object?>.from(call.arguments as Map);
-        return returned.future;
-      }
-      return null;
-    });
-    addTearDown(() {
-      if (!returned.isCompleted) returned.complete({'destination': 'learning'});
-      messenger.setMockMethodCallHandler(channel, null);
-    });
     var help = 0;
     await mount(
         tester,
@@ -323,33 +307,20 @@ void main() {
                   onHint: () => set(() => help++),
                   child: const Text('Welches Wort beginnt mit B?'),
                 )));
-    final native = find.byKey(const ValueKey('question-lumo-native'));
-    expect(tester.getSize(native).height, greaterThanOrEqualTo(48));
-    await tester.ensureVisible(native);
-    await tester.tap(native);
-    await _frames(tester, 40);
-    expect(help, 1);
-    expect(launch, isNotNull);
-    expect(launch!['scene'], 'learning');
-    final lesson = launch!['learning'] as Map;
-    expect(lesson['sourceTaskId'], 'native-question');
-    expect(lesson['explanation'], 'Höre auf den ersten Laut.');
+    expect(find.byKey(const ValueKey('question-lumo-native')), findsNothing);
     final identity = bus.learningIdentity.value!;
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    expect(
+        bus.requestLearningAction(LumoLearningAction.hint,
+            identity: identity),
+        isTrue);
     await _frames(tester);
-    expect(identity.matches(bus.learningIdentity.value), isTrue);
-    expect(bus.taskContext.value!.answering, isTrue);
-    returned.complete({'destination': 'learning'});
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-    await _frames(tester, 20);
+    expect(help, 1);
+    expect(bus.taskContext.value!.helpLevel, 1);
     expect(bus.taskContext.value!.taskId, 'native-question');
     expect(app.state.stars, 0);
     await tester.pumpWidget(const SizedBox.shrink());
     await _frames(tester);
     expect(tester.takeException(), isNull);
   }, variant: TargetPlatformVariant.only(TargetPlatform.android));
+
 }
