@@ -1351,6 +1351,7 @@ for path in subprocess.check_output([
     "docs/nextgen/evidence/2031-qa-integration-20261116",
     "docs/nextgen/evidence/core_conversation_scope_20261116",
     "docs/nextgen/evidence/core_resize_scope_20261116",
+    "docs/nextgen/evidence/core_menu_presenter_20261116",
 ], cwd=ROOT, text=True).splitlines():
     source(path)
 
