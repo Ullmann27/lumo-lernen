@@ -1,0 +1,12 @@
+{
+  "producerCommit": "7c42d6da303ba42de2c7e94707dd187ff3660f1f",
+  "producerTree": "3bc55ca0c094756b1c48e533616499f814b14440",
+  "producerBase": "fd4a1eea31bcf1aeff41086e3e739da1136933d2",
+  "rootCherryPick": "c64708e253af39501bd40e45c01e3d5a1c694a3f",
+  "verifiedFileCountAtIntegration": 10,
+  "allProducerFileHashesMatchAtThisIntegration": true,
+  "review": "Root read exact small outer keyed-subtree change and actual narrow-to-wide dialog regression. Existing task ValueKey remains unchanged; real navigation renews outer key.",
+  "recordedOwnerJoinedWidgetTestsPassed": 15,
+  "earlier14TestsOverlap": true,
+  "newAndroidOrPhysicalFoldResultClaimed": false
+}

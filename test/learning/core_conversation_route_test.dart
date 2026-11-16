@@ -15,6 +15,7 @@ import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/user_profile.dart';
 import 'package:lumo_lernen/features/agent/lumo_agent_content.dart';
 import 'package:lumo_lernen/features/learning/learning_content.dart';
+import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 final _bus = LumoCompanionRequests.instance;
@@ -34,8 +35,9 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
   await _frames(tester);
 }
 
-Future<LumoAppState> _openCore(WidgetTester tester) async {
-  await tester.binding.setSurfaceSize(const Size(600, 1400));
+Future<LumoAppState> _openCore(WidgetTester tester,
+    {Size size = const Size(600, 1400)}) async {
+  await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
   final date = DateTime(2026, 11, 16);
   await tester.pumpWidget(MaterialApp(
@@ -235,6 +237,40 @@ void main() {
         findsOneWidget);
     await _tap(tester, find.byTooltip('Zurück zur Aufgabe'));
     expect(_bus.taskContext.value!.taskId, current.taskId);
+    expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('actual Core and own dialog survive the shell width breakpoint',
+      (tester) async {
+    final app = await _openCore(tester, size: const Size(430, 1400));
+    final core = tester.state(find.byType(LearningContent));
+    final task = _bus.taskContext.value!;
+    final rewards = (app.state.stars, app.state.xp, app.learningDailyDone());
+    await _tap(tester, find.byKey(const ValueKey('mobile-lumo-button')));
+    expect(_bus.taskContext.value!.taskId, task.taskId);
+    await tester.binding.setSurfaceSize(const Size(1000, 1400));
+    await _frames(tester);
+    final renderer =
+        tester.widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer));
+    expect((
+      identical(tester.state(find.byType(LearningContent)), core),
+      renderer.task.taskInstanceId,
+      _bus.taskContext.value?.taskId
+    ), (
+      true,
+      task.taskId,
+      task.taskId
+    ),
+        reason:
+            'Width changes must retain the Core State, model and dialog task.');
+    expect(
+        find.descendant(
+            of: find.byType(LumoAgentContent),
+            matching: find.text(task.prompt)),
+        findsOneWidget);
+    await _tap(tester, find.byTooltip('Zurück zur Aufgabe'));
+    expect(_bus.taskContext.value!.taskId, task.taskId);
     expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
     expect(tester.takeException(), isNull);
   });

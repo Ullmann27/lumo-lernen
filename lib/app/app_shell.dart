@@ -65,6 +65,8 @@ class _AppShellState extends State<AppShell>
   final _appState = LumoAppState();
   final _learningNavigation = LearningNavigation();
   final _coreConversation = LearningConversationEntry();
+  GlobalKey _coreSubtreeKey = GlobalKey(debugLabel: 'core-learning-content');
+  String? _coreSubtreeScope;
   int _browsingProfileGeneration = 0;
   late final _embeddedGames = EmbeddedGameService(
     appState: _appState,
@@ -515,6 +517,11 @@ class _AppShellState extends State<AppShell>
 
   Widget _buildContent({bool fullBleed = false}) {
     final section = _appState.state.section;
+    if (section != LumoSection.exercises || _isReadingMode()) {
+      // A later real navigation gets its own subtree, even while the previous
+      // section is still fading out. Width-only reparenting retains this key.
+      _coreSubtreeScope = null;
+    }
     switch (section) {
       case LumoSection.home:
         return HomeContent(
@@ -553,11 +560,19 @@ class _AppShellState extends State<AppShell>
           );
         }
         final state = _appState.state;
-        return LearningContent(
-          key: ValueKey(
-              '${state.grade}:${state.subject}:${state.unit}:${state.sessionKind.name}'),
-          appState: _appState,
-          conversationEntry: _coreConversation,
+        final scope =
+            '${state.grade}:${state.subject}:${state.unit}:${state.sessionKind.name}';
+        if (_coreSubtreeScope != scope) {
+          _coreSubtreeScope = scope;
+          _coreSubtreeKey = GlobalKey(debugLabel: 'core-learning-content');
+        }
+        return KeyedSubtree(
+          key: _coreSubtreeKey,
+          child: LearningContent(
+            key: ValueKey(scope),
+            appState: _appState,
+            conversationEntry: _coreConversation,
+          ),
         );
       case LumoSection.reading:
         return ReadingContent(
