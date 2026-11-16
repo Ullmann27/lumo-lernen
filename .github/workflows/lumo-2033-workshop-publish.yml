@@ -13,7 +13,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 105
     env:
       GH_TOKEN: ${{ github.token }}
       TAG: lumo-2033-workshop-test-20261116
@@ -36,8 +36,19 @@ jobs:
           PY
           export RUN_ID="$(python3 -c 'import json;print(json.load(open("config/lumo-2033-workshop-publish-trigger.json"))["build_run_id"])')"
           export SHA="$(python3 -c 'import json;print(json.load(open("config/lumo-2033-workshop-publish-trigger.json"))["build_head_sha"])')"
-          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq .conclusion)" = success
           test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq .head_sha)" = "$SHA"
+          # Complete delivery even if this publication job starts during compilation.
+          completed=false
+          for attempt in $(seq 1 320); do
+            STATUS="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq .status)"
+            if [ "$STATUS" = completed ]; then
+              completed=true
+              break
+            fi
+            sleep 15
+          done
+          test "$completed" = true
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq .conclusion)" = success
       - name: Download exactly the signed verified APK artifact
         run: |
           set -euo pipefail
