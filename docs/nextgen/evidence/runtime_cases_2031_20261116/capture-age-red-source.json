@@ -1,0 +1,23 @@
+{
+  "phase": "RED",
+  "base_commit": "9cfa4b0760403ac4b489bea440d3ea6040e09dc0",
+  "exit_code": 1,
+  "source_state": "committed probe; one new slow-capture subcase in working-tree test",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 30885,
+      "sha256": "9b86c48ff904b24384128860437a95c05ea83ddeef00f945076bfef76cce6fbd"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 20546,
+      "sha256": "646ae5749b6d335f072669ae2efcde6a70d07607f8eccf963fe8da120501e5ed"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red.log",
+      "bytes": 4044,
+      "sha256": "4b30eb4c19fb9b861c128859808d8f1cc5c7f5f4848f2f515505c928eb58f2b2"
+    }
+  ]
+}
