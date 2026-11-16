@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import importlib.util
 import io
 import itertools
@@ -361,6 +362,158 @@ class OriginalAndCoreEvidenceTest(unittest.TestCase):
                 after = self.snapshot()
                 after["learning"]["flutter.lumo_attempt_log_v1"] = json.dumps(entries)
                 probe.verify_core_submission(before, after, task)
+
+
+PANEL_FIXTURE = Path(__file__).parent / "fixtures/nextgen_panel_43816667737"
+PANEL_BEFORE = "0343-runtime-banana-slower-panel.png"
+PANEL_AFTER = "0344-runtime-failure-current-screen.png"
+
+
+class PanelFixtureSequence:
+    """Real unchanged PNGs; explicitly simulated captures, clock and OCR rows.
+
+    The original run never reached panel OCR. These constructed rows test the
+    caller's gates, not Android OCR success or a newly recorded second frame.
+    """
+    def __init__(self, frames):
+        self.frames, self.current = frames, None
+        self.now, self.captures, self.ocr_reads = 0.0, 0, 0
+        self.inputs, self.saved = [], {}
+        self.rows = [
+            {"text": "Frag Lumo", "bounds": [80, 690, 440, 750]},
+            {"text": "Zurück", "bounds": [780, 700, 940, 750]},
+            {"text": "Noch einmal", "bounds": [110, 1700, 400, 1740]},
+            {"text": "Langsamer", "bounds": [480, 1700, 740, 1740]},
+            {"text": "Ein Hinweis", "bounds": [780, 1700, 990, 1740]},
+        ]
+        spec = importlib.util.spec_from_file_location(
+            "panel_fixture_surface", ROOT / "tools/android_qa/native_surface_readiness.py")
+        self.surface = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.surface)
+        self.instance = object.__new__(probe.ReferenceProbe)
+        self.instance.out, self.instance.counter = PANEL_FIXTURE, 0
+        self.instance.native_tap = lambda *args: self.inputs.append(("question", args))
+        self.instance.save = lambda name, value: self.saved.__setitem__(name, copy.deepcopy(value))
+        self.instance.base = SimpleNamespace(adb=lambda *args, **kwargs: self.inputs.append(("scroll", args)))
+        self.instance.reader = SimpleNamespace(capture=self.capture, inspect_surface=self.inspect,
+            image_lines=self.ocr, target_observation=self.surface.target_observation)
+
+    def sleep(self, seconds):
+        self.now += seconds
+
+    def capture(self, *args, **kwargs):
+        self.current = self.frames[min(self.captures, len(self.frames) - 1)]
+        self.captures += 1
+        self.now += self.current.get("seconds", 1)
+        source = PANEL_FIXTURE / self.current["file"]
+        return {"file": source.name, "sha256": probe.digest(source), "width": 1080, "height": 2340}
+
+    def inspect(self, source, **kwargs):
+        frame = self.surface.inspect_surface(source, **kwargs)
+        if self.current.get("partial"):
+            frame["acceptable_for_target_sampling"] = False
+        return frame
+
+    def ocr(self, *args, **kwargs):
+        self.ocr_reads += 1
+        self.now += self.current.get("ocr_seconds", 0)
+        return self.current.get("rows", self.rows)
+
+
+class QuestionPanelReadinessTest(unittest.TestCase):
+    def execute(self, sequence):
+        with patch.object(probe.time, "monotonic", lambda: sequence.now), \
+                patch.object(probe.time, "sleep", sequence.sleep):
+            return sequence.instance.question_repeat_target()
+
+    def test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap(self):
+        sequence = PanelFixtureSequence([
+            {"file": PANEL_BEFORE}, {"file": PANEL_AFTER}, {"file": PANEL_AFTER}])
+        target = self.execute(sequence)
+        self.assertEqual(target, (110, 1700, 400, 1740))
+        self.assertEqual(sequence.captures, 3)
+        self.assertEqual(sequence.inputs, [("question", ("Lumo fragen", "banana-open-question"))])
+        self.assertEqual(next(iter(sequence.saved.values()))["state"], "PANEL_NOT_YET_OBSERVED")
+
+    def test_original_fixture_hashes_pixels_and_observed_single_tap_are_bound(self):
+        manifest = json.loads((PANEL_FIXTURE / "manifest.json").read_text())
+        for name, record in manifest["files"].items():
+            raw = (PANEL_FIXTURE / name).read_bytes()
+            self.assertEqual(len(raw), record["bytes"])
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), record["sha256"])
+        with self.assertRaises(probe.QuestionPanelNotObserved):
+            probe.observed_panel_background(PANEL_FIXTURE / PANEL_BEFORE)
+        self.assertEqual(probe.observed_panel_background(PANEL_FIXTURE / PANEL_AFTER), (40, 606, 1040, 1803))
+        journal = json.loads((PANEL_FIXTURE / "0342-runtime-banana-open-question-surface-readiness.json").read_text())
+        self.assertEqual(journal["status"], "TOUCH_SENT")
+        self.assertEqual(journal["label"], "Lumo fragen")
+        self.assertEqual(len(journal["frames"]), 2)
+        self.assertTrue(journal["frames"][-1]["target"]["stable_observed_target"])
+        self.assertEqual(journal["touch"], [691, 1974])
+
+    def test_missing_panel_never_passes_and_uses_only_the_original_twelve_attempts(self):
+        sequence = PanelFixtureSequence([{"file": PANEL_BEFORE}])
+        with self.assertRaisesRegex(RuntimeError, "did not settle"):
+            self.execute(sequence)
+        self.assertEqual(sequence.captures, 12)
+        self.assertEqual(len(sequence.inputs), 1)
+        self.assertEqual(sequence.ocr_reads, 0)
+        self.assertEqual(len(sequence.saved), 12)
+
+    def test_panel_first_seen_on_final_attempt_cannot_supply_two_stable_frames(self):
+        sequence = PanelFixtureSequence([{"file": PANEL_BEFORE}] * 11 + [{"file": PANEL_AFTER}])
+        with self.assertRaisesRegex(RuntimeError, "did not settle"):
+            self.execute(sequence)
+        self.assertEqual(sequence.captures, 12)
+        self.assertEqual(len(sequence.inputs), 1)
+
+    def test_scattered_pixels_and_changed_geometry_are_not_readiness_waits(self):
+        for answers, message, captures in (
+            ([RuntimeError("Ambiguous scattered question-panel pixels")], "Ambiguous scattered", 1),
+            ([(40, 606, 1040, 1803), (60, 606, 1060, 1803)], "geometry changed", 2),
+        ):
+            with self.subTest(message=message):
+                sequence = PanelFixtureSequence([{"file": PANEL_AFTER}])
+                with patch.object(probe, "observed_panel_background", side_effect=answers), \
+                        self.assertRaisesRegex(RuntimeError, message):
+                    self.execute(sequence)
+                self.assertEqual(sequence.captures, captures)
+                self.assertEqual(len(sequence.inputs), 1)
+
+    def test_panel_disappearance_after_observation_does_not_reuse_its_heading_or_target(self):
+        sequence = PanelFixtureSequence([{"file": PANEL_AFTER}, {"file": PANEL_BEFORE}, {"file": PANEL_AFTER}])
+        with self.assertRaisesRegex(RuntimeError, "panel disappeared"):
+            self.execute(sequence)
+        self.assertEqual(sequence.captures, 2)
+        self.assertEqual(len(sequence.inputs), 1)
+
+    def test_partial_transition_requires_fresh_heading_and_two_fresh_targets(self):
+        sequence = PanelFixtureSequence([
+            {"file": PANEL_AFTER}, {"file": PANEL_AFTER, "partial": True},
+            {"file": PANEL_AFTER}, {"file": PANEL_AFTER}])
+        self.assertEqual(self.execute(sequence), (110, 1700, 400, 1740))
+        self.assertEqual(sequence.captures, 4)
+        sequence = PanelFixtureSequence([
+            {"file": PANEL_AFTER}, {"file": PANEL_AFTER, "partial": True}, {"file": PANEL_AFTER}])
+        sequence.frames[-1]["rows"] = sequence.rows[2:]
+        with self.assertRaisesRegex(RuntimeError, "heading missing"):
+            self.execute(sequence)
+        self.assertEqual(sequence.captures, 3)
+        self.assertEqual(len(sequence.inputs), 1)
+
+    def test_missing_heading_or_shortcut_sibling_does_not_authorize_a_target(self):
+        sequence = PanelFixtureSequence([{"file": PANEL_AFTER}])
+        sequence.frames[0]["rows"] = sequence.rows[2:]
+        with self.assertRaisesRegex(RuntimeError, "heading missing"):
+            self.execute(sequence)
+        self.assertEqual(len(sequence.inputs), 1)
+        sequence = PanelFixtureSequence([{"file": PANEL_AFTER}])
+        sequence.frames[0]["rows"] = sequence.rows[:3]
+        with self.assertRaisesRegex(RuntimeError, "did not settle"):
+            self.execute(sequence)
+        self.assertEqual(sequence.captures, 12)
+        self.assertEqual(sum(kind == "question" for kind, _ in sequence.inputs), 1)
+        self.assertEqual(sum(kind == "scroll" for kind, _ in sequence.inputs), 12)
 
 
 if __name__ == "__main__":
