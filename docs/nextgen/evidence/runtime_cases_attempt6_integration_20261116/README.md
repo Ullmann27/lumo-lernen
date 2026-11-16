@@ -5,3 +5,7 @@ Nur `caseAttempt` wurde von5 auf6 erhöht. Alle übrigen Bytes entsprechen QA59a
 Die [begründete Entscheidung](../ci-2031-runtime-cases-onboarding-transfer-failure/bounded-fresh-run-decision.json) erlaubt genau einen frischen unveränderten Lauf nach dem belegten Onboarding-Transportabbruch. Keine erweiterte ADB-Ausnahme, keine gelockerte Beobachtbarkeit und kein wiederverwendeter alter Android-PASS.
 
 [QA-Handoff](qa-preparation-handoff.json), [Root-Quellenprüfung](preactivation-source-binding.json). Der noch ausstehende echte Lauf muss alle vier Fälle selbst beobachten.
+
+## Tatsächliche Aktivierung
+
+[Run **43828196598**](https://github.com/Ullmann27/lumo-lernen/actions/runs/43828196598), Job **133166913493**, wurde am **16.11.2026 um08:03:13UTC** auf QA **1c84838538f79100f660fefc776d8ba7472a61a2**, Tree **d98ca3f9ec556ad39867cc7cacd0804382eaa8d3**, gestartet. Quelle/identischer APK-Download und vorgeschaltete Hostprüfer sind bestanden; Androidfälle laufen, kein Ergebnis vorweggenommen. Die Root-Voraktivierung ist öffentlich **5facfac37bd0920b9168e0192bf350856648cce8**. [Aktivierungsmetadaten](activation.json), [QA-Quelle](published-qa.json).
