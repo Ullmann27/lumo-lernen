@@ -1,0 +1,100 @@
+{
+  "schema": "lumo.nextgen.2028.replay.implementation.handoff",
+  "version": 1,
+  "producer_commit": "1916e57e73d2d7b8ea756f0e3d849edc9e3623b7",
+  "producer_tree": "cd9103f801d019b7b8b0fc46dbc51ce00e7125e6",
+  "branch": "qa/lumo-nextgen-2028-replay-implementation-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-2028-replay",
+  "worktree_clean": true,
+  "integration": {
+    "cherry_pick_only": "1916e57e73d2d7b8ea756f0e3d849edc9e3623b7",
+    "dependency_commit": "3daf4e8",
+    "dependency_note": "Only Root publisher files from 02baa73 and replay workflow from bd40cbc, verified byte-identical; Root already owns them.",
+    "permission_reader_fix": "e28061d28d5afac9e43c01df29bc7e38ba1835c0",
+    "permission_reader_integrated_in_this_producer": false
+  },
+  "apk_source": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "source_build_run": 43774460935,
+  "source_build_run_conclusion": "failure",
+  "x86_artifact_id": 14185954865,
+  "x86_apk_sha256": "6b3a2f62ea80144b5af397e6353d1a52f2210109531a1edd49a1b22ec2bc4fa9",
+  "mode": "immutable-replay",
+  "artifact_name": "lumo-nextgen-2028-replay-evidence",
+  "artifact_result_paths": [
+    "android/original-android/learning-android-result.json",
+    "android/reference-android/reference-android-result.json",
+    "replay-result.json"
+  ],
+  "checker_results": {
+    "replay": {
+      "pass": 14,
+      "fail": 0
+    },
+    "current": {
+      "pass": 12,
+      "fail": 0
+    },
+    "publisher": {
+      "pass": 7,
+      "fail": 0
+    },
+    "bash_syntax": "PASS"
+  },
+  "android_runtime_executed": false,
+  "apk_rebuilt": false,
+  "remote_changed": false,
+  "historical_original_current_probes_changed": false,
+  "files": [
+    {
+      "path": ".github/probes/README_2028_REPLAY.md",
+      "bytes": 5282,
+      "sha256": "0a6c03acaba57da409978325f9ff3f294a3fd29114aecdf303525cbcb2787bbd"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2028_replay_reference_android_probe.py",
+      "bytes": 20987,
+      "sha256": "235a05d6369d8c332cd8e4824dccc37c37ab40c6bbb8a3752c1b2ba5c9e98f81"
+    },
+    {
+      "path": ".github/probes/run_lumo_nextgen_2028_replay_android.sh",
+      "bytes": 944,
+      "sha256": "61a0dd14a55350e1340a7d869695689d0ce60ee9cae8b60881dd707d2cef8a0a"
+    },
+    {
+      "path": "config/nextgen-2028-replay.json",
+      "bytes": 851,
+      "sha256": "3f4ff9c6b9d33a92878fb741337837068b211698c12483a64e4dce242f29d32e"
+    },
+    {
+      "path": "docs/nextgen/evidence/2028-replay-checkers-20261116/bash-syntax.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/nextgen/evidence/2028-replay-checkers-20261116/current-gates.log",
+      "bytes": 2382,
+      "sha256": "09bd74ca69978b560c964506eebc0cf31b0aaa75ee4f171ea1d70481aaa799c1"
+    },
+    {
+      "path": "docs/nextgen/evidence/2028-replay-checkers-20261116/publication-gates.log",
+      "bytes": 1476,
+      "sha256": "8a94ed001ce514929bde436025fb5a27cc4a1833e5fe824e1ccfd2ada88d3d2b"
+    },
+    {
+      "path": "docs/nextgen/evidence/2028-replay-checkers-20261116/replay-gates.log",
+      "bytes": 2620,
+      "sha256": "44fa8832141dd06e7b92f16dc8a93319eecfee15817b7a189dfe6c26c9fea0d6"
+    },
+    {
+      "path": "docs/nextgen/evidence/2028-replay-checkers-20261116/runs.json",
+      "bytes": 1135,
+      "sha256": "4221ba06d8e0d74dbb8e51ad1a3b5785c99d1ee5899b7b38252ef18d2df77fdc"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2028_replay.py",
+      "bytes": 17691,
+      "sha256": "3353ec1a32db146342a5b84c4dd6716a2399fb9931b6465bd18a1d2dd9e47cc0"
+    }
+  ]
+}

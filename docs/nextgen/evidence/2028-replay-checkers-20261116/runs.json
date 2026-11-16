@@ -1,0 +1,60 @@
+{
+  "kind": "local_checker_only",
+  "androidRuntimeExecuted": false,
+  "runs": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_2028*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "replay-gates.log"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_current_candidate.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "current-gates.log"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/nextgen",
+        "-p",
+        "test_prepare_2028_learning_replay_release.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "publication-gates.log"
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        ".github/probes/run_lumo_nextgen_2028_replay_android.sh"
+      ],
+      "exit_code": 0,
+      "log": "bash-syntax.log"
+    }
+  ]
+}
