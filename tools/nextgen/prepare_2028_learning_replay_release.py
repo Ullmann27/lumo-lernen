@@ -54,6 +54,9 @@ TAG = "lumo-nextgen-learning-0.13.16-2028"
 APK_NAME = "Lumo-Lernen-Neu-0.13.16-2028.apk"
 REPLAY_ENTRY = ".github/probes/lumo_nextgen_2028_replay_reference_android_probe.py"
 QA_BOUND_FILES = (
+    REPLAY_WORKFLOW,
+    PUBLICATION_WORKFLOW,
+    ".github/probes/run_lumo_nextgen_2028_replay_android.sh",
     ".github/probes/lumo_nextgen_learning_android_probe.py",
     ".github/probes/lumo_nextgen_current_reference_android_probe.py",
     ".github/probes/lumo_nextgen_reference_android_probe.py",
@@ -66,7 +69,8 @@ QA_BOUND_FILES = (
 
 
 def verify_config(config):
-    require(config.get("schemaVersion") == 1 and config.get("apkSourceCommit") == SOURCE,
+    require(type(config.get("schemaVersion")) is int and config["schemaVersion"] == 1 and
+            config.get("apkSourceCommit") == SOURCE,
             "Wrong immutable 2028 publication configuration")
     qa, run = config.get("qaCommit"), config.get("qaRun")
     require(isinstance(qa, str) and re.fullmatch(r"[0-9a-f]{40}", qa) and qa != SOURCE and

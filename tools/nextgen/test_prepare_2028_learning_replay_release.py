@@ -38,7 +38,7 @@ class ImmutablePublicationTest(unittest.TestCase):
 
     def test_qa_identity_cannot_be_substituted_for_apk_source_or_build_run(self):
         self.assertEqual(release.verify_config(self.config)[:2], (self.qa, self.run))
-        for field, value in (("schemaVersion", 2), ("apkSourceCommit", self.qa),
+        for field, value in (("schemaVersion", 2), ("schemaVersion", True), ("apkSourceCommit", self.qa),
                               ("qaCommit", release.SOURCE), ("qaCommit", "not-a-commit"),
                               ("qaRun", release.SOURCE_RUN), ("qaRun", True), ("qaRun", -1)):
             with self.subTest(field=field, value=value), self.assertRaises(RuntimeError):
