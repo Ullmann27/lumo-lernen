@@ -37,3 +37,7 @@ Der vollständige neue Lauf [43785937519](https://github.com/Ullmann27/lumo-lern
 ## Bestanden: vollständige Quellvalidierung 2029
 
 Job `133033472392` des aktuellen Laufs ist erfolgreich: **2.887 Flutter PASS / 0 FAIL / 202 vorhandene SKIP**, Analyzer **0 Fehler / 4 Warnungen / 274 Hinweise**, **109 Host-Testmethoden**, tatsächlicher Godot-4.6.3-Import und zwölf native Programme mit **55.552 Prüfaussagen**. Projektvalidator **118 PASS / 0 WARN / 0 FAIL**. Die 247 Inventar-Hashes und 18 Schutzdateien wurden am tatsächlichen CI-Quellstand geprüft. Alle 55 Originalartefaktdateien und der vollständige verlustfrei komprimierte Joblog stehen in `evidence/ci-2029-validation/`. Der isolierte Avatar-ObjectDB-Hinweis bleibt unverändert dokumentiert. Der neue APK-Build läuft; Android und Download sind noch nicht bestanden.
+
+## Bestanden: neue signierte APKs 2029
+
+Buildjob `133037491223` ist erfolgreich. ARM64: **535.021.166 Byte**, SHA-256 `bc8fdd9c1f70d7d6e374b5424029e127531525deb4f2dec1e69de4ea8f6ee0c3`; x86_64: **538.184.171 Byte**, SHA-256 `01e0c126930b48cb8089f0671ed9238b5dc6ded903e288ad7c1fda452ed3cf0f`. Paket, Version, vorhandene Testsignatur, ABI, 16-KiB-Ausrichtung, Native-Pin und lokale Sprachassets sind an den tatsächlichen APKs geprüft. Der vollständige ARM64-Artefakt- und APK-Bytehash wurde zusätzlich lokal bestätigt. Originalnachweise: `evidence/ci-2029-build/`. Androidjob `133040408296` läuft; ein Android-PASS oder öffentlicher Download ist noch nicht bestätigt.
