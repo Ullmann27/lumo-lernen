@@ -1,0 +1,112 @@
+test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence) ... FAIL
+test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) ... 
+  test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='') ... FAIL
+  test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='Activity manager is still loading') ... FAIL
+  test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='topResumedActivity=null\n') ... FAIL
+  test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='      topResumedActivity=ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n  ResumedActivity: ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}      topResumedActivity=ActivityRecord{294d60e u0 dev.ullmann.lumo.lumo_lernen.coachpreview/.MainActivity t7}\n  ResumedActivity: ActivityRecord{294d60e u0 dev.ullmann.lumo.lumo_lernen.coachpreview/.MainActivity t7}') ... FAIL
+  test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='      topResumedActivity=ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n  ResumedActivity: ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}  ResumedActivity: unknown\n') ... FAIL
+test_observation_returning_after_deadline_cannot_pass (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_observation_returning_after_deadline_cannot_pass) ... FAIL
+test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump) ... ERROR
+test_original_zero_duration_video_cannot_mask_primary_home_failure (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_cannot_mask_primary_home_failure) ... FAIL
+test_original_zero_duration_video_still_fails_an_otherwise_successful_body (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_still_fails_an_otherwise_successful_body) ... ok
+
+======================================================================
+ERROR: test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 228, in test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump
+    result = item.task_roundtrips('words', 'Die Wortwerkstatt', probe.WORD_PROMPT, tokens=[2, 3, 0])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/.github/probes/lumo_nextgen_learning_android_probe.py", line 871, in task_roundtrips
+    require(PACKAGE not in resumed, "App did not actually leave the foreground")
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/.github/probes/lumo_nextgen_learning_android_probe.py", line 71, in require
+    raise RuntimeError(message)
+RuntimeError: App did not actually leave the foreground
+
+======================================================================
+FAIL: test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 260, in test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence
+    self.assertGreater(clock.now, 1)
+AssertionError: 0.1 not greater than 1
+
+======================================================================
+FAIL: test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 247, in test_empty_malformed_or_ambiguous_foreground_never_passes
+    with patch.object(probe, 'time', clock), self.assertRaisesRegex(
+                                             ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='Activity manager is still loading')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 247, in test_empty_malformed_or_ambiguous_foreground_never_passes
+    with patch.object(probe, 'time', clock), self.assertRaisesRegex(
+                                             ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='topResumedActivity=null\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 247, in test_empty_malformed_or_ambiguous_foreground_never_passes
+    with patch.object(probe, 'time', clock), self.assertRaisesRegex(
+                                             ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='      topResumedActivity=ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n  ResumedActivity: ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}      topResumedActivity=ActivityRecord{294d60e u0 dev.ullmann.lumo.lumo_lernen.coachpreview/.MainActivity t7}\n  ResumedActivity: ActivityRecord{294d60e u0 dev.ullmann.lumo.lumo_lernen.coachpreview/.MainActivity t7}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 252, in test_empty_malformed_or_ambiguous_foreground_never_passes
+    self.assertIn(raw, [p.read_text() for p in Path(tmp).glob('*.txt')])
+AssertionError: '      topResumedActivity=ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n  ResumedActivity: ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}      topResumedActivity=ActivityRecord{294d60e u0 dev.ullmann.lumo.lumo_lernen.coachpreview/.MainActivity t7}\n  ResumedActivity: ActivityRecord{294d60e u0 dev.ullmann.lumo.lumo_lernen.coachpreview/.MainActivity t7}' not found in []
+
+======================================================================
+FAIL: test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) (raw='      topResumedActivity=ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}\n  ResumedActivity: ActivityRecord{294d60e u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t7}  ResumedActivity: unknown\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 247, in test_empty_malformed_or_ambiguous_foreground_never_passes
+    with patch.object(probe, 'time', clock), self.assertRaisesRegex(
+                                             ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_observation_returning_after_deadline_cannot_pass (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_observation_returning_after_deadline_cannot_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 269, in test_observation_returning_after_deadline_cannot_pass
+    with patch.object(probe, 'time', clock), self.assertRaisesRegex(
+                                             ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_original_zero_duration_video_cannot_mask_primary_home_failure (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_cannot_mask_primary_home_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/.github/probes/lumo_nextgen_learning_android_probe.py", line 720, in recording
+    yield
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 314, in test_original_zero_duration_video_cannot_mask_primary_home_failure
+    raise error
+RuntimeError: App did not actually leave the foreground
+
+During handling of the above exception, another exception occurred:
+
+RuntimeError: No decodable actual video was recorded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 312, in test_original_zero_duration_video_cannot_mask_primary_home_failure
+    with self.assertRaisesRegex(RuntimeError, primary) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "App did not actually leave the foreground" does not match "No decodable actual video was recorded"
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.217s
+
+FAILED (failures=8, errors=1)
