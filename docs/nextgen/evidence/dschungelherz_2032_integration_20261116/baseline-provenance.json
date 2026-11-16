@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-16T05:55:31.819192+00:00",
+  "repository": "https://github.com/Ullmann27/lumo-lernen",
+  "branch": "integration/lumo-learning-dschungelherz-2032-20261116",
+  "remoteBaseline": {
+    "commit": "428619f45ccd945a11b806765245302aee9bcffb",
+    "tree": "c5bd967c126f9a3e1585fc7061ae526162170ff4",
+    "parent": "dc6f7f562c903dd631f010834a852edc50268285",
+    "ref": "refs/heads/integration/lumo-nextgen-learning-20261115",
+    "observedVia": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/ref/heads/integration/lumo-nextgen-learning-20261115"
+  },
+  "parallelLocalHandoff": {
+    "commit": "08c9a3cbbc6fa9ea03a4190dfd64d3193a2959e2",
+    "tree": "c5bd967c126f9a3e1585fc7061ae526162170ff4",
+    "sameTreeAsRemoteBaseline": true,
+    "comparison": "git diff --exit-code 08c9a3cbbc6fa9ea03a4190dfd64d3193a2959e2 428619f45ccd945a11b806765245302aee9bcffb"
+  },
+  "priorRemoteBaseline": "dc6f7f562c903dd631f010834a852edc50268285",
+  "protectedProductDeltaFromPriorBaseline": {
+    "paths": [
+      "lib",
+      "assets",
+      "pubspec.yaml",
+      "pubspec.lock",
+      "config/godot-source.json"
+    ],
+    "changedFiles": []
+  },
+  "reusedReaderFix": {
+    "originalCommit": "7b25eefe22212af2eab190aa757cc65bc2939733",
+    "scope": "Current frame, complete wrapped Banane status; original failed PNG and negative tests retained. No gameplay changes or weakened acceptance."
+  },
+  "validation": {
+    "hostTests": 199,
+    "failed": 0,
+    "evidence": "inherited-host-gates.json",
+    "androidRuntimeExecutedHere": false,
+    "newApkBuiltHere": false
+  },
+  "newCandidate": {
+    "provisionalVersionName": "0.13.20",
+    "provisionalVersionCode": 2032,
+    "nativePin": "pending_reviewed_native_integration",
+    "releaseAccepted": false
+  }
+}

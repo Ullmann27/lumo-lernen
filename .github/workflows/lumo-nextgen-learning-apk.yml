@@ -2,7 +2,9 @@ name: LUMO Next Generation – integrated learning APK
 
 on:
   push:
-    branches: [integration/lumo-nextgen-learning-20261115]
+    branches:
+      - integration/lumo-nextgen-learning-20261115
+      - integration/lumo-learning-dschungelherz-2032-20261116
     paths: [config/nextgen-release.json]
   workflow_dispatch:
 

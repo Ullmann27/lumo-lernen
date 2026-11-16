@@ -1,0 +1,9 @@
+# Dschungelherz / Learning candidate 2032 integration
+
+This branch starts from the live learning integration commit `428619f45ccd945a11b806765245302aee9bcffb`. It includes the completed supplemental Android probes and the original-frame Banane reader correction. Its Git tree is exactly the same as local handoff `08c9a3cbbc6fa9ea03a4190dfd64d3193a2959e2`: `c5bd967c126f9a3e1585fc7061ae526162170ff4`. The different commit IDs describe different history/metadata, not different product bytes. The predecessor is `dc6f7f562c903dd631f010834a852edc50268285`; lib, assets, both pubspec files and the Godot pin did not change between that predecessor and this baseline.
+
+`baseline-provenance.json` records the exact baseline and comparison. `inherited-host-gates.json` and its log record an independent rerun on this baseline: 199 host tests passed, zero failures. These tests include the unchanged original Banane screenshot, the complete two-line phrase, rejection of an incomplete/wrong-number phrase, the current candidate contract and bounded supplemental runtime probes. This is host-side verification, not a new Android execution or a release approval.
+
+The existing APK workflow additionally accepts this isolated integration branch. The original branch trigger, exact source checks, protected learning checks, APK/signature checks, both Android tours and publication prerequisites remain enforced. Changing only this workflow or this evidence does not trigger a candidate build because the push path remains `config/nextgen-release.json`.
+
+The final native source SHA and incremented release identity are pending the reviewed native integration. The inherited coverage snapshot has four stale probe/test hashes; it must be regenerated from the committed candidate before build activation. No historical APK or Android evidence is relabeled as this candidate.

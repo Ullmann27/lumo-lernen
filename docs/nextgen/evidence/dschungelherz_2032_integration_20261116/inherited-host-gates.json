@@ -1,0 +1,115 @@
+{
+  "sourceCommit": "428619f45ccd945a11b806765245302aee9bcffb",
+  "sourceTree": "c5bd967c126f9a3e1585fc7061ae526162170ff4",
+  "recordedUtc": "2026-11-16T05:54:20.092037+00:00",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_learning_android_probe.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "summary": "Ran 81 tests in 0.375s | OK"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_reference_android_probe.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "summary": "Ran 27 tests in 0.054s | OK"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_current_candidate.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "summary": "Ran 12 tests in 0.053s | OK"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_native_reader.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "summary": "Ran 15 tests in 0.065s | OK"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_2031*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "summary": "Ran 42 tests in 0.144s | OK"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/nextgen",
+        "-p",
+        "test_prepare_2031_learning_replay_release.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "summary": "Ran 9 tests in 0.003s | OK"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/nextgen",
+        "-p",
+        "test_public_learning_download.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "summary": "Ran 13 tests in 0.008s | OK"
+    }
+  ],
+  "logBytes": 39939,
+  "logSha256": "ca29ff67a4502fbff1832c048c209a531639e807c8dff430532c50ad1101431a",
+  "scope": "Independent inherited host/probe tests only; no Android runtime or release claim."
+}

@@ -21,7 +21,6 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = "6f4a8c4753f4d06d0b392da0789b8162b2faa71b"
-NATIVE_PUBLISHED_PIN = "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef"
 CATALOG_PATH = Path(sys.argv[1])
 CATALOG = json.loads(CATALOG_PATH.read_text())
 HEAD = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
@@ -60,6 +59,13 @@ def tests(*paths: str) -> list[dict]:
     for path in paths:
         source(path)
     return [{"path": path, "status": "present_no_recorded_run_matched"} for path in paths]
+
+
+NATIVE_SOURCE_REFERENCE = source("config/godot-source.json")
+NATIVE_SOURCE = json.loads(source_bytes(NATIVE_SOURCE_REFERENCE["path"]))
+NATIVE_SOURCE_PIN = NATIVE_SOURCE["revision"]
+if not re.fullmatch(r"[0-9a-f]{40}", NATIVE_SOURCE_PIN):
+    raise SystemExit("The configured native source must be an exact commit SHA.")
 
 
 SHELL = "lib/app/app_shell.dart"
@@ -154,7 +160,7 @@ AUTHORITIES = {
     },
     "flame": {
         "evaluation": source("lib/features/games/flame/lumo_jump_game.dart", "_showQuestion("),
-        "description": "Existing exact choice comparison for question blocks and three-answer chest streak; own game reward ledger. This is the 2D Flame learning game, not the excluded native Jungle.",
+        "description": "Existing exact choice comparison for question blocks and three-answer chest streak; own game reward ledger. This is the 2D Flame learning game; native Jungle is outside this learning inventory.",
     },
     "live": {
         "evaluation": source("lib/features/live/lumo_live_pro_screen.dart"),
@@ -667,6 +673,7 @@ document = {
         "inventoryMethod": "Executed finite Dart catalogs plus reviewed route dispatch, authority sources and import graph. File hashes fix the actual source snapshot.",
         "inventoryEntrySemantics": "The compatibility field 'routes' contains reviewed inventory entries: active/conditional screens, navigation, contracts, protected routes, and inactive legacy paths. Its length is not a count of currently reachable assessed tasks.",
         "excluded": ["Kart", "native Jungle/Dschungel"],
+        "exclusionScope": "Learning inventory only. Native games in the pinned APK require their own integration and runtime evidence.",
         "protected": "Writing trainer and journal internals; outer adapters only.",
         "nonCurriculumGames": "Memory, Connect Four, Dice Race and Star Trail retain game rules/rewards; no independent curriculum-answer task is claimed here.",
         "parallelOwnership": "Integrated Root snapshot. Delivered owner and Root checkpoints are recorded separately from their test logs and final release/device gates. No foreign worktree WIP is silently treated as delivered source.",
@@ -1139,7 +1146,7 @@ for gap in document["gaps"]:
 document["gaps"] += [
     {"id": "conversation_followup", "status": "closed_source_and_recorded_targeted_run", "owner": "conversation", "description": "Live, 2D Flame and the shared Cards/Quiz coach native entry are integrated in 3123d3247775fcdc42a16c2bcc5c51e1ab98c4c9. Producer ca3f48ef961b4a50e95c6dffca2785d818191842 and evidence 749de5603d86c45a60ff7e34ef9e69a03fb974d9 supply the recorded 56-test run; final current-Root/device QA is separate."},
     {"id": "native_entry_followup", "status": "closed_source_and_recorded_targeted_runs", "owner": "Root", "description": "CrossGrade, Photo, Story and MiniGame direct native entries and scoped handoffs have a recorded 35-test joined run in b193899565110e5c7a26f73520a943b261887e63. Lab adds six exact task_card entries with 24 recorded tests in a12c0376ba67872c75758fe340734810cb527456. One safe duplicate-choice narrowing followed the 35-test run; final CI must check the exact integrated source."},
-    {"id": "avatar_reference_followup", "status": "pinned_native_visual_device_review", "owner": "avatar + Root", "description": f"Published native source is pinned to {NATIVE_PUBLISHED_PIN}. This Flutter inventory does not itself prove the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof."},
+    {"id": "avatar_reference_followup", "status": "pinned_native_visual_device_review", "owner": "avatar + Root", "description": f"Configured native source is pinned to {NATIVE_SOURCE_PIN}. This Flutter inventory does not itself prove publication, the final Banane/card-overlap appearance, physical Fold behavior or device performance; no outstanding source delivery is inferred from that missing runtime proof."},
     {"id": "performance_device_gate", "status": "not_satisfied", "owner": "Root", "description": "Reported desktop measurement is 8 FPS, not evidence of 60 FPS. Physical Fold resize/rotation and real microphone operation are unproven."},
 ]
 finding_classes = {
@@ -1213,7 +1220,8 @@ document["sourceSnapshot"] = {
     "rawCatalogSha256": hashlib.sha256(CATALOG_PATH.read_bytes()).hexdigest(),
     "exporter": source("tools/nextgen/export_learning_catalog_test.dart"),
     "builder": source("tools/nextgen/build_coverage.py"),
-    "publishedNativeSourcePin": NATIVE_PUBLISHED_PIN,
+    "configuredNativeSourcePin": NATIVE_SOURCE_PIN,
+    "nativeSourceConfig": NATIVE_SOURCE_REFERENCE,
     "finalReleaseSourceCommit": None,
     "releaseStatus": "Root supplies final release SHA, APK provenance and CI/device results after integration.",
 }
@@ -1295,9 +1303,9 @@ def markdown(doc):
         "## Sichtbar offene Freigaben", "",
         "- Der frühere C5-Lauf 44/5 und die abgebrochene erste native Fixture bleiben Fehlerhistorie. Der korrigierte gemeinsame Native-Lauf hat **35/35**, der gelieferte Frage-Coach **56/56**, der neue Lab-Anschluss **24/24** aufgezeichnete Erfolge. Sie ersetzen die alten Pending-Aussagen für diese gezielten Bereiche, ergeben zusammen aber keinen vollständigen aktuellen Root-Testlauf.",
         "- Die 35-Test-Lieferung `b193899565110e5c7a26f73520a943b261887e63` enthält nach diesem Lauf noch eine enge Ablehnung mehrdeutiger normalisierter Auswahlwerte. Die finale CI muss deshalb den exakten integrierten Quellstand einschließlich dieser Verschärfung prüfen. Live, 2D Flame und der Quiz-/Cards-Coach sind in `3123d3247775fcdc42a16c2bcc5c51e1ab98c4c9` integriert; ihre Producer-/Test-Provenienz ist im JSON getrennt erfasst.",
-        f"- Der veröffentlichte native Quell-Pin lautet **`{NATIVE_PUBLISHED_PIN}`**. Dieser Flutter-Bestand allein belegt nicht die finale Banane-/Kartenoptik auf einem Gerät. Ein früherer Desktop-Review meldete **8 FPS**; das ist ein historischer Producer-Befund und keine Leistungsmessung der aktuellen Android-APK. Physischer Fold, reale Mikrofon-/Audioabläufe und die vollständige Android-Tour benötigen ihre eigenen aktuellen Belege.",
+        f"- Der konfigurierte native Quell-Pin lautet **`{NATIVE_SOURCE_PIN}`**. Dieser Flutter-Bestand allein belegt weder eine Veröffentlichung noch die finale Banane-/Kartenoptik auf einem Gerät. Ein früherer Desktop-Review meldete **8 FPS**; das ist ein historischer Producer-Befund und keine Leistungsmessung der aktuellen Android-APK. Physischer Fold, reale Mikrofon-/Audioabläufe und die vollständige Android-Tour benötigen ihre eigenen aktuellen Belege.",
         "- Die alten Deutsch-Lückensätze bleiben ohne App-Einstieg, weil mehrdeutiger Inhalt und direkte Belohnungsbuchung noch überprüft werden müssen. Exakte UI-Auswahl aller 236 Generatorfamilien und jede generierte Variante sind nicht durchgespielt.",
-        f"- **18 geschützte Schreib-/Journaldateien sind bytegleich** zu `{BASE}`; Einzelhashes stehen in JSON. Kart und nativer Dschungel bleiben ausgeschlossen. Der eigenständige 2D-Flame-Lernpfad bleibt im Inventar.",
+        f"- **18 geschützte Schreib-/Journaldateien sind bytegleich** zu `{BASE}`; Einzelhashes stehen in JSON. Kart und nativer Dschungel liegen außerhalb dieses Lerninventars; ihre Aufnahme in die native APK und ihre Laufzeitprüfung sind separat nachzuweisen. Der eigenständige 2D-Flame-Lernpfad bleibt im Inventar.",
         "- Finaler Release-SHA, signierte APK-Provenienz, CI-Ergebnis und Download werden von Root nach Integration ergänzt. Aus dieser Bestandsaufnahme folgt keine neue APK-Freigabe.", "",
         "## Reproduktion", "", "```bash",
         "flock --close /workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock \\",
