@@ -33,7 +33,7 @@ void main() {
     expect(native.toLaunchOptions().containsKey('correctAnswer'), isFalse);
   });
 
-  test('checked non-specialised task receives a 3D card with original choices',
+  test('unsupported 100 addition does not launch a misleading 3D answer card',
       () {
     final task = adapter.toTaskInstance(
       task: const LumoTask(
@@ -51,17 +51,11 @@ void main() {
       difficulty: 1,
     );
     expect(NativeLearningActivity.fromTask(task), isNull);
-    final card = NativeLearningActivity.forTask(task).toLaunchOptions();
-    expect(card['kind'], 'task_card');
-    expect(card['prompt'], task.prompt);
-    expect(card['answerChoices'], ['42', '32', '43']);
-    expect(card['sourceTaskId'], task.taskInstanceId);
-    expect(card.keys, isNot(contains('correctAnswer')));
-    expect(card.keys, isNot(contains('childId')));
-    expect(card.keys, isNot(contains('reward')));
+    expect(NativeLearningActivity.forTask(task), isNull,
+        reason: 'Flutter keeps the checked arithmetic task and its visual aids');
   });
 
-  test('specialist context uses its permitted hint and keeps assessment closed',
+  test('text-only specialist contexts remain in their real Flutter lesson',
       () {
     const context = LumoCompanionTaskContext(
       taskId: 'article-4',
@@ -72,10 +66,7 @@ void main() {
       answerChoices: ['der', 'die', 'das'],
       stepId: 'answer',
     );
-    final card = NativeLearningActivity.fromCompanionContext(context)!;
-    expect(card.toLaunchOptions()['explanation'], context.localHelp);
-    expect(card.toLaunchOptions()['stepId'], 'answer');
-    expect(card.toLaunchOptions()['answerChoices'], ['der', 'die', 'das']);
+    expect(NativeLearningActivity.fromCompanionContext(context), isNull);
     expect(
         NativeLearningActivity.fromCompanionContext(
             const LumoCompanionTaskContext(
@@ -84,13 +75,6 @@ void main() {
                 unit: 'Artikel',
                 prompt: 'Prüfungsaufgabe',
                 isExam: true)),
-        isNull);
-    expect(
-        NativeLearningActivity.fromCompanionContext(
-            const LumoCompanionTaskContext(
-                subject: 'Deutsch',
-                unit: 'Artikel',
-                prompt: 'Noch keine stabile Aufgabe')),
         isNull);
   });
 }
