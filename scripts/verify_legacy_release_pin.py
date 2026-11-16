@@ -161,6 +161,9 @@ APPROVED = {
     # 2028: real Android capability discovery for the existing learning host.
     # New candidate: the rejected 2027 APK/evidence cannot satisfy this build.
     2028: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+    # 2029: correct Flutter Lab reactivation after the actual 2028 return failure.
+    # Native identity is retained; new APK and full Android gates remain required.
+    2029: "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

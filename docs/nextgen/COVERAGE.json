@@ -2,9 +2,9 @@
   "schema": "lumo.nextgen.learning.coverage",
   "version": 2,
   "asOf": "2026-11-15",
-  "exportedAtUtc": "2026-11-15T23:21:16.336352+00:00",
+  "exportedAtUtc": "2026-11-16T01:16:23.717698+00:00",
   "sourceBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
-  "localSourceHead": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
+  "localSourceHead": "f3178bb418c84ad013cc18eaea89f48f7859119b",
   "scope": {
     "fullModernizationComplete": false,
     "allTaskVariantsReviewed": false,
@@ -553,6 +553,7 @@
           "status": "passed_in_recorded_targeted_run",
           "recordedRunRefs": [
             "lab_core",
+            "lab_route_return",
             "lab_native"
           ],
           "currentSnapshotRerun": false
@@ -562,6 +563,7 @@
           "status": "passed_in_recorded_targeted_run",
           "recordedRunRefs": [
             "lab_core",
+            "lab_route_return",
             "lab_native"
           ],
           "currentSnapshotRerun": false
@@ -578,7 +580,16 @@
           "path": "test/learning/lab_native_entry_test.dart",
           "status": "passed_in_recorded_targeted_run",
           "recordedRunRefs": [
+            "lab_route_return",
             "lab_native"
+          ],
+          "currentSnapshotRerun": false
+        },
+        {
+          "path": "test/learning/lab_conversation_return_test.dart",
+          "status": "passed_in_recorded_targeted_run",
+          "recordedRunRefs": [
+            "lab_route_return"
           ],
           "currentSnapshotRerun": false
         }
@@ -4329,7 +4340,7 @@
     }
   ],
   "catalogs": {
-    "sourceHead": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
+    "sourceHead": "f3178bb418c84ad013cc18eaea89f48f7859119b",
     "semantics": "Finite catalogs are enumerated; generated task variants are not.",
     "curriculumFamilies": [
       {
@@ -21770,6 +21781,30 @@
         "currentHeadSuiteRerun": false
       },
       {
+        "id": "lab_route_return",
+        "status": "passed",
+        "passed": 27,
+        "failed": 0,
+        "log": {
+          "path": "docs/nextgen/evidence/lab_route_return_20261116/green.log"
+        },
+        "logSha256": "063fccc3041165e09b53a00173a66a37d781ff306194ec0cb29f0bd75c228502",
+        "logStorageCommit": "f3178bb418c84ad013cc18eaea89f48f7859119b",
+        "executionSourceCommit": null,
+        "executionSourceCommitMeaning": "Post-run source checkpoint, where explicitly known; null is not inferred from the log storage commit.",
+        "executionScope": "owner_worktree_verified_by_recorded_source_hashes",
+        "tests": [
+          "test/learning/lab_conversation_return_test.dart",
+          "test/learning/lab_native_entry_test.dart",
+          "test/learning/nextgen_lab_bus_integration_test.dart",
+          "test/learning_lab_runtime_test.dart"
+        ],
+        "testListCompleteFromRecordedCommand": true,
+        "androidDeviceRun": false,
+        "realMicrophoneRun": false,
+        "currentHeadSuiteRerun": false
+      },
+      {
         "id": "lab_native",
         "status": "passed",
         "passed": 24,
@@ -23132,6 +23167,11 @@
       "readFrom": "worktree"
     },
     {
+      "path": "docs/nextgen/evidence/lab_route_return_20261116/green.log",
+      "sha256": "063fccc3041165e09b53a00173a66a37d781ff306194ec0cb29f0bd75c228502",
+      "readFrom": "worktree"
+    },
+    {
       "path": "docs/nextgen/evidence/learning_audio_owner_20261115/tests.log",
       "sha256": "c9fc30c9f0784d8f672770823ee88b5b844411faaa073a3989bc369192846222",
       "readFrom": "worktree"
@@ -23438,7 +23478,7 @@
     },
     {
       "path": "lib/features/learning/lab/learning_lab_screen.dart",
-      "sha256": "12512400840d989c9652afa285fb308c2bbaa8dbbb2ef2f3a642a2ef6638e5ad",
+      "sha256": "9ba19a3101125f1ae111c3ec963758a4edd914367ba8c31c69237055e2e9ab45",
       "readFrom": "worktree"
     },
     {
@@ -23922,6 +23962,11 @@
       "readFrom": "worktree"
     },
     {
+      "path": "test/learning/lab_conversation_return_test.dart",
+      "sha256": "ff5bc1ed4e8540ab78a2a24f907a6c1d36b3023fd4197c5e2ac93aaf11b8951b",
+      "readFrom": "worktree"
+    },
+    {
       "path": "test/learning/lab_native_entry_test.dart",
       "sha256": "3ffa23dbeb7784ad0fb75ed40ab78562518c233f8ae272aa16fa68a5de6f6906",
       "readFrom": "worktree"
@@ -24248,7 +24293,7 @@
     },
     {
       "path": "tools/nextgen/build_coverage.py",
-      "sha256": "46279688dc76f9857cd9eaa09a664c980211de200b625b7a66ef9b5465c529ec",
+      "sha256": "e3311bee66cac63e8715a9d5ad81e682ff93f93537253c4b3059254b50ced11c",
       "readFrom": "worktree"
     },
     {
@@ -24565,12 +24610,12 @@
             "editable": {
               "path": "lib/features/learning/lab/learning_lab_screen.dart",
               "symbol": "lab-answer",
-              "line": 1291
+              "line": 1298
             },
             "confirm": {
               "path": "lib/features/learning/lab/learning_lab_screen.dart",
               "symbol": "lab-check-answer",
-              "line": 1310
+              "line": 1317
             }
           }
         ],
@@ -24614,7 +24659,7 @@
             "source": {
               "path": "lib/features/learning/lab/learning_lab_screen.dart",
               "symbol": "lab-open-3d",
-              "line": 1183
+              "line": 1190
             },
             "buttonKeys": [
               "lab-open-3d"
@@ -24637,7 +24682,8 @@
       },
       "recordedTestRunRefs": [
         "lab_core",
-        "lab_native"
+        "lab_native",
+        "lab_route_return"
       ],
       "completeTaskBound3DProven": false
     },
@@ -29036,10 +29082,10 @@
     "activeSpecialistRoutes": "Actual specialist Academy entries with recorded widget route checks; separate from the general inventory count."
   },
   "sourceSnapshot": {
-    "committedProductHead": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
+    "committedProductHead": "f3178bb418c84ad013cc18eaea89f48f7859119b",
     "productWorkingTreeClean": true,
-    "catalogSourceHead": "daf6ca5e9f7df7b32a32ef987d067035ddb5328c",
-    "rawCatalogSha256": "a2b59178f2484b8721a16daab5babcd6c724cd3df69f2745d5545f6eb643195d",
+    "catalogSourceHead": "f3178bb418c84ad013cc18eaea89f48f7859119b",
+    "rawCatalogSha256": "194a7b1b4e6ab4dfc49542ce8d4469e445aeddd7a759ff416b756c8ae33be991",
     "exporter": {
       "path": "tools/nextgen/export_learning_catalog_test.dart"
     },

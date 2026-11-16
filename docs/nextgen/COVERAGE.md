@@ -1,6 +1,6 @@
 # Lernabdeckung – belegter integrierter Quellstand
 
-**Produkt-Snapshot: `daf6ca5e9f7df7b32a32ef987d067035ddb5328c`. `fullModernizationComplete` bleibt `false`.**
+**Produkt-Snapshot: `f3178bb418c84ad013cc18eaea89f48f7859119b`. `fullModernizationComplete` bleibt `false`.**
 Diese Matrix inventarisiert den ausgeführten Dart-Katalog, Einstiegsketten, fachliche Antwortgrenzen und vorhandene Testprotokolle. Ihre Einträge umfassen aktive und bedingte Lernwege, Navigation, Verträge, geschützte sowie inaktive Legacy-Pfade; ihre Gesamtzahl ist keine Zahl aktuell erreichbarer bewerteter Aufgaben. Sie ist keine Geräte- oder Releasefreigabe. [COVERAGE.json](COVERAGE.json) enthält IDs, Quellenhashes, klassifizierte Einträge, Typen, Adapter und Nachweisgrenzen.
 
 ## Tatsächlich erfasster Umfang
@@ -66,6 +66,7 @@ Die folgenden Zahlen stammen aus den eingecheckten oder mit dieser Matrix neu er
 | `assessment` | 11 bestanden / 0 fehlgeschlagen | `earlier_targeted_integration` | [flutter-tests.log](evidence/assessment-contract/flutter-tests.log) |
 | `pattern_navigation` | 4 bestanden / 0 fehlgeschlagen | `earlier_targeted_integration` | [integration_tests.log](evidence/c5_integration_20261115/integration_tests.log) |
 | `minigame_original_routes` | 6 bestanden / 0 fehlgeschlagen | `root_original_routes_before_native_followup` | [mini_game_routes_initial.log](evidence/remaining_integration_20261115/mini_game_routes_initial.log) |
+| `lab_route_return` | 27 bestanden / 0 fehlgeschlagen | `owner_worktree_verified_by_recorded_source_hashes` | [green.log](evidence/lab_route_return_20261116/green.log) |
 | `lab_native` | 24 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [tests.log](evidence/lab_native_20261115/tests.log) |
 | `remaining_native_joined` | 35 bestanden / 0 fehlgeschlagen | `root_targeted_integration_before_final_narrowing` | [remaining_native_joined.log](evidence/remaining_integration_20261115/remaining_native_joined.log) |
 | `game_question_coach` | 56 bestanden / 0 fehlgeschlagen | `owner_sources_integrated` | [focused-tests.log](../evidence/lumo-nextgen-game-questions/focused-tests.log) |
