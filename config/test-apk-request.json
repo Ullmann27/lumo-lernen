@@ -1,5 +1,5 @@
 {
-  "request": 2,
+  "request": 3,
   "version": "0.13.26+2038",
-  "note": "Zweiter Anlauf: Importer mit --single-threaded-scene (Absturz im ersten Lauf), Profil-Regal mit Karts."
+  "note": "Dritter Anlauf: Absturzursache im Godot-Import behoben (Bildliste war als Übersetzung importiert), Godot-Pin a363de2."
 }
