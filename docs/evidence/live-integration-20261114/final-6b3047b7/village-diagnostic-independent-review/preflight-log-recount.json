@@ -1,0 +1,52 @@
+{
+  "scope": "Independent reading/counting of existing Root logs, not repeated test execution.",
+  "logs": [
+    {
+      "file": "diagnostic-contracts.original.log",
+      "passed_counted": 35,
+      "skips_counted": 0,
+      "terminal": "OK",
+      "path": "/workspace/scratch/909ddb52fe7b/village-diagnostic-preflight/diagnostic-contracts.original.log",
+      "bytes": 7208,
+      "sha256": "b41974e88c94ce01c7dee143d117bdc5f3b0bfd9859fbe01bd399e11f35a2b6b",
+      "git_blob": "73bbf44514881c30be36fbbda065a616d0378c23"
+    },
+    {
+      "file": "integrated-observer-parity.original.log",
+      "passed_counted": 4,
+      "skips_counted": 0,
+      "terminal": "OK",
+      "path": "/workspace/scratch/909ddb52fe7b/village-diagnostic-preflight/integrated-observer-parity.original.log",
+      "bytes": 950,
+      "sha256": "6282dc5531e7f0b4e0a96bd0a6c774b814d2dd554330e70095f83f70842fb07a",
+      "git_blob": "5a361a376b1041d0be0358ff005a3e9fd5eb857f"
+    }
+  ],
+  "syntax_receipts": [
+    {
+      "name": "runner-syntax",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/run_unchanged_6b_village_diagnostic.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.007,
+      "log_bytes": 0,
+      "tail": ""
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/workspace/scratch/909ddb52fe7b/native-upstream-057-review/trigger-patch/bin/actionlint",
+        "-shellcheck=",
+        "-pyflakes=",
+        ".github/workflows/lumo-village-return-6b-diagnostic.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.03,
+      "log_bytes": 0,
+      "tail": ""
+    }
+  ]
+}
