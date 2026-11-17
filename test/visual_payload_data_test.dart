@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/core/math_task_templates.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/task_quality_guard.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
@@ -46,6 +47,46 @@ void main() {
     );
     return instance.visualPayload.data;
   }
+
+  // Fachprüfung Mathematik S6: Für „Brüche erweitern“ kamen keine Bilddaten
+  // an, die Pizza zeigte deshalb immer 1 von n Stücken.
+  group('fraction_expand parser', () {
+    test('uebergibt Zaehler, Nenner und Erweiterungszahl aus der Aufgabe', () {
+      final data = dataFor(
+        visual: 'fraction_expand',
+        prompt: 'Erweitere den Bruch 3/6 mit 2. Wie heißt der neue Bruch?',
+        answer: '6/12',
+        choices: const ['6/12', '3/12', '6/6', '5/8'],
+        requireValidTask: true,
+      );
+      expect(data['numerator'], 3);
+      expect(data['denominator'], 6);
+      expect(data['factor'], 2);
+    });
+
+    test('alle erzeugten Erweitern-Aufgaben bekommen ihre eigenen Bilddaten',
+        () {
+      final template = MathTaskTemplates.templates
+          .singleWhere((item) => item.id == 'g4_fraction_expand');
+      for (var seed = 0; seed < 120; seed++) {
+        final task = template.concretize(seed * 131 + 7);
+        final parts = RegExp(r'\d+')
+            .allMatches(task.prompt)
+            .map((match) => int.parse(match.group(0)!))
+            .toList();
+        final data = dataFor(
+          visual: task.visual,
+          prompt: task.prompt,
+          answer: task.answer,
+          choices: task.choices,
+          requireValidTask: true,
+        );
+        expect(data['numerator'], parts[0], reason: task.prompt);
+        expect(data['denominator'], parts[1], reason: task.prompt);
+        expect(data['factor'], parts[2], reason: task.prompt);
+      }
+    });
+  });
 
   group('clock parser', () {
     test('extrahiert hour und minute aus "Stunde 7 und Minute 30"', () {

@@ -139,6 +139,53 @@ void main() {
       expect(find.byType(FractionPizzaVisual), findsOneWidget);
     });
 
+    // Fachprüfung Mathematik S6: „Erweitere den Bruch 3/6 mit 2.“ zeigte
+    // eine Pizza mit 1 von 6 Stücken, weil keine Bilddaten ankamen und der
+    // Zähler dann auf 1 gesetzt wurde.
+    testWidgets('Erweitern zeigt den Bruch der Aufgabe, nicht 1/n',
+        (tester) async {
+      await tester.pumpWidget(wrap(FractionPizzaVisual(
+        task: buildTask(
+          type: VisualType.fractionPizza,
+          prompt: 'Erweitere den Bruch 3/6 mit 2. Wie heißt der neue Bruch?',
+          answer: '6/12',
+        ),
+      )));
+      expect(find.byKey(const ValueKey('fraction-pizza-3-6')), findsOneWidget);
+      expect(find.byKey(const ValueKey('fraction-pizza-1-6')), findsNothing);
+      // Die feiner geteilte Pizza ist noch ungefärbt: Der neue Zähler ist
+      // die Lösung und wird nicht gezeigt.
+      expect(find.byKey(const ValueKey('fraction-pizza-0-12')), findsOneWidget);
+      expect(find.byKey(const ValueKey('fraction-pizza-6-12')), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Erweitern mit Bilddaten: 5/6 mit 3', (tester) async {
+      await tester.pumpWidget(wrap(FractionPizzaVisual(
+        task: buildTask(
+          type: VisualType.fractionPizza,
+          prompt: 'Erweitere den Bruch 5/6 mit 3. Wie heißt der neue Bruch?',
+          answer: '15/18',
+          data: {'numerator': 5, 'denominator': 6, 'factor': 3},
+        ),
+      )));
+      expect(find.byKey(const ValueKey('fraction-pizza-5-6')), findsOneWidget);
+      expect(find.byKey(const ValueKey('fraction-pizza-0-18')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('ein einzelner Bruch im Text bestimmt Zähler und Nenner',
+        (tester) async {
+      await tester.pumpWidget(wrap(FractionPizzaVisual(
+        task: buildTask(
+          type: VisualType.fractionPizza,
+          prompt: 'Welcher Teil der Pizza ist 3/4?',
+        ),
+      )));
+      expect(find.byKey(const ValueKey('fraction-pizza-3-4')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
     testWidgets('clampt extrem grosse Nenner auf 12', (tester) async {
       // Painter clamped intern, das soll auch bei n > 12 nicht crashen.
       await tester.pumpWidget(wrap(FractionPizzaVisual(

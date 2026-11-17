@@ -450,13 +450,18 @@ class FractionPizzaVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final expansion = _expansion();
+    if (expansion != null) return _buildExpansion(expansion);
     final fractions = _allFractionsFromPrompt(task.prompt);
     if (fractions.length >= 2) {
       return _buildDual(fractions[0], fractions[1],
           operator: task.prompt.contains('+') ? '+' : '=');
     }
     final data = task.visualPayload.data;
-    final rawNum = _readInt(data['numerator']) ?? 1;
+    // Ohne Bilddaten gilt der Bruch aus der Aufgabe. Früher wurde der Zähler
+    // dann auf 1 gesetzt: „3/6“ erschien als Pizza mit 1 von 6 Stücken.
+    final rawNum = _readInt(data['numerator']) ??
+        (fractions.isNotEmpty ? fractions.first[0] : 1);
     final rawDen =
         _readInt(data['denominator']) ?? _denomFromPrompt(task.prompt);
     // FIX: Erst Nenner clampen, dann Zaehler an den geclampten Nenner clampen.
@@ -471,9 +476,82 @@ class FractionPizzaVisual extends StatelessWidget {
         child: SizedBox(
           width: 160,
           height: 160,
-          child: CustomPaint(
-              painter: _PizzaPainter(numerator: num, denominator: den)),
+          child: _pizza(num, den),
         ),
+      ),
+    );
+  }
+
+  /// Eine Pizza mit [numerator] gefärbten von [denominator] Stücken.
+  Widget _pizza(int numerator, int denominator) => Semantics(
+        key: ValueKey('fraction-pizza-$numerator-$denominator'),
+        label: 'Pizza: $numerator von $denominator Stücken gefärbt',
+        image: true,
+        child: CustomPaint(
+            painter:
+                _PizzaPainter(numerator: numerator, denominator: denominator)),
+      );
+
+  /// Zähler, Nenner und Erweiterungszahl einer Erweitern-Aufgabe, aus den
+  /// Bilddaten oder aus „Erweitere den Bruch 3/6 mit 2.“.
+  (int, int, int)? _expansion() {
+    final data = task.visualPayload.data;
+    final prompt = RegExp(r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
+        .firstMatch(task.prompt.trim());
+    final numerator =
+        _readInt(data['factor'] == null ? prompt?.group(1) : data['numerator']);
+    final denominator = _readInt(
+        data['factor'] == null ? prompt?.group(2) : data['denominator']);
+    final factor = _readInt(data['factor'] ?? prompt?.group(3));
+    if (numerator == null || denominator == null || factor == null) return null;
+    if (numerator < 1 ||
+        denominator < 1 ||
+        numerator > denominator ||
+        factor < 2 ||
+        denominator * factor > 48) {
+      return null;
+    }
+    return (numerator, denominator, factor);
+  }
+
+  /// Erweitern: links der gegebene Bruch, rechts dieselbe Pizza feiner
+  /// geteilt und noch ungefärbt. Wie viele feine Stücke zu färben sind,
+  /// findet das Kind selbst heraus.
+  Widget _buildExpansion((int, int, int) expansion) {
+    final (numerator, denominator, factor) = expansion;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 16, 14, 14),
+      decoration: _stageDecoration(LumoColors.practice),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                  width: 110,
+                  height: 110,
+                  child: _pizza(numerator, denominator)),
+              const Icon(Icons.arrow_forward_rounded,
+                  size: 30, color: Color(0xFF7C2D12)),
+              SizedBox(
+                  width: 110,
+                  height: 110,
+                  child: _pizza(0, denominator * factor)),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Jedes Stück wird in $factor gleiche Teile geschnitten.',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 13,
+              fontWeight: FontWeight.w800,
+              color: Color(0xFF7C2D12),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -493,9 +571,7 @@ class FractionPizzaVisual extends StatelessWidget {
           SizedBox(
             width: 110,
             height: 110,
-            child: CustomPaint(
-              painter: _PizzaPainter(numerator: numA, denominator: denA),
-            ),
+            child: _pizza(numA, denA),
           ),
           Text(
             operator,
@@ -509,9 +585,7 @@ class FractionPizzaVisual extends StatelessWidget {
           SizedBox(
             width: 110,
             height: 110,
-            child: CustomPaint(
-              painter: _PizzaPainter(numerator: numB, denominator: denB),
-            ),
+            child: _pizza(numB, denB),
           ),
         ],
       ),
@@ -570,7 +644,7 @@ class _PizzaPainter extends CustomPainter {
           true,
           Paint()
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 2.4
+            ..strokeWidth = denominator > 12 ? 1.2 : 2.4
             ..color = Colors.white);
     }
     // Outer ring

@@ -801,6 +801,21 @@ class LegacyLumoTaskAdapter {
       };
     }
 
+    // Erweitern: Die Pizza muss den Bruch aus der Aufgabe zeigen. Ohne diese
+    // Daten zeichnete das Bild immer 1 von n Stücken.
+    if (task.visual == 'fraction_expand') {
+      final expansion =
+          RegExp(r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
+              .firstMatch(task.prompt.trim());
+      if (expansion == null) return const <String, Object?>{};
+      return <String, Object?>{
+        'operation': 'fraction_expansion',
+        'numerator': int.parse(expansion[1]!),
+        'denominator': int.parse(expansion[2]!),
+        'factor': int.parse(expansion[3]!),
+      };
+    }
+
     if (task.visual == 'times_table' || task.visual == 'written_mul' ||
         task.visual == 'division') {
       final operation = RegExp(r'^\s*(?:Schriftlich:\s*)?(\d+)\s*([×·*:÷])\s*(\d+)\s*=\s*\?\s*$')
