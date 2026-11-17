@@ -36,7 +36,11 @@ void main() {
     expect(tester.getSize(workshop).height, greaterThanOrEqualTo(48));
     expect(workshop.hitTestable(), findsOneWidget);
     await tester.tap(workshop);
-    await tester.pump(const Duration(milliseconds: 350));
+    // Start the Material route, then give its transition a second frame.
+    // One long first pump only starts the route animation at its end.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    await tester.pump();
     expect(find.byType(LearningLabHub), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
