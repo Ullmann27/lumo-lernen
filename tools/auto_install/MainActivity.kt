@@ -224,7 +224,7 @@ class MainActivity : FlutterActivity() {
                         }
                         if (game == "learning") {
                             val learning = call.argument<Map<String, Any?>>("learning")
-                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts", "english_objects", "pattern", "task_card")) {
+                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts", "english_objects", "pattern", "task_card", "tutor")) {
                                 result.error("invalid_learning", "Die Lernansicht ist nicht verfügbar.", null)
                                 return@setMethodCallHandler
                             }
