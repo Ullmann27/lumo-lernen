@@ -45,7 +45,7 @@ Daraus von Claude entschieden (kein weiteres Nachfragen):
 - **Memory:** Der Flutter-Look ist die Untergrenze; der Optik-Commit `5a79c14c` bleibt draußen.
 - **Kartenspiele:** UNO entfällt. Drei eigene Spiele am 3D-Tisch mit traditionellen, gemeinfreien Grundregeln und eigener Lumo-Gestaltung: ein Stichspiel („Sternenstich"), ein Anlegespiel („Sternenleiter") und ein Sammel-Fragespiel („Lumo-Quartett").
 - **Profil-Regal:** zeigt die durch Lernen freigeschalteten Karts.
-- **Test-APK:** Die Pin-Sperre verlangt keinen handgeschriebenen Eintrag je Buildnummer mehr; Version 0.13.26+2038, Godot-Pin `d9ab8db`; Bau über `.github/workflows/lumo-test-apk.yml`, ausgelöst durch `config/test-apk-request.json`.
+- **Test-APK:** Die Pin-Sperre verlangt keinen handgeschriebenen Eintrag je Buildnummer mehr; Version 0.13.26+2038, Godot-Pin `a363de2`; Bau über `.github/workflows/lumo-test-apk.yml`, ausgelöst durch `config/test-apk-request.json`.
 
 Bewusst beibehalten, weil es Kinder schützt und nichts blockiert: Kamera, Mikrofon und Datenweitergabe bleiben standardmäßig aus und hinter der Elternfreigabe; keine Käufe, keine fremde Kommunikation.
 
@@ -196,7 +196,8 @@ Katalog in `core/school_exercise_generator.dart` mit Vorlagen in `math_task_temp
 | Logik | 2 | 1 | 1 | 1 |
 
 - Dünn: Logik ab Kl. 2, Englisch Kl. 2–4, Sachunterricht Kl. 4. Musik, Kunst, Technik, Sport haben keine Aufgaben.
-- Fachliche Durchsicht jeder Aufgabe (Heinz' Punkt 6): **NOT_RUN**. Es wird keine Lehrplanabdeckung behauptet.
+- Fachliche Durchsicht (Heinz' Punkt 6): **durchgeführt am 17.11. am Code, nicht am Gerät**; Berichte in `docs/fachpruefung/`. Mathematik/Logik: 49 800 erzeugte Aufgaben, 43 800 unabhängig nachgerechnet, 0 falsche Lösungen; 65 Befunde im Umfeld der Aufgaben (12 schwer: u. a. richtige Antwort immer an zweitkleinster Stelle, Bilder verraten die Lösung, falsche Rechentricks bei Brüchen/Dezimalzahlen). Deutsch/Sachunterricht/Englisch: 84 Befunde (6 schwer: u. a. Reim-Ablenker, die selbst reimen; Endlaut „Hund → T“; Geschichten ohne Umlaute). Korrektur läuft (Pakete L4a Mathematik, L4b Deutsch/Sach/Englisch). Kein Abgleich mit dem amtlichen Lehrplantext; es wird keine Lehrplanabdeckung behauptet.
+- Lücken laut Prüfung: Sachunterricht Kl. 2 (fünf Einheiten mit nur 1–5 eigenen Fragen), Englisch nur „Wort lesen → Bedeutung antippen“, Musik/Kunst/Technik/Sport ohne überprüfbare Aufgaben (je 8 offene Aktivitätskarten).
 - 3D-Lernszene: Godot `scripts/learning/learning_world.gd`. Nachhilfe-Szene (Stream `lumo-2040/tutor-godot`, WIP ohne Test): Quelltext integriert (Merge `55c0135`), nur über einen Lern-Aufruf mit `kind: tutor` erreichbar; der Einstieg in der App bleibt verborgen. Status: NOT_RUN.
 
 ### 5.2 Lumo als Tutor, Sprache, Kamera
@@ -244,7 +245,8 @@ Die unveränderten Testberichte der Streams liegen im Godot-Repo unter `docs/int
 | Vollständige Godot-Testsuite (ca. 350 Skripte) | NOT_RUN |
 | `flutter analyze` | PASS (lokal), 0 Fehler |
 | `flutter test` vollständig | NOT_RUN |
-| Gemeinsame APK (Flutter + Godot) | IN ARBEIT: erster Bau von 0.13.26+2038 über `lumo-test-apk.yml` (Lauf 44160451537), Ergebnis offen |
+| Gemeinsame APK (Flutter + Godot) | IN ARBEIT: Läufe 1 und 2 von 0.13.26+2038 scheiterten am Godot-Importabsturz (SIGSEGV). Ursache gefunden und behoben (Godot `a363de2`: eine Bildliste wurde als CSV-Übersetzung importiert und meldete aus einem Arbeits-Thread an den Szenenbaum). Lauf 3 gestartet, Ergebnis offen |
+| App-Skripttests (`scripts/tests`, 1006 Tests) | PASS in CI auf `0315c801` (`full-app-script-regression`); lokal 1005 PASS, 1 nur mit Android-SDK lauffähig |
 | Android-Emulator, echtes Gerät, Fold | NOT_RUN |
 | Framezeiten, Speicher, Akku | NOT_RUN |
 
