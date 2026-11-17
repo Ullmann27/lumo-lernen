@@ -1,4 +1,5 @@
 import 'guided_lesson_catalog.dart';
+import 'lumo_nachhilfe.dart';
 import '../../features/learning/lab/learning_lab_catalog.dart';
 import 'native_english_vocabulary.dart';
 import '../learning/lumo_learning_domain.dart';
@@ -507,6 +508,38 @@ class NativeLearningActivity {
           'extra': step.fractionExtra,
         });
     }
+  }
+
+  /// Lumo-Nachhilfe als 3D-Sitzung: alle Wege und Stufen sind vorab
+  /// berechnet und geprüft. Die Szene spielt sie nur ab; sie bewertet keine
+  /// Antwort der Originalaufgabe, vergibt nichts und schreibt keinen Fortschritt.
+  static NativeLearningActivity? fromNachhilfe(
+    NachhilfeAufgabe original, {
+    required NachhilfeWeg startWeg,
+    required NachhilfeStufe startStufe,
+    NachhilfeFehlermuster fehler = NachhilfeFehlermuster.keines,
+    LumoNachhilfe tutor = const LumoNachhilfe(),
+  }) {
+    final wege = tutor.wegeFuer(original);
+    if (!wege.contains(startWeg)) return null;
+    final plaene = <Object>[
+      for (final weg in wege)
+        for (final stufe in NachhilfeStufe.values)
+          tutor.plan(original, weg, stufe).toJson(),
+    ];
+    return NativeLearningActivity._('tutor', {
+      'kind': 'tutor',
+      'typ': 'addition_20',
+      'a': original.a,
+      'b': original.b,
+      'prompt': '${original.text} = ?',
+      'wege': [for (final weg in wege) weg.schluessel],
+      'startWeg': startWeg.schluessel,
+      'startStufe': startStufe.name,
+      'fehler': fehler.name,
+      'rueckmeldung': fehler.rueckmeldung,
+      'plaene': plaene,
+    });
   }
 
   Map<String, Object> toLaunchOptions() => Map<String, Object>.of(_payload);
