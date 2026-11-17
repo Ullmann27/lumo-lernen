@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14 19:14:21 UTC",
+  "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "run": 43628840534,
+  "attempt": 1,
+  "artifact": 14127492329,
+  "artifact_bytes": 363820201,
+  "artifact_digest": "sha256:a7f4184021a42782bef47380ecc0514ade032dfa44d455acf9dcfa27716a2868",
+  "root_opened_and_fully_decoded_originals": true,
+  "originals": [
+    {
+      "member": "home-premium/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "width": 1680,
+      "height": 1920,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "computed_git_blob": "efdb7159ba2c4a6707129cfa3a5b330ea96d1515",
+      "observed": "Captured learning-subject section shows all eleven subject cards and their progress areas. Three-column layout; last row Verkehr/Technik. Labels and original illustrations readable without collision in the captured section."
+    },
+    {
+      "member": "village/village-fold-open.png",
+      "bytes": 595416,
+      "width": 690,
+      "height": 829,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "computed_git_blob": "8d52f1bce929ab0f6f81b221a0d51705d6f9c2ed",
+      "observed": "Captured game-portal section shows eleven portal cards. Dorfwirtschaft is one line. Original fox, adventure control, and parent/progress/settings controls do not overlap. Additional game-mode text at bottom is partly outside the capture."
+    }
+  ],
+  "limits": [
+    "Actual Flutter test originals, not Android return screenshots.",
+    "Only captured regions reviewed; no complete Home-page or lower scrolling content claim.",
+    "No physical ARM64 frame-rate, touch measurement, microphone or audible playback acceptance inferred."
+  ]
+}

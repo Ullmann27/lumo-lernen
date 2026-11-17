@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14 19:33:48 UTC",
+  "diagnostic_run": 43629575654,
+  "attempt": 1,
+  "qa_source": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+  "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "contract_job": {
+    "id": 132552989547,
+    "status": "SUCCESS",
+    "tests": 135
+  },
+  "android_job": {
+    "id": 132553315080,
+    "status": "FAILURE"
+  },
+  "original_log_downloaded_once_by_root": true,
+  "original_markers": [
+    {
+      "line": 645,
+      "text": "2026-11-14T19:01:15.3778528Z UNCHANGED_6B_APK_DIAGNOSTIC BOUND: APK source 6b3047b7979dfb86d837e74a21b0fd890e4f9e66; QA source 91b5aece4060cd625b27e4cfa967122b5d4b5b92"
+    },
+    {
+      "line": 3748,
+      "text": "2026-11-14T19:21:01.4610115Z [DiagnosticVillageAndroid] {\"status\": \"PASS\", \"error\": null}"
+    },
+    {
+      "line": 3886,
+      "text": "2026-11-14T19:22:39.3972037Z [DiagnosticConnectFourAndroid] {\"status\": \"FAIL\", \"error\": \"ValueError: Closed C4 mailbox still exists\", \"observations\": 19, \"transitions\": 5}"
+    },
+    {
+      "line": 3888,
+      "text": "2026-11-14T19:22:41.5894134Z UNCHANGED_6B_APK_DIAGNOSTIC BOUND: APK source 6b3047b7979dfb86d837e74a21b0fd890e4f9e66; QA source 91b5aece4060cd625b27e4cfa967122b5d4b5b92"
+    }
+  ],
+  "artifact": {
+    "id": 14128089386,
+    "bytes": 156330306,
+    "sha256": "2d8a5cae6ebe67d5cce2c488d6304bd1b9e3a36618eff66a541e3335f25b1614",
+    "owner": "godot_integration"
+  },
+  "actual_original_finding_from_artifact_reviewer": {
+    "command_original": "c4/commands/0322-return-first-closed-mailbox.json",
+    "command": "adb shell find /data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1 -maxdepth 2 -type f -name state.json",
+    "remaining_token": "d96363b690dac4869acde2c8d4e832b7",
+    "token_matches_current_c4_session": true,
+    "actual_native_pid": 6826,
+    "native_exit_original": "c4/commands/0320-return-first-native-exit",
+    "activity_original": "c4/commands/0321-return-first-return-activity",
+    "observations": 19,
+    "transitions": 5,
+    "completed_returns": 0,
+    "last_before_return": {
+      "ack": 5,
+      "revision": 9,
+      "paused": true,
+      "columns": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "exit": false
+    },
+    "no_later_mailbox_observation_available": true
+  },
+  "source_review_by_android_qa": {
+    "scope": "Seven exact bridge/activity/Dart/probe blobs identical between6b and04; no source edits during review",
+    "cleanup_owner": "ConnectFourBridge.close invoked through session.close after the launchLumo3D MethodChannel Future in LumoConnectFourGame._openNative finally",
+    "native_pid_end_does_not_establish_mailbox_cleanup_complete": true,
+    "native_wait_bound": "MainActivity observes PID end or at most100 retries of100ms",
+    "limits": "A later successful cleanup and a persistent leak are both unproved by the sole original find; Platform errors may be caught by session.close."
+  },
+  "next_fix_scope": "Observe ended native process, resumed correct MainActivity and empty private C4 mailbox together within the unchanged shared45-second deadline; retain every original, no extra UI action, restart or deletion, no product/verifier changes. Original red regression first, then focused positive/negative deadline cases and independent review.",
+  "new_current_host_source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "new_current_host_main_run": 43628840534,
+  "new_current_host_main_status": "IN_PROGRESS_NATIVE_GATES",
+  "publisher": "BLOCKED_NOT_ACTIVATED",
+  "reader_original_replay": "BLOCKED_NOT_ACTIVATED",
+  "release_created": false
+}
