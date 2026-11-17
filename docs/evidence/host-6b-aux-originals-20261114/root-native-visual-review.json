@@ -1,0 +1,16 @@
+{
+  "artifact": 14122180486,
+  "source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "viewed": [
+    {
+      "path": "mobile-minimap/captures/minimap/dense-left-cutout.png",
+      "sha256": "2a340a7bb05ae9cbf70feb02d8b2deead48578aae08990b9d08c2884d96aeed9",
+      "finding": "Original fox and whole kart visible from behind. Map occupies a separate panel left of the action controls; roadway visible. Desktop keyboard hints and clipped long HUD status text are visible; this is a desktop boundary fixture, not Android."
+    },
+    {
+      "path": "village-scaling/captures/02-river-boundary.png",
+      "sha256": "c2b69f6f59d2f70d1d6ab555a821763a517b14f08876001768a55b4b9dcf7a81",
+      "finding": "Actual stress fixture displays dense house fields on both banks, nearby detailed houses and distant simplified houses, river/bridge, readable header and horizontally scrolling actions. No new-village, FPS or all-actions-visible claim."
+    }
+  ]
+}

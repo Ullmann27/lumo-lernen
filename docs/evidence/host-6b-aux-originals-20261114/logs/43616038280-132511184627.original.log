@@ -1,0 +1,303 @@
+﻿2026-11-14T16:31:15.4003956Z Current runner version: '2.338.2'
+2026-11-14T16:31:15.4053617Z ##[group]Runner Image Provisioner
+2026-11-14T16:31:15.4054601Z Hosted Compute Agent
+2026-11-14T16:31:15.4055257Z Version: 20261103.629
+2026-11-14T16:31:15.4055932Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T16:31:15.4056842Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T16:31:15.4057603Z Worker ID: {6373fd9c-74ea-431f-acae-deb73df6b802}
+2026-11-14T16:31:15.4058487Z Region: westcentralus
+2026-11-14T16:31:15.4059134Z Cloud: Azure
+2026-11-14T16:31:15.4059719Z ##[endgroup]
+2026-11-14T16:31:15.4061167Z ##[group]Operating System
+2026-11-14T16:31:15.4062040Z Ubuntu
+2026-11-14T16:31:15.4062671Z 24.04.5
+2026-11-14T16:31:15.4063276Z LTS
+2026-11-14T16:31:15.4063857Z ##[endgroup]
+2026-11-14T16:31:15.4064553Z ##[group]Runner Image
+2026-11-14T16:31:15.4065213Z Image: ubuntu-24.04
+2026-11-14T16:31:15.4065919Z Version: 20261111.370.1
+2026-11-14T16:31:15.4067233Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T16:31:15.4068929Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T16:31:15.4069951Z ##[endgroup]
+2026-11-14T16:31:15.4071194Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T16:31:15.4073313Z Contents: read
+2026-11-14T16:31:15.4074080Z Metadata: read
+2026-11-14T16:31:15.4074725Z ##[endgroup]
+2026-11-14T16:31:15.4076799Z Secret source: Actions
+2026-11-14T16:31:15.4077871Z Cache mode: write
+2026-11-14T16:31:15.4078706Z Prepare workflow directory
+2026-11-14T16:31:15.4415974Z Prepare all required actions
+2026-11-14T16:31:15.4464436Z Getting action download info
+2026-11-14T16:31:15.7290649Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T16:31:15.9716887Z Complete job name: original-pixel-hud-qa
+2026-11-14T16:31:16.0693057Z ##[group]Run actions/checkout@v4
+2026-11-14T16:31:16.0693887Z with:
+2026-11-14T16:31:16.0694363Z   persist-credentials: false
+2026-11-14T16:31:16.0694963Z   repository: Ullmann27/lumo-lernen
+2026-11-14T16:31:16.0699019Z   token: ***
+2026-11-14T16:31:16.0699484Z   ssh-strict: true
+2026-11-14T16:31:16.0699951Z   ssh-user: git
+2026-11-14T16:31:16.0700400Z   clean: true
+2026-11-14T16:31:16.0700867Z   sparse-checkout-cone-mode: true
+2026-11-14T16:31:16.0701582Z   fetch-depth: 1
+2026-11-14T16:31:16.0702046Z   fetch-tags: false
+2026-11-14T16:31:16.0702527Z   show-progress: true
+2026-11-14T16:31:16.0702999Z   lfs: false
+2026-11-14T16:31:16.0703442Z   submodules: false
+2026-11-14T16:31:16.0703930Z   set-safe-directory: true
+2026-11-14T16:31:16.0704464Z   allow-unsafe-pr-checkout: false
+2026-11-14T16:31:16.0705206Z ##[endgroup]
+2026-11-14T16:31:16.3014766Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T16:31:16.3017578Z ##[group]Getting Git version info
+2026-11-14T16:31:16.3018924Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:31:16.3020193Z [command]/usr/bin/git version
+2026-11-14T16:31:16.3074793Z git version 2.56.1
+2026-11-14T16:31:16.3093989Z ##[endgroup]
+2026-11-14T16:31:16.3107798Z Temporarily overriding HOME='/home/runner/work/_temp/32d52c86-2ed5-4f96-a80b-1c9ef2b67635' before making global git config changes
+2026-11-14T16:31:16.3113010Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:31:16.3114310Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:16.3160313Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:31:16.3165061Z ##[group]Initializing the repository
+2026-11-14T16:31:16.3168945Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:16.3262784Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T16:31:16.3264285Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T16:31:16.3265271Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T16:31:16.3266323Z hint: call:
+2026-11-14T16:31:16.3266747Z hint:
+2026-11-14T16:31:16.3267285Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T16:31:16.3267923Z hint:
+2026-11-14T16:31:16.3268739Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T16:31:16.3270060Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T16:31:16.3271019Z hint:
+2026-11-14T16:31:16.3271893Z hint: 	git branch -m <name>
+2026-11-14T16:31:16.3272683Z hint:
+2026-11-14T16:31:16.3273726Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T16:31:16.3275415Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T16:31:16.3281730Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:31:16.3328118Z ##[endgroup]
+2026-11-14T16:31:16.3328940Z ##[group]Disabling automatic garbage collection
+2026-11-14T16:31:16.3332079Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T16:31:16.3365421Z ##[endgroup]
+2026-11-14T16:31:16.3366174Z ##[group]Setting up auth
+2026-11-14T16:31:16.3372142Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:31:16.3409166Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:31:16.3757793Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:31:16.3792530Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:31:16.4034318Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:31:16.4067907Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:31:16.4309723Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T16:31:16.4351060Z ##[endgroup]
+2026-11-14T16:31:16.4352544Z ##[group]Fetching the repository
+2026-11-14T16:31:16.4366159Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ad00203a8eae65faac476d3dcbe78b8518f39197:refs/remotes/pull/497/merge
+2026-11-14T16:31:26.8541095Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:31:26.8543523Z  * [new ref]         ad00203a8eae65faac476d3dcbe78b8518f39197 -> pull/497/merge
+2026-11-14T16:31:26.8559286Z ##[endgroup]
+2026-11-14T16:31:26.8561105Z ##[group]Determining the checkout info
+2026-11-14T16:31:26.8563241Z ##[endgroup]
+2026-11-14T16:31:26.8564312Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T16:31:26.8617419Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T16:31:26.8647443Z ##[group]Checking out the ref
+2026-11-14T16:31:26.8652254Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/497/merge
+2026-11-14T16:31:27.8785355Z Updating files:  53% (2677/4975)
+2026-11-14T16:31:27.9030630Z Updating files:  54% (2687/4975)
+2026-11-14T16:31:27.9652223Z Updating files:  55% (2737/4975)
+2026-11-14T16:31:27.9708168Z Updating files:  56% (2786/4975)
+2026-11-14T16:31:27.9756541Z Updating files:  57% (2836/4975)
+2026-11-14T16:31:27.9780189Z Updating files:  58% (2886/4975)
+2026-11-14T16:31:27.9812549Z Updating files:  59% (2936/4975)
+2026-11-14T16:31:27.9966852Z Updating files:  60% (2985/4975)
+2026-11-14T16:31:28.0142712Z Updating files:  61% (3035/4975)
+2026-11-14T16:31:28.0205529Z Updating files:  62% (3085/4975)
+2026-11-14T16:31:28.0369758Z Updating files:  63% (3135/4975)
+2026-11-14T16:31:28.0494563Z Updating files:  64% (3184/4975)
+2026-11-14T16:31:28.1062463Z Updating files:  65% (3234/4975)
+2026-11-14T16:31:28.1396065Z Updating files:  66% (3284/4975)
+2026-11-14T16:31:28.1694892Z Updating files:  67% (3334/4975)
+2026-11-14T16:31:28.1921849Z Updating files:  68% (3383/4975)
+2026-11-14T16:31:28.1958587Z Updating files:  69% (3433/4975)
+2026-11-14T16:31:28.2000320Z Updating files:  70% (3483/4975)
+2026-11-14T16:31:28.2039975Z Updating files:  71% (3533/4975)
+2026-11-14T16:31:28.2085979Z Updating files:  72% (3582/4975)
+2026-11-14T16:31:28.2145249Z Updating files:  73% (3632/4975)
+2026-11-14T16:31:28.2198196Z Updating files:  74% (3682/4975)
+2026-11-14T16:31:28.2249816Z Updating files:  75% (3732/4975)
+2026-11-14T16:31:28.2292852Z Updating files:  76% (3781/4975)
+2026-11-14T16:31:28.2335886Z Updating files:  77% (3831/4975)
+2026-11-14T16:31:28.2365506Z Updating files:  78% (3881/4975)
+2026-11-14T16:31:28.2395847Z Updating files:  79% (3931/4975)
+2026-11-14T16:31:28.2551035Z Updating files:  80% (3980/4975)
+2026-11-14T16:31:28.2589850Z Updating files:  81% (4030/4975)
+2026-11-14T16:31:28.2632189Z Updating files:  82% (4080/4975)
+2026-11-14T16:31:28.2662762Z Updating files:  83% (4130/4975)
+2026-11-14T16:31:28.2691020Z Updating files:  84% (4179/4975)
+2026-11-14T16:31:28.2719778Z Updating files:  85% (4229/4975)
+2026-11-14T16:31:28.2747154Z Updating files:  86% (4279/4975)
+2026-11-14T16:31:28.2778015Z Updating files:  87% (4329/4975)
+2026-11-14T16:31:28.2805236Z Updating files:  88% (4378/4975)
+2026-11-14T16:31:28.2833070Z Updating files:  89% (4428/4975)
+2026-11-14T16:31:28.2860852Z Updating files:  90% (4478/4975)
+2026-11-14T16:31:28.2901012Z Updating files:  91% (4528/4975)
+2026-11-14T16:31:28.3334484Z Updating files:  92% (4577/4975)
+2026-11-14T16:31:28.3571144Z Updating files:  93% (4627/4975)
+2026-11-14T16:31:28.3749537Z Updating files:  94% (4677/4975)
+2026-11-14T16:31:28.3965271Z Updating files:  95% (4727/4975)
+2026-11-14T16:31:28.4008868Z Updating files:  96% (4776/4975)
+2026-11-14T16:31:28.4178935Z Updating files:  97% (4826/4975)
+2026-11-14T16:31:28.4218847Z Updating files:  98% (4876/4975)
+2026-11-14T16:31:28.4250994Z Updating files:  99% (4926/4975)
+2026-11-14T16:31:28.4251731Z Updating files: 100% (4975/4975)
+2026-11-14T16:31:28.4252246Z Updating files: 100% (4975/4975), done.
+2026-11-14T16:31:28.4346172Z Note: switching to 'refs/remotes/pull/497/merge'.
+2026-11-14T16:31:28.4346645Z 
+2026-11-14T16:31:28.4347058Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T16:31:28.4348041Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T16:31:28.4348856Z state without impacting any branches by switching back to a branch.
+2026-11-14T16:31:28.4349333Z 
+2026-11-14T16:31:28.4349670Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T16:31:28.4350442Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T16:31:28.4350934Z 
+2026-11-14T16:31:28.4351213Z   git switch -c <new-branch-name>
+2026-11-14T16:31:28.4351708Z 
+2026-11-14T16:31:28.4351882Z Or undo this operation with:
+2026-11-14T16:31:28.4352186Z 
+2026-11-14T16:31:28.4352354Z   git switch -
+2026-11-14T16:31:28.4352554Z 
+2026-11-14T16:31:28.4352914Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T16:31:28.4353433Z 
+2026-11-14T16:31:28.4353980Z HEAD is now at ad00203 Merge 6b3047b7979dfb86d837e74a21b0fd890e4f9e66 into 057a4e8d067872c4f3514b126aa04c3706d2e5b5
+2026-11-14T16:31:28.4481149Z ##[endgroup]
+2026-11-14T16:31:28.4538070Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T16:31:28.4565591Z ad00203a8eae65faac476d3dcbe78b8518f39197
+2026-11-14T16:31:28.4577283Z ##[group]Removing auth
+2026-11-14T16:31:28.4581852Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:31:28.4619947Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:31:28.4904883Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:31:28.4934719Z http.https://github.com/.extraheader
+2026-11-14T16:31:28.4942146Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T16:31:28.4975432Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:31:28.5227315Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:31:28.5265765Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:31:28.5511178Z ##[endgroup]
+2026-11-14T16:31:28.5743138Z ##[group]Run set -euo pipefail
+2026-11-14T16:31:28.5743530Z [36;1mset -euo pipefail[0m
+2026-11-14T16:31:28.5743866Z [36;1msudo apt-get -o Acquire::Retries=2 update -qq[0m
+2026-11-14T16:31:28.5744352Z [36;1msudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-eng[0m
+2026-11-14T16:31:28.5744822Z [36;1mpython3 -m venv .ci-hud[0m
+2026-11-14T16:31:28.5745228Z [36;1m.ci-hud/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0[0m
+2026-11-14T16:31:28.5770586Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:31:28.5770868Z ##[endgroup]
+2026-11-14T16:31:33.6770602Z Reading package lists...
+2026-11-14T16:31:33.9231852Z Building dependency tree...
+2026-11-14T16:31:33.9238773Z Reading state information...
+2026-11-14T16:31:34.0799310Z The following additional packages will be installed:
+2026-11-14T16:31:34.0804361Z   libgif7 liblept5 libtesseract5 tesseract-ocr-osd
+2026-11-14T16:31:34.0999282Z The following NEW packages will be installed:
+2026-11-14T16:31:34.1003834Z   libgif7 liblept5 libtesseract5 tesseract-ocr tesseract-ocr-eng
+2026-11-14T16:31:34.1004410Z   tesseract-ocr-osd
+2026-11-14T16:31:34.1212132Z 0 upgraded, 6 newly installed, 0 to remove and 20 not upgraded.
+2026-11-14T16:31:34.1296000Z Need to get 8413 kB of archives.
+2026-11-14T16:31:34.1296626Z After this operation, 21.9 MB of additional disk space will be used.
+2026-11-14T16:31:34.1297338Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-11-14T16:31:34.1883014Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libgif7 amd64 5.2.2-1ubuntu1.2 [35.6 kB]
+2026-11-14T16:31:34.2366938Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 liblept5 amd64 1.82.0-3build4 [1099 kB]
+2026-11-14T16:31:34.2927337Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libtesseract5 amd64 5.3.4-1build5 [1291 kB]
+2026-11-14T16:31:34.3490122Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-eng all 1:4.1.0-2 [1818 kB]
+2026-11-14T16:31:34.4112879Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-osd all 1:4.1.0-2 [3841 kB]
+2026-11-14T16:31:34.5133659Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr amd64 5.3.4-1build5 [328 kB]
+2026-11-14T16:31:34.7890374Z Fetched 8413 kB in 0s (20.7 MB/s)
+2026-11-14T16:31:34.8123661Z Selecting previously unselected package libgif7:amd64.
+2026-11-14T16:31:34.8370600Z (Reading database ... 
+2026-11-14T16:31:34.8371025Z (Reading database ... 5%
+2026-11-14T16:31:34.8371532Z (Reading database ... 10%
+2026-11-14T16:31:34.8371853Z (Reading database ... 15%
+2026-11-14T16:31:34.8372152Z (Reading database ... 20%
+2026-11-14T16:31:34.8374078Z (Reading database ... 25%
+2026-11-14T16:31:34.8374376Z (Reading database ... 30%
+2026-11-14T16:31:34.8374632Z (Reading database ... 35%
+2026-11-14T16:31:34.8374869Z (Reading database ... 40%
+2026-11-14T16:31:34.8375092Z (Reading database ... 45%
+2026-11-14T16:31:34.8375322Z (Reading database ... 50%
+2026-11-14T16:31:34.8418713Z (Reading database ... 55%
+2026-11-14T16:31:34.9862165Z (Reading database ... 60%
+2026-11-14T16:31:35.1895307Z (Reading database ... 65%
+2026-11-14T16:31:35.3362152Z (Reading database ... 70%
+2026-11-14T16:31:35.5415221Z (Reading database ... 75%
+2026-11-14T16:31:35.6811010Z (Reading database ... 80%
+2026-11-14T16:31:35.8842171Z (Reading database ... 85%
+2026-11-14T16:31:36.0334456Z (Reading database ... 90%
+2026-11-14T16:31:36.1379232Z (Reading database ... 95%
+2026-11-14T16:31:36.1379574Z (Reading database ... 100%
+2026-11-14T16:31:36.1379937Z (Reading database ... 216752 files and directories currently installed.)
+2026-11-14T16:31:36.1430564Z Preparing to unpack .../0-libgif7_5.2.2-1ubuntu1.2_amd64.deb ...
+2026-11-14T16:31:36.1465468Z Unpacking libgif7:amd64 (5.2.2-1ubuntu1.2) ...
+2026-11-14T16:31:36.1710029Z Selecting previously unselected package liblept5:amd64.
+2026-11-14T16:31:36.1853897Z Preparing to unpack .../1-liblept5_1.82.0-3build4_amd64.deb ...
+2026-11-14T16:31:36.1862929Z Unpacking liblept5:amd64 (1.82.0-3build4) ...
+2026-11-14T16:31:36.2218460Z Selecting previously unselected package libtesseract5:amd64.
+2026-11-14T16:31:36.2362191Z Preparing to unpack .../2-libtesseract5_5.3.4-1build5_amd64.deb ...
+2026-11-14T16:31:36.2372451Z Unpacking libtesseract5:amd64 (5.3.4-1build5) ...
+2026-11-14T16:31:36.2782508Z Selecting previously unselected package tesseract-ocr-eng.
+2026-11-14T16:31:36.2930284Z Preparing to unpack .../3-tesseract-ocr-eng_1%3a4.1.0-2_all.deb ...
+2026-11-14T16:31:36.2937252Z Unpacking tesseract-ocr-eng (1:4.1.0-2) ...
+2026-11-14T16:31:36.3345266Z Selecting previously unselected package tesseract-ocr-osd.
+2026-11-14T16:31:36.3492224Z Preparing to unpack .../4-tesseract-ocr-osd_1%3a4.1.0-2_all.deb ...
+2026-11-14T16:31:36.3501815Z Unpacking tesseract-ocr-osd (1:4.1.0-2) ...
+2026-11-14T16:31:36.4177226Z Selecting previously unselected package tesseract-ocr.
+2026-11-14T16:31:36.4326514Z Preparing to unpack .../5-tesseract-ocr_5.3.4-1build5_amd64.deb ...
+2026-11-14T16:31:36.4333803Z Unpacking tesseract-ocr (5.3.4-1build5) ...
+2026-11-14T16:31:36.4975389Z Setting up tesseract-ocr-eng (1:4.1.0-2) ...
+2026-11-14T16:31:36.5128649Z Setting up libgif7:amd64 (5.2.2-1ubuntu1.2) ...
+2026-11-14T16:31:36.5144813Z Setting up tesseract-ocr-osd (1:4.1.0-2) ...
+2026-11-14T16:31:36.5162074Z Setting up liblept5:amd64 (1.82.0-3build4) ...
+2026-11-14T16:31:36.5179104Z Setting up libtesseract5:amd64 (5.3.4-1build5) ...
+2026-11-14T16:31:36.5196234Z Setting up tesseract-ocr (5.3.4-1build5) ...
+2026-11-14T16:31:36.5216557Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-11-14T16:31:36.5237912Z Not building database; man-db/auto-update is not 'true'.
+2026-11-14T16:31:36.5248916Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-11-14T16:31:37.2026859Z 
+2026-11-14T16:31:37.2027378Z Running kernel seems to be up-to-date.
+2026-11-14T16:31:37.2027751Z 
+2026-11-14T16:31:37.2027904Z No services need to be restarted.
+2026-11-14T16:31:37.2028184Z 
+2026-11-14T16:31:37.2028388Z No containers need to be restarted.
+2026-11-14T16:31:37.2028619Z 
+2026-11-14T16:31:37.2028754Z No user sessions are running outdated binaries.
+2026-11-14T16:31:37.2028977Z 
+2026-11-14T16:31:37.2029189Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-14T16:31:41.8342414Z Collecting Pillow==12.3.0
+2026-11-14T16:31:41.9114955Z   Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-14T16:31:41.9465456Z Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-11-14T16:31:42.0843405Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 52.3 MB/s eta 0:00:00
+2026-11-14T16:31:42.1106063Z Installing collected packages: Pillow
+2026-11-14T16:31:42.4259608Z Successfully installed Pillow-12.3.0
+2026-11-14T16:31:42.5070971Z ##[group]Run set -euo pipefail
+2026-11-14T16:31:42.5071315Z [36;1mset -euo pipefail[0m
+2026-11-14T16:31:42.5072062Z [36;1m.ci-hud/bin/python -m py_compile \[0m
+2026-11-14T16:31:42.5072402Z [36;1m  tools/android_qa/kart_android_race.py \[0m
+2026-11-14T16:31:42.5072767Z [36;1m  .github/probes/modernization_android_tour.py[0m
+2026-11-14T16:31:42.5073120Z [36;1m.ci-hud/bin/python -m unittest discover \[0m
+2026-11-14T16:31:42.5073516Z [36;1m  -s tools/android_qa/tests -p 'test_focused_race_hud.py' -v[0m
+2026-11-14T16:31:42.5095478Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:31:42.5095761Z ##[endgroup]
+2026-11-14T16:31:42.6488538Z test_exactly_three_independent_visual_race_hud_markers (test_focused_race_hud.FocusedKartHudOCRTests.test_exactly_three_independent_visual_race_hud_markers) ... ok
+2026-11-14T16:31:43.1242933Z test_genuine_screen_pixels_recover_lap_rank_and_speed (test_focused_race_hud.FocusedKartHudOCRTests.test_genuine_screen_pixels_recover_lap_rank_and_speed) ... ok
+2026-11-14T16:31:43.1333794Z test_only_real_landscape_frame_is_accepted (test_focused_race_hud.FocusedKartHudOCRTests.test_only_real_landscape_frame_is_accepted) ... ok
+2026-11-14T16:31:43.1334690Z 
+2026-11-14T16:31:43.1334921Z ----------------------------------------------------------------------
+2026-11-14T16:31:43.1335438Z Ran 3 tests in 0.485s
+2026-11-14T16:31:43.1335652Z 
+2026-11-14T16:31:43.1335762Z OK
+2026-11-14T16:31:43.1595110Z Post job cleanup.
+2026-11-14T16:31:43.2486171Z [command]/usr/bin/git version
+2026-11-14T16:31:43.2526195Z git version 2.56.1
+2026-11-14T16:31:43.2562183Z Temporarily overriding HOME='/home/runner/work/_temp/dfdbe393-2f63-4509-b56e-8ca55d5cc3df' before making global git config changes
+2026-11-14T16:31:43.2563426Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:31:43.2568373Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:43.2607315Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:31:43.2645562Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:31:43.2906385Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:31:43.2941143Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:31:43.3195924Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:31:43.3229600Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:31:43.3640701Z Cleaning up orphan processes
+2026-11-14T16:31:43.4064587Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

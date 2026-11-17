@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "attempt": 1,
+  "reviewed_at": "2026-11-14 16:54:49 UTC",
+  "original_logs_downloaded_once": 9,
+  "metadata_scope": "Each complete successful run's single job; run data and job catalog parsed and reserialized without omission. Exact original decoded job logs stored separately.",
+  "actual_pr_merge": {
+    "commit": "ad00203a8eae65faac476d3dcbe78b8518f39197",
+    "parents": [
+      "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+      "6b3047b7979dfb86d837e74a21b0fd890e4f9e66"
+    ],
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b"
+  },
+  "runs": [
+    {
+      "run_id": 43616038280,
+      "job_id": 132511184627,
+      "event": "pull_request",
+      "workflow_name": "Lumo Android real cropped HUD OCR regression",
+      "job_name": "original-pixel-hud-qa",
+      "blob_sha": "308a23748f159717fd4a9b7d8cefab561ddd3ade",
+      "decoded_characters": 23349,
+      "original_line_count": 304,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616038280-132511184627.original.log",
+      "actual_checkout": "ad00203a8eae65faac476d3dcbe78b8518f39197",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:31:43.1335438Z Ran 3 tests in 0.485s",
+        "2026-11-14T16:31:43.1335762Z OK"
+      ],
+      "action_error_marker_count": 0
+    },
+    {
+      "run_id": 43616038223,
+      "job_id": 132511184362,
+      "event": "pull_request",
+      "workflow_name": "Lumo 1954 tour identity contract",
+      "job_name": "verify-provenance-contract",
+      "blob_sha": "def07acfbf62d8d3ecb519d490d7ac32506e3146",
+      "decoded_characters": 15794,
+      "original_line_count": 198,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616038223-132511184362.original.log",
+      "actual_checkout": "ad00203a8eae65faac476d3dcbe78b8518f39197",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:31:26.7354267Z Ran 4 tests in 0.001s",
+        "2026-11-14T16:31:26.7354643Z OK"
+      ],
+      "action_error_marker_count": 0
+    },
+    {
+      "run_id": 43616038345,
+      "job_id": 132511184724,
+      "event": "pull_request",
+      "workflow_name": "Cloud checkpoint guard – safe handoff tests",
+      "job_name": "Verify checkpoint script without publishing changes",
+      "blob_sha": "76e802622082c97cf6208d3fc52ebfd67ce3a1aa",
+      "decoded_characters": 15031,
+      "original_line_count": 197,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616038345-132511184724.original.log",
+      "actual_checkout": "ad00203a8eae65faac476d3dcbe78b8518f39197",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:31:30.1012462Z Ran 3 tests in 0.002s",
+        "2026-11-14T16:31:30.1013116Z OK"
+      ],
+      "action_error_marker_count": 0
+    },
+    {
+      "run_id": 43616038385,
+      "job_id": 132511184754,
+      "event": "pull_request",
+      "workflow_name": "LUMO grades 1-4 learning source audit",
+      "job_name": "core-learning",
+      "blob_sha": "40f3e8a2e4fe217ddc8b6cf83f20bc8751faf9bd",
+      "decoded_characters": 36374,
+      "original_line_count": 447,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616038385-132511184754.original.log",
+      "actual_checkout": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:32:05.5407552Z 00:02 +10: All tests passed!",
+        "2026-11-14T16:32:11.7296274Z 00:02 +7: All tests passed!",
+        "2026-11-14T16:32:14.0292906Z 00:00 +7: All tests passed!"
+      ],
+      "action_error_marker_count": 0
+    },
+    {
+      "run_id": 43616038308,
+      "job_id": 132511184622,
+      "event": "pull_request",
+      "workflow_name": "Lumo 1966 – Cards route and native race-drive QA",
+      "job_name": "cards-route-and-probe",
+      "blob_sha": "f6d0f69f8f7cdd0a4ac4c8a64d7a544c98d11777",
+      "decoded_characters": 28523,
+      "original_line_count": 364,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616038308-132511184622.original.log",
+      "actual_checkout": "ad00203a8eae65faac476d3dcbe78b8518f39197",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:32:05.5663026Z 00:01 +1: All tests passed!"
+      ],
+      "action_error_marker_count": 0
+    },
+    {
+      "run_id": 43616038311,
+      "job_id": 132511184681,
+      "event": "pull_request",
+      "workflow_name": "Lumo 1989 – real premium learning cards and Fold visuals",
+      "job_name": "validate-learning-cards",
+      "blob_sha": "3baf36a7ca332b14fa63270e23874ae41dbdcea8",
+      "decoded_characters": 79117,
+      "original_line_count": 669,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616038311-132511184681.original.log",
+      "actual_checkout": "ad00203a8eae65faac476d3dcbe78b8518f39197",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:32:48.1459651Z 00:09 +13: All tests passed!",
+        "2026-11-14T16:32:55.6637555Z 00:04 +8: All tests passed!"
+      ],
+      "action_error_marker_count": 0
+    },
+    {
+      "run_id": 43616038299,
+      "job_id": 132511184614,
+      "event": "pull_request",
+      "workflow_name": "Lumo Astra app-script recovery and exact Python test evidence",
+      "job_name": "full-app-script-regression",
+      "blob_sha": "e10a8af83f3b8d67b93cfd1042089f407a12b03d",
+      "decoded_characters": 308701,
+      "original_line_count": 2046,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616038299-132511184614.original.log",
+      "actual_checkout": "ad00203a8eae65faac476d3dcbe78b8518f39197",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:36:38.4026493Z Ran 963 tests in 286.020s",
+        "2026-11-14T16:36:38.4026721Z OK"
+      ],
+      "action_error_marker_count": 0
+    },
+    {
+      "run_id": 43616038262,
+      "job_id": 132511184645,
+      "event": "pull_request",
+      "workflow_name": "Lumo living intelligence core",
+      "job_name": "verify-core",
+      "blob_sha": "e621dcf80ddbc854291da52745ad3c9ec1c554c0",
+      "decoded_characters": 646914,
+      "original_line_count": 3692,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616038262-132511184645.original.log",
+      "actual_checkout": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:32:26.3316207Z 00:13 +48: All tests passed!",
+        "2026-11-14T16:38:38.6060136Z 06:09 +2449 ~202: All tests passed!"
+      ],
+      "action_error_marker_count": 0
+    },
+    {
+      "run_id": 43616035073,
+      "job_id": 132511177141,
+      "event": "push",
+      "workflow_name": "LUMO grades 1-4 learning source audit",
+      "job_name": "core-learning",
+      "blob_sha": "10887bd17d5b277a752c74a0d7281b3f5e719799",
+      "decoded_characters": 35115,
+      "original_line_count": 427,
+      "path": "docs/evidence/host-6b-aux-originals-20261114/logs/43616035073-132511177141.original.log",
+      "actual_checkout": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "checkout_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "actual_test_summary_lines": [
+        "2026-11-14T16:31:56.0743047Z 00:01 +10: All tests passed!",
+        "2026-11-14T16:32:00.6172145Z 00:02 +7: All tests passed!",
+        "2026-11-14T16:32:02.2810593Z 00:00 +7: All tests passed!"
+      ],
+      "action_error_marker_count": 0
+    }
+  ],
+  "limitations": [
+    "These auxiliary jobs do not replace the seven-job full Android/APK/delivery acceptance.",
+    "Living intelligence ordinary full Flutter invocation reports 2449 passed and 202 skipped; do not describe it as zero-skipped. Its separate focused invocation passes 48.",
+    "The authoritative complete Flutter capture-enabled acceptance in run 43616038272 has independent original summary blob 74e2bfcc2400832fe55afc7fee5da97f6d2a92a0: 2651 passed, zero failed/skipped, 566 PNG. Root also read the unchanged extracted original summary locally and confirmed its Git blob and SHA256.",
+    "Historical branch-gated jobs are not included and may be intentionally skipped.",
+    "Original Python log contains ResourceWarning messages for unclosed fixture APK readers; no warning-free claim.",
+    "No additional run, engine invocation, artifact download, source edit, APK publication or main-branch mutation was performed in this review."
+  ]
+}
