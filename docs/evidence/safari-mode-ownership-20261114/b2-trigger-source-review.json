@@ -1,0 +1,94 @@
+{
+  "head": "b2f7493bda3bc22c1296f2284888ff7302f18883",
+  "tree": "2bffbaf37f5e5d9a9c4d4a018faa81b7d621ca98",
+  "source_review_status": "PASS",
+  "widget_execution": "NOT_RUN",
+  "workflow_blob": "bbda0741590721e403acf2594869c76b6bc162b6",
+  "only_changes": "Additional exact central push branch, matching job condition, concurrency per ref",
+  "branches": [
+    "integration/lumo-feature-connections-20261114",
+    "integration/lumo-live-connections-20261114"
+  ],
+  "job_condition": "github.repository == 'Ullmann27/lumo-lernen' && github.event_name == 'push' && (github.ref == 'refs/heads/integration/lumo-feature-connections-20261114' ||\n github.ref == 'refs/heads/integration/lumo-live-connections-20261114')",
+  "concurrency": {
+    "group": "lumo-feature-connections-${{ github.ref }}",
+    "cancel-in-progress": "false"
+  },
+  "all_steps_byte_preserved": true,
+  "run_blocks": [
+    {
+      "step": 2,
+      "name": "Bind original source and lock bytes before setup",
+      "bytes": 3484,
+      "sha256": "08deb3285099b48f7ed028638fb59fc63dc957697676b1efbc5b405a6e2e31f4",
+      "byte_equal_to_fe5": true
+    },
+    {
+      "step": 4,
+      "name": "Prepare fonts, Pillow and the immutable locked packages",
+      "bytes": 742,
+      "sha256": "a75da967e8c2d3b4ef2e31a26346b4a3cd10ce361a3357614f97a015aa2d2ce3",
+      "byte_equal_to_fe5": true
+    },
+    {
+      "step": 5,
+      "name": "Bind the six original test assets",
+      "bytes": 1458,
+      "sha256": "9830882f995bdf11320c91de13843b8413c0af3c244e6119675351d543433fe7",
+      "byte_equal_to_fe5": true
+    },
+    {
+      "step": 6,
+      "name": "Execute exactly the 30 feature cases",
+      "bytes": 537,
+      "sha256": "1f83c3ee2a5554d41a22f612c1365a917393c74a22d739a0bddd76946fb48410",
+      "byte_equal_to_fe5": true
+    },
+    {
+      "step": 7,
+      "name": "Require completed tests, zero skips and the exact case count",
+      "bytes": 1648,
+      "sha256": "2988b202c5f048b9a341ce252c9dfb36d97881736692387463859fdb635019e9",
+      "byte_equal_to_fe5": true
+    },
+    {
+      "step": 8,
+      "name": "Require identical source and lock bytes after the attempt",
+      "bytes": 75,
+      "sha256": "69785dcfcceac6ddc9a0369ecb0eb3ec34b269f659b80dc18d104109c275cb4c",
+      "byte_equal_to_fe5": true
+    }
+  ],
+  "source_files": [
+    {
+      "key": "live",
+      "blob": "f42eb9e1f206fe87c64008906c6b911d59a49fe4",
+      "bytes": 29612,
+      "sha256": "0db3f873d11f8521bf2ea69f5abf9b42725089e0abf2a63040319526bbd3305b",
+      "matches_expected": true
+    },
+    {
+      "key": "feature_test",
+      "blob": "c3867fac07d8835b3364cf7eb751a365f60e8829",
+      "bytes": 26390,
+      "sha256": "01dce7c8314981c62cb575252964288cd3ef1822077937cd8ddaf73a69c49949",
+      "matches_expected": true
+    },
+    {
+      "key": "diktat_test",
+      "blob": "ad33ead3f5743b5c7b47a4b80bec30f6d3657b88",
+      "bytes": 12884,
+      "sha256": "4245b6df4f75c1fe6a5ae91cf674394448b2a0ff097685a53e03a793ceaaa521",
+      "matches_expected": true
+    },
+    {
+      "key": "profile_test",
+      "blob": "f741789b917858aa0f8ec141395b4d8115470a14",
+      "bytes": 5106,
+      "sha256": "cc86d988992ff8a12ae58fdcb10e4fcbd82a81976ce09f0c068fff6f1bedb3f7",
+      "matches_expected": true
+    }
+  ],
+  "required_feature_cases": 30,
+  "new_safari_cases": 8
+}
