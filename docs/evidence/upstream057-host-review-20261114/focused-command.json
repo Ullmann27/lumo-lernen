@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_connect_four_delivery",
+    "scripts.tests.test_connect_four_pipeline",
+    "scripts.tests.test_packaged_notices",
+    "scripts.tests.test_historical_apk_expectations",
+    "scripts.tests.test_export_embedded_game",
+    "scripts.tests.test_verify_play_bundle"
+  ],
+  "cwd": "/workspace/scratch/909ddb52fe7b/lumo-upstream057-review",
+  "source": "9c5a14d73679f68249d31db5401c489094ccf903",
+  "tree": "34506c87f4d66f97612caf95d345b4fa5186655f",
+  "started": 1794671153.749642,
+  "scope": "Exact Host union focused contracts; native pin and corrected Android observer still pending."
+}

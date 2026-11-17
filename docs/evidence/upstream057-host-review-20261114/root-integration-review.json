@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "status": "PREPARED_NOT_ACCEPTED",
+  "producer": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "common_base": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "original_integration": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "merged_host": {
+    "source": "9c5a14d73679f68249d31db5401c489094ccf903",
+    "tree": "34506c87f4d66f97612caf95d345b4fa5186655f"
+  },
+  "combined_garage": {
+    "commit": "d35c67b041093a6306a27192cc215e42f10a02e5",
+    "tree": "c8258b3e12dd01eafd14b08368363d111e2994c0",
+    "parents": [
+      "9c5a14d73679f68249d31db5401c489094ccf903",
+      "d7b5289f5b17cc6adf65fe2511971371f289cb6a"
+    ],
+    "branch": "integration/lumo-upstream057-review-20261114",
+    "local_commit": "aae451da4dbe5bcd1127c15d9582e99d3a10fdd5"
+  },
+  "exact_complete_tree_review": {
+    "source": "9c5a14d73679f68249d31db5401c489094ccf903",
+    "tree": "34506c87f4d66f97612caf95d345b4fa5186655f",
+    "total_files": 4883,
+    "expected_files": 4883,
+    "differences": [],
+    "local_source_tree_equal": true
+  },
+  "three_way_counts": {
+    "producer_only": 210,
+    "current_only": 177,
+    "identical_changes": 17,
+    "competing_paths": 15
+  },
+  "competing_paths": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "base": "a0bf885564ec322b3d830bcc661d0417926fbb2d",
+      "current": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+      "producer": "79e0aaeaef37bc66f8dcb676bc4b88a74105974b"
+    },
+    {
+      "path": "CONTINUE.md",
+      "base": "b01a6422ffbd04178d55772089d6cc5c0a4bb3b8",
+      "current": "76db09cf62c3a5d4b0d9f8c3b550680e845b2813",
+      "producer": "2198b68e9577bcff16c59184672a72b36407c2cb"
+    },
+    {
+      "path": "STATUS.md",
+      "base": "290d2c2d239d65aa7aff77fbf93bb30b47bc7949",
+      "current": "e01c9ff90bf6836370f007796dcdb4d100269b14",
+      "producer": "64803c45b789e70ed6cdf28e6b002b6986a286fe"
+    },
+    {
+      "path": "config/godot-source.json",
+      "base": "3ce3b0d1f53f5d9b9f7ff0dcb7c3bd519c250788",
+      "current": "86e473d75c810bdbfcadabef351adf7f931de08d",
+      "producer": "6f05fad948c0b3c07d5266afac3e0725c188bae7"
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "base": "814fc2191015e6c9f6c1f6e96232405a26cc9027",
+      "current": "aab44260ac43b595dc1d8cd781a70f8953828d88",
+      "producer": "625f7a73b71046225bbba395920d9d8a59d5775c"
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "base": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "current": "f6db83c08db2a89c8d422f33a874fde8a0b62f72",
+      "producer": "9999632174044af584c87147c5347c167b830918"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "base": "acc41e8b9f664441eca1f49eb984adefda2fa65a",
+      "current": "54ed0ed947d820edab29c612f1bbfad60aa39681",
+      "producer": "90d49833d5b7db7a942d399f889848658da84280"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "base": "cbc7d6c5f1544bd29af56226c93a8f1b53e049eb",
+      "current": "cd95512077293e973699b343dc3575af7e2b0108",
+      "producer": "8c193a73c04da2137825585fe775c8ee6e164001"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "base": "c6d15584ae7ab2b2e78381b620e0eed8d2305b09",
+      "current": "0836ae775c3524c8b4a691fef934d52caa20cbc8",
+      "producer": "8f9c59ebe877023b98dd4a10b3723a2dc777c52c"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "base": "18fdff098115570b69fc43ccfe6a3d573605e55b",
+      "current": "5c64b8f5d81eddeadb49b99988006a834b0f5fee",
+      "producer": "214e21a6300b361985615c0a90b79d48a43ca2fd"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "base": "58dc14602f6f0333170d3bcc6c6271fb349153fc",
+      "current": "2ea215d35ca4524f73fdd150d042984685cc5001",
+      "producer": "dad51ead2e2866ca1a4c78fb511693c02ee56495"
+    },
+    {
+      "path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+      "base": "c794b4239d1d402b3084a67ba49ea81d28d8d4a3",
+      "current": "f79ef8120be1e05545836aef40a6c13a308fa248",
+      "producer": "c1123ff353e10308d454449fe9eccf4df5ff1b64"
+    },
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "base": null,
+      "current": "97434207488900ac8f9364d5120f163cbc3ff0d5",
+      "producer": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+    },
+    {
+      "path": "test/wort_diktat_gesture_regression_test.dart",
+      "base": null,
+      "current": "4f47e3b49979ab6f7b580196935ee2a701c3df36",
+      "producer": "d8507944cb1ac781ab2ccb3eb428152549a0df17"
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "base": null,
+      "current": "55053f72145aec5d10a2d1669ff93618c36a7ee3",
+      "producer": "f515e404428edc8003f1191c77df214384f0eac7"
+    }
+  ],
+  "decisions": {
+    "full_flutter_captures": "Preserve Village, home-premium and home-nextgen directories; remove only duplicate Village dictionary key created by textual merge.",
+    "live_and_discovery": "Retain mandatory Live9/7 with original read-only replay over copied captures. Run the new strict Discovery10/38/2 collector once, and require its original manifest/helper/log/source-index replay separately. No old-format evidence synthesized.",
+    "writing": "Use producer row-owned completed strokes, retain current shared Ink/Letter surfaces. Preserve explicit typed_data import and actual hit-testable Diktat input assertion.",
+    "notices": "Use all original producer packaging/verifier/test files and five exact notice identities unchanged.",
+    "village": "Preserve direct Host route and tighten actual process arrival deadline using producer source.",
+    "garage": "Exactly reviewed d7 observer and fixtures, with two fresh stable frames, bounded in-frame geometry, five gestures/150s, actual target touch and new saved race still mandatory.",
+    "pending": "Final Native central-trigger commit, Safari delayed callback repair, real diagnostic result and complete new seven-job acceptance."
+  },
+  "focused_contracts": {
+    "source": "9c5a14d73679f68249d31db5401c489094ccf903",
+    "tree": "34506c87f4d66f97612caf95d345b4fa5186655f",
+    "tests": 177,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 26.4,
+    "original_log_sha256": "5239b7263b9323c2cfecb53dc4d5406d7bdbcce75576f2f68c073eff113fdf20",
+    "initial_setup_errors": 3,
+    "initial_error_cause": "Local six-module invocation omitted scripts/tests from PYTHONPATH; existing fixtures found after adding their directory. No source/test changes.",
+    "complete_tree_review": {
+      "source": "9c5a14d73679f68249d31db5401c489094ccf903",
+      "tree": "34506c87f4d66f97612caf95d345b4fa5186655f",
+      "total_files": 4883,
+      "expected_files": 4883,
+      "differences": [],
+      "local_source_tree_equal": true
+    }
+  },
+  "independent_delivery_review": {
+    "commit": "b61bdb8372263258a387fde72d7b0bd255046e59",
+    "blob": "ac36fa8301887772fe1c638b98283071dd823b8a"
+  },
+  "independent_garage_review": {
+    "commit": "a4636b7829ddfb08d581934ac4f5babad49a46cf",
+    "blob": "2583c1b06568a60ceefb097939651c5b421dd330"
+  },
+  "previous_publisher_9448": "inactive: original acceptance43596913210/1 failed Android and update; never activate against that run"
+}
