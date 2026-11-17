@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "head": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "run": 43616038272,
+  "attempt": 1,
+  "branch": "integration/lumo-live-connections-20261114",
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "observed_at": "2026-11-14 16:38:18 UTC",
+  "prerequisites": [
+    {
+      "id": 132511327954,
+      "name": "android-host-compile",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T16:31:43Z",
+      "completed_at": "2026-11-14T16:36:37Z"
+    },
+    {
+      "id": 132511328206,
+      "name": "connect-four-runtime",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T16:31:44Z",
+      "completed_at": "2026-11-14T16:34:32Z"
+    },
+    {
+      "id": 132512734271,
+      "name": "verify-and-build",
+      "status": "in_progress",
+      "conclusion": null,
+      "started_at": "2026-11-14T16:36:40Z",
+      "completed_at": null
+    }
+  ],
+  "scope": "Current prerequisite metadata only; final main/Android/update/delivery remain in progress or not started. No release approval.",
+  "historical_diagnostic": {
+    "run": 43612493152,
+    "head": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+    "apk_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "evidence_checkpoint": "1ce100b5fd06a158aca54c4062bd38edac2540db",
+    "not_current_apk_acceptance": true
+  }
+}

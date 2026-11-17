@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43615133709,
+  "attempt": 1,
+  "head": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+  "tree": "ad9c129f91bd2ec8a7ee010be49ab626481f77d8",
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "run_conclusion": "cancelled",
+  "main_job_id": 132509484752,
+  "main_job_conclusion": "cancelled",
+  "original_log": {
+    "blob": "6fdff194c6f97c828d1b4f982163ae75798a54e3",
+    "sha256": "d424a4ac37b3270d96c57cef64b628f361764e7eb0dca67b7e500df8c4ba58bd",
+    "utf8_bytes": 100406,
+    "lines": 936,
+    "retrievals": 1
+  },
+  "observed_original_errors": [
+    {
+      "line": 797,
+      "text": "2026-11-14T16:31:25.1257133Z ##[error]The operation was canceled."
+    },
+    {
+      "line": 888,
+      "text": "2026-11-14T16:31:39.3431199Z ##[error]No files were found with the provided path: .ci-results/build-contracts.log. No artifacts will be uploaded."
+    }
+  ],
+  "full_flutter_summary_present": false,
+  "main_completed_at": "2026-11-14T16:31:41Z",
+  "scope": "Historical cancelled C4 attempt. No full Flutter pass, APK, Android, update, delivery or release acceptance is claimed.",
+  "superseded_by": {
+    "head": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "run": 43616038272,
+    "attempt": 1
+  },
+  "artifact_downloads_by_this_agent": 0
+}

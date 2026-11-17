@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "source_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "source_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "run_id": 43633922088,
+  "attempt": 1,
+  "job_id": 132568119078,
+  "artifact_metadata_observed": "2026-11-14T20:10:19.028Z",
+  "job_metadata_observed": "2026-11-14T20:10:19.028Z",
+  "artifact": {
+    "id": 14129773237,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEyOTc3MzIzNw==",
+    "name": "lumo-connect-four-2020-build-contracts",
+    "size_in_bytes": 29490,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14129773237",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14129773237/zip",
+    "expired": false,
+    "digest": "sha256:77db1bfccce74077f98f342ee317ae5f983af7c953ad7513e15b81d868c2356a",
+    "created_at": "2026-11-14T20:07:20Z",
+    "updated_at": "2026-11-14T20:07:20Z",
+    "expires_at": "2026-12-14T20:07:18Z",
+    "workflow_run": {
+      "id": 43633922088,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e"
+    }
+  },
+  "steps": [
+    {
+      "name": "Verify all build and preservation contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 20,
+      "started_at": "2026-11-14T20:03:06Z",
+      "completed_at": "2026-11-14T20:07:18Z"
+    },
+    {
+      "name": "Preserve the complete original script contracts for PCM delivery replay",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21,
+      "started_at": "2026-11-14T20:07:18Z",
+      "completed_at": "2026-11-14T20:07:20Z"
+    }
+  ],
+  "archive_verification": {
+    "archive_bytes": 29490,
+    "archive_sha256": "77db1bfccce74077f98f342ee317ae5f983af7c953ad7513e15b81d868c2356a",
+    "zip_crc": "PASS",
+    "files": [
+      {
+        "path": "build-contracts.log",
+        "bytes": 191832,
+        "sha256": "8e6787f6850f930593a366645372e4beceb971be44b64b935cbc3906c2422c36",
+        "git_blob": "cc258ec1f015901e0b4bd21e3dadf426ed4c1896",
+        "local_path": "/tmp/lumo-android-ec936873-909ddb52fe7b/build-contracts-14129773237/originals/build-contracts.log"
+      }
+    ]
+  },
+  "original_log_git_blob": "cc258ec1f015901e0b4bd21e3dadf426ed4c1896",
+  "result": {
+    "unittest_case_lines": 952,
+    "summaries": [
+      [
+        1088,
+        "Ran 963 tests in 251.430s"
+      ],
+      [
+        1090,
+        "OK"
+      ],
+      [
+        1132,
+        "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+      ],
+      [
+        1133,
+        "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+      ],
+      [
+        1134,
+        "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47"
+      ]
+    ],
+    "line_count": 1135
+  },
+  "scope": "Original build/preservation contract archive only. Main job was still running, and its complete terminal log was not downloaded. No tests executed locally; no Android/APK/update/native acceptance is inferred from this archive."
+}

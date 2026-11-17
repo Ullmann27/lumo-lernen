@@ -1,0 +1,15 @@
+{
+  "case": "main",
+  "original_result": {
+    "bytes": 15552,
+    "path": "main/tour-result.json",
+    "sha256": "8962033806846a368307ad899b5b070515d6070b5783f2b944aeb4cf3942fd9e",
+    "status": "PASS"
+  },
+  "postflight_binding_exit_code": 0,
+  "probe_exit_code": 0,
+  "schema": 1,
+  "scope": "Isolated unchanged-APK diagnostic only; original run remains unchanged and no release is approved.",
+  "seven_job_acceptance": false,
+  "status": "PASS"
+}

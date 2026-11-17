@@ -1,0 +1,33 @@
+{
+  "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "host_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "run_id": 43616038272,
+  "run_attempt": 1,
+  "job_id": 132512734271,
+  "artifact_id": 14122323327,
+  "artifact_bytes": 29488,
+  "artifact_sha256": "f334e1d66517c355e41c35ee401a3b3552a3a118db1df4d1feca85ca27463763",
+  "zip_crc_pass": true,
+  "original_members": [
+    {
+      "path": "build-contracts.log",
+      "bytes": 191832,
+      "sha256": "76c3927b233e2919b31687c21f9b110abfc0db95b070a3d360b58c9fa78ebb6a",
+      "git_blob": "2cfa8579566aab6adcceaac040ffa54eb7a3914a",
+      "zip_crc32": "144cb0df"
+    }
+  ],
+  "original_results": {
+    "tests": 963,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 243.977,
+    "summary_line": 1088,
+    "ok_line": 1090,
+    "original_log_blob": "2cfa8579566aab6adcceaac040ffa54eb7a3914a"
+  },
+  "verification_scope": "Original artifact bytes, ZIP CRC and unchanged log reread only; no new test suite run.",
+  "archive_git_blob": "541cc31d86ac45264ae3422faa72545f301c893a"
+}

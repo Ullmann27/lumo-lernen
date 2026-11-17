@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "source_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "run": 43628840534,
+  "attempt": 1,
+  "job": 132551912578,
+  "conclusion": "cancelled",
+  "completed_at": "2026-11-14T19:47:23Z",
+  "log": {
+    "path": "verify-and-build.original.log",
+    "git_blob": "81fdc5620b46ef658a2326901b9f128091dc2333",
+    "utf8_bytes": 1311536,
+    "characters": 1310506,
+    "physical_lines": 10282,
+    "ends_with_newline": true,
+    "fetched_once": true
+  },
+  "actual_flutter": {
+    "source": "Original full JSON summary in the same terminal job log",
+    "line": 813,
+    "summary": {
+      "status": "PASS",
+      "passed": 2651,
+      "failed": [],
+      "skipped": [],
+      "capture_error_files": [],
+      "flutter_exit_code": 0,
+      "runner_completed_successfully": true,
+      "runner_errors": [],
+      "scope": [
+        "complete Flutter suite; capture outputs recorded below"
+      ],
+      "capture_png_counts": {
+        "LUMO_VILLAGE_CAPTURES": {
+          "directory": "village",
+          "pngs": 6
+        },
+        "LUMO_1989_CARD_CAPTURES": {
+          "directory": "home-premium",
+          "pngs": 8
+        },
+        "LUMO_NEXTGEN_CAPTURES": {
+          "directory": "home-nextgen",
+          "pngs": 6
+        },
+        "LUMO_TUTORING_CAPTURE_DIR": {
+          "directory": "tutoring",
+          "pngs": 6
+        },
+        "LUMO_RIG_STRESS": {
+          "directory": "rig-stress",
+          "pngs": 27
+        },
+        "LUMO_CARDS_OPPONENT_CAPTURE": {
+          "directory": "cards-opponents",
+          "pngs": 4
+        },
+        "LUMO_STREAM_E_CAPTURE": {
+          "directory": "cards-memory",
+          "pngs": 8
+        },
+        "LUMO_NAVIGATION_CAPTURES": {
+          "directory": "navigation",
+          "pngs": 26
+        },
+        "LUMO_GUIDED_CAPTURE_DIR": {
+          "directory": "guided-learning",
+          "pngs": 170
+        },
+        "LUMO_VISUAL_CAPTURE_DIR": {
+          "directory": "reasoning",
+          "pngs": 15
+        },
+        "LUMO_TOUR_DIR": {
+          "directory": "tour",
+          "pngs": 62
+        },
+        "LUMO_FLUTTER_GAMES_CAPTURE": {
+          "directory": "games",
+          "pngs": 16
+        },
+        "LUMO_LEARNING_CAPTURE_DIR": {
+          "directory": "learning-adventure",
+          "pngs": 80
+        },
+        "LUMO_COMPANION_CAPTURE_DIR": {
+          "directory": "companion",
+          "pngs": 6
+        },
+        "LUMO_SPATIAL_CAPTURES": {
+          "directory": "reading",
+          "pngs": 12
+        },
+        "LUMO_CAPTURE_DIR": {
+          "directory": "modernization",
+          "pngs": 42
+        },
+        "LUMO_CARD_FACE_EXPORT_DIR": {
+          "directory": "card-face-exports",
+          "pngs": 56
+        },
+        "LUMO_NEXTGEN_READING_CAPTURES": {
+          "directory": "nextgen-reading",
+          "pngs": 6
+        },
+        "LUMO_READING_CAPTURES": {
+          "directory": "reading-passages",
+          "pngs": 3
+        },
+        "LUMO_ASSISTED_LEARNING_CAPTURES": {
+          "directory": "assisted-learning",
+          "pngs": 2
+        },
+        "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+          "directory": "native-profiles",
+          "pngs": 4
+        }
+      },
+      "capture_file_outputs": {
+        "LUMO_CARDS_CUP_CAPTURE": {
+          "path": "cards-cup/trophy.png",
+          "created": true
+        }
+      },
+      "rendered_png_count": 566
+    }
+  },
+  "stopped_step": {
+    "name": "Require actual gameplay gates on the exact pinned native source",
+    "status": "completed",
+    "conclusion": "cancelled",
+    "number": 31,
+    "started_at": "2026-11-14T19:11:27Z",
+    "completed_at": "2026-11-14T19:46:55Z"
+  },
+  "cancellation_line": {
+    "line": 10206,
+    "text": "2026-11-14T19:46:55.8182827Z ##[error]The operation was canceled."
+  },
+  "following_jobs": [
+    {
+      "id": 132566626199,
+      "name": "android-c4",
+      "conclusion": "cancelled",
+      "steps": 0
+    },
+    {
+      "id": 132566626328,
+      "name": "verify-c4-candidate",
+      "conclusion": "cancelled",
+      "steps": 0
+    },
+    {
+      "id": 132566626361,
+      "name": "update-2020-from-2017",
+      "conclusion": "cancelled",
+      "steps": 0
+    },
+    {
+      "id": 132566627019,
+      "name": "prepare-c4-delivery",
+      "conclusion": "cancelled",
+      "steps": 0
+    }
+  ],
+  "artifacts_metadata_only": [
+    {
+      "id": 14128998736,
+      "name": "lumo-candidate-pinned-native-gameplay",
+      "bytes": 147900597,
+      "digest": "sha256:fde678c44e4003333063d4df7c346a1d2868ee3ed2196e67ca1d3bdc0640fcb7"
+    },
+    {
+      "id": 14127870191,
+      "name": "lumo-connect-four-2020-android-host-compile",
+      "bytes": 6277,
+      "digest": "sha256:eddc97416e66fffbb22a03ab936b7a44f774c70b9f4ade0f9fca2172084224d8"
+    },
+    {
+      "id": 14127847920,
+      "name": "lumo-1981-real-flutter-captures",
+      "bytes": 38337932,
+      "digest": "sha256:d574b52bbd72f3f8f027ace257ee62e8e2a775f923b4503a5b78df84684720d6"
+    },
+    {
+      "id": 14127625177,
+      "name": "lumo-connect-four-2020-desktop-runtime",
+      "bytes": 22148625,
+      "digest": "sha256:ed83d4f75d23ef9955c6d19ae4482e147821439b503f27d7ed5f3855da081c32"
+    },
+    {
+      "id": 14127492329,
+      "name": "lumo-candidate-all-flutter-tests-and-captures",
+      "bytes": 363820201,
+      "digest": "sha256:a7f4184021a42782bef47380ecc0514ade032dfa44d455acf9dcfa27716a2868"
+    },
+    {
+      "id": 14127423338,
+      "name": "lumo-connect-four-2020-build-contracts",
+      "bytes": 29489,
+      "digest": "sha256:51226bcd9403d98b53eae819180040ac4f1db6d60e5faf433d9a05b027668160"
+    },
+    {
+      "id": 14127259196,
+      "name": "lumo-tutor-2001-actual-flutter-captures",
+      "bytes": 5682511,
+      "digest": "sha256:0aac6e8962a3fa19c362e091e1e7a002361d474f271c115999bb89781ca5a99b"
+    },
+    {
+      "id": 14126469225,
+      "name": "lumo-1983-quiz-studio-captures",
+      "bytes": 10605085,
+      "digest": "sha256:f049390776ca4ff060cc2f67246e3e68991653a19303927f774ed6a61c538bab"
+    },
+    {
+      "id": 14126369703,
+      "name": "lumo-connect-four-2020-learning-curriculum-audit",
+      "bytes": 212136,
+      "digest": "sha256:d5af6df56ca04642664d0a64be8f440e2211572ca28a98a6445637f0a40b4e46"
+    }
+  ],
+  "source_disposition": "Superseded by Root's ec936873a45ffeb9ab347cc6bdb10951e38fac5e source. The existing branch concurrency cancels earlier runs; terminal cancellation is preserved without treating this incomplete run as release acceptance.",
+  "limits": [
+    "No APK build, Android tour, update, candidate or delivery PASS from this cancelled run.",
+    "The partial Native archive was not downloaded by this agent.",
+    "No new workflow or release activated by this evidence commit. Main log was fetched once only and preserved unchanged."
+  ]
+}

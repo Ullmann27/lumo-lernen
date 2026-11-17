@@ -1,0 +1,854 @@
+{
+  "status": "TOUCH_SENT",
+  "label": "Gecko Velo",
+  "timeout_seconds": 150,
+  "exact_caption_required": true,
+  "orientation_policy": "landscape",
+  "scope": "Observed touch prerequisites; post-action assertions still required",
+  "frames": [
+    {
+      "source": "21_stage_select_gecko_velo-0.png",
+      "source_sha256": "71187a812f5bf0eb8875955133e5ba270c78dc5e6a819e7b6e731dd3e2ee7394",
+      "source_bytes": 767433,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 1.644861,
+      "missing_caption_recovery": {
+        "status": "WAITING_FOR_SECOND_LIST_FRAME",
+        "gesture": [
+          510,
+          498,
+          510,
+          473
+        ],
+        "card": {
+          "text": "Comet",
+          "bounds": [
+            450.0,
+            472.0,
+            570.0,
+            499.0
+          ],
+          "variant": "contrast"
+        },
+        "anchor_kind": "current-caption",
+        "anchor_caption": "comet",
+        "anchor_bounds": [
+          450.0,
+          472.0,
+          570.0,
+          499.0
+        ],
+        "header_bottom": 323.0,
+        "workshop_top": 727.0,
+        "footer_top": 899.0,
+        "context_bounds": {
+          "karts": [
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ],
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ]
+          ],
+          "workshop": [
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ],
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ]
+          ]
+        },
+        "scope": "Scroll inside current caption only; exact target and saved selection remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-1.png",
+      "source_sha256": "db87682971b7d907402b93844a51d52634cd547f8e93dbbf4c5bcac2ebed59ac",
+      "source_bytes": 768613,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 18.345039,
+      "missing_caption_recovery": {
+        "status": "SWIPE_SENT",
+        "swipe_number": 1,
+        "gesture": [
+          510,
+          498,
+          510,
+          473
+        ],
+        "card": {
+          "text": "Comet",
+          "bounds": [
+            450.0,
+            472.0,
+            570.0,
+            499.0
+          ],
+          "variant": "contrast"
+        },
+        "anchor_kind": "current-caption",
+        "anchor_caption": "comet",
+        "anchor_bounds": [
+          450.0,
+          472.0,
+          570.0,
+          499.0
+        ],
+        "header_bottom": 323.0,
+        "workshop_top": 727.0,
+        "footer_top": 899.0,
+        "context_bounds": {
+          "karts": [
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ],
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ]
+          ],
+          "workshop": [
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ],
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ]
+          ]
+        },
+        "scope": "Scroll inside current caption only; exact target and saved selection remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-2.png",
+      "source_sha256": "17a8c093a78df630be753e81de1032a2473faabdc4d4a0a406e5c9e57b044eb0",
+      "source_bytes": 766031,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 35.744311,
+      "missing_caption_recovery": {
+        "status": "WAITING_FOR_SECOND_LIST_FRAME",
+        "gesture": [
+          510,
+          474,
+          510,
+          449
+        ],
+        "card": {
+          "text": "Comet",
+          "bounds": [
+            450.0,
+            448.0,
+            570.0,
+            475.0
+          ],
+          "variant": "contrast"
+        },
+        "anchor_kind": "current-caption",
+        "anchor_caption": "comet",
+        "anchor_bounds": [
+          450.0,
+          448.0,
+          570.0,
+          475.0
+        ],
+        "header_bottom": 323.0,
+        "workshop_top": 727.0,
+        "footer_top": 899.0,
+        "context_bounds": {
+          "karts": [
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ],
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ]
+          ],
+          "workshop": [
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ],
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ]
+          ]
+        },
+        "scope": "Scroll inside current caption only; exact target and saved selection remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-3.png",
+      "source_sha256": "2b39855dd4f7dccc6cf2a092a6cf49dfff16f43328891fa4b37ce5253537464c",
+      "source_bytes": 764087,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 52.933103,
+      "missing_caption_recovery": {
+        "status": "SWIPE_SENT",
+        "swipe_number": 2,
+        "gesture": [
+          510,
+          474,
+          510,
+          449
+        ],
+        "card": {
+          "text": "Comet",
+          "bounds": [
+            449.5,
+            447.0,
+            571.0,
+            476.0
+          ],
+          "variant": "raw"
+        },
+        "anchor_kind": "current-caption",
+        "anchor_caption": "comet",
+        "anchor_bounds": [
+          450.0,
+          448.0,
+          570.0,
+          475.0
+        ],
+        "header_bottom": 323.0,
+        "workshop_top": 727.0,
+        "footer_top": 899.0,
+        "context_bounds": {
+          "karts": [
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ],
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ]
+          ],
+          "workshop": [
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ],
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ]
+          ]
+        },
+        "scope": "Scroll inside current caption only; exact target and saved selection remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-4.png",
+      "source_sha256": "7647accb13ba56b5448b3cad8d3f710b08f69cd139419b72341f86b54a30d79f",
+      "source_bytes": 773290,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 70.374975,
+      "missing_caption_recovery": {
+        "status": "WAITING_FOR_SECOND_LIST_FRAME",
+        "gesture": [
+          538,
+          527,
+          538,
+          454
+        ],
+        "bars": [
+          [
+            448,
+            451,
+            630,
+            458
+          ],
+          [
+            448,
+            469,
+            630,
+            477
+          ],
+          [
+            448,
+            488,
+            630,
+            495
+          ],
+          [
+            448,
+            506,
+            630,
+            514
+          ],
+          [
+            448,
+            524,
+            630,
+            532
+          ]
+        ],
+        "anchor_bounds": [
+          449,
+          451,
+          629,
+          532
+        ],
+        "anchor_kind": "current-stat-bars",
+        "pixel_source": {
+          "file": "21_stage_select_gecko_velo-4.png",
+          "sha256": "7647accb13ba56b5448b3cad8d3f710b08f69cd139419b72341f86b54a30d79f",
+          "bytes": 773290,
+          "pixels": [
+            2400,
+            1080
+          ],
+          "base_rgb": [
+            95,
+            227,
+            255
+          ],
+          "highlight_rgb": [
+            130,
+            233,
+            255
+          ],
+          "channel_tolerance": 2,
+          "max_tick_gap_pixels": 3,
+          "minimum_row_coverage": 0.95
+        },
+        "scope": "Current pixel geometry for scrolling only; no vehicle name or selection inferred",
+        "header_bottom": 323.0,
+        "workshop_top": 727.0,
+        "footer_top": 899.0,
+        "context_bounds": {
+          "karts": [
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ],
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ]
+          ],
+          "workshop": [
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ],
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ]
+          ]
+        },
+        "caption_source": "no_complete_caption_current_pixel_geometry",
+        "ocr_sources": [
+          {
+            "file": "21_stage_select_gecko_velo-4-ocr-contrast.tsv",
+            "sha256": "085ec36f80c2e503627f2e242eac16d14e78cbac00d415808e7d8890030b1fd2",
+            "bytes": 5553,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-4-ocr-raw.tsv",
+            "sha256": "259e9e3ce0b94637904aa86f197d2b361350de9d99b3dd403e56f217dc9d1e80",
+            "bytes": 4631,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-4-ocr-white-text.tsv",
+            "sha256": "c3b844a7531513a88e29c523b1db88bf78611e7f2bc00779640ef207b9633542",
+            "bytes": 3705,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-4-ocr-white-latin.tsv",
+            "sha256": "24aab30bd309277218a8bf06bd78ac9e251d845dee59cf089e436b21bb3a634d",
+            "bytes": 3743,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-4-ocr-navy-latin.tsv",
+            "sha256": "08891a33eaf4618aa1d4c4cfff8afc3053aeaa8ed68e964a3ee51c06a5ad81f0",
+            "bytes": 3526,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-4-ocr-navy-latin-1x.tsv",
+            "sha256": "e3c7781c27a5faf8fb85531bf2f1e5b19ea5b9c85d48f88391dc8f73a2b3c1b8",
+            "bytes": 2901,
+            "scale": 1
+          },
+          {
+            "file": "21_stage_select_gecko_velo-4-ocr-teal-text-1x.tsv",
+            "sha256": "7c0bac363b678f6041256156ac3561a3a5d662eda94d83af502c4e5deb0ec03b",
+            "bytes": 7015,
+            "scale": 1
+          }
+        ]
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-5.png",
+      "source_sha256": "7e8bf5b64621ea1fd2b604343906aa0377ef99ef8f35a5cf5f18394786aa8e8d",
+      "source_bytes": 774581,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 87.685652,
+      "missing_caption_recovery": {
+        "status": "SWIPE_SENT",
+        "swipe_number": 3,
+        "gesture": [
+          538,
+          527,
+          538,
+          454
+        ],
+        "bars": [
+          [
+            448,
+            451,
+            630,
+            458
+          ],
+          [
+            448,
+            469,
+            630,
+            477
+          ],
+          [
+            448,
+            488,
+            630,
+            495
+          ],
+          [
+            448,
+            506,
+            630,
+            514
+          ],
+          [
+            448,
+            524,
+            630,
+            532
+          ]
+        ],
+        "anchor_bounds": [
+          449,
+          451,
+          629,
+          532
+        ],
+        "anchor_kind": "current-stat-bars",
+        "pixel_source": {
+          "file": "21_stage_select_gecko_velo-5.png",
+          "sha256": "7e8bf5b64621ea1fd2b604343906aa0377ef99ef8f35a5cf5f18394786aa8e8d",
+          "bytes": 774581,
+          "pixels": [
+            2400,
+            1080
+          ],
+          "base_rgb": [
+            95,
+            227,
+            255
+          ],
+          "highlight_rgb": [
+            130,
+            233,
+            255
+          ],
+          "channel_tolerance": 2,
+          "max_tick_gap_pixels": 3,
+          "minimum_row_coverage": 0.95
+        },
+        "scope": "Current pixel geometry for scrolling only; no vehicle name or selection inferred",
+        "header_bottom": 323.0,
+        "workshop_top": 727.0,
+        "footer_top": 899.0,
+        "context_bounds": {
+          "karts": [
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ],
+            [
+              1223.0,
+              296.0,
+              1314.0,
+              323.0
+            ]
+          ],
+          "workshop": [
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ],
+            [
+              328.0,
+              727.0,
+              709.0,
+              762.0
+            ]
+          ]
+        },
+        "caption_source": "no_complete_caption_current_pixel_geometry",
+        "ocr_sources": [
+          {
+            "file": "21_stage_select_gecko_velo-5-ocr-contrast.tsv",
+            "sha256": "ddeb2e190f71aa77acb1be505863c2caf9eac08630c3257f29f9e72eed33f9f9",
+            "bytes": 6294,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-5-ocr-raw.tsv",
+            "sha256": "4b1df76d934750699eadee0061aad51f3c37307f388ff88bdce9747976675753",
+            "bytes": 4561,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-5-ocr-white-text.tsv",
+            "sha256": "ea600da2eab6daa3f34cd92cc099b1012eadc4eadd72271b02bc96ceea306930",
+            "bytes": 3852,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-5-ocr-white-latin.tsv",
+            "sha256": "425f2e2d86da822abc7233f37d84a6bcbfd9a95519868813fffd30875cf10ad7",
+            "bytes": 3848,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-5-ocr-navy-latin.tsv",
+            "sha256": "4b1003eeb1e54e2d06aa9ac9dd7e1c502c2e0a9203c741edd8a388781baaf1d0",
+            "bytes": 2103,
+            "scale": 2
+          },
+          {
+            "file": "21_stage_select_gecko_velo-5-ocr-navy-latin-1x.tsv",
+            "sha256": "ea68405bd220c6f058cad438efbd15e24b15cc010566a5f2448525808d9205fb",
+            "bytes": 2029,
+            "scale": 1
+          },
+          {
+            "file": "21_stage_select_gecko_velo-5-ocr-teal-text-1x.tsv",
+            "sha256": "11b4991c1e606dacd6ed2c12fb35edfa7e1690cddb2f31740885ab7509f162db",
+            "bytes": 6668,
+            "scale": 1
+          }
+        ]
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-6.png",
+      "source_sha256": "18212c28c8dacf777d7e95a823721aa7a008bed7da555ad9d4a74d1ac6da01b0",
+      "source_bytes": 770523,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 105.570605,
+      "target": {
+        "surface_sha256": "18212c28c8dacf777d7e95a823721aa7a008bed7da555ad9d4a74d1ac6da01b0",
+        "pixels": [
+          2400,
+          1080
+        ],
+        "bounds": [
+          451.0,
+          571.0,
+          658.0,
+          598.0
+        ],
+        "anchor": "",
+        "reasons": [
+          "waiting for second stable observed target bounds"
+        ],
+        "target_geometry_valid": true,
+        "stable_observed_target": false
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-7.png",
+      "source_sha256": "486dfd4af9efb7198f838078c4b1c5baf624f3f288409e969748b0348017815b",
+      "source_bytes": 769905,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 110.03966,
+      "target": {
+        "surface_sha256": "486dfd4af9efb7198f838078c4b1c5baf624f3f288409e969748b0348017815b",
+        "pixels": [
+          2400,
+          1080
+        ],
+        "bounds": [
+          451.0,
+          571.0,
+          658.0,
+          598.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    }
+  ],
+  "final_observed_bounds": [
+    451.0,
+    571.0,
+    658.0,
+    598.0
+  ],
+  "touch": [
+    554,
+    584
+  ],
+  "elapsed_seconds": 113.367403
+}

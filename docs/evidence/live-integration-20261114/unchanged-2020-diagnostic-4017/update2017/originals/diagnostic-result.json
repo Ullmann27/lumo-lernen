@@ -1,0 +1,15 @@
+{
+  "case": "update2017",
+  "original_result": {
+    "bytes": 41715,
+    "path": "update/update-result.json",
+    "sha256": "fc486d9c6d6ff1e4934c083b9610acbf31bd66774a5a1e414d59ace133099f09",
+    "status": "PASS"
+  },
+  "postflight_binding_exit_code": 0,
+  "probe_exit_code": 0,
+  "schema": 1,
+  "scope": "Isolated unchanged-APK diagnostic only; original run remains unchanged and no release is approved.",
+  "seven_job_acceptance": false,
+  "status": "PASS"
+}
