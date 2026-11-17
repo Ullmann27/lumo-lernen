@@ -1580,8 +1580,10 @@ class WrittenArithmeticVisual extends StatelessWidget {
   }
 }
 
-/// Every displayed group represents its complete quantity. Larger quantities
-/// use explicitly valued bundles instead of silently clipping visible objects.
+/// Zeigt nur, was gegeben ist: den Vorrat (als Hunderter, Zehner und Einer)
+/// und die leeren Gruppen. Wie viel in jeder Gruppe landet, ist die Lösung
+/// und steht deshalb nicht im Bild. Früher stand in jeder Gruppe das
+/// Ergebnis („Gruppe 1 · 19“).
 class DivisionGroupsVisual extends StatelessWidget {
   const DivisionGroupsVisual({super.key, required this.task});
   final TaskInstance task;
@@ -1602,70 +1604,87 @@ class DivisionGroupsVisual extends StatelessWidget {
         divisor < 1 ||
         divisor > 12 ||
         dividend < 1 ||
+        dividend > 9999 ||
         dividend % divisor != 0 ||
-        dividend ~/ divisor > 999 ||
         task.correctAnswer != dividend ~/ divisor) {
       return Text(task.prompt, textAlign: TextAlign.center);
     }
-    final perGroup = dividend ~/ divisor;
-    final hundreds = perGroup ~/ 100;
-    final tens = perGroup % 100 ~/ 10;
-    final ones = perGroup % 10;
+    final hundreds = dividend ~/ 100;
+    final tens = dividend % 100 ~/ 10;
+    final ones = dividend % 10;
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       decoration: _stageDecoration(const Color(0xFFA855F7)),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            '$dividend Objekte in $divisor gleich große Gruppen',
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 13,
-              fontWeight: FontWeight.w800,
-              color: Color(0xFF6B21A8),
+      child: Semantics(
+        label: '$dividend Dinge sollen gerecht auf $divisor Gruppen '
+            'verteilt werden.',
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Verteile $dividend Dinge gerecht auf $divisor Gruppen.',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF6B21A8),
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 10,
-            runSpacing: 8,
-            alignment: WrapAlignment.center,
-            children: [
-              for (var i = 0; i < divisor; i++)
-                Container(
-                  key: ValueKey('division-group-$i'),
-                  padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        color: const Color(0xFFA855F7).withOpacity(0.45),
-                        width: 1.2),
-                  ),
-                  child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    Text('Gruppe ${i + 1} · $perGroup',
-                        style: const TextStyle(fontWeight: FontWeight.w800)),
-                    const SizedBox(height: 4),
-                    Wrap(spacing: 4, runSpacing: 4, children: [
-                      for (var k = 0; k < hundreds; k++)
-                        _bundle(100, 'division-hundred-$i-$k'),
-                      for (var k = 0; k < tens; k++)
-                        _bundle(10, 'division-ten-$i-$k'),
-                      for (var k = 0; k < ones; k++)
-                        _bundle(1, 'division-one-$i-$k'),
+            const SizedBox(height: 10),
+            Wrap(
+              key: const ValueKey('division-supply'),
+              spacing: 4,
+              runSpacing: 4,
+              alignment: WrapAlignment.center,
+              children: [
+                for (var k = 0; k < hundreds; k++)
+                  _bundle(100, 'division-supply-hundred-$k'),
+                for (var k = 0; k < tens; k++)
+                  _bundle(10, 'division-supply-ten-$k'),
+                for (var k = 0; k < ones; k++)
+                  _bundle(1, 'division-supply-one-$k'),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 10,
+              runSpacing: 8,
+              alignment: WrapAlignment.center,
+              children: [
+                for (var i = 0; i < divisor; i++)
+                  Container(
+                    key: ValueKey('division-group-$i'),
+                    padding: const EdgeInsets.fromLTRB(10, 6, 10, 6),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: const Color(0xFFA855F7).withOpacity(0.45),
+                          width: 1.2),
+                    ),
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      Text('Gruppe ${i + 1}',
+                          style: const TextStyle(fontWeight: FontWeight.w800)),
+                      const SizedBox(height: 2),
+                      const Text('?',
+                          style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                              color: Color(0xFF6B21A8))),
                     ]),
-                  ]),
-                ),
-            ],
-          ),
-        ],
+                  ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _bundle(int value, String key) => Semantics(
-        label: '$value ${value == 1 ? 'Objekt' : 'Objekte'}',
+        label: value == 1 ? '1 Ding' : '$value Dinge',
         child: Container(
           key: ValueKey(key),
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
