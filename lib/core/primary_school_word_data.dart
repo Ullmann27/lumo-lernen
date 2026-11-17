@@ -64,7 +64,7 @@ class PrimarySchoolWordData {
     <String>['Fisch', 'Tisch'],
     <String>['Kuh', 'Schuh'],
     <String>['Tor', 'Ohr'],
-    <String>['Bär', 'Meer'],
+    <String>['Meer', 'Speer'],
     <String>['Schwein', 'Bein'],
     <String>['Katze', 'Tatze'],
     <String>['Wiese', 'Riese'],
@@ -113,7 +113,40 @@ class PrimarySchoolWordData {
     <String>['Sterne', 'Ferne'],
     <String>['Rind', 'Kind'],
     <String>['Lamm', 'Kamm'],
+    // Zweite Reimwörter aus dem Nomenpool: als Paar hinterlegt, damit sie nie
+    // als "falsche" Antwort neben dem ersten Reimwort stehen.
+    <String>['Rose', 'Hose'],
+    <String>['See', 'Schnee'],
+    <String>['Fluss', 'Bus'],
+    <String>['Brille', 'Marille'],
   ];
+
+  /// Wörter, die auf ein Reimwort (fast) reimen, aber nicht als Reimaufgabe
+  /// gefragt werden: zu lang, Lautung nicht ganz rein oder in Österreich
+  /// gleich gesprochen (Hase – Straße). Sie dürfen nie als Ablenker neben
+  /// einem Wort ihrer Gruppe stehen.
+  static const List<List<String>> rhymeNeighbours = <List<String>>[
+    <String>['Wand', 'Hand', 'Bundesland', 'Elefant'],
+    <String>['Ring', 'Ding', 'Schmetterling'],
+    <String>['Kreis', 'Eis', 'Stromkreis'],
+    <String>['Hahn', 'Zahn', 'Ozean'],
+    <String>['Hase', 'Nase', 'Straße'],
+  ];
+
+  /// Alle Wörter, die neben [word] nicht als falsche Antwort stehen dürfen:
+  /// hinterlegte Reimpartner und Beinahe-Reime.
+  static Set<String> rhymeBlockedFor(String word) {
+    final blocked = <String>{...rhymePartnersFor(word)};
+    final lower = word.toLowerCase();
+    final family = <String>{lower, ...blocked};
+    for (final group in rhymeNeighbours) {
+      if (group.any((item) => family.contains(item.toLowerCase()))) {
+        blocked.addAll(group.map((item) => item.toLowerCase()));
+      }
+    }
+    blocked.remove(lower);
+    return blocked;
+  }
 
   /// Alle in den Daten bekannten Reimpartner, einschließlich Reimgruppen.
   static Set<String> rhymePartnersFor(String word) {

@@ -323,7 +323,7 @@ class GermanTaskTemplate {
         final pair = PrimarySchoolWordData.rhymePairForSeed(seed);
         final excluded = <String>{
           ...pair.map((word) => word.toLowerCase()),
-          ...PrimarySchoolWordData.rhymePartnersFor(pair.first)
+          ...PrimarySchoolWordData.rhymeBlockedFor(pair.first)
         };
         final distractors = _nouns(seed, grade)
             .where((word) => !excluded.contains(word.toLowerCase()))
