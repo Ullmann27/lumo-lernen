@@ -45,6 +45,43 @@ Einschränkungen zu den Zielbildern, damit nichts vorgetäuscht wird:
 
 Grenze, offen ausgesprochen: Fotorealismus wie in Konsolen-Großproduktionen ist auf Android mit dieser Engine nicht erreichbar. Ziel ist ein hochwertiger, stilisierter 3D-Look.
 
+## 2a. Abnahmeschwelle für jedes Spiel (Heinz, 17.11.2026)
+
+Ein Spiel gilt erst als fertig, wenn man es grafisch, spielerisch und in Sinn und Logik
+guten Gewissens einem Haus wie Nintendo vorlegen **könnte**. Das wird nicht behauptet,
+sondern je Spiel an acht Punkten geprüft. Jeder Punkt bekommt 1 bis 5 und einen Nachweis.
+Fertig heißt: alle acht mindestens 4, Punkt 8 auf einem echten Gerät gemessen.
+
+| Nr. | Punkt | Woran es geprüft wird |
+|---|---|---|
+| 1 | Sofort verständlich | Ein Kind versteht in 30 Sekunden ohne Lesen, was zu tun ist |
+| 2 | Steuerung | Direkt, präzise, verzeiht kleine Fehler; nichts fühlt sich träge oder zufällig an |
+| 3 | Spieltiefe | Echte Entscheidungen, sichtbares Besserwerden, Grund zum Wiederkommen |
+| 4 | Inhalt | Genug unterschiedliche Strecken, Level oder Aufgaben; keine umgefärbten Kopien |
+| 5 | Grafik und Animation | Einheitlicher Stil, Tiefe, Licht, lebendige Figuren, auf einen Blick lesbar |
+| 6 | Feinschliff | Jede Aktion hat Rückmeldung in Bild und Ton; saubere Übergänge; nichts ruckt oder überlappt |
+| 7 | Zuverlässigkeit | Pause, Wiederaufnahme, Speichern, Fehlerfälle; keine Sackgassen; Belohnung genau einmal |
+| 8 | Leistung | Flüssig auf dem Zielgerät, gemessen (Bildzeiten, Speicher, Wärme) |
+
+Zusätzlich für ein Lernprodukt: Der Lernbezug muss Sinn ergeben und darf den Spielfluss nicht zerstören.
+
+### Ausgangslage am 17.11.2026 – nur Punkt 5, nur aus Renderbildern
+
+Bewertet ist ausschließlich, was ich an echten Engine-Bildern gesehen habe (Software-Renderer,
+kein Gerät). Steuerung, Spieltiefe, Ton und Leistung sind **nicht bewertet**, weil ich die Spiele
+nicht gespielt und nicht auf einem Gerät gemessen habe.
+
+| Bereich | Punkt 5 heute | Begründung |
+|---|---|---|
+| Lumo Kart, Rennen | 2–3 | Echtes 3D, brauchbare Karts und Fahrer. Fahrbahn kahl und grau, Licht flach (Vulkan fast schwarz), Streckenrand dünn, kaum Effekte, eine Tastatur-Hilfezeile im Bild |
+| Lumo Kart, Hauptmenü | 3 | Aufbau nach Zielbild, lebender Lumo im Kart; Kacheln noch flach gezeichnet (Blender-Kit wird gerade eingebaut) |
+| Memory, 3D-Tisch | 2 | Flaches Brett von oben, Lumo klein am Rand; das Flutter-Memory wirkt moderner |
+| Jump & Run (Inseln) | 2 | Kleine schwebende Inseln, einfache Bäume, viel Text im Bild; kein langer Lauf |
+| Bauwelt | 2–3 | Echtes Bauen in 3D, aber flaches Gelände und schlichte Blöcke |
+| Profil (App) | 3–4 | Nach Zielbild neu gebaut; Belohnungs-Regal mangels echter Sammelstücke dünn |
+
+Schatzsuche, Rhythmus, Puzzle, Cards-Tisch, 4 Gewinnt, Quiz, Lernszenen: nicht angesehen, nicht bewertet.
+
 ## 3. Navigation und App-Rahmen (Flutter)
 
 | Bereich | Einstieg | Stand | Lücken | Status |
