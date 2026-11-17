@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "kind": "immutable_budget_evidence_pack",
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 1161,
+      "sha256": "aeb521a6d2476db564240f3cc87179d95da1c6bbc2a3a6d3260d40b1fc41605c",
+      "git_blob": "d13b4986ec6a6c7f66d13233b930e78bfb8b9626"
+    },
+    {
+      "path": "host-discovery-gate-contract.original.json",
+      "bytes": 2714,
+      "sha256": "2ec25593c624a8a54345807b3886f3d9f58f800bed98d0848395e7b126dee11a",
+      "git_blob": "36224474af39293339ce25b246fd6dc5aad39dec"
+    },
+    {
+      "path": "host3d-jobs.original.json",
+      "bytes": 15287,
+      "sha256": "cad10265291832aac17be0d93f1aa95808fa1043daf0e6c454d4c401b2804687",
+      "git_blob": "b34ae6f041e68817141485da488adc001e392f1d"
+    },
+    {
+      "path": "host7b-jobs.original.json",
+      "bytes": 29940,
+      "sha256": "06f1dca91f9eaed20b563cfd7e06aecfc2aeb45efe8e910d8b8158d5ce1b2e98",
+      "git_blob": "02e5df464eb1f810f938cb2ca939b4482bf46872"
+    },
+    {
+      "path": "native-c300-invocations.original.json",
+      "bytes": 23018,
+      "sha256": "82d166c5794e93505a0862c8ae032ce3c93393aca3754fad9f1cf601bfce3348",
+      "git_blob": "ca283cb81678e30ece445fd22ab271e0558463b4"
+    },
+    {
+      "path": "native-c300-jobs.original.json",
+      "bytes": 3919,
+      "sha256": "9da10aac76cbc9967c0cb0b1b5a5630d86d25199dbd4cbcdd8fa8301613a09d9",
+      "git_blob": "c2b560b1f253b99c26daa2dd116924966cb6eff0"
+    },
+    {
+      "path": "native-c300-timings.owner.json",
+      "bytes": 7268,
+      "sha256": "b37f3814ae52464f2029027008ad094c3588893b8da09302ae29dbbd84e42a30",
+      "git_blob": "cef4fc4e204207fcb9ea5ded0881655b154ff517"
+    },
+    {
+      "path": "native-discovery-gate-contract.original.json",
+      "bytes": 8503,
+      "sha256": "7aea1777bbf1d93f6f0f248df63d6ea7c1b0e7efdb9d5246dd324c7712de5e2c",
+      "git_blob": "076e29b2f9c6d59309f6e8ddc1bf71c15bae099c"
+    },
+    {
+      "path": "review.json",
+      "bytes": 13182,
+      "sha256": "af4e8dfd9bae68ca2ddd34376b685cb7213e7881d2b54b9312abee23a96bb698",
+      "git_blob": "6ab42ac32cc84fa6d064f4976a3c8519eabcb5bc"
+    }
+  ],
+  "count": 9,
+  "bytes": 104992
+}
