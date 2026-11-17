@@ -34,6 +34,7 @@ class LumoMemoryScreen extends StatefulWidget {
     this.difficulty,
     this.pack,
     this.nativeTransport = const NativeMethodTableTransport(),
+    this.autoLaunchNative = false,
     this.turnMilliseconds,
   });
   final int? seed;
@@ -41,6 +42,10 @@ class LumoMemoryScreen extends StatefulWidget {
   final MemoryDifficulty? difficulty;
   final MemoryThemePack? pack;
   final NativeTableTransport nativeTransport;
+  /// Stable Flutter cards are the default on Android. Native 3D is opt-in.
+  /// Keeping this optional prevents an unavailable embedded engine from
+  /// interrupting the child's already loaded round.
+  final bool autoLaunchNative;
   final int Function()? turnMilliseconds;
 
   @override
@@ -153,7 +158,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
         _speak(controller.restored
             ? 'Deine gespeicherte Runde wartet auf dich.'
             : controller.state.line);
-        if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+        if (widget.autoLaunchNative &&
+            !kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
           await _openNative();
         }
       });
@@ -482,6 +488,12 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
               ),
             ),
           ),
+        ),
+        _RoundIconButton(
+          key: const ValueKey('memory-open-3d'),
+          icon: Icons.view_in_ar_rounded,
+          tooltip: '3D-Memory-Tisch freiwillig öffnen',
+          onTap: () => unawaited(_openNative()),
         ),
         _RoundIconButton(
           key: const ValueKey('memory-restart'),
