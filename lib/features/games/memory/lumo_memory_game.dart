@@ -715,11 +715,11 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
 
   Widget _board() {
     final reduce = _reduceMotion;
-    // Runder Sandsteintisch wie auf der Referenz (p4-16): die Karten liegen
-    // auf der gemalten Platte; Gesten bleiben beim Raster.
+    // Filzmatte im Holzrahmen wie der 3D-Memory-Tisch: die Karten liegen
+    // innerhalb der Naht auf dem Filz; Gesten bleiben beim Raster.
     return LumoMemoryStage(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(18, 20, 18, 18),
+        padding: const EdgeInsets.fromLTRB(24, 24, 24, 22),
         child: LayoutBuilder(builder: (context, c) {
           const gap = 8.0;
           const aspect = .74;
@@ -861,6 +861,24 @@ class _MemoryCardState extends State<_MemoryCard> {
   }
 }
 
+/// Gold card frame shared by back and front, like the 3D table's card body.
+const _cardGold = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(0xFFFFE08A), Color(0xFFE5AE3E), Color(0xFFFFD36A), Color(0xFFB77A22)],
+  stops: [0, .4, .7, 1],
+);
+
+BoxDecoration _cardFrame({bool glow = false}) => BoxDecoration(
+      borderRadius: BorderRadius.circular(14),
+      gradient: _cardGold,
+      boxShadow: [
+        if (glow)
+          const BoxShadow(color: Color(0xCCFFD86B), blurRadius: 18, spreadRadius: 2),
+        const BoxShadow(color: Color(0x80021018), blurRadius: 7, offset: Offset(3, 5)),
+      ],
+    );
+
 class _CardBack extends StatelessWidget {
   const _CardBack({required this.index});
   final int index;
@@ -869,65 +887,105 @@ class _CardBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       key: ValueKey('memory-back-$index'),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF3E8A4A),
-            Color(0xFF2A6A38),
-            Color(0xFF1A4A28),
-            Color(0xFF2F7340),
-          ],
-          stops: [0, .28, .78, 1],
+      decoration: _cardFrame(),
+      child: const Padding(
+        padding: EdgeInsets.all(3.5),
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(11)),
+          child: CustomPaint(painter: _StarBackPainter()),
         ),
-        border: Border.all(color: const Color(0xFFE8C45A), width: 2.7),
-        boxShadow: const [
-          BoxShadow(color: Color(0x99C9A227), blurRadius: 11),
-          BoxShadow(
-              color: Color(0x66020A24), blurRadius: 6, offset: Offset(0, 4)),
-        ],
       ),
-      child: Stack(fit: StackFit.expand, children: [
-        Padding(
-          padding: const EdgeInsets.all(5),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(11),
-              border: Border.all(color: const Color(0xCCFFE7A0), width: 1.2),
-            ),
-          ),
-        ),
-        const Center(
-          child: FractionallySizedBox(
-            widthFactor: .62,
-            heightFactor: .74,
-            child: FittedBox(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.eco_rounded,
-                      color: Color(0xFFD8F0A8),
-                      size: 72,
-                      shadows: [
-                        Shadow(color: Color(0xAA8FE08A), blurRadius: 16)
-                      ]),
-                  SizedBox(height: 2),
-                  Icon(Icons.pets_rounded,
-                      color: Color(0xFFE8C45A),
-                      size: 22,
-                      shadows: [
-                        Shadow(color: Color(0x66FFE08A), blurRadius: 8)
-                      ]),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ]),
     );
   }
+}
+
+/// Original LUMO star back: blue gradient, diamond weave, double gold frame,
+/// a golden star and four light points. Same design as the 3D card shader.
+class _StarBackPainter extends CustomPainter {
+  const _StarBackPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    canvas.drawRect(
+      rect,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF2CA6C0), Color(0xFF1E3F88)],
+        ).createShader(rect),
+    );
+    final weave = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = .8
+      ..color = const Color(0x1FFFFFFF);
+    final step = size.shortestSide / 7;
+    for (var x = -size.height; x < size.width + size.height; x += step) {
+      canvas.drawLine(Offset(x, 0), Offset(x + size.height, size.height), weave);
+      canvas.drawLine(Offset(x + size.height, 0), Offset(x, size.height), weave);
+    }
+    final center = rect.center;
+    canvas.drawCircle(
+      center,
+      size.shortestSide * .55,
+      Paint()
+        ..shader = const RadialGradient(
+          colors: [Color(0x66FFD36A), Color(0x00FFD36A)],
+        ).createShader(Rect.fromCircle(center: center, radius: size.shortestSide * .55)),
+    );
+    final inset = size.shortestSide * .07;
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(rect.deflate(inset), Radius.circular(inset * 1.3)),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = math.max(1.4, size.shortestSide * .028)
+        ..color = const Color(0xFFFFCE55),
+    );
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(rect.deflate(inset * 2), Radius.circular(inset)),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = .9
+        ..color = const Color(0xAAE0A93C),
+    );
+    final r = size.shortestSide * .27;
+    final star = Path();
+    for (var i = 0; i < 10; i++) {
+      final a = -math.pi / 2 + i * math.pi / 5;
+      final p = center + Offset(math.cos(a), math.sin(a)) * (i.isEven ? r : r * .46);
+      i == 0 ? star.moveTo(p.dx, p.dy) : star.lineTo(p.dx, p.dy);
+    }
+    star.close();
+    canvas.drawPath(
+      star,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeJoin = StrokeJoin.round
+        ..strokeWidth = math.max(1.6, r * .14)
+        ..color = const Color(0xFF6B380C),
+    );
+    canvas.drawPath(
+      star,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFFFFF4C8), Color(0xFFFFC93C)],
+        ).createShader(Rect.fromCircle(center: center, radius: r)),
+    );
+    final light = Paint()..color = const Color(0xFFFFEFB8);
+    for (final corner in const [Offset(-1, -1), Offset(1, -1), Offset(1, 1), Offset(-1, 1)]) {
+      canvas.drawCircle(
+        center + Offset(corner.dx * size.width * .30, corner.dy * size.height * .36),
+        math.max(1.2, size.shortestSide * .022),
+        light,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _StarBackPainter oldDelegate) => false;
 }
 
 class _CardFront extends StatelessWidget {
@@ -937,24 +995,11 @@ class _CardFront extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final glow = matched ? const Color(0xFFFFD86B) : const Color(0xFFE8C45A);
     return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: const Color(0xFF1A2A58),
-        border: Border.all(
-            color: matched ? const Color(0xFFFFE9A6) : const Color(0xFFE4B84A),
-            width: 2.8),
-        boxShadow: [
-          BoxShadow(
-              color: glow.withOpacity(matched ? .85 : .42),
-              blurRadius: matched ? 18 : 10,
-              spreadRadius: matched ? 2 : 0),
-        ],
-      ),
+      decoration: _cardFrame(glow: matched),
       child: Stack(fit: StackFit.expand, children: [
         Padding(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.all(3.5),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(11),
             child: motif.sticker
@@ -982,29 +1027,22 @@ class _CardFront extends StatelessWidget {
                     fit: BoxFit.cover, filterQuality: FilterQuality.medium),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(5),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(11),
-              border: Border.all(color: const Color(0x99FFF3C4), width: 1.1),
-            ),
-          ),
-        ),
         if (matched)
-          Positioned(
-            top: 5,
-            right: 5,
+          Align(
+            alignment: const Alignment(0, .92),
             child: Container(
               key: const ValueKey('memory-matched-mark'),
-              padding: const EdgeInsets.all(3),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: const Color(0xFFFFE9A6),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: const Color(0xFF8A5A11)),
+                color: const Color(0xFF1C8F5E),
+                borderRadius: BorderRadius.circular(9),
+                border: Border.all(color: const Color(0xFFFFF4B3), width: 1.4),
+                boxShadow: const [
+                  BoxShadow(color: Color(0x66000000), blurRadius: 4, offset: Offset(0, 2)),
+                ],
               ),
               child: const Icon(Icons.check_rounded,
-                  size: 16, color: Color(0xFF18334D)),
+                  size: 18, color: Color(0xFFFFF4B3)),
             ),
           ),
       ]),
@@ -1366,14 +1404,16 @@ class _ResultCard extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 14, 20, 18),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
+          // Same night-teal panel and gold rim as the 3D table's result.
           gradient: const LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xF2123F86), Color(0xF2071A3E)],
+            colors: [Color(0xF5174A63), Color(0xF50C2236)],
           ),
-          border: Border.all(color: const Color(0xCCE8C45A), width: 2),
+          border: Border.all(color: const Color(0xFFF2C25A), width: 3),
           boxShadow: const [
-            BoxShadow(color: Color(0x66E8C45A), blurRadius: 24),
+            BoxShadow(color: Color(0x66F2C25A), blurRadius: 26),
+            BoxShadow(color: Color(0x99000000), blurRadius: 12, offset: Offset(0, 6)),
           ],
         ),
         child: SingleChildScrollView(
@@ -1392,9 +1432,10 @@ class _ResultCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 26,
+                    fontSize: 28,
                     fontWeight: FontWeight.w900,
-                    color: Colors.white)),
+                    color: Color(0xFFFFD76A),
+                    shadows: [Shadow(color: Color(0xAA08202C), blurRadius: 6, offset: Offset(0, 2))])),
             const SizedBox(height: 6),
             Text(pairsLine,
                 textAlign: TextAlign.center,
@@ -1422,22 +1463,29 @@ class _ResultCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(2),
                   child: Icon(Icons.star_rounded,
-                      size: 38,
+                      size: 42,
                       color: i < stars
-                          ? LumoVisualTokens.gold
-                          : const Color(0x55FFFFFF)),
+                          ? const Color(0xFFFFC93C)
+                          : const Color(0x40FFFFFF),
+                      shadows: i < stars
+                          ? const [Shadow(color: Color(0xCCFFD86B), blurRadius: 12)]
+                          : null),
                 ),
             ]),
             const SizedBox(height: 14),
             SizedBox(
               width: double.infinity,
-              height: 52,
+              height: 60,
               child: FilledButton(
                 onPressed: onAgain,
                 style: FilledButton.styleFrom(
-                  backgroundColor: const Color(0xFF1E9BE8),
-                  shape: const StadiumBorder(
-                      side: BorderSide(color: Color(0xFFE8C45A), width: 2)),
+                  backgroundColor: const Color(0xFFF39A2B),
+                  foregroundColor: Colors.white,
+                  elevation: 6,
+                  shadowColor: const Color(0xFFA85A12),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: const BorderSide(color: Color(0xFFFFE3A8), width: 2)),
                 ),
                 child: const Text('Nochmal!',
                     style: TextStyle(
@@ -1448,9 +1496,18 @@ class _ResultCard extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             SizedBox(
-              height: 48,
-              child: TextButton(
+              width: double.infinity,
+              height: 56,
+              child: FilledButton(
                 onPressed: onBack,
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFF1FA3B5),
+                  elevation: 4,
+                  shadowColor: const Color(0xFF0D6070),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: const BorderSide(color: Color(0x99FFFFFF), width: 1.5)),
+                ),
                 child: const Text('Zur Spielewelt',
                     style: TextStyle(
                         fontFamily: 'Nunito',
