@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "host_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "native_commit": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "artifact_id": 14109232711,
+  "artifact_sha256": "286d623267d1eb59de9ed5933e3308a29a5868c8beff1323b037e64f2ed357f9",
+  "saved_at_utc": "2026-11-14 10:15:55 UTC",
+  "png_count": 17,
+  "video_count": 2,
+  "byte_total": 23205661,
+  "verification": "Every uploaded GitHub blob SHA matched SHA1('blob ' + original byte length + NUL + unchanged original bytes). Every original byte length and SHA256 matched the original Studio manifest. Base64 was used only for transport; no image/video transformation, re-encoding or decoding occurred. Videos were archived without being played.",
+  "git_refs_changed": false,
+  "entries": [
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c73a9339a68f418b7f0f48edcf9eb479ef10dcd",
+      "original_path": "captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "sha256": "05368af4f64863cacfdcd9ce1889e3df8b083f9dc8aa5f0d3fdff91a197846d4",
+      "bytes": 82028
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/connect_four_visual_capture/c4-paused-small.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7806e7f57e122d27342bbd6342325cf96b96ef55",
+      "original_path": "captures/connect_four_visual_capture/c4-paused-small.png",
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "bytes": 29411
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93f1122761f944ff0ec85829d666dea0fc491cc0",
+      "original_path": "captures/connect_four_visual_capture/c4-playing-phone.png",
+      "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "bytes": 67672
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "494d34cf9d290739691ef2f425164830f196f1ed",
+      "original_path": "captures/connect_four_visual_capture/c4-win-landscape.png",
+      "sha256": "b36497e14dd06e06b070d6b83bddf2114bccc916ff278fe9f11af2a03a748b41",
+      "bytes": 83992
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/audio_jaw.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8",
+      "original_path": "captures/lumo_facial_capture/audio_jaw.png",
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "bytes": 306464
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/blink_intermediate.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f7ca9f42343c3653990403225db5529808207da",
+      "original_path": "captures/lumo_facial_capture/blink_intermediate.png",
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "bytes": 302531
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/blink.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22808f200b3258d7ec2f25d3bac6ad3302742b0e",
+      "original_path": "captures/lumo_facial_capture/blink.png",
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "bytes": 301312
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/facial-runtime.avi",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10e255aa1448b1bf093ee3ec787e48b701f7cb65",
+      "original_path": "captures/lumo_facial_capture/facial-runtime.avi",
+      "sha256": "e12b636171923d8668692a3c4039dfa4e995e4a5721667fceef1bd177e19c166",
+      "bytes": 7678592
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/facial-runtime.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a84fa3b0433861a19ea9829460141144873e26dc",
+      "original_path": "captures/lumo_facial_capture/facial-runtime.mp4",
+      "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+      "bytes": 1067731
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/gaze_left.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67e626fd8edf3af3bf3c4955fd905047d9897e7c",
+      "original_path": "captures/lumo_facial_capture/gaze_left.png",
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "bytes": 295200
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/muted.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87810252dcc1e0e627c267320a43e2cc8346f277",
+      "original_path": "captures/lumo_facial_capture/muted.png",
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "bytes": 303002
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/neutral.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8645e70de9f6badf6e4c260eaf02957c6e4ad147",
+      "original_path": "captures/lumo_facial_capture/neutral.png",
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "bytes": 283007
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/stopped.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b",
+      "original_path": "captures/lumo_facial_capture/stopped.png",
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "bytes": 299811
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/lumo_facial_capture/teacher_scene.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+      "original_path": "captures/lumo_facial_capture/teacher_scene.png",
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "bytes": 113407
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2801d2ad40dfb7ef49588a3fcee2fe9886b5e4b",
+      "original_path": "captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "sha256": "c5a00d642424f9f06bc24419bf1778e599eba243094429d8a1bbd86deb51362a",
+      "bytes": 323987
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "328aa19c8e6d6bb1cf561eb0baec35372fc4a3d3",
+      "original_path": "captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "sha256": "b1a0d1b406169acc502af8ab049b2b0053cb18a0d93abab6d75a7e132061cc76",
+      "bytes": 4225366
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bce57b3a71367105b77e36199c4be99591d671dc",
+      "original_path": "captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "sha256": "c4b4b4ea47fa4a0499c4ddc889826c45c7a4c1b5e9aed0cce0fe54a9b9b34da5",
+      "bytes": 2622435
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99ef904f66abb53d67a4b75546817ce361fee78a",
+      "original_path": "captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "sha256": "dcab2aece457e63187ab94e10740b53fdbb34e1c3bde2b2f9675ddd77d418996",
+      "bytes": 2718159
+    },
+    {
+      "path": "docs/evidence/native-803a-original-visual-review-20261114/originals/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51e46123982a7824fdb3c5f00b014b4e4bf1593b",
+      "original_path": "captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "sha256": "353e88d8274e58ad740cfdcbc1dc15c396c435b768aac28f4e4b0f7d678e0ae8",
+      "bytes": 2101554
+    }
+  ]
+}
+

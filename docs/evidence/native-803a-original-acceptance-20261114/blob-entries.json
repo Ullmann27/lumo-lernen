@@ -1,0 +1,704 @@
+{
+  "schema": "lumo-native-original-acceptance-blob-handoff-v1",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "host_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+  "native_commit": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "native_tree": "5b5992487e60ae805d708965f1500954c6b0556d",
+  "artifact_id": 14109232711,
+  "artifact_sha256": "286d623267d1eb59de9ed5933e3308a29a5868c8beff1323b037e64f2ed357f9",
+  "artifact_bytes": 175744828,
+  "actual_local_replay_completion": {
+    "exit_code": 0,
+    "stdout_and_stderr": "PASS original ordered 52/52 modes and their exact PASS/error-free logs\nPASS original complete native runner ending and 17 PNGs / 3 sidecars / 1 facial movie proof\nPASS exact native source 0e26153f0e58cc05739e72923b4c563a4cf380b8 tree 5b5992487e60ae805d708965f1500954c6b0556d engine 4.6.3.stable.official.7d41c59c4\nPASS original files unchanged 4289 inventory SHA256 b73cf77d2d25d72ba91b9e745b118f53f31321972a5ce99a5248fa7988bfe24b\nSCOPE read-only evidence replay; no engine, APK, Android-device or performance run\n"
+  },
+  "verification": "Every selected text blob returned by GitHub equals SHA1 of the Git blob header plus the unchanged local UTF-8 file bytes. For original/ files these are byte-identical extracted artifact contents. The independent replay and documentation live outside original/.",
+  "git_refs_changed": false,
+  "selected_text_file_count": 82,
+  "selected_text_bytes": 1578550,
+  "entries": [
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c78a89b9ab02cf37382a3fda4b547092802e5201",
+      "sha256": "8160597de42a8081c3d3ae38d7f4810feff62e9bce9b55e4f19d62ae1352d860",
+      "bytes": 6773
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/artifact-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c814f9f5838ac182586b45a62dd6ac75f753ae91",
+      "sha256": "c452e8fc45ef9d284ab31b6dec6a294d2e6ea85df9f8d25756a316714f1cb066",
+      "bytes": 1705
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/download-provenance.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0076b3ef0bee0d2940ee4de796f9b71ff53b2e1e",
+      "sha256": "9c374c30fa293788828c9a44fc1a84881a2982ea5fc1f5fdc14393cfa660ceac",
+      "bytes": 308
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/read-only-replay.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c482bba659efc068e809073a3bf5bc04d625c1e4",
+      "sha256": "7d3a2a27b62cafbface77f8261828e0b2b59604a12cd3a67aeb1b66c48053210",
+      "bytes": 4914
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/read-only-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2de5cc6841386b834e15518b931e82f3c40af63",
+      "sha256": "2c15f09457e43364f50f60e640746b180d49218f14a2ebcda233472defe472db",
+      "bytes": 26922
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/read-only-replay.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5eb63643d024bdb57baad17a99db57e933dc0228",
+      "sha256": "a72dc657aee6319dd182cd9e59ba1cb5bfe50953bb7ac8b09390fd847c762ddb",
+      "bytes": 514
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original-file-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ac4c35b98de0be064732e20be7b7e1ddd3e557c",
+      "sha256": "84f96f2aacda203858a7789107eafd0b76087085dde4740cbbb0a171e0810e82",
+      "bytes": 895399
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/source-identity/godot-source.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72dc631c9e27885cb3ab38ce446a66416f818ebb",
+      "sha256": "d12f94f96ebbe18005a1db79b294c4c4de9841bf4b2ab860868c7a3c05bdfa82",
+      "bytes": 145
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/source-identity/native-commit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f8044594272ff5e4ce8dc1f578f0b668c745a0a",
+      "sha256": "1b3df2acd5938c9f97a4fb25fa51c3c3732153621bc44a41f61dcc9be30b2582",
+      "bytes": 1215
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/verifier-source/source-blobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e27db7250ce29836b926568129b7fa7da9b4d0b5",
+      "sha256": "a227a717b57ed314db8a63273a2ce1bcbfe18db4e98ecba86a50f519269a56ea",
+      "bytes": 567
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/verifier-source/host/scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4eb75fded1c5aaaf84537c181e3f405b356799d8",
+      "sha256": "248b0cd5a233940b81a66e06586deba1e884819168a4682757d9a9896f994c17",
+      "bytes": 49132
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/verifier-source/native/tools/verify_studio_2020_rasters.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b60c3360730f0db73f91324cbaed3a8806fd141e",
+      "sha256": "8e8f597f8cd41fe203b9a491f14b5927c85601178e6589afe326a94d7c6f80f3",
+      "bytes": 26625
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/verifier-source/native/tools/verify_village_rasters.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c9522903db13f9bd0917ef2768ddbc08e624b1d",
+      "sha256": "23834a1baaaa2f98ffc3df5b0b4e2a4b3bbf23e41f402a7f051adeae9fd230a8",
+      "bytes": 3905
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/verifier-source/native/tools/validate_nextgen.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946",
+      "sha256": "fbb95e0ab5d3f60a915fdd63ff95b6e01ad3776bb67f6227df1c394b5bd64a7f",
+      "bytes": 9791
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/source-sha.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6e191cedc0de22aadb43844067db92b7b9a3256",
+      "sha256": "e161c28aa65188ccbc831e0d1c0385e667cca5c1233dc5dd532e052e53abfcb5",
+      "bytes": 41
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/source-sha.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6e191cedc0de22aadb43844067db92b7b9a3256",
+      "sha256": "e161c28aa65188ccbc831e0d1c0385e667cca5c1233dc5dd532e052e53abfcb5",
+      "bytes": 41
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/source-tree.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fbf45793e0877dad998aefafa33784bb0c655e6",
+      "sha256": "0ffb3686bade31ebea2836b978b4824b26eccc77db42615a17a0418b5f94293f",
+      "bytes": 41
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/source-dirty.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/engine.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e",
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "bytes": 32
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/results.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db0de72ce9ada78bbe039dc96745928e0b5fd30a",
+      "sha256": "e055b2d3ac43199e50b37b824bbcc84c75dc9aa683389478e898637f7c0b16d4",
+      "bytes": 2259
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen-runner.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4422fe50897605d00f2c8137c23b94a23c25c08",
+      "sha256": "a94384d26aba2f6ae215ffdd5955881cbad8fa07538e059ea5c9f834e83f25ca",
+      "bytes": 118542
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/studio-2020-images.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98ebef3c572da8d2a73146476d99d50a131f940b",
+      "sha256": "b4b616916d36086fe106842457dfd20368ce6f9b3ed07c30c7eac96167ba81aa",
+      "bytes": 13986
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/learning_world_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a6d9158290c2d5c7898077b63723f51928dd069",
+      "sha256": "63d6dfe55ad0fa205abedfcfcceb4068e305f41fab57269daf8b8a0dcaf36838",
+      "bytes": 10599
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/learning_sharing_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "732d54f13499cd10ebc00935e394aac578658904",
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "bytes": 1482
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/learning_studio_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad80a607d0ae8218505a4b2bdbecde43dc00d201",
+      "sha256": "b7423794d3eb97f8034cadb641a9d3437e6908817585c029bcbf713ca7290f3b",
+      "bytes": 1801
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/learning_host_payload_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f383abdb67a69003ff38758e0787f2b953f42ed7",
+      "sha256": "36c68f542c61752654355a9cc359c81d89d9a7c01f1aa3367a0bcf7fa67b33b6",
+      "bytes": 561
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/puzzle_rotation_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aea567f1bad4a7577043682889e8c450fa5663d0",
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9",
+      "bytes": 571
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/puzzle_menu_lifecycle_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adb5eca8ae5da6228ce71085a84300c26471351c",
+      "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98",
+      "bytes": 3084
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/treasure_exploration_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87aaeb995ab7e17a04f7ee334714be16525172b5",
+      "sha256": "02d20b766c253672fea75aa6cc8744460cb1134dd54beeb4d73fa6b743825b76",
+      "bytes": 589
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/jump_nextgen_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fddee704870eeaca1da6744f2e5eea7fe0cb8612",
+      "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444",
+      "bytes": 1997
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/jump_expeditions_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93f0f06d6b1b2fc8255fcf8bf76de64dd0407a32",
+      "sha256": "f5b49f003ab7a8245417454a5ff22351f71ae3209ea5b1882951805f5ffe92f9",
+      "bytes": 2760
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/lumo_teacher_pose_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9afe1fa0218bcaeb55c301046a7a9507c10fd10f",
+      "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629",
+      "bytes": 589
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/lumo_studio_motion_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d06b4aa8600722e4474cd7584db3ac81f134d1e4",
+      "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b",
+      "bytes": 603
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/lumo_65bone_walk_gait_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b06c80eb963d79653f8afa5eb0586168f7e0f726",
+      "sha256": "86bc5e72882422903d6ead6054ef38169ec8126efc8cf46c255353e41d08e78e",
+      "bytes": 572
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/lumo_original_jump_visual_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4759604de66df40923c8d65041e1dceea0e74c92",
+      "sha256": "73b437ce767d4a0fb73acc9c1db08b351e22b207d4fe68e8c93081948b920f43",
+      "bytes": 691
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/bauwelt_identity_2013_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de5ae7a33ce27ca13aa7ea5bc2b6a4f0f4b0daf0",
+      "sha256": "43460fe46162fb0a1f96253f6dd8be84d96f7ba7ed80efc91a16358ee0b7b886",
+      "bytes": 586
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_frontier_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62b304c84cdec71cf36ebe3ff70aa9dd3253a351",
+      "sha256": "308eaa91651df8283c82cb991ff6e0421a37a5b0f06e8ed4bf6d3c3deede910b",
+      "bytes": 617
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_transform_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a809519d49f229db2485e4cb3cecc9c027e3d7de",
+      "sha256": "3cab191ff67916f9cc576d136303b98f46ba5079b32c3c4a93fd93c5192ce993",
+      "bytes": 565
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_nextgen_play_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c956e3d796ca6dd2810db4de9577c3d4b3c23e6",
+      "sha256": "2c8f4beab40d012483a875b7471f3a4f10c8306575d2e9afc9349d47dd5cc654",
+      "bytes": 687
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_settlement_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7e7d5d85bdf778f34511d2e3429d9142742fdd7",
+      "sha256": "faa89fbcc8f29a9f1ad7e1bfbe13a0f2e12daef573c4502bc6b178c1e8fb5e09",
+      "bytes": 537
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_settlement_play_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83fe16fae0f5691b51308a0175fffd0deb966e18",
+      "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a",
+      "bytes": 2069
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_village_economy_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58cd37e6ad7286d4ba78574e20c0951a55aac4a9",
+      "sha256": "54d5d0caa2d8d20a57ec8e7e6a3eadddf6331f19c4b7273acf1b5588546c26fb",
+      "bytes": 628
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_village_art_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5320694e1fce243c76f850b306aa0f20c1b8582",
+      "sha256": "7cd0e559889ced1ae6133b57d3279d5281d1d0dd086f8415338c9ebfedf528f8",
+      "bytes": 507
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_village_scene_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c0f95de22d575b8a035e010e9d81dcc693262d7",
+      "sha256": "496c7238579af90e13d5dd5180edbd23b0eb0d44380b3c4b2c37adb7881a0d19",
+      "bytes": 846
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/creative_nextgen_environment_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07dca06fcc9fcfad02598082f814dd32dbc277eb",
+      "sha256": "c9ef21f1da4f1f5f3fd5b2c07eccc18d17663f4eee091014b88755101711587e",
+      "bytes": 592
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/kart_nextgen_garage_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bad5c03b84bc7ee62f1a3f895093cbff5f09b12b",
+      "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab",
+      "bytes": 734
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/kart_track_pass_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c880b4a83a1fbbd7c5db626f40d94930509e31c",
+      "sha256": "338f3ad36a3ea657013ebc496ccf30b0a16e8705c3e5f9bd683de7a171a44955",
+      "bytes": 1076
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/cards_table_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a67596289c9f6e0e9c13246d5aa9769e5e1051b7",
+      "sha256": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab",
+      "bytes": 583
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/cards_safe_area_android_contract-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32d492b0d1614577e839f90915104bc3823fd816",
+      "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04",
+      "bytes": 553
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/cards_safe_area_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89ac7c1f16d898f3d2c3d487eba20dbe3b24f768",
+      "sha256": "19957f04f78da618bffec97d55a52efd1874963a011808c113fbd7cf4a8b9177",
+      "bytes": 532
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/mobile_safe_area_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a39790db6e444cc2c20f41ec6334a7e8742a31b6",
+      "sha256": "1b06016a17c43409730846c5d9f3bb7fc0dc7bbca236dc7dac5750e361d6a41c",
+      "bytes": 8427
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/rhythm_tour_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8758688f3cccde8c297793e95b7e20078e957c1",
+      "sha256": "36554a86f4e83f79940b77fb886d4b1c96a9dd2481db9540b8697fdabfa4493b",
+      "bytes": 582
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/rhythm_tour_play_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f384e4bff800f093fdc9d1506937684edf87c4fc",
+      "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9",
+      "bytes": 600
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/learning_world_capture-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "256fd0f67ddf71eb208818e86a1a34420c664106",
+      "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd",
+      "bytes": 8466
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/learning_sharing_capture-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef4578c3a25377b077e884eda72b71b462ed8298",
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+      "bytes": 3506
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/lumo_studio_motion_capture-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f08daeda90feb45075b2de588ac04099ab0bc39",
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "bytes": 1202
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/puzzle_rotation_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc08e72a340d1ac25e166d06eca8e93c5fa0b837",
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "bytes": 1218
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/puzzle_menu_lifecycle_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f32e4347b8fc9ecc5f2e3555977e628e9223ca13",
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "bytes": 3733
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/treasure_exploration_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b89ad0ba8c3d951be431c08186bb8dcf102c4e06",
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "bytes": 1236
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/jump_nextgen_capture-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54af114e9f1b69d66d1625f31c3a7e1658e02653",
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "bytes": 1727
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_nextgen_play_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ecebcfafeda02f7e6b995601aad401182117e513",
+      "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6",
+      "bytes": 1334
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_settlement_play_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c66d375adf85f5171807c73c28140d4639d531e1",
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "bytes": 2716
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/build_village_scene_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97f321d361746b5d97885975af2fe3160836ef50",
+      "sha256": "9fccdf7b8d2a8fc296e0f7d904654970082a068c1d253a16ef6cab406b11b648",
+      "bytes": 1493
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/creative_nextgen_environment_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3726d656d46389cd1cb095f14c9ea09abe84494a",
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e",
+      "bytes": 1239
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fe508554dde6409111b9cbfbd239f53f78141e4",
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "bytes": 1383
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/cards_table_capture-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ab838eb569b625c283fc53dd3bdd8a0e6320d11",
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4",
+      "bytes": 1162
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/cards_safe_area_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6817c5af327f85606f855423f6e7c1baec46a3c1",
+      "sha256": "e4b86d0d3e105c298176539d00c4ec5e53cc78931acfbae24f0bf1eff5f3eefe",
+      "bytes": 1179
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/mobile_safe_area_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fe7ddc741af7a45203d29a9bf1fa0771ccf5515",
+      "sha256": "9f6dfe308004b2d7e044bcab08982b7d203c3ef5e7969d6faaa067d86363bd6d",
+      "bytes": 9355
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/rhythm_tour_play_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0c84933eba2d8ae0c81f0d5a8899c1356fd76c1",
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "bytes": 1247
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/kart_player_full_route_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a165112258d5b576eb5147590a1c9e1e2a675cd",
+      "sha256": "0865094aca3ca0ae6eda5509b001078ca5d9998dc03ebde17be90fc30a2bbc35",
+      "bytes": 21732
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/lumo_facial_regression-headless.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2374357756a7f9a2320bceb9c0533fa6b58a02b9",
+      "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b",
+      "bytes": 633
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/lumo_facial_capture-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf8e2909d52d542e427d31e7cbf7cc7a890e2288",
+      "sha256": "c93a595dea0cda09d0bb4517e04d89687160195e36c36cce1985b4168b9e7726",
+      "bytes": 1847
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/connect_four_visual_capture-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1038e9423bfa3591b7b8985869bd3193ba027425",
+      "sha256": "1cc3d59bbf0a2f7fa7680ad0d70bdcbfb1c6690cb88edf523b344f9d18afaaae",
+      "bytes": 1176
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/treasure_title_contrast_regression-rendered.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "831a4bad0e10708fafdb8c278bda8b03ee872df4",
+      "sha256": "e715acf96478f26498f6fef6acbb0a04fb41680ef43b154addcdade4003a04f4",
+      "bytes": 3669
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/captures/lumo_facial_capture/runtime-frames.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "471e2e633df635545f99270e1960eb5ba41ced2e",
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "bytes": 83168
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/captures/connect_four_visual_capture/visual-state.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d4df1733989dd4dfcc756481e472190acb28467",
+      "sha256": "0e70fd6f8920665e96233fc018f63905df9fdbba6bb036ba3793aa0bcb1fcfbd",
+      "bytes": 172226
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/captures/treasure_title_contrast_regression/treasure-title-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1534bcb58470415299f0ccd0a05563ad7f75862d",
+      "sha256": "64cb938aa6b7ccf12efbb03ae0c0f20813e370ac0f0fceacc82a53bf5fbac3c9",
+      "bytes": 30551
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/captures/lumo_facial_capture/movie.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17aa61da6a71cf44b3e311553d033d54b1ece394",
+      "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8",
+      "bytes": 1201
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/captures/lumo_facial_capture/movie-ffprobe.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "963fcf55c93b974e45e6992761bdfee4992a6be0",
+      "sha256": "7546245065dd56d02b818e90f101af8a8d803fbecf0d8e6ab44aba4609fe2fd0",
+      "bytes": 4564
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/captures/lumo_facial_capture/movie-encode.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2259a9cda2eebd3c6683f451224008d5ad25c2ef",
+      "sha256": "91a581624443d5304d6002abf401fa526e0daf17c1b2f641c603ea9298055c67",
+      "bytes": 6110
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/captures/lumo_facial_capture/movie-decode.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/native-803a-original-acceptance-20261114/original/nextgen/captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "independent_visual_handoff": {
+    "prefix": "docs/evidence/native-803a-original-visual-review-20261114/",
+    "reports": [
+      {
+        "path": "docs/evidence/native-803a-original-visual-review-20261114/visual-review.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "dec48899e64552c60fa11464a3e0021c3f645bfd"
+      },
+      {
+        "path": "docs/evidence/native-803a-original-visual-review-20261114/visual-review.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b42989921268f66d9bd1b5b370b2f3e698887d69"
+      },
+      {
+        "path": "docs/evidence/native-803a-original-visual-review-20261114/original-blob-entries.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ca075850d2e86755b0e8f5700ad271f8df5adc5f"
+      }
+    ],
+    "original_png_count": 17,
+    "original_video_count": 2,
+    "original_byte_total": 23205661,
+    "note": "The separate original-blob-entries.json lists all 19 original binary paths and returned/locally-verified Git blob SHA, SHA256, and byte lengths. The videos were not watched or re-encoded."
+  }
+}

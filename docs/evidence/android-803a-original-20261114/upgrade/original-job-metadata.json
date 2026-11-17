@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43578509499,
+  "run_attempt": 1,
+  "head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "source_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+  "native_revision": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "job": {
+    "id": 132415120397,
+    "name": "update-2020-from-2017",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-11-14T10:13:03Z",
+    "completed_at": "2026-11-14T10:30:47Z",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509499/job/132415120397"
+  },
+  "original_log": {
+    "git_blob": "4797b1de87262fc8fc28aaad7110056fe5471878",
+    "utf8_bytes": 309346,
+    "utf16_code_units": 308304,
+    "format": "Complete decoded GitHub job-log response preserved without edits",
+    "suggested_filename": "update-2020-from-2017-original-job-132415120397.log"
+  },
+  "actual_host_checkout": {
+    "command_log_line": 176,
+    "value_log_line": 177,
+    "value": "803a4e960ffb804a46b6d09417731c031f00f680"
+  },
+  "actual_candidate_apk": {
+    "path": "candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+    "sha256": "fc66e87274173c6c8440bc0dcdcb6e4b7f838dfa168a07e392ec305c15ee566a",
+    "hash_log_line": 557
+  },
+  "downloaded_inputs": {
+    "candidate_artifact_id": 14109755854,
+    "candidate_api_digest": "sha256:87e668220083f6a4dbf5f6ab13827529027db12fc4957e8486f2f58cd154447b",
+    "baseline_artifact_id": 13948686178,
+    "baseline_run_id": 43220602252,
+    "baseline_log_digest": "sha256:4b4fa4e7de52d75f385fc4d7e398f571d86363ad17cc22ac41ef95aab61d08ff"
+  },
+  "configured_emulator": {
+    "api_level": 35,
+    "architecture": "x86_64",
+    "profile": "pixel_5",
+    "emulator_build": "14472402",
+    "log_lines": [
+      584,
+      586,
+      587,
+      588
+    ]
+  },
+  "actual_probe_command": {
+    "log_line": 1288,
+    "command": ".probe-venv/bin/python .github/probes/lumo_2020_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour"
+  },
+  "terminal_marker": {
+    "log_line": 3231,
+    "text": "[LumoUpdate] PASS",
+    "timestamp": "2026-11-14T10:30:40.6078144Z"
+  },
+  "artifact": {
+    "id": 14110561328,
+    "name": "lumo-connect-four-2020-in-place-update-proof",
+    "size_in_bytes": 118394487,
+    "api_digest": "sha256:45091d74d0fd3f91a94f006475214af322fe75d453cafe19ee247f9e2984669d",
+    "created_at": "2026-11-14T10:30:46Z",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14110561328/zip"
+  },
+  "limits": [
+    "This metadata records the original completed CI job, actual checkout, candidate APK hash, probe invocation and PASS marker.",
+    "The original upgrade archive is downloaded and independently inspected by root; no duplicate download or local rerun was performed here.",
+    "Success here concerns this emulator-based upgrade scenario. It does not establish physical-device performance, the separate Android C4 job, or the later final candidate/delivery gates."
+  ],
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-14T10:13:03Z",
+      "completed_at": "2026-11-14T10:13:05Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-14T10:13:05Z",
+      "completed_at": "2026-11-14T10:13:17Z"
+    },
+    {
+      "name": "Run actions/download-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-14T10:13:17Z",
+      "completed_at": "2026-11-14T10:13:24Z"
+    },
+    {
+      "name": "Run actions/download-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-14T10:13:24Z",
+      "completed_at": "2026-11-14T10:13:30Z"
+    },
+    {
+      "name": "Live UI reader",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-14T10:13:30Z",
+      "completed_at": "2026-11-14T10:13:57Z"
+    },
+    {
+      "name": "Enable accelerated disposable emulator",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-14T10:13:57Z",
+      "completed_at": "2026-11-14T10:13:58Z"
+    },
+    {
+      "name": "Software display",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-14T10:13:58Z",
+      "completed_at": "2026-11-14T10:14:03Z"
+    },
+    {
+      "name": "Preserve actual 2017 learning through an in-place 2020 upgrade",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-11-14T10:14:03Z",
+      "completed_at": "2026-11-14T10:30:41Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-11-14T10:30:41Z",
+      "completed_at": "2026-11-14T10:30:46Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 18,
+      "started_at": "2026-11-14T10:30:46Z",
+      "completed_at": "2026-11-14T10:30:46Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 19,
+      "started_at": "2026-11-14T10:30:47Z",
+      "completed_at": "2026-11-14T10:30:47Z"
+    }
+  ]
+}

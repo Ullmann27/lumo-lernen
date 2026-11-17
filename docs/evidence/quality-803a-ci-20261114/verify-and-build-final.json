@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43578509499,
+  "run_attempt": 1,
+  "head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "source_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+  "native_revision": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "job": {
+    "id": 132399130204,
+    "name": "verify-and-build",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-11-14T09:05:40Z",
+    "completed_at": "2026-11-14T10:13:01Z",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509499/job/132399130204"
+  },
+  "original_log": {
+    "git_blob": "d5d4767579591108640ed4350029e539729583bb",
+    "utf8_bytes": 1812037,
+    "utf16_code_units": 1811048,
+    "format": "Complete decoded GitHub job-log response preserved without edits",
+    "suggested_filename": "verify-and-build-original-job-132399130204.log"
+  },
+  "actual_host_checkout": {
+    "command_log_line": 168,
+    "value_log_line": 169,
+    "value": "803a4e960ffb804a46b6d09417731c031f00f680"
+  },
+  "native_gate": {
+    "conclusion": "success",
+    "step": {
+      "name": "Require actual gameplay gates on the exact pinned native source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 31,
+      "started_at": "2026-11-14T09:22:30Z",
+      "completed_at": "2026-11-14T10:06:29Z"
+    },
+    "marker_log_line": 10122,
+    "marker": "[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars",
+    "scope": "52 validation modes; 17 bound rasters/movie/sidecars. Does not establish Android device performance."
+  },
+  "observed_original_summaries": [
+    {
+      "label": "Build and preservation contracts",
+      "tests": 872,
+      "seconds": 246.558,
+      "result": "OK",
+      "log_line": 2577
+    },
+    {
+      "label": "Android QA contracts",
+      "tests": 929,
+      "seconds": 77.767,
+      "result": "OK",
+      "log_line": 3903
+    }
+  ],
+  "ci_reported_apk_verification": {
+    "arm64": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "arm64-v8a"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 330988965,
+      "sha256": "6c380ea99a0ee9119b3179b36df714336936247654216cec1f2188f34a96f164",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+        "engine": "4.6.3",
+        "pck_sha256": "a135c86522c2b11f4a891f97752551d8c854f11db6d7222936b67861208b7420",
+        "bytes": 75052080
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      }
+    },
+    "x86_64": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "x86_64"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 334142766,
+      "sha256": "fc66e87274173c6c8440bc0dcdcb6e4b7f838dfa168a07e392ec305c15ee566a",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+        "engine": "4.6.3",
+        "pck_sha256": "a135c86522c2b11f4a891f97752551d8c854f11db6d7222936b67861208b7420",
+        "bytes": 75052080
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "id": 14109995147,
+      "name": "lumo-connect-four-2020-arm64-verified",
+      "size_in_bytes": 330999378,
+      "api_digest": "sha256:4042322c815dac4d1829ff80b2f1889db4104d557e38b408fcd71a40b7706ccc",
+      "created_at": "2026-11-14T10:12:57Z",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14109995147/zip"
+    },
+    {
+      "id": 14109755854,
+      "name": "lumo-connect-four-2020-candidate",
+      "size_in_bytes": 665158253,
+      "api_digest": "sha256:87e668220083f6a4dbf5f6ab13827529027db12fc4957e8486f2f58cd154447b",
+      "created_at": "2026-11-14T10:12:54Z",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14109755854/zip"
+    },
+    {
+      "id": 14109232711,
+      "name": "lumo-candidate-pinned-native-gameplay",
+      "size_in_bytes": 175744828,
+      "api_digest": "sha256:286d623267d1eb59de9ed5933e3308a29a5868c8beff1323b037e64f2ed357f9",
+      "created_at": "2026-11-14T10:06:39Z",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14109232711/zip"
+    }
+  ],
+  "limits": [
+    "Artifacts and APK verification fields here are the actual CI/API outputs; downloading and independently verifying artifact bytes is recorded separately by root.",
+    "This job built coachpreview family APKs. It did not produce a Play AAB, approve Play publication, prove audible playback, or measure physical-device performance.",
+    "android-c4 and update-2020-from-2017 are separate jobs; their terminal results are not claimed by this metadata."
+  ],
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-14T09:05:41Z",
+      "completed_at": "2026-11-14T09:05:44Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-14T09:05:44Z",
+      "completed_at": "2026-11-14T09:06:07Z"
+    },
+    {
+      "name": "Save source identity and validate exact Godot integration pin",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-14T09:06:07Z",
+      "completed_at": "2026-11-14T09:06:07Z"
+    },
+    {
+      "name": "Run actions/setup-java@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-14T09:06:07Z",
+      "completed_at": "2026-11-14T09:06:08Z"
+    },
+    {
+      "name": "Run subosito/flutter-action@v2",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-14T09:06:08Z",
+      "completed_at": "2026-11-14T09:06:24Z"
+    },
+    {
+      "name": "Install real system emoji for ABC screenshots and Flutter test suite",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-14T09:06:24Z",
+      "completed_at": "2026-11-14T09:06:39Z"
+    },
+    {
+      "name": "Resolve immutable Flutter dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-14T09:06:39Z",
+      "completed_at": "2026-11-14T09:06:42Z"
+    },
+    {
+      "name": "Audit every exact current-grade learning family on this candidate",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-11-14T09:06:42Z",
+      "completed_at": "2026-11-14T09:06:44Z"
+    },
+    {
+      "name": "Preserve the original current-source learning family audit",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-11-14T09:06:44Z",
+      "completed_at": "2026-11-14T09:06:45Z"
+    },
+    {
+      "name": "Flutter static analysis",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-14T09:06:45Z",
+      "completed_at": "2026-11-14T09:07:00Z"
+    },
+    {
+      "name": "Real widget tests for premium quiz and 3D learning islands",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-11-14T09:07:00Z",
+      "completed_at": "2026-11-14T09:07:22Z"
+    },
+    {
+      "name": "Save genuine rendered Quizshow screenshots for reference comparison",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12,
+      "started_at": "2026-11-14T09:07:22Z",
+      "completed_at": "2026-11-14T09:07:23Z"
+    },
+    {
+      "name": "Full Flutter regression suite including every capture",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-14T09:07:23Z",
+      "completed_at": "2026-11-14T09:15:34Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 14,
+      "started_at": "2026-11-14T09:15:34Z",
+      "completed_at": "2026-11-14T09:15:44Z"
+    },
+    {
+      "name": "Capture and verify actual 2001 tutor, transfer and daily-plan routes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 15,
+      "started_at": "2026-11-14T09:15:44Z",
+      "completed_at": "2026-11-14T09:15:51Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 16,
+      "started_at": "2026-11-14T09:15:51Z",
+      "completed_at": "2026-11-14T09:15:52Z"
+    },
+    {
+      "name": "Capture spatial reading, answer retry and subject cards on phone and Fold",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 17,
+      "started_at": "2026-11-14T09:15:52Z",
+      "completed_at": "2026-11-14T09:16:00Z"
+    },
+    {
+      "name": "Install actual app-script verification dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 18,
+      "started_at": "2026-11-14T09:16:00Z",
+      "completed_at": "2026-11-14T09:16:32Z"
+    },
+    {
+      "name": "Install verified Gradle for the real build-contract probe",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 19,
+      "started_at": "2026-11-14T09:16:32Z",
+      "completed_at": "2026-11-14T09:16:33Z"
+    },
+    {
+      "name": "Verify all build and preservation contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 20,
+      "started_at": "2026-11-14T09:16:33Z",
+      "completed_at": "2026-11-14T09:20:40Z"
+    },
+    {
+      "name": "Preserve the complete original script contracts for PCM delivery replay",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21,
+      "started_at": "2026-11-14T09:20:40Z",
+      "completed_at": "2026-11-14T09:20:41Z"
+    },
+    {
+      "name": "Code-level Android probe regression with verified image dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 22,
+      "started_at": "2026-11-14T09:20:41Z",
+      "completed_at": "2026-11-14T09:22:03Z"
+    },
+    {
+      "name": "Reject unreadable Ahem-font captures before issuing visual proof",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 23,
+      "started_at": "2026-11-14T09:22:03Z",
+      "completed_at": "2026-11-14T09:22:04Z"
+    },
+    {
+      "name": "Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 24,
+      "started_at": "2026-11-14T09:22:04Z",
+      "completed_at": "2026-11-14T09:22:04Z"
+    },
+    {
+      "name": "Render actual premium lessons on phone and Fold",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 25,
+      "started_at": "2026-11-14T09:22:04Z",
+      "completed_at": "2026-11-14T09:22:08Z"
+    },
+    {
+      "name": "Render actual app sections on phone and Fold",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 26,
+      "started_at": "2026-11-14T09:22:08Z",
+      "completed_at": "2026-11-14T09:22:18Z"
+    },
+    {
+      "name": "Render playable Connect Four on five real layout sizes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 27,
+      "started_at": "2026-11-14T09:22:18Z",
+      "completed_at": "2026-11-14T09:22:23Z"
+    },
+    {
+      "name": "Render genuine offline atelier on phone and Fold",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 28,
+      "started_at": "2026-11-14T09:22:23Z",
+      "completed_at": "2026-11-14T09:22:27Z"
+    },
+    {
+      "name": "Archive only verified readable Flutter captures",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 29,
+      "started_at": "2026-11-14T09:22:27Z",
+      "completed_at": "2026-11-14T09:22:29Z"
+    },
+    {
+      "name": "Install Godot 4.6.3 for the exact pinned Kart source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 30,
+      "started_at": "2026-11-14T09:22:29Z",
+      "completed_at": "2026-11-14T09:22:30Z"
+    },
+    {
+      "name": "Require actual gameplay gates on the exact pinned native source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 31,
+      "started_at": "2026-11-14T09:22:30Z",
+      "completed_at": "2026-11-14T10:06:29Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 32,
+      "started_at": "2026-11-14T10:06:29Z",
+      "completed_at": "2026-11-14T10:06:39Z"
+    },
+    {
+      "name": "Build unified real Android APK",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 33,
+      "started_at": "2026-11-14T10:06:39Z",
+      "completed_at": "2026-11-14T10:12:39Z"
+    },
+    {
+      "name": "Verify APK archive and collect reproducible source hashes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 34,
+      "started_at": "2026-11-14T10:12:39Z",
+      "completed_at": "2026-11-14T10:12:48Z"
+    },
+    {
+      "name": "Upload exact candidate (no release or synthetic screenshots)",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 35,
+      "started_at": "2026-11-14T10:12:48Z",
+      "completed_at": "2026-11-14T10:12:54Z"
+    },
+    {
+      "name": "Deliver verified ARM64 APK separately for direct download",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 36,
+      "started_at": "2026-11-14T10:12:54Z",
+      "completed_at": "2026-11-14T10:12:57Z"
+    },
+    {
+      "name": "Post Run subosito/flutter-action@v2",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 70,
+      "started_at": "2026-11-14T10:12:57Z",
+      "completed_at": "2026-11-14T10:12:59Z"
+    },
+    {
+      "name": "Post Run actions/setup-java@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 71,
+      "started_at": "2026-11-14T10:12:59Z",
+      "completed_at": "2026-11-14T10:12:59Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 72,
+      "started_at": "2026-11-14T10:12:59Z",
+      "completed_at": "2026-11-14T10:12:59Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 73,
+      "started_at": "2026-11-14T10:12:59Z",
+      "completed_at": "2026-11-14T10:12:59Z"
+    }
+  ]
+}
