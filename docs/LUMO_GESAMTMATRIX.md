@@ -34,6 +34,10 @@ Zuletzt öffentlich belegte APK laut Repo-Dokumenten: 0.13.19+2031 (16.11.). St�
 8. **Zielbilder sind verbindlich** („genau diese Gestaltung, genau dieses Layout"): `docs/design_targets/2026-11-17/` in beiden Repos (Kart-Menü hoch/quer, Zieleinlauf Platz 1–3, Profil, Startseite auf dem Fold, dazu Boards für Spielwelt, Jump & Run, Schatzsuche, Bauwelt, Memory, Rhythm Party, Puzzle, Cards). Gewünscht sind in Blender gerenderte Knöpfe, Rahmen und Symbole.
 9. **Umsetzung mit mehreren Agenten parallel.**
 
+10. **Freischalten durch Lernen, Werkstatt wie in einem Rennspiel mit Bauteilen:** Wer lernt, schaltet schnellere Karts und Bauteile frei. Bestand: 14 Karts mit Sternschwellen (`kart_fleet.gd`), Tuning-Werkstatt mit Motor, Bremsen, Reifen, Turbo (je Stufe 0–5), Lacken, Felgen und Neon, bezahlt mit Lern-Sternen (`kart_tuning.gd`). Ziel: mehr und sichtbare Bauteile, Werkstatt als eigener hochwertiger Bereich, freigeschaltete Karts auch im Profil-Regal der App.
+11. **Dorf-/Strategiemodus:** sehr große Karte mit Hügeln und Bergen (dort kann man nicht bauen), Kampagne mit Logik, Freibau, KI-Gegner, die eigene Städte sichtbar auf derselben Karte aufbauen und denen man zusehen kann. Kindgerecht, mit deutlich besserer Grafik. Bestand: `build_settlement_*` (Wirtschaft, Bewohner, sichtbare KI, 22-Tage-Kampagne) auf flachem Gelände.
+12. **Jump & Run als 3D-Lauf von hinten gesehen** (wie Lumo Kart, nur dass Lumo läuft): lange Strecken durch Wald, Dschungel und andere Welten, Tempo, Sprünge, Sammeln. Eigene Figuren, Strecken und Gestaltung; kein Nachbau eines bestehenden Spiels. Bestand: `jump_islands.gd` (12 kleine schwebende Inseln, 3 Kurse, Blick von hinten oben) und ein 2D-Spiel in Flutter.
+
 Einschränkungen zu den Zielbildern, damit nichts vorgetäuscht wird:
 - Es sind Konzeptbilder. Übernommen werden Aufbau und Aussehen; gezeigt werden nur echte Funktionen und echte Zahlen.
 - Mehrspieler, Münzen mit „+", Saisonpass Premium, tägliche Challenges, Lokal-Koop und Teilen gibt es im Produkt nicht. Sie werden nicht als Attrappe gebaut.
@@ -105,7 +109,7 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 - Godot `scripts/creative/build_world.gd` (Bauen), `build_settlement_world.gd` (Dorfwirtschaft).
 - Integriert am 17.11.: Stream `lumo-2040/bauwelt` (Kampagnenkarte, Dorfverteidigung, HUD). 9 Bauwelt-/Dorf-Tests grün (lokal), u. a. `build_defense_regression` (162), `build_campaign_map_regression` (54), `build_village_economy_regression` (339 Prüfungen).
 - Befund App: „Dorfwirtschaft" (`settlement`) steht nicht in der Belohnungsliste von `core/embedded_game_service.dart` – Ergebnisse werden in Flutter nicht gebucht.
-- Ziel: Heinz' Punkt 5. Kampagne mit Zielen, Kosten, sichtbaren Folgen; Abnahme folgt mit dem Kampagnenkonzept.
+- Ziel: Heinz' Punkte 5 und 11. Gelände mit Höhen (Hügel und Berge unbebaubar), große Karte, Kampagne, Freibau, sichtbar bauende KI-Städte. Heute ist das Gelände flach. Status OFFEN.
 
 ### 4.5 Schatzsuche, Rhythmus, Puzzle
 
@@ -116,7 +120,7 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 
 - 3D: `scripts/games/jump_islands.gd` („Wolkeninseln", in der App nur unter „Zusätzliche Spielmodi").
 - 2D: `lib/features/games/flame/lumo_jump_game.dart` („Lumos Jump Adventure 2D"), bucht Belohnung ohne Ergebnis-ID.
-- Ziel: Heinz' Punkt 4. Das 2D-Spiel entspricht nicht dem Ziel. Status OFFEN.
+- Ziel: Heinz' Punkte 4 und 12. Das 2D-Spiel entspricht nicht dem Ziel; das 3D-Spiel ist ein kurzer Insel-Parcours, kein langer Lauf. Geplant: Lauf-Modus auf den vorhandenen langen Kart-Welten (Streckenbau, Landschaft und Lumo-Laufanimation sind vorhanden). Status OFFEN.
 
 ### 4.7 Weitere Spiele
 
