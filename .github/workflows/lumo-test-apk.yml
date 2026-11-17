@@ -84,10 +84,13 @@ jobs:
           SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
           git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
           git -C build/lumo-godot-qa checkout --detach "$SOURCE"
-          # Der Erstimport ist in Godot 4.6.3 gelegentlich abgestürzt; er ist
-          # idempotent und wird genau einmal wiederholt.
-          godot --headless --path build/lumo-godot-qa --editor --import --quit \
-            || godot --headless --path build/lumo-godot-qa --editor --import --quit
+          python3 scripts/verify_kart_fleet_mirror.py build/lumo-godot-qa
+          # Der Erstimport stürzt in Godot 4.6.3 auf vollen CI-Rechnern ab, wenn
+          # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
+          # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
+          # wird der idempotente Import genau einmal wiederholt.
+          godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
+            || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
           for probe in kart_neon_home_regression kart_race_kinds_regression \
             kart_result_reachability_regression native_table_boot_regression \
             learning_android_host_capability_regression; do
