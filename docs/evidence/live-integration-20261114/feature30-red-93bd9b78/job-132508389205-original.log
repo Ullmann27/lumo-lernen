@@ -1,0 +1,799 @@
+﻿2026-11-14T16:21:07.8417296Z Current runner version: '2.338.2'
+2026-11-14T16:21:07.8442285Z ##[group]Runner Image Provisioner
+2026-11-14T16:21:07.8443265Z Hosted Compute Agent
+2026-11-14T16:21:07.8443871Z Version: 20261103.629
+2026-11-14T16:21:07.8444571Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T16:21:07.8445358Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T16:21:07.8446064Z Worker ID: {586db5a5-3a17-47a8-9ae1-3d390a6e642b}
+2026-11-14T16:21:07.8446836Z Region: eastus
+2026-11-14T16:21:07.8447381Z Cloud: Azure
+2026-11-14T16:21:07.8448394Z ##[endgroup]
+2026-11-14T16:21:07.8450003Z ##[group]Operating System
+2026-11-14T16:21:07.8450799Z Ubuntu
+2026-11-14T16:21:07.8451379Z 24.04.5
+2026-11-14T16:21:07.8451909Z LTS
+2026-11-14T16:21:07.8452475Z ##[endgroup]
+2026-11-14T16:21:07.8453082Z ##[group]Runner Image
+2026-11-14T16:21:07.8453675Z Image: ubuntu-24.04
+2026-11-14T16:21:07.8454303Z Version: 20261111.370.1
+2026-11-14T16:21:07.8455569Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T16:21:07.8457234Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T16:21:07.8458635Z ##[endgroup]
+2026-11-14T16:21:07.8459871Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T16:21:07.8462003Z Contents: read
+2026-11-14T16:21:07.8462688Z Metadata: read
+2026-11-14T16:21:07.8463266Z ##[endgroup]
+2026-11-14T16:21:07.8465400Z Secret source: Actions
+2026-11-14T16:21:07.8466337Z Cache mode: write
+2026-11-14T16:21:07.8467120Z Prepare workflow directory
+2026-11-14T16:21:07.8976366Z Prepare all required actions
+2026-11-14T16:21:07.9025498Z Getting action download info
+2026-11-14T16:21:08.1140262Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T16:21:08.2502517Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-11-14T16:21:08.3606681Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T16:21:08.5577978Z Getting action download info
+2026-11-14T16:21:08.6058208Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-11-14T16:21:08.8230748Z Complete job name: feature-widget-contracts
+2026-11-14T16:21:08.9159620Z ##[group]Run actions/checkout@v4
+2026-11-14T16:21:08.9160697Z with:
+2026-11-14T16:21:08.9161301Z   ref: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:08.9162184Z   persist-credentials: false
+2026-11-14T16:21:08.9162903Z   repository: Ullmann27/lumo-lernen
+2026-11-14T16:21:08.9170902Z   token: ***
+2026-11-14T16:21:08.9250915Z   ssh-strict: true
+2026-11-14T16:21:08.9251559Z   ssh-user: git
+2026-11-14T16:21:08.9252164Z   clean: true
+2026-11-14T16:21:08.9252820Z   sparse-checkout-cone-mode: true
+2026-11-14T16:21:08.9253561Z   fetch-depth: 1
+2026-11-14T16:21:08.9254117Z   fetch-tags: false
+2026-11-14T16:21:08.9254697Z   show-progress: true
+2026-11-14T16:21:08.9255276Z   lfs: false
+2026-11-14T16:21:08.9255822Z   submodules: false
+2026-11-14T16:21:08.9256409Z   set-safe-directory: true
+2026-11-14T16:21:08.9257093Z   allow-unsafe-pr-checkout: false
+2026-11-14T16:21:08.9258636Z env:
+2026-11-14T16:21:08.9259395Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:08.9260470Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:08.9261158Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:08.9261752Z   CI: true
+2026-11-14T16:21:08.9262235Z   BOT: true
+2026-11-14T16:21:08.9262765Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:08.9263469Z ##[endgroup]
+2026-11-14T16:21:09.2116245Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T16:21:09.2119728Z ##[group]Getting Git version info
+2026-11-14T16:21:09.2121294Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:21:09.2123632Z [command]/usr/bin/git version
+2026-11-14T16:21:09.2193021Z git version 2.56.1
+2026-11-14T16:21:09.2216802Z ##[endgroup]
+2026-11-14T16:21:09.2231047Z Temporarily overriding HOME='/home/runner/work/_temp/6d846e42-ba48-4bac-ae7b-94193e2895d6' before making global git config changes
+2026-11-14T16:21:09.2232796Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:21:09.2237130Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:21:09.2292482Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:21:09.2296755Z ##[group]Initializing the repository
+2026-11-14T16:21:09.2300961Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:21:09.2407239Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T16:21:09.2409521Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T16:21:09.2410936Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T16:21:09.2412132Z hint: call:
+2026-11-14T16:21:09.2413085Z hint:
+2026-11-14T16:21:09.2414173Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T16:21:09.2415583Z hint:
+2026-11-14T16:21:09.2417258Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T16:21:09.2419521Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T16:21:09.2421209Z hint:
+2026-11-14T16:21:09.2422688Z hint: 	git branch -m <name>
+2026-11-14T16:21:09.2423732Z hint:
+2026-11-14T16:21:09.2425010Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T16:21:09.2427050Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T16:21:09.2430341Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:21:09.2478603Z ##[endgroup]
+2026-11-14T16:21:09.2480102Z ##[group]Disabling automatic garbage collection
+2026-11-14T16:21:09.2482791Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T16:21:09.2514185Z ##[endgroup]
+2026-11-14T16:21:09.2515550Z ##[group]Setting up auth
+2026-11-14T16:21:09.2521050Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:21:09.2555948Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:21:09.2914027Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:21:09.2947395Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:21:09.3174589Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:21:09.3206919Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:21:09.3432487Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T16:21:09.3470750Z ##[endgroup]
+2026-11-14T16:21:09.3473089Z ##[group]Fetching the repository
+2026-11-14T16:21:09.3482384Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:19.1139484Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:21:19.1140769Z  * branch            93bd9b7804e2c352303d58552cc48e0a89a1c3cb -> FETCH_HEAD
+2026-11-14T16:21:19.1145625Z ##[endgroup]
+2026-11-14T16:21:19.1146547Z ##[group]Determining the checkout info
+2026-11-14T16:21:19.1149642Z ##[endgroup]
+2026-11-14T16:21:19.1155332Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T16:21:19.1222933Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T16:21:19.1253002Z ##[group]Checking out the ref
+2026-11-14T16:21:19.1274864Z [command]/usr/bin/git checkout --progress --force 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:20.1357217Z Updating files:  55% (2766/4974)
+2026-11-14T16:21:20.1418735Z Updating files:  56% (2786/4974)
+2026-11-14T16:21:20.1469985Z Updating files:  57% (2836/4974)
+2026-11-14T16:21:20.1493926Z Updating files:  58% (2885/4974)
+2026-11-14T16:21:20.1526882Z Updating files:  59% (2935/4974)
+2026-11-14T16:21:20.1675353Z Updating files:  60% (2985/4974)
+2026-11-14T16:21:20.1836405Z Updating files:  61% (3035/4974)
+2026-11-14T16:21:20.1896173Z Updating files:  62% (3084/4974)
+2026-11-14T16:21:20.2059016Z Updating files:  63% (3134/4974)
+2026-11-14T16:21:20.2166173Z Updating files:  64% (3184/4974)
+2026-11-14T16:21:20.2681997Z Updating files:  65% (3234/4974)
+2026-11-14T16:21:20.2985915Z Updating files:  66% (3283/4974)
+2026-11-14T16:21:20.3263544Z Updating files:  67% (3333/4974)
+2026-11-14T16:21:20.3472143Z Updating files:  68% (3383/4974)
+2026-11-14T16:21:20.3509924Z Updating files:  69% (3433/4974)
+2026-11-14T16:21:20.3551829Z Updating files:  70% (3482/4974)
+2026-11-14T16:21:20.3594050Z Updating files:  71% (3532/4974)
+2026-11-14T16:21:20.3639807Z Updating files:  72% (3582/4974)
+2026-11-14T16:21:20.3697150Z Updating files:  73% (3632/4974)
+2026-11-14T16:21:20.3750167Z Updating files:  74% (3681/4974)
+2026-11-14T16:21:20.3800514Z Updating files:  75% (3731/4974)
+2026-11-14T16:21:20.3840451Z Updating files:  76% (3781/4974)
+2026-11-14T16:21:20.3882443Z Updating files:  77% (3830/4974)
+2026-11-14T16:21:20.3911952Z Updating files:  78% (3880/4974)
+2026-11-14T16:21:20.3942651Z Updating files:  79% (3930/4974)
+2026-11-14T16:21:20.4083729Z Updating files:  80% (3980/4974)
+2026-11-14T16:21:20.4121387Z Updating files:  81% (4029/4974)
+2026-11-14T16:21:20.4162837Z Updating files:  82% (4079/4974)
+2026-11-14T16:21:20.4193122Z Updating files:  83% (4129/4974)
+2026-11-14T16:21:20.4221292Z Updating files:  84% (4179/4974)
+2026-11-14T16:21:20.4249409Z Updating files:  85% (4228/4974)
+2026-11-14T16:21:20.4277015Z Updating files:  86% (4278/4974)
+2026-11-14T16:21:20.4308341Z Updating files:  87% (4328/4974)
+2026-11-14T16:21:20.4335404Z Updating files:  88% (4378/4974)
+2026-11-14T16:21:20.4363504Z Updating files:  89% (4427/4974)
+2026-11-14T16:21:20.4391568Z Updating files:  90% (4477/4974)
+2026-11-14T16:21:20.4431342Z Updating files:  91% (4527/4974)
+2026-11-14T16:21:20.4822508Z Updating files:  92% (4577/4974)
+2026-11-14T16:21:20.5038278Z Updating files:  93% (4626/4974)
+2026-11-14T16:21:20.5199824Z Updating files:  94% (4676/4974)
+2026-11-14T16:21:20.5402147Z Updating files:  95% (4726/4974)
+2026-11-14T16:21:20.5443071Z Updating files:  96% (4776/4974)
+2026-11-14T16:21:20.5592122Z Updating files:  97% (4825/4974)
+2026-11-14T16:21:20.5629346Z Updating files:  98% (4875/4974)
+2026-11-14T16:21:20.5661253Z Updating files:  99% (4925/4974)
+2026-11-14T16:21:20.5662296Z Updating files: 100% (4974/4974)
+2026-11-14T16:21:20.5663123Z Updating files: 100% (4974/4974), done.
+2026-11-14T16:21:20.5718859Z Note: switching to '93bd9b7804e2c352303d58552cc48e0a89a1c3cb'.
+2026-11-14T16:21:20.5719498Z 
+2026-11-14T16:21:20.5720041Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T16:21:20.5721075Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T16:21:20.5721971Z state without impacting any branches by switching back to a branch.
+2026-11-14T16:21:20.5722480Z 
+2026-11-14T16:21:20.5722819Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T16:21:20.5723766Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T16:21:20.5724218Z 
+2026-11-14T16:21:20.5724396Z   git switch -c <new-branch-name>
+2026-11-14T16:21:20.5724684Z 
+2026-11-14T16:21:20.5724841Z Or undo this operation with:
+2026-11-14T16:21:20.5725114Z 
+2026-11-14T16:21:20.5725245Z   git switch -
+2026-11-14T16:21:20.5725441Z 
+2026-11-14T16:21:20.5725796Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T16:21:20.5726340Z 
+2026-11-14T16:21:20.5726698Z HEAD is now at 93bd9b7 ci(lumo): run full acceptance of the integrated 2020 source
+2026-11-14T16:21:20.5843905Z ##[endgroup]
+2026-11-14T16:21:20.5890456Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T16:21:20.5922635Z 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:20.5933814Z ##[group]Removing auth
+2026-11-14T16:21:20.5937074Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:21:20.5969519Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:21:20.6211456Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:21:20.6237670Z http.https://github.com/.extraheader
+2026-11-14T16:21:20.6248219Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T16:21:20.6283045Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:21:20.6519906Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:21:20.6578814Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:21:20.6791073Z ##[endgroup]
+2026-11-14T16:21:20.7035576Z ##[group]Run set -euo pipefail
+2026-11-14T16:21:20.7035993Z [36;1mset -euo pipefail[0m
+2026-11-14T16:21:20.7036426Z [36;1mexport FEATURE_EVIDENCE_DIR="$RUNNER_TEMP/lumo-feature-connections-evidence"[0m
+2026-11-14T16:21:20.7037007Z [36;1mexport FEATURE_PYTHON_DIR="$RUNNER_TEMP/lumo-feature-connections-python"[0m
+2026-11-14T16:21:20.7037725Z [36;1mmkdir "$FEATURE_EVIDENCE_DIR"[0m
+2026-11-14T16:21:20.7038297Z [36;1mprintf '%s\n' "FEATURE_EVIDENCE_DIR=$FEATURE_EVIDENCE_DIR" "FEATURE_PYTHON_DIR=$FEATURE_PYTHON_DIR" >> "$GITHUB_ENV"[0m
+2026-11-14T16:21:20.7038930Z [36;1mcat > "$FEATURE_EVIDENCE_DIR/source_snapshot.py" <<'PY'[0m
+2026-11-14T16:21:20.7039337Z [36;1mimport hashlib, json, os, stat, subprocess, sys[0m
+2026-11-14T16:21:20.7039668Z [36;1mfrom pathlib import Path[0m
+2026-11-14T16:21:20.7039912Z [36;1m[0m
+2026-11-14T16:21:20.7040108Z [36;1mphase = sys.argv[1][0m
+2026-11-14T16:21:20.7040374Z [36;1mif phase not in ("before", "after"):[0m
+2026-11-14T16:21:20.7040759Z [36;1m    raise SystemExit("Unknown source snapshot phase")[0m
+2026-11-14T16:21:20.7041145Z [36;1moutput = Path(os.environ["FEATURE_EVIDENCE_DIR"])[0m
+2026-11-14T16:21:20.7041470Z [36;1mdef git(*args):[0m
+2026-11-14T16:21:20.7041745Z [36;1m    return subprocess.check_output(["git", *args])[0m
+2026-11-14T16:21:20.7042051Z [36;1mdef sha(data):[0m
+2026-11-14T16:21:20.7042310Z [36;1m    return hashlib.sha256(data).hexdigest()[0m
+2026-11-14T16:21:20.7042654Z [36;1mhead = git("rev-parse", "HEAD").decode().strip()[0m
+2026-11-14T16:21:20.7043037Z [36;1mtree = git("rev-parse", "HEAD^{tree}").decode().strip()[0m
+2026-11-14T16:21:20.7043392Z [36;1mindex = git("ls-files", "--stage", "-z")[0m
+2026-11-14T16:21:20.7043778Z [36;1mstatus = git("status", "--porcelain=v1", "--untracked-files=no")[0m
+2026-11-14T16:21:20.7044215Z [36;1m(output / f"git-status-{phase}.txt").write_bytes(status)[0m
+2026-11-14T16:21:20.7044618Z [36;1m(output / f"git-index-{phase}.original").write_bytes(index)[0m
+2026-11-14T16:21:20.7044969Z [36;1mfiles, errors = [], [][0m
+2026-11-14T16:21:20.7045227Z [36;1mfor entry in index.split(b"\0"):[0m
+2026-11-14T16:21:20.7045493Z [36;1m    if not entry:[0m
+2026-11-14T16:21:20.7045728Z [36;1m        continue[0m
+2026-11-14T16:21:20.7045997Z [36;1m    metadata, raw_path = entry.split(b"\t", 1)[0m
+2026-11-14T16:21:20.7046365Z [36;1m    mode, blob, stage = metadata.decode("ascii").split()[0m
+2026-11-14T16:21:20.7046714Z [36;1m    path = Path(os.fsdecode(raw_path))[0m
+2026-11-14T16:21:20.7046991Z [36;1m    try:[0m
+2026-11-14T16:21:20.7047380Z [36;1m        observed = path.lstat()[0m
+2026-11-14T16:21:20.7047967Z [36;1m        if mode == "120000" and stat.S_ISLNK(observed.st_mode):[0m
+2026-11-14T16:21:20.7048348Z [36;1m            data = os.fsencode(os.readlink(path))[0m
+2026-11-14T16:21:20.7048757Z [36;1m        elif mode in ("100644", "100755") and stat.S_ISREG(observed.st_mode):[0m
+2026-11-14T16:21:20.7049149Z [36;1m            data = path.read_bytes()[0m
+2026-11-14T16:21:20.7049469Z [36;1m            expected_executable = mode == "100755"[0m
+2026-11-14T16:21:20.7049859Z [36;1m            if bool(observed.st_mode & 0o111) != expected_executable:[0m
+2026-11-14T16:21:20.7050309Z [36;1m                errors.append(f"Tracked executable mode changed: {path}")[0m
+2026-11-14T16:21:20.7050669Z [36;1m        else:[0m
+2026-11-14T16:21:20.7050952Z [36;1m            raise ValueError("Unexpected tracked file type")[0m
+2026-11-14T16:21:20.7051302Z [36;1m        actual_blob = hashlib.sha1([0m
+2026-11-14T16:21:20.7051665Z [36;1m            b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()[0m
+2026-11-14T16:21:20.7052048Z [36;1m        if stage != "0" or actual_blob != blob:[0m
+2026-11-14T16:21:20.7052438Z [36;1m            errors.append(f"Tracked bytes or stage changed: {path}")[0m
+2026-11-14T16:21:20.7052879Z [36;1m        files.append({"path": str(path), "mode": mode, "blob": blob,[0m
+2026-11-14T16:21:20.7053462Z [36;1m                      "actual_blob": actual_blob, "bytes": len(data),[0m
+2026-11-14T16:21:20.7053820Z [36;1m                      "sha256": sha(data)})[0m
+2026-11-14T16:21:20.7054128Z [36;1m    except (OSError, ValueError) as exc:[0m
+2026-11-14T16:21:20.7054489Z [36;1m        errors.append(f"{path}: {type(exc).__name__}: {exc}")[0m
+2026-11-14T16:21:20.7054872Z [36;1mif head != os.environ["EXPECTED_SOURCE_SHA"]:[0m
+2026-11-14T16:21:20.7055268Z [36;1m    errors.append("Checkout differs from the original push SHA")[0m
+2026-11-14T16:21:20.7055630Z [36;1mif status:[0m
+2026-11-14T16:21:20.7055895Z [36;1m    errors.append("Tracked checkout is not clean")[0m
+2026-11-14T16:21:20.7056203Z [36;1mreport = {[0m
+2026-11-14T16:21:20.7056476Z [36;1m    "schema": 1, "phase": phase, "head": head, "tree": tree,[0m
+2026-11-14T16:21:20.7056883Z [36;1m    "expected_source_sha": os.environ["EXPECTED_SOURCE_SHA"],[0m
+2026-11-14T16:21:20.7057266Z [36;1m    "run_id": os.environ["GITHUB_RUN_ID"],[0m
+2026-11-14T16:21:20.7057941Z [36;1m    "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],[0m
+2026-11-14T16:21:20.7058287Z [36;1m    "ref": os.environ["GITHUB_REF"],[0m
+2026-11-14T16:21:20.7058599Z [36;1m    "workflow": os.environ["GITHUB_WORKFLOW"],[0m
+2026-11-14T16:21:20.7058982Z [36;1m    "index_sha256": sha(index), "files": files, "errors": errors,[0m
+2026-11-14T16:21:20.7059322Z [36;1m}[0m
+2026-11-14T16:21:20.7059514Z [36;1mif phase == "after":[0m
+2026-11-14T16:21:20.7059854Z [36;1m    before = json.loads((output / "source-before.json").read_text())[0m
+2026-11-14T16:21:20.7060289Z [36;1m    for field in ("head", "tree", "index_sha256", "files"):[0m
+2026-11-14T16:21:20.7060646Z [36;1m        if report[field] != before[field]:[0m
+2026-11-14T16:21:20.7061012Z [36;1m            errors.append(f"Before/after source mismatch: {field}")[0m
+2026-11-14T16:21:20.7061399Z [36;1m(output / f"source-{phase}.json").write_text([0m
+2026-11-14T16:21:20.7061764Z [36;1m    json.dumps(report, ensure_ascii=False, indent=2) + "\n")[0m
+2026-11-14T16:21:20.7062146Z [36;1mprint(json.dumps({"phase": phase, "head": head,[0m
+2026-11-14T16:21:20.7062515Z [36;1m                  "tracked_files": len(files), "errors": errors}))[0m
+2026-11-14T16:21:20.7062889Z [36;1mraise SystemExit(1 if errors else 0)[0m
+2026-11-14T16:21:20.7063153Z [36;1mPY[0m
+2026-11-14T16:21:20.7063431Z [36;1mpython3 "$FEATURE_EVIDENCE_DIR/source_snapshot.py" before[0m
+2026-11-14T16:21:20.7088023Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:21:20.7088372Z env:
+2026-11-14T16:21:20.7088640Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:20.7089207Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:20.7089466Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:20.7089679Z   CI: true
+2026-11-14T16:21:20.7089853Z   BOT: true
+2026-11-14T16:21:20.7090044Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:20.7090288Z ##[endgroup]
+2026-11-14T16:21:22.6292595Z {"phase": "before", "head": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb", "tracked_files": 4974, "errors": []}
+2026-11-14T16:21:22.6565785Z ##[group]Run subosito/flutter-action@v2
+2026-11-14T16:21:22.6566092Z with:
+2026-11-14T16:21:22.6566292Z   flutter-version: 3.44.9
+2026-11-14T16:21:22.6566516Z   channel: stable
+2026-11-14T16:21:22.6566709Z   cache: true
+2026-11-14T16:21:22.6566902Z   architecture: X64
+2026-11-14T16:21:22.6567116Z   pub-cache-path: default
+2026-11-14T16:21:22.6567340Z   dry-run: false
+2026-11-14T16:21:22.6568097Z   git-source: https://github.com/flutter/flutter.git
+2026-11-14T16:21:22.6568416Z env:
+2026-11-14T16:21:22.6568697Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:22.6569045Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:22.6569298Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:22.6569503Z   CI: true
+2026-11-14T16:21:22.6569679Z   BOT: true
+2026-11-14T16:21:22.6569873Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:22.6570256Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:22.6570817Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:22.6571196Z ##[endgroup]
+2026-11-14T16:21:22.6630028Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-11-14T16:21:22.6651682Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T16:21:22.6653861Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-11-14T16:21:22.6680318Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-11-14T16:21:22.6680698Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-11-14T16:21:22.6699686Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:21:22.6700017Z env:
+2026-11-14T16:21:22.6700281Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:22.6700683Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:22.6700933Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:22.6701141Z   CI: true
+2026-11-14T16:21:22.6701598Z   BOT: true
+2026-11-14T16:21:22.6701899Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:22.6728135Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:22.6728822Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:22.6729252Z ##[endgroup]
+2026-11-14T16:21:22.6791720Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=13]
+2026-11-14T16:21:22.6793989Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-11-14T16:21:22.6831169Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-11-14T16:21:22.6831523Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-11-14T16:21:22.6831816Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T16:21:22.6832043Z [36;1m  -f '' \[0m
+2026-11-14T16:21:22.6832245Z [36;1m  -a 'X64' \[0m
+2026-11-14T16:21:22.6832448Z [36;1m  -k '' \[0m
+2026-11-14T16:21:22.6832640Z [36;1m  -c '' \[0m
+2026-11-14T16:21:22.6832841Z [36;1m  -l '' \[0m
+2026-11-14T16:21:22.6833043Z [36;1m  -d 'default' \[0m
+2026-11-14T16:21:22.6833335Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-11-14T16:21:22.6833662Z [36;1m  stable[0m
+2026-11-14T16:21:22.6851433Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:21:22.6851763Z env:
+2026-11-14T16:21:22.6852025Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:22.6852378Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:22.6852625Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:22.6852983Z   CI: true
+2026-11-14T16:21:22.6853162Z   BOT: true
+2026-11-14T16:21:22.6853356Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:22.6853747Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:22.6854294Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:22.6854673Z ##[endgroup]
+2026-11-14T16:21:22.8766226Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=197]
+2026-11-14T16:21:22.8770758Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-11-14T16:21:22.8823950Z ##[group]Run actions/cache@v5
+2026-11-14T16:21:22.8824210Z with:
+2026-11-14T16:21:22.8824469Z   path: /opt/hostedtoolcache/flutter/stable-3.44.9-x64
+2026-11-14T16:21:22.8824950Z   key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:21:22.8825389Z   enableCrossOsArchive: false
+2026-11-14T16:21:22.8825660Z   fail-on-cache-miss: false
+2026-11-14T16:21:22.8825895Z   lookup-only: false
+2026-11-14T16:21:22.8826102Z   save-always: false
+2026-11-14T16:21:22.8826307Z env:
+2026-11-14T16:21:22.8826565Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:22.8826924Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:22.8827160Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:22.8827367Z   CI: true
+2026-11-14T16:21:22.8827764Z   BOT: true
+2026-11-14T16:21:22.8827969Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:22.8828365Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:22.8828897Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:22.8829281Z ##[endgroup]
+2026-11-14T16:21:23.0846523Z Cache hit for: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:21:24.1488216Z Received 251658240 of 1692352766 (14.9%), 240.0 MBs/sec
+2026-11-14T16:21:25.1605795Z Received 536870912 of 1692352766 (31.7%), 254.5 MBs/sec
+2026-11-14T16:21:26.1612190Z Received 855638016 of 1692352766 (50.6%), 270.9 MBs/sec
+2026-11-14T16:21:27.1631074Z Received 1145044992 of 1692352766 (67.7%), 272.0 MBs/sec
+2026-11-14T16:21:28.1668518Z Received 1463812096 of 1692352766 (86.5%), 278.3 MBs/sec
+2026-11-14T16:21:28.9698644Z Received 1692352766 of 1692352766 (100.0%), 277.3 MBs/sec
+2026-11-14T16:21:28.9701226Z Cache Size: ~1614 MB (1692352766 B)
+2026-11-14T16:21:28.9952617Z [command]/usr/bin/tar -xf /home/runner/work/_temp/6ab51999-572f-433b-881f-24e2547606f8/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T16:21:33.7381836Z Cache restored successfully
+2026-11-14T16:21:33.8706263Z Cache restored from key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:21:33.8889270Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=11011]
+2026-11-14T16:21:33.8892079Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-11-14T16:21:34.4850945Z ##[group]Run actions/cache@v5
+2026-11-14T16:21:34.4851192Z with:
+2026-11-14T16:21:34.4851404Z   path: /home/runner/.pub-cache
+2026-11-14T16:21:34.4852118Z   key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9
+2026-11-14T16:21:34.4852861Z   enableCrossOsArchive: false
+2026-11-14T16:21:34.4853130Z   fail-on-cache-miss: false
+2026-11-14T16:21:34.4853374Z   lookup-only: false
+2026-11-14T16:21:34.4853583Z   save-always: false
+2026-11-14T16:21:34.4853783Z env:
+2026-11-14T16:21:34.4854036Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:34.4854402Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:34.4854652Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:34.4854864Z   CI: true
+2026-11-14T16:21:34.4855043Z   BOT: true
+2026-11-14T16:21:34.4855249Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:34.4855847Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:34.4856384Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:34.4856777Z ##[endgroup]
+2026-11-14T16:21:34.6904380Z Cache not found for input keys: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9
+2026-11-14T16:21:34.6992406Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=809]
+2026-11-14T16:21:34.6994880Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-11-14T16:21:34.7573329Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-11-14T16:21:34.7573889Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-11-14T16:21:34.7574347Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T16:21:34.7574719Z [36;1m  -a 'x64' \[0m
+2026-11-14T16:21:34.7575209Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.44.9-x64' \[0m
+2026-11-14T16:21:34.7575827Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-11-14T16:21:34.7576276Z [36;1m  stable[0m
+2026-11-14T16:21:34.7599969Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:21:34.7600310Z env:
+2026-11-14T16:21:34.7600590Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:34.7600952Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:34.7601207Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:34.7601434Z   CI: true
+2026-11-14T16:21:34.7601621Z   BOT: true
+2026-11-14T16:21:34.7601834Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:34.7602237Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:34.7602789Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:34.7603188Z ##[endgroup]
+2026-11-14T16:21:34.9168798Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=217]
+2026-11-14T16:21:35.1977848Z ##[group]Run set -euo pipefail
+2026-11-14T16:21:35.1978258Z [36;1mset -euo pipefail[0m
+2026-11-14T16:21:35.1978525Z [36;1mset +e[0m
+2026-11-14T16:21:35.1978759Z [36;1mbash -euo pipefail -c '[0m
+2026-11-14T16:21:35.1979110Z [36;1m  sudo apt-get -o Acquire::Retries=2 update -qq[0m
+2026-11-14T16:21:35.1979595Z [36;1m  sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji[0m
+2026-11-14T16:21:35.1980107Z [36;1m  test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf[0m
+2026-11-14T16:21:35.1980517Z [36;1m  python3 -m venv "$FEATURE_PYTHON_DIR"[0m
+2026-11-14T16:21:35.1981032Z [36;1m  "$FEATURE_PYTHON_DIR/bin/python" -m pip install --disable-pip-version-check Pillow==12.3.0[0m
+2026-11-14T16:21:35.1981528Z [36;1m  flutter pub get --enforce-lockfile[0m
+2026-11-14T16:21:35.1981832Z [36;1m  flutter --version --machine[0m
+2026-11-14T16:21:35.1982098Z [36;1m  dart --version[0m
+2026-11-14T16:21:35.1982552Z [36;1m' > "$FEATURE_EVIDENCE_DIR/setup.stdout.log" 2> "$FEATURE_EVIDENCE_DIR/setup.stderr.log"[0m
+2026-11-14T16:21:35.1983167Z [36;1mresult=$?[0m
+2026-11-14T16:21:35.1983379Z [36;1mset -e[0m
+2026-11-14T16:21:35.1983734Z [36;1mprintf '{"exit_code":%s}\n' "$result" > "$FEATURE_EVIDENCE_DIR/setup-result.json"[0m
+2026-11-14T16:21:35.1984194Z [36;1mcat "$FEATURE_EVIDENCE_DIR/setup.stdout.log"[0m
+2026-11-14T16:21:35.1984556Z [36;1mcat "$FEATURE_EVIDENCE_DIR/setup.stderr.log" >&2[0m
+2026-11-14T16:21:35.1984870Z [36;1mexit "$result"[0m
+2026-11-14T16:21:35.2007705Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:21:35.2008220Z env:
+2026-11-14T16:21:35.2008677Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:35.2009134Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:35.2009395Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:35.2009605Z   CI: true
+2026-11-14T16:21:35.2009783Z   BOT: true
+2026-11-14T16:21:35.2009978Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:35.2010447Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:35.2011219Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:35.2011749Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:21:35.2012252Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:21:35.2012600Z ##[endgroup]
+2026-11-14T16:21:55.2745394Z Reading package lists...
+2026-11-14T16:21:55.2745906Z Building dependency tree...
+2026-11-14T16:21:55.2746312Z Reading state information...
+2026-11-14T16:21:55.2747015Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-11-14T16:21:55.2748499Z 0 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.
+2026-11-14T16:21:55.2749068Z Collecting Pillow==12.3.0
+2026-11-14T16:21:55.2749896Z   Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-14T16:21:55.2750930Z Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-11-14T16:21:55.2752042Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 59.8 MB/s eta 0:00:00
+2026-11-14T16:21:55.2752702Z Installing collected packages: Pillow
+2026-11-14T16:21:55.2753232Z Successfully installed Pillow-12.3.0
+2026-11-14T16:21:55.2753713Z Resolving dependencies...
+2026-11-14T16:21:55.2754134Z Downloading packages...
+2026-11-14T16:21:55.2754544Z   clock 1.1.2 (1.1.3 available)
+2026-11-14T16:21:55.2754986Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-14T16:21:55.2755459Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-14T16:21:55.2755814Z   crypto 3.0.7 (3.0.8 available)
+2026-11-14T16:21:55.2756102Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-14T16:21:55.2756421Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-14T16:21:55.2756714Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-14T16:21:55.2757057Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-14T16:21:55.2757380Z   hooks 2.0.2 (2.2.0 available)
+2026-11-14T16:21:55.2758221Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-14T16:21:55.2758588Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-14T16:21:55.2759036Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-14T16:21:55.2759654Z   jni 1.1.0 (1.1.2 available)
+2026-11-14T16:21:55.2760089Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-14T16:21:55.2760533Z   lints 4.0.0 (6.1.0 available)
+2026-11-14T16:21:55.2760938Z   matcher 0.12.19 (0.12.20 available)
+2026-11-14T16:21:55.2761312Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-14T16:21:55.2761615Z   meta 1.18.0 (1.19.0 available)
+2026-11-14T16:21:55.2761866Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-14T16:21:55.2762136Z   record_use 0.6.0 (1.1.1 available)
+2026-11-14T16:21:55.2762420Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-14T16:21:55.2762737Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-14T16:21:55.2763087Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-14T16:21:55.2763417Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-14T16:21:55.2763700Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-14T16:21:55.2763971Z   test_api 0.7.11 (0.7.15 available)
+2026-11-14T16:21:55.2764232Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-14T16:21:55.2764495Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-14T16:21:55.2764760Z   web 1.1.1 (1.1.2 available)
+2026-11-14T16:21:55.2765008Z Got dependencies!
+2026-11-14T16:21:55.2765341Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-14T16:21:55.2765769Z Try `flutter pub outdated` for more information.
+2026-11-14T16:21:55.2766062Z {
+2026-11-14T16:21:55.2766255Z   "frameworkVersion": "3.44.9",
+2026-11-14T16:21:55.2766502Z   "channel": "stable",
+2026-11-14T16:21:55.2766815Z   "repositoryUrl": "https://github.com/flutter/flutter.git",
+2026-11-14T16:21:55.2767264Z   "frameworkRevision": "6b182d2c7585eba26d4edce0f97630effd256c33",
+2026-11-14T16:21:55.2768202Z   "frameworkCommitDate": "2026-08-05 10:04:07 -0700",
+2026-11-14T16:21:55.2768832Z   "engineRevision": "5a2a6a42cce67f965cf540fcecf616faca624aa1",
+2026-11-14T16:21:55.2769215Z   "engineCommitDate": "2026-07-31 18:31:59.000Z",
+2026-11-14T16:21:55.2769598Z   "engineContentHash": "b9499e4c25212536ba3a4eec4f5c1905fb3214fe",
+2026-11-14T16:21:55.2769982Z   "engineBuildDate": "2026-07-31 13:30:03.301",
+2026-11-14T16:21:55.2770287Z   "dartSdkVersion": "3.12.2",
+2026-11-14T16:21:55.2770538Z   "devToolsVersion": "2.57.0",
+2026-11-14T16:21:55.2770787Z   "flutterVersion": "3.44.9",
+2026-11-14T16:21:55.2771143Z   "flutterRoot": "/opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter"
+2026-11-14T16:21:55.2771517Z }
+2026-11-14T16:21:55.2771824Z Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "linux_x64"
+2026-11-14T16:21:55.2802979Z ##[group]Run set -euo pipefail
+2026-11-14T16:21:55.2803365Z [36;1mset -euo pipefail[0m
+2026-11-14T16:21:55.2803929Z [36;1m"$FEATURE_PYTHON_DIR/bin/python" - <<'PY' > "$FEATURE_EVIDENCE_DIR/assets.stdout.log" 2> "$FEATURE_EVIDENCE_DIR/assets.stderr.log"[0m
+2026-11-14T16:21:55.2804541Z [36;1mimport hashlib, json[0m
+2026-11-14T16:21:55.2804806Z [36;1mfrom pathlib import Path[0m
+2026-11-14T16:21:55.2805069Z [36;1mfrom PIL import Image[0m
+2026-11-14T16:21:55.2805323Z [36;1m[0m
+2026-11-14T16:21:55.2805518Z [36;1mexpected = {[0m
+2026-11-14T16:21:55.2805915Z [36;1m    "assets/lumo_design/fox/fox_avatar.png": "2528db26b4288d89e905c03ec1015ac7b8798538",[0m
+2026-11-14T16:21:55.2806547Z [36;1m    "assets/lumo_design/fox/fox_book_point.png": "0ee53bec6758833d2d3f64e0ca12a2a208878c0b",[0m
+2026-11-14T16:21:55.2807148Z [36;1m    "assets/fonts/Nunito-Regular.ttf": "4ed809463fcba2afd71553075412a6d7e74dcedf",[0m
+2026-11-14T16:21:55.2808172Z [36;1m    "assets/fonts/Nunito-Bold.ttf": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb",[0m
+2026-11-14T16:21:55.2808783Z [36;1m    "assets/fonts/Nunito-ExtraBold.ttf": "d3168c268b0f8c20edc534be678ab53300ba0828",[0m
+2026-11-14T16:21:55.2809378Z [36;1m    "assets/fonts/Nunito-Black.ttf": "9e7743ebb7efc2bda51e99eda079cb9b2061f566",[0m
+2026-11-14T16:21:55.2809804Z [36;1m}[0m
+2026-11-14T16:21:55.2809995Z [36;1mobserved = [][0m
+2026-11-14T16:21:55.2810267Z [36;1mfor name, expected_blob in expected.items():[0m
+2026-11-14T16:21:55.2810580Z [36;1m    path = Path(name)[0m
+2026-11-14T16:21:55.2810845Z [36;1m    data = path.read_bytes()[0m
+2026-11-14T16:21:55.2811112Z [36;1m    blob = hashlib.sha1([0m
+2026-11-14T16:21:55.2811454Z [36;1m        b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()[0m
+2026-11-14T16:21:55.2811820Z [36;1m    if blob != expected_blob:[0m
+2026-11-14T16:21:55.2812179Z [36;1m        raise SystemExit(f"Original test asset differs: {name}")[0m
+2026-11-14T16:21:55.2812547Z [36;1m    if path.suffix == ".png":[0m
+2026-11-14T16:21:55.2812842Z [36;1m        with Image.open(path) as picture:[0m
+2026-11-14T16:21:55.2813155Z [36;1m            if picture.format != "PNG":[0m
+2026-11-14T16:21:55.2813550Z [36;1m                raise SystemExit(f"Original asset is not PNG: {name}")[0m
+2026-11-14T16:21:55.2813928Z [36;1m            picture.verify()[0m
+2026-11-14T16:21:55.2814307Z [36;1m    observed.append({"path": name, "bytes": len(data), "git_blob": blob,[0m
+2026-11-14T16:21:55.2814767Z [36;1m                     "sha256": hashlib.sha256(data).hexdigest()})[0m
+2026-11-14T16:21:55.2815186Z [36;1mprint(json.dumps({"original_assets": observed}, indent=2))[0m
+2026-11-14T16:21:55.2815527Z [36;1mPY[0m
+2026-11-14T16:21:55.2835458Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:21:55.2835800Z env:
+2026-11-14T16:21:55.2836072Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:55.2836431Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:55.2836698Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:55.2836912Z   CI: true
+2026-11-14T16:21:55.2837091Z   BOT: true
+2026-11-14T16:21:55.2837293Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:55.2838023Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:55.2838745Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:55.2839242Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:21:55.2839617Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:21:55.2839882Z ##[endgroup]
+2026-11-14T16:21:55.3543218Z ##[group]Run set -euo pipefail
+2026-11-14T16:21:55.3543555Z [36;1mset -euo pipefail[0m
+2026-11-14T16:21:55.3543787Z [36;1mset +e[0m
+2026-11-14T16:21:55.3544108Z [36;1mflutter test --no-pub --machine --timeout=60s --concurrency=2 \[0m
+2026-11-14T16:21:55.3544551Z [36;1m  test/wort_diktat_gesture_regression_test.dart \[0m
+2026-11-14T16:21:55.3544939Z [36;1m  test/feature_permission_regression_test.dart \[0m
+2026-11-14T16:21:55.3545278Z [36;1m  test/profile_screen_test.dart \[0m
+2026-11-14T16:21:55.3545619Z [36;1m  > "$FEATURE_EVIDENCE_DIR/flutter.stdout.jsonl" \[0m
+2026-11-14T16:21:55.3545991Z [36;1m  2> "$FEATURE_EVIDENCE_DIR/flutter.stderr.log"[0m
+2026-11-14T16:21:55.3546306Z [36;1mresult=$?[0m
+2026-11-14T16:21:55.3546513Z [36;1mset -e[0m
+2026-11-14T16:21:55.3546859Z [36;1mprintf '{"exit_code":%s}\n' "$result" > "$FEATURE_EVIDENCE_DIR/flutter-result.json"[0m
+2026-11-14T16:21:55.3547340Z [36;1mcat "$FEATURE_EVIDENCE_DIR/flutter.stdout.jsonl"[0m
+2026-11-14T16:21:55.3548139Z [36;1mcat "$FEATURE_EVIDENCE_DIR/flutter.stderr.log" >&2[0m
+2026-11-14T16:21:55.3548472Z [36;1mexit "$result"[0m
+2026-11-14T16:21:55.3567012Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:21:55.3567360Z env:
+2026-11-14T16:21:55.3567938Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:21:55.3568302Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:21:55.3568554Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:21:55.3568771Z   CI: true
+2026-11-14T16:21:55.3568952Z   BOT: true
+2026-11-14T16:21:55.3569154Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:21:55.3569647Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:21:55.3570199Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:21:55.3570687Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:21:55.3571067Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:21:55.3571332Z ##[endgroup]
+2026-11-14T16:22:12.8590321Z {"protocolVersion":"0.1.1","runnerVersion":null,"pid":3321,"type":"start","time":0}
+2026-11-14T16:22:12.8591636Z {"suite":{"id":0,"platform":"vm","path":"/home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"suite","time":0}
+2026-11-14T16:22:12.8593972Z {"test":{"id":1,"name":"loading /home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+2026-11-14T16:22:12.8596153Z {"suite":{"id":2,"platform":"vm","path":"/home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"suite","time":5}
+2026-11-14T16:22:12.8598342Z {"test":{"id":3,"name":"loading /home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart","suiteID":2,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":5}
+2026-11-14T16:22:12.8599324Z {"count":3,"time":6,"type":"allSuites"}
+2026-11-14T16:22:12.8599522Z 
+2026-11-14T16:22:12.8599698Z [{"event":"test.startedProcess","params":{"vmServiceUri":null}}]
+2026-11-14T16:22:12.8599965Z 
+2026-11-14T16:22:12.8600131Z [{"event":"test.startedProcess","params":{"vmServiceUri":null}}]
+2026-11-14T16:22:12.8600619Z {"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8478}
+2026-11-14T16:22:12.8601436Z {"group":{"id":4,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":7,"line":null,"column":null,"url":null},"type":"group","time":8480}
+2026-11-14T16:22:12.8602799Z {"test":{"id":5,"name":"(setUpAll)","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":119,"column":3,"url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"testStart","time":8481}
+2026-11-14T16:22:12.8604314Z {"testID":5,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8521}
+2026-11-14T16:22:12.8606288Z {"test":{"id":6,"name":"actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":138,"root_column":5,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"testStart","time":8522}
+2026-11-14T16:22:12.8608995Z {"testID":3,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8903}
+2026-11-14T16:22:12.8609833Z {"group":{"id":7,"suiteID":2,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":20,"line":null,"column":null,"url":null},"type":"group","time":8903}
+2026-11-14T16:22:12.8611668Z {"test":{"id":8,"name":"Live word magic offers explanations without a picture promise","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":198,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":8903}
+2026-11-14T16:22:12.8614131Z {"testID":6,"messageType":"print","message":"[DiktatGesture] size=Size(430.0, 600.0) canvas=Rect.fromLTRB(38.5, 190.5, 391.5, 243.0) travel=40.5 initial=[122.0] during=[[122.0], [122.0], [122.0], [122.0], [122.0], [122.0], [122.0], [122.0]] origins=[Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5)]","type":"print","time":9812}
+2026-11-14T16:22:12.8615610Z {"testID":8,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":9958}
+2026-11-14T16:22:12.8617206Z {"test":{"id":9,"name":"Live safari displays its existing animal and advances the round","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":216,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":9958}
+2026-11-14T16:22:12.8619438Z {"testID":6,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":9990}
+2026-11-14T16:22:12.8621057Z {"test":{"id":10,"name":"actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":138,"root_column":5,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"testStart","time":9991}
+2026-11-14T16:22:12.8622667Z {"testID":9,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10327}
+2026-11-14T16:22:12.8624207Z {"test":{"id":11,"name":"Live photo quiz checks camera consent before capture","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":248,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":10328}
+2026-11-14T16:22:12.8626624Z {"testID":10,"messageType":"print","message":"[DiktatGesture] size=Size(640.0, 360.0) canvas=Rect.fromLTRB(214.5, 88.0, 593.5, 140.5) travel=40.5 initial=[228.5] during=[[228.5], [228.5], [228.5], [228.5], [228.5], [228.5], [228.5], [228.5]] origins=[Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0)]","type":"print","time":10520}
+2026-11-14T16:22:12.8628558Z {"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10538}
+2026-11-14T16:22:12.8630300Z {"test":{"id":12,"name":"Live photo quiz cancellation keeps capture ready without rewards","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":268,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":10539}
+2026-11-14T16:22:12.8631875Z {"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10612}
+2026-11-14T16:22:12.8633462Z {"test":{"id":13,"name":"WortDiktat keeps its first contact across rows; foreign ends first=true","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":207,"root_column":5,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"testStart","time":10612}
+2026-11-14T16:22:12.8635046Z {"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10815}
+2026-11-14T16:22:12.8636583Z {"test":{"id":14,"name":"Live photo quiz recovers from a native camera rejection","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":287,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":10815}
+2026-11-14T16:22:12.8638482Z {"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10993}
+2026-11-14T16:22:12.8640063Z {"test":{"id":15,"name":"Live photo quiz offers a spoken answer only after a real photo","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":311,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":10993}
+2026-11-14T16:22:12.8641610Z {"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11139}
+2026-11-14T16:22:12.8643222Z {"test":{"id":16,"name":"WortDiktat keeps its first contact across rows; foreign ends first=false","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":207,"root_column":5,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"testStart","time":11140}
+2026-11-14T16:22:12.8644797Z {"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11262}
+2026-11-14T16:22:12.8646369Z {"test":{"id":17,"name":"Live photo quiz discards a pending capture after a mode round trip","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":337,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":11262}
+2026-11-14T16:22:12.8648218Z {"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11528}
+2026-11-14T16:22:12.8649875Z {"test":{"id":18,"name":"Live photo quiz rejects a delayed camera error after profile change","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":383,"root_column":5,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":11529}
+2026-11-14T16:22:12.8651450Z {"testID":16,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11563}
+2026-11-14T16:22:12.8653229Z {"test":{"id":19,"name":"a WortDiktat tap alone is not a completed writing attempt","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":290,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"testStart","time":11563}
+2026-11-14T16:22:12.8654753Z {"testID":19,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11807}
+2026-11-14T16:22:12.8656286Z {"test":{"id":20,"name":"a cancelled WortDiktat stroke is not a completed attempt","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":300,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"testStart","time":11808}
+2026-11-14T16:22:12.8657938Z {"testID":18,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11945}
+2026-11-14T16:22:12.8659500Z {"test":{"id":21,"name":"Live photo quiz rejects a delayed camera error after lease reset","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":383,"root_column":5,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":11946}
+2026-11-14T16:22:12.8661044Z {"testID":20,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":12156}
+2026-11-14T16:22:12.8662598Z {"test":{"id":22,"name":"WortDiktat cancel preserves completed strokes in other rows","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":312,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/wort_diktat_gesture_regression_test.dart"},"type":"testStart","time":12156}
+2026-11-14T16:22:12.8664149Z {"testID":21,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":12285}
+2026-11-14T16:22:12.8665723Z {"test":{"id":23,"name":"Live photo quiz rejects a delayed camera error after mode round trip","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":383,"root_column":5,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":12285}
+2026-11-14T16:22:12.8667289Z {"testID":23,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":12601}
+2026-11-14T16:22:12.8669125Z {"test":{"id":24,"name":"Live Pro opens without initializing microphone; denied tap stays local","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":484,"root_column":5,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":12601}
+2026-11-14T16:22:12.8670713Z {"testID":22,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":12650}
+2026-11-14T16:22:12.8671538Z {"test":{"id":25,"name":"(tearDownAll)","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":12651}
+2026-11-14T16:22:12.8672348Z {"testID":25,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":12654}
+2026-11-14T16:22:12.8672911Z {"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":12664}
+2026-11-14T16:22:12.8674493Z {"test":{"id":26,"name":"Photo lesson checks saved camera consent before opening the scanner","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":511,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":12665}
+2026-11-14T16:22:12.8676453Z {"suite":{"id":27,"platform":"vm","path":"/home/runner/work/lumo-lernen/lumo-lernen/test/profile_screen_test.dart"},"type":"suite","time":12689}
+2026-11-14T16:22:12.8677811Z {"test":{"id":28,"name":"loading /home/runner/work/lumo-lernen/lumo-lernen/test/profile_screen_test.dart","suiteID":27,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":12689}
+2026-11-14T16:22:12.8678868Z {"testID":26,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":12754}
+2026-11-14T16:22:12.8680498Z {"test":{"id":29,"name":"Live safari correct answer keeps its delayed continuation bound during word magic","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":540,"root_column":7,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":12755}
+2026-11-14T16:22:12.8681884Z 
+2026-11-14T16:22:12.8682064Z [{"event":"test.startedProcess","params":{"vmServiceUri":null}}]
+2026-11-14T16:22:12.8689085Z {"testID":29,"messageType":"print","message":"══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TextWidgetFinder:<Found 1 widget with text \"+10 XP\": [\n            Text(\"+10 XP\", inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,\nblue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 14.0, weight: 900, letterSpacing:\n0.2, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart:599:9)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart line 599\nThe test description was:\n  Live safari correct answer keeps its delayed continuation bound during word magic\n════════════════════════════════════════════════════════════════════════════════════════════════════","type":"print","time":13249}
+2026-11-14T16:22:12.8695339Z {"testID":29,"error":"Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during word magic","stackTrace":"","isFailure":false,"type":"error","time":13260}
+2026-11-14T16:22:12.8696394Z {"testID":29,"result":"error","skipped":false,"hidden":false,"type":"testDone","time":13261}
+2026-11-14T16:22:12.8698187Z {"test":{"id":30,"name":"Live safari correct answer keeps its delayed continuation bound during safari round trip","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":540,"root_column":7,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":13261}
+2026-11-14T16:22:12.8699845Z {"testID":28,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":13511}
+2026-11-14T16:22:12.8700686Z {"group":{"id":31,"suiteID":27,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":null,"column":null,"url":null},"type":"group","time":13511}
+2026-11-14T16:22:12.8702986Z {"test":{"id":32,"name":"Profil zeigt echte Werte und führt in Einstellungen und Laden","suiteID":27,"groupIDs":[31],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":12,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/profile_screen_test.dart"},"type":"testStart","time":13512}
+2026-11-14T16:22:12.8710869Z {"testID":30,"messageType":"print","message":"══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TextWidgetFinder:<Found 1 widget with text \"+10 XP\": [\n            Text(\"+10 XP\", inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,\nblue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 14.0, weight: 900, letterSpacing:\n0.2, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart:599:9)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart line 599\nThe test description was:\n  Live safari correct answer keeps its delayed continuation bound during safari round trip\n════════════════════════════════════════════════════════════════════════════════════════════════════","type":"print","time":13686}
+2026-11-14T16:22:12.8717590Z {"testID":30,"error":"Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during safari round trip","stackTrace":"","isFailure":false,"type":"error","time":13687}
+2026-11-14T16:22:12.8718749Z {"testID":30,"result":"error","skipped":false,"hidden":false,"type":"testDone","time":13706}
+2026-11-14T16:22:12.8720437Z {"test":{"id":33,"name":"Live safari correct answer keeps its delayed continuation bound during unchanged safari","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":540,"root_column":7,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":13707}
+2026-11-14T16:22:12.8728637Z {"testID":33,"messageType":"print","message":"══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TextWidgetFinder:<Found 1 widget with text \"+10 XP\": [\n            Text(\"+10 XP\", inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,\nblue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 14.0, weight: 900, letterSpacing:\n0.2, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart:599:9)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart line 599\nThe test description was:\n  Live safari correct answer keeps its delayed continuation bound during unchanged safari\n════════════════════════════════════════════════════════════════════════════════════════════════════","type":"print","time":14039}
+2026-11-14T16:22:12.8735182Z {"testID":33,"error":"Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during unchanged safari","stackTrace":"","isFailure":false,"type":"error","time":14041}
+2026-11-14T16:22:12.8736257Z {"testID":33,"result":"error","skipped":false,"hidden":false,"type":"testDone","time":14046}
+2026-11-14T16:22:12.8738083Z {"test":{"id":34,"name":"Live safari correct answer keeps its delayed continuation bound during profile change","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":540,"root_column":7,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":14046}
+2026-11-14T16:22:12.8746011Z {"testID":34,"messageType":"print","message":"══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TextWidgetFinder:<Found 1 widget with text \"+10 XP\": [\n            Text(\"+10 XP\", inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,\nblue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 14.0, weight: 900, letterSpacing:\n0.2, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart:599:9)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart line 599\nThe test description was:\n  Live safari correct answer keeps its delayed continuation bound during profile change\n════════════════════════════════════════════════════════════════════════════════════════════════════","type":"print","time":14360}
+2026-11-14T16:22:12.8752844Z {"testID":34,"error":"Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during profile change","stackTrace":"","isFailure":false,"type":"error","time":14360}
+2026-11-14T16:22:12.8753911Z {"testID":34,"result":"error","skipped":false,"hidden":false,"type":"testDone","time":14368}
+2026-11-14T16:22:12.8755549Z {"test":{"id":35,"name":"Live safari wrong answer keeps its delayed continuation bound during word magic","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":540,"root_column":7,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":14368}
+2026-11-14T16:22:12.8757175Z {"testID":35,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":14600}
+2026-11-14T16:22:12.8758994Z {"test":{"id":36,"name":"Live safari wrong answer keeps its delayed continuation bound during safari round trip","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":540,"root_column":7,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":14600}
+2026-11-14T16:22:12.8760626Z {"testID":36,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":14841}
+2026-11-14T16:22:12.8762266Z {"test":{"id":37,"name":"Live safari wrong answer keeps its delayed continuation bound during unchanged safari","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":540,"root_column":7,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":14841}
+2026-11-14T16:22:12.8763912Z {"testID":32,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":14883}
+2026-11-14T16:22:12.8765765Z {"test":{"id":38,"name":"Profil-Extras öffnet die vorhandenen Einstellungen als echte Schaltfläche","suiteID":27,"groupIDs":[31],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":69,"root_column":3,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/profile_screen_test.dart"},"type":"testStart","time":14884}
+2026-11-14T16:22:12.8767340Z {"testID":38,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":15040}
+2026-11-14T16:22:12.8768594Z {"test":{"id":39,"name":"Level-Titel steigen mit dem Level","suiteID":27,"groupIDs":[31],"metadata":{"skip":false,"skipReason":null},"line":125,"column":3,"url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/profile_screen_test.dart"},"type":"testStart","time":15040}
+2026-11-14T16:22:12.8769727Z {"testID":37,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":15048}
+2026-11-14T16:22:12.8771371Z {"test":{"id":40,"name":"Live safari wrong answer keeps its delayed continuation bound during profile change","suiteID":2,"groupIDs":[7],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":540,"root_column":7,"root_url":"file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart"},"type":"testStart","time":15048}
+2026-11-14T16:22:12.8772988Z {"testID":39,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":15052}
+2026-11-14T16:22:12.8773549Z {"testID":40,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":15241}
+2026-11-14T16:22:12.8773991Z {"success":false,"type":"done","time":15264}
+2026-11-14T16:22:12.8783451Z ##[error]Process completed with exit code 1.
+2026-11-14T16:22:12.8836374Z ##[group]Run set -euo pipefail
+2026-11-14T16:22:12.8836876Z [36;1mset -euo pipefail[0m
+2026-11-14T16:22:12.8837142Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T16:22:12.8837387Z [36;1mimport json, os, sys[0m
+2026-11-14T16:22:12.8838002Z [36;1mfrom pathlib import Path[0m
+2026-11-14T16:22:12.8838261Z [36;1m[0m
+2026-11-14T16:22:12.8838539Z [36;1msys.path.insert(0, str(Path("scripts").resolve()))[0m
+2026-11-14T16:22:12.8838950Z [36;1mfrom run_full_flutter_acceptance import summarize[0m
+2026-11-14T16:22:12.8839269Z [36;1m[0m
+2026-11-14T16:22:12.8839524Z [36;1moutput = Path(os.environ["FEATURE_EVIDENCE_DIR"])[0m
+2026-11-14T16:22:12.8839900Z [36;1mresult_path = output / "flutter-result.json"[0m
+2026-11-14T16:22:12.8840250Z [36;1mraw_path = output / "flutter.stdout.jsonl"[0m
+2026-11-14T16:22:12.8840565Z [36;1mevents, non_event_lines = [], [][0m
+2026-11-14T16:22:12.8840854Z [36;1mif raw_path.is_file():[0m
+2026-11-14T16:22:12.8841260Z [36;1m    for number, line in enumerate(raw_path.read_text().splitlines(), 1):[0m
+2026-11-14T16:22:12.8841669Z [36;1m        try:[0m
+2026-11-14T16:22:12.8841918Z [36;1m            event = json.loads(line)[0m
+2026-11-14T16:22:12.8842229Z [36;1m        except json.JSONDecodeError:[0m
+2026-11-14T16:22:12.8842545Z [36;1m            non_event_lines.append(number)[0m
+2026-11-14T16:22:12.8842840Z [36;1m            continue[0m
+2026-11-14T16:22:12.8843100Z [36;1m        if isinstance(event, dict):[0m
+2026-11-14T16:22:12.8843397Z [36;1m            events.append(event)[0m
+2026-11-14T16:22:12.8843663Z [36;1m        else:[0m
+2026-11-14T16:22:12.8843923Z [36;1m            non_event_lines.append(number)[0m
+2026-11-14T16:22:12.8844408Z [36;1mexit_code = json.loads(result_path.read_text())["exit_code"] if result_path.is_file() else 125[0m
+2026-11-14T16:22:12.8844914Z [36;1mreport = summarize(events, exit_code, [])[0m
+2026-11-14T16:22:12.8845337Z [36;1mevent_errors = [event for event in events if event.get("type") == "error"][0m
+2026-11-14T16:22:12.8845745Z [36;1mreport.update({[0m
+2026-11-14T16:22:12.8846039Z [36;1m    "source_sha": os.environ["EXPECTED_SOURCE_SHA"],[0m
+2026-11-14T16:22:12.8846446Z [36;1m    "scope": ["test/wort_diktat_gesture_regression_test.dart",[0m
+2026-11-14T16:22:12.8846866Z [36;1m              "test/feature_permission_regression_test.dart",[0m
+2026-11-14T16:22:12.8847234Z [36;1m              "test/profile_screen_test.dart"],[0m
+2026-11-14T16:22:12.8847747Z [36;1m    "expected_cases": 30, "event_errors": event_errors,[0m
+2026-11-14T16:22:12.8848121Z [36;1m    "non_event_stdout_lines": non_event_lines,[0m
+2026-11-14T16:22:12.8848536Z [36;1m    "raw_stdout": raw_path.name, "raw_stderr": "flutter.stderr.log",[0m
+2026-11-14T16:22:12.8848904Z [36;1m})[0m
+2026-11-14T16:22:12.8849144Z [36;1mif report["passed"] != 30 or event_errors:[0m
+2026-11-14T16:22:12.8849456Z [36;1m    report["status"] = "FAIL"[0m
+2026-11-14T16:22:12.8849794Z [36;1m(output / "feature-test-summary.json").write_text([0m
+2026-11-14T16:22:12.8850210Z [36;1m    json.dumps(report, ensure_ascii=False, indent=2) + "\n")[0m
+2026-11-14T16:22:12.8850611Z [36;1mprint(json.dumps(report, ensure_ascii=False))[0m
+2026-11-14T16:22:12.8851012Z [36;1mraise SystemExit(0 if report["status"] == "PASS" else 1)[0m
+2026-11-14T16:22:12.8851351Z [36;1mPY[0m
+2026-11-14T16:22:12.8870420Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:22:12.8870773Z env:
+2026-11-14T16:22:12.8871051Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:22:12.8871419Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:22:12.8871675Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:22:12.8871892Z   CI: true
+2026-11-14T16:22:12.8872082Z   BOT: true
+2026-11-14T16:22:12.8872289Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:22:12.8872693Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:22:12.8873232Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:22:12.8873917Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:22:12.8874426Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:22:12.8874691Z ##[endgroup]
+2026-11-14T16:22:12.9263290Z {"status": "FAIL", "passed": 26, "failed": ["Live safari correct answer keeps its delayed continuation bound during word magic", "Live safari correct answer keeps its delayed continuation bound during safari round trip", "Live safari correct answer keeps its delayed continuation bound during unchanged safari", "Live safari correct answer keeps its delayed continuation bound during profile change"], "skipped": [], "capture_error_files": [], "flutter_exit_code": 1, "runner_completed_successfully": false, "source_sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb", "scope": ["test/wort_diktat_gesture_regression_test.dart", "test/feature_permission_regression_test.dart", "test/profile_screen_test.dart"], "expected_cases": 30, "event_errors": [{"testID": 29, "error": "Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during word magic", "stackTrace": "", "isFailure": false, "type": "error", "time": 13260}, {"testID": 30, "error": "Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during safari round trip", "stackTrace": "", "isFailure": false, "type": "error", "time": 13687}, {"testID": 33, "error": "Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during unchanged safari", "stackTrace": "", "isFailure": false, "type": "error", "time": 14041}, {"testID": 34, "error": "Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during profile change", "stackTrace": "", "isFailure": false, "type": "error", "time": 14360}], "non_event_stdout_lines": [7, 8, 9, 10, 62, 63], "raw_stdout": "flutter.stdout.jsonl", "raw_stderr": "flutter.stderr.log"}
+2026-11-14T16:22:12.9307146Z ##[error]Process completed with exit code 1.
+2026-11-14T16:22:12.9337954Z ##[group]Run set -euo pipefail
+2026-11-14T16:22:12.9338558Z [36;1mset -euo pipefail[0m
+2026-11-14T16:22:12.9339003Z [36;1mpython3 "$FEATURE_EVIDENCE_DIR/source_snapshot.py" after[0m
+2026-11-14T16:22:12.9372888Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:22:12.9373232Z env:
+2026-11-14T16:22:12.9373512Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:22:12.9373877Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:22:12.9374133Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:22:12.9374344Z   CI: true
+2026-11-14T16:22:12.9374530Z   BOT: true
+2026-11-14T16:22:12.9374737Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:22:12.9375137Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:22:12.9375684Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:22:12.9376190Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:22:12.9376607Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:22:12.9376871Z ##[endgroup]
+2026-11-14T16:22:14.8432071Z {"phase": "after", "head": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb", "tracked_files": 4974, "errors": []}
+2026-11-14T16:22:14.8591689Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T16:22:14.8592201Z with:
+2026-11-14T16:22:14.8592873Z   name: lumo-feature-connections-93bd9b7804e2c352303d58552cc48e0a89a1c3cb-attempt-1
+2026-11-14T16:22:14.8593825Z   path: /home/runner/work/_temp/lumo-feature-connections-evidence/
+2026-11-14T16:22:14.8594465Z   include-hidden-files: true
+2026-11-14T16:22:14.8594880Z   if-no-files-found: error
+2026-11-14T16:22:14.8595258Z   retention-days: 30
+2026-11-14T16:22:14.8595619Z   compression-level: 6
+2026-11-14T16:22:14.8596004Z   overwrite: false
+2026-11-14T16:22:14.8596344Z env:
+2026-11-14T16:22:14.8596794Z   EXPECTED_SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:22:14.8597692Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T16:22:14.8598405Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T16:22:14.8598773Z   CI: true
+2026-11-14T16:22:14.8599081Z   BOT: true
+2026-11-14T16:22:14.8599432Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T16:22:14.8600231Z   FEATURE_EVIDENCE_DIR: /home/runner/work/_temp/lumo-feature-connections-evidence
+2026-11-14T16:22:14.8601234Z   FEATURE_PYTHON_DIR: /home/runner/work/_temp/lumo-feature-connections-python
+2026-11-14T16:22:14.8602119Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:22:14.8602783Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:22:14.8603226Z ##[endgroup]
+2026-11-14T16:22:15.0277681Z (node:3447) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:22:15.0278887Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:22:15.0353748Z With the provided path, there will be 16 files uploaded
+2026-11-14T16:22:15.0359935Z Artifact name is valid!
+2026-11-14T16:22:15.0360647Z Root directory input is valid!
+2026-11-14T16:22:15.2256174Z Beginning upload of artifact content to blob storage
+2026-11-14T16:22:15.3506923Z (node:3447) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T16:22:15.4395447Z Uploaded bytes 1167994
+2026-11-14T16:22:15.4580784Z Finished uploading artifact content to blob storage!
+2026-11-14T16:22:15.4581890Z SHA256 digest of uploaded artifact zip is 0414b2d45bf26f9fe7b5e8bc658feac726a736ce6bb7bd40221229d2a04d5e35
+2026-11-14T16:22:15.4583955Z Finalizing artifact upload
+2026-11-14T16:22:15.7981164Z Artifact lumo-feature-connections-93bd9b7804e2c352303d58552cc48e0a89a1c3cb-attempt-1.zip successfully finalized. Artifact ID 14121736536
+2026-11-14T16:22:15.7982737Z Artifact lumo-feature-connections-93bd9b7804e2c352303d58552cc48e0a89a1c3cb-attempt-1 has been successfully uploaded! Final size is 1167994 bytes. Artifact ID is 14121736536
+2026-11-14T16:22:15.7988201Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43615128301/artifacts/14121736536
+2026-11-14T16:22:15.8257719Z Post job cleanup.
+2026-11-14T16:22:15.8261643Z ##[start-action display=Cache pub dependencies;id=__db3765b1-a780-451b-b854-6690791de70c.cache-pub]
+2026-11-14T16:22:15.8263758Z ##[end-action id=__db3765b1-a780-451b-b854-6690791de70c.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T16:22:15.8265627Z ##[start-action display=Cache Flutter;id=__db3765b1-a780-451b-b854-6690791de70c.cache-flutter]
+2026-11-14T16:22:15.8267743Z ##[end-action id=__db3765b1-a780-451b-b854-6690791de70c.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T16:22:15.8334315Z Post job cleanup.
+2026-11-14T16:22:15.9231285Z [command]/usr/bin/git version
+2026-11-14T16:22:15.9270459Z git version 2.56.1
+2026-11-14T16:22:15.9307930Z Temporarily overriding HOME='/home/runner/work/_temp/fcf96e82-0021-4249-8bc1-2bd51f0d554f' before making global git config changes
+2026-11-14T16:22:15.9308951Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:22:15.9313004Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:22:15.9352716Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:22:15.9388245Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:22:15.9636406Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:22:15.9674212Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:22:15.9934945Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:22:15.9967202Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:22:16.0343233Z Cleaning up orphan processes
+2026-11-14T16:22:16.0728158Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

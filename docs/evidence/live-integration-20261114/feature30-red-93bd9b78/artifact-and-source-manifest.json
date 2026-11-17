@@ -1,0 +1,138 @@
+{
+  "source_sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+  "source_tree": "ad9c129f91bd2ec8a7ee010be49ab626481f77d8",
+  "run_id": 43615128301,
+  "run_attempt": 1,
+  "job_id": 132508389205,
+  "artifact": {
+    "id": 14121736536,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEyMTczNjUzNg==",
+    "name": "lumo-feature-connections-93bd9b7804e2c352303d58552cc48e0a89a1c3cb-attempt-1",
+    "size_in_bytes": 1167994,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14121736536",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14121736536/zip",
+    "expired": false,
+    "digest": "sha256:0414b2d45bf26f9fe7b5e8bc658feac726a736ce6bb7bd40221229d2a04d5e35",
+    "created_at": "2026-11-14T16:22:15Z",
+    "updated_at": "2026-11-14T16:22:15Z",
+    "expires_at": "2026-12-14T16:22:15Z",
+    "workflow_run": {
+      "id": 43615128301,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb"
+    }
+  },
+  "archive": {
+    "bytes": 1167994,
+    "sha256": "0414b2d45bf26f9fe7b5e8bc658feac726a736ce6bb7bd40221229d2a04d5e35",
+    "git_blob": "dfbdada14490fe55aabfdcbcc2b9a93ff1a17918"
+  },
+  "job_log": {
+    "bytes": 87014,
+    "sha256": "0a53c6a552bce9a883b6a19ad06e58da306a39e2a1e2c1a61f04d7853aa9a759",
+    "git_blob": "acd420f391a5b527fd0068eab2da04b34eee706d"
+  },
+  "original_members": [
+    {
+      "path": "assets.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "assets.stdout.log",
+      "bytes": 1420,
+      "sha256": "0b5c91c45e356f656a641bbf039ca36b5d02aabc53965c0e9f2df5bc44f7d936",
+      "git_blob": "f18cf02562e4b98e2e9563a7c54c3e7ba508fbab"
+    },
+    {
+      "path": "feature-test-summary.json",
+      "bytes": 2153,
+      "sha256": "af23e78ae32a132523ec205e835f738b84af3e5eee50a88d57b65b545118b052",
+      "git_blob": "c530c9badc1ed89c9208a93b75817107ad6ffed6"
+    },
+    {
+      "path": "flutter-result.json",
+      "bytes": 16,
+      "sha256": "1b2f5a083325c33035cb246dcb6ceb08b00a036dfd9bf30e39aa76843a88af4f",
+      "git_blob": "fe83a09d501f12fe8de1ebbd644d2f592b54b6c0"
+    },
+    {
+      "path": "flutter.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "flutter.stdout.jsonl",
+      "bytes": 27743,
+      "sha256": "e858060b59b2a0744bbbde2d3b42fbe48c6dc5a71d5fef8104ebb845964c5444",
+      "git_blob": "ecb2090b7a5a201c6ee547234735cf80e3b540bd"
+    },
+    {
+      "path": "git-index-after.original",
+      "bytes": 565722,
+      "sha256": "9b41d0b0f6c0b81a1a550dc92648544a7b2919e1ce440af60bce5937387082d9",
+      "git_blob": "d48b1c42696a25fa7bb39dbbb5f8f06d30d01f79"
+    },
+    {
+      "path": "git-index-before.original",
+      "bytes": 565722,
+      "sha256": "9b41d0b0f6c0b81a1a550dc92648544a7b2919e1ce440af60bce5937387082d9",
+      "git_blob": "d48b1c42696a25fa7bb39dbbb5f8f06d30d01f79"
+    },
+    {
+      "path": "git-status-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "git-status-before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "setup-result.json",
+      "bytes": 16,
+      "sha256": "d24219f6de94b955cf36d25bd2aca88e2d35eef45b9317b7083f55ec8fe9653c",
+      "git_blob": "e5925525ef899d5e06e770f2441311ccc51aa655"
+    },
+    {
+      "path": "setup.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "setup.stdout.log",
+      "bytes": 2789,
+      "sha256": "f9514ab439df8287675877a69ab37cf063a82284cd7355a92d02d0fddd612973",
+      "git_blob": "6f1382067ee7f1c949fe11d1132704f7d8d33497"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 1717469,
+      "sha256": "b14e05b77878701d073c222eabc67833b98a1717984ab98ad07577e09828b7e0",
+      "git_blob": "a670f2da5994fa31f292e2d60c9fd6711c062471"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 1717470,
+      "sha256": "aaa72e9e0e6545ffffd433259465960414705294158e432926a67ad48009dc89",
+      "git_blob": "9bd943b5eda3e1146dde381ce98613cbcb2489e2"
+    },
+    {
+      "path": "source_snapshot.py",
+      "bytes": 3052,
+      "sha256": "f4e35b32b3c5dffc93176a1332cdc9ed2613117e49b4724a397a992ca0bd0e13",
+      "git_blob": "0cf0a0c9a2cff2b0cbfb4174c80d510155a62830"
+    }
+  ],
+  "crc_check": "PASS",
+  "source_snapshot_equality": "PASS",
+  "widget_result": "FAIL: 26 passed, 4 failed, 0 skipped"
+}
