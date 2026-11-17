@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T16:58:21.461388+00:00",
+  "verdict": "NO_CONCRETE_BLOCKER_IN_SCOPED_SOURCE_REVIEW",
+  "review_scope": "One production observer exception-routing fix, nine behavioral test methods and six exact original process-output fixtures; static review only.",
+  "producer": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+  "base": {
+    "head": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+    "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+    "index_sha256": "8ce6ca5e2d8ed837f3b3d0b303540fcc6b7c45cbe4b07d63092ac09006698be1",
+    "tracked_status": ""
+  },
+  "source_freeze": {
+    "bytes": 4754,
+    "sha256": "ba77676bce3f2fecd97aa62e6c8514462635dc0255843b544b98ac23e47e45f1",
+    "git_blob": "2a36221f057de7cc18614be6acbeaaaac715314b"
+  },
+  "independent_binding": {
+    "bytes": 7565,
+    "sha256": "eb65361a89efbbc93caec5013ecd61503294349aff585187ba0d7b2e0022845b",
+    "git_blob": "bfbfcc04c6f019dd019d2f7e3a53841df3d1f2f6"
+  },
+  "findings": [
+    {
+      "subject": "Actual original failure",
+      "finding": "The old51ec run read129 bytes of cat ENOENT text on stdout with adb exit0 and empty stderr after one real touch. ET.ParseError escaped the existing wait_observation exception tuple. The failed run supplies no recovered preferences, confirmed drop or return."
+    },
+    {
+      "subject": "Minimal routing",
+      "finding": "Only read_preferences changes among19 definitions. It catches exactly ET.ParseError, raises ValueError containing the saved original stdout path and chains the original exception. No empty preferences, old data, synthetic ACK or successful observation is substituted."
+    },
+    {
+      "subject": "Original preservation",
+      "finding": "original() still saves exclusive stdout/stderr/returncode/time/hash records before parse. All six new fixtures match the selected original files bytewise and their original command metadata."
+    },
+    {
+      "subject": "One touch and authority",
+      "finding": "transition dispatches native_touch once before the existing observation loop. A later malformed or old reply cannot resubmit input or confirm the transition. ACK+1, request validation, durable owner/round/revision/columns, same frame/state/layout and actual native/host context remain unchanged."
+    },
+    {
+      "subject": "Deadlines",
+      "finding": "Existing900s global,90s default observation and120s confirmed-transition windows remain unchanged. Global budget is rechecked after original reads and pixel analysis; local acceptance rejects time>=deadline. TimeoutError is not converted into an accepted observation."
+    },
+    {
+      "subject": "New tests",
+      "finding": "All nine methods read without execution. The successful later ACK/XML is explicitly synthetic. The tests retain actual reader/observer/transition/strict pixel contracts while substituting process/clock/capture boundaries, and cover original byte/cause retention, one-touch recovery, persistent missing/broken XML, wrong owner/round/revision, oldACK,119.999vs120 and global900 expiry."
+    }
+  ],
+  "limits": [
+    "No test, import of the subject, ADB, engine, runtime or CI action was executed by this reviewer.",
+    "No claim that the original Android failure recovered or that the new observer has passed Android.",
+    "The complete original ZIP SHA/CRC validation is supplied by the independently frozen producer/original pack; this review separately compared the six materialized original members and does not claim a second full-ZIP pass.",
+    "The later45-method run belongs to Root/Pipeline only after the source checkpoint."
+  ],
+  "source_mutations": 0
+}

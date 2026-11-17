@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "status": "FROZEN_UNAPPLIED_FOLLOWUP",
+  "created_utc": "2026-11-14T15:14:02.426660+00:00",
+  "review": {
+    "path": "selective-followup-review.json",
+    "bytes": 37865,
+    "sha256": "0f5372a4fcf4436873f9521face867f5c66fadff0a13d334956bcd77722d50cd",
+    "git_blob": "05f8dd8e7348b4238bb63905dc32f59753807528"
+  },
+  "ci": {
+    "path": "ci-observations.json",
+    "bytes": 8368,
+    "sha256": "d11c2d4d1cccd47c48f24d649cf9b7989aa1808537bde2656decbfd0cca8a94e",
+    "git_blob": "d698f5b95277a94bc0870139062c5dc031746259"
+  },
+  "native_review": {
+    "path": "independent-native-addendum/review.json",
+    "bytes": 6267,
+    "sha256": "a322b0708a3b59224789e8bfa4ed9d77f4d4a274aaf1ff449ea65ee354efa04f",
+    "git_blob": "86c9c0b45cf7d91a520a2ba69cf6ffe7e521fbcb"
+  },
+  "host_source": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "native_source": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "decision": "Native authority pair success is exact and genuine; Host505Memory frame still fails. No combined integration or APK acceptance. No active candidate modifications.",
+  "counts": {
+    "host_delta": 35,
+    "exact_host_texts": 28,
+    "binary_not_downloaded": 3,
+    "native_relevant": 10
+  },
+  "next": "Await genuine Producer Host completion; preserve all prior target protections, then explicit source checkpoint and combined gates. Publisher plan is separate."
+}

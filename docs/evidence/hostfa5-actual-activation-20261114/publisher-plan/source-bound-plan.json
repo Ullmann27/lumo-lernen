@@ -1,0 +1,220 @@
+{
+  "apk_or_bundle_downloads": 0,
+  "archive_contract": {
+    "all_members_crc_sha_readback": true,
+    "max_archive_bytes": 2147483648,
+    "max_members": 512,
+    "max_unpacked_bytes": 3221225472,
+    "original_archive_preserved": true,
+    "unsafe_paths_duplicates_links_special_files_encrypted_members_rejected": true
+  },
+  "assets": [
+    "BUILD-PROVENANCE.json",
+    "C4-ANDROID-RESULT.json",
+    "C4-CANDIDATE-FACTS.json",
+    "C4-DELIVERY-FACTS.json",
+    "C4-DESKTOP-RUNTIME.json",
+    "GODOT-SOURCE.json",
+    "Lumo-Lernen-Neu.apk",
+    "Lumo-Lernen-Neu.apk.sha256",
+    "PUBLISH-VERIFICATION.json",
+    "UPDATE-2020-RESULT.json",
+    "VILLAGE-ANDROID-RESULT.json"
+  ],
+  "candidate_observed": {
+    "branch": "integration/lumo-c4-connections-20261114",
+    "host_sha": "fa5e8695398000c4231db69f67e3dfd094fdb21a",
+    "host_tree": "799d778a391c79fdd87e04308ce68edd60f358a5",
+    "native_sha": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+    "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+    "pull_request": 485,
+    "read_scope": "Exact current activation, PR485/ref readback and full original Run43640119286/1. All seven final jobs and delivery bundle remain pending.",
+    "run_attempt": 1,
+    "run_id": 43640119286,
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+  },
+  "created_utc": "2026-11-14T20:57:39.007219+00:00",
+  "credential_contract": "Token only used by authenticated API calls; no automatic authenticated redirects; public APK download receives no authorization on any hop; unchanged verifier children have a scrubbed environment. Signed/token-bearing responses are hash/size-omitted and fail, not logged in full.",
+  "existing_publisher_source": {
+    "cli_sha256": "cc06aaf7472e675171344e6321078749101d21ea112795bf1d6ed8dd15228a7d",
+    "sha": "72143d3586109967773d6442072d486c11dc1449",
+    "tree": "f77e67ad2e1ceb702dd4fe9d6a3279e55ea9b131",
+    "binding_scope": "Unchanged tested CLI; eventual workflow activation has a new actual publisher HEAD/tree and must not be reported as72143."
+  },
+  "git_mutations": 0,
+  "immutable_verifier_commands": [
+    "check-current",
+    "check-vacant",
+    "check-tag",
+    "check-release --stage empty-draft",
+    "check-release --stage uploaded-draft",
+    "check-release --stage published",
+    "verify-public"
+  ],
+  "limits": [
+    "Existing32 tests are isolated synthetic contracts, not proof of a real release or repository permission grant.",
+    "Concurrency prevents overlapping runs of this workflow only; it is not a lock against other repository writers. Fresh source/PR/catalog guards remain mandatory.",
+    "A failed or timed-out mutation may already have taken effect; no automatic retry or rollback.",
+    "The currently observed candidate may change only through a new complete Root-reviewed host/tree/run/attempt/artifact binding; never substitute one late value in isolation.",
+    "No new Android, physical ARM64, audio, FPS or visual acceptance is produced by publication.",
+    "The canonical URL is a prepared target, not an existing verified download until actual public-byte receipt."
+  ],
+  "mandatory_jobs": [
+    "android-c4",
+    "android-host-compile",
+    "connect-four-runtime",
+    "prepare-c4-delivery",
+    "update-2020-from-2017",
+    "verify-and-build",
+    "verify-c4-candidate"
+  ],
+  "missing_before_activation": [
+    {
+      "field": "bundle_artifact_id",
+      "reason": "No actual delivery-bundle identity handed over or observed in this plan",
+      "value": null
+    },
+    {
+      "field": "bundle_artifact_digest",
+      "reason": "Must be exact original API sha256 digest",
+      "value": null
+    },
+    {
+      "field": "bundle_artifact_size",
+      "reason": "Must be exact original API byte count",
+      "value": null
+    },
+    {
+      "field": "terminal_candidate_success",
+      "reason": "Fresh original run/attempt and all seven jobs/required steps must pass; current background snapshot is not final",
+      "value": null
+    },
+    {
+      "field": "final_workflow_commit_and_tree",
+      "reason": "Root has not created or activated the one-file workflow commit",
+      "value": null
+    },
+    {
+      "field": "current_PR485_head_and_complete_release_tag_vacancy",
+      "reason": "Must be revalidated by the unchanged CLI at execution; old checks cannot authorize a release",
+      "value": null
+    }
+  ],
+  "mutation_sequence": [
+    "Once-only new tag at exact accepted host SHA",
+    "Once-only new empty prerelease draft, target exact host, make_latest=false",
+    "Exactly eleven once-only asset uploads from unchanged prepared bytes",
+    "Fresh successful candidate/PR/source/catalog/tag/draft/all-assets checks",
+    "Once-only draft=false publication",
+    "Fresh published metadata, complete unauthenticated HTTPS APK download, then fresh metadata and verify-public"
+  ],
+  "new_ci_runs": 0,
+  "new_runtime_executions": 0,
+  "new_tests_executed": 0,
+  "planned_workflow": {
+    "actions": {
+      "actions/checkout": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "actions/upload-artifact": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02"
+    },
+    "always_evidence_timeout_minutes": 10,
+    "attempt_guard": "Require GITHUB_RUN_ATTEMPT == 1 before invoking publisher; a rerun cannot resume publication",
+    "branch": "integration/lumo-c4-publisher-20261114",
+    "branch_changes": "Only Root creates the later publication workflow commit/ref update; active candidate PR485, its source, native pin, runtime jobs and verifier remain untouched.",
+    "budget_rationale": "The CLI checks a strict 3600-second decision budget, not a hard total process duration. One in-flight verifier can run up to 900 seconds, HTTP operations accept no response after 600 seconds, and full-byte I/O remains work. An independent 80-minute step limit and 100-minute job limit provide a finite outer boundary plus setup/evidence headroom; neither extends the CLI limits. Timeout remains failure with possibly unknown remote outcome.",
+    "candidate_checkout": {
+      "path": "candidate-source",
+      "physical_paths": [
+        "scripts/verify_connect_four_delivery.py",
+        "scripts/release_pipeline_gates.py",
+        "config/godot-source.json",
+        "pubspec.yaml",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "preflight": "Exact expected host/tree; all five required committed bytes; unchanged verifier/helper hashes; clean status and raw index/stage binding",
+      "ref": "fa5e8695398000c4231db69f67e3dfd094fdb21a"
+    },
+    "checkout_common": {
+      "fetch-depth": 1,
+      "fetch-tags": false,
+      "lfs": false,
+      "persist-credentials": false,
+      "sparse-checkout-cone-mode": false,
+      "submodules": false
+    },
+    "concurrency": {
+      "cancel-in-progress": false,
+      "group": "lumo-c4-publisher-2020"
+    },
+    "default_permissions": {
+      "contents": "read"
+    },
+    "event": "push",
+    "evidence_upload": {
+      "action": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "artifact_name": "lumo-c4-publication-originals-<actual publisher run id>-<actual publisher attempt>",
+      "compression-level": 0,
+      "contents": "Complete original delivery ZIP, every extracted immutable member, exact API observations, all verifier stdio/results, publication-step stdio/result or interrupted marker, source/index stamps, public downloaded APK and verification receipt or failure.json. No checkout/token/private URL file included.",
+      "if": "always()",
+      "if-no-files-found": "error",
+      "include-hidden-files": true,
+      "overwrite": false,
+      "path": "RUNNER_TEMP/lumo-c4-publication-evidence/",
+      "retention-days": 30
+    },
+    "exact_branch_only": true,
+    "failure_behavior": "No continue-on-error, rerun, resume, clobber, delete, cleanup mutation or retry of writes. Preserve partial originals; Root must inspect any uncertain tag/draft/published outcome. Always steps cannot guarantee persistence after runner loss or hard job cancellation.",
+    "job_guard": "github.repository == Ullmann27/lumo-lernen; github.event_name == push; exact refs/heads/integration/lumo-c4-publisher-20261114",
+    "matrix": false,
+    "new_path": ".github/workflows/lumo-connect-four-2020-publish.yml",
+    "new_repo_files": 1,
+    "new_tests": "None in this plan. Existing32 isolated test proof is retained; no live mutation has been exercised.",
+    "path_layout": "Two sibling checkouts under GITHUB_WORKSPACE; all evidence, stdio, temporary paths and optional pycache remain under RUNNER_TEMP outside both. No nested checkout or generated root artifact.",
+    "publication_invocation": "Exactly one argv-list call whose script element is str(Path(publisher_source).resolve(strict=True) / \"scripts/publish_connect_four_delivery.py\"). The identical absolute publisher_source value is passed to --publisher-source. The external RUNNER_TEMP evidence CWD is unchanged. Only after all missing bundle fields are observed may Root render exact candidate/bundle arguments into the new workflow. No CLI/verifier changes.",
+    "publication_job_permissions": {
+      "actions": "read",
+      "contents": "write",
+      "pull-requests": "read"
+    },
+    "publish_step_timeout_minutes": 80,
+    "publisher_checkout": {
+      "path": "publisher-source",
+      "physical_paths": [
+        "scripts/publish_connect_four_delivery.py",
+        ".github/workflows/lumo-connect-four-2020-publish.yml"
+      ],
+      "preflight": "Compare publisher CLI byte hash and blob to exact72143 source before the token-bearing invocation; bind the actual new workflow commit rather than pretending its HEAD is72143",
+      "ref": "github.sha of exact activating push"
+    },
+    "pull_request_trigger": false,
+    "runner": "ubuntu-latest",
+    "stream_capture": "Create evidence parent and STARTED marker before invocation. Preserve stdout and stderr separately; record actual child return code when available. If runner/step interruption prevents wait completion, record UNKNOWN/INTERRUPTED instead of fabricating a child exit. Do not tee credentials or dump environment.",
+    "success_definition": "Actual CLI exit0 plus completed.json status PUBLIC_BYTES_VERIFIED and exact public-verification receipt. A published release without verified public bytes remains a failed/incomplete publication proof.",
+    "timeout_minutes": 100,
+    "tooling": "Existing python3 >=3.11 and git, record exact versions; source was actually tested with Python3.12.14. No pip, Flutter, Godot, Android SDK, Java, FFmpeg or package-resolution step is needed for publication.",
+    "workflow_dispatch": false,
+    "workflow_run": false
+  },
+  "prepared_canonical_url": "https://github.com/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2020/Lumo-Lernen-Neu.apk",
+  "remote_mutations": 0,
+  "repository": "Ullmann27/lumo-lernen",
+  "schema": 1,
+  "status": "SOURCE_BOUND_IMPLEMENTATION_PLAN_WAITING_FOR_ACTUAL_BUNDLE",
+  "superseded_candidate": {
+    "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+    "run_id": 43637785992,
+    "conclusion": "failure",
+    "reason": "Actual full Flutter 2732 PASS and one failed reward-retry clock precondition. No APK was built; never publish that predecessor."
+  },
+  "current_binding_original": {
+    "path": "/tmp/host-fa5e869-activation-originals-20261114/binding.json",
+    "sha256": "da56b6130e8b62ed35ee62114e3aa5d3750f90d71d53d2b6b363b74a7925efbb"
+  },
+  "earlier_superseded_candidates": [
+    {
+      "host": "7ac736fdbd042769592e88de0f9849632242316d",
+      "run_id": 43632790204,
+      "conclusion": "failure",
+      "reason": "Old speech fixture compile failure and superseded storage acknowledgement design. Never publish that predecessor."
+    }
+  ]
+}

@@ -1,0 +1,528 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T20:40:40.723068+00:00",
+  "scope": "Three original desktop captures selected for Root visual review; no new rendering, test or image editing. Source reports and frozen technical pack remain unchanged.",
+  "run_id": 43637785992,
+  "attempt": 1,
+  "job_id": 132578338806,
+  "artifact_id": 14130094271,
+  "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "reports": [
+    {
+      "path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/native-result.json",
+      "bytes": 73209,
+      "sha256": "a1d8758aa40ef270fa302c15a689dce34c4233571108da2ddca60b31179f3c9e",
+      "git_blob": "c103035c438258db654103f51d292f324257ab59"
+    },
+    {
+      "path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/dart-result.json",
+      "bytes": 20387,
+      "sha256": "6b17aea773ef419091544995d10f29e7ff7ca2b98af7726b3fd3412477303522",
+      "git_blob": "09cbef3986318ecd7be7a134d9971d460e27c061"
+    },
+    {
+      "path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/runtime-gate.json",
+      "bytes": 55426,
+      "sha256": "0fcf0eefd10c07ae26387822de3cff7f9cc9925d7ab6f1d1f5f4490945973759",
+      "git_blob": "b166b7421785f1d91efad592e2f45aea7512a1c0"
+    }
+  ],
+  "round_id": "836819ff7e248a6ae16e8f310ea85619",
+  "captures": [
+    {
+      "role": "game_start",
+      "image": {
+        "path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/frames/00000.png",
+        "bytes": 82571,
+        "sha256": "8f1721cd6faf1c114437d12d7edfb5ab9b0bc0e229febc5b7ab4b0f24cb172a7",
+        "git_blob": "b93d4fece33edb842c15028c166c4f164397cf36"
+      },
+      "archive_member": "runtime/frames/00000.png",
+      "archive_member_byte_equal": true,
+      "width": 960,
+      "height": 540,
+      "native_position_json_pointer": "/positions/0",
+      "native_position": {
+        "ack": 3.0,
+        "discs": [],
+        "dropping": false,
+        "frame": 0,
+        "revision": 7.0,
+        "tick": 103444,
+        "win_rings": 0
+      },
+      "dart_state_json_pointer": "/events/6/state",
+      "dart_confirmed_state": {
+        "schema": 1,
+        "game": "connect_four",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "roundId": "836819ff7e248a6ae16e8f310ea85619",
+        "owner": "831eb2a9e465214a7bad8cebda113466f58af638c3bef2c42b83ec7630a3cbff",
+        "revision": 7,
+        "ack": 3,
+        "rejected": 0,
+        "recordRevision": 4,
+        "paused": false,
+        "exit": false,
+        "canDrop": true,
+        "reduceMotion": false,
+        "twoPlayers": true,
+        "level": "mittel",
+        "phase": "playing",
+        "turn": 1,
+        "columns": [],
+        "validColumns": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "board": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "winningLine": [],
+        "rewarded": false,
+        "error": null
+      },
+      "original_inputs": [
+        {
+          "json_pointer": "/inputs/4",
+          "frame": 0,
+          "label": "Start local two-player round",
+          "pressed": true,
+          "screen_px": [
+            480.0,
+            267.0
+          ],
+          "snapshot_revision": 6.0
+        },
+        {
+          "json_pointer": "/inputs/5",
+          "frame": 0,
+          "label": "Start local two-player round",
+          "pressed": false,
+          "screen_px": [
+            480.0,
+            267.0
+          ],
+          "snapshot_revision": 6.0
+        }
+      ],
+      "direct_visible_observation": "Das Spielfeld ist leer; alle sieben Spaltentasten sind sichtbar. Der Status zeigt Gespeichert · Cyan ist dran."
+    },
+    {
+      "role": "first_confirmed_settled_move",
+      "image": {
+        "path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/frames/00043.png",
+        "bytes": 82568,
+        "sha256": "9847889e24c31fc47e9fed4cfcbf6883f9799c4e525899cc6de62e38bb2426b2",
+        "git_blob": "1f0bc4cd087cc310789915ed727b759176a37b17"
+      },
+      "archive_member": "runtime/frames/00043.png",
+      "archive_member_byte_equal": true,
+      "width": 960,
+      "height": 540,
+      "native_position_json_pointer": "/positions/43",
+      "native_position": {
+        "ack": 6.0,
+        "discs": [
+          [
+            -2.57999992370605,
+            0.850000023841858,
+            0.0
+          ]
+        ],
+        "dropping": false,
+        "frame": 43,
+        "revision": 11.0,
+        "tick": 105250,
+        "win_rings": 0
+      },
+      "dart_state_json_pointer": "/events/10/state",
+      "dart_confirmed_state": {
+        "schema": 1,
+        "game": "connect_four",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "roundId": "836819ff7e248a6ae16e8f310ea85619",
+        "owner": "831eb2a9e465214a7bad8cebda113466f58af638c3bef2c42b83ec7630a3cbff",
+        "revision": 11,
+        "ack": 6,
+        "rejected": 0,
+        "recordRevision": 5,
+        "paused": false,
+        "exit": false,
+        "canDrop": true,
+        "reduceMotion": false,
+        "twoPlayers": true,
+        "level": "mittel",
+        "phase": "playing",
+        "turn": 2,
+        "columns": [
+          0
+        ],
+        "validColumns": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "board": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "winningLine": [],
+        "rewarded": false,
+        "error": null
+      },
+      "original_inputs": [
+        {
+          "json_pointer": "/inputs/6",
+          "frame": 14,
+          "label": "Drop 1 into column 1",
+          "pressed": true,
+          "screen_px": [
+            84.0,
+            486.0
+          ],
+          "snapshot_revision": 7.0
+        },
+        {
+          "json_pointer": "/inputs/7",
+          "frame": 15,
+          "label": "Drop 1 into column 1",
+          "pressed": false,
+          "screen_px": [
+            84.0,
+            486.0
+          ],
+          "snapshot_revision": 7.0
+        },
+        {
+          "json_pointer": "/inputs/8",
+          "frame": 18,
+          "label": "Pause during actual falling motion",
+          "pressed": true,
+          "screen_px": [
+            901.5,
+            40.0
+          ],
+          "snapshot_revision": 8.0
+        },
+        {
+          "json_pointer": "/inputs/9",
+          "frame": 19,
+          "label": "Pause during actual falling motion",
+          "pressed": false,
+          "screen_px": [
+            901.5,
+            40.0
+          ],
+          "snapshot_revision": 8.0
+        },
+        {
+          "json_pointer": "/inputs/10",
+          "frame": 30,
+          "label": "Resume actual paused drop",
+          "pressed": true,
+          "screen_px": [
+            480.0,
+            147.0
+          ],
+          "snapshot_revision": 9.0
+        },
+        {
+          "json_pointer": "/inputs/11",
+          "frame": 31,
+          "label": "Resume actual paused drop",
+          "pressed": false,
+          "screen_px": [
+            480.0,
+            147.0
+          ],
+          "snapshot_revision": 9.0
+        }
+      ],
+      "direct_visible_observation": "Ein cyanfarbener Stein steht unten in Spalte 1; der Status zeigt Gespeichert · Gold ist dran."
+    },
+    {
+      "role": "won",
+      "image": {
+        "path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/frames/00220.png",
+        "bytes": 84168,
+        "sha256": "0451eab36dd409a6bd839b188c355a0b5b39e1061b919701aabf02e829c82d55",
+        "git_blob": "bbc4fd6d36e7ec5733654622683b5159e6e1820f"
+      },
+      "archive_member": "runtime/frames/00220.png",
+      "archive_member_byte_equal": true,
+      "width": 960,
+      "height": 540,
+      "native_position_json_pointer": "/positions/220",
+      "native_position": {
+        "ack": 14.0,
+        "discs": [
+          [
+            -2.57999992370605,
+            0.850000023841858,
+            0.0
+          ],
+          [
+            2.57999992370605,
+            0.850000023841858,
+            0.0
+          ],
+          [
+            -1.72000002861023,
+            0.850000023841858,
+            0.0
+          ],
+          [
+            2.57999992370605,
+            1.71000003814697,
+            0.0
+          ],
+          [
+            -0.860000014305115,
+            0.850000023841858,
+            0.0
+          ],
+          [
+            1.72000002861023,
+            0.850000023841858,
+            0.0
+          ],
+          [
+            0.0,
+            0.850000023841858,
+            0.0
+          ]
+        ],
+        "dropping": false,
+        "frame": 220,
+        "revision": 24.0,
+        "tick": 112684,
+        "win_rings": 4
+      },
+      "dart_state_json_pointer": "/events/23/state",
+      "dart_confirmed_state": {
+        "schema": 1,
+        "game": "connect_four",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "roundId": "836819ff7e248a6ae16e8f310ea85619",
+        "owner": "831eb2a9e465214a7bad8cebda113466f58af638c3bef2c42b83ec7630a3cbff",
+        "revision": 24,
+        "ack": 14,
+        "rejected": 0,
+        "recordRevision": 12,
+        "paused": false,
+        "exit": false,
+        "canDrop": false,
+        "reduceMotion": false,
+        "twoPlayers": true,
+        "level": "mittel",
+        "phase": "won",
+        "turn": 1,
+        "columns": [
+          0,
+          6,
+          1,
+          6,
+          2,
+          5,
+          3
+        ],
+        "validColumns": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "board": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          1,
+          1,
+          1,
+          0,
+          2,
+          2
+        ],
+        "winningLine": [
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "rewarded": true,
+        "error": null
+      },
+      "original_inputs": [
+        {
+          "json_pointer": "/inputs/26",
+          "frame": 190,
+          "label": "Drop 7 into column 4",
+          "pressed": true,
+          "screen_px": [
+            479.5,
+            486.0
+          ],
+          "snapshot_revision": 23.0
+        },
+        {
+          "json_pointer": "/inputs/27",
+          "frame": 191,
+          "label": "Drop 7 into column 4",
+          "pressed": false,
+          "screen_px": [
+            479.5,
+            486.0
+          ],
+          "snapshot_revision": 23.0
+        }
+      ],
+      "direct_visible_observation": "Vier cyanfarbene Steine sind unten nebeneinander mit hellen Gewinnringen markiert; der Status zeigt Cyan gewinnt!, die Spaltentasten sind deaktiviert."
+    }
+  ],
+  "binding_notes": [
+    "The frame number binds each PNG to the original native positions array. The matching original Dart state has identical revision and acknowledgement.",
+    "The first move is acknowledged at revision8/ack4; pause and resume then advance acknowledgement to6. Frame43 is the first non-dropping record of the same accepted first move, with columns=[0] and recordRevision5.",
+    "The winning seventh move was touched at frames190/191, accepted at revision24/ack14 and fully settled with four win rings from frame207. Frame220 is unchanged original evidence of that state.",
+    "These are desktop two-process original captures. No Android, device FPS or whole-build conclusion is inferred."
+  ]
+}

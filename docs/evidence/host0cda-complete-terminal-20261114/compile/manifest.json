@@ -1,0 +1,107 @@
+{
+  "schema": "lumo.evidence-manifest.v1",
+  "entries": [
+    {
+      "path": "activation-binding.json",
+      "bytes": 7947,
+      "sha256": "08dea040864a59a8288888ea3d15a01aa5c0ee7fce7ceb33cc281e733e4e770c",
+      "git_blob": "b8f12b32a28b3cd99aff61d179f908438a30eaf2"
+    },
+    {
+      "path": "artifact-14130856331.original.zip",
+      "bytes": 6631,
+      "sha256": "45f60fc873eb8275a978ef29c612e7eafab0d54eb60c669d63c4423bf4523305",
+      "git_blob": "8ca86fa16e637238387b612774cfcbe20e33e1ab"
+    },
+    {
+      "path": "artifact-originals/cards-authority-registry.log",
+      "bytes": 2556,
+      "sha256": "d85fda439db3fe46a34703fe2835ea5dae2e11b8a8e89e4a250d2ea93911aa6d",
+      "git_blob": "565d6eb89fda3622f459c0fcb7936502f9d6c9f1"
+    },
+    {
+      "path": "artifact-originals/compile.log",
+      "bytes": 34386,
+      "sha256": "4a773660fef079223f5e45658a3f821191dda50eea1f0694654a04afc3efc2b4",
+      "git_blob": "5b62fd12823210d213109aef6385953574a6a53f"
+    },
+    {
+      "path": "artifact-originals/connect-four-classes.json",
+      "bytes": 927,
+      "sha256": "21de0cf1af3a92ba485babdd85f29954b5e2dfecb829fa7c773aa4f6de411a07",
+      "git_blob": "21dd285ce21c3d11fd86d73440afb34f0178dedd"
+    },
+    {
+      "path": "artifact-originals/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "path": "artifact-originals/result.json",
+      "bytes": 4406,
+      "sha256": "6438b0981b604cf56aa378eab8053aa73e8a303e95db35c06bd57a8292759227",
+      "git_blob": "b099f22522cd10531a145f9f001051a87c90d966"
+    },
+    {
+      "path": "artifact-originals/source-sha.txt",
+      "bytes": 41,
+      "sha256": "bd2cb1680a86b38f7e69a8b3a62d42d62a34d424410bf7d602b547e4eabf7254",
+      "git_blob": "40ed350b18bf73f38bf499e84ba1b47f6ea5c5cc"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1148,
+      "sha256": "6c4cc29e0de6ddcf97dc7263d67c1f70d65ecb779b41fe47efd9930747299d4f",
+      "git_blob": "ff88b37e7d98ccab57482629d9b1aea5027fd80a"
+    },
+    {
+      "path": "job-132578338582.original.log",
+      "bytes": 241333,
+      "sha256": "ade82ea052bde93bf0faa72d1dc3ca2fcf50a127de78f473a53cdef3fe443015",
+      "git_blob": "a19509260cc271aef8ed60c5775d26f6d918e79f"
+    },
+    {
+      "path": "metadata/artifacts.original.json",
+      "bytes": 2281,
+      "sha256": "2c1435d57d089e561a5d0fc95851be2b54f994bd83ad3051e82546c1af5a764d",
+      "git_blob": "ec82de1e3bb80ce070e8f41a6bfc5aa8a65e2778"
+    },
+    {
+      "path": "metadata/jobs.original.json",
+      "bytes": 14461,
+      "sha256": "e564b3037755c97e8dd096d2901ff65bcedabc27df21482b88b46b377c189e96",
+      "git_blob": "ea75df5c18c7adf3445490fe4491ed4000858986"
+    },
+    {
+      "path": "metadata/raw-manifest.json",
+      "bytes": 686,
+      "sha256": "56e81f69525b7c8992a5d5e73d6313449630bcc80edddfcd30b1c67ae09be0b1",
+      "git_blob": "c755c036159c5ee7f1f7ec466dfd4a8da8b63256"
+    },
+    {
+      "path": "metadata/run.original.json",
+      "bytes": 12988,
+      "sha256": "a3d8126fc1f3d1a2d0ea1fa07241e2edbfc83e655535e3761ffe89d6091fed8a",
+      "git_blob": "c1487d2ad11be2bde748acbe8887b5b82f44ca3e"
+    },
+    {
+      "path": "review.json",
+      "bytes": 6180,
+      "sha256": "56db10aac658bfc155a3a00fe3204b39e898280536265b049475ee892f4da6fe",
+      "git_blob": "919d412b01492374596803d44000dd8122ac1001"
+    },
+    {
+      "path": "review_originals.py",
+      "bytes": 9772,
+      "sha256": "ac4fa7c7dc4c06267bd8816ff43f8dd7d67ac0fadb20023310c25a14ffb1cc32",
+      "git_blob": "f05690652aa96fa82dd6ba71793f0c84cc6da04d"
+    },
+    {
+      "path": "zip-member-binding.json",
+      "bytes": 1486,
+      "sha256": "92f0b140deb1fe8c81585c066f19bac2c8d0891d8d0fdc43ae942ea2c2672443",
+      "git_blob": "8911b8346b5dd56b48b4c803a3027db0a2153fe5"
+    }
+  ]
+}

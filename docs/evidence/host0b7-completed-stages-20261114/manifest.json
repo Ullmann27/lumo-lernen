@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1046,
+      "sha256": "1af0566609e383ce7d344a64235e00b4bb06bc250f78bafaadbf1cc54ef42fe5"
+    },
+    {
+      "path": "compact-originals.tar.gz",
+      "bytes": 2218967,
+      "sha256": "eda8932d03de05caf5d327b487bbca0eccce2a0fa12c74f6d90006eb1365e45e"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1357,
+      "sha256": "84a8f6d9e90141a98ee0ef9e1940125b0b7f28e4464fa654f32142a7cb478613"
+    },
+    {
+      "path": "source-file-index.json",
+      "bytes": 69834,
+      "sha256": "0c56701d60ea138a3aa70023cd08b4c5cbcc5706d9de82e64740b904f06ec912"
+    }
+  ]
+}

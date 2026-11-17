@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "host_sha": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+  "runs": [
+    43603036202,
+    43603036303
+  ],
+  "jobs": [
+    132471674856,
+    132471768177
+  ],
+  "run_attempt": 1,
+  "each_visible_passed": 2403,
+  "each_explicit_skipped": 202,
+  "each_failed": 3,
+  "same_original_diktat_helper_as_37ec": true,
+  "additional_failed_tests_in_complete_summaries": 0,
+  "artifact_payloads_downloaded": false,
+  "new_tests_executed": false,
+  "observations": {
+    "path": "observations/review.json",
+    "bytes": 34055,
+    "sha256": "15f9a6250373ad0731f371da4ee09d0e1a0a889bbc1b9f29784e3f82f851989f"
+  }
+}

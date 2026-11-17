@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1022,
+      "sha256": "b0dd86f41a7f31148247f56782022e55cf3206eb9b206a6b26a485823f60b6bb",
+      "git_blob": "0730786ea1d7afb070e5d545b27e8d14aa65bc09"
+    },
+    {
+      "path": "originals/local-3fac-final-handoff.json",
+      "bytes": 1504,
+      "sha256": "791ffb5bc3fd34844c667e3adde5b38027f005adecf2ece3b5a44d2bba733fa4",
+      "git_blob": "1b2e55d609ed21d991466ffa27e582afe2ad0474"
+    },
+    {
+      "path": "originals/local-3fac-flutter-invocation.json",
+      "bytes": 2037,
+      "sha256": "9764bbd408ed3adbef132975be7e6d6c842a3615386e81f8e7265c401d7db3db",
+      "git_blob": "994e11f3e72294de520963104929ea34fc883c19"
+    },
+    {
+      "path": "originals/local-3fac-own-package-resolution.json",
+      "bytes": 2486,
+      "sha256": "4c6d55f41a1eda363b83e84bfe304bceaafcd204f6561da33253736ac5c4a874",
+      "git_blob": "edfee9f06c0dafff21608a4feb9eb054d03a2aea"
+    },
+    {
+      "path": "originals/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "originals/qualification-contract.json",
+      "bytes": 5734,
+      "sha256": "35998be08062bdb7c23ef6dfa8e5310e6a264626ba08a0646bb9feca81d58f4f",
+      "git_blob": "68ce979dbf69cbebd230a734151cd85238da3180"
+    },
+    {
+      "path": "originals/run_full_flutter_acceptance.py",
+      "bytes": 6523,
+      "sha256": "d51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d",
+      "git_blob": "9999632174044af584c87147c5347c167b830918"
+    },
+    {
+      "path": "originals/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    {
+      "path": "originals/workflow-handoff.json",
+      "bytes": 1547,
+      "sha256": "fc2abc300e321cf1d265b2c52440a43982f7ef12e7185b607696c7642a6854e7",
+      "git_blob": "bdded41e25ef2d1152e28b0cf9468fcd3d3f5126"
+    },
+    {
+      "path": "originals/workflow-source-freeze.json",
+      "bytes": 1262,
+      "sha256": "c78308c9ad99be6517d9c6cfca8e24fb7826300fd4d09f1f7e23943b24565ae4",
+      "git_blob": "9d0ce451a959377ef2c1f6b40ec877f03f53a77d"
+    },
+    {
+      "path": "originals/workflow-v1.yml",
+      "bytes": 46286,
+      "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+      "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+    },
+    {
+      "path": "review.json",
+      "bytes": 9978,
+      "sha256": "a7a2260870986e2da46e0ea747563f6b4f2fcbbac5994bb18b011e6c8be9a274",
+      "git_blob": "0c090b4dcd520adc0f5fb766cd9ad6b37161cbe1"
+    }
+  ],
+  "self_excluded": true
+}

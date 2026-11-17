@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "frozen_at": "2026-11-14T15:23:09.832730+00:00",
+  "source": "036e33603e50774bd328d1dff71ddff1d468db6f",
+  "tree": "9f3d845a2997faa5f4a16dc28fdaac4b65eeb0f1",
+  "branch": "integration/lumo-next-hub-20261114",
+  "run_id": 43609106020,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "flutter_actual_visible_pass": 6,
+  "flutter_failed": 0,
+  "flutter_skipped": 0,
+  "analyzer_visible_issue_count": 151,
+  "android_source_contracts_pass": 10,
+  "actual_required_jvm_classes": 9,
+  "archive": {
+    "path": "complete-originals.tar.gz",
+    "bytes": 69031,
+    "sha256": "21e2de3bb015a8c4c7012bfc8398ccfbb33c7b70bfa34f6b303fcca1323fc8a6",
+    "members": 32
+  },
+  "full_apk_acceptance": false,
+  "active_c4_source_changed": false
+}

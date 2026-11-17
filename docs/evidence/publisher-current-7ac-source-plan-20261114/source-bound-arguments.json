@@ -1,0 +1,94 @@
+{
+  "absolute_executable_binding": {
+    "argv_script_expression": "str(Path(publisher_source).resolve(strict=True) / \"scripts/publish_connect_four_delivery.py\")",
+    "execution_count": 1,
+    "existing_cli_guard": "INVOKED_PUBLISHER_SOURCE_DIFFERS continues to require __file__ == publisher_source/scripts/publish_connect_four_delivery.py",
+    "must_equal_argument": "--publisher-source",
+    "origin": "Absolute resolved GITHUB_WORKSPACE/publisher-source checkout path",
+    "resolution_rule": "Resolve the fixed publisher checkout root once; require an absolute path; pass the identical resolved value to --publisher-source and use it to form the absolute script argv element. Do not resolve publisher-source relative to the evidence working directory.",
+    "script_member": "scripts/publish_connect_four_delivery.py",
+    "variable": "LUMO_PUBLISHER_SOURCE"
+  },
+  "arguments": [
+    {
+      "argument": "--candidate-source",
+      "kind": "absolute_runtime_path",
+      "source": "GITHUB_WORKSPACE/candidate-source"
+    },
+    {
+      "argument": "--publisher-source",
+      "kind": "absolute_runtime_path",
+      "source": "GITHUB_WORKSPACE/publisher-source"
+    },
+    {
+      "argument": "--host-sha",
+      "kind": "immutable_observed_value",
+      "value": "7ac736fdbd042769592e88de0f9849632242316d"
+    },
+    {
+      "argument": "--host-tree",
+      "kind": "immutable_observed_value",
+      "value": "f7c4f29460cab5a5728acff117d21e2562bd0af2"
+    },
+    {
+      "argument": "--publisher-sha",
+      "kind": "trusted_push_context",
+      "source": "github.sha of the final Root-approved workflow commit; must equal checkout HEAD",
+      "value": null
+    },
+    {
+      "argument": "--publisher-tree",
+      "kind": "commit_bound_runtime_value",
+      "source": "git rev-parse HEAD^{tree} in exact github.sha checkout, compared to Root final checkpoint receipt",
+      "value": null
+    },
+    {
+      "argument": "--build-run",
+      "kind": "immutable_observed_value",
+      "value": 43632790204
+    },
+    {
+      "argument": "--run-attempt",
+      "kind": "immutable_observed_value",
+      "value": 1
+    },
+    {
+      "argument": "--bundle-artifact-id",
+      "kind": "required_missing_original_value",
+      "required_source": "Unique exact-name artifact in successful original Run43632790204 artifact collection",
+      "value": null
+    },
+    {
+      "argument": "--bundle-artifact-digest",
+      "format": "sha256: followed by 64 lowercase hex",
+      "kind": "required_missing_original_value",
+      "required_source": "Original artifact API digest",
+      "value": null
+    },
+    {
+      "argument": "--bundle-artifact-size",
+      "kind": "required_missing_original_value",
+      "required_source": "Original artifact API size_in_bytes",
+      "unit": "bytes",
+      "value": null
+    },
+    {
+      "argument": "--pull-request",
+      "kind": "immutable_observed_value",
+      "value": 485
+    },
+    {
+      "argument": "--output",
+      "kind": "new_absolute_runtime_path",
+      "source": "RUNNER_TEMP/lumo-c4-publication-evidence/delivery-operation; must not exist at invocation"
+    }
+  ],
+  "executable": "python3 -B \"$LUMO_PUBLISHER_SOURCE/scripts/publish_connect_four_delivery.py\"",
+  "invocations": 1,
+  "new_cli_options": [],
+  "optional_bundle_archive": "Omitted: unchanged CLI retrieves and preserves the complete original ZIP by the bound artifact ID. An unpacked actions/download-artifact directory is not an acceptable replacement.",
+  "schema": 1,
+  "token": "GITHUB_TOKEN only in the publication step environment; never an argv field or dumped environment",
+  "unknown_values_are_not_executable_placeholders": true,
+  "working_directory": "RUNNER_TEMP/lumo-c4-publication-evidence"
+}

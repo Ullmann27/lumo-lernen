@@ -1,0 +1,60 @@
+{
+  "completed_at": "2026-11-14T14:29:04.396091+00:00",
+  "files": [
+    {
+      "path": "originals/host-current-runs.json",
+      "bytes": 78888,
+      "sha256": "3f4f94e7f33c802ab8844d2b585b43c9b03738c05a8762339d973e9c4cd7cf70",
+      "json_type": "dict"
+    },
+    {
+      "path": "originals/host-head-commit.json",
+      "bytes": 27921,
+      "sha256": "286b492c94d585845f8d30da0767336d162fd2c60cbc87c57d5342bc22f073a4",
+      "json_type": "dict"
+    },
+    {
+      "path": "originals/host-new-delta.json",
+      "bytes": 35446,
+      "sha256": "19c9dc07c47ae0a7a3573dbce24c869be80024ae63c0a79afa4c8892d0bc80e5",
+      "json_type": "dict"
+    },
+    {
+      "path": "originals/host-pr503.json",
+      "bytes": 19265,
+      "sha256": "ab34e94fbb774a4106e2333c2f73f103acc27040d6e6eef447987182b3e7ff9a",
+      "json_type": "dict"
+    },
+    {
+      "path": "originals/host-producer-delta.json",
+      "bytes": 464890,
+      "sha256": "09127c51833ffb1627ad511dd15d900da00b9f85f31891aacb305256182604a9",
+      "json_type": "dict"
+    },
+    {
+      "path": "originals/native-current-runs.json",
+      "bytes": 39281,
+      "sha256": "c7b8dd2e259be802139b764aa719f1a047b45b5c65e266091e3a392765732058",
+      "json_type": "dict"
+    },
+    {
+      "path": "originals/native-head-commit.json",
+      "bytes": 157489,
+      "sha256": "1806fa1c48aa310c3ff3e6c67b05d616a18a3504254f8a016143f0de308d880b",
+      "json_type": "dict"
+    },
+    {
+      "path": "originals/native-pr182.json",
+      "bytes": 18572,
+      "sha256": "a29a7d84086032a2c0c27d53d241d02c5e2c99cb1cab874e350753f41536d4b2",
+      "json_type": "dict"
+    },
+    {
+      "path": "originals/native-producer-delta.json",
+      "bytes": 298221,
+      "sha256": "a60b78a156b2240ce8f6cb027b301bdb1ba24b0f83bf108cafe8007f286cde92",
+      "json_type": "dict"
+    }
+  ],
+  "utf8_json_readback": true
+}

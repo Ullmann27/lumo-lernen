@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY_READY_FOR_ROOT_CHECKPOINT_AND_PEERREVIEW",
+  "root": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-20261114",
+  "source": {
+    "path": ".github/workflows/lumo-next-table-authorities.yml",
+    "source_path": "final-source/.github/workflows/lumo-next-table-authorities.yml",
+    "mode": "100644",
+    "before": null,
+    "after": {
+      "bytes": 46286,
+      "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+      "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+    }
+  },
+  "freeze": {
+    "bytes": 1262,
+    "sha256": "c78308c9ad99be6517d9c6cfca8e24fb7826300fd4d09f1f7e23943b24565ae4",
+    "git_blob": "9d0ce451a959377ef2c1f6b40ec877f03f53a77d"
+  },
+  "manifest": {
+    "bytes": 9883,
+    "sha256": "e3c2ff10386c305793a7a13d5744c61f3960c7957cee5ca491c644ca750f5eb3",
+    "git_blob": "d822393a238e7fa875589daa3682d99cce14cc9f"
+  },
+  "contract": {
+    "bytes": 5734,
+    "sha256": "35998be08062bdb7c23ef6dfa8e5310e6a264626ba08a0646bb9feca81d58f4f",
+    "git_blob": "68ce979dbf69cbebd230a734151cd85238da3180"
+  },
+  "archive": {
+    "path": "host-next-authorities-source-originals.tar.gz",
+    "members": 42,
+    "bytes": 167763,
+    "sha256": "e88442f88ff8a648afa7bf6c8ee0b8ee9ea67db2cdb8f31888e961dc75eeea78",
+    "git_blob": "7df7a0f88410c2636c89c4a824a7433da29c05ab"
+  },
+  "next": "Root checkpoint then actionlint/activation; no local engine, compiler or product test retry",
+  "active_workflows_or_delivery_or_pins_changed": false
+}

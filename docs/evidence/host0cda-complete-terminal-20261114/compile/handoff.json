@@ -1,0 +1,27 @@
+{
+  "schema": "lumo.evidence-handoff.v1",
+  "scope": "Actual Kotlin/Java host compilation and original 10 registry/embedded boundary tests only. No APK, Android runtime, pixels, audio, or full-suite acceptance is inferred.",
+  "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+  "run_id": 43637785992,
+  "attempt": 1,
+  "job_id": 132578338582,
+  "artifact_id": 14130856331,
+  "status": "PASS_ORIGINAL_CI_COMPILE_EVIDENCE",
+  "review": {
+    "bytes": 6180,
+    "sha256": "56db10aac658bfc155a3a00fe3204b39e898280536265b049475ee892f4da6fe",
+    "git_blob": "919d412b01492374596803d44000dd8122ac1001"
+  },
+  "original_archive": {
+    "bytes": 6631,
+    "sha256": "45f60fc873eb8275a978ef29c612e7eafab0d54eb60c669d63c4423bf4523305",
+    "git_blob": "8ca86fa16e637238387b612774cfcbe20e33e1ab"
+  },
+  "full_job_log": {
+    "bytes": 241333,
+    "sha256": "ade82ea052bde93bf0faa72d1dc3ca2fcf50a127de78f473a53cdef3fe443015",
+    "git_blob": "a19509260cc271aef8ed60c5775d26f6d918e79f"
+  },
+  "publication": "Evidence only; Root owns any later Git publication. Full Flutter remains pending separately."
+}

@@ -1,0 +1,240 @@
+{
+  "schema": 1,
+  "state": "FROZEN",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1152,
+      "sha256": "278b72027de1afe481551aa1fc813481245edd4095aaa66f62766d0e0b3d9d39",
+      "git_blob": "0c86b1e43cb5d0ce494f8e658bca5f90899b5acd"
+    },
+    {
+      "path": "final-read-only-pass-after.json",
+      "bytes": 689,
+      "sha256": "97197343363fa2e7a435d3dd943dfc0a4f9bf284dc6aa5a88205ffb13a0fadf9",
+      "git_blob": "9a51613f24a80969ceed07a073cdcfca3129e081"
+    },
+    {
+      "path": "final-read-only-pass-before.json",
+      "bytes": 689,
+      "sha256": "97197343363fa2e7a435d3dd943dfc0a4f9bf284dc6aa5a88205ffb13a0fadf9",
+      "git_blob": "9a51613f24a80969ceed07a073cdcfca3129e081"
+    },
+    {
+      "path": "freeze_review.py",
+      "bytes": 13773,
+      "sha256": "cf975f98f80fe9e407e215abb223c76b661e4866a90e029f78561e96ddcec248",
+      "git_blob": "8f9a5fbb5c37e7284d3a49718367abcfca2fe6d1"
+    },
+    {
+      "path": "initial-collection-failure.json",
+      "bytes": 948,
+      "sha256": "b0e7e3098438e28dcbf3211878083e619f194ee6a685663f5e17b59a6ad4da05",
+      "git_blob": "7a735af6cb46a5c12f1f0efe6d3d5ce24696c691"
+    },
+    {
+      "path": "originals/host/.github/probes/lumo_english_objects_android_probe.py",
+      "bytes": 55089,
+      "sha256": "9df986992f759b10a6fb4a09565092e3c692718e427dec152f7039db58e368dd",
+      "git_blob": "ee4e1d59c43a6e27c464208e26eedc694a516df9"
+    },
+    {
+      "path": "originals/host/.github/probes/lumo_memory_android_probe.py",
+      "bytes": 49752,
+      "sha256": "f2aa53592298b3b2465740310db7b2c455ae12d6c7c0431cf22b0db3ec4a05b6",
+      "git_blob": "a794544795f504c43bc38db2de23cef91e75e843"
+    },
+    {
+      "path": "originals/host/.github/probes/lumo_quiz_android_probe.py",
+      "bytes": 56893,
+      "sha256": "1c0bcc3fba463fde2c377eb7fe0bee2a97f66724f6a7a99524e7ee6d8a19f4a4",
+      "git_blob": "90d91a9ee40b6fe59e91158bfa5afe199cd6b764"
+    },
+    {
+      "path": "originals/host/.github/probes/lumo_table_authority_android_shared.py",
+      "bytes": 14624,
+      "sha256": "7bc2a18d4e5c7071f95e053246d0719ef22c8750e02f9aa226050a78a2fc381a",
+      "git_blob": "9d069accc96991080a5e79e394b06a81c2c498df"
+    },
+    {
+      "path": "originals/host/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "468e061237ca974bd6ebe3bfb273c5f35672bc703062e9dd4800574db5d6cd04",
+      "git_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201"
+    },
+    {
+      "path": "originals/host/lib/domain/tutoring/native_english_vocabulary.dart",
+      "bytes": 3323,
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+      "git_blob": "4469849b204f91fab3e645604e11922e29cb594c"
+    },
+    {
+      "path": "originals/host/lib/domain/tutoring/native_learning_activity.dart",
+      "bytes": 7587,
+      "sha256": "1c067ad052a5cabaeeadb6730d15a7618cbeafe1b5c8b83eed9af770c94035d2",
+      "git_blob": "f8bfc0af97806255ec8b72d89963c2831e250089"
+    },
+    {
+      "path": "originals/host/lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+    },
+    {
+      "path": "originals/host/lib/features/games/memory/memory_table_session.dart",
+      "bytes": 9373,
+      "sha256": "08fb0ae23a3ed5c532072e411102dd9ef9f2a5f430d1de954d1de42da5328b64",
+      "git_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c"
+    },
+    {
+      "path": "originals/host/lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10958,
+      "sha256": "4bd60a737fad08ace2a7484113bbca0446cdf9e0c5eb9752d4ca0f329ea35ed3",
+      "git_blob": "f41e6d7351304deb9635116b0635845abac8932c"
+    },
+    {
+      "path": "originals/host/lib/features/lumo3d/native_table_transport.dart",
+      "bytes": 502,
+      "sha256": "dcd4826bb7903e575220537dd0b477d32d8fee810bf5523eb3c33c51df324ae1",
+      "git_blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "path": "originals/host/lib/features/quiz/quiz_show_content.dart",
+      "bytes": 62121,
+      "sha256": "9ae4b83ee78bd13c85b033921826d7813da6a54277faa62787c785f3a24eac45",
+      "git_blob": "98d7d59c6053785eddb3db48b2673a41e2b8c407"
+    },
+    {
+      "path": "originals/host/lib/features/quiz/quiz_table_session.dart",
+      "bytes": 8689,
+      "sha256": "94711cbc566b3863b0660569ddb68f9b728b3705a4c0e2fa67b84a19fba38ea5",
+      "git_blob": "a5e23633de431c9b4777dad39df4a7758badefb7"
+    },
+    {
+      "path": "originals/host/scripts/compile_android_host.sh",
+      "bytes": 3364,
+      "sha256": "fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03",
+      "git_blob": "73d0c0d8726e6352f0bf89c25cf17bdf1270ad2f"
+    },
+    {
+      "path": "originals/host/scripts/prepare_embedded_games.py",
+      "bytes": 11694,
+      "sha256": "e31d0aadd76633b98182a4d2093d838adf9603c46c8ad191561d045d4a0d333e",
+      "git_blob": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b"
+    },
+    {
+      "path": "originals/host/tools/auto_install/MainActivity.kt",
+      "bytes": 19294,
+      "sha256": "a3d6d63ab865b6881d77439f4548ee024b3e8c4a9579382a1730eebe78a1e2cd",
+      "git_blob": "872bb042acb09aaf309044882eef4b4446e4bd58"
+    },
+    {
+      "path": "originals/host/tools/auto_install/TableAuthorityService.kt",
+      "bytes": 1945,
+      "sha256": "06a8b6323a6f76820e452b276649d262f245102d041c4b9207eaf0c2b0695ea0",
+      "git_blob": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08"
+    },
+    {
+      "path": "originals/host/tools/auto_install/TableGameActivity.kt",
+      "bytes": 6633,
+      "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+      "git_blob": "74e9f7476cb192e016f5bf42421c89a30f58ee28"
+    },
+    {
+      "path": "originals/host/tools/auto_install/TableGameIntent.java",
+      "bytes": 3205,
+      "sha256": "6d2af8dd20002c93311f0a823ea24eec3113bac13c10857e6bc3d2b701f3c77f",
+      "git_blob": "d14b09e3438164aea359d478d7af11f8c0fb5433"
+    },
+    {
+      "path": "originals/host/tools/auto_install/TableGamesBridge.kt",
+      "bytes": 8236,
+      "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+      "git_blob": "4b25e208043ac9cd939e98eb955ef6a850315461"
+    },
+    {
+      "path": "originals/native/scripts/app/android_safe_area.gd",
+      "bytes": 5708,
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "git_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279"
+    },
+    {
+      "path": "originals/native/scripts/app/mobile_runtime.gd",
+      "bytes": 7146,
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "git_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+    },
+    {
+      "path": "originals/native/scripts/app/scene_router.gd",
+      "bytes": 4556,
+      "sha256": "30c0f26b0dfb1d7d1b95a9ba2517b691d8eabaf457d1e84d7d5a454f7f5a5487",
+      "git_blob": "09b5b8119729e0a5556a18acf9497f31962cb343"
+    },
+    {
+      "path": "originals/native/scripts/games/memory/memory_table.gd",
+      "bytes": 31443,
+      "sha256": "929d4a32e9dd0528e4941208dfaf949ef286e584685924af28bbe8e403be8c33",
+      "git_blob": "9c998e33aee127453a67d25a6e020638472b8387"
+    },
+    {
+      "path": "originals/native/scripts/games/quiz/quiz_studio.gd",
+      "bytes": 32524,
+      "sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+      "git_blob": "aa3e4d91f0e64cd466fb087356fbf29264d697a3"
+    },
+    {
+      "path": "originals/native/scripts/learning/english_vocabulary.gd",
+      "bytes": 2849,
+      "sha256": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+      "git_blob": "fa8debed147eceea108acc98ac318ac1362cf8eb"
+    },
+    {
+      "path": "originals/native/scripts/learning/learning_activity.gd",
+      "bytes": 10967,
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "git_blob": "245a966e00259c2d0189c932c40374d855a4b0bc"
+    },
+    {
+      "path": "originals/native/scripts/learning/learning_world.gd",
+      "bytes": 62984,
+      "sha256": "c9238933216622c255b73ceb52d251491cd154c04e64db6d55b23c4e5ac1ad2f",
+      "git_blob": "8d2c67ac7e630610093f02a5093d6f06e204d88a"
+    },
+    {
+      "path": "originals/native/scripts/systems/host_bridge.gd",
+      "bytes": 5634,
+      "sha256": "7155c6bef2655499f72c4f32ce72a0feb0617ebad1b5e239bb5592a228c7cb8c",
+      "git_blob": "a9876cec58d075b7fc88d326eb6588d44aeaf4db"
+    },
+    {
+      "path": "originals/native/tools/run_memory_native_authority.py",
+      "bytes": 12800,
+      "sha256": "0b5f2234fc8ecfcf25f9d7c134a02538e3978d2d7d7413a48cc2a931ddd0c15c",
+      "git_blob": "54103c9ee0cd4070b808273dca48a169883a1ec5"
+    },
+    {
+      "path": "originals/native/tools/run_quiz_native_authority.py",
+      "bytes": 10531,
+      "sha256": "ac5b669d565a9f0158af450a6e86cf05a7acc869af63a858cfc817a7b9a6388b",
+      "git_blob": "5f02cec5a8eb9f2d0addd43fcfa1cd5717ff63b8"
+    },
+    {
+      "path": "quiz-state-field-comparison.json",
+      "bytes": 1274,
+      "sha256": "00f8bf0018ebf42960ea225ec7ae85045e3bac2ee44f8cce48b93f5b50d38cf4",
+      "git_blob": "b52900016f2dfee26957dea3eefff9333b0af677"
+    },
+    {
+      "path": "review.json",
+      "bytes": 5005,
+      "sha256": "a691465551689c4c157e188ace90275738e42f7f332e37c70564424fe4b885b4",
+      "git_blob": "e74d2bc9a8151f4c281caada98a60c12b7457062"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 43287,
+      "sha256": "6367e9722e5d2a5eefabc24f0c754199be7f5a9aa12e8fdf110d382c54cb6e24",
+      "git_blob": "3eb288cacc1c44dc63a3f1f5d6a61759688e2acd"
+    }
+  ]
+}

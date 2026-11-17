@@ -1,0 +1,11 @@
+# Actual Host0cda / Nativef9 C4 desktop Runtime originals
+
+Run 43637785992, attempt 1; successful job 132578338806. This pack contains the complete once-fetched job log, original terminal-job API snapshot, complete CRC/SHA/member and decoded-PNG catalog, all non-frame original members, all nine named captures, exact unchanged production readers and the pure replay evidence.
+
+The complete ZIP remains separately at /tmp/host0cda-runtime-native-evidence-20261114/runtime/original-14130094271.zip. Its exact 22161744 bytes hash to 50f23a953075c8d58cec71284eb052f2c880019a9106944e169f8b6c33ebeec3. All 399 members were completely CRC/SHA-checked and byte-equal after materialization, and all 259 PNGs were fully decoded. The 250 original frame PNGs remain in the complete ZIP and the original materialization. Neither was removed or altered.
+
+The pure original replay returned zero: 170 actual native assertions, 250 frames, 90 moving frames, 43 winning frames, 54 input events and 23 target observations. The minimum observed target dimension is 50.0521430969238 dp. Exact original Return21 and Wisp14 logs also passed their unchanged reader. All 458 scoped Host and 1,295 scoped Native source records match their actual immutable trees and their unchanged original before/after snapshots. These scopes do not claim that every documentation path was exercised.
+
+The current Host tree is independently rebuilt from all 4,941 actual leaves. The local sparse Native reader checkout is actually f9d9772bb932d7ee8702eeb5bca6d98c286f3b98 / 4036a20ab80de78bcdf0d074b585be88c2946492; its source files and raw index remain unchanged across the replay. The earlier reader-inventory provenance is retained explicitly, never presented as an old Host runtime result.
+
+No engine or product tests were repeated. This proves the current CI's desktop Dart/Godot pairing and the integrity of its original evidence, not Android Binder, real disk persistence, human visual acceptance, device FPS, an APK, the full52/Dream/Discovery suite or the complete seven-job workflow. Pipeline remains the sole status reader. A first local metadata-copy attempt assumed manifest.json; the actual central filename is raw-manifest.json. That harmless path failure is documented without replacing or refetching any original.

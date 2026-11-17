@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "frozen_at": "2026-11-14T14:17:29.140165+00:00",
+  "scope": "Terminal old run; API cancelled with independent earlier complete Flutter FAIL",
+  "host_sha": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+  "native_sha": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "run_id": 43601673844,
+  "run_attempt": 1,
+  "source_root": "/tmp/host-pr485-37ec6c6a-pipeline-evidence-20261114",
+  "source_file_count": 215,
+  "compact_member_count": 212,
+  "selected_member_roundtrip_equal": true,
+  "archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 2472672,
+    "sha256": "2f5018b3d18d1d1c04ac28490ca84d7f6b1dae3428c8041f64dbea8fe158cce1"
+  },
+  "complete_source_file_index": {
+    "path": "source-file-index.json",
+    "bytes": 75972,
+    "sha256": "ab846df4d9130161bd14bae2551fadbb0c3b122b584aab0fa2f66a026d855a52"
+  },
+  "explicit_exclusions": [
+    {
+      "path": "flutter-failure-14117615115/14117615115-original.zip",
+      "bytes": 336174142,
+      "sha256": "0e45f92561aad071a57612c0efe7dec2278b232cdd8721e1bbc315f949882de7",
+      "reason": "Large complete original ZIP retained at source path and Actions artifact, not duplicated in compact transport"
+    },
+    {
+      "path": "flutter-failure-14117615115/compact-originals.tar.gz",
+      "bytes": 239473,
+      "sha256": "0a2705bbd775c8b13440d5a97bd996124dbd1f64d3fe2c99038a00be011c5047",
+      "reason": "Already generated compact transport; all underlying files are selected separately"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/14117085761-original.zip",
+      "bytes": 22149514,
+      "sha256": "e090fad9e3775557e95ede50b8e76cfea4fe9b9e37a3e336be391e8a8195a0f0",
+      "reason": "Large complete original ZIP retained at source path and Actions artifact, not duplicated in compact transport"
+    }
+  ],
+  "full_run_pass": false,
+  "terminal_run": true,
+  "new_tests_or_devices_run": false
+}

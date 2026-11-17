@@ -1,0 +1,25 @@
+{
+  "status": "ROOT_FULL_ORIGINAL_HASH_AND_SCOPE_CHECKED",
+  "originals_fully_byte_checked": 7,
+  "baseline_records_per_repository": 100,
+  "head_changes": [
+    [
+      {
+        "number": 477,
+        "before": "90fd18d98520a610f7a650e1ea4dfe3142495d47",
+        "after": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0"
+      }
+    ],
+    []
+  ],
+  "changed_files": 79,
+  "all_files_added_under_docs_evidence": true,
+  "new_commits": 2,
+  "active_product_or_workflow_changes": 0,
+  "closed_pr503": {
+    "state": "closed",
+    "merged": true,
+    "head": "b7210db3f53361987fd33592de438fd7984d991a",
+    "merged_at": "2026-11-14T17:06:30Z"
+  }
+}

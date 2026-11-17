@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "status": "FROZEN_READ_ONLY_INCREMENT",
+  "created_utc": "2026-11-14T17:40:57.376Z",
+  "members": [
+    {
+      "path": "originals/host-open-pulls.original.json",
+      "bytes": 1801402,
+      "sha256": "39e7d74408d03c8d7aded5232e29ba5a795df559992fd02989d8eb22097782db",
+      "git_blob": "96318fe21e887e62227ed1e64cfa56dfb73f141c",
+      "mode": "100644"
+    },
+    {
+      "path": "originals/native-open-pulls.original.json",
+      "bytes": 1762127,
+      "sha256": "157ce704f1b59ab2663fec5070bf697c90f070147f4472bdd9f614d4d3f03073",
+      "git_blob": "f722fd12e9ab0b2f0700424e838f4ba8e1402cfb",
+      "mode": "100644"
+    },
+    {
+      "path": "originals/host-pr503.original.json",
+      "bytes": 21026,
+      "sha256": "2285403ed96e256ba69b31680c877b85793d5916b3ad99e259d0b29333e264be",
+      "git_blob": "f94be24e7a957ead8321607aac4e7fcfb6c69780",
+      "mode": "100644"
+    },
+    {
+      "path": "originals/host-pr477-90fd-to-5910-compare.original.json",
+      "bytes": 888801,
+      "sha256": "2cf99417f2ba0717c1b0215d9c630002a4ecc67cc77f144d4b4279ece1deccb2",
+      "git_blob": "220a1feeb83f59cf509971758892152ab2313eb8",
+      "mode": "100644"
+    },
+    {
+      "path": "report.json",
+      "bytes": 39813,
+      "sha256": "171938d0750d8e282cbdce50aacee9b5dc0959e0c328e32a3dcfddee5f4e8b43",
+      "git_blob": "eb6b304bf82c36114bcb9fdb1731472d88686db0",
+      "mode": "100644"
+    },
+    {
+      "path": "README.md",
+      "bytes": 999,
+      "sha256": "b48b4f26dbd7012b2d890e7ae94978d815d1b62bbb022b2c9f8848608247321a",
+      "git_blob": "9e4ac54e440d6647cc38e3fc754380405fb7cc0a",
+      "mode": "100644"
+    }
+  ],
+  "member_count": 6,
+  "total_member_bytes": 4514168,
+  "reused_baseline": {
+    "path": "baseline-1707.json",
+    "bytes": 51835,
+    "sha256": "9c3a79327e0855aee32c8ae170cb0cb4760397f542d29b61a98736485b0f5d78",
+    "git_blob": "d9a017bc7fb74a7d7c7e967cd14a2a8db5f8a888"
+  },
+  "validation": "Every original JSON parsed; every UTF-8 string serialized and parsed back without change, then byte/SHA256/Gitblob identities recomputed.",
+  "source_or_ci_mutations": false,
+  "excludes": [
+    "manifest.json"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "reviewer": "/root/pipeline_repair",
+  "reviewed_at": "2026-11-14 15:40:10 UTC",
+  "status": "CONFIRMED_PATH_CORRECTION_NO_CONCRETE_REMAINING_PLAN_BLOCKER_IN_THIS_DELTA",
+  "scope": "Read-only comparison of the separate V2 publisher plan against preserved V1; no executable workflow, publisher invocation, tests, live API mutation, candidate source change, or release authorization.",
+  "source_root": "/workspace/scratch/b3485b7bb989/host-c4-publisher-workflow-plan-72143d3-v2-20261114",
+  "prior_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-c4-publisher-plan-independent-review-20261114/review.json",
+    "sha256": "d3a8e29079a193e55dc358cf1a10c84a98839d5f6f215225b23e9687aea08331",
+    "finding": "PUBLISHER_SCRIPT_RELATIVE_TO_WRONG_CWD",
+    "original_v1_preserved": true
+  },
+  "inputs": [
+    {
+      "path": "manifest.json",
+      "bytes": 2760,
+      "sha256": "d373a3bcdb9ac74d59764f75cd66a98cfd0ae9c3735bb30abe79d65281b2bd6b",
+      "git_blob": "3be637005a127fda6fe2d7ab7ee17ecde0473f09"
+    },
+    {
+      "path": "final/cli-argument-contract.json",
+      "bytes": 3736,
+      "sha256": "865b6493e118c94de49314d1b9995eeafeaeebe0e7728a3bfaa17e9090a8d05d",
+      "git_blob": "e6720f34bfd8e4a01b58edb9e1492f10ec433421"
+    },
+    {
+      "path": "final/plan.json",
+      "bytes": 10771,
+      "sha256": "7e711b8d75696e56b91e2e716f7b526049734f262d150341142e88c6fcb00bd6",
+      "git_blob": "1c9e8fe1cc2b3f1999aeb097c1ee4aa8dbc08797"
+    },
+    {
+      "path": "correction.json",
+      "bytes": 2565,
+      "sha256": "45d767a308fd910ed5e9000d85d1d19f5dbf6cc182718b4ca456868b4371fba1",
+      "git_blob": "4efe1e20aebf51200f3794da302073631bc3be64"
+    },
+    {
+      "path": "v1-to-v2.patch",
+      "bytes": 4368,
+      "sha256": "2e58cc846b7de5a616138197a0fdf814722aceae9478fed7987908e162b33af2",
+      "git_blob": "f44e875479e1010f80c0e66278e19886d86268a7"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1718,
+      "sha256": "db0cd4018e87f6e5e3fd524a4cc50d6d993e792db1e50b125baaa855646a9161",
+      "git_blob": "849ec2e703e187f206cc5d68e2db7e6b98d49423"
+    }
+  ],
+  "findings": [
+    {
+      "id": "PUBLISHER_SCRIPT_RELATIVE_TO_WRONG_CWD",
+      "resolution": "Closed at plan level.",
+      "evidence": "The executable now uses the absolute LUMO_PUBLISHER_SOURCE root. The machine-readable argv expression resolves the same publisher_source once and appends scripts/publish_connect_four_delivery.py. That identical absolute root is passed to --publisher-source while the evidence CWD remains outside both sibling checkouts.",
+      "future_implementation_requirement": "Generated workflow must implement this absolute argv binding and retain the existing INVOKED_PUBLISHER_SOURCE_DIFFERS and source/tree/index/blob guards."
+    }
+  ],
+  "preservation": {
+    "manifest_entries_byte_size_sha256_gitblob_verified": 12,
+    "v1_archive_original_members_byte_compared": 28,
+    "all13_arguments_and_other_cli_fields_unchanged": true,
+    "only_plan_json_changed_path": "/planned_workflow/publication_invocation",
+    "readme_original_suffix_byte_identical": true,
+    "supplied_unified_diff_exactly_matches_files": true,
+    "unchanged": [
+      "External RUNNER_TEMP evidence CWD and initially absent output",
+      "Sibling source checkouts and actual future publisher push-HEAD/tree binding",
+      "Original CLI blob and all source guards",
+      "Job-level permissions, token placement, no token argv",
+      "One invocation with no retry/resume/replacement",
+      "All original artifact/source/job/result verification requirements",
+      "Unknown actual bundle ID/digest/size remain null; no executable placeholders",
+      "Existing outer and inner budgets"
+    ]
+  },
+  "limitations": [
+    "This is a corrected plan, not an executable published workflow or completed release.",
+    "The active candidate can change for the separately announced Notice/PCK packaging and qualified Hub integration. A future publication must bind the actual final successful host/run/attempt/bundle as a complete identity; historical 0b7 metadata alone does not authorize it.",
+    "The real bundle identity and future publisher commit/tree remain unavailable in this plan.",
+    "The 32 historical isolated publisher tests remain separate. None was rerun; no credential or release write was exercised.",
+    "Token environment placement is narrower than job-level permissions; this review does not claim that other Actions in the same write-permitted job cannot access github.token."
+  ],
+  "readonly_inspection_note": "The first inspection script used an incorrect expected JSON key /workflow_contract. It stopped after confirming the real changed key /planned_workflow/publication_invocation. The corrected read-only inspector verified that actual key and completed the remaining byte comparisons. Both original inspection outputs are retained; this was a reviewer-path correction, not a product test or product defect.",
+  "tests_executed": 0,
+  "source_or_worktree_mutations": false,
+  "remote_mutations": false
+}

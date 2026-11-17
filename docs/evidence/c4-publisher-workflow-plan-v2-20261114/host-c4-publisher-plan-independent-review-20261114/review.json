@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14 15:34:15 UTC",
+  "reviewer": "/root/pipeline_repair",
+  "scope": "Narrow read-only review of the frozen publisher plan: publisher commit/CLI identity, sibling checkouts, invocation/CWD, output and job/step permission boundaries. Not a rerun of publisher tests or its prior complete source review.",
+  "source_pack": "/workspace/scratch/b3485b7bb989/host-c4-publisher-workflow-plan-72143d3-20261114",
+  "input_manifest_sha256": "4bf61c2a31269325151782e8d3856f229e498e04741dcf1cac5462224cca0bea",
+  "input_files": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-publisher-workflow-plan-72143d3-20261114/plan.json",
+      "bytes": 10586,
+      "sha256": "aa20ac70d445214dad6123f501f5585b13c31969938f6db9f0b06be284c8256d"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-publisher-workflow-plan-72143d3-20261114/README.md",
+      "bytes": 9237,
+      "sha256": "176f1f97cb1480be18f835d9b161f53295dee1c6b7b18abe9059eab8c685f699"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-publisher-workflow-plan-72143d3-20261114/cli-argument-contract.json",
+      "bytes": 2856,
+      "sha256": "e39830329473e1a66e3bc82bf896489265997665f74144aff2a661745da79fe3"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-publisher-workflow-plan-72143d3-20261114/source-binding.json",
+      "bytes": 11113,
+      "sha256": "105ffb47a66dbad8a769461004d8624688e8775292c3b21eb3dcd3b14036dc33"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-publisher-workflow-plan-72143d3-20261114/manifest.json",
+      "bytes": 6816,
+      "sha256": "4bf61c2a31269325151782e8d3856f229e498e04741dcf1cac5462224cca0bea"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-c4-publisher-workflow-plan-72143d3-20261114/handoff.json",
+      "bytes": 2724,
+      "sha256": "288384af32af06d1cb606800da67e7d0d58e433a9e45172a945f21a363e0436b"
+    }
+  ],
+  "manifested_files_recomputed": {
+    "count": 26,
+    "bytes_and_sha256": true,
+    "git_blob_ids": true
+  },
+  "status": "ONE_CONCRETE_PLAN_PATH_CORRECTION_REQUIRED_BEFORE_WORKFLOW_GENERATION",
+  "findings": [
+    {
+      "id": "PUBLISHER_SCRIPT_RELATIVE_TO_WRONG_CWD",
+      "file": "cli-argument-contract.json",
+      "observed_executable": "python3 -B publisher-source/scripts/publish_connect_four_delivery.py",
+      "observed_working_directory": "RUNNER_TEMP/lumo-c4-publication-evidence",
+      "observed_checkout": "GITHUB_WORKSPACE/publisher-source",
+      "effect": "Taken as the executable argv stated by the plan, the relative script path resolves under the external evidence CWD rather than the actual publisher checkout. The Python invocation would fail before source verification.",
+      "required_correction": "Build the script argv element as the absolute path derived from the already bound publisher-source checkout. Preserve the external working directory and all 13 existing CLI arguments. No publisher or verifier source change is needed.",
+      "production_or_current_ci_affected": false
+    }
+  ],
+  "confirmed": [
+    {
+      "item": "Publisher HEAD and immutable CLI",
+      "detail": "The later actual activating github.sha/tree are correctly separate from tested source72143; its CLI must retain blob982f8cf3c85a6bf85f49bed842b3c7e08a20730e / SHA256cc06aaf7472e675171344e6321078749101d21ea112795bf1d6ed8dd15228a7d. Actual SourceGuard checks HEAD/tree/clean status/raw index/stage and committed file bytes; main checks invoked file identity."
+    },
+    {
+      "item": "Candidate source inputs",
+      "detail": "Five physical candidate files match the real SourceGuard requirements; the two verifier/helper source copies are byte-identical between the plan's candidate and publisher."
+    },
+    {
+      "item": "Sibling checkout and external output",
+      "detail": "Both checkouts are siblings under GITHUB_WORKSPACE. All outputs, original streams and the new CLI output child stay outside both under RUNNER_TEMP; Inputs.validate rejects relative inputs, shared source root, output inside either checkout and preexisting output."
+    },
+    {
+      "item": "CLI interface",
+      "detail": "The 13 required arguments exactly correspond to the unchanged actual parser. Missing bundle fields and future publisher commit/tree remain explicit non-executable plan values."
+    },
+    {
+      "item": "Permissions boundary",
+      "detail": "Job-scoped contents:write, actions:read, pull-requests:read and environment GITHUB_TOKEN only at the publishing step are correctly described. This is a job-level permission boundary, not a claim that github.token is inaccessible to other pinned Actions in the job; checkout is explicitly persist-credentials:false. child_environment omits publication credentials from verifier/Git subprocesses."
+    },
+    {
+      "item": "Activation remains pending",
+      "detail": "No executable workflow, real mutation or publication is approved by this plan. Any replacement candidate requires complete fresh host/tree/run/attempt/bundle binding; the active0b7 native job was still in progress during review."
+    }
+  ],
+  "limits": [
+    "Reviewed only the stated plan and relevant source sections; existing32 isolated contracts were not repeated.",
+    "No API/CI poll, download or live release mutation was performed for this review.",
+    "Root's newly reported Notice/packaging follow-up may change the final candidate; this historical0b7 plan is not a final candidate approval."
+  ],
+  "tests_executed": 0,
+  "product_or_git_writes": 0
+}

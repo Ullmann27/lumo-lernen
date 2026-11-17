@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 696,
+      "sha256": "2830fc91a37935626f930c8403aee3d0a4c6f61520669694a853d80c09dd8b8e",
+      "git_blob": "677c7554a104a6de4cb51ce49123cc2f3db455b0"
+    },
+    {
+      "path": "after-probe.original.py",
+      "bytes": 28988,
+      "sha256": "e57bec15a0c8e7f57085a33ecfa661fda882af89a92bee906b016d152de54bc2",
+      "git_blob": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d"
+    },
+    {
+      "path": "before-probe.original.py",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "independent-binding.json",
+      "bytes": 7565,
+      "sha256": "eb65361a89efbbc93caec5013ecd61503294349aff585187ba0d7b2e0022845b",
+      "git_blob": "bfbfcc04c6f019dd019d2f7e3a53841df3d1f2f6"
+    },
+    {
+      "path": "review.json",
+      "bytes": 3651,
+      "sha256": "49802eab9807eb8bf0678a03ef4280ff150f6401bf00e40993b8fd57ccca93fd",
+      "git_blob": "27c084f578f9f93ac9680a9ff788d36adfb7b2df"
+    },
+    {
+      "path": "source-freeze.original.json",
+      "bytes": 4754,
+      "sha256": "ba77676bce3f2fecd97aa62e6c8514462635dc0255843b544b98ac23e47e45f1",
+      "git_blob": "2a36221f057de7cc18614be6acbeaaaac715314b"
+    }
+  ],
+  "self_excluded": true
+}

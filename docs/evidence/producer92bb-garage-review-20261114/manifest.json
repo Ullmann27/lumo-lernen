@@ -1,0 +1,276 @@
+{
+  "schema": 1,
+  "file_count": 44,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1686,
+      "sha256": "3f6e4a5ef76d23dca9c7795f1a4648c2e110d307205d9786164ddd9e8be3b445",
+      "git_blob": "95705bcd3ac4a506e6b7830f71f5cd5d4b05f76d"
+    },
+    {
+      "path": "bound-source-blobs/1d02ca8663998dcbddb6c02107148672c5882b52.txt",
+      "bytes": 8453,
+      "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+      "git_blob": "1d02ca8663998dcbddb6c02107148672c5882b52"
+    },
+    {
+      "path": "bound-source-blobs/4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf.txt",
+      "bytes": 27545,
+      "sha256": "c6a88af95fab0bd5d1ac0dd41b42a985cc72051d19e803ed766ef0e793d4bec9",
+      "git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf"
+    },
+    {
+      "path": "bound-source-blobs/4fc6ac6baf85159a0c48fb2733de50be440ad52d.txt",
+      "bytes": 16092,
+      "sha256": "0aa63caf22f5fd6aaa841b889415e794420518f7ce3f388b9ee4a346e5ef0377",
+      "git_blob": "4fc6ac6baf85159a0c48fb2733de50be440ad52d"
+    },
+    {
+      "path": "bound-source-blobs/69181cb383de72a2058d2a1d64d629d825b1d871.txt",
+      "bytes": 84428,
+      "sha256": "bb34f1b3d138362a780acc3eefbfd791cc3af286d6c68786cf292d67938d738f",
+      "git_blob": "69181cb383de72a2058d2a1d64d629d825b1d871"
+    },
+    {
+      "path": "bound-source-blobs/90de80bb86a115aae46b9802d8c216c6ca413c3f.txt",
+      "bytes": 24450,
+      "sha256": "7b60bf28a915fc16de2aa6aae8b641d2b28be221b2bd1efd4a5b3672a5fe6ca6",
+      "git_blob": "90de80bb86a115aae46b9802d8c216c6ca413c3f"
+    },
+    {
+      "path": "bound-source-blobs/b80f0d8f12fe86031a91cec39c26f9d1cfa65a94.txt",
+      "bytes": 31013,
+      "sha256": "287d12f156ec7839b3d8bb2999fca825f7e2b1775b93fcd801a3c4087578dd8f",
+      "git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94"
+    },
+    {
+      "path": "bound-source-blobs/c996a022d388632ed13965b392181aef773d9025.txt",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": "bound-source-blobs/d3b7ac74926e57de9b80afac8c431a7e4e6183ff.txt",
+      "bytes": 78635,
+      "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff"
+    },
+    {
+      "path": "bound-source-blobs/e0da716a0a6ed91cf01bf4f65c8b4e6376219a7f.txt",
+      "bytes": 3638,
+      "sha256": "dd76d5c6b70d9c8d7e6d4625a20285e2538b945c093a0161eee52eb515f2113d",
+      "git_blob": "e0da716a0a6ed91cf01bf4f65c8b4e6376219a7f"
+    },
+    {
+      "path": "bound-source-blobs/ea3da4bb07f125df63ab4a88d011999beeef4827.txt",
+      "bytes": 17208,
+      "sha256": "44c2b05f9099eaf13dd8e9811bacb946be58c58c849e76d6d1e042dd2d888206",
+      "git_blob": "ea3da4bb07f125df63ab4a88d011999beeef4827"
+    },
+    {
+      "path": "current-and-native-source-binding.json",
+      "bytes": 9856,
+      "sha256": "30237088baf216c966da79e58dfa73e8386e2727d57c8d5bb8093962d6f76568",
+      "git_blob": "937991655b69b985a069dc84088d868624ebcbc9"
+    },
+    {
+      "path": "fetched-source-binding.json",
+      "bytes": 1885,
+      "sha256": "56116cc018d7099c5e5fdd6da16291f88dc6d399592163d83010f2a38efafbf6",
+      "git_blob": "7cadaf3afa3afea7b566780bd8e7f671c82f2c70"
+    },
+    {
+      "path": "file-index.json",
+      "bytes": 3300,
+      "sha256": "e799b90018ce3450882183c0e9d9119c38d23a03884b0cb7fc05dceea6daf92e",
+      "git_blob": "e5c65832ed8f0e563c097345151a1dbaf343769f"
+    },
+    {
+      "path": "historical-bindings/native-garage-source-binding.json",
+      "bytes": 2219,
+      "sha256": "e12169c4037f695bafa820bc4fcd902cfe041631090dab55759491ed7f2af501",
+      "git_blob": "bc251c3a332c55f47247493feddae516ce004320"
+    },
+    {
+      "path": "historical-bindings/source-freeze.json",
+      "bytes": 9943,
+      "sha256": "c6890e5009cba9840991e914bfc77ad03413f9280f44e3b57b1ff32011048485",
+      "git_blob": "5f56c11829694db725285d1d8ff2410b8c16dab1"
+    },
+    {
+      "path": "originals/.github__probes__modernization_android_tour.py.patch",
+      "bytes": 3341,
+      "sha256": "59f7ec2fd36f8607c0afd2faad695de42c4ce7e6db574c6fe15e4d19232e045b",
+      "git_blob": "b3d26c1bf776d9207460b4f046659044af051837"
+    },
+    {
+      "path": "originals/.github__workflows__lumo-connect-four-2020.yml.patch",
+      "bytes": 2247,
+      "sha256": "48926fc48e06c3e69d53dd6917a8fcbc8f10895f088e390bcdc7b022af0a1820",
+      "git_blob": "f23e62b82eef6ebe325c4c919b7faaf6c7880416"
+    },
+    {
+      "path": "originals/fetch-garage-helper.json",
+      "bytes": 46270,
+      "sha256": "c5dba5ee29243a14dcfc30eca756910e85c1073fa0c9853c5b69a806d106872f",
+      "git_blob": "b65c8c6080338714d7ab2fa657b91d665f342cb9"
+    },
+    {
+      "path": "originals/fetch-main-png.base64.json",
+      "bytes": 1047399,
+      "sha256": "89183e7d10f08aaa6abfe89b156297d2a32314d2ff23ec489ee80a4e73a311f1",
+      "git_blob": "4041406f7d2136ad7824cf82e27dadbaffc9ed87"
+    },
+    {
+      "path": "originals/fetch-main-probe.json",
+      "bytes": 150486,
+      "sha256": "6361ad7a609fa42c8ec57aaef049884e565a7dd5d206b562ed8cf89732ae3d78",
+      "git_blob": "9e41b0c4d1b862436f27bcfdb4f4398e0cd6f851"
+    },
+    {
+      "path": "originals/fetch-update-png.base64.json",
+      "bytes": 1056547,
+      "sha256": "f855d99264ddbc4447e140a211f17d431a8c9604c382a12bc388252e2c933623",
+      "git_blob": "91ad0a8617f5d2102875e05d896cbf57b5fa4264"
+    },
+    {
+      "path": "originals/producer-commit.json",
+      "bytes": 79585,
+      "sha256": "e6b2c69c0f90071fdfa6815c8117d7c757966f64842019bd1256b82fe4dce797",
+      "git_blob": "8df87e969e5c80e04ca6b3cd9da7f1377abc7e9f"
+    },
+    {
+      "path": "originals/scripts__gradle__lumo-release-lint.init.gradle.patch",
+      "bytes": 847,
+      "sha256": "3d8004fc9f8b833193e220c9062199ea21d5b4b4746b2b24a71d698f834709f8",
+      "git_blob": "e3b97f109f3cbdbf285335995f45b9a1303c32da"
+    },
+    {
+      "path": "originals/tools__android_qa__kart_garage_evidence.py.patch",
+      "bytes": 10901,
+      "sha256": "efe4738d9c78f7348f9a6541df64fbd1dd4ec5ecbe03c94ba477615ce1c6ffc8",
+      "git_blob": "b5541564adac3a00e0abff7d85bd1851dc30be32"
+    },
+    {
+      "path": "originals/tools__android_qa__tests__fixtures__kart-scroll-c2f2__main__21_stage_select_gecko_velo-2-ocr.json.patch",
+      "bytes": 21626,
+      "sha256": "8b24aadb9d65ccee94d6bf61b8308e4e9c879069fabd155925b67911d8ace54f",
+      "git_blob": "852498fa17c0ae0d1e7af913f1d0029e1b42c936"
+    },
+    {
+      "path": "originals/tools__android_qa__tests__fixtures__kart-scroll-c2f2__main__surface-frame.json.patch",
+      "bytes": 718,
+      "sha256": "fc39acf86772fa5e0ea2f35d2685569539c1cd7f1f2a4ca9b9f3debc5c4d2cd3",
+      "git_blob": "05fbf1d3803a18255bf29a5df626bf82b1a83cfa"
+    },
+    {
+      "path": "originals/tools__android_qa__tests__fixtures__kart-scroll-c2f2__provenance.json.patch",
+      "bytes": 1742,
+      "sha256": "54da042279c0421342eede5876ed9e16f05ca4524696e58d1908defd21fa2b1a",
+      "git_blob": "fd631866fedbdb77ddb889001b3991dfb9f266cd"
+    },
+    {
+      "path": "originals/tools__android_qa__tests__fixtures__kart-scroll-c2f2__update__21_stage_select_gecko_velo-2-ocr.json.patch",
+      "bytes": 4030,
+      "sha256": "a041458b142accab3788a98a4c04da160da263509dddec0d364c26f6ed042ca3",
+      "git_blob": "e346bba063d16d28e6973abe88bba7a075fdbb6b"
+    },
+    {
+      "path": "originals/tools__android_qa__tests__fixtures__kart-scroll-c2f2__update__surface-frame.json.patch",
+      "bytes": 1087,
+      "sha256": "654d64be6cd2f7f44dad10c964c38549f3b63ba46838a96bf7cab78a54e82643",
+      "git_blob": "76152372a44e319b36075a03cb732f6555af77f4"
+    },
+    {
+      "path": "originals/tools__android_qa__tests__test_kart_garage_card_ocr.py.patch",
+      "bytes": 14925,
+      "sha256": "ee5fb55003e22393bdd55f4949c75bcaa3a004a275e311aed2dfa5112a49fd4e",
+      "git_blob": "08f9bc66f920bb67a9adee6bb36b24b2379bb967"
+    },
+    {
+      "path": "published-added-source/scripts/gradle/lumo-release-lint.init.gradle",
+      "bytes": 812,
+      "sha256": "05ff58754773fdf0410dce48759a408018143ab446e44221100f5e8cfec7aeb1",
+      "git_blob": "1c65a6f5259c8619fc20a019ff9de76f8afd9d92"
+    },
+    {
+      "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/main/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 20067,
+      "sha256": "cc67098913986a1bddc62c373dd1ce0e56d73fb613d007de3bf56adb8f7fb2dc",
+      "git_blob": "bb75a2f15847084e99378437a3db83a06eb22e93"
+    },
+    {
+      "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/main/21_stage_select_gecko_velo-2.png",
+      "bytes": 759970,
+      "sha256": "0f5995fe791492290fe8063bf25a5de2d8b9ea709622c5154725faff3b916501",
+      "git_blob": "cf536c4f07a9eb29cb6ad268348ab52b2692de04"
+    },
+    {
+      "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/main/surface-frame.json",
+      "bytes": 670,
+      "sha256": "e00584a085ad240262147d94720886d254961c09aeced1af9e60f70f8ddbbe7a",
+      "git_blob": "65303a493cec0d6b63f6f6b76c69d766b72eb9e7"
+    },
+    {
+      "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/provenance.json",
+      "bytes": 1681,
+      "sha256": "b0e5c35a69862aed73704618be4cb89fd2e6096d5cc672a0613c5e602bc35196",
+      "git_blob": "3385572d8ecf4709399f36e9e541564db98065ab"
+    },
+    {
+      "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/update/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 3702,
+      "sha256": "8913eb125ec09a4f911331c3df91b5d92ecb2e11d1c50c668766c63b453ca63a",
+      "git_blob": "0cb6bdf8a1a2cdb1bf4d7a3a4023551869f6c4bb"
+    },
+    {
+      "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/update/21_stage_select_gecko_velo-2.png",
+      "bytes": 766610,
+      "sha256": "88ab568d78ee051e4cbb4f3b5eca20f9b55bf5737e3b2b520657729300c2467b",
+      "git_blob": "7a60cf3f744de45580dbc4c56f02067b65303ce3"
+    },
+    {
+      "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/update/surface-frame.json",
+      "bytes": 1022,
+      "sha256": "afb8d2f5159a669f17cb826b4a68ccd9ee0934aaa02ca8cfa7167b2182f2c8e0",
+      "git_blob": "a4e3c35868327984e156cffaff816b57731f7458"
+    },
+    {
+      "path": "published-added-source/tools/android_qa/tests/test_kart_garage_card_ocr.py",
+      "bytes": 14651,
+      "sha256": "5b5935b2053f3724e9702a7e9aa961a03d32aee93313f6939f9b2ffe22ff6d57",
+      "git_blob": "08e9d5858e83aa7aade340125d61eccd067addce"
+    },
+    {
+      "path": "published-added-source-binding.json",
+      "bytes": 2352,
+      "sha256": "99392b0c4d45a9054d255d9493d4a0a63ace97f34277cfedcb7770b7f7d39177",
+      "git_blob": "fa7702fb8bf3704eacab0cd689d1356d69af0e36"
+    },
+    {
+      "path": "published-source/.github/probes/modernization_android_tour.py",
+      "bytes": 73407,
+      "sha256": "8aca44ca62d1541d7570e5b4d2a637830c040ee3efa974c9caa3e9480fe75cef",
+      "git_blob": "b806b5b3a1ffd9494d4c198a3528db8ea5c80abd"
+    },
+    {
+      "path": "published-source/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 22413,
+      "sha256": "9ff7363f5e5df9de99af30b59aebeeb1b5395be69c9d5c174e2be5e49a0b7eba",
+      "git_blob": "f34739ee2e578347eaec8e49da9d0ece2b5cd989"
+    },
+    {
+      "path": "review.json",
+      "bytes": 20188,
+      "sha256": "8fd4baadf7eb8d19fbb0dbbbf4b96fb84fc3b5cee1325f6158f5891896b197f0",
+      "git_blob": "f3f739fa1aac1fca90e627724f06cc1e60af5da0"
+    }
+  ],
+  "exclusions": [
+    "manifest.json self",
+    "compact-originals.tar.gz",
+    "archive-roundtrip.json",
+    "handoff.json"
+  ]
+}

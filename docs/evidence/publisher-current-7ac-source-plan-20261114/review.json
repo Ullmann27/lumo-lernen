@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "scope": "Current source rebinding only; no executable workflow, publisher run, download, release/tag mutation or acceptance.",
+  "prior_v2_plan_sha256": "7e711b8d75696e56b91e2e716f7b526049734f262d150341142e88c6fcb00bd6",
+  "current_host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "current_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "unchanged_candidate_verifier_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+  "unchanged_candidate_gate_helper_blob": "4c8097ce7643e189f37815c38214dd650e022d8c",
+  "unchanged_publisher_cli_blob": "982f8cf3c85a6bf85f49bed842b3c7e08a20730e",
+  "actual_missing": [
+    "Seven successful jobs for exact43632790204/1",
+    "Accepted delivery bundle id/digest/size",
+    "Final executable publisher workflow commit/tree"
+  ],
+  "source_guard_review": "Five exact candidate files and exact publisher CLI; Git optional locks/lazy fetch disabled in child processes; pycache and outputs outside checkouts. New publisher workflow must run the absolute script from the same resolved publisher-source root."
+}

@@ -1,0 +1,501 @@
+{
+  "schema": 1,
+  "bindings": [
+    {
+      "repository": "host",
+      "head_tree": "ccd45e1ae122ce1b1997e6fa6feb948dc39dccaf",
+      "original": {
+        "path": "originals/host-producer-head-tree.json",
+        "bytes": 1324348,
+        "sha256": "1a5b71b29fcfa654bd731dcdd2e4fd6a62646bbb62ba8b6ff5e4302e853cf4b4"
+      },
+      "changed_paths": [
+        {
+          "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+          "git_blob": "4b57d6c54de6cb7047efca47a7ef722c6278a7fe",
+          "mode": "100644",
+          "bytes_in_tree": 7346
+        },
+        {
+          "path": ".github/workflows/lumo-unified-integration-2026.yml",
+          "git_blob": "eda1235e5975c21885fba87ac1512927769a878a",
+          "mode": "100644",
+          "bytes_in_tree": 81797
+        },
+        {
+          "path": "config/studio-2020-visual-review.json",
+          "git_blob": "8626624dca0035447e8e86874ef39b262c36de86",
+          "mode": "100644",
+          "bytes_in_tree": 38659
+        },
+        {
+          "path": "docs/NEXTGEN_FEATURE_20261114.md",
+          "git_blob": "f3a110664531015817266100e1038c02322eaccb",
+          "mode": "100644",
+          "bytes_in_tree": 11332
+        },
+        {
+          "path": "lib/app/app_state.dart",
+          "git_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00",
+          "mode": "100644",
+          "bytes_in_tree": 57118
+        },
+        {
+          "path": "lib/core/reward_wallet_repository.dart",
+          "git_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5",
+          "mode": "100644",
+          "bytes_in_tree": 14366
+        },
+        {
+          "path": "lib/domain/quiz/quiz_show.dart",
+          "git_blob": "a1246a1602c27961e5a705f523e14f409900f8db",
+          "mode": "100644",
+          "bytes_in_tree": 8874
+        },
+        {
+          "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+          "git_blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545",
+          "mode": "100644",
+          "bytes_in_tree": 2941
+        },
+        {
+          "path": "lib/domain/tutoring/native_learning_activity.dart",
+          "git_blob": "f8bfc0af97806255ec8b72d89963c2831e250089",
+          "mode": "100644",
+          "bytes_in_tree": 7587
+        },
+        {
+          "path": "lib/features/games/memory/lumo_memory_game.dart",
+          "git_blob": "aec0446cc1bb5a1ff6b3469c0c9606c45bfda64e",
+          "mode": "100644",
+          "bytes_in_tree": 52529
+        },
+        {
+          "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+          "git_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a",
+          "mode": "100644",
+          "bytes_in_tree": 2146
+        },
+        {
+          "path": "lib/features/games/memory/memory_round.dart",
+          "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+          "mode": "100644",
+          "bytes_in_tree": 14257
+        },
+        {
+          "path": "lib/features/games/memory/memory_rules.dart",
+          "git_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce",
+          "mode": "100644",
+          "bytes_in_tree": 14413
+        },
+        {
+          "path": "lib/features/games/memory/memory_table_session.dart",
+          "git_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c",
+          "mode": "100644",
+          "bytes_in_tree": 9373
+        },
+        {
+          "path": "lib/features/games/memory/memory_turn_scheduler.dart",
+          "git_blob": "d3b3f41227594f6a78723a344ab7eec110190de1",
+          "mode": "100644",
+          "bytes_in_tree": 1675
+        },
+        {
+          "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+          "git_blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+          "mode": "100644",
+          "bytes_in_tree": 10634
+        },
+        {
+          "path": "lib/features/lumo3d/native_method_table_transport.dart",
+          "git_blob": "6c160054a74531b22e817bb284b7860421d2a7f1",
+          "mode": "100644",
+          "bytes_in_tree": 1677
+        },
+        {
+          "path": "lib/features/lumo3d/native_table_transport.dart",
+          "git_blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2",
+          "mode": "100644",
+          "bytes_in_tree": 502
+        },
+        {
+          "path": "lib/features/quiz/quiz_show_content.dart",
+          "git_blob": "98d7d59c6053785eddb3db48b2673a41e2b8c407",
+          "mode": "100644",
+          "bytes_in_tree": 62121
+        },
+        {
+          "path": "lib/features/quiz/quiz_show_repository.dart",
+          "git_blob": "0c2b7dc207809bbcabed4180e7423b8cd8080117",
+          "mode": "100644",
+          "bytes_in_tree": 1371
+        },
+        {
+          "path": "lib/features/quiz/quiz_show_round.dart",
+          "git_blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc",
+          "mode": "100644",
+          "bytes_in_tree": 14125
+        },
+        {
+          "path": "lib/features/quiz/quiz_table_session.dart",
+          "git_blob": "a5e23633de431c9b4777dad39df4a7758badefb7",
+          "mode": "100644",
+          "bytes_in_tree": 8689
+        },
+        {
+          "path": "scripts/compile_android_host.sh",
+          "git_blob": "c5138523453d4e185f6af46f96e15478888075de",
+          "mode": "100644",
+          "bytes_in_tree": 3499
+        },
+        {
+          "path": "scripts/prepare_embedded_games.py",
+          "git_blob": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b",
+          "mode": "100644",
+          "bytes_in_tree": 11694
+        },
+        {
+          "path": "scripts/tests/test_embedded_android.py",
+          "git_blob": "4e049e6fe75a82c38d105384f37e16ad8715ee95",
+          "mode": "100644",
+          "bytes_in_tree": 8401
+        },
+        {
+          "path": "scripts/tests/test_game_return_contract.py",
+          "git_blob": "8b42456eb737d0e0e6aceb8b460e0a5182c73f7d",
+          "mode": "100644",
+          "bytes_in_tree": 17234
+        },
+        {
+          "path": "scripts/tests/test_table_games_native_contract.py",
+          "git_blob": "1379b936394dba8f70137657e9f91f68b5a9bee2",
+          "mode": "100644",
+          "bytes_in_tree": 15542
+        },
+        {
+          "path": "test/games/memory_native_entry_test.dart",
+          "git_blob": "eeb25b267ac05f8256b677428c364d97b5ae1648",
+          "mode": "100644",
+          "bytes_in_tree": 15014
+        },
+        {
+          "path": "test/quiz_native_roundtrip_lifecycle_test.dart",
+          "git_blob": "92e220331786a78b21bf800e98a3d927c9b2711a",
+          "mode": "100644",
+          "bytes_in_tree": 14514
+        },
+        {
+          "path": "test/reward_wallet_queue_zone_test.dart",
+          "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3",
+          "mode": "100644",
+          "bytes_in_tree": 9797
+        },
+        {
+          "path": "test/table_games_launcher_binding_test.dart",
+          "git_blob": "705e90212916b784136a33088a4dbedaf7f0f8e2",
+          "mode": "100644",
+          "bytes_in_tree": 10384
+        },
+        {
+          "path": "test/table_games_wallet_profile_test.dart",
+          "git_blob": "2646c037d575b068a697e99c574ace047aaa57a3",
+          "mode": "100644",
+          "bytes_in_tree": 12489
+        },
+        {
+          "path": "test/tutoring/native_english_activity_test.dart",
+          "git_blob": "70cacfce15bdd374d582c570b49c2a865cee63d6",
+          "mode": "100644",
+          "bytes_in_tree": 7588
+        },
+        {
+          "path": "tool/check_native_english_activity.dart",
+          "git_blob": "85a96d92e0eac2c1d9f6791820d8990d816fdc48",
+          "mode": "100644",
+          "bytes_in_tree": 9307
+        },
+        {
+          "path": "tools/android_qa/jvm/TableGameIntentContract.java",
+          "git_blob": "194fdaa97578ef6ca0d434cd9ec0066f20be6818",
+          "mode": "100644",
+          "bytes_in_tree": 5526
+        },
+        {
+          "path": "tools/android_qa/memory_native_authority.dart",
+          "git_blob": "1126cbb3c26c7f4f4b48eb58910cdb30d73d1f0d",
+          "mode": "100644",
+          "bytes_in_tree": 15449
+        },
+        {
+          "path": "tools/android_qa/memory_original_board_fixture.dart",
+          "git_blob": "8ff63ccb88f3352967de9c64d4d007facf16c06f",
+          "mode": "100644",
+          "bytes_in_tree": 5487
+        },
+        {
+          "path": "tools/android_qa/memory_original_opponent_fixture.dart",
+          "git_blob": "65c8e0d24f28043b0bcfbb71c4c61cc8c1ba708e",
+          "mode": "100644",
+          "bytes_in_tree": 2170
+        },
+        {
+          "path": "tools/android_qa/memory_round_contract.dart",
+          "git_blob": "6a06883ce1f8a03205b914d30a2dfd55acb96597",
+          "mode": "100644",
+          "bytes_in_tree": 31437
+        },
+        {
+          "path": "tools/android_qa/memory_turn_scheduler_contract.dart",
+          "git_blob": "6414c553eec694508363d8bff55affee5489827f",
+          "mode": "100644",
+          "bytes_in_tree": 4580
+        },
+        {
+          "path": "tools/android_qa/quiz_native_authority.dart",
+          "git_blob": "7ded270bb685306e74faa024043ec9638f0cc8d1",
+          "mode": "100644",
+          "bytes_in_tree": 5561
+        },
+        {
+          "path": "tools/android_qa/quiz_round_contract.dart",
+          "git_blob": "cc25a01bba32ffab5eef37483e4697927db70081",
+          "mode": "100644",
+          "bytes_in_tree": 20965
+        },
+        {
+          "path": "tools/auto_install/MainActivity.kt",
+          "git_blob": "3ff5b361e55e05d9f23a8c90dd237c1896cd3065",
+          "mode": "100644",
+          "bytes_in_tree": 18497
+        },
+        {
+          "path": "tools/auto_install/TableAuthorityService.kt",
+          "git_blob": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08",
+          "mode": "100644",
+          "bytes_in_tree": 1945
+        },
+        {
+          "path": "tools/auto_install/TableGameActivity.kt",
+          "git_blob": "74e9f7476cb192e016f5bf42421c89a30f58ee28",
+          "mode": "100644",
+          "bytes_in_tree": 6633
+        },
+        {
+          "path": "tools/auto_install/TableGameIntent.java",
+          "git_blob": "d14b09e3438164aea359d478d7af11f8c0fb5433",
+          "mode": "100644",
+          "bytes_in_tree": 3205
+        },
+        {
+          "path": "tools/auto_install/TableGamesBridge.kt",
+          "git_blob": "4b25e208043ac9cd939e98eb955ef6a850315461",
+          "mode": "100644",
+          "bytes_in_tree": 8236
+        }
+      ]
+    },
+    {
+      "repository": "native",
+      "head_tree": "8e29d5a15a424b42f27184a763adce8b2aa71b13",
+      "original": {
+        "path": "originals/native-producer-head-tree.json",
+        "bytes": 670517,
+        "sha256": "85a76c402f350820e1634f5e88d108ad42c853f5eb92f58ac0b18a284830110f"
+      },
+      "changed_paths": [
+        {
+          "path": ".github/workflows/lumo-nextgen-authority-check.yml",
+          "git_blob": "7f9f0e525ec6634480fab1eca4719e9792fb2f13",
+          "mode": "100644",
+          "bytes_in_tree": 9280
+        },
+        {
+          "path": "assets/games/memory/face_bunny.png",
+          "git_blob": "2140631f2cc9d10491f0a4616719f25c36049998",
+          "mode": "100644",
+          "bytes_in_tree": 110224
+        },
+        {
+          "path": "assets/games/memory/face_giraffe.png",
+          "git_blob": "7432d7a2c53feb86d431b8edcae90df4bc071947",
+          "mode": "100644",
+          "bytes_in_tree": 122790
+        },
+        {
+          "path": "assets/games/memory/face_panda.png",
+          "git_blob": "e9177d1e5ffb5e232f486ba115a798575c10636e",
+          "mode": "100644",
+          "bytes_in_tree": 114814
+        },
+        {
+          "path": "assets/games/memory/face_penguin.png",
+          "git_blob": "318ffc63727522827ad171b93df68442354140da",
+          "mode": "100644",
+          "bytes_in_tree": 106501
+        },
+        {
+          "path": "assets/games/memory/fox_avatar.png",
+          "git_blob": "2528db26b4288d89e905c03ec1015ac7b8798538",
+          "mode": "100644",
+          "bytes_in_tree": 381950
+        },
+        {
+          "path": "assets/games/memory/logo_memory.png",
+          "git_blob": "38a3672792aa20e590f81e8161b2dc631e13b05b",
+          "mode": "100644",
+          "bytes_in_tree": 182232
+        },
+        {
+          "path": "assets/games/memory/sticker_chest.png",
+          "git_blob": "507a33d7b443d6523331f74a144649999f16d38b",
+          "mode": "100644",
+          "bytes_in_tree": 150444
+        },
+        {
+          "path": "assets/games/memory/sticker_flag.png",
+          "git_blob": "c37bb7269c79e04104f2fe6af3898d169fe60027",
+          "mode": "100644",
+          "bytes_in_tree": 67963
+        },
+        {
+          "path": "assets/games/memory/sticker_lantern.png",
+          "git_blob": "3894c3e8a8025e4fc53902b8c0ddf54934c05ccc",
+          "mode": "100644",
+          "bytes_in_tree": 52064
+        },
+        {
+          "path": "assets/games/memory/sticker_mushroom.png",
+          "git_blob": "368b2495abb9832164669e925a3d0bba9f1fc3c0",
+          "mode": "100644",
+          "bytes_in_tree": 39765
+        },
+        {
+          "path": "assets/games/memory/sticker_note.png",
+          "git_blob": "465ab7c46a206b6dd3b5f6dc0f7bdd09ec649c8b",
+          "mode": "100644",
+          "bytes_in_tree": 99755
+        },
+        {
+          "path": "assets/games/memory/sticker_rock.png",
+          "git_blob": "0e9f6c3fd4bbc008d5ed37b1d9df5ad783dadf82",
+          "mode": "100644",
+          "bytes_in_tree": 100782
+        },
+        {
+          "path": "assets/games/memory/sticker_star.png",
+          "git_blob": "01f9e8984090e85420db84cf69da3d0d0fe27aeb",
+          "mode": "100644",
+          "bytes_in_tree": 111263
+        },
+        {
+          "path": "docs/nextgen-english-quiz-source-20261114.md",
+          "git_blob": "d5b6d3b4633a3cbfd6ed917a2023489595e8b0b9",
+          "mode": "100644",
+          "bytes_in_tree": 4807
+        },
+        {
+          "path": "scenes/games/memory_table.tscn",
+          "git_blob": "95a6a9f9055b3df6dc31e6c36e7cc38e10fb04c8",
+          "mode": "100644",
+          "bytes_in_tree": 187
+        },
+        {
+          "path": "scenes/games/quiz_studio.tscn",
+          "git_blob": "7b674ff774f5cd05120472949dffc1b5c37cea8a",
+          "mode": "100644",
+          "bytes_in_tree": 193
+        },
+        {
+          "path": "scripts/app/scene_router.gd",
+          "git_blob": "09b5b8119729e0a5556a18acf9497f31962cb343",
+          "mode": "100644",
+          "bytes_in_tree": 4556
+        },
+        {
+          "path": "scripts/games/memory/memory_table.gd",
+          "git_blob": "9c998e33aee127453a67d25a6e020638472b8387",
+          "mode": "100644",
+          "bytes_in_tree": 31443
+        },
+        {
+          "path": "scripts/games/quiz/quiz_studio.gd",
+          "git_blob": "573af4e6c55dd44b8832f588545300d18309c89d",
+          "mode": "100644",
+          "bytes_in_tree": 32033
+        },
+        {
+          "path": "scripts/learning/english_object_gallery.gd",
+          "git_blob": "401864874d7dc5fc9a97e057d1a49bdf894b9e0b",
+          "mode": "100644",
+          "bytes_in_tree": 9213
+        },
+        {
+          "path": "scripts/learning/english_vocabulary.gd",
+          "git_blob": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4",
+          "mode": "100644",
+          "bytes_in_tree": 1857
+        },
+        {
+          "path": "scripts/learning/learning_activity.gd",
+          "git_blob": "245a966e00259c2d0189c932c40374d855a4b0bc",
+          "mode": "100644",
+          "bytes_in_tree": 10967
+        },
+        {
+          "path": "scripts/learning/learning_world.gd",
+          "git_blob": "5b757694cff6e8d7d5ef00cf56f57dab8c22fa72",
+          "mode": "100644",
+          "bytes_in_tree": 61965
+        },
+        {
+          "path": "scripts/systems/host_bridge.gd",
+          "git_blob": "00a30115ce7669e57e8ceec1251047773f3da1f4",
+          "mode": "100644",
+          "bytes_in_tree": 5223
+        },
+        {
+          "path": "scripts/tests/learning_english_regression.gd",
+          "git_blob": "64dece9ec9619c6bf527c6398feef90b9e1a5298",
+          "mode": "100644",
+          "bytes_in_tree": 29246
+        },
+        {
+          "path": "scripts/tests/memory_table_regression.gd",
+          "git_blob": "b9122337e25e9a529e4e8602a0c5e8e3e680f831",
+          "mode": "100644",
+          "bytes_in_tree": 14227
+        },
+        {
+          "path": "scripts/tests/memory_table_runtime.gd",
+          "git_blob": "f4fc0d96b5b67e91969dac610bdc5c550f590640",
+          "mode": "100644",
+          "bytes_in_tree": 14860
+        },
+        {
+          "path": "scripts/tests/quiz_studio_runtime.gd",
+          "git_blob": "59cf4a16d2e53b65a97277574c6866db5a5929fb",
+          "mode": "100644",
+          "bytes_in_tree": 33632
+        },
+        {
+          "path": "tools/run_memory_native_authority.py",
+          "git_blob": "54103c9ee0cd4070b808273dca48a169883a1ec5",
+          "mode": "100644",
+          "bytes_in_tree": 12800
+        },
+        {
+          "path": "tools/run_quiz_native_authority.py",
+          "git_blob": "5f02cec5a8eb9f2d0addd43fcfa1cd5717ff63b8",
+          "mode": "100644",
+          "bytes_in_tree": 10531
+        },
+        {
+          "path": "tools/tests/test_memory_native_pair_evidence.py",
+          "git_blob": "f61c72a6691b186d6682c7407c50394a7b132091",
+          "mode": "100644",
+          "bytes_in_tree": 6544
+        }
+      ]
+    }
+  ]
+}

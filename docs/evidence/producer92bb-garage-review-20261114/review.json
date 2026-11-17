@@ -1,0 +1,433 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T16:56:54.056056+00:00",
+  "verdict": "NO_ADDITIONAL_GARAGE_SOURCE_CHANGE_JUSTIFIED",
+  "producer": {
+    "repository": "Ullmann27/lumo-lernen",
+    "commit": "92bb6ebf1e3892eba1695646e489fdd524d1736f",
+    "tree": "3cc76c633e7f4f2cc45a6ec0b23b5cc3d739c45a",
+    "parent": "c2f2ee019e0e8c2624d1a07c273e68940a0c85ab",
+    "commit_original": {
+      "bytes": 79585,
+      "sha256": "e6b2c69c0f90071fdfa6815c8117d7c757966f64842019bd1256b82fe4dce797",
+      "git_blob": "8df87e969e5c80e04ca6b3cd9da7f1377abc7e9f"
+    }
+  },
+  "current_host": {
+    "head": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+    "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+    "index_sha256": "8ce6ca5e2d8ed837f3b3d0b303540fcc6b7c45cbe4b07d63092ac09006698be1",
+    "status_tracked": ""
+  },
+  "current_host_sources": [
+    {
+      "repository_kind": "host",
+      "commit": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+      "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff",
+      "bytes": 78635,
+      "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+      "stored": "bound-source-blobs/d3b7ac74926e57de9b80afac8c431a7e4e6183ff.txt"
+    },
+    {
+      "repository_kind": "host",
+      "commit": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+      "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94",
+      "bytes": 31013,
+      "sha256": "287d12f156ec7839b3d8bb2999fca825f7e2b1775b93fcd801a3c4087578dd8f",
+      "stored": "bound-source-blobs/b80f0d8f12fe86031a91cec39c26f9d1cfa65a94.txt"
+    },
+    {
+      "repository_kind": "host",
+      "commit": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+      "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+      "path": ".github/probes/creative_android_probe.py",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "stored": "bound-source-blobs/c996a022d388632ed13965b392181aef773d9025.txt"
+    },
+    {
+      "repository_kind": "host",
+      "commit": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+      "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+      "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf",
+      "bytes": 27545,
+      "sha256": "c6a88af95fab0bd5d1ac0dd41b42a985cc72051d19e803ed766ef0e793d4bec9",
+      "stored": "bound-source-blobs/4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf.txt"
+    },
+    {
+      "repository_kind": "host",
+      "commit": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+      "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "git_blob": "ea3da4bb07f125df63ab4a88d011999beeef4827",
+      "bytes": 17208,
+      "sha256": "44c2b05f9099eaf13dd8e9811bacb946be58c58c849e76d6d1e042dd2d888206",
+      "stored": "bound-source-blobs/ea3da4bb07f125df63ab4a88d011999beeef4827.txt"
+    },
+    {
+      "repository_kind": "host",
+      "commit": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+      "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "git_blob": "1d02ca8663998dcbddb6c02107148672c5882b52",
+      "bytes": 8453,
+      "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+      "stored": "bound-source-blobs/1d02ca8663998dcbddb6c02107148672c5882b52.txt"
+    }
+  ],
+  "historical_final_source_matches": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "current_git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff",
+      "historical_final_git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff"
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "current_git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94",
+      "historical_final_git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "current_git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf",
+      "historical_final_git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "current_git_blob": "ea3da4bb07f125df63ab4a88d011999beeef4827",
+      "historical_final_git_blob": "ea3da4bb07f125df63ab4a88d011999beeef4827"
+    }
+  ],
+  "native": {
+    "current_ce909_and_original3213_four_sources_byte_identical": true,
+    "native2281_link": "historical-bindings/native-garage-source-binding.json",
+    "actual_fleet_order": [
+      [
+        "comet",
+        "Comet"
+      ],
+      [
+        "gecko_velo",
+        "Gecko Velo"
+      ],
+      [
+        "boru_rally",
+        "Boru Rally"
+      ],
+      [
+        "glider",
+        "Glider"
+      ],
+      [
+        "nala_comet",
+        "Nala Comet"
+      ],
+      [
+        "noa_tide",
+        "Noa Tide"
+      ],
+      [
+        "iva_aurora",
+        "Iva Aurora"
+      ],
+      [
+        "turbo",
+        "Aurora GT"
+      ],
+      [
+        "zuri_volt",
+        "Zuri Volt"
+      ],
+      [
+        "blitz",
+        "Blitz"
+      ],
+      [
+        "terra",
+        "Terra"
+      ],
+      [
+        "koloss",
+        "Koloss"
+      ],
+      [
+        "phantom",
+        "Phantom"
+      ],
+      [
+        "stella",
+        "Stella"
+      ]
+    ],
+    "actual_count": 14,
+    "producer_helper_caption_order": [
+      "comet",
+      "geckovelo",
+      "borurally",
+      "glider",
+      "nalacomet",
+      "noatide"
+    ],
+    "producer_helper_caption_count": 6,
+    "correction": "Both exact Native commits contain the same fourteen-entry fleet. The six Producer values are a helper OCR subset, not a six-entry Native catalog."
+  },
+  "cases": [
+    {
+      "case": "main",
+      "png": {
+        "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/main/21_stage_select_gecko_velo-2.png",
+        "bytes": 759970,
+        "sha256": "0f5995fe791492290fe8063bf25a5de2d8b9ea709622c5154725faff3b916501",
+        "git_blob": "cf536c4f07a9eb29cb6ad268348ab52b2692de04"
+      },
+      "ocr": {
+        "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/main/21_stage_select_gecko_velo-2-ocr.json",
+        "bytes": 20067,
+        "sha256": "cc67098913986a1bddc62c373dd1ce0e56d73fb613d007de3bf56adb8f7fb2dc",
+        "git_blob": "bb75a2f15847084e99378437a3db83a06eb22e93"
+      },
+      "original_ocr_line_count": 151,
+      "original_ocr_variants": [
+        "contrast",
+        "raw",
+        "white-text",
+        "white-latin",
+        "navy-latin",
+        "navy-latin-1x",
+        "teal-text-1x"
+      ],
+      "direct_visual_observation": "Directly viewed unchanged PNG: Gecko vehicle graphics are clipped at the top of the short left list; the complete visible title is Boru Rally below. Workshop control is separate below the list. This is a static image observation, not a successful gesture.",
+      "surface": {
+        "source": "21_stage_select_gecko_velo-2.png",
+        "source_sha256": "0f5995fe791492290fe8063bf25a5de2d8b9ea709622c5154725faff3b916501",
+        "source_bytes": 759970,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "orientation_policy": "landscape",
+        "sample_rows": [
+          130,
+          238,
+          346,
+          454,
+          562,
+          670,
+          778,
+          886
+        ],
+        "blank_edge_columns": {
+          "left": 0,
+          "right": 0
+        },
+        "blank_threshold_rgb_max": 8,
+        "blank_required_rows": 7,
+        "acceptable_for_target_sampling": true,
+        "reasons": [
+          "actual requested caption not observed"
+        ],
+        "scope": "Reject observed partial surface; no scene/gameplay PASS",
+        "captured_after_seconds": 29.262168
+      }
+    },
+    {
+      "case": "update",
+      "png": {
+        "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/update/21_stage_select_gecko_velo-2.png",
+        "bytes": 766610,
+        "sha256": "88ab568d78ee051e4cbb4f3b5eca20f9b55bf5737e3b2b520657729300c2467b",
+        "git_blob": "7a60cf3f744de45580dbc4c56f02067b65303ce3"
+      },
+      "ocr": {
+        "path": "published-added-source/tools/android_qa/tests/fixtures/kart-scroll-c2f2/update/21_stage_select_gecko_velo-2-ocr.json",
+        "bytes": 3702,
+        "sha256": "8913eb125ec09a4f911331c3df91b5d92ecb2e11d1c50c668766c63b453ca63a",
+        "git_blob": "0cb6bdf8a1a2cdb1bf4d7a3a4023551869f6c4bb"
+      },
+      "original_ocr_line_count": 28,
+      "original_ocr_variants": [
+        "contrast"
+      ],
+      "direct_visual_observation": "Directly viewed unchanged PNG: complete Gecko Velo title and its green kart are visible in the left list above the separate workshop control. Original surface metadata explicitly waits for a second stable target; this single frame does not prove a touch.",
+      "surface": {
+        "source": "21_stage_select_gecko_velo-2.png",
+        "source_sha256": "88ab568d78ee051e4cbb4f3b5eca20f9b55bf5737e3b2b520657729300c2467b",
+        "source_bytes": 766610,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "orientation_policy": "landscape",
+        "sample_rows": [
+          130,
+          238,
+          346,
+          454,
+          562,
+          670,
+          778,
+          886
+        ],
+        "blank_edge_columns": {
+          "left": 0,
+          "right": 0
+        },
+        "blank_threshold_rgb_max": 8,
+        "blank_required_rows": 7,
+        "acceptable_for_target_sampling": true,
+        "reasons": [],
+        "scope": "Reject observed partial surface; no scene/gameplay PASS",
+        "captured_after_seconds": 35.216728,
+        "target": {
+          "surface_sha256": "88ab568d78ee051e4cbb4f3b5eca20f9b55bf5737e3b2b520657729300c2467b",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "bounds": [
+            451.0,
+            514.0,
+            658.0,
+            541.0
+          ],
+          "anchor": "",
+          "reasons": [
+            "waiting for second stable observed target bounds"
+          ],
+          "target_geometry_valid": true,
+          "stable_observed_target": false
+        }
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "area": "Overscroll direction",
+      "producer_delta": "Adds backward direction when a complete known card after the requested vehicle is observed; corrective gestures use the caption interior.",
+      "current": "Already chooses backward after Boru for requested Gecko; otherwise current scrollbar position and the exact fourteen-entry order guide direction only.",
+      "decision": "Preserve current implementation."
+    },
+    {
+      "area": "Scroll geometry",
+      "producer_delta": "Initial forward gesture still uses tab/footer gap and a large caption-height multiplier; corrective or reversed gestures use a smaller caption span.",
+      "current": "Every gesture is derived from current workshop outline and scrollbar clip, with ten percent of the observed clip height and minimum fifteen pixels; no remembered coordinate or header/footer-only rectangle.",
+      "decision": "Do not replace the current clip-based observer."
+    },
+    {
+      "area": "Whole-word OCR and unreadable cards",
+      "producer_delta": "Adds a raw crop and new Tesseract pass for six complete captions.",
+      "current": "Existing original-TSV parser requires whole consecutive words in the same variant/line with confidence floor15 and longest known sequence. Empty complete-caption evidence remains eligible for a bounded pixel-observed scroll, never for selection.",
+      "decision": "No independently evidenced new requirement for a second OCR path."
+    },
+    {
+      "area": "Capture-mode mismatch",
+      "producer_delta": "Published update fixture contains only contrast lines after the first Gecko hit.",
+      "current": "Selection explicitly requests exact=True and all_caption_regions=True, preventing the original first-hit break and retaining later menu/workshop observations.",
+      "decision": "The published update JSON cannot be relabelled as the output of our current all-variant capture."
+    },
+    {
+      "area": "Input and selection guards",
+      "current": "Two different fresh image files, viewport/scrollbar/direction stability, both image hashes, maximum five swipes, pre/post input deadline, complete target inside clip and two fresh target observations; saved actual race remains mandatory. Continue retains standalone_caption=True.",
+      "decision": "Preserve all current guards."
+    }
+  ],
+  "separate_non_garage_changes": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "scope": "flutter clean, attach release lint and preserve lint/R8 outputs",
+      "decision": "Excluded from this garage comparison; no current build defect demonstrated here."
+    },
+    {
+      "path": "scripts/gradle/lumo-release-lint.init.gradle",
+      "scope": "assembleRelease finalizedBy lintRelease",
+      "decision": "Excluded; no workflow/Gradle changes proposed."
+    }
+  ],
+  "existing_regression_sources_read": [
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf",
+      "method_count": 24,
+      "methods": [
+        "OriginalGarageViewportTests.test_both_original_layouts_keep_every_scroll_point_inside_the_real_clip",
+        "OriginalGarageViewportTests.test_actual_old_drag_crosses_the_clip_even_though_tabs_and_footer_enclose_it",
+        "OriginalGarageViewportTests.test_both_actual_anchorless_frames_produce_scroll_evidence_without_a_card_tap",
+        "OriginalGarageViewportTests.test_missing_or_foreign_surface_binding_cannot_authorize_scroll",
+        "OriginalGarageViewportTests.test_actual_current_menu_context_is_required_even_when_scroll_pixels_exist",
+        "OriginalGarageViewportTests.test_missing_or_two_current_scrollbar_tracks_do_not_authorize_a_drag",
+        "OriginalGarageViewportTests.test_correct_dimensions_and_file_hash_do_not_make_a_jpeg_a_capture_png",
+        "ObservedGarageScrollBoundaryTests.test_a_new_horizontal_layout_requires_its_own_second_current_observation",
+        "ObservedGarageScrollBoundaryTests.test_a_missing_intervening_frame_cannot_reuse_the_prior_scroll_observation",
+        "ObservedGarageScrollBoundaryTests.test_replaced_previous_png_invalidates_the_pair_even_when_current_png_is_unchanged",
+        "ObservedGarageScrollBoundaryTests.test_expired_deadline_refuses_an_otherwise_stable_real_scroll",
+        "ObservedGarageScrollBoundaryTests.test_deadline_expiring_during_real_pixel_analysis_prevents_input",
+        "GarageExactTargetTests.test_multiple_original_ocr_variants_of_one_complete_card_are_one_target",
+        "GarageExactTargetTests.test_actual_anchorless_and_partial_ocr_never_name_the_selected_vehicle",
+        "GarageExactTargetTests.test_a_caption_outside_or_straddling_the_actual_clip_is_not_a_target",
+        "GarageExactTargetTests.test_two_distinct_exact_card_regions_are_not_reduced_to_the_first_match",
+        "GarageExactTargetTests.test_prefix_suffix_and_partial_captions_do_not_authorize_a_selection",
+        "GarageSelectionObservationTests.test_comet_selection_reads_later_original_variants_that_contain_the_workshop",
+        "GarageSelectionObservationTests.test_anchorless_view_can_scroll_but_only_two_new_complete_frames_allow_the_tap",
+        "GarageSelectionObservationTests.test_one_old_complete_frame_and_one_new_frame_do_not_form_a_stable_target_pair",
+        "GarageSelectionObservationTests.test_actual_missing_and_partial_captions_never_become_a_vehicle_tap",
+        "GarageSelectionObservationTests.test_current_png_replacement_after_ocr_cannot_authorize_scroll_or_tap",
+        "GarageSelectionObservationTests.test_capture_or_ocr_crossing_the_selection_deadline_cannot_send_a_tap",
+        "GarageSelectionObservationTests.test_ambiguous_complete_targets_fail_in_the_real_selection_caller"
+      ],
+      "execution_in_this_review": "NOT_RUN"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "git_blob": "ea3da4bb07f125df63ab4a88d011999beeef4827",
+      "method_count": 14,
+      "methods": [
+        "GarageOriginalWordSequenceTests.test_original_boru_frame_recovers_only_scroll_after_two_bound_frames",
+        "GarageOriginalWordSequenceTests.test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job",
+        "GarageOriginalWordSequenceTests.test_original_line_gap_and_exact_comet_path_use_the_current_clip",
+        "GarageOriginalWordSequenceTests.test_known_complete_names_keep_case_whitespace_and_longest_caption",
+        "GarageOriginalWordSequenceTests.test_partial_interrupted_cross_line_and_word_number_gap_are_rejected",
+        "GarageOriginalWordSequenceTests.test_distant_columns_or_disjoint_word_rows_are_not_joined",
+        "GarageOriginalWordSequenceTests.test_word_confidence_and_original_tsv_presence_remain_mandatory",
+        "GarageOriginalWordSequenceTests.test_invalid_or_outside_word_rectangles_are_rejected",
+        "GarageOriginalWordSequenceTests.test_right_preview_header_and_footer_captions_cannot_be_scroll_cards",
+        "GarageOriginalWordSequenceTests.test_duplicate_real_regions_and_conflicting_names_are_ambiguous",
+        "GarageOriginalWordSequenceTests.test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved",
+        "GarageOriginalWordSequenceTests.test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe",
+        "GarageOriginalWordSequenceTests.test_five_gesture_limit_remains_hard_after_word_recovery",
+        "GarageOriginalWordSequenceTests.test_missing_anchors_or_incomplete_surface_never_activate_word_recovery"
+      ],
+      "execution_in_this_review": "NOT_RUN"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "git_blob": "1d02ca8663998dcbddb6c02107148672c5882b52",
+      "method_count": 9,
+      "methods": [
+        "KartContinueCaptionTests.test_actual_two_frame_continue_targets_the_independent_caption",
+        "KartContinueCaptionTests.test_instruction_word_without_a_standalone_caption_never_taps",
+        "KartContinueCaptionTests.test_two_distinct_independent_controls_remain_ambiguous",
+        "KartContinueCaptionTests.test_duplicate_same_control_and_ocr_order_do_not_change_the_target",
+        "KartContinueCaptionTests.test_invalid_or_offscreen_matching_region_cannot_be_discarded_silently",
+        "KartContinueCaptionTests.test_original_png_change_after_ocr_still_prevents_dispatch",
+        "KartContinueCaptionTests.test_late_ocr_does_not_outlive_the_existing_touch_deadline",
+        "KartContinueCaptionTests.test_substrings_are_not_promoted_to_the_exact_continue_caption",
+        "KartContinueCaptionTests.test_existing_native_callers_keep_their_original_forwarded_contract"
+      ],
+      "execution_in_this_review": "NOT_RUN"
+    }
+  ],
+  "producer_new_tests": "Published test file read statically only. Its Tesseract replay uses skipUnless; no Producer claimed test count is adopted as a current result.",
+  "limitations": [
+    "No product module imported, no OCR replay, no tests, device action or CI query executed in this review.",
+    "Both PNGs are byte-exact published fixtures. Their complete Actions ZIPs were not downloaded or independently reauthenticated here.",
+    "New current-frame behavior is inferred from exact source control flow; no PASS is claimed for the new C2 fixtures on 3fac or for Android.",
+    "Own Host checkout is shallow; historical 9f2f/5ad applicability is bound through the preserved earlier final-source freeze, not a claimed unavailable local commit read.",
+    "No changes to source, index, refs, workflows, pins or active candidate."
+  ],
+  "proposed_source_paths": []
+}

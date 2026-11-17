@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "kind": "Lossless transport partition; no archive or PNG modification",
+  "original_archive": {
+    "name": "native-baf148b-root-reviewed-15.tar.gz",
+    "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/native-baf148b-root-reviewed-15.tar.gz",
+    "bytes": 25465892,
+    "sha256": "c527f35148189bdca92aa42288a66f165c6a2ebcbddee16c5b7a87c518129d2c",
+    "git_blob": "56324dd2c477ed179001f5f27261e3adbd409219"
+  },
+  "parts": [
+    {
+      "name": "native-baf148b-root-reviewed-15.tar.gz.part-001",
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-reviewed-images-multipart-20261114/native-baf148b-root-reviewed-15.tar.gz.part-001",
+      "bytes": 5242880,
+      "sha256": "b813a5f0858906d59ab9884d09038a07fba0f5e92faa49f12bb0ca984aa449c3",
+      "git_blob": "945bb0e98621279c0654675e0076beb14ccd6e7c"
+    },
+    {
+      "name": "native-baf148b-root-reviewed-15.tar.gz.part-002",
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-reviewed-images-multipart-20261114/native-baf148b-root-reviewed-15.tar.gz.part-002",
+      "bytes": 5242880,
+      "sha256": "5f605ec34cf46de3289bf90f6c56489bb9842a3cec81a07d24f8d1ea514b92b8",
+      "git_blob": "57d0a61af7cff13c715c60c2e2627783c642ddb7"
+    },
+    {
+      "name": "native-baf148b-root-reviewed-15.tar.gz.part-003",
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-reviewed-images-multipart-20261114/native-baf148b-root-reviewed-15.tar.gz.part-003",
+      "bytes": 5242880,
+      "sha256": "db834f7c49ea26704af2e6087097deaafabab9841ed0789df7ee0ced868789d6",
+      "git_blob": "db26baf2259822cfd0ffade0c2e8ecf6f331e1f3"
+    },
+    {
+      "name": "native-baf148b-root-reviewed-15.tar.gz.part-004",
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-reviewed-images-multipart-20261114/native-baf148b-root-reviewed-15.tar.gz.part-004",
+      "bytes": 5242880,
+      "sha256": "a42440172adc0a79474962faa9307b47347c5e6b5f21bb6f1f12b452d4fdb84d",
+      "git_blob": "7d989fb697af3359f4b60e0a45069395ae0ffca2"
+    },
+    {
+      "name": "native-baf148b-root-reviewed-15.tar.gz.part-005",
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-reviewed-images-multipart-20261114/native-baf148b-root-reviewed-15.tar.gz.part-005",
+      "bytes": 4494372,
+      "sha256": "99abda041f79fe84cbec8fb7b1d1bac1f4d4b64eea42ad0ed77f51c64f371a07",
+      "git_blob": "535e60a00d7bcc950c91e7e33c0ba2e4d22e1f5b"
+    }
+  ],
+  "ordered_concatenation_byte_equals_original": true,
+  "all_17_original_archive_members_preserved": true,
+  "failure_record": {
+    "initial_single_blob": "No matching structured blob SHA received; complete raw tool response was not retained by the earlier publication helper.",
+    "subsequent_actual_readback": "GitHub GET /git/blobs/56324dd2c477ed179001f5f27261e3adbd409219 returned404; evidence branch remained at0b7bacadd3cdc45d22a8e038c5df50ba8b739d62.",
+    "exact_tool_failure_reason": "Not established from the retained response; no reason invented.",
+    "same_large_payload_retried": false
+  },
+  "repository_transport": "The proposed single archive path is replaced by the five ordered .part files and this supplemental binding. Original documentary/source manifests remain byte-identical and continue to describe the original full archive."
+}

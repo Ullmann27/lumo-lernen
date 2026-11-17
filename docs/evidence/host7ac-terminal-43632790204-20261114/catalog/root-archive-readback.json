@@ -1,0 +1,11 @@
+{
+  "created_utc": "2026-11-14T20:12:32.988324+00:00",
+  "status": "ALL_34_ARCHIVE_MEMBERS_AND_30_MAPPED_ORIGINALS_BYTE_VERIFIED",
+  "archive_sha256": "13ca059b7af9061dfeda758024727a112c84adc68692aa196fa0d92f1eb28507",
+  "archive_bytes": 581920,
+  "run": 43632790204,
+  "attempt": 1,
+  "host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "overall_result": "FAILURE",
+  "scope": "Archive and original-file readback only. No test replay, run restart or new source success."
+}

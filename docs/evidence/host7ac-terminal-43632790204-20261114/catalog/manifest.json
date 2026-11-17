@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "kind": "terminal_catalog_freeze",
+  "files": [
+    {
+      "path": "mapping.json",
+      "bytes": 30344,
+      "sha256": "0219ec53aab9ec56c5a17c603ee7765afe08b36e98d89bbe5b56255e755a0dbc",
+      "git_blob": "bee0e84c70a187fe7e9d9fbc11d5a56cc9efb03d"
+    },
+    {
+      "path": "first-failure.json",
+      "bytes": 2089,
+      "sha256": "1ac7bdfd119582acefc2e56bf6ced6bb7b6754de2edc0b3c8ddb3c0518c56d9c",
+      "git_blob": "6bf7ffe8b79bc226ded1de08c67b5c39a7cc6c8b"
+    },
+    {
+      "path": "catalog_existing_originals.py",
+      "bytes": 13457,
+      "sha256": "43a9f9f4ed0475221d7c335ff4199a26205a19b55eb63bc7e7b4a3dcb9b63328",
+      "git_blob": "6484e23e73b744d05796cd2181b1b327af212c8d"
+    }
+  ],
+  "original_files_in_mapping": 30,
+  "large_archives_remain_separate": true,
+  "source_inputs_read_only": true
+}

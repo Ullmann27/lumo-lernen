@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "contracts": [
+    {
+      "repository": "host",
+      "source_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+      "all_current_leaf_count": 4485,
+      "protected_existing_leaf_count": 4473,
+      "selected_paths_total": 43,
+      "canonical_sha256": "5286b18317c8f8fed330d02f2274f93888de28a6f0502ed8b15eb0c4f4a7a4a3",
+      "canonical_format": "UTF-8 lines sorted by UTF-8 path bytes: mode SPACE git_blob SPACE path LF",
+      "original_full_index": "originals/host-target-tree.json",
+      "required_future_condition": "Every current leaf outside the explicit selected paths remains byte/mode/path identical; selected files still require the separate preservation contracts. No application performed."
+    },
+    {
+      "repository": "native",
+      "source_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+      "all_current_leaf_count": 3689,
+      "protected_existing_leaf_count": 3685,
+      "selected_paths_total": 30,
+      "canonical_sha256": "3ac839115615f40dfdb87e1a080d21b692f09d62f380579543b13d099203b510",
+      "canonical_format": "UTF-8 lines sorted by UTF-8 path bytes: mode SPACE git_blob SPACE path LF",
+      "original_full_index": "originals/native-target-tree.json",
+      "required_future_condition": "Every current leaf outside the explicit selected paths remains byte/mode/path identical; selected files still require the separate preservation contracts. No application performed."
+    }
+  ]
+}

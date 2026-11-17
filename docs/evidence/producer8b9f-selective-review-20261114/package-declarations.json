@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "path": "pubspec.yaml",
+  "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+  "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+  "bytes": 2718,
+  "declared_package_names_referenced_by_selected_sources": [
+    "crypto",
+    "flutter",
+    "flutter_test",
+    "shared_preferences",
+    "shared_preferences_platform_interface"
+  ],
+  "all_declared": true,
+  "scope": "Static unchanged target declaration check only; no pub or package operation."
+}

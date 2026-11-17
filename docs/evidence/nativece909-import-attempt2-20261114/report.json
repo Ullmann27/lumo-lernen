@@ -1,0 +1,36 @@
+{
+  "status": "FROZEN_SECOND_ACTUAL_IMPORT_SIGKILL",
+  "head": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+  "tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+  "attempt": 2,
+  "explicitly_authorized_after_resource_relocation": true,
+  "duration_seconds": 13.825064178001412,
+  "returncode": -9,
+  "timed_out": false,
+  "engine_error_markers": [],
+  "stderr_empty": true,
+  "last_original_progress": "reimport | stick_knopf_normal.png",
+  "cause": "Unresolved. No OOM event or pre/post cgroup counters available; resource relief does not prove the cause of either SIGKILL.",
+  "memory_kB": {
+    "available_before": 1866020,
+    "available_after": 1933168
+  },
+  "source_invariance": {
+    "checks": {
+      "head": true,
+      "tree": true,
+      "index_sha256": true,
+      "tracked": true
+    },
+    "tracked_count": 3742,
+    "materialized_count": 3742,
+    "generated_entries": 398,
+    "no_cleanup_performed": true
+  },
+  "original_small_cache_before": 2,
+  "cache_entries_after": 90,
+  "initial_import_and_six_python_contract_originals": "/workspace/scratch/b3485b7bb989/native-ce909c4-import-validation-20261114",
+  "no_further_engine_attempt": true,
+  "no_authority_or_game_tests": true,
+  "scope": "Import prerequisite is not qualified; preserve failure and use separate exact-source renderer qualification workflow."
+}

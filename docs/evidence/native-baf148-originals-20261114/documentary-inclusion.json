@@ -1,0 +1,1891 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "native_source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "run_id": 43600806315,
+  "attempt": 1,
+  "job_id": 132464933411,
+  "artifact_id": 14116698243,
+  "members": [
+    {
+      "archive_path": "native-evidence/README.md",
+      "original_pack_path": "README.md",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/README.md",
+      "bytes": 4446,
+      "sha256": "81367c9f2652c27ea011057aa6ddc4e243ea2d74b44becd95bc43913c5788148",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/SHA256SUMS",
+      "original_pack_path": "SHA256SUMS",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/SHA256SUMS",
+      "bytes": 298693,
+      "sha256": "1845e531edcba6a9b5379d3db0136de03954d5bfddab3013a18d280fa45b5ced",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/check_original_artifact.py",
+      "original_pack_path": "analysis/check_original_artifact.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/check_original_artifact.py",
+      "bytes": 17061,
+      "sha256": "0e366a47a80b69fa4f98e822ce7c9e0b6e86c4d4f32fb160bea3a6592b9ce52d",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/finalize_evidence.py",
+      "original_pack_path": "analysis/finalize_evidence.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/finalize_evidence.py",
+      "bytes": 13689,
+      "sha256": "c2f05a38193e64e950a8b094718c995a45ad6e93309ee6cfcea7eeb7c8f8cf3e",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/mobile-read-only-adapter.patch",
+      "original_pack_path": "analysis/mobile-read-only-adapter.patch",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/mobile-read-only-adapter.patch",
+      "bytes": 2320,
+      "sha256": "20949b82dca2b31738c7e81483846a18ac237380d00d0c7cf455292c090cb4b7",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/mobile-read-only-replay.py",
+      "original_pack_path": "analysis/mobile-read-only-replay.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/mobile-read-only-replay.py",
+      "bytes": 7779,
+      "sha256": "ead4cb925611d5f76878f14ca926205bf5a1076359b5bbeb515b07cd2a02959e",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/mobile-workflow-original.py",
+      "original_pack_path": "analysis/mobile-workflow-original.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/mobile-workflow-original.py",
+      "bytes": 7834,
+      "sha256": "d5939bd56ee5abca6200838e2c135bb46db4b4d526662ded9b33f9546f856805",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/verification-invocation.json",
+      "original_pack_path": "analysis/verification-invocation.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/verification-invocation.json",
+      "bytes": 1520,
+      "sha256": "a00e11903696dbfac07089e9be8e79ba6ce38e603f5b6ecb792e40e454e68f5b",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/verification-run.stderr",
+      "original_pack_path": "analysis/verification-run.stderr",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/verification-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/verification-run.stdout",
+      "original_pack_path": "analysis/verification-run.stdout",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/verification-run.stdout",
+      "bytes": 302,
+      "sha256": "482444c4bf1a6a26358a3575f2d43ceec1dd4cac79c552d7be0e72582e81d36e",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/village-read-only-adapter.patch",
+      "original_pack_path": "analysis/village-read-only-adapter.patch",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/village-read-only-adapter.patch",
+      "bytes": 1036,
+      "sha256": "c76ce7147fd8f3a17485cb58033671382c87b3c5e95289031104a88b515a9f5e",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/village-read-only-replay.py",
+      "original_pack_path": "analysis/village-read-only-replay.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/village-read-only-replay.py",
+      "bytes": 3741,
+      "sha256": "7064c772ecf216e004ccdd6b8a90465956f4c3236eae9a1c95b3705e0b5097ac",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/village-workflow-original.py",
+      "original_pack_path": "analysis/village-workflow-original.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/village-workflow-original.py",
+      "bytes": 3862,
+      "sha256": "7e593ff0e2d11504aef90e141e048c6847be090b4e690473109644bde35c089a",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/analysis/workflow-replay-provenance.json",
+      "original_pack_path": "analysis/workflow-replay-provenance.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/analysis/workflow-replay-provenance.json",
+      "bytes": 1358,
+      "sha256": "c099e4b055b7e455c1e966ae1d1fbda71df9479048da72c8456c3eea7107a7f6",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/artifacts/14116698243/artifact-object-original-slice.json",
+      "original_pack_path": "artifacts/14116698243/artifact-object-original-slice.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/artifacts/14116698243/artifact-object-original-slice.json",
+      "bytes": 760,
+      "sha256": "86a836a5ea9eb2efd5da9820d9c1a8316a8e4aa9c0a1baec84bb4727fc221ee8",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/artifacts/14116698243/artifact-object-provenance.json",
+      "original_pack_path": "artifacts/14116698243/artifact-object-provenance.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/artifacts/14116698243/artifact-object-provenance.json",
+      "bytes": 609,
+      "sha256": "8297429c4d753d974d3fbf4483ccd4527839a8620b808f782d62be8fa24db89a",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/.github/workflows/lumo-discovery-connections.yml",
+      "original_pack_path": "frozen-source/.github/workflows/lumo-discovery-connections.yml",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/.github/workflows/lumo-discovery-connections.yml",
+      "bytes": 35914,
+      "sha256": "7808349f14aa39259edaee1d5b832c8660f45a8c7065af65f8e285ff99104a0f",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/manifest.json",
+      "original_pack_path": "frozen-source/manifest.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/manifest.json",
+      "bytes": 3131,
+      "sha256": "1a722be242ca642874973aa160f1037aaabe9328c71216f2a993581a19fbe6d5",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/scripts/tests/build_village_economy_regression.gd",
+      "original_pack_path": "frozen-source/scripts/tests/build_village_economy_regression.gd",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/scripts/tests/build_village_economy_regression.gd",
+      "bytes": 17867,
+      "sha256": "1fa590e75ebf408c2a0531377acb1079f6bb9c0d83d924e83878d3e06e049fd1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/scripts/tests/build_village_scaling_regression.gd",
+      "original_pack_path": "frozen-source/scripts/tests/build_village_scaling_regression.gd",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/scripts/tests/build_village_scaling_regression.gd",
+      "bytes": 6163,
+      "sha256": "3c91d1001cab476bf171bf8d9517b0f4fa46db976f1c4be6d8ef125d86af5436",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/scripts/tests/mobile_safe_area_regression.gd",
+      "original_pack_path": "frozen-source/scripts/tests/mobile_safe_area_regression.gd",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/scripts/tests/mobile_safe_area_regression.gd",
+      "bytes": 26254,
+      "sha256": "8188911d6f91deaec924fdc7857feec876af075a8d04522b49dd14429d501aa5",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/tools/collect_discovery_connections.py",
+      "original_pack_path": "frozen-source/tools/collect_discovery_connections.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/tools/collect_discovery_connections.py",
+      "bytes": 9979,
+      "sha256": "bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/tools/run_godot_probe.py",
+      "original_pack_path": "frozen-source/tools/run_godot_probe.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/tools/validate_discovery_connections.sh",
+      "original_pack_path": "frozen-source/tools/validate_discovery_connections.sh",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/tools/validate_discovery_connections.sh",
+      "bytes": 3315,
+      "sha256": "b508826d07120d5b85a65858971562a941901ee3750c951ab315ff9dbd7cc041",
+      "mode": "0o755"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/tools/validate_dream_connections.sh",
+      "original_pack_path": "frozen-source/tools/validate_dream_connections.sh",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/tools/validate_dream_connections.sh",
+      "bytes": 4660,
+      "sha256": "19366398784db00c335800bc26ab3e171e062eb2149316021039bc027706dadc",
+      "mode": "0o755"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/tools/verify_discovery_connections.py",
+      "original_pack_path": "frozen-source/tools/verify_discovery_connections.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/tools/verify_discovery_connections.py",
+      "bytes": 23700,
+      "sha256": "5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/tools/verify_discovery_rasters.py",
+      "original_pack_path": "frozen-source/tools/verify_discovery_rasters.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/tools/verify_discovery_rasters.py",
+      "bytes": 11528,
+      "sha256": "55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/frozen-source/tools/verify_dream_rasters.py",
+      "original_pack_path": "frozen-source/tools/verify_dream_rasters.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/frozen-source/tools/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "mode": "0o755"
+    },
+    {
+      "archive_path": "native-evidence/handoff.json",
+      "original_pack_path": "handoff.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/handoff.json",
+      "bytes": 4287,
+      "sha256": "5571d503914087ff034cb6dc6c5d99c196d455b1949115bfd5698d5ad2537d17",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/jobs/job-132464933411.log",
+      "original_pack_path": "jobs/job-132464933411.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/jobs/job-132464933411.log",
+      "bytes": 381313,
+      "sha256": "a0ceed015bcd4fa417e7ae82555a4ed463b58e6b4c659a802a09868c21775402",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/manifest.json",
+      "original_pack_path": "manifest.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/manifest.json",
+      "bytes": 407879,
+      "sha256": "88ed1ce2b606f0b48fc95fcfdd7ad04f13b33747e1c641f084df225d48a1b79f",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/original-retention.json",
+      "original_pack_path": "original-retention.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/original-retention.json",
+      "bytes": 1235,
+      "sha256": "34859980d21106d61286ddf55629f5f85fab14f17b0a8ce507bd3c659f50aa78",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/root-review-candidates-15.json",
+      "original_pack_path": "root-review-candidates-15.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/root-review-candidates-15.json",
+      "bytes": 9299,
+      "sha256": "b89114ebbd23a00b7707dbde39aaa4ee713b2857dd39953893baae5a72f229cf",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/root-review-candidates-60.json",
+      "original_pack_path": "root-review-candidates-60.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/root-review-candidates-60.json",
+      "bytes": 35463,
+      "sha256": "164e5aa9596fd134a50209be1b74d207a26dc7a6b3e05ff1047e996f42511701",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T133958Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T133958Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T133958Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T133958Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T133958Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T133958Z/jobs.json",
+      "bytes": 3796,
+      "sha256": "10068d9e2a5b66ca6ed1a21000ffb7336c4821d45ec17453147dccdee56432a2",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T133958Z/run.json",
+      "original_pack_path": "snapshots/20261114T133958Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T133958Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134214Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T134214Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134214Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134214Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T134214Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134214Z/jobs.json",
+      "bytes": 3925,
+      "sha256": "d438bde33c7fdf6740ef93f25c5077c371437a3e3c0f314dadfd978647b917e9",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134214Z/run.json",
+      "original_pack_path": "snapshots/20261114T134214Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134214Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134431Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T134431Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134431Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134431Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T134431Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134431Z/jobs.json",
+      "bytes": 3925,
+      "sha256": "d438bde33c7fdf6740ef93f25c5077c371437a3e3c0f314dadfd978647b917e9",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134431Z/run.json",
+      "original_pack_path": "snapshots/20261114T134431Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134431Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134659Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T134659Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134659Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134659Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T134659Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134659Z/jobs.json",
+      "bytes": 3925,
+      "sha256": "d438bde33c7fdf6740ef93f25c5077c371437a3e3c0f314dadfd978647b917e9",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134659Z/run.json",
+      "original_pack_path": "snapshots/20261114T134659Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134659Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134857Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T134857Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134857Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134857Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T134857Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134857Z/jobs.json",
+      "bytes": 3925,
+      "sha256": "d438bde33c7fdf6740ef93f25c5077c371437a3e3c0f314dadfd978647b917e9",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T134857Z/run.json",
+      "original_pack_path": "snapshots/20261114T134857Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T134857Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135104Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T135104Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135104Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135104Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T135104Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135104Z/jobs.json",
+      "bytes": 3925,
+      "sha256": "d438bde33c7fdf6740ef93f25c5077c371437a3e3c0f314dadfd978647b917e9",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135104Z/run.json",
+      "original_pack_path": "snapshots/20261114T135104Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135104Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135336Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T135336Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135336Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135336Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T135336Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135336Z/jobs.json",
+      "bytes": 3925,
+      "sha256": "d438bde33c7fdf6740ef93f25c5077c371437a3e3c0f314dadfd978647b917e9",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135336Z/run.json",
+      "original_pack_path": "snapshots/20261114T135336Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135336Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135528Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T135528Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135528Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135528Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T135528Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135528Z/jobs.json",
+      "bytes": 3925,
+      "sha256": "d438bde33c7fdf6740ef93f25c5077c371437a3e3c0f314dadfd978647b917e9",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135528Z/run.json",
+      "original_pack_path": "snapshots/20261114T135528Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135528Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135708Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T135708Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135708Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135708Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T135708Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135708Z/jobs.json",
+      "bytes": 4011,
+      "sha256": "bdabd6024fb542452754d4e03251c30997863133d4a022de870d8dc83be7d663",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135708Z/run.json",
+      "original_pack_path": "snapshots/20261114T135708Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135708Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135849Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T135849Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135849Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135849Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T135849Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135849Z/jobs.json",
+      "bytes": 4011,
+      "sha256": "bdabd6024fb542452754d4e03251c30997863133d4a022de870d8dc83be7d663",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T135849Z/run.json",
+      "original_pack_path": "snapshots/20261114T135849Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T135849Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T140016Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T140016Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T140016Z/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T140016Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T140016Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T140016Z/jobs.json",
+      "bytes": 4011,
+      "sha256": "bdabd6024fb542452754d4e03251c30997863133d4a022de870d8dc83be7d663",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T140016Z/run.json",
+      "original_pack_path": "snapshots/20261114T140016Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T140016Z/run.json",
+      "bytes": 12389,
+      "sha256": "117fd94edb9261d6b3bbbbe98ad5f63eaa811f563cea77099cfaca80ff2bd9b1",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T140219Z/artifacts.json",
+      "original_pack_path": "snapshots/20261114T140219Z/artifacts.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T140219Z/artifacts.json",
+      "bytes": 792,
+      "sha256": "ef644eb5175f32c83769792888050683b891c74d58ee052023d6aa1ff88fe14d",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T140219Z/jobs.json",
+      "original_pack_path": "snapshots/20261114T140219Z/jobs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T140219Z/jobs.json",
+      "bytes": 4336,
+      "sha256": "f801bf24d895be5ed8e6ea6eaa9549772ed4d3a6826fa8a1488637f34ce10a87",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/snapshots/20261114T140219Z/run.json",
+      "original_pack_path": "snapshots/20261114T140219Z/run.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/snapshots/20261114T140219Z/run.json",
+      "bytes": 12392,
+      "sha256": "e2f0fbe7728c7342ceff991eef5e56bd3332d9920f8a5175c5cea13d396bded7",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/source-identity/commit.json",
+      "original_pack_path": "source-identity/commit.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/source-identity/commit.json",
+      "bytes": 1199,
+      "sha256": "aae68ff33c0ae7fbb0c9ab4e7d6f121854fda69ff1f883a6112054ef41ff26af",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/source-identity/initial-runs.json",
+      "original_pack_path": "source-identity/initial-runs.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/source-identity/initial-runs.json",
+      "bytes": 12425,
+      "sha256": "c8b1e241758049ea199cdd7427c1a1ac9e5d30aca91a09b633e1a7d4810a1d31",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/source-identity/tree.json",
+      "original_pack_path": "source-identity/tree.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/source-identity/tree.json",
+      "bytes": 1307946,
+      "sha256": "0aa9763d8caaf7a4fa36e7597a4d243b3b4f0bd25aec90dfc6be22c14f265327",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/timings.json",
+      "original_pack_path": "timings.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/timings.json",
+      "bytes": 5349,
+      "sha256": "7f9bc8759c7bbb843ca7bfad003c0b74022bc695ce442176ee1dab4c161c9634",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/transfer-history.json",
+      "original_pack_path": "transfer-history.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/transfer-history.json",
+      "bytes": 1210,
+      "sha256": "b38d1083d376bee37ac5b81dded018db2cde18f85b7359a9fe5504a906f68189",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/verification/archive-verification.json",
+      "original_pack_path": "verification/archive-verification.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/archive-verification.json",
+      "bytes": 473095,
+      "sha256": "a241f7844cc7631e405fb457e61ea928927c1b830a72bdac5e03706d9cc8c87b",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/verification/original-replay.json",
+      "original_pack_path": "verification/original-replay.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/original-replay.json",
+      "bytes": 86206,
+      "sha256": "1a47baf54ffeeffc444334de3439622f97c61b4599cc735ea049f36efd9eeac9",
+      "mode": "0o644"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery-collector.log",
+      "original_pack_path": "verification/originals/discovery-collector.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery-collector.log",
+      "bytes": 1350,
+      "sha256": "568177a131c00a25c9b89a47185bcd224cbee0256bf113fb028faa732745eb07",
+      "mode": "0o644",
+      "original_zip_entry": "discovery-collector.log",
+      "crc32": "a6c8be5d"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery-read-only-replay.log",
+      "original_pack_path": "verification/originals/discovery-read-only-replay.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery-read-only-replay.log",
+      "bytes": 40452,
+      "sha256": "7748bea1a7e1dd809bd94c815a57dfd53f1f3f6cad649a5a856f33b6a413bfbb",
+      "mode": "0o644",
+      "original_zip_entry": "discovery-read-only-replay.log",
+      "crc32": "cd95a65c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/captures/hub/hub-original-identity.json",
+      "original_pack_path": "verification/originals/discovery/captures/hub/hub-original-identity.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/captures/hub/hub-original-identity.json",
+      "bytes": 2703,
+      "sha256": "12feeba1ca0437c6dca58a2ad3ca47f93d24919af96d79cce263e6a37f9c7f80",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/captures/hub/hub-original-identity.json",
+      "crc32": "2c9049d9"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/captures/wonder/captures.json",
+      "original_pack_path": "verification/originals/discovery/captures/wonder/captures.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/captures/wonder/captures.json",
+      "bytes": 10018,
+      "sha256": "0d50806be4be8f72c691659e253768ae4932cad1aa3096e7f0027efbc153f7cf",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/captures/wonder/captures.json",
+      "crc32": "75881ea6"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/collection-context.json",
+      "original_pack_path": "verification/originals/discovery/collection-context.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/collection-context.json",
+      "bytes": 668,
+      "sha256": "fac7bf67f83a3ac37f425de238c26a2218b0a75e44e6ec43e67f58074f11c70a",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/collection-context.json",
+      "crc32": "9883f8f7"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/discovery-acceptance.json",
+      "original_pack_path": "verification/originals/discovery/discovery-acceptance.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/discovery-acceptance.json",
+      "bytes": 40370,
+      "sha256": "989483a26753d61faeb01042067fde05c962019ce52e1e631f69931ada71ca78",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/discovery-acceptance.json",
+      "crc32": "8cdef70d"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/engine-binary.json",
+      "original_pack_path": "verification/originals/discovery/engine-binary.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/engine-binary.json",
+      "bytes": 215,
+      "sha256": "aac82a5f97b00b8ef4c4db8a8043bfdc63886ab39671c41751c337c48e2fc61a",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/engine-binary.json",
+      "crc32": "ba7402c1"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/engine.txt",
+      "original_pack_path": "verification/originals/discovery/engine.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/engine.txt",
+      "crc32": "12281f13"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/helpers/collect_discovery_connections.py",
+      "original_pack_path": "verification/originals/discovery/helpers/collect_discovery_connections.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/helpers/collect_discovery_connections.py",
+      "bytes": 9979,
+      "sha256": "bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/helpers/collect_discovery_connections.py",
+      "crc32": "b1c16802"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/helpers/run_godot_probe.py",
+      "original_pack_path": "verification/originals/discovery/helpers/run_godot_probe.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/helpers/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/helpers/run_godot_probe.py",
+      "crc32": "59225853"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/helpers/verify_discovery_connections.py",
+      "original_pack_path": "verification/originals/discovery/helpers/verify_discovery_connections.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/helpers/verify_discovery_connections.py",
+      "bytes": 23700,
+      "sha256": "5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/helpers/verify_discovery_connections.py",
+      "crc32": "49cfcc97"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/helpers/verify_discovery_rasters.py",
+      "original_pack_path": "verification/originals/discovery/helpers/verify_discovery_rasters.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/helpers/verify_discovery_rasters.py",
+      "bytes": 11528,
+      "sha256": "55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/helpers/verify_discovery_rasters.py",
+      "crc32": "d1367a97"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/helpers/verify_dream_rasters.py",
+      "original_pack_path": "verification/originals/discovery/helpers/verify_dream_rasters.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/helpers/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/helpers/verify_dream_rasters.py",
+      "crc32": "173ff0d9"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/invocations.json",
+      "original_pack_path": "verification/originals/discovery/invocations.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/invocations.json",
+      "bytes": 23016,
+      "sha256": "ac4271733f83f577368a2587ba55c8d9e6d523b64212789118dea8b72ebcdd2e",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/invocations.json",
+      "crc32": "c74f52d3"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/01-learning_world_regression-headless.log",
+      "original_pack_path": "verification/originals/discovery/logs/01-learning_world_regression-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/01-learning_world_regression-headless.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/01-learning_world_regression-headless.log",
+      "crc32": "adb79977"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/01-learning_world_regression-headless.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/01-learning_world_regression-headless.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/01-learning_world_regression-headless.runner.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/01-learning_world_regression-headless.runner.log",
+      "crc32": "adb79977"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/02-learning_sharing_regression-headless.log",
+      "original_pack_path": "verification/originals/discovery/logs/02-learning_sharing_regression-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/02-learning_sharing_regression-headless.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/02-learning_sharing_regression-headless.log",
+      "crc32": "ffa60be0"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/02-learning_sharing_regression-headless.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/02-learning_sharing_regression-headless.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/02-learning_sharing_regression-headless.runner.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/02-learning_sharing_regression-headless.runner.log",
+      "crc32": "ffa60be0"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/03-learning_studio_regression-headless.log",
+      "original_pack_path": "verification/originals/discovery/logs/03-learning_studio_regression-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/03-learning_studio_regression-headless.log",
+      "bytes": 1805,
+      "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/03-learning_studio_regression-headless.log",
+      "crc32": "6755f869"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/03-learning_studio_regression-headless.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/03-learning_studio_regression-headless.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/03-learning_studio_regression-headless.runner.log",
+      "bytes": 1805,
+      "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/03-learning_studio_regression-headless.runner.log",
+      "crc32": "6755f869"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/04-game_hub_magic_regression-headless.log",
+      "original_pack_path": "verification/originals/discovery/logs/04-game_hub_magic_regression-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/04-game_hub_magic_regression-headless.log",
+      "bytes": 1331,
+      "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/04-game_hub_magic_regression-headless.log",
+      "crc32": "d9658a1c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/04-game_hub_magic_regression-headless.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/04-game_hub_magic_regression-headless.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/04-game_hub_magic_regression-headless.runner.log",
+      "bytes": 1331,
+      "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/04-game_hub_magic_regression-headless.runner.log",
+      "crc32": "d9658a1c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/05-village_host_launch_regression-headless.log",
+      "original_pack_path": "verification/originals/discovery/logs/05-village_host_launch_regression-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/05-village_host_launch_regression-headless.log",
+      "bytes": 1641,
+      "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/05-village_host_launch_regression-headless.log",
+      "crc32": "52bd97b1"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/05-village_host_launch_regression-headless.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/05-village_host_launch_regression-headless.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/05-village_host_launch_regression-headless.runner.log",
+      "bytes": 1641,
+      "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/05-village_host_launch_regression-headless.runner.log",
+      "crc32": "52bd97b1"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/06-learning_wonder_details_regression-headless.log",
+      "original_pack_path": "verification/originals/discovery/logs/06-learning_wonder_details_regression-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/06-learning_wonder_details_regression-headless.log",
+      "bytes": 3912,
+      "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/06-learning_wonder_details_regression-headless.log",
+      "crc32": "9a7daa2f"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/06-learning_wonder_details_regression-headless.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/06-learning_wonder_details_regression-headless.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/06-learning_wonder_details_regression-headless.runner.log",
+      "bytes": 3912,
+      "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/06-learning_wonder_details_regression-headless.runner.log",
+      "crc32": "9a7daa2f"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/07-learning_wonder_details_regression-rendered.log",
+      "original_pack_path": "verification/originals/discovery/logs/07-learning_wonder_details_regression-rendered.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/07-learning_wonder_details_regression-rendered.log",
+      "bytes": 4553,
+      "sha256": "0e149d618147faaf6db8be2cf656483a306c91d0ecf288a9fafefbc6a4de9b9b",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/07-learning_wonder_details_regression-rendered.log",
+      "crc32": "bfa3df90"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/07-learning_wonder_details_regression-rendered.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/07-learning_wonder_details_regression-rendered.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/07-learning_wonder_details_regression-rendered.runner.log",
+      "bytes": 4553,
+      "sha256": "0e149d618147faaf6db8be2cf656483a306c91d0ecf288a9fafefbc6a4de9b9b",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/07-learning_wonder_details_regression-rendered.runner.log",
+      "crc32": "bfa3df90"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/08-game_hub_magic_capture-rendered.log",
+      "original_pack_path": "verification/originals/discovery/logs/08-game_hub_magic_capture-rendered.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/08-game_hub_magic_capture-rendered.log",
+      "bytes": 1300,
+      "sha256": "aed3c1931aee8b507f8f4e262536b35cf2e650f019b13d5512835e9f92d9c990",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/08-game_hub_magic_capture-rendered.log",
+      "crc32": "9016a643"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/08-game_hub_magic_capture-rendered.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/08-game_hub_magic_capture-rendered.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/08-game_hub_magic_capture-rendered.runner.log",
+      "bytes": 1300,
+      "sha256": "aed3c1931aee8b507f8f4e262536b35cf2e650f019b13d5512835e9f92d9c990",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/08-game_hub_magic_capture-rendered.runner.log",
+      "crc32": "9016a643"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/09-learning_world_capture-rendered.log",
+      "original_pack_path": "verification/originals/discovery/logs/09-learning_world_capture-rendered.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/09-learning_world_capture-rendered.log",
+      "bytes": 8471,
+      "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/09-learning_world_capture-rendered.log",
+      "crc32": "14705025"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/09-learning_world_capture-rendered.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/09-learning_world_capture-rendered.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/09-learning_world_capture-rendered.runner.log",
+      "bytes": 8471,
+      "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/09-learning_world_capture-rendered.runner.log",
+      "crc32": "14705025"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/10-learning_wonder_details_capture-rendered.log",
+      "original_pack_path": "verification/originals/discovery/logs/10-learning_wonder_details_capture-rendered.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/10-learning_wonder_details_capture-rendered.log",
+      "bytes": 3163,
+      "sha256": "75dbe833a9b9358b2bda4d794aaed06080cd932d957f88ec4166d257589feb9b",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/10-learning_wonder_details_capture-rendered.log",
+      "crc32": "c296826b"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/logs/10-learning_wonder_details_capture-rendered.runner.log",
+      "original_pack_path": "verification/originals/discovery/logs/10-learning_wonder_details_capture-rendered.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/logs/10-learning_wonder_details_capture-rendered.runner.log",
+      "bytes": 3163,
+      "sha256": "75dbe833a9b9358b2bda4d794aaed06080cd932d957f88ec4166d257589feb9b",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/logs/10-learning_wonder_details_capture-rendered.runner.log",
+      "crc32": "c296826b"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/results.tsv",
+      "original_pack_path": "verification/originals/discovery/results.tsv",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/results.tsv",
+      "bytes": 444,
+      "sha256": "8caf920c92ea08a4080056a89e27e71a5193858633d443bc4978f0a06e438b12",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/results.tsv",
+      "crc32": "f118820e"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-commit.raw",
+      "original_pack_path": "verification/originals/discovery/source-commit.raw",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-commit.raw",
+      "bytes": 322,
+      "sha256": "1c66d69aea47f32c1b45c313b09dac4268b22af79fec353c81998adb1aa50b25",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-commit.raw",
+      "crc32": "5bc5c2e5"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-dirty-after.txt",
+      "original_pack_path": "verification/originals/discovery/source-dirty-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-dirty-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-dirty-after.txt",
+      "crc32": "00000000"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-dirty.txt",
+      "original_pack_path": "verification/originals/discovery/source-dirty.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-dirty.txt",
+      "crc32": "00000000"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-index-after.bin",
+      "original_pack_path": "verification/originals/discovery/source-index-after.bin",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-index-after.bin",
+      "bytes": 541956,
+      "sha256": "9db75b50e4a8014358382cbbdf4291fcdb2bd7012ff0517a5c1212cad19d7701",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-index-after.bin",
+      "crc32": "3223a727"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-index-before.bin",
+      "original_pack_path": "verification/originals/discovery/source-index-before.bin",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-index-before.bin",
+      "bytes": 541956,
+      "sha256": "9db75b50e4a8014358382cbbdf4291fcdb2bd7012ff0517a5c1212cad19d7701",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-index-before.bin",
+      "crc32": "3223a727"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-inventory-after.json",
+      "original_pack_path": "verification/originals/discovery/source-inventory-after.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-inventory-after.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-inventory-before.json",
+      "original_pack_path": "verification/originals/discovery/source-inventory-before.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-inventory-before.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-inventory-before.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-sha-after.txt",
+      "original_pack_path": "verification/originals/discovery/source-sha-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-sha-after.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-sha-after.txt",
+      "crc32": "cb6e9ba6"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-sha.txt",
+      "original_pack_path": "verification/originals/discovery/source-sha.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-sha.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-sha.txt",
+      "crc32": "cb6e9ba6"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-tree-after.bin",
+      "original_pack_path": "verification/originals/discovery/source-tree-after.bin",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-tree-after.bin",
+      "bytes": 461586,
+      "sha256": "f752c28fc98c3d5aff0c5946a411b46af1170541d6977bef8a02dbd4a363eece",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-tree-after.bin",
+      "crc32": "d67de444"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-tree-after.txt",
+      "original_pack_path": "verification/originals/discovery/source-tree-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-tree-after.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-tree-after.txt",
+      "crc32": "a3590520"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-tree-before.bin",
+      "original_pack_path": "verification/originals/discovery/source-tree-before.bin",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-tree-before.bin",
+      "bytes": 461586,
+      "sha256": "f752c28fc98c3d5aff0c5946a411b46af1170541d6977bef8a02dbd4a363eece",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-tree-before.bin",
+      "crc32": "d67de444"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/source-tree.txt",
+      "original_pack_path": "verification/originals/discovery/source-tree.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/source-tree.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/source-tree.txt",
+      "crc32": "a3590520"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/01/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/01/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/01/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/01/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "adb79977"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/02/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/02/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/02/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/02/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "ffa60be0"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/03/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/03/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/03/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1805,
+      "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/03/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "6755f869"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/04/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/04/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/04/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1331,
+      "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/04/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "d9658a1c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/05/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/05/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/05/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1641,
+      "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/05/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "52bd97b1"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/06/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/06/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/06/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3912,
+      "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/06/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "9a7daa2f"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/07/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/07/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/07/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 4547,
+      "sha256": "cf42816621792787c8a0cffc3a160a15b051c3c547ef76e5eb0d4c997eaf4b4b",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/07/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "97ddee4e"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/08/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/08/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/08/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1294,
+      "sha256": "3ffbe5d9d173692f93eda62c903cfae102cca6dc4c02e22967ae9bcfacb39b4c",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/08/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "bd56ed5c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/09/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/09/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/09/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 8465,
+      "sha256": "dd33a221acb036ef074322676c17f3a2c4b389c85b3aee8351169c313d58396e",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/09/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "677cb4e1"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/discovery/state/10/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/discovery/state/10/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/discovery/state/10/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3157,
+      "sha256": "135000484db4f50751554cd88bbb94af53a697c9735e369e27f920e3ba190208",
+      "mode": "0o644",
+      "original_zip_entry": "discovery/state/10/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "012276d2"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream-runner.log",
+      "original_pack_path": "verification/originals/dream-runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream-runner.log",
+      "bytes": 5521,
+      "sha256": "abb79fdc3e6a13db35767e746b24ca4e9ac29ae5ceaddb91c37cbdea9f4ae35b",
+      "mode": "0o644",
+      "original_zip_entry": "dream-runner.log",
+      "crc32": "331d7cce"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/capture-root.txt",
+      "original_pack_path": "verification/originals/dream/capture-root.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/capture-root.txt",
+      "bytes": 68,
+      "sha256": "229c1753642aaca2442f37c838ed33a0063502c6f8e1c5ffba7be89780d5d9de",
+      "mode": "0o644",
+      "original_zip_entry": "dream/capture-root.txt",
+      "crc32": "b684b4e4"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/captures/learning/learning.json",
+      "original_pack_path": "verification/originals/dream/captures/learning/learning.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/captures/learning/learning.json",
+      "bytes": 852,
+      "sha256": "c132a51d4a32140fa297e619f4106d432b860a18d8664045f4e7a4bc064d3fd2",
+      "mode": "0o644",
+      "original_zip_entry": "dream/captures/learning/learning.json",
+      "crc32": "912506d4"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/captures/treasure/treasure.json",
+      "original_pack_path": "verification/originals/dream/captures/treasure/treasure.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/captures/treasure/treasure.json",
+      "bytes": 848,
+      "sha256": "9633398dfd13f2fcfee94ee92f321a25b697e58898e6a62c7c7c800b98d021aa",
+      "mode": "0o644",
+      "original_zip_entry": "dream/captures/treasure/treasure.json",
+      "crc32": "908da11f"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/dream-images.json",
+      "original_pack_path": "verification/originals/dream/dream-images.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/dream-images.json",
+      "bytes": 6418,
+      "sha256": "3cf21acffae1c22a3c3e869e8d6628e8a4ae554f8188340717f1e920761cd158",
+      "mode": "0o644",
+      "original_zip_entry": "dream/dream-images.json",
+      "crc32": "79a14602"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/dream_garden_capture-rendered.log",
+      "original_pack_path": "verification/originals/dream/dream_garden_capture-rendered.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/dream_garden_capture-rendered.log",
+      "bytes": 1634,
+      "sha256": "bcfae668a0880b51fdb5c90c1c6e836d0dd4f5170d1ed61e18fbc67de9be0a94",
+      "mode": "0o644",
+      "original_zip_entry": "dream/dream_garden_capture-rendered.log",
+      "crc32": "c94299e3"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/dream_garden_props_regression-headless.log",
+      "original_pack_path": "verification/originals/dream/dream_garden_props_regression-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/dream_garden_props_regression-headless.log",
+      "bytes": 505,
+      "sha256": "bbfcbd97e786dad12bb49ebf8a088d2b7e0c6a1a834e413c018c0c8c52c5013f",
+      "mode": "0o644",
+      "original_zip_entry": "dream/dream_garden_props_regression-headless.log",
+      "crc32": "548fe0e9"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/engine.txt",
+      "original_pack_path": "verification/originals/dream/engine.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "mode": "0o644",
+      "original_zip_entry": "dream/engine.txt",
+      "crc32": "12281f13"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/lumo_dream_ambience_capture-rendered-learning.log",
+      "original_pack_path": "verification/originals/dream/lumo_dream_ambience_capture-rendered-learning.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/lumo_dream_ambience_capture-rendered-learning.log",
+      "bytes": 1286,
+      "sha256": "ad4c2520698eda6d5fb0781e1bee55cd393a7d04b5360110402b5f234cf2b7b9",
+      "mode": "0o644",
+      "original_zip_entry": "dream/lumo_dream_ambience_capture-rendered-learning.log",
+      "crc32": "c637a02a"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/lumo_dream_ambience_capture-rendered-treasure.log",
+      "original_pack_path": "verification/originals/dream/lumo_dream_ambience_capture-rendered-treasure.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/lumo_dream_ambience_capture-rendered-treasure.log",
+      "bytes": 1286,
+      "sha256": "6577c3d33a03b70361e4c7004d9267447722809546333cfe65acbe62e27ed402",
+      "mode": "0o644",
+      "original_zip_entry": "dream/lumo_dream_ambience_capture-rendered-treasure.log",
+      "crc32": "736649eb"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/lumo_dream_ambience_regression-headless.log",
+      "original_pack_path": "verification/originals/dream/lumo_dream_ambience_regression-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/lumo_dream_ambience_regression-headless.log",
+      "bytes": 593,
+      "sha256": "0e06fbe26cc4fab495f303f614749b1164b2ea673a17c70ee7a38f2b18600709",
+      "mode": "0o644",
+      "original_zip_entry": "dream/lumo_dream_ambience_regression-headless.log",
+      "crc32": "3d52128c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/results.tsv",
+      "original_pack_path": "verification/originals/dream/results.tsv",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/results.tsv",
+      "bytes": 244,
+      "sha256": "e13332961fe89a044b7b25aff2408199425dbf9935be79ffca222f214442a169",
+      "mode": "0o644",
+      "original_zip_entry": "dream/results.tsv",
+      "crc32": "7917e572"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/source-dirty-after.txt",
+      "original_pack_path": "verification/originals/dream/source-dirty-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/source-dirty-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644",
+      "original_zip_entry": "dream/source-dirty-after.txt",
+      "crc32": "00000000"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/source-dirty.txt",
+      "original_pack_path": "verification/originals/dream/source-dirty.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644",
+      "original_zip_entry": "dream/source-dirty.txt",
+      "crc32": "00000000"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/source-inventory-after.json",
+      "original_pack_path": "verification/originals/dream/source-inventory-after.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "dream/source-inventory-after.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/source-inventory-before.json",
+      "original_pack_path": "verification/originals/dream/source-inventory-before.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/source-inventory-before.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "dream/source-inventory-before.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/source-sha-after.txt",
+      "original_pack_path": "verification/originals/dream/source-sha-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/source-sha-after.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "mode": "0o644",
+      "original_zip_entry": "dream/source-sha-after.txt",
+      "crc32": "cb6e9ba6"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/source-sha.txt",
+      "original_pack_path": "verification/originals/dream/source-sha.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/source-sha.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "mode": "0o644",
+      "original_zip_entry": "dream/source-sha.txt",
+      "crc32": "cb6e9ba6"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/source-tree-after.txt",
+      "original_pack_path": "verification/originals/dream/source-tree-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/source-tree-after.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "mode": "0o644",
+      "original_zip_entry": "dream/source-tree-after.txt",
+      "crc32": "a3590520"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/source-tree.txt",
+      "original_pack_path": "verification/originals/dream/source-tree.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/source-tree.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "mode": "0o644",
+      "original_zip_entry": "dream/source-tree.txt",
+      "crc32": "a3590520"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/user-data/dream_garden_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/dream/user-data/dream_garden_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/user-data/dream_garden_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1628,
+      "sha256": "456d3df558cfb7f5800654e57be8d79db28259ceadb5a89faf9012cb32c7e534",
+      "mode": "0o644",
+      "original_zip_entry": "dream/user-data/dream_garden_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "8dfbe1fb"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/user-data/dream_garden_props_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/dream/user-data/dream_garden_props_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/user-data/dream_garden_props_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 505,
+      "sha256": "bbfcbd97e786dad12bb49ebf8a088d2b7e0c6a1a834e413c018c0c8c52c5013f",
+      "mode": "0o644",
+      "original_zip_entry": "dream/user-data/dream_garden_props_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "548fe0e9"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/user-data/lumo_dream_ambience_capture-rendered-learning/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/dream/user-data/lumo_dream_ambience_capture-rendered-learning/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/user-data/lumo_dream_ambience_capture-rendered-learning/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1280,
+      "sha256": "764a507434c1a57a922a16ee4f40bd65ed16ce33c5820c3bb4c8b1b31c358561",
+      "mode": "0o644",
+      "original_zip_entry": "dream/user-data/lumo_dream_ambience_capture-rendered-learning/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "c5e7336a"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/user-data/lumo_dream_ambience_capture-rendered-treasure/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/dream/user-data/lumo_dream_ambience_capture-rendered-treasure/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/user-data/lumo_dream_ambience_capture-rendered-treasure/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1280,
+      "sha256": "e15e9322f25ed6111da23a30d5a981d1b377b0337525606668871a7c8232b32d",
+      "mode": "0o644",
+      "original_zip_entry": "dream/user-data/lumo_dream_ambience_capture-rendered-treasure/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "70b6daab"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/dream/user-data/lumo_dream_ambience_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_pack_path": "verification/originals/dream/user-data/lumo_dream_ambience_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/dream/user-data/lumo_dream_ambience_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 593,
+      "sha256": "0e06fbe26cc4fab495f303f614749b1164b2ea673a17c70ee7a38f2b18600709",
+      "mode": "0o644",
+      "original_zip_entry": "dream/user-data/lumo_dream_ambience_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "crc32": "3d52128c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/headless/connect_four_return_regression.log",
+      "original_pack_path": "verification/originals/headless/connect_four_return_regression.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/headless/connect_four_return_regression.log",
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+      "mode": "0o644",
+      "original_zip_entry": "headless/connect_four_return_regression.log",
+      "crc32": "77417d45"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/headless/learning_world_regression.log",
+      "original_pack_path": "verification/originals/headless/learning_world_regression.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/headless/learning_world_regression.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "mode": "0o644",
+      "original_zip_entry": "headless/learning_world_regression.log",
+      "crc32": "adb79977"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/headless/runner.log",
+      "original_pack_path": "verification/originals/headless/runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/headless/runner.log",
+      "bytes": 12191,
+      "sha256": "46008beef1840c692ab970df8b7c62d94c020eed5b0d69f5a8f70145491fc0fd",
+      "mode": "0o644",
+      "original_zip_entry": "headless/runner.log",
+      "crc32": "7d791224"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/headless/treasure_exploration_regression.log",
+      "original_pack_path": "verification/originals/headless/treasure_exploration_regression.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/headless/treasure_exploration_regression.log",
+      "bytes": 589,
+      "sha256": "6303eda4f9dfbf0eae58630858cdd5ec5cf1dfd19767d484bf72b3001d713b5e",
+      "mode": "0o644",
+      "original_zip_entry": "headless/treasure_exploration_regression.log",
+      "crc32": "51cf56a7"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/headless/treasure_wisp_regression.log",
+      "original_pack_path": "verification/originals/headless/treasure_wisp_regression.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/headless/treasure_wisp_regression.log",
+      "bytes": 499,
+      "sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39",
+      "mode": "0o644",
+      "original_zip_entry": "headless/treasure_wisp_regression.log",
+      "crc32": "64e48b27"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/import.log",
+      "original_pack_path": "verification/originals/import.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/import.log",
+      "bytes": 167942,
+      "sha256": "37eac620f96b0e51f56c8e3c02b42b79814b9068d172e4cc3b95ca22ee4cc309",
+      "mode": "0o644",
+      "original_zip_entry": "import.log",
+      "crc32": "eac1b5b1"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/mobile-minimap/captures/mobile/mobile-safe-area.json",
+      "original_pack_path": "verification/originals/mobile-minimap/captures/mobile/mobile-safe-area.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/mobile-minimap/captures/mobile/mobile-safe-area.json",
+      "bytes": 59823,
+      "sha256": "9d59b73cafcc6c8a65a0f4ca3ec7665741cf67d6234a0de2564be257eecc6aca",
+      "mode": "0o644",
+      "original_zip_entry": "mobile-minimap/captures/mobile/mobile-safe-area.json",
+      "crc32": "7e670651"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/mobile-minimap/logs/mobile-safe-area-rendered.log",
+      "original_pack_path": "verification/originals/mobile-minimap/logs/mobile-safe-area-rendered.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/mobile-minimap/logs/mobile-safe-area-rendered.log",
+      "bytes": 11441,
+      "sha256": "5c12a9a06b2f2220444cf2ee484890d4fd8403441fde7fed4198520de9c5a6ad",
+      "mode": "0o644",
+      "original_zip_entry": "mobile-minimap/logs/mobile-safe-area-rendered.log",
+      "crc32": "b5a0554f"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/mobile-minimap/logs/mobile-safe-area-rendered.runner.log",
+      "original_pack_path": "verification/originals/mobile-minimap/logs/mobile-safe-area-rendered.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/mobile-minimap/logs/mobile-safe-area-rendered.runner.log",
+      "bytes": 11441,
+      "sha256": "5c12a9a06b2f2220444cf2ee484890d4fd8403441fde7fed4198520de9c5a6ad",
+      "mode": "0o644",
+      "original_zip_entry": "mobile-minimap/logs/mobile-safe-area-rendered.runner.log",
+      "crc32": "b5a0554f"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/mobile-minimap/mobile-minimap-acceptance.json",
+      "original_pack_path": "verification/originals/mobile-minimap/mobile-minimap-acceptance.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/mobile-minimap/mobile-minimap-acceptance.json",
+      "bytes": 7329,
+      "sha256": "02617da9adf637ea7a4ac8b00d5270c2f4d82a3bc018badba8923fcbc79c7a47",
+      "mode": "0o644",
+      "original_zip_entry": "mobile-minimap/mobile-minimap-acceptance.json",
+      "crc32": "5ed68f1f"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/mobile-minimap/source/source-inventory-after.json",
+      "original_pack_path": "verification/originals/mobile-minimap/source/source-inventory-after.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/mobile-minimap/source/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "mobile-minimap/source/source-inventory-after.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/mobile-minimap/source/source-inventory-before.json",
+      "original_pack_path": "verification/originals/mobile-minimap/source/source-inventory-before.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/mobile-minimap/source/source-inventory-before.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "mobile-minimap/source/source-inventory-before.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/setup.log",
+      "original_pack_path": "verification/originals/setup.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/setup.log",
+      "bytes": 1503,
+      "sha256": "ebcf1b5099f0434c0ef9064230ab6d812c47b1cc4f7511cc42f8628303596f90",
+      "mode": "0o644",
+      "original_zip_entry": "setup.log",
+      "crc32": "e8d85074"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/all-status-after.txt",
+      "original_pack_path": "verification/originals/source/all-status-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/all-status-after.txt",
+      "bytes": 19037,
+      "sha256": "864da80492e6c0d17f482c2b74ca870c3b39be4fb5ed37e0aa71d28b9a918f5c",
+      "mode": "0o644",
+      "original_zip_entry": "source/all-status-after.txt",
+      "crc32": "e6082751"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/all-status-before.txt",
+      "original_pack_path": "verification/originals/source/all-status-before.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/all-status-before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644",
+      "original_zip_entry": "source/all-status-before.txt",
+      "crc32": "00000000"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/engine.txt",
+      "original_pack_path": "verification/originals/source/engine.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "mode": "0o644",
+      "original_zip_entry": "source/engine.txt",
+      "crc32": "12281f13"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/helper-sha256.log",
+      "original_pack_path": "verification/originals/source/helper-sha256.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/helper-sha256.log",
+      "bytes": 101,
+      "sha256": "70936254559e896e7291f0f71ff8a9ef04b0d4c6a235ef4a1cc6256b823db74d",
+      "mode": "0o644",
+      "original_zip_entry": "source/helper-sha256.log",
+      "crc32": "b5d42e37"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/index-after.txt",
+      "original_pack_path": "verification/originals/source/index-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/index-after.txt",
+      "bytes": 450519,
+      "sha256": "5bca91d23abcad344eb4f49a8595d1b35eee483a68c3b7b0e2ba70bbc02bd43d",
+      "mode": "0o644",
+      "original_zip_entry": "source/index-after.txt",
+      "crc32": "4b29135c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/index-before.txt",
+      "original_pack_path": "verification/originals/source/index-before.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/index-before.txt",
+      "bytes": 450519,
+      "sha256": "5bca91d23abcad344eb4f49a8595d1b35eee483a68c3b7b0e2ba70bbc02bd43d",
+      "mode": "0o644",
+      "original_zip_entry": "source/index-before.txt",
+      "crc32": "4b29135c"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/index-sha256-after.txt",
+      "original_pack_path": "verification/originals/source/index-sha256-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/index-sha256-after.txt",
+      "bytes": 65,
+      "sha256": "37230538c11d625721a629dbee9be19359afcbcf4c7b946f0775517cdf505a38",
+      "mode": "0o644",
+      "original_zip_entry": "source/index-sha256-after.txt",
+      "crc32": "77d39aa3"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/index-sha256-before.txt",
+      "original_pack_path": "verification/originals/source/index-sha256-before.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/index-sha256-before.txt",
+      "bytes": 65,
+      "sha256": "37230538c11d625721a629dbee9be19359afcbcf4c7b946f0775517cdf505a38",
+      "mode": "0o644",
+      "original_zip_entry": "source/index-sha256-before.txt",
+      "crc32": "77d39aa3"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/sha-after.txt",
+      "original_pack_path": "verification/originals/source/sha-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/sha-after.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "mode": "0o644",
+      "original_zip_entry": "source/sha-after.txt",
+      "crc32": "cb6e9ba6"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/sha-before.txt",
+      "original_pack_path": "verification/originals/source/sha-before.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/sha-before.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "mode": "0o644",
+      "original_zip_entry": "source/sha-before.txt",
+      "crc32": "cb6e9ba6"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/source-inventory-after.json",
+      "original_pack_path": "verification/originals/source/source-inventory-after.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "source/source-inventory-after.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/source-inventory-before.json",
+      "original_pack_path": "verification/originals/source/source-inventory-before.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/source-inventory-before.json",
+      "bytes": 1531913,
+      "sha256": "60453999bc567a1686190bb6706810fef944c851cb4e204ed9a4d6fb11af8672",
+      "mode": "0o644",
+      "original_zip_entry": "source/source-inventory-before.json",
+      "crc32": "540327d8"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/status-after.txt",
+      "original_pack_path": "verification/originals/source/status-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/status-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644",
+      "original_zip_entry": "source/status-after.txt",
+      "crc32": "00000000"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/status-before.txt",
+      "original_pack_path": "verification/originals/source/status-before.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/status-before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644",
+      "original_zip_entry": "source/status-before.txt",
+      "crc32": "00000000"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/tree-after.txt",
+      "original_pack_path": "verification/originals/source/tree-after.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/tree-after.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "mode": "0o644",
+      "original_zip_entry": "source/tree-after.txt",
+      "crc32": "a3590520"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/tree-before.txt",
+      "original_pack_path": "verification/originals/source/tree-before.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/tree-before.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "mode": "0o644",
+      "original_zip_entry": "source/tree-before.txt",
+      "crc32": "a3590520"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/source/workflow-context.txt",
+      "original_pack_path": "verification/originals/source/workflow-context.txt",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/source/workflow-context.txt",
+      "bytes": 192,
+      "sha256": "fe5722fa6bb10988c7326f0e542567962b5750e9568768ce7b7ab54de47a6ae1",
+      "mode": "0o644",
+      "original_zip_entry": "source/workflow-context.txt",
+      "crc32": "5e01b650"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/tests/discovery-originals-tests.log",
+      "original_pack_path": "verification/originals/tests/discovery-originals-tests.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/tests/discovery-originals-tests.log",
+      "bytes": 3931,
+      "sha256": "7b79653937e79f266fc0e316262976a94fc06742413a72ffe95590696af06ec7",
+      "mode": "0o644",
+      "original_zip_entry": "tests/discovery-originals-tests.log",
+      "crc32": "33945c2d"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/tests/discovery-producer-reader-tests.log",
+      "original_pack_path": "verification/originals/tests/discovery-producer-reader-tests.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/tests/discovery-producer-reader-tests.log",
+      "bytes": 1434,
+      "sha256": "dd21e75027f161db742c22b73a1618febc1414674663332e784109f292ee8968",
+      "mode": "0o644",
+      "original_zip_entry": "tests/discovery-producer-reader-tests.log",
+      "crc32": "3e943130"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/tests/dream-raster-tests.log",
+      "original_pack_path": "verification/originals/tests/dream-raster-tests.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/tests/dream-raster-tests.log",
+      "bytes": 1883,
+      "sha256": "1a5b5f744bdb7a9c4565cbe687b686b5f2f3d130bc61471576bff7698c6f3b81",
+      "mode": "0o644",
+      "original_zip_entry": "tests/dream-raster-tests.log",
+      "crc32": "fa9e00c1"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/logs/01-economy-headless.log",
+      "original_pack_path": "verification/originals/village-scaling/logs/01-economy-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/logs/01-economy-headless.log",
+      "bytes": 628,
+      "sha256": "1381f36239164a4b77f21050c2619cb4dbcba281571419ed6cbe544db824c1bb",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/logs/01-economy-headless.log",
+      "crc32": "c870a50e"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/logs/01-economy-headless.runner.log",
+      "original_pack_path": "verification/originals/village-scaling/logs/01-economy-headless.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/logs/01-economy-headless.runner.log",
+      "bytes": 628,
+      "sha256": "1381f36239164a4b77f21050c2619cb4dbcba281571419ed6cbe544db824c1bb",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/logs/01-economy-headless.runner.log",
+      "crc32": "c870a50e"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/logs/02-scaling-headless.log",
+      "original_pack_path": "verification/originals/village-scaling/logs/02-scaling-headless.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/logs/02-scaling-headless.log",
+      "bytes": 1701,
+      "sha256": "85418374e7b1b87bd3309904c888530ab5bf4fe21a10851d5a91b05567a18178",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/logs/02-scaling-headless.log",
+      "crc32": "2113d1c9"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/logs/02-scaling-headless.runner.log",
+      "original_pack_path": "verification/originals/village-scaling/logs/02-scaling-headless.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/logs/02-scaling-headless.runner.log",
+      "bytes": 1701,
+      "sha256": "85418374e7b1b87bd3309904c888530ab5bf4fe21a10851d5a91b05567a18178",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/logs/02-scaling-headless.runner.log",
+      "crc32": "2113d1c9"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/logs/03-scaling-rendered.log",
+      "original_pack_path": "verification/originals/village-scaling/logs/03-scaling-rendered.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/logs/03-scaling-rendered.log",
+      "bytes": 2348,
+      "sha256": "3557a77abf56c329d496a9f5453a76429e02c216e8830f48480e2873ff416f15",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/logs/03-scaling-rendered.log",
+      "crc32": "72a9888a"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/logs/03-scaling-rendered.runner.log",
+      "original_pack_path": "verification/originals/village-scaling/logs/03-scaling-rendered.runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/logs/03-scaling-rendered.runner.log",
+      "bytes": 2348,
+      "sha256": "3557a77abf56c329d496a9f5453a76429e02c216e8830f48480e2873ff416f15",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/logs/03-scaling-rendered.runner.log",
+      "crc32": "72a9888a"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/runner.log",
+      "original_pack_path": "verification/originals/village-scaling/runner.log",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/runner.log",
+      "bytes": 4677,
+      "sha256": "89da0a5504f634986ec8b738f239ce0e1617163a04307bd981aec1bc3ce0cdad",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/runner.log",
+      "crc32": "8e6e8b83"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/source/source-inventory-after.json",
+      "original_pack_path": "verification/originals/village-scaling/source/source-inventory-after.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/source/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/source/source-inventory-after.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/source/source-inventory-before.json",
+      "original_pack_path": "verification/originals/village-scaling/source/source-inventory-before.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/source/source-inventory-before.json",
+      "bytes": 1914378,
+      "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/source/source-inventory-before.json",
+      "crc32": "c058db55"
+    },
+    {
+      "archive_path": "native-evidence/verification/originals/village-scaling/village-scaling-acceptance.json",
+      "original_pack_path": "verification/originals/village-scaling/village-scaling-acceptance.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals/village-scaling/village-scaling-acceptance.json",
+      "bytes": 3038,
+      "sha256": "9bb35b6db07a75442f5263975c0dd1d8938cb61571cc23af4e871a2d385a3030",
+      "mode": "0o644",
+      "original_zip_entry": "village-scaling/village-scaling-acceptance.json",
+      "crc32": "54622af1"
+    }
+  ],
+  "member_count": 203,
+  "uncompressed_original_bytes": 25779974,
+  "selection": "Every original pack metadata file plus all 126 non-PNG/non-shader-cache original ZIP members. All 63 artifact logs, all 22 original JSON reports/inventories, all source stamps/index bytes and five original Python readers are included without rewriting."
+}

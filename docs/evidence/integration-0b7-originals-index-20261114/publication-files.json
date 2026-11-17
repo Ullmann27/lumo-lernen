@@ -1,0 +1,391 @@
+{
+  "schema": 1,
+  "state": "FROZEN_LOCAL_PLAN_ONLY",
+  "repository": "Ullmann27/lumo-lernen",
+  "parent_commit": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "parent_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+  "parent_identity_origin": "Exact immutable parent/tree supplied by Root; no remote request was made in this local preparation.",
+  "branch": null,
+  "branch_selection": "A new separate evidence branch is selected and created only by Root.",
+  "active_host_and_native_refs_unchanged": true,
+  "groups": [
+    {
+      "source_root": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114",
+      "target_prefix": "docs/evidence/native-baf148-originals-20261114",
+      "file_count": 12,
+      "total_bytes": 32200164
+    },
+    {
+      "source_root": "/tmp/host37-terminal-complete-evidence-20261114",
+      "target_prefix": "docs/evidence/host37-terminal-complete-evidence-20261114",
+      "file_count": 6,
+      "total_bytes": 2552509
+    },
+    {
+      "source_root": "/tmp/host79c7-terminal-complete-evidence-20261114",
+      "target_prefix": "docs/evidence/host79c7-terminal-complete-evidence-20261114",
+      "file_count": 6,
+      "total_bytes": 2309266
+    },
+    {
+      "source_root": "/tmp/host79c7-auxiliary-flutter-failures-20261114",
+      "target_prefix": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114",
+      "file_count": 18,
+      "total_bytes": 1538334
+    }
+  ],
+  "file_count": 42,
+  "total_source_bytes": 38600273,
+  "files": [
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/README.md",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/README.md",
+      "bytes": 4368,
+      "sha256": "34ced5974d4ccc8983fd19b82dfddc3fce33f6bfb19d7512ef1ea19a0e0dae53",
+      "git_blob": "e8f297a48e6e91fdc37945888dc9548748f8a583",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/SHA256SUMS",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/SHA256SUMS",
+      "bytes": 1006,
+      "sha256": "1d67ee8af66b654a418d4d802ac93e9b2b40ecb221c46dd5ce01747fb66a66c7",
+      "git_blob": "bbfcb8806ab06493795845be4929dc7c800e274b",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/create_checkpoint.py",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/create_checkpoint.py",
+      "bytes": 23417,
+      "sha256": "57de9f821db46e727bb67c7bcb43186e595bc011543231156635e642833933ea",
+      "git_blob": "3c0abdcd65c972ebea592696ca49eeec9702a28c",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/documentary-exclusion.json",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/documentary-exclusion.json",
+      "bytes": 1225236,
+      "sha256": "a358e0168adc1ab08ae41f94d94f9d94da5fa938b365b135757d6ae898f46c5d",
+      "git_blob": "dd67b74eac711fa4d796a7d5b72bd4f3a254a9e2",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/documentary-inclusion.json",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/documentary-inclusion.json",
+      "bytes": 111665,
+      "sha256": "874dc1aa0257adc9282a562d4f73b06fe82d8b07e5a4f1b6d43c8e5a4ca97775",
+      "git_blob": "4e48eeaaacb6855ffb844b2ae5f75a1670a86879",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/handoff.json",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/handoff.json",
+      "bytes": 2511,
+      "sha256": "4f6813fb1fa7c9ff5dd252918aef7cbce12ed4fe2bfbe374fba0a817dd5e9d81",
+      "git_blob": "5e4c3b54041bcbb014a45fa10481434f82befe45",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/manifest.json",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/manifest.json",
+      "bytes": 2064,
+      "sha256": "22fc485d7d224b07883b0224989a5a6eb57f97d77513bfe2aab8751e48d71eaa",
+      "git_blob": "4fafe8304b4fc5f26d281a8557a728d6d33b42b9",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/native-baf148b-documentary-originals.tar.gz",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/native-baf148b-documentary-originals.tar.gz",
+      "bytes": 5258971,
+      "sha256": "88d5ca87abd30a8a4807bb2bc84351afff093682c892081c62e703d53f5a3aa7",
+      "git_blob": "3a1a986904e46b73aace3112e947a2eaf4b1c8c4",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/native-baf148b-root-reviewed-15.tar.gz",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/native-baf148b-root-reviewed-15.tar.gz",
+      "bytes": 25465892,
+      "sha256": "c527f35148189bdca92aa42288a66f165c6a2ebcbddee16c5b7a87c518129d2c",
+      "git_blob": "56324dd2c477ed179001f5f27261e3adbd409219",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/roundtrip-verification.json",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/roundtrip-verification.json",
+      "bytes": 65358,
+      "sha256": "1dd0bce797e6cd877aa84c0443577c33040fa9ff689b85d6e003c47492a0276c",
+      "git_blob": "5ddaffc804e01a09d8e057fd5218313669d0a02c",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/source-retention-verification.json",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/source-retention-verification.json",
+      "bytes": 2701,
+      "sha256": "6ad582a7e12eb6c0b7e4a3a03ad7f93395eb647460601fb450e098d4b0142b5a",
+      "git_blob": "f8078ed3d23cd7a10700c0be81c1cb0272edf836",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/workspace/scratch/b3485b7bb989/native-baf148b-documentary-checkpoint-20261114/visual-inclusion.json",
+      "target_path": "docs/evidence/native-baf148-originals-20261114/visual-inclusion.json",
+      "bytes": 36975,
+      "sha256": "631567c008ca259e15fd0e444d1ab3caffa7892fc0f06c3d5be8a0262138578b",
+      "git_blob": "013a32b07e31585e7d8d90a07d157df0153d857c",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host37-terminal-complete-evidence-20261114/README.md",
+      "target_path": "docs/evidence/host37-terminal-complete-evidence-20261114/README.md",
+      "bytes": 982,
+      "sha256": "9c965cbfad5236c655918b449b82fad7706f0958ad1c120ba19ce61acff71bdd",
+      "git_blob": "9792f30ed4b576f92e41f2fd1eec982ed352f290",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host37-terminal-complete-evidence-20261114/SHA256SUMS",
+      "target_path": "docs/evidence/host37-terminal-complete-evidence-20261114/SHA256SUMS",
+      "bytes": 335,
+      "sha256": "af3abae5de2a0a53a918b6a01d6d1946be684286ff9831dd24a068c4f25f0b0a",
+      "git_blob": "0f0b02b5479e902971d3878e572eb4089c93c0e3",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host37-terminal-complete-evidence-20261114/compact-originals.tar.gz",
+      "target_path": "docs/evidence/host37-terminal-complete-evidence-20261114/compact-originals.tar.gz",
+      "bytes": 2472672,
+      "sha256": "2f5018b3d18d1d1c04ac28490ca84d7f6b1dae3428c8041f64dbea8fe158cce1",
+      "git_blob": "4f0f30f03ca944e4676e95015140d9c92f819845",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host37-terminal-complete-evidence-20261114/handoff.json",
+      "target_path": "docs/evidence/host37-terminal-complete-evidence-20261114/handoff.json",
+      "bytes": 1903,
+      "sha256": "41d2b777f5bb33bed149b5a370ed703e2e0cd11e40e1431885e7600a36ce75a9",
+      "git_blob": "2f45137d1425074432c868b7735d1f9e0bb0047d",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host37-terminal-complete-evidence-20261114/manifest.json",
+      "target_path": "docs/evidence/host37-terminal-complete-evidence-20261114/manifest.json",
+      "bytes": 645,
+      "sha256": "51553a8ff5b8cbdb82cd957661cc4b1b5f38cbb218892ec6294add73a1d5670e",
+      "git_blob": "0ba92cba2ab1a838c45401e34d8250c77902804d",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host37-terminal-complete-evidence-20261114/source-file-index.json",
+      "target_path": "docs/evidence/host37-terminal-complete-evidence-20261114/source-file-index.json",
+      "bytes": 75972,
+      "sha256": "ab846df4d9130161bd14bae2551fadbb0c3b122b584aab0fa2f66a026d855a52",
+      "git_blob": "5820fd0319843bd0cb0787e76b0a8ab970531287",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-terminal-complete-evidence-20261114/README.md",
+      "target_path": "docs/evidence/host79c7-terminal-complete-evidence-20261114/README.md",
+      "bytes": 1079,
+      "sha256": "6818c73dc30d341e7a94008ccba977ff5304e4fe8baa697c4e46146733e1a61e",
+      "git_blob": "e1ea7bda5af32e25c5ead791d42acae0265336df",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-terminal-complete-evidence-20261114/SHA256SUMS",
+      "target_path": "docs/evidence/host79c7-terminal-complete-evidence-20261114/SHA256SUMS",
+      "bytes": 335,
+      "sha256": "4debd690b9a72e37df19359870e387d6a2af25fa1b734124639270aa211fb1a5",
+      "git_blob": "a755fe0b4a2096a9d5290d2bcba5dee69dafea86",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-terminal-complete-evidence-20261114/compact-originals.tar.gz",
+      "target_path": "docs/evidence/host79c7-terminal-complete-evidence-20261114/compact-originals.tar.gz",
+      "bytes": 2235792,
+      "sha256": "532806bf3ea85b3625301ed351b7dc80a35c2d37ff2dda027deda42468690236",
+      "git_blob": "dabd2a209fdea2395a7c64eefdad58e2a7866d0a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-terminal-complete-evidence-20261114/handoff.json",
+      "target_path": "docs/evidence/host79c7-terminal-complete-evidence-20261114/handoff.json",
+      "bytes": 1388,
+      "sha256": "1eaa935df6c6364852cac843ff5f0a9ff364e78d11e8260a67eeb2513b63b74d",
+      "git_blob": "8f1b87b554eaf4721abab7c18231170896b174eb",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-terminal-complete-evidence-20261114/manifest.json",
+      "target_path": "docs/evidence/host79c7-terminal-complete-evidence-20261114/manifest.json",
+      "bytes": 646,
+      "sha256": "9a75ad087ca40910a543b48d572cd87f20d0e87c5003574391864bb30ad51ebd",
+      "git_blob": "3d0e57b19eb5bb1664419a2f5fa3175eadd4be28",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-terminal-complete-evidence-20261114/source-file-index.json",
+      "target_path": "docs/evidence/host79c7-terminal-complete-evidence-20261114/source-file-index.json",
+      "bytes": 70026,
+      "sha256": "95d76348f7a12e0e9ab6c88debff66ee746b5a7107ae92376ddd125afa29f1dd",
+      "git_blob": "80fc735b7c0a914d9c90ffe6763b2150b3ba4dbf",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/README.md",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/README.md",
+      "bytes": 966,
+      "sha256": "ee3963a0f18d4140d221864e88a9390beed76b10ec312479c13d113d2b7205f7",
+      "git_blob": "16ff134ffff1d78ffaa459deb8548b5063daa5ab",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/SHA256SUMS",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/SHA256SUMS",
+      "bytes": 1436,
+      "sha256": "f19ecad8e9c1f1f35b3306f3433c9fe5137f3cc2e328c26e5a053baae7ced07a",
+      "git_blob": "3c756d4758caeae395b8cbfdc0701ec57d238447",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/archive-roundtrip.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/archive-roundtrip.json",
+      "bytes": 176,
+      "sha256": "955fc9fd4c52df0b1ccf823e21eb689e9b3881acaf2f396d73cfaaceb17764bb",
+      "git_blob": "5330b204f111772dc3d13cb32c6804e3ae0bd72d",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/artifacts.original.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/artifacts.original.json",
+      "bytes": 772,
+      "sha256": "c31691a9ffb1e79c012e63673b53d2ddcbd21d531e831764a1c5c1be2213b44d",
+      "git_blob": "9cca17c08e27394796054c6eef25f3302f9b4262",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/job-132471768177.original.log",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/job-132471768177.original.log",
+      "bytes": 640197,
+      "sha256": "9389e8ef4e1750e01aad07ecd10e79efe9fa5878de6fc4d9edd1815f055fda01",
+      "git_blob": "b25ef5247d80ef3aca145b23eab14b5c50467099",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/jobs.original.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/jobs.original.json",
+      "bytes": 5978,
+      "sha256": "ee035cd46faeffe6883c437c7bc38b51600ab4b8f91354949be00cc315cfc195",
+      "git_blob": "80f6739b89d31e4dd416d0affde51d9737cff274",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/raw-manifest.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/raw-manifest.json",
+      "bytes": 912,
+      "sha256": "e521a645cc7a590ed0d7760d09fa842997891b07c3b98b1ceabba50e70d66e5d",
+      "git_blob": "2e99376ab381dde19dc71adc1eb86e20ef49a521",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/run.original.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/change-review-43603036303/run.original.json",
+      "bytes": 12970,
+      "sha256": "406c3204f479df193d78d83032adc55a41ce825714a77570a1c28f7ce0918b0c",
+      "git_blob": "2d7b0d2bb77ffb1ae86999dca5f6e0d67b07bd6d",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/compact-originals.tar.gz",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/compact-originals.tar.gz",
+      "bytes": 169167,
+      "sha256": "ebd4f1bdcc19c509a282bc8059cac398d1fb633c810b8c5af7dd8693ddd7a231",
+      "git_blob": "62b7119656896b97a241933d67b070dc73541ad0",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/artifacts.original.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/artifacts.original.json",
+      "bytes": 775,
+      "sha256": "c01611f2aba6b576290ea4d4e08afbea724bd065272bdb98ed52084ce0267420",
+      "git_blob": "6f226a2769ffb25ee925eb65d5a51193cf3872ff",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/job-132471674856.original.log",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/job-132471674856.original.log",
+      "bytes": 650659,
+      "sha256": "de22088bb59aff8caafec25d5e130fc2b3630a8deb09781f7ea2301c41e83a43",
+      "git_blob": "f2ef03246e3d7bc7d23e3c8d724f8f14476d3fb4",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/jobs.original.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/jobs.original.json",
+      "bytes": 3081,
+      "sha256": "b325c4448f203aacd892480578d648fb4908ca13aad2eed6d924e5c67e509926",
+      "git_blob": "a075dcd200ec7ca805a5905734aad5fd62dace2a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/raw-manifest.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/raw-manifest.json",
+      "bytes": 912,
+      "sha256": "f3ca2ce9770dad97f6dc4ec3e23eafeb37f566e598f466bddb30a4f6a223950d",
+      "git_blob": "24a9aaef50d9ab2bbe07c6498f0f4995a9147979",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/run.original.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/core-43603036202/run.original.json",
+      "bytes": 12991,
+      "sha256": "0c0cc4612df3809276527f822cf48303c8eeb2d945f26966902dd83d138baa98",
+      "git_blob": "34e5f925d398d433c731af581b5df6915a95d0b4",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/handoff.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/handoff.json",
+      "bytes": 620,
+      "sha256": "9135ff8751d18c638a212b40788335a90ed7045dab5b00fc333d95957c20a04b",
+      "git_blob": "54d88b83742d3d9ae4889896b971d17a3cbe78dc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/manifest.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/manifest.json",
+      "bytes": 2423,
+      "sha256": "91d559595790d922cbbf6b4cb9b1c15b3e59f6d391c7968874d016d8eb1c26e9",
+      "git_blob": "494ee702245b8167ac7cfa6970891ffbaa78693a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/observations/raw-manifest.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/observations/raw-manifest.json",
+      "bytes": 244,
+      "sha256": "289c629d39d18abaec8015ba4aea92847277a516c4c9aabb9372b9831a69141e",
+      "git_blob": "9083f33e14079ed6520cb58890310a54d4b909b7",
+      "mode": "100644"
+    },
+    {
+      "source_path": "/tmp/host79c7-auxiliary-flutter-failures-20261114/observations/review.json",
+      "target_path": "docs/evidence/host79c7-auxiliary-flutter-failures-20261114/observations/review.json",
+      "bytes": 34055,
+      "sha256": "15f9a6250373ad0731f371da4ee09d0e1a0a889bbc1b9f29784e3f82f851989f",
+      "git_blob": "4573bebcdf1fd0330ec188a6c96a24880cdc87c9",
+      "mode": "100644"
+    }
+  ],
+  "verification": {
+    "path": "/workspace/scratch/b3485b7bb989/native-host-evidence-publication-plan-0b7bac-20261114/archive-source-verification.json",
+    "bytes": 632353,
+    "sha256": "28b2b9f87ca7a9a8758c70b000f755a82156b62b5bbcd1ff74c092f8c5e60e86",
+    "git_blob": "bca18eb4f06a382cfc18271f331b30061ad01456",
+    "mode": "100644",
+    "posix_mode": "0o644",
+    "mtime_ns": 1794666782627566942
+  },
+  "originals_before_after_unchanged": true,
+  "content_policy": "Exact existing source bytes; no new archive, no content normalization, no image processing, no source edits.",
+  "remote_actions_performed": 0,
+  "git_mutations_performed": 0,
+  "test_runs_performed": 0
+}

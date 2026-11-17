@@ -1,0 +1,73 @@
+{
+  "cause": "Relative publisher-source/scripts path does not exist under the external RUNNER_TEMP evidence working directory.",
+  "changes": [
+    {
+      "after": {
+        "bytes": 3736,
+        "git_blob": "e6720f34bfd8e4a01b58edb9e1492f10ec433421",
+        "sha256": "865b6493e118c94de49314d1b9995eeafeaeebe0e7728a3bfaa17e9090a8d05d"
+      },
+      "before": {
+        "bytes": 2856,
+        "git_blob": "dafc466099cfd626f2f3c5f8505f2a72e393be2b",
+        "sha256": "e39830329473e1a66e3bc82bf896489265997665f74144aff2a661745da79fe3"
+      },
+      "path": "cli-argument-contract.json"
+    },
+    {
+      "after": {
+        "bytes": 10771,
+        "git_blob": "1c9e8fe1cc2b3f1999aeb097c1ee4aa8dbc08797",
+        "sha256": "7e711b8d75696e56b91e2e716f7b526049734f262d150341142e88c6fcb00bd6"
+      },
+      "before": {
+        "bytes": 10586,
+        "git_blob": "2acd2c77478bf03a6f0adc5c70e6ac4b88a26cad",
+        "sha256": "aa20ac70d445214dad6123f501f5585b13c31969938f6db9f0b06be284c8256d"
+      },
+      "path": "plan.json"
+    },
+    {
+      "after": {
+        "bytes": 10298,
+        "git_blob": "b7576f0a1f1cb8bafd1001c01bd67f40965b734f",
+        "sha256": "893c230093ae7fe4a38c827a2f5f0c47bd5695c9545075879999767d8d0e3a1d"
+      },
+      "before": {
+        "bytes": 9237,
+        "git_blob": "25f6bbfbb85db1f9b0d60cf7ad04670b0919fdea",
+        "sha256": "176f1f97cb1480be18f835d9b161f53295dee1c6b7b18abe9059eab8c685f699"
+      },
+      "path": "README.md"
+    }
+  ],
+  "created_utc": "2026-11-14T15:37:30.432568+00:00",
+  "fix": "Construct absolute script argv from the same absolute publisher_source value passed to --publisher-source.",
+  "product_or_verifier_edits": false,
+  "remote_mutation": false,
+  "schema": 1,
+  "status": "FROZEN_PLAN_CORRECTION_NO_EXECUTION",
+  "tests_executed": false,
+  "unchanged_contracts": [
+    "All13 required arguments",
+    "External evidence CWD",
+    "Sibling checkouts",
+    "Exact future publisher commit and unchanged72143 CLI blob",
+    "Permissions",
+    "One invocation/no retries",
+    "Originals and always evidence",
+    "Missing real bundle fields",
+    "100/80/10 outer budgets and strict inner limits"
+  ],
+  "v1_archive": {
+    "bytes": 98453,
+    "git_blob": "ed1ba0e9a892307a6c30573ff9cd66bf3dc5de9c",
+    "sha256": "6c573c3c7f76c0a1b8a12969908c13d29b0fdb2c63d0b7bd2a0f2d6e1a38c267"
+  },
+  "v1_manifest": {
+    "bytes": 6816,
+    "git_blob": "71cd3eb49b3e88bf0f90b9347cdc03d97af9d6a5",
+    "sha256": "4bf61c2a31269325151782e8d3856f229e498e04741dcf1cac5462224cca0bea"
+  },
+  "workflow_created": false
+}

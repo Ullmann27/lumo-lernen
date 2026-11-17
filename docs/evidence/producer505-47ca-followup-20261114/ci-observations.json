@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T15:14:02.426660+00:00",
+  "host_source": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "native_source": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "host_feature": {
+    "run": 43606651298,
+    "attempt": 1,
+    "status": "failure",
+    "jobs_original": "originals/host-feature-jobs.json",
+    "compile_job": {
+      "id": 132482628585,
+      "conclusion": "success",
+      "scope": "Original job metadata; no new APK/Android execution acceptance."
+    },
+    "memory_source_job": {
+      "id": 132482628787,
+      "conclusion": "success"
+    },
+    "flutter_job": {
+      "id": 132482628919,
+      "conclusion": "failure",
+      "focused_memory_pass": 35,
+      "focused_memory_fail": 1,
+      "failed_test": "Memory result waits for durable reward then appears in the next frame",
+      "source": "test/games/memory_result_frame_test.dart:134",
+      "actual": "Expected exactly one Du hast gewonnen! widget; found0. Prior assertion savedRound.rewarded=true did not fail in this original trace. Cause is not independently repaired or assumed.",
+      "first_stack": {
+        "path": "originals/jobs/host-feature-log.log",
+        "first_line": 769,
+        "last_line": 793,
+        "slice_sha256": "8ffbc5c040bcd8ab4f54bc5d6bc140df01a3952e13695c790239b7a7c524e951",
+        "original": {
+          "bytes": 116975,
+          "sha256": "25e9c54a00fa696e4419dd499829f9d7408229a4fe473ca008e9faf490bdc495",
+          "git_blob": "e4420117ff622bc9f224f328830df42ca7772677"
+        }
+      },
+      "final": {
+        "path": "originals/jobs/host-feature-log.log",
+        "first_line": 827,
+        "last_line": 831,
+        "slice_sha256": "cf36d8099ae249ffaaf62a5a0d0dbf56fa7b72151c4ea40ad74361a8b7e98373",
+        "original": {
+          "bytes": 116975,
+          "sha256": "25e9c54a00fa696e4419dd499829f9d7408229a4fe473ca008e9faf490bdc495",
+          "git_blob": "e4420117ff622bc9f224f328830df42ca7772677"
+        }
+      },
+      "complete_feature_flutter_suite": "SKIPPED after focused Memory failure",
+      "post_full_suite_tracked_clean_step": "SKIPPED"
+    }
+  },
+  "host_living": {
+    "run": 43606653627,
+    "attempt": 1,
+    "job": 132482635667,
+    "conclusion": "failure",
+    "passed": 2411,
+    "skipped": 196,
+    "failed": 1,
+    "first_stack": {
+      "path": "originals/jobs/host-living-log.log",
+      "first_line": 929,
+      "last_line": 953,
+      "slice_sha256": "e06195bde5eff6f27b7f409043e21b1c7ff632d9ad0bfa8f363ebfc5a14cc4f2",
+      "original": {
+        "bytes": 666961,
+        "sha256": "bf8649047babbed951509a8696d3b9f6434737756f614dbdd751a6c7891f36e9",
+        "git_blob": "f1f3a34c39aff227928c5341fb494e16b7e01842"
+      }
+    },
+    "final": {
+      "path": "originals/jobs/host-living-log.log",
+      "first_line": 3717,
+      "last_line": 3725,
+      "slice_sha256": "2b923690e30ee98913aea47d4dce7aa9df216658d3eb4adc1668577ccfb5213c",
+      "original": {
+        "bytes": 666961,
+        "sha256": "bf8649047babbed951509a8696d3b9f6434737756f614dbdd751a6c7891f36e9",
+        "git_blob": "f1f3a34c39aff227928c5341fb494e16b7e01842"
+      }
+    },
+    "failure_same_new_test": true,
+    "scope": "Independent Living suite; counts are not the feature suite or active0b suite."
+  },
+  "host_astra": {
+    "run": 43606653599,
+    "attempt": 1,
+    "job": 132482635280,
+    "conclusion": "failure",
+    "tests": 599,
+    "errors": 2,
+    "assertion_failures_reported": 0,
+    "first_errors": {
+      "path": "originals/jobs/host-astra-log.log",
+      "first_line": 1015,
+      "last_line": 1052,
+      "slice_sha256": "60e2cba73797e5e5dcd701399de266de7664dfca589cb03bdedd0f4ea00d947e",
+      "original": {
+        "bytes": 171038,
+        "sha256": "3cbcb10e8af2e6c6dce7a5aaf32da8ab8e53414a6d55fc13adb6ebf469668151",
+        "git_blob": "027f79c83b526db3dc5d2430bad6679804029a0a"
+      }
+    },
+    "causes": [
+      "FileNotFoundError: ffmpeg",
+      "FileNotFoundError: ffprobe"
+    ],
+    "scope": "Missing runner binaries in the Producer Astra workflow, not an executed decoder corruption or Android product failure. Current candidate already declares FFmpeg in its C4 environment; no foreign workflow import is proposed."
+  },
+  "native_authorities": {
+    "run": 43607369297,
+    "attempt": 1,
+    "status": "success",
+    "source_pair": {
+      "native": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "host": "50503fef8e93700d9a889e33c3d2c37fccb46e42"
+    },
+    "terminal_run": "originals/native-authority-run-20261114T151027Z.json",
+    "terminal_jobs": "originals/native-authority-jobs-20261114T151027Z.json",
+    "memory": {
+      "job": 132484813190,
+      "status": "success",
+      "presenter_checks": 7020,
+      "captures": 8,
+      "pair_checks": 244,
+      "pair_inputs": 57,
+      "presenter": {
+        "path": "originals/jobs/native-memory-log.log",
+        "first_line": 3243,
+        "last_line": 3243,
+        "slice_sha256": "7a8d6fa3f4e2a339706487375b147527e28a7fd8e459345417175c10e1e70323",
+        "original": {
+          "bytes": 308932,
+          "sha256": "45c8521b5c1a470d30c26a4e173e0bca028f942ed5aa9a60731b45da2a731f8b",
+          "git_blob": "f968cfad669cdae8e0a8281b6df4584850e1b456"
+        }
+      },
+      "pair": {
+        "path": "originals/jobs/native-memory-log.log",
+        "first_line": 3276,
+        "last_line": 3280,
+        "slice_sha256": "5f6b5c4aacd7b75fccf56ba2bfb915caaa521d6503a3d5e10ed46287e6a868d2",
+        "original": {
+          "bytes": 308932,
+          "sha256": "45c8521b5c1a470d30c26a4e173e0bca028f942ed5aa9a60731b45da2a731f8b",
+          "git_blob": "f968cfad669cdae8e0a8281b6df4584850e1b456"
+        }
+      }
+    },
+    "quiz": {
+      "job": 132484813658,
+      "status": "success",
+      "checks": 381,
+      "captures": 6,
+      "actual_dart_requests": 67,
+      "actual_dart_reported_stars": 5000,
+      "completion": {
+        "path": "originals/jobs/native-quiz-log.log",
+        "first_line": 3196,
+        "last_line": 3198,
+        "slice_sha256": "dac79d75993d2ffefc2173c48038a928bc9688fade586d85db2a231ee36f3ded",
+        "original": {
+          "bytes": 300699,
+          "sha256": "075733da70b935151b190ab31a692712b065b5f1a9fe70abb5f99acd005c006d",
+          "git_blob": "f361f571dabf8214cfb096461c70648552c4db47"
+        }
+      },
+      "limit": "The QA authority ledger is not a production-wallet or Android release approval; the separate fixture branch is not proved by this actual-authority path."
+    },
+    "english": {
+      "job": 132484813521,
+      "status": "success",
+      "dart_cases": 10,
+      "dart_checks": 2955,
+      "renderer_checks": 7649,
+      "captures": 17,
+      "input_events": 196,
+      "dart": {
+        "path": "originals/jobs/native-english-log.log",
+        "first_line": 3145,
+        "last_line": 3145,
+        "slice_sha256": "4785742b11407d9c972acd6b28aecec11fe617ee1da67d4ff0f2ba16aaae51d1",
+        "original": {
+          "bytes": 307623,
+          "sha256": "b33b49301919d893c4166e83ba87a5ec29b62e12cdc601c9a27a7fb46bb2bd99",
+          "git_blob": "b895c21efa8072f1c29385c4a30256a8007fd13c"
+        }
+      },
+      "renderer": {
+        "path": "originals/jobs/native-english-log.log",
+        "first_line": 3249,
+        "last_line": 3249,
+        "slice_sha256": "20be087b4e0d984ca7a706c674e4f23617bf34420a38fedcc1dab7a1e2a927e1",
+        "original": {
+          "bytes": 307623,
+          "sha256": "b33b49301919d893c4166e83ba87a5ec29b62e12cdc601c9a27a7fb46bb2bd99",
+          "git_blob": "b895c21efa8072f1c29385c4a30256a8007fd13c"
+        }
+      }
+    },
+    "limits": [
+      "Exact desktop source pair only; no target0b/baf combination",
+      "No installed Android APK, physical device, actual audio playback or60FPS claim",
+      "Host505 still has actual Flutter failure",
+      "Conditional matrix steps for unrelated activity are skipped by design; the three relevant jobs themselves succeeded"
+    ]
+  },
+  "native_studio": {
+    "run": 43607369276,
+    "snapshot": "originals/native-studio-jobs-20261114T150433Z.json",
+    "status_at_snapshot": "in_progress",
+    "all_six_jobs_then_active": true,
+    "no_final_result_read_or_claimed": true
+  },
+  "observation_scope": {
+    "own_tests": false,
+    "engine_or_device_execution": false,
+    "product_integration": false,
+    "remote_mutations": false,
+    "source_and_API_readonly": true
+  }
+}
