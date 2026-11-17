@@ -23,6 +23,7 @@ import '../learning/lumo_abc_tafel_screen.dart';
 import '../learning/lumo_rechentricks_poster_screen.dart';
 import '../learning/curriculum_activities_screen.dart';
 import '../learning/lab/learning_lab_hub.dart';
+import '../learning/lab/learning_lab_hub.dart';
 import '../live/lumo_live_pro_screen.dart';
 import '../cosmos/lumo_cosmos_screen.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
@@ -187,6 +188,20 @@ class HomeContent extends StatelessWidget {
                           child: actions[i],
                         ),
                     ],
+                  ),
+                  const SizedBox(height: 12),
+                  FilledButton.icon(
+                    key: const ValueKey('home-3d-workshop'),
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size.fromHeight(56),
+                      backgroundColor: const Color(0xFF144D69),
+                      foregroundColor: LumoVisualTokens.white,
+                      side: const BorderSide(color: LumoVisualTokens.cyan),
+                    ),
+                    onPressed: () =>
+                        _open(context, LearningLabHub(appState: appState)),
+                    icon: const Icon(Icons.view_in_ar_rounded),
+                    label: const Text('3D-Lernwerkstatt mit Lumo'),
                   ),
                   const SizedBox(height: 12),
                   SizedBox(
