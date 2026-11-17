@@ -50,17 +50,19 @@ void main() {
     }
   });
 
-  test('sound data handles multiple letters, silent h and final devoicing', () {
+  // Fachprüfung 2026-11 (D-S2, D-M1): Dieser Test schrieb früher Hund → T,
+  // Stift → Sch und Vogel → F fest. Das Wort steht geschrieben in der Frage;
+  // die Lautantwort widersprach der Schreibung (Hunt, Fogel). Solche Wörter
+  // sind jetzt bewusst nicht mehr Teil der Lautaufgaben.
+  test('sound data handles multiple letters and silent h, without devoicing',
+      () {
     const initial = <String, String>{
       'Schule': 'Sch',
-      'Stift': 'Sch',
-      'Vogel': 'F',
-      'Auto': 'Au'
+      'Auto': 'Au',
+      'Tisch': 'T'
     };
     const ending = <String, String>{
-      'Hund': 'T',
-      'Rad': 'T',
-      'Pferd': 'T',
+      'Heft': 'T',
       'Buch': 'Ch',
       'Tisch': 'Sch',
       'Schuh': 'U'
@@ -70,6 +72,34 @@ void main() {
         reason: word));
     ending.forEach((word, sound) =>
         expect(PrimarySchoolWordData.finalSoundFor(word), sound, reason: word));
+    for (final word in <String>['Stift', 'Vogel']) {
+      expect(PrimarySchoolWordData.initialSoundFor(word), isNull, reason: word);
+    }
+    for (final word in <String>[
+      'Hund',
+      'Hand',
+      'Kind',
+      'Mond',
+      'Pferd',
+      'Rad',
+      'Wind',
+      'Berg',
+      'Zug'
+    ]) {
+      expect(PrimarySchoolWordData.finalSoundFor(word), isNull, reason: word);
+    }
+    for (final word in PrimarySchoolWordData.nounsForGrade(4)) {
+      final first = PrimarySchoolWordData.initialSoundFor(word);
+      if (first != null) {
+        expect(word.toLowerCase().startsWith(first.toLowerCase()), isTrue,
+            reason: 'Anlaut von $word muss zur Schreibung passen');
+      }
+      final last = PrimarySchoolWordData.finalSoundFor(word);
+      if (last != null) {
+        expect(RegExp(r'[bdg]$').hasMatch(word), isFalse,
+            reason: '$word hat Auslautverhärtung');
+      }
+    }
     expect(PrimarySchoolWordData.finalSoundFor('unbekannt'), isNull);
     for (var seed = 0; seed < 100; seed++) {
       for (final id in <String>['g1_start_sound', 'g1_end_sound']) {

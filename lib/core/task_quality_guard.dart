@@ -261,6 +261,12 @@ class TaskQualityGuard {
     if (letterEnd != null) {
       final word = _word(letterEnd.group(1) ?? '');
       final expected = _word(PrimarySchoolWordData.finalSoundFor(word) ?? '');
+      // Auslautverhärtung: Hund klingt am Ende wie t, wird aber mit d
+      // geschrieben. Eine Lautfrage zum geschriebenen Wort ist dann für Kinder
+      // nicht eindeutig; diese Wörter gehören in die Einheit "Wortende".
+      if (expected.isEmpty && RegExp(r'[bdg]$').hasMatch(word)) {
+        issues.add('final_sound_conflicts_with_spelling');
+      }
       if (expected.isEmpty) return issues;
       if (_word(answer) != expected) issues.add('answer_wrong_final_sound');
       if (choices.where((c) => _word(c) == expected).length != 1) issues.add('final_sound_not_exactly_one_choice');

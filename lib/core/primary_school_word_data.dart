@@ -167,8 +167,15 @@ class PrimarySchoolWordData {
   }
 
   // Hier stehen Lautzeichen in der für Kinder üblichen Buchstabenschreibweise.
-  // Mehrere Buchstaben können einen Laut darstellen; am Wortende gibt es z. B.
-  // Auslautverhärtung (Hund -> T). Unbekannte Wörter bleiben bewusst ohne Wert.
+  // Mehrere Buchstaben können einen Laut darstellen (Sch, Ch, Au).
+  //
+  // Bewusst NICHT enthalten sind Wörter, bei denen Laut und Schreibung
+  // auseinandergehen: Auslautverhärtung (Hund, Hand, Kind, Mond, Pferd, Rad,
+  // Wind klingen am Ende wie t, werden aber mit d geschrieben) sowie Stift
+  // (klingt wie Scht) und Vogel (klingt wie F). Das Wort steht geschrieben in
+  // der Frage; eine Lautantwort "T" würde die Schreibung "Hunt" einüben.
+  // Die d/t-Frage gehört in die Rechtschreib-Einheit "Wortende" (Verlängern:
+  // Hund – Hunde). Unbekannte Wörter bleiben bewusst ohne Wert.
   static const Map<String, String> _initialSounds = <String, String>{
     'Apfel': 'A',
     'Ameise': 'A',
@@ -191,6 +198,7 @@ class PrimarySchoolWordData {
     'Lampe': 'L',
     'Mama': 'M',
     'Maus': 'M',
+    'Mond': 'M',
     'Oma': 'O',
     'Opa': 'O',
     'Papa': 'P',
@@ -199,37 +207,34 @@ class PrimarySchoolWordData {
     'Schule': 'Sch',
     'Schaf': 'Sch',
     'Schwein': 'Sch',
-    'Stift': 'Sch',
+    'Sonne': 'S',
     'Tafel': 'T',
     'Tasche': 'T',
-    'Vogel': 'F',
+    'Tisch': 'T',
     'Wasser': 'W',
     'Wolke': 'W',
   };
   static const Map<String, String> _finalSounds = <String, String>{
+    'Apfel': 'L',
     'Ball': 'L',
     'Baum': 'M',
+    'Bett': 'T',
     'Buch': 'Ch',
     'Bus': 'S',
     'Fuchs': 'S',
     'Fuß': 'S',
     'Gras': 'S',
-    'Hand': 'T',
     'Haus': 'S',
     'Heft': 'T',
-    'Hund': 'T',
     'Igel': 'L',
-    'Kind': 'T',
     'Maus': 'S',
-    'Mond': 'T',
-    'Pferd': 'T',
-    'Rad': 'T',
+    'Regen': 'N',
     'Schaf': 'F',
     'Schuh': 'U',
     'Schwein': 'N',
     'Stift': 'T',
     'Tisch': 'Sch',
-    'Wind': 'T',
+    'Vogel': 'L',
   };
 
   static String? initialSoundFor(String word) =>
