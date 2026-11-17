@@ -35,8 +35,14 @@ void main() {
     await tester.pump(const Duration(milliseconds: 100));
     expect(tester.getSize(workshop).height, greaterThanOrEqualTo(48));
     expect(workshop.hitTestable(), findsOneWidget);
+    expect(tester.widget<FilledButton>(workshop).onPressed, isNotNull,
+        reason: 'The visible primary action must be wired to a real route');
     await tester.tap(workshop);
-    await tester.pump(const Duration(milliseconds: 350));
+    // The first frame schedules Navigator.push; the next frame animates the
+    // actual MaterialPageRoute into the visible widget tree.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump();
     expect(find.byType(LearningLabHub), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
