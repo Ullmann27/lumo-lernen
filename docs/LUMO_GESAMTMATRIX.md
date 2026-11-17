@@ -100,7 +100,7 @@ Schatzsuche, Rhythmus, Puzzle, Cards-Tisch, 4 Gewinnt, Quiz, Lernszenen: nicht a
 | Start / Onboarding | `lib/main.dart`, `features/onboarding/lumo_onboarding_holo_screen.dart`, `features/home/home_content.dart` | vorhanden | 12 Funktionen stecken in einer eingeklappten Kachel „Mehr mit Lumo entdecken" | OFFEN |
 | Shell, 14 Sektionen | `app/app_shell.dart`, `widgets/shell/left_navigation.dart` | vorhanden | Telefonleiste zeigt 5, Rest unter „Mehr" | OFFEN |
 | Profil / Belohnungen | `widgets/profile_screen.dart`, `features/rewards/` | vorhanden | Wallet ist ein globaler Schlüssel, nicht je Profil (siehe 5.3) | OFFEN |
-| Einstellungen / Elternbereich | `features/settings/settings_content.dart` | vorhanden | **keine PIN, kein Schutz**; Datenschutz nur als Infokarte | OFFEN |
+| Einstellungen / Elternbereich | `features/settings/settings_content.dart` | vorhanden | Ohne PIN und ohne Rechenfrage direkt erreichbar – ausdrückliche Entscheidung von Heinz vom 3.10.2026 (`docs/PIN_FREI_2026-10-03.md`), kein Mangel. Kamera, Mikrofon und Online-KI sind in frischen Einstellungen aus. Datenschutz nur als Infokarte | ENTSCHIEDEN (PIN-frei); Datenschutzdarstellung OFFEN |
 | Lehrerbereich | `features/teacher/*` | vorhanden | ungeprüft | NOT_RUN |
 
 `flutter analyze` auf `d7930240`: 0 Fehler, 278 Hinweise (17.11., selbst ausgeführt). Volle `flutter test`-Suite: NOT_RUN.
@@ -233,7 +233,7 @@ Grundlage ist Groks Inventur `docs/handover/BRANCH-INVENTUR-20261117.md` (784 Br
 | App `lumo-2040/memory` @ `e5dbe5ca` | teilweise übernommen: nur Fix `b93aef5b`, Optik-Commit `5a79c14c` nicht | Cherry-Pick auf dem Arbeitsbranch |
 | App `lumo-2040/tutor` @ `58549eae` | WIP, Einstieg verborgen | offen |
 | App `delivery/lumo-2037-memory-werkstatt` @ `e2a8e9fe` | 11 Commits nicht im Nullpunkt | offen, prüfen |
-| Godot-Pin in `config/godot-source.json` | umgestellt auf `d9ab8db` (Godot-CI auf `2e1aed6` vollständig grün) | Commit `d83d2199` |
+| Godot-Pin in `config/godot-source.json` | umgestellt auf `a363de2` (Importabsturz behoben; Godot-CI auf `2e1aed6` vollständig grün, auf `a363de2` noch offen) | Commit `b39d8ec9` |
 
 Die unveränderten Testberichte der Streams liegen im Godot-Repo unter `docs/integration-2/`.
 
