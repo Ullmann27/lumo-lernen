@@ -1,0 +1,85 @@
+{
+  "total_count": 4,
+  "artifacts": [
+    {
+      "id": 14108497211,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEwODQ5NzIxMQ==",
+      "name": "lumo-1983-quiz-studio-captures",
+      "size_in_bytes": 10605085,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108497211",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108497211/zip",
+      "expired": false,
+      "digest": "sha256:b1c05922e245bcd3eeb4c133de5bb1c1902a5a3ccbd93adf88e1d05b19c269af",
+      "created_at": "2026-11-14T09:39:50Z",
+      "updated_at": "2026-11-14T09:39:50Z",
+      "expires_at": "2026-12-14T09:39:48Z",
+      "workflow_run": {
+        "id": 43581113174,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-c4-connections-20261114",
+        "head_sha": "79c0ec868d6a6236eb2ae942d18251d0ed96379f"
+      }
+    },
+    {
+      "id": 14108381749,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEwODM4MTc0OQ==",
+      "name": "lumo-connect-four-2020-desktop-runtime",
+      "size_in_bytes": 22151623,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108381749",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108381749/zip",
+      "expired": false,
+      "digest": "sha256:575b4ecf1bb4ae372ec79bf0c744706506a2c209c99b323ea28bf5e491b05639",
+      "created_at": "2026-11-14T09:36:14Z",
+      "updated_at": "2026-11-14T09:36:14Z",
+      "expires_at": "2026-12-14T09:36:12Z",
+      "workflow_run": {
+        "id": 43581113174,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-c4-connections-20261114",
+        "head_sha": "79c0ec868d6a6236eb2ae942d18251d0ed96379f"
+      }
+    },
+    {
+      "id": 14108337255,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEwODMzNzI1NQ==",
+      "name": "lumo-connect-four-2020-learning-curriculum-audit",
+      "size_in_bytes": 212133,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108337255",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108337255/zip",
+      "expired": false,
+      "digest": "sha256:0255e1c47bcfdd35056ae28e69ffc3a80b3d69c35d32b722bf2c80c4505ae028",
+      "created_at": "2026-11-14T09:39:02Z",
+      "updated_at": "2026-11-14T09:39:02Z",
+      "expires_at": "2026-12-14T09:39:01Z",
+      "workflow_run": {
+        "id": 43581113174,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-c4-connections-20261114",
+        "head_sha": "79c0ec868d6a6236eb2ae942d18251d0ed96379f"
+      }
+    },
+    {
+      "id": 14108218483,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEwODIxODQ4Mw==",
+      "name": "lumo-connect-four-2020-android-host-compile",
+      "size_in_bytes": 6283,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108218483",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108218483/zip",
+      "expired": false,
+      "digest": "sha256:b68fd157aac72f74d61a27c07ce61cdf3b27d503a38a92dfe31783ac3a63fff5",
+      "created_at": "2026-11-14T09:37:52Z",
+      "updated_at": "2026-11-14T09:37:52Z",
+      "expires_at": "2026-12-14T09:37:52Z",
+      "workflow_run": {
+        "id": 43581113174,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-c4-connections-20261114",
+        "head_sha": "79c0ec868d6a6236eb2ae942d18251d0ed96379f"
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1239,
+      "sha256": "52fe405bf3ee9fff4ec2ae983ddc557022b079f28e7c74f1a44c9ce95de2a598"
+    },
+    {
+      "path": "actionlint-execution.json",
+      "bytes": 389,
+      "sha256": "b454367a557d15ea87fcd658f55b906d006b9a0474b6b2c3a8c72130ce51c6b1"
+    },
+    {
+      "path": "actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "execution-plan.json",
+      "bytes": 814,
+      "sha256": "b57aeb63d4de60b78d3645a7bc2c8e1a16fc150aa0a0a419724479f197bde924"
+    },
+    {
+      "path": "git-status-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "git-status-before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 751,
+      "sha256": "0fb2bd63a022a050b90da64b0682acbb6273098d89bf4badc5f235298021448e"
+    },
+    {
+      "path": "python-execution.json",
+      "bytes": 782,
+      "sha256": "ac3c1dd28c06525151f2636fd371e7c6c2c15592795339d924e692efcf223ca6"
+    },
+    {
+      "path": "python-tests.log",
+      "bytes": 26827,
+      "sha256": "ca31f17ecbeac43637a801ef4166adeb9acaeeaab721385069c987a444b3f0e6"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3777,
+      "sha256": "3ba47aa9d67f1762626913bec211c609a7d4d033b4bf0ea097887b4055093d89"
+    },
+    {
+      "path": "source-after.json.gz",
+      "bytes": 266742,
+      "sha256": "9973310a81d82c4ecf649e3790dc3da9134f48dfb08e79b711ce1ba305f6243c"
+    },
+    {
+      "path": "source-before.json.gz",
+      "bytes": 266742,
+      "sha256": "8db17aab7336edae58b6993985dc040e9ffbfad7d9645658a0e08068716dd2a1"
+    }
+  ]
+}

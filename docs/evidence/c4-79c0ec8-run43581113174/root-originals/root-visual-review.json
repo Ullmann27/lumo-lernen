@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T09:46:41.140Z",
+  "reviewer": "root",
+  "host_commit": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "native_commit": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "run_id": 43581113174,
+  "attempt": 1,
+  "artifact_id": 14108381749,
+  "selection_sha256": "aecd1c9335c6e3792e281fe79e990cd9bf7ee1b2b5f149dafb251b428ffcd5c4",
+  "method": "Viewed six unchanged original PNGs through view_image, without editing or synthetic render.",
+  "observations": [
+    {
+      "file": "connect_four_empty.png",
+      "observation": "Empty 7-column board, original fox, Back/Pause and all seven column controls visible with readable labels."
+    },
+    {
+      "file": "connect_four_phone_bot_response.png",
+      "observation": "Portrait board contains cyan and gold pieces in the fourth column; header, saved-turn label and all seven column controls visible."
+    },
+    {
+      "file": "connect_four_small_landscape.png",
+      "observation": "Compact end-of-round scroll panel shows the four-in-a-row message and board-view action. Further menu actions are outside this single visible scroll region; screenshot alone does not prove their reachability."
+    },
+    {
+      "file": "connect_four_fold_landscape.png",
+      "observation": "Wide Fold end-of-round scroll panel shows cyan win, four-in-a-row message, board-view action and scroll bar; lower additional menu content is clipped to the scroll viewport."
+    },
+    {
+      "file": "connect_four_pause.png",
+      "observation": "Pause panel visibly contains Continue, New round, Play against Lumo and preservation message."
+    },
+    {
+      "file": "connect_four_win.png",
+      "observation": "Four cyan pieces form a visibly highlighted horizontal win; winner label and original fox visible."
+    }
+  ],
+  "scope": "Desktop/Xvfb originals only; no Android device, frame-rate, all-menu interaction or release acceptance inferred."
+}
