@@ -1,0 +1,57 @@
+name: "LUMO – Originalquellen-Prüfung (keine APK)"
+on:
+  push:
+    branches:
+      - integration/lumo-original-assets-readiness-20261117
+    paths:
+      - scripts/audit_complete_native_source.py
+      - scripts/tests/test_audit_complete_native_source.py
+      - .github/workflows/lumo-original-native-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: "Prüfe echte Native-Quelle und dokumentiere fehlende Extras"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prüfe die Quellprüfungen
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/audit_complete_native_source.py
+          python3 -m unittest discover -s scripts/tests -p 'test_audit_complete_native_source.py' -v
+      - name: Hole genau die derzeit veröffentlichte native 2037-APK-Quelle
+        run: |
+          set -euo pipefail
+          mkdir -p build-proof
+          git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build-proof/native
+          git -C build-proof/native checkout --detach bb4788803180544525b6f23540a134016a1399a8
+      - name: Inventur – keine Full-Content-Freigabe vortäuschen
+        run: |
+          set -euo pipefail
+          python3 scripts/audit_complete_native_source.py \
+            --godot-root build-proof/native \
+            --report build-proof/LUMO-ORIGINALQUELLEN-STATUS.json
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          d=json.loads(Path("build-proof/LUMO-ORIGINALQUELLEN-STATUS.json").read_text())
+          status="BEREIT für Native-Runtime-Prüfung" if d["source_ready_for_runtime_tests"] else "NICHT VOLLSTÄNDIG"
+          with Path(os.environ["GITHUB_STEP_SUMMARY"]).open("a") as f:
+              f.write(f"## LUMO-Originalquellen: {status}\n\n")
+              f.write(f"Native SHA: {d['native_commit_observed']}\n\n")
+              f.write(f"R02-GLB: {d['optimized_r02_models_verified']}/30\n\n")
+              f.write("Dies ist eine schreibgeschützte Inventur, keine APK-Freigabe.\n")
+          PY
+      - name: Prüfnachweis speichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-ORIGINALQUELLEN-INVENTUR-${{ github.run_id }}
+          path: build-proof/LUMO-ORIGINALQUELLEN-STATUS.json
+          if-no-files-found: error
+          retention-days: 30
