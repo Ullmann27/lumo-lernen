@@ -1,0 +1,210 @@
+{
+  "schema": 1,
+  "kind": "unattached_original_api_blobs_complete_review_subset",
+  "captured_start_utc": "2026-11-14 10:50:14 UTC",
+  "local_executor_failure": "After two Native173 originals and the independent pin review were written, the executor became unavailable. Further original responses and derived review inputs were retained in functions.store. These writes created only unattached Git blobs.",
+  "repository": "Ullmann27/lumo-lernen",
+  "mutated_refs": false,
+  "entries": [
+    {
+      "key": "host491",
+      "logical_path": "originals/host491.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls/491",
+      "bytes": 28828,
+      "sha256": "a29f693d8b9befc18b1c834014ccbe767b8433c98d83c72448d5c406a514af42",
+      "git_blob": "a9832d44d2b0b198e7c7e0fd19c0a924eb665a35",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "a9832d44d2b0b198e7c7e0fd19c0a924eb665a35"
+    },
+    {
+      "key": "host492",
+      "logical_path": "originals/host492.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls/492",
+      "bytes": 21348,
+      "sha256": "2a8f53f409a850a64c81e13ccd8d4af565b7d8d4c92df2de9c259be7485cc723",
+      "git_blob": "5ae1f6a49b3b1f9cebf7738f0ee890f6b2517439",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "5ae1f6a49b3b1f9cebf7738f0ee890f6b2517439"
+    },
+    {
+      "key": "host493",
+      "logical_path": "originals/host493.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls/493",
+      "bytes": 22848,
+      "sha256": "c49a599a59af4e12b539dfc3143b91509bb53e67ae146ed64429caf25af59a25",
+      "git_blob": "2ea4a50f1e7912d2580e2022d065c05576e17a2d",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "2ea4a50f1e7912d2580e2022d065c05576e17a2d"
+    },
+    {
+      "key": "native173",
+      "logical_path": "originals/native173.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/pulls/173",
+      "bytes": 25704,
+      "sha256": "52c2cbf36f215ab7733bc8bbea827685d4f1f5f74708ba3846eed22807c9dbf0",
+      "git_blob": "d14574645335ba16b93d6b4824230ad9a75b9f0a",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "d14574645335ba16b93d6b4824230ad9a75b9f0a"
+    },
+    {
+      "key": "native174",
+      "logical_path": "originals/native174.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/pulls/174",
+      "bytes": 16255,
+      "sha256": "d90377af1c472b27f4ef4c04f5220453348bff711a5b4f01d591d50edbd0b7a0",
+      "git_blob": "df567339a8729f7565d9a1ca76c3f723b8b4b733",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "df567339a8729f7565d9a1ca76c3f723b8b4b733"
+    },
+    {
+      "key": "native171",
+      "logical_path": "originals/native171.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/pulls/171",
+      "bytes": 17388,
+      "sha256": "2d26946cc7f66665d290ba298a60dc6ee6bc2d26072f6a418671f27ff7b01d76",
+      "git_blob": "936095b754070cf0dc628b8e819a3652ba566f0e",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "936095b754070cf0dc628b8e819a3652ba566f0e"
+    },
+    {
+      "key": "host_open",
+      "logical_path": "originals/host_open.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls?state=open&sort=updated&direction=desc&per_page=100",
+      "bytes": 1815100,
+      "sha256": "936e02cadd7c0988ac0ef6aab304c22106993dc27d54de792206300e46b6fa67",
+      "git_blob": "688512bdbc36f707c84e79464d0e659c7809d057",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "688512bdbc36f707c84e79464d0e659c7809d057"
+    },
+    {
+      "key": "native_open",
+      "logical_path": "originals/native_open.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/pulls?state=open&sort=updated&direction=desc&per_page=100",
+      "bytes": 1757158,
+      "sha256": "956a9ca9fb84916658c4d96827a8068a47146ad26dbe5091ce457ba204a77852",
+      "git_blob": "5b963c2293076ed3a65393967a9d676d94c2f15e",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "5b963c2293076ed3a65393967a9d676d94c2f15e"
+    },
+    {
+      "key": "native173_delta",
+      "logical_path": "originals/native173_delta.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/compare/454e81229b0193cba75844e9985a53deb2ce5c91...71a4c1e2304b52005950b12490d070c286c45438",
+      "bytes": 401190,
+      "sha256": "7132eb31857e62f4227ef9ed1d34768f9581b7075142f742153b3123c72d293e",
+      "git_blob": "2158e85f1f9c2e177c5368da6f9aa87c7e22755d",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "2158e85f1f9c2e177c5368da6f9aa87c7e22755d"
+    },
+    {
+      "key": "native171_commit",
+      "logical_path": "originals/native171_commit.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/bebf7bba48f09afc834469db0ea3c5541a184f55",
+      "bytes": 1768,
+      "sha256": "86f91dcdebc09b14d97926a5c51b42581caaf4775a9a665f981122320d469922",
+      "git_blob": "9981ed1b92d472b0b8182ff3110e93f2588960da",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "9981ed1b92d472b0b8182ff3110e93f2588960da"
+    },
+    {
+      "key": "host32_tree",
+      "logical_path": "originals/host32_tree.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/10234debe8d5f2f9577ac28aa05ae99322d9190f?recursive=1",
+      "bytes": 1328372,
+      "sha256": "a40e7b463c2229185b41079c2285a983c59facf33963d25e4b1583be588f426c",
+      "git_blob": "1bc7cd56373112aa8da1a1de05c7e72e3d7e774e",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "1bc7cd56373112aa8da1a1de05c7e72e3d7e774e"
+    },
+    {
+      "key": "host502_delta",
+      "logical_path": "originals/host502_delta.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...c3f44ea7acdfe2ee8be68e8c37ad5fa25f2a1e23",
+      "bytes": 125987,
+      "sha256": "18532012bd88b1a0d0190efe722bc55d37a2dd2115f7a96572b12b40da379dd2",
+      "git_blob": "f8882aabf277b6081cf433fe007dac4e9eeb1844",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "f8882aabf277b6081cf433fe007dac4e9eeb1844"
+    },
+    {
+      "key": "host501_delta",
+      "logical_path": "originals/host501_delta.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+      "bytes": 173042,
+      "sha256": "371b2f5b7f38774b65cc0bd02ab87ae9411a5d9fa31805ef5db13a4b8c8a215e",
+      "git_blob": "41682f9a66962ff269c7cf760f58cc99a22f6d79",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "41682f9a66962ff269c7cf760f58cc99a22f6d79"
+    },
+    {
+      "key": "host500_delta",
+      "logical_path": "originals/host500_delta.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/f86509f0bc1f3b5ca9269edf950b7e9d857fc2b5...64b0b9f93802902978c140cdae9b0fc9d50e0938",
+      "bytes": 55186,
+      "sha256": "d2ef6ebc500ac8d19777176f446b7f06250238819463a9e308b0db2a182b431e",
+      "git_blob": "b24b053cbaa10c38b001c1e127336a3d7a0ed018",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "b24b053cbaa10c38b001c1e127336a3d7a0ed018"
+    },
+    {
+      "key": "host497_latest",
+      "logical_path": "originals/host497_latest.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "bytes": 560969,
+      "sha256": "2c18a47de83c3bc156f09e79dc56334bb8e261b53e5e50de0cb3b593bd3333dd",
+      "git_blob": "b50b4ef45409a5f148b9043d63813d25c2af66cb",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "b50b4ef45409a5f148b9043d63813d25c2af66cb"
+    },
+    {
+      "key": "host477_latest",
+      "logical_path": "originals/host477_latest.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/218eb65fdbe73da4267410e85808cf73479741f7...5e394b9ffff1f817d008067a2397fbe35bca0a8b",
+      "bytes": 349656,
+      "sha256": "9b7d7b9c4cf6674a0448cf74b7733902575645734c01d1643ec01b0e04f25532",
+      "git_blob": "9714e35d91d319cb82eba71443611da2de5231e4",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "9714e35d91d319cb82eba71443611da2de5231e4"
+    },
+    {
+      "key": "host494_delta",
+      "logical_path": "originals/host494_delta.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/86445f53af5d573549fc8cf03405261611f3cb7e...078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "bytes": 811485,
+      "sha256": "8a208a1d465fbaa9387ac79fa388ee6e6ea56a9f629ece502aebed6526f0a9c9",
+      "git_blob": "8327d284bc6fc961f02212f0972a4ccfb0ae11a6",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "8327d284bc6fc961f02212f0972a4ccfb0ae11a6"
+    },
+    {
+      "key": "host501_latest",
+      "logical_path": "originals/host501_latest.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/857b91c4aab28bd0552194c7223216489bb6766c...b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+      "bytes": 102586,
+      "sha256": "05983f5de1a54e376a7d2fc51a96775d27213c90739a7ff1686331ad68a30d4e",
+      "git_blob": "b8bbf7e0148c7cb9eceadfbdb35d1bffe18db573",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "b8bbf7e0148c7cb9eceadfbdb35d1bffe18db573"
+    },
+    {
+      "key": "host497_delta",
+      "logical_path": "originals/host497_delta.json",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/803a4e960ffb804a46b6d09417731c031f00f680...07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "bytes": 1183896,
+      "sha256": "24a1a9a227609d7bd89409cf77c82710169e381be9cb301f9eb03ded26292825",
+      "git_blob": "e0e89ecd29e9487dd38f705513eed28247e66e21",
+      "stored_repository": "Ullmann27/lumo-lernen",
+      "stored_blob": "e0e89ecd29e9487dd38f705513eed28247e66e21"
+    }
+  ],
+  "not_part_of_index_but_retained_in_function_store": [
+    "host477_delta"
+  ],
+  "index_scope": "Complete original listed API response bytes; code and result interpretation belong to the separate review.",
+  "supersedes_index": {
+    "bytes": 8809,
+    "sha256": "82847cc90cfddae6f6a75ec426808dc44361a8e456d76dbfb0034b6238dbed34",
+    "git_blob": "6fa41bca76b57d959b2b6516b75abf27c7c74311"
+  },
+  "note": "The broad historical host477 compare was truncated at300 paths and is not used for a code-absence claim; exact latest24-file compare is preserved instead."
+}
