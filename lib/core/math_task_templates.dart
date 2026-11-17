@@ -200,6 +200,29 @@ class MathTaskTemplates {
     return template.concretize(_mixSeed(seed + 809));
   }
 
+  /// Vier Antwortkarten für eine Zahlenaufgabe, auch für Spiele und Logik.
+  ///
+  /// Die Lösung liegt der Größe nach gleichmäßig verteilt an jeder Stelle,
+  /// die falschen Karten stammen zuerst aus [typical] (typische Fehler der
+  /// Aufgabenart). Keine Karte ist negativ, doppelt, außerhalb von
+  /// [min]..[max] oder in [blocked].
+  static List<String> numberChoices(
+    int answer,
+    int seed, {
+    List<int> typical = const <int>[],
+    int min = 0,
+    int? max,
+    Set<int> blocked = const <int>{},
+  }) =>
+      _numericChoices(answer, seed,
+          typical: typical, min: min, max: max, blocked: blocked);
+
+  /// Typische falsche Ergebnisse einer Plusaufgabe a + b.
+  static List<int> additionErrors(int a, int b) => _additionErrors(a, b);
+
+  /// Typische falsche Ergebnisse einer Minusaufgabe a − b.
+  static List<int> subtractionErrors(int a, int b) => _subtractionErrors(a, b);
+
   static const Map<String, List<String>> _legacyUnitAliases = <String, List<String>>{
     'Zahlenreihe': <String>['Zahlenstrahl'],
     'Nachbarzahlen': <String>['Zahlenstrahl'],
@@ -250,38 +273,45 @@ class MathTaskTemplate {
         );
         final right = limit == null ? b : b.clamp(1, limit - a).toInt();
         final answer = a + right;
-        return _numberTask('$a + $right = ?', answer, 'Lege zuerst $a und dann $right dazu. Zusammen sind es $answer.', 'dots',
+        return _numberTask(seed, '$a + $right = ?', answer, 'Lege zuerst $a und dann $right dazu. Zusammen sind es $answer.', 'dots',
+          typical: _additionErrors(a, right),
         );
       case MathTemplateKind.subtraction:
         final minuend = a ;
         final subtrahend = b.clamp(1, minuend).toInt();
         final answer = minuend - subtrahend;
-        return _numberTask('$minuend - $subtrahend = ?', answer, 'Starte bei $minuend und gehe $subtrahend Schritte zurück.', 'line',
+        return _numberTask(seed, '$minuend - $subtrahend = ?', answer, 'Starte bei $minuend und gehe $subtrahend Schritte zurück.', 'line',
+          typical: _subtractionErrors(minuend, subtrahend),
         );
       case MathTemplateKind.numberLineMissing:
         final start = a;
         final answer = start + 2;
-        return _numberTask('Welche Zahl fehlt? $start, ${start + 1}, _, ${start + 3}', answer, 'Am Zahlenstrahl geht es immer um 1 weiter.', 'number_line',
+        // Karten, die schon in der Reihe stehen, wären sofort auszuschließen.
+        return _numberTask(seed, 'Welche Zahl fehlt? $start, ${start + 1}, _, ${start + 3}', answer, 'Am Zahlenstrahl geht es immer um 1 weiter.', 'number_line',
+          typical: <int>[start + 4, start - 1, start + 5, start - 2],
+          blocked: <int>{start, start + 1, start + 3},
         );
       case MathTemplateKind.quantityCompare:
         final left = a;
         final answer = left == b ? 'gleich' : left > b ? 'links' : 'rechts';
         final leftDots = _repeatEmoji('🍎', left);
         final rightDots = _repeatEmoji('🍎', b);
-        return _choice('$leftDots oder $rightDots – wo ist mehr?', answer, <String>['links', 'rechts', 'gleich'], 'Vergleiche die Menge, nicht die Länge der Zeile.', 'quantity',
+        return _choice(seed, '$leftDots oder $rightDots – wo ist mehr?', answer, <String>['links', 'rechts', 'gleich'], 'Vergleiche die Menge, nicht die Länge der Zeile.', 'quantity',
+          keepOrder: true,
         );
       case MathTemplateKind.numberWord:
         final answer = _numberWords[a] ?? '$a';
-        return _choice('Wie schreibt man die Zahl $a als Wort?', answer, _numberWordChoices(a), 'Zahlwörter liest man wie normale Wörter.', 'word_number',
+        return _choice(seed, 'Wie schreibt man die Zahl $a als Wort?', answer, _numberWordChoices(a, seed), 'Zahlwörter liest man wie normale Wörter.', 'word_number',
+          keepOrder: true,
         );
       case MathTemplateKind.shapeRecognition:
         final entry = shapeQuestions[_positive(seed, shapeQuestions.length)];
-        return _choice(entry.$1, entry.$2, entry.$3, entry.$4, 'shape');
+        return _choice(seed, entry.$1, entry.$2, entry.$3, entry.$4, 'shape');
       case MathTemplateKind.moneyCompare:
         final left = a;
         final right = b;
         final answer = left == right ? 'gleich viel' : left > right ? '$left €' : '$right €';
-        return _choice('Was kostet mehr: $left € oder $right €?', answer, <String>['$left €', '$right €', 'gleich viel'], 'Mehr Euro bedeutet höherer Preis.', 'money',
+        return _choice(seed, 'Was kostet mehr: $left € oder $right €?', answer, <String>['$left €', '$right €', 'gleich viel'], 'Mehr Euro bedeutet höherer Preis.', 'money',
         );
       case MathTemplateKind.dayHours:
         const facts = <(String, String, List<String>, String)>[
@@ -335,7 +365,7 @@ class MathTaskTemplate {
           ),
         ];
         final fact = facts[_positive(_mixSeed(seed), facts.length)];
-        return _choice(fact.$1, fact.$2, fact.$3, fact.$4, 'clock');
+        return _choice(seed, fact.$1, fact.$2, fact.$3, fact.$4, 'clock');
       case MathTemplateKind.symmetry:
         if (unit == 'Symmetrieachsen') {
           const examples = <(String, int)>[
@@ -345,8 +375,10 @@ class MathTaskTemplate {
             ('ein gleichschenkliges Dreieck, das nicht gleichseitig ist', 1),
           ];
           final entry = examples[_positive(_mixSeed(seed), examples.length)];
-          return _numberTask('Wie viele Symmetrieachsen hat ${entry.$1}?', entry.$2,
-              'Eine Symmetrieachse teilt eine Form in zwei spiegelgleiche Hälften. Prüfe jede mögliche Faltlinie.', 'symmetry');
+          return _numberTask(seed, 'Wie viele Symmetrieachsen hat ${entry.$1}?', entry.$2,
+              'Eine Symmetrieachse teilt eine Form in zwei spiegelgleiche Hälften. Prüfe jede mögliche Faltlinie.', 'symmetry',
+              // Typisch: Ecken oder Seiten zählen statt Faltlinien, oder gar keine Achse finden.
+              typical: const <int>[0, 1, 2, 3, 4, 6, 8], max: 8);
         }
         const data = <String, bool>{
           'ein Kreis': true, 'ein Quadrat': true,
@@ -354,18 +386,21 @@ class MathTaskTemplate {
           'ein Dreieck mit drei verschieden langen Seiten': false,
         };
         final entry = data.entries.elementAt(_positive(_mixSeed(seed), data.length));
-        return _choice('Hat ${entry.key} eine Spiegelachse?', entry.value ? 'ja' : 'nein',
-            <String>['ja', 'nein'], 'Beim Spiegeln an einer Achse müssen beide Hälften genau aufeinanderpassen.', 'symmetry');
+        return _choice(seed, 'Hat ${entry.key} eine Spiegelachse?', entry.value ? 'ja' : 'nein',
+            <String>['ja', 'nein'], 'Beim Spiegeln an einer Achse müssen beide Hälften genau aufeinanderpassen.', 'symmetry', keepOrder: true);
       case MathTemplateKind.multiplicationPrep:
         final answer = b;
-        return _numberTask('Wie oft $a ist ${a * b}?', answer, '$a wird $answer-mal genommen: ${List<String>.filled(answer, '$a').join(' + ')} = ${a * b}.', 'groups',
+        return _numberTask(seed, 'Wie oft $a ist ${a * b}?', answer, '$a wird $answer-mal genommen: ${List<String>.filled(answer, '$a').join(' + ')} = ${a * b}.', 'groups',
+          // Typisch: die andere Zahl der Aufgabe nennen oder sich um eins verzählen.
+          typical: <int>[a, answer - 1, answer + 1, a * b - a],
         );
       case MathTemplateKind.wordProblemOneStep:
         if (promptPattern == 'sachaufgabe-wegnehmen') {
           final removed = b.clamp(1, a).toInt();
           final answer = a - removed;
           final story = _subtractionStories[_positive(seed, _subtractionStories.length)];
-          return _numberTask(story.prompt(a, removed, answer), answer, story.explain(a, removed, answer), 'story');
+          return _numberTask(seed, story.prompt(a, removed, answer), answer, story.explain(a, removed, answer), 'story',
+              typical: _subtractionErrors(a, removed));
         }
         // 2026-06-03: vorher EINE Geschichte (Lisa+Aepfel) - Kind sah staendig
         // dieselbe Aufgabe nur mit anderen Zahlen. Jetzt 8 Szenarien aus dem
@@ -373,7 +408,8 @@ class MathTaskTemplate {
         final answer = a + b;
         final s1 = _positive(seed, _oneStepStories.length);
         final story = _oneStepStories[s1];
-        return _numberTask(story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story',
+        return _numberTask(seed, story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story',
+          typical: _additionErrors(a, b),
         );
       case MathTemplateKind.moneyChange:
         final denomination = grade >= 3 ? <int>[2, 5, 10][b % 3] : (b.isEven ? 2 : 1);
@@ -382,84 +418,114 @@ class MathTaskTemplate {
         final count = euro ~/ denomination;
         final pieces = denomination <= 2 ? 'Münzen' : 'Scheine';
         String counted(int value) => '$value ${value == 1 ? (denomination <= 2 ? 'Münze' : 'Schein') : pieces}';
-        return _choice('Wie viele $denomination-€-$pieces ergeben $euro €?', counted(count),
-            <String>[counted(count), counted(count + 1), counted(count == 1 ? count + 2 : count - 1)],
-            'Zähle in $denomination-er-Schritten bis $euro: $count × $denomination € = $euro €.', 'money_change');
+        return _choice(seed, 'Wie viele $denomination-€-$pieces ergeben $euro €?', counted(count),
+            <String>[
+              // Typisch: den Betrag oder den Wert des Geldstücks nennen, sich um eins verzählen.
+              for (final value in _numericChoices(count, seed,
+                  typical: <int>[euro, denomination, count - 1, count + 1, count * 2], min: 1))
+                counted(int.parse(value)),
+            ],
+            'Zähle in $denomination-er-Schritten bis $euro: $count × $denomination € = $euro €.', 'money_change',
+            keepOrder: true);
       case MathTemplateKind.clockTime:
         final minutes = <int>[0, 15, 30, 45][b];
         String clock(int hour, int minute) => '${(hour - 1) % 12 + 1}:${minute.toString().padLeft(2, '0')} Uhr';
         final answer = clock(a, minutes);
-        return _choice('Welche Uhrzeit ist gemeint: Stunde $a und Minute $minutes?', answer,
+        return _choice(seed, 'Welche Uhrzeit ist gemeint: Stunde $a und Minute $minutes?', answer,
             <String>[answer, clock(a + 1, minutes), clock(a, (minutes + 15) % 60), clock(a, (minutes + 30) % 60)],
             'Die Zahl vor dem Doppelpunkt nennt die Stunde. Danach stehen die Minuten; 00 heißt eine volle Stunde.', 'clock');
       case MathTemplateKind.lengthConversion:
         final extra = b * 10;
         final answer = a * 100 + extra;
         final amount = extra == 0 ? '$a Meter' : '$a Meter und $extra Zentimeter';
-        return _numberTask('Wie viele Zentimeter sind $amount?', answer,
-            '1 Meter sind 100 Zentimeter. Rechne $a × 100 und zähle $extra Zentimeter dazu.', 'ruler');
+        return _numberTask(seed, 'Wie viele Zentimeter sind $amount?', answer,
+            '1 Meter sind 100 Zentimeter. Rechne $a × 100 und zähle $extra Zentimeter dazu.', 'ruler',
+            // Typisch: falsche Umrechnungszahl, Rest vergessen oder nur addiert.
+            typical: <int>[a * 10 + extra ~/ 10, a * 1000 + extra, a * 100 + extra ~/ 10, a * 100, a + extra, a * 10 + extra]);
       case MathTemplateKind.evenOdd:
         final answer = a.isEven ? 'gerade' : 'ungerade';
-        return _choice('Ist $a gerade oder ungerade?', answer, <String>['gerade', 'ungerade', 'beides'], 'Gerade Zahlen kann man in zwei gleiche Gruppen teilen.', 'parity',
+        return _choice(seed, 'Ist $a gerade oder ungerade?', answer, <String>['gerade', 'ungerade', 'beides'], 'Gerade Zahlen kann man in zwei gleiche Gruppen teilen.', 'parity',
+          keepOrder: true,
         );
       case MathTemplateKind.halfDouble:
         final even = a.isEven ? a : a + 1;
         if (b.isEven) {
           final answer = even ~/ 2;
-          return _numberTask('Was ist die Hälfte von $even?', answer, 'Teile $even in zwei gleiche Gruppen.', 'half',
+          return _numberTask(seed, 'Was ist die Hälfte von $even?', answer, 'Teile $even in zwei gleiche Gruppen.', 'half',
+            // Typisch: verdoppelt statt halbiert, 2 abgezogen statt geteilt.
+            typical: <int>[even * 2, even - 2, answer - 1, answer + 1, answer + 10],
           );
         }
         final answer = even * 2;
-        return _numberTask('Was ist das Doppelte von $even?', answer, 'Doppelt heißt: $even + $even.', 'double',
+        return _numberTask(seed, 'Was ist das Doppelte von $even?', answer, 'Doppelt heißt: $even + $even.', 'double',
+          // Typisch: halbiert statt verdoppelt, 2 dazugezählt statt verdoppelt.
+          typical: <int>[even ~/ 2, even + 2, answer - 2, answer + 2, answer - 10, answer + 10],
         );
       case MathTemplateKind.tensOnes:
         final tens = a ~/ 10;
         final ones = a % 10;
         final askTens = b.isEven;
-        return _numberTask(askTens ? 'Wie viele Zehner hat $a?' : 'Wie viele Einer hat $a?', askTens ? tens : ones, '$a besteht aus $tens Zehnern und $ones Einern.', 'ten_ones',
+        return _numberTask(seed, askTens ? 'Wie viele Zehner hat $a?' : 'Wie viele Einer hat $a?', askTens ? tens : ones, '$a besteht aus $tens Zehnern und $ones Einern.', 'ten_ones',
+          // Typisch: die andere Ziffer, die ganze Zahl oder Zehner und Einer zusammengezählt.
+          typical: <int>[askTens ? ones : tens, a, tens + ones, askTens ? tens * 10 : ones * 10],
         );
       case MathTemplateKind.multiplication:
         final answer = a * b;
-        return _numberTask('$a × $b = ?', answer, 'Nutze die Einmaleins-Reihe von $a.', 'times_table',
+        return _numberTask(seed, '$a × $b = ?', answer, 'Nutze die Einmaleins-Reihe von $a.', 'times_table',
+          // Typisch: Nachbaraufgabe in der Reihe oder plus statt mal gerechnet.
+          typical: <int>[a * (b - 1), a * (b + 1), (a - 1) * b, (a + 1) * b, a + b],
         );
       case MathTemplateKind.writtenAddition:
         final right = grade == 3 ? b.clamp(1, 1000 - a).toInt() : b;
         final answer = a + right;
-        return _numberTask('Schriftlich: $a + $right = ?', answer, 'Schreibe Einer unter Einer, Zehner unter Zehner, Hunderter unter Hunderter.', 'written_add',
+        return _numberTask(seed, 'Schriftlich: $a + $right = ?', answer, 'Schreibe Einer unter Einer, Zehner unter Zehner, Hunderter unter Hunderter.', 'written_add',
+          typical: _additionErrors(a, right),
         );
       case MathTemplateKind.writtenSubtraction:
         final minuend = a > b ? a : a + b;
         final answer = minuend - b;
-        return _numberTask('Schriftlich: $minuend - $b = ?', answer, 'Rechne von rechts nach links und tausche, wenn nötig.', 'written_sub',
+        return _numberTask(seed, 'Schriftlich: $minuend - $b = ?', answer, 'Rechne von rechts nach links und tausche, wenn nötig.', 'written_sub',
+          typical: _subtractionErrors(minuend, b),
         );
       case MathTemplateKind.fractionHalf:
         final even = a.isEven ? a : a + 1;
         final answer = even ~/ 2;
-        return _numberTask('Was ist die Hälfte von $even?', answer, 'Die Hälfte ist einer von zwei gleich großen Teilen.', 'fraction_half',
+        return _numberTask(seed, 'Was ist die Hälfte von $even?', answer, 'Die Hälfte ist einer von zwei gleich großen Teilen.', 'fraction_half',
+          typical: <int>[even * 2, even - 2, answer - 1, answer + 1, answer + 10],
         );
       case MathTemplateKind.wordProblemTwoStep:
         final answer = a + b - 3;
         final s2 = _positive(seed, _twoStepStories.length);
         final story = _twoStepStories[s2];
-        return _numberTask(story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story_two',
+        return _numberTask(seed, story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story_two',
+          // Typisch: nach dem ersten Schritt aufgehört oder dazugezählt statt weggenommen.
+          typical: <int>[a + b, a + b + 3, a - 3, answer - 10, answer + 10],
         );
       case MathTemplateKind.perimeter:
         final answer = 2 * (a + b);
-        return _numberTask('Ein Rechteck ist $a cm lang und $b cm breit. Wie groß ist der Umfang?', answer, 'Umfang: $a + $b + $a + $b = $answer cm.', 'perimeter',
+        return _numberTask(seed, 'Ein Rechteck ist $a cm lang und $b cm breit. Wie groß ist der Umfang?', answer, 'Umfang: $a + $b + $a + $b = $answer cm.', 'perimeter',
+          // Typisch: nur zwei Seiten addiert, Fläche statt Umfang, eine Seite vergessen.
+          typical: <int>[a + b, a * b, 2 * a + b, a + 2 * b],
         );
       case MathTemplateKind.area:
         final answer = a * b;
-        return _numberTask('Ein Rechteck ist $a cm lang und $b cm breit. Wie groß ist der Flächeninhalt?', answer, 'Fläche: Länge mal Breite, also $a × $b = $answer cm².', 'area',
+        return _numberTask(seed, 'Ein Rechteck ist $a cm lang und $b cm breit. Wie groß ist der Flächeninhalt?', answer, 'Fläche: Länge mal Breite, also $a × $b = $answer cm².', 'area',
+          // Typisch: Umfang statt Fläche, Seiten nur addiert, Nachbaraufgabe im Einmaleins.
+          typical: <int>[2 * (a + b), a + b, a * (b + 1), a * (b - 1)],
         );
       case MathTemplateKind.writtenMultiplication:
         final answer = a * b;
-        return _numberTask('Schriftlich: $a × $b = ?', answer, 'Multipliziere jede Stelle von $a mit $b.', 'written_mul',
+        return _numberTask(seed, 'Schriftlich: $a × $b = ?', answer, 'Multipliziere jede Stelle von $a mit $b.', 'written_mul',
+          // Typisch: gemerkte Zehner vergessen, einmal zu oft oder zu selten genommen.
+          typical: <int>[if (b < 10) _productWithoutCarry(a, b), a * (b - 1), a * (b + 1), answer - 10, answer + 10, answer - 100, answer + 100],
         );
       case MathTemplateKind.division:
         final divisor = b.clamp(2, 12).toInt();
         final quotient = (a ~/ divisor).clamp(2, 99).toInt();
         final dividend = quotient * divisor;
-        return _numberTask('$dividend : $divisor = ?', quotient, 'Teile $dividend in $divisor gleich große Gruppen.', 'division',
+        return _numberTask(seed, '$dividend : $divisor = ?', quotient, 'Teile $dividend in $divisor gleich große Gruppen.', 'division',
+          // Typisch: Nachbaraufgabe im Einmaleins, eine Null zu viel oder zu wenig, abgezogen statt geteilt.
+          typical: <int>[quotient - 1, quotient + 1, if (quotient % 10 == 0) quotient ~/ 10, if (quotient % 10 == 0) quotient * 10, quotient + 10, quotient - 10, if (dividend - divisor < 100) dividend - divisor],
         );
       case MathTemplateKind.simpleFractionAdd:
         final denominator = b + 2;
@@ -467,52 +533,73 @@ class MathTaskTemplate {
         final right = 1 + _positive(_mixSeed(seed + 211), denominator - left - 1);
         final numerator = left + right;
         final answer = '$numerator/$denominator';
-        return _choice('$left/$denominator + $right/$denominator = ?', answer,
-            <String>[answer, '${numerator - 1}/$denominator', '${numerator + 1}/$denominator'],
-            'Die Teile bleiben gleich groß: Der Nenner bleibt $denominator. Addiere nur die Zähler: $left + $right = $numerator. Kürzen ist hier nicht nötig.', 'fraction_add');
+        return _choice(seed, '$left/$denominator + $right/$denominator = ?', answer,
+            _fractionChoices(numerator, denominator, seed, lower: <(int, int)>[
+              // Typisch: auch die Nenner addiert; sich bei den Zählern verzählt.
+              (numerator, denominator * 2),
+              (numerator - 1, denominator),
+              (numerator - 2, denominator),
+            ], upper: <(int, int)>[
+              (numerator + 1, denominator),
+              if (numerator + 2 <= denominator) (numerator + 2, denominator),
+            ]),
+            'Die Teile bleiben gleich groß: Der Nenner bleibt $denominator. Addiere nur die Zähler: $left + $right = $numerator. Kürzen ist hier nicht nötig.', 'fraction_add', keepOrder: true);
       case MathTemplateKind.decimals:
-        final left = a / 10;
-        final right = b / 10;
-        final answer = (left + right).toStringAsFixed(1).replaceAll('.', ',');
-        return _choice('${left.toStringAsFixed(1).replaceAll('.', ',')} + ${right.toStringAsFixed(1).replaceAll('.', ',')} = ?', answer, <String>[answer, (left + right + 1).toStringAsFixed(1).replaceAll('.', ','), (left + right - 0.1).toStringAsFixed(1).replaceAll('.', ','),
+        // Gerechnet wird in ganzen Zehnteln, damit keine Rundungsfehler entstehen.
+        String tenths(int value) => '${value ~/ 10},${value % 10}';
+        final sum = a + b;
+        final answer = tenths(sum);
+        return _choice(seed, '${tenths(a)} + ${tenths(b)} = ?', answer, <String>[
+            // Typisch: den Übertrag zu den Einern vergessen, um ein Ganzes oder ein Zehntel daneben.
+            for (final value in _numericChoices(sum, seed, typical: <int>[sum - 10, sum + 10, sum - 1, sum + 1, _sumWithoutCarry(a, b)]))
+              tenths(int.parse(value)),
           ], 'Addiere Zehntel wie normale Zahlen und setze das Komma.', 'decimal',
+          keepOrder: true,
         );
       case MathTemplateKind.wordProblemThreeStep:
         final answer = (a + b) * 2 - 4;
         final s3 = _positive(seed, _threeStepStories.length);
         final story = _threeStepStories[s3];
-        return _numberTask(story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story_three',
+        return _numberTask(seed, story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story_three',
+          // Typisch: einen Schritt ausgelassen oder zuletzt dazugezählt statt weggenommen.
+          typical: <int>[(a + b) * 2, a + b - 4, (a + b) * 2 + 4, a + b, a * 2 + b - 4],
         );
       case MathTemplateKind.chartRead:
         final answer = a + b;
-        return _numberTask('Diagramm: Montag $a Kinder, Dienstag $b Kinder. Wie viele zusammen?', answer, 'Lies beide Balken ab und addiere sie.', 'chart',
+        return _numberTask(seed, 'Diagramm: Montag $a Kinder, Dienstag $b Kinder. Wie viele zusammen?', answer, 'Lies beide Balken ab und addiere sie.', 'chart',
+          typical: _additionErrors(a, b),
         );
       case MathTemplateKind.compare:
         final answer = a > b ? '>' : a < b ? '<' : '=';
-        return _choice('Welches Zeichen passt? $a ? $b', answer, <String>['<', '>', '='], 'Vergleiche von links nach rechts.', 'compare',
+        return _choice(seed, 'Welches Zeichen passt? $a ? $b', answer, <String>['<', '>', '='], 'Vergleiche von links nach rechts.', 'compare',
+          keepOrder: true,
         );
       case MathTemplateKind.massConversion:
         final kg = 1 + (a - 1) % 9;
         final extra = (b - 1) * 100;
         final answer = kg * 1000 + extra;
         final amount = extra == 0 ? '$kg kg' : '$kg kg und $extra g';
-        return _numberTask('Wie viele Gramm sind $amount?', answer,
-            '1 kg sind 1000 g. Rechne $kg × 1000 und zähle $extra g dazu.', 'mass');
+        return _numberTask(seed, 'Wie viele Gramm sind $amount?', answer,
+            '1 kg sind 1000 g. Rechne $kg × 1000 und zähle $extra g dazu.', 'mass',
+            typical: _thousandConversionErrors(kg, extra));
       case MathTemplateKind.volumeConversion:
         final liter = 1 + (a - 1) % 9;
         final extra = (b - 1) * 100;
         final answer = liter * 1000 + extra;
         final amount = extra == 0 ? '$liter Liter' : '$liter Liter und $extra Milliliter';
-        return _numberTask('Wie viele Milliliter sind $amount?', answer,
-            '1 Liter sind 1000 Milliliter. Rechne $liter × 1000 und zähle $extra Milliliter dazu.', 'volume');
+        return _numberTask(seed, 'Wie viele Milliliter sind $amount?', answer,
+            '1 Liter sind 1000 Milliliter. Rechne $liter × 1000 und zähle $extra Milliliter dazu.', 'volume',
+            typical: _thousandConversionErrors(liter, extra));
       case MathTemplateKind.timeMinutes:
         final hours = 1 + (a - 1) % 5;
         final extra = (b - 1) * 15;
         final answer = hours * 60 + extra;
         final hoursText = '$hours ${hours == 1 ? 'Stunde' : 'Stunden'}';
         final amount = extra == 0 ? hoursText : '$hoursText und $extra Minuten';
-        return _numberTask('Wie viele Minuten sind $amount?', answer,
-            '1 Stunde hat 60 Minuten. Rechne $hours × 60 und zähle $extra Minuten dazu.', 'clock');
+        return _numberTask(seed, 'Wie viele Minuten sind $amount?', answer,
+            '1 Stunde hat 60 Minuten. Rechne $hours × 60 und zähle $extra Minuten dazu.', 'clock',
+            // Typisch: mit 100 statt 60 gerechnet, Rest vergessen, eine Stunde zu viel oder zu wenig.
+            typical: <int>[hours * 100 + extra, hours * 60, answer + 60, answer - 60, hours * 10 + extra, hours + extra]);
       case MathTemplateKind.fractionExpand:
         final denom = 2 + (a - 2) % 5;
         final factor = 2 + (b - 2) % 4;
@@ -520,12 +607,22 @@ class MathTaskTemplate {
         final newNumerator = numerator * factor;
         final newDenom = denom * factor;
         final answer = '$newNumerator/$newDenom';
-        return _choice(
+        return _choice(seed, 
           'Erweitere den Bruch $numerator/$denom mit $factor. Wie heißt der neue Bruch?',
           answer,
-          <String>[answer, '$numerator/$newDenom', '${newNumerator + 1}/$newDenom'],
+          _fractionChoices(newNumerator, newDenom, seed, lower: <(int, int)>[
+            // Typisch: nur den Nenner malgenommen, sich beim Zähler verrechnet.
+            (numerator, newDenom),
+            (newNumerator - 1, newDenom),
+          ], upper: <(int, int)>[
+            // Typisch: nur den Zähler malgenommen, dazugezählt statt malgenommen.
+            (newNumerator, denom),
+            (numerator + factor, denom + factor),
+            (newNumerator + 1, newDenom),
+          ]),
           'Multipliziere Zähler UND Nenner mit $factor: $numerator · $factor = $newNumerator und $denom · $factor = $newDenom.',
           'fraction_expand',
+          keepOrder: true,
         );
       case MathTemplateKind.average:
         // Mittelwert aus a, b und (a+b)/2-ish. Drei Werte deren Durchschnitt
@@ -537,10 +634,13 @@ class MathTaskTemplate {
         final sum = v1 + v2 + v3;
         final answer = sum ~/ 3;
         return _numberTask(
+          seed,
           'Drei Kinder sammeln Sterne: $v1, $v2 und $v3. Wie viele Sterne im Mittelwert?',
           answer,
           'Addiere alle Werte ($v1+$v2+$v3=$sum) und teile durch die Anzahl (3): $sum:3 = $answer.',
           'chart',
+          // Typisch: nur addiert, einen der drei Werte genannt, durch 2 geteilt.
+          typical: <int>[v1, v2, v3, sum ~/ 2, answer + 3, answer - 3],
         );
       case MathTemplateKind.shapeTrace:
         // 2026-06-05 Iter 20: Form-Nachzeichnen.
@@ -572,17 +672,42 @@ class MathTaskTemplate {
     }
   }
 
-  MathConcreteTask _numberTask(String prompt, int answer, String explanation, String visual,
-  ) {
-    return _choice(prompt, '$answer', _numericDistractors(answer), explanation, visual,
+  /// Zahlenaufgabe mit vier Karten. [typical] sind die typischen falschen
+  /// Ergebnisse dieser Aufgabenart, siehe [_numericChoices].
+  MathConcreteTask _numberTask(int seed, String prompt, int answer, String explanation, String visual, {
+    List<int> typical = const <int>[],
+    int? max,
+    Set<int> blocked = const <int>{},
+  }) {
+    return _choice(
+      seed,
+      prompt,
+      '$answer',
+      _numericChoices(
+        answer,
+        seed,
+        typical: typical,
+        // Klasse 1 kennt nur den Zahlenraum bis 20.
+        max: max ?? (grade == 1 ? 20 : null),
+        blocked: blocked,
+      ),
+      explanation,
+      visual,
+      keepOrder: true,
     );
   }
 
-  MathConcreteTask _choice(String prompt, String answer, List<String> rawChoices, String explanation, String visual,
-  ) {
-    final choices = <String>[answer];
+  /// [keepOrder] übernimmt die Reihenfolge von [rawChoices] (bereits gemischt
+  /// oder eine feste, natürliche Reihenfolge wie <, >, =). Sonst mischt der
+  /// Seed die Karten: Manche Anzeigen (Kartenspiel, Sprungspiel, Foto-Übung)
+  /// zeigen die Reihenfolge direkt, die Lösung darf dort nicht immer vorn
+  /// stehen.
+  MathConcreteTask _choice(int seed, String prompt, String answer, List<String> rawChoices, String explanation, String visual, {
+    bool keepOrder = false,
+  }) {
+    final choices = <String>[if (!keepOrder || !rawChoices.contains(answer)) answer];
     for (final choice in rawChoices) {
-      if (choice != answer && !choices.contains(choice)) choices.add(choice);
+      if ((keepOrder || choice != answer) && !choices.contains(choice)) choices.add(choice);
       if (choices.length == 4) break;
     }
     // Wenn weniger als 3 Choices: paedagogisch sinnvolle Padding-Werte hinzufuegen.
@@ -593,6 +718,7 @@ class MathTaskTemplate {
       if (fallback == null) break;
       choices.add(fallback);
     }
+    if (!keepOrder) _SeedDice(seed + 389).shuffle(choices);
     return MathConcreteTask(
       unit: unit,
       prompt: prompt,
@@ -713,15 +839,233 @@ int _valueInRange(List<int> range, int seed) {
 
 int _positive(int seed, int length) => length <= 1 ? 0 : (seed & 0x7fffffff) % length;
 
-List<String> _numericDistractors(int answer) {
-  final offsets = <int>[1, -1, 2, -2, 5, -5, 10, -10];
-  final values = <String>['$answer'];
-  for (final offset in offsets) {
-    final candidate = answer + offset;
-    if (candidate >= 0 && !values.contains('$candidate')) values.add('$candidate');
-    if (values.length == 4) break;
+/// Kleiner, vom Seed abgeleiteter Würfel. Er nutzt dieselbe begrenzte
+/// Ganzzahl-Mischung wie die Aufgabenwahl und liefert deshalb auf Handy und
+/// Web dieselbe Folge.
+class _SeedDice {
+  _SeedDice(int seed) : _state = _mixSeed(seed + 0x2f6b);
+  int _state;
+
+  int next(int length) {
+    _state = _mixSeed(_state + 0x9e37);
+    return _positive(_state, length);
   }
-  return values;
+
+  void shuffle<T>(List<T> list) {
+    for (var i = list.length - 1; i > 0; i--) {
+      final j = next(i + 1);
+      final swap = list[i];
+      list[i] = list[j];
+      list[j] = swap;
+    }
+  }
+}
+
+/// Antwortkarten für Zahlenaufgaben.
+///
+/// Früher waren die Karten immer Lösung − 1, Lösung, + 1, + 2: Die richtige
+/// Antwort war stets die zweitkleinste Karte und ohne Rechnen zu erkennen.
+/// Jetzt entscheidet der Seed gleichmäßig, wie viele Karten kleiner als die
+/// Lösung sind (0 bis 3). Die falschen Karten stammen zuerst aus [typical],
+/// den typischen Fehlern der Aufgabenart (Übertrag vergessen, Rechenart
+/// verwechselt, Nachbaraufgabe im Einmaleins …), der wichtigste Fehler
+/// steht dort an erster Stelle. Reichen sie nicht, kommen
+/// nahe Zahlen dazu, bei großen Zahlen mit gleicher Endziffer.
+///
+/// Karten sind nie negativ, nie doppelt, liegen in [min]..[max] und nie in
+/// [blocked] (z. B. Zahlen, die in der Aufgabe schon sichtbar sind).
+List<String> _numericChoices(
+  int answer,
+  int seed, {
+  List<int> typical = const <int>[],
+  int min = 0,
+  int? max,
+  Set<int> blocked = const <int>{},
+}) {
+  final dice = _SeedDice(seed);
+  bool valid(int value) =>
+      value != answer &&
+      value >= min &&
+      (max == null || value <= max) &&
+      !blocked.contains(value);
+
+  final lower = <int>[];
+  final upper = <int>[];
+  void offer(int value) {
+    if (!valid(value)) return;
+    final side = value < answer ? lower : upper;
+    if (!side.contains(value)) side.add(value);
+  }
+
+  // Der erste Eintrag ist der wichtigste Fehler der Aufgabenart und kommt
+  // zuerst an die Reihe; die übrigen wechseln von Aufgabe zu Aufgabe.
+  if (typical.isNotEmpty) offer(typical.first);
+  final others = typical.skip(1).toList();
+  dice.shuffle(others);
+  others.forEach(offer);
+  final near = answer < 20
+      ? const <int>[1, 2, 3, 4, 5, 6]
+      : answer < 100
+          ? const <int>[10, 1, 2, 20, 5, 3]
+          : answer < 1000
+              ? const <int>[10, 100, 1, 20, 2, 50]
+              : const <int>[100, 10, 1000, 1, 200, 20];
+  for (final offset in near) {
+    offer(answer - offset);
+    offer(answer + offset);
+  }
+
+  // Lage der Lösung der Größe nach: 0 = kleinste Karte, 3 = größte Karte.
+  var below = dice.next(4);
+  if (below > lower.length) below = lower.length;
+  if (3 - below > upper.length) below = 3 - upper.length;
+  if (below > lower.length) below = lower.length;
+  final values = <int>[
+    answer,
+    ...lower.take(below),
+    ...upper.take(3 - below),
+  ];
+  dice.shuffle(values);
+  return <String>[for (final value in values) '$value'];
+}
+
+/// Bruch-Karten: die Lösung [numerator]/[denominator] und drei falsche
+/// Brüche. Wie bei [_numericChoices] entscheidet der Seed, wie viele Karten
+/// kleiner als die Lösung sind. [lower] und [upper] sind als (Zähler, Nenner)
+/// angegeben. Brüche mit gleichem Wert wie die Lösung oder wie eine andere
+/// Karte fallen weg, ebenso Zähler unter 1.
+List<String> _fractionChoices(
+  int numerator,
+  int denominator,
+  int seed, {
+  required List<(int, int)> lower,
+  required List<(int, int)> upper,
+}) {
+  final dice = _SeedDice(seed);
+  final taken = <(int, int)>[(numerator, denominator)];
+  List<(int, int)> usable(List<(int, int)> source, {required bool smaller}) {
+    final out = <(int, int)>[];
+    for (final item in source) {
+      if (item.$1 < 1 || item.$2 < 1) continue;
+      final cross = item.$1 * denominator - numerator * item.$2;
+      if (smaller ? cross >= 0 : cross <= 0) continue;
+      if ([...taken, ...out].any((other) => other.$1 * item.$2 == item.$1 * other.$2)) continue;
+      out.add(item);
+    }
+    return out;
+  }
+
+  final below = usable(lower, smaller: true);
+  taken.addAll(below);
+  final above = usable(upper, smaller: false);
+  var count = dice.next(4);
+  if (count > below.length) count = below.length;
+  if (3 - count > above.length) count = 3 - above.length;
+  if (count > below.length) count = below.length;
+  final cards = <(int, int)>[
+    (numerator, denominator),
+    ...below.take(count),
+    ...above.take(3 - count),
+  ];
+  dice.shuffle(cards);
+  return <String>[for (final card in cards) '${card.$1}/${card.$2}'];
+}
+
+/// Typische falsche Ergebnisse bei a + b: abgezogen statt dazugezählt,
+/// Übertrag vergessen, um einen Zehner oder Hunderter daneben.
+List<int> _additionErrors(int a, int b) {
+  final sum = a + b;
+  return <int>[
+    (a - b).abs(),
+    _sumWithoutCarry(a, b),
+    if (sum >= 10) ...<int>[sum - 10, sum + 10],
+    if (sum >= 200) ...<int>[sum - 100, sum + 100],
+    if (sum < 20) ...<int>[sum - 1, sum + 1, sum + 2],
+  ];
+}
+
+/// Typische falsche Ergebnisse bei a − b: dazugezählt statt abgezogen,
+/// in jeder Spalte „klein von groß“, gemerkte 1 vergessen.
+List<int> _subtractionErrors(int a, int b) {
+  final difference = a - b;
+  return <int>[
+    a + b,
+    _differenceDigitwise(a, b),
+    _differenceWithoutCarry(a, b),
+    if (a >= 20) ...<int>[difference + 10, difference - 10],
+    if (a >= 200) ...<int>[difference + 100, difference - 100],
+    if (a < 20) ...<int>[difference + 1, difference - 1, difference + 2],
+  ];
+}
+
+/// Typische Fehler beim Umrechnen mit 1000 (kg → g, l → ml): falsche
+/// Umrechnungszahl, Rest vergessen, Rest an die falsche Stelle gesetzt.
+List<int> _thousandConversionErrors(int whole, int extra) => <int>[
+      whole * 100 + extra,
+      whole * 1000 + extra ~/ 10,
+      whole * 10000 + extra,
+      if (extra > 0) whole * 1000,
+      whole * 100 + extra ~/ 10,
+      whole * 100,
+    ];
+
+/// Spaltenweise addiert, ohne den Übertrag mitzunehmen: 47 + 38 → 75.
+int _sumWithoutCarry(int a, int b) {
+  var result = 0;
+  var place = 1;
+  var x = a, y = b;
+  while (x > 0 || y > 0) {
+    result += ((x % 10 + y % 10) % 10) * place;
+    place *= 10;
+    x ~/= 10;
+    y ~/= 10;
+  }
+  return result;
+}
+
+/// In jeder Spalte die kleinere von der größeren Ziffer abgezogen:
+/// 62 − 24 → 42.
+int _differenceDigitwise(int a, int b) {
+  var result = 0;
+  var place = 1;
+  var x = a, y = b;
+  while (x > 0 || y > 0) {
+    result += (x % 10 - y % 10).abs() * place;
+    place *= 10;
+    x ~/= 10;
+    y ~/= 10;
+  }
+  return result;
+}
+
+/// Ergänzt, aber die gemerkte 1 in der nächsten Spalte vergessen:
+/// 62 − 24 → 48.
+int _differenceWithoutCarry(int a, int b) {
+  var result = 0;
+  var place = 1;
+  var x = a, y = b;
+  while (x > 0 || y > 0) {
+    result += ((x % 10 - y % 10 + 10) % 10) * place;
+    place *= 10;
+    x ~/= 10;
+    y ~/= 10;
+  }
+  return result;
+}
+
+/// Jede Stelle mit einem einstelligen Faktor malgenommen, die gemerkten
+/// Zehner aber nicht dazugezählt: 435 · 8 → 3240.
+int _productWithoutCarry(int a, int digit) {
+  var result = 0;
+  var place = 1;
+  var x = a;
+  while (x > 0) {
+    final product = (x % 10) * digit;
+    result += (x >= 10 ? product % 10 : product) * place;
+    place *= 10;
+    x ~/= 10;
+  }
+  return result;
 }
 
 String _repeatEmoji(String emoji, int count) => List<String>.filled(count.clamp(1, 12).toInt(), emoji).join();
@@ -750,15 +1094,16 @@ const Map<int, String> _numberWords = <int, String>{
   20: 'zwanzig',
 };
 
-List<String> _numberWordChoices(int number) {
-  final answer = _numberWords[number] ?? '$number';
-  final choices = <String>[answer];
-  for (final offset in <int>[1, -1, 2, -2, 3]) {
-    final candidate = _numberWords[(number + offset).clamp(0, 20).toInt()];
-    if (candidate != null && !choices.contains(candidate)) choices.add(candidate);
-    if (choices.length == 4) break;
-  }
-  return choices;
+/// Zahlwort-Karten: typisch verwechselt werden die Zahl mit und ohne „zehn“
+/// (drei – dreizehn) sowie zwölf und zwanzig.
+List<String> _numberWordChoices(int number, int seed) {
+  final numbers = _numericChoices(
+    number,
+    seed,
+    typical: <int>[number - 10, number + 10, if (number == 12) 20, if (number == 20) 12],
+    max: 20,
+  );
+  return <String>[for (final value in numbers) _numberWords[int.parse(value)]!];
 }
 
 // ════════════════════════════════════════════════════════════════════════

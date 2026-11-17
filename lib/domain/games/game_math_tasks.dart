@@ -50,14 +50,14 @@ abstract class GameMathTasks {
   static MathConcreteTask _starsPath(GameLevel level, int index) {
     final random = Random(level.id * 1000 + index * 17);
     final grade = level.gradeFloor;
+    // Die Karten kommen aus derselben Quelle wie beim Üben: Die Lösung
+    // liegt der Größe nach an wechselnder Stelle, falsche Karten sind
+    // typische Fehler. Früher war sie immer die zweitkleinste Karte.
     MathConcreteTask numeric(String prompt, int answer, String explanation,
-        {String visual = 'dots'}) {
-      final choices = <int>{answer};
-      for (final delta in [1, -1, 2, -2, 3, -3]) {
-        if (answer + delta >= 0) choices.add(answer + delta);
-        if (choices.length == 4) break;
-      }
-      final shuffled = choices.map((n) => '$n').toList()..shuffle(random);
+        {String visual = 'dots', List<int> typical = const <int>[]}) {
+      final shuffled = MathTaskTemplates.numberChoices(
+          answer, random.nextInt(1 << 30),
+          typical: typical, max: grade == 1 ? 20 : null);
       return MathConcreteTask(
           unit: level.title,
           prompt: prompt,
@@ -100,7 +100,8 @@ abstract class GameMathTasks {
           a + b,
           index.isEven
               ? 'Verdopple $a: $a + $a = ${a + a}.'
-              : 'Der Nachbartrick: $a + $a = ${a + a}. Passe um ${b - a} an: ${a + b}.');
+              : 'Der Nachbartrick: $a + $a = ${a + a}. Passe um ${b - a} an: ${a + b}.',
+          typical: MathTaskTemplates.additionErrors(a, b));
     }
     if ([41, 42, 46].contains(id)) {
       final row = id == 42
@@ -111,7 +112,14 @@ abstract class GameMathTasks {
       final multiplier = 1 + random.nextInt(10);
       return numeric('$row × $multiplier = ?', row * multiplier,
           '$multiplier Gruppen mit je $row: ${List.filled(multiplier, '$row').join(' + ')} = ${row * multiplier}.',
-          visual: 'groups');
+          visual: 'groups',
+          typical: <int>[
+            row * (multiplier - 1),
+            row * (multiplier + 1),
+            (row - 1) * multiplier,
+            (row + 1) * multiplier,
+            row + multiplier,
+          ]);
     }
     if (id == 48 || id == 49) {
       final unit =
@@ -149,7 +157,10 @@ abstract class GameMathTasks {
         subtract
             ? 'Nimm von $a genau $b weg. Es bleiben $answer.'
             : 'Zu $a kommen $b dazu. Zusammen sind es $answer.',
-        visual: subtract ? 'line' : 'dots');
+        visual: subtract ? 'line' : 'dots',
+        typical: subtract
+            ? MathTaskTemplates.subtractionErrors(a, b)
+            : MathTaskTemplates.additionErrors(a, b));
   }
 
   static GameHouseTask numberHouse(GameLevel level, int index) {
@@ -171,14 +182,14 @@ abstract class GameMathTasks {
         : level.id == 15
             ? (roof - 9) + random.nextInt(19 - roof)
             : 1 + random.nextInt(roof - 1);
-    final values = <int>{answer};
-    for (final delta in [1, -1, 2, -2, 3]) {
-      if (answer + delta >= 0 && answer + delta <= roof) {
-        values.add(answer + delta);
-      }
-      if (values.length == 4) break;
-    }
-    final choices = values.toList()..shuffle(random);
+    // Typisch: das sichtbare Zimmer oder die Dachzahl nennen, sich verzählen.
+    final choices = <int>[
+      for (final value in MathTaskTemplates.numberChoices(
+          answer, random.nextInt(1 << 30),
+          typical: <int>[roof - answer, roof, answer - 1, answer + 1],
+          max: roof))
+        int.parse(value),
+    ];
     final task = GameHouseTask(
         roof: roof,
         visibleRoom: roof - answer,

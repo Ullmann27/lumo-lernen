@@ -524,16 +524,27 @@ class ExerciseFactory {
           'Gehe jedes Mal gleich viele Schritte weiter: ${shown.join(' – ')} – ? Welche Zahl folgt?',
           '$answer',
           'Der Abstand ist immer $step. Nach ${shown.last} kommt ${shown.last} + $step = $answer.',
-          customChoices: <String>[
-            '$answer',
-            '${answer + 1}',
-            '${answer - 1}',
-            '${answer + step + 1}'
-          ]);
+          // Die Lösung darf der Größe nach an jeder Stelle liegen. Typische
+          // Fehler: einen Schritt zu viel, nur um 1 weitergezählt, verzählt.
+          customChoices: MathTaskTemplates.numberChoices(
+            answer,
+            _random.nextInt(1 << 30),
+            typical: <int>[
+              answer + step,
+              shown.last + 1,
+              answer - 1,
+              answer + 1,
+              answer + 2 * step,
+            ],
+            blocked: shown.toSet(),
+          ));
     }
     if (unit == 'Regeln kombinieren') {
       final lower = 10 + _random.nextInt(90) * 2;
-      final answer = lower + 4;
+      // Drei Zahlen erfüllen alle Regeln. Nur eine davon wird zur Karte,
+      // sonst wäre die Lösung immer genau die Mitte.
+      final matching = <int>[lower + 2, lower + 4, lower + 6];
+      final answer = matching[_random.nextInt(matching.length)];
       return _choiceTask(
           'logik-regeln',
           grade,
@@ -542,12 +553,23 @@ class ExerciseFactory {
           'Welche Zahl erfüllt alle drei Regeln: größer als $lower, kleiner als ${lower + 8} und gerade?',
           '$answer',
           '$answer liegt zwischen $lower und ${lower + 8}. Die Zahl ist gerade, weil man sie ohne Rest in Paare teilen kann. Nur diese Antwort erfüllt alle drei Regeln.',
-          customChoices: <String>[
-            '$answer',
-            '$lower',
-            '${lower + 3}',
-            '${lower + 8}'
-          ]);
+          // Falsche Karten verletzen je eine Regel: die Grenzen selbst,
+          // ungerade Zahlen dazwischen, gerade Zahlen außerhalb.
+          customChoices: MathTaskTemplates.numberChoices(
+            answer,
+            _random.nextInt(1 << 30),
+            typical: <int>[
+              lower,
+              lower + 8,
+              lower + 1,
+              lower + 3,
+              lower + 5,
+              lower + 7,
+              lower - 2,
+              lower + 10,
+            ],
+            blocked: matching.toSet(),
+          ));
     }
     final names = <String>['Lumo', 'Mia', 'Ben', 'Ali', 'Lea']
       ..shuffle(_random);
