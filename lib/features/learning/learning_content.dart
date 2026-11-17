@@ -1057,8 +1057,7 @@ class _LearningContentState extends State<LearningContent>
         _taskInstance.taskInstanceId != taskId) {
       return;
     }
-    final android =
-        !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+    final android = !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
     await Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (_) => LumoNachhilfeScreen(
         aufgabe: aufgabe,
@@ -1966,8 +1965,8 @@ class _LearningContentState extends State<LearningContent>
             minimumSize: const Size(48, 56),
             backgroundColor: const Color(0xFFFFC94A),
             foregroundColor: const Color(0xFF10243A),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           ),
           onPressed: _nativeLearningOpen
               ? null
@@ -2391,7 +2390,8 @@ class _LearningContentState extends State<LearningContent>
                       ],
                       if (_allowHelp &&
                           !_answered &&
-                          NativeLearningActivity.forTask(_taskInstance) != null) ...[
+                          NativeLearningActivity.forTask(_taskInstance) !=
+                              null) ...[
                         const SizedBox(height: 12),
                         FilledButton.icon(
                           key: const ValueKey('adaptive-open-3d'),
@@ -2486,11 +2486,12 @@ class _LearningContentState extends State<LearningContent>
                       // KI-Hilfe-Button: nur sichtbar wenn aiProxyEnabled.
                       // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
                       if (_allowHelp && !_answered) ...[
-                        if (NachhilfeAufgabe.ausTask(_taskInstance)
-                            case final nachhilfe?) ...[
-                          const SizedBox(height: 12),
-                          _nachhilfeEinstieg(nachhilfe),
-                        ],
+                        if (lumoNachhilfeFreigeschaltet)
+                          if (NachhilfeAufgabe.ausTask(_taskInstance)
+                              case final nachhilfe?) ...[
+                            const SizedBox(height: 12),
+                            _nachhilfeEinstieg(nachhilfe),
+                          ],
                         const SizedBox(height: 12),
                         _coachControls(),
                         if (_aiHelpLoading)

@@ -7,6 +7,11 @@ import '../../domain/tutoring/native_learning_activity.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
 
+/// Einstieg „Nachhilfe mit Lumo“ in der Lernansicht. Bleibt verborgen, bis
+/// Einstieg, Rückkehr zur Aufgabe und 3D-Szene auf Gerät geprüft sind
+/// (siehe TEST_RESULTS.md).
+const bool lumoNachhilfeFreigeschaltet = false;
+
 /// Lumo-Nachhilfe für eine konkrete Aufgabe.
 ///
 /// Flutter-Fassung mit denselben Plänen wie die 3D-Szene. Sie funktioniert

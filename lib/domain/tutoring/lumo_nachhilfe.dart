@@ -427,8 +427,9 @@ class LumoNachhilfe {
           if (streng) {
             if ((a >= 10) != (aufgabe.a >= 10)) continue;
             if ((a < b) != (aufgabe.a < aufgabe.b)) continue;
-            if ((a - aufgabe.a).abs() > 2 || (b - aufgabe.b).abs() > 2)
+            if ((a - aufgabe.a).abs() > 2 || (b - aufgabe.b).abs() > 2) {
               continue;
+            }
           }
           kandidaten.add(k);
         }
