@@ -16,6 +16,7 @@ import 'design/lumo_design_system.dart';
 import 'design/lumo_glass_optics.dart';
 import 'fox/lumo_character.dart';
 import 'profile/profile_parts.dart';
+import '../domain/games/kart_fleet_catalog.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  LUMO LERNEN — Profil nach Heinz' Zielbild vom 17.11.2026
@@ -848,9 +849,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ]),
+            // Das Regal zeigt, was das Kind wirklich hat: Karts, die es durch
+            // verdiente Sterne freigeschaltet hat, das nächste Kart als Ziel
+            // und im Laden eingelöste Belohnungen.
+            Padding(
+              padding: const EdgeInsets.only(right: 4),
+              child: _RewardShelf(
+                rewards: _redeemed,
+                earnedStars: math.max(_totalEarnedStars, widget.stars),
+                scale: scale,
+              ),
+            ),
             if (_redeemed.isEmpty)
               const Padding(
-                padding: EdgeInsets.only(right: 4, top: 2),
+                padding: EdgeInsets.only(right: 4, top: 8),
                 child: Text(
                   'Noch nichts eingelöst. Sammle Sterne und such dir im '
                   'Belohnungs-Laden etwas aus!',
@@ -862,11 +874,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-              )
-            else
-              Padding(
-                padding: const EdgeInsets.only(right: 4),
-                child: _RewardShelf(rewards: _redeemed, scale: scale),
               ),
           ],
         ),
@@ -1068,14 +1075,40 @@ class _BadgeView extends StatelessWidget {
 }
 
 /// Eingelöste Belohnungen auf der leuchtenden Plattform, neueste zuerst.
+/// Ein Platz im Regal: ein freigeschaltetes Kart, das nächste Kart als Ziel
+/// oder eine eingelöste Belohnung.
+class _ShelfItem {
+  const _ShelfItem.kart(KartFleetEntry this.kart)
+      : reward = null,
+        missingStars = 0;
+  const _ShelfItem.nextKart(KartFleetEntry this.kart, this.missingStars)
+      : reward = null;
+  const _ShelfItem.reward(RedeemedReward this.reward)
+      : kart = null,
+        missingStars = 0;
+
+  final KartFleetEntry? kart;
+  final RedeemedReward? reward;
+
+  /// Größer als 0 nur beim noch gesperrten nächsten Kart.
+  final int missingStars;
+
+  bool get locked => missingStars > 0;
+}
+
 class _RewardShelf extends StatelessWidget {
-  const _RewardShelf({required this.rewards, required this.scale});
+  const _RewardShelf({
+    required this.rewards,
+    required this.earnedStars,
+    required this.scale,
+  });
 
   final List<RedeemedReward> rewards;
+  final int earnedStars;
   final double scale;
 
   static const double _token = 46;
-  static const double _stage = 56;
+  static const double _stage = 62;
 
   static (IconData, Color) _art(RedeemedReward reward) {
     for (final item in RewardCatalog.all) {
@@ -1084,13 +1117,45 @@ class _RewardShelf extends StatelessWidget {
     return (Icons.card_giftcard_rounded, LumoVisualTokens.gold);
   }
 
+  /// Zuletzt verdiente Karts zuerst, dann eingelöste Belohnungen, am Ende das
+  /// nächste Kart als Ziel. Eine eingelöste Belohnung behält immer einen Platz.
+  static List<_ShelfItem> itemsFor({
+    required int slots,
+    required int earnedStars,
+    required List<RedeemedReward> rewards,
+  }) {
+    final next = KartFleetCatalog.next(earnedStars);
+    final karts = KartFleetCatalog.unlocked(earnedStars);
+    final free = slots - (next == null ? 0 : 1);
+    final kartSlots = math.max(1, free - (rewards.isEmpty ? 0 : 1));
+    final items = <_ShelfItem>[
+      for (final kart in karts.take(kartSlots)) _ShelfItem.kart(kart),
+    ];
+    for (final reward in rewards) {
+      if (items.length >= free) break;
+      items.add(_ShelfItem.reward(reward));
+    }
+    for (final kart in karts.skip(kartSlots)) {
+      if (items.length >= free) break;
+      items.add(_ShelfItem.kart(kart));
+    }
+    if (next != null) {
+      items.add(_ShelfItem.nextKart(next, next.unlockStars - earnedStars));
+    }
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       // Fünf Plätze wie im Bild; schmal oder mit großer Schrift weniger.
       final slots =
           (constraints.maxWidth / (60 * scale)).floor().clamp(2, 5).toInt();
-      final shown = rewards.take(slots).toList();
+      final shown = itemsFor(
+        slots: slots,
+        earnedStars: earnedStars,
+        rewards: rewards,
+      );
       return CustomPaint(
         painter: ProfileShelfPainter(surfaceY: _stage - 8, slots: slots),
         child: Padding(
@@ -1106,13 +1171,7 @@ class _RewardShelf extends StatelessWidget {
                       child: i < shown.length
                           ? Center(
                               heightFactor: 1,
-                              child: ExcludeSemantics(
-                                child: ProfileRewardToken(
-                                  icon: _art(shown[i]).$1,
-                                  color: _art(shown[i]).$2,
-                                  size: _token,
-                                ),
-                              ),
+                              child: ExcludeSemantics(child: _piece(shown[i])),
                             )
                           : const SizedBox(),
                     ),
@@ -1126,7 +1185,7 @@ class _RewardShelf extends StatelessWidget {
                 for (var i = 0; i < slots; i++)
                   Expanded(
                     child: i < shown.length
-                        ? _RewardLabel(reward: shown[i])
+                        ? _ShelfLabel(item: shown[i])
                         : const SizedBox(),
                   ),
               ],
@@ -1136,47 +1195,122 @@ class _RewardShelf extends StatelessWidget {
       );
     });
   }
+
+  Widget _piece(_ShelfItem item) {
+    final reward = item.reward;
+    if (reward != null) {
+      return ProfileRewardToken(
+        icon: _art(reward).$1,
+        color: _art(reward).$2,
+        size: _token,
+      );
+    }
+    final picture = Image.asset(
+      item.kart!.asset,
+      key: ValueKey('profile-kart-${item.kart!.id}'),
+      height: _stage,
+      fit: BoxFit.contain,
+      filterQuality: FilterQuality.medium,
+    );
+    if (!item.locked) return picture;
+    // Das nächste Kart steht als dunkle Silhouette mit Schloss im Regal.
+    return Stack(alignment: Alignment.center, children: [
+      Opacity(
+        opacity: 0.62,
+        child: ColorFiltered(
+          colorFilter: const ColorFilter.mode(
+            Color(0xFF4F7BE0),
+            BlendMode.srcATop,
+          ),
+          child: picture,
+        ),
+      ),
+      const Icon(
+        Icons.lock_rounded,
+        color: LumoVisualTokens.white,
+        size: 22,
+        shadows: [Shadow(color: Color(0xCC0A1440), blurRadius: 6)],
+      ),
+    ]);
+  }
 }
 
-class _RewardLabel extends StatelessWidget {
-  const _RewardLabel({required this.reward});
+class _ShelfLabel extends StatelessWidget {
+  const _ShelfLabel({required this.item});
 
-  final RedeemedReward reward;
+  final _ShelfItem item;
 
   @override
   Widget build(BuildContext context) {
-    final date = '${reward.redeemedAt.day}.${reward.redeemedAt.month}.';
+    final reward = item.reward;
+    final String title;
+    final String detail;
+    final String spoken;
+    if (reward != null) {
+      final date = '${reward.redeemedAt.day}.${reward.redeemedAt.month}.';
+      title = reward.title;
+      detail = '($date)';
+      spoken = '${reward.title}, eingelöst am $date';
+    } else if (item.locked) {
+      title = item.kart!.name;
+      detail = 'Noch ${item.missingStars}';
+      spoken = 'Nächstes Kart ${item.kart!.name}, noch ${item.missingStars} '
+          '${item.missingStars == 1 ? 'Stern' : 'Sterne'}';
+    } else {
+      title = item.kart!.name;
+      detail = '(Kart)';
+      spoken = 'Kart ${item.kart!.name}, freigeschaltet';
+    }
     return Semantics(
       container: true,
-      label: '${reward.title}, eingelöst am $date',
+      label: spoken,
       excludeSemantics: true,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 2),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Text(
-            reward.title,
+            title,
             maxLines: 3,
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: _font,
-              color: LumoVisualTokens.white,
+              color: item.locked
+                  ? const Color(0xFFA9DCFF)
+                  : LumoVisualTokens.white,
               fontSize: 10.5,
               height: 1.15,
               fontWeight: FontWeight.w800,
             ),
           ),
-          Text(
-            '($date)',
-            maxLines: 1,
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontFamily: _font,
-              color: Color(0xFFA9DCFF),
-              fontSize: 10.5,
-              fontWeight: FontWeight.w700,
-            ),
+          // Der Stern ist ein Symbol: die Schrift hat kein Sternzeichen.
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Text(
+                  detail,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontFamily: _font,
+                    color: item.locked
+                        ? LumoVisualTokens.gold
+                        : const Color(0xFFA9DCFF),
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              if (item.locked)
+                const Padding(
+                  padding: EdgeInsets.only(left: 2),
+                  child: Icon(Icons.star_rounded,
+                      color: LumoVisualTokens.gold, size: 13),
+                ),
+            ],
           ),
         ]),
       ),

@@ -8,6 +8,7 @@ import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/legacy_learning_data.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:lumo_lernen/domain/games/kart_fleet_catalog.dart';
 import 'package:lumo_lernen/domain/rewards/reward_shop.dart';
 import 'package:lumo_lernen/features/report/lernbericht_screen.dart';
 import 'package:lumo_lernen/features/shared/widgets/lumo_premium_effects.dart';
@@ -177,12 +178,46 @@ void main() {
     expect(find.text('(14.11.)'), findsOneWidget);
     expect(find.textContaining('Noch nichts eingelöst'), findsNothing);
 
+    // Regal: mit 47 verdienten Sternen sind die Karts bis „Blitz“ (32 ★) frei.
+    // Die drei zuletzt verdienten stehen im Regal, „Terra“ (48 ★) ist das Ziel.
+    for (final id in ['blitz', 'zuri_volt', 'turbo']) {
+      expect(find.byKey(ValueKey('profile-kart-$id')), findsOneWidget,
+          reason: id);
+    }
+    expect(find.text('Blitz'), findsOneWidget);
+    expect(find.text('Zuri Volt'), findsOneWidget);
+    expect(find.text('Aurora GT'), findsOneWidget);
+    expect(find.byKey(const ValueKey('profile-kart-terra')), findsOneWidget);
+    expect(find.text('Terra'), findsOneWidget);
+    expect(find.text('Noch 1'), findsOneWidget);
+    expect(
+        find.bySemanticsLabel('Nächstes Kart Terra, noch 1 Stern'), findsWidgets);
+    // Ein Kart, das mehr Sterne braucht, wird nicht als Besitz gezeigt.
+    expect(find.byKey(const ValueKey('profile-kart-stella')), findsNothing);
+
     // Nichts aus dem Zielbild, das es in der App nicht gibt.
     expect(find.textContaining('Avatar'), findsNothing);
     expect(find.textContaining('Outfits'), findsNothing);
     expect(find.textContaining('300 XP'), findsNothing);
     expect(tester.takeException(), isNull);
     await _close(tester, app);
+  });
+
+  test('Kart-Flotte: Freischaltung folgt den verdienten Sternen', () {
+    expect(KartFleetCatalog.unlocked(0).map((k) => k.id),
+        ['gecko_velo', 'comet']);
+    expect(KartFleetCatalog.next(0)!.id, 'boru_rally');
+    expect(KartFleetCatalog.next(0)!.unlockStars, 4);
+    expect(KartFleetCatalog.unlocked(47).first.id, 'blitz');
+    expect(KartFleetCatalog.unlocked(47).length, 10);
+    expect(KartFleetCatalog.next(47)!.id, 'terra');
+    expect(KartFleetCatalog.unlocked(120).length, KartFleetCatalog.all.length);
+    expect(KartFleetCatalog.next(120), isNull);
+    // Schwellen steigen nie ab; jede Kennung ist eindeutig.
+    final stars = KartFleetCatalog.all.map((k) => k.unlockStars).toList();
+    expect(stars, [...stars]..sort());
+    expect(KartFleetCatalog.all.map((k) => k.id).toSet().length,
+        KartFleetCatalog.all.length);
   });
 
   testWidgets('neu verdiente Sterne und Spiele erscheinen ohne Neuaufbau',
