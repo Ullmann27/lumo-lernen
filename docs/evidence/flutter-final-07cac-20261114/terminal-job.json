@@ -1,0 +1,356 @@
+{
+  "id": 132421769277,
+  "run_id": 43586101225,
+  "workflow_name": "LUMO Connect Four 2020 signed test candidate",
+  "head_branch": "integration/lumo-live-connections-20261114",
+  "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43586101225",
+  "run_attempt": 1,
+  "node_id": "CR_kwDOSNzcp88AAAAe1PPYPQ",
+  "head_sha": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132421769277",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43586101225/job/132421769277",
+  "status": "completed",
+  "conclusion": "cancelled",
+  "created_at": "2026-11-14T10:40:49Z",
+  "started_at": "2026-11-14T10:40:50Z",
+  "completed_at": "2026-11-14T12:11:26Z",
+  "name": "verify-and-build",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-14T10:40:51Z",
+      "completed_at": "2026-11-14T10:40:53Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-14T10:40:53Z",
+      "completed_at": "2026-11-14T10:41:02Z"
+    },
+    {
+      "name": "Save source identity and validate exact Godot integration pin",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-14T10:41:02Z",
+      "completed_at": "2026-11-14T10:41:02Z"
+    },
+    {
+      "name": "Run actions/setup-java@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-14T10:41:02Z",
+      "completed_at": "2026-11-14T10:41:03Z"
+    },
+    {
+      "name": "Run subosito/flutter-action@v2",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-14T10:41:03Z",
+      "completed_at": "2026-11-14T10:41:18Z"
+    },
+    {
+      "name": "Install real system emoji for ABC screenshots and Flutter test suite",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-14T10:41:18Z",
+      "completed_at": "2026-11-14T10:41:23Z"
+    },
+    {
+      "name": "Resolve immutable Flutter dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-14T10:41:23Z",
+      "completed_at": "2026-11-14T10:41:26Z"
+    },
+    {
+      "name": "Audit every exact current-grade learning family on this candidate",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-11-14T10:41:26Z",
+      "completed_at": "2026-11-14T10:41:29Z"
+    },
+    {
+      "name": "Preserve the original current-source learning family audit",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-11-14T10:41:29Z",
+      "completed_at": "2026-11-14T10:41:30Z"
+    },
+    {
+      "name": "Flutter static analysis",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-14T10:41:30Z",
+      "completed_at": "2026-11-14T10:41:48Z"
+    },
+    {
+      "name": "Real widget tests for premium quiz and 3D learning islands",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-11-14T10:41:48Z",
+      "completed_at": "2026-11-14T10:42:14Z"
+    },
+    {
+      "name": "Save genuine rendered Quizshow screenshots for reference comparison",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12,
+      "started_at": "2026-11-14T10:42:14Z",
+      "completed_at": "2026-11-14T10:42:16Z"
+    },
+    {
+      "name": "Full Flutter regression suite including every capture",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-14T10:42:16Z",
+      "completed_at": "2026-11-14T10:53:06Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 14,
+      "started_at": "2026-11-14T10:53:06Z",
+      "completed_at": "2026-11-14T10:53:18Z"
+    },
+    {
+      "name": "Capture and verify actual 2001 tutor, transfer and daily-plan routes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 15,
+      "started_at": "2026-11-14T10:53:18Z",
+      "completed_at": "2026-11-14T10:53:28Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 16,
+      "started_at": "2026-11-14T10:53:28Z",
+      "completed_at": "2026-11-14T10:53:29Z"
+    },
+    {
+      "name": "Capture spatial reading, answer retry and subject cards on phone and Fold",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 17,
+      "started_at": "2026-11-14T10:53:29Z",
+      "completed_at": "2026-11-14T10:53:39Z"
+    },
+    {
+      "name": "Install actual app-script verification dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 18,
+      "started_at": "2026-11-14T10:53:39Z",
+      "completed_at": "2026-11-14T10:54:05Z"
+    },
+    {
+      "name": "Install verified Gradle for the real build-contract probe",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 19,
+      "started_at": "2026-11-14T10:54:05Z",
+      "completed_at": "2026-11-14T10:54:07Z"
+    },
+    {
+      "name": "Verify all build and preservation contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 20,
+      "started_at": "2026-11-14T10:54:07Z",
+      "completed_at": "2026-11-14T11:00:08Z"
+    },
+    {
+      "name": "Preserve the complete original script contracts for PCM delivery replay",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 21,
+      "started_at": "2026-11-14T11:00:08Z",
+      "completed_at": "2026-11-14T11:00:09Z"
+    },
+    {
+      "name": "Code-level Android probe regression with verified image dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 22,
+      "started_at": "2026-11-14T11:00:09Z",
+      "completed_at": "2026-11-14T11:02:26Z"
+    },
+    {
+      "name": "Reject unreadable Ahem-font captures before issuing visual proof",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 23,
+      "started_at": "2026-11-14T11:02:26Z",
+      "completed_at": "2026-11-14T11:02:26Z"
+    },
+    {
+      "name": "Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 24,
+      "started_at": "2026-11-14T11:02:26Z",
+      "completed_at": "2026-11-14T11:02:26Z"
+    },
+    {
+      "name": "Render actual premium lessons on phone and Fold",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 25,
+      "started_at": "2026-11-14T11:02:26Z",
+      "completed_at": "2026-11-14T11:02:32Z"
+    },
+    {
+      "name": "Render actual app sections on phone and Fold",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 26,
+      "started_at": "2026-11-14T11:02:32Z",
+      "completed_at": "2026-11-14T11:02:44Z"
+    },
+    {
+      "name": "Render playable Connect Four on five real layout sizes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 27,
+      "started_at": "2026-11-14T11:02:44Z",
+      "completed_at": "2026-11-14T11:02:51Z"
+    },
+    {
+      "name": "Render genuine offline atelier on phone and Fold",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 28,
+      "started_at": "2026-11-14T11:02:51Z",
+      "completed_at": "2026-11-14T11:02:57Z"
+    },
+    {
+      "name": "Archive only verified readable Flutter captures",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 29,
+      "started_at": "2026-11-14T11:02:57Z",
+      "completed_at": "2026-11-14T11:02:59Z"
+    },
+    {
+      "name": "Install Godot 4.6.3 for the exact pinned Kart source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 30,
+      "started_at": "2026-11-14T11:02:59Z",
+      "completed_at": "2026-11-14T11:03:00Z"
+    },
+    {
+      "name": "Require actual gameplay gates on the exact pinned native source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 31,
+      "started_at": "2026-11-14T11:03:00Z",
+      "completed_at": "2026-11-14T12:01:51Z"
+    },
+    {
+      "name": "Verify connected dream ambience and garden on exact native source",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "number": 32,
+      "started_at": "2026-11-14T12:01:51Z",
+      "completed_at": "2026-11-14T12:11:03Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 33,
+      "started_at": "2026-11-14T12:11:03Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Build unified real Android APK",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 34,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Verify APK archive and collect reproducible source hashes",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 35,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Upload exact candidate (no release or synthetic screenshots)",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 36,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Deliver verified ARM64 APK separately for direct download",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 37,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Post Run subosito/flutter-action@v2",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 72,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Post Run actions/setup-java@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 73,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 74,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:24Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 75,
+      "started_at": "2026-11-14T12:11:24Z",
+      "completed_at": "2026-11-14T12:11:24Z"
+    }
+  ],
+  "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132421769277",
+  "labels": [
+    "ubuntu-latest"
+  ],
+  "runner_id": 1000017949,
+  "runner_name": "GitHub Actions 1000017949",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions"
+}
