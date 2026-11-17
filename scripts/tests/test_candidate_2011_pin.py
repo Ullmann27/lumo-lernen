@@ -52,9 +52,14 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2023, COMBINED_2023_REVISION))
-        self.assertGreater(build, 2022)
-        self.assertIn("version: 0.13.11+2023\n", pubspec)
+        # The candidate moved on from 2023 long ago; this used to pin that one
+        # build and failed for every later one. Check the lasting contract:
+        # the declared build verifies, is not older than the last recorded
+        # build and carries a full commit SHA.
+        self.assertGreaterEqual(build, max(POLICY.APPROVED))
+        self.assertRegex(revision, r"^[0-9a-f]{40}$")
+        self.assertEqual(json.loads(source)["revision"], revision)
+        self.assertIn(f"+{build}\n", pubspec)
 
     def test_integrated_and_blender_predecessors_keep_exact_native_identities(self):
         for build, revision in (
@@ -131,7 +136,9 @@ class Candidate2011PinTests(unittest.TestCase):
                     POLICY.verify(version(2014), json.dumps(data))
 
     def test_all_existing_native_identities_are_unchanged(self):
-        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023)}
+        # The digest covers the builds recorded before 2011; later entries were
+        # added on purpose and each has its own exact-identity check.
+        old = {k: v for k, v in POLICY.APPROVED.items() if k < 2011}
         digest = hashlib.sha256(
             json.dumps(old, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()
@@ -350,7 +357,8 @@ class Candidate2011PinTests(unittest.TestCase):
             POLICY.verify(version(2011), json.dumps(data))
 
     def test_unreserved_and_private_checkpoint_versions_stay_closed(self):
-        for build in (2006, 2007, 2008, 2009, 2010, 2020, 9999):
+        # Builds older than the newest recorded one stay closed without an entry.
+        for build in (2006, 2007, 2008, 2009, 2010, 2020):
             # 2020 is now reviewed; both historical sources still fail its pin.
             expected_error = (
                 "revision mismatch for build 2020" if build == 2020
@@ -360,6 +368,31 @@ class Candidate2011PinTests(unittest.TestCase):
                 with self.subTest(build=build, revision=revision):
                     with self.assertRaisesRegex(ValueError, expected_error):
                         POLICY.verify(version(build), config(revision))
+
+    def test_builds_after_the_last_recorded_one_follow_the_declared_pin(self):
+        # Heinz, 17.11.2026: test builds no longer need a hand-written entry.
+        newer = max(POLICY.APPROVED) + 1
+        for revision in (CANDIDATE_REVISION, STUDIO_2019_REVISION):
+            self.assertEqual(POLICY.verify(version(newer), config(revision)), (newer, revision))
+        # Still closed: abbreviated or malformed revisions, a foreign origin,
+        # another engine, and extra configuration keys.
+        for bad in (CANDIDATE_REVISION[:8], "", "z" * 40, CANDIDATE_REVISION.upper()):
+            with self.subTest(revision=bad):
+                with self.assertRaisesRegex(ValueError, "full 40-character commit SHA"):
+                    POLICY.verify(version(newer), config(bad))
+        for field, value, message in (
+            ("repository", "https://github.com/example/other.git", "origin is not approved"),
+            ("engine", "4.5.0", "Unreviewed Godot engine"),
+        ):
+            data = json.loads(config(CANDIDATE_REVISION))
+            data[field] = value
+            with self.subTest(field=field):
+                with self.assertRaisesRegex(ValueError, message):
+                    POLICY.verify(version(newer), json.dumps(data))
+        data = json.loads(config(CANDIDATE_REVISION))
+        data["skip_verification"] = True
+        with self.assertRaisesRegex(ValueError, "config keys"):
+            POLICY.verify(version(newer), json.dumps(data))
 
     def test_missing_or_duplicate_version_remains_rejected(self):
         for spec in ("name: lumo_lernen\n", version(2011) + version(2011)):

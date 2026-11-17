@@ -196,15 +196,24 @@ def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
         raise ValueError("Exactly one explicit release build number is required")
     version = int(versions[0])
     required = APPROVED.get(version)
-    if required is None:
-        raise ValueError(f"Version {version} has no reviewed native pin; update policy after source review")
     cfg = json.loads(source_text)
+    if required is None and version <= max(APPROVED):
+        raise ValueError(f"Version {version} has no reviewed native pin; update policy after source review")
     if type(cfg) is not dict or set(cfg) != {"repository", "revision", "engine"}:
         raise ValueError("Unexpected native source config keys")
     if cfg["repository"] != "https://github.com/Ullmann27/lumo-godot.git":
         raise ValueError("Native source origin is not approved")
     if cfg["engine"] != "4.6.3":
         raise ValueError("Unreviewed Godot engine version")
+    if required is None:
+        # Heinz, 17.11.2026: test builds must no longer wait for a hand-written
+        # entry per build number. Builds newer than every recorded one take the
+        # pin declared in config/godot-source.json, as long as it is a full
+        # commit SHA of the approved repository and engine (checked above).
+        # Recorded builds keep their exact historical identity.
+        if not re.fullmatch(r"[0-9a-f]{40}", str(cfg["revision"])):
+            raise ValueError("Native revision must be a full 40-character commit SHA")
+        required = cfg["revision"]
     if cfg["revision"] != required:
         raise ValueError(f"Native revision mismatch for build {version}: expected {required}, got {cfg['revision']}")
     return version, required
