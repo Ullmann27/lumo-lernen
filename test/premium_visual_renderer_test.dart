@@ -151,6 +151,76 @@ void main() {
     });
   });
 
+  // Fachprüfung Mathematik S3: Die Bilder zu kg/g, l/ml und m/cm nannten
+  // die umgerechnete Zahl („6 kg = 6000 g“, „0 cm … 700 cm“) und damit die
+  // Lösung. Sie zeigen jetzt nur das Gegebene und die Grundbeziehung.
+  group('Umrechnungsbilder nennen die Lösung nicht', () {
+    List<String> shownTexts(WidgetTester tester) => tester
+        .widgetList<Text>(find.byType(Text))
+        .map((text) => text.data ?? '')
+        .toList();
+
+    testWidgets('Masse: 6 kg zeigt „1 kg = 1000 g“, aber nicht 6000',
+        (tester) async {
+      await tester.pumpWidget(wrap(ScaleMeasureVisual(
+        task: buildTask(
+            type: VisualType.scaleMeasure,
+            prompt: 'Wie viele Gramm sind 6 kg?',
+            answer: 6000),
+      )));
+      expect(find.text('1 kg = 1000 g'), findsOneWidget);
+      expect(find.byKey(const ValueKey('scale-unknown')), findsOneWidget);
+      expect(find.text('?'), findsOneWidget);
+      expect(shownTexts(tester).any((text) => text.contains('6000')), isFalse);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Masse mit Rest: 8 kg und 100 g zeigt beide Angaben',
+        (tester) async {
+      await tester.pumpWidget(wrap(ScaleMeasureVisual(
+        task: buildTask(
+            type: VisualType.scaleMeasure,
+            prompt: 'Wie viele Gramm sind 8 kg und 100 g?',
+            answer: 8100),
+      )));
+      expect(find.text('8'), findsOneWidget);
+      expect(find.text('100'), findsOneWidget);
+      final texts = shownTexts(tester);
+      expect(texts.any((text) => text.contains('8000')), isFalse);
+      expect(texts.any((text) => text.contains('8100')), isFalse);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Hohlmaß: 8 Liter zeigt „1 Liter = 1000 ml“, aber nicht 8000',
+        (tester) async {
+      await tester.pumpWidget(wrap(ScaleMeasureVisual(
+        task: buildTask(
+            type: VisualType.scaleMeasure,
+            prompt: 'Wie viele Milliliter sind 8 Liter und 100 Milliliter?',
+            answer: 8100),
+      )));
+      expect(find.text('1 Liter = 1000 ml'), findsOneWidget);
+      final texts = shownTexts(tester);
+      expect(texts.any((text) => text.contains('8000')), isFalse);
+      expect(texts.any((text) => text.contains('8100')), isFalse);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Länge: 7 Meter zeigt „1 m = 100 cm“, aber nicht 700',
+        (tester) async {
+      await tester.pumpWidget(wrap(RulerCompareVisual(
+        task: buildTask(
+            type: VisualType.rulerCompare,
+            prompt: 'Wie viele Zentimeter sind 7 Meter?',
+            answer: 700),
+      )));
+      expect(find.text('1 m = 100 cm'), findsOneWidget);
+      expect(find.text('7 m'), findsOneWidget);
+      expect(shownTexts(tester).any((text) => text.contains('700')), isFalse);
+      expect(tester.takeException(), isNull);
+    });
+  });
+
   group('BarChartMiniVisual', () {
     testWidgets('zeigt Hinweis bei leerem Payload', (tester) async {
       // Wichtig: NICHT erfundene Demo-Werte zeigen, sondern Hinweis.

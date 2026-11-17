@@ -1265,8 +1265,12 @@ class _RectangleMeasurePainter extends CustomPainter {
       old.length != length || old.width != width;
 }
 
-/// Lineal-Vergleich fuer Laengen-Umrechnung (cm/m, mm/cm).
-/// Zeigt zwei Lineale uebereinander mit Skala + farblicher Markierung.
+/// Lineal für die Längen-Umrechnung Meter → Zentimeter.
+///
+/// Zeigt nur das Gegebene (ein Lineal mit so vielen Metern wie in der
+/// Aufgabe) und die Grundbeziehung „1 m = 100 cm“. Die umgerechnete Länge
+/// ist die Lösung und steht nicht im Bild. Früher stand am unteren Lineal
+/// z. B. „700 cm“.
 class RulerCompareVisual extends StatelessWidget {
   const RulerCompareVisual({super.key, required this.task});
   final TaskInstance task;
@@ -1276,99 +1280,87 @@ class RulerCompareVisual extends StatelessWidget {
     final data = task.visualPayload.data;
     final nums = _digitsFromPrompt(task.prompt);
     final value = _readInt(data['value']) ?? (nums.isNotEmpty ? nums[0] : 1);
+    final meters = value.clamp(1, 20).toInt();
+    const blue = Color(0xFF1E3A8A);
+    const red = Color(0xFF991B1B);
+    TextStyle label(Color color) => TextStyle(
+        fontFamily: 'Nunito',
+        fontSize: 13,
+        fontWeight: FontWeight.w900,
+        color: color);
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
       decoration: _stageDecoration(const Color(0xFF60A5FA)),
-      child: SizedBox(
-        height: 110,
-        child: CustomPaint(
-          painter: _RulerPainter(meters: value),
+      child: Semantics(
+        label: 'Lineal mit $value Metern. 1 Meter sind 100 Zentimeter.',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('0 m', style: label(blue)),
+                Text('$value m', style: label(blue)),
+              ],
+            ),
+            const SizedBox(height: 4),
+            SizedBox(
+              height: 30,
+              child: CustomPaint(painter: _RulerPainter(meters: meters)),
+            ),
+            const SizedBox(height: 8),
+            Text('1 m = 100 cm',
+                key: const ValueKey('ruler-base-relation'),
+                style: label(red)),
+          ],
         ),
       ),
     );
   }
 }
 
+/// Ein Lineal mit einem Abschnitt je Meter. Der erste Meter ist eingefärbt,
+/// darauf bezieht sich die Beschriftung „1 m = 100 cm“.
 class _RulerPainter extends CustomPainter {
   _RulerPainter({required this.meters});
   final int meters;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paintLine = Paint()
-      ..color = const Color(0xFF1E3A8A)
+    const blue = Color(0xFF1E3A8A);
+    final body = RRect.fromRectAndRadius(
+        Rect.fromLTWH(0, 0, size.width, size.height),
+        const Radius.circular(4));
+    canvas.drawRRect(body, Paint()..color = const Color(0xFFFEF3C7));
+    final segment = size.width / meters;
+    canvas.drawRect(Rect.fromLTWH(0, 0, segment, size.height),
+        Paint()..color = const Color(0xFFFCA5A5));
+    canvas.drawRRect(
+        body,
+        Paint()
+          ..color = blue
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2);
+    final tick = Paint()
+      ..color = blue
       ..strokeWidth = 2;
-    final fill = Paint()..color = const Color(0xFFFEF3C7);
-    final w = size.width;
-    final markStep = w / 10;
-    // Oberes Lineal: Meter
-    final rect1 = Rect.fromLTWH(0, 12, w, 28);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(rect1, const Radius.circular(4)), fill);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(rect1, const Radius.circular(4)),
-        Paint()
-          ..color = const Color(0xFF1E3A8A)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2);
-    for (var i = 0; i <= 10; i++) {
-      final x = i * markStep;
-      final h = i % 5 == 0 ? 14.0 : 8.0;
-      canvas.drawLine(Offset(x, 12), Offset(x, 12 + h), paintLine);
+    for (var i = 0; i <= meters; i++) {
+      final x = i * segment;
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height * .55), tick);
     }
-    _label(canvas, '0 m', 0, 4, anchor: Alignment.centerLeft);
-    _label(canvas, '$meters m', w, 4, anchor: Alignment.centerRight);
-
-    // Unteres Lineal: cm (1m = 100cm)
-    final rect2 = Rect.fromLTWH(0, 64, w, 28);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(rect2, const Radius.circular(4)), fill);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(rect2, const Radius.circular(4)),
-        Paint()
-          ..color = const Color(0xFF991B1B)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2);
-    for (var i = 0; i <= 10; i++) {
-      final x = i * markStep;
-      final h = i % 5 == 0 ? 14.0 : 8.0;
-      canvas.drawLine(
-          Offset(x, 64),
-          Offset(x, 64 + h),
-          Paint()
-            ..color = const Color(0xFF991B1B)
-            ..strokeWidth = 2);
-    }
-    _label(canvas, '0 cm', 0, 96,
-        anchor: Alignment.centerLeft, color: const Color(0xFF991B1B));
-    _label(canvas, '${meters * 100} cm', w, 96,
-        anchor: Alignment.centerRight, color: const Color(0xFF991B1B));
-  }
-
-  void _label(Canvas canvas, String text, double x, double y,
-      {required Alignment anchor, Color color = const Color(0xFF1E3A8A)}) {
-    final tp = TextPainter(
-      text: TextSpan(
-          text: text,
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 13,
-            fontWeight: FontWeight.w900,
-            color: color,
-          )),
-      textDirection: TextDirection.ltr,
-    )..layout();
-    final dx = x - tp.width * (anchor.x + 1) / 2;
-    final dy = y - tp.height * (anchor.y + 1) / 2;
-    tp.paint(canvas, Offset(dx, dy));
   }
 
   @override
   bool shouldRepaint(_RulerPainter old) => old.meters != meters;
 }
 
-/// Skala-Visualisierung fuer Masse (kg/g) und Hohlmasse (l/ml).
-/// Zwei Bechertank-Symbole mit beschrifteter Skala 1:1000.
+/// Massen (kg/g) und Hohlmaße (l/ml).
+///
+/// Links steht die gegebene Größe, rechts ein Fragezeichen mit der gesuchten
+/// Einheit, darunter die Grundbeziehung „1 kg = 1000 g“. Die umgerechnete
+/// Zahl ist die Lösung und steht nicht im Bild. Früher stand rechts z. B.
+/// „6000 g“.
 class ScaleMeasureVisual extends StatelessWidget {
   const ScaleMeasureVisual({super.key, required this.task});
   final TaskInstance task;
@@ -1378,36 +1370,72 @@ class ScaleMeasureVisual extends StatelessWidget {
     final data = task.visualPayload.data;
     final nums = _digitsFromPrompt(task.prompt);
     final value = _readInt(data['value']) ?? (nums.isNotEmpty ? nums[0] : 1);
+    final extra = nums.length > 1 ? nums[1] : 0;
     final isVolume = task.prompt.toLowerCase().contains('liter') ||
         task.prompt.toLowerCase().contains('milliliter');
     final bigUnit = isVolume ? 'Liter' : 'kg';
     final smallUnit = isVolume ? 'ml' : 'g';
     final emoji = isVolume ? '🫗' : '⚖️';
+    const dark = Color(0xFF9D174D);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
       decoration: _stageDecoration(const Color(0xFFF472B6)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          _ScaleChip(
-              value: '$value',
-              unit: bigUnit,
-              emoji: emoji,
-              color: const Color(0xFF9D174D)),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text('=',
-                style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xFF9D174D),
-                    fontFamily: 'Nunito')),
+          // Auf schmalen Handys passen drei Karten nur verkleinert in eine
+          // Zeile; sie dürfen nie über den Kartenrand laufen.
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _ScaleChip(
+                  value: '$value',
+                  unit: bigUnit,
+                  emoji: emoji,
+                  color: dark),
+              if (extra > 0) ...[
+                const SizedBox(width: 8),
+                const Text('+',
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w900,
+                        color: dark,
+                        fontFamily: 'Nunito')),
+                const SizedBox(width: 8),
+                _ScaleChip(
+                    value: '$extra',
+                    unit: smallUnit,
+                    emoji: emoji,
+                    color: dark),
+              ],
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Text('=',
+                    style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900,
+                        color: dark,
+                        fontFamily: 'Nunito')),
+              ),
+              _ScaleChip(
+                  key: const ValueKey('scale-unknown'),
+                  value: '?',
+                  unit: smallUnit,
+                  emoji: emoji,
+                  color: const Color(0xFFA855F7)),
+            ],
+            ),
           ),
-          _ScaleChip(
-              value: '${value * 1000}',
-              unit: smallUnit,
-              emoji: emoji,
-              color: const Color(0xFFA855F7)),
+          const SizedBox(height: 10),
+          Text('1 $bigUnit = 1000 $smallUnit',
+              key: const ValueKey('scale-base-relation'),
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w900,
+                  color: dark)),
         ],
       ),
     );
@@ -1416,7 +1444,8 @@ class ScaleMeasureVisual extends StatelessWidget {
 
 class _ScaleChip extends StatelessWidget {
   const _ScaleChip(
-      {required this.value,
+      {super.key,
+      required this.value,
       required this.unit,
       required this.emoji,
       required this.color});
