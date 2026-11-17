@@ -56,6 +56,10 @@ void main() {
         final subject =
             find.byKey(ValueKey('learning-subject-${topic.subject}'));
         await tester.ensureVisible(subject);
+        // Lay out the scrolled list before the child's tap. Otherwise the tap
+        // targets the pre-scroll position, which the workshop button covers.
+        await tester.pump();
+        expect(subject.hitTestable(), findsOneWidget);
         await tester.tap(subject);
         await tester.pump();
         final unit = find
