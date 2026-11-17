@@ -185,6 +185,15 @@ class LumoLearningSpeech(context: Context, options: org.json.JSONObject) {
     fun status() = "{}"
     fun stop() {}
 }
+class LumoLearningConversation(context: Context, options: org.json.JSONObject, stopAudio: () -> Unit) {
+    fun setActive(value: Boolean) {}
+    fun destroy() {}
+    fun updateContext(payload: String) = true
+    fun request(payload: String) = true
+    fun startListening(payload: String) = true
+    fun status() = "{}"
+    fun stop() {}
+}
 ''',
 }
 HARNESS = r'''

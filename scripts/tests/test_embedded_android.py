@@ -326,6 +326,16 @@ class LumoLearningSpeech(context: Context, options: org.json.JSONObject) {
     fun status() = "{}"
     fun stop() {}
 }
+class LumoLearningConversation(context: Context, options: org.json.JSONObject, stopAudio: () -> Unit) {
+    init { Calls.events.add("conversation:create") }
+    fun setActive(active: Boolean) { Calls.events.add("conversation:active:"+active) }
+    fun destroy() { Calls.events.add("conversation:destroy") }
+    fun updateContext(payload: String) = true
+    fun request(payload: String) = true
+    fun startListening(payload: String) = true
+    fun status() = "{}"
+    fun stop() {}
+}
 object GameEventStore {
     const val CALLER_RETURN_SESSION = "callerReturnSession"
     fun validCallerSession(value: String) = true
