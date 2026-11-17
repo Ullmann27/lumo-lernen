@@ -467,7 +467,7 @@ const List<_SentenceMcItem> _capitalizationItemsExtension = <_SentenceMcItem>[
 const List<_SimpleMcItem> _ieOrIItemsExtension = <_SimpleMcItem>[
   _SimpleMcItem("Wiese", <String>["Wise", "Wihse", "Wiesse"]),
   _SimpleMcItem("Biene", <String>["Bine", "Bihne", "Bienne"]),
-  _SimpleMcItem("Lied", <String>["Lid", "Lihd", "Liedd"]),
+  _SimpleMcItem("Lied", <String>["Liet", "Lihd", "Liedd"]),
   _SimpleMcItem("Ziege", <String>["Zige", "Zihge", "Zieege"]),
   _SimpleMcItem("spielen", <String>["spilen", "spihlen", "spiellen"]),
   _SimpleMcItem("fliegen", <String>["fligen", "flihgen", "flieggen"]),

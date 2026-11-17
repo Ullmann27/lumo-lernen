@@ -877,7 +877,7 @@ class ExerciseFactory {
           'Zaahn',
           'Die Mehrzahl heißt Zähne. Merke dir das h in Zahn.'
         ],
-        ['Uhr', 'Ur', 'Uuhr', 'Das Wort Uhr schreibt man mit h.'],
+        ['Uhr', 'Uhrr', 'Uuhr', 'Das Wort Uhr schreibt man mit h.'],
         ['Stuhl', 'Stul', 'Stuuhl', 'Im Wort Stuhl steht nach dem u ein h.'],
         ['Biene', 'Bine', 'Bihne', 'Das lange i in Biene schreibt man ie.'],
         ['Wiese', 'Wise', 'Wihse', 'Das lange i in Wiese schreibt man ie.'],
