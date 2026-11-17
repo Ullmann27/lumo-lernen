@@ -17,9 +17,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class _UnavailableTable implements NativeTableTransport {
   bool closed = false;
+  int opens = 0;
 
   @override
   Future<void> open(String token, Map<String, Object?> state) async {
+    opens++;
     throw MissingPluginException('The widget test exercises the real fallback');
   }
 
@@ -99,10 +101,14 @@ void main() {
         appState: app, seed: 4, difficulty: MemoryDifficulty.leicht,
         nativeTransport: transport,
       )));
-      for (var i = 0; i < 50 && !transport.closed; i++) {
+      for (var i = 0; i < 50 &&
+          find.byKey(const ValueKey('memory-card-7')).hitTestable().evaluate().isEmpty; i++) {
         await tester.pump(const Duration(milliseconds: 20));
       }
-      expect(transport.closed, true, reason: 'Actual automatic fallback has finished');
+      // The menu entry never auto-opens the native table (2037 crash fix).
+      // The real Flutter board is immediately playable without any fallback.
+      expect(transport.opens, 0, reason: 'No automatic native Activity on entry');
+      expect(transport.closed, false);
       expect(find.byKey(const ValueKey('memory-card-7')).hitTestable(), findsOneWidget);
       final firstRound = savedRound()['id'];
       final deck = MemoryBoard.deal(MemoryDifficulty.leicht, Random(4));
