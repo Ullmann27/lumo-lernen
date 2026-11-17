@@ -1,0 +1,42 @@
+{
+  "artifacts": [
+    {
+      "id": 14115111878,
+      "name": "lumo-1989-original-learning-cards",
+      "size_in_bytes": 17097348,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115111878",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115111878/zip",
+      "expired": false,
+      "created_at": "2026-11-14T12:53:52Z",
+      "expires_at": "2026-12-14T12:53:50Z",
+      "updated_at": "2026-11-14T12:53:52Z",
+      "digest": "sha256:4681a6b646cfa2f643a75ff78f4e77a52090c125f4cdbfdab8b70596745742e3",
+      "workflow_run": {
+        "id": 43596913225,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      }
+    },
+    {
+      "id": 14115061991,
+      "name": "lumo-1992-modern-worlds-real-screenshots",
+      "size_in_bytes": 6826898,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115061991",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115061991/zip",
+      "expired": false,
+      "created_at": "2026-11-14T12:53:50Z",
+      "expires_at": "2026-12-14T12:53:49Z",
+      "updated_at": "2026-11-14T12:53:50Z",
+      "digest": "sha256:4a3a75bc94e15b8dec6f5715e1e802cc8633f1262aecccb0e1bcda3d9509ac0e",
+      "workflow_run": {
+        "id": 43596913225,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      }
+    }
+  ]
+}
