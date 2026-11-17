@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "scope": "Offline reproduction on exact original Android frames, not a new device or movement pass",
+  "run_id": 43556708653,
+  "attempt": 1,
+  "job_id": 132331084087,
+  "qa_commit": "f89b77bbc9caacfb677a8f0b7922f27fcbbd546f",
+  "artifact_id": 14100023941,
+  "artifact_sha256": "e83a482adc5f706bc8b6b4d8d944f8359ecd67b54a6e9add7366f9a512c5854d",
+  "baseline_local_commit": "cf0ed7fe743cd8ba067ae7a9adf26745fa7bc628",
+  "observer_sha256": "7e22b769aca9482efef313307c4369a6d311e4dfaeb8c7d85d072bb2df12a824",
+  "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "native_jump_blob": "c4bf551b3b679554c8fe2b2d1307b0439870e8fe",
+  "frames": [
+    {
+      "file": "0019-observe-original-stick.png",
+      "path": "/workspace/scratch/b3485b7bb989/host-pr481-f89b77-creative-evidence/parts/part-01/selected-originals/originals/originals/tour/0019-observe-original-stick.png",
+      "size_bytes": 1629168,
+      "sha256": "2afbab541db859df123d1c800282d8379b4d20a2e9da85c3d4a759601ddc8b34",
+      "image_size": [
+        1080,
+        1920
+      ],
+      "original_error": "Current frame has no unique original joystick ring",
+      "old_minimum_diameter": 249.60000000000002,
+      "short_side_minimum_diameter": 140.4,
+      "ring_candidates": [
+        {
+          "bounds": [
+            45.0,
+            1633.5,
+            231.0,
+            1819.5
+          ],
+          "center": [
+            138.0,
+            1726.5
+          ],
+          "diameter": 186.0,
+          "ring_fraction": 1.0,
+          "occupancy": 0.25208116545265347,
+          "passes_original_height_min": false,
+          "passes_short_side_min": true
+        },
+        {
+          "bounds": [
+            115.5,
+            1705.5,
+            174.0,
+            1762.5
+          ],
+          "center": [
+            144.75,
+            1734.0
+          ],
+          "diameter": 57.75,
+          "ring_fraction": 0.8807692307692307,
+          "occupancy": 0.17543859649122806,
+          "passes_original_height_min": false,
+          "passes_short_side_min": false
+        }
+      ]
+    },
+    {
+      "file": "0020-jump-failure.png",
+      "path": "/workspace/scratch/b3485b7bb989/host-pr481-f89b77-creative-evidence/parts/part-01/selected-originals/originals/originals/tour/0020-jump-failure.png",
+      "size_bytes": 1625955,
+      "sha256": "37073ec19b112d4213c9e9da05e1d3c59da4766dc3f917f92ca1c0340e47a381",
+      "image_size": [
+        1080,
+        1920
+      ],
+      "original_error": "Current frame has no unique original joystick ring",
+      "old_minimum_diameter": 249.60000000000002,
+      "short_side_minimum_diameter": 140.4,
+      "ring_candidates": [
+        {
+          "bounds": [
+            45.0,
+            1633.5,
+            231.0,
+            1819.5
+          ],
+          "center": [
+            138.0,
+            1726.5
+          ],
+          "diameter": 186.0,
+          "ring_fraction": 1.0,
+          "occupancy": 0.25208116545265347,
+          "passes_original_height_min": false,
+          "passes_short_side_min": true
+        },
+        {
+          "bounds": [
+            115.5,
+            1705.5,
+            174.0,
+            1762.5
+          ],
+          "center": [
+            144.75,
+            1734.0
+          ],
+          "diameter": 57.75,
+          "ring_fraction": 0.8807692307692307,
+          "occupancy": 0.17543859649122806,
+          "passes_original_height_min": false,
+          "passes_short_side_min": false
+        }
+      ]
+    }
+  ]
+}

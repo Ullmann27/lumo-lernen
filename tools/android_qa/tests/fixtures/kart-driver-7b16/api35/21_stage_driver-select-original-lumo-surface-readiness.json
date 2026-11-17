@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "label": "Lumo",
+  "driver": "fox",
+  "timeout_seconds": 150,
+  "frames": [
+    {
+      "source": "21_stage_driver-select-original-lumo-0.png",
+      "source_sha256": "50b2ffdd9db0c970505b479b4497b1fe212cde38db6158081149d407b2e94772",
+      "source_bytes": 785894,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS"
+    }
+  ],
+  "scope": "Observed driver-card touch; actual new race selection is checked separately",
+  "error": "No exact Lumo driver caption in the observed left-hand list",
+  "elapsed_seconds": 7.634376
+}

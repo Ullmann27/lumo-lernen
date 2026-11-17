@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "kind": "actual_single_authorized_C4_targeted_validation",
+  "created_at": "2026-11-14T13:22:22.725066+00:00",
+  "head": "adb88bef880861e23b451166c04ee7d28c96a95d",
+  "tree": "f027cfbefe935835b6b80f34843e2b5297816cee",
+  "status": "PASS",
+  "methods": 36,
+  "module_counts": {
+    "test_connect_four_android_evidence": 17,
+    "test_connect_four_probe_deadlines": 11,
+    "test_connect_four_flutter_navigation": 8
+  },
+  "errors": 0,
+  "failures": 0,
+  "skips": 0,
+  "exit_code": 0,
+  "unittest_seconds": 42.439,
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "stderr": {
+    "bytes": 6836,
+    "sha256": "1432d6c7f051a6acdcfd072ca12f2ef2ebc0517f7442f42855ebe6491042aca1",
+    "git_blob": "d83c60eb2ef7a800d2f0cf3154fbdd1370506527"
+  },
+  "result": {
+    "bytes": 2168,
+    "sha256": "8832730c4fbb32c12106bc1746fa7f50313236b68a0a9adab70815c5f20991b1",
+    "git_blob": "fe711883bb933aada12c20cfab1a55b3a2467459"
+  },
+  "source_unchanged": true,
+  "tracked_count": 4421,
+  "materialized_count": 629,
+  "sparse_absent_count": 3792,
+  "source_freeze_sha256": "4b5f7a62a11cafa3c85d783855b00fd6ab9239734f669d757fb3976726f90082",
+  "nonfailure_original_diagnostics": [
+    "test_complete_synthetic_observation_replay (test_connect_four_android_evidence.CompleteEvidenceTests.test_complete_synthetic_observation_replay) ... /tmp/host-adb88-c4-navigation-targeted-validation-20261114/checkout/tools/android_qa/connect_four_android_evidence.py:339: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead."
+  ],
+  "scope_limit": "Synthetic unit/contract cases only; no new device/CI acceptance and no product mutation."
+}

@@ -1,0 +1,24 @@
+{
+  "remote_commit": "9e285e17a8cbd54f73cf5a14ccdad07c0ad29199",
+  "local_commit": "3deae002a9930bfc7bef7afeaed6ba4861125ec1",
+  "tree": "a62c2186c5a5f4b9d89b172f67a0625d8736098c",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "started_at": "2026-11-13T16:48:55.837534+00:00",
+  "finished_at": "2026-11-13T16:50:31.102692+00:00",
+  "seconds": 95.166,
+  "exit_code": 0,
+  "tests": 409,
+  "unittest_seconds": 94.838,
+  "skipped": 0,
+  "source_files": 1849,
+  "changed_during_run": [],
+  "log_sha256": "528b05d7f5180a1a65fe2833dfb3d3575960236689b766140c4e2db743b0b3c0"
+}

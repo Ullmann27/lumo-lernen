@@ -90,6 +90,7 @@ class _LumoTurnPillState extends State<LumoTurnPill>
     final icon =
         isMy ? Icons.arrow_forward_rounded : Icons.hourglass_top_rounded;
     final glowColor = isMy ? const Color(0xFF38BDF8) : Colors.black;
+    final foreground = isMy ? const Color(0xFF082B4B) : Colors.white;
 
     // Tier 1 Foundation 2026-05-23: RepaintBoundary isoliert das
     // permanente Pulsieren vom Turn-Banner drumherum.
@@ -122,17 +123,17 @@ class _LumoTurnPillState extends State<LumoTurnPill>
               children: [
                 Text(
                   label,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 13,
                     fontWeight: FontWeight.w900,
-                    color: Colors.white,
+                    color: foreground,
                     letterSpacing: 1.3,
                     height: 1.0,
                   ),
                 ),
                 const SizedBox(width: 8),
-                Icon(icon, size: 16, color: Colors.white),
+                Icon(icon, size: 16, color: foreground),
               ],
             ),
           );

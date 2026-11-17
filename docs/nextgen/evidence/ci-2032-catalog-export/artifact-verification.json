@@ -1,0 +1,44 @@
+{
+  "source": "a5ea7422b1152576b34cf80519856129ff264ac1",
+  "run": 43836322226,
+  "artifact": 14210758550,
+  "zipBytes": 40128,
+  "zipSha256": "47f5f8c45e952014878f2ee6e2081d8a44d56293977e4f3e0edded1020c4b453",
+  "members": [
+    {
+      "path": "dependencies.log",
+      "bytes": 1389,
+      "sha256": "577560d210a6640a33866c46a576544ac86fda242d27422b74e36e2c0cdb1cec",
+      "crc": 1640318126
+    },
+    {
+      "path": "export-provenance.json",
+      "bytes": 88157,
+      "sha256": "e59401d3284ae1a32881cb02fab93c9a854cb97d4902eb60c05b73894c0a4245",
+      "crc": 990691952
+    },
+    {
+      "path": "catalog.json",
+      "bytes": 115256,
+      "sha256": "f0eb68a8e9c2e697885e3e635b48e3b62d84bf54eb9d7ba5e143951157ad8541",
+      "crc": 1263573282
+    },
+    {
+      "path": "export.log",
+      "bytes": 216,
+      "sha256": "d36bb464bee0ca014b91bb65e1460c4bfb42bec342fff7f83dcedf93146319d8",
+      "crc": 1951084472
+    },
+    {
+      "path": "flutter-version.json",
+      "bytes": 635,
+      "sha256": "fa870a17f35a877ccff979e8e27a1922732ecc7b53bef245c5f82b2b49286a08",
+      "crc": 3657380536
+    }
+  ],
+  "currentSourcesVerified": 480,
+  "catalogSourceHeadVerified": true,
+  "originalSourceBoundExport": "PASS",
+  "rootPerformedAnotherDartTest": false,
+  "fullModernizationComplete": false
+}

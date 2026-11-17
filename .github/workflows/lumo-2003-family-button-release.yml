@@ -1,0 +1,180 @@
+name: Lumo 2003 family one-button verified update publication
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-2003-family-button-release.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-2003-family-one-button-publication
+  cancel-in-progress: false
+
+jobs:
+  publish-family-button-2003:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'release/lumo-2003-family-button-20261029' && github.event.pull_request.base.ref == 'release/lumo-2003-living-world-20261029'
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_SHA: '18ced63187c7a264c3bd2b8271ec58647f679d70'
+      TAG: 'coachpreview-build-2003'
+      EXPECTED_CERT: 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+    steps:
+      - name: Checkout publication recipe (not app source)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Verify the existing installed-app updater recognizes this exact release
+        run: |
+          set -euo pipefail
+          diff_json="$(gh api "repos/Ullmann27/lumo-lernen/compare/$SOURCE_SHA...$(git rev-parse HEAD)")"
+          test "$(jq -r '.status' <<< "$diff_json")" = "ahead"
+          test "$(jq -r '.files | length' <<< "$diff_json")" = "1"
+          test "$(jq -r '.files[0].filename' <<< "$diff_json")" = ".github/workflows/lumo-2003-family-button-release.yml"
+          test "$(grep '^version:' pubspec.yaml | cut -d' ' -f2)" = "0.12.91+2003"
+          grep -F -- '--dart-define=LUMO_SIDE_BY_SIDE=true' scripts/build_unified_apk.sh
+          grep -F -- "prefix = 'coachpreview-build-'" lib/core/app_update_service.dart
+          grep -F -- "const parallelName = 'Lumo-Lernen-Neu.apk'" lib/core/app_update_service.dart
+          grep -F -- "if (raw['draft'] != false || raw['prerelease'] != true) continue;" lib/core/app_update_service.dart
+          python3 - <<'PY'
+          from pathlib import Path
+          script = Path('scripts/build_unified_apk.sh').read_text()
+          updater = Path('lib/core/app_update_service.dart').read_text()
+          assert '--dart-define=LUMO_SIDE_BY_SIDE=true' in script
+          assert 'familyPreviewFromReleases(decoded)' in updater
+          assert "const prefix = 'coachpreview-build-';" in updater
+          assert "const parallelName = 'Lumo-Lernen-Neu.apk';" in updater
+          assert "'/Ullmann27/lumo-lernen/releases/download/$tag/Lumo-Lernen-Neu.apk'" in updater
+          print('Updater static channel contract: confirmed')
+          PY
+
+      - name: Wait for actual full build, tutor, visual, update, and independent release gates on original SHA
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 130); do
+            unresolved=0
+            for run in 40867990650 40867990747 40867990495 40867990768 40867990622; do
+              state="$(gh api "repos/Ullmann27/lumo-lernen/actions/runs/$run" --jq '.status + ":" + (.conclusion // "pending") + ":" + .head_sha')"
+              echo "$run $state (check $attempt)"
+              case "$state" in
+                "completed:success:$SOURCE_SHA") ;;
+                "completed:failure:$SOURCE_SHA"|"completed:cancelled:$SOURCE_SHA"|"completed:timed_out:$SOURCE_SHA"|"completed:skipped:$SOURCE_SHA"|"completed:action_required:$SOURCE_SHA")
+                  echo "Mandatory original 2003 gate did not pass: $run"
+                  exit 1
+                  ;;
+                "queued:pending:$SOURCE_SHA"|"in_progress:pending:$SOURCE_SHA"|"waiting:pending:$SOURCE_SHA"|"requested:pending:$SOURCE_SHA"|"pending:pending:$SOURCE_SHA")
+                  unresolved=$((unresolved + 1))
+                  ;;
+                *)
+                  echo "Unexpected workflow status or source SHA: $state"
+                  exit 1
+                  ;;
+              esac
+            done
+            if [ "$unresolved" -eq 0 ]; then
+              echo 'All original 2003 gates succeeded on exact immutable source.'
+              exit 0
+            fi
+            if [ "$attempt" -eq 130 ]; then
+              echo 'Gate deadline reached; do not publish.'
+              exit 1
+            fi
+            sleep 50
+          done
+
+      - name: Download ONLY the exact original checked APK and actual offline preservation result
+        run: |
+          set -euo pipefail
+          mkdir -p dist update-proof
+          gh run download 40867990650 --repo Ullmann27/lumo-lernen \
+            --name lumo-unified-arm64-verified --dir dist
+          gh run download 40867990768 --repo Ullmann27/lumo-lernen \
+            --name lumo-2003-actual-2002-update-proof --dir update-proof
+          test -s dist/Lumo-Lernen-Neu.apk
+          sha256sum -c dist/APK-SHA256.txt
+
+      - name: Check immutable version, cert, package, Godot, provenance, and actual persistent data
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          source=os.environ['SOURCE_SHA']
+          certificate=os.environ['EXPECTED_CERT']
+          apk=Path('dist/Lumo-Lernen-Neu.apk')
+          digest=hashlib.sha256(apk.read_bytes()).hexdigest()
+          verification=json.loads(Path('dist/APK-VERIFICATION.json').read_text())
+          provenance=json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          pin=json.loads(Path('dist/GODOT-SOURCE.json').read_text())
+          assert verification['sha256']==digest
+          assert verification['versionCode']==2003 and verification['versionName']=='0.12.91'
+          assert verification['package']=='dev.ullmann.lumo.lumo_lernen.coachpreview'
+          assert verification['signingCertificateSha256'].lower()==certificate
+          assert 'arm64-v8a' in verification['abis']
+          assert provenance['flutter_source_commit']==source and provenance['tracked_source_clean'] is True
+          assert provenance['versionCode']==2003 and provenance['versionName']=='0.12.91'
+          assert provenance['godot']['revision']=='adcce3093caa42bf3da47262f70bdf03cdefa347'
+          assert pin['revision']=='adcce3093caa42bf3da47262f70bdf03cdefa347' and pin['engine']=='4.6.3'
+          assert Path('dist/APP-VERSION.txt').read_text().strip()=='version: 0.12.91+2003'
+          files=list(Path('update-proof').rglob('update-result.json'))
+          assert len(files)==1, 'Actual Android update proof missing'
+          result=json.loads(files[0].read_text())
+          assert result['status']=='PASS' and result['offline'] is True
+          assert result['candidate_source']==source and result['fatal_crashes']==0
+          for phase in ('learning_journey','installation','after_update','native_tour','after_kart','after_restart','fold'):
+              assert result[phase],f'Unverified actual Android update phase: {phase}'
+          assert set(result['fold'])=={'cover','open','landscape'}
+          print('ORIGINAL_APK_VERIFIED',digest,apk.stat().st_size,source)
+          PY
+
+      - name: Reject an older or conflicting family update tag and existing release
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo 'Existing family update immutable: refusing replacement.'
+            exit 1
+          fi
+          gh api "repos/Ullmann27/lumo-lernen/releases?per_page=100" > family-releases.json
+          python3 - <<'PY'
+          import json,re
+          items=json.load(open('family-releases.json'))
+          newer=[r['tag_name'] for r in items if re.fullmatch(r'coachpreview-build-(\d+)',r.get('tag_name','')) and int(r['tag_name'].rsplit('-',1)[1])>=2003]
+          assert not newer,f'2003 would not be a new family build: {newer}'
+          PY
+
+      - name: Publish the exact SAME signed bytes in the installed-family-app update channel
+        run: |
+          set -euo pipefail
+          (cd dist && sha256sum Lumo-Lernen-Neu.apk > Lumo-Lernen-Neu.apk.sha256)
+          gh release create "$TAG" \
+            dist/Lumo-Lernen-Neu.apk \
+            dist/Lumo-Lernen-Neu.apk.sha256 \
+            dist/BUILD-PROVENANCE.json \
+            dist/APK-VERIFICATION.json \
+            dist/GODOT-SOURCE.json \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title 'Lumo Lernen + Lumo Kart 2003 – in-app Familienupdate' \
+            --notes 'Original-signierte Android-Haupt-App 0.12.91+2003 (unveränderte geprüfte APK-Bytes). Für vorhandene Lumo-Familien-App: Elternbereich > Auf Update prüfen > Android-Installer bestätigen. Enthält Sols offline Lernintelligenz, Opus Original-Lumo Animation und Kart. Vor Freigabe bestanden: exakter Flutter/Godot Android-Build, Lernkern- und Visual QA, echtes 2002→2003 Installations-/Profil-/Belohnungs-/Offline-Kart-/Neustart-/Fold-Gate und ursprünglicher direkter 2003-Release. Alte APK und Daten NICHT deinstallieren. Installationsbestätigung durch Android erforderlich.' \
+            --prerelease
+          gh api "repos/Ullmann27/lumo-lernen/releases/tags/$TAG" > published.json
+          python3 - <<'PY'
+          import json,os
+          record=json.load(open('published.json'))
+          tag=os.environ['TAG']
+          assert record['draft'] is False and record['prerelease'] is True
+          assert record['tag_name']==tag and record['target_commitish']==os.environ['SOURCE_SHA']
+          matching=[a for a in record['assets'] if a['name']=='Lumo-Lernen-Neu.apk']
+          assert len(matching)==1
+          assert matching[0]['browser_download_url']=='https://github.com/Ullmann27/lumo-lernen/releases/download/'+tag+'/Lumo-Lernen-Neu.apk'
+          print('LUMO_FAMILY_BUTTON_RELEASE_READY',tag,matching[0]['browser_download_url'])
+          PY

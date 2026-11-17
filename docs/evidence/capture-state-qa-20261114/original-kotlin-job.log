@@ -1,0 +1,747 @@
+﻿2026-11-14T10:09:13.9170755Z Current runner version: '2.338.2'
+2026-11-14T10:09:13.9190224Z ##[group]Runner Image Provisioner
+2026-11-14T10:09:13.9190864Z Hosted Compute Agent
+2026-11-14T10:09:13.9191267Z Version: 20261103.629
+2026-11-14T10:09:13.9191706Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T10:09:13.9192334Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T10:09:13.9192802Z Worker ID: {1ae28480-5e48-4617-9f33-83579e23dff2}
+2026-11-14T10:09:13.9193279Z Region: eastus2
+2026-11-14T10:09:13.9193656Z Cloud: Azure
+2026-11-14T10:09:13.9194014Z ##[endgroup]
+2026-11-14T10:09:13.9194911Z ##[group]Operating System
+2026-11-14T10:09:13.9195531Z Ubuntu
+2026-11-14T10:09:13.9196045Z 24.04.5
+2026-11-14T10:09:13.9196487Z LTS
+2026-11-14T10:09:13.9196828Z ##[endgroup]
+2026-11-14T10:09:13.9197293Z ##[group]Runner Image
+2026-11-14T10:09:13.9197681Z Image: ubuntu-24.04
+2026-11-14T10:09:13.9198042Z Version: 20261111.370.1
+2026-11-14T10:09:13.9198907Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T10:09:13.9200170Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T10:09:13.9200763Z ##[endgroup]
+2026-11-14T10:09:13.9201486Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T10:09:13.9202969Z Contents: read
+2026-11-14T10:09:13.9203370Z Metadata: read
+2026-11-14T10:09:13.9203800Z ##[endgroup]
+2026-11-14T10:09:13.9205407Z Secret source: Actions
+2026-11-14T10:09:13.9206090Z Cache mode: write
+2026-11-14T10:09:13.9206806Z Prepare workflow directory
+2026-11-14T10:09:13.9864305Z Prepare all required actions
+2026-11-14T10:09:13.9910645Z Getting action download info
+2026-11-14T10:09:14.1739600Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T10:09:14.7131829Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+2026-11-14T10:09:14.9943662Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-11-14T10:09:15.0940293Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T10:09:15.3208143Z Getting action download info
+2026-11-14T10:09:15.3832005Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-11-14T10:09:15.5556627Z Complete job name: Compile actual generated Android MainActivity and private Godot host
+2026-11-14T10:09:15.6168103Z ##[group]Run actions/checkout@v4
+2026-11-14T10:09:15.6169015Z with:
+2026-11-14T10:09:15.6169531Z   repository: Ullmann27/lumo-lernen
+2026-11-14T10:09:15.6174274Z   token: ***
+2026-11-14T10:09:15.6174773Z   ssh-strict: true
+2026-11-14T10:09:15.6175535Z   ssh-user: git
+2026-11-14T10:09:15.6176294Z   persist-credentials: true
+2026-11-14T10:09:15.6177141Z   clean: true
+2026-11-14T10:09:15.6177786Z   sparse-checkout-cone-mode: true
+2026-11-14T10:09:15.6178403Z   fetch-depth: 1
+2026-11-14T10:09:15.6178904Z   fetch-tags: false
+2026-11-14T10:09:15.6179446Z   show-progress: true
+2026-11-14T10:09:15.6179965Z   lfs: false
+2026-11-14T10:09:15.6180455Z   submodules: false
+2026-11-14T10:09:15.6180983Z   set-safe-directory: true
+2026-11-14T10:09:15.6181577Z   allow-unsafe-pr-checkout: false
+2026-11-14T10:09:15.6182392Z ##[endgroup]
+2026-11-14T10:09:15.8203730Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T10:09:15.8205691Z ##[group]Getting Git version info
+2026-11-14T10:09:15.8206897Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T10:09:15.8208141Z [command]/usr/bin/git version
+2026-11-14T10:09:15.8272273Z git version 2.56.1
+2026-11-14T10:09:15.8288997Z ##[endgroup]
+2026-11-14T10:09:15.8293464Z Temporarily overriding HOME='/home/runner/work/_temp/cbfc4f6c-9943-4589-a4e9-52242739f729' before making global git config changes
+2026-11-14T10:09:15.8295435Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T10:09:15.8296983Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T10:09:15.8336476Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T10:09:15.8340023Z ##[group]Initializing the repository
+2026-11-14T10:09:15.8342786Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T10:09:15.8421153Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T10:09:15.8422388Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T10:09:15.8423479Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T10:09:15.8424365Z hint: call:
+2026-11-14T10:09:15.8424965Z hint:
+2026-11-14T10:09:15.8425704Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T10:09:15.8426400Z hint:
+2026-11-14T10:09:15.8427065Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T10:09:15.8428398Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T10:09:15.8429252Z hint:
+2026-11-14T10:09:15.8429969Z hint: 	git branch -m <name>
+2026-11-14T10:09:15.8430841Z hint:
+2026-11-14T10:09:15.8432009Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T10:09:15.8433946Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T10:09:15.8436729Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T10:09:15.8481923Z ##[endgroup]
+2026-11-14T10:09:15.8483342Z ##[group]Disabling automatic garbage collection
+2026-11-14T10:09:15.8484623Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T10:09:15.8510767Z ##[endgroup]
+2026-11-14T10:09:15.8512098Z ##[group]Setting up auth
+2026-11-14T10:09:15.8515357Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T10:09:15.8543653Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T10:09:15.8842728Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T10:09:15.8869580Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T10:09:15.9062283Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T10:09:15.9090045Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T10:09:15.9278985Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T10:09:15.9313401Z ##[endgroup]
+2026-11-14T10:09:15.9314567Z ##[group]Fetching the repository
+2026-11-14T10:09:15.9323151Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +c54d9aa3a4dccab6c1cf677c9857abf77df66174:refs/remotes/origin/repair/lumo-capture-state-20261114
+2026-11-14T10:09:28.5945119Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T10:09:28.5945762Z  * [new ref]         c54d9aa3a4dccab6c1cf677c9857abf77df66174 -> origin/repair/lumo-capture-state-20261114
+2026-11-14T10:09:28.5949160Z ##[endgroup]
+2026-11-14T10:09:28.5949727Z ##[group]Determining the checkout info
+2026-11-14T10:09:28.5951415Z ##[endgroup]
+2026-11-14T10:09:28.5956256Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T10:09:28.6001751Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T10:09:28.6028394Z ##[group]Checking out the ref
+2026-11-14T10:09:28.6030992Z [command]/usr/bin/git checkout --progress --force -B repair/lumo-capture-state-20261114 refs/remotes/origin/repair/lumo-capture-state-20261114
+2026-11-14T10:09:29.6151335Z Updating files:  94% (4129/4360)
+2026-11-14T10:09:29.6234986Z Updating files:  95% (4142/4360)
+2026-11-14T10:09:29.6315390Z Updating files:  96% (4186/4360)
+2026-11-14T10:09:29.6377238Z Updating files:  97% (4230/4360)
+2026-11-14T10:09:29.6401993Z Updating files:  98% (4273/4360)
+2026-11-14T10:09:29.6421734Z Updating files:  99% (4317/4360)
+2026-11-14T10:09:29.6422075Z Updating files: 100% (4360/4360)
+2026-11-14T10:09:29.6422319Z Updating files: 100% (4360/4360), done.
+2026-11-14T10:09:29.6465337Z Switched to a new branch 'repair/lumo-capture-state-20261114'
+2026-11-14T10:09:29.6469429Z branch 'repair/lumo-capture-state-20261114' set up to track 'origin/repair/lumo-capture-state-20261114'.
+2026-11-14T10:09:29.6592746Z ##[endgroup]
+2026-11-14T10:09:29.6631430Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T10:09:29.6653315Z c54d9aa3a4dccab6c1cf677c9857abf77df66174
+2026-11-14T10:09:29.6893445Z ##[group]Run actions/setup-java@v4
+2026-11-14T10:09:29.6893614Z with:
+2026-11-14T10:09:29.6893743Z   distribution: temurin
+2026-11-14T10:09:29.6893896Z   java-version: 17
+2026-11-14T10:09:29.6894032Z   java-package: jdk
+2026-11-14T10:09:29.6894157Z   check-latest: false
+2026-11-14T10:09:29.6894282Z   server-id: github
+2026-11-14T10:09:29.6894432Z   server-username: GITHUB_ACTOR
+2026-11-14T10:09:29.6894614Z   server-password: GITHUB_TOKEN
+2026-11-14T10:09:29.6894761Z   overwrite-settings: true
+2026-11-14T10:09:29.6894898Z   job-status: success
+2026-11-14T10:09:29.6896640Z   token: ***
+2026-11-14T10:09:29.6896766Z ##[endgroup]
+2026-11-14T10:09:29.8009458Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+2026-11-14T10:09:29.8015045Z ##[group]Installed distributions
+2026-11-14T10:09:29.8276314Z Resolved Java 17.0.21+9 from tool-cache
+2026-11-14T10:09:29.8276592Z Setting Java 17.0.21+9 as the default
+2026-11-14T10:09:29.8282532Z (node:2191) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T10:09:29.8283042Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T10:09:29.8284685Z Creating toolchains.xml for JDK version 17 from temurin
+2026-11-14T10:09:29.8347525Z Writing to /home/runner/.m2/toolchains.xml
+2026-11-14T10:09:29.8347866Z 
+2026-11-14T10:09:29.8347953Z Java configuration:
+2026-11-14T10:09:29.8348157Z   Distribution: temurin
+2026-11-14T10:09:29.8348361Z   Version: 17.0.21+9
+2026-11-14T10:09:29.8348699Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:29.8348945Z 
+2026-11-14T10:09:29.8349196Z ##[endgroup]
+2026-11-14T10:09:29.8363813Z Creating settings.xml with server-id: github
+2026-11-14T10:09:29.8364050Z Writing to /home/runner/.m2/settings.xml
+2026-11-14T10:09:29.8572639Z ##[group]Run subosito/flutter-action@v2
+2026-11-14T10:09:29.8572819Z with:
+2026-11-14T10:09:29.8572943Z   flutter-version: 3.44.9
+2026-11-14T10:09:29.8573078Z   channel: stable
+2026-11-14T10:09:29.8573198Z   cache: true
+2026-11-14T10:09:29.8573319Z   architecture: X64
+2026-11-14T10:09:29.8573451Z   pub-cache-path: default
+2026-11-14T10:09:29.8573599Z   dry-run: false
+2026-11-14T10:09:29.8573758Z   git-source: https://github.com/flutter/flutter.git
+2026-11-14T10:09:29.8573933Z env:
+2026-11-14T10:09:29.8574108Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:29.8574385Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:29.8574602Z ##[endgroup]
+2026-11-14T10:09:29.8614783Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-11-14T10:09:29.8621816Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T10:09:29.8623124Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-11-14T10:09:29.8650079Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-11-14T10:09:29.8650352Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-11-14T10:09:29.8671080Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T10:09:29.8671445Z env:
+2026-11-14T10:09:29.8671632Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:29.8671917Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:29.8672135Z ##[endgroup]
+2026-11-14T10:09:29.8738633Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=11]
+2026-11-14T10:09:29.8740067Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-11-14T10:09:29.8766290Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-11-14T10:09:29.8766524Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-11-14T10:09:29.8766698Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T10:09:29.8766834Z [36;1m  -f '' \[0m
+2026-11-14T10:09:29.8766956Z [36;1m  -a 'X64' \[0m
+2026-11-14T10:09:29.8767080Z [36;1m  -k '' \[0m
+2026-11-14T10:09:29.8767201Z [36;1m  -c '' \[0m
+2026-11-14T10:09:29.8767315Z [36;1m  -l '' \[0m
+2026-11-14T10:09:29.8767445Z [36;1m  -d 'default' \[0m
+2026-11-14T10:09:29.8767630Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-11-14T10:09:29.8767833Z [36;1m  stable[0m
+2026-11-14T10:09:29.8781885Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T10:09:29.8782073Z env:
+2026-11-14T10:09:29.8782254Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:29.8782532Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:29.8782746Z ##[endgroup]
+2026-11-14T10:09:30.0261528Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=152]
+2026-11-14T10:09:30.0265639Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-11-14T10:09:30.0303670Z ##[group]Run actions/cache@v5
+2026-11-14T10:09:30.0303829Z with:
+2026-11-14T10:09:30.0303991Z   path: /opt/hostedtoolcache/flutter/stable-3.44.9-x64
+2026-11-14T10:09:30.0304260Z   key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T10:09:30.0304523Z   enableCrossOsArchive: false
+2026-11-14T10:09:30.0304675Z   fail-on-cache-miss: false
+2026-11-14T10:09:30.0304816Z   lookup-only: false
+2026-11-14T10:09:30.0304946Z   save-always: false
+2026-11-14T10:09:30.0305068Z env:
+2026-11-14T10:09:30.0305457Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:30.0305739Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:30.0305960Z ##[endgroup]
+2026-11-14T10:09:30.1939914Z Cache hit for: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T10:09:31.2488049Z Received 268435456 of 1692352766 (15.9%), 256.0 MBs/sec
+2026-11-14T10:09:32.2495841Z Received 603979776 of 1692352766 (35.7%), 287.9 MBs/sec
+2026-11-14T10:09:33.2526634Z Received 926941184 of 1692352766 (54.8%), 294.6 MBs/sec
+2026-11-14T10:09:34.2540337Z Received 1207959552 of 1692352766 (71.4%), 287.6 MBs/sec
+2026-11-14T10:09:35.2629179Z Received 1514143744 of 1692352766 (89.5%), 288.0 MBs/sec
+2026-11-14T10:09:35.8457736Z Received 1692352766 of 1692352766 (100.0%), 288.4 MBs/sec
+2026-11-14T10:09:35.8458820Z Cache Size: ~1614 MB (1692352766 B)
+2026-11-14T10:09:35.8514516Z [command]/usr/bin/tar -xf /home/runner/work/_temp/9b2f0721-a5c9-44f4-8129-72f6b3242b3d/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T10:09:46.9656392Z Cache restored successfully
+2026-11-14T10:09:47.0414655Z Cache restored from key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T10:09:47.0565986Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=17029]
+2026-11-14T10:09:47.0568228Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-11-14T10:09:47.2563811Z ##[group]Run actions/cache@v5
+2026-11-14T10:09:47.2563967Z with:
+2026-11-14T10:09:47.2564098Z   path: /home/runner/.pub-cache
+2026-11-14T10:09:47.2564733Z   key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T10:09:47.2565137Z   enableCrossOsArchive: false
+2026-11-14T10:09:47.2565597Z   fail-on-cache-miss: false
+2026-11-14T10:09:47.2565734Z   lookup-only: false
+2026-11-14T10:09:47.2565854Z   save-always: false
+2026-11-14T10:09:47.2565973Z env:
+2026-11-14T10:09:47.2566144Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:47.2566417Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:47.2566637Z ##[endgroup]
+2026-11-14T10:09:47.4082744Z Cache hit for: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T10:09:47.8922259Z Received 81849709 of 81849709 (100.0%), 193.2 MBs/sec
+2026-11-14T10:09:47.8922629Z Cache Size: ~78 MB (81849709 B)
+2026-11-14T10:09:47.8962190Z [command]/usr/bin/tar -xf /home/runner/work/_temp/8dd12d63-ee9b-4bfd-9bf1-11cb07fd20e4/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T10:09:48.6354935Z Cache restored successfully
+2026-11-14T10:09:48.6445257Z Cache restored from key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T10:09:48.6603882Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=1603]
+2026-11-14T10:09:48.6605987Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-11-14T10:09:48.6630984Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-11-14T10:09:48.6631198Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-11-14T10:09:48.6631362Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T10:09:48.6631497Z [36;1m  -a 'x64' \[0m
+2026-11-14T10:09:48.6631679Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.44.9-x64' \[0m
+2026-11-14T10:09:48.6631904Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-11-14T10:09:48.6632058Z [36;1m  stable[0m
+2026-11-14T10:09:48.6648577Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T10:09:48.6648762Z env:
+2026-11-14T10:09:48.6648940Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:48.6649242Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:48.6649518Z ##[endgroup]
+2026-11-14T10:09:48.7923988Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=131]
+2026-11-14T10:09:48.7964010Z ##[group]Run flutter pub get --enforce-lockfile
+2026-11-14T10:09:48.7964238Z [36;1mflutter pub get --enforce-lockfile[0m
+2026-11-14T10:09:48.7980060Z shell: /usr/bin/bash -e {0}
+2026-11-14T10:09:48.7980204Z env:
+2026-11-14T10:09:48.7980382Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:48.7980679Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:48.7980948Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T10:09:48.7981162Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T10:09:48.7981316Z ##[endgroup]
+2026-11-14T10:09:49.1920922Z Resolving dependencies...
+2026-11-14T10:09:49.4802129Z Downloading packages...
+2026-11-14T10:09:50.5357805Z   clock 1.1.2 (1.1.3 available)
+2026-11-14T10:09:50.5358139Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-14T10:09:50.5358406Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-14T10:09:50.5358740Z   crypto 3.0.7 (3.0.8 available)
+2026-11-14T10:09:50.5358997Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-14T10:09:50.5359277Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-14T10:09:50.5359542Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-14T10:09:50.5359851Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-14T10:09:50.5360141Z   hooks 2.0.2 (2.2.0 available)
+2026-11-14T10:09:50.5360594Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-14T10:09:50.5360888Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-14T10:09:50.5361206Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-14T10:09:50.5361498Z   jni 1.1.0 (1.1.2 available)
+2026-11-14T10:09:50.5361726Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-14T10:09:50.5361966Z   lints 4.0.0 (6.1.0 available)
+2026-11-14T10:09:50.5362192Z   matcher 0.12.19 (0.12.20 available)
+2026-11-14T10:09:50.5362465Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-14T10:09:50.5362737Z   meta 1.18.0 (1.19.0 available)
+2026-11-14T10:09:50.5362957Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-14T10:09:50.5363114Z   record_use 0.6.0 (1.1.1 available)
+2026-11-14T10:09:50.5363275Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-14T10:09:50.5363499Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-14T10:09:50.5363700Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-14T10:09:50.5363883Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-14T10:09:50.5364045Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-14T10:09:50.5364200Z   test_api 0.7.11 (0.7.15 available)
+2026-11-14T10:09:50.5364354Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-14T10:09:50.5364507Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-14T10:09:50.5364657Z   web 1.1.1 (1.1.2 available)
+2026-11-14T10:09:50.5364838Z Got dependencies!
+2026-11-14T10:09:50.5365033Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-14T10:09:50.5365453Z Try `flutter pub outdated` for more information.
+2026-11-14T10:09:50.7133109Z ##[group]Run set -euo pipefail
+2026-11-14T10:09:50.7133340Z [36;1mset -euo pipefail[0m
+2026-11-14T10:09:50.7133489Z [36;1mif [ ! -d android ]; then[0m
+2026-11-14T10:09:50.7133673Z [36;1m  mkdir -p "$RUNNER_TEMP/lumo-android-test"[0m
+2026-11-14T10:09:50.7134047Z [36;1m  flutter create --no-pub --project-name lumo_lernen --platforms=android --org dev.ullmann.lumo "$RUNNER_TEMP/lumo-android-test/scaffold"[0m
+2026-11-14T10:09:50.7134456Z [36;1m  cp -a "$RUNNER_TEMP/lumo-android-test/scaffold/android" android[0m
+2026-11-14T10:09:50.7134657Z [36;1mfi[0m
+2026-11-14T10:09:50.7134817Z [36;1mpython3 scripts/prepare_android.py --side-by-side[0m
+2026-11-14T10:09:50.7135036Z [36;1mpython3 scripts/prepare_embedded_games.py[0m
+2026-11-14T10:09:50.7135430Z [36;1mpython3 scripts/prepare_offline_voice.py[0m
+2026-11-14T10:09:50.7135711Z [36;1mgrep -R -n -E 'villageRequested|livingVillage|settlementMode' android/app/src/main/kotlin/[0m
+2026-11-14T10:09:50.7152489Z shell: /usr/bin/bash -e {0}
+2026-11-14T10:09:50.7152636Z env:
+2026-11-14T10:09:50.7152817Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:50.7153091Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:09:50.7153357Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T10:09:50.7153570Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T10:09:50.7153728Z ##[endgroup]
+2026-11-14T10:09:50.8186922Z Creating project ../../_temp/lumo-android-test/scaffold...
+2026-11-14T10:09:50.8946602Z Wrote 35 files.
+2026-11-14T10:09:50.8946809Z 
+2026-11-14T10:09:50.8946893Z All done!
+2026-11-14T10:09:50.8954473Z You can find general documentation for Flutter at: https://docs.flutter.dev/
+2026-11-14T10:09:50.8976735Z Detailed API documentation is available at: https://api.flutter.dev/
+2026-11-14T10:09:50.8977214Z If you prefer video documentation, consider: https://www.youtube.com/c/flutterdev
+2026-11-14T10:09:50.8977501Z 
+2026-11-14T10:09:50.8977643Z In order to run your application, type:
+2026-11-14T10:09:50.8977809Z 
+2026-11-14T10:09:50.8977925Z   $ cd ../../_temp/lumo-android-test/scaffold
+2026-11-14T10:09:50.8978142Z   $ flutter run
+2026-11-14T10:09:50.8978221Z 
+2026-11-14T10:09:50.8978350Z Your application code is in ../../_temp/lumo-android-test/scaffold/lib/main.dart.
+2026-11-14T10:09:50.8978527Z 
+2026-11-14T10:09:52.6031102Z Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+2026-11-14T10:09:52.6253325Z Embedded Godot host prepared; same APK, private activity, durable reward events.
+2026-11-14T10:09:52.6572717Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-11-14T10:09:52.6573163Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-11-14T10:09:52.6573384Z 
+2026-11-14T10:09:52.7555341Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T10:09:52.7555756Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T10:09:52.7556093Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T10:09:53.0895535Z 
+2026-11-14T10:09:53.0896004Z 100  122M  100  122M    0     0   284M      0 --:--:-- --:--:-- --:--:--  284M
+2026-11-14T10:10:11.1486043Z {
+2026-11-14T10:10:11.1486392Z   "profile": "lumo-free-supertonic-de-v1",
+2026-11-14T10:10:11.1486764Z   "preset": "F2",
+2026-11-14T10:10:11.1486976Z   "model_sha256": {
+2026-11-14T10:10:11.1487414Z     "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+2026-11-14T10:10:11.1488091Z     "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+2026-11-14T10:10:11.1488738Z     "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+2026-11-14T10:10:11.1489362Z     "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+2026-11-14T10:10:11.1490218Z     "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+2026-11-14T10:10:11.1490744Z     "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+2026-11-14T10:10:11.1491286Z     "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+2026-11-14T10:10:11.1491684Z   },
+2026-11-14T10:10:11.1491881Z   "runtime_cloud_calls": 0,
+2026-11-14T10:10:11.1492128Z   "system_tts": false,
+2026-11-14T10:10:11.1492352Z   "model_asset_bytes": 145295768
+2026-11-14T10:10:11.1492586Z }
+2026-11-14T10:10:11.1576409Z android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt:198:                        val villageRequested = call.argument<Boolean>("livingVillage") == true
+2026-11-14T10:10:11.1577216Z android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt:199:                        if ((requested == "settlement") != villageRequested ||
+2026-11-14T10:10:11.1577874Z android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt:200:                            (villageRequested && call.argument<String>("settlementMode") != "settlement")) {
+2026-11-14T10:10:11.1578543Z android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt:214:                            options.put("livingVillage", true).put("settlementMode", "settlement")
+2026-11-14T10:10:11.1613502Z ##[group]Run set -euo pipefail
+2026-11-14T10:10:11.1613867Z [36;1mset -euo pipefail[0m
+2026-11-14T10:10:11.1614356Z [36;1m(cd android && ./gradlew --no-daemon :app:compileDebugKotlin) 2>&1 | tee /tmp/village-kotlin-compile.log[0m
+2026-11-14T10:10:11.1614885Z [36;1mtest -s /tmp/village-kotlin-compile.log[0m
+2026-11-14T10:10:11.1615479Z [36;1mgrep -q 'BUILD SUCCESSFUL' /tmp/village-kotlin-compile.log[0m
+2026-11-14T10:10:11.1639732Z shell: /usr/bin/bash -e {0}
+2026-11-14T10:10:11.1640003Z env:
+2026-11-14T10:10:11.1640322Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:10:11.1640829Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:10:11.1641316Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T10:10:11.1641709Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T10:10:11.1641983Z ##[endgroup]
+2026-11-14T10:10:11.8235662Z Downloading https://services.gradle.org/distributions/gradle-9.1.0-all.zip
+2026-11-14T10:10:22.6473217Z ........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+2026-11-14T10:10:22.6485520Z Unzipping /home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0-all.zip to /home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9
+2026-11-14T10:10:24.9053213Z Set executable permissions for: /home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0/bin/gradle
+2026-11-14T10:10:25.5285350Z 
+2026-11-14T10:10:25.5287154Z Welcome to Gradle 9.1.0!
+2026-11-14T10:10:25.5287727Z 
+2026-11-14T10:10:25.5288286Z Here are the highlights of this release:
+2026-11-14T10:10:25.5288964Z  - Full Java 25 support
+2026-11-14T10:10:25.5289738Z  - Native task graph visualization
+2026-11-14T10:10:25.5290719Z  - Enhanced console output
+2026-11-14T10:10:25.5291121Z 
+2026-11-14T10:10:25.5291717Z For more details see https://docs.gradle.org/9.1.0/release-notes.html
+2026-11-14T10:10:25.5292150Z 
+2026-11-14T10:10:25.6280842Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+2026-11-14T10:10:26.7286579Z Daemon will be stopped at the end of the build 
+2026-11-14T10:10:49.4298793Z 
+2026-11-14T10:10:49.4311969Z > Configure project :gradle
+2026-11-14T10:10:49.4312680Z WARNING: Unsupported Kotlin plugin version.
+2026-11-14T10:10:49.4313440Z The `embedded-kotlin` and `kotlin-dsl` plugins rely on features of Kotlin `2.2.0` that might work differently than in the requested version `2.2.20`.
+2026-11-14T10:10:52.3286189Z 
+2026-11-14T10:10:52.3287906Z > Task :gradle:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:10:59.8278754Z > Task :gradle:compileKotlin UP-TO-DATE
+2026-11-14T10:10:59.8279135Z > Task :gradle:compileJava NO-SOURCE
+2026-11-14T10:10:59.8279419Z > Task :gradle:compileGroovy NO-SOURCE
+2026-11-14T10:10:59.8279608Z > Task :gradle:pluginDescriptors UP-TO-DATE
+2026-11-14T10:10:59.8279980Z > Task :gradle:processResources UP-TO-DATE
+2026-11-14T10:10:59.8280261Z > Task :gradle:classes UP-TO-DATE
+2026-11-14T10:10:59.8280562Z > Task :gradle:jar UP-TO-DATE
+2026-11-14T10:11:16.6281621Z 
+2026-11-14T10:11:16.6286749Z > Configure project :app
+2026-11-14T10:11:16.6291901Z WARNING: The option setting 'android.builtInKotlin=false' is deprecated.
+2026-11-14T10:11:16.6293398Z The current default is 'true'.
+2026-11-14T10:11:16.6293842Z It will be removed in version 10.0 of the Android Gradle plugin.
+2026-11-14T10:11:16.6299345Z WARNING: The option setting 'android.newDsl=false' is deprecated.
+2026-11-14T10:11:16.6301925Z The current default is 'true'.
+2026-11-14T10:11:16.6303452Z It will be removed in version 10.0 of the Android Gradle plugin.
+2026-11-14T10:11:17.0807545Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:7:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.
+2026-11-14T10:11:17.0832074Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:11:17.0833739Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:49:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.
+2026-11-14T10:11:17.0835137Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:11:17.0837016Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:70:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.
+2026-11-14T10:11:17.0853179Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:11:17.0854610Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:98:5: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.
+2026-11-14T10:11:17.0856113Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:11:17.0857389Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:109:34: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.
+2026-11-14T10:11:17.0859175Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:11:19.3280379Z Checking the license for package NDK (Side by side) 28.2.13676358 in /usr/local/lib/android/sdk/licenses
+2026-11-14T10:11:19.3281351Z License for package NDK (Side by side) 28.2.13676358 accepted.
+2026-11-14T10:11:19.3282110Z Preparing "Install NDK (Side by side) 28.2.13676358 v.28.2.13676358".
+2026-11-14T10:11:39.3278954Z "Install NDK (Side by side) 28.2.13676358 v.28.2.13676358" ready.
+2026-11-14T10:11:39.3279629Z Installing NDK (Side by side) 28.2.13676358 in /usr/local/lib/android/sdk/ndk/28.2.13676358
+2026-11-14T10:11:39.3280201Z "Install NDK (Side by side) 28.2.13676358 v.28.2.13676358" complete.
+2026-11-14T10:11:39.6278233Z "Install NDK (Side by side) 28.2.13676358 v.28.2.13676358" finished.
+2026-11-14T10:11:40.0280078Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:11:40.0296149Z The 'org.jetbrains.kotlin.android' plugin in project ':app' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:11:40.0297165Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:11:40.0298020Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:11:40.0298408Z 
+2026-11-14T10:11:53.5280197Z 
+2026-11-14T10:11:53.5280996Z > Configure project :audioplayers_android
+2026-11-14T10:11:53.5281958Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:11:53.5285366Z The 'org.jetbrains.kotlin.android' plugin in project ':audioplayers_android' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:11:53.5286640Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:11:53.5287466Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:11:53.5287903Z 
+2026-11-14T10:12:01.0286600Z 
+2026-11-14T10:12:01.0308864Z > Configure project :flutter_plugin_android_lifecycle
+2026-11-14T10:12:01.0317489Z w: file:///home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.35/android/build.gradle.kts:26:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.
+2026-11-14T10:12:01.0318879Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:12:01.1278606Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:01.1283794Z The 'org.jetbrains.kotlin.android' plugin in project ':flutter_plugin_android_lifecycle' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:01.1285131Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:01.1286201Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:01.1286630Z 
+2026-11-14T10:12:04.3277858Z 
+2026-11-14T10:12:04.3314476Z > Configure project :google_mlkit_commons
+2026-11-14T10:12:04.3366435Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:04.3396171Z The 'org.jetbrains.kotlin.android' plugin in project ':google_mlkit_commons' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:04.3426041Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:04.3427038Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:04.3443598Z 
+2026-11-14T10:12:04.4278232Z 
+2026-11-14T10:12:04.4284695Z > Configure project :google_mlkit_text_recognition
+2026-11-14T10:12:04.4285803Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:04.4286734Z The 'org.jetbrains.kotlin.android' plugin in project ':google_mlkit_text_recognition' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:04.4288352Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:04.4289168Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:04.4289542Z 
+2026-11-14T10:12:06.3277947Z 
+2026-11-14T10:12:06.3279192Z > Configure project :image_picker_android
+2026-11-14T10:12:06.3280562Z w: file:///home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+25/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.
+2026-11-14T10:12:06.3282077Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:12:06.3283292Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:06.3284066Z The 'org.jetbrains.kotlin.android' plugin in project ':image_picker_android' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:06.3285049Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:06.3285986Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:06.3286363Z 
+2026-11-14T10:12:06.5280516Z 
+2026-11-14T10:12:06.5283033Z > Configure project :jni
+2026-11-14T10:12:06.5283965Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:06.5284702Z The 'org.jetbrains.kotlin.android' plugin in project ':jni' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:06.5285738Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:06.5286532Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:06.5286931Z 
+2026-11-14T10:12:06.6281781Z 
+2026-11-14T10:12:06.6282381Z > Configure project :jni_flutter
+2026-11-14T10:12:06.6283321Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:06.6284152Z The 'org.jetbrains.kotlin.android' plugin in project ':jni_flutter' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:06.6285302Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:06.6286130Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:06.6286515Z 
+2026-11-14T10:12:10.4288179Z 
+2026-11-14T10:12:10.4289233Z > Configure project :shared_preferences_android
+2026-11-14T10:12:10.4291053Z w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/build.gradle.kts:40:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.
+2026-11-14T10:12:10.4292469Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:12:10.5281230Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:10.5284658Z The 'org.jetbrains.kotlin.android' plugin in project ':shared_preferences_android' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:10.5305900Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:10.5307389Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:10.5307742Z 
+2026-11-14T10:12:10.6278126Z 
+2026-11-14T10:12:10.6280832Z > Configure project :speech_to_text
+2026-11-14T10:12:10.6281914Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:10.6282785Z The 'org.jetbrains.kotlin.android' plugin in project ':speech_to_text' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:10.6284229Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:10.6285041Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:10.6285596Z 
+2026-11-14T10:12:11.4277847Z 
+2026-11-14T10:12:11.4331424Z > Configure project :url_launcher_android
+2026-11-14T10:12:11.4384398Z w: file:///home/runner/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.33/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.
+2026-11-14T10:12:11.4416554Z This class is not used for the public extensions in AGP when android.newDsl=true, which is the default in AGP 9.0, and will be removed in AGP 10.0.
+2026-11-14T10:12:11.4417794Z w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage
+2026-11-14T10:12:11.4418564Z The 'org.jetbrains.kotlin.android' plugin in project ':url_launcher_android' is no longer required for Kotlin support since AGP 9.0.
+2026-11-14T10:12:11.4419503Z Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+2026-11-14T10:12:11.4420266Z See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+2026-11-14T10:12:11.4420632Z 
+2026-11-14T10:12:12.0278876Z 
+2026-11-14T10:12:12.0289191Z > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:12.0289809Z > Task :app:cleanMergeDebugAssets UP-TO-DATE
+2026-11-14T10:12:24.9283442Z > Task :app:compileFlutterBuildDebug
+2026-11-14T10:12:24.9284178Z > Task :app:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:24.9284703Z > Task :app:preBuild UP-TO-DATE
+2026-11-14T10:12:24.9284998Z > Task :app:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:24.9285501Z > Task :audioplayers_android:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:24.9285842Z > Task :audioplayers_android:preBuild UP-TO-DATE
+2026-11-14T10:12:24.9286169Z > Task :audioplayers_android:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0278256Z > Task :audioplayers_android:mergeDebugAssets
+2026-11-14T10:12:25.0278886Z > Task :flutter_plugin_android_lifecycle:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0279581Z > Task :flutter_plugin_android_lifecycle:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0280287Z > Task :flutter_plugin_android_lifecycle:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0280702Z > Task :flutter_plugin_android_lifecycle:mergeDebugAssets
+2026-11-14T10:12:25.0281046Z > Task :google_mlkit_commons:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0281376Z > Task :google_mlkit_commons:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0281695Z > Task :google_mlkit_commons:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0282010Z > Task :google_mlkit_commons:mergeDebugAssets
+2026-11-14T10:12:25.0282706Z > Task :google_mlkit_text_recognition:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0283034Z > Task :google_mlkit_text_recognition:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0283261Z > Task :google_mlkit_text_recognition:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0283479Z > Task :google_mlkit_text_recognition:mergeDebugAssets
+2026-11-14T10:12:25.0283693Z > Task :image_picker_android:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0283903Z > Task :image_picker_android:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0284096Z > Task :image_picker_android:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0284289Z > Task :image_picker_android:mergeDebugAssets
+2026-11-14T10:12:25.0284470Z > Task :jni:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0284640Z > Task :jni:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0284798Z > Task :jni:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0284958Z > Task :jni:mergeDebugAssets
+2026-11-14T10:12:25.0285125Z > Task :jni_flutter:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0285562Z > Task :jni_flutter:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0285737Z > Task :jni_flutter:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0286070Z > Task :jni_flutter:mergeDebugAssets
+2026-11-14T10:12:25.0286272Z > Task :shared_preferences_android:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0286496Z > Task :shared_preferences_android:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0286709Z > Task :shared_preferences_android:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0286916Z > Task :shared_preferences_android:mergeDebugAssets
+2026-11-14T10:12:25.0287117Z > Task :speech_to_text:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0287302Z > Task :speech_to_text:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0287479Z > Task :speech_to_text:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0287659Z > Task :speech_to_text:mergeDebugAssets
+2026-11-14T10:12:25.0287850Z > Task :url_launcher_android:generateDebugAssets UP-TO-DATE
+2026-11-14T10:12:25.0288056Z > Task :url_launcher_android:preBuild UP-TO-DATE
+2026-11-14T10:12:25.0288251Z > Task :url_launcher_android:preDebugBuild UP-TO-DATE
+2026-11-14T10:12:25.0288437Z > Task :url_launcher_android:mergeDebugAssets
+2026-11-14T10:12:33.8278731Z > Task :app:mergeDebugAssets
+2026-11-14T10:12:34.2277645Z > Task :app:copyFlutterAssetsDebug
+2026-11-14T10:12:34.2277968Z > Task :app:generateDebugResources
+2026-11-14T10:12:34.3278201Z > Task :app:packageDebugResources
+2026-11-14T10:12:34.3280085Z > Task :audioplayers_android:processDebugNavigationResources
+2026-11-14T10:12:34.3280912Z > Task :flutter_plugin_android_lifecycle:processDebugNavigationResources
+2026-11-14T10:12:34.3281540Z > Task :google_mlkit_commons:processDebugNavigationResources
+2026-11-14T10:12:34.3282256Z > Task :google_mlkit_text_recognition:processDebugNavigationResources
+2026-11-14T10:12:34.3282712Z > Task :image_picker_android:processDebugNavigationResources
+2026-11-14T10:12:34.3283083Z > Task :jni:processDebugNavigationResources
+2026-11-14T10:12:34.3283412Z > Task :jni_flutter:processDebugNavigationResources
+2026-11-14T10:12:34.3283821Z > Task :shared_preferences_android:processDebugNavigationResources
+2026-11-14T10:12:34.3284220Z > Task :speech_to_text:processDebugNavigationResources
+2026-11-14T10:12:34.3284598Z > Task :url_launcher_android:processDebugNavigationResources
+2026-11-14T10:12:34.3284942Z > Task :app:processDebugNavigationResources
+2026-11-14T10:12:35.6278833Z > Task :audioplayers_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:35.6280451Z > Task :audioplayers_android:generateDebugResources
+2026-11-14T10:12:35.6280750Z > Task :audioplayers_android:packageDebugResources
+2026-11-14T10:12:35.6281133Z > Task :flutter_plugin_android_lifecycle:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:35.6281493Z > Task :audioplayers_android:javaPreCompileDebug
+2026-11-14T10:12:35.6281777Z > Task :flutter_plugin_android_lifecycle:generateDebugResources
+2026-11-14T10:12:35.7277851Z > Task :audioplayers_android:parseDebugLocalResources
+2026-11-14T10:12:35.7278240Z > Task :app:parseDebugLocalResources
+2026-11-14T10:12:35.7278849Z > Task :flutter_plugin_android_lifecycle:packageDebugResources
+2026-11-14T10:12:35.7279121Z > Task :flutter_plugin_android_lifecycle:javaPreCompileDebug
+2026-11-14T10:12:35.7279404Z > Task :google_mlkit_commons:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:35.7279672Z > Task :google_mlkit_commons:generateDebugResources
+2026-11-14T10:12:35.7279874Z > Task :google_mlkit_commons:packageDebugResources
+2026-11-14T10:12:35.7280102Z > Task :flutter_plugin_android_lifecycle:parseDebugLocalResources
+2026-11-14T10:12:35.7280318Z > Task :app:generateDebugRFile
+2026-11-14T10:12:35.7280486Z > Task :audioplayers_android:generateDebugRFile
+2026-11-14T10:12:36.7277944Z > Task :google_mlkit_commons:parseDebugLocalResources
+2026-11-14T10:12:41.5278848Z > Task :flutter_plugin_android_lifecycle:generateDebugRFile
+2026-11-14T10:12:41.5279653Z > Task :flutter_plugin_android_lifecycle:compileDebugKotlin NO-SOURCE
+2026-11-14T10:12:41.5280407Z > Task :google_mlkit_commons:generateDebugRFile
+2026-11-14T10:12:47.4279087Z > Task :flutter_plugin_android_lifecycle:compileDebugJavaWithJavac
+2026-11-14T10:12:47.4361114Z > Task :google_mlkit_commons:compileDebugKotlin NO-SOURCE
+2026-11-14T10:12:47.4392824Z > Task :google_mlkit_text_recognition:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:47.4446739Z > Task :google_mlkit_commons:javaPreCompileDebug
+2026-11-14T10:12:47.4475760Z > Task :google_mlkit_text_recognition:generateDebugResources
+2026-11-14T10:12:47.4476389Z > Task :flutter_plugin_android_lifecycle:bundleLibCompileToJarDebug
+2026-11-14T10:12:48.6284932Z > Task :google_mlkit_commons:compileDebugJavaWithJavac
+2026-11-14T10:12:48.6301500Z > Task :google_mlkit_commons:bundleLibCompileToJarDebug
+2026-11-14T10:12:48.6315983Z > Task :google_mlkit_text_recognition:packageDebugResources
+2026-11-14T10:12:48.6345751Z > Task :google_mlkit_text_recognition:parseDebugLocalResources
+2026-11-14T10:12:48.6375819Z > Task :google_mlkit_text_recognition:javaPreCompileDebug
+2026-11-14T10:12:48.6376440Z > Task :image_picker_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:48.6405741Z > Task :image_picker_android:generateDebugResources
+2026-11-14T10:12:48.6435711Z > Task :google_mlkit_text_recognition:generateDebugRFile
+2026-11-14T10:12:48.6459791Z > Task :image_picker_android:packageDebugResources
+2026-11-14T10:12:48.6462216Z > Task :google_mlkit_text_recognition:compileDebugKotlin NO-SOURCE
+2026-11-14T10:12:49.2301160Z 
+2026-11-14T10:12:49.2316170Z > Task :audioplayers_android:compileDebugKotlin
+2026-11-14T10:12:49.2346188Z w: file:///home/runner/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0/android/src/main/kotlin/xyz/luan/audioplayers/AudioplayersPlugin.kt:72:30 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+2026-11-14T10:12:49.2357102Z w: file:///home/runner/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0/android/src/main/kotlin/xyz/luan/audioplayers/player/WrappedPlayer.kt:172:22 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+2026-11-14T10:12:50.0285887Z 
+2026-11-14T10:12:50.0286651Z > Task :google_mlkit_text_recognition:compileDebugJavaWithJavac
+2026-11-14T10:12:50.0287130Z > Task :audioplayers_android:compileDebugJavaWithJavac NO-SOURCE
+2026-11-14T10:12:50.0287515Z > Task :audioplayers_android:bundleLibCompileToJarDebug
+2026-11-14T10:12:50.0287757Z > Task :google_mlkit_text_recognition:bundleLibCompileToJarDebug
+2026-11-14T10:12:50.0288017Z > Task :jni:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:50.0288312Z > Task :image_picker_android:parseDebugLocalResources
+2026-11-14T10:12:50.0288518Z > Task :image_picker_android:javaPreCompileDebug
+2026-11-14T10:12:50.0294378Z > Task :jni:generateDebugResources
+2026-11-14T10:12:50.0294690Z > Task :image_picker_android:generateDebugRFile
+2026-11-14T10:12:50.0295006Z > Task :jni:packageDebugResources
+2026-11-14T10:12:51.8278646Z > Task :jni:parseDebugLocalResources
+2026-11-14T10:12:51.8279381Z > Task :jni:javaPreCompileDebug
+2026-11-14T10:12:51.8280238Z > Task :jni_flutter:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:51.8280795Z > Task :jni_flutter:generateDebugResources
+2026-11-14T10:12:51.8281207Z > Task :jni:generateDebugRFile
+2026-11-14T10:12:51.8281597Z > Task :jni:compileDebugKotlin NO-SOURCE
+2026-11-14T10:12:51.8282044Z > Task :image_picker_android:compileDebugKotlin
+2026-11-14T10:12:53.7278093Z > Task :jni:compileDebugJavaWithJavac
+2026-11-14T10:12:54.2282238Z > Task :image_picker_android:compileDebugJavaWithJavac
+2026-11-14T10:12:54.2284638Z > Task :jni:bundleLibCompileToJarDebug
+2026-11-14T10:12:54.2285675Z > Task :image_picker_android:bundleLibCompileToJarDebug
+2026-11-14T10:12:54.2286151Z > Task :jni_flutter:packageDebugResources
+2026-11-14T10:12:54.2286567Z > Task :jni_flutter:parseDebugLocalResources
+2026-11-14T10:12:54.2287115Z > Task :shared_preferences_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:54.2287676Z > Task :jni_flutter:javaPreCompileDebug
+2026-11-14T10:12:54.2288161Z > Task :shared_preferences_android:generateDebugResources
+2026-11-14T10:12:54.2288937Z > Task :jni_flutter:generateDebugRFile
+2026-11-14T10:12:54.2289350Z > Task :jni_flutter:compileDebugKotlin NO-SOURCE
+2026-11-14T10:12:54.3277797Z > Task :jni_flutter:compileDebugJavaWithJavac
+2026-11-14T10:12:54.3278189Z > Task :jni_flutter:bundleLibCompileToJarDebug
+2026-11-14T10:12:54.3282838Z > Task :shared_preferences_android:packageDebugResources
+2026-11-14T10:12:54.3283138Z > Task :speech_to_text:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:54.3283411Z > Task :shared_preferences_android:javaPreCompileDebug
+2026-11-14T10:12:54.3283637Z > Task :shared_preferences_android:parseDebugLocalResources
+2026-11-14T10:12:54.3283858Z > Task :speech_to_text:generateDebugResources
+2026-11-14T10:12:54.3284056Z > Task :shared_preferences_android:generateDebugRFile
+2026-11-14T10:12:54.3284357Z > Task :speech_to_text:packageDebugResources
+2026-11-14T10:12:55.6296695Z > Task :url_launcher_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2026-11-14T10:12:55.6326142Z > Task :speech_to_text:javaPreCompileDebug
+2026-11-14T10:12:55.6326937Z > Task :speech_to_text:parseDebugLocalResources
+2026-11-14T10:12:55.6355993Z > Task :url_launcher_android:generateDebugBuildConfig
+2026-11-14T10:12:55.6384618Z > Task :url_launcher_android:generateDebugResources
+2026-11-14T10:12:55.6405776Z > Task :url_launcher_android:packageDebugResources
+2026-11-14T10:12:55.6415623Z > Task :speech_to_text:generateDebugRFile
+2026-11-14T10:12:55.7316555Z > Task :url_launcher_android:javaPreCompileDebug
+2026-11-14T10:12:55.7318788Z > Task :url_launcher_android:parseDebugLocalResources
+2026-11-14T10:12:55.7365674Z > Task :url_launcher_android:generateDebugRFile
+2026-11-14T10:12:57.7299587Z 
+2026-11-14T10:12:57.7336229Z > Task :speech_to_text:compileDebugKotlin
+2026-11-14T10:12:57.7376406Z w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:381:23 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.
+2026-11-14T10:12:57.7377975Z w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:386:35 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.
+2026-11-14T10:12:57.7406183Z w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:390:35 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.
+2026-11-14T10:12:57.7436071Z w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:575:45 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.
+2026-11-14T10:12:57.9278152Z 
+2026-11-14T10:12:57.9283722Z > Task :speech_to_text:compileDebugJavaWithJavac NO-SOURCE
+2026-11-14T10:12:57.9289331Z > Task :speech_to_text:bundleLibCompileToJarDebug
+2026-11-14T10:12:58.1278840Z > Task :url_launcher_android:compileDebugKotlin
+2026-11-14T10:12:58.6297658Z > Task :url_launcher_android:compileDebugJavaWithJavac
+2026-11-14T10:12:58.6337969Z > Task :url_launcher_android:bundleLibCompileToJarDebug
+2026-11-14T10:12:58.7286361Z 
+2026-11-14T10:12:58.7316657Z > Task :shared_preferences_android:compileDebugKotlin
+2026-11-14T10:12:58.7336619Z w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/SharedPreferencesPlugin.kt:450:52 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'.
+2026-11-14T10:12:58.8279114Z 
+2026-11-14T10:12:58.8281096Z > Task :shared_preferences_android:compileDebugJavaWithJavac NO-SOURCE
+2026-11-14T10:12:58.8281748Z > Task :shared_preferences_android:bundleLibCompileToJarDebug
+2026-11-14T10:13:07.2277770Z 
+2026-11-14T10:13:07.2279164Z > Task :app:compileDebugKotlin
+2026-11-14T10:13:07.2280573Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/ConnectFourGameActivity.kt:78:27 The corresponding parameter in the supertype 'GodotActivity' is named 'savedInstanceState'. This may cause problems when calling this function with named arguments.
+2026-11-14T10:13:07.2282693Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.kt:190:51 Unnecessary non-null assertion (!!) on a non-null receiver of type 'MediaPlayer'.
+2026-11-14T10:13:07.2284180Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.kt:191:51 Unnecessary non-null assertion (!!) on a non-null receiver of type 'MediaPlayer'.
+2026-11-14T10:13:07.2285786Z w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt:295:97 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'.
+2026-11-14T10:13:07.3289624Z 
+2026-11-14T10:13:07.3296779Z [Incubating] Problems report is available at: file:///home/runner/work/lumo-lernen/lumo-lernen/build/reports/problems/problems-report.html
+2026-11-14T10:13:07.3297480Z 
+2026-11-14T10:13:07.3297834Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+2026-11-14T10:13:07.3298258Z 
+2026-11-14T10:13:07.3298731Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+2026-11-14T10:13:07.3299277Z 
+2026-11-14T10:13:07.3299821Z For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+2026-11-14T10:13:07.3300406Z 
+2026-11-14T10:13:07.3300601Z BUILD SUCCESSFUL in 2m 56s
+2026-11-14T10:13:07.3300962Z 107 actionable tasks: 102 executed, 5 up-to-date
+2026-11-14T10:13:07.7269518Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T10:13:07.7269701Z with:
+2026-11-14T10:13:07.7269846Z   name: lumo-village-host-kotlin-compile
+2026-11-14T10:13:07.7270042Z   path: /tmp/village-kotlin-compile.log
+2026-11-14T10:13:07.7270212Z   if-no-files-found: warn
+2026-11-14T10:13:07.7270352Z   retention-days: 30
+2026-11-14T10:13:07.7270485Z   compression-level: 6
+2026-11-14T10:13:07.7270643Z   overwrite: false
+2026-11-14T10:13:07.7270924Z   include-hidden-files: false
+2026-11-14T10:13:07.7271156Z env:
+2026-11-14T10:13:07.7271575Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:13:07.7271949Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T10:13:07.7272381Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T10:13:07.7272687Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T10:13:07.7272919Z ##[endgroup]
+2026-11-14T10:13:07.8525883Z (node:3273) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T10:13:07.8526498Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T10:13:07.8561114Z With the provided path, there will be 1 file uploaded
+2026-11-14T10:13:07.8564303Z Artifact name is valid!
+2026-11-14T10:13:07.8564808Z Root directory input is valid!
+2026-11-14T10:13:08.0502094Z Beginning upload of artifact content to blob storage
+2026-11-14T10:13:08.0632605Z (node:3273) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T10:13:08.1066643Z Uploaded bytes 3388
+2026-11-14T10:13:08.1223744Z Finished uploading artifact content to blob storage!
+2026-11-14T10:13:08.1224272Z SHA256 digest of uploaded artifact zip is 0f4c2e459d8aae659dc7b90ccdab0989756aefa6313fb4145394d73c2952cc8e
+2026-11-14T10:13:08.1225687Z Finalizing artifact upload
+2026-11-14T10:13:08.4923273Z Artifact lumo-village-host-kotlin-compile.zip successfully finalized. Artifact ID 14109647548
+2026-11-14T10:13:08.4923840Z Artifact lumo-village-host-kotlin-compile has been successfully uploaded! Final size is 3388 bytes. Artifact ID is 14109647548
+2026-11-14T10:13:08.4927640Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43583899148/artifacts/14109647548
+2026-11-14T10:13:08.5131921Z Post job cleanup.
+2026-11-14T10:13:08.5134633Z ##[start-action display=Cache pub dependencies;id=__f07f8b1e-adfe-471e-a2a2-a7903ae94aa4.cache-pub]
+2026-11-14T10:13:08.8320403Z Post job cleanup.
+2026-11-14T10:13:08.9235413Z Cache hit occurred on the primary key flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639, not saving cache.
+2026-11-14T10:13:08.9294534Z ##[end-action id=__f07f8b1e-adfe-471e-a2a2-a7903ae94aa4.cache-pub;outcome=success;conclusion=success;duration_ms=415]
+2026-11-14T10:13:08.9296994Z ##[start-action display=Cache Flutter;id=__f07f8b1e-adfe-471e-a2a2-a7903ae94aa4.cache-flutter]
+2026-11-14T10:13:08.9321958Z Post job cleanup.
+2026-11-14T10:13:09.0140493Z Cache hit occurred on the primary key flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33, not saving cache.
+2026-11-14T10:13:09.0210702Z ##[end-action id=__f07f8b1e-adfe-471e-a2a2-a7903ae94aa4.cache-flutter;outcome=success;conclusion=success;duration_ms=91]
+2026-11-14T10:13:09.0255962Z Post job cleanup.
+2026-11-14T10:13:09.1199116Z (node:3314) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T10:13:09.1199805Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T10:13:09.1360727Z Post job cleanup.
+2026-11-14T10:13:09.1970228Z [command]/usr/bin/git version
+2026-11-14T10:13:09.2002550Z git version 2.56.1
+2026-11-14T10:13:09.2024448Z Temporarily overriding HOME='/home/runner/work/_temp/3f524993-f8d5-4ef9-bc72-9571d156c578' before making global git config changes
+2026-11-14T10:13:09.2025268Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T10:13:09.2027670Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T10:13:09.2058948Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T10:13:09.2086622Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T10:13:09.2304626Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T10:13:09.2325523Z http.https://github.com/.extraheader
+2026-11-14T10:13:09.2332965Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T10:13:09.2360204Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T10:13:09.2557505Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T10:13:09.2582697Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T10:13:09.2888703Z Cleaning up orphan processes
+2026-11-14T10:13:09.3202862Z Terminate orphan process: pid (3033) (java)
+2026-11-14T10:13:09.3288562Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

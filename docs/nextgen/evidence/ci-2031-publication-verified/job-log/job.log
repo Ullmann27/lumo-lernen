@@ -1,0 +1,1222 @@
+﻿2026-11-16T07:24:46.7817108Z Current runner version: '2.338.2'
+2026-11-16T07:24:46.7833968Z ##[group]Runner Image Provisioner
+2026-11-16T07:24:46.7834643Z Hosted Compute Agent
+2026-11-16T07:24:46.7835081Z Version: 20261103.629
+2026-11-16T07:24:46.7835538Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-16T07:24:46.7836075Z Build Date: 2026-11-03T17:26:59Z
+2026-11-16T07:24:46.7836558Z Worker ID: {8327326d-cf9c-4682-8943-23bc7513ab3b}
+2026-11-16T07:24:46.7837070Z Region: us-west-2
+2026-11-16T07:24:46.7837482Z Cloud: AWS
+2026-11-16T07:24:46.7837887Z ##[endgroup]
+2026-11-16T07:24:46.7838904Z ##[group]Operating System
+2026-11-16T07:24:46.7839335Z Ubuntu
+2026-11-16T07:24:46.7839716Z 24.04.5
+2026-11-16T07:24:46.7840090Z LTS
+2026-11-16T07:24:46.7840445Z ##[endgroup]
+2026-11-16T07:24:46.7840857Z ##[group]Runner Image
+2026-11-16T07:24:46.7841272Z Image: ubuntu-24.04
+2026-11-16T07:24:46.7842152Z Version: 20261111.127.1
+2026-11-16T07:24:46.7843093Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-16T07:24:46.7844194Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.127
+2026-11-16T07:24:46.7844879Z ##[endgroup]
+2026-11-16T07:24:46.7845770Z ##[group]GITHUB_TOKEN Permissions
+2026-11-16T07:24:46.7847386Z Actions: read
+2026-11-16T07:24:46.7847833Z Contents: write
+2026-11-16T07:24:46.7848228Z Metadata: read
+2026-11-16T07:24:46.7848606Z ##[endgroup]
+2026-11-16T07:24:46.7850113Z Secret source: Actions
+2026-11-16T07:24:46.7850747Z Cache mode: write
+2026-11-16T07:24:46.7851269Z Prepare workflow directory
+2026-11-16T07:24:46.8075336Z Prepare all required actions
+2026-11-16T07:24:46.8110705Z Getting action download info
+2026-11-16T07:24:47.1502857Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-16T07:24:48.7924661Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-16T07:24:49.0775929Z Complete job name: publish_verified_2031_replay
+2026-11-16T07:24:49.1500221Z ##[group]Run actions/checkout@v4
+2026-11-16T07:24:49.1501696Z with:
+2026-11-16T07:24:49.1502498Z   persist-credentials: false
+2026-11-16T07:24:49.1503422Z   fetch-depth: 0
+2026-11-16T07:24:49.1504235Z   repository: Ullmann27/lumo-lernen
+2026-11-16T07:24:49.1510925Z   token: ***
+2026-11-16T07:24:49.1511891Z   ssh-strict: true
+2026-11-16T07:24:49.1512677Z   ssh-user: git
+2026-11-16T07:24:49.1513442Z   clean: true
+2026-11-16T07:24:49.1514242Z   sparse-checkout-cone-mode: true
+2026-11-16T07:24:49.1515153Z   fetch-tags: false
+2026-11-16T07:24:49.1515994Z   show-progress: true
+2026-11-16T07:24:49.1516808Z   lfs: false
+2026-11-16T07:24:49.1517566Z   submodules: false
+2026-11-16T07:24:49.1518364Z   set-safe-directory: true
+2026-11-16T07:24:49.1519273Z   allow-unsafe-pr-checkout: false
+2026-11-16T07:24:49.1520439Z ##[endgroup]
+2026-11-16T07:24:53.1620498Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-16T07:24:53.1622082Z ##[group]Getting Git version info
+2026-11-16T07:24:53.1622807Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-16T07:24:53.1623399Z [command]/usr/bin/git version
+2026-11-16T07:24:53.3780217Z git version 2.56.1
+2026-11-16T07:24:53.3792025Z ##[endgroup]
+2026-11-16T07:24:53.3802129Z Temporarily overriding HOME='/home/runner/work/_temp/010c5681-ee91-4466-ad87-e1bc9ec27bc5' before making global git config changes
+2026-11-16T07:24:53.3803145Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-16T07:24:53.3805994Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-16T07:24:53.3846174Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-16T07:24:53.3848795Z ##[group]Initializing the repository
+2026-11-16T07:24:53.3852803Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-16T07:24:53.4397559Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-16T07:24:53.4398462Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-16T07:24:53.4399065Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-16T07:24:53.4399487Z hint: call:
+2026-11-16T07:24:53.4399794Z hint:
+2026-11-16T07:24:53.4400128Z hint: 	git config --global init.defaultBranch <name>
+2026-11-16T07:24:53.4400435Z hint:
+2026-11-16T07:24:53.4400781Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-16T07:24:53.4401254Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-16T07:24:53.4401941Z hint:
+2026-11-16T07:24:53.4402250Z hint: 	git branch -m <name>
+2026-11-16T07:24:53.4402525Z hint:
+2026-11-16T07:24:53.4402997Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-16T07:24:53.4403660Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-16T07:24:53.4410210Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-16T07:24:53.4450690Z ##[endgroup]
+2026-11-16T07:24:53.4451702Z ##[group]Disabling automatic garbage collection
+2026-11-16T07:24:53.4453744Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-16T07:24:53.4473188Z ##[endgroup]
+2026-11-16T07:24:53.4473835Z ##[group]Setting up auth
+2026-11-16T07:24:53.4478288Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-16T07:24:53.4500441Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-16T07:24:53.7045039Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-16T07:24:53.7065091Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-16T07:24:53.7207875Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-16T07:24:53.7229222Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-16T07:24:53.7369542Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-16T07:24:53.7392445Z ##[endgroup]
+2026-11-16T07:24:53.7393105Z ##[group]Fetching the repository
+2026-11-16T07:24:53.7404469Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-11-16T07:25:54.6722527Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-16T07:25:54.6723090Z  * [new branch]        active-sentence-syllables-20260503 -> origin/active-sentence-syllables-20260503
+2026-11-16T07:25:54.6723635Z  * [new branch]        assets/lumo-pack-import  -> origin/assets/lumo-pack-import
+2026-11-16T07:25:54.6724382Z  * [new branch]        astra/lumo-learning-quality-2026-10-11 -> origin/astra/lumo-learning-quality-2026-10-11
+2026-11-16T07:25:54.6725319Z  * [new branch]        audit-voice-barrel-20260503 -> origin/audit-voice-barrel-20260503
+2026-11-16T07:25:54.6725942Z  * [new branch]        audit-voice-widgets-20260503 -> origin/audit-voice-widgets-20260503
+2026-11-16T07:25:54.6726574Z  * [new branch]        audit/lumo-1919-diagnostics-2026-10-09 -> origin/audit/lumo-1919-diagnostics-2026-10-09
+2026-11-16T07:25:54.6727265Z  * [new branch]        audit/lumo-1919-gas-recovery-2026-10-09 -> origin/audit/lumo-1919-gas-recovery-2026-10-09
+2026-11-16T07:25:54.6728000Z  * [new branch]        audit/lumo-1919-verified-package-2026-10-09 -> origin/audit/lumo-1919-verified-package-2026-10-09
+2026-11-16T07:25:54.6728708Z  * [new branch]        audit/lumo-originals-9de-20261114 -> origin/audit/lumo-originals-9de-20261114
+2026-11-16T07:25:54.6729523Z  * [new branch]        audit/lumo-p0-pose-android-diagnose-20261105 -> origin/audit/lumo-p0-pose-android-diagnose-20261105
+2026-11-16T07:25:54.6730571Z  * [new branch]        chatgpt/3d-launch-lifecycle-2026-10-07 -> origin/chatgpt/3d-launch-lifecycle-2026-10-07
+2026-11-16T07:25:54.6731546Z  * [new branch]        chatgpt/android-install-upgrade-2026-10-07 -> origin/chatgpt/android-install-upgrade-2026-10-07
+2026-11-16T07:25:54.6732307Z  * [new branch]        chatgpt/apk1948-resume-qa-2026-10-16 -> origin/chatgpt/apk1948-resume-qa-2026-10-16
+2026-11-16T07:25:54.6733104Z  * [new branch]        chatgpt/cards-resume-safety-2026-10-06 -> origin/chatgpt/cards-resume-safety-2026-10-06
+2026-11-16T07:25:54.6733889Z  * [new branch]        chatgpt/ci-final-apk-evidence-count-2026-10-15 -> origin/chatgpt/ci-final-apk-evidence-count-2026-10-15
+2026-11-16T07:25:54.6734813Z  * [new branch]        chatgpt/ci-start-hero-regression-2026-10-15 -> origin/chatgpt/ci-start-hero-regression-2026-10-15
+2026-11-16T07:25:54.6735631Z  * [new branch]        chatgpt/denktest-qualitaet-2026-10-09 -> origin/chatgpt/denktest-qualitaet-2026-10-09
+2026-11-16T07:25:54.6736348Z  * [new branch]        chatgpt/fix-akademie-practical-scroll-2026-10-06 -> origin/chatgpt/fix-akademie-practical-scroll-2026-10-06
+2026-11-16T07:25:54.6737120Z  * [new branch]        chatgpt/flame-round-regression-2026-10-06 -> origin/chatgpt/flame-round-regression-2026-10-06
+2026-11-16T07:25:54.6737835Z  * [new branch]        chatgpt/fold-apk-android-2026-10-07 -> origin/chatgpt/fold-apk-android-2026-10-07
+2026-11-16T07:25:54.6738548Z  * [new branch]        chatgpt/fold-apk-build-2026-10-07 -> origin/chatgpt/fold-apk-build-2026-10-07
+2026-11-16T07:25:54.6739254Z  * [new branch]        chatgpt/fold-kart-controls-2026-10-07 -> origin/chatgpt/fold-kart-controls-2026-10-07
+2026-11-16T07:25:54.6739920Z  * [new branch]        chatgpt/fold-native-check-2026-10-07 -> origin/chatgpt/fold-native-check-2026-10-07
+2026-11-16T07:25:54.6740473Z  * [new branch]        chatgpt/fold-reference-recovery-2026-10-05 -> origin/chatgpt/fold-reference-recovery-2026-10-05
+2026-11-16T07:25:54.6741165Z  * [new branch]        chatgpt/fold-resize-fix-2026-10-05 -> origin/chatgpt/fold-resize-fix-2026-10-05
+2026-11-16T07:25:54.6741927Z  * [new branch]        chatgpt/gemini-safe-fixes-learning-2026-10-15 -> origin/chatgpt/gemini-safe-fixes-learning-2026-10-15
+2026-11-16T07:25:54.6742569Z  * [new branch]        chatgpt/gemini-source-export-2026-10-15 -> origin/chatgpt/gemini-source-export-2026-10-15
+2026-11-16T07:25:54.6743145Z  * [new branch]        chatgpt/gemini-story-compatibility-2026-10-15 -> origin/chatgpt/gemini-story-compatibility-2026-10-15
+2026-11-16T07:25:54.6743798Z  * [new branch]        chatgpt/hologlass-consistency-stage2-2026-10-06 -> origin/chatgpt/hologlass-consistency-stage2-2026-10-06
+2026-11-16T07:25:54.6744395Z  * [new branch]        chatgpt/hologlass-quiz-stage3-2026-10-06 -> origin/chatgpt/hologlass-quiz-stage3-2026-10-06
+2026-11-16T07:25:54.6744900Z  * [new branch]        chatgpt/install-upgrade-2026-10-07 -> origin/chatgpt/install-upgrade-2026-10-07
+2026-11-16T07:25:54.6745505Z  * [new branch]        chatgpt/kart-qa-real-caption-2026-10-15 -> origin/chatgpt/kart-qa-real-caption-2026-10-15
+2026-11-16T07:25:54.6746192Z  * [new branch]        chatgpt/kart-video-quality-2026-10-07 -> origin/chatgpt/kart-video-quality-2026-10-07
+2026-11-16T07:25:54.6747084Z  * [new branch]        chatgpt/learning-number-compare-responsive-2026-10-09 -> origin/chatgpt/learning-number-compare-responsive-2026-10-09
+2026-11-16T07:25:54.6747723Z  * [new branch]        chatgpt/learning-symbols-ui-2026-10-09 -> origin/chatgpt/learning-symbols-ui-2026-10-09
+2026-11-16T07:25:54.6748316Z  * [new branch]        chatgpt/learning-tablet-answer-grid-2026-10-09 -> origin/chatgpt/learning-tablet-answer-grid-2026-10-09
+2026-11-16T07:25:54.6748914Z  * [new branch]        chatgpt/learning-tree-cinematic-qa-2026-10-09 -> origin/chatgpt/learning-tree-cinematic-qa-2026-10-09
+2026-11-16T07:25:54.6749560Z  * [new branch]        chatgpt/learning-visual-fold-tree-2026-10-09 -> origin/chatgpt/learning-visual-fold-tree-2026-10-09
+2026-11-16T07:25:54.6750224Z  * [new branch]        chatgpt/lumo-1916-apk-artifact-2026-10-09 -> origin/chatgpt/lumo-1916-apk-artifact-2026-10-09
+2026-11-16T07:25:54.6750775Z  * [new branch]        chatgpt/lumo-1917-apk-artifact-2026-10-09 -> origin/chatgpt/lumo-1917-apk-artifact-2026-10-09
+2026-11-16T07:25:54.6751616Z  * [new branch]        chatgpt/lumo-1918-apk-artifact-2026-10-09 -> origin/chatgpt/lumo-1918-apk-artifact-2026-10-09
+2026-11-16T07:25:54.6752205Z  * [new branch]        chatgpt/lumo-1925-apk-build-2026-10-10 -> origin/chatgpt/lumo-1925-apk-build-2026-10-10
+2026-11-16T07:25:54.6752815Z  * [new branch]        chatgpt/lumo-1926-sulafat-apk-2026-10-10 -> origin/chatgpt/lumo-1926-sulafat-apk-2026-10-10
+2026-11-16T07:25:54.6753510Z  * [new branch]        chatgpt/lumo-1938-android-smoke-2026-10-12 -> origin/chatgpt/lumo-1938-android-smoke-2026-10-12
+2026-11-16T07:25:54.6754141Z  * [new branch]        chatgpt/lumo-1938-android-smoke-direct-2026-10-12 -> origin/chatgpt/lumo-1938-android-smoke-direct-2026-10-12
+2026-11-16T07:25:54.6754814Z  * [new branch]        chatgpt/lumo-1938-complete-integration-2026-10-12 -> origin/chatgpt/lumo-1938-complete-integration-2026-10-12
+2026-11-16T07:25:54.6755444Z  * [new branch]        chatgpt/lumo-1938-emergency-fallback-2026-10-12 -> origin/chatgpt/lumo-1938-emergency-fallback-2026-10-12
+2026-11-16T07:25:54.6756039Z  * [new branch]        chatgpt/lumo-1938-evidence-2026-10-12 -> origin/chatgpt/lumo-1938-evidence-2026-10-12
+2026-11-16T07:25:54.6756601Z  * [new branch]        chatgpt/lumo-1940-combined-test-apk-2026-10-14 -> origin/chatgpt/lumo-1940-combined-test-apk-2026-10-14
+2026-11-16T07:25:54.6757261Z  * [new branch]        chatgpt/lumo-1941-tutor-voice-hologlass-2026-10-14 -> origin/chatgpt/lumo-1941-tutor-voice-hologlass-2026-10-14
+2026-11-16T07:25:54.6757968Z  * [new branch]        chatgpt/lumo-1942-family-preview-updates-2026-10-14 -> origin/chatgpt/lumo-1942-family-preview-updates-2026-10-14
+2026-11-16T07:25:54.6758735Z  * [new branch]        chatgpt/lumo-1943-grade-menu-content-audit-2026-10-14 -> origin/chatgpt/lumo-1943-grade-menu-content-audit-2026-10-14
+2026-11-16T07:25:54.6759416Z  * [new branch]        chatgpt/lumo-1944-mobile-learning-qa-2026-10-14 -> origin/chatgpt/lumo-1944-mobile-learning-qa-2026-10-14
+2026-11-16T07:25:54.6760068Z  * [new branch]        chatgpt/lumo-1945-question-quality-repair-2026-10-14 -> origin/chatgpt/lumo-1945-question-quality-repair-2026-10-14
+2026-11-16T07:25:54.6760746Z  * [new branch]        chatgpt/lumo-1949-all-integrated-2026-10-16 -> origin/chatgpt/lumo-1949-all-integrated-2026-10-16
+2026-11-16T07:25:54.6761462Z  * [new branch]        chatgpt/lumo-1954-ci-repair-2026-10-16 -> origin/chatgpt/lumo-1954-ci-repair-2026-10-16
+2026-11-16T07:25:54.6762045Z  * [new branch]        chatgpt/lumo-1954-ocr-runtime-repair-2026-10-17 -> origin/chatgpt/lumo-1954-ocr-runtime-repair-2026-10-17
+2026-11-16T07:25:54.6762721Z  * [new branch]        chatgpt/lumo-1954-preserve-ui-validation-2026-10-16 -> origin/chatgpt/lumo-1954-preserve-ui-validation-2026-10-16
+2026-11-16T07:25:54.6763380Z  * [new branch]        chatgpt/lumo-1954-tesseract-deu-eng-gate-2026-10-17 -> origin/chatgpt/lumo-1954-tesseract-deu-eng-gate-2026-10-17
+2026-11-16T07:25:54.6764035Z  * [new branch]        chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16 -> origin/chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16
+2026-11-16T07:25:54.6764692Z  * [new branch]        chatgpt/lumo-1957-race-gate-pin-2026-10-16 -> origin/chatgpt/lumo-1957-race-gate-pin-2026-10-16
+2026-11-16T07:25:54.6765305Z  * [new branch]        chatgpt/lumo-1958-visual-story-integration-2026-10-16 -> origin/chatgpt/lumo-1958-visual-story-integration-2026-10-16
+2026-11-16T07:25:54.6766004Z  * [new branch]        chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16 -> origin/chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16
+2026-11-16T07:25:54.6766713Z  * [new branch]        chatgpt/lumo-1961-cross-grade-fold-visual-proof-2026-10-16 -> origin/chatgpt/lumo-1961-cross-grade-fold-visual-proof-2026-10-16
+2026-11-16T07:25:54.6767585Z  * [new branch]        chatgpt/lumo-1962-profile-non-destructive-persistence-2026-10-16 -> origin/chatgpt/lumo-1962-profile-non-destructive-persistence-2026-10-16
+2026-11-16T07:25:54.6768341Z  * [new branch]        chatgpt/lumo-1963-direct-arm64-apk-2026-10-16 -> origin/chatgpt/lumo-1963-direct-arm64-apk-2026-10-16
+2026-11-16T07:25:54.6769005Z  * [new branch]        chatgpt/lumo-1963-integrated-profile-fold-android-2026-10-16 -> origin/chatgpt/lumo-1963-integrated-profile-fold-android-2026-10-16
+2026-11-16T07:25:54.6769734Z  * [new branch]        chatgpt/lumo-1964-abc-premium-design-2026-10-16 -> origin/chatgpt/lumo-1964-abc-premium-design-2026-10-16
+2026-11-16T07:25:54.6770367Z  * [new branch]        chatgpt/lumo-1965-cards-reference-hub-2026-10-16 -> origin/chatgpt/lumo-1965-cards-reference-hub-2026-10-16
+2026-11-16T07:25:54.6771061Z  * [new branch]        chatgpt/lumo-1966-cards-route-race-telemetry-2026-10-16 -> origin/chatgpt/lumo-1966-cards-route-race-telemetry-2026-10-16
+2026-11-16T07:25:54.6771965Z  * [new branch]        chatgpt/lumo-1967-sonnenhafen-crane-integrated-2026-10-17 -> origin/chatgpt/lumo-1967-sonnenhafen-crane-integrated-2026-10-17
+2026-11-16T07:25:54.6772711Z  * [new branch]        chatgpt/lumo-1968-audio-event-channel-capture-2026-10-17 -> origin/chatgpt/lumo-1968-audio-event-channel-capture-2026-10-17
+2026-11-16T07:25:54.6773426Z  * [new branch]        chatgpt/lumo-1969-godot-hoist-candidate-2026-10-17 -> origin/chatgpt/lumo-1969-godot-hoist-candidate-2026-10-17
+2026-11-16T07:25:54.6774110Z  * [new branch]        chatgpt/lumo-1970-godot-grounding-candidate-2026-10-17 -> origin/chatgpt/lumo-1970-godot-grounding-candidate-2026-10-17
+2026-11-16T07:25:54.6774851Z  * [new branch]        chatgpt/lumo-1970-profile-field-guard-integrate-2026-10-17 -> origin/chatgpt/lumo-1970-profile-field-guard-integrate-2026-10-17
+2026-11-16T07:25:54.6775671Z  * [new branch]        chatgpt/lumo-1971-profile-guard-release-candidate-2026-10-17 -> origin/chatgpt/lumo-1971-profile-guard-release-candidate-2026-10-17
+2026-11-16T07:25:54.6776352Z  * [new branch]        chatgpt/lumo-1973-b3-green-apk-2026-10-17 -> origin/chatgpt/lumo-1973-b3-green-apk-2026-10-17
+2026-11-16T07:25:54.6776953Z  * [new branch]        chatgpt/lumo-1975-grounded-gate-apk-2026-10-17 -> origin/chatgpt/lumo-1975-grounded-gate-apk-2026-10-17
+2026-11-16T07:25:54.6777610Z  * [new branch]        chatgpt/lumo-1976-darkride-crystal-android-2026-10-18 -> origin/chatgpt/lumo-1976-darkride-crystal-android-2026-10-18
+2026-11-16T07:25:54.6778359Z  * [new branch]        chatgpt/lumo-1977-real-font-screenshot-qa-2026-10-18 -> origin/chatgpt/lumo-1977-real-font-screenshot-qa-2026-10-18
+2026-11-16T07:25:54.6779056Z  * [new branch]        chatgpt/lumo-1977-verified-arm64-download-2026-10-18 -> origin/chatgpt/lumo-1977-verified-arm64-download-2026-10-18
+2026-11-16T07:25:54.6779793Z  * [new branch]        chatgpt/lumo-1978-connect-four-fold-controls-2026-10-18 -> origin/chatgpt/lumo-1978-connect-four-fold-controls-2026-10-18
+2026-11-16T07:25:54.6780515Z  * [new branch]        chatgpt/lumo-1978-real-hud-ocr-recovery-2026-10-18 -> origin/chatgpt/lumo-1978-real-hud-ocr-recovery-2026-10-18
+2026-11-16T07:25:54.6781223Z  * [new branch]        chatgpt/lumo-1978-visual-accessible-release-2026-10-18 -> origin/chatgpt/lumo-1978-visual-accessible-release-2026-10-18
+2026-11-16T07:25:54.6782012Z  * [new branch]        chatgpt/lumo-1982-meister-show-2026-10-18 -> origin/chatgpt/lumo-1982-meister-show-2026-10-18
+2026-11-16T07:25:54.6782653Z  * [new branch]        chatgpt/lumo-1983-quiz-studio-reference-2026-10-18 -> origin/chatgpt/lumo-1983-quiz-studio-reference-2026-10-18
+2026-11-16T07:25:54.6783336Z  * [new branch]        chatgpt/lumo-1984-animated-scenes-android-2026-10-18 -> origin/chatgpt/lumo-1984-animated-scenes-android-2026-10-18
+2026-11-16T07:25:54.6784057Z  * [new branch]        chatgpt/lumo-1984-atelier-voice-replay-2026-10-18 -> origin/chatgpt/lumo-1984-atelier-voice-replay-2026-10-18
+2026-11-16T07:25:54.6784773Z  * [new branch]        chatgpt/lumo-1986-integrated-reading-release-2026-10-19 -> origin/chatgpt/lumo-1986-integrated-reading-release-2026-10-19
+2026-11-16T07:25:54.6785568Z  * [new branch]        chatgpt/lumo-1987-denkprofil-knobel-unified-2026-10-19 -> origin/chatgpt/lumo-1987-denkprofil-knobel-unified-2026-10-19
+2026-11-16T07:25:54.6786279Z  * [new branch]        chatgpt/lumo-1989-premium-learning-cards-2026-10-19 -> origin/chatgpt/lumo-1989-premium-learning-cards-2026-10-19
+2026-11-16T07:25:54.6787054Z  * [new branch]        chatgpt/lumo-1990-integration-hardening-2026-10-19 -> origin/chatgpt/lumo-1990-integration-hardening-2026-10-19
+2026-11-16T07:25:54.6787777Z  * [new branch]        chatgpt/lumo-1990-ui-unified-polish-2026-10-19 -> origin/chatgpt/lumo-1990-ui-unified-polish-2026-10-19
+2026-11-16T07:25:54.6788398Z  * [new branch]        chatgpt/lumo-1991-complete-android-2026-10-20 -> origin/chatgpt/lumo-1991-complete-android-2026-10-20
+2026-11-16T07:25:54.6788993Z  * [new branch]        chatgpt/lumo-1991-full-race-qa-2026-10-20 -> origin/chatgpt/lumo-1991-full-race-qa-2026-10-20
+2026-11-16T07:25:54.6789585Z  * [new branch]        chatgpt/lumo-1992-direct-release-20261020 -> origin/chatgpt/lumo-1992-direct-release-20261020
+2026-11-16T07:25:54.6790229Z  * [new branch]        chatgpt/lumo-1992-modern-worlds-link-20261020 -> origin/chatgpt/lumo-1992-modern-worlds-link-20261020
+2026-11-16T07:25:54.6790945Z  * [new branch]        chatgpt/lumo-1992-premium-navigation-magic-2026-10-20 -> origin/chatgpt/lumo-1992-premium-navigation-magic-2026-10-20
+2026-11-16T07:25:54.6791804Z  * [new branch]        chatgpt/lumo-1992-second-chance-learning-20261020 -> origin/chatgpt/lumo-1992-second-chance-learning-20261020
+2026-11-16T07:25:54.6792471Z  * [new branch]        chatgpt/lumo-2005-full-games-candidate-20261103 -> origin/chatgpt/lumo-2005-full-games-candidate-20261103
+2026-11-16T07:25:54.6793202Z  * [new branch]        chatgpt/lumo-2005-star-trail-scroll-regression-fix-20261103 -> origin/chatgpt/lumo-2005-star-trail-scroll-regression-fix-20261103
+2026-11-16T07:25:54.6793970Z  * [new branch]        chatgpt/lumo-2015-android-garage-qa-20261111 -> origin/chatgpt/lumo-2015-android-garage-qa-20261111
+2026-11-16T07:25:54.6794664Z  * [new branch]        chatgpt/lumo-2015-verified-apk-delivery-20261111 -> origin/chatgpt/lumo-2015-verified-apk-delivery-20261111
+2026-11-16T07:25:54.6795324Z  * [new branch]        chatgpt/lumo-2016-direct-apk-candidate-20261111 -> origin/chatgpt/lumo-2016-direct-apk-candidate-20261111
+2026-11-16T07:25:54.6795957Z  * [new branch]        chatgpt/lumo-2016-host-integration-20261111 -> origin/chatgpt/lumo-2016-host-integration-20261111
+2026-11-16T07:25:54.6796592Z  * [new branch]        chatgpt/lumo-2017-publication-recovery-20261112 -> origin/chatgpt/lumo-2017-publication-recovery-20261112
+2026-11-16T07:25:54.6797234Z  * [new branch]        chatgpt/lumo-2018-android-acceptance-20261113 -> origin/chatgpt/lumo-2018-android-acceptance-20261113
+2026-11-16T07:25:54.6797903Z  * [new branch]        chatgpt/lumo-2018-review-recovery-20261113 -> origin/chatgpt/lumo-2018-review-recovery-20261113
+2026-11-16T07:25:54.6798536Z  * [new branch]        chatgpt/lumo-2018-speech-logcat-recovery-20261113 -> origin/chatgpt/lumo-2018-speech-logcat-recovery-20261113
+2026-11-16T07:25:54.6799176Z  * [new branch]        chatgpt/lumo-2019-release-candidate-20261113 -> origin/chatgpt/lumo-2019-release-candidate-20261113
+2026-11-16T07:25:54.6799810Z  * [new branch]        chatgpt/lumo-2020-android-qa-recovery-20261113 -> origin/chatgpt/lumo-2020-android-qa-recovery-20261113
+2026-11-16T07:25:54.6800441Z  * [new branch]        chatgpt/lumo-2020-direct-apk-delivery-20261113 -> origin/chatgpt/lumo-2020-direct-apk-delivery-20261113
+2026-11-16T07:25:54.6801062Z  * [new branch]        chatgpt/lumo-2027-memory-stage-20261029 -> origin/chatgpt/lumo-2027-memory-stage-20261029
+2026-11-16T07:25:54.6801839Z  * [new branch]        chatgpt/lumo-3d-learning-islands-2026-10-15 -> origin/chatgpt/lumo-3d-learning-islands-2026-10-15
+2026-11-16T07:25:54.6802455Z  * [new branch]        chatgpt/lumo-aaa-kart-integration-2026-10-10 -> origin/chatgpt/lumo-aaa-kart-integration-2026-10-10
+2026-11-16T07:25:54.6803142Z  * [new branch]        chatgpt/lumo-agent-hologlass-1940-2026-10-14 -> origin/chatgpt/lumo-agent-hologlass-1940-2026-10-14
+2026-11-16T07:25:54.6803735Z  * [new branch]        chatgpt/lumo-agent-squad-2026-10-04 -> origin/chatgpt/lumo-agent-squad-2026-10-04
+2026-11-16T07:25:54.6804308Z  * [new branch]        chatgpt/lumo-android-recheck-2019-20261113 -> origin/chatgpt/lumo-android-recheck-2019-20261113
+2026-11-16T07:25:54.6804925Z  * [new branch]        chatgpt/lumo-android17-cli22-recheck-20261113 -> origin/chatgpt/lumo-android17-cli22-recheck-20261113
+2026-11-16T07:25:54.6805607Z  * [new branch]        chatgpt/lumo-android17-framework-recheck-20261113 -> origin/chatgpt/lumo-android17-framework-recheck-20261113
+2026-11-16T07:25:54.6806283Z  * [new branch]        chatgpt/lumo-android17-sdk-diagnostic-20261113 -> origin/chatgpt/lumo-android17-sdk-diagnostic-20261113
+2026-11-16T07:25:54.6806896Z  * [new branch]        chatgpt/lumo-apk-1914-qa-2026-10-09 -> origin/chatgpt/lumo-apk-1914-qa-2026-10-09
+2026-11-16T07:25:54.6807460Z  * [new branch]        chatgpt/lumo-app-reference-ui-2026-10-06 -> origin/chatgpt/lumo-app-reference-ui-2026-10-06
+2026-11-16T07:25:54.6808025Z  * [new branch]        chatgpt/lumo-asset-delivery-2026-10-04 -> origin/chatgpt/lumo-asset-delivery-2026-10-04
+2026-11-16T07:25:54.6808662Z  * [new branch]        chatgpt/lumo-asset-production-100plus-2026-10-05 -> origin/chatgpt/lumo-asset-production-100plus-2026-10-05
+2026-11-16T07:25:54.6809554Z  * [new branch]        chatgpt/lumo-astra-app-script-recovery-2026-10-18 -> origin/chatgpt/lumo-astra-app-script-recovery-2026-10-18
+2026-11-16T07:25:54.6810229Z  * [new branch]        chatgpt/lumo-b3-1973-android-candidate-2026-10-17 -> origin/chatgpt/lumo-b3-1973-android-candidate-2026-10-17
+2026-11-16T07:25:54.6810946Z  * [new branch]        chatgpt/lumo-b4-1974-performance-candidate-2026-10-17 -> origin/chatgpt/lumo-b4-1974-performance-candidate-2026-10-17
+2026-11-16T07:25:54.6811708Z  * [new branch]        chatgpt/lumo-cards-heartbeat-20261113 -> origin/chatgpt/lumo-cards-heartbeat-20261113
+2026-11-16T07:25:54.6812263Z  * [new branch]        chatgpt/lumo-cards-landscape-hud-2026-10-09 -> origin/chatgpt/lumo-cards-landscape-hud-2026-10-09
+2026-11-16T07:25:54.6812894Z  * [new branch]        chatgpt/lumo-change-review-2026-10-04 -> origin/chatgpt/lumo-change-review-2026-10-04
+2026-11-16T07:25:54.6813441Z  * [new branch]        chatgpt/lumo-character-apk-1919-2026-10-09 -> origin/chatgpt/lumo-character-apk-1919-2026-10-09
+2026-11-16T07:25:54.6814009Z  * [new branch]        chatgpt/lumo-chat4-dialogue-20261115 -> origin/chatgpt/lumo-chat4-dialogue-20261115
+2026-11-16T07:25:54.6814803Z  * [new branch]        chatgpt/lumo-ci-evidence-followup-2026-10-04 -> origin/chatgpt/lumo-ci-evidence-followup-2026-10-04
+2026-11-16T07:25:54.6815375Z  * [new branch]        chatgpt/lumo-ci-pin-repair-2026-10-17 -> origin/chatgpt/lumo-ci-pin-repair-2026-10-17
+2026-11-16T07:25:54.6815925Z  * [new branch]        chatgpt/lumo-complete-app-20261113 -> origin/chatgpt/lumo-complete-app-20261113
+2026-11-16T07:25:54.6816522Z  * [new branch]        chatgpt/lumo-complete-delivery-2026-10-07 -> origin/chatgpt/lumo-complete-delivery-2026-10-07
+2026-11-16T07:25:54.6817082Z  * [new branch]        chatgpt/lumo-complete-games-2026-10-07 -> origin/chatgpt/lumo-complete-games-2026-10-07
+2026-11-16T07:25:54.6817639Z  * [new branch]        chatgpt/lumo-complete-verified-2026-10-07 -> origin/chatgpt/lumo-complete-verified-2026-10-07
+2026-11-16T07:25:54.6818220Z  * [new branch]        chatgpt/lumo-creative-android-31883868-20261113 -> origin/chatgpt/lumo-creative-android-31883868-20261113
+2026-11-16T07:25:54.6818999Z  * [new branch]        chatgpt/lumo-cross-grade-hologlas-progress-safe-2026-10-16 -> origin/chatgpt/lumo-cross-grade-hologlas-progress-safe-2026-10-16
+2026-11-16T07:25:54.6819923Z  * [new branch]        chatgpt/lumo-cross-grade-scene-polish-2026-10-15 -> origin/chatgpt/lumo-cross-grade-scene-polish-2026-10-15
+2026-11-16T07:25:54.6820968Z  * [new branch]        chatgpt/lumo-crystal-depth-integration-20261021 -> origin/chatgpt/lumo-crystal-depth-integration-20261021
+2026-11-16T07:25:54.6822076Z  * [new branch]        chatgpt/lumo-direct-village-flutter-20261114 -> origin/chatgpt/lumo-direct-village-flutter-20261114
+2026-11-16T07:25:54.6823313Z  * [new branch]        chatgpt/lumo-dna-evidence-2026-10-13 -> origin/chatgpt/lumo-dna-evidence-2026-10-13
+2026-11-16T07:25:54.6823975Z  * [new branch]        chatgpt/lumo-fair-cards-buildworld-release-gates-2026-10-19 -> origin/chatgpt/lumo-fair-cards-buildworld-release-gates-2026-10-19
+2026-11-16T07:25:54.6824852Z  * [new branch]        chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16 -> origin/chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16
+2026-11-16T07:25:54.6825542Z  * [new branch]        chatgpt/lumo-first-frame-icons-2026-10-17 -> origin/chatgpt/lumo-first-frame-icons-2026-10-17
+2026-11-16T07:25:54.6826353Z  * [new branch]        chatgpt/lumo-floating-animated-fox-2026-10-07 -> origin/chatgpt/lumo-floating-animated-fox-2026-10-07
+2026-11-16T07:25:54.6827156Z  * [new branch]        chatgpt/lumo-flutter-render-readiness-2026-10-17 -> origin/chatgpt/lumo-flutter-render-readiness-2026-10-17
+2026-11-16T07:25:54.6827812Z  * [new branch]        chatgpt/lumo-fold-contrast-3d-identity-2026-10-16 -> origin/chatgpt/lumo-fold-contrast-3d-identity-2026-10-16
+2026-11-16T07:25:54.6828376Z  * [new branch]        chatgpt/lumo-game-specs-2026-10-05 -> origin/chatgpt/lumo-game-specs-2026-10-05
+2026-11-16T07:25:54.6828916Z  * [new branch]        chatgpt/lumo-games-3d-launch-20261103 -> origin/chatgpt/lumo-games-3d-launch-20261103
+2026-11-16T07:25:54.6829523Z  * [new branch]        chatgpt/lumo-historical-1999-verifier-20261113 -> origin/chatgpt/lumo-historical-1999-verifier-20261113
+2026-11-16T07:25:54.6830134Z  * [new branch]        chatgpt/lumo-home-readability-2026-10-04 -> origin/chatgpt/lumo-home-readability-2026-10-04
+2026-11-16T07:25:54.6830917Z  * [new branch]        chatgpt/lumo-insight-responsive-stats-2026-10-17 -> origin/chatgpt/lumo-insight-responsive-stats-2026-10-17
+2026-11-16T07:25:54.6831685Z  * [new branch]        chatgpt/lumo-integrated-apk-2026-10-06 -> origin/chatgpt/lumo-integrated-apk-2026-10-06
+2026-11-16T07:25:54.6832236Z  * [new branch]        chatgpt/lumo-inventory-2026-10-13 -> origin/chatgpt/lumo-inventory-2026-10-13
+2026-11-16T07:25:54.6832772Z  * [new branch]        chatgpt/lumo-kart-assets-handoff-2026-10-10 -> origin/chatgpt/lumo-kart-assets-handoff-2026-10-10
+2026-11-16T07:25:54.6833410Z  * [new branch]        chatgpt/lumo-kart-graphics-apk-20261113 -> origin/chatgpt/lumo-kart-graphics-apk-20261113
+2026-11-16T07:25:54.6834012Z  * [new branch]        chatgpt/lumo-learning-curriculum-audit-20261114 -> origin/chatgpt/lumo-learning-curriculum-audit-20261114
+2026-11-16T07:25:54.6834663Z  * [new branch]        chatgpt/lumo-learning-curriculum-cognitive-2026-10-06 -> origin/chatgpt/lumo-learning-curriculum-cognitive-2026-10-06
+2026-11-16T07:25:54.6835430Z  * [new branch]        chatgpt/lumo-learning-glass-cards-2026-10-09 -> origin/chatgpt/lumo-learning-glass-cards-2026-10-09
+2026-11-16T07:25:54.6836072Z  * [new branch]        chatgpt/lumo-learning-visual-apk-1915-2026-10-09 -> origin/chatgpt/lumo-learning-visual-apk-1915-2026-10-09
+2026-11-16T07:25:54.6836734Z  * [new branch]        chatgpt/lumo-lernen-kart-unified-2026-10-15 -> origin/chatgpt/lumo-lernen-kart-unified-2026-10-15
+2026-11-16T07:25:54.6837319Z  * [new branch]        chatgpt/lumo-living-village-host-20261113 -> origin/chatgpt/lumo-living-village-host-20261113
+2026-11-16T07:25:54.6837912Z  * [new branch]        chatgpt/lumo-marktstart-vorbereitung-2026-10-11 -> origin/chatgpt/lumo-marktstart-vorbereitung-2026-10-11
+2026-11-16T07:25:54.6838558Z  * [new branch]        chatgpt/lumo-meister-host-safe-area-2026-10-15 -> origin/chatgpt/lumo-meister-host-safe-area-2026-10-15
+2026-11-16T07:25:54.6839173Z  * [new branch]        chatgpt/lumo-meister-live-stage-2026-10-18 -> origin/chatgpt/lumo-meister-live-stage-2026-10-18
+2026-11-16T07:25:54.6839855Z  * [new branch]        chatgpt/lumo-milestone-a-1972-integrated-2026-10-17 -> origin/chatgpt/lumo-milestone-a-1972-integrated-2026-10-17
+2026-11-16T07:25:54.6840557Z  * [new branch]        chatgpt/lumo-milestone-a-integrated-1972-2026-10-17 -> origin/chatgpt/lumo-milestone-a-integrated-1972-2026-10-17
+2026-11-16T07:25:54.6841248Z  * [new branch]        chatgpt/lumo-mobile-navigation-visual-2026-10-13 -> origin/chatgpt/lumo-mobile-navigation-visual-2026-10-13
+2026-11-16T07:25:54.6842109Z  * [new branch]        chatgpt/lumo-next-integration-2026-10-07 -> origin/chatgpt/lumo-next-integration-2026-10-07
+2026-11-16T07:25:54.6842800Z  * [new branch]        chatgpt/lumo-nextgen-20261113 -> origin/chatgpt/lumo-nextgen-20261113
+2026-11-16T07:25:54.6843544Z  * [new branch]        chatgpt/lumo-nextgen-blender-flutter-apk-20261115 -> origin/chatgpt/lumo-nextgen-blender-flutter-apk-20261115
+2026-11-16T07:25:54.6844191Z  * [new branch]        chatgpt/lumo-nextgen-feature-20261114 -> origin/chatgpt/lumo-nextgen-feature-20261114
+2026-11-16T07:25:54.6844962Z  * [new branch]        chatgpt/lumo-onboarding-voice-1924-2026-10-10 -> origin/chatgpt/lumo-onboarding-voice-1924-2026-10-10
+2026-11-16T07:25:54.6845829Z  * [new branch]        chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15 -> origin/chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15
+2026-11-16T07:25:54.6846533Z  * [new branch]        chatgpt/lumo-play-aab-secure-staging-2026-10-19 -> origin/chatgpt/lumo-play-aab-secure-staging-2026-10-19
+2026-11-16T07:25:54.6847153Z  * [new branch]        chatgpt/lumo-playstore-agent-network-20261114 -> origin/chatgpt/lumo-playstore-agent-network-20261114
+2026-11-16T07:25:54.6847770Z  * [new branch]        chatgpt/lumo-pr291-ci-regressions-2026-10-13 -> origin/chatgpt/lumo-pr291-ci-regressions-2026-10-13
+2026-11-16T07:25:54.6848452Z  * [new branch]        chatgpt/lumo-pr295-grade-semantic-tests-2026-10-14 -> origin/chatgpt/lumo-pr295-grade-semantic-tests-2026-10-14
+2026-11-16T07:25:54.6849227Z  * [new branch]        chatgpt/lumo-premium-quiz-stage-2026-10-15 -> origin/chatgpt/lumo-premium-quiz-stage-2026-10-15
+2026-11-16T07:25:54.6849908Z  * [new branch]        chatgpt/lumo-product-brief-2026-10-04 -> origin/chatgpt/lumo-product-brief-2026-10-04
+2026-11-16T07:25:54.6850531Z  * [new branch]        chatgpt/lumo-reading-android-reduced-motion-2026-10-19 -> origin/chatgpt/lumo-reading-android-reduced-motion-2026-10-19
+2026-11-16T07:25:54.6851207Z  * [new branch]        chatgpt/lumo-scene-art-staged-1984-2026-10-18 -> origin/chatgpt/lumo-scene-art-staged-1984-2026-10-18
+2026-11-16T07:25:54.6851997Z  * [new branch]        chatgpt/lumo-schreiben-repair-1951-2026-10-16 -> origin/chatgpt/lumo-schreiben-repair-1951-2026-10-16
+2026-11-16T07:25:54.6852648Z  * [new branch]        chatgpt/lumo-sol-integrated-1995-20261021 -> origin/chatgpt/lumo-sol-integrated-1995-20261021
+2026-11-16T07:25:54.6853251Z  * [new branch]        chatgpt/lumo-sonnenhafen-godot-pin-2026-10-15 -> origin/chatgpt/lumo-sonnenhafen-godot-pin-2026-10-15
+2026-11-16T07:25:54.6853875Z  * [new branch]        chatgpt/lumo-sonnenhafen-unified-apk-2026-10-15 -> origin/chatgpt/lumo-sonnenhafen-unified-apk-2026-10-15
+2026-11-16T07:25:54.6854477Z  * [new branch]        chatgpt/lumo-spielewelt-stage-20261112 -> origin/chatgpt/lumo-spielewelt-stage-20261112
+2026-11-16T07:25:54.6855024Z  * [new branch]        chatgpt/lumo-stabilisierung-2026-10-17 -> origin/chatgpt/lumo-stabilisierung-2026-10-17
+2026-11-16T07:25:54.6855680Z  * [new branch]        chatgpt/lumo-stabilisierung-nativehash-fix-2026-10-17 -> origin/chatgpt/lumo-stabilisierung-nativehash-fix-2026-10-17
+2026-11-16T07:25:54.6856410Z  * [new branch]        chatgpt/lumo-stability-1954-provenance-cli-2026-10-17 -> origin/chatgpt/lumo-stability-1954-provenance-cli-2026-10-17
+2026-11-16T07:25:54.6857116Z  * [new branch]        chatgpt/lumo-stability-ndk-unknown-archive-2026-10-17 -> origin/chatgpt/lumo-stability-ndk-unknown-archive-2026-10-17
+2026-11-16T07:25:54.6857791Z  * [new branch]        chatgpt/lumo-story-entry-2026-10-13 -> origin/chatgpt/lumo-story-entry-2026-10-13
+2026-11-16T07:25:54.6858355Z  * [new branch]        chatgpt/lumo-story-reader-visual-fix-2026-10-14 -> origin/chatgpt/lumo-story-reader-visual-fix-2026-10-14
+2026-11-16T07:25:54.6858985Z  * [new branch]        chatgpt/lumo-story-save-audit-2026-10-13 -> origin/chatgpt/lumo-story-save-audit-2026-10-13
+2026-11-16T07:25:54.6859599Z  * [new branch]        chatgpt/lumo-story-scene-art-transparent-2026-10-18 -> origin/chatgpt/lumo-story-scene-art-transparent-2026-10-18
+2026-11-16T07:25:54.6860268Z  * [new branch]        chatgpt/lumo-studio-078-kart-recheck-20261114 -> origin/chatgpt/lumo-studio-078-kart-recheck-20261114
+2026-11-16T07:25:54.6860825Z  * [new branch]        chatgpt/lumo-studio-2020-20261114 -> origin/chatgpt/lumo-studio-2020-20261114
+2026-11-16T07:25:54.6861467Z  * [new branch]        chatgpt/lumo-studio-20261113 -> origin/chatgpt/lumo-studio-20261113
+2026-11-16T07:25:54.6862063Z  * [new branch]        chatgpt/lumo-studio-31883868-evidence-20261113 -> origin/chatgpt/lumo-studio-31883868-evidence-20261113
+2026-11-16T07:25:54.6862735Z  * [new branch]        chatgpt/lumo-studio-4ab-ocr-recheck-20261114 -> origin/chatgpt/lumo-studio-4ab-ocr-recheck-20261114
+2026-11-16T07:25:54.6863395Z  * [new branch]        chatgpt/lumo-studio-4ab96666-evidence-20261114 -> origin/chatgpt/lumo-studio-4ab96666-evidence-20261114
+2026-11-16T07:25:54.6864036Z  * [new branch]        chatgpt/lumo-studio-evidence-archive-20261114 -> origin/chatgpt/lumo-studio-evidence-archive-20261114
+2026-11-16T07:25:54.6864701Z  * [new branch]        chatgpt/lumo-studio-runtime-integration-20261113 -> origin/chatgpt/lumo-studio-runtime-integration-20261113
+2026-11-16T07:25:54.6865348Z  * [new branch]        chatgpt/lumo-sulafat-everywhere-2026-10-10 -> origin/chatgpt/lumo-sulafat-everywhere-2026-10-10
+2026-11-16T07:25:54.6865935Z  * [new branch]        chatgpt/lumo-technical-art-host-20261111 -> origin/chatgpt/lumo-technical-art-host-20261111
+2026-11-16T07:25:54.6866520Z  * [new branch]        chatgpt/lumo-test-apk-2026-10-05 -> origin/chatgpt/lumo-test-apk-2026-10-05
+2026-11-16T07:25:54.6867205Z  * [new branch]        chatgpt/lumo-three-qa-workers-20261114 -> origin/chatgpt/lumo-three-qa-workers-20261114
+2026-11-16T07:25:54.6867774Z  * [new branch]        chatgpt/lumo-visual-polish-2026-10-07 -> origin/chatgpt/lumo-visual-polish-2026-10-07
+2026-11-16T07:25:54.6868327Z  * [new branch]        chatgpt/lumo-visual-prep-2026-10-05 -> origin/chatgpt/lumo-visual-prep-2026-10-05
+2026-11-16T07:25:54.6868958Z  * [new branch]        chatgpt/lumo-writing-no-score-child-flow-1952-2026-10-16 -> origin/chatgpt/lumo-writing-no-score-child-flow-1952-2026-10-16
+2026-11-16T07:25:54.6869615Z  * [new branch]        chatgpt/lumo-writing-stability-2026-10-10 -> origin/chatgpt/lumo-writing-stability-2026-10-10
+2026-11-16T07:25:54.6870232Z  * [new branch]        chatgpt/native-source-preflight-2026-10-15 -> origin/chatgpt/native-source-preflight-2026-10-15
+2026-11-16T07:25:54.6870877Z  * [new branch]        chatgpt/onboarding-hologlass-2026-10-05 -> origin/chatgpt/onboarding-hologlass-2026-10-05
+2026-11-16T07:25:54.6871626Z  * [new branch]        chatgpt/opus-1953-mentor-journal-followup-2026-10-16 -> origin/chatgpt/opus-1953-mentor-journal-followup-2026-10-16
+2026-11-16T07:25:54.6872273Z  * [new branch]        chatgpt/parent-games-polish-2026-10-07 -> origin/chatgpt/parent-games-polish-2026-10-07
+2026-11-16T07:25:54.6872826Z  * [new branch]        chatgpt/pr207-provenance-clean-2026-10-07 -> origin/chatgpt/pr207-provenance-clean-2026-10-07
+2026-11-16T07:25:54.6873420Z  * [new branch]        chatgpt/repair-android16-qa-2026-10-07 -> origin/chatgpt/repair-android16-qa-2026-10-07
+2026-11-16T07:25:54.6873988Z  * [new branch]        chatgpt/repair-opus-handoff-2026-10-07 -> origin/chatgpt/repair-opus-handoff-2026-10-07
+2026-11-16T07:25:54.6874676Z  * [new branch]        chatgpt/resume-claude-cross-grade-practice-2026-10-15 -> origin/chatgpt/resume-claude-cross-grade-practice-2026-10-15
+2026-11-16T07:25:54.6875369Z  * [new branch]        chatgpt/verify-pr285-flutter-2026-10-13 -> origin/chatgpt/verify-pr285-flutter-2026-10-13
+2026-11-16T07:25:54.6875968Z  * [new branch]        chatgpt/visual-fidelity-recovery-2026-10-05 -> origin/chatgpt/visual-fidelity-recovery-2026-10-05
+2026-11-16T07:25:54.6876604Z  * [new branch]        chatgpt/visual-gap-fold-2026-10-05 -> origin/chatgpt/visual-gap-fold-2026-10-05
+2026-11-16T07:25:54.6877176Z  * [new branch]        checkpoint/lumo-198dd3-build-evidence-20261114 -> origin/checkpoint/lumo-198dd3-build-evidence-20261114
+2026-11-16T07:25:54.6877824Z  * [new branch]        checkpoint/lumo-198dd3-early-evidence-20261114 -> origin/checkpoint/lumo-198dd3-early-evidence-20261114
+2026-11-16T07:25:54.6878456Z  * [new branch]        checkpoint/lumo-198dd3-native-evidence-20261114 -> origin/checkpoint/lumo-198dd3-native-evidence-20261114
+2026-11-16T07:25:54.6879057Z  * [new branch]        checkpoint/lumo-2018-card-recovery-20261113 -> origin/checkpoint/lumo-2018-card-recovery-20261113
+2026-11-16T07:25:54.6879696Z  * [new branch]        checkpoint/lumo-803-ci-20261114-2708 -> origin/checkpoint/lumo-803-ci-20261114-2708
+2026-11-16T07:25:54.6880269Z  * [new branch]        checkpoint/lumo-9de-android-evidence-20261114 -> origin/checkpoint/lumo-9de-android-evidence-20261114
+2026-11-16T07:25:54.6880899Z  * [new branch]        checkpoint/lumo-9de-early-evidence-20261114 -> origin/checkpoint/lumo-9de-early-evidence-20261114
+2026-11-16T07:25:54.6881642Z  * [new branch]        checkpoint/lumo-9de-native-build-evidence-20261114 -> origin/checkpoint/lumo-9de-native-build-evidence-20261114
+2026-11-16T07:25:54.6882251Z  * [new branch]        checkpoint/lumo-aab-ci-20261114-2708 -> origin/checkpoint/lumo-aab-ci-20261114-2708
+2026-11-16T07:25:54.6882904Z  * [new branch]        checkpoint/lumo-agent-publication-198dd3-20261114 -> origin/checkpoint/lumo-agent-publication-198dd3-20261114
+2026-11-16T07:25:54.6883811Z  * [new branch]        checkpoint/lumo-agent-publication-7c5-20261114 -> origin/checkpoint/lumo-agent-publication-7c5-20261114
+2026-11-16T07:25:54.6884460Z  * [new branch]        checkpoint/lumo-agent-publication-9de-20261114 -> origin/checkpoint/lumo-agent-publication-9de-20261114
+2026-11-16T07:25:54.6885115Z  * [new branch]        checkpoint/lumo-agent-publication-review-20261114 -> origin/checkpoint/lumo-agent-publication-review-20261114
+2026-11-16T07:25:54.6885711Z  * [new branch]        checkpoint/lumo-base-2b586-20261114-2708 -> origin/checkpoint/lumo-base-2b586-20261114-2708
+2026-11-16T07:25:54.6886599Z  * [new branch]        checkpoint/lumo-c4-cleanup-diagnostic-6b-20261114 -> origin/checkpoint/lumo-c4-cleanup-diagnostic-6b-20261114
+2026-11-16T07:25:54.6887202Z  * [new branch]        checkpoint/lumo-c4-diagnostic-20261114 -> origin/checkpoint/lumo-c4-diagnostic-20261114
+2026-11-16T07:25:54.6887830Z  * [new branch]        checkpoint/lumo-c4-flutter-repairs-20261114 -> origin/checkpoint/lumo-c4-flutter-repairs-20261114
+2026-11-16T07:25:54.6888406Z  * [new branch]        checkpoint/lumo-c4-navigation-20261114 -> origin/checkpoint/lumo-c4-navigation-20261114
+2026-11-16T07:25:54.6888976Z  * [new branch]        checkpoint/lumo-c4-preferences-20261114 -> origin/checkpoint/lumo-c4-preferences-20261114
+2026-11-16T07:25:54.6889632Z  * [new branch]        checkpoint/lumo-c4-preferences-diagnostic-20261114 -> origin/checkpoint/lumo-c4-preferences-diagnostic-20261114
+2026-11-16T07:25:54.6890397Z  * [new branch]        checkpoint/lumo-c4-return-51ec-diagnostic-20261114 -> origin/checkpoint/lumo-c4-return-51ec-diagnostic-20261114
+2026-11-16T07:25:54.6891076Z  * [new branch]        checkpoint/lumo-c4-return-evidence-20261114 -> origin/checkpoint/lumo-c4-return-evidence-20261114
+2026-11-16T07:25:54.6891900Z  * [new branch]        checkpoint/lumo-c4-return-fixtures-recovery-20261114 -> origin/checkpoint/lumo-c4-return-fixtures-recovery-20261114
+2026-11-16T07:25:54.6892584Z  * [new branch]        checkpoint/lumo-c4-return-observer-04-20261114 -> origin/checkpoint/lumo-c4-return-observer-04-20261114
+2026-11-16T07:25:54.6893267Z  * [new branch]        checkpoint/lumo-c4-scroll-2708-20261114 -> origin/checkpoint/lumo-c4-scroll-2708-20261114
+2026-11-16T07:25:54.6894000Z  * [new branch]        checkpoint/lumo-cloud-rescue-20261021-014435 -> origin/checkpoint/lumo-cloud-rescue-20261021-014435
+2026-11-16T07:25:54.6894622Z  * [new branch]        checkpoint/lumo-cloud-rescue-20261021-065029-8430 -> origin/checkpoint/lumo-cloud-rescue-20261021-065029-8430
+2026-11-16T07:25:54.6895312Z  * [new branch]        checkpoint/lumo-creative-observations-7b16-20261114 -> origin/checkpoint/lumo-creative-observations-7b16-20261114
+2026-11-16T07:25:54.6895950Z  * [new branch]        checkpoint/lumo-final-integration-20261114 -> origin/checkpoint/lumo-final-integration-20261114
+2026-11-16T07:25:54.6896548Z  * [new branch]        checkpoint/lumo-host-51e-evidence-20261113 -> origin/checkpoint/lumo-host-51e-evidence-20261113
+2026-11-16T07:25:54.6897336Z  * [new branch]        checkpoint/lumo-host-cup-selector-20261113 -> origin/checkpoint/lumo-host-cup-selector-20261113
+2026-11-16T07:25:54.6897932Z  * [new branch]        checkpoint/lumo-host-followups-20261113-1810 -> origin/checkpoint/lumo-host-followups-20261113-1810
+2026-11-16T07:25:54.6898572Z  * [new branch]        checkpoint/lumo-image-prompt-privacy-20261114-2708 -> origin/checkpoint/lumo-image-prompt-privacy-20261114-2708
+2026-11-16T07:25:54.6899232Z  * [new branch]        checkpoint/lumo-jungle-resume-20261116-c652 -> origin/checkpoint/lumo-jungle-resume-20261116-c652
+2026-11-16T07:25:54.6899829Z  * [new branch]        checkpoint/lumo-kart-diagnostic-20261114 -> origin/checkpoint/lumo-kart-diagnostic-20261114
+2026-11-16T07:25:54.6900430Z  * [new branch]        checkpoint/lumo-kart-observer-evidence-20261114 -> origin/checkpoint/lumo-kart-observer-evidence-20261114
+2026-11-16T07:25:54.6901053Z  * [new branch]        checkpoint/lumo-kart-scroll-recovery-20261114 -> origin/checkpoint/lumo-kart-scroll-recovery-20261114
+2026-11-16T07:25:54.6902142Z  * [new branch]        checkpoint/lumo-live-combined-aab-20261114 -> origin/checkpoint/lumo-live-combined-aab-20261114
+2026-11-16T07:25:54.6902745Z  * [new branch]        checkpoint/lumo-live-publisher-04a8-20261114 -> origin/checkpoint/lumo-live-publisher-04a8-20261114
+2026-11-16T07:25:54.6903383Z  * [new branch]        checkpoint/lumo-live-publisher-1e22-20261114 -> origin/checkpoint/lumo-live-publisher-1e22-20261114
+2026-11-16T07:25:54.6903957Z  * [new branch]        checkpoint/lumo-live-publisher-20261114 -> origin/checkpoint/lumo-live-publisher-20261114
+2026-11-16T07:25:54.6904526Z  * [new branch]        checkpoint/lumo-live-publisher-6b-20261114 -> origin/checkpoint/lumo-live-publisher-6b-20261114
+2026-11-16T07:25:54.6905162Z  * [new branch]        checkpoint/lumo-live-publisher-ec936873-20261114 -> origin/checkpoint/lumo-live-publisher-ec936873-20261114
+2026-11-16T07:25:54.6905765Z  * [new branch]        checkpoint/lumo-live-qa-aab09275-20261114 -> origin/checkpoint/lumo-live-qa-aab09275-20261114
+2026-11-16T07:25:54.6906357Z  * [new branch]        checkpoint/lumo-native-budget-20261114 -> origin/checkpoint/lumo-native-budget-20261114
+2026-11-16T07:25:54.6907008Z  * [new branch]        checkpoint/lumo-next-quality-20261114-2708 -> origin/checkpoint/lumo-next-quality-20261114-2708
+2026-11-16T07:25:54.6907601Z  * [new branch]        checkpoint/lumo-original-replay-04-20261114 -> origin/checkpoint/lumo-original-replay-04-20261114
+2026-11-16T07:25:54.6908215Z  * [new branch]        checkpoint/lumo-original-replay-6b-20261114 -> origin/checkpoint/lumo-original-replay-6b-20261114
+2026-11-16T07:25:54.6908798Z  * [new branch]        checkpoint/lumo-original-replay-ec-20261114 -> origin/checkpoint/lumo-original-replay-ec-20261114
+2026-11-16T07:25:54.6909462Z  * [new branch]        checkpoint/lumo-originals-9de-diagnostic-audit-20261114 -> origin/checkpoint/lumo-originals-9de-diagnostic-audit-20261114
+2026-11-16T07:25:54.6910102Z  * [new branch]        checkpoint/lumo-play-aab-20261114 -> origin/checkpoint/lumo-play-aab-20261114
+2026-11-16T07:25:54.6910699Z  * [new branch]        checkpoint/lumo-play-data-audit-20261114-2708 -> origin/checkpoint/lumo-play-data-audit-20261114-2708
+2026-11-16T07:25:54.6911426Z  * [new branch]        checkpoint/lumo-quality-ci-fixture-20261114 -> origin/checkpoint/lumo-quality-ci-fixture-20261114
+2026-11-16T07:25:54.6912092Z  * [new branch]        checkpoint/lumo-quality-integrated-20261114-2708 -> origin/checkpoint/lumo-quality-integrated-20261114-2708
+2026-11-16T07:25:54.6912742Z  * [new branch]        checkpoint/lumo-runtime-followup-7b16-20261114 -> origin/checkpoint/lumo-runtime-followup-7b16-20261114
+2026-11-16T07:25:54.6913345Z  * [new branch]        checkpoint/lumo-studio-cards-86445-20261114 -> origin/checkpoint/lumo-studio-cards-86445-20261114
+2026-11-16T07:25:54.6914010Z  * [new branch]        checkpoint/lumo-unchanged-2020-diagnostic-20261114 -> origin/checkpoint/lumo-unchanged-2020-diagnostic-20261114
+2026-11-16T07:25:54.6914893Z  * [new branch]        checkpoint/lumo-unchanged-2020-diagnostic-union-20261114 -> origin/checkpoint/lumo-unchanged-2020-diagnostic-union-20261114
+2026-11-16T07:25:54.6915616Z  * [new branch]        checkpoint/lumo-village-return-diagnostic-20261114 -> origin/checkpoint/lumo-village-return-diagnostic-20261114
+2026-11-16T07:25:54.6916328Z  * [new branch]        chore-audit-tests-20260503b -> origin/chore-audit-tests-20260503b
+2026-11-16T07:25:54.6916801Z  * [new branch]        chore-chat-guard-patcher -> origin/chore-chat-guard-patcher
+2026-11-16T07:25:54.6917264Z  * [new branch]        chore-core-audit-tests-20260503 -> origin/chore-core-audit-tests-20260503
+2026-11-16T07:25:54.6917813Z  * [new branch]        chore-learn-guard-patcher -> origin/chore-learn-guard-patcher
+2026-11-16T07:25:54.6918273Z  * [new branch]        chore-problem-word-trainer -> origin/chore-problem-word-trainer
+2026-11-16T07:25:54.6918742Z  * [new branch]        chore-reading-guard-patcher -> origin/chore-reading-guard-patcher
+2026-11-16T07:25:54.6919351Z  * [new branch]        chore-release-candidate-patcher -> origin/chore-release-candidate-patcher
+2026-11-16T07:25:54.6919905Z  * [new branch]        chore-smart-ears-patcher -> origin/chore-smart-ears-patcher
+2026-11-16T07:25:54.6920371Z  * [new branch]        chore-syllable-ui-patcher -> origin/chore-syllable-ui-patcher
+2026-11-16T07:25:54.6920810Z  * [new branch]        claude/asset-ai-briefing -> origin/claude/asset-ai-briefing
+2026-11-16T07:25:54.6921390Z  * [new branch]        claude/aufgaben-abenteuer -> origin/claude/aufgaben-abenteuer
+2026-11-16T07:25:54.6921893Z  * [new branch]        claude/chatgpt-megaprompt -> origin/claude/chatgpt-megaprompt
+2026-11-16T07:25:54.6922305Z  * [new branch]        claude/cleanup           -> origin/claude/cleanup
+2026-11-16T07:25:54.6922794Z  * [new branch]        claude/continue-previous-chat-KtY7p -> origin/claude/continue-previous-chat-KtY7p
+2026-11-16T07:25:54.6923296Z  * [new branch]        claude/copilot-setup-steps -> origin/claude/copilot-setup-steps
+2026-11-16T07:25:54.6923744Z  * [new branch]        claude/design-assets-part2 -> origin/claude/design-assets-part2
+2026-11-16T07:25:54.6924221Z  * [new branch]        claude/design-icons      -> origin/claude/design-icons
+2026-11-16T07:25:54.6924628Z  * [new branch]        claude/design-lernen     -> origin/claude/design-lernen
+2026-11-16T07:25:54.6925150Z  * [new branch]        claude/design-polish-subject-tiles -> origin/claude/design-polish-subject-tiles
+2026-11-16T07:25:54.6925596Z  * [new branch]        claude/design-tafeln     -> origin/claude/design-tafeln
+2026-11-16T07:25:54.6925998Z  * [new branch]        claude/design-targets-heinz -> origin/claude/design-targets-heinz
+2026-11-16T07:25:54.6926414Z  * [new branch]        claude/design-test-apk   -> origin/claude/design-test-apk
+2026-11-16T07:25:54.6926899Z  * [new branch]        claude/feat-lumo-cards-avatar-picker -> origin/claude/feat-lumo-cards-avatar-picker
+2026-11-16T07:25:54.6927425Z  * [new branch]        claude/feat-lumo-cards-avatars -> origin/claude/feat-lumo-cards-avatars
+2026-11-16T07:25:54.6927961Z  * [new branch]        claude/feat-lumo-cards-from-sheet -> origin/claude/feat-lumo-cards-from-sheet
+2026-11-16T07:25:54.6928494Z  * [new branch]        claude/feat-lumo-cards-layout-polish -> origin/claude/feat-lumo-cards-layout-polish
+2026-11-16T07:25:54.6929044Z  * [new branch]        claude/feat-lumo-cards-layout-spec -> origin/claude/feat-lumo-cards-layout-spec
+2026-11-16T07:25:54.6929513Z  * [new branch]        claude/feat-lumo-cards-mvp -> origin/claude/feat-lumo-cards-mvp
+2026-11-16T07:25:54.6929976Z  * [new branch]        claude/feat-lumo-cards-solo-bot -> origin/claude/feat-lumo-cards-solo-bot
+2026-11-16T07:25:54.6930471Z  * [new branch]        claude/feat-lumo-cards-specials -> origin/claude/feat-lumo-cards-specials
+2026-11-16T07:25:54.6930945Z  * [new branch]        claude/feat-lumo-cards-uno-style -> origin/claude/feat-lumo-cards-uno-style
+2026-11-16T07:25:54.6931589Z  * [new branch]        claude/fix-farben-wuerfel-kaputt -> origin/claude/fix-farben-wuerfel-kaputt
+2026-11-16T07:25:54.6932038Z  * [new branch]        claude/fix-games         -> origin/claude/fix-games
+2026-11-16T07:25:54.6932606Z  * [new branch]        claude/fix-learning-modules -> origin/claude/fix-learning-modules
+2026-11-16T07:25:54.6933089Z  * [new branch]        claude/fix-lumo-cards-crash-overflow -> origin/claude/fix-lumo-cards-crash-overflow
+2026-11-16T07:25:54.6933586Z  * [new branch]        claude/fix-lumo-cards-debugneeds -> origin/claude/fix-lumo-cards-debugneeds
+2026-11-16T07:25:54.6934112Z  * [new branch]        claude/fix-lumo-cards-layout -> origin/claude/fix-lumo-cards-layout
+2026-11-16T07:25:54.6934587Z  * [new branch]        claude/fix-lumo-cards-still-crashes -> origin/claude/fix-lumo-cards-still-crashes
+2026-11-16T07:25:54.6935156Z  * [new branch]        claude/fix-tutorial-jumps-writing -> origin/claude/fix-tutorial-jumps-writing
+2026-11-16T07:25:54.6935696Z  * [new branch]        claude/fix-update-detection-profile-reset -> origin/claude/fix-update-detection-profile-reset
+2026-11-16T07:25:54.6936292Z  * [new branch]        claude/fix-wordcoach-crash-tutorial -> origin/claude/fix-wordcoach-crash-tutorial
+2026-11-16T07:25:54.6936792Z  * [new branch]        claude/i18n-foundation   -> origin/claude/i18n-foundation
+2026-11-16T07:25:54.6937245Z  * [new branch]        claude/in-app-update-keystore -> origin/claude/in-app-update-keystore
+2026-11-16T07:25:54.6937756Z  * [new branch]        claude/integration-stories-2026-10-16 -> origin/claude/integration-stories-2026-10-16
+2026-11-16T07:25:54.6938218Z  * [new branch]        claude/kart-test-apk     -> origin/claude/kart-test-apk
+2026-11-16T07:25:54.6938612Z  * [new branch]        claude/lern-lesen-schreiben -> origin/claude/lern-lesen-schreiben
+2026-11-16T07:25:54.6939111Z  * [new branch]        claude/lumo-2027-adventure-20261029 -> origin/claude/lumo-2027-adventure-20261029
+2026-11-16T07:25:54.6939595Z  * [new branch]        claude/lumo-2027-bauwelt-20261029 -> origin/claude/lumo-2027-bauwelt-20261029
+2026-11-16T07:25:54.6940058Z  * [new branch]        claude/lumo-2027-cards-20261029 -> origin/claude/lumo-2027-cards-20261029
+2026-11-16T07:25:54.6940584Z  * [new branch]        claude/lumo-2027-coordination-20261029 -> origin/claude/lumo-2027-coordination-20261029
+2026-11-16T07:25:54.6941108Z  * [new branch]        claude/lumo-2027-exam-planner-20261029 -> origin/claude/lumo-2027-exam-planner-20261029
+2026-11-16T07:25:54.6941872Z  * [new branch]        claude/lumo-2027-home-companion-20261029 -> origin/claude/lumo-2027-home-companion-20261029
+2026-11-16T07:25:54.6942418Z  * [new branch]        claude/lumo-2027-kart-entry-20261029 -> origin/claude/lumo-2027-kart-entry-20261029
+2026-11-16T07:25:54.6942903Z  * [new branch]        claude/lumo-2027-memory-20261029 -> origin/claude/lumo-2027-memory-20261029
+2026-11-16T07:25:54.6943382Z  * [new branch]        claude/lumo-2027-parents-20261029 -> origin/claude/lumo-2027-parents-20261029
+2026-11-16T07:25:54.6943901Z  * [new branch]        claude/lumo-2027-spielwelt-20261029 -> origin/claude/lumo-2027-spielwelt-20261029
+2026-11-16T07:25:54.6944501Z  * [new branch]        claude/lumo-2027-tutor-presence-20261029 -> origin/claude/lumo-2027-tutor-presence-20261029
+2026-11-16T07:25:54.6945032Z  * [new branch]        claude/lumo-aaa-spielwelt-20261113 -> origin/claude/lumo-aaa-spielwelt-20261113
+2026-11-16T07:25:54.6945619Z  * [new branch]        claude/lumo-android-integration-m0-aloove -> origin/claude/lumo-android-integration-m0-aloove
+2026-11-16T07:25:54.6946165Z  * [new branch]        claude/lumo-cards-4-players -> origin/claude/lumo-cards-4-players
+2026-11-16T07:25:54.6946719Z  * [new branch]        claude/lumo-cards-animations -> origin/claude/lumo-cards-animations
+2026-11-16T07:25:54.6947241Z  * [new branch]        claude/lumo-cards-big-refactor -> origin/claude/lumo-cards-big-refactor
+2026-11-16T07:25:54.6947734Z  * [new branch]        claude/lumo-cards-dependents-fix -> origin/claude/lumo-cards-dependents-fix
+2026-11-16T07:25:54.6948236Z  * [new branch]        claude/lumo-cards-hand-crash-fix -> origin/claude/lumo-cards-hand-crash-fix
+2026-11-16T07:25:54.6948732Z  * [new branch]        claude/lumo-cards-hud-polish -> origin/claude/lumo-cards-hud-polish
+2026-11-16T07:25:54.6949214Z  * [new branch]        claude/lumo-cards-more-anims -> origin/claude/lumo-cards-more-anims
+2026-11-16T07:25:54.6949714Z  * [new branch]        claude/lumo-cards-multiplayer-rules -> origin/claude/lumo-cards-multiplayer-rules
+2026-11-16T07:25:54.6950242Z  * [new branch]        claude/lumo-cards-new-cards -> origin/claude/lumo-cards-new-cards
+2026-11-16T07:25:54.6950685Z  * [new branch]        claude/lumo-cards-smarter -> origin/claude/lumo-cards-smarter
+2026-11-16T07:25:54.6951108Z  * [new branch]        claude/lumo-gesamt       -> origin/claude/lumo-gesamt
+2026-11-16T07:25:54.6951681Z  * [new branch]        claude/lumo-kart-premium-A9oBr -> origin/claude/lumo-kart-premium-A9oBr
+2026-11-16T07:25:54.6952268Z  * [new branch]        claude/lumo-lernen-kart-modernisierung-ild8i2 -> origin/claude/lumo-lernen-kart-modernisierung-ild8i2
+2026-11-16T07:25:54.6952942Z  * [new branch]        claude/lumo-living-world-visual-20261029 -> origin/claude/lumo-living-world-visual-20261029
+2026-11-16T07:25:54.6953476Z  * [new branch]        claude/lumo-nextgen-app-20261113 -> origin/claude/lumo-nextgen-app-20261113
+2026-11-16T07:25:54.6954009Z  * [new branch]        claude/mathe-lehrplan    -> origin/claude/mathe-lehrplan
+2026-11-16T07:25:54.6954421Z  * [new branch]        claude/phase56-on-main   -> origin/claude/phase56-on-main
+2026-11-16T07:25:54.6954831Z  * [new branch]        claude/polish-2-tiere    -> origin/claude/polish-2-tiere
+2026-11-16T07:25:54.6955279Z  * [new branch]        claude/qa-empty-semantics-retry -> origin/claude/qa-empty-semantics-retry
+2026-11-16T07:25:54.6955719Z  * [new branch]        claude/tier1-foundation  -> origin/claude/tier1-foundation
+2026-11-16T07:25:54.6956202Z  * [new branch]        claude/tier3-audio       -> origin/claude/tier3-audio
+2026-11-16T07:25:54.6956588Z  * [new branch]        claude/tier4-3d-optics   -> origin/claude/tier4-3d-optics
+2026-11-16T07:25:54.6957024Z  * [new branch]        claude/tier6-card-polish -> origin/claude/tier6-card-polish
+2026-11-16T07:25:54.6957467Z  * [new branch]        claude/voice-improvement-fwjkX -> origin/claude/voice-improvement-fwjkX
+2026-11-16T07:25:54.6957919Z  * [new branch]        claude/voice-on-codex-followup -> origin/claude/voice-on-codex-followup
+2026-11-16T07:25:54.6958423Z  * [new branch]        claude/writing-canvas-touch-fix -> origin/claude/writing-canvas-touch-fix
+2026-11-16T07:25:54.6958957Z  * [new branch]        codex/check-.github/workflows/release-apk.yml -> origin/codex/check-.github/workflows/release-apk.yml
+2026-11-16T07:25:54.6959484Z  * [new branch]        codex/find-current-app-status -> origin/codex/find-current-app-status
+2026-11-16T07:25:54.6959947Z  * [new branch]        codex/hybrid-lumo-voice  -> origin/codex/hybrid-lumo-voice
+2026-11-16T07:25:54.6960493Z  * [new branch]        codex/lumo-1905-original-android-diagnosis-2026-10-08 -> origin/codex/lumo-1905-original-android-diagnosis-2026-10-08
+2026-11-16T07:25:54.6961220Z  * [new branch]        codex/lumo-1977-premium-learning-2026-10-18 -> origin/codex/lumo-1977-premium-learning-2026-10-18
+2026-11-16T07:25:54.6961917Z  * [new branch]        codex/lumo-1985-spatial-reading-2026-10-19 -> origin/codex/lumo-1985-spatial-reading-2026-10-19
+2026-11-16T07:25:54.6962487Z  * [new branch]        codex/lumo-action-android-qa-2026-10-09 -> origin/codex/lumo-action-android-qa-2026-10-09
+2026-11-16T07:25:54.6963007Z  * [new branch]        codex/lumo-action-apk-2026-10-09 -> origin/codex/lumo-action-apk-2026-10-09
+2026-11-16T07:25:54.6963549Z  * [new branch]        codex/lumo-android-qa-followup-2026-10-08 -> origin/codex/lumo-android-qa-followup-2026-10-08
+2026-11-16T07:25:54.6964145Z  * [new branch]        codex/lumo-android-surface-qa-2026-10-08 -> origin/codex/lumo-android-surface-qa-2026-10-08
+2026-11-16T07:25:54.6964650Z  * [new branch]        codex/lumo-apk-1910-2026-10-09 -> origin/codex/lumo-apk-1910-2026-10-09
+2026-11-16T07:25:54.6965133Z  * [new branch]        codex/lumo-app-recovery-2026-10-09 -> origin/codex/lumo-app-recovery-2026-10-09
+2026-11-16T07:25:54.6965663Z  * [new branch]        codex/lumo-claude-game-entry-2026-10-09 -> origin/codex/lumo-claude-game-entry-2026-10-09
+2026-11-16T07:25:54.6966213Z  * [new branch]        codex/lumo-game-entry-polish-2026-10-09 -> origin/codex/lumo-game-entry-polish-2026-10-09
+2026-11-16T07:25:54.6966857Z  * [new branch]        codex/lumo-holographic-2026-10-03 -> origin/codex/lumo-holographic-2026-10-03
+2026-11-16T07:25:54.6967402Z  * [new branch]        codex/lumo-host-finish-numeric-2026-10-09 -> origin/codex/lumo-host-finish-numeric-2026-10-09
+2026-11-16T07:25:54.6967989Z  * [new branch]        codex/lumo-host-time-precision-2026-10-09 -> origin/codex/lumo-host-time-precision-2026-10-09
+2026-11-16T07:25:54.6968616Z  * [new branch]        codex/lumo-integrated-runtime-1904-2026-10-08 -> origin/codex/lumo-integrated-runtime-1904-2026-10-08
+2026-11-16T07:25:54.6969297Z  * [new branch]        codex/lumo-integrated-runtime-2026-10-08 -> origin/codex/lumo-integrated-runtime-2026-10-08
+2026-11-16T07:25:54.6969849Z  * [new branch]        codex/lumo-kart-1903-qa-2026-10-08 -> origin/codex/lumo-kart-1903-qa-2026-10-08
+2026-11-16T07:25:54.6970436Z  * [new branch]        codex/lumo-kart-event-forensics-2026-10-09 -> origin/codex/lumo-kart-event-forensics-2026-10-09
+2026-11-16T07:25:54.6970990Z  * [new branch]        codex/lumo-kart-menu-1921-2026-10-10 -> origin/codex/lumo-kart-menu-1921-2026-10-10
+2026-11-16T07:25:54.6971680Z  * [new branch]        codex/lumo-kart-modal-scroll-2026-10-08 -> origin/codex/lumo-kart-modal-scroll-2026-10-08
+2026-11-16T07:25:54.6972296Z  * [new branch]        codex/lumo-kart-premium-apk-1921-2026-10-10 -> origin/codex/lumo-kart-premium-apk-1921-2026-10-10
+2026-11-16T07:25:54.6972876Z  * [new branch]        codex/lumo-learning-lab-2026-10-18 -> origin/codex/lumo-learning-lab-2026-10-18
+2026-11-16T07:25:54.6973406Z  * [new branch]        codex/lumo-main-proof-read-2026-10-10 -> origin/codex/lumo-main-proof-read-2026-10-10
+2026-11-16T07:25:54.6973925Z  * [new branch]        codex/lumo-next-2026-10-10 -> origin/codex/lumo-next-2026-10-10
+2026-11-16T07:25:54.6974436Z  * [new branch]        codex/lumo-nextgen-navigation-20261023 -> origin/codex/lumo-nextgen-navigation-20261023
+2026-11-16T07:25:54.6975039Z  * [new branch]        codex/lumo-profile-android-1920-2026-10-10 -> origin/codex/lumo-profile-android-1920-2026-10-10
+2026-11-16T07:25:54.6975638Z  * [new branch]        codex/lumo-profile-diagnostics-2026-10-10 -> origin/codex/lumo-profile-diagnostics-2026-10-10
+2026-11-16T07:25:54.6976199Z  * [new branch]        codex/lumo-reference-app-2026-10-08 -> origin/codex/lumo-reference-app-2026-10-08
+2026-11-16T07:25:54.6976726Z  * [new branch]        codex/lumo-reference-assets-2026-10-10 -> origin/codex/lumo-reference-assets-2026-10-10
+2026-11-16T07:25:54.6977353Z  * [new branch]        codex/lumo-restart-school-test-2026-10-02 -> origin/codex/lumo-restart-school-test-2026-10-02
+2026-11-16T07:25:54.6978028Z  * [new branch]        codex/lumo-return-frame-recovery-2026-10-09 -> origin/codex/lumo-return-frame-recovery-2026-10-09
+2026-11-16T07:25:54.6978608Z  * [new branch]        codex/lumo-runtime-apk-2026-10-08 -> origin/codex/lumo-runtime-apk-2026-10-08
+2026-11-16T07:25:54.6979189Z  * [new branch]        codex/lumo-school-readiness-followup-2026-10-02 -> origin/codex/lumo-school-readiness-followup-2026-10-02
+2026-11-16T07:25:54.6979783Z  * [new branch]        codex/lumo-selective-app-qa-2026-10-08 -> origin/codex/lumo-selective-app-qa-2026-10-08
+2026-11-16T07:25:54.6980355Z  * [new branch]        codex/lumo-source-guard-qa-2026-10-08 -> origin/codex/lumo-source-guard-qa-2026-10-08
+2026-11-16T07:25:54.6980924Z  * [new branch]        codex/lumo-stage1-audit-44095eb -> origin/codex/lumo-stage1-audit-44095eb
+2026-11-16T07:25:54.6981635Z  * [new branch]        codex/lumo-tutor-quota-diagnostics-2026-10-03 -> origin/codex/lumo-tutor-quota-diagnostics-2026-10-03
+2026-11-16T07:25:54.6982234Z  * [new branch]        codex/lumo-unified-android-2026-10-03 -> origin/codex/lumo-unified-android-2026-10-03
+2026-11-16T07:25:54.6982753Z  * [new branch]        codex/lumo-visual-fidelity-2026-10-08 -> origin/codex/lumo-visual-fidelity-2026-10-08
+2026-11-16T07:25:54.6983303Z  * [new branch]        codex/opus-86c5a33-test-apk -> origin/codex/opus-86c5a33-test-apk
+2026-11-16T07:25:54.6983754Z  * [new branch]        codex/sprint-8-number-house -> origin/codex/sprint-8-number-house
+2026-11-16T07:25:54.6984320Z  * [new branch]        computer/lumo-1927-apk-handoff-2026-10-10 -> origin/computer/lumo-1927-apk-handoff-2026-10-10
+2026-11-16T07:25:54.6984932Z  * [new branch]        computer/lumo-1927-runtime-qa-same-apk-2026-10-10 -> origin/computer/lumo-1927-runtime-qa-same-apk-2026-10-10
+2026-11-16T07:25:54.6985534Z  * [new branch]        computer/lumo-aaa-integration-2026-10-10 -> origin/computer/lumo-aaa-integration-2026-10-10
+2026-11-16T07:25:54.6986275Z  * [new branch]        computer/lumo-android-1929-runtime-repair-2026-10-11 -> origin/computer/lumo-android-1929-runtime-repair-2026-10-11
+2026-11-16T07:25:54.6987114Z  * [new branch]        computer/lumo-android-1930-verified-bundle-2026-10-11 -> origin/computer/lumo-android-1930-verified-bundle-2026-10-11
+2026-11-16T07:25:54.6987801Z  * [new branch]        computer/lumo-cards-connect-four-2026-10-10 -> origin/computer/lumo-cards-connect-four-2026-10-10
+2026-11-16T07:25:54.6988416Z  * [new branch]        computer/lumo-context-sulafat-2026-10-10 -> origin/computer/lumo-context-sulafat-2026-10-10
+2026-11-16T07:25:54.6988987Z  * [new branch]        computer/lumo-education-excellence-2026-10-11 -> origin/computer/lumo-education-excellence-2026-10-11
+2026-11-16T07:25:54.6989622Z  * [new branch]        computer/lumo-kart-android-1928-2026-10-11 -> origin/computer/lumo-kart-android-1928-2026-10-11
+2026-11-16T07:25:54.6990209Z  * [new branch]        computer/lumo-learning-adventures-2026-10-11 -> origin/computer/lumo-learning-adventures-2026-10-11
+2026-11-16T07:25:54.6990865Z  * [new branch]        computer/lumo-learning-companion-discovery-2026-10-11 -> origin/computer/lumo-learning-companion-discovery-2026-10-11
+2026-11-16T07:25:54.6991614Z  * [new branch]        computer/lumo-rival-roster-2026-10-10 -> origin/computer/lumo-rival-roster-2026-10-10
+2026-11-16T07:25:54.6992176Z  * [new branch]        computer/lumo-visual-foundation-2026-10-10 -> origin/computer/lumo-visual-foundation-2026-10-10
+2026-11-16T07:25:54.6992835Z  * [new branch]        computer/lumo-voice-next-runtime-fixes-2026-10-10 -> origin/computer/lumo-voice-next-runtime-fixes-2026-10-10
+2026-11-16T07:25:54.6993385Z  * [new branch]        connect-reading-v2-20260503 -> origin/connect-reading-v2-20260503
+2026-11-16T07:25:54.6993854Z  * [new branch]        copilot/175-lumo-ui-luna-arbeiten -> origin/copilot/175-lumo-ui-luna-arbeiten
+2026-11-16T07:25:54.6994389Z  * [new branch]        copilot/5979796457-update-integrationsaudit -> origin/copilot/5979796457-update-integrationsaudit
+2026-11-16T07:25:54.6994923Z  * [new branch]        copilot/add-animated-lumo-fox -> origin/copilot/add-animated-lumo-fox
+2026-11-16T07:25:54.6995471Z  * [new branch]        copilot/add-premium-voice-api -> origin/copilot/add-premium-voice-api
+2026-11-16T07:25:54.6995950Z  * [new branch]        copilot/analyze-and-refactor-code -> origin/copilot/analyze-and-refactor-code
+2026-11-16T07:25:54.6996426Z  * [new branch]        copilot/check-current-status -> origin/copilot/check-current-status
+2026-11-16T07:25:54.6996918Z  * [new branch]        copilot/checkpoint-sichern-opus-5-5 -> origin/copilot/checkpoint-sichern-opus-5-5
+2026-11-16T07:25:54.6997507Z  * [new branch]        copilot/codexlumo-holographic-kart-2026-10-03 -> origin/copilot/codexlumo-holographic-kart-2026-10-03
+2026-11-16T07:25:54.6998124Z  * [new branch]        copilot/create-lumo-lernen-app -> origin/copilot/create-lumo-lernen-app
+2026-11-16T07:25:54.6998723Z  * [new branch]        copilot/explore-codebase-implementation-plan -> origin/copilot/explore-codebase-implementation-plan
+2026-11-16T07:25:54.6999376Z  * [new branch]        copilot/feat-engine-overhaul-timer-replacement -> origin/copilot/feat-engine-overhaul-timer-replacement
+2026-11-16T07:25:54.6999996Z  * [new branch]        copilot/finalize-lumo-jump-adventure -> origin/copilot/finalize-lumo-jump-adventure
+2026-11-16T07:25:54.7000559Z  * [new branch]        copilot/fix-android-debug-apk-build -> origin/copilot/fix-android-debug-apk-build
+2026-11-16T07:25:54.7001081Z  * [new branch]        copilot/fix-current-frame-index -> origin/copilot/fix-current-frame-index
+2026-11-16T07:25:54.7001670Z  * [new branch]        copilot/fix-lumo-jump-game -> origin/copilot/fix-lumo-jump-game
+2026-11-16T07:25:54.7002215Z  * [new branch]        copilot/fix-pr-316-auto-check -> origin/copilot/fix-pr-316-auto-check
+2026-11-16T07:25:54.7002776Z  * [new branch]        copilot/hol-dir-den-neuesten-stand-von-lumo -> origin/copilot/hol-dir-den-neuesten-stand-von-lumo
+2026-11-16T07:25:54.7003436Z  * [new branch]        copilot/implement-hybrid-voice-patch -> origin/copilot/implement-hybrid-voice-patch
+2026-11-16T07:25:54.7004092Z  * [new branch]        copilot/learning-sonnet-durable-spielefreischaltung -> origin/copilot/learning-sonnet-durable-spielefreischaltung
+2026-11-16T07:25:54.7004731Z  * [new branch]        copilot/lumo-1938-integration-follow-up -> origin/copilot/lumo-1938-integration-follow-up
+2026-11-16T07:25:54.7005226Z  * [new branch]        copilot/lumo-design-sprint -> origin/copilot/lumo-design-sprint
+2026-11-16T07:25:54.7005901Z  * [new branch]        copilot/optimiere-spiel-performance-und-code-struktur -> origin/copilot/optimiere-spiel-performance-und-code-struktur
+2026-11-16T07:25:54.7006571Z  * [new branch]        copilot/optimize-game-code-performance -> origin/copilot/optimize-game-code-performance
+2026-11-16T07:25:54.7007180Z  * [new branch]        copilot/quality-product-sprint-lumo-lernen -> origin/copilot/quality-product-sprint-lumo-lernen
+2026-11-16T07:25:54.7007721Z  * [new branch]        copilot/review-first-172-170 -> origin/copilot/review-first-172-170
+2026-11-16T07:25:54.7008207Z  * [new branch]        copilot/review-first-172-170-again -> origin/copilot/review-first-172-170-again
+2026-11-16T07:25:54.7008720Z  * [new branch]        copilot/stabilization-pr-39 -> origin/copilot/stabilization-pr-39
+2026-11-16T07:25:54.7009231Z  * [new branch]        copilot/stabilize-existing-feature -> origin/copilot/stabilize-existing-feature
+2026-11-16T07:25:54.7009796Z  * [new branch]        copilot/transfer-codex-clause-4-6 -> origin/copilot/transfer-codex-clause-4-6
+2026-11-16T07:25:54.7010367Z  * [new branch]        copilot/ui-luna-design-sprint-runtime-screens -> origin/copilot/ui-luna-design-sprint-runtime-screens
+2026-11-16T07:25:54.7010914Z  * [new branch]        copilot/ullmann27-lumo-lernen -> origin/copilot/ullmann27-lumo-lernen
+2026-11-16T07:25:54.7011551Z  * [new branch]        copilot/update-asset-handling -> origin/copilot/update-asset-handling
+2026-11-16T07:25:54.7012111Z  * [new branch]        delivery/lumo-2023-complete-update-20261115 -> origin/delivery/lumo-2023-complete-update-20261115
+2026-11-16T07:25:54.7012772Z  * [new branch]        delivery/lumo-nextgen-2028-replay-20261116 -> origin/delivery/lumo-nextgen-2028-replay-20261116
+2026-11-16T07:25:54.7013409Z  * [new branch]        delivery/lumo-nextgen-2031-replay-20261116 -> origin/delivery/lumo-nextgen-2031-replay-20261116
+2026-11-16T07:25:54.7014023Z  * [new branch]        design/lumo-cards-build-connect-four-2026-10-10 -> origin/design/lumo-cards-build-connect-four-2026-10-10
+2026-11-16T07:25:54.7014737Z  * [new branch]        design/lumo-full-visual-integration-apk-20261021 -> origin/design/lumo-full-visual-integration-apk-20261021
+2026-11-16T07:25:54.7015345Z  * [new branch]        design/lumo-home-cinematic-20261020 -> origin/design/lumo-home-cinematic-20261020
+2026-11-16T07:25:54.7015927Z  * [new branch]        design/lumo-learning-premium-tiles-20261020 -> origin/design/lumo-learning-premium-tiles-20261020
+2026-11-16T07:25:54.7016533Z  * [new branch]        design/lumo-nextgen-home-math-20261021 -> origin/design/lumo-nextgen-home-math-20261021
+2026-11-16T07:25:54.7017146Z  * [new branch]        design/lumo-nextgen-visual-brief-20261020 -> origin/design/lumo-nextgen-visual-brief-20261020
+2026-11-16T07:25:54.7017908Z  * [new branch]        design/lumo-rechentricks-kindgerechte-trickwerkstatt-20261021 -> origin/design/lumo-rechentricks-kindgerechte-trickwerkstatt-20261021
+2026-11-16T07:25:54.7018640Z  * [new branch]        design/lumo-spielwelt-kart-quiz-20261022 -> origin/design/lumo-spielwelt-kart-quiz-20261022
+2026-11-16T07:25:54.7019239Z  * [new branch]        diagnostic/lumo-c4-preferences-51ec-20261114 -> origin/diagnostic/lumo-c4-preferences-51ec-20261114
+2026-11-16T07:25:54.7019841Z  * [new branch]        diagnostic/lumo-c4-return-51ec-20261114 -> origin/diagnostic/lumo-c4-return-51ec-20261114
+2026-11-16T07:25:54.7021415Z  * [new branch]        diagnostic/lumo-c4-return-74a-20261114 -> origin/diagnostic/lumo-c4-return-74a-20261114
+2026-11-16T07:25:54.7022100Z  * [new branch]        diagnostic/lumo-kart-scroll-6f42-20261114 -> origin/diagnostic/lumo-kart-scroll-6f42-20261114
+2026-11-16T07:25:54.7022643Z  * [new branch]        docs-ai-handoff-pack-20260503 -> origin/docs-ai-handoff-pack-20260503
+2026-11-16T07:25:54.7023233Z  * [new branch]        docs/lumo-living-intelligence-verification-20261029 -> origin/docs/lumo-living-intelligence-verification-20261029
+2026-11-16T07:25:54.7023937Z  * [new branch]        docs/lumo-nextgen-host-source-coverage-20261116 -> origin/docs/lumo-nextgen-host-source-coverage-20261116
+2026-11-16T07:25:54.7024574Z  * [new branch]        evidence/lumo-budget-reviews-20261114 -> origin/evidence/lumo-budget-reviews-20261114
+2026-11-16T07:25:54.7025195Z  * [new branch]        evidence/lumo-c4-3d91bd83-20261114 -> origin/evidence/lumo-c4-3d91bd83-20261114
+2026-11-16T07:25:54.7025699Z  * [new branch]        evidence/lumo-c4-79c0ec8-20261114 -> origin/evidence/lumo-c4-79c0ec8-20261114
+2026-11-16T07:25:54.7026218Z  * [new branch]        evidence/lumo-feature-7136-20261114 -> origin/evidence/lumo-feature-7136-20261114
+2026-11-16T07:25:54.7026855Z  * [new branch]        evidence/lumo-feature-trigger-b2-20261114 -> origin/evidence/lumo-feature-trigger-b2-20261114
+2026-11-16T07:25:54.7027555Z  * [new branch]        evidence/lumo-feature30-red-93bd9b78-20261114 -> origin/evidence/lumo-feature30-red-93bd9b78-20261114
+2026-11-16T07:25:54.7028211Z  * [new branch]        evidence/lumo-final-flutter-04a8e850-20261114 -> origin/evidence/lumo-final-flutter-04a8e850-20261114
+2026-11-16T07:25:54.7028883Z  * [new branch]        evidence/lumo-final-flutter-07cac-20261114 -> origin/evidence/lumo-final-flutter-07cac-20261114
+2026-11-16T07:25:54.7029458Z  * [new branch]        evidence/lumo-final-flutter-1e22-20261114 -> origin/evidence/lumo-final-flutter-1e22-20261114
+2026-11-16T07:25:54.7030037Z  * [new branch]        evidence/lumo-final-flutter-6b3047b7-20261114 -> origin/evidence/lumo-final-flutter-6b3047b7-20261114
+2026-11-16T07:25:54.7030649Z  * [new branch]        evidence/lumo-final-flutter-ec936873-20261114 -> origin/evidence/lumo-final-flutter-ec936873-20261114
+2026-11-16T07:25:54.7031429Z  * [new branch]        evidence/lumo-home-village-captures-20261114 -> origin/evidence/lumo-home-village-captures-20261114
+2026-11-16T07:25:54.7032045Z  * [new branch]        evidence/lumo-integration-0b7-20261114 -> origin/evidence/lumo-integration-0b7-20261114
+2026-11-16T07:25:54.7032658Z  * [new branch]        evidence/lumo-live-android-07cac722-20261114 -> origin/evidence/lumo-live-android-07cac722-20261114
+2026-11-16T07:25:54.7033270Z  * [new branch]        evidence/lumo-live-android-1e22d245-20261114 -> origin/evidence/lumo-live-android-1e22d245-20261114
+2026-11-16T07:25:54.7033916Z  * [new branch]        evidence/lumo-native-original-review-07cac722-20261114 -> origin/evidence/lumo-native-original-review-07cac722-20261114
+2026-11-16T07:25:54.7034577Z  * [new branch]        evidence/lumo-producer-1225-host-20261114 -> origin/evidence/lumo-producer-1225-host-20261114
+2026-11-16T07:25:54.7035124Z  * [new branch]        evidence/lumo-producer-heads-20261114 -> origin/evidence/lumo-producer-heads-20261114
+2026-11-16T07:25:54.7035707Z  * [new branch]        evidence/lumo-publisher-syntax-20261114 -> origin/evidence/lumo-publisher-syntax-20261114
+2026-11-16T07:25:54.7036310Z  * [new branch]        evidence/lumo-release-readiness-1e22-20261114 -> origin/evidence/lumo-release-readiness-1e22-20261114
+2026-11-16T07:25:54.7036865Z  * [new branch]        evidence/lumo-root-04-review-20261114 -> origin/evidence/lumo-root-04-review-20261114
+2026-11-16T07:25:54.7037411Z  * [new branch]        evidence/lumo-root-6b-review-20261114 -> origin/evidence/lumo-root-6b-review-20261114
+2026-11-16T07:25:54.7037929Z  * [new branch]        evidence/lumo-root-ec-review-20261114 -> origin/evidence/lumo-root-ec-review-20261114
+2026-11-16T07:25:54.7038487Z  * [new branch]        evidence/lumo-union-preflight-f365-20261114 -> origin/evidence/lumo-union-preflight-f365-20261114
+2026-11-16T07:25:54.7039261Z  * [new branch]        evidence/lumo-upstream057-garage-review-20261114 -> origin/evidence/lumo-upstream057-garage-review-20261114
+2026-11-16T07:25:54.7039947Z  * [new branch]        evidence/lumo-village-6b-diagnostic-originals-20261114 -> origin/evidence/lumo-village-6b-diagnostic-originals-20261114
+2026-11-16T07:25:54.7040689Z  * [new branch]        evidence/lumo-village-return-lifecycle-6b-20261114 -> origin/evidence/lumo-village-return-lifecycle-6b-20261114
+2026-11-16T07:25:54.7041381Z  * [new branch]        feat-chat-enforce-ai-policy -> origin/feat-chat-enforce-ai-policy
+2026-11-16T07:25:54.7041886Z  * [new branch]        feat-core-add-ai-policy-guard -> origin/feat-core-add-ai-policy-guard
+2026-11-16T07:25:54.7042437Z  * [new branch]        feat-didactic-task-styles-20260503 -> origin/feat-didactic-task-styles-20260503
+2026-11-16T07:25:54.7042950Z  * [new branch]        feat-integrated-ai-tutor -> origin/feat-integrated-ai-tutor
+2026-11-16T07:25:54.7043437Z  * [new branch]        feat-learn-enforce-ai-policy -> origin/feat-learn-enforce-ai-policy
+2026-11-16T07:25:54.7043924Z  * [new branch]        feat-learning-rescue-feedback -> origin/feat-learning-rescue-feedback
+2026-11-16T07:25:54.7044437Z  * [new branch]        feat-lumo-jump-adventure-prototype -> origin/feat-lumo-jump-adventure-prototype
+2026-11-16T07:25:54.7045047Z  * [new branch]        feat-modern-lumo-ui-components-20260503 -> origin/feat-modern-lumo-ui-components-20260503
+2026-11-16T07:25:54.7045613Z  * [new branch]        feat-modern-lumo-widgets-20260504 -> origin/feat-modern-lumo-widgets-20260504
+2026-11-16T07:25:54.7046127Z  * [new branch]        feat-parents-ai-selector-ui -> origin/feat-parents-ai-selector-ui
+2026-11-16T07:25:54.7046654Z  * [new branch]        feat-reading-active-sentence-view -> origin/feat-reading-active-sentence-view
+2026-11-16T07:25:54.7047202Z  * [new branch]        feat-reading-analyzer-integration -> origin/feat-reading-analyzer-integration
+2026-11-16T07:25:54.7047746Z  * [new branch]        feat-reading-problem-word-trainer -> origin/feat-reading-problem-word-trainer
+2026-11-16T07:25:54.7048311Z  * [new branch]        feat-reading-unclear-feedback -> origin/feat-reading-unclear-feedback
+2026-11-16T07:25:54.7048774Z  * [new branch]        feat-release-candidate   -> origin/feat-release-candidate
+2026-11-16T07:25:54.7049246Z  * [new branch]        feat-settings-ai-selector-visible -> origin/feat-settings-ai-selector-visible
+2026-11-16T07:25:54.7049776Z  * [new branch]        feat/asset-registry-pr-a -> origin/feat/asset-registry-pr-a
+2026-11-16T07:25:54.7050315Z  * [new branch]        feat/lumo-living-intelligence-2002-20261029 -> origin/feat/lumo-living-intelligence-2002-20261029
+2026-11-16T07:25:54.7050908Z  * [new branch]        feat/lumo-living-intelligence-20261029 -> origin/feat/lumo-living-intelligence-20261029
+2026-11-16T07:25:54.7051673Z  * [new branch]        feat/lumo-personal-daily-learning-plan-20261028 -> origin/feat/lumo-personal-daily-learning-plan-20261028
+2026-11-16T07:25:54.7052353Z  * [new branch]        feat/lumo-personal-tutor-place-value-20261028 -> origin/feat/lumo-personal-tutor-place-value-20261028
+2026-11-16T07:25:54.7052976Z  * [new branch]        feat/lumo-proactive-tutor-offer-20261028 -> origin/feat/lumo-proactive-tutor-offer-20261028
+2026-11-16T07:25:54.7053589Z  * [new branch]        feat/lumo-tutor-brain-2001-20261028 -> origin/feat/lumo-tutor-brain-2001-20261028
+2026-11-16T07:25:54.7054061Z  * [new branch]        feat/pr-b-companion-pose -> origin/feat/pr-b-companion-pose
+2026-11-16T07:25:54.7054519Z  * [new branch]        feat/pr-c-lumo-sound-registry -> origin/feat/pr-c-lumo-sound-registry
+2026-11-16T07:25:54.7054949Z  * [new branch]        feat/pr-d-lottie         -> origin/feat/pr-d-lottie
+2026-11-16T07:25:54.7055352Z  * [new branch]        feat/pr-e-svg-icons      -> origin/feat/pr-e-svg-icons
+2026-11-16T07:25:54.7055815Z  * [new branch]        feat/pr-f-learning-questions -> origin/feat/pr-f-learning-questions
+2026-11-16T07:25:54.7056301Z  * [new branch]        feat/pr-g-error-sfx      -> origin/feat/pr-g-error-sfx
+2026-11-16T07:25:54.7056748Z  * [new branch]        feat/pr-h1-star-burst    -> origin/feat/pr-h1-star-burst
+2026-11-16T07:25:54.7057182Z  * [new branch]        feat/pr-h2-result-lottie -> origin/feat/pr-h2-result-lottie
+2026-11-16T07:25:54.7057565Z  * [new branch]        feat/pr-h3-music         -> origin/feat/pr-h3-music
+2026-11-16T07:25:54.7057983Z  * [new branch]        feat/pr-i-audio-settings -> origin/feat/pr-i-audio-settings
+2026-11-16T07:25:54.7058489Z  * [new branch]        feat/primary-word-bank-german-generator -> origin/feat/primary-word-bank-german-generator
+2026-11-16T07:25:54.7059050Z  * [new branch]        feature-local-tutor-hints-20260502 -> origin/feature-local-tutor-hints-20260502
+2026-11-16T07:25:54.7059644Z  * [new branch]        feature-session-variety-guard-20260502 -> origin/feature-session-variety-guard-20260502
+2026-11-16T07:25:54.7060204Z  * [new branch]        feature-task-generator-20260502 -> origin/feature-task-generator-20260502
+2026-11-16T07:25:54.7060769Z  * [new branch]        feature-wire-session-variety-20260502 -> origin/feature-wire-session-variety-20260502
+2026-11-16T07:25:54.7061480Z  * [new branch]        feature/lumo-jungle-emerald-3600-20261115-a298 -> origin/feature/lumo-jungle-emerald-3600-20261115-a298
+2026-11-16T07:25:54.7062330Z  * [new branch]        feature/lumo-nextgen-conversation-20261115-403a -> origin/feature/lumo-nextgen-conversation-20261115-403a
+2026-11-16T07:25:54.7062977Z  * [new branch]        feature/lumo-nextgen-learning-20261115 -> origin/feature/lumo-nextgen-learning-20261115
+2026-11-16T07:25:54.7063570Z  * [new branch]        feature/lumo-nextgen-learning-chat2-20261115 -> origin/feature/lumo-nextgen-learning-chat2-20261115
+2026-11-16T07:25:54.7064235Z  * [new branch]        feature/lumo-nextgen-learning-tasks-20261115 -> origin/feature/lumo-nextgen-learning-tasks-20261115
+2026-11-16T07:25:54.7064814Z  * [new branch]        feature/lumo-nextgen-voice-20261115 -> origin/feature/lumo-nextgen-voice-20261115
+2026-11-16T07:25:54.7065401Z  * [new branch]        fix-actions-artifact-quota-20260503 -> origin/fix-actions-artifact-quota-20260503
+2026-11-16T07:25:54.7065930Z  * [new branch]        fix-learning-ui-and-tutor -> origin/fix-learning-ui-and-tutor
+2026-11-16T07:25:54.7066404Z  * [new branch]        fix-recent-task-memory-20260502 -> origin/fix-recent-task-memory-20260502
+2026-11-16T07:25:54.7067072Z  * [new branch]        fix-red-main-word-bank-variety-20260503 -> origin/fix-red-main-word-bank-variety-20260503
+2026-11-16T07:25:54.7067632Z  * [new branch]        fix-v0.3.1-core-stabilization -> origin/fix-v0.3.1-core-stabilization
+2026-11-16T07:25:54.7068147Z  * [new branch]        fix/ci-nuclear-remove-native-plugins -> origin/fix/ci-nuclear-remove-native-plugins
+2026-11-16T07:25:54.7068670Z  * [new branch]        fix/ci-rescue-l10n-yaml  -> origin/fix/ci-rescue-l10n-yaml
+2026-11-16T07:25:54.7069166Z  * [new branch]        fix/grade-learning-structure-2026-10-12 -> origin/fix/grade-learning-structure-2026-10-12
+2026-11-16T07:25:54.7069757Z  * [new branch]        fix/lumo-banana-speech-quote-20261116 -> origin/fix/lumo-banana-speech-quote-20261116
+2026-11-16T07:25:54.7070337Z  * [new branch]        fix/lumo-core-conversation-scope-20261116 -> origin/fix/lumo-core-conversation-scope-20261116
+2026-11-16T07:25:54.7070983Z  * [new branch]        fix/lumo-core-menu-presenter-20261116 -> origin/fix/lumo-core-menu-presenter-20261116
+2026-11-16T07:25:54.7071735Z  * [new branch]        fix/lumo-lab-requested-return-frame-20261116 -> origin/fix/lumo-lab-requested-return-frame-20261116
+2026-11-16T07:25:54.7072284Z  * [new branch]        fix/lumo-lab-route-scope-20261116 -> origin/fix/lumo-lab-route-scope-20261116
+2026-11-16T07:25:54.7072862Z  * [new branch]        fix/lumo-learning-conversation-scope-20261115 -> origin/fix/lumo-learning-conversation-scope-20261115
+2026-11-16T07:25:54.7073457Z  * [new branch]        fix/lumo-source-public-download-20261116 -> origin/fix/lumo-source-public-download-20261116
+2026-11-16T07:25:54.7074123Z  * [new branch]        integration/lumo-2000-sonnenhafen-tutor-20261028 -> origin/integration/lumo-2000-sonnenhafen-tutor-20261028
+2026-11-16T07:25:54.7074897Z  * [new branch]        integration/lumo-2003-living-intelligence-original-fox-20261029 -> origin/integration/lumo-2003-living-intelligence-original-fox-20261029
+2026-11-16T07:25:54.7075633Z  * [new branch]        integration/lumo-2004-full-learning-stunts-20261030 -> origin/integration/lumo-2004-full-learning-stunts-20261030
+2026-11-16T07:25:54.7076273Z  * [new branch]        integration/lumo-2006-complete-app-20261103 -> origin/integration/lumo-2006-complete-app-20261103
+2026-11-16T07:25:54.7076876Z  * [new branch]        integration/lumo-2006-native-pin-review-20261105 -> origin/integration/lumo-2006-native-pin-review-20261105
+2026-11-16T07:25:54.7077467Z  * [new branch]        integration/lumo-2022-complete-20261115 -> origin/integration/lumo-2022-complete-20261115
+2026-11-16T07:25:54.7078066Z  * [new branch]        integration/lumo-agent-execution-20261114 -> origin/integration/lumo-agent-execution-20261114
+2026-11-16T07:25:54.7078636Z  * [new branch]        integration/lumo-blender-apk-20261115-f131 -> origin/integration/lumo-blender-apk-20261115-f131
+2026-11-16T07:25:54.7079210Z  * [new branch]        integration/lumo-c4-connections-20261114 -> origin/integration/lumo-c4-connections-20261114
+2026-11-16T07:25:54.7079778Z  * [new branch]        integration/lumo-c4-fixture-repair-20261114 -> origin/integration/lumo-c4-fixture-repair-20261114
+2026-11-16T07:25:54.7080342Z  * [new branch]        integration/lumo-c4-publisher-20261114 -> origin/integration/lumo-c4-publisher-20261114
+2026-11-16T07:25:54.7080897Z  * [new branch]        integration/lumo-combined-art-2023-f131 -> origin/integration/lumo-combined-art-2023-f131
+2026-11-16T07:25:54.7081677Z  * [new branch]        integration/lumo-complete-apk-20261114-7a1 -> origin/integration/lumo-complete-apk-20261114-7a1
+2026-11-16T07:25:54.7082255Z  * [new branch]        integration/lumo-connections-20261113 -> origin/integration/lumo-connections-20261113
+2026-11-16T07:25:54.7082911Z  * [new branch]        integration/lumo-discovery-host-7136-20261114 -> origin/integration/lumo-discovery-host-7136-20261114
+2026-11-16T07:25:54.7083520Z  * [new branch]        integration/lumo-feature-connections-20261114 -> origin/integration/lumo-feature-connections-20261114
+2026-11-16T07:25:54.7084216Z  * [new branch]        integration/lumo-learning-dschungelherz-2032-20261116 -> origin/integration/lumo-learning-dschungelherz-2032-20261116
+2026-11-16T07:25:54.7084923Z  * [new branch]        integration/lumo-learning-generation-20261115-ea41 -> origin/integration/lumo-learning-generation-20261115-ea41
+2026-11-16T07:25:54.7085602Z  * [new branch]        integration/lumo-learning-nextgen-20261115 -> origin/integration/lumo-learning-nextgen-20261115
+2026-11-16T07:25:54.7086216Z  * [new branch]        integration/lumo-live-connections-20261114 -> origin/integration/lumo-live-connections-20261114
+2026-11-16T07:25:54.7086799Z  * [new branch]        integration/lumo-magic-family-apk-20261114 -> origin/integration/lumo-magic-family-apk-20261114
+2026-11-16T07:25:54.7087450Z  * [new branch]        integration/lumo-next-authorities-lint-20261114 -> origin/integration/lumo-next-authorities-lint-20261114
+2026-11-16T07:25:54.7088091Z  * [new branch]        integration/lumo-next-candidate-1913-20261114 -> origin/integration/lumo-next-candidate-1913-20261114
+2026-11-16T07:25:54.7088659Z  * [new branch]        integration/lumo-next-hub-20261114 -> origin/integration/lumo-next-hub-20261114
+2026-11-16T07:25:54.7089274Z  * [new branch]        integration/lumo-next-repair-1952-20261114 -> origin/integration/lumo-next-repair-1952-20261114
+2026-11-16T07:25:54.7089883Z  * [new branch]        integration/lumo-next-table-authorities-20261114 -> origin/integration/lumo-next-table-authorities-20261114
+2026-11-16T07:25:54.7090532Z  * [new branch]        integration/lumo-nextgen-learning-20261115 -> origin/integration/lumo-nextgen-learning-20261115
+2026-11-16T07:25:54.7091196Z  * [new branch]        integration/lumo-reviewed-delta-20261115-58e0 -> origin/integration/lumo-reviewed-delta-20261115-58e0
+2026-11-16T07:25:54.7091965Z  * [new branch]        integration/lumo-upstream057-review-20261114 -> origin/integration/lumo-upstream057-review-20261114
+2026-11-16T07:25:54.7092561Z  * [new branch]        lumo-2013/apk-candidate-20261110 -> origin/lumo-2013/apk-candidate-20261110
+2026-11-16T07:25:54.7093065Z  * [new branch]        lumo-2013/flutter-games-20261110 -> origin/lumo-2013/flutter-games-20261110
+2026-11-16T07:25:54.7093602Z  * [new branch]        lumo-2013/flutter-games-play-20261110 -> origin/lumo-2013/flutter-games-play-20261110
+2026-11-16T07:25:54.7094100Z  * [new branch]        lumo-2013/guard-ci-20261110 -> origin/lumo-2013/guard-ci-20261110
+2026-11-16T07:25:54.7094553Z  * [new branch]        lumo-2013/hub-routing-20261110 -> origin/lumo-2013/hub-routing-20261110
+2026-11-16T07:25:54.7095057Z  * [new branch]        lumo-2013/integration-20261110 -> origin/lumo-2013/integration-20261110
+2026-11-16T07:25:54.7095522Z  * [new branch]        lumo-2013/lern-optik-20261110 -> origin/lumo-2013/lern-optik-20261110
+2026-11-16T07:25:54.7096025Z  * [new branch]        lumo-2014/cards-games-20261110 -> origin/lumo-2014/cards-games-20261110
+2026-11-16T07:25:54.7096529Z  * [new branch]        lumo-2014/cards-loss-reward-20261111 -> origin/lumo-2014/cards-loss-reward-20261111
+2026-11-16T07:25:54.7097035Z  * [new branch]        lumo-2014/cards-resume-20261110 -> origin/lumo-2014/cards-resume-20261110
+2026-11-16T07:25:54.7097535Z  * [new branch]        lumo-2014/integration-20261110 -> origin/lumo-2014/integration-20261110
+2026-11-16T07:25:54.7098049Z  * [new branch]        lumo-2014/learning-tip-review-20261110 -> origin/lumo-2014/learning-tip-review-20261110
+2026-11-16T07:25:54.7098582Z  * [new branch]        lumo-2014/learning-tutor-20261110 -> origin/lumo-2014/learning-tutor-20261110
+2026-11-16T07:25:54.7099124Z  * [new branch]        lumo-2014/quiz-lock-final-20261110 -> origin/lumo-2014/quiz-lock-final-20261110
+2026-11-16T07:25:54.7099723Z  * [new branch]        lumo-2014/quiz-lock-lifetime-20261110 -> origin/lumo-2014/quiz-lock-lifetime-20261110
+2026-11-16T07:25:54.7100289Z  * [new branch]        lumo-next/design-flutter-games-20261110 -> origin/lumo-next/design-flutter-games-20261110
+2026-11-16T07:25:54.7100810Z  * [new branch]        lumo-next/integration-20261110 -> origin/lumo-next/integration-20261110
+2026-11-16T07:25:54.7101410Z  * [new branch]        lumo-next/release-pipeline-20261110 -> origin/lumo-next/release-pipeline-20261110
+2026-11-16T07:25:54.7102024Z  * [new branch]        lumo-next/visual-game-identity-2013-20261110 -> origin/lumo-next/visual-game-identity-2013-20261110
+2026-11-16T07:25:54.7102577Z  * [new branch]        main                     -> origin/main
+2026-11-16T07:25:54.7103086Z  * [new branch]        ops/lumo-codex-checkpoint-protection-20261020 -> origin/ops/lumo-codex-checkpoint-protection-20261020
+2026-11-16T07:25:54.7103615Z  * [new branch]        p4help                   -> origin/p4help
+2026-11-16T07:25:54.7104006Z  * [new branch]        p4readinganalyzer        -> origin/p4readinganalyzer
+2026-11-16T07:25:54.7104393Z  * [new branch]        p4readingui              -> origin/p4readingui
+2026-11-16T07:25:54.7104795Z  * [new branch]        p5-ai-mode-settings      -> origin/p5-ai-mode-settings
+2026-11-16T07:25:54.7105219Z  * [new branch]        p5-ai-policy-bridge      -> origin/p5-ai-policy-bridge
+2026-11-16T07:25:54.7105777Z  * [new branch]        perplexity/lumo-1938-integration-2026-10-13-0942 -> origin/perplexity/lumo-1938-integration-2026-10-13-0942
+2026-11-16T07:25:54.7106448Z  * [new branch]        perplexity/lumo-cards-approved-design-2026-10-10 -> origin/perplexity/lumo-cards-approved-design-2026-10-10
+2026-11-16T07:25:54.7107269Z  * [new branch]        perplexity/lumo-cross-grade-storage-hardening-2026-10-15 -> origin/perplexity/lumo-cross-grade-storage-hardening-2026-10-15
+2026-11-16T07:25:54.7108030Z  * [new branch]        perplexity/lumo-nvidia-tutor-pilot-2026-10-15 -> origin/perplexity/lumo-nvidia-tutor-pilot-2026-10-15
+2026-11-16T07:25:54.7108705Z  * [new branch]        perplexity/lumo-profile-schema-guard-2026-10-17 -> origin/perplexity/lumo-profile-schema-guard-2026-10-17
+2026-11-16T07:25:54.7109389Z  * [new branch]        perplexity/lumo-profile-storage-hardening-2026-10-16 -> origin/perplexity/lumo-profile-storage-hardening-2026-10-16
+2026-11-16T07:25:54.7110049Z  * [new branch]        qa/lumo-2004-real-upgrade-20261031 -> origin/qa/lumo-2004-real-upgrade-20261031
+2026-11-16T07:25:54.7110607Z  * [new branch]        qa/lumo-2020-legible-3d-entry-20261114 -> origin/qa/lumo-2020-legible-3d-entry-20261114
+2026-11-16T07:25:54.7111152Z  * [new branch]        qa/lumo-2020-visible-flutter-20261114 -> origin/qa/lumo-2020-visible-flutter-20261114
+2026-11-16T07:25:54.7111954Z  * [new branch]        qa/lumo-2031-active-syllable-observation-20261116 -> origin/qa/lumo-2031-active-syllable-observation-20261116
+2026-11-16T07:25:54.7112624Z  * [new branch]        qa/lumo-2031-immutable-replay-20261116 -> origin/qa/lumo-2031-immutable-replay-20261116
+2026-11-16T07:25:54.7113173Z  * [new branch]        qa/lumo-2031-lab-runtime-cases-20261116 -> origin/qa/lumo-2031-lab-runtime-cases-20261116
+2026-11-16T07:25:54.7113799Z  * [new branch]        qa/lumo-2031-native-runtime-cases-20261116 -> origin/qa/lumo-2031-native-runtime-cases-20261116
+2026-11-16T07:25:54.7114291Z  * [new branch]        qa/lumo-agent-base-20261114 -> origin/qa/lumo-agent-base-20261114
+2026-11-16T07:25:54.7114851Z  * [new branch]        qa/lumo-all-registers-grade-1-4-visual-20261031 -> origin/qa/lumo-all-registers-grade-1-4-visual-20261031
+2026-11-16T07:25:54.7115433Z  * [new branch]        qa/lumo-android-runtime-1e22-20261114 -> origin/qa/lumo-android-runtime-1e22-20261114
+2026-11-16T07:25:54.7115958Z  * [new branch]        qa/lumo-android-runtime-7b16-20261114 -> origin/qa/lumo-android-runtime-7b16-20261114
+2026-11-16T07:25:54.7116570Z  * [new branch]        qa/lumo-android-runtime-7b16-followup-20261114 -> origin/qa/lumo-android-runtime-7b16-followup-20261114
+2026-11-16T07:25:54.7117252Z  * [new branch]        qa/lumo-c4-small-result-actions-20261114-2708 -> origin/qa/lumo-c4-small-result-actions-20261114-2708
+2026-11-16T07:25:54.7117899Z  * [new branch]        qa/lumo-c4-small-result-actions-20261114-2708-r2 -> origin/qa/lumo-c4-small-result-actions-20261114-2708-r2
+2026-11-16T07:25:54.7118543Z  * [new branch]        qa/lumo-c4-small-result-actions-20261114-2708-r3 -> origin/qa/lumo-c4-small-result-actions-20261114-2708-r3
+2026-11-16T07:25:54.7119128Z  * [new branch]        qa/lumo-console-joystick-7b16-20261114 -> origin/qa/lumo-console-joystick-7b16-20261114
+2026-11-16T07:25:54.7119684Z  * [new branch]        qa/lumo-console-start-7b16-20261114 -> origin/qa/lumo-console-start-7b16-20261114
+2026-11-16T07:25:54.7120165Z  * [new branch]        qa/lumo-creative-51e-20261113 -> origin/qa/lumo-creative-51e-20261113
+2026-11-16T07:25:54.7120651Z  * [new branch]        qa/lumo-creative-7b16-20261114 -> origin/qa/lumo-creative-7b16-20261114
+2026-11-16T07:25:54.7121155Z  * [new branch]        qa/lumo-foreground-transition-20261116 -> origin/qa/lumo-foreground-transition-20261116
+2026-11-16T07:25:54.7121832Z  * [new branch]        qa/lumo-kart-observer-20261114 -> origin/qa/lumo-kart-observer-20261114
+2026-11-16T07:25:54.7122359Z  * [new branch]        qa/lumo-mic-postgrant-reader-20261116 -> origin/qa/lumo-mic-postgrant-reader-20261116
+2026-11-16T07:25:54.7122967Z  * [new branch]        qa/lumo-native-panel-readiness-20261116 -> origin/qa/lumo-native-panel-readiness-20261116
+2026-11-16T07:25:54.7123537Z  * [new branch]        qa/lumo-nextgen-2028-android-20261116 -> origin/qa/lumo-nextgen-2028-android-20261116
+2026-11-16T07:25:54.7124194Z  * [new branch]        qa/lumo-nextgen-2028-replay-implementation-20261116 -> origin/qa/lumo-nextgen-2028-replay-implementation-20261116
+2026-11-16T07:25:54.7124941Z  * [new branch]        qa/lumo-nextgen-2029-native-diagnostic-20261116 -> origin/qa/lumo-nextgen-2029-native-diagnostic-20261116
+2026-11-16T07:25:54.7125557Z  * [new branch]        qa/lumo-nextgen-2031-android-20261116 -> origin/qa/lumo-nextgen-2031-android-20261116
+2026-11-16T07:25:54.7126193Z  * [new branch]        qa/lumo-nextgen-native-reference-diagnostic-20261115 -> origin/qa/lumo-nextgen-native-reference-diagnostic-20261115
+2026-11-16T07:25:54.7126868Z  * [new branch]        qa/lumo-nextgen-pattern-reader-20261116 -> origin/qa/lumo-nextgen-pattern-reader-20261116
+2026-11-16T07:25:54.7127496Z  * [new branch]        qa/lumo-nextgen-reference-android-20261115 -> origin/qa/lumo-nextgen-reference-android-20261115
+2026-11-16T07:25:54.7128138Z  * [new branch]        qa/lumo-original-replay-selftest-04-20261114 -> origin/qa/lumo-original-replay-selftest-04-20261114
+2026-11-16T07:25:54.7128778Z  * [new branch]        qa/lumo-original-replay-selftest-6b-20261114 -> origin/qa/lumo-original-replay-selftest-6b-20261114
+2026-11-16T07:25:54.7129415Z  * [new branch]        qa/lumo-original-replay-selftest-ec-20261114 -> origin/qa/lumo-original-replay-selftest-ec-20261114
+2026-11-16T07:25:54.7130008Z  * [new branch]        qa/lumo-permission-reader-20261116 -> origin/qa/lumo-permission-reader-20261116
+2026-11-16T07:25:54.7130582Z  * [new branch]        qa/lumo-prompt-label-contrast-20261114-2708 -> origin/qa/lumo-prompt-label-contrast-20261114-2708
+2026-11-16T07:25:54.7131368Z  * [new branch]        qa/lumo-recording-offline-observation-20261116 -> origin/qa/lumo-recording-offline-observation-20261116
+2026-11-16T07:25:54.7132015Z  * [new branch]        qa/lumo-recording-start-20261116 -> origin/qa/lumo-recording-start-20261116
+2026-11-16T07:25:54.7132512Z  * [new branch]        qa/lumo-resize-capture-20261116 -> origin/qa/lumo-resize-capture-20261116
+2026-11-16T07:25:54.7133116Z  * [new branch]        qa/lumo-supplemental-academy-navigation-20261116 -> origin/qa/lumo-supplemental-academy-navigation-20261116
+2026-11-16T07:25:54.7133718Z  * [new branch]        qa/lumo-village-return-6b-20261114 -> origin/qa/lumo-village-return-6b-20261114
+2026-11-16T07:25:54.7134284Z  * [new branch]        reading-syllable-chip-20260503 -> origin/reading-syllable-chip-20260503
+2026-11-16T07:25:54.7134888Z  * [new branch]        recovery/lumo-c4-return-fixtures-20261114 -> origin/recovery/lumo-c4-return-fixtures-20261114
+2026-11-16T07:25:54.7135454Z  * [new branch]        recovery/lumo-public-bases-20261106 -> origin/recovery/lumo-public-bases-20261106
+2026-11-16T07:25:54.7136021Z  * [new branch]        release/lumo-1993-direct-chrome-20261021 -> origin/release/lumo-1993-direct-chrome-20261021
+2026-11-16T07:25:54.7136594Z  * [new branch]        release/lumo-2002-family-button-20261029 -> origin/release/lumo-2002-family-button-20261029
+2026-11-16T07:25:54.7137174Z  * [new branch]        release/lumo-2003-family-button-20261029 -> origin/release/lumo-2003-family-button-20261029
+2026-11-16T07:25:54.7137761Z  * [new branch]        release/lumo-2003-living-world-20261029 -> origin/release/lumo-2003-living-world-20261029
+2026-11-16T07:25:54.7138357Z  * [new branch]        release/lumo-2004-family-update-20261102 -> origin/release/lumo-2004-family-update-20261102
+2026-11-16T07:25:54.7138931Z  * [new branch]        release/lumo-2020-arm64-one-apk-20261114 -> origin/release/lumo-2020-arm64-one-apk-20261114
+2026-11-16T07:25:54.7139505Z  * [new branch]        release/lumo-2020-wiring-apk-20261114 -> origin/release/lumo-2020-wiring-apk-20261114
+2026-11-16T07:25:54.7140077Z  * [new branch]        release/lumo-nextgen-1999-integrated-20261024 -> origin/release/lumo-nextgen-1999-integrated-20261024
+2026-11-16T07:25:54.7140714Z  * [new branch]        repair/lumo-1999-native-kart-tour-20261024 -> origin/repair/lumo-1999-native-kart-tour-20261024
+2026-11-16T07:25:54.7141419Z  * [new branch]        repair/lumo-1999-update-learning-hub-20261026 -> origin/repair/lumo-1999-update-learning-hub-20261026
+2026-11-16T07:25:54.7142081Z  * [new branch]        repair/lumo-2020-exact-learning-20261114 -> origin/repair/lumo-2020-exact-learning-20261114
+2026-11-16T07:25:54.7142783Z  * [new branch]        repair/lumo-2020-exhaustive-wiring-20261114 -> origin/repair/lumo-2020-exhaustive-wiring-20261114
+2026-11-16T07:25:54.7143323Z  * [new branch]        repair/lumo-2020-one-apk-20261114 -> origin/repair/lumo-2020-one-apk-20261114
+2026-11-16T07:25:54.7143912Z  * [new branch]        repair/lumo-2020-village-hook-20261114 -> origin/repair/lumo-2020-village-hook-20261114
+2026-11-16T07:25:54.7144428Z  * [new branch]        repair/lumo-2022-delivery-20261115 -> origin/repair/lumo-2022-delivery-20261115
+2026-11-16T07:25:54.7145015Z  * [new branch]        repair/lumo-405-real-adventure-visibility-20261023 -> origin/repair/lumo-405-real-adventure-visibility-20261023
+2026-11-16T07:25:54.7145692Z  * [new branch]        repair/lumo-android-runtime-7b16-20261114 -> origin/repair/lumo-android-runtime-7b16-20261114
+2026-11-16T07:25:54.7146252Z  * [new branch]        repair/lumo-astra-rescue-home-qa-20261021 -> origin/repair/lumo-astra-rescue-home-qa-20261021
+2026-11-16T07:25:54.7146903Z  * [new branch]        repair/lumo-c4-safe-entry-20261114 -> origin/repair/lumo-c4-safe-entry-20261114
+2026-11-16T07:25:54.7147421Z  * [new branch]        repair/lumo-capture-state-20261114 -> origin/repair/lumo-capture-state-20261114
+2026-11-16T07:25:54.7147982Z  * [new branch]        repair/lumo-console-and-joystick-7b16-20261114 -> origin/repair/lumo-console-and-joystick-7b16-20261114
+2026-11-16T07:25:54.7148578Z  * [new branch]        repair/lumo-exact-learning-20261114 -> origin/repair/lumo-exact-learning-20261114
+2026-11-16T07:25:54.7149131Z  * [new branch]        repair/lumo-feature-reward-frame-20261114 -> origin/repair/lumo-feature-reward-frame-20261114
+2026-11-16T07:25:54.7149740Z  * [new branch]        repair/lumo-garage-observed-scroll-20261114 -> origin/repair/lumo-garage-observed-scroll-20261114
+2026-11-16T07:25:54.7150380Z  * [new branch]        repair/lumo-historical-diagnostic-fixture-20261114 -> origin/repair/lumo-historical-diagnostic-fixture-20261114
+2026-11-16T07:25:54.7151006Z  * [new branch]        repair/lumo-historical-visual-qa-20261022 -> origin/repair/lumo-historical-visual-qa-20261022
+2026-11-16T07:25:54.7151784Z  * [new branch]        repair/lumo-live-diagnostic-20261114 -> origin/repair/lumo-live-diagnostic-20261114
+2026-11-16T07:25:54.7152300Z  * [new branch]        repair/lumo-live-drawing-20261114 -> origin/repair/lumo-live-drawing-20261114
+2026-11-16T07:25:54.7152847Z  * [new branch]        repair/lumo-live-safari-mode-20261114 -> origin/repair/lumo-live-safari-mode-20261114
+2026-11-16T07:25:54.7153398Z  * [new branch]        repair/lumo-live-village-android-20261114 -> origin/repair/lumo-live-village-android-20261114
+2026-11-16T07:25:54.7153970Z  * [new branch]        repair/lumo-live-village-host-20261114 -> origin/repair/lumo-live-village-host-20261114
+2026-11-16T07:25:54.7154544Z  * [new branch]        repair/lumo-living-workshop-polish-20261029 -> origin/repair/lumo-living-workshop-polish-20261029
+2026-11-16T07:25:54.7155168Z  * [new branch]        repair/lumo-native-3d-games-hub-entry-20261114 -> origin/repair/lumo-native-3d-games-hub-entry-20261114
+2026-11-16T07:25:54.7155752Z  * [new branch]        repair/lumo-nextgen-apk-qa-20261020 -> origin/repair/lumo-nextgen-apk-qa-20261020
+2026-11-16T07:25:54.7156328Z  * [new branch]        repair/lumo-nextgen-math-recovery-20261021 -> origin/repair/lumo-nextgen-math-recovery-20261021
+2026-11-16T07:25:54.7156942Z  * [new branch]        repair/lumo-producer-flutter-union-20261114 -> origin/repair/lumo-producer-flutter-union-20261114
+2026-11-16T07:25:54.7157486Z  * [new branch]        repair/lumo-single-apk-20261114 -> origin/repair/lumo-single-apk-20261114
+2026-11-16T07:25:54.7158014Z  * [new branch]        repair/lumo-vs-all-subjects-access-20261030 -> origin/repair/lumo-vs-all-subjects-access-20261030
+2026-11-16T07:25:54.7158512Z  * [new branch]        repo-tests-20260503      -> origin/repo-tests-20260503
+2026-11-16T07:25:54.7158998Z  * [new branch]        review/render-first-portable-build-20261022 -> origin/review/render-first-portable-build-20261022
+2026-11-16T07:25:54.7159669Z  * [new branch]        snapshot/lumo-apk-base-07cac722-20261114 -> origin/snapshot/lumo-apk-base-07cac722-20261114
+2026-11-16T07:25:54.7160222Z  * [new branch]        sol/fix-answer-crystal-depth-20261021 -> origin/sol/fix-answer-crystal-depth-20261021
+2026-11-16T07:25:54.7160731Z  * [new branch]        sol/lumo-1932-download-2026-10-12 -> origin/sol/lumo-1932-download-2026-10-12
+2026-11-16T07:25:54.7161258Z  * [new branch]        sol/lumo-1932-verified-bundle-2026-10-12 -> origin/sol/lumo-1932-verified-bundle-2026-10-12
+2026-11-16T07:25:54.7161925Z  * [new branch]        sol/lumo-1933-android-delivery-2026-10-12 -> origin/sol/lumo-1933-android-delivery-2026-10-12
+2026-11-16T07:25:54.7162498Z  * [new branch]        sol/lumo-1934-android-delivery-2026-10-12 -> origin/sol/lumo-1934-android-delivery-2026-10-12
+2026-11-16T07:25:54.7163081Z  * [new branch]        sol/lumo-1935-fold-return-2026-10-12 -> origin/sol/lumo-1935-fold-return-2026-10-12
+2026-11-16T07:25:54.7163612Z  * [new branch]        sol/lumo-1936-android-delivery-2026-10-12 -> origin/sol/lumo-1936-android-delivery-2026-10-12
+2026-11-16T07:25:54.7164200Z  * [new branch]        sol/lumo-1936-android-delivery-v2-2026-10-12 -> origin/sol/lumo-1936-android-delivery-v2-2026-10-12
+2026-11-16T07:25:54.7164846Z  * [new branch]        sol/lumo-1936-android-delivery-v3-2026-10-12 -> origin/sol/lumo-1936-android-delivery-v3-2026-10-12
+2026-11-16T07:25:54.7165454Z  * [new branch]        sol/lumo-1936-runtime-screenshots-2026-10-12 -> origin/sol/lumo-1936-runtime-screenshots-2026-10-12
+2026-11-16T07:25:54.7166078Z  * [new branch]        sol/lumo-1936-unified-integration-2026-10-12 -> origin/sol/lumo-1936-unified-integration-2026-10-12
+2026-11-16T07:25:54.7166718Z  * [new branch]        sol/lumo-1937-android-acceptance-2026-10-12 -> origin/sol/lumo-1937-android-acceptance-2026-10-12
+2026-11-16T07:25:54.7167297Z  * [new branch]        sol/lumo-1937-content-kart-2026-10-12 -> origin/sol/lumo-1937-content-kart-2026-10-12
+2026-11-16T07:25:54.7167926Z  * [new branch]        sol/lumo-1939-local-qa-backup-2026-10-14 -> origin/sol/lumo-1939-local-qa-backup-2026-10-14
+2026-11-16T07:25:54.7168484Z  * [new branch]        sol/lumo-1939-runtime-followup-2026-10-14 -> origin/sol/lumo-1939-runtime-followup-2026-10-14
+2026-11-16T07:25:54.7169083Z  * [new branch]        sol/lumo-active-companion-2026-10-11 -> origin/sol/lumo-active-companion-2026-10-11
+2026-11-16T07:25:54.7169639Z  * [new branch]        sol/lumo-adaptive-local-help-2026-10-11 -> origin/sol/lumo-adaptive-local-help-2026-10-11
+2026-11-16T07:25:54.7170220Z  * [new branch]        sol/lumo-app-audit-2026-10-13 -> origin/sol/lumo-app-audit-2026-10-13
+2026-11-16T07:25:54.7170769Z  * [new branch]        sol/lumo-curriculum-depth-1938-2026-10-12 -> origin/sol/lumo-curriculum-depth-1938-2026-10-12
+2026-11-16T07:25:54.7171427Z  * [new branch]        sol/lumo-direct-download-2026-10-11 -> origin/sol/lumo-direct-download-2026-10-11
+2026-11-16T07:25:54.7172007Z  * [new branch]        sol/lumo-games-fold-1934-2026-10-12 -> origin/sol/lumo-games-fold-1934-2026-10-12
+2026-11-16T07:25:54.7172565Z  * [new branch]        sol/lumo-guided-language-nature-2026-10-12 -> origin/sol/lumo-guided-language-nature-2026-10-12
+2026-11-16T07:25:54.7173167Z  * [new branch]        sol/lumo-hologlass-quality-1939-2026-10-14 -> origin/sol/lumo-hologlass-quality-1939-2026-10-14
+2026-11-16T07:25:54.7173784Z  * [new branch]        sol/lumo-learning-repair-20261026 -> origin/sol/lumo-learning-repair-20261026
+2026-11-16T07:25:54.7174319Z  * [new branch]        sol/lumo-learning-repair-check-2026-10-12 -> origin/sol/lumo-learning-repair-check-2026-10-12
+2026-11-16T07:25:54.7174933Z  * [new branch]        sol/lumo-learning-repair-check2-2026-10-12 -> origin/sol/lumo-learning-repair-check2-2026-10-12
+2026-11-16T07:25:54.7175540Z  * [new branch]        sol/lumo-learning-repair-check3-2026-10-12 -> origin/sol/lumo-learning-repair-check3-2026-10-12
+2026-11-16T07:25:54.7176157Z  * [new branch]        sol/lumo-meister-20-stars-2026-10-12 -> origin/sol/lumo-meister-20-stars-2026-10-12
+2026-11-16T07:25:54.7176715Z  * [new branch]        sol/lumo-meister-apk-2026-10-12 -> origin/sol/lumo-meister-apk-2026-10-12
+2026-11-16T07:25:54.7177278Z  * [new branch]        sol/lumo-parent-report-privacy-2026-10-12 -> origin/sol/lumo-parent-report-privacy-2026-10-12
+2026-11-16T07:25:54.7177846Z  * [new branch]        sol/lumo-release-repair-20261026 -> origin/sol/lumo-release-repair-20261026
+2026-11-16T07:25:54.7178393Z  * [new branch]        sol/lumo-runtime-crystals-kart-20261021 -> origin/sol/lumo-runtime-crystals-kart-20261021
+2026-11-16T07:25:54.7178923Z  * [new branch]        sol/lumo-update-repair-20261026 -> origin/sol/lumo-update-repair-20261026
+2026-11-16T07:25:54.7179446Z  * [new branch]        sol/lumo-writing-repair-20261026 -> origin/sol/lumo-writing-repair-20261026
+2026-11-16T07:25:54.7179911Z  * [new branch]        speech-tools-20260503    -> origin/speech-tools-20260503
+2026-11-16T07:25:54.7180424Z  * [new branch]        support/lumo-c4-open-close-20261115 -> origin/support/lumo-c4-open-close-20261115
+2026-11-16T07:25:54.7180962Z  * [new branch]        support/lumo-topic-identity-20261114 -> origin/support/lumo-topic-identity-20261114
+2026-11-16T07:25:54.7181574Z  * [new branch]        task-word-bank-generator -> origin/task-word-bank-generator
+2026-11-16T07:25:54.7182062Z  * [new branch]        test-didactic-styles-20260503 -> origin/test-didactic-styles-20260503
+2026-11-16T07:25:54.7182552Z  * [new branch]        test-german-generator-20260503 -> origin/test-german-generator-20260503
+2026-11-16T07:25:54.7183060Z  * [new branch]        test-local-tutor-engine-20260502 -> origin/test-local-tutor-engine-20260502
+2026-11-16T07:25:54.7183566Z  * [new branch]        test-recent-repository-20260503 -> origin/test-recent-repository-20260503
+2026-11-16T07:25:54.7184142Z  * [new branch]        ux/lumo-scroll-all-sections-20261103 -> origin/ux/lumo-scroll-all-sections-20261103
+2026-11-16T07:25:54.7184730Z  * [new branch]        validation/lumo-native-bebf7bba-20261114 -> origin/validation/lumo-native-bebf7bba-20261114
+2026-11-16T07:25:54.7185395Z  * [new branch]        validation/root-recovery-1750-20261114 -> origin/validation/root-recovery-1750-20261114
+2026-11-16T07:25:54.7185894Z  * [new branch]        voice-bubble-20260503    -> origin/voice-bubble-20260503
+2026-11-16T07:25:54.7186375Z  * [new branch]        work/lumo-dream-ui-recovery-20261114 -> origin/work/lumo-dream-ui-recovery-20261114
+2026-11-16T07:25:54.7187009Z  * [new branch]        work/lumo-learning-audit-20261114 -> origin/work/lumo-learning-audit-20261114
+2026-11-16T07:25:54.7187610Z  * [new branch]        work/lumo-nextgen-voice-20261115-ea41 -> origin/work/lumo-nextgen-voice-20261115-ea41
+2026-11-16T07:25:54.7188128Z  * [new branch]        work/lumo-play-quality-20261114 -> origin/work/lumo-play-quality-20261114
+2026-11-16T07:25:54.7188648Z  * [new branch]        work/lumo-spielwelt-studio-20261114 -> origin/work/lumo-spielwelt-studio-20261114
+2026-11-16T07:25:54.7189089Z  * [new tag]           build-1                  -> build-1
+2026-11-16T07:25:54.7189423Z  * [new tag]           build-10                 -> build-10
+2026-11-16T07:25:54.7189777Z  * [new tag]           build-100                -> build-100
+2026-11-16T07:25:54.7190105Z  * [new tag]           build-101                -> build-101
+2026-11-16T07:25:54.7190468Z  * [new tag]           build-103                -> build-103
+2026-11-16T07:25:54.7190785Z  * [new tag]           build-105                -> build-105
+2026-11-16T07:25:54.7191101Z  * [new tag]           build-106                -> build-106
+2026-11-16T07:25:54.7191586Z  * [new tag]           build-107                -> build-107
+2026-11-16T07:25:54.7191911Z  * [new tag]           build-108                -> build-108
+2026-11-16T07:25:54.7192231Z  * [new tag]           build-109                -> build-109
+2026-11-16T07:25:54.7192562Z  * [new tag]           build-11                 -> build-11
+2026-11-16T07:25:54.7192905Z  * [new tag]           build-110                -> build-110
+2026-11-16T07:25:54.7193323Z  * [new tag]           build-111                -> build-111
+2026-11-16T07:25:54.7193639Z  * [new tag]           build-112                -> build-112
+2026-11-16T07:25:54.7193950Z  * [new tag]           build-114                -> build-114
+2026-11-16T07:25:54.7194296Z  * [new tag]           build-115                -> build-115
+2026-11-16T07:25:54.7194611Z  * [new tag]           build-116                -> build-116
+2026-11-16T07:25:54.7194939Z  * [new tag]           build-117                -> build-117
+2026-11-16T07:25:54.7195254Z  * [new tag]           build-12                 -> build-12
+2026-11-16T07:25:54.7195636Z  * [new tag]           build-121                -> build-121
+2026-11-16T07:25:54.7195969Z  * [new tag]           build-122                -> build-122
+2026-11-16T07:25:54.7196268Z  * [new tag]           build-123                -> build-123
+2026-11-16T07:25:54.7196572Z  * [new tag]           build-124                -> build-124
+2026-11-16T07:25:54.7196867Z  * [new tag]           build-126                -> build-126
+2026-11-16T07:25:54.7197154Z  * [new tag]           build-127                -> build-127
+2026-11-16T07:25:54.7197814Z  * [new tag]           build-128                -> build-128
+2026-11-16T07:25:54.7198109Z  * [new tag]           build-13                 -> build-13
+2026-11-16T07:25:54.7198439Z  * [new tag]           build-132                -> build-132
+2026-11-16T07:25:54.7198729Z  * [new tag]           build-133                -> build-133
+2026-11-16T07:25:54.7199005Z  * [new tag]           build-134                -> build-134
+2026-11-16T07:25:54.7199336Z  * [new tag]           build-135                -> build-135
+2026-11-16T07:25:54.7199631Z  * [new tag]           build-136                -> build-136
+2026-11-16T07:25:54.7199918Z  * [new tag]           build-137                -> build-137
+2026-11-16T07:25:54.7200220Z  * [new tag]           build-138                -> build-138
+2026-11-16T07:25:54.7200517Z  * [new tag]           build-139                -> build-139
+2026-11-16T07:25:54.7200903Z  * [new tag]           build-14                 -> build-14
+2026-11-16T07:25:54.7201197Z  * [new tag]           build-140                -> build-140
+2026-11-16T07:25:54.7201636Z  * [new tag]           build-141                -> build-141
+2026-11-16T07:25:54.7201940Z  * [new tag]           build-145                -> build-145
+2026-11-16T07:25:54.7202230Z  * [new tag]           build-146                -> build-146
+2026-11-16T07:25:54.7202550Z  * [new tag]           build-147                -> build-147
+2026-11-16T07:25:54.7202838Z  * [new tag]           build-148                -> build-148
+2026-11-16T07:25:54.7203121Z  * [new tag]           build-15                 -> build-15
+2026-11-16T07:25:54.7203464Z  * [new tag]           build-151                -> build-151
+2026-11-16T07:25:54.7203758Z  * [new tag]           build-152                -> build-152
+2026-11-16T07:25:54.7204078Z  * [new tag]           build-153                -> build-153
+2026-11-16T07:25:54.7204380Z  * [new tag]           build-154                -> build-154
+2026-11-16T07:25:54.7204720Z  * [new tag]           build-155                -> build-155
+2026-11-16T07:25:54.7205035Z  * [new tag]           build-156                -> build-156
+2026-11-16T07:25:54.7205334Z  * [new tag]           build-157                -> build-157
+2026-11-16T07:25:54.7205684Z  * [new tag]           build-159                -> build-159
+2026-11-16T07:25:54.7205980Z  * [new tag]           build-16                 -> build-16
+2026-11-16T07:25:54.7206316Z  * [new tag]           build-160                -> build-160
+2026-11-16T07:25:54.7206634Z  * [new tag]           build-161                -> build-161
+2026-11-16T07:25:54.7206947Z  * [new tag]           build-162                -> build-162
+2026-11-16T07:25:54.7207236Z  * [new tag]           build-163                -> build-163
+2026-11-16T07:25:54.7207536Z  * [new tag]           build-166                -> build-166
+2026-11-16T07:25:54.7207878Z  * [new tag]           build-167                -> build-167
+2026-11-16T07:25:54.7208210Z  * [new tag]           build-168                -> build-168
+2026-11-16T07:25:54.7208518Z  * [new tag]           build-169                -> build-169
+2026-11-16T07:25:54.7208809Z  * [new tag]           build-17                 -> build-17
+2026-11-16T07:25:54.7209113Z  * [new tag]           build-170                -> build-170
+2026-11-16T07:25:54.7209405Z  * [new tag]           build-172                -> build-172
+2026-11-16T07:25:54.7209708Z  * [new tag]           build-173                -> build-173
+2026-11-16T07:25:54.7210014Z  * [new tag]           build-174                -> build-174
+2026-11-16T07:25:54.7210292Z  * [new tag]           build-175                -> build-175
+2026-11-16T07:25:54.7210632Z  * [new tag]           build-176                -> build-176
+2026-11-16T07:25:54.7210928Z  * [new tag]           build-177                -> build-177
+2026-11-16T07:25:54.7211227Z  * [new tag]           build-178                -> build-178
+2026-11-16T07:25:54.7211713Z  * [new tag]           build-179                -> build-179
+2026-11-16T07:25:54.7212001Z  * [new tag]           build-18                 -> build-18
+2026-11-16T07:25:54.7212324Z  * [new tag]           build-180                -> build-180
+2026-11-16T07:25:54.7212622Z  * [new tag]           build-181                -> build-181
+2026-11-16T07:25:54.7212914Z  * [new tag]           build-182                -> build-182
+2026-11-16T07:25:54.7213258Z  * [new tag]           build-183                -> build-183
+2026-11-16T07:25:54.7213538Z  * [new tag]           build-184                -> build-184
+2026-11-16T07:25:54.7213855Z  * [new tag]           build-185                -> build-185
+2026-11-16T07:25:54.7214148Z  * [new tag]           build-186                -> build-186
+2026-11-16T07:25:54.7214436Z  * [new tag]           build-187                -> build-187
+2026-11-16T07:25:54.7214756Z  * [new tag]           build-188                -> build-188
+2026-11-16T07:25:54.7215049Z  * [new tag]           build-19                 -> build-19
+2026-11-16T07:25:54.7215409Z  * [new tag]           build-190                -> build-190
+2026-11-16T07:25:54.7215735Z  * [new tag]           build-191                -> build-191
+2026-11-16T07:25:54.7216033Z  * [new tag]           build-192                -> build-192
+2026-11-16T07:25:54.7216358Z  * [new tag]           build-193                -> build-193
+2026-11-16T07:25:54.7216654Z  * [new tag]           build-194                -> build-194
+2026-11-16T07:25:54.7216952Z  * [new tag]           build-195                -> build-195
+2026-11-16T07:25:54.7217244Z  * [new tag]           build-196                -> build-196
+2026-11-16T07:25:54.7217524Z  * [new tag]           build-198                -> build-198
+2026-11-16T07:25:54.7217863Z  * [new tag]           build-2                  -> build-2
+2026-11-16T07:25:54.7218188Z  * [new tag]           build-21                 -> build-21
+2026-11-16T07:25:54.7218491Z  * [new tag]           build-213                -> build-213
+2026-11-16T07:25:54.7218792Z  * [new tag]           build-214                -> build-214
+2026-11-16T07:25:54.7219073Z  * [new tag]           build-215                -> build-215
+2026-11-16T07:25:54.7219403Z  * [new tag]           build-216                -> build-216
+2026-11-16T07:25:54.7219693Z  * [new tag]           build-217                -> build-217
+2026-11-16T07:25:54.7219985Z  * [new tag]           build-218                -> build-218
+2026-11-16T07:25:54.7220316Z  * [new tag]           build-219                -> build-219
+2026-11-16T07:25:54.7220620Z  * [new tag]           build-22                 -> build-22
+2026-11-16T07:25:54.7220934Z  * [new tag]           build-220                -> build-220
+2026-11-16T07:25:54.7221229Z  * [new tag]           build-221                -> build-221
+2026-11-16T07:25:54.7221648Z  * [new tag]           build-222                -> build-222
+2026-11-16T07:25:54.7221947Z  * [new tag]           build-223                -> build-223
+2026-11-16T07:25:54.7222314Z  * [new tag]           build-224                -> build-224
+2026-11-16T07:25:54.7222615Z  * [new tag]           build-225                -> build-225
+2026-11-16T07:25:54.7222939Z  * [new tag]           build-226                -> build-226
+2026-11-16T07:25:54.7223232Z  * [new tag]           build-227                -> build-227
+2026-11-16T07:25:54.7223535Z  * [new tag]           build-228                -> build-228
+2026-11-16T07:25:54.7223849Z  * [new tag]           build-229                -> build-229
+2026-11-16T07:25:54.7224154Z  * [new tag]           build-23                 -> build-23
+2026-11-16T07:25:54.7224445Z  * [new tag]           build-230                -> build-230
+2026-11-16T07:25:54.7224723Z  * [new tag]           build-231                -> build-231
+2026-11-16T07:25:54.7225034Z  * [new tag]           build-232                -> build-232
+2026-11-16T07:25:54.7225379Z  * [new tag]           build-233                -> build-233
+2026-11-16T07:25:54.7225684Z  * [new tag]           build-234                -> build-234
+2026-11-16T07:25:54.7225986Z  * [new tag]           build-235                -> build-235
+2026-11-16T07:25:54.7226266Z  * [new tag]           build-236                -> build-236
+2026-11-16T07:25:54.7226579Z  * [new tag]           build-237                -> build-237
+2026-11-16T07:25:54.7227002Z  * [new tag]           build-238                -> build-238
+2026-11-16T07:25:54.7227309Z  * [new tag]           build-239                -> build-239
+2026-11-16T07:25:54.7227614Z  * [new tag]           build-24                 -> build-24
+2026-11-16T07:25:54.7227923Z  * [new tag]           build-240                -> build-240
+2026-11-16T07:25:54.7228233Z  * [new tag]           build-241                -> build-241
+2026-11-16T07:25:54.7228545Z  * [new tag]           build-242                -> build-242
+2026-11-16T07:25:54.7228836Z  * [new tag]           build-25                 -> build-25
+2026-11-16T07:25:54.7229136Z  * [new tag]           build-258                -> build-258
+2026-11-16T07:25:54.7229486Z  * [new tag]           build-259                -> build-259
+2026-11-16T07:25:54.7229793Z  * [new tag]           build-26                 -> build-26
+2026-11-16T07:25:54.7230108Z  * [new tag]           build-260                -> build-260
+2026-11-16T07:25:54.7230441Z  * [new tag]           build-269                -> build-269
+2026-11-16T07:25:54.7230742Z  * [new tag]           build-27                 -> build-27
+2026-11-16T07:25:54.7231039Z  * [new tag]           build-28                 -> build-28
+2026-11-16T07:25:54.7231491Z  * [new tag]           build-3                  -> build-3
+2026-11-16T07:25:54.7231814Z  * [new tag]           build-30                 -> build-30
+2026-11-16T07:25:54.7232096Z  * [new tag]           build-31                 -> build-31
+2026-11-16T07:25:54.7232420Z  * [new tag]           build-36                 -> build-36
+2026-11-16T07:25:54.7232743Z  * [new tag]           build-37                 -> build-37
+2026-11-16T07:25:54.7233063Z  * [new tag]           build-42                 -> build-42
+2026-11-16T07:25:54.7233359Z  * [new tag]           build-43                 -> build-43
+2026-11-16T07:25:54.7233639Z  * [new tag]           build-44                 -> build-44
+2026-11-16T07:25:54.7233949Z  * [new tag]           build-45                 -> build-45
+2026-11-16T07:25:54.7234237Z  * [new tag]           build-46                 -> build-46
+2026-11-16T07:25:54.7234520Z  * [new tag]           build-47                 -> build-47
+2026-11-16T07:25:54.7234836Z  * [new tag]           build-48                 -> build-48
+2026-11-16T07:25:54.7235140Z  * [new tag]           build-49                 -> build-49
+2026-11-16T07:25:54.7235441Z  * [new tag]           build-50                 -> build-50
+2026-11-16T07:25:54.7235728Z  * [new tag]           build-51                 -> build-51
+2026-11-16T07:25:54.7236035Z  * [new tag]           build-52                 -> build-52
+2026-11-16T07:25:54.7236333Z  * [new tag]           build-53                 -> build-53
+2026-11-16T07:25:54.7236672Z  * [new tag]           build-54                 -> build-54
+2026-11-16T07:25:54.7236973Z  * [new tag]           build-55                 -> build-55
+2026-11-16T07:25:54.7237263Z  * [new tag]           build-56                 -> build-56
+2026-11-16T07:25:54.7237596Z  * [new tag]           build-57                 -> build-57
+2026-11-16T07:25:54.7237893Z  * [new tag]           build-58                 -> build-58
+2026-11-16T07:25:54.7238183Z  * [new tag]           build-59                 -> build-59
+2026-11-16T07:25:54.7238484Z  * [new tag]           build-6                  -> build-6
+2026-11-16T07:25:54.7238774Z  * [new tag]           build-69                 -> build-69
+2026-11-16T07:25:54.7239076Z  * [new tag]           build-7                  -> build-7
+2026-11-16T07:25:54.7239392Z  * [new tag]           build-70                 -> build-70
+2026-11-16T07:25:54.7239679Z  * [new tag]           build-71                 -> build-71
+2026-11-16T07:25:54.7240011Z  * [new tag]           build-73                 -> build-73
+2026-11-16T07:25:54.7240304Z  * [new tag]           build-76                 -> build-76
+2026-11-16T07:25:54.7240600Z  * [new tag]           build-77                 -> build-77
+2026-11-16T07:25:54.7240915Z  * [new tag]           build-78                 -> build-78
+2026-11-16T07:25:54.7241198Z  * [new tag]           build-79                 -> build-79
+2026-11-16T07:25:54.7241647Z  * [new tag]           build-8                  -> build-8
+2026-11-16T07:25:54.7241948Z  * [new tag]           build-80                 -> build-80
+2026-11-16T07:25:54.7242264Z  * [new tag]           build-81                 -> build-81
+2026-11-16T07:25:54.7242593Z  * [new tag]           build-82                 -> build-82
+2026-11-16T07:25:54.7242879Z  * [new tag]           build-83                 -> build-83
+2026-11-16T07:25:54.7243166Z  * [new tag]           build-84                 -> build-84
+2026-11-16T07:25:54.7243464Z  * [new tag]           build-85                 -> build-85
+2026-11-16T07:25:54.7243832Z  * [new tag]           build-87                 -> build-87
+2026-11-16T07:25:54.7244128Z  * [new tag]           build-88                 -> build-88
+2026-11-16T07:25:54.7244421Z  * [new tag]           build-89                 -> build-89
+2026-11-16T07:25:54.7244738Z  * [new tag]           build-9                  -> build-9
+2026-11-16T07:25:54.7245059Z  * [new tag]           build-90                 -> build-90
+2026-11-16T07:25:54.7245352Z  * [new tag]           build-91                 -> build-91
+2026-11-16T07:25:54.7245649Z  * [new tag]           build-92                 -> build-92
+2026-11-16T07:25:54.7245939Z  * [new tag]           build-93                 -> build-93
+2026-11-16T07:25:54.7246216Z  * [new tag]           build-94                 -> build-94
+2026-11-16T07:25:54.7246544Z  * [new tag]           build-97                 -> build-97
+2026-11-16T07:25:54.7246836Z  * [new tag]           build-98                 -> build-98
+2026-11-16T07:25:54.7247161Z  * [new tag]           build-99                 -> build-99
+2026-11-16T07:25:54.7247499Z  * [new tag]           coachpreview-build-2002  -> coachpreview-build-2002
+2026-11-16T07:25:54.7247862Z  * [new tag]           coachpreview-build-2003  -> coachpreview-build-2003
+2026-11-16T07:25:54.7248266Z  * [new tag]           coachpreview-build-2004  -> coachpreview-build-2004
+2026-11-16T07:25:54.7248630Z  * [new tag]           coachpreview-build-2012  -> coachpreview-build-2012
+2026-11-16T07:25:54.7248995Z  * [new tag]           coachpreview-build-2017  -> coachpreview-build-2017
+2026-11-16T07:25:54.7249352Z  * [new tag]           debug-latest             -> debug-latest
+2026-11-16T07:25:54.7249741Z  * [new tag]           lumo-0.12.18-1925-voice-writing -> lumo-0.12.18-1925-voice-writing
+2026-11-16T07:25:54.7250197Z  * [new tag]           lumo-0.12.19-1926-sulafat-test -> lumo-0.12.19-1926-sulafat-test
+2026-11-16T07:25:54.7250732Z  * [new tag]           lumo-0.12.20-1927-context-voice-technical-test -> lumo-0.12.20-1927-context-voice-technical-test
+2026-11-16T07:25:54.7251380Z  * [new tag]           lumo-0.12.21-1928-kart-technical-test -> lumo-0.12.21-1928-kart-technical-test
+2026-11-16T07:25:54.7251846Z  * [new tag]           lumo-0.12.85-1997        -> lumo-0.12.85-1997
+2026-11-16T07:25:54.7252177Z  * [new tag]           lumo-0.12.87-1999        -> lumo-0.12.87-1999
+2026-11-16T07:25:54.7252540Z  * [new tag]           lumo-0.12.88-2000        -> lumo-0.12.88-2000
+2026-11-16T07:25:54.7252891Z  * [new tag]           lumo-0.12.90-2002        -> lumo-0.12.90-2002
+2026-11-16T07:25:54.7253217Z  * [new tag]           lumo-0.12.91-2003        -> lumo-0.12.91-2003
+2026-11-16T07:25:54.7253591Z  * [new tag]           lumo-1993-20261021-direct-test -> lumo-1993-20261021-direct-test
+2026-11-16T07:25:54.7253995Z  * [new tag]           lumo-lernen-debug-latest -> lumo-lernen-debug-latest
+2026-11-16T07:25:54.7254520Z  * [new tag]           lumo-lernen-sonnenhafen-unified-test-20261015 -> lumo-lernen-sonnenhafen-unified-test-20261015
+2026-11-16T07:25:54.7255066Z  * [new tag]           lumo-meister-2026-10-12-preview1 -> lumo-meister-2026-10-12-preview1
+2026-11-16T07:25:54.7255513Z  * [new tag]           lumo-test-apk-2026-10-05-fold-kart -> lumo-test-apk-2026-10-05-fold-kart
+2026-11-16T07:25:54.7255993Z  * [new tag]           lumo-v0.12.68-1980-mobile-test -> lumo-v0.12.68-1980-mobile-test
+2026-11-16T07:25:54.7256431Z  * [new tag]           lumo-v0.12.69-1981-reading-adventure -> lumo-v0.12.69-1981-reading-adventure
+2026-11-16T07:25:54.7256896Z  * [new tag]           lumo-v0.12.70-1982-meister-show -> lumo-v0.12.70-1982-meister-show
+2026-11-16T07:25:54.7257358Z  * [new tag]           lumo-v0.12.71-1983-immersive-quiz-studio -> lumo-v0.12.71-1983-immersive-quiz-studio
+2026-11-16T07:25:54.7257807Z  * [new tag]           lumo-v0.12.72-1984-atelier-scenes -> lumo-v0.12.72-1984-atelier-scenes
+2026-11-16T07:25:54.7258320Z  * [new tag]           lumo-v0.12.73-1985-spatial-reading -> lumo-v0.12.73-1985-spatial-reading
+2026-11-16T07:25:54.7258851Z  * [new tag]           lumo-v0.12.74-1986-integrated-reading -> lumo-v0.12.74-1986-integrated-reading
+2026-11-16T07:25:54.7259453Z  * [new tag]           lumo-v0.12.75-1987-denkprofil-knobel -> lumo-v0.12.75-1987-denkprofil-knobel
+2026-11-16T07:25:54.7259903Z  * [new tag]           lumo-v0.12.76-1988-fair-cards -> lumo-v0.12.76-1988-fair-cards
+2026-11-16T07:25:54.7260283Z  * [new tag]           lumo-v0.12.77-1989-test  -> lumo-v0.12.77-1989-test
+2026-11-16T07:25:54.7260736Z  * [new tag]           lumo-v0.12.80-1992-modern-worlds-test -> lumo-v0.12.80-1992-modern-worlds-test
+2026-11-16T07:25:54.7261191Z  * [new tag]           school-test-264          -> school-test-264
+2026-11-16T07:25:54.7261650Z  * [new tag]           school-test-265          -> school-test-265
+2026-11-16T07:25:54.7262042Z  * [new tag]           school-test-268          -> school-test-268
+2026-11-16T07:25:54.7262367Z  * [new tag]           school-test-270          -> school-test-270
+2026-11-16T07:25:54.7262736Z  * [new tag]           school-test-274          -> school-test-274
+2026-11-16T07:25:54.7263470Z  * [new tag]           studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868 -> studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868
+2026-11-16T07:25:54.7264767Z [command]/usr/bin/git branch --list --remote origin/delivery/lumo-nextgen-2031-replay-20261116
+2026-11-16T07:25:54.7265198Z   origin/delivery/lumo-nextgen-2031-replay-20261116
+2026-11-16T07:25:54.7266101Z [command]/usr/bin/git rev-parse refs/remotes/origin/delivery/lumo-nextgen-2031-replay-20261116
+2026-11-16T07:25:54.7266512Z 7270fbb7e9d496e91df18cedd0776a5d4f9a3c85
+2026-11-16T07:25:54.7267409Z ##[endgroup]
+2026-11-16T07:25:54.7267822Z ##[group]Determining the checkout info
+2026-11-16T07:25:54.7268268Z ##[endgroup]
+2026-11-16T07:25:54.7268564Z [command]/usr/bin/git sparse-checkout disable
+2026-11-16T07:25:54.7269212Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-16T07:25:54.7270008Z ##[group]Checking out the ref
+2026-11-16T07:25:54.7270594Z [command]/usr/bin/git checkout --progress --force -B delivery/lumo-nextgen-2031-replay-20261116 refs/remotes/origin/delivery/lumo-nextgen-2031-replay-20261116
+2026-11-16T07:25:55.7155121Z Updating files:  49% (3206/6503)
+2026-11-16T07:25:55.7227712Z Updating files:  50% (3252/6503)
+2026-11-16T07:25:55.7242916Z Updating files:  51% (3317/6503)
+2026-11-16T07:25:55.7283542Z Updating files:  52% (3382/6503)
+2026-11-16T07:25:55.7726480Z Updating files:  53% (3447/6503)
+2026-11-16T07:25:55.8274719Z Updating files:  54% (3512/6503)
+2026-11-16T07:25:55.9522297Z Updating files:  55% (3577/6503)
+2026-11-16T07:25:55.9579582Z Updating files:  56% (3642/6503)
+2026-11-16T07:25:55.9904234Z Updating files:  57% (3707/6503)
+2026-11-16T07:25:56.0186199Z Updating files:  58% (3772/6503)
+2026-11-16T07:25:56.1565095Z Updating files:  59% (3837/6503)
+2026-11-16T07:25:56.2845055Z Updating files:  60% (3902/6503)
+2026-11-16T07:25:56.3925773Z Updating files:  61% (3967/6503)
+2026-11-16T07:25:56.4275093Z Updating files:  62% (4032/6503)
+2026-11-16T07:25:56.4560158Z Updating files:  63% (4097/6503)
+2026-11-16T07:25:56.5144866Z Updating files:  64% (4162/6503)
+2026-11-16T07:25:56.5162120Z Updating files:  65% (4227/6503)
+2026-11-16T07:25:56.5179780Z Updating files:  66% (4292/6503)
+2026-11-16T07:25:56.5285831Z Updating files:  67% (4358/6503)
+2026-11-16T07:25:56.5302814Z Updating files:  68% (4423/6503)
+2026-11-16T07:25:56.5628661Z Updating files:  69% (4488/6503)
+2026-11-16T07:25:56.6498434Z Updating files:  70% (4553/6503)
+2026-11-16T07:25:56.6796418Z Updating files:  71% (4618/6503)
+2026-11-16T07:25:56.6928892Z Updating files:  72% (4683/6503)
+2026-11-16T07:25:56.6964403Z Updating files:  73% (4748/6503)
+2026-11-16T07:25:56.6998116Z Updating files:  74% (4813/6503)
+2026-11-16T07:25:56.7011127Z Updating files:  75% (4878/6503)
+2026-11-16T07:25:56.7054889Z Updating files:  75% (4887/6503)
+2026-11-16T07:25:56.7123841Z Updating files:  76% (4943/6503)
+2026-11-16T07:25:56.7171654Z Updating files:  77% (5008/6503)
+2026-11-16T07:25:56.7222598Z Updating files:  78% (5073/6503)
+2026-11-16T07:25:56.7259326Z Updating files:  79% (5138/6503)
+2026-11-16T07:25:56.7279438Z Updating files:  80% (5203/6503)
+2026-11-16T07:25:56.7300651Z Updating files:  81% (5268/6503)
+2026-11-16T07:25:56.7465177Z Updating files:  82% (5333/6503)
+2026-11-16T07:25:56.7504197Z Updating files:  83% (5398/6503)
+2026-11-16T07:25:56.7529782Z Updating files:  84% (5463/6503)
+2026-11-16T07:25:56.7556493Z Updating files:  85% (5528/6503)
+2026-11-16T07:25:56.7581783Z Updating files:  86% (5593/6503)
+2026-11-16T07:25:56.7609722Z Updating files:  87% (5658/6503)
+2026-11-16T07:25:56.7632896Z Updating files:  88% (5723/6503)
+2026-11-16T07:25:56.7653624Z Updating files:  89% (5788/6503)
+2026-11-16T07:25:56.7678256Z Updating files:  90% (5853/6503)
+2026-11-16T07:25:56.7714225Z Updating files:  91% (5918/6503)
+2026-11-16T07:25:56.8163571Z Updating files:  92% (5983/6503)
+2026-11-16T07:25:56.8410907Z Updating files:  93% (6048/6503)
+2026-11-16T07:25:56.8611807Z Updating files:  94% (6113/6503)
+2026-11-16T07:25:56.8727889Z Updating files:  95% (6178/6503)
+2026-11-16T07:25:56.8849107Z Updating files:  96% (6243/6503)
+2026-11-16T07:25:56.9001540Z Updating files:  97% (6308/6503)
+2026-11-16T07:25:56.9034912Z Updating files:  98% (6373/6503)
+2026-11-16T07:25:56.9067658Z Updating files:  99% (6438/6503)
+2026-11-16T07:25:56.9068001Z Updating files: 100% (6503/6503)
+2026-11-16T07:25:56.9068282Z Updating files: 100% (6503/6503), done.
+2026-11-16T07:25:56.9138563Z Switched to a new branch 'delivery/lumo-nextgen-2031-replay-20261116'
+2026-11-16T07:25:56.9147436Z branch 'delivery/lumo-nextgen-2031-replay-20261116' set up to track 'origin/delivery/lumo-nextgen-2031-replay-20261116'.
+2026-11-16T07:25:56.9278253Z ##[endgroup]
+2026-11-16T07:25:56.9315170Z [command]/usr/bin/git log -1 --format=%H
+2026-11-16T07:25:56.9333531Z 7270fbb7e9d496e91df18cedd0776a5d4f9a3c85
+2026-11-16T07:25:56.9340263Z ##[group]Removing auth
+2026-11-16T07:25:56.9343210Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-16T07:25:56.9363364Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-16T07:25:56.9520477Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-16T07:25:56.9541125Z http.https://github.com/.extraheader
+2026-11-16T07:25:56.9546361Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-16T07:25:56.9566290Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-16T07:25:56.9710340Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-16T07:25:56.9729091Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-16T07:25:56.9872780Z ##[endgroup]
+2026-11-16T07:25:57.0050079Z ##[group]Run python3 tools/nextgen/prepare_2031_learning_replay_release.py
+2026-11-16T07:25:57.0050556Z [36;1mpython3 tools/nextgen/prepare_2031_learning_replay_release.py[0m
+2026-11-16T07:25:57.1015431Z shell: /usr/bin/bash -e {0}
+2026-11-16T07:25:57.1015810Z env:
+2026-11-16T07:25:57.1017716Z   GH_TOKEN: ***
+2026-11-16T07:25:57.1017938Z ##[endgroup]
+2026-11-16T07:27:04.4809337Z {"prepared": true, "tag": "lumo-nextgen-learning-0.13.19-2031", "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee", "qaCommit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4", "apkSha256": "e6ca8e512ddc56755ae8664b3438b0e78b87a7f0e77f1cd55cac592b20b316d7", "fullModernizationComplete": false}
+2026-11-16T07:27:04.4983988Z ##[group]Run set -euo pipefail
+2026-11-16T07:27:04.4984290Z [36;1mset -euo pipefail[0m
+2026-11-16T07:27:04.4985183Z [36;1mgh release create "$RELEASE_TAG" release/*.apk release/BUILD-PROVENANCE.json release/APK-VERIFICATION.json release/COVERAGE.json release/DELIVERY.json release/Android-Lernpruefung.tar.gz --repo "$GITHUB_REPOSITORY" --target "$APK_SOURCE" --prerelease --title "LUMO Lernwelt 0.13.19 (2031)" --notes-file release-notes.md[0m
+2026-11-16T07:27:04.5012124Z shell: /usr/bin/bash -e {0}
+2026-11-16T07:27:04.5012386Z env:
+2026-11-16T07:27:04.5014278Z   GH_TOKEN: ***
+2026-11-16T07:27:04.5014530Z   RELEASE_TAG: lumo-nextgen-learning-0.13.19-2031
+2026-11-16T07:27:04.5014836Z   APK_SOURCE: e05a96a52aaf57e466e79831f15aaffd144284ee
+2026-11-16T07:27:04.5015162Z ##[endgroup]
+2026-11-16T07:27:29.5624553Z https://github.com/Ullmann27/lumo-lernen/releases/tag/lumo-nextgen-learning-0.13.19-2031
+2026-11-16T07:27:29.5669911Z ##[group]Run python3 tools/nextgen/prepare_2031_learning_replay_release.py verify-public
+2026-11-16T07:27:29.5670426Z [36;1mpython3 tools/nextgen/prepare_2031_learning_replay_release.py verify-public[0m
+2026-11-16T07:27:29.5696145Z shell: /usr/bin/bash -e {0}
+2026-11-16T07:27:29.5696483Z env:
+2026-11-16T07:27:29.5698383Z   GH_TOKEN: ***
+2026-11-16T07:27:29.5698625Z ##[endgroup]
+2026-11-16T07:27:47.3674504Z ##[group]Run actions/upload-artifact@v4
+2026-11-16T07:27:47.3674797Z with:
+2026-11-16T07:27:47.3675022Z   name: lumo-nextgen-2031-publication-proof
+2026-11-16T07:27:47.3675379Z   path: publication-proof/*.json
+release/DELIVERY.json
+release-notes.md
+
+2026-11-16T07:27:47.3675714Z   if-no-files-found: error
+2026-11-16T07:27:47.3675956Z   retention-days: 30
+2026-11-16T07:27:47.3676263Z   compression-level: 6
+2026-11-16T07:27:47.3676479Z   overwrite: false
+2026-11-16T07:27:47.3676699Z   include-hidden-files: false
+2026-11-16T07:27:47.3676930Z ##[endgroup]
+2026-11-16T07:27:47.4892418Z (node:2444) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-16T07:27:47.4893248Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-16T07:27:47.4944910Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-16T07:27:47.4946285Z The least common ancestor is /home/runner/work/lumo-lernen/lumo-lernen. This will be the root directory of the artifact
+2026-11-16T07:27:47.4947068Z With the provided path, there will be 15 files uploaded
+2026-11-16T07:27:47.4949544Z Artifact name is valid!
+2026-11-16T07:27:47.4950000Z Root directory input is valid!
+2026-11-16T07:27:48.2783719Z Beginning upload of artifact content to blob storage
+2026-11-16T07:27:48.3072287Z (node:2444) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-16T07:27:48.7161129Z Uploaded bytes 23659
+2026-11-16T07:27:48.8061817Z Finished uploading artifact content to blob storage!
+2026-11-16T07:27:48.8062473Z SHA256 digest of uploaded artifact zip is 0574bd5bb9f70e2f5d32840425c7dfc4363249c49f5add30fa5840ab66a32f4f
+2026-11-16T07:27:48.8063183Z Finalizing artifact upload
+2026-11-16T07:27:49.2149706Z Artifact lumo-nextgen-2031-publication-proof.zip successfully finalized. Artifact ID 14205437855
+2026-11-16T07:27:49.2150764Z Artifact lumo-nextgen-2031-publication-proof has been successfully uploaded! Final size is 23659 bytes. Artifact ID is 14205437855
+2026-11-16T07:27:49.2154547Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43823660756/artifacts/14205437855
+2026-11-16T07:27:49.2321683Z Post job cleanup.
+2026-11-16T07:27:49.2962739Z [command]/usr/bin/git version
+2026-11-16T07:27:49.2987906Z git version 2.56.1
+2026-11-16T07:27:49.3011721Z Temporarily overriding HOME='/home/runner/work/_temp/65123a93-bffe-4015-aa4d-d37612c3dd64' before making global git config changes
+2026-11-16T07:27:49.3012598Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-16T07:27:49.3015739Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-16T07:27:49.3042534Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-16T07:27:49.3065099Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-16T07:27:49.3220331Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-16T07:27:49.3241646Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-16T07:27:49.3394322Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-16T07:27:49.3415088Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-16T07:27:49.3657348Z Cleaning up orphan processes
+2026-11-16T07:27:49.3889862Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

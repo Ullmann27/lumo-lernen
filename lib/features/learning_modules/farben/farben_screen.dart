@@ -8,9 +8,9 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
-
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,6 +18,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 class _Farbe {
@@ -95,6 +96,7 @@ class _FarbenScreenState extends State<FarbenScreen>
     _Objekt(name: 'Drache', artikel: 'der', emoji: '🐉', prompt: 'dragon'),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -203,6 +205,8 @@ class _FarbenScreenState extends State<FarbenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey:
+          '${_round[_taskIdx].kind}:${_round[_taskIdx].object}:${_round[_taskIdx].color}',
       cosmosSubjectId: 's1_farben',
       cosmosIsMath: false,
       correct: isCorrect,
@@ -307,6 +311,58 @@ class _FarbenScreenState extends State<FarbenScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final chooseName = _typ == _FarbFrageTyp.farbeZuObjekt;
+    final choices = chooseName
+        ? _colorOptions.map((color) => color.name).toList()
+        : const [
+            'Feld oben links',
+            'Feld oben rechts',
+            'Feld unten links',
+            'Feld unten rechts'
+          ];
+    final selected = _selectedIdx;
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 's1_farben',
+      taskKey: _taskIdx,
+      prompt: chooseName
+          ? 'Welche Hintergrundfarbe siehst du beim Bild „${_objekt.name}“?'
+          : 'Tippe das Feld mit der Farbe ${_correctFarbe.name}!',
+      objective: 'Du verbindest eine sichtbare Farbe mit ihrem Namen.',
+      answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          chooseName
+              ? _colorOptions[index] == _correctFarbe
+              : index == _correctImageIdx),
+      helpSteps: [
+        'Schau auf die große farbige Fläche hinter dem Bild „${_objekt.name}“. Die Farben des Bildes selbst sind hier nicht gefragt.',
+        chooseName
+            ? 'Vergleiche die Hintergrundfläche mit den Farbfeldern der Antwortkarten. Die dunkleren Ränder gehören zur selben Farbe.'
+            : 'Gesucht ist ${_correctFarbe.name}. Betrachte die vier Hintergrundflächen nacheinander: oben links, oben rechts, unten links, unten rechts.',
+        chooseName
+            ? 'Die Hintergrundfarbe heißt ${_correctFarbe.name}. Suche nun den passenden Farbnamen bei den Antworten.'
+            : 'Das gesuchte Feld liegt ${const [
+                'oben links',
+                'oben rechts',
+                'unten links',
+                'unten rechts'
+              ][_correctImageIdx]}. Schau noch einmal auf seine Hintergrundfarbe und wähle selbst.',
+      ],
+      answering: !_answered,
+      lastAnswer: selected == null ? null : choices[selected],
+      lastCorrect: selected == null
+          ? null
+          : chooseName
+              ? _colorOptions[selected] == _correctFarbe
+              : selected == _correctImageIdx,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -321,7 +377,8 @@ class _FarbenScreenState extends State<FarbenScreen>
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -341,7 +398,7 @@ class _FarbenScreenState extends State<FarbenScreen>
               _buildImageGrid(),
             ],
           ]),
-        ),
+        )),
       ),
     );
   }
@@ -388,6 +445,7 @@ class _FarbenScreenState extends State<FarbenScreen>
     // Kind sah immer nur 🎨-Palette als Fallback. Jetzt verlaesslich:
     // farbiger Hintergrund + echtes Emoji des Objekts.
     return _EmojiBubble(
+      name: _objekt.name,
       emoji: _objekt.emoji,
       color: farbe.color,
       size: 220,
@@ -407,6 +465,7 @@ class _FarbenScreenState extends State<FarbenScreen>
         final isCorrect = i == _correctImageIdx;
         final isSelected = _selectedIdx == i;
         return _ColoredEmojiOption(
+          name: _objekt.name,
           emoji: _objekt.emoji,
           color: farbe.color,
           isSelected: isSelected,
@@ -484,10 +543,12 @@ class _FarbenScreenState extends State<FarbenScreen>
 /// Internet-Bild noetig.
 class _EmojiBubble extends StatelessWidget {
   const _EmojiBubble({
+    required this.name,
     required this.emoji,
     required this.color,
     required this.size,
   });
+  final String name;
   final String emoji;
   final Color color;
   final double size;
@@ -515,7 +576,7 @@ class _EmojiBubble extends StatelessWidget {
           ),
         ],
       ),
-      child: Text(emoji, style: TextStyle(fontSize: size * 0.5)),
+      child: LumoTaskObjectArt(name: name, emoji: emoji, size: size * 0.62),
     );
   }
 }
@@ -535,6 +596,7 @@ Color _shadeOf(Color base, double factor) {
 /// reine lokale Render-Logik mit garantiert unterschiedlichen Farben.
 class _ColoredEmojiOption extends StatelessWidget {
   const _ColoredEmojiOption({
+    required this.name,
     required this.emoji,
     required this.color,
     required this.isSelected,
@@ -543,6 +605,7 @@ class _ColoredEmojiOption extends StatelessWidget {
     required this.bounceCtrl,
     required this.onTap,
   });
+  final String name;
   final String emoji;
   final Color color;
   final bool isSelected;
@@ -590,7 +653,7 @@ class _ColoredEmojiOption extends StatelessWidget {
             ],
           ),
           alignment: Alignment.center,
-          child: Text(emoji, style: const TextStyle(fontSize: 70, height: 1.0)),
+          child: LumoTaskObjectArt(name: name, emoji: emoji, size: 78),
         ),
       ),
     );

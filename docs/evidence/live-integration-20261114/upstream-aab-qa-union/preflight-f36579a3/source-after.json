@@ -1,0 +1,122 @@
+{
+  "head": "f36579a3a7e06045eaecea7c00e497ac06930100",
+  "tree": "ed67b3939bb3caeb69231a2c70387860155b1a83",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "status_porcelain": "",
+  "tracked_files": 4655,
+  "tracked_bytes": 665294437,
+  "all_tracked_git_blobs_match": true,
+  "tracked_identity_sha256": "aeca529c3f6a4ae39dc8e6289ac8fb896a2f62fadb89d8940082850a830ff77a",
+  "selected_sources": {
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "bytes": 17696,
+      "sha256": "95301e0acfe43da13ae198e5e6eaddd5525a0804f73fc3db97f9c144ba7a86d4",
+      "git_blob": "54ed0ed947d820edab29c612f1bbfad60aa39681"
+    },
+    "scripts/tests/test_legacy_release_pin.py": {
+      "bytes": 28597,
+      "sha256": "4b81239264d913e1ce97c90bd5de6c82e44d672e4324d1462baddece52855939",
+      "git_blob": "880d24d68acca67619706430c019dfaf2fa7c3a3"
+    },
+    "scripts/tests/test_connect_four_delivery.py": {
+      "bytes": 83821,
+      "sha256": "fd75c0786db0a2ed21ea3d11e6ecf521c9c5621e91f56473cbb7be3b32d7f464",
+      "git_blob": "cd95512077293e973699b343dc3575af7e2b0108"
+    },
+    "scripts/tests/test_connect_four_pipeline.py": {
+      "bytes": 26172,
+      "sha256": "de2c139f2910dfb9659430c3dc1498e27a946194c140365459d22cf224e2009e",
+      "git_blob": "0836ae775c3524c8b4a691fef934d52caa20cbc8"
+    },
+    "scripts/tests/test_connect_four_return_gate.py": {
+      "bytes": 12606,
+      "sha256": "c7253c73f4c56d38dafcef150223ff340518e2ae819db8c03614f924f63f827f",
+      "git_blob": "a3a76bcc9949af22d9be8abdce2e30065b97dddc"
+    },
+    "scripts/tests/test_verify_unchanged_apk_diagnostic.py": {
+      "bytes": 25645,
+      "sha256": "fab5c38fea8531e3924264bcd77b48271d01e3cc1e62b7b7773e9521a5b26556",
+      "git_blob": "ed889242499d4bbc16e7b19be1c3869162cb1d28"
+    },
+    "scripts/tests/test_runtime_followup_workflow.py": {
+      "bytes": 17494,
+      "sha256": "feb63ccda4fb641de3a648c7e1ad6db920a3403a0021bf7da431a20c7796a9ff",
+      "git_blob": "b6bc8e67649ec6d7808a7d37cddb93cb0f931b19"
+    },
+    "scripts/tests/test_android_runtime_wait_notification.py": {
+      "bytes": 7513,
+      "sha256": "dcac38c995f9faaeeb2db9ec24b9d1b2a564ac6cecd6d466ff0e7425f99d3e54",
+      "git_blob": "a85f64bfbe7d374be64437dfd76709e92fffd0e3"
+    },
+    "scripts/tests/test_verify_android_runtime_anr.py": {
+      "bytes": 24164,
+      "sha256": "afe8e382f58a4a579ac2b25fb49fdf22f7297db0b0d1ceb88264841ee3703046",
+      "git_blob": "ad15a8aa8f81e72e662577742a02d738749a6d6a"
+    },
+    "scripts/tests/test_android_runtime_device_logger.py": {
+      "bytes": 24426,
+      "sha256": "a3bf999fe033b1573637a8004b91dfd76989b08c70cda70484f5312d61df4ec1",
+      "git_blob": "0e260d08aad16379913258230471172f6f52bb58"
+    },
+    "tools/android_qa/tests/test_connect_four_android_evidence.py": {
+      "bytes": 28636,
+      "sha256": "a305542998c70789cae6499f3e5c4c1507488ef360fa29ec5ea792b730bcd94c",
+      "git_blob": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc"
+    },
+    "tools/android_qa/tests/test_village_android_evidence.py": {
+      "bytes": 22017,
+      "sha256": "ec6e3f4e507e6e6cb592b38da4324b6dc54b878138137c5be22c465691a5344b",
+      "git_blob": "55053f72145aec5d10a2d1669ff93618c36a7ee3"
+    },
+    "tools/android_qa/tests/test_kart_continue_caption.py": {
+      "bytes": 8453,
+      "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+      "git_blob": "1d02ca8663998dcbddb6c02107148672c5882b52"
+    },
+    "tools/android_qa/tests/test_kart_garage_evidence.py": {
+      "bytes": 30218,
+      "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae",
+      "git_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d"
+    },
+    "tools/android_qa/tests/test_update_2019_preservation.py": {
+      "bytes": 12156,
+      "sha256": "c0575842654050432bd87a7f701af0821b881c1839eeecc923a57940ddb89a38",
+      "git_blob": "b9c667de8d9d9fd3ec158141d17d09d899aea2b6"
+    },
+    "tools/android_qa/tests/test_update_2020_preservation.py": {
+      "bytes": 11917,
+      "sha256": "1bed363f797b6692d3ca8c8df7f6f18130273d25fee1d1c934c5d5bfd6fc36dc",
+      "git_blob": "8fe3a33d88658fc8ab87b3b2a9de67108cf9b3cf"
+    },
+    ".github/workflows/lumo-connect-four-2020.yml": {
+      "bytes": 50083,
+      "sha256": "b250e610afea7f42cdf2f6ade9f25a41f4df8c100080a577c05119b6a6175877",
+      "git_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6"
+    },
+    ".github/workflows/lumo-unified-integration-2026.yml": {
+      "bytes": 82697,
+      "sha256": "531357b8f1ac7b0208b227632ee1d43d056e8cd4a70358fd1e97936bb2337963",
+      "git_blob": "042c03ed618d5957d2d0a499e3eef4aa0d2a9e0d"
+    },
+    ".github/workflows/lumo-learning-curriculum-audit.yml": {
+      "bytes": 2832,
+      "sha256": "71b5f3cf648286788366ca7fc36eb4a4fa6d4a7cc84e3e0f3f71ead47a54205a",
+      "git_blob": "a81d9a1af2800408cde1a0a26127e30cca4030ae"
+    },
+    ".github/workflows/lumo-astra-script-recovery.yml": {
+      "bytes": 2144,
+      "sha256": "0493356636a6af01a00a7ce0f63033fe425466de7466736ae5abb9fad370707a",
+      "git_blob": "777d8f3c3bb7dad2a0155a156c6a1f9f7d37e11b"
+    },
+    ".github/workflows/lumo-unchanged-apk-diagnostic.yml": {
+      "bytes": 12962,
+      "sha256": "e186bc6ec6e3dd946d77213307ad7c3b5152e0431b820e0f4c60c399d6fe46fa",
+      "git_blob": "1eb5d47f3aaad6464ae78290d829f56727fbfc9c"
+    },
+    ".github/workflows/lumo-android-runtime-7b16-followup.yml": {
+      "bytes": 13521,
+      "sha256": "a0f99f5bdf09a6f20e1800425497129f9ce9b3e68b19ca3d1a38feb9eab51a31",
+      "git_blob": "314ea2eb5acaf27598c8e75c11df4b20e34f809d"
+    }
+  }
+}

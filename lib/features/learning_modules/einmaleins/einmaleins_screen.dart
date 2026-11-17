@@ -1,3 +1,4 @@
+import '../../../widgets/design/lumo_answer_crystal.dart';
 // ════════════════════════════════════════════════════════════════════════
 // EINMALEINS — Klasse 2/3 Mathematik (interaktiv)
 // ════════════════════════════════════════════════════════════════════════
@@ -7,6 +8,8 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../learning/widgets/lumo_quantity_workbenches.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -42,6 +45,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
@@ -51,6 +55,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   bool _showHint = false;
   bool _answered = false;
   int? _selectedAnswer;
+  Set<int> _countedGroups = {};
 
   late int _a;
   late int _b;
@@ -121,6 +126,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
     _selectedAnswer = null;
     _showHint = false;
     _wrongAttempts = 0;
+    _countedGroups = {};
   }
 
   void _speakTask() {
@@ -277,26 +283,50 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
         progressLabel: 'Aufgabe',
         hasMistake: _answered && _selectedAnswer != _correct,
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
-          animation: _entryCtrl,
-          builder: (_, child) {
-            return Opacity(
-                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
-                    ? 1
-                    : _entryCtrl.value,
-                child: child);
-          },
-          child: Column(children: [
-            _buildTaskHeader(),
-            const SizedBox(height: 12),
-            _buildVisualization(),
-            const SizedBox(height: 16),
-            _buildAnswerGrid(),
-            if (_showHint) ...[
-              const SizedBox(height: 20),
-              _buildHintCard(),
-            ],
-          ]),
+        companionUnit: _progress.unit,
+        child: ModuleTaskScope(
+          key: _taskScopeKey,
+          appState: widget.appState,
+          progress: _progress,
+          moduleId: widget.fullRange ? 'm3_einmaleins_voll' : 'm2_einmaleins',
+          taskKey: _taskIdx,
+          prompt: '$_a × $_b = ?',
+          objective:
+              'Gleich große Gruppen zusammenzählen und als Malaufgabe verstehen.',
+          answerChoices: _answers.map((answer) => '$answer').toList(),
+          onConfirmChoice: (index) => _onAnswer(_answers[index]),
+          helpSteps: [
+            'Du siehst $_a Gruppen. Jede Gruppe enthält genau $_b Steine.',
+            'Markiere eine Gruppe nach der anderen. '
+                'Mit jeder weiteren Gruppe kommen $_b Steine dazu.',
+            'Zähle in $_b-er-Schritten. Beginne mit der ersten Gruppe '
+                'und addiere für jede weitere Gruppe $_b.',
+          ],
+          answering: !_answered && !_progress.hasPending,
+          lastAnswer: _selectedAnswer?.toString(),
+          lastCorrect: _answered ? _selectedAnswer == _correct : null,
+          child: AnimatedBuilder(
+            animation: _entryCtrl,
+            builder: (_, child) {
+              return Opacity(
+                  opacity:
+                      LumoLessonStyle.reducedMotion(context, widget.appState)
+                          ? 1
+                          : _entryCtrl.value,
+                  child: child);
+            },
+            child: Column(children: [
+              _buildTaskHeader(),
+              const SizedBox(height: 12),
+              _buildVisualization(),
+              const SizedBox(height: 16),
+              _buildAnswerGrid(),
+              if (_showHint) ...[
+                const SizedBox(height: 20),
+                _buildHintCard(),
+              ],
+            ]),
+          ),
         ),
       ),
     );
@@ -335,57 +365,13 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
     );
   }
 
-  // Visualisierung: a Reihen mit je b Punkten = Multiplikations-Gitter
-  Widget _buildVisualization() {
-    if (_a > 5 || _b > 5) {
-      // Bei groesseren Zahlen: Hinweis statt visualisieren (sonst Overflow)
-      return Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: LumoVisualTokens.cyan.withValues(alpha: .55),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Text(
-            '$_a-mal die $_b zusammenzählen:\n'
-            '${List.filled(_a, _b).join(' + ')} = ?',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
-                color: LumoVisualTokens.white)),
+  Widget _buildVisualization() => LumoEqualGroupsWorkbench(
+        groups: _a,
+        perGroup: _b,
+        counted: _countedGroups,
+        enabled: !_answered && !_progress.hasPending,
+        onChanged: (groups) => setState(() => _countedGroups = groups),
       );
-    }
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .55)),
-      ),
-      child: Column(
-        children: List.generate(_a, (row) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(_b, (col) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: _gradient[0],
-                    shape: BoxShape.circle,
-                  ),
-                );
-              }),
-            ),
-          );
-        }),
-      ),
-    );
-  }
 
   Widget _buildAnswerGrid() {
     return LumoLessonAnswerGrid(
@@ -402,52 +388,24 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   Widget _buildAnswerButton(int value) {
     final isSelected = _selectedAnswer == value;
     final isCorrect = value == _correct;
-    Color bgColor = LumoVisualTokens.lessonAnswer;
-    Color textColor = LumoVisualTokens.white;
-    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
-    if (_answered && isSelected) {
-      if (isCorrect) {
-        bgColor = const Color(0xFFD1FAE5);
-        textColor = const Color(0xFF065F46);
-        borderColor = const Color(0xFF10B981);
-      } else {
-        bgColor = const Color(0xFFFEE2E2);
-        textColor = const Color(0xFF991B1B);
-        borderColor = const Color(0xFFEF4444);
-      }
-    } else if (_answered && isCorrect && _wrongAttempts >= 1) {
-      bgColor = const Color(0xFFFEF3C7);
-      textColor = const Color(0xFF713F12);
-      borderColor = const Color(0xFFFCD34D);
-    }
     return AnimatedBuilder(
       animation: _bounceCtrl,
-      builder: (_, child) {
-        final s = isSelected &&
+      builder: (_, child) => Transform.scale(
+        scale: isSelected &&
                 isCorrect &&
                 !LumoLessonStyle.reducedMotion(context, widget.appState)
-            ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
-            : 1.0;
-        return Transform.scale(scale: s, child: child);
-      },
-      child: LumoLessonAnswerTap(
-        correct: _answered && isSelected ? isCorrect : null,
-        onTap: _answered ? null : () => _onAnswer(value),
-        child: AnimatedContainer(
-          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
-              ? Duration.zero
-              : const Duration(milliseconds: 200),
-          decoration:
-              LumoLessonStyle.answer(background: bgColor, border: borderColor),
-          child: Center(
-            child: Text('$value',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 36,
-                    fontWeight: FontWeight.w900,
-                    color: textColor)),
-          ),
-        ),
+            ? 1 + math.sin(_bounceCtrl.value * math.pi) * .1
+            : 1,
+        child: child,
+      ),
+      child: LumoAnswerCrystal(
+        label: '$value',
+        onPressed: _answered ? null : () => _onAnswer(value),
+        state: _answered && isCorrect && (isSelected || _wrongAttempts >= 1)
+            ? LumoCrystalState.correct
+            : _answered && isSelected
+                ? LumoCrystalState.retry
+                : LumoCrystalState.neutral,
       ),
     );
   }

@@ -1,0 +1,322 @@
+{
+  "artifactId": 14204798832,
+  "workflowRun": 43822740773,
+  "archiveSha256": "d28a0b855eb8ad8cc5127cac5fa0b453f79999dd98a798ba449bdb72ad6131df",
+  "byteExactOriginals": [
+    {
+      "path": "android/runtime-cases/0100-academy-tools-open.xml",
+      "bytes": 30325,
+      "sha256": "6b87b66b7ff3e766898b3daa0a38f98a441722439be71f2b8766fc95e04d95f8"
+    },
+    {
+      "path": "android/runtime-cases/0101-academy-tools-open-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e"
+    },
+    {
+      "path": "android/runtime-cases/0102-lab-entry.xml",
+      "bytes": 30325,
+      "sha256": "6b87b66b7ff3e766898b3daa0a38f98a441722439be71f2b8766fc95e04d95f8"
+    },
+    {
+      "path": "android/runtime-cases/0103-lab-entry.xml",
+      "bytes": 29926,
+      "sha256": "2fd51a7ed1a30468996fc8351504119b044de0e4284b2e7938060ac4ce959e42"
+    },
+    {
+      "path": "android/runtime-cases/0104-lab-entry.xml",
+      "bytes": 31712,
+      "sha256": "660711933ad7e28521f528c242a2d8ddd1b3d0928a0f6f972cd1b5399a3a9082"
+    },
+    {
+      "path": "android/runtime-cases/0105-lab-entry-scroll-search.json",
+      "bytes": 770,
+      "sha256": "4b157e83c8c851c78be42639fd3325873f06b9f47206ccdb2d39414735f90bfd"
+    },
+    {
+      "path": "android/runtime-cases/0106-lab-entry-touch.json",
+      "bytes": 110,
+      "sha256": "70b16fe5b79c81fdafa55b170800cbdfed8c1316efc8604a9d92c0a27904b818"
+    },
+    {
+      "path": "android/runtime-cases/0107-lab-hub.xml",
+      "bytes": 23967,
+      "sha256": "5e4914157d182df42ef2e558504bae07140ae4502f5492e12a4ae0f139fb873f"
+    },
+    {
+      "path": "android/runtime-cases/0108-numeric-bridge-entry.xml",
+      "bytes": 23967,
+      "sha256": "5e4914157d182df42ef2e558504bae07140ae4502f5492e12a4ae0f139fb873f"
+    },
+    {
+      "path": "android/runtime-cases/0109-numeric-bridge-entry-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e"
+    },
+    {
+      "path": "android/runtime-cases/0110-numeric-bridge-entry-touch.json",
+      "bytes": 99,
+      "sha256": "3a013ae29a07349a82bc4c9936d9c9940afcbe9cb8e9dce1eb84933e4b52779b"
+    },
+    {
+      "path": "android/runtime-cases/0111-numeric-example.xml",
+      "bytes": 25386,
+      "sha256": "4277b34f8f2005113dabd724027bd5d0c9f90354202e2f8c7439aaa60bd75603"
+    },
+    {
+      "path": "android/runtime-cases/0113-numeric-build-before-graded-recall-ffprobe.json",
+      "bytes": 4358,
+      "sha256": "b25c5cb2bed81a7ff08d66bfa5da6c53e1d42aed8cb00b8fe4e4f1cd333d25a8"
+    },
+    {
+      "path": "android/runtime-cases/0112-numeric-example-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e"
+    },
+    {
+      "path": "android/runtime-cases/0113-numeric-build-before-graded-recall-video-transfer.json",
+      "bytes": 2069,
+      "sha256": "196e3c72252c7937cd239cb9418f2059cc9fe5c2ecb73697bdc43ec8067f4fce"
+    },
+    {
+      "path": "android/runtime-cases/0113-numeric-build-before-graded-recall-video.json",
+      "bytes": 451,
+      "sha256": "c111f36209adf0021d89d2bcec4f6172f6c9abcd1426c97c9d3e1b8e2e23591e"
+    },
+    {
+      "path": "android/runtime-cases/0114-numeric-build-phase.xml",
+      "bytes": 25386,
+      "sha256": "4277b34f8f2005113dabd724027bd5d0c9f90354202e2f8c7439aaa60bd75603"
+    },
+    {
+      "path": "android/runtime-cases/0115-numeric-build-phase-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e"
+    },
+    {
+      "path": "android/runtime-cases/0116-numeric-build-phase-touch.json",
+      "bytes": 103,
+      "sha256": "c78c2a2796efeb8583d27f5ad85c5ddc5be3f449ff75420fde074182969dff34"
+    },
+    {
+      "path": "android/runtime-cases/0117-numeric-build-stone.xml",
+      "bytes": 24880,
+      "sha256": "6876e32b97afc222c061d4eec97f9bd855edb7eea9f0c2e8f5a0fd9c595791c4"
+    },
+    {
+      "path": "android/runtime-cases/0118-numeric-build-stone-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e"
+    },
+    {
+      "path": "android/runtime-cases/0119-numeric-build-stone-touch.json",
+      "bytes": 119,
+      "sha256": "47476603e35a61d16b7bd5b9d9030b81997c4dcf8bf0c3c6aeed61b85ab3854a"
+    },
+    {
+      "path": "android/runtime-cases/0120-numeric-build-stone.xml",
+      "bytes": 24993,
+      "sha256": "a7d20ab355717eb4d9954443f3303a7dc6a5cd991eb3695e31c20a1e8bf1849f"
+    },
+    {
+      "path": "android/runtime-cases/0121-numeric-build-stone-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e"
+    },
+    {
+      "path": "android/runtime-cases/0122-numeric-build-stone-touch.json",
+      "bytes": 119,
+      "sha256": "248bddf490212fa4b6033ad4927a3e7a2044162d66d70ff0e1309994f0574920"
+    },
+    {
+      "path": "android/runtime-cases/0123-bridge-checkpoint-preferences.xml",
+      "bytes": 3106,
+      "sha256": "879b4ad2909af3e35630906bc3a48d71360f542a332e74073d22c70eee378e01"
+    },
+    {
+      "path": "android/runtime-cases/0124-numeric-model-check.xml",
+      "bytes": 25321,
+      "sha256": "6fa42360ab86201077d7d7f252eb7d0b6c74d523bea3686b06cbd1b83dca5b11"
+    },
+    {
+      "path": "android/runtime-cases/0126-numeric-model-check-touch.json",
+      "bytes": 101,
+      "sha256": "37e9389635addf019a120719255e01ec329170912d803bdae8bb37025a0d7de0"
+    },
+    {
+      "path": "android/runtime-cases/0127-bridge-checkpoint-preferences.xml",
+      "bytes": 3871,
+      "sha256": "50776f3d4bf99ce0a504248b777d523dc88c9538611a0f43801ac9850912e884"
+    },
+    {
+      "path": "android/runtime-cases/0125-numeric-model-check-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e"
+    },
+    {
+      "path": "android/runtime-cases/0128-numeric-recall-phase.xml",
+      "bytes": 25329,
+      "sha256": "6e10ac5e5cd7b168390a33347284bee28b909ea2a88cef205372375ba4eac3f2"
+    },
+    {
+      "path": "android/runtime-cases/0129-numeric-recall-phase.xml",
+      "bytes": 27040,
+      "sha256": "dc476fbdc34326f858e105bd7b94faa1ae80ec3c79bf6b78d723d3a6af998b36"
+    },
+    {
+      "path": "android/runtime-cases/0130-numeric-recall-phase-scroll-search.json",
+      "bytes": 451,
+      "sha256": "5a3d580e69a2d95799025698e93b1fb3e7851b75b0874a98a7bebb8f5498e7e2"
+    },
+    {
+      "path": "android/runtime-cases/0131-numeric-recall-phase-touch.json",
+      "bytes": 111,
+      "sha256": "5a763f5eced91b74e69304755a22aa131b0f4a3ec8b0a11df44c10d69599be3d"
+    },
+    {
+      "path": "android/runtime-cases/0132-numeric-nine-plus-seven.xml",
+      "bytes": 25686,
+      "sha256": "3c7790b8d940868e62d2fe17e8c54aa5e133e351800a36ce8c51dc2105ea3d3b"
+    },
+    {
+      "path": "android/runtime-cases/0133-numeric-nine-plus-seven-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-1.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-10.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-11.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-12.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-2.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-3.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-4.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-5.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-6.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-7.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-8.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-candidate-9.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "android/runtime-cases/0134-numeric-before-wrong-answer-render-readiness.json",
+      "bytes": 4946,
+      "sha256": "385e7c5094a26ea9fe02f20855667202122d68cea1415452254c788c4b54b05b"
+    },
+    {
+      "path": "checkers/current-gates.log",
+      "bytes": 2382,
+      "sha256": "c9d68f19b41037b5e1c13870e4d796ecb9182172756977a479f6a556f95bfea4"
+    },
+    {
+      "path": "checkers/original-gates.log",
+      "bytes": 17935,
+      "sha256": "8d2f6578c0048f18bd8b83f4e6cb0f91662ae5a24983d50574f1e8bc4a0302bf"
+    },
+    {
+      "path": "checkers/public-download-gates.log",
+      "bytes": 2755,
+      "sha256": "d6acd4e067f5888da1b1138d9efd032cb0643b40f7e295a13061eac95c9c8774"
+    },
+    {
+      "path": "checkers/publication-gates.log",
+      "bytes": 1902,
+      "sha256": "f67109e49036f617ed7a4fdb2bdcb08792a8c19044f7187eb62d1f7e7fbd2b39"
+    },
+    {
+      "path": "checkers/reference-gates.log",
+      "bytes": 7018,
+      "sha256": "9cc6c343791dc1abba0ec601323a7cafefd4ccc9fb186ff565736889b218e01a"
+    },
+    {
+      "path": "checkers/runtime-case-gates.log",
+      "bytes": 12119,
+      "sha256": "d009c201f3da55bce26e6d79c05a33f49050638ce79c787f8e973f78c1be0a99"
+    },
+    {
+      "path": "checkers/wrapped-reader.log",
+      "bytes": 2824,
+      "sha256": "0e7ffef39d5d9c2d7adada0dfe36403f6e8ae4f0276b77b46105044ae0d4c91f"
+    },
+    {
+      "path": "download/original-build-job.json",
+      "bytes": 4514,
+      "sha256": "1905f9a78cb2085451bcd7e5e26a4b018459942e811aaba9360021e8a2e2773e"
+    },
+    {
+      "path": "download/original-run.json",
+      "bytes": 13802,
+      "sha256": "0148a252c8f7833dbec7fbcbb12c170fc9b4bba14c122ff0df1bfc37e2269d46"
+    },
+    {
+      "path": "download/original-validate-job.json",
+      "bytes": 5726,
+      "sha256": "d5f557e1c706ec9505aaa7e6e45624ad6b27bb0692b51ecaed3ad3a740d729a7"
+    },
+    {
+      "path": "download/original-x86-artifact.json",
+      "bytes": 810,
+      "sha256": "3e898baecfa54d1d0e9ce0001e408ab7188bfd2a9f28089188f02d6a50d86959"
+    },
+    {
+      "path": "download/verified-download.json",
+      "bytes": 27881,
+      "sha256": "53cfea8899145f48bebbdc3f8786ad4b820d16c7e9651643b9c95f25874fef72"
+    },
+    {
+      "path": "emulator/mesa-renderer.txt",
+      "bytes": 1774,
+      "sha256": "ef53ffa5236027e821485a496737779d276fc81ae2ca63bc0fcd165c41ffe1d3"
+    },
+    {
+      "path": "emulator/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    }
+  ]
+}

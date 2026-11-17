@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "kind": "independent_host_dream_and_garage_source_review",
+  "reviewer": "/root/pipeline_repair",
+  "verdict": "NO_CONCRETE_SOURCE_BLOCKER",
+  "serialization": "New complete review serialized directly in functions.store after executor disconnection. This does not claim that the final attempted local file write succeeded, and does not recreate lost original logs.",
+  "base_host": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "base_tree": "10234debe8d5f2f9577ac28aa05ae99322d9190f",
+  "scope": "Read-only review of the exact frozen Dream three-file patch and garage one-line assertion. No proposed code import/execution, tests, engine, renderer, device, source/index/ref/CI mutation.",
+  "dream": {
+    "pack": "/tmp/host-dream-delivery-integration-32e7-20261114",
+    "source_freeze_sha256": "a10a751ac21164f0ef19979b75032f59b8af344651341bf7cffa12b827241a88",
+    "manifest_sha256": "3c9716ced244407c1fbff90eaadf4c386269794f3b039b88c5312c33fc47af15",
+    "patch_sha256": "0940b7949122174b5f4fbfc0db04594a48498f55de8025743707766457fb50d1",
+    "gate_contract_sha256": "7e2fdfeb355af314273e7c35d86ddfab968a1393151e925446dd2dc46f0e4887",
+    "all_manifest_objects_hash_verified": 16,
+    "sources": [
+      {
+        "path": ".github/workflows/lumo-connect-four-2020.yml",
+        "before_sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa",
+        "before_blob": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af",
+        "after_sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6",
+        "after_blob": "d56118529b7493e819262e61427d627c01ee0753",
+        "after_bytes": 45539
+      },
+      {
+        "path": "scripts/verify_connect_four_delivery.py",
+        "before_sha256": "b981836528b83c339e3e6fac16712786619905cb0159016f0a021ee447be6800",
+        "before_blob": "eb35329baf46efa5cdf17af1187e8c460d93c752",
+        "after_sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82",
+        "after_blob": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff",
+        "after_bytes": 56951
+      },
+      {
+        "path": "scripts/tests/test_connect_four_delivery.py",
+        "before_sha256": "bd7637f769064c3cf13dd910c04b917cc90ad5c04b7b761021a5e0128f826b8a",
+        "before_blob": "c7b9461ed056521a5da1fb528afe614b7cdeecee",
+        "after_sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b",
+        "after_blob": "a91e25120489d21fc409930d893f52b31448aea3",
+        "after_bytes": 66711
+      }
+    ],
+    "findings": [
+      "All three before sources were directly byte-compared to immutable git show of exact Host32e. No checkout, index or ref was changed.",
+      "The workflow has exactly one additive 22-line/1617-byte step. Removing that block reproduces every original workflow byte, including all existing jobs, gates, deadlines, needs, uploads and publication restrictions.",
+      "The new step uses the existing absolute $GITHUB_WORKSPACE/.ci-python/bin before changing directory; the old required setup installs Pillow12.3.0 there. The config pin is read from Host, then the already existing $RUNNER_TEMP/lumo-native-acceptance checkout is checked and used.",
+      "The output is the absolute acceptance-native/dream directory; it must be absent and not a symlink. The preserved-reader destination is also required to be new. The step runs after the full existing Native gate and before the original upload and APK build. set-e/pipefail preserves runner failures through tee.",
+      "Both workflow and delivery bind reader SHA256 f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d and Git blob da8eed7d6383fcbc82a03596518a5fcc3b9a00c5 before execution/import. Delivery recomputes the blob and checks revision:path. The artifact copy is evidence only and is never executed.",
+      "Delivery calls only the approved checkout reader with write=False. It requires exact equality with the original manifest, schema1, the candidate Native source and tree, exact reader engine, five probes, seven PNGs, two reports and physical_android_fps_measured=False.",
+      "All indexed paths must be safe and unique with no symlink components, exact sizes and SHA256. Manifest, runner log, reader, preserved reader and every indexed original are rechecked after replay. Exact unique aggregate success markers are required; post-PASS engine errors, resource leaks, timeout and explicit failure markers remain fatal.",
+      "The actual pinned Native reader enforces the exact five ordered modes, one genuine engine invocation per log, clean source/index evidence, all seven fixed raster paths, complete PNG decoding, both JSON reports, advancing animation clocks and actual different RGB pixels. This verified reader was also freshly bound in the current separate Native CI; stored counts alone do not substitute for its execution.",
+      "DREAM_STEP is mandatory through the existing strict checked_jobs function. A successful job cannot hide a missing, duplicate, skipped or failed Dream step.",
+      "Complete delivery-module AST equals its old AST after removing only the four Dream constants, one required-step entry, checked_native_dream, its call/result field and one release-description phrase. Old52/17 rosters/movie/sidecars, Return21/Wisp14, C4, PCM, Android/update, APK/signature/source and same-HEAD release restrictions remain unchanged.",
+      "Complete old test AST is unchanged: 45 existing test methods remain. Eleven new methods cover step failures and workflow paths; fixed reader identity before import; complete read-only binding; changed/missing/wrong-commit readers; foreign/reduced manifests; decoder failures/differences; changed/missing/symlinked originals; escaping/duplicate paths; incomplete/duplicate endings and post-PASS failures; and same-value manifest rewrites. The decoder boundary in these small Host fixtures is explicitly mocked.",
+      "The existing90-minute Host job budget is unchanged. The separate original Native Dream step measured46seconds; this does not predict total Host time or replace the next same-Host-run Dream proof."
+    ],
+    "old_test_methods": 45,
+    "new_test_methods": 11,
+    "total_delivery_test_methods": 56,
+    "tests_executed_by_author_or_reviewer_on_this_proposal": 0
+  },
+  "garage": {
+    "pack": "/tmp/host-32e7-garage-caption-fixture-repair-20261114",
+    "source_freeze_sha256": "f77eee9b24c5b385babc436eca0846f698956f50ee5f51df30bce9ec75ee54f6",
+    "manifest_sha256": "4328c7ac6f9a603983ff9c2f059e83d95c71b7e88ba1950c212d1affce1ee770",
+    "all_manifest_objects_hash_verified": 23,
+    "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+    "before_sha256": "cc7913d2137909628235d6e558e1be33180ca950cef4fe6dcfaa6d9458b0c5a1",
+    "before_blob": "9b1413a39e327258cb3ebc583ea7a17070a9cf34",
+    "after_sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae",
+    "after_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+    "after_bytes": 30218,
+    "findings": [
+      "The complete final test file equals the before file after exactly one literal replacement: the strict expected kwargs equality additionally demands standalone_caption=True. No permissive comparison or removed assertion was introduced.",
+      "The preserved real _continue_actual_race already calls native_text with tap=True, exact=True, standalone_caption=True. The new expectation matches existing production.",
+      "All eight affected-method assertions remain, including touch before physical drive, scoped output, exact paused race, current result_id, untouched first-drive bytes and later save existence. All34 other direct definitions are AST-identical.",
+      "The production Continue/OCR/freshness/bounds/source/touch-journal/HUD/GAS/current-race/save guards remain unchanged. Nine preserved Host source inputs were independently matched to the original before records; source-before and source-after are byte-identical.",
+      "The complete author's one-case RED and GREEN were read and hashed. The original failure is exactly the unexpected required keyword. These are author executions, not tests by this reviewer.",
+      "QA1cc5 uses the same original test blob and actual Continue AST. Reuse is a read-only source identity conclusion, not a QA execution or Android claim."
+    ],
+    "original_red_sha256": "45a5ba7467520f886bac626b5c9ce24573661f4a4bb5e9685db388abdd6369bc",
+    "proposed_green_sha256": "c5574c19c79727bc3f7aac200b5ab8f098e5ccbe51e6b0c2349d0d5d762ecfa2",
+    "patch_sha256": "ce748c4cb8f6fd402412e704a53c8825a2cb097e619e90ae863adf002598b588",
+    "production_modernization_sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+    "qa_reuse_source": "1cc5cf4fb7da382fb9833b9d52cf53540306b405",
+    "full_ci_log_boundary": "Root supplied the exact CI failure reference. This reviewer did not re-fetch the full CI log; directly read complete local single-case original RED/GREEN."
+  },
+  "remaining_gates": [
+    "Root-owned combined source checkpoint and final Native pin/policy assembly.",
+    "Run the specifically authorized targeted suites and actionlint only after Root grants the new actual commit. No such run occurred during this review.",
+    "The next actual Host CI must produce its own Dream evidence alongside every existing required gate."
+  ],
+  "environment_boundary": {
+    "last_final_file_write": "UNCONFIRMED: valid exec cell ended with exec-server transport disconnected/recovery timeout.",
+    "prior_garage_review": "A separate earlier file was successfully written with SHA25629f67ed5f08d1dcd2e0b727ab3b3425d0098a87560cbf09069d39aeefca592f4; this new combined serialization does not pretend to be its exact lost bytes.",
+    "executor_retries_after_unavailable": 0
+  },
+  "claims": {
+    "tests_by_reviewer": 0,
+    "proposed_code_execution": 0,
+    "engine_or_device_runs": 0,
+    "source_index_ref_ci_mutations": 0,
+    "visual_android_fps_acceptance": false
+  }
+}

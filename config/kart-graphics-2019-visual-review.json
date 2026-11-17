@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "status": "approved",
+  "versionCode": 2019,
+  "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "native_workflow_run_id": 43532048253,
+  "reviewed_by": "Root integration reviewer",
+  "reviewed_at": "2026-11-14T00:28:45.376218+00:00",
+  "notes": "Root directly opened all five selected current originals from the three verified 17f5 Graphics archives. The completed run and all three source jobs are successful. Home landscape/portrait navigation, both distinct course landmarks and the displayed drift feedback were inspected. This approves the documented desktop renderer image scope only; complete Nextgen48, current Android APK, actual touch, update preservation and device performance remain separate mandatory gates.",
+  "workflow_metadata_sha256": {
+    "run.json": "ed81688900113ec9d9f1021b73efe7436ce74d8a2fc28fc1c2b332e9fdca12b0",
+    "jobs.json": "231ae84086d67e173733d6ad21288e8a6eb99ca372d328eff793041da5c1c9c9"
+  },
+  "artifacts": [
+    {
+      "area": "home",
+      "id": 14088966002,
+      "name": "lumo-kart-experience-home",
+      "sha256": "1c800dbea14a7e33c84caee7176a42a3619524126c3326ca0987d164aad2b6da",
+      "metadata_sha256": {
+        "source-sha.txt": "54d44d9d25266321cad69ab0d267887d19df63c139f9addee44122cac14272de",
+        "source-tree.txt": "249200024d9cad3232dddf6c37cc588921d8705b0958d272a4bac45cb274bb30",
+        "source-dirty.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "engine.txt": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+        "image-manifest.json": "fd243faeeb6841c087f4ca2925daece9fcec26970db1cbbbc6ddf1056ae29e81",
+        "artifact.json": "083f0a9c5256e4710644ea40e8ef79580d1e4015bfff77f4b2cf497e5e7e7de3",
+        "regression.log": "070110a3f999ea0af2e7b8e45b8f03d3b81c1f80a8ec359e35649981c1be3593",
+        "preview-resolution.log": "5c05b8bca1a77f34ef8b446ce6da5036c0535ae90ff73bdcfa83c726fa19e5ca",
+        "cards-header.log": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab",
+        "home-promenade.log": "28faa53d31655ac5caf92da4b354170e21dde19fee59256f1031991e29aa7148",
+        "preserved-spatial-menu.log": "eab1e74d383b4f56a8146f67a3cd45851f0f40e0dac89685289522d49e9e3705",
+        "preserved-garage.log": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab",
+        "render.log": "faeec0ca6bc3cdb8a325b1008a31756175a7de4c378e5801175ef0204a6b85d8"
+      }
+    },
+    {
+      "area": "worlds",
+      "id": 14088495335,
+      "name": "lumo-kart-experience-worlds",
+      "sha256": "fb49e7e807878c40888dacf88dc26d939dfcb449894a325731a049fe16dd22cc",
+      "metadata_sha256": {
+        "source-sha.txt": "54d44d9d25266321cad69ab0d267887d19df63c139f9addee44122cac14272de",
+        "source-tree.txt": "249200024d9cad3232dddf6c37cc588921d8705b0958d272a4bac45cb274bb30",
+        "source-dirty.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "engine.txt": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+        "image-manifest.json": "3bd07229111f5c41f503d2c781d0f3adfdf68ab6782435a1b106aced17ac40fc",
+        "artifact.json": "d8b7e33147c9a7a8d1c5c14da52ffa87df45df999f350273c0f17c7e8b4da1b7",
+        "regression.log": "22012b92813347135be6af3357e02955d76ff99f3e8a54bad1b34c99d0eaa969",
+        "winter-visibility.log": "415d3092f86b18a10061877d95af877cfec66fd8fd97612f333fcaab84e40f9c",
+        "render-winter_sprint.log": "e1f9bf36e276d13e1bc077848337c1e440f1511e6137de5e5654a3b625c28126",
+        "render-crystal_canyon.log": "15039b643ab2fd886992e5bbace368efb10790ddd7f7e690f5126ebba64f17ee"
+      }
+    },
+    {
+      "area": "feedback",
+      "id": 14087423598,
+      "name": "lumo-kart-experience-feedback",
+      "sha256": "52ae8ebfc2f61a6d3532a8d0a40b73f4fdf341f5e2bbfa4ce6a6122cdd01d50d",
+      "metadata_sha256": {
+        "source-sha.txt": "54d44d9d25266321cad69ab0d267887d19df63c139f9addee44122cac14272de",
+        "source-tree.txt": "249200024d9cad3232dddf6c37cc588921d8705b0958d272a4bac45cb274bb30",
+        "source-dirty.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "engine.txt": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+        "image-manifest.json": "890de9ca46d4514e448e1770f7367010b79c1bcfa98187b54333cdce583e0c54",
+        "artifact.json": "d5df7fff2e68abfd1d43e874c1827f309e14b87c6b70964501b373e3dd1380ac",
+        "regression.log": "9f8c750325b9263351f1bb212377f131374e9b7a4d92741466d8176a6f1ff4cb",
+        "render.log": "362def49c4a99bb2cf7112d2ae3724685da6a7c8eb3cf9e74265b839f24b73ac"
+      }
+    }
+  ],
+  "images": [
+    {
+      "path": "docs/evidence/kart-graphics-2019-reviewed/home/84bc4e149cac520df7aa704497b63067c7c359d5cff55a2c8b78cc8611aceae6-home-1280x720.png",
+      "area": "home",
+      "artifact_id": 14088966002,
+      "artifact_entry": "images/home-1280x720.png",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "sha256": "84bc4e149cac520df7aa704497b63067c7c359d5cff55a2c8b78cc8611aceae6",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root directly opened the new 1280x720 Home original. Lumo sits visibly in the kart on its illuminated platform against the harbor scene. Einzelrennen, Grand Prix, Zeitrennen, options, all five lower navigation tabs, Spielewelt and the large START action are readable inside the frame. This static view does not establish natural touch navigation or device performance."
+    },
+    {
+      "path": "docs/evidence/kart-graphics-2019-reviewed/home/cd3b8e20ca4bd26bf3c553202cceeaacf85cba2bd43e879d45d5a34e3e289e51-home-412x915.png",
+      "area": "home",
+      "artifact_id": 14088966002,
+      "artifact_entry": "images/home-412x915.png",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "sha256": "cd3b8e20ca4bd26bf3c553202cceeaacf85cba2bd43e879d45d5a34e3e289e51",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Root directly opened the new 412x915 portrait Home original. Lumo, the kart and harbor remain visible above the compact Solo, Pokal and Zeit choices. Fahrer, Garage, Strecken, Tempo, Mehr Modi, Spiele and the large START action fit inside the image, with the settings gear above. The compact captions are observed as shown; this is not an Android touch or frame-rate measurement."
+    },
+    {
+      "path": "docs/evidence/kart-graphics-2019-reviewed/winter_sprint/099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2-02_world_landmark.png",
+      "area": "winter_sprint",
+      "artifact_id": 14088495335,
+      "artifact_entry": "images/winter_sprint/02_world_landmark.png",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "sha256": "099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root directly opened the new 1280x720 original. The snowy mountain course, bend, blue course hoops, cable-car towers and cabins are visible. Menu, pause, lap/place/speed HUD, minimap and separate movement, drift, speed, brake, gas and tactic controls remain inside the image. This is an elevated course landmark view; it does not establish driving behavior, touch response or device frame rate."
+    },
+    {
+      "path": "docs/evidence/kart-graphics-2019-reviewed/crystal_canyon/e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe-02_world_landmark.png",
+      "area": "crystal_canyon",
+      "artifact_id": 14088495335,
+      "artifact_entry": "images/crystal_canyon/02_world_landmark.png",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "sha256": "e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root directly opened the new 1280x720 original. The road passes beneath the large dark stone arch, with cyan and violet crystals, railings, signs and the next bend visible. The HUD, minimap and all displayed control groups remain readable inside the frame. Static composition and materials are observed; no Android interaction or performance result is inferred."
+    },
+    {
+      "path": "docs/evidence/kart-graphics-2019-reviewed/feedback/0e8656041461a3812e43f4cbfaa4db7f3f544b4b7f1d128177579360af424e23-03_drift_release.png",
+      "area": "feedback",
+      "artifact_id": 14087423598,
+      "artifact_entry": "images/03_drift_release.png",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "sha256": "0e8656041461a3812e43f4cbfaa4db7f3f544b4b7f1d128177579360af424e23",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root directly opened the new 1280x720 original. Lumo and the kart are centered on the course, with bright rear exhaust trails and colored speed streaks. The HUD shows FREIES TRAINING, 86 km/h and the Oranger Drift-Turbo message; pause, minimap and the distinct touch controls are visible. The still image confirms the displayed feedback state only, not measured speed, animation timing, input latency or device frame rate."
+    }
+  ]
+}

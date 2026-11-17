@@ -1,0 +1,23 @@
+FF
+======================================================================
+FAIL: test_legacy_41_gate_result_cannot_omit_the_new_puzzle_menu_modes (scripts.tests.test_nextgen_2019_review.Nextgen2019ReviewTests.test_legacy_41_gate_result_cannot_omit_the_new_puzzle_menu_modes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-published-followups/scripts/tests/test_nextgen_2019_review.py", line 220, in test_legacy_41_gate_result_cannot_omit_the_new_puzzle_menu_modes
+    with self.assertRaisesRegex(ValueError, '43-probe'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_previous_puzzle_scene_does_not_replace_current_menu_lifecycle_review (scripts.tests.test_nextgen_2019_review.Nextgen2019ReviewTests.test_previous_puzzle_scene_does_not_replace_current_menu_lifecycle_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-published-followups/scripts/tests/test_nextgen_2019_review.py", line 228, in test_previous_puzzle_scene_does_not_replace_current_menu_lifecycle_review
+    with self.assertRaisesRegex(ValueError, 'current Puzzle menu lifecycle capture'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.698s
+
+FAILED (failures=2)

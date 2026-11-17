@@ -1,0 +1,24 @@
+{
+  "apkSource": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "reviewedRoot": "79354ef545100f574041f11584f594c9172e2f69",
+  "reviewMode": "Independent read-only source review, no new test execution",
+  "inventory": {
+    "entries": 61,
+    "screenFiles": 55,
+    "curriculumFamilies": 236,
+    "activeSpecialistEntrances": 19,
+    "activeSpecialistScreens": 18,
+    "labModes": 6,
+    "labProblemIds": 35,
+    "guidedLessons": 7,
+    "nativeSpecializedKinds": 11,
+    "nativeGenericKinds": [
+      "task_card"
+    ],
+    "protectedByteEqualFiles": 18
+  },
+  "fullModernizationComplete": false,
+  "replayRunBeingObserved": 43783036351,
+  "androidPassDerivedFromSourceReview": false
+}

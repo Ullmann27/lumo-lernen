@@ -1,0 +1,133 @@
+{
+  "kind": "independent_native_motion_visual_review",
+  "native_source_sha": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "native_source_tree": "dd056a3209dc53ca9bfc217cf6f9554020732d0a",
+  "source_dirty_empty": true,
+  "github_run_id": 43434198014,
+  "github_artifact_id": 14042352358,
+  "original_zip_filename": "studio-new-native-b5bc6e7c.zip",
+  "original_zip_sha256": "722a54ef8419abb7dd45095919fc8187bf207a0218a8d44911c627af66636749",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "renderer": "Linux X11 OpenGL Compatibility, Mesa llvmpipe; recorded in original capture log",
+  "status": "no_new_visible_blocker_in_eight_motion_images",
+  "final_delivery_receipt": false,
+  "product_files_modified_by_reviewer": false,
+  "images": [
+    {
+      "file": "captures/lumo_studio_motion_capture/after_jump_rise.png",
+      "sha256": "80a2f272b3e0b4e7b33186263ccd3d935af219349eb4be5b81e5ef2cf141b8c6",
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "original_zip_bytes_verified": true,
+      "manifest_verified": true,
+      "status": "no_new_visible_blocker",
+      "observations": "Beine nachvollziehbar angezogen; vollständige Füße oberhalb der sichtbaren Bodenfläche, Arme als Körperreaktion angehoben. Keine sichtbare Verdrehung oder gestreckte Beinsegmente."
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_land.png",
+      "sha256": "d9442204e757b11d6a325f35df510cea0f02e3ba4cf0b68a0ca08103eabe4b51",
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "original_zip_bytes_verified": true,
+      "manifest_verified": true,
+      "status": "no_new_visible_blocker",
+      "observations": "Gebeugte Knie und vollständige Schuhsilhouetten mit Bodenkontakt erkennbar; bekannte Durchdringung aus dem Vergleichsbild in dieser Aufnahme beseitigt. Kopf, Ohren und Schwanz bleiben intakt."
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_sprint.png",
+      "sha256": "1a0c94b4a770315a9b071bdffa38cbad22df40fc21b9380443daeeb35e1e9999",
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "original_zip_bytes_verified": true,
+      "manifest_verified": true,
+      "status": "no_new_visible_blocker",
+      "observations": "Erkennbar gebeugte Beine und kompaktere Laufhaltung; beide Schuhe vollständig, Gesicht und Brille unverändert. Keine neue sichtbare Geometrie- oder Bodenpenetration. Momentaufnahme allein beweist keine Geschwindigkeit."
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_walk.png",
+      "sha256": "ee838afa26760e013fa9446b1b2732019b9c61b5227ae55b9c6c5ded4fec3b4d",
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "original_zip_bytes_verified": true,
+      "manifest_verified": true,
+      "status": "no_new_visible_blocker",
+      "observations": "Originalfigur und Materialien erhalten; Kniebeugung und zwei vollständige Schuhe sichtbar. Kein abgeschnittener Zehenbereich, keine sichtbare Gliedmaßenstreckung. Andere Gangphase als im Vorherbild; kein identischer Posevergleich."
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_jump_rise.png",
+      "sha256": "dc2a537f56f807ecdc2d93c516aaf31508d8402db34961e18c9b08d13d950533",
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "original_zip_bytes_verified": true,
+      "manifest_verified": true,
+      "status": "historical_comparison",
+      "observations": "Die untere vordere Schuhgeometrie ist an der Bodenfläche abgeschnitten; bestätigter Vergleichsmangel des alten Posepfads."
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_land.png",
+      "sha256": "f4146c517e89bc057be2759415684533efe747267e84ee65b5d3b7810721909c",
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "original_zip_bytes_verified": true,
+      "manifest_verified": true,
+      "status": "historical_comparison",
+      "observations": "Beide Schuhe schneiden die Bodenfläche; der alte Landeposepfad zeigt den bekannten sichtbaren Vergleichsmangel."
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_sprint.png",
+      "sha256": "a490cdfad662653025e849ae3f66f1ac1479b1054252da23a68841f69dd0ff2b",
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "original_zip_bytes_verified": true,
+      "manifest_verified": true,
+      "status": "historical_comparison",
+      "observations": "Originalfigur vollständig im Bild; zuvor geringe Abweichung der Laufhaltung vom alten Gehen sichtbar. Vergleichsbild stammt aus dem neu gerenderten eingefrorenen Vorherpfad."
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_walk.png",
+      "sha256": "e963e44f8bcb604c6476a47690ebf33b6f7d38a16a5f3554e5edbe48246af276",
+      "dimensions": [
+        720,
+        840
+      ],
+      "actually_opened_with_view_image": true,
+      "original_zip_bytes_verified": true,
+      "manifest_verified": true,
+      "status": "historical_comparison",
+      "observations": "Originalfigur vollständig im Bild; vorherige weite Schrittpose und Schuhformen sichtbar. Keine neue Beschädigung der eingefrorenen Vergleichsfigur."
+    }
+  ],
+  "observed_original_log_results": [
+    "[LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips",
+    "[LumoStudioMotion] PASS checks=1046 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+  ],
+  "scope_limits": [
+    "All eight PNGs were opened anew from the b5bc artifact, even where hashes match previous candidates.",
+    "Before poses are deliberately the frozen old implementation, rendered in this new artifact; they are not the current implementation.",
+    "Walk and sprint before/after pairs show different phases; their pose difference alone is not a quantitative movement-quality metric.",
+    "Strong highlights are visible in both old and current studio captures; no new material corruption is evident.",
+    "Static captures do not prove temporal transitions, gameplay responsiveness, touch latency, physical-device frame rate or final Android acceptance.",
+    "The separate Blender studio video is offline artwork evidence and is not substituted for these native renderer captures."
+  ]
+}

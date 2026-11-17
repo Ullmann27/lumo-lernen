@@ -1,0 +1,16 @@
+test_actual_gpu_or_unchanged_hardware_mismatch_remains_failure (scripts.tests.test_runtime_followup_workflow.ActualRendererReportTests.test_actual_gpu_or_unchanged_hardware_mismatch_remains_failure) ... ok
+test_actual_report_requires_angle_and_swiftshader_with_effective_swangle (scripts.tests.test_runtime_followup_workflow.ActualRendererReportTests.test_actual_report_requires_angle_and_swiftshader_with_effective_swangle) ... ok
+test_existing_host_and_swiftshader_positive_requirements_are_preserved (scripts.tests.test_runtime_followup_workflow.ActualRendererReportTests.test_existing_host_and_swiftshader_positive_requirements_are_preserved) ... ok
+test_pure_swiftshader_unproven_swangle_or_multiple_gles_lines_cannot_pass (scripts.tests.test_runtime_followup_workflow.ActualRendererReportTests.test_pure_swiftshader_unproven_swangle_or_multiple_gles_lines_cannot_pass) ... ok
+test_actual_contract_condition_accepts_only_the_own_trusted_branch (scripts.tests.test_runtime_followup_workflow.RuntimeFollowupWorkflowTests.test_actual_contract_condition_accepts_only_the_own_trusted_branch) ... ok
+test_entire_original_workflow_is_preserved_outside_the_named_additions (scripts.tests.test_runtime_followup_workflow.RuntimeFollowupWorkflowTests.test_entire_original_workflow_is_preserved_outside_the_named_additions) ... ok
+test_five_separate_jobs_keep_same_apk_and_one_axis_renderer_configuration (scripts.tests.test_runtime_followup_workflow.RuntimeFollowupWorkflowTests.test_five_separate_jobs_keep_same_apk_and_one_axis_renderer_configuration) ... ok
+test_exact_five_new_jobs_bind_only_the_followup_workflow_and_branch (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_exact_five_new_jobs_bind_only_the_followup_workflow_and_branch) ... ok
+test_followup_cannot_borrow_historical_or_creative_run_identity (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_followup_cannot_borrow_historical_or_creative_run_identity) ... ok
+test_missing_duplicate_wrong_named_or_wrong_attempt_job_never_binds (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_missing_duplicate_wrong_named_or_wrong_attempt_job_never_binds) ... ok
+test_original_runtime_and_creative_routes_are_unchanged (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_original_runtime_and_creative_routes_are_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.226s
+
+OK

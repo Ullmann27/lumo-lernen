@@ -1,0 +1,5566 @@
+{
+  "sourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
+  "semantics": "Finite catalogs are enumerated; generated task variants are not.",
+  "curriculumFamilies": [
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Textaufgaben"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Plus bis 10"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Minus bis 10"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Plus bis 20"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Minus bis 20"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Zahlenstrahl"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Mengenvergleich"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Zahl in Worten"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Geometrie Formen"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Geld"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Zeit"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Symmetrie"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Formen Nachzeichnen"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Rechengeschichten"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Zahlenmauer"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Zahlenrätsel"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Marktstand"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Platzhalter-Rätsel"
+    },
+    {
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Größer, kleiner, gleich"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Buchstaben-Lautierung"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Reime"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Anfangslaute"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Endlaute"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Wort-Bild-Zuordnung"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Erste Sätze"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Silben"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Artikel"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Wortdetektiv"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Silbenrätsel"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Begleiter-Rätsel"
+    },
+    {
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Gegenteil-Geschichten"
+    },
+    {
+      "grade": 1,
+      "subject": "Lesen",
+      "unit": "Woerter lesen"
+    },
+    {
+      "grade": 1,
+      "subject": "Lesen",
+      "unit": "Sätze lesen"
+    },
+    {
+      "grade": 1,
+      "subject": "Lesen",
+      "unit": "Lesesinn"
+    },
+    {
+      "grade": 1,
+      "subject": "Lesen",
+      "unit": "Bild und Wort"
+    },
+    {
+      "grade": 1,
+      "subject": "Lesen",
+      "unit": "Reihenfolge"
+    },
+    {
+      "grade": 1,
+      "subject": "Rechtschreibung",
+      "unit": "Haeufige Woerter"
+    },
+    {
+      "grade": 1,
+      "subject": "Rechtschreibung",
+      "unit": "Gross und klein"
+    },
+    {
+      "grade": 1,
+      "subject": "Rechtschreibung",
+      "unit": "Doppelmitlaut"
+    },
+    {
+      "grade": 1,
+      "subject": "Rechtschreibung",
+      "unit": "Dehnungen"
+    },
+    {
+      "grade": 1,
+      "subject": "Rechtschreibung",
+      "unit": "Satzzeichen"
+    },
+    {
+      "grade": 1,
+      "subject": "Rechtschreibung",
+      "unit": "Wortende"
+    },
+    {
+      "grade": 1,
+      "subject": "Rechtschreibung",
+      "unit": "St oder Sp"
+    },
+    {
+      "grade": 1,
+      "subject": "Schreiben",
+      "unit": "Buchstaben nachspuren"
+    },
+    {
+      "grade": 1,
+      "subject": "Schreiben",
+      "unit": "Wort schreiben"
+    },
+    {
+      "grade": 1,
+      "subject": "Schreiben",
+      "unit": "Satz abschreiben"
+    },
+    {
+      "grade": 1,
+      "subject": "Schreiben",
+      "unit": "Schwunguebung"
+    },
+    {
+      "grade": 1,
+      "subject": "Schreiben",
+      "unit": "Zahlen schreiben"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Verkehr"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Familie und Gemeinschaft"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Zeit und Kalender"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Körper"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Tag und Nacht"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Pflanzen"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Wetter"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Jahreszeiten"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Tiere"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Wer bin ich?"
+    },
+    {
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Monate und Wochentage"
+    },
+    {
+      "grade": 1,
+      "subject": "Englisch",
+      "unit": "Farben"
+    },
+    {
+      "grade": 1,
+      "subject": "Englisch",
+      "unit": "Tiere"
+    },
+    {
+      "grade": 1,
+      "subject": "Englisch",
+      "unit": "Begruessung"
+    },
+    {
+      "grade": 1,
+      "subject": "Englisch",
+      "unit": "Familie"
+    },
+    {
+      "grade": 1,
+      "subject": "Englisch",
+      "unit": "Zahlen"
+    },
+    {
+      "grade": 1,
+      "subject": "Englisch",
+      "unit": "Körper"
+    },
+    {
+      "grade": 1,
+      "subject": "Englisch",
+      "unit": "Schulsachen"
+    },
+    {
+      "grade": 1,
+      "subject": "Logik",
+      "unit": "Muster"
+    },
+    {
+      "grade": 1,
+      "subject": "Logik",
+      "unit": "Reihenfolgen"
+    },
+    {
+      "grade": 1,
+      "subject": "Logik",
+      "unit": "Was passt nicht?"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Textaufgaben"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Plus bis 20"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Minus bis 20"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Plus bis 100"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Minus bis 100"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Einmaleins"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Einmaleins Vorbereitung"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Geld wechseln"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Uhrzeit"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Längen"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Gerade und ungerade"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Verdoppeln und Halbieren"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Zehner und Einer"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Formen Nachzeichnen"
+    },
+    {
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Uhr-Abenteuer"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Wortfamilien"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Einzahl und Mehrzahl"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Verkleinerungsform"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Gegenteile"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Oberbegriffe"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Namenwoerter"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Tunwoerter"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Wiewoerter"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Wörter zusammensetzen"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Wortarten-Jagd"
+    },
+    {
+      "grade": 2,
+      "subject": "Deutsch",
+      "unit": "Satzbaustelle"
+    },
+    {
+      "grade": 2,
+      "subject": "Lesen",
+      "unit": "Woerter lesen"
+    },
+    {
+      "grade": 2,
+      "subject": "Lesen",
+      "unit": "Sätze lesen"
+    },
+    {
+      "grade": 2,
+      "subject": "Lesen",
+      "unit": "Lesesinn"
+    },
+    {
+      "grade": 2,
+      "subject": "Lesen",
+      "unit": "Bild und Wort"
+    },
+    {
+      "grade": 2,
+      "subject": "Lesen",
+      "unit": "Reihenfolge"
+    },
+    {
+      "grade": 2,
+      "subject": "Rechtschreibung",
+      "unit": "Haeufige Woerter"
+    },
+    {
+      "grade": 2,
+      "subject": "Rechtschreibung",
+      "unit": "Gross und klein"
+    },
+    {
+      "grade": 2,
+      "subject": "Rechtschreibung",
+      "unit": "Doppelmitlaut"
+    },
+    {
+      "grade": 2,
+      "subject": "Rechtschreibung",
+      "unit": "Dehnungen"
+    },
+    {
+      "grade": 2,
+      "subject": "Rechtschreibung",
+      "unit": "Satzzeichen"
+    },
+    {
+      "grade": 2,
+      "subject": "Rechtschreibung",
+      "unit": "Wortende"
+    },
+    {
+      "grade": 2,
+      "subject": "Rechtschreibung",
+      "unit": "St oder Sp"
+    },
+    {
+      "grade": 2,
+      "subject": "Schreiben",
+      "unit": "Buchstaben nachspuren"
+    },
+    {
+      "grade": 2,
+      "subject": "Schreiben",
+      "unit": "Wort schreiben"
+    },
+    {
+      "grade": 2,
+      "subject": "Schreiben",
+      "unit": "Satz abschreiben"
+    },
+    {
+      "grade": 2,
+      "subject": "Schreiben",
+      "unit": "Schwunguebung"
+    },
+    {
+      "grade": 2,
+      "subject": "Schreiben",
+      "unit": "Zahlen schreiben"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Zeit und Kalender"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Verkehr"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Berufe"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Körper"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Familie und Gemeinschaft"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Wetter"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Pflanzen"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Tiere"
+    },
+    {
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "unit": "Jahreszeiten"
+    },
+    {
+      "grade": 2,
+      "subject": "Englisch",
+      "unit": "Zahlen"
+    },
+    {
+      "grade": 2,
+      "subject": "Englisch",
+      "unit": "Körper"
+    },
+    {
+      "grade": 2,
+      "subject": "Englisch",
+      "unit": "Spielzeug"
+    },
+    {
+      "grade": 2,
+      "subject": "Englisch",
+      "unit": "Tiere"
+    },
+    {
+      "grade": 2,
+      "subject": "Logik",
+      "unit": "Zahlenmuster"
+    },
+    {
+      "grade": 2,
+      "subject": "Logik",
+      "unit": "Geheimcode"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Einmaleins"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Schriftliche Addition"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Schriftliche Subtraktion"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Brüche Vorbereitung"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Sachaufgaben zwei Schritte"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Umfang"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Plus bis 100"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Minus bis 100"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Plus bis 1000"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Minus bis 1000"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Division einstellig"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Geld bis 100 Euro"
+    },
+    {
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Massen Kilogramm und Gramm"
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "unit": "Synonyme"
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "unit": "Wortarten"
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "unit": "Zeitformen"
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "unit": "Steigerung"
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "unit": "Verbformen"
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "unit": "Wer-Fall und Wen-Fall"
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "unit": "Großschreibung"
+    },
+    {
+      "grade": 3,
+      "subject": "Deutsch",
+      "unit": "ie oder i"
+    },
+    {
+      "grade": 3,
+      "subject": "Lesen",
+      "unit": "Woerter lesen"
+    },
+    {
+      "grade": 3,
+      "subject": "Lesen",
+      "unit": "Sätze lesen"
+    },
+    {
+      "grade": 3,
+      "subject": "Lesen",
+      "unit": "Lesesinn"
+    },
+    {
+      "grade": 3,
+      "subject": "Lesen",
+      "unit": "Bild und Wort"
+    },
+    {
+      "grade": 3,
+      "subject": "Lesen",
+      "unit": "Reihenfolge"
+    },
+    {
+      "grade": 3,
+      "subject": "Rechtschreibung",
+      "unit": "Haeufige Woerter"
+    },
+    {
+      "grade": 3,
+      "subject": "Rechtschreibung",
+      "unit": "Gross und klein"
+    },
+    {
+      "grade": 3,
+      "subject": "Rechtschreibung",
+      "unit": "Doppelmitlaut"
+    },
+    {
+      "grade": 3,
+      "subject": "Rechtschreibung",
+      "unit": "Dehnungen"
+    },
+    {
+      "grade": 3,
+      "subject": "Rechtschreibung",
+      "unit": "Satzzeichen"
+    },
+    {
+      "grade": 3,
+      "subject": "Rechtschreibung",
+      "unit": "Wortende"
+    },
+    {
+      "grade": 3,
+      "subject": "Rechtschreibung",
+      "unit": "St oder Sp"
+    },
+    {
+      "grade": 3,
+      "subject": "Schreiben",
+      "unit": "Buchstaben nachspuren"
+    },
+    {
+      "grade": 3,
+      "subject": "Schreiben",
+      "unit": "Wort schreiben"
+    },
+    {
+      "grade": 3,
+      "subject": "Schreiben",
+      "unit": "Satz abschreiben"
+    },
+    {
+      "grade": 3,
+      "subject": "Schreiben",
+      "unit": "Schwunguebung"
+    },
+    {
+      "grade": 3,
+      "subject": "Schreiben",
+      "unit": "Zahlen schreiben"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Wasserkreislauf"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Ernährung"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Bundesländer Österreichs"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Verkehr"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Pflanzen"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Körper"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Zeit und Kalender"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Wetter"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Familie und Gemeinschaft"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Berufe"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Tiere"
+    },
+    {
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "unit": "Österreich-Reise"
+    },
+    {
+      "grade": 3,
+      "subject": "Englisch",
+      "unit": "Schulsachen"
+    },
+    {
+      "grade": 3,
+      "subject": "Englisch",
+      "unit": "Wetter"
+    },
+    {
+      "grade": 3,
+      "subject": "Englisch",
+      "unit": "Essen"
+    },
+    {
+      "grade": 3,
+      "subject": "Englisch",
+      "unit": "Tageszeit"
+    },
+    {
+      "grade": 3,
+      "subject": "Englisch",
+      "unit": "Alltagssätze"
+    },
+    {
+      "grade": 3,
+      "subject": "Logik",
+      "unit": "Schlussfolgern"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Schriftliche Multiplikation"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Schriftliche Division"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Bruchrechnen einfach"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Dezimalzahlen"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Sachaufgaben drei Schritte"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Diagramme lesen"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Vergleichen"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Plus bis 10000"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Minus bis 10000"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Zahlenraum bis 1 Million"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Zeit Minuten und Stunden"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Hohlmaße Liter und Milliliter"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Brüche erweitern"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Mittelwert"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Flächeninhalt"
+    },
+    {
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Symmetrieachsen"
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "unit": "Satzglieder"
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "unit": "Direkte Rede"
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "unit": "Kommas in Aufzählungen"
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "unit": "Zusammensetzungen"
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "unit": "Die 4 Fälle"
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "unit": "dass oder das"
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "unit": "Umstandswörter"
+    },
+    {
+      "grade": 4,
+      "subject": "Deutsch",
+      "unit": "Vorvergangenheit"
+    },
+    {
+      "grade": 4,
+      "subject": "Lesen",
+      "unit": "Woerter lesen"
+    },
+    {
+      "grade": 4,
+      "subject": "Lesen",
+      "unit": "Sätze lesen"
+    },
+    {
+      "grade": 4,
+      "subject": "Lesen",
+      "unit": "Lesesinn"
+    },
+    {
+      "grade": 4,
+      "subject": "Lesen",
+      "unit": "Bild und Wort"
+    },
+    {
+      "grade": 4,
+      "subject": "Lesen",
+      "unit": "Reihenfolge"
+    },
+    {
+      "grade": 4,
+      "subject": "Rechtschreibung",
+      "unit": "Haeufige Woerter"
+    },
+    {
+      "grade": 4,
+      "subject": "Rechtschreibung",
+      "unit": "Gross und klein"
+    },
+    {
+      "grade": 4,
+      "subject": "Rechtschreibung",
+      "unit": "Doppelmitlaut"
+    },
+    {
+      "grade": 4,
+      "subject": "Rechtschreibung",
+      "unit": "Dehnungen"
+    },
+    {
+      "grade": 4,
+      "subject": "Rechtschreibung",
+      "unit": "Satzzeichen"
+    },
+    {
+      "grade": 4,
+      "subject": "Rechtschreibung",
+      "unit": "Wortende"
+    },
+    {
+      "grade": 4,
+      "subject": "Rechtschreibung",
+      "unit": "St oder Sp"
+    },
+    {
+      "grade": 4,
+      "subject": "Schreiben",
+      "unit": "Buchstaben nachspuren"
+    },
+    {
+      "grade": 4,
+      "subject": "Schreiben",
+      "unit": "Wort schreiben"
+    },
+    {
+      "grade": 4,
+      "subject": "Schreiben",
+      "unit": "Satz abschreiben"
+    },
+    {
+      "grade": 4,
+      "subject": "Schreiben",
+      "unit": "Schwunguebung"
+    },
+    {
+      "grade": 4,
+      "subject": "Schreiben",
+      "unit": "Zahlen schreiben"
+    },
+    {
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "unit": "Stromkreise"
+    },
+    {
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "unit": "Ökosysteme"
+    },
+    {
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "unit": "Geschichte"
+    },
+    {
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "unit": "Geografie Österreich"
+    },
+    {
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "unit": "Kontinente und Ozeane"
+    },
+    {
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "unit": "Diagramme lesen"
+    },
+    {
+      "grade": 4,
+      "subject": "Englisch",
+      "unit": "Verben"
+    },
+    {
+      "grade": 4,
+      "subject": "Englisch",
+      "unit": "Wochentage"
+    },
+    {
+      "grade": 4,
+      "subject": "Englisch",
+      "unit": "Hobbys"
+    },
+    {
+      "grade": 4,
+      "subject": "Englisch",
+      "unit": "Länder"
+    },
+    {
+      "grade": 4,
+      "subject": "Englisch",
+      "unit": "Alltagssätze"
+    },
+    {
+      "grade": 4,
+      "subject": "Logik",
+      "unit": "Regeln kombinieren"
+    }
+  ],
+  "mathTemplates": [
+    {
+      "id": "g1_word_problem",
+      "grade": 1,
+      "unit": "Textaufgaben",
+      "kind": "wordProblemOneStep"
+    },
+    {
+      "id": "g2_sub_story",
+      "grade": 2,
+      "unit": "Textaufgaben",
+      "kind": "wordProblemOneStep"
+    },
+    {
+      "id": "g1_add_10",
+      "grade": 1,
+      "unit": "Plus bis 10",
+      "kind": "addition"
+    },
+    {
+      "id": "g1_sub_10",
+      "grade": 1,
+      "unit": "Minus bis 10",
+      "kind": "subtraction"
+    },
+    {
+      "id": "g1_add_20",
+      "grade": 1,
+      "unit": "Plus bis 20",
+      "kind": "addition"
+    },
+    {
+      "id": "g1_sub_20",
+      "grade": 1,
+      "unit": "Minus bis 20",
+      "kind": "subtraction"
+    },
+    {
+      "id": "g1_number_line",
+      "grade": 1,
+      "unit": "Zahlenstrahl",
+      "kind": "numberLineMissing"
+    },
+    {
+      "id": "g1_quantity_compare",
+      "grade": 1,
+      "unit": "Mengenvergleich",
+      "kind": "quantityCompare"
+    },
+    {
+      "id": "g1_number_word",
+      "grade": 1,
+      "unit": "Zahl in Worten",
+      "kind": "numberWord"
+    },
+    {
+      "id": "g1_shapes",
+      "grade": 1,
+      "unit": "Geometrie Formen",
+      "kind": "shapeRecognition"
+    },
+    {
+      "id": "g1_money_more",
+      "grade": 1,
+      "unit": "Geld",
+      "kind": "moneyCompare"
+    },
+    {
+      "id": "g1_day_hours",
+      "grade": 1,
+      "unit": "Zeit",
+      "kind": "dayHours"
+    },
+    {
+      "id": "g1_symmetry",
+      "grade": 1,
+      "unit": "Symmetrie",
+      "kind": "symmetry"
+    },
+    {
+      "id": "g2_add_20",
+      "grade": 2,
+      "unit": "Plus bis 20",
+      "kind": "addition"
+    },
+    {
+      "id": "g2_sub_20",
+      "grade": 2,
+      "unit": "Minus bis 20",
+      "kind": "subtraction"
+    },
+    {
+      "id": "g2_add_100",
+      "grade": 2,
+      "unit": "Plus bis 100",
+      "kind": "addition"
+    },
+    {
+      "id": "g2_sub_100",
+      "grade": 2,
+      "unit": "Minus bis 100",
+      "kind": "subtraction"
+    },
+    {
+      "id": "g2_tables",
+      "grade": 2,
+      "unit": "Einmaleins",
+      "kind": "multiplication"
+    },
+    {
+      "id": "g2_times_prep",
+      "grade": 2,
+      "unit": "Einmaleins Vorbereitung",
+      "kind": "multiplicationPrep"
+    },
+    {
+      "id": "g2_word_problem",
+      "grade": 2,
+      "unit": "Textaufgaben",
+      "kind": "wordProblemOneStep"
+    },
+    {
+      "id": "g2_money_change",
+      "grade": 2,
+      "unit": "Geld wechseln",
+      "kind": "moneyChange"
+    },
+    {
+      "id": "g2_clock",
+      "grade": 2,
+      "unit": "Uhrzeit",
+      "kind": "clockTime"
+    },
+    {
+      "id": "g2_length",
+      "grade": 2,
+      "unit": "Längen",
+      "kind": "lengthConversion"
+    },
+    {
+      "id": "g2_even_odd",
+      "grade": 2,
+      "unit": "Gerade und ungerade",
+      "kind": "evenOdd"
+    },
+    {
+      "id": "g2_half_double",
+      "grade": 2,
+      "unit": "Verdoppeln und Halbieren",
+      "kind": "halfDouble"
+    },
+    {
+      "id": "g2_tens_ones",
+      "grade": 2,
+      "unit": "Zehner und Einer",
+      "kind": "tensOnes"
+    },
+    {
+      "id": "g3_tables",
+      "grade": 3,
+      "unit": "Einmaleins",
+      "kind": "multiplication"
+    },
+    {
+      "id": "g3_written_add",
+      "grade": 3,
+      "unit": "Schriftliche Addition",
+      "kind": "writtenAddition"
+    },
+    {
+      "id": "g3_written_sub",
+      "grade": 3,
+      "unit": "Schriftliche Subtraktion",
+      "kind": "writtenSubtraction"
+    },
+    {
+      "id": "g3_fraction_half",
+      "grade": 3,
+      "unit": "Brüche Vorbereitung",
+      "kind": "fractionHalf"
+    },
+    {
+      "id": "g3_two_step",
+      "grade": 3,
+      "unit": "Sachaufgaben zwei Schritte",
+      "kind": "wordProblemTwoStep"
+    },
+    {
+      "id": "g3_perimeter",
+      "grade": 3,
+      "unit": "Umfang",
+      "kind": "perimeter"
+    },
+    {
+      "id": "g3_add_100",
+      "grade": 3,
+      "unit": "Plus bis 100",
+      "kind": "addition"
+    },
+    {
+      "id": "g3_sub_100",
+      "grade": 3,
+      "unit": "Minus bis 100",
+      "kind": "subtraction"
+    },
+    {
+      "id": "g3_add_1000",
+      "grade": 3,
+      "unit": "Plus bis 1000",
+      "kind": "addition"
+    },
+    {
+      "id": "g3_sub_1000",
+      "grade": 3,
+      "unit": "Minus bis 1000",
+      "kind": "subtraction"
+    },
+    {
+      "id": "g3_division_basic",
+      "grade": 3,
+      "unit": "Division einstellig",
+      "kind": "division"
+    },
+    {
+      "id": "g3_money_change_100",
+      "grade": 3,
+      "unit": "Geld bis 100 Euro",
+      "kind": "moneyChange"
+    },
+    {
+      "id": "g3_mass",
+      "grade": 3,
+      "unit": "Massen Kilogramm und Gramm",
+      "kind": "massConversion"
+    },
+    {
+      "id": "g4_written_mul",
+      "grade": 4,
+      "unit": "Schriftliche Multiplikation",
+      "kind": "writtenMultiplication"
+    },
+    {
+      "id": "g4_written_div",
+      "grade": 4,
+      "unit": "Schriftliche Division",
+      "kind": "division"
+    },
+    {
+      "id": "g4_fraction_add",
+      "grade": 4,
+      "unit": "Bruchrechnen einfach",
+      "kind": "simpleFractionAdd"
+    },
+    {
+      "id": "g4_decimal",
+      "grade": 4,
+      "unit": "Dezimalzahlen",
+      "kind": "decimals"
+    },
+    {
+      "id": "g4_three_step",
+      "grade": 4,
+      "unit": "Sachaufgaben drei Schritte",
+      "kind": "wordProblemThreeStep"
+    },
+    {
+      "id": "g4_chart",
+      "grade": 4,
+      "unit": "Diagramme lesen",
+      "kind": "chartRead"
+    },
+    {
+      "id": "g4_compare",
+      "grade": 4,
+      "unit": "Vergleichen",
+      "kind": "compare"
+    },
+    {
+      "id": "g4_add_10000",
+      "grade": 4,
+      "unit": "Plus bis 10000",
+      "kind": "addition"
+    },
+    {
+      "id": "g4_sub_10000",
+      "grade": 4,
+      "unit": "Minus bis 10000",
+      "kind": "subtraction"
+    },
+    {
+      "id": "g4_compare_1mio",
+      "grade": 4,
+      "unit": "Zahlenraum bis 1 Million",
+      "kind": "compare"
+    },
+    {
+      "id": "g4_time_minutes",
+      "grade": 4,
+      "unit": "Zeit Minuten und Stunden",
+      "kind": "timeMinutes"
+    },
+    {
+      "id": "g4_volume",
+      "grade": 4,
+      "unit": "Hohlmaße Liter und Milliliter",
+      "kind": "volumeConversion"
+    },
+    {
+      "id": "g4_fraction_expand",
+      "grade": 4,
+      "unit": "Brüche erweitern",
+      "kind": "fractionExpand"
+    },
+    {
+      "id": "g4_average",
+      "grade": 4,
+      "unit": "Mittelwert",
+      "kind": "average"
+    },
+    {
+      "id": "g4_area",
+      "grade": 4,
+      "unit": "Flächeninhalt",
+      "kind": "area"
+    },
+    {
+      "id": "g4_symmetry_lines",
+      "grade": 4,
+      "unit": "Symmetrieachsen",
+      "kind": "symmetry"
+    },
+    {
+      "id": "g1_trace_square",
+      "grade": 1,
+      "unit": "Formen Nachzeichnen",
+      "kind": "shapeTrace"
+    },
+    {
+      "id": "g1_trace_circle",
+      "grade": 1,
+      "unit": "Formen Nachzeichnen",
+      "kind": "shapeTrace"
+    },
+    {
+      "id": "g1_trace_triangle",
+      "grade": 1,
+      "unit": "Formen Nachzeichnen",
+      "kind": "shapeTrace"
+    },
+    {
+      "id": "g2_trace_rectangle",
+      "grade": 2,
+      "unit": "Formen Nachzeichnen",
+      "kind": "shapeTrace"
+    },
+    {
+      "id": "g2_trace_star",
+      "grade": 2,
+      "unit": "Formen Nachzeichnen",
+      "kind": "shapeTrace"
+    }
+  ],
+  "germanTemplates": [
+    {
+      "id": "g1_letter_sound",
+      "grade": 1,
+      "unit": "Buchstaben-Lautierung",
+      "kind": "letterSound"
+    },
+    {
+      "id": "g1_rhyme",
+      "grade": 1,
+      "unit": "Reime",
+      "kind": "rhymeRecognition"
+    },
+    {
+      "id": "g1_start_sound",
+      "grade": 1,
+      "unit": "Anfangslaute",
+      "kind": "startSound"
+    },
+    {
+      "id": "g1_end_sound",
+      "grade": 1,
+      "unit": "Endlaute",
+      "kind": "endSound"
+    },
+    {
+      "id": "g1_word_image",
+      "grade": 1,
+      "unit": "Wort-Bild-Zuordnung",
+      "kind": "wordImage"
+    },
+    {
+      "id": "g1_sentence_order",
+      "grade": 1,
+      "unit": "Erste Sätze",
+      "kind": "sentenceOrder"
+    },
+    {
+      "id": "g1_syllables",
+      "grade": 1,
+      "unit": "Silben",
+      "kind": "syllables"
+    },
+    {
+      "id": "g1_articles",
+      "grade": 1,
+      "unit": "Artikel",
+      "kind": "article"
+    },
+    {
+      "id": "g2_family",
+      "grade": 2,
+      "unit": "Wortfamilien",
+      "kind": "wordFamily"
+    },
+    {
+      "id": "g2_plural",
+      "grade": 2,
+      "unit": "Einzahl und Mehrzahl",
+      "kind": "plural"
+    },
+    {
+      "id": "g2_diminutive",
+      "grade": 2,
+      "unit": "Verkleinerungsform",
+      "kind": "diminutive"
+    },
+    {
+      "id": "g2_opposites",
+      "grade": 2,
+      "unit": "Gegenteile",
+      "kind": "opposites"
+    },
+    {
+      "id": "g2_categories",
+      "grade": 2,
+      "unit": "Oberbegriffe",
+      "kind": "categories"
+    },
+    {
+      "id": "g2_nouns",
+      "grade": 2,
+      "unit": "Namenwoerter",
+      "kind": "wordTypes"
+    },
+    {
+      "id": "g2_verbs",
+      "grade": 2,
+      "unit": "Tunwoerter",
+      "kind": "wordTypes"
+    },
+    {
+      "id": "g2_adjectives",
+      "grade": 2,
+      "unit": "Wiewoerter",
+      "kind": "wordTypes"
+    },
+    {
+      "id": "g3_synonyms",
+      "grade": 3,
+      "unit": "Synonyme",
+      "kind": "synonyms"
+    },
+    {
+      "id": "g3_word_types",
+      "grade": 3,
+      "unit": "Wortarten",
+      "kind": "wordTypes"
+    },
+    {
+      "id": "g3_tense",
+      "grade": 3,
+      "unit": "Zeitformen",
+      "kind": "pastTense"
+    },
+    {
+      "id": "g3_comparison",
+      "grade": 3,
+      "unit": "Steigerung",
+      "kind": "comparison"
+    },
+    {
+      "id": "g3_verb_form",
+      "grade": 3,
+      "unit": "Verbformen",
+      "kind": "verbForm"
+    },
+    {
+      "id": "g3_case_nom_akk",
+      "grade": 3,
+      "unit": "Wer-Fall und Wen-Fall",
+      "kind": "caseNomAkk"
+    },
+    {
+      "id": "g3_capitalization",
+      "grade": 3,
+      "unit": "Großschreibung",
+      "kind": "capitalization"
+    },
+    {
+      "id": "g3_ie_or_i",
+      "grade": 3,
+      "unit": "ie oder i",
+      "kind": "ieOrI"
+    },
+    {
+      "id": "g4_sentence_parts",
+      "grade": 4,
+      "unit": "Satzglieder",
+      "kind": "sentenceParts"
+    },
+    {
+      "id": "g4_direct_speech",
+      "grade": 4,
+      "unit": "Direkte Rede",
+      "kind": "directSpeech"
+    },
+    {
+      "id": "g4_commas",
+      "grade": 4,
+      "unit": "Kommas in Aufzählungen",
+      "kind": "commas"
+    },
+    {
+      "id": "g4_compounds",
+      "grade": 4,
+      "unit": "Zusammensetzungen",
+      "kind": "compounds"
+    },
+    {
+      "id": "g4_four_cases",
+      "grade": 4,
+      "unit": "Die 4 Fälle",
+      "kind": "fourCases"
+    },
+    {
+      "id": "g4_dass_das",
+      "grade": 4,
+      "unit": "dass oder das",
+      "kind": "dassDas"
+    },
+    {
+      "id": "g4_adverbs",
+      "grade": 4,
+      "unit": "Umstandswörter",
+      "kind": "adverbs"
+    },
+    {
+      "id": "g4_plusquam",
+      "grade": 4,
+      "unit": "Vorvergangenheit",
+      "kind": "plusquamperfect"
+    }
+  ],
+  "academyTopics": [
+    {
+      "id": "m1_zahlen10",
+      "grade": 1,
+      "subjectId": "mathe1",
+      "subject": "Mathematik",
+      "title": "Zahlen 1-10",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Mengenvergleich"
+    },
+    {
+      "id": "m1_plus10",
+      "grade": 1,
+      "subjectId": "mathe1",
+      "subject": "Mathematik",
+      "title": "Plus bis 10",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Plus bis 10"
+    },
+    {
+      "id": "m1_minus10",
+      "grade": 1,
+      "subjectId": "mathe1",
+      "subject": "Mathematik",
+      "title": "Minus bis 10",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Minus bis 10"
+    },
+    {
+      "id": "m1_formen",
+      "grade": 1,
+      "subjectId": "mathe1",
+      "subject": "Mathematik",
+      "title": "Formen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Geometrie Formen"
+    },
+    {
+      "id": "d1_schreibcoach",
+      "grade": 1,
+      "subjectId": "deutsch1",
+      "subject": "Deutsch",
+      "title": "✨ Schreibcoach LIVE",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Buchstaben-Lautierung"
+    },
+    {
+      "id": "d1_buchstaben_alle",
+      "grade": 1,
+      "subjectId": "deutsch1",
+      "subject": "Deutsch",
+      "title": "Alle Buchstaben A-Z",
+      "isWriting": true,
+      "writingChars": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "registeredModule": false,
+      "exerciseUnit": "Buchstaben-Lautierung"
+    },
+    {
+      "id": "d1_woerter",
+      "grade": 1,
+      "subjectId": "deutsch1",
+      "subject": "Deutsch",
+      "title": "Erste Wörter",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Wort-Bild-Zuordnung"
+    },
+    {
+      "id": "s1_tiere",
+      "grade": 1,
+      "subjectId": "sachk1",
+      "subject": "Sachunterricht",
+      "title": "Tiere",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Tiere"
+    },
+    {
+      "id": "s1_pflanzen",
+      "grade": 1,
+      "subjectId": "sachk1",
+      "subject": "Sachunterricht",
+      "title": "Pflanzen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Pflanzen"
+    },
+    {
+      "id": "s1_koerper",
+      "grade": 1,
+      "subjectId": "sachk1",
+      "subject": "Sachunterricht",
+      "title": "Mein Körper",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Körper"
+    },
+    {
+      "id": "en1_1",
+      "grade": 1,
+      "subjectId": "englisch1",
+      "subject": "Englisch",
+      "title": "Farben",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Farben"
+    },
+    {
+      "id": "en1_2",
+      "grade": 1,
+      "subjectId": "englisch1",
+      "subject": "Englisch",
+      "title": "Tiere",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Tiere"
+    },
+    {
+      "id": "en1_3",
+      "grade": 1,
+      "subjectId": "englisch1",
+      "subject": "Englisch",
+      "title": "Begrüßung",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Begruessung"
+    },
+    {
+      "id": "m2_zahlen100",
+      "grade": 2,
+      "subjectId": "mathe2",
+      "subject": "Mathematik",
+      "title": "Zahlen bis 100",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Plus bis 100"
+    },
+    {
+      "id": "m2_einmaleins",
+      "grade": 2,
+      "subjectId": "mathe2",
+      "subject": "Mathematik",
+      "title": "Kleines 1×1",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Einmaleins Vorbereitung"
+    },
+    {
+      "id": "m2_uhr",
+      "grade": 2,
+      "subjectId": "mathe2",
+      "subject": "Mathematik",
+      "title": "Die Uhr",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Uhrzeit"
+    },
+    {
+      "id": "m2_geld",
+      "grade": 2,
+      "subjectId": "mathe2",
+      "subject": "Mathematik",
+      "title": "Geld",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Geld wechseln"
+    },
+    {
+      "id": "d2_saetze",
+      "grade": 2,
+      "subjectId": "deutsch2",
+      "subject": "Deutsch",
+      "title": "Sätze bilden",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Erste Sätze"
+    },
+    {
+      "id": "d2_artikel",
+      "grade": 2,
+      "subjectId": "deutsch2",
+      "subject": "Deutsch",
+      "title": "Der/Die/Das",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Artikel"
+    },
+    {
+      "id": "d2_mehrzahl",
+      "grade": 2,
+      "subjectId": "deutsch2",
+      "subject": "Deutsch",
+      "title": "Mehrzahl",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Einzahl und Mehrzahl"
+    },
+    {
+      "id": "s2_jahreszeiten",
+      "grade": 2,
+      "subjectId": "sachk2",
+      "subject": "Sachunterricht",
+      "title": "Jahreszeiten",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Jahreszeiten"
+    },
+    {
+      "id": "s2_wetter",
+      "grade": 2,
+      "subjectId": "sachk2",
+      "subject": "Sachunterricht",
+      "title": "Wetter",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Wetter"
+    },
+    {
+      "id": "s2_verkehr",
+      "grade": 2,
+      "subjectId": "sachk2",
+      "subject": "Sachunterricht",
+      "title": "Verkehr",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Verkehr"
+    },
+    {
+      "id": "en2_1",
+      "grade": 2,
+      "subjectId": "englisch2",
+      "subject": "Englisch",
+      "title": "Zahlen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Zahlen"
+    },
+    {
+      "id": "en2_2",
+      "grade": 2,
+      "subjectId": "englisch2",
+      "subject": "Englisch",
+      "title": "Körper",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Körper"
+    },
+    {
+      "id": "en2_3",
+      "grade": 2,
+      "subjectId": "englisch2",
+      "subject": "Englisch",
+      "title": "Spielzeug",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Spielzeug"
+    },
+    {
+      "id": "m3_zahlen1000",
+      "grade": 3,
+      "subjectId": "mathe3",
+      "subject": "Mathematik",
+      "title": "Zahlen bis 1000",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Plus bis 1000"
+    },
+    {
+      "id": "m3_einmaleins_voll",
+      "grade": 3,
+      "subjectId": "mathe3",
+      "subject": "Mathematik",
+      "title": "Großes 1×1",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Einmaleins"
+    },
+    {
+      "id": "m3_geometrie",
+      "grade": 3,
+      "subjectId": "mathe3",
+      "subject": "Mathematik",
+      "title": "Geometrie",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Umfang"
+    },
+    {
+      "id": "m3_schrift_add",
+      "grade": 3,
+      "subjectId": "mathe3",
+      "subject": "Mathematik",
+      "title": "Schriftliche Addition",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Schriftliche Addition"
+    },
+    {
+      "id": "m3_schrift_sub",
+      "grade": 3,
+      "subjectId": "mathe3",
+      "subject": "Mathematik",
+      "title": "Schriftliche Subtraktion",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Schriftliche Subtraktion"
+    },
+    {
+      "id": "m3_division",
+      "grade": 3,
+      "subjectId": "mathe3",
+      "subject": "Mathematik",
+      "title": "Division einstellig",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Division einstellig"
+    },
+    {
+      "id": "m3_sachaufgaben",
+      "grade": 3,
+      "subjectId": "mathe3",
+      "subject": "Mathematik",
+      "title": "Sachaufgaben zwei Schritte",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Sachaufgaben zwei Schritte"
+    },
+    {
+      "id": "m3_gewicht",
+      "grade": 3,
+      "subjectId": "mathe3",
+      "subject": "Mathematik",
+      "title": "Massen Kilogramm und Gramm",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Massen Kilogramm und Gramm"
+    },
+    {
+      "id": "d3_wortarten",
+      "grade": 3,
+      "subjectId": "deutsch3",
+      "subject": "Deutsch",
+      "title": "Wortarten",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Wortarten"
+    },
+    {
+      "id": "d3_zeitformen",
+      "grade": 3,
+      "subjectId": "deutsch3",
+      "subject": "Deutsch",
+      "title": "Zeitformen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Zeitformen"
+    },
+    {
+      "id": "d3_geschichten",
+      "grade": 3,
+      "subjectId": "deutsch3",
+      "subject": "Deutsch",
+      "title": "Geschichten",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": null
+    },
+    {
+      "id": "d3_grossschreibung",
+      "grade": 3,
+      "subjectId": "deutsch3",
+      "subject": "Deutsch",
+      "title": "Großschreibung",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Großschreibung"
+    },
+    {
+      "id": "d3_faelle",
+      "grade": 3,
+      "subjectId": "deutsch3",
+      "subject": "Deutsch",
+      "title": "Wer-Fall und Wen-Fall",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Wer-Fall und Wen-Fall"
+    },
+    {
+      "id": "d3_verbformen",
+      "grade": 3,
+      "subjectId": "deutsch3",
+      "subject": "Deutsch",
+      "title": "Verbformen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Verbformen"
+    },
+    {
+      "id": "d3_ie",
+      "grade": 3,
+      "subjectId": "deutsch3",
+      "subject": "Deutsch",
+      "title": "ie oder i",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "ie oder i"
+    },
+    {
+      "id": "s3_oesterreich",
+      "grade": 3,
+      "subjectId": "sachk3",
+      "subject": "Sachunterricht",
+      "title": "Österreich",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Bundesländer Österreichs"
+    },
+    {
+      "id": "s3_natur",
+      "grade": 3,
+      "subjectId": "sachk3",
+      "subject": "Sachunterricht",
+      "title": "Natur",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Pflanzen"
+    },
+    {
+      "id": "s3_wetter",
+      "grade": 3,
+      "subjectId": "sachk3",
+      "subject": "Sachunterricht",
+      "title": "Wetter",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Wetter"
+    },
+    {
+      "id": "s3_verkehr",
+      "grade": 3,
+      "subjectId": "sachk3",
+      "subject": "Sachunterricht",
+      "title": "Verkehr",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Verkehr"
+    },
+    {
+      "id": "s3_wasser",
+      "grade": 3,
+      "subjectId": "sachk3",
+      "subject": "Sachunterricht",
+      "title": "Wasserkreislauf",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Wasserkreislauf"
+    },
+    {
+      "id": "s3_ernaehrung",
+      "grade": 3,
+      "subjectId": "sachk3",
+      "subject": "Sachunterricht",
+      "title": "Ernährung",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Ernährung"
+    },
+    {
+      "id": "s3_zeit",
+      "grade": 3,
+      "subjectId": "sachk3",
+      "subject": "Sachunterricht",
+      "title": "Zeit und Kalender",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Zeit und Kalender"
+    },
+    {
+      "id": "s3_berufe",
+      "grade": 3,
+      "subjectId": "sachk3",
+      "subject": "Sachunterricht",
+      "title": "Berufe",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Berufe"
+    },
+    {
+      "id": "en3_1",
+      "grade": 3,
+      "subjectId": "englisch3",
+      "subject": "Englisch",
+      "title": "Wetter",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Wetter"
+    },
+    {
+      "id": "en3_2",
+      "grade": 3,
+      "subjectId": "englisch3",
+      "subject": "Englisch",
+      "title": "Essen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Essen"
+    },
+    {
+      "id": "en3_3",
+      "grade": 3,
+      "subjectId": "englisch3",
+      "subject": "Englisch",
+      "title": "Schulsachen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Schulsachen"
+    },
+    {
+      "id": "en3_4",
+      "grade": 3,
+      "subjectId": "englisch3",
+      "subject": "Englisch",
+      "title": "Tageszeit",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Tageszeit"
+    },
+    {
+      "id": "en3_5",
+      "grade": 3,
+      "subjectId": "englisch3",
+      "subject": "Englisch",
+      "title": "Alltagssätze",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Alltagssätze"
+    },
+    {
+      "id": "m4_million",
+      "grade": 4,
+      "subjectId": "mathe4",
+      "subject": "Mathematik",
+      "title": "Zahlen bis 1 Million",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Zahlenraum bis 1 Million"
+    },
+    {
+      "id": "m4_bruch",
+      "grade": 4,
+      "subjectId": "mathe4",
+      "subject": "Mathematik",
+      "title": "Bruchrechnen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": true,
+      "exerciseUnit": "Bruchrechnen einfach"
+    },
+    {
+      "id": "m4_textaufgaben",
+      "grade": 4,
+      "subjectId": "mathe4",
+      "subject": "Mathematik",
+      "title": "Textaufgaben",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Sachaufgaben drei Schritte"
+    },
+    {
+      "id": "m4_multiplikation",
+      "grade": 4,
+      "subjectId": "mathe4",
+      "subject": "Mathematik",
+      "title": "Schriftliche Multiplikation",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Schriftliche Multiplikation"
+    },
+    {
+      "id": "m4_division",
+      "grade": 4,
+      "subjectId": "mathe4",
+      "subject": "Mathematik",
+      "title": "Schriftliche Division",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Schriftliche Division"
+    },
+    {
+      "id": "m4_dezimal",
+      "grade": 4,
+      "subjectId": "mathe4",
+      "subject": "Mathematik",
+      "title": "Dezimalzahlen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Dezimalzahlen"
+    },
+    {
+      "id": "m4_bruch_erweitern",
+      "grade": 4,
+      "subjectId": "mathe4",
+      "subject": "Mathematik",
+      "title": "Brüche erweitern",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Brüche erweitern"
+    },
+    {
+      "id": "m4_diagramme",
+      "grade": 4,
+      "subjectId": "mathe4",
+      "subject": "Mathematik",
+      "title": "Diagramme lesen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Diagramme lesen"
+    },
+    {
+      "id": "d4_grammatik",
+      "grade": 4,
+      "subjectId": "deutsch4",
+      "subject": "Deutsch",
+      "title": "Grammatik",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Die 4 Fälle"
+    },
+    {
+      "id": "d4_aufsatz",
+      "grade": 4,
+      "subjectId": "deutsch4",
+      "subject": "Deutsch",
+      "title": "Aufsätze",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": null
+    },
+    {
+      "id": "d4_satzglieder",
+      "grade": 4,
+      "subjectId": "deutsch4",
+      "subject": "Deutsch",
+      "title": "Satzglieder",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Satzglieder"
+    },
+    {
+      "id": "d4_direkte",
+      "grade": 4,
+      "subjectId": "deutsch4",
+      "subject": "Deutsch",
+      "title": "Direkte Rede",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Direkte Rede"
+    },
+    {
+      "id": "d4_dassdas",
+      "grade": 4,
+      "subjectId": "deutsch4",
+      "subject": "Deutsch",
+      "title": "dass oder das",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "dass oder das"
+    },
+    {
+      "id": "d4_zusammensetzung",
+      "grade": 4,
+      "subjectId": "deutsch4",
+      "subject": "Deutsch",
+      "title": "Zusammensetzungen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Zusammensetzungen"
+    },
+    {
+      "id": "s4_europa",
+      "grade": 4,
+      "subjectId": "sachk4",
+      "subject": "Sachunterricht",
+      "title": "Kontinente und Ozeane",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Kontinente und Ozeane"
+    },
+    {
+      "id": "s4_geschichte",
+      "grade": 4,
+      "subjectId": "sachk4",
+      "subject": "Sachunterricht",
+      "title": "Geschichte",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Geschichte"
+    },
+    {
+      "id": "s4_oekosystem",
+      "grade": 4,
+      "subjectId": "sachk4",
+      "subject": "Sachunterricht",
+      "title": "Ökosysteme",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Ökosysteme"
+    },
+    {
+      "id": "s4_strom",
+      "grade": 4,
+      "subjectId": "sachk4",
+      "subject": "Sachunterricht",
+      "title": "Stromkreise",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Stromkreise"
+    },
+    {
+      "id": "s4_diagramme",
+      "grade": 4,
+      "subjectId": "sachk4",
+      "subject": "Sachunterricht",
+      "title": "Diagramme lesen",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Diagramme lesen"
+    },
+    {
+      "id": "s4_geografie",
+      "grade": 4,
+      "subjectId": "sachk4",
+      "subject": "Sachunterricht",
+      "title": "Geografie Österreich",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Geografie Österreich"
+    },
+    {
+      "id": "en4_1",
+      "grade": 4,
+      "subjectId": "englisch4",
+      "subject": "Englisch",
+      "title": "Verben",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Verben"
+    },
+    {
+      "id": "en4_2",
+      "grade": 4,
+      "subjectId": "englisch4",
+      "subject": "Englisch",
+      "title": "Wochentage",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Wochentage"
+    },
+    {
+      "id": "en4_3",
+      "grade": 4,
+      "subjectId": "englisch4",
+      "subject": "Englisch",
+      "title": "Hobbys",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Hobbys"
+    },
+    {
+      "id": "en4_4",
+      "grade": 4,
+      "subjectId": "englisch4",
+      "subject": "Englisch",
+      "title": "Länder",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Länder"
+    },
+    {
+      "id": "en4_5",
+      "grade": 4,
+      "subjectId": "englisch4",
+      "subject": "Englisch",
+      "title": "Alltagssätze",
+      "isWriting": false,
+      "writingChars": [],
+      "registeredModule": false,
+      "exerciseUnit": "Alltagssätze"
+    }
+  ],
+  "registeredModuleIds": [
+    "d1_woerter",
+    "d2_artikel",
+    "d2_mehrzahl",
+    "d3_wortarten",
+    "d3_zeitformen",
+    "m1_formen",
+    "m1_minus10",
+    "m1_plus10",
+    "m1_zahlen10",
+    "m2_einmaleins",
+    "m2_geld",
+    "m2_uhr",
+    "m2_zahlen100",
+    "m3_einmaleins_voll",
+    "m4_bruch",
+    "s1_farben",
+    "s1_tiere",
+    "s2_jahreszeiten",
+    "s2_verkehr",
+    "s2_wetter"
+  ],
+  "practicalActivities": [
+    {
+      "id": "g1_music_voice",
+      "grade": 1,
+      "subject": "Musik",
+      "title": "Lumo-Klangdetektiv",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_music_move",
+      "grade": 1,
+      "subject": "Musik",
+      "title": "Rhythmus-Schritte",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_music_make",
+      "grade": 2,
+      "subject": "Musik",
+      "title": "Eigenes Klangmuster",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_music_compare",
+      "grade": 2,
+      "subject": "Musik",
+      "title": "Klangfarben vergleichen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_music_form",
+      "grade": 3,
+      "subject": "Musik",
+      "title": "Musik in Teilen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_music_scene",
+      "grade": 3,
+      "subject": "Musik",
+      "title": "Musik darstellen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_music_create",
+      "grade": 4,
+      "subject": "Musik",
+      "title": "Mini-Komposition",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_music_reflect",
+      "grade": 4,
+      "subject": "Musik",
+      "title": "Wirkung von Musik",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_art_feeling",
+      "grade": 1,
+      "subject": "Kunst und Gestaltung",
+      "title": "Gefühl in Farben",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_art_notice",
+      "grade": 1,
+      "subject": "Kunst und Gestaltung",
+      "title": "Formen entdecken",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_art_material",
+      "grade": 2,
+      "subject": "Kunst und Gestaltung",
+      "title": "Material-Mix",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_art_talk",
+      "grade": 2,
+      "subject": "Kunst und Gestaltung",
+      "title": "Über Bilder sprechen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_art_perspective",
+      "grade": 3,
+      "subject": "Kunst und Gestaltung",
+      "title": "Nah und fern",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_art_compare",
+      "grade": 3,
+      "subject": "Kunst und Gestaltung",
+      "title": "Zwei Werke vergleichen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_art_message",
+      "grade": 4,
+      "subject": "Kunst und Gestaltung",
+      "title": "Bild mit Botschaft",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_art_redesign",
+      "grade": 4,
+      "subject": "Kunst und Gestaltung",
+      "title": "Neu gestalten",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_tech_fold",
+      "grade": 1,
+      "subject": "Technik und Design",
+      "title": "Papier trägt",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_tech_join",
+      "grade": 1,
+      "subject": "Technik und Design",
+      "title": "Verbinden und lösen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_tech_bridge",
+      "grade": 2,
+      "subject": "Technik und Design",
+      "title": "Mini-Brücke",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_tech_safe",
+      "grade": 2,
+      "subject": "Technik und Design",
+      "title": "Werkzeug sicher nutzen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_tech_mechanism",
+      "grade": 3,
+      "subject": "Technik und Design",
+      "title": "Bewegung übertragen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_tech_plan",
+      "grade": 3,
+      "subject": "Technik und Design",
+      "title": "Erst planen, dann bauen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_tech_design",
+      "grade": 4,
+      "subject": "Technik und Design",
+      "title": "Produkt verbessern",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_tech_review",
+      "grade": 4,
+      "subject": "Technik und Design",
+      "title": "Qualitätscheck",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_sport_motor",
+      "grade": 1,
+      "subject": "Bewegung und Sport",
+      "title": "Balance-Parcours",
+      "requiresAdult": true
+    },
+    {
+      "id": "g1_sport_game",
+      "grade": 1,
+      "subject": "Bewegung und Sport",
+      "title": "Fair spielen",
+      "requiresAdult": true
+    },
+    {
+      "id": "g2_sport_forms",
+      "grade": 2,
+      "subject": "Bewegung und Sport",
+      "title": "Laufen, Springen, Werfen",
+      "requiresAdult": true
+    },
+    {
+      "id": "g2_sport_health",
+      "grade": 2,
+      "subject": "Bewegung und Sport",
+      "title": "Puls spüren",
+      "requiresAdult": true
+    },
+    {
+      "id": "g3_sport_create",
+      "grade": 3,
+      "subject": "Bewegung und Sport",
+      "title": "Bewegungsfolge",
+      "requiresAdult": true
+    },
+    {
+      "id": "g3_sport_team",
+      "grade": 3,
+      "subject": "Bewegung und Sport",
+      "title": "Team-Aufgabe",
+      "requiresAdult": true
+    },
+    {
+      "id": "g4_sport_plan",
+      "grade": 4,
+      "subject": "Bewegung und Sport",
+      "title": "Eigenes Warm-up",
+      "requiresAdult": true
+    },
+    {
+      "id": "g4_sport_risk",
+      "grade": 4,
+      "subject": "Bewegung und Sport",
+      "title": "Risiko einschätzen",
+      "requiresAdult": true
+    },
+    {
+      "id": "g1_mobility_way",
+      "grade": 1,
+      "subject": "Verkehrs- und Mobilitätsbildung",
+      "title": "Mein sicherer Schulweg",
+      "requiresAdult": true
+    },
+    {
+      "id": "g1_mobility_signs",
+      "grade": 1,
+      "subject": "Verkehrs- und Mobilitätsbildung",
+      "title": "Sehen und gesehen werden",
+      "requiresAdult": true
+    },
+    {
+      "id": "g2_mobility_cross",
+      "grade": 2,
+      "subject": "Verkehrs- und Mobilitätsbildung",
+      "title": "Sicher queren",
+      "requiresAdult": true
+    },
+    {
+      "id": "g2_mobility_view",
+      "grade": 2,
+      "subject": "Verkehrs- und Mobilitätsbildung",
+      "title": "Perspektivenwechsel",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_mobility_plan",
+      "grade": 3,
+      "subject": "Verkehrs- und Mobilitätsbildung",
+      "title": "Route vergleichen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_mobility_rules",
+      "grade": 3,
+      "subject": "Verkehrs- und Mobilitätsbildung",
+      "title": "Regeln begründen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_mobility_choice",
+      "grade": 4,
+      "subject": "Verkehrs- und Mobilitätsbildung",
+      "title": "Mobilitätsentscheidung",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_mobility_hazard",
+      "grade": 4,
+      "subject": "Verkehrs- und Mobilitätsbildung",
+      "title": "Gefahren vorausdenken",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_de_listen",
+      "grade": 1,
+      "subject": "Deutsch",
+      "title": "Erzähl mir drei Dinge",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_de_retell",
+      "grade": 2,
+      "subject": "Deutsch",
+      "title": "Geschichte nacherzählen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_de_explain",
+      "grade": 3,
+      "subject": "Deutsch",
+      "title": "Etwas verständlich erklären",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_de_discuss",
+      "grade": 4,
+      "subject": "Deutsch",
+      "title": "Standpunkt begründen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_en_listen",
+      "grade": 1,
+      "subject": "Englisch",
+      "title": "Listen and point",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_en_speak",
+      "grade": 1,
+      "subject": "Englisch",
+      "title": "Hello, I am …",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_en_commands",
+      "grade": 2,
+      "subject": "Englisch",
+      "title": "Listen and do",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_en_dialogue",
+      "grade": 2,
+      "subject": "Englisch",
+      "title": "Mini dialogue",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_en_info",
+      "grade": 3,
+      "subject": "Englisch",
+      "title": "Find the information",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_en_talk",
+      "grade": 3,
+      "subject": "Englisch",
+      "title": "My favourite …",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_en_message",
+      "grade": 4,
+      "subject": "Englisch",
+      "title": "Short message",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_en_roleplay",
+      "grade": 4,
+      "subject": "Englisch",
+      "title": "Everyday role play",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_su_observe",
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "title": "Natur beobachten",
+      "requiresAdult": false
+    },
+    {
+      "id": "g1_su_map",
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "title": "Mein Nahraum",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_su_firstaid",
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "title": "Wer hilft im Notfall?",
+      "requiresAdult": false
+    },
+    {
+      "id": "g2_su_habitat",
+      "grade": 2,
+      "subject": "Sachunterricht",
+      "title": "Lebensraum vergleichen",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_su_trade",
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "title": "Vom Produkt zum Geschäft",
+      "requiresAdult": false
+    },
+    {
+      "id": "g3_su_force",
+      "grade": 3,
+      "subject": "Sachunterricht",
+      "title": "Kraft erforschen",
+      "requiresAdult": true
+    },
+    {
+      "id": "g4_su_energy",
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "title": "Energie im Alltag",
+      "requiresAdult": false
+    },
+    {
+      "id": "g4_su_democracy",
+      "grade": 4,
+      "subject": "Sachunterricht",
+      "title": "Gemeinsam entscheiden",
+      "requiresAdult": false
+    }
+  ],
+  "labTopics": [
+    {
+      "id": "bridge",
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Plus bis 20",
+      "mode": "bridge",
+      "problems": [
+        {
+          "id": "bridge-8-5",
+          "mode": "bridge",
+          "hintCount": 5
+        },
+        {
+          "id": "bridge-7-5",
+          "mode": "bridge",
+          "hintCount": 5
+        },
+        {
+          "id": "bridge-9-7",
+          "mode": "bridge",
+          "hintCount": 5
+        },
+        {
+          "id": "bridge-6-5",
+          "mode": "bridge",
+          "hintCount": 5
+        },
+        {
+          "id": "bridge-8-6",
+          "mode": "bridge",
+          "hintCount": 5
+        },
+        {
+          "id": "bridge-7-6",
+          "mode": "bridge",
+          "hintCount": 5
+        },
+        {
+          "id": "bridge-9-5",
+          "mode": "bridge",
+          "hintCount": 5
+        },
+        {
+          "id": "bridge-6-6",
+          "mode": "bridge",
+          "hintCount": 5
+        }
+      ]
+    },
+    {
+      "id": "words",
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Silben",
+      "mode": "word",
+      "problems": [
+        {
+          "id": "word-banane",
+          "mode": "word",
+          "hintCount": 5
+        },
+        {
+          "id": "word-tomate",
+          "mode": "word",
+          "hintCount": 5
+        },
+        {
+          "id": "word-rakete",
+          "mode": "word",
+          "hintCount": 5
+        },
+        {
+          "id": "word-melone",
+          "mode": "word",
+          "hintCount": 5
+        },
+        {
+          "id": "word-salami",
+          "mode": "word",
+          "hintCount": 5
+        },
+        {
+          "id": "word-lawine",
+          "mode": "word",
+          "hintCount": 5
+        }
+      ]
+    },
+    {
+      "id": "english",
+      "grade": 2,
+      "subject": "Englisch",
+      "unit": "Alltagswörter",
+      "mode": "english",
+      "problems": [
+        {
+          "id": "english-cat",
+          "mode": "english",
+          "hintCount": 5
+        },
+        {
+          "id": "english-dog",
+          "mode": "english",
+          "hintCount": 5
+        },
+        {
+          "id": "english-apple",
+          "mode": "english",
+          "hintCount": 5
+        },
+        {
+          "id": "english-book",
+          "mode": "english",
+          "hintCount": 5
+        },
+        {
+          "id": "english-ball",
+          "mode": "english",
+          "hintCount": 5
+        },
+        {
+          "id": "english-bird",
+          "mode": "english",
+          "hintCount": 5
+        }
+      ]
+    },
+    {
+      "id": "nature",
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Pflanzen",
+      "mode": "nature",
+      "problems": [
+        {
+          "id": "nature-root",
+          "mode": "nature",
+          "hintCount": 5
+        },
+        {
+          "id": "nature-stem",
+          "mode": "nature",
+          "hintCount": 5
+        },
+        {
+          "id": "nature-leaf",
+          "mode": "nature",
+          "hintCount": 5
+        },
+        {
+          "id": "nature-flower",
+          "mode": "nature",
+          "hintCount": 5
+        }
+      ]
+    },
+    {
+      "id": "fractions",
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Brüche",
+      "mode": "fraction",
+      "problems": [
+        {
+          "id": "fraction-3-4",
+          "mode": "fraction",
+          "hintCount": 5
+        },
+        {
+          "id": "fraction-2-3",
+          "mode": "fraction",
+          "hintCount": 5
+        },
+        {
+          "id": "fraction-5-6",
+          "mode": "fraction",
+          "hintCount": 5
+        },
+        {
+          "id": "fraction-3-8",
+          "mode": "fraction",
+          "hintCount": 5
+        },
+        {
+          "id": "fraction-1-4",
+          "mode": "fraction",
+          "hintCount": 5
+        },
+        {
+          "id": "fraction-2-5",
+          "mode": "fraction",
+          "hintCount": 5
+        }
+      ]
+    },
+    {
+      "id": "patterns",
+      "grade": 1,
+      "subject": "Logik",
+      "unit": "Muster",
+      "mode": "pattern",
+      "problems": [
+        {
+          "id": "pattern-kreis-dreieck-5",
+          "mode": "pattern",
+          "hintCount": 5
+        },
+        {
+          "id": "pattern-dreieck-kreis-5",
+          "mode": "pattern",
+          "hintCount": 5
+        },
+        {
+          "id": "pattern-quadrat-kreis-5",
+          "mode": "pattern",
+          "hintCount": 5
+        },
+        {
+          "id": "pattern-kreis-dreieck-quadrat-8",
+          "mode": "pattern",
+          "hintCount": 5
+        },
+        {
+          "id": "pattern-dreieck-quadrat-kreis-7",
+          "mode": "pattern",
+          "hintCount": 5
+        }
+      ]
+    }
+  ],
+  "guidedLessons": [
+    {
+      "id": "bridge_ten",
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Plus bis 20",
+      "concept": "bridgeTen",
+      "steps": [
+        {
+          "index": 0,
+          "type": "greeting",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 1,
+          "type": "guidedTask",
+          "answerKind": "count",
+          "isIndependent": false
+        },
+        {
+          "index": 2,
+          "type": "showExample",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 3,
+          "type": "guidedTask",
+          "answerKind": "gapToTen",
+          "isIndependent": false
+        },
+        {
+          "index": 4,
+          "type": "guidedTask",
+          "answerKind": "remainder",
+          "isIndependent": false
+        },
+        {
+          "index": 5,
+          "type": "independentTask",
+          "answerKind": "sum",
+          "isIndependent": true
+        },
+        {
+          "index": 6,
+          "type": "independentTask",
+          "answerKind": "sum",
+          "isIndependent": true
+        },
+        {
+          "index": 7,
+          "type": "recap",
+          "answerKind": null,
+          "isIndependent": false
+        }
+      ]
+    },
+    {
+      "id": "equal_groups",
+      "grade": 2,
+      "subject": "Mathematik",
+      "unit": "Kleines 1×1",
+      "concept": "equalGroups",
+      "steps": [
+        {
+          "index": 0,
+          "type": "greeting",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 1,
+          "type": "guidedTask",
+          "answerKind": "count",
+          "isIndependent": false
+        },
+        {
+          "index": 2,
+          "type": "showExample",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 3,
+          "type": "guidedTask",
+          "answerKind": "groups",
+          "isIndependent": false
+        },
+        {
+          "index": 4,
+          "type": "independentTask",
+          "answerKind": "groups",
+          "isIndependent": true
+        },
+        {
+          "index": 5,
+          "type": "independentTask",
+          "answerKind": "repeatedAddition",
+          "isIndependent": true
+        },
+        {
+          "index": 6,
+          "type": "recap",
+          "answerKind": null,
+          "isIndependent": false
+        }
+      ]
+    },
+    {
+      "id": "subtract_ten",
+      "grade": 1,
+      "subject": "Mathematik",
+      "unit": "Minus bis 20",
+      "concept": "subtractTen",
+      "steps": [
+        {
+          "index": 0,
+          "type": "greeting",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 1,
+          "type": "guidedTask",
+          "answerKind": "count",
+          "isIndependent": false
+        },
+        {
+          "index": 2,
+          "type": "showExample",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 3,
+          "type": "guidedTask",
+          "answerKind": "toPreviousTen",
+          "isIndependent": false
+        },
+        {
+          "index": 4,
+          "type": "guidedTask",
+          "answerKind": "subtractRemainder",
+          "isIndependent": false
+        },
+        {
+          "index": 5,
+          "type": "independentTask",
+          "answerKind": "difference",
+          "isIndependent": true
+        },
+        {
+          "index": 6,
+          "type": "independentTask",
+          "answerKind": "difference",
+          "isIndependent": true
+        },
+        {
+          "index": 7,
+          "type": "recap",
+          "answerKind": null,
+          "isIndependent": false
+        }
+      ]
+    },
+    {
+      "id": "syllables",
+      "grade": 1,
+      "subject": "Deutsch",
+      "unit": "Silben",
+      "concept": "syllables",
+      "steps": [
+        {
+          "index": 0,
+          "type": "greeting",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 1,
+          "type": "explain",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 2,
+          "type": "showExample",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 3,
+          "type": "guidedTask",
+          "answerKind": "syllableCount",
+          "isIndependent": false
+        },
+        {
+          "index": 4,
+          "type": "guidedTask",
+          "answerKind": "syllableCount",
+          "isIndependent": false
+        },
+        {
+          "index": 5,
+          "type": "independentTask",
+          "answerKind": "syllableCount",
+          "isIndependent": true
+        },
+        {
+          "index": 6,
+          "type": "independentTask",
+          "answerKind": "syllableCount",
+          "isIndependent": true
+        },
+        {
+          "index": 7,
+          "type": "recap",
+          "answerKind": null,
+          "isIndependent": false
+        }
+      ]
+    },
+    {
+      "id": "flowering_plant_parts",
+      "grade": 1,
+      "subject": "Sachunterricht",
+      "unit": "Pflanzen",
+      "concept": "plantParts",
+      "steps": [
+        {
+          "index": 0,
+          "type": "greeting",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 1,
+          "type": "explain",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 2,
+          "type": "showExample",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 3,
+          "type": "guidedTask",
+          "answerKind": "plantPart",
+          "isIndependent": false
+        },
+        {
+          "index": 4,
+          "type": "guidedTask",
+          "answerKind": "plantPart",
+          "isIndependent": false
+        },
+        {
+          "index": 5,
+          "type": "independentTask",
+          "answerKind": "plantPart",
+          "isIndependent": true
+        },
+        {
+          "index": 6,
+          "type": "independentTask",
+          "answerKind": "plantPart",
+          "isIndependent": true
+        },
+        {
+          "index": 7,
+          "type": "recap",
+          "answerKind": null,
+          "isIndependent": false
+        }
+      ]
+    },
+    {
+      "id": "bridge_hundred",
+      "grade": 3,
+      "subject": "Mathematik",
+      "unit": "Plus bis 1000",
+      "concept": "bridgeHundred",
+      "steps": [
+        {
+          "index": 0,
+          "type": "greeting",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 1,
+          "type": "guidedTask",
+          "answerKind": "tensValue",
+          "isIndependent": false
+        },
+        {
+          "index": 2,
+          "type": "showExample",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 3,
+          "type": "guidedTask",
+          "answerKind": "gapToHundred",
+          "isIndependent": false
+        },
+        {
+          "index": 4,
+          "type": "guidedTask",
+          "answerKind": "hundredRemainder",
+          "isIndependent": false
+        },
+        {
+          "index": 5,
+          "type": "independentTask",
+          "answerKind": "hundredSum",
+          "isIndependent": true
+        },
+        {
+          "index": 6,
+          "type": "independentTask",
+          "answerKind": "hundredSum",
+          "isIndependent": true
+        },
+        {
+          "index": 7,
+          "type": "recap",
+          "answerKind": null,
+          "isIndependent": false
+        }
+      ]
+    },
+    {
+      "id": "fraction_parts",
+      "grade": 4,
+      "subject": "Mathematik",
+      "unit": "Bruchrechnen einfach",
+      "concept": "fractionParts",
+      "steps": [
+        {
+          "index": 0,
+          "type": "greeting",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 1,
+          "type": "guidedTask",
+          "answerKind": "fractionParts",
+          "isIndependent": false
+        },
+        {
+          "index": 2,
+          "type": "showExample",
+          "answerKind": null,
+          "isIndependent": false
+        },
+        {
+          "index": 3,
+          "type": "guidedTask",
+          "answerKind": "fractionParts",
+          "isIndependent": false
+        },
+        {
+          "index": 4,
+          "type": "independentTask",
+          "answerKind": "fractionParts",
+          "isIndependent": true
+        },
+        {
+          "index": 5,
+          "type": "independentTask",
+          "answerKind": "fractionParts",
+          "isIndependent": true
+        },
+        {
+          "index": 6,
+          "type": "recap",
+          "answerKind": null,
+          "isIndependent": false
+        }
+      ]
+    }
+  ],
+  "gameLevels": [
+    {
+      "id": 1,
+      "title": "Plus bis 5",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 2,
+      "title": "Mengen anmalen",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "colorBoxes",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 3,
+      "title": "Plus bis 7",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 4,
+      "title": "Punkt-Gruppen",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 5,
+      "title": "Plus bis 10",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "numberHouse",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 6,
+      "title": "Mengen bis 10",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 7,
+      "title": "Zerlege 7",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "numberHouse",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 8,
+      "title": "Zerlege 9",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "numberHouse",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 9,
+      "title": "Plus-Tricks",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 10,
+      "title": "Plus-Meister",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 11,
+      "title": "Minus bis 5",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 12,
+      "title": "Minus bis 10",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 13,
+      "title": "Zahlenweg 1-10",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "numberPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 14,
+      "title": "Welche Zahl fehlt?",
+      "gradeFloor": 1,
+      "subject": "Mathe",
+      "miniType": "numberPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 15,
+      "title": "Zehnerübergang",
+      "gradeFloor": 2,
+      "subject": "Mathe",
+      "miniType": "numberHouse",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 16,
+      "title": "Plus bis 20",
+      "gradeFloor": 2,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 17,
+      "title": "Minus bis 20",
+      "gradeFloor": 2,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 18,
+      "title": "Zahlen vergleichen",
+      "gradeFloor": 2,
+      "subject": "Mathe",
+      "miniType": "numberPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 19,
+      "title": "Verdoppeln",
+      "gradeFloor": 2,
+      "subject": "Mathe",
+      "miniType": "numberHouse",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 20,
+      "title": "Minus-Meister",
+      "gradeFloor": 2,
+      "subject": "Mathe",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 21,
+      "title": "Anfangslaute",
+      "gradeFloor": 1,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 22,
+      "title": "Endlaute",
+      "gradeFloor": 1,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 23,
+      "title": "Silben klatschen",
+      "gradeFloor": 1,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 24,
+      "title": "Reime finden",
+      "gradeFloor": 1,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 25,
+      "title": "Wort und Bild",
+      "gradeFloor": 1,
+      "subject": "Deutsch",
+      "miniType": "letterFill",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 26,
+      "title": "Kurze Woerter",
+      "gradeFloor": 1,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 27,
+      "title": "Artikel der/die/das",
+      "gradeFloor": 2,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 28,
+      "title": "Einzahl - Mehrzahl",
+      "gradeFloor": 2,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 29,
+      "title": "Wortfamilien",
+      "gradeFloor": 2,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 30,
+      "title": "Lese-Meister",
+      "gradeFloor": 2,
+      "subject": "Deutsch",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 31,
+      "title": "Einkaufen",
+      "gradeFloor": 2,
+      "subject": "Mathe",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 32,
+      "title": "Uhrzeit",
+      "gradeFloor": 2,
+      "subject": "Mathe",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 33,
+      "title": "Tier-Logik",
+      "gradeFloor": 2,
+      "subject": "Sachunterricht",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 34,
+      "title": "Wetter",
+      "gradeFloor": 2,
+      "subject": "Sachunterricht",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 35,
+      "title": "Pflanzen",
+      "gradeFloor": 2,
+      "subject": "Sachunterricht",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 36,
+      "title": "Zaehlen in Sprüngen",
+      "gradeFloor": 3,
+      "subject": "Mathe",
+      "miniType": "numberPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 37,
+      "title": "Verdoppeln-Halbieren",
+      "gradeFloor": 3,
+      "subject": "Mathe",
+      "miniType": "numberHouse",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 38,
+      "title": "Wortarten",
+      "gradeFloor": 3,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 39,
+      "title": "Plus bis 100",
+      "gradeFloor": 3,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 40,
+      "title": "Logik-Meister",
+      "gradeFloor": 3,
+      "subject": "Mix",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 41,
+      "title": "Einmaleins Start",
+      "gradeFloor": 3,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 42,
+      "title": "Einmaleins 3er",
+      "gradeFloor": 3,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 43,
+      "title": "Synonyme",
+      "gradeFloor": 3,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 44,
+      "title": "Zeitformen",
+      "gradeFloor": 3,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 45,
+      "title": "Minus bis 100",
+      "gradeFloor": 3,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 46,
+      "title": "Einmaleins 10er",
+      "gradeFloor": 4,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 47,
+      "title": "Satzbau",
+      "gradeFloor": 4,
+      "subject": "Deutsch",
+      "miniType": "wordForest",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 48,
+      "title": "Schriftliches Plus",
+      "gradeFloor": 4,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 49,
+      "title": "Schriftliches Minus",
+      "gradeFloor": 4,
+      "subject": "Mathe",
+      "miniType": "starsPath",
+      "playable": true,
+      "effectiveRoute": "mini_game"
+    },
+    {
+      "id": 50,
+      "title": "Lumo-Meister",
+      "gradeFloor": 4,
+      "subject": "Mix",
+      "miniType": "mixedQuiz",
+      "playable": true,
+      "effectiveRoute": "quiz"
+    }
+  ],
+  "readingTexts": [
+    {
+      "id": "g1_mama_und_tom",
+      "grade": 1,
+      "title": "Mama und Tom"
+    },
+    {
+      "id": "g1_der_garten",
+      "grade": 1,
+      "title": "Im Garten"
+    },
+    {
+      "id": "g1_lumo_fox",
+      "grade": 1,
+      "title": "Lumo der Fuchs"
+    },
+    {
+      "id": "g1_kater",
+      "grade": 1,
+      "title": "Der Kater"
+    },
+    {
+      "id": "g1_ball",
+      "grade": 1,
+      "title": "Der rote Ball"
+    },
+    {
+      "id": "g1_regen",
+      "grade": 1,
+      "title": "Es regnet"
+    },
+    {
+      "id": "g2_winter",
+      "grade": 2,
+      "title": "Im Winter"
+    },
+    {
+      "id": "g2_baeckerei",
+      "grade": 2,
+      "title": "In der Bäckerei"
+    },
+    {
+      "id": "g2_zoo",
+      "grade": 2,
+      "title": "Im Tiergarten"
+    },
+    {
+      "id": "g2_geburtstag",
+      "grade": 2,
+      "title": "Lenas Geburtstag"
+    },
+    {
+      "id": "g2_herbst",
+      "grade": 2,
+      "title": "Herbst im Park"
+    },
+    {
+      "id": "g2_schulweg",
+      "grade": 2,
+      "title": "Mein Schulweg"
+    },
+    {
+      "id": "g3_schwimmbad",
+      "grade": 3,
+      "title": "Im Schwimmbad"
+    },
+    {
+      "id": "g3_wanderung",
+      "grade": 3,
+      "title": "Bergwanderung"
+    },
+    {
+      "id": "g3_bienen",
+      "grade": 3,
+      "title": "Fleißige Bienen"
+    },
+    {
+      "id": "g3_bibliothek",
+      "grade": 3,
+      "title": "In der Bücherei"
+    },
+    {
+      "id": "g3_igel",
+      "grade": 3,
+      "title": "Der Igel im Herbst"
+    },
+    {
+      "id": "g3_flohmarkt",
+      "grade": 3,
+      "title": "Der Flohmarkt"
+    },
+    {
+      "id": "g4_lumo_und_alina",
+      "grade": 4,
+      "title": "Lumo und Alina"
+    },
+    {
+      "id": "g4_donau",
+      "grade": 4,
+      "title": "Die Donau"
+    },
+    {
+      "id": "g4_wasserkreislauf",
+      "grade": 4,
+      "title": "Der Weg des Wassers"
+    },
+    {
+      "id": "g4_erfinder",
+      "grade": 4,
+      "title": "Eine kluge Idee"
+    },
+    {
+      "id": "g4_wien",
+      "grade": 4,
+      "title": "Ausflug nach Wien"
+    },
+    {
+      "id": "g4_streit",
+      "grade": 4,
+      "title": "Streit und Versöhnung"
+    }
+  ],
+  "quests": [
+    {
+      "id": "q1_apfelgarten",
+      "grade": 1,
+      "title": "Lumo und der Apfelgarten",
+      "exercisePages": [
+        {
+          "pageNum": 2,
+          "type": "mathPlus"
+        },
+        {
+          "pageNum": 3,
+          "type": "mathPlus"
+        },
+        {
+          "pageNum": 4,
+          "type": "wordChoice"
+        }
+      ]
+    },
+    {
+      "id": "q2_baeckerei",
+      "grade": 2,
+      "title": "Lumo in der Baeckerei",
+      "exercisePages": [
+        {
+          "pageNum": 1,
+          "type": "mathPlus"
+        },
+        {
+          "pageNum": 2,
+          "type": "mathMinus"
+        },
+        {
+          "pageNum": 3,
+          "type": "mathMinus"
+        },
+        {
+          "pageNum": 4,
+          "type": "mathPlus"
+        }
+      ]
+    },
+    {
+      "id": "q3_schatzhoehle",
+      "grade": 3,
+      "title": "Lumo und die Schatzhoehle",
+      "exercisePages": [
+        {
+          "pageNum": 1,
+          "type": "mathPlus"
+        },
+        {
+          "pageNum": 2,
+          "type": "mathMinus"
+        },
+        {
+          "pageNum": 3,
+          "type": "mathPlus"
+        },
+        {
+          "pageNum": 4,
+          "type": "mathMinus"
+        }
+      ]
+    },
+    {
+      "id": "q4_sternenflug",
+      "grade": 4,
+      "title": "Lumo und der Sternenflug",
+      "exercisePages": [
+        {
+          "pageNum": 1,
+          "type": "mathMinus"
+        },
+        {
+          "pageNum": 2,
+          "type": "mathPlus"
+        },
+        {
+          "pageNum": 3,
+          "type": "wordChoice"
+        },
+        {
+          "pageNum": 4,
+          "type": "mathPlus"
+        }
+      ]
+    }
+  ],
+  "cognitiveQuestions": [
+    {
+      "id": "g1_pattern_0",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_0",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_0",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_0",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_0",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_1",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_1",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_1",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_1",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_1",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_2",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_2",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_2",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_2",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_2",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_3",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_3",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_3",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_3",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_3",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_4",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_4",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_4",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_4",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_4",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_5",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_5",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_5",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_5",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_5",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_6",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_6",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_6",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_6",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_6",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_7",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_7",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_7",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_7",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_7",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_8",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_8",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_8",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_8",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_8",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g1_pattern_9",
+      "grade": 1,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g1_quant_9",
+      "grade": 1,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g1_verbal_9",
+      "grade": 1,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g1_spatial_9",
+      "grade": 1,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g1_memory_9",
+      "grade": 1,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_0",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_0",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_0",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_0",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_0",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_1",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_1",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_1",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_1",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_1",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_2",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_2",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_2",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_2",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_2",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_3",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_3",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_3",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_3",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_3",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_4",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_4",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_4",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_4",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_4",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_5",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_5",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_5",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_5",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_5",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_6",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_6",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_6",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_6",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_6",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_7",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_7",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_7",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_7",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_7",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_8",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_8",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_8",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_8",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_8",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g2_pattern_9",
+      "grade": 2,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g2_quant_9",
+      "grade": 2,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g2_verbal_9",
+      "grade": 2,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g2_spatial_9",
+      "grade": 2,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g2_memory_9",
+      "grade": 2,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_0",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_0",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_0",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_0",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_0",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_1",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_1",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_1",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_1",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_1",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_2",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_2",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_2",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_2",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_2",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_3",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_3",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_3",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_3",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_3",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_4",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_4",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_4",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_4",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_4",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_5",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_5",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_5",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_5",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_5",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_6",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_6",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_6",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_6",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_6",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_7",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_7",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_7",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_7",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_7",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_8",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_8",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_8",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_8",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_8",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g3_pattern_9",
+      "grade": 3,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g3_quant_9",
+      "grade": 3,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g3_verbal_9",
+      "grade": 3,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g3_spatial_9",
+      "grade": 3,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g3_memory_9",
+      "grade": 3,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_0",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_0",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_0",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_0",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_0",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_1",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_1",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_1",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_1",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_1",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_2",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_2",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_2",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_2",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_2",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_3",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_3",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_3",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_3",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_3",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_4",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_4",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_4",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_4",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_4",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_5",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_5",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_5",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_5",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_5",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_6",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_6",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_6",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_6",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_6",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_7",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_7",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_7",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_7",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_7",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_8",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_8",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_8",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_8",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_8",
+      "grade": 4,
+      "domain": "workingMemory"
+    },
+    {
+      "id": "g4_pattern_9",
+      "grade": 4,
+      "domain": "patternReasoning"
+    },
+    {
+      "id": "g4_quant_9",
+      "grade": 4,
+      "domain": "quantitativeReasoning"
+    },
+    {
+      "id": "g4_verbal_9",
+      "grade": 4,
+      "domain": "verbalReasoning"
+    },
+    {
+      "id": "g4_spatial_9",
+      "grade": 4,
+      "domain": "spatialReasoning"
+    },
+    {
+      "id": "g4_memory_9",
+      "grade": 4,
+      "domain": "workingMemory"
+    }
+  ],
+  "enums": {
+    "LearningMode": [
+      "practice",
+      "tutoring",
+      "blitzTest",
+      "subjectTest",
+      "weaknessTest",
+      "exam"
+    ],
+    "TaskType": [
+      "multipleChoice",
+      "numberLine",
+      "dotGroups",
+      "tenOnes",
+      "writingCanvas",
+      "imageWord",
+      "readingComprehension",
+      "dragDrop",
+      "trueFalse",
+      "shapeTrace"
+    ],
+    "VisualType": [
+      "none",
+      "dots",
+      "numberLine",
+      "sequence",
+      "shape",
+      "tenOnes",
+      "clock",
+      "money",
+      "syllables",
+      "writingPath",
+      "quantityCompare",
+      "fractionPizza",
+      "barChart",
+      "rhymeBubble",
+      "syllableClap",
+      "wordFamilyTree",
+      "sentenceBlocks",
+      "wordTypeColor",
+      "articleCards",
+      "rectangleMeasure",
+      "rulerCompare",
+      "scaleMeasure",
+      "writtenArithmetic",
+      "divisionGroups",
+      "numberCompare",
+      "simpleBarChart",
+      "storyStage",
+      "shapeTrace"
+    ],
+    "MathTemplateKind": [
+      "addition",
+      "subtraction",
+      "numberLineMissing",
+      "quantityCompare",
+      "numberWord",
+      "shapeRecognition",
+      "moneyCompare",
+      "dayHours",
+      "symmetry",
+      "multiplicationPrep",
+      "wordProblemOneStep",
+      "moneyChange",
+      "clockTime",
+      "lengthConversion",
+      "evenOdd",
+      "halfDouble",
+      "tensOnes",
+      "multiplication",
+      "writtenAddition",
+      "writtenSubtraction",
+      "fractionHalf",
+      "wordProblemTwoStep",
+      "perimeter",
+      "area",
+      "writtenMultiplication",
+      "division",
+      "simpleFractionAdd",
+      "decimals",
+      "wordProblemThreeStep",
+      "chartRead",
+      "compare",
+      "massConversion",
+      "volumeConversion",
+      "timeMinutes",
+      "fractionExpand",
+      "average",
+      "shapeTrace"
+    ],
+    "GermanTemplateKind": [
+      "letterSound",
+      "rhymeRecognition",
+      "startSound",
+      "endSound",
+      "wordImage",
+      "sentenceOrder",
+      "syllables",
+      "article",
+      "wordFamily",
+      "plural",
+      "diminutive",
+      "opposites",
+      "categories",
+      "synonyms",
+      "wordTypes",
+      "pastTense",
+      "comparison",
+      "verbForm",
+      "sentenceParts",
+      "directSpeech",
+      "commas",
+      "compounds",
+      "caseNomAkk",
+      "capitalization",
+      "ieOrI",
+      "fourCases",
+      "dassDas",
+      "adverbs",
+      "plusquamperfect"
+    ],
+    "LabMode": [
+      "bridge",
+      "word",
+      "english",
+      "nature",
+      "fraction",
+      "pattern"
+    ],
+    "GuidedLessonConcept": [
+      "bridgeTen",
+      "equalGroups",
+      "subtractTen",
+      "syllables",
+      "plantParts",
+      "bridgeHundred",
+      "fractionParts"
+    ],
+    "GuidedAnswerKind": [
+      "count",
+      "gapToTen",
+      "remainder",
+      "sum",
+      "groups",
+      "repeatedAddition",
+      "toPreviousTen",
+      "subtractRemainder",
+      "difference",
+      "syllableCount",
+      "plantPart",
+      "tensValue",
+      "gapToHundred",
+      "hundredRemainder",
+      "hundredSum",
+      "fractionParts"
+    ],
+    "TutoringStepType": [
+      "greeting",
+      "explain",
+      "showExample",
+      "guidedTask",
+      "independentTask",
+      "miniGame",
+      "recap"
+    ],
+    "GameMiniType": [
+      "starsPath",
+      "numberHouse",
+      "numberPath",
+      "wordForest",
+      "mixedQuiz",
+      "colorBoxes",
+      "letterFill"
+    ],
+    "StoryExerciseType": [
+      "mathPlus",
+      "mathMinus",
+      "wordWrite",
+      "wordChoice"
+    ],
+    "IqArea": [
+      "matrix",
+      "series",
+      "oddOneOut",
+      "rotation",
+      "numbers",
+      "memory"
+    ],
+    "CognitiveDomain": [
+      "patternReasoning",
+      "quantitativeReasoning",
+      "verbalReasoning",
+      "spatialReasoning",
+      "workingMemory"
+    ]
+  }
+}

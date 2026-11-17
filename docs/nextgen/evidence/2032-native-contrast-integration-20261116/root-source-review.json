@@ -1,0 +1,31 @@
+{
+  "reviewedUtc": "2026-11-16T08:42:41.465604+00:00",
+  "producerCommit": "570e8238aabcb5d0e2c7dc19d237ad82d03a3959",
+  "ownerApiCommit": "4eeafe49e632e56dd7f517804f09032ab0be0fe5",
+  "integrationApiCommit": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "tree": "26b6e5301372d4ade91ca8955f7c1ccf5d0dee78",
+  "parent": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "repository": "Ullmann27/lumo-godot",
+  "branch": "integration/lumo-nextgen-learning-20261115",
+  "filesExact": 13,
+  "totalBytes": 831202,
+  "rootReview": {
+    "productionDiff": "Only the existing normal font color definition is expanded to the four additional interactive font states. All other product bytes unchanged.",
+    "sourceAndTestHashesMatchOriginalRedGreen": true,
+    "sameInputObservations": 16,
+    "sameSignalActivations": 6,
+    "originalRedFailures": 32,
+    "originalGreenChecks": 79,
+    "rootRanAnotherGodotTest": false,
+    "newAndroidExecution": false,
+    "original2031RuntimeFailureRetained": true
+  },
+  "candidate": {
+    "versionName": "0.13.20",
+    "versionCode": 2032,
+    "engine": "4.6.3",
+    "status": "PREPARING_NOT_BUILT",
+    "historical2031Unchanged": true
+  },
+  "fullModernizationComplete": false
+}

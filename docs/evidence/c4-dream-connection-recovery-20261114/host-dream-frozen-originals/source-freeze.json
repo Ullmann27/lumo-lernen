@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY_NOT_TESTED",
+  "created_at": "2026-11-14T10:50:36.410338+00:00",
+  "host_source": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "host_tree": "10234debe8d5f2f9577ac28aa05ae99322d9190f",
+  "source_files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "before": {
+        "path": ".github/workflows/lumo-connect-four-2020.yml",
+        "mode": "100644",
+        "git_blob": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af",
+        "bytes": 43922,
+        "sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa"
+      },
+      "after": {
+        "bytes": 45539,
+        "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6",
+        "git_blob": "d56118529b7493e819262e61427d627c01ee0753"
+      }
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "path": "scripts/verify_connect_four_delivery.py",
+        "mode": "100644",
+        "git_blob": "eb35329baf46efa5cdf17af1187e8c460d93c752",
+        "bytes": 51208,
+        "sha256": "b981836528b83c339e3e6fac16712786619905cb0159016f0a021ee447be6800"
+      },
+      "after": {
+        "bytes": 56951,
+        "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82",
+        "git_blob": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff"
+      }
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "path": "scripts/tests/test_connect_four_delivery.py",
+        "mode": "100644",
+        "git_blob": "c7b9461ed056521a5da1fb528afe614b7cdeecee",
+        "bytes": 54097,
+        "sha256": "bd7637f769064c3cf13dd910c04b917cc90ad5c04b7b761021a5e0128f826b8a"
+      },
+      "after": {
+        "bytes": 66711,
+        "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b",
+        "git_blob": "a91e25120489d21fc409930d893f52b31448aea3"
+      }
+    }
+  ],
+  "patch_sha256": "0940b7949122174b5f4fbfc0db04594a48498f55de8025743707766457fb50d1",
+  "gate_contract_sha256": "7e2fdfeb355af314273e7c35d86ddfab968a1393151e925446dd2dc46f0e4887",
+  "reader_sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+  "reader_git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+  "executed_tests": 0,
+  "engine_runs": 0,
+  "source_worktree_writes": false,
+  "git_mutations": false
+}

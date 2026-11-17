@@ -1,0 +1,32 @@
+name: Argon Full Source PDF Archive
+on:
+  push:
+    branches: [chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16]
+    paths:
+      - tools/argon_source_pdf.py
+      - .github/workflows/argon-source-pdfs.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          lfs: false
+      - name: Install PDF and image dependencies
+        run: python3 -m pip install --disable-pip-version-check reportlab==4.4.4 Pillow==11.3.0
+      - name: Generate source books, inventory, visual references
+        env:
+          ARGON_PROJECT: Lumo_Flutter
+        run: python3 tools/argon_source_pdf.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-argon-flutter-complete-pdfs
+          path: argon-pdf/
+          retention-days: 14
+          compression-level: 1
+          if-no-files-found: error

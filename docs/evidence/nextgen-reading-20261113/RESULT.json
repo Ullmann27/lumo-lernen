@@ -1,0 +1,14 @@
+{
+  "renderer": "actual Flutter widget renderer",
+  "not_android_device": true,
+  "regressions_passed": 11,
+  "capture_cases_passed": 3,
+  "command": "LUMO_NEXTGEN_READING_CAPTURES=<output> flutter test test/design/nextgen_reading_capture_test.dart",
+  "files": {
+    "phone-question.png": "525116ae1a9b602fc624c9b9ea71e78443f8a3fe2ccde29d1a95cc17b9aa8039",
+    "phone-explanation.png": "7f1bff6dee7c72f264b125dbed7607704683459dc41402ae74b67ed2de1b79e8",
+    "cover-large-text-explanation.png": "aacfe4ae3b85f145e37bd9b5667616f3c64c3216326ee1ade9d2507355b4f0a9",
+    "final-regressions.log": "03ea8578f15c3a2a16a261297e6f7d777f2fe846e9b4cac29c38ac860f54f3c2",
+    "final-capture.log": "b586e265a391bff1cd6dc5afad920f39b392736c20b7a979c2f7364a7a7ca57b"
+  }
+}

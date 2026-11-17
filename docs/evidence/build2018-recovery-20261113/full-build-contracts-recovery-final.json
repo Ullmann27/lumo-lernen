@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/android-probe-venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "exit_code": 0,
+  "wall_seconds": 31.049,
+  "test_count": 304,
+  "skipped": 0,
+  "source_files": 49,
+  "changed_during_run": [],
+  "log_sha256": "96349a0a217532d0d6d964659a19227bedbededf9245c481509af7061933064d"
+}

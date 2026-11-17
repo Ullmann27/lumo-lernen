@@ -1,0 +1,31 @@
+test_actual_reference_run_orders_complete_banana_stop_then_pattern (tools.android_qa.tests.test_nextgen_current_native_stop.CurrentStopEntryTest.test_actual_reference_run_orders_complete_banana_stop_then_pattern) ... FAIL
+test_current_publisher_requires_completed_stop (tools.android_qa.tests.test_nextgen_current_native_stop.CurrentStopEntryTest.test_current_publisher_requires_completed_stop) ... FAIL
+
+======================================================================
+FAIL: test_actual_reference_run_orders_complete_banana_stop_then_pattern (tools.android_qa.tests.test_nextgen_current_native_stop.CurrentStopEntryTest.test_actual_reference_run_orders_complete_banana_stop_then_pattern)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-current-native-stop/tools/android_qa/tests/test_nextgen_current_native_stop.py", line 67, in test_actual_reference_run_orders_complete_banana_stop_then_pattern
+    self.assertEqual(events[-3:], ["complete banana", "stop", "pattern"])
+AssertionError: Lists differ: ['configure_local_voice', 'complete banana', 'pattern'] != ['complete banana', 'stop', 'pattern']
+
+First differing element 0:
+'configure_local_voice'
+'complete banana'
+
+- ['configure_local_voice', 'complete banana', 'pattern']
++ ['complete banana', 'stop', 'pattern']
+
+======================================================================
+FAIL: test_current_publisher_requires_completed_stop (tools.android_qa.tests.test_nextgen_current_native_stop.CurrentStopEntryTest.test_current_publisher_requires_completed_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-current-native-stop/tools/android_qa/tests/test_nextgen_current_native_stop.py", line 49, in test_current_publisher_requires_completed_stop
+    with self.assertRaisesRegex(RuntimeError, "stop|Stop"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.003s
+
+FAILED (failures=2)

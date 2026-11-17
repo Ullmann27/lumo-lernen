@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "frozen_at": "2026-11-14T08:40:34.999292+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1129,
+      "sha256": "09fe4147668e4260f9b41c44959616f7971473cf129c9481f25ed62c1c3baefa"
+    },
+    {
+      "path": "actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-fingerprint.json",
+      "bytes": 591,
+      "sha256": "a1bb5fc8bf691dc222f448c97ac6c63c9d0e7121dfbcfe9d7dfc806b93cd317f"
+    },
+    {
+      "path": "after-git-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-sources.json.gz",
+      "bytes": 71115,
+      "sha256": "e870fb98b16c34c4b1b612a61186a4f44fd2d7d2c8b39583226690c4410575da"
+    },
+    {
+      "path": "before-fingerprint.json",
+      "bytes": 591,
+      "sha256": "a1bb5fc8bf691dc222f448c97ac6c63c9d0e7121dfbcfe9d7dfc806b93cd317f"
+    },
+    {
+      "path": "before-git-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-sources.json.gz",
+      "bytes": 71115,
+      "sha256": "e870fb98b16c34c4b1b612a61186a4f44fd2d7d2c8b39583226690c4410575da"
+    },
+    {
+      "path": "console-anr-contracts.log",
+      "bytes": 23328,
+      "sha256": "f895a763d63606232a6d13a2986ffe7e0ed22f98009bd52ac27a06a330dd34ef"
+    },
+    {
+      "path": "environment.json",
+      "bytes": 666,
+      "sha256": "9538728ad1b5f111732bd179e9c281d87ab4549f963d571fa43d2c11c68d35eb"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1901,
+      "sha256": "5bb8c294a314d859d195cf5d7b094687b1af1523ee6ccdf37b38a982b3b64cb1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3810,
+      "sha256": "b98fea9436c4f62cb70dcf9d79878b7e762001d81f20aa7e75f7522e73a8f203"
+    },
+    {
+      "path": "run_validation.py",
+      "bytes": 6456,
+      "sha256": "905cbedb7963f7374054ac7e14466d430b5116237b23e215eab72e4b49ceae61"
+    },
+    {
+      "path": "wait-contracts.log",
+      "bytes": 1944,
+      "sha256": "388444274576d566f45d1dca6d93938ab2dd19deda8d08aec97c16674ba2e4d2"
+    },
+    {
+      "path": "workflow-contracts.log",
+      "bytes": 1945,
+      "sha256": "9e914fecbcdf0bcc3e73aeab4be3c64f99198a500b5f452a061ce5685b992d8d"
+    }
+  ]
+}

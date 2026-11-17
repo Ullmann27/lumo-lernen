@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+  "started_at": "2026-11-14T04:07:40.128573+00:00",
+  "duration_seconds": 0.12215100099274423,
+  "exit_code": 1,
+  "source_root": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/before",
+  "sha256": "e7ebc7bfb0408eb7d4481e036847b52d42698e70b556648af691a47455d3d9a4",
+  "bytes": 1643,
+  "scope": "Single new contract executed against the exact frozen previous production source; fake ADB, no device."
+}

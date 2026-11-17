@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/tutoring/guided_lesson_catalog.dart';
@@ -9,6 +10,7 @@ import '../../widgets/design/lumo_learning_module_frame.dart';
 import '../../widgets/design/lumo_quantity_art.dart';
 import 'guided_language_nature_illustration.dart';
 import 'guided_advanced_math_illustration.dart';
+import 'guided_ten_frame_animation.dart';
 
 /// Actual countable original assets. Moving apples remain single widgets:
 /// no duplicated "animation" objects that could falsify a quantity.
@@ -19,11 +21,19 @@ class GuidedMathIllustration extends StatelessWidget {
     required this.lesson,
     required this.step,
     required this.reduceMotion,
+    this.onNarratePhase,
+    this.onStopNarration,
+    this.autoNarrate = false,
+    this.stopSignal,
   });
 
   final GuidedLesson lesson;
   final GuidedLessonStep step;
   final bool reduceMotion;
+  final Future<void> Function(String text)? onNarratePhase;
+  final VoidCallback? onStopNarration;
+  final bool autoNarrate;
+  final ValueListenable<int>? stopSignal;
 
   static const _text = TextStyle(
       color: LumoVisualTokens.white,
@@ -85,7 +95,16 @@ class GuidedMathIllustration extends StatelessWidget {
     }
     return switch (lesson.concept) {
       GuidedLessonConcept.equalGroups => _groups(),
-      GuidedLessonConcept.bridgeTen => _tenFrame(context),
+      GuidedLessonConcept.bridgeTen => step.type == TutoringStepType.showExample
+          ? GuidedTenFrameAnimation(
+              left: step.a,
+              right: step.b,
+              reduceMotion: reduceMotion,
+              onNarratePhase: onNarratePhase,
+              onStopNarration: onStopNarration,
+              autoNarrate: autoNarrate,
+              stopSignal: stopSignal)
+          : _tenFrame(context),
       GuidedLessonConcept.subtractTen => _subtraction(),
       _ =>
         throw StateError('Non-mathematical lesson routed to math illustration'),

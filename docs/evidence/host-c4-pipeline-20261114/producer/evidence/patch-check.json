@@ -1,0 +1,12 @@
+{
+  "command": [
+    "git",
+    "apply",
+    "--check",
+    "../../proposed.patch"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/before/host",
+  "exit_code": 0,
+  "scope": "Read-only patch application check; no index or source write",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

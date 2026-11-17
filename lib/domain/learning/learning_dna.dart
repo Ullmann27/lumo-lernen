@@ -11,6 +11,7 @@
 library;
 
 import 'package:flutter/foundation.dart';
+import 'independent_evidence.dart';
 
 /// Eine konkrete Staerke oder Schwaeche im Lernprofil.
 @immutable
@@ -22,6 +23,7 @@ class DnaSkillEntry {
     this.confidence = 0,
     this.correctAnswers = 0,
     this.wrongAnswers = 0,
+    this.independentEvidence = const IndependentEvidence(),
   });
 
   /// 'Mathe', 'Deutsch', 'Sachunterricht'.
@@ -37,22 +39,33 @@ class DnaSkillEntry {
   final double confidence;
   final int correctAnswers;
   final int wrongAnswers;
+  final IndependentEvidence independentEvidence;
   int get answerCount => correctAnswers + wrongAnswers;
+  double get assessmentScore => independentEvidence.accuracy;
+  String get independentAnswerSummary =>
+      '${independentEvidence.correct} von ${independentEvidence.attempts} '
+      'selbstständigen Antworten richtig';
 
   /// Conservative display grouping only; not a validated diagnostic threshold.
-  bool get hasEnoughAnswersForGrouping => answerCount >= 10;
+  bool get hasEnoughAnswersForGrouping => independentEvidence.attempts >= 10;
   bool get isSmallSample => answerCount > 0 && !hasEnoughAnswersForGrouping;
   String get answerSummary => answerCount == 0
       ? 'Noch keine Antworten'
-      : '${(score * 100).round()}% · $correctAnswers von $answerCount Antworten richtig';
+      : '${independentEvidence.attempts == answerCount ? "" : "Gesamt: "}'
+          '${(score * 100).round()}% · $correctAnswers von $answerCount Antworten richtig';
   String get sampleNote => answerCount == 0
       ? 'Keine Datengrundlage'
-      : isSmallSample
-          ? 'Kleine Stichprobe – noch keine Einordnung'
-          : 'Übungsbeobachtung, keine Kompetenzdiagnose';
+      : independentEvidence.attempts == 0
+          ? 'Mit Hilfe oder nicht zuordenbar – noch keine Einordnung'
+          : isSmallSample
+              ? 'Kleine Stichprobe – noch keine Einordnung'
+                  '${independentEvidence.attempts == answerCount ? "" : " (${independentEvidence.attempts} selbstständige ${independentEvidence.attempts == 1 ? 'Antwort' : 'Antworten'})"}'
+              : independentEvidence.attempts != answerCount
+                  ? '$independentAnswerSummary. Keine Kompetenzdiagnose.'
+                  : 'Übungsbeobachtung, keine Kompetenzdiagnose';
 
-  bool get isStrength => hasEnoughAnswersForGrouping && score >= 0.70;
-  bool get isWeakness => hasEnoughAnswersForGrouping && score <= 0.45;
+  bool get isStrength => hasEnoughAnswersForGrouping && assessmentScore >= 0.70;
+  bool get isWeakness => hasEnoughAnswersForGrouping && assessmentScore <= 0.45;
 }
 
 /// Bevorzugte Aufgabenart fuer ein Kind.
@@ -250,7 +263,9 @@ class LearningDna {
       ..writeln(
           'Gesamt: ${totalCorrect + totalIncorrect} Antworten, $totalCorrect richtig, $totalIncorrect falsch.')
       ..writeln(
-          'Keine Aussagen über heute, diese Woche, Verbesserung, Sitzungsanzahl oder Diagnosesicherheit ableiten.');
+          'Keine Aussagen über heute, diese Woche, Verbesserung, Sitzungsanzahl oder Diagnosesicherheit ableiten.')
+      ..writeln(
+          'Stärken und Schwierigkeiten nur anhand selbstständiger Antworten einordnen; Gesamtwerte enthalten auch Hilfen.');
     if (skillObservations.isEmpty || totalCorrect + totalIncorrect == 0) {
       out.writeln(
           'Noch keine Antwortdaten. Keine Stärken oder Schwierigkeiten erfinden.');
@@ -262,9 +277,14 @@ class LearningDna {
     // The existing transport rejects messages over 1200 characters. Keep whole
     // observations and all data-quality instructions; never truncate a claim.
     for (final entry in skillObservations) {
+      // The common footer already limits fully independent observations.
+      // Repeat only qualifications that change this particular sample.
+      final qualification = entry.hasEnoughAnswersForGrouping &&
+              entry.independentEvidence.attempts == entry.answerCount
+          ? ''
+          : ' ${entry.sampleNote}.';
       final line = '${entry.subject} / ${entry.skillLabel}: '
-          '${entry.answerSummary}. '
-          '${entry.isSmallSample || entry.answerCount == 0 ? entry.sampleNote : "Übungsbeobachtung"}.\n';
+          '${entry.answerSummary}.$qualification\n';
       final omissionReserve =
           '\nWeitere ${skillObservations.length} Themen nicht einzeln aufgeführt.\n'
               .length;

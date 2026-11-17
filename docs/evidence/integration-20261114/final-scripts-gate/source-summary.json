@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "source_count_before": 1383,
+  "source_count_after": 1383,
+  "all_entries_identical": true,
+  "total_source_bytes": 65612365,
+  "source_before_sha256": "165c2cb5e6f2735950062884421d3eec70b4d3cf0e0f89018c34ec6ba320d28c",
+  "source_after_sha256": "165c2cb5e6f2735950062884421d3eec70b4d3cf0e0f89018c34ec6ba320d28c",
+  "head_before": "12ccd3c23a71d077c0f25bb744baff565a9a3a60",
+  "head_after": "12ccd3c23a71d077c0f25bb744baff565a9a3a60",
+  "tree_before": "400830eb09aa1f5110b54c70311a8de1db37d3fe",
+  "tree_after": "400830eb09aa1f5110b54c70311a8de1db37d3fe",
+  "current_receipt_images": 34,
+  "receipt_sha256": {
+    "config/kart-graphics-2019-visual-review.json": "355b6878f5d833aed4010fa49c5efb49759bbe9f8e4f185a75ca894ad9c6bf99",
+    "config/nextgen-2019-visual-review.json": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d"
+  },
+  "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "scope": "Fingerprint of the tested combined working tree. HEAD/tree name the unchanged base commit and are not presented as a commit containing the uncommitted integration changes."
+}

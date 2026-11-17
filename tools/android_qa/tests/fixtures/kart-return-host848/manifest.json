@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "host_source": "84865ce2880360d909cef88efea28a6335989586",
+  "native_source": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "run_id": 43515640224,
+  "scope": "Byte-identical current failed-run observations. Garage is the actual still-open post-return frame. Landing is the earlier observed same-APK landing, reused only in explicitly synthetic state-transition tests; no successful return is asserted from these originals.",
+  "cases": [
+    {
+      "name": "update",
+      "artifact_id": 14084184769,
+      "archive_sha256": "b506c8f999f4ad3b4443c17202cfaa2f67e5d1df74a593b2e43b40ce77a4d59c",
+      "states": {
+        "garage": {
+          "png": {
+            "path": "update/garage-png.png",
+            "original_entry": "21_stage_garage-landing-restored-0.png",
+            "bytes": 760751,
+            "sha256": "8a415181032b1e20fa50e11a9372b3f024142bceb6ff4683d1cc34a31aa089f0"
+          },
+          "ocr": {
+            "path": "update/garage-ocr.json",
+            "original_entry": "21_stage_garage-landing-restored-0-ocr.json",
+            "bytes": 32760,
+            "sha256": "04f8e7e803b87d573b2acfafa7a6c4142879ec4fcba36e2e57beef48eb228d06"
+          },
+          "readiness": {
+            "path": "update/garage-readiness.json",
+            "original_entry": "21_stage_garage-landing-restored-surface-readiness.json",
+            "bytes": 991,
+            "sha256": "5c24a23a11cfbb958e9adf7fc4a6b9302f062cb177696c4797209912d1ba27f9"
+          }
+        },
+        "landing": {
+          "png": {
+            "path": "update/landing-png.png",
+            "original_entry": "21_stage_mode_cup-1.png",
+            "bytes": 1089360,
+            "sha256": "0c51bac07ca83d6929399d9a9c5ea5008ed5c9876b381aac57a6abc0bfc4938f"
+          },
+          "ocr": {
+            "path": "update/landing-ocr.json",
+            "original_entry": "21_stage_mode_cup-1-ocr.json",
+            "bytes": 43675,
+            "sha256": "45d35366c5b67e1e5d590f261851b6bb7b51daf58f8896c79aaa2f5d90e6db61"
+          },
+          "readiness": {
+            "path": "update/landing-readiness.json",
+            "original_entry": "21_stage_mode_cup-surface-readiness.json",
+            "bytes": 3451,
+            "sha256": "dee97db3e1d481d1b780086ec3a4d3faa93457b69a0decdafba0ca9f89a10179"
+          }
+        }
+      }
+    },
+    {
+      "name": "api35",
+      "artifact_id": 14085241381,
+      "archive_sha256": "02948c726ebc40059a2220c6c70f3b61385ecb25bf9696778aa209a1e0a4ee08",
+      "states": {
+        "garage": {
+          "png": {
+            "path": "api35/garage-png.png",
+            "original_entry": "21_stage_garage-landing-restored-0.png",
+            "bytes": 761766,
+            "sha256": "7d675ecb2b345c0ebba4b7ff684436337603b262c976b10107ac513cac199d63"
+          },
+          "ocr": {
+            "path": "api35/garage-ocr.json",
+            "original_entry": "21_stage_garage-landing-restored-0-ocr.json",
+            "bytes": 28866,
+            "sha256": "7998b93bede3c32e151b8f29dfc9453ab142d480f8959bf4809bc662b75039ad"
+          },
+          "readiness": {
+            "path": "api35/garage-readiness.json",
+            "original_entry": "21_stage_garage-landing-restored-surface-readiness.json",
+            "bytes": 991,
+            "sha256": "0d374f159a158b8fee56eaa93ef1210c7deeff6d04e0286f136b419489e22caa"
+          }
+        },
+        "landing": {
+          "png": {
+            "path": "api35/landing-png.png",
+            "original_entry": "21_stage_mode_cup-1.png",
+            "bytes": 1091996,
+            "sha256": "62c789de734f8c436deb7fc453d1f2e985583600af02f2ea323276225305976e"
+          },
+          "ocr": {
+            "path": "api35/landing-ocr.json",
+            "original_entry": "21_stage_mode_cup-1-ocr.json",
+            "bytes": 44327,
+            "sha256": "08f9aa1694dc24432605d7c11ab7c2c01295176ea17cad4c25ea47eddfee357a"
+          },
+          "readiness": {
+            "path": "api35/landing-readiness.json",
+            "original_entry": "21_stage_mode_cup-surface-readiness.json",
+            "bytes": 3451,
+            "sha256": "0de6b13803970207c8e4bcc837806d316aad9f92bb269a56d5cefe6beb4ab8a9"
+          }
+        }
+      }
+    }
+  ]
+}

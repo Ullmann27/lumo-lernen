@@ -1,0 +1,32 @@
+[
+  {
+    "name": "current-gates",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_nextgen_current_candidate.py",
+      "-v"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "publication-gates",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/nextgen",
+      "-p",
+      "test_prepare_2028_learning_replay_release.py",
+      "-v"
+    ],
+    "exitCode": 0
+  }
+]

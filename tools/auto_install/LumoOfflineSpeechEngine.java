@@ -106,6 +106,7 @@ public final class LumoOfflineSpeechEngine implements AutoCloseable {
         String normalized = Normalizer.normalize(input, Normalizer.Form.NFKD)
             .replace('\u2013', '-').replace('\u2014', '-').replace('\u2011', '-')
             .replace('_', ' ').replace('\u201c', '"').replace('\u201d', '"')
+            .replace('\u201e', '"') // German opening quote, same spoken punctuation.
             .replace('\u2018', '\'').replace('\u2019', '\'')
             .replace('\u00b4', '\'').replace('`', '\'')
             .replaceAll("[\\[\\]|/#\u2190\u2192]", " ")

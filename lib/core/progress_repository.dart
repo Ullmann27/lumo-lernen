@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'discovery_progress.dart';
+import 'learning_journey.dart';
 import 'legacy_learning_data.dart';
+import '../domain/learning_intelligence/scene_memory.dart';
+import '../domain/learning/independent_evidence.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
 /// Offline-first. Keine Cloud. Kein Tracking.
@@ -16,6 +19,41 @@ class ProgressRepository {
   static const _dailyKey = 'lumo_progress_daily';
   static const _lastKey = 'lumo_progress_last';
   static const _discoveryKey = 'lumo_progress_discovery_v1';
+  static const _journeyKey = 'lumo_progress_journey_v1';
+  static const _tutorResetKey = 'lumo_tutor_reset_pending_v1';
+  Future<void> _tutorTail = Future<void>.value();
+
+  // Keep a confirmed deletion durable across a failed write or process exit.
+  // Clear tutor evidence and resumable lesson views; real school answers remain.
+  Future<void> _finishTutorReset() async {
+    if (await _namespace.read(_tutorResetKey) != '1') return;
+    await _namespace.write('lumo_learning_scene_pending_v1', 'null');
+    await _namespace.write('lumo_photo_lesson_session_v1', 'null');
+    await _namespace.write('lumo_learning_lab_session_v1',
+        jsonEncode({'version': 1, 'sessions': <String, Object?>{}}));
+    await _namespace.write(_journeyKey, jsonEncode(LearningJourney().toJson()));
+    await _namespace.write(
+        'lumo_learning_scenes_v1', jsonEncode(SceneMemory().toJson()));
+    await _namespace.write(_tutorResetKey, '0');
+  }
+
+  Future<T> _tutorStorage<T>(Future<T> Function() action) {
+    Future<T> run() async {
+      await _finishTutorReset();
+      return action();
+    }
+
+    final operation = _tutorTail.then((_) => run(),
+        onError: (Object _, StackTrace __) => run());
+    _tutorTail =
+        operation.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    return operation;
+  }
+
+  Future<void> resetTutorObservations() => _tutorStorage(() async {
+        await _namespace.write(_tutorResetKey, '1');
+        await _finishTutorReset();
+      });
   static const _skillFields = {
     'skillId',
     'subject',
@@ -27,6 +65,7 @@ class ProgressRepository {
     'currentMisses',
     'difficulty',
     'lastSeen',
+    'independentEvidence',
   };
 
   /// Read errors are not permission to reset a child's history. Never pass the
@@ -55,6 +94,49 @@ class ProgressRepository {
 
   Future<void> saveDiscovery(DiscoveryProgress value) =>
       _namespace.write(_discoveryKey, jsonEncode(value.toJson()));
+
+  /// Additive, per-child evidence. A read never rewrites bad or newer bytes.
+  Future<LearningJourney> loadJourney() => _tutorStorage(() async {
+        final raw = await _namespace.read(_journeyKey);
+        if (raw == null) return LearningJourney();
+        // Bound parsing as well as the decoded collections.
+        if (raw.length > 20 * 1024 * 1024) {
+          throw const FormatException('Unsupported learning journey size');
+        }
+        return LearningJourney.fromJson(_readObject(raw));
+      });
+
+  Future<void> saveJourney(LearningJourney value) => _tutorStorage(
+      () => _namespace.write(_journeyKey, jsonEncode(value.toJson())));
+
+  Future<SceneMemory> loadSceneMemory() => _tutorStorage(() async {
+        final raw = await _namespace.read('lumo_learning_scenes_v1');
+        if (raw == null) return SceneMemory();
+        if (raw.length > 1024 * 1024) {
+          throw const FormatException('Unsupported scene memory size');
+        }
+        return SceneMemory.fromJson(_readObject(raw));
+      });
+
+  Future<void> saveSceneMemory(SceneMemory memory) => _tutorStorage(() =>
+      _namespace.write('lumo_learning_scenes_v1', jsonEncode(memory.toJson())));
+
+  Future<PendingSceneReceipt?> loadPendingSceneReceipt() =>
+      _tutorStorage(() async {
+        final raw = await _namespace.read('lumo_learning_scene_pending_v1');
+        if (raw == null) return null;
+        if (raw.length > 32768) {
+          throw const FormatException('Unsupported pending scene size');
+        }
+        final decoded = jsonDecode(raw);
+        return decoded == null ? null : PendingSceneReceipt.fromJson(decoded);
+      });
+
+  Future<void> savePendingSceneReceipt(PendingSceneReceipt receipt) =>
+      _tutorStorage(() => _namespace.write(
+          'lumo_learning_scene_pending_v1', jsonEncode(receipt.toJson())));
+  Future<void> clearPendingSceneReceipt() => _tutorStorage(
+      () => _namespace.write('lumo_learning_scene_pending_v1', 'null'));
 
   Future<Map<String, SkillRecord>> loadSkills() async {
     final raw = await _namespace.read(_skillsKey);
@@ -157,6 +239,12 @@ class ProgressRepository {
     await _namespace.write(_dailyKey, '{}');
     await _namespace.write(_lastKey, '{}');
     await saveDiscovery(DiscoveryProgress());
+    await saveJourney(LearningJourney());
+    await saveSceneMemory(SceneMemory());
+    await clearPendingSceneReceipt();
+    await _namespace.write('lumo_photo_lesson_session_v1', 'null');
+    await _namespace.write('lumo_learning_lab_session_v1',
+        jsonEncode({'version': 1, 'sessions': <String, Object?>{}}));
   }
 }
 
@@ -172,6 +260,7 @@ class SkillRecord {
     this.currentStreak = 0,
     this.currentMisses = 0,
     this.difficulty = 1,
+    this.independentEvidence,
     DateTime? lastSeen,
   }) : lastSeen = lastSeen ?? DateTime.now();
 
@@ -185,23 +274,35 @@ class SkillRecord {
   int currentMisses;
   int difficulty;
   DateTime lastSeen;
+  IndependentEvidence? independentEvidence;
+
+  IndependentEvidence get assessed =>
+      independentEvidence ??
+      IndependentEvidence.fromLegacy(
+          correct: correct,
+          wrong: wrong,
+          helpCount: hintCount,
+          correctStreak: currentStreak,
+          wrongStreak: currentMisses);
 
   int get attempts => correct + wrong;
   double get accuracy => attempts == 0 ? 0.0 : correct / attempts;
 
   int get mastery {
-    if (attempts == 0) return 0;
-    final base = accuracy * 100;
-    final volumeBonus = (attempts.clamp(0, 20) / 20) * 10;
-    final streakBonus = (currentStreak.clamp(0, 5) / 5) * 10;
+    final evidence = assessed;
+    if (evidence.attempts == 0) return 0;
+    final base = evidence.accuracy * 100;
+    final volumeBonus = (evidence.attempts.clamp(0, 20) / 20) * 10;
+    final streakBonus = (evidence.correctStreak.clamp(0, 5) / 5) * 10;
     return (base * 0.8 + volumeBonus + streakBonus).clamp(0, 100).toInt();
   }
 
   double get weaknessScore {
-    if (attempts < 3) return 0.0;
-    final errorRate = wrong / attempts;
+    final evidence = assessed;
+    if (evidence.attempts < 3) return 0.0;
+    final errorRate = evidence.wrong / evidence.attempts;
     final mastery01 = mastery / 100.0;
-    final missesFactor = currentMisses.clamp(0, 5) / 5;
+    final missesFactor = evidence.wrongStreak.clamp(0, 5) / 5;
     return (errorRate * 0.5 + (1.0 - mastery01) * 0.3 + missesFactor * 0.2)
         .clamp(0.0, 1.0);
   }
@@ -223,6 +324,7 @@ class SkillRecord {
       currentMisses: currentMisses.clamp(0, 1000).toInt(),
       difficulty: difficulty.clamp(1, 5).toInt(),
       lastSeen: lastSeen,
+      independentEvidence: assessed,
     );
   }
 
@@ -237,6 +339,7 @@ class SkillRecord {
         'currentMisses': currentMisses,
         'difficulty': difficulty,
         'lastSeen': lastSeen.toIso8601String(),
+        'independentEvidence': assessed.toJson(),
       };
 
   factory SkillRecord.fromJson(Map<String, dynamic> json) {
@@ -264,7 +367,17 @@ class SkillRecord {
           1,
       lastSeen: DateTime.tryParse(json['lastSeen'] as String? ?? '') ??
           DateTime.now(),
+      independentEvidence: json.containsKey('independentEvidence')
+          ? IndependentEvidence.fromJson(json['independentEvidence'])
+          : json.containsKey('hintCount')
+              ? null
+              : const IndependentEvidence(),
     );
+    if (record.assessed.correct > record.correct.clamp(0, 10000) ||
+        record.assessed.wrong > record.wrong.clamp(0, 10000)) {
+      throw const FormatException(
+          'Independent evidence exceeds practice history');
+    }
     return record.normalized();
   }
 

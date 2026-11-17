@@ -1,0 +1,99 @@
+00:00 +0: loading /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart
+00:00 +0: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart: actual current division and multiplication reach exact native objects
+00:00 +1: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart: fraction addition keeps rational answers and both real operands
+00:00 +2: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart: new descriptors reject fractional, oversized and mismatched tasks
+00:00 +3: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart: real local generator families reach native learning without replacement
+00:00 +4: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart: all eight groups and 72 units are shown for 72 divided by 8
+00:00 +5: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart: large exact quantities use counted bundles in every group
+00:00 +6: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart: fraction addition displays plus rather than false equality
+00:00 +7: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_sharing_activity_test.dart: all new current-task descriptors reach the existing Android launcher
+00:00 +8: loading /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart
+00:01 +8: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: descriptor derives actual quantities, syllables and plant part
+00:02 +9: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: current third-grade hundred crossing reaches its exact native model
+00:02 +10: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: adaptive task descriptors use checked original operands and word
+00:02 +11: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: native voice preserves license, mute and selected identity
+00:02 +12: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: 3D explanation stays available while games are mission locked
+00:02 +13: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: learning scene cannot bypass gates without reviewed descriptor
+00:02 +14: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: native return from another profile is rejected
+00:03 +15: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: real guided task opens matching 3D and retains assisted evidence
+00:04 +16: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: actual adaptive LumoSessionKind.quickPractice preserves task and assessment boundary
+00:04 +17: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/tutoring/native_learning_launch_test.dart: actual adaptive LumoSessionKind.schoolwork preserves task and assessment boundary
+00:04 +18: loading /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart
+00:05 +18: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: clock parser extrahiert hour und minute aus "Stunde 7 und Minute 30"
+00:05 +19: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: clock parser extrahiert hour und minute aus Antwort "07:30 Uhr"
+00:05 +20: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: clock parser liefert leere Daten wenn nichts extrahierbar
+00:05 +21: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: fraction_pizza parser extrahiert 3/4 aus Prompt
+00:05 +22: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: fraction_pizza parser erkennt "Haelfte" als 1/2
+00:05 +23: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: fraction_pizza parser erkennt "Viertel" als 1/4
+00:05 +24: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: fraction_pizza parser erkennt "Drittel" als 1/3
+00:05 +25: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: money_coins parser extrahiert 1,50€ als 150 Cent
+00:05 +26: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: money_coins parser extrahiert textliches "1,50 Euro"
+00:05 +27: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: money_coins parser extrahiert "10 EUR" case-insensitive
+00:05 +28: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: money_coins parser liefert leere Daten wenn nichts extrahierbar
+00:05 +29: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: quantity_compare parser extrahiert die ersten zwei Zahlen
+00:05 +30: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: quantity_compare parser liefert leere Daten bei nur einer Zahl
+00:05 +31: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: rhyme_bubble parser extrahiert Reim-Wort aus "reimt sich auf Haus"
+00:05 +32: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: rhyme_bubble parser extrahiert NICHT bei "auf das Bild schauen"
+00:05 +33: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: syllable_clap parser extrahiert Wort + Silben aus DB
+00:05 +34: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: word_family_tree parser extrahiert Wortstamm aus "gehoeren zu fahren"
+00:05 +35: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: Visual-Type-Mapping clock-String wird zu VisualType.clock gemappt
+00:05 +36: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: Visual-Type-Mapping fraction_pizza-String wird zu VisualType.fractionPizza gemappt
+00:05 +37: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/visual_payload_data_test.dart: Visual-Type-Mapping unbekannte Visual-Strings fallen auf VisualType.none
+00:05 +38: loading /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/task_visual_fallback_test.dart
+00:05 +38: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/task_visual_fallback_test.dart: einfache Plus-Geschichte zeigt das Mengenbild
+00:06 +39: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/task_visual_fallback_test.dart: Zahlenmauer und große Zahlen zeigen kein falsches Mengenbild
+00:06 +40: loading /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart
+00:06 +40: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: QuantityCompareVisual rendert bei leerem Payload ohne Crash
+00:07 +41: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: QuantityCompareVisual rendert bei gefuelltem Payload
+00:07 +42: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: ClockFaceVisual rendert bei leerem Payload (Fallback 12:00)
+00:07 +43: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: ClockFaceVisual rendert bei 07:30 ohne Crash
+00:07 +44: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: ClockFaceVisual rendert bei extremer Stunde 25 ohne Crash
+00:07 +45: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: MoneyCoinsVisual rendert bei leerem Payload
+00:07 +46: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: MoneyCoinsVisual rendert 150 Cent als 1,50 Euro
+00:07 +47: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: FractionPizzaVisual rendert bei leerem Payload (Fallback 1/2)
+00:07 +48: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: FractionPizzaVisual rendert 3/4 ohne Crash
+00:07 +49: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: FractionPizzaVisual clampt extrem grosse Nenner auf 12
+00:07 +50: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: BarChartMiniVisual zeigt Hinweis bei leerem Payload
+00:07 +51: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: BarChartMiniVisual rendert echte Daten
+00:07 +52: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: RhymeBubbleVisual rendert bei leerem Prompt ohne Crash
+00:07 +53: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: RhymeBubbleVisual rendert mit Wort aus Payload
+00:07 +54: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: SyllableClapVisual rendert bei leerem Payload
+00:07 +55: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: SyllableClapVisual rendert Silben aus Payload
+00:07 +56: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: WordFamilyTreeVisual rendert bei leerem Payload (Fallback)
+00:07 +57: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: WordFamilyTreeVisual rendert Wortstamm + Familie
+00:07 +58: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: SentenceBlocksVisual rendert bei leerem Payload aus Prompt-Split
+00:07 +59: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: WordTypeColorVisual rendert Wortarten-Legende und Aufgabentext
+00:07 +60: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/premium_visual_renderer_test.dart: ArticleCardsVisual rendert drei Artikel-Karten
+00:07 +61: loading /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart
+00:07 +61: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: three illustrated answers remain practice without assessed mastery
+00:07 +62: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: guided errors do not become a weakness or frustration diagnosis
+00:07 +63: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: assisted counts cannot re-enter mastery on the next assessed answer
+00:07 +64: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: genuine unaided transfer can subsequently raise difficulty
+00:07 +65: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: a completed guided answer keeps practice rewards without mastery bonus
+00:07 +66: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: difficulty window is unchanged by accompanied practice
+00:08 +67: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: requesting help neither erases nor inflates existing independent proof
+00:08 +68: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: profile reload preserves practice without inventing assessment
+00:08 +69: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: guided profile errors do not trigger a diagnosis after JSON restore
+00:08 +70: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: legacy mixed JSON keeps all history without claiming an attribution
+00:08 +71: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: legacy explicitly unaided history remains assessed after JSON restore
+00:08 +72: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: null
+00:08 +73: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 2, correct: 3, wrong: 0, correctStreak: 3, wrongStreak: 0}
+00:08 +74: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 1, correct: 3}
+00:08 +75: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 1, correct: 3.5, wrong: 0, correctStreak: 3, wrongStreak: 0}
+00:08 +76: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 1, correct: 30, wrong: 0, correctStreak: 3, wrongStreak: 0}
+00:08 +77: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 1, correct: 3, wrong: 0, correctStreak: 3, wrongStreak: 1}
+00:08 +78: loading /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart
+00:08 +78: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: new grade 1 profile has no invented strengths or weaknesses
+00:08 +79: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: new grade 2 profile has no invented strengths or weaknesses
+00:08 +80: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: new grade 3 profile has no invented strengths or weaknesses
+00:08 +81: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: new grade 4 profile has no invented strengths or weaknesses
+00:08 +82: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: untimed legacy counters cannot create competency or current-day claims
+00:08 +83: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: answer ratios use actual subject, topic and counts without mutating records
+00:08 +84: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: 1 correct answers remain a small sample, not a strength diagnosis
+00:08 +85: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: 2 correct answers remain a small sample, not a strength diagnosis
+00:08 +86: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: 9 correct answers remain a small sample, not a strength diagnosis
+00:08 +87: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: unanswered topics have no percentage or weakness; wrong answers preserve recommendations
+00:08 +88: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: profile switch and restart use isolated saved SkillRecord data, even with the same name
+00:08 +89: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: parent prompt carries measured counts and excludes fabricated time periods
+00:08 +90: /workspace/scratch/b3485b7bb989/studio-host-a8e091/test/learning_dna_evidence_test.dart: large profile prompt respects transport budget without losing evidence limits
+00:08 +91: All tests passed!

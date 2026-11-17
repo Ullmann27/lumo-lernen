@@ -1,0 +1,50 @@
+{
+  "base_host": "3857966d5b88a10b0309d5e93a9591ec7fe31e9d",
+  "base_tree": "23c7e9d89eb88530cee9477200f6292bab8d717c",
+  "created_at": "2026-11-14T07:13:03.260296+00:00",
+  "files": [
+    {
+      "after": {
+        "bytes": 17393,
+        "git_blob": "50e11096509c1c3e2df154485973fbeb248f1c75",
+        "sha256": "dc42d548600b5b7a797c815fb5d3caf819bfd0aecf05fd61d0adba3bc3424442"
+      },
+      "before": {
+        "bytes": 17080,
+        "git_blob": "c7b619c2a8a72f59d90e63f3cd7a3536ff53fbe1",
+        "sha256": "5a8f5c63cfd55dc25d4e7cd25d48622a9869f666be9d68c6b2a1ed27971614c8"
+      },
+      "path": "scripts/tests/test_candidate_2011_pin.py"
+    }
+  ],
+  "patch": {
+    "bytes": 2618,
+    "git_blob": "7a6c35a0104cb695f9b2ecd3c224029edd05232b",
+    "sha256": "e47639e38c1917e011cfb3e73de203da6ebd72f59766b243a491a2902e5be734"
+  },
+  "schema": 1,
+  "scope": "One existing candidate-pin test file; only three stale current-candidate expectations adjusted. No policy/product/Workflow/Pin edits; no tests.",
+  "status": "FROZEN_SOURCE_NOT_YET_TESTED",
+  "unchanged_dependencies": {
+    "config/godot-source.json": {
+      "bytes": 145,
+      "git_blob": "7e6c4d3592551765836be48ea613b4ee1a905297",
+      "sha256": "b06fd116c41053ec67f8a8aeb0c85dc1b85e62eaf59e87dcc84040051555a510"
+    },
+    "pubspec.yaml": {
+      "bytes": 2675,
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5"
+    },
+    "scripts/tests/test_legacy_release_pin.py": {
+      "bytes": 28597,
+      "git_blob": "880d24d68acca67619706430c019dfaf2fa7c3a3",
+      "sha256": "4b81239264d913e1ce97c90bd5de6c82e44d672e4324d1462baddece52855939"
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "bytes": 10697,
+      "git_blob": "7e610fbdf43f0c52416761d7f2327e85bdd3a24e",
+      "sha256": "70a1b243b7de814087addf5b05a0aa2f1c2579527eaad14bdf41fcaa252a5633"
+    }
+  }
+}

@@ -1,0 +1,3378 @@
+{
+  "snapshot_utc": "2026-10-18T02:30Z",
+  "app_base": "840708ac5669e1705376f20ceb87ef4e09bca155",
+  "godot_base": "6518a13fb8eb30c81c8a2115d14791cbe7ddd24a",
+  "godot_candidate": "efa1f69b4128a047e6196ee85762447e412db266",
+  "repositories": {
+    "lumo-lernen": {
+      "branches": [
+        {
+          "name": "active-sentence-syllables-20260503",
+          "sha": "a1ca3dc061b63def674c8bef0656a0ae51de5f56"
+        },
+        {
+          "name": "assets/lumo-pack-import",
+          "sha": "3b7cbca807a8b00c3955822f0b9acadd07750a89"
+        },
+        {
+          "name": "astra/lumo-learning-quality-2026-10-11",
+          "sha": "4b7a063d4a1484deb62c5cd8c4422788c5f50578"
+        },
+        {
+          "name": "audit/lumo-1919-diagnostics-2026-10-09",
+          "sha": "cfbb4ce8ee5e9660ac3b743bcc183b801eb9121d"
+        },
+        {
+          "name": "audit/lumo-1919-gas-recovery-2026-10-09",
+          "sha": "2247999b902d4c9a756df0c17318d0dd60bebf86"
+        },
+        {
+          "name": "audit/lumo-1919-verified-package-2026-10-09",
+          "sha": "8e4f20c3f7ddcb8d671e9d19911bc8f9c58aa684"
+        },
+        {
+          "name": "audit-voice-barrel-20260503",
+          "sha": "10ef5386a6d53f431b78ca9788e2aaf140f9b206"
+        },
+        {
+          "name": "audit-voice-widgets-20260503",
+          "sha": "7a4da7774fb8f2baf148989333259081ff6e39f5"
+        },
+        {
+          "name": "chatgpt/android-install-upgrade-2026-10-07",
+          "sha": "0510b374387f7760ed93916f98b73387c14c14f8"
+        },
+        {
+          "name": "chatgpt/apk1948-resume-qa-2026-10-16",
+          "sha": "c61534964aa75ff6b8e421226fda602f95d67198"
+        },
+        {
+          "name": "chatgpt/cards-resume-safety-2026-10-06",
+          "sha": "589f10c8d0c31f7b8a188210c2dfa8d5fe250bdf"
+        },
+        {
+          "name": "chatgpt/ci-final-apk-evidence-count-2026-10-15",
+          "sha": "49d8a8b5725acf9791f20ed022b200bd44528bfd"
+        },
+        {
+          "name": "chatgpt/ci-start-hero-regression-2026-10-15",
+          "sha": "ef95672cafee7ea42d727cfb24127e9df0bf1667"
+        },
+        {
+          "name": "chatgpt/denktest-qualitaet-2026-10-09",
+          "sha": "b41cfc5436e46b3ae336ec7e8b5afa65c6d1dd38"
+        },
+        {
+          "name": "chatgpt/fix-akademie-practical-scroll-2026-10-06",
+          "sha": "eac0055266debb33744368cbcca85ae47eb5bd83"
+        },
+        {
+          "name": "chatgpt/flame-round-regression-2026-10-06",
+          "sha": "825cd7dc4a069f90fbcbdd05104209df87fbfd79"
+        },
+        {
+          "name": "chatgpt/fold-apk-android-2026-10-07",
+          "sha": "bec8bca58fc137e492862da1caba646651b098b2"
+        },
+        {
+          "name": "chatgpt/fold-apk-build-2026-10-07",
+          "sha": "8d3f9a7a395417a22e71ee1bb805be90d70b1212"
+        },
+        {
+          "name": "chatgpt/fold-kart-controls-2026-10-07",
+          "sha": "48cb82614a31ac7e7daccbe62b872c3ae4b8eb95"
+        },
+        {
+          "name": "chatgpt/fold-native-check-2026-10-07",
+          "sha": "4d9e603d96c0714fa44e6a3e2b9e4e3daa81bf0b"
+        },
+        {
+          "name": "chatgpt/fold-reference-recovery-2026-10-05",
+          "sha": "06cb801f1fef8026dd908470f94801d50239b9b5"
+        },
+        {
+          "name": "chatgpt/fold-resize-fix-2026-10-05",
+          "sha": "853c498977050205b1e1867fa8cc2471795f81db"
+        },
+        {
+          "name": "chatgpt/gemini-safe-fixes-learning-2026-10-15",
+          "sha": "b09390421cdca123a19434ca6e332cada9f765c0"
+        },
+        {
+          "name": "chatgpt/gemini-source-export-2026-10-15",
+          "sha": "2d1f255c14d57cecf20d752f23fd0bed978397ab"
+        },
+        {
+          "name": "chatgpt/gemini-story-compatibility-2026-10-15",
+          "sha": "701bb260eb3801ea680bf00bed54d1063f4f6633"
+        },
+        {
+          "name": "chatgpt/hologlass-consistency-stage2-2026-10-06",
+          "sha": "b3f161e78babf8d15e79d051b78f9c523867569f"
+        },
+        {
+          "name": "chatgpt/hologlass-quiz-stage3-2026-10-06",
+          "sha": "f37a93b82efd9f52ba93a86507de81f7c9c6458f"
+        },
+        {
+          "name": "chatgpt/install-upgrade-2026-10-07",
+          "sha": "5fe85acf57d9478bacd36cc618c544b812ec5ae2"
+        },
+        {
+          "name": "chatgpt/kart-qa-real-caption-2026-10-15",
+          "sha": "1e7be430e7739f3b3ade3fd5852bac5659ae094a"
+        },
+        {
+          "name": "chatgpt/kart-video-quality-2026-10-07",
+          "sha": "99b2afc3362add6b69db6956a692cfcda9de4cc1"
+        },
+        {
+          "name": "chatgpt/learning-number-compare-responsive-2026-10-09",
+          "sha": "bea22025d10fc083261ad6c260a14fd71a19cba0"
+        },
+        {
+          "name": "chatgpt/learning-symbols-ui-2026-10-09",
+          "sha": "f16884e7521b128e5dd732465bcd3a409d67fbb3"
+        },
+        {
+          "name": "chatgpt/learning-tablet-answer-grid-2026-10-09",
+          "sha": "f41c214a25082eb8ca7580765b9237040724d381"
+        },
+        {
+          "name": "chatgpt/learning-tree-cinematic-qa-2026-10-09",
+          "sha": "4b2f837a3475c14033806c13f25e1a77b89a307a"
+        },
+        {
+          "name": "chatgpt/learning-visual-fold-tree-2026-10-09",
+          "sha": "1579327f384c46e5a9ab98b8716e0b9afd20fa76"
+        },
+        {
+          "name": "chatgpt/lumo-3d-learning-islands-2026-10-15",
+          "sha": "e6a991c8ff21bc6ae16536ec9326e4fec270e4ad"
+        },
+        {
+          "name": "chatgpt/lumo-1916-apk-artifact-2026-10-09",
+          "sha": "4f3f4ae6c4ddb762e0cbd022baa69c3c25a9d517"
+        },
+        {
+          "name": "chatgpt/lumo-1917-apk-artifact-2026-10-09",
+          "sha": "b82b6475726e40e09145b7b7df11b4974822e1d2"
+        },
+        {
+          "name": "chatgpt/lumo-1918-apk-artifact-2026-10-09",
+          "sha": "ab21b2295ca5307bae5e07c0c8a01c3017ee91a3"
+        },
+        {
+          "name": "chatgpt/lumo-1925-apk-build-2026-10-10",
+          "sha": "9ace64f156e8680cfec07ad8d54a68efe863c488"
+        },
+        {
+          "name": "chatgpt/lumo-1926-sulafat-apk-2026-10-10",
+          "sha": "dcebfbc469c3f6d2fdee39cc33e3c5eef0b6cf7e"
+        },
+        {
+          "name": "chatgpt/lumo-1938-android-smoke-2026-10-12",
+          "sha": "5dae77a7cab8712cbba369df0874e9624ed36f21"
+        },
+        {
+          "name": "chatgpt/lumo-1938-android-smoke-direct-2026-10-12",
+          "sha": "7e9523ea25f99e89f1cfd8df36347e24363be623"
+        },
+        {
+          "name": "chatgpt/lumo-1938-complete-integration-2026-10-12",
+          "sha": "5fe56eb111f5d44a69ba98ef5424033afa6f417b"
+        },
+        {
+          "name": "chatgpt/lumo-1938-emergency-fallback-2026-10-12",
+          "sha": "e0ce0dd434f1b616053daf432672454842359be6"
+        },
+        {
+          "name": "chatgpt/lumo-1938-evidence-2026-10-12",
+          "sha": "3ce494556744ef78c9b0924daa954ba8404aa8c6"
+        },
+        {
+          "name": "chatgpt/lumo-1940-combined-test-apk-2026-10-14",
+          "sha": "414380fec010799eaf50fc972faded02273ca9b3"
+        },
+        {
+          "name": "chatgpt/lumo-1941-tutor-voice-hologlass-2026-10-14",
+          "sha": "7d356faf66c33ffd61e7dac3cd85cb0f887b89bb"
+        },
+        {
+          "name": "chatgpt/lumo-1942-family-preview-updates-2026-10-14",
+          "sha": "d39946acc8f70d6a2d2a04abaf284f09aa72835a"
+        },
+        {
+          "name": "chatgpt/lumo-1943-grade-menu-content-audit-2026-10-14",
+          "sha": "cbb25b2729a9406a7215c8cae93e8f74068ef402"
+        },
+        {
+          "name": "chatgpt/lumo-1944-mobile-learning-qa-2026-10-14",
+          "sha": "26b8dcae21e16c58200a4ef4b0e37d82b315094b"
+        },
+        {
+          "name": "chatgpt/lumo-1945-question-quality-repair-2026-10-14",
+          "sha": "b10205f62196b14f1c1adb3638fe58ae98e8f748"
+        },
+        {
+          "name": "chatgpt/lumo-1949-all-integrated-2026-10-16",
+          "sha": "bb55cdbcc05eb9ef7383ff007b31df15214992e8"
+        },
+        {
+          "name": "chatgpt/lumo-1954-ci-repair-2026-10-16",
+          "sha": "088ff7b6bd2beced1db5c23461bbbae9157aef0f"
+        },
+        {
+          "name": "chatgpt/lumo-1954-ocr-runtime-repair-2026-10-17",
+          "sha": "a9781d4236d91f5b4569346d913887dbe72d457d"
+        },
+        {
+          "name": "chatgpt/lumo-1954-preserve-ui-validation-2026-10-16",
+          "sha": "b314715678491299a9a05274af352020b180cb9d"
+        },
+        {
+          "name": "chatgpt/lumo-1954-tesseract-deu-eng-gate-2026-10-17",
+          "sha": "f9879d85b6fbe6e74ed4b5b1e0b5c6d82d46b325"
+        },
+        {
+          "name": "chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16",
+          "sha": "416a734854148a6d2dcb13b913031a3b9c4abb50"
+        },
+        {
+          "name": "chatgpt/lumo-1957-race-gate-pin-2026-10-16",
+          "sha": "75800710256c1cb4ec1a50ca04eca154a2379e27"
+        },
+        {
+          "name": "chatgpt/lumo-1958-visual-story-integration-2026-10-16",
+          "sha": "6c1abbae4d6c10dcda015c80d3c190e4874f0b21"
+        },
+        {
+          "name": "chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16",
+          "sha": "8f96c6c85a166af6580b87012c9e1e64f1136537"
+        },
+        {
+          "name": "chatgpt/lumo-1961-cross-grade-fold-visual-proof-2026-10-16",
+          "sha": "4113c72f8edfc1d7edb82df85b8fcd3a9ce9c23b"
+        },
+        {
+          "name": "chatgpt/lumo-1962-profile-non-destructive-persistence-2026-10-16",
+          "sha": "b2b70804af1f43ff187ec5c22d18257febca1a30"
+        },
+        {
+          "name": "chatgpt/lumo-1963-direct-arm64-apk-2026-10-16",
+          "sha": "8a478271aa21d836499d4d4af5621b8b622c7312"
+        },
+        {
+          "name": "chatgpt/lumo-1963-integrated-profile-fold-android-2026-10-16",
+          "sha": "912588101ba16d73276952975fc420658f02cce0"
+        },
+        {
+          "name": "chatgpt/lumo-1964-abc-premium-design-2026-10-16",
+          "sha": "53f02c32d6a25519d4834e4741ef76c14a637236"
+        },
+        {
+          "name": "chatgpt/lumo-1965-cards-reference-hub-2026-10-16",
+          "sha": "3d14140e852da8c6cc9e8e0156e86f2beeeb5030"
+        },
+        {
+          "name": "chatgpt/lumo-1966-cards-route-race-telemetry-2026-10-16",
+          "sha": "32cd14adb7a528cf95b498da70b1f6645e8a8b97"
+        },
+        {
+          "name": "chatgpt/lumo-1967-sonnenhafen-crane-integrated-2026-10-17",
+          "sha": "0fc591690ffd6591febd1b6fab2dc51c874a3a54"
+        },
+        {
+          "name": "chatgpt/lumo-1968-audio-event-channel-capture-2026-10-17",
+          "sha": "57d6281696329e0da925e7a66a5811376decdb69"
+        },
+        {
+          "name": "chatgpt/lumo-1969-godot-hoist-candidate-2026-10-17",
+          "sha": "a3f514841b70b8c231b431dcd0ae8bd7f8094c5f"
+        },
+        {
+          "name": "chatgpt/lumo-1970-godot-grounding-candidate-2026-10-17",
+          "sha": "124eac9a5bf0f0c5bce6f0ef73687a2ee83bbc4f"
+        },
+        {
+          "name": "chatgpt/lumo-1970-profile-field-guard-integrate-2026-10-17",
+          "sha": "53b9d158057620409face25af54ca5f9808a23e8"
+        },
+        {
+          "name": "chatgpt/lumo-1971-profile-guard-release-candidate-2026-10-17",
+          "sha": "2c5cfbd249da02ce5b6e20cba3a3fd1ea3112398"
+        },
+        {
+          "name": "chatgpt/lumo-1973-b3-green-apk-2026-10-17",
+          "sha": "1a2634de57a88cee5a83ab4e3fe2b1f247057126"
+        },
+        {
+          "name": "chatgpt/lumo-1975-grounded-gate-apk-2026-10-17",
+          "sha": "aebf360dfe286591b886b3037b203cdb82a69662"
+        },
+        {
+          "name": "chatgpt/lumo-1976-darkride-crystal-android-2026-10-18",
+          "sha": "840708ac5669e1705376f20ceb87ef4e09bca155"
+        },
+        {
+          "name": "chatgpt/lumo-aaa-kart-integration-2026-10-10",
+          "sha": "20b4dbe605aa5d065812a56722cfd20840ad56aa"
+        },
+        {
+          "name": "chatgpt/lumo-agent-hologlass-1940-2026-10-14",
+          "sha": "64b2aeda8b61813fc42833e3ab382bbb7fbcddf1"
+        },
+        {
+          "name": "chatgpt/lumo-agent-squad-2026-10-04",
+          "sha": "c4745de080e0f65612ade8895ca17a62e4fc4f8b"
+        },
+        {
+          "name": "chatgpt/lumo-apk-1914-qa-2026-10-09",
+          "sha": "a1025eebc1ed41ba4287edadb7d951e82137c4ad"
+        },
+        {
+          "name": "chatgpt/lumo-app-reference-ui-2026-10-06",
+          "sha": "450f73465e1df5a56b767908171e402fcebdb924"
+        },
+        {
+          "name": "chatgpt/lumo-asset-delivery-2026-10-04",
+          "sha": "3bc248a7ddf9cc369f202e358f5154c87571d5de"
+        },
+        {
+          "name": "chatgpt/lumo-asset-production-100plus-2026-10-05",
+          "sha": "8dfad9c4b92a14bb753d3b7463e6d3dbf89558e7"
+        },
+        {
+          "name": "chatgpt/lumo-astra-app-script-recovery-2026-10-18",
+          "sha": "8a830dedadbc348486ce512d4adb59d2d4bf3add"
+        },
+        {
+          "name": "chatgpt/lumo-b3-1973-android-candidate-2026-10-17",
+          "sha": "1a2634de57a88cee5a83ab4e3fe2b1f247057126"
+        },
+        {
+          "name": "chatgpt/lumo-b4-1974-performance-candidate-2026-10-17",
+          "sha": "27bfa21bde7d9d327b8d4eb54d53a292eae4b255"
+        },
+        {
+          "name": "chatgpt/lumo-cards-landscape-hud-2026-10-09",
+          "sha": "9b6127f304afbb1d3a8a9c2f26ef4d178cb26719"
+        },
+        {
+          "name": "chatgpt/lumo-change-review-2026-10-04",
+          "sha": "7c71b505e6e5610502176b0af887e359ef0c23f8"
+        },
+        {
+          "name": "chatgpt/lumo-character-apk-1919-2026-10-09",
+          "sha": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6"
+        },
+        {
+          "name": "chatgpt/lumo-ci-evidence-followup-2026-10-04",
+          "sha": "f1b86c052336a687bb6e7440f6570d889a3de024"
+        },
+        {
+          "name": "chatgpt/lumo-ci-pin-repair-2026-10-17",
+          "sha": "2a39fc3a2a2be26f84a3d2765a8dfa8734b29ca1"
+        },
+        {
+          "name": "chatgpt/lumo-complete-delivery-2026-10-07",
+          "sha": "c274ef2a7ac819107bdc3df13abb95d28c5e3aec"
+        },
+        {
+          "name": "chatgpt/lumo-complete-games-2026-10-07",
+          "sha": "3123cb0942f8a9a1b0d310c88b22cb25b5ef5c0b"
+        },
+        {
+          "name": "chatgpt/lumo-complete-verified-2026-10-07",
+          "sha": "8d62c8379ddeb3bd51b0d8465e1e10994ffa1a47"
+        },
+        {
+          "name": "chatgpt/lumo-cross-grade-hologlas-progress-safe-2026-10-16",
+          "sha": "cc683eab8ada6f24de4a1aac61164f3c62921a2b"
+        },
+        {
+          "name": "chatgpt/lumo-cross-grade-scene-polish-2026-10-15",
+          "sha": "d187d11dd90333792c8ad6e3881b7e45c76e5285"
+        },
+        {
+          "name": "chatgpt/lumo-dna-evidence-2026-10-13",
+          "sha": "fe3778847c88c35a40e99ae5012c1f160680b908"
+        },
+        {
+          "name": "chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16",
+          "sha": "3287a458308699b5a790093ed718ec9652179f0d"
+        },
+        {
+          "name": "chatgpt/lumo-first-frame-icons-2026-10-17",
+          "sha": "fdc0b921c54a56646044eb663569a930d5c5798a"
+        },
+        {
+          "name": "chatgpt/lumo-floating-animated-fox-2026-10-07",
+          "sha": "76bd4e25a8c5a15cf2b215bc153fa2ffd12eca07"
+        },
+        {
+          "name": "chatgpt/lumo-flutter-render-readiness-2026-10-17",
+          "sha": "83b9633030eea6ea2c585567490bdf8b1efda0d6"
+        },
+        {
+          "name": "chatgpt/lumo-fold-contrast-3d-identity-2026-10-16",
+          "sha": "7e394043ddae70b010b564e7770de49c16b36cf2"
+        },
+        {
+          "name": "chatgpt/lumo-game-specs-2026-10-05",
+          "sha": "591aee190a16491e60cc5c05428f9962c797c249"
+        },
+        {
+          "name": "chatgpt/lumo-home-readability-2026-10-04",
+          "sha": "22897357038b6d82574150ff868bf8bf5158e667"
+        },
+        {
+          "name": "chatgpt/lumo-insight-responsive-stats-2026-10-17",
+          "sha": "fc58137bdd2d247b518a62dbbdde3c66b6fc4941"
+        },
+        {
+          "name": "chatgpt/lumo-integrated-apk-2026-10-06",
+          "sha": "35299467b7c2b9077b00160e4c7dba86c82f3d03"
+        },
+        {
+          "name": "chatgpt/lumo-inventory-2026-10-13",
+          "sha": "65eed9043b535805731e036ddc0b93117257be16"
+        },
+        {
+          "name": "chatgpt/lumo-kart-assets-handoff-2026-10-10",
+          "sha": "7cb18f10496fb42ec945be3c32e0966d48aa2e20"
+        },
+        {
+          "name": "chatgpt/lumo-learning-curriculum-cognitive-2026-10-06",
+          "sha": "17ab56f3912694b3226dde702bd6482ac61509dd"
+        },
+        {
+          "name": "chatgpt/lumo-learning-glass-cards-2026-10-09",
+          "sha": "fa9f5557dfc6c676c362292f564bb82ee8b6e023"
+        },
+        {
+          "name": "chatgpt/lumo-learning-visual-apk-1915-2026-10-09",
+          "sha": "7f2c9b40fb3cac1c8cb94fd6ced154f05c9b99b5"
+        },
+        {
+          "name": "chatgpt/lumo-lernen-kart-unified-2026-10-15",
+          "sha": "b5b501ced5afd7d29fe23901f4e1263cddfd72ae"
+        },
+        {
+          "name": "chatgpt/lumo-marktstart-vorbereitung-2026-10-11",
+          "sha": "7d33604e9f92c85d098e8d4b90d754a6b3dae627"
+        },
+        {
+          "name": "chatgpt/lumo-meister-host-safe-area-2026-10-15",
+          "sha": "305ecd52f24a2b758d9b438f0c6aa55fec82fff7"
+        },
+        {
+          "name": "chatgpt/lumo-milestone-a-1972-integrated-2026-10-17",
+          "sha": "06c8e26bcc821992ff34f5c3003a5014baafdbd0"
+        },
+        {
+          "name": "chatgpt/lumo-milestone-a-integrated-1972-2026-10-17",
+          "sha": "06c8e26bcc821992ff34f5c3003a5014baafdbd0"
+        },
+        {
+          "name": "chatgpt/lumo-mobile-navigation-visual-2026-10-13",
+          "sha": "b256c915917746dc195a40f5c15e30bfc3124eab"
+        },
+        {
+          "name": "chatgpt/lumo-next-integration-2026-10-07",
+          "sha": "65d0a7d7387f96a5710ad159f6b2cd1a4d444c69"
+        },
+        {
+          "name": "chatgpt/lumo-onboarding-voice-1924-2026-10-10",
+          "sha": "4ae665eeaccf4ee5a62c17f60b8a53adde6a6229"
+        },
+        {
+          "name": "chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15",
+          "sha": "d5711f3bd8f12c3c7336533462d55e549346daf5"
+        },
+        {
+          "name": "chatgpt/lumo-pr291-ci-regressions-2026-10-13",
+          "sha": "d5f9ae597a2a4fc9a338749bf797fdabf942b48a"
+        },
+        {
+          "name": "chatgpt/lumo-pr295-grade-semantic-tests-2026-10-14",
+          "sha": "c86535b9d299c5240123a2994fbdff77bf791476"
+        },
+        {
+          "name": "chatgpt/lumo-premium-quiz-stage-2026-10-15",
+          "sha": "aafb57f664937e3a3e8fa8f085f5d32ee5e70562"
+        },
+        {
+          "name": "chatgpt/lumo-product-brief-2026-10-04",
+          "sha": "708945c03e1ac8b292db2b8f28a5d232be51d541"
+        },
+        {
+          "name": "chatgpt/lumo-schreiben-repair-1951-2026-10-16",
+          "sha": "120765b87210c86ebf30dcf3899ccdb4746c1d94"
+        },
+        {
+          "name": "chatgpt/lumo-sonnenhafen-godot-pin-2026-10-15",
+          "sha": "46304ecc216898094edd518803b93f392ce6471c"
+        },
+        {
+          "name": "chatgpt/lumo-sonnenhafen-unified-apk-2026-10-15",
+          "sha": "1978642cc377c52841ae4998ea642060c41495ac"
+        },
+        {
+          "name": "chatgpt/lumo-stabilisierung-2026-10-17",
+          "sha": "b649cf611a8e32ed98fe5eae4f24319362d95fe2"
+        },
+        {
+          "name": "chatgpt/lumo-stabilisierung-nativehash-fix-2026-10-17",
+          "sha": "981aa2048b0eaea027fe9998d92ab047817f81ff"
+        },
+        {
+          "name": "chatgpt/lumo-stability-1954-provenance-cli-2026-10-17",
+          "sha": "0600d81773c5266411f1c3b3ee6ccdfe115a95b1"
+        },
+        {
+          "name": "chatgpt/lumo-stability-ndk-unknown-archive-2026-10-17",
+          "sha": "75477ad1284dab52d1dbad0d505814ede54f937b"
+        },
+        {
+          "name": "chatgpt/lumo-story-entry-2026-10-13",
+          "sha": "c06b849ab32b8f6d9ffcc4fc009091f555d678ee"
+        },
+        {
+          "name": "chatgpt/lumo-story-reader-visual-fix-2026-10-14",
+          "sha": "f846c75407b6e76a3abbe7da82464119312b09cf"
+        },
+        {
+          "name": "chatgpt/lumo-story-save-audit-2026-10-13",
+          "sha": "086eb42ab7b834050f1f345b52cb3e811d816748"
+        },
+        {
+          "name": "chatgpt/lumo-sulafat-everywhere-2026-10-10",
+          "sha": "1dd6a3f7e1ea4b8b1258dd39ad64b91b95228ea4"
+        },
+        {
+          "name": "chatgpt/lumo-test-apk-2026-10-05",
+          "sha": "3429a68e2fdcfda4f8d912f917c5b775e83c842f"
+        },
+        {
+          "name": "chatgpt/lumo-visual-polish-2026-10-07",
+          "sha": "36969d8bf87346544ef28a43be2547ce4913c2d3"
+        },
+        {
+          "name": "chatgpt/lumo-visual-prep-2026-10-05",
+          "sha": "03ccb4f94d5ff7e165270ceb94652dcd4c014244"
+        },
+        {
+          "name": "chatgpt/lumo-writing-no-score-child-flow-1952-2026-10-16",
+          "sha": "e7f1d5bf333261f6dfaf1f4219b9c3c0ba8228e0"
+        },
+        {
+          "name": "chatgpt/lumo-writing-stability-2026-10-10",
+          "sha": "b2882f46ae662157d7bbda0873fcde8ea1bfe5cb"
+        },
+        {
+          "name": "chatgpt/native-source-preflight-2026-10-15",
+          "sha": "bc7dbd653552a1f6d90b243ab50bc829107509c8"
+        },
+        {
+          "name": "chatgpt/onboarding-hologlass-2026-10-05",
+          "sha": "d1b053612de54939712fb3c10d782e384d8a974f"
+        },
+        {
+          "name": "chatgpt/opus-1953-mentor-journal-followup-2026-10-16",
+          "sha": "11f3e51d68c1cc784e14ba5731c1aa1449b1b03a"
+        },
+        {
+          "name": "chatgpt/parent-games-polish-2026-10-07",
+          "sha": "4abda8dda053d9bf77764669d258c6a9fdfe4a2b"
+        },
+        {
+          "name": "chatgpt/pr207-provenance-clean-2026-10-07",
+          "sha": "905f3b77b5c49e605c393ef7f0f482498fb6cc65"
+        },
+        {
+          "name": "chatgpt/repair-android16-qa-2026-10-07",
+          "sha": "9bcd223e2ddab8d60e79972f49e323c4b0fa9023"
+        },
+        {
+          "name": "chatgpt/repair-opus-handoff-2026-10-07",
+          "sha": "92a45c112305afb2ebe290ce0527a0a9a2ed2afe"
+        },
+        {
+          "name": "chatgpt/resume-claude-cross-grade-practice-2026-10-15",
+          "sha": "5aee1c20fae2101a92775d63e3606fdb2d9d22e3"
+        },
+        {
+          "name": "chatgpt/verify-pr285-flutter-2026-10-13",
+          "sha": "d7440beaba78992ee36c8f4be1513e6b5006c1f6"
+        },
+        {
+          "name": "chatgpt/visual-fidelity-recovery-2026-10-05",
+          "sha": "eb7e62ce28eccf97f8f1501deaab46e838a1decc"
+        },
+        {
+          "name": "chatgpt/visual-gap-fold-2026-10-05",
+          "sha": "ec9165065304dea3bffb8573f45987ed28664117"
+        },
+        {
+          "name": "chatgpt/3d-launch-lifecycle-2026-10-07",
+          "sha": "b6a0afa421e5e854345bfac5cc2be1813a7c3e50"
+        },
+        {
+          "name": "chore-audit-tests-20260503b",
+          "sha": "b973994702e989b2c106ec74525cb545edcad371"
+        },
+        {
+          "name": "chore-chat-guard-patcher",
+          "sha": "705d1528854ee95dd13d09b41796248862e1dd27"
+        },
+        {
+          "name": "chore-core-audit-tests-20260503",
+          "sha": "20686d0af60f02717e688f7e8393e0e74080b869"
+        },
+        {
+          "name": "chore-learn-guard-patcher",
+          "sha": "2bce03319d33c4797f5452d06bd03564d6f4c6e6"
+        },
+        {
+          "name": "chore-problem-word-trainer",
+          "sha": "81741915edb7847db29fba3c44cc4f6d3ad716ac"
+        },
+        {
+          "name": "chore-reading-guard-patcher",
+          "sha": "55e15bb6e186fa73c255192cf0f3f47e8d86540d"
+        },
+        {
+          "name": "chore-release-candidate-patcher",
+          "sha": "040cdfb46132df9ac572e235c873f46322d14b1e"
+        },
+        {
+          "name": "chore-smart-ears-patcher",
+          "sha": "72d83f04ec37ac5cc75a01a782f523cf4bdf3016"
+        },
+        {
+          "name": "chore-syllable-ui-patcher",
+          "sha": "6814b0515334c5a827576d8c7806f46d2a1d9699"
+        },
+        {
+          "name": "claude/asset-ai-briefing",
+          "sha": "ac16cf4ddc7112e3a99ebe37b62f920be55f3842"
+        },
+        {
+          "name": "claude/aufgaben-abenteuer",
+          "sha": "d7282f35a5355612278582beacbfe7fd5cda8e11"
+        },
+        {
+          "name": "claude/chatgpt-megaprompt",
+          "sha": "7bcf3f6682fe3e92c0324807063392b0d002c7df"
+        },
+        {
+          "name": "claude/cleanup",
+          "sha": "c4daad0d9a288ab44ce3d30b6ab22ff0e9fe1894"
+        },
+        {
+          "name": "claude/continue-previous-chat-KtY7p",
+          "sha": "f9b0a80a21d0130e236031b49bd351bb62cc0a98"
+        },
+        {
+          "name": "claude/copilot-setup-steps",
+          "sha": "c091d5d4b1e0b801577ce82042b595629ba3f63a"
+        },
+        {
+          "name": "claude/design-assets-part2",
+          "sha": "14fdb48e63ed2457b4b88574e1e00a7fb65ea8b0"
+        },
+        {
+          "name": "claude/design-icons",
+          "sha": "4fa332d55fed4ab475e0ba2097daf1281d39e74d"
+        },
+        {
+          "name": "claude/design-lernen",
+          "sha": "4f05c57890ab59165ab83ef98cae0e7bbb686f22"
+        },
+        {
+          "name": "claude/design-polish-subject-tiles",
+          "sha": "cb6cc00c04361dd0c8a14fb878030cc1926fd54d"
+        },
+        {
+          "name": "claude/design-tafeln",
+          "sha": "8344c10f1401d6516194e45e565695e968c9b47e"
+        },
+        {
+          "name": "claude/design-targets-heinz",
+          "sha": "62bf2225183d66f2688a4574850b90622abd3751"
+        },
+        {
+          "name": "claude/design-test-apk",
+          "sha": "4e5264ace2155bdd028e589aa81429952d5c24f1"
+        },
+        {
+          "name": "claude/feat-lumo-cards-avatar-picker",
+          "sha": "2131800f705953ffa5dc4d47bb7880e3b464d135"
+        },
+        {
+          "name": "claude/feat-lumo-cards-avatars",
+          "sha": "c6ccc014b328f93f2778cb054d3c9f7f378f9b40"
+        },
+        {
+          "name": "claude/feat-lumo-cards-from-sheet",
+          "sha": "50213e22c0ae3d8f9309f34cd7a3674ef766a53c"
+        },
+        {
+          "name": "claude/feat-lumo-cards-layout-polish",
+          "sha": "5b1214e34658d301a5773f7cbcca41e6243fd166"
+        },
+        {
+          "name": "claude/feat-lumo-cards-layout-spec",
+          "sha": "48523c301f3087941697843e2e6c94b4234cb427"
+        },
+        {
+          "name": "claude/feat-lumo-cards-mvp",
+          "sha": "9d8c4f66d5c85ab7a376ac88cf5035971456d01f"
+        },
+        {
+          "name": "claude/feat-lumo-cards-solo-bot",
+          "sha": "00ef7a1f71f25945f5e06e5ee6a6c58243f810e8"
+        },
+        {
+          "name": "claude/feat-lumo-cards-specials",
+          "sha": "bfef009edba487afafbff13ff5dce1b81607e723"
+        },
+        {
+          "name": "claude/feat-lumo-cards-uno-style",
+          "sha": "50785c63d5f34e498ee12938feb9cb52ef4495c3"
+        },
+        {
+          "name": "claude/fix-farben-wuerfel-kaputt",
+          "sha": "0d7ecd1b526f8ac275c528a37a54518f5b0cba2e"
+        },
+        {
+          "name": "claude/fix-games",
+          "sha": "51e27cc6ee3f6b5c039ea5444e1ca42221461968"
+        },
+        {
+          "name": "claude/fix-learning-modules",
+          "sha": "16276490de7290aa3d2507ded40518435e6676b1"
+        },
+        {
+          "name": "claude/fix-lumo-cards-crash-overflow",
+          "sha": "ca9e1ce83cfb2d15a76b4a74899229a7d4553f2b"
+        },
+        {
+          "name": "claude/fix-lumo-cards-debugneeds",
+          "sha": "99315fba3909ee467e5e7fc7644c7adda012f0b7"
+        },
+        {
+          "name": "claude/fix-lumo-cards-layout",
+          "sha": "94b1b3f6ed4feb84b5aa797497d0e2319d699dfd"
+        },
+        {
+          "name": "claude/fix-lumo-cards-still-crashes",
+          "sha": "59630afcaabf692cee253e154abe88a7e7bb7928"
+        },
+        {
+          "name": "claude/fix-tutorial-jumps-writing",
+          "sha": "490d2cef84c7c02f252ceccb10b55b6ce065a30b"
+        },
+        {
+          "name": "claude/fix-update-detection-profile-reset",
+          "sha": "8b424a11e973a66811d797a9fc75b91c6193c253"
+        },
+        {
+          "name": "claude/fix-wordcoach-crash-tutorial",
+          "sha": "ddfa233c0458bc8bd20f137d9e5ae43ce26f5152"
+        },
+        {
+          "name": "claude/i18n-foundation",
+          "sha": "f84936475353a88854312c3cf4a488f33ceb3812"
+        },
+        {
+          "name": "claude/in-app-update-keystore",
+          "sha": "767c96095332088f60427d14333dad4bb897a4c1"
+        },
+        {
+          "name": "claude/integration-stories-2026-10-16",
+          "sha": "484a0de51b1e67bd90334dd00da05118ef5d2448"
+        },
+        {
+          "name": "claude/kart-test-apk",
+          "sha": "142c139ffeada26ce2a74a23f034f9dab2a673d4"
+        },
+        {
+          "name": "claude/lern-lesen-schreiben",
+          "sha": "8d2f7758ec3c061e82b5d08e78de8039bad43818"
+        },
+        {
+          "name": "claude/lumo-android-integration-m0-aloove",
+          "sha": "cc5bff14999c1f0654d52553f98140f9a843da21"
+        },
+        {
+          "name": "claude/lumo-cards-4-players",
+          "sha": "f55e2705fc4edb7d0c37220b54d50ad44f96c455"
+        },
+        {
+          "name": "claude/lumo-cards-animations",
+          "sha": "30ca42d4999b1ef1366539209cc98627304d6dfa"
+        },
+        {
+          "name": "claude/lumo-cards-big-refactor",
+          "sha": "29b3e2bc4eda00cd24eb012aad1e01c7baa77a2c"
+        },
+        {
+          "name": "claude/lumo-cards-dependents-fix",
+          "sha": "e189b8a7093958b42c2f2936c68c0ab3df902d7c"
+        },
+        {
+          "name": "claude/lumo-cards-hand-crash-fix",
+          "sha": "8b0dac7d3e7b14f583242186bca65de8ac36c9e6"
+        },
+        {
+          "name": "claude/lumo-cards-hud-polish",
+          "sha": "3027851bfd348e8ad709c9134941c6c04bf9a843"
+        },
+        {
+          "name": "claude/lumo-cards-more-anims",
+          "sha": "b5c4892608ea14daab1902e716f3e8e20e8bd600"
+        },
+        {
+          "name": "claude/lumo-cards-multiplayer-rules",
+          "sha": "644e9e54352873368170f02f0175b5c44eb75ce6"
+        },
+        {
+          "name": "claude/lumo-cards-new-cards",
+          "sha": "26f462b6bc3cf7bd052d2ded60d45c7dfd6a42cf"
+        },
+        {
+          "name": "claude/lumo-cards-smarter",
+          "sha": "0fdb571cb34f75ad33042c22c5e5dc1743d1a93a"
+        },
+        {
+          "name": "claude/lumo-gesamt",
+          "sha": "87a7e57cf121aef6d6654d8ed86562a235180024"
+        },
+        {
+          "name": "claude/lumo-kart-premium-A9oBr",
+          "sha": "5eda712b1328714afe320009440f752bdb1dc475"
+        },
+        {
+          "name": "claude/lumo-lernen-kart-modernisierung-ild8i2",
+          "sha": "b9ab8d4fce9329b8d1ce91f1e7b94719e8b430df"
+        },
+        {
+          "name": "claude/mathe-lehrplan",
+          "sha": "dd6492b412d5fa90b09841344ff50de55ed19d95"
+        },
+        {
+          "name": "claude/phase56-on-main",
+          "sha": "38d7a3f571d638b748cdf2faa64b7008df213949"
+        },
+        {
+          "name": "claude/polish-2-tiere",
+          "sha": "6dd3a233e434454e50f6e23d9a9a6bc74d9a7fc7"
+        },
+        {
+          "name": "claude/qa-empty-semantics-retry",
+          "sha": "0fad189b54faca8e6f559a9d4470588e06ab4d0d"
+        },
+        {
+          "name": "claude/tier1-foundation",
+          "sha": "a19322feca4931c265f62be2230687a45562ef75"
+        },
+        {
+          "name": "claude/tier3-audio",
+          "sha": "3d4d6e322500c7b5764f2084e8730d79ff0b40e2"
+        },
+        {
+          "name": "claude/tier4-3d-optics",
+          "sha": "660c896e85c711001925acf1e756b8bb3ada5306"
+        },
+        {
+          "name": "claude/tier6-card-polish",
+          "sha": "2f4c9161ea2a947ca2c9fd2e7786882fc51d7f84"
+        },
+        {
+          "name": "claude/voice-improvement-fwjkX",
+          "sha": "d927321fc98cbf53a36e6e878af24f56f5eff757"
+        },
+        {
+          "name": "claude/voice-on-codex-followup",
+          "sha": "37edbd3390c4a8a6ff71541de5ee1143b62a96dc"
+        },
+        {
+          "name": "claude/writing-canvas-touch-fix",
+          "sha": "7a227a75a41167e3cf4597f563a719dff5cc2477"
+        },
+        {
+          "name": "codex/check-.github/workflows/release-apk.yml",
+          "sha": "bc71868d3f00367ec4b9244c7932441009ab43ce"
+        },
+        {
+          "name": "codex/find-current-app-status",
+          "sha": "fade17077b56aa89b623491e389b345feb6c4aab"
+        },
+        {
+          "name": "codex/hybrid-lumo-voice",
+          "sha": "f66129f78ffd72b33ec538406960de5198eec789"
+        },
+        {
+          "name": "codex/lumo-1905-original-android-diagnosis-2026-10-08",
+          "sha": "7cff9e0eb233b6386b51d459f8b29a2958d3e21d"
+        },
+        {
+          "name": "codex/lumo-action-android-qa-2026-10-09",
+          "sha": "0a4f988eac6c2e7407e29533649936864d0ee8f7"
+        },
+        {
+          "name": "codex/lumo-action-apk-2026-10-09",
+          "sha": "aa6519226fded77d5d5022dc6fe8c223e9dc82b8"
+        },
+        {
+          "name": "codex/lumo-android-qa-followup-2026-10-08",
+          "sha": "bd08f8c51672c80edb82439e6ec69c26ad74a3b1"
+        },
+        {
+          "name": "codex/lumo-android-surface-qa-2026-10-08",
+          "sha": "4f7108f9d0450b6125005417cbca3822691e0871"
+        },
+        {
+          "name": "codex/lumo-apk-1910-2026-10-09",
+          "sha": "f38bb1ac14217b815429b37ed57b61e49d48e00b"
+        },
+        {
+          "name": "codex/lumo-app-recovery-2026-10-09",
+          "sha": "2b60f28a558c4b2a414b100d73903fa6abb41ce1"
+        },
+        {
+          "name": "codex/lumo-claude-game-entry-2026-10-09",
+          "sha": "bc6317051170df2854afd3520bf724ddf8e9a578"
+        },
+        {
+          "name": "codex/lumo-game-entry-polish-2026-10-09",
+          "sha": "c9a823139fb744760e6898a4ac35be54817d8a15"
+        },
+        {
+          "name": "codex/lumo-holographic-2026-10-03",
+          "sha": "f8445af2e6c6926de3f1e5ab916d426bc2eefb6d"
+        },
+        {
+          "name": "codex/lumo-host-finish-numeric-2026-10-09",
+          "sha": "fc33aa44d431380426cb549a3bb1ef4d5bfc7a72"
+        },
+        {
+          "name": "codex/lumo-host-time-precision-2026-10-09",
+          "sha": "280b24250e8adfa9d7b42a833de526411c7c518a"
+        },
+        {
+          "name": "codex/lumo-integrated-runtime-1904-2026-10-08",
+          "sha": "1be923a6a3820bb10fa4335cbfce2aa2db90a342"
+        },
+        {
+          "name": "codex/lumo-integrated-runtime-2026-10-08",
+          "sha": "2b60f28a558c4b2a414b100d73903fa6abb41ce1"
+        },
+        {
+          "name": "codex/lumo-kart-1903-qa-2026-10-08",
+          "sha": "fa2da691741a817f087484986c57be05acf351f1"
+        },
+        {
+          "name": "codex/lumo-kart-event-forensics-2026-10-09",
+          "sha": "caff65353ce8e77fe4a2b02fd92d59c5ee4bfeb5"
+        },
+        {
+          "name": "codex/lumo-kart-menu-1921-2026-10-10",
+          "sha": "f9295c76d5fc57da68954c550db1e8bbab7c2bbf"
+        },
+        {
+          "name": "codex/lumo-kart-modal-scroll-2026-10-08",
+          "sha": "3e1d0eb3c08cb2472b12f08eeae11bb663af62c0"
+        },
+        {
+          "name": "codex/lumo-kart-premium-apk-1921-2026-10-10",
+          "sha": "b39ed83b6e67ba1889c64f51331b8111e5a98211"
+        },
+        {
+          "name": "codex/lumo-main-proof-read-2026-10-10",
+          "sha": "848ae3efa6c721475145174c907c7bd1e6a0cfb2"
+        },
+        {
+          "name": "codex/lumo-next-2026-10-10",
+          "sha": "554c2b6a0a12e36a2b5497c787acb14f6f6d85fd"
+        },
+        {
+          "name": "codex/lumo-profile-android-1920-2026-10-10",
+          "sha": "8d16e719c68b85c5a007726f8afc014a1336a01d"
+        },
+        {
+          "name": "codex/lumo-profile-diagnostics-2026-10-10",
+          "sha": "3c9a5b6abd7729414c2f943b3bb68e6dc282a296"
+        },
+        {
+          "name": "codex/lumo-reference-app-2026-10-08",
+          "sha": "c857aa929b41a747159b3081c250bc63cf9708ff"
+        },
+        {
+          "name": "codex/lumo-reference-assets-2026-10-10",
+          "sha": "23540f5e8195cdd4f20be92032a3908bb6b4b2a5"
+        },
+        {
+          "name": "codex/lumo-restart-school-test-2026-10-02",
+          "sha": "131bfc77748cefc74b4f8591443bb61d6e73c2de"
+        },
+        {
+          "name": "codex/lumo-return-frame-recovery-2026-10-09",
+          "sha": "2fea2da9f49d1e044191b498e07741c46bb5555e"
+        },
+        {
+          "name": "codex/lumo-runtime-apk-2026-10-08",
+          "sha": "9f56cb8df00925988c84fccab5fbb8eaf2821d3c"
+        },
+        {
+          "name": "codex/lumo-school-readiness-followup-2026-10-02",
+          "sha": "e4d6309b86a4e4365d30771eebdc91c2fce44e9a"
+        },
+        {
+          "name": "codex/lumo-selective-app-qa-2026-10-08",
+          "sha": "f6c4f3350db8153200594b52a9d82606279dc238"
+        },
+        {
+          "name": "codex/lumo-source-guard-qa-2026-10-08",
+          "sha": "6b0171cd154682882805921fe53e8d6fa12c2045"
+        },
+        {
+          "name": "codex/lumo-stage1-audit-44095eb",
+          "sha": "3bd1128aaaea40fcdd4468c7d57c461ea8e3fa46"
+        },
+        {
+          "name": "codex/lumo-tutor-quota-diagnostics-2026-10-03",
+          "sha": "51845502c111887aa1947f859dd072287d4abe64"
+        },
+        {
+          "name": "codex/lumo-unified-android-2026-10-03",
+          "sha": "ea76df9edd586ddb047fa26a4aadb1caa92ed549"
+        },
+        {
+          "name": "codex/lumo-visual-fidelity-2026-10-08",
+          "sha": "4973346678eaca8e47ab7023f7439b4262453d21"
+        },
+        {
+          "name": "codex/opus-86c5a33-test-apk",
+          "sha": "20d8bb5fd677e1fa42257f517f51483e392edf01"
+        },
+        {
+          "name": "codex/sprint-8-number-house",
+          "sha": "4b41fded799be007612fae30cbceab91c24f6f24"
+        },
+        {
+          "name": "computer/lumo-1927-apk-handoff-2026-10-10",
+          "sha": "395ee554388821215cefc4ec4448a89b6cfc754d"
+        },
+        {
+          "name": "computer/lumo-1927-runtime-qa-same-apk-2026-10-10",
+          "sha": "05458f22405175770f67b33b4a49b7c8c8e3ff53"
+        },
+        {
+          "name": "computer/lumo-aaa-integration-2026-10-10",
+          "sha": "c747abc2c89eedd856f30091a8d2ce445011322d"
+        },
+        {
+          "name": "computer/lumo-android-1929-runtime-repair-2026-10-11",
+          "sha": "7851da2737acf5d3afd83a7ba5439fa928fcbdab"
+        },
+        {
+          "name": "computer/lumo-android-1930-verified-bundle-2026-10-11",
+          "sha": "15f5111d1d4c38108e5f9a48e6e71b30c9b0f463"
+        },
+        {
+          "name": "computer/lumo-cards-connect-four-2026-10-10",
+          "sha": "8b308aeec8a6858b93a5b4626c4dd136d1e17ced"
+        },
+        {
+          "name": "computer/lumo-context-sulafat-2026-10-10",
+          "sha": "8408f37772d8ec4067f49f3b9d506190b3de94c5"
+        },
+        {
+          "name": "computer/lumo-education-excellence-2026-10-11",
+          "sha": "e4756bbcb6890d5054b5eb14ac4ef3ecd2cafa94"
+        },
+        {
+          "name": "computer/lumo-kart-android-1928-2026-10-11",
+          "sha": "bef1403ed5d0243f8c6daca2717e998081cab15e"
+        },
+        {
+          "name": "computer/lumo-learning-adventures-2026-10-11",
+          "sha": "5f2f32f09abce3750c02d3a532217479329944a3"
+        },
+        {
+          "name": "computer/lumo-learning-companion-discovery-2026-10-11",
+          "sha": "9b8b7c86b4b4137c625d2e4fa727a9669a4962f5"
+        },
+        {
+          "name": "computer/lumo-rival-roster-2026-10-10",
+          "sha": "d2d25c35f7a78ec0a4b09fb263f0cfddfedf357a"
+        },
+        {
+          "name": "computer/lumo-visual-foundation-2026-10-10",
+          "sha": "5d7a675b3c4cfd54dd220613a420649dc30030b2"
+        },
+        {
+          "name": "computer/lumo-voice-next-runtime-fixes-2026-10-10",
+          "sha": "c546f560278cd0a8220c11a6c09fdd75ec597dfe"
+        },
+        {
+          "name": "connect-reading-v2-20260503",
+          "sha": "5aed42a2e074907732363b4be42029e0af889c12"
+        },
+        {
+          "name": "copilot/add-animated-lumo-fox",
+          "sha": "4756c56eeecd828edcca0e30c1a174166e2bdd7b"
+        },
+        {
+          "name": "copilot/add-premium-voice-api",
+          "sha": "f66129f78ffd72b33ec538406960de5198eec789"
+        },
+        {
+          "name": "copilot/analyze-and-refactor-code",
+          "sha": "cafcb70f65e6ae1d3616e474d80020777c7802be"
+        },
+        {
+          "name": "copilot/check-current-status",
+          "sha": "05776f98b6df8fddf26feda6f963ef0392dd14b2"
+        },
+        {
+          "name": "copilot/checkpoint-sichern-opus-5-5",
+          "sha": "3b9bb248b1bdc5ace4e9a46d533628625b2c616f"
+        },
+        {
+          "name": "copilot/codexlumo-holographic-kart-2026-10-03",
+          "sha": "86bbd20bc8ecb797da6d41de533afab1a063cf9e"
+        },
+        {
+          "name": "copilot/create-lumo-lernen-app",
+          "sha": "2c7b6c14fa7c428aead4669284220c9c47a52ce1"
+        },
+        {
+          "name": "copilot/explore-codebase-implementation-plan",
+          "sha": "1edadaedd27e2bb23c54d39da6c0cb4913f41427"
+        },
+        {
+          "name": "copilot/feat-engine-overhaul-timer-replacement",
+          "sha": "901289f30d6a25ed328e140f2063752dc05f92d5"
+        },
+        {
+          "name": "copilot/finalize-lumo-jump-adventure",
+          "sha": "e432e1d798dd17de4ec2df6aee561b68fa7f547a"
+        },
+        {
+          "name": "copilot/fix-android-debug-apk-build",
+          "sha": "1edadaedd27e2bb23c54d39da6c0cb4913f41427"
+        },
+        {
+          "name": "copilot/fix-current-frame-index",
+          "sha": "1edadaedd27e2bb23c54d39da6c0cb4913f41427"
+        },
+        {
+          "name": "copilot/fix-lumo-jump-game",
+          "sha": "d461b15ea4a2cb6d73301b8dce6604c214dab770"
+        },
+        {
+          "name": "copilot/fix-pr-316-auto-check",
+          "sha": "8c56edb3a63b28087d97aab04caa05b018a2a53d"
+        },
+        {
+          "name": "copilot/hol-dir-den-neuesten-stand-von-lumo",
+          "sha": "fae80ee55c84db60747e64329d81a6e000d40aee"
+        },
+        {
+          "name": "copilot/implement-hybrid-voice-patch",
+          "sha": "f66129f78ffd72b33ec538406960de5198eec789"
+        },
+        {
+          "name": "copilot/learning-sonnet-durable-spielefreischaltung",
+          "sha": "d9bc664f6f4a1d69ba5307d3cb7a287e562c8df6"
+        },
+        {
+          "name": "copilot/lumo-1938-integration-follow-up",
+          "sha": "d7440beaba78992ee36c8f4be1513e6b5006c1f6"
+        },
+        {
+          "name": "copilot/lumo-design-sprint",
+          "sha": "44aff5bbd3d9950b1c00c6e96089cd9d55ce866f"
+        },
+        {
+          "name": "copilot/optimiere-spiel-performance-und-code-struktur",
+          "sha": "ddddf577455aefdb554b4283c252673ced136b3d"
+        },
+        {
+          "name": "copilot/optimize-game-code-performance",
+          "sha": "b863dc41d3c1353d49c7447f370db61e3c4e1d0a"
+        },
+        {
+          "name": "copilot/quality-product-sprint-lumo-lernen",
+          "sha": "881ba3658c67bddcd52ae50de742af14c3421e33"
+        },
+        {
+          "name": "copilot/review-first-172-170-again",
+          "sha": "d539bbc8d53cc14015f4cfa1d6ee6469c33ca3cb"
+        },
+        {
+          "name": "copilot/review-first-172-170",
+          "sha": "d1ca0878787198f4f12ead47d60380fe42423b47"
+        },
+        {
+          "name": "copilot/stabilization-pr-39",
+          "sha": "014c2f434f91e88a89bd218f24cd8b8c5ab1bba2"
+        },
+        {
+          "name": "copilot/stabilize-existing-feature",
+          "sha": "4b6e3e676bac9858b62a93f57069d3ec8309b5b2"
+        },
+        {
+          "name": "copilot/transfer-codex-clause-4-6",
+          "sha": "d7b363b971b18a3963ffd63181f578840a9ae41c"
+        },
+        {
+          "name": "copilot/ui-luna-design-sprint-runtime-screens",
+          "sha": "b333a776455e8c5d69a4dc97dac2ec7d849b3c6f"
+        },
+        {
+          "name": "copilot/ullmann27-lumo-lernen",
+          "sha": "443554f036a3d7b8aa65166f5730324b639ebf70"
+        },
+        {
+          "name": "copilot/update-asset-handling",
+          "sha": "66809d936b9e55740c995e253f5ca407c05da7c5"
+        },
+        {
+          "name": "copilot/175-lumo-ui-luna-arbeiten",
+          "sha": "d539bbc8d53cc14015f4cfa1d6ee6469c33ca3cb"
+        },
+        {
+          "name": "copilot/5979796457-update-integrationsaudit",
+          "sha": "008d86a1296aaecbe7d6a5ff9c385f5246c273a7"
+        },
+        {
+          "name": "design/lumo-cards-build-connect-four-2026-10-10",
+          "sha": "790ad36f2ca53ef5263f75255ae83dd5af0dfc69"
+        },
+        {
+          "name": "docs-ai-handoff-pack-20260503",
+          "sha": "6fd1ba0056562650756b79a11f3c65ee0eff8a15"
+        },
+        {
+          "name": "feat/asset-registry-pr-a",
+          "sha": "f254647e4c5c1c1fe0edcb8f43ab940bb6888e8a"
+        },
+        {
+          "name": "feat/pr-b-companion-pose",
+          "sha": "3655a769c73b5445a532bca6e3772e114d05c88f"
+        },
+        {
+          "name": "feat/pr-c-lumo-sound-registry",
+          "sha": "e570df8d9c30d3ea01277ff4e1b28332fe05c89a"
+        },
+        {
+          "name": "feat/pr-d-lottie",
+          "sha": "770192ebebb7ad4feda20108f1b561a2b8e221e2"
+        },
+        {
+          "name": "feat/pr-e-svg-icons",
+          "sha": "c04f9cdb5c447304f69c29b2b19112a8f7c20018"
+        },
+        {
+          "name": "feat/pr-f-learning-questions",
+          "sha": "e8c92ee235488b391edb820d00b61173ef2ad355"
+        },
+        {
+          "name": "feat/pr-g-error-sfx",
+          "sha": "0d238ac03366d3a084be192ceee1c737dc22c345"
+        },
+        {
+          "name": "feat/pr-h1-star-burst",
+          "sha": "f8918195e2e50d1b8593e4b6b89da8436ee9f267"
+        },
+        {
+          "name": "feat/pr-h2-result-lottie",
+          "sha": "9968778320cfcdeea747b368937f841f8611fa3b"
+        },
+        {
+          "name": "feat/pr-h3-music",
+          "sha": "af7484ed4fa275bb3c223710d56107077304de9c"
+        },
+        {
+          "name": "feat/pr-i-audio-settings",
+          "sha": "2bbf5526207ab896b0d243c2329f6e7bbaa2cbd1"
+        },
+        {
+          "name": "feat/primary-word-bank-german-generator",
+          "sha": "0775656bf515cce33af7035a605bc128afbdbb3f"
+        },
+        {
+          "name": "feat-chat-enforce-ai-policy",
+          "sha": "a635c035ac08ce591c8ad38d9a79451845d31828"
+        },
+        {
+          "name": "feat-core-add-ai-policy-guard",
+          "sha": "3d5dc083c1ebaee36cceea2e841c144bfd93ec59"
+        },
+        {
+          "name": "feat-didactic-task-styles-20260503",
+          "sha": "f509ad7748eaaa5328b9694a0994c9617e910798"
+        },
+        {
+          "name": "feat-integrated-ai-tutor",
+          "sha": "197d3bf95e2d87bb3669a2c88e040c2d0d18f784"
+        },
+        {
+          "name": "feat-learn-enforce-ai-policy",
+          "sha": "74e0e2f62ea99432fecfc884ac487953c187a426"
+        },
+        {
+          "name": "feat-learning-rescue-feedback",
+          "sha": "4791a9470638e387959a5a8393ed22c892790e1e"
+        },
+        {
+          "name": "feat-lumo-jump-adventure-prototype",
+          "sha": "787e1ccfb6cc09937137da4f11e48ccf083dd711"
+        },
+        {
+          "name": "feat-modern-lumo-ui-components-20260503",
+          "sha": "26466640d9367ff84f297fbcd1a8031f6b23c117"
+        },
+        {
+          "name": "feat-modern-lumo-widgets-20260504",
+          "sha": "7ff8490bbfe68691b00b65ecfccfbd4be483f132"
+        },
+        {
+          "name": "feat-parents-ai-selector-ui",
+          "sha": "87aee8759a7e95af585f77a64cb205d71666f77f"
+        },
+        {
+          "name": "feat-reading-active-sentence-view",
+          "sha": "3f234d4327302387f2b54f1590725ab64f41dfc2"
+        },
+        {
+          "name": "feat-reading-analyzer-integration",
+          "sha": "49567cd32f60fb75bad9f34de62764bb7d6277d5"
+        },
+        {
+          "name": "feat-reading-problem-word-trainer",
+          "sha": "609d5a278dad4ff887cf1e4b6a35b37c10156443"
+        },
+        {
+          "name": "feat-reading-unclear-feedback",
+          "sha": "0680e3c1cc7ff47969c1ceb1509bb1659b5f95f1"
+        },
+        {
+          "name": "feat-release-candidate",
+          "sha": "111c57a78411e8f752aa078388eb111d76b17c4a"
+        },
+        {
+          "name": "feat-settings-ai-selector-visible",
+          "sha": "796fbd15b1b453e9950e8c9f3bdff83689d473ec"
+        },
+        {
+          "name": "feature-local-tutor-hints-20260502",
+          "sha": "7ceaa1f9483c60c788d16877a1d057e9fde0a021"
+        },
+        {
+          "name": "feature-session-variety-guard-20260502",
+          "sha": "6084a4168c23f0e9179a1ff1f7c76a8cee1c1e4a"
+        },
+        {
+          "name": "feature-task-generator-20260502",
+          "sha": "67ecf2369f53a2d1b567deeb20a6c54da6fa58b2"
+        },
+        {
+          "name": "feature-wire-session-variety-20260502",
+          "sha": "d60b6d668b5d095fdd64652ef0bba320e249104c"
+        },
+        {
+          "name": "fix/ci-nuclear-remove-native-plugins",
+          "sha": "0c0d8ba500ab7bdaf0340f2fdf05db68a55cab92"
+        },
+        {
+          "name": "fix/ci-rescue-l10n-yaml",
+          "sha": "febf79ad2eaed6613afb0d719b05a57586d96c53"
+        },
+        {
+          "name": "fix/grade-learning-structure-2026-10-12",
+          "sha": "3101d302fefa3b8e650f555080333063d1e30072"
+        },
+        {
+          "name": "fix-actions-artifact-quota-20260503",
+          "sha": "93e3e56752c6582fc08ea463330e49610b4bcc99"
+        },
+        {
+          "name": "fix-learning-ui-and-tutor",
+          "sha": "87de74a51f94a3e8f724301a32cc3515fbe5c0fa"
+        },
+        {
+          "name": "fix-recent-task-memory-20260502",
+          "sha": "ee5082985801fbc7deb26d3065793db07af3e659"
+        },
+        {
+          "name": "fix-red-main-word-bank-variety-20260503",
+          "sha": "0b23c7b15e7472289953c2708a9c20142444f24d"
+        },
+        {
+          "name": "fix-v0.3.1-core-stabilization",
+          "sha": "ada851070f6c7c2ae5e2fe0aedaf400fb26f05dd"
+        },
+        {
+          "name": "main",
+          "sha": "b24474875fe6eb02d4de01030eab9fa4a4aa6007"
+        },
+        {
+          "name": "p4help",
+          "sha": "cd773b58d35aaef5333750c8b1fb9fa27cd5eca0"
+        },
+        {
+          "name": "p4readinganalyzer",
+          "sha": "cd773b58d35aaef5333750c8b1fb9fa27cd5eca0"
+        },
+        {
+          "name": "p4readingui",
+          "sha": "cd773b58d35aaef5333750c8b1fb9fa27cd5eca0"
+        },
+        {
+          "name": "p5-ai-mode-settings",
+          "sha": "20fc2f2066f0d25e5a54c1e9f593d00826f433ea"
+        },
+        {
+          "name": "p5-ai-policy-bridge",
+          "sha": "6a4d4e7679e16faea9ca5f14c4c126080b22763e"
+        },
+        {
+          "name": "perplexity/lumo-1938-integration-2026-10-13-0942",
+          "sha": "e68b69908b446cbbb50bdb576753dfd96bf68fc3"
+        },
+        {
+          "name": "perplexity/lumo-cards-approved-design-2026-10-10",
+          "sha": "c22619013f4cac8e8e54b2580cf2c8b43ac8171b"
+        },
+        {
+          "name": "perplexity/lumo-cross-grade-storage-hardening-2026-10-15",
+          "sha": "15bc02ed254a56e7e66daf7d49de08c7345bbb4f"
+        },
+        {
+          "name": "perplexity/lumo-nvidia-tutor-pilot-2026-10-15",
+          "sha": "0a9101cc136641a161ef92539490d571b71317cd"
+        },
+        {
+          "name": "perplexity/lumo-profile-schema-guard-2026-10-17",
+          "sha": "0bd7c6fbfdce2a810c8c940d562d3dd9cc0674a9"
+        },
+        {
+          "name": "perplexity/lumo-profile-storage-hardening-2026-10-16",
+          "sha": "33b1ef5dcb750f94a5d23ac3091e8a2453dcbd91"
+        },
+        {
+          "name": "reading-syllable-chip-20260503",
+          "sha": "3081220bea40002e7e7bad3eb719fca9f0ddd93d"
+        },
+        {
+          "name": "repo-tests-20260503",
+          "sha": "675df97f19605d3f140cc15cda0c9f0edc7c3498"
+        },
+        {
+          "name": "sol/lumo-1932-download-2026-10-12",
+          "sha": "cf753965a8a671fe12535e7a1e5b393c60663559"
+        },
+        {
+          "name": "sol/lumo-1932-verified-bundle-2026-10-12",
+          "sha": "8843498dd7bc7d1161094ff2dff81b9d9c0e9b4d"
+        },
+        {
+          "name": "sol/lumo-1933-android-delivery-2026-10-12",
+          "sha": "694c31a68ad5948d8136ac1aef038215a9dffefe"
+        },
+        {
+          "name": "sol/lumo-1934-android-delivery-2026-10-12",
+          "sha": "35d825e4e57666e97518ba61bb4a28d55da64de9"
+        },
+        {
+          "name": "sol/lumo-1935-fold-return-2026-10-12",
+          "sha": "43b4634c81e977ab42252b77406d9cf51d5028fb"
+        },
+        {
+          "name": "sol/lumo-1936-android-delivery-2026-10-12",
+          "sha": "10c8fab35d1b947b5f2f281307c82bf8e44d8eec"
+        },
+        {
+          "name": "sol/lumo-1936-android-delivery-v2-2026-10-12",
+          "sha": "a107558ee3503cdf98cee3b6b1ff26822eba5e0d"
+        },
+        {
+          "name": "sol/lumo-1936-android-delivery-v3-2026-10-12",
+          "sha": "c17a4de72d898864dd28ae4ffe49792e5801fa21"
+        },
+        {
+          "name": "sol/lumo-1936-runtime-screenshots-2026-10-12",
+          "sha": "03a616dea806e6535501deafe3528a491d0b4562"
+        },
+        {
+          "name": "sol/lumo-1936-unified-integration-2026-10-12",
+          "sha": "2dedb4045c6daea1de8af19052d51003191df8c8"
+        },
+        {
+          "name": "sol/lumo-1937-android-acceptance-2026-10-12",
+          "sha": "694d83f1a662ccebcd384a980f6da4f1a63489fc"
+        },
+        {
+          "name": "sol/lumo-1937-content-kart-2026-10-12",
+          "sha": "a71c1cdea21af202d71273da19bb4d00988fc970"
+        },
+        {
+          "name": "sol/lumo-1939-local-qa-backup-2026-10-14",
+          "sha": "85e3b8b23b9ac0697217a8331b403822e23da04c"
+        },
+        {
+          "name": "sol/lumo-1939-runtime-followup-2026-10-14",
+          "sha": "1b5ebadb72085c8af6e0b7a6da55fd7eff127311"
+        },
+        {
+          "name": "sol/lumo-active-companion-2026-10-11",
+          "sha": "d20501476243e3a016c2574a9016c07e2ebe8f85"
+        },
+        {
+          "name": "sol/lumo-adaptive-local-help-2026-10-11",
+          "sha": "0dc3b1f30d7d885cc0c9914d1f557fad8655d762"
+        },
+        {
+          "name": "sol/lumo-app-audit-2026-10-13",
+          "sha": "a1ed3034b406199e0e2b5288c0602a3194a65d6b"
+        },
+        {
+          "name": "sol/lumo-curriculum-depth-1938-2026-10-12",
+          "sha": "de7bcd0a27d813ccc816090b5ca4c4e1fe07be1f"
+        },
+        {
+          "name": "sol/lumo-direct-download-2026-10-11",
+          "sha": "7a2fe155fbd15213075223ed4f6c265b1e58d626"
+        },
+        {
+          "name": "sol/lumo-games-fold-1934-2026-10-12",
+          "sha": "ed17826ea89d285f77630bed426b06017028f379"
+        },
+        {
+          "name": "sol/lumo-guided-language-nature-2026-10-12",
+          "sha": "65009c4115d6674e730f15b145671c9a87ae1de7"
+        },
+        {
+          "name": "sol/lumo-hologlass-quality-1939-2026-10-14",
+          "sha": "ae219f6937cdb106c3b8bb063b21bf907549e769"
+        },
+        {
+          "name": "sol/lumo-learning-repair-check2-2026-10-12",
+          "sha": "bd8b6751778633004bd86b5950a3e35418219edb"
+        },
+        {
+          "name": "sol/lumo-learning-repair-check3-2026-10-12",
+          "sha": "512999c0df5b188ca3ce675996e9823c335277ae"
+        },
+        {
+          "name": "sol/lumo-learning-repair-check-2026-10-12",
+          "sha": "88b82b66996a41af03cdcd911395976907f9af68"
+        },
+        {
+          "name": "sol/lumo-meister-20-stars-2026-10-12",
+          "sha": "b623c3ccc3f74117658a3ea5cc7ebf316809df48"
+        },
+        {
+          "name": "sol/lumo-meister-apk-2026-10-12",
+          "sha": "d3b385fe521b3796e1e507a760ea5867f679ada8"
+        },
+        {
+          "name": "sol/lumo-parent-report-privacy-2026-10-12",
+          "sha": "91fc9e25b338bf593d7d17431e4c7aec895cec24"
+        },
+        {
+          "name": "speech-tools-20260503",
+          "sha": "c840ed17a070a1f6756366de2d3c25f0bbb214c5"
+        },
+        {
+          "name": "task-word-bank-generator",
+          "sha": "c6c0eede2c6d4924071037d182f64ee081e35e8b"
+        },
+        {
+          "name": "test-didactic-styles-20260503",
+          "sha": "a123b96c7257d3f873ff118db9598bc505c1af03"
+        },
+        {
+          "name": "test-german-generator-20260503",
+          "sha": "8dd3c209c8e1964ce6674b3793171206395dc7e4"
+        },
+        {
+          "name": "test-local-tutor-engine-20260502",
+          "sha": "81eee35b4db5033759a6432e9e76e9c1fd972da0"
+        },
+        {
+          "name": "test-recent-repository-20260503",
+          "sha": "95c136073cb3caa27147c7be72c3d15b2797be2c"
+        },
+        {
+          "name": "voice-bubble-20260503",
+          "sha": "784ef016a2509f3307d7872a74b1148db196765d"
+        }
+      ],
+      "open_prs": [
+        {
+          "number": 362,
+          "title": "Lumo 1976: geprüfte Sonnenhafen-Dunkelfahrt, Kristall-VFX und ruhige Bewegung in Android",
+          "sha": "840708ac5669e1705376f20ceb87ef4e09bca155",
+          "base": "chatgpt/lumo-astra-app-script-recovery-2026-10-18"
+        },
+        {
+          "number": 361,
+          "title": "Lumo Lernen: Astras abgebrochene App-Skripttests in GitHub reproduzieren",
+          "sha": "8a830dedadbc348486ce512d4adb59d2d4bf3add",
+          "base": "chatgpt/lumo-1975-grounded-gate-apk-2026-10-17"
+        },
+        {
+          "number": 360,
+          "title": "Lumo 1975: Android-APK mit bodenbündigem 3D-Starttor und schärferen PBR-Materialien",
+          "sha": "aebf360dfe286591b886b3037b203cdb82a69662",
+          "base": "chatgpt/lumo-b4-1974-performance-candidate-2026-10-17"
+        },
+        {
+          "number": 359,
+          "title": "Lumo 1974: Sonnenhafen-Fahrbahn von Bergen/Felsen freihalten, Küste und Terrain beschleunigen",
+          "sha": "27bfa21bde7d9d327b8d4eb54d53a292eae4b255",
+          "base": "chatgpt/lumo-1973-b3-green-apk-2026-10-17"
+        },
+        {
+          "number": 358,
+          "title": "Lumo 1973: B3 1,85-km-Sonnenhafen mit fünf 3D-Welten in Android integrieren",
+          "sha": "1a2634de57a88cee5a83ab4e3fe2b1f247057126",
+          "base": "chatgpt/lumo-milestone-a-integrated-1972-2026-10-17"
+        },
+        {
+          "number": 357,
+          "title": "Lumo 1972: Meilenstein A geprüfte Godot-3D-Physik in Android-Kandidat integrieren",
+          "sha": "06c8e26bcc821992ff34f5c3003a5014baafdbd0",
+          "base": "chatgpt/lumo-1971-profile-guard-release-candidate-2026-10-17"
+        },
+        {
+          "number": 356,
+          "title": "Lumo 1971 ARM64-APK: Profilschutz #354 + geprüfter 1970-Grafikstand gemeinsam versionieren",
+          "sha": "2c5cfbd249da02ce5b6e20cba3a3fd1ea3112398",
+          "base": "chatgpt/lumo-stabilisierung-2026-10-17"
+        },
+        {
+          "number": 354,
+          "title": "fix(profile): unlesbare Profilfelder vor Überschreiben schützen",
+          "sha": "0bd7c6fbfdce2a810c8c940d562d3dd9cc0674a9",
+          "base": "chatgpt/lumo-1962-profile-non-destructive-persistence-2026-10-16"
+        },
+        {
+          "number": 343,
+          "title": "Lumo Stabilisierung: geprüfte 1968-Basis konsolidieren, native Hash-Gates reparieren und Release absichern",
+          "sha": "b649cf611a8e32ed98fe5eae4f24319362d95fe2",
+          "base": "main"
+        },
+        {
+          "number": 342,
+          "title": "Lumo 1968: echten Audioplayers-EventChannel-Fehler im App-Tour-Screenshot-Test beheben",
+          "sha": "57d6281696329e0da925e7a66a5811376decdb69",
+          "base": "chatgpt/lumo-1967-sonnenhafen-crane-integrated-2026-10-17"
+        },
+        {
+          "number": 341,
+          "title": "Lumo 1967: Sonnenhafen-3D-Portalkran in neueste Lern-App integrieren und Android neu prüfen",
+          "sha": "0fc591690ffd6591febd1b6fab2dc51c874a3a54",
+          "base": "chatgpt/lumo-1966-cards-route-race-telemetry-2026-10-16"
+        },
+        {
+          "number": 340,
+          "title": "Lumo 1966: Argon-Befunde validieren – Cards-Routenregression und echte Kart-Fahrtelemetrie",
+          "sha": "32cd14adb7a528cf95b498da70b1f6645e8a8b97",
+          "base": "chatgpt/lumo-1965-cards-reference-hub-2026-10-16"
+        },
+        {
+          "number": 339,
+          "title": "Lumo 1965: Referenzgrafik als echte spielbare Lumo-Cards-Einstiegswelt integrieren",
+          "sha": "3d14140e852da8c6cc9e8e0156e86f2beeeb5030",
+          "base": "chatgpt/lumo-1964-abc-premium-design-2026-10-16"
+        },
+        {
+          "number": 337,
+          "title": "Lumo 1964: ABC-Tafel auf echte Hologlas-Lernwelt umstellen – Fold, Vorlesen und Original-Lumo",
+          "sha": "53f02c32d6a25519d4834e4741ef76c14a637236",
+          "base": "chatgpt/lumo-1963-integrated-profile-fold-android-2026-10-16"
+        },
+        {
+          "number": 336,
+          "title": "Lumo 1963: Profile, Hologlas-Fold-Grafik und echtes Kart-APK gemeinsam prüfen",
+          "sha": "912588101ba16d73276952975fc420658f02cce0",
+          "base": "chatgpt/lumo-1962-profile-non-destructive-persistence-2026-10-16"
+        },
+        {
+          "number": 335,
+          "title": "Lumo 1962: Kinderprofile vor Datenverlust schützen und fehlgeschlagene Speicherung sichtbar machen",
+          "sha": "b2b70804af1f43ff187ec5c22d18257febca1a30",
+          "base": "perplexity/lumo-profile-storage-hardening-2026-10-16"
+        },
+        {
+          "number": 334,
+          "title": "test(profile): Datenerhalt bei Lesefehlern und abgelehnten Writes absichern",
+          "sha": "33b1ef5dcb750f94a5d23ac3091e8a2453dcbd91",
+          "base": "chatgpt/lumo-1961-cross-grade-fold-visual-proof-2026-10-16"
+        },
+        {
+          "number": 333,
+          "title": "Lumo 1961: Hologlas-Lernbilder für Handy und Fold tatsächlich rendern und archivieren",
+          "sha": "4113c72f8edfc1d7edb82df85b8fcd3a9ce9c23b",
+          "base": "chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16"
+        },
+        {
+          "number": 332,
+          "title": "Lumo 1959: Grafikinventar und robuster echter Kart-Rennstart im Android-Emulator",
+          "sha": "8f96c6c85a166af6580b87012c9e1e64f1136537",
+          "base": "chatgpt/lumo-1958-visual-story-integration-2026-10-16"
+        },
+        {
+          "number": 331,
+          "title": "Lumo M0: Opus Maven-Reparatur und beweisbarer Flutter→Kart→Rennen Android-Test",
+          "sha": "cc5bff14999c1f0654d52553f98140f9a843da21",
+          "base": "chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16"
+        },
+        {
+          "number": 330,
+          "title": "Lumo 1958: fertige Story-Erweiterung integrieren, Grafikbestand schützen und Android-APK prüfen",
+          "sha": "6c1abbae4d6c10dcda015c80d3c190e4874f0b21",
+          "base": "claude/lumo-android-integration-m0-aloove"
+        },
+        {
+          "number": 328,
+          "title": "Lumo 1957: Sonnenhafen-3D und sichtbar nachgewiesenes Android-Rennen in der Lern-App",
+          "sha": "416a734854148a6d2dcb13b913031a3b9c4abb50",
+          "base": "chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16"
+        },
+        {
+          "number": 327,
+          "title": "Lumo 1955: Originalgrafik bewahren – echte Klicksounds, Haptik und Lumo-Begrüßung anschließen",
+          "sha": "3287a458308699b5a790093ed718ec9652179f0d",
+          "base": "main"
+        },
+        {
+          "number": 326,
+          "title": "Lumo 1954 – Astra Fold-Reparatur auf Opus-Basis; vorhandene Lumo-UI unverändert",
+          "sha": "b314715678491299a9a05274af352020b180cb9d",
+          "base": "main"
+        },
+        {
+          "number": 325,
+          "title": "Lumo 1954: Opus 1953 übernehmen – Hologlas-Mentoren, Fold-Journal und reale Tests",
+          "sha": "11f3e51d68c1cc784e14ba5731c1aa1449b1b03a",
+          "base": "main"
+        },
+        {
+          "number": 324,
+          "title": "Lumo 1952: Schreiben kinderfreundlich – ohne 4-%-Sperre, mit direktem Weiter und Ausstieg",
+          "sha": "e7f1d5bf333261f6dfaf1f4219b9c3c0ba8228e0",
+          "base": "main"
+        },
+        {
+          "number": 320,
+          "title": "Lumo Lernen: sichtbarer Hologlas-Übungsfortschritt mit sicherem Speichern",
+          "sha": "cc683eab8ada6f24de4a1aac61164f3c62921a2b",
+          "base": "chatgpt/lumo-cross-grade-scene-polish-2026-10-15"
+        },
+        {
+          "number": 319,
+          "title": "Integrate new Sonnenhafen Godot graphics into unified Lumo Lernen APK",
+          "sha": "46304ecc216898094edd518803b93f392ce6471c",
+          "base": "main"
+        },
+        {
+          "number": 317,
+          "title": "fix(lernen): cross-grade storage hydration, validated counters and idempotent save retry",
+          "sha": "8c56edb3a63b28087d97aab04caa05b018a2a53d",
+          "base": "perplexity/lumo-cross-grade-storage-hardening-2026-10-15"
+        },
+        {
+          "number": 316,
+          "title": "test(lernen): Speicherfehler beim freien Klassenüben reproduzieren und absichern",
+          "sha": "15bc02ed254a56e7e66daf7d49de08c7345bbb4f",
+          "base": "chatgpt/resume-claude-cross-grade-practice-2026-10-15"
+        },
+        {
+          "number": 315,
+          "title": "Lumo Lernen: original library scene and Hologlas for free-grade lessons",
+          "sha": "d187d11dd90333792c8ad6e3881b7e45c76e5285",
+          "base": "chatgpt/resume-claude-cross-grade-practice-2026-10-15"
+        },
+        {
+          "number": 314,
+          "title": "fix(lernen): free 1–4 grade navigation with real independent practice",
+          "sha": "5aee1c20fae2101a92775d63e3606fdb2d9d22e3",
+          "base": "chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15"
+        },
+        {
+          "number": 313,
+          "title": "Parent-controlled class promotion + illustrated grade 1–4 curriculum cards",
+          "sha": "d5711f3bd8f12c3c7336533462d55e549346daf5",
+          "base": "chatgpt/lumo-lernen-kart-unified-2026-10-15"
+        },
+        {
+          "number": 310,
+          "title": "feat(ai): NVIDIA Nemotron 3 Ultra – optional consent-gated tutoring pilot",
+          "sha": "0a9101cc136641a161ef92539490d571b71317cd",
+          "base": "claude/continue-previous-chat-KtY7p"
+        },
+        {
+          "number": 305,
+          "title": "fix(quiz): Lumo bleibt sichtbar und überlappt keine Host- oder Jokerfläche",
+          "sha": "305ecd52f24a2b758d9b438f0c6aa55fec82fff7",
+          "base": "claude/continue-previous-chat-KtY7p"
+        },
+        {
+          "number": 301,
+          "title": "1945 Lumo Lernen: Große Code-, Lehrplan- und Anti-Wiederholungs-Reparatur",
+          "sha": "b10205f62196b14f1c1adb3638fe58ae98e8f748",
+          "base": "chatgpt/lumo-1944-mobile-learning-qa-2026-10-14"
+        },
+        {
+          "number": 300,
+          "title": "1944 Fold-Cover: responsive Lernkarten, klassenrichtige Missionen und vollständige Android-QA",
+          "sha": "26b8dcae21e16c58200a4ef4b0e37d82b315094b",
+          "base": "chatgpt/lumo-1943-grade-menu-content-audit-2026-10-14"
+        },
+        {
+          "number": 299,
+          "title": "1943 Klassen 1–4: Englisch überall, Sachunterricht korrekt, echte Aufgaben und Menüs prüfen",
+          "sha": "cbb25b2729a9406a7215c8cae93e8f74068ef402",
+          "base": "chatgpt/lumo-1942-family-preview-updates-2026-10-14"
+        },
+        {
+          "number": 298,
+          "title": "1942 Familien-Updatekanal: kompatible APKs sicher finden und Downloadfortschritt anzeigen",
+          "sha": "d39946acc8f70d6a2d2a04abaf284f09aa72835a",
+          "base": "chatgpt/lumo-1941-tutor-voice-hologlass-2026-10-14"
+        },
+        {
+          "number": 297,
+          "title": "1941: Lumo-Lernhilfe im Hologlas-Design und deutsche Offline-Stimme hörbar machen",
+          "sha": "7d356faf66c33ffd61e7dac3cd85cb0f887b89bb",
+          "base": "chatgpt/lumo-1940-combined-test-apk-2026-10-14"
+        },
+        {
+          "number": 296,
+          "title": "PR #295 reparieren: Story-Klassenwahl über Semantik statt Altfarben testen",
+          "sha": "c86535b9d299c5240123a2994fbdff77bf791476",
+          "base": "chatgpt/lumo-story-reader-visual-fix-2026-10-14"
+        },
+        {
+          "number": 295,
+          "title": "1939-Grafiklücke beheben: Geschichtenleser sofort lesbar, neue Story und Bibliothekszugang",
+          "sha": "f846c75407b6e76a3abbe7da82464119312b09cf",
+          "base": "sol/lumo-1939-runtime-followup-2026-10-14"
+        },
+        {
+          "number": 294,
+          "title": "Lumo Grafikfolge: lokalen Lernhelfer in Original-Fuchs- und Hologlas-Design überführen",
+          "sha": "64b2aeda8b61813fc42833e3ab382bbb7fbcddf1",
+          "base": "sol/lumo-1939-runtime-followup-2026-10-14"
+        },
+        {
+          "number": 293,
+          "title": "Mobile Fold-Hochformat: vollständiges scrollbareres Mehr-Menü und Premium-Navigation",
+          "sha": "b256c915917746dc195a40f5c15e30bfc3124eab",
+          "base": "chatgpt/lumo-dna-evidence-2026-10-13"
+        },
+        {
+          "number": 292,
+          "title": "PR #291 CI: Kart-Touchziel und Mikrofon-Testvorbedingung korrekt prüfen",
+          "sha": "d5f9ae597a2a4fc9a338749bf797fdabf942b48a",
+          "base": "chatgpt/lumo-story-entry-2026-10-13"
+        },
+        {
+          "number": 291,
+          "title": "Geschichten direkt von Home, Deutsch, Lesen und Lernpfad öffnen",
+          "sha": "c06b849ab32b8f6d9ffcc4fc009091f555d678ee",
+          "base": "chatgpt/lumo-dna-evidence-2026-10-13"
+        },
+        {
+          "number": 290,
+          "title": "Lern-DNA und Insight: echte Antwortdaten statt erfundener Kompetenzwerte",
+          "sha": "fe3778847c88c35a40e99ae5012c1f160680b908",
+          "base": "chatgpt/lumo-story-save-audit-2026-10-13"
+        },
+        {
+          "number": 289,
+          "title": "Lumo-Bestandsaudit: Branches, Funktionen, Assets und Android-Abnahmeplan",
+          "sha": "65eed9043b535805731e036ddc0b93117257be16",
+          "base": "copilot/lumo-1938-integration-follow-up"
+        },
+        {
+          "number": 288,
+          "title": "Geschichten: sicher speichern, weiterlesen und zur Bibliothek zurückkehren",
+          "sha": "086eb42ab7b834050f1f345b52cb3e811d816748",
+          "base": "copilot/lumo-1938-integration-follow-up"
+        },
+        {
+          "number": 287,
+          "title": "CI-Prüfung für PR #285 (identischer Commit, kein Produktcode geändert)",
+          "sha": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+          "base": "perplexity/lumo-1938-integration-2026-10-13-0942"
+        },
+        {
+          "number": 285,
+          "title": "Story-Erstellung übernimmt die Lernpfadklasse",
+          "sha": "d7440beaba78992ee36c8f4be1513e6b5006c1f6",
+          "base": "perplexity/lumo-1938-integration-2026-10-13-0942"
+        },
+        {
+          "number": 284,
+          "title": "fix(story): Profilklasse für Geschichten übernehmen, freie Wahl erhalten",
+          "sha": "e68b69908b446cbbb50bdb576753dfd96bf68fc3",
+          "base": "chatgpt/lumo-1938-complete-integration-2026-10-12"
+        },
+        {
+          "number": 282,
+          "title": "Lumo Meister + Geschichten-Lernpfad: 20 Fragen, Sterne und Lesen & Verstehen",
+          "sha": "b623c3ccc3f74117658a3ea5cc7ebf316809df48",
+          "base": "sol/lumo-curriculum-depth-1938-2026-10-12"
+        },
+        {
+          "number": 281,
+          "title": "Lernen nach Schulstufe strukturieren und Chat-Fallback entfernen",
+          "sha": "3101d302fefa3b8e650f555080333063d1e30072",
+          "base": "main"
+        },
+        {
+          "number": 280,
+          "title": "Lumo 1938: geschützte Vollintegration, Lernvertiefung und synchronisierte APK-Nachweise",
+          "sha": "5fe56eb111f5d44a69ba98ef5424033afa6f417b",
+          "base": "sol/lumo-curriculum-depth-1938-2026-10-12"
+        },
+        {
+          "number": 279,
+          "title": "feat: Lernvielfalt und wiederhergestellte Kart-Funktionen für 1937",
+          "sha": "a71c1cdea21af202d71273da19bb4d00988fc970",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 278,
+          "title": "Lumo 1936: unverbundene Grafikarbeit integrieren und Premium-UI sichtbar machen",
+          "sha": "2dedb4045c6daea1de8af19052d51003191df8c8",
+          "base": "sol/lumo-1935-fold-return-2026-10-12"
+        },
+        {
+          "number": 277,
+          "title": "1936 salvage: reading and writing expansion",
+          "sha": "7d33604e9f92c85d098e8d4b90d754a6b3dae627",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 276,
+          "title": "1936 salvage: hologlass learning and cards",
+          "sha": "fa9f5557dfc6c676c362292f564bb82ee8b6e023",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 275,
+          "title": "1936 salvage: learning visual Fold tree",
+          "sha": "1579327f384c46e5a9ab98b8716e0b9afd20fa76",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 274,
+          "title": "1936 salvage: writing stability",
+          "sha": "b2882f46ae662157d7bbda0873fcde8ea1bfe5cb",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 273,
+          "title": "1936 salvage: 142 design assets",
+          "sha": "8344c10f1401d6516194e45e565695e968c9b47e",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 272,
+          "title": "Lumo 1935: Fold-Großtext Rückkehr aus Spielen zuverlässig sichtbar",
+          "sha": "43b4634c81e977ab42252b77406d9cf51d5028fb",
+          "base": "sol/lumo-1934-android-delivery-2026-10-12"
+        },
+        {
+          "number": 271,
+          "title": "Android 1934: Fold-Kart reparieren und kleine Spiele mit Original-/Blendergrafik verfeinern",
+          "sha": "ed17826ea89d285f77630bed426b06017028f379",
+          "base": "sol/lumo-parent-report-privacy-2026-10-12"
+        },
+        {
+          "number": 270,
+          "title": "fix(parents): keep profile names out of weekly AI requests and clear the toolbar",
+          "sha": "91fc9e25b338bf593d7d17431e4c7aec895cec24",
+          "base": "sol/lumo-guided-language-nature-2026-10-12"
+        },
+        {
+          "number": 269,
+          "title": "Lumo 1933: geführte Silben und Blütenpflanzenteile",
+          "sha": "65009c4115d6674e730f15b145671c9a87ae1de7",
+          "base": "sol/lumo-active-companion-2026-10-11"
+        },
+        {
+          "number": 268,
+          "title": "Lumo 1932: profilgebundene Begleitung und angenommene Aufgabenhilfe",
+          "sha": "d20501476243e3a016c2574a9016c07e2ebe8f85",
+          "base": "sol/lumo-adaptive-local-help-2026-10-11"
+        },
+        {
+          "number": 267,
+          "title": "Lumo 1931: wechselnde lokale Hilfe und geführtes Minus über den Zehner",
+          "sha": "0dc3b1f30d7d885cc0c9914d1f557fad8655d762",
+          "base": "computer/lumo-android-1930-verified-bundle-2026-10-11"
+        },
+        {
+          "number": 266,
+          "title": "Test-APK 1930: Lernbegleitung, Vorlernen und geprüfte Kart-Integration bündeln",
+          "sha": "15f5111d1d4c38108e5f9a48e6e71b30c9b0f463",
+          "base": "computer/lumo-learning-companion-discovery-2026-10-11"
+        },
+        {
+          "number": 265,
+          "title": "Lumo Lernen: echte Lernbegleitung, geführter Unterricht und getrenntes Vorlernen",
+          "sha": "9b8b7c86b4b4137c625d2e4fa727a9669a4962f5",
+          "base": "computer/lumo-education-excellence-2026-10-11"
+        },
+        {
+          "number": 264,
+          "title": "Android 1929: tatsächlichen Eltern-Prüfpfad reparieren, dieselbe APK nachprüfen",
+          "sha": "7851da2737acf5d3afd83a7ba5439fa928fcbdab",
+          "base": "computer/lumo-education-excellence-2026-10-11"
+        },
+        {
+          "number": 263,
+          "title": "Lernen: Querformat, lesbare Lernflächen und richtige Uhr-Antwortstufen",
+          "sha": "4b7a063d4a1484deb62c5cd8c4422788c5f50578",
+          "base": "computer/lumo-learning-adventures-2026-10-11"
+        },
+        {
+          "number": 262,
+          "title": "Lumo Lernen: kostenlose lokale Stimme, geschützter Bestand und Android 1929",
+          "sha": "e4756bbcb6890d5054b5eb14ac4ef3ecd2cafa94",
+          "base": "computer/lumo-learning-adventures-2026-10-11"
+        },
+        {
+          "number": 261,
+          "title": "Lernmodule: einheitliches Lumo-Design, korrekte Mengen und echte Fold-Bilder",
+          "sha": "5f2f32f09abce3750c02d3a532217479329944a3",
+          "base": "computer/lumo-kart-android-1928-2026-10-11"
+        },
+        {
+          "number": 260,
+          "title": "Lumo Lernen: Verkaufsvorbereitung, Kinder-Sicherheit, Play-Launch und Premium-Plan",
+          "sha": "7d33604e9f92c85d098e8d4b90d754a6b3dae627",
+          "base": "main"
+        },
+        {
+          "number": 259,
+          "title": "Build 1928: geprüfter animierter Kart-Einstieg, Fold-Menü und sichere APK-Varianten",
+          "sha": "bef1403ed5d0243f8c6daca2717e998081cab15e",
+          "base": "computer/lumo-rival-roster-2026-10-10"
+        },
+        {
+          "number": 258,
+          "title": "Lumo Kart: verifizierte 4K-Assetinventur und SOL-6.1-Entwicklungsübergabe",
+          "sha": "7cb18f10496fb42ec945be3c32e0966d48aa2e20",
+          "base": "main"
+        },
+        {
+          "number": 257,
+          "title": "Lumo-Spiele: gemeinsamer referenzbasierter Gegnerkatalog mit Verfügbarkeitsgrenzen",
+          "sha": "d2d25c35f7a78ec0a4b09fb263f0cfddfedf357a",
+          "base": "computer/lumo-context-sulafat-2026-10-10"
+        },
+        {
+          "number": 256,
+          "title": "Grafik-Grundgerüst: Cards quer, Touchflächen, Ruhemodus und Astra-Übergabe",
+          "sha": "5d7a675b3c4cfd54dd220613a420649dc30030b2",
+          "base": "chatgpt/lumo-1926-sulafat-apk-2026-10-10"
+        },
+        {
+          "number": 255,
+          "title": "P0: Sulafat als einzige Lumo-Stimme (Stimmprobe = Lern-App) – keine alte Android-TTS",
+          "sha": "1dd6a3f7e1ea4b8b1258dd39ad64b91b95228ea4",
+          "base": "chatgpt/lumo-1925-apk-build-2026-10-10"
+        },
+        {
+          "number": 253,
+          "title": "Schreibcoach: stabile Zeichenfläche, sichtbarer Zielbuchstabe und korrekte Belohnungen",
+          "sha": "b2882f46ae662157d7bbda0873fcde8ea1bfe5cb",
+          "base": "chatgpt/lumo-onboarding-voice-1924-2026-10-10"
+        },
+        {
+          "number": 252,
+          "title": "Build 1924: Nameingabe und ursprüngliche Lumo-Stimme wiederherstellen",
+          "sha": "4ae665eeaccf4ee5a62c17f60b8a53adde6a6229",
+          "base": "chatgpt/lumo-aaa-kart-integration-2026-10-10"
+        },
+        {
+          "number": 251,
+          "title": "Build 1923: Perplexity Kart Stage2/Fold Fixes in Lumo Lernen APK nach Kontosperre übernehmen",
+          "sha": "20b4dbe605aa5d065812a56722cfd20840ad56aa",
+          "base": "computer/lumo-aaa-integration-2026-10-10"
+        },
+        {
+          "number": 250,
+          "title": "Lumo AAA: geprüfte Integration, echte Bildnachweise und Android-Abnahme",
+          "sha": "c747abc2c89eedd856f30091a8d2ce445011322d",
+          "base": "computer/lumo-cards-connect-four-2026-10-10"
+        },
+        {
+          "number": 249,
+          "title": "Lumo 1922: Code-Cleanup, warme Stimme und animiertes Vier Gewinnt",
+          "sha": "8b308aeec8a6858b93a5b4626c4dd136d1e17ced",
+          "base": "codex/lumo-reference-assets-2026-10-10"
+        },
+        {
+          "number": 248,
+          "title": "Lumo: Originalbildarchiv, Design-Bestandsschutz und Sonnet-Entwicklungsauftrag",
+          "sha": "23540f5e8195cdd4f20be92032a3908bb6b4b2a5",
+          "base": "codex/lumo-kart-menu-1921-2026-10-10"
+        },
+        {
+          "number": 247,
+          "title": "Designvorlagen: Lumo Cards, Lumo Build und 4 Gewinnt + Sonnet-5.5-Implementierungsauftrag",
+          "sha": "790ad36f2ca53ef5263f75255ae83dd5af0dfc69",
+          "base": "codex/lumo-next-2026-10-10"
+        },
+        {
+          "number": 246,
+          "title": "Build 1921: Lumo-Kart-Hauptmenü nach Referenz und Fold-Layout",
+          "sha": "f9295c76d5fc57da68954c550db1e8bbab7c2bbf",
+          "base": "codex/lumo-next-2026-10-10"
+        },
+        {
+          "number": 245,
+          "title": "Build 1921: überarbeitetes Lumo Kart Hauptmenü im bestehenden Lern-App-Paket",
+          "sha": "b39ed83b6e67ba1889c64f51331b8111e5a98211",
+          "base": "codex/lumo-next-2026-10-10"
+        },
+        {
+          "number": 244,
+          "title": "Android-Nachweis 1920: echte Elternzuordnung und A/B-Lernstände nach Update",
+          "sha": "8d16e719c68b85c5a007726f8afc014a1336a01d",
+          "base": "codex/lumo-next-2026-10-10"
+        },
+        {
+          "number": 243,
+          "title": "Build 1920: eigene Lernprofile, sichere Elternzuordnung und geprüfter Lumo-Fuchs",
+          "sha": "554c2b6a0a12e36a2b5497c787acb14f6f6d85fd",
+          "base": "chatgpt/lumo-character-apk-1919-2026-10-09"
+        },
+        {
+          "number": 242,
+          "title": "test(android): Gas-Menüsuche mit Originalbildern reparieren und APK 1919 erneut prüfen",
+          "sha": "2247999b902d4c9a756df0c17318d0dd60bebf86",
+          "base": "chatgpt/lumo-character-apk-1919-2026-10-09"
+        },
+        {
+          "number": 241,
+          "title": "0.12.12+1919: Lumo-Figur, Kart-Start und geprüfte Antwortzuordnung",
+          "sha": "d07b2b48593b939a2a0446fcb83a25a2b2a59db6",
+          "base": "chatgpt/lumo-1918-apk-artifact-2026-10-09"
+        },
+        {
+          "number": 240,
+          "title": "build(android): APK 1918 mit großer Zahlenkarte, Tablet-Raster und korrigierten Symbolen",
+          "sha": "ab21b2295ca5307bae5e07c0c8a01c3017ee91a3",
+          "base": "chatgpt/learning-number-compare-responsive-2026-10-09"
+        },
+        {
+          "number": 239,
+          "title": "fix(lernen): große Zahlenvergleiche auf Handy und Fold ohne rechten Überlauf",
+          "sha": "bea22025d10fc083261ad6c260a14fd71a19cba0",
+          "base": "chatgpt/learning-symbols-ui-2026-10-09"
+        },
+        {
+          "number": 238,
+          "title": "build(android): Lumo Lernen 0.12.10+1917 mit 2×2-Layout und Symbolkorrektur",
+          "sha": "b82b6475726e40e09145b7b7df11b4974822e1d2",
+          "base": "chatgpt/learning-symbols-ui-2026-10-09"
+        },
+        {
+          "number": 237,
+          "title": "fix(lernen): fehlende Symbolglyphen in echten Handy-/Fold-Lernansichten",
+          "sha": "f16884e7521b128e5dd732465bcd3a409d67fbb3",
+          "base": "chatgpt/learning-tablet-answer-grid-2026-10-09"
+        },
+        {
+          "number": 236,
+          "title": "style(lernen): vier Antwortkacheln einheitlich als 2×2 auf Handy, Fold und Tablet",
+          "sha": "f41c214a25082eb8ca7580765b9237040724d381",
+          "base": "chatgpt/learning-tree-cinematic-qa-2026-10-09"
+        },
+        {
+          "number": 235,
+          "title": "feat(lernen): gerenderte 3D-Inseln, Lernbaum-Stufen und Fold-Screenshots",
+          "sha": "4b2f837a3475c14033806c13f25e1a77b89a307a",
+          "base": "chatgpt/learning-visual-fold-tree-2026-10-09"
+        },
+        {
+          "number": 234,
+          "title": "feat(lernen): grafische Aufgaben, echter Lernbaum und Fold-Layout ohne App-Umbau",
+          "sha": "1579327f384c46e5a9ab98b8716e0b9afd20fa76",
+          "base": "chatgpt/lumo-apk-1914-qa-2026-10-09"
+        },
+        {
+          "number": 231,
+          "title": "Lumo Cards: vollständiger Titel auf schmalem Fold-Querformat-HUD",
+          "sha": "9b6127f304afbb1d3a8a9c2f26ef4d178cb26719",
+          "base": "chatgpt/lumo-learning-glass-cards-2026-10-09"
+        },
+        {
+          "number": 230,
+          "title": "Lumo Lernen: schärferes Hologlas und einheitliches Lumo Cards Design",
+          "sha": "fa9f5557dfc6c676c362292f564bb82ee8b6e023",
+          "base": "codex/lumo-claude-game-entry-2026-10-09"
+        },
+        {
+          "number": 229,
+          "title": "Android Kart: echte Host-Ergebnisse trotz JSON-Zeit-Rundung korrekt erkennen",
+          "sha": "280b24250e8adfa9d7b42a833de526411c7c518a",
+          "base": "codex/lumo-claude-game-entry-2026-10-09"
+        },
+        {
+          "number": 228,
+          "title": "Android-Rennende 1908: nachgewiesene Float-Rundung in Host-ACK-Prüfung beheben",
+          "sha": "fc33aa44d431380426cb549a3bb1ef4d5bfc7a72",
+          "base": "codex/lumo-claude-game-entry-2026-10-09"
+        },
+        {
+          "number": 226,
+          "title": "Lumo Spiele: passende Startbilder, Nunito-Header und ehrliche Ladeanzeige",
+          "sha": "c9a823139fb744760e6898a4ac35be54817d8a15",
+          "base": "codex/lumo-apk-1910-2026-10-09"
+        },
+        {
+          "number": 225,
+          "title": "APK 1910: 1909-Funktionen mit früher Rennspeicherung und Fold-Pausenhintergrund",
+          "sha": "f38bb1ac14217b815429b37ed57b61e49d48e00b",
+          "base": "codex/lumo-action-android-qa-2026-10-09"
+        },
+        {
+          "number": 224,
+          "title": "Require settled Flutter frames for creative-game return evidence",
+          "sha": "2fea2da9f49d1e044191b498e07741c46bb5555e",
+          "base": "codex/lumo-integrated-runtime-2026-10-08"
+        },
+        {
+          "number": 219,
+          "title": "Android 1904: Pausenswipe reparieren und Lumo-Kart aktualisieren",
+          "sha": "4973346678eaca8e47ab7023f7439b4262453d21",
+          "base": "codex/lumo-integrated-runtime-2026-10-08"
+        },
+        {
+          "number": 218,
+          "title": "Fix Android probe timing using actual full surfaces and fresh race IDs",
+          "sha": "bd08f8c51672c80edb82439e6ec69c26ad74a3b1",
+          "base": "codex/lumo-android-surface-qa-2026-10-08"
+        },
+        {
+          "number": 216,
+          "title": "Integrate Lumo graphics, strict race flow and Android APK1905",
+          "sha": "2b60f28a558c4b2a414b100d73903fa6abb41ce1",
+          "base": "codex/lumo-runtime-apk-2026-10-08"
+        },
+        {
+          "number": 215,
+          "title": "APK1901: preserve Kart continuity, driver contact and recognized photo-lesson subjects",
+          "sha": "9f56cb8df00925988c84fccab5fbb8eaf2821d3c",
+          "base": "codex/lumo-reference-app-2026-10-08"
+        },
+        {
+          "number": 213,
+          "title": "APK 1602: App-/Kart-Reparaturen, geprüfte Updates und vollständige Opus-Übergabe",
+          "sha": "92a45c112305afb2ebe290ce0527a0a9a2ed2afe",
+          "base": "chatgpt/kart-video-quality-2026-10-07"
+        },
+        {
+          "number": 212,
+          "title": "Lumo Kart: moderner Spieleinstieg und APK-Kandidat 1504",
+          "sha": "99b2afc3362add6b69db6956a692cfcda9de4cc1",
+          "base": "chatgpt/fold-kart-controls-2026-10-07"
+        },
+        {
+          "number": 211,
+          "title": "Android 1503: größere Lumo-Kart-Steuerung für Fold und Action-Icons",
+          "sha": "48cb82614a31ac7e7daccbe62b872c3ae4b8eb95",
+          "base": "chatgpt/lumo-complete-games-2026-10-07"
+        },
+        {
+          "number": 210,
+          "title": "feat: complete learning routes, four creative games and verified visual APK 1601",
+          "sha": "3123cb0942f8a9a1b0d310c88b22cb25b5ef5c0b",
+          "base": "main"
+        },
+        {
+          "number": 209,
+          "title": "Android: bestätigte 1321→1400-Aktualisierung mit Profilerhalt und reproduzierter Downgrade-Ablehnung",
+          "sha": "0510b374387f7760ed93916f98b73387c14c14f8",
+          "base": "chatgpt/3d-launch-lifecycle-2026-10-07"
+        },
+        {
+          "number": 208,
+          "title": "Android: geprüfte APK 0.10.7+1400 und erfolgreiche Updates ab 280/1291/1321",
+          "sha": "5fe85acf57d9478bacd36cc618c544b812ec5ae2",
+          "base": "chatgpt/3d-launch-lifecycle-2026-10-07"
+        },
+        {
+          "number": 207,
+          "title": "Lumo: sichere Spielstarts, Fortschritt, echte Fuchs-Icons und geprüfte Test-APK",
+          "sha": "b6a0afa421e5e854345bfac5cc2be1813a7c3e50",
+          "base": "chatgpt/lumo-integrated-apk-2026-10-06"
+        },
+        {
+          "number": 206,
+          "title": "Lumo Cards: sichere Pause, Lebenszyklus und Wiederaufnahme",
+          "sha": "589f10c8d0c31f7b8a188210c2dfa8d5fe250bdf",
+          "base": "chatgpt/lumo-integrated-apk-2026-10-06"
+        },
+        {
+          "number": 204,
+          "title": "Lern-App Stage 3: Hologlass-Aufgaben, Lehrplan-Coverage 1–4 und 50er Denkprofil",
+          "sha": "17ab56f3912694b3226dde702bd6482ac61509dd",
+          "base": "chatgpt/lumo-integrated-apk-2026-10-06"
+        },
+        {
+          "number": 202,
+          "title": "Test-APK: Hologlass/Onboarding + validated Kart Stage 2",
+          "sha": "35299467b7c2b9077b00160e4c7dba86c82f3d03",
+          "base": "claude/lumo-gesamt"
+        },
+        {
+          "number": 197,
+          "title": "Fold/Responsive: Lumo Lernen + eingebettetes Lumo Kart sauber anpassen",
+          "sha": "853c498977050205b1e1867fa8cc2471795f81db",
+          "base": "claude/lumo-gesamt"
+        },
+        {
+          "number": 195,
+          "title": "Opus-Stand 86c5a33 fortsetzen: Test-APK mit reparierter Kart-Geometrie",
+          "sha": "20d8bb5fd677e1fa42257f517f51483e392edf01",
+          "base": "claude/lumo-gesamt"
+        },
+        {
+          "number": 193,
+          "title": "docs(assets): 178+ Lumo AAA-style asset production prompts",
+          "sha": "8dfad9c4b92a14bb753d3b7463e6d3dbf89558e7",
+          "base": "main"
+        },
+        {
+          "number": 192,
+          "title": "fix(ui): align real Fold shell with reference 10",
+          "sha": "06cb801f1fef8026dd908470f94801d50239b9b5",
+          "base": "claude/design-lernen"
+        },
+        {
+          "number": 186,
+          "title": "Design: Start, Lernen, Mathe, Deutsch, Tests, Spielewelt und Profil nach Heinz' Bildern 01–07",
+          "sha": "4f05c57890ab59165ab83ef98cae0e7bbb686f22",
+          "base": "main"
+        },
+        {
+          "number": 183,
+          "title": "assets(design): 142 Einzelbilder aus Heinz' zehn Bildtafeln (WebP)",
+          "sha": "8344c10f1401d6516194e45e565695e968c9b47e",
+          "base": "main"
+        },
+        {
+          "number": 179,
+          "title": "test(home): tatsächliche Lesbarkeit der Hauptkacheln auf Phone/Fold prüfen",
+          "sha": "22897357038b6d82574150ff868bf8bf5158e667",
+          "base": "main"
+        },
+        {
+          "number": 168,
+          "title": "docs: Heinz' Produktauftrag – Lernfortschritt schaltet Spiele frei, Kart ohne Lernfragen",
+          "sha": "708945c03e1ac8b292db2b8f28a5d232be51d541",
+          "base": "codex/lumo-unified-android-2026-10-03"
+        },
+        {
+          "number": 167,
+          "title": "fix(ci): fehlenden Nachweis-Upload nach #166 vervollständigen",
+          "sha": "f1b86c052336a687bb6e7440f6570d889a3de024",
+          "base": "codex/lumo-unified-android-2026-10-03"
+        },
+        {
+          "number": 154,
+          "title": "feat(voice): Stimmenauswahl + wärmere Lumo-Stimme (auf Codex-Stand #152)",
+          "sha": "37edbd3390c4a8a6ff71541de5ee1143b62a96dc",
+          "base": "codex/lumo-school-readiness-followup-2026-10-02"
+        },
+        {
+          "number": 153,
+          "title": "Etappe 1: gespeicherte Lernfragen prüfen und Lumo-Ausgangsstand dokumentieren",
+          "sha": "3bd1128aaaea40fcdd4468c7d57c461ea8e3fa46",
+          "base": "codex/lumo-school-readiness-followup-2026-10-02"
+        },
+        {
+          "number": 150,
+          "title": "feat(voice): kindlichere + waermere Lumo-Stimme",
+          "sha": "d927321fc98cbf53a36e6e878af24f56f5eff757",
+          "base": "main"
+        },
+        {
+          "number": 49,
+          "title": "fix(ci): stabilize APK release workflow",
+          "sha": "bc71868d3f00367ec4b9244c7932441009ab43ce",
+          "base": "main"
+        },
+        {
+          "number": 48,
+          "title": "feat(home+games): autonomer Lumo-Avatar + 5 Weltthemen im Jump-Game",
+          "sha": "d7b363b971b18a3963ffd63181f578840a9ae41c",
+          "base": "main"
+        },
+        {
+          "number": 45,
+          "title": "fix(app): prepare playable lumo jump test build",
+          "sha": "d461b15ea4a2cb6d73301b8dce6604c214dab770",
+          "base": "main"
+        },
+        {
+          "number": 44,
+          "title": "feat(games): Lumo Jump Adventure Premium Logic (Child-Safe)",
+          "sha": "e432e1d798dd17de4ec2df6aee561b68fa7f547a",
+          "base": "main"
+        },
+        {
+          "number": 43,
+          "title": "Stabilize game progression by wiring all level types to adaptive gameplay and deterministic task mapping",
+          "sha": "b863dc41d3c1353d49c7447f370db61e3c4e1d0a",
+          "base": "main"
+        },
+        {
+          "number": 42,
+          "title": "Spielewelt stabilisiert: alle Level spielbar gemacht und StarsPath-Mechanik entkoppelt/variiert",
+          "sha": "ddddf577455aefdb554b4283c252673ced136b3d",
+          "base": "main"
+        },
+        {
+          "number": 41,
+          "title": "Stabilize handwriting target parsing for non-canonical writing prompts",
+          "sha": "cafcb70f65e6ae1d3616e474d80020777c7802be",
+          "base": "main"
+        },
+        {
+          "number": 40,
+          "title": "Stabilize PR #39 compile path for Lumo Jump level routing",
+          "sha": "014c2f434f91e88a89bd218f24cd8b8c5ab1bba2",
+          "base": "main"
+        },
+        {
+          "number": 39,
+          "title": "feat(games): add lumo jump adventure prototype",
+          "sha": "787e1ccfb6cc09937137da4f11e48ccf083dd711",
+          "base": "main"
+        },
+        {
+          "number": 37,
+          "title": "feat(games): add Spiele entry point and modular level-map scaffold",
+          "sha": "05776f98b6df8fddf26feda6f963ef0392dd14b2",
+          "base": "main"
+        },
+        {
+          "number": 1,
+          "title": "feat: Bootstrap Lumo Lernen Flutter/Android app from scratch",
+          "sha": "2c7b6c14fa7c428aead4669284220c9c47a52ce1",
+          "base": "main"
+        }
+      ]
+    },
+    "lumo-godot": {
+      "branches": [
+        {
+          "name": "astra/lumo-animation-quality-2026-10-11",
+          "sha": "853175c634dcb62c325fbd9b272e2ebc791830ad"
+        },
+        {
+          "name": "chatgpt/argon-lumo-review-pdf-2026-10-15",
+          "sha": "e430f1a05d0e99918374e73f434fa0344bb6361f"
+        },
+        {
+          "name": "chatgpt/fold-kart-controls-2026-10-07",
+          "sha": "0ba0422cb673784a3902024bdf73ea33180340f9"
+        },
+        {
+          "name": "chatgpt/godot-launcher-anr-test-recovery-2026-10-16",
+          "sha": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+        },
+        {
+          "name": "chatgpt/kart-android-adb-resilience-2026-10-16",
+          "sha": "b9ef3350db3687eabc7f5f59f5cd3d7dade37ae1"
+        },
+        {
+          "name": "chatgpt/kart-android-real-race-gate-1957-2026-10-16",
+          "sha": "2cac61bf195d04cf6f08da243c7a150407915891"
+        },
+        {
+          "name": "chatgpt/kart-asphalt-material-polish-2026-10-16",
+          "sha": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88"
+        },
+        {
+          "name": "chatgpt/kart-brake-reverse-2026-10-07",
+          "sha": "a682165691e3bf5b2bce407562dc12cae3ea9aed"
+        },
+        {
+          "name": "chatgpt/kart-developer-packs-zip-2026-10-06",
+          "sha": "d47a0de8f9e1bacf7d8c304043b03cfa48cf6e85"
+        },
+        {
+          "name": "chatgpt/kart-himmelsinseln-stage2-2026-10-05",
+          "sha": "89325ecf80106a02d4c74a33ccd704e5240ff3d6"
+        },
+        {
+          "name": "chatgpt/kart-rival-feedback-2026-10-07",
+          "sha": "4df4b637e46c20576b9c13f3a46d512e69a72f08"
+        },
+        {
+          "name": "chatgpt/kart-video-quality-2026-10-07",
+          "sha": "b79ec387da593f97d078bd02c7629b1316f3ebd0"
+        },
+        {
+          "name": "chatgpt/kart-video-visual-grade-2026-10-07",
+          "sha": "06d27c33f2273ecd3d32bb863c62303c7e51ad44"
+        },
+        {
+          "name": "chatgpt/lumo-1971-bauwelt-originals-runtime-evidence-2026-10-17",
+          "sha": "386f6e2a884351aa70ecf7d86a839e126ff939bb"
+        },
+        {
+          "name": "chatgpt/lumo-agent-squad-2026-10-04",
+          "sha": "d1f077f09a16f6c5bf29f5472dd2fed4979b49d5"
+        },
+        {
+          "name": "chatgpt/lumo-ai-3d-factory-first-slice-2026-10-17",
+          "sha": "59b1154e4c9ffa30c4b6c2938e963ddbdd201320"
+        },
+        {
+          "name": "chatgpt/lumo-argon-coordinate-audit-2026-10-17",
+          "sha": "10fb679924ab2657cbcdf0084fae2802aac36c5c"
+        },
+        {
+          "name": "chatgpt/lumo-b1-viaduct-ci-approved-2026-10-17",
+          "sha": "a8f35b33c3b8a8f7bc09bb876b8751244119bfeb"
+        },
+        {
+          "name": "chatgpt/lumo-b2-sonnenhafen-long-course-2026-10-17",
+          "sha": "5c657c2780d3497f412f22a54e9559b332c2cbba"
+        },
+        {
+          "name": "chatgpt/lumo-b3-hero-coast-ci-approved-2026-10-17",
+          "sha": "7bdb7ca91691396399abf3b16f09a54259538df7"
+        },
+        {
+          "name": "chatgpt/lumo-b3-long-coast-hero-scenes-2026-10-17",
+          "sha": "7bdb7ca91691396399abf3b16f09a54259538df7"
+        },
+        {
+          "name": "chatgpt/lumo-b4-road-nearest-kd-2026-10-17",
+          "sha": "93801042a1e140e8cec0525354bc144a28964709"
+        },
+        {
+          "name": "chatgpt/lumo-b5-true-coastal-foam-2026-10-17",
+          "sha": "38b3e4890cc0a4b5f70dfdb7a5d523274aa5d647"
+        },
+        {
+          "name": "chatgpt/lumo-b6-clear-sonnenhafen-road-2026-10-17",
+          "sha": "42b011dc23abffc24a5df2e13171fa5ada22d6eb"
+        },
+        {
+          "name": "chatgpt/lumo-b6-road-clearance-ci-approved-2026-10-17",
+          "sha": "42b011dc23abffc24a5df2e13171fa5ada22d6eb"
+        },
+        {
+          "name": "chatgpt/lumo-b-sonnenhafen-viaduct-2026-10-17",
+          "sha": "a8f35b33c3b8a8f7bc09bb876b8751244119bfeb"
+        },
+        {
+          "name": "chatgpt/lumo-bauwelt-12-procedural-assets-2026-10-15",
+          "sha": "ba9390429da941af37475aac71bd5d0ee901103f"
+        },
+        {
+          "name": "chatgpt/lumo-character-production-2026-10-09",
+          "sha": "d140e5b05cb5afacfe675559b78da4254cb1daed"
+        },
+        {
+          "name": "chatgpt/lumo-complete-games-2026-10-07",
+          "sha": "329b10cc20f07caf5ee475de6bd61325a0fa2bb2"
+        },
+        {
+          "name": "chatgpt/lumo-darkride-cartoon-burst-vfx-2026-10-17",
+          "sha": "aff8dd367f271b654d24db28a2a686b9e5acb626"
+        },
+        {
+          "name": "chatgpt/lumo-darkride-first-playable-2026-10-17",
+          "sha": "605f5b5a784f0af41ab80d6a37997475d0c5acac"
+        },
+        {
+          "name": "chatgpt/lumo-darkride-lap-reactive-neon-2026-10-17",
+          "sha": "b70c623d7dfed57e0ff3fbeb7b5812f8f228292d"
+        },
+        {
+          "name": "chatgpt/lumo-darkride-mineral-strata-artpass-2026-10-17",
+          "sha": "25f5453ffc3b6ba03360345c4b0f561cb57c40e4"
+        },
+        {
+          "name": "chatgpt/lumo-darkride-reduced-motion-state-guard-2026-10-18",
+          "sha": "6518a13fb8eb30c81c8a2115d14791cbe7ddd24a"
+        },
+        {
+          "name": "chatgpt/lumo-darkride-road-guidance-2026-10-17",
+          "sha": "25f5453ffc3b6ba03360345c4b0f561cb57c40e4"
+        },
+        {
+          "name": "chatgpt/lumo-darkride-road-guidance-qa-2026-10-17",
+          "sha": "e1ca954b07ad5c76e9a43e3d4d182b020f19f64d"
+        },
+        {
+          "name": "chatgpt/lumo-face-showroom-2026-10-09",
+          "sha": "b7815d121f5bf6275207514de3edf1f666dd01ff"
+        },
+        {
+          "name": "chatgpt/lumo-fox-expressive-face-2026-10-09",
+          "sha": "8348496b6f6db32febb0d919aad49b83bad04b5e"
+        },
+        {
+          "name": "chatgpt/lumo-fox-eye-proportions-2026-10-09",
+          "sha": "6eeea4eab9af7049a640b21aa65c264427d72a6b"
+        },
+        {
+          "name": "chatgpt/lumo-gate-terrain-flush-detail-2026-10-17",
+          "sha": "a17b06c4719cc94c94bdf97afb3b6862cd049323"
+        },
+        {
+          "name": "chatgpt/lumo-gemini-visual-implementation-2026-10-15",
+          "sha": "c850e8d6ed3c971f0a303c0f87cd421111fd7769"
+        },
+        {
+          "name": "chatgpt/lumo-godot-1938-complete-integration-2026-10-12",
+          "sha": "daa775ff6b1c82f24f09fd9234d9cfab5a49f8da"
+        },
+        {
+          "name": "chatgpt/lumo-godot-1938-emergency-fallback-2026-10-12",
+          "sha": "ec96515a2e359d21e9591120fc81dfd15116e81e"
+        },
+        {
+          "name": "chatgpt/lumo-kart-bauwelt-integrated-2026-10-15",
+          "sha": "94c95e1d3a7de530744e998a505ce7792eb07fc5"
+        },
+        {
+          "name": "chatgpt/lumo-kart-larger-world-preview-2026-10-15",
+          "sha": "ad6bd8856a9d7d07b965dec46eeadf41d4ed676c"
+        },
+        {
+          "name": "chatgpt/lumo-meshy-start-finish-gate-2026-10-17",
+          "sha": "e1b570e098104376f69775fe4ded056bc2f43b3e"
+        },
+        {
+          "name": "chatgpt/lumo-milestone-a-drive-guards-2026-10-17",
+          "sha": "b8f464d946f73d9b88458bf223f1b83db3975a1a"
+        },
+        {
+          "name": "chatgpt/lumo-multilevel-road-projection-2026-10-17",
+          "sha": "1b632253ac6e3120a24e621f1438d28a624b1655"
+        },
+        {
+          "name": "chatgpt/lumo-pro-agent-fallbacks-2026-10-05",
+          "sha": "c3a65caca95a6ba64d9ef7cb79aef02767b31f22"
+        },
+        {
+          "name": "chatgpt/lumo-railkit-first-track-2026-10-15",
+          "sha": "f8466d25cdbf4d60a06f229e5c2af0413d922590"
+        },
+        {
+          "name": "chatgpt/lumo-sculpted-eye-sockets-2026-10-09",
+          "sha": "ee281622641be6e1b4bd9c5eff902adf0de7dea3"
+        },
+        {
+          "name": "chatgpt/puzzle-3d-core-2026-10-07",
+          "sha": "6606d50419bd6a177b89f57da00819ef0a48c418"
+        },
+        {
+          "name": "chatgpt/repair-opus-handoff-2026-10-07",
+          "sha": "9ade252e67309d18b17d3226e33b0034b91f3495"
+        },
+        {
+          "name": "chatgpt/sonnenhafen-animated-crane-hoist-2026-10-17",
+          "sha": "81ad31d8396658a3642543f80de8f82302ec78da"
+        },
+        {
+          "name": "chatgpt/sonnenhafen-grounding-corrugation-2026-10-17",
+          "sha": "6d475aa4cf5aa0cce187e9704553b72c47fe5237"
+        },
+        {
+          "name": "chatgpt/sonnenhafen-lookout-3d-landmarks-2026-10-16",
+          "sha": "41aa76a28565faa21ea93d3d31d74836c38005a9"
+        },
+        {
+          "name": "chatgpt/sonnenhafen-water-visual-qa-2026-10-15",
+          "sha": "9d80dfff67782318009222682ac8dc52ee910217"
+        },
+        {
+          "name": "chatgpt/sulafat-godot-audio-2026-10-10",
+          "sha": "d434f931e6d78d0e5f9b711a1739d590e37d9146"
+        },
+        {
+          "name": "chatgpt/sulafat-safety-on-kart-pin-2026-10-10",
+          "sha": "ec1040c2ab18f2ed207eee6c8490608cbb6a5518"
+        },
+        {
+          "name": "claude/continue-previous-chat-KtY7p",
+          "sha": "a6dfcc0980456a197b40f2d3cade560d6c4aade4"
+        },
+        {
+          "name": "claude/kart-finish-cine",
+          "sha": "e5eecd70776a04257ab207b2564000f3cfc905b4"
+        },
+        {
+          "name": "claude/kart-integration-2026-10-16",
+          "sha": "ea69d122c7c36d0b4b5ffaab388321ddb0931967"
+        },
+        {
+          "name": "claude/sonnenhafen-harbor-crane-2026-10-17",
+          "sha": "3453a43a8bbdcb0495718e1eced2a40837d6e3ab"
+        },
+        {
+          "name": "codex/lumo-1909-snapshot-backdrop-2026-10-09",
+          "sha": "75e563e32b97865922321c8bcc9f61b6ce32b46c"
+        },
+        {
+          "name": "codex/lumo-1977-cavern-production-2026-10-18",
+          "sha": "efa1f69b4128a047e6196ee85762447e412db266"
+        },
+        {
+          "name": "codex/lumo-aaa-safe-visuals-2026-10-10",
+          "sha": "ff67107caf35a8a533a61c348168fbe3949d67a9"
+        },
+        {
+          "name": "codex/lumo-action-workshop-2026-10-09",
+          "sha": "8542c0bb2bcad46a7ea2aee02775c00ab1325dfa"
+        },
+        {
+          "name": "codex/lumo-claude-game-entry-2026-10-09",
+          "sha": "f9d2b90608130014d6b5a9f665e6ae8095d8db12"
+        },
+        {
+          "name": "codex/lumo-cup-finish-regression-2026-10-09",
+          "sha": "f5647f4575b374878aaa02085f83ecb9de960823"
+        },
+        {
+          "name": "codex/lumo-face-continuation-2026-10-10",
+          "sha": "6b40153126171a5b3193c830855f42c9c597f0a1"
+        },
+        {
+          "name": "codex/lumo-game-entry-brand-2026-10-09",
+          "sha": "e9ac48b8c18ca2fe4d4f5d8f5e97862c6124a8eb"
+        },
+        {
+          "name": "codex/lumo-holographic-kart-2026-10-03",
+          "sha": "a369da2dc208fcd9d5451c7007d8b1f9e7bf52a1"
+        },
+        {
+          "name": "codex/lumo-integrated-runtime-2026-10-08",
+          "sha": "3f9ff57b15e27b373e4baf696c43af3fa0ef9ca0"
+        },
+        {
+          "name": "codex/lumo-island-cup-2026-10-02",
+          "sha": "3435acd4a1b1265467d58aca7d7d8033e1437e9e"
+        },
+        {
+          "name": "codex/lumo-kart-fleet-2026-10-08",
+          "sha": "7edbb15d6328a823efe0856d8bc3321de8fbec85"
+        },
+        {
+          "name": "codex/lumo-kart-premium-menu-2026-10-10",
+          "sha": "026571b914654fe699e6a805eec20144fd3b1def"
+        },
+        {
+          "name": "codex/lumo-kart-reference-final-2026-10-10",
+          "sha": "81a1306e73ce891cf004f2a5b3308fce83840868"
+        },
+        {
+          "name": "codex/lumo-kart-sunharbor-2026-10-02",
+          "sha": "55a35b84aeb0eef737f0f9b5a37415cf9a181dfc"
+        },
+        {
+          "name": "codex/lumo-lap-session-recovery-2026-10-09",
+          "sha": "3f9ff57b15e27b373e4baf696c43af3fa0ef9ca0"
+        },
+        {
+          "name": "codex/lumo-modal-fixture-state-2026-10-08",
+          "sha": "35cc13765e88aa47285a4c081a4e6144d37c8d51"
+        },
+        {
+          "name": "codex/lumo-modal-touch-2026-10-08",
+          "sha": "6873c0723d6e6c0587cdf06d990cb6c49502a33a"
+        },
+        {
+          "name": "codex/lumo-modal-viewport-repair-2026-10-09",
+          "sha": "9eb0979b5492ff8565d952aca8c5c6a15fbb7715"
+        },
+        {
+          "name": "codex/lumo-race-continuity-2026-10-08",
+          "sha": "649e7dc7e90ad3affe94721012d39140522e717e"
+        },
+        {
+          "name": "codex/lumo-reference-design-2026-10-08",
+          "sha": "b6889d1ec767ec008acf5ee93bd73637653cf73d"
+        },
+        {
+          "name": "codex/lumo-unified-kart-2026-10-03",
+          "sha": "36ec0171110c026c368db724d9c8dfdc1dc723d3"
+        },
+        {
+          "name": "codex/lumo-visual-fidelity-2026-10-08",
+          "sha": "7ded3f51cffc265e790d4f1a4c2e91e6d38407eb"
+        },
+        {
+          "name": "codex/opus-vehicle-regression-fix",
+          "sha": "6803426876b6f40f3171c63a51dd2c69237e6720"
+        },
+        {
+          "name": "codex/track-reference-import-2026-10-05",
+          "sha": "7351f1756e1910389450e041185b846823a97e92"
+        },
+        {
+          "name": "computer/lumo-character-animation-2026-10-10",
+          "sha": "b056d5349c5d111a4c9ca41710681b87585f2d62"
+        },
+        {
+          "name": "computer/lumo-kart-aaa-2026-10-10",
+          "sha": "f672e02cf1101f3366b6d506fa7d7b77bb535b42"
+        },
+        {
+          "name": "computer/lumo-kart-animation-integration-2026-10-10",
+          "sha": "b840e7e54a961f162d209f01679bb9e8af77fcf6"
+        },
+        {
+          "name": "computer/lumo-kart-production-menu-2026-10-10",
+          "sha": "2eab464b0bec37163424965bc5fc309b1a434ced"
+        },
+        {
+          "name": "computer/lumo-kart-real-loading-2026-10-11",
+          "sha": "6063f56fd4ff13afef61509f52d1d4fdab012654"
+        },
+        {
+          "name": "computer/lumo-kart-stage2-fixture-cleanup-2026-10-11",
+          "sha": "7cb03702d98578faa77f13ab02daf392af051dad"
+        },
+        {
+          "name": "computer/lumo-next-level-menu-2026-10-11",
+          "sha": "3d377f149c8193e245b9be0ddd977e70fc97d890"
+        },
+        {
+          "name": "computer/lumo-rival-reference-2026-10-10",
+          "sha": "daaf78bf919d204d46f26ac56c63b382ec1292e3"
+        },
+        {
+          "name": "computer/lumo-sulafat-reference-2026-10-10",
+          "sha": "e37674692c047c41a6fb1485e499be1ed0c0f758"
+        },
+        {
+          "name": "computer/lumo-visual-foundation-2026-10-10",
+          "sha": "087673303358fccf49f39cb5d4714402aaaf4aff"
+        },
+        {
+          "name": "copilot/lumo-kart-upload-streckenpakete",
+          "sha": "edc47b61427b931533ffa8b717809740a3165fac"
+        },
+        {
+          "name": "gh-pages",
+          "sha": "55519a46f1eeeb9aa25421460c13cfa0f0063789"
+        },
+        {
+          "name": "integration/lumo-kart-opus-tracks-2026-10-05",
+          "sha": "7b041dd57c097873e158e6b5616c4b3d6417227a"
+        },
+        {
+          "name": "main",
+          "sha": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+        },
+        {
+          "name": "sol/lumo-1936-unified-integration-2026-10-12",
+          "sha": "82b53fc02b9f2ad7e025433499c4c23f256fe734"
+        },
+        {
+          "name": "sol/lumo-1937-kart-quality-2026-10-12",
+          "sha": "ec96515a2e359d21e9591120fc81dfd15116e81e"
+        },
+        {
+          "name": "sol/lumo-harbor-pavilions-1939-2026-10-14",
+          "sha": "d8d004141cdd606357aa1348691a39854e3af3c7"
+        },
+        {
+          "name": "sol/lumo-kart-fold-games-2026-10-12",
+          "sha": "82b53fc02b9f2ad7e025433499c4c23f256fe734"
+        }
+      ],
+      "open_prs": [
+        {
+          "number": 101,
+          "title": "Lumo 1977: echte Kristallhöhle, mobile 3D-Produktion und kontrollierte Lichtanimation",
+          "sha": "efa1f69b4128a047e6196ee85762447e412db266",
+          "base": "chatgpt/lumo-darkride-reduced-motion-state-guard-2026-10-18"
+        },
+        {
+          "number": 100,
+          "title": "Lumo Kart: laufende Dunkelfahrt-Effekte bei ruhiger Bewegung und Tunnelverlassen sicher beenden",
+          "sha": "6518a13fb8eb30c81c8a2115d14791cbe7ddd24a",
+          "base": "chatgpt/lumo-darkride-mineral-strata-artpass-2026-10-17"
+        },
+        {
+          "number": 99,
+          "title": "Mineral cave art pass",
+          "sha": "25f5453ffc3b6ba03360345c4b0f561cb57c40e4",
+          "base": "chatgpt/lumo-darkride-cartoon-burst-vfx-2026-10-17"
+        },
+        {
+          "number": 98,
+          "title": "Lumo Kart: kinderfreundlicher Kristall-Schockwellen-Effekt zur Dunkelfahrt",
+          "sha": "aff8dd367f271b654d24db28a2a686b9e5acb626",
+          "base": "chatgpt/lumo-darkride-lap-reactive-neon-2026-10-17"
+        },
+        {
+          "number": 97,
+          "title": "Lumo Kart: rundenabhängiger Neon-Energieschub mit echten GPU-Vorher/Nachher-Bildern",
+          "sha": "b70c623d7dfed57e0ff3fbeb7b5812f8f228292d",
+          "base": "chatgpt/lumo-ai-3d-factory-first-slice-2026-10-17"
+        },
+        {
+          "number": 96,
+          "title": "Lumo Kart: eigenständige 3D-Asset-Fabrik mit strengem JSON-Vertrag, GLB-Export und Vision-Renderbeweisen",
+          "sha": "59b1154e4c9ffa30c4b6c2938e963ddbdd201320",
+          "base": "chatgpt/lumo-darkride-first-playable-2026-10-17"
+        },
+        {
+          "number": 95,
+          "title": "Lumo Kart: erste befahrbare Sonnenhafen-Dunkelfahrt mit Neon-Kristalltunnel und echtem Render-QA",
+          "sha": "605f5b5a784f0af41ab80d6a37997475d0c5acac",
+          "base": "chatgpt/lumo-gate-terrain-flush-detail-2026-10-17"
+        },
+        {
+          "number": 94,
+          "title": "Lumo Kart: Einfahrtstor bündig im Gelände verankern und Materialschärfe verbessern",
+          "sha": "a17b06c4719cc94c94bdf97afb3b6862cd049323",
+          "base": "chatgpt/lumo-meshy-start-finish-gate-2026-10-17"
+        },
+        {
+          "number": 93,
+          "title": "Lumo Kart: Farbkorrektur & überprüfbarer GLB-Gate-Import",
+          "sha": "e1b570e098104376f69775fe4ded056bc2f43b3e",
+          "base": "chatgpt/lumo-b6-clear-sonnenhafen-road-2026-10-17"
+        },
+        {
+          "number": 92,
+          "title": "B6: remove giant mountains and legacy rocks intruding into 1.85-km Sonnenhafen road",
+          "sha": "42b011dc23abffc24a5df2e13171fa5ada22d6eb",
+          "base": "chatgpt/lumo-b5-true-coastal-foam-2026-10-17"
+        },
+        {
+          "number": 91,
+          "title": "B5: Küstenschaum an reale 1,85-km-Sonnenhafen-Inselgrenzen binden",
+          "sha": "38b3e4890cc0a4b5f70dfdb7a5d523274aa5d647",
+          "base": "chatgpt/lumo-b4-road-nearest-kd-2026-10-17"
+        },
+        {
+          "number": 90,
+          "title": "B4: exact k-d spatial index accelerates 1.85-km terrain and scenery queries",
+          "sha": "93801042a1e140e8cec0525354bc144a28964709",
+          "base": "chatgpt/lumo-b3-long-coast-hero-scenes-2026-10-17"
+        },
+        {
+          "number": 89,
+          "title": "B3: 5 originale Sonnenhafen-3D-Hero-Landmarken mit echten Godot-Renderbeweisen",
+          "sha": "7bdb7ca91691396399abf3b16f09a54259538df7",
+          "base": "chatgpt/lumo-b2-sonnenhafen-long-course-2026-10-17"
+        },
+        {
+          "number": 88,
+          "title": "B2 Experiment: Sonnenhafen 1,85 km – neue 23-Punkte-Strecke mit Godot-Geometriebeweis",
+          "sha": "5c657c2780d3497f412f22a54e9559b332c2cbba",
+          "base": "chatgpt/lumo-b-sonnenhafen-viaduct-2026-10-17"
+        },
+        {
+          "number": 86,
+          "title": "Meilenstein B1: Sonnenhafen-Küstenviadukte mit echter 3D-Geometrie und Renderbeweis",
+          "sha": "a8f35b33c3b8a8f7bc09bb876b8751244119bfeb",
+          "base": "chatgpt/lumo-milestone-a-drive-guards-2026-10-17"
+        },
+        {
+          "number": 84,
+          "title": "Milestone A: vertical-frame stability plus real AI, collision and respawn tests",
+          "sha": "b8f464d946f73d9b88458bf223f1b83db3975a1a",
+          "base": "chatgpt/lumo-multilevel-road-projection-2026-10-17"
+        },
+        {
+          "number": 83,
+          "title": "Experimental: make road projection height-aware for genuine 3D crossings",
+          "sha": "1b632253ac6e3120a24e621f1438d28a624b1655",
+          "base": "chatgpt/lumo-argon-coordinate-audit-2026-10-17"
+        },
+        {
+          "number": 82,
+          "title": "QA: verify Argon 4 coordinates against real Lumo 1971 track source",
+          "sha": "10fb679924ab2657cbcdf0084fae2802aac36c5c",
+          "base": "claude/sonnenhafen-harbor-crane-2026-10-17"
+        },
+        {
+          "number": 81,
+          "title": "Bauwelt QA: originale Premiumobjekte in echter Spielszene mit Save/Reload rendern",
+          "sha": "386f6e2a884351aa70ecf7d86a839e126ff939bb",
+          "base": "claude/sonnenhafen-harbor-crane-2026-10-17"
+        },
+        {
+          "number": 78,
+          "title": "Sonnenhafen: Containerterminal mit Ship-to-Shore-Portalkran (echte 3D-Geometrie, Vorher/Nachher-Render)",
+          "sha": "3453a43a8bbdcb0495718e1eced2a40837d6e3ab",
+          "base": "main"
+        },
+        {
+          "number": 77,
+          "title": "Lumo Kart 1957: Android muss eine echte gestartete Rennwelt nachweisen",
+          "sha": "2cac61bf195d04cf6f08da243c7a150407915891",
+          "base": "chatgpt/sonnenhafen-lookout-3d-landmarks-2026-10-16"
+        },
+        {
+          "number": 76,
+          "title": "Sonnenhafen: drei neue echte 3D-Aussichtstürme mit Cyan-Licht, GPU-Batching und Low-End-LOD",
+          "sha": "41aa76a28565faa21ea93d3d31d74836c38005a9",
+          "base": "main"
+        },
+        {
+          "number": 74,
+          "title": "Lumo Kart: physically richer asphalt with mobile LOD and six real before/after renders",
+          "sha": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
+          "base": "claude/kart-integration-2026-10-16"
+        },
+        {
+          "number": 73,
+          "title": "Godot 4.6.3: retry transient Android logcat timeouts without masking crashes",
+          "sha": "b9ef3350db3687eabc7f5f59f5cd3d7dade37ae1",
+          "base": "claude/kart-integration-2026-10-16"
+        },
+        {
+          "number": 72,
+          "title": "Lumo Kart: Sonnenhafen water shader polish + real visual QA",
+          "sha": "9d80dfff67782318009222682ac8dc52ee910217",
+          "base": "chatgpt/lumo-kart-bauwelt-integrated-2026-10-15"
+        },
+        {
+          "number": 71,
+          "title": "Lumo Kart: cinematic environment, adaptive terrain foundation and cruising exhaust",
+          "sha": "c850e8d6ed3c971f0a303c0f87cd421111fd7769",
+          "base": "chatgpt/lumo-kart-bauwelt-integrated-2026-10-15"
+        },
+        {
+          "number": 70,
+          "title": "Enlarge real 3D Kart track previews on Fold screens",
+          "sha": "ad6bd8856a9d7d07b965dec46eeadf41d4ed676c",
+          "base": "chatgpt/lumo-kart-bauwelt-integrated-2026-10-15"
+        },
+        {
+          "number": 69,
+          "title": "feat(integration): premium Kart rails + 12 Bauwelt 3D objects on verified pin",
+          "sha": "94c95e1d3a7de530744e998a505ce7792eb07fc5",
+          "base": "chatgpt/lumo-railkit-first-track-2026-10-15"
+        },
+        {
+          "number": 68,
+          "title": "feat(bauwelt): twelve real modular 3D build objects with native QA",
+          "sha": "ba9390429da941af37475aac71bd5d0ee901103f",
+          "base": "claude/continue-previous-chat-KtY7p"
+        },
+        {
+          "number": 67,
+          "title": "feat(kart): premium curved PBR guardrails on the exact Lumo APK source pin",
+          "sha": "f8466d25cdbf4d60a06f229e5c2af0413d922590",
+          "base": "sol/lumo-harbor-pavilions-1939-2026-10-14"
+        },
+        {
+          "number": 66,
+          "title": "Sonnenhafen: echte Wellenpavillons mit Blender-Quelle, PBR und mobilen LODs",
+          "sha": "d8d004141cdd606357aa1348691a39854e3af3c7",
+          "base": "sol/lumo-1937-kart-quality-2026-10-12"
+        },
+        {
+          "number": 65,
+          "title": "Kart1937: fehlende Rückwärts- und Zieleinlaufreparaturen integrieren",
+          "sha": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 64,
+          "title": "1936 salvage: premium Kart menu branch",
+          "sha": "026571b914654fe699e6a805eec20144fd3b1def",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 63,
+          "title": "1936 salvage: creative games touch labels",
+          "sha": "329b10cc20f07caf5ee475de6bd61325a0fa2bb2",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 62,
+          "title": "1936 salvage: visual fidelity and reference kart",
+          "sha": "7ded3f51cffc265e790d4f1a4c2e91e6d38407eb",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 61,
+          "title": "1936 salvage: race finish and snapshot fixes",
+          "sha": "f5647f4575b374878aaa02085f83ecb9de960823",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 60,
+          "title": "1936 salvage: expressive Lumo face line",
+          "sha": "8348496b6f6db32febb0d919aad49b83bad04b5e",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 59,
+          "title": "1936 salvage: Sulafat Godot audio",
+          "sha": "d434f931e6d78d0e5f9b711a1739d590e37d9146",
+          "base": "sol/lumo-1936-unified-integration-2026-10-12"
+        },
+        {
+          "number": 58,
+          "title": "fix: Fold-Garage per Touch bedienen und kreative GLB-Objekte integrieren",
+          "sha": "82b53fc02b9f2ad7e025433499c4c23f256fe734",
+          "base": "astra/lumo-animation-quality-2026-10-11"
+        },
+        {
+          "number": 57,
+          "title": "fix(lumo): stabiler Lenkradkontakt beim Nicken mit visuellen Nachweisen",
+          "sha": "853175c634dcb62c325fbd9b272e2ebc791830ad",
+          "base": "computer/lumo-next-level-menu-2026-10-11"
+        },
+        {
+          "number": 56,
+          "title": "Next Level: randfreies Fold-Menü, echte 3D-Bühne und sichere Kamera",
+          "sha": "3d377f149c8193e245b9be0ddd977e70fc97d890",
+          "base": "computer/lumo-kart-stage2-fixture-cleanup-2026-10-11"
+        },
+        {
+          "number": 55,
+          "title": "Stage 2: Sky-Fixture-Leck reparieren und grüne Fehlerlogs verhindern",
+          "sha": "7cb03702d98578faa77f13ab02daf392af051dad",
+          "base": "computer/lumo-kart-real-loading-2026-10-11"
+        },
+        {
+          "number": 54,
+          "title": "Lumo Kart: echter Ladefortschritt, animierter Einstieg und sicherer Menüübergang",
+          "sha": "6063f56fd4ff13afef61509f52d1d4fdab012654",
+          "base": "computer/lumo-kart-production-menu-2026-10-10"
+        },
+        {
+          "number": 53,
+          "title": "Lumo Kart: Referenzbuttons, Lumo-Kart-Schriftzug, echte Fold-dp-Größen und animiertes Menü",
+          "sha": "2eab464b0bec37163424965bc5fc309b1a434ced",
+          "base": "computer/lumo-kart-animation-integration-2026-10-10"
+        },
+        {
+          "number": 52,
+          "title": "Lumo Kart: existing animated Lumo connected to the production race",
+          "sha": "b840e7e54a961f162d209f01679bb9e8af77fcf6",
+          "base": "computer/lumo-character-animation-2026-10-10"
+        },
+        {
+          "number": 51,
+          "title": "Lumo Animation Phase 1: existing 65-bone character, nine clips and isolated Kart test",
+          "sha": "b056d5349c5d111a4c9ca41710681b87585f2d62",
+          "base": "computer/lumo-rival-reference-2026-10-10"
+        },
+        {
+          "number": 50,
+          "title": "Lumo-Gegenspieler: Originalreferenzen, gemeinsamer Katalog und sichere Integrationsvorbereitung",
+          "sha": "daaf78bf919d204d46f26ac56c63b382ec1292e3",
+          "base": "computer/lumo-sulafat-reference-2026-10-10"
+        },
+        {
+          "number": 49,
+          "title": "Grafik-Grundgerüst: bestehendes Modell, Blender-Roundtrip und exakte Referenzübergabe",
+          "sha": "087673303358fccf49f39cb5d4714402aaaf4aff",
+          "base": "chatgpt/sulafat-safety-on-kart-pin-2026-10-10"
+        },
+        {
+          "number": 48,
+          "title": "Block eSpeak recordings; replace all 52 Godot letter/word voices with Sulafat",
+          "sha": "d434f931e6d78d0e5f9b711a1739d590e37d9146",
+          "base": "main"
+        },
+        {
+          "number": 47,
+          "title": "Lumo Kart: Renderer-Lifetime, echte Live-Vergleiche und kompakte Hero-Ansicht",
+          "sha": "f672e02cf1101f3366b6d506fa7d7b77bb535b42",
+          "base": "codex/lumo-aaa-safe-visuals-2026-10-10"
+        },
+        {
+          "number": 46,
+          "title": "Lumo Kart: additive Next-Gen visual layer mit sicheren Android-Fallbacks",
+          "sha": "ff67107caf35a8a533a61c348168fbe3949d67a9",
+          "base": "codex/lumo-kart-reference-final-2026-10-10"
+        },
+        {
+          "number": 45,
+          "title": "Lumo Kart: Referenzmenü vollständig sichtbar und überprüfbar",
+          "sha": "81a1306e73ce891cf004f2a5b3308fce83840868",
+          "base": "codex/lumo-kart-premium-menu-2026-10-10"
+        },
+        {
+          "number": 44,
+          "title": "Lumo Kart: echtes Premium-Hauptmenü mit drehbarem 3D-Lumo und Referenz-Look",
+          "sha": "026571b914654fe699e6a805eec20144fd3b1def",
+          "base": "codex/lumo-face-continuation-2026-10-10"
+        },
+        {
+          "number": 43,
+          "title": "Lumo 1920: zusammenhängende helle Wangen am bestehenden Fahrer",
+          "sha": "6b40153126171a5b3193c830855f42c9c597f0a1",
+          "base": "chatgpt/lumo-character-production-2026-10-09"
+        },
+        {
+          "number": 42,
+          "title": "Lumo: echte Gesichtskorrektur, spielbarer Start und Sonnenhafen-Aquarium",
+          "sha": "d140e5b05cb5afacfe675559b78da4254cb1daed",
+          "base": "claude/continue-previous-chat-KtY7p"
+        },
+        {
+          "number": 41,
+          "title": "Lumo Kart: offenes Original-Lächeln und natürlich gestellte 3D-Ohren",
+          "sha": "8348496b6f6db32febb0d919aad49b83bad04b5e",
+          "base": "chatgpt/lumo-fox-eye-proportions-2026-10-09"
+        },
+        {
+          "number": 40,
+          "title": "Lumo 3D: flachere natürliche Augenhöhlen und weniger hervorstehende Pupillen",
+          "sha": "ee281622641be6e1b4bd9c5eff902adf0de7dea3",
+          "base": "chatgpt/lumo-fox-eye-proportions-2026-10-09"
+        },
+        {
+          "number": 39,
+          "title": "Lumo-Fuchs: kleinere echte 3D-Augen und vier Perspektiven zur visuellen Prüfung",
+          "sha": "6eeea4eab9af7049a640b21aa65c264427d72a6b",
+          "base": "chatgpt/lumo-face-showroom-2026-10-09"
+        },
+        {
+          "number": 38,
+          "title": "Lumo Kart: realistische Gesichtsvorschau, Studio-Licht und echte 3D-Screenshots",
+          "sha": "b7815d121f5bf6275207514de3edf1f666dd01ff",
+          "base": "codex/lumo-claude-game-entry-2026-10-09"
+        },
+        {
+          "number": 36,
+          "title": "Lumo Kart Einstieg: echte Spielbilder statt Schwarz und blauer Nunito-Header",
+          "sha": "e9ac48b8c18ca2fe4d4f5d8f5e97862c6124a8eb",
+          "base": "codex/lumo-1909-snapshot-backdrop-2026-10-09"
+        },
+        {
+          "number": 35,
+          "title": "APK 1909 foundation: save first active second and cover Fold pause viewport",
+          "sha": "75e563e32b97865922321c8bcc9f61b6ce32b46c",
+          "base": "codex/lumo-action-workshop-2026-10-09"
+        },
+        {
+          "number": 34,
+          "title": "Fix Cup regression: allow finish coasting, freeze race rewards and standings",
+          "sha": "f5647f4575b374878aaa02085f83ecb9de960823",
+          "base": "codex/lumo-modal-viewport-repair-2026-10-09"
+        },
+        {
+          "number": 33,
+          "title": "Erste aktive Rennspeicherung und vollständiger Pause-Hintergrund",
+          "sha": "9eb0979b5492ff8565d952aca8c5c6a15fbb7715",
+          "base": "codex/lumo-integrated-runtime-2026-10-08"
+        },
+        {
+          "number": 30,
+          "title": "Pauseneinstellungen mit Touch scrollen und Lumos Referenzkart verfeinern",
+          "sha": "7ded3f51cffc265e790d4f1a4c2e91e6d38407eb",
+          "base": "codex/lumo-integrated-runtime-2026-10-08"
+        },
+        {
+          "number": 29,
+          "title": "Lumo-Identität, Kart-Touch und korrekte native Ergebniszeiten",
+          "sha": "3f9ff57b15e27b373e4baf696c43af3fa0ef9ca0",
+          "base": "codex/lumo-race-continuity-2026-10-08"
+        },
+        {
+          "number": 28,
+          "title": "Keep Kart items, reset physics and Lumo arm contact consistent through the full race",
+          "sha": "649e7dc7e90ad3affe94721012d39140522e717e",
+          "base": "codex/lumo-reference-design-2026-10-08"
+        },
+        {
+          "number": 27,
+          "title": "Lumo Kart: Referenz-Fuchs, Glassteuerung, nähere Rennkamera und Streckendetails",
+          "sha": "b6889d1ec767ec008acf5ee93bd73637653cf73d",
+          "base": "codex/lumo-kart-fleet-2026-10-08"
+        },
+        {
+          "number": 26,
+          "title": "Kart: lesbare deaktivierte Aktionen und geprüfte Item-/Fold-Bedienung",
+          "sha": "9ade252e67309d18b17d3226e33b0034b91f3495",
+          "base": "chatgpt/kart-video-quality-2026-10-07"
+        },
+        {
+          "number": 25,
+          "title": "Lumo Kart: modern garage, app typography and richer racing worlds",
+          "sha": "b79ec387da593f97d078bd02c7629b1316f3ebd0",
+          "base": "chatgpt/fold-kart-controls-2026-10-07"
+        },
+        {
+          "number": 24,
+          "title": "Lumo Kart: größere Fold-Steuerung und eigene Action-Buttons",
+          "sha": "0ba0422cb673784a3902024bdf73ea33180340f9",
+          "base": "chatgpt/lumo-complete-games-2026-10-07"
+        },
+        {
+          "number": 23,
+          "title": "feat: four creative games, twelve circuits and verified compact Android controls",
+          "sha": "329b10cc20f07caf5ee475de6bd61325a0fa2bb2",
+          "base": "main"
+        },
+        {
+          "number": 22,
+          "title": "Lumo Kart: Video-Referenzgrade für echte Chase-Kamera und Runtime-Grafik",
+          "sha": "06d27c33f2273ecd3d32bb863c62303c7e51ad44",
+          "base": "chatgpt/kart-rival-feedback-2026-10-07"
+        },
+        {
+          "number": 21,
+          "title": "Lumo Kart: sichtbare Rivalen-Items und faire Lichtimpuls-Vorwarnung",
+          "sha": "4df4b637e46c20576b9c13f3a46d512e69a72f08",
+          "base": "chatgpt/kart-himmelsinseln-stage2-2026-10-05"
+        },
+        {
+          "number": 18,
+          "title": "Lumo Kart Stage 2: längere Himmelsinseln, Sternentor, sichere Respawns und Mystery Items",
+          "sha": "89325ecf80106a02d4c74a33ccd704e5240ff3d6",
+          "base": "integration/lumo-kart-opus-tracks-2026-10-05"
+        },
+        {
+          "number": 14,
+          "title": "Lumo Kart: zehn Streckenpakete hochladen, ehrlich prüfen und Erweiterung an Copilot übergeben",
+          "sha": "7351f1756e1910389450e041185b846823a97e92",
+          "base": "codex/opus-vehicle-regression-fix"
+        },
+        {
+          "number": 13,
+          "title": "Opus-Übergabe: fehlende Kart-Geometrie reparieren und Fahrzeugtest absichern",
+          "sha": "6803426876b6f40f3171c63a51dd2c69237e6720",
+          "base": "codex/lumo-holographic-kart-2026-10-03"
+        },
+        {
+          "number": 4,
+          "title": "Lumo Kart: freie Fahrt, vier Welten und vollständige Rennmodi",
+          "sha": "a369da2dc208fcd9d5451c7007d8b1f9e7bf52a1",
+          "base": "codex/lumo-unified-kart-2026-10-03"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart
+00:00 +0: diagnose real launcher identity for two stored student profiles
+[NativeProfileReview] COLLISION_CONFIRMED {"distinctStoredProfiles":2,"learningProfileOwnersDistinct":true,"scene":"puzzle","firstChildKey":"p_bbb6dafc1cc5a599d2c092e22928f3dd","secondChildKey":"p_bbb6dafc1cc5a599d2c092e22928f3dd","profileIdPresent":false,"gradeChangeChildKey":"p_11200e1edb9435368ca9c0b3474c71b1","scope":"In-memory school storage, actual UI tap, production launcher; mocked Android boundary only"}
+00:00 +1: All tests passed!

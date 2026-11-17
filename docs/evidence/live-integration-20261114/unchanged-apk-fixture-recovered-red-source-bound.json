@@ -1,0 +1,10 @@
+{
+  "original_source_commit": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "source_path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+  "test_sha256": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da",
+  "tests_run": 1,
+  "errors": 1,
+  "failures": 0,
+  "log_sha256": "8993642ded00ebcb8f90d9b07d46be2395811f57438d58f0c62e7ffbb077a662",
+  "scope": "Original test extracted byte-exact from Git and executed without replacing the patched working file; traceback source is registered from the original Git bytes rather than the patched on-disk file."
+}

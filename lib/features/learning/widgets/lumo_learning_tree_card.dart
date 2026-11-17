@@ -19,13 +19,13 @@ class LumoTreeProgress {
   List<SkillRecord> get visibleSkills =>
       records.take(10).toList(growable: false);
   String get paintSignature => visibleSkills.map((r) =>
-      '${r.skillId}:${r.correct}:${r.wrong}:${r.currentStreak}:${r.currentMisses}').join('|');
+      '${r.skillId}:${r.correct}:${r.wrong}:${r.assessed.correctStreak}:${r.assessed.wrongStreak}:${r.mastery}').join('|');
 
   static bool isMastered(SkillRecord r) =>
-      r.currentStreak >= 5 && r.mastery >= 75;
+      r.assessed.correctStreak >= 5 && r.mastery >= 75;
   static bool needsReview(SkillRecord r) =>
-      r.currentMisses >= 3 ||
-      (r.attempts >= 3 && r.weaknessScore >= 0.5);
+      r.assessed.wrongStreak >= 3 ||
+      (r.assessed.attempts >= 3 && r.weaknessScore >= 0.5);
   static String status(SkillRecord r) =>
       isMastered(r) ? 'Sicher geübt' : needsReview(r) ? 'Noch üben' : 'Im Aufbau';
 

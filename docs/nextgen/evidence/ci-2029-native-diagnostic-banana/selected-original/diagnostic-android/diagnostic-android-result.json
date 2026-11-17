@@ -1,0 +1,228 @@
+{
+  "schema": "lumo.nextgen.2029.native.diagnostic",
+  "version": 1,
+  "status": "DIAGNOSTIC_ONLY",
+  "mode": "diagnostic-only",
+  "diagnostic_outcome": "FAILED",
+  "scene": "banana",
+  "run_id": "f79d781cf5da48d786d098ec230cbf3f",
+  "started_utc": "2026-11-16T02:14:58Z",
+  "qa_commit": "e04e29437e2c28f40e492191f430cd49ddc456fa",
+  "qa_workflow_run": 43790709991,
+  "apk_source": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "source_build_run": 43785937519,
+  "source_artifact_id": 14191466126,
+  "original_android_job": 133040408296,
+  "original_failed_android_reclassified": false,
+  "original_probe_requirement_satisfied": false,
+  "release_eligible": false,
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "apk_rebuilt_by_probe": false,
+  "probe_sha256": "e59c476d03b19812f46e89f23a105d924b10a9df53ab3f4a7e6c58803a21e62c",
+  "reference_helper_sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2",
+  "learning_helper_sha256": "f96a12f3aebd1803c05f154197a38b680a128c0e7508a36f4f0bb887549fa256",
+  "limitations": [
+    "DIAGNOSTIC_ONLY: neither complete acceptance tour nor release approval is performed.",
+    "Original 2029 source run and Android job remain FAIL, even if this scene completes.",
+    "Each scene has a separate fresh API35 emulator and real UI-created fictional grade-1 profile.",
+    "Native MediaPlayer callbacks are playback evidence, not acoustic word quality or lip-sync proof; videos have no audio track.",
+    "Banane repeat checks four current segments, not native slower speed or actual STT.",
+    "Pattern native proposal is ungraded; this diagnostic never submits the optional Core answer.",
+    "Bridge may report actual emulator performance windows; no physical-device/60fps or mouth/paw-stop claim follows."
+  ],
+  "candidate": {
+    "sha256": "01e0c126930b48cb8089f0671ed9238b5dc6ded903e288ad7c1fda452ed3cf0f",
+    "flutter_source_commit": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+    "versionCode": 2029,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.17",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "9aeb88d1dc52f612ea591c04d7651ccc3eef8b807b33b8b78c2f82b4e4eea303",
+      "bytes": 278589612
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2029,
+    "versionName": "0.13.17",
+    "sha256": "01e0c126930b48cb8089f0671ed9238b5dc6ded903e288ad7c1fda452ed3cf0f",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "phase": "banana",
+  "onboarding": {
+    "profile": {
+      "id": "1794795379574139",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T02:16:19.574139"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0023-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e2f3a408d1c70103e7381356fe829a929c341d6eb945dc1f8252764d7812e82c",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.082,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0063-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "a2f2f8268bccee43aa8e20b3e52cc2c6c9d21695d5a4be29944d05175f67e9ef",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0080-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2c32f0a9b4d218e27626ed7af5b3eb7fc5a98c9b778d6d3b94f22c024203462c",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.184,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0101-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "bc3f0cbdf26afdee442ef36a5f7988df8f2ee024babcd5be37205f8829bd4f2e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.567,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0107-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "547dcaf697ed26cdc61133c56e380410c9a571d9797ddd7f2b9b7293700479c1",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.563,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0113-banana-guided-before-native.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "29b4d9a44134bcf74709a3d3f48fcb674b1f54d641355e910355c3c591dc9625",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.51,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0123-banana-native-entry.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "fe7900783cfd0460a82df48f1b34a87c2fe4bc318de9a85a9e1ce76dd0152ba1"
+    },
+    {
+      "file": "0314-diagnostic-failure-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "5d879a57e73d2156c11042d0af715bd3350b6cae62176ae796bda8b380a31d8c"
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "d13bb7281d1cec8dd0bc64462f9afa3a1749e401e8871027ce02f432c0de401e",
+      "bytes": 1820483,
+      "duration_seconds": 30.414256,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 35.87,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0095-banana-guided-navigation.mp4",
+      "sha256": "f45b6ef5fecd4ff2b3f6cf5e7ee2d8110b0f3dbad84ddcfe703a1c7cd98b43e1",
+      "bytes": 775815,
+      "duration_seconds": 10.273033,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 13.12,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0115-banana-native-entry-and-first-playback.mp4",
+      "sha256": "1d7a41b9b3cbe6ef21c35d83041aa3a53c6a693fa0a37d2965f0b969a0358cf8",
+      "bytes": 2097247,
+      "duration_seconds": 181.704144,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 232.16,
+      "whole_block_within_recording_limit": false
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "error": "New complete native action playback not observed before deadline; last=None",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2029_native_diagnostic.py\", line 272, in run\n    observe_scene(probe)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2029_native_diagnostic.py\", line 245, in observe_scene\n    probe.banana()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 531, in banana\n    initial = self.playback(pid, ())\n              ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 442, in playback\n    return self.wait(\"New complete native action playback\", lambda: action_playback(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 543, in wait\n    raise RuntimeError(description + \" not observed before deadline; last=\" + repr(last)[:1200])\nRuntimeError: New complete native action playback not observed before deadline; last=None\n",
+  "finished_utc": "2026-11-16T02:21:30Z"
+}

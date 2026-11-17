@@ -8,10 +8,12 @@ No game completion, score, unlock, XML or touch target is injected into the app.
 from __future__ import annotations
 
 import argparse
+from collections import deque
 import csv
 import hashlib
 from http.client import RemoteDisconnected
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -23,6 +25,7 @@ import unicodedata
 import xml.etree.ElementTree as ET
 
 from PIL import Image, ImageChops
+from flutter_surface_readiness import capture_when_ready
 
 # Keep screenshot recognition from oversubscribing the same software-rendered
 # emulator host. This changes only the independent OCR reader, not the app.
@@ -31,7 +34,7 @@ os.environ.setdefault('OMP_THREAD_LIMIT','1')
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts' / 'probes'))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools' / 'android_qa'))
 from rooted_emulator import ensure_rooted_emulator
-from native_ocr_tiles import read_tiled_word
+from native_ocr_tiles import observed_matches, read_tiled_word
 from native_surface_readiness import inspect_surface, target_observation
 import pr207_android_smoke as base
 import pr207_android_ui_probe as live
@@ -95,6 +98,11 @@ def capture(out: Path, name: str, timeout: float | None = None) -> dict:
             raise RuntimeError('screencap stayed incomplete after 4 transfers')
     print('[AndroidCapture]', result['file'], flush=True)
     return result
+
+
+def capture_flutter_ready(out: Path, name: str, *, timeout: float = 30) -> dict:
+    """Capture a real Flutter page only after its pixels finish rendering."""
+    return capture_when_ready(out, name, capture, timeout=timeout)
 
 
 def device_rotation(out: Path, tag: str, quarter_turns: int) -> None:
@@ -175,16 +183,21 @@ def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
 
 
 def flutter_tap(out: Path, label: str, tag: str, *,
-                scroll_attempts: int = 12, direction_order=(-1, 1)) -> None:
+                scroll_attempts: int = 12, direction_order=(-1, 1),
+                min_visible_height_px: int = 1) -> None:
     # Search both ends of the actual responsive scroll view. Named controls are
     # tapped only when their enabled live accessibility bounds have been read.
     if type(scroll_attempts) is not int or not 1 <= scroll_attempts <= 64:
         raise ValueError('Live control search requires a bounded scroll budget')
     if direction_order not in ((-1, 1), (1, -1)):
         raise ValueError('Live control search requires known scroll directions')
+    if not isinstance(min_visible_height_px, int) or not 1 <= min_visible_height_px <= 200:
+        raise ValueError('Live control requires a bounded minimum visible height')
     settle_waits = 0
     for direction in direction_order:
-        for attempt in range(scroll_attempts):
+        # N allowed scroll gestures need N+1 observations: inspect the view
+        # reached by the final gesture before declaring the target missing.
+        for attempt in range(scroll_attempts + 1):
             nodes = live.live_nodes(out, f'{tag}-{direction}-{attempt}')
             if recover_launcher_dialog(out, nodes, tag):
                 continue
@@ -197,7 +210,11 @@ def flutter_tap(out: Path, label: str, tag: str, *,
                 if len(bounds) != 4 or node.get('enabled') == 'false':
                     continue
                 x0, y0, x1, y1 = bounds
-                if x1 > x0 and y1 > y0:
+                # UiAutomator can mark a clipped 1px strip as visible and
+                # clickable. A center tap on that strip does NOT hit Flutter's
+                # real 48dp button. Do not mistake it for a game launch.
+                # Scroll until enough of the actual tappable rectangle is seen.
+                if x1 > x0 and y1-y0 >= min_visible_height_px:
                     choices.append(((x1-x0)*(y1-y0), x0, y0, x1, y1,
                                     node.get('clickable') == 'true'))
             if choices:
@@ -216,6 +233,8 @@ def flutter_tap(out: Path, label: str, tag: str, *,
                 base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
                 time.sleep(2)
                 return
+            if attempt == scroll_attempts:
+                break
             # The assistant panel occupies the bottom of the window. Scroll
             # inside the actual live content viewport, rather than starting
             # a window-relative swipe on that fixed overlay or the side rail.
@@ -242,16 +261,132 @@ def flutter_tap(out: Path, label: str, tag: str, *,
     raise RuntimeError('No enabled live Flutter control: '+label)
 
 
+def gold_caption_boxes(image: Image.Image) -> list[list[int]]:
+    """Find observed gold surfaces throughout a frame, without control coordinates."""
+    width, height = image.size
+    # Bound the connected-component scan even on large captured displays.
+    reduction = max(4, math.ceil(max(width, height) / 600))
+    small = image.resize((math.ceil(width / reduction), math.ceil(height / reduction)),
+                         Image.Resampling.NEAREST)
+    red, green, blue = small.split()
+    mask = ImageChops.multiply(red.point(lambda value: 255 if value >= 140 else 0),
+                              green.point(lambda value: 255 if value >= 80 else 0))
+    mask = ImageChops.multiply(mask, ImageChops.subtract(red, green).point(
+        lambda value: 255 if value >= 15 else 0))
+    mask = ImageChops.multiply(mask, ImageChops.subtract(green, blue).point(
+        lambda value: 255 if value >= 25 else 0))
+    pixels = bytearray(mask.tobytes())
+    small_width, small_height = small.size
+    sx, sy = width / small_width, height / small_height
+    found = []
+    for index in range(len(pixels)):
+        if not pixels[index]:
+            continue
+        pixels[index] = 0
+        queue = deque([index])
+        x0 = x1 = index % small_width
+        y0 = y1 = index // small_width
+        area = 0
+        while queue:
+            cell = queue.popleft()
+            x, y = cell % small_width, cell // small_width
+            x0, x1, y0, y1 = min(x0, x), max(x1, x), min(y0, y), max(y1, y)
+            area += 1
+            for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                if 0 <= nx < small_width and 0 <= ny < small_height:
+                    neighbour = ny * small_width + nx
+                    if pixels[neighbour]:
+                        pixels[neighbour] = 0
+                        queue.append(neighbour)
+        component_width, component_height = x1 - x0 + 1, y1 - y0 + 1
+        if (component_width * sx < 32 or component_height * sy < 20
+                or component_width * sx < component_height * sy
+                or component_height * sy > height / 3
+                or area / (component_width * component_height) < .3):
+            continue
+        box = [max(0, math.floor(x0 * sx) - 8), max(0, math.floor(y0 * sy) - 8),
+               min(width, math.ceil((x1 + 1) * sx) + 8),
+               min(height, math.ceil((y1 + 1) * sy) + 8)]
+        found.append((area, box))
+    # Every observed candidate must be read. The shared deadline fails closed
+    # instead of hiding a later, spatially separate equal caption.
+    return [box for _, box in sorted(found, reverse=True)]
+
+
+def read_component_caption(source: Path, out: Path, tag: str, wanted: str, command,
+                           *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+    """Read actual text blocks missed by whole-frame sparse-text segmentation."""
+    started = clock()
+    deadline = started + timeout
+    before = digest(source)
+    with Image.open(source) as original:
+        image = original.convert('RGB')
+    evidence = {'status': 'READING', 'scope': 'Independent OCR; no gameplay or visibility PASS',
+                'source': source.name, 'source_sha256': before, 'surface': list(image.size),
+                'wanted': wanted, 'confidence_minimum': 15, 'timeout_seconds': timeout,
+                'components': [], 'matches': []}
+    journal = out / (tag + '-ocr-components.json')
+    try:
+        if not wanted or timeout <= 0:
+            raise ValueError('An exact requested caption and positive OCR deadline are required')
+        boxes = gold_caption_boxes(image)
+        evidence['observed_component_boxes'] = boxes
+        for index, box in enumerate(boxes):
+            remaining = deadline - clock()
+            if remaining <= 0:
+                raise TimeoutError('Screenshot component OCR deadline exceeded')
+            variant = 'gold-component-' + str(index)
+            prefix = out / (tag + '-ocr-' + variant)
+            # Crop only an observed colour component. Recognition sees its
+            # original RGB pixels; the requested caption is never painted in.
+            image.crop(box).save(prefix.with_suffix('.png'))
+            attempt = {'index': index, 'bounds': box, 'image': prefix.with_suffix('.png').name,
+                       'tsv': prefix.with_suffix('.tsv').name, 'psm': 6, 'scale': 1}
+            evidence['components'].append(attempt)
+            remaining = deadline - clock()
+            if remaining <= 0:
+                raise TimeoutError('Screenshot component OCR deadline exceeded')
+            attempt['output'] = command('tesseract', str(prefix.with_suffix('.png')), str(prefix),
+                                        '--psm', '6', '-l', 'deu+eng', 'tsv',
+                                        timeout=min(10, remaining))
+            with prefix.with_suffix('.tsv').open() as stream:
+                matches = observed_matches(csv.DictReader(stream, delimiter='\t', quoting=csv.QUOTE_NONE),
+                                           tuple(box), 1, image.size, wanted, normalized, variant)
+            attempt['matches'] = matches
+            if clock() >= deadline:
+                raise TimeoutError('Screenshot component OCR deadline exceeded')
+            if matches:
+                evidence['matches'].extend(matches)
+        if digest(source) != before:
+            raise RuntimeError('Current screenshot changed during OCR')
+        evidence.update(status='READ', matched=bool(evidence['matches']))
+        return evidence['matches']
+    except Exception as error:
+        evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        evidence['elapsed_seconds'] = round(clock() - started, 6)
+        journal.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + '\n')
+
+
+
 def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None = None,
-                timeout: float = 225, exact: bool = False) -> list[dict]:
+                timeout: float = 225, exact: bool = False, *,
+                all_caption_regions: bool = False,
+                reject_captions: tuple[str, ...] = ()) -> list[dict]:
+    if all_caption_regions and (not wanted or not exact):
+        raise ValueError('Complete caption-region sampling requires an exact caption')
     deadline = time.monotonic() + timeout
     if source_path is None:
         snapshot = capture(out, tag)
         source = out / snapshot['file']
     else:
         source = source_path
-    image = Image.open(source).convert('RGB')
+    source_before = digest(source)
+    with Image.open(source) as original:
+        image = original.convert('RGB')
     result = []
+    rejected_captions = {normalized(caption) for caption in reject_captions if caption}
     # White UI letters on dark glass can disappear among the detailed 3D
     # background. A second read separates their contrast, without changing
     # any screenshot used as evidence or inventing a control coordinate.
@@ -285,6 +420,19 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     variants = [('contrast',contrast,'deu+eng',2),('raw',image,'deu+eng',2),
                 ('white-text',white_text,'deu+eng',2),('white-latin',white_text,'eng',2),
                 ('navy-latin',navy_text,'eng',2),('navy-latin-1x',navy_text,'eng',1)]
+    # Actual a31 learning frames use dark teal (#1d3540) on the gold action.
+    # Its green/red difference is outside the Kart navy mask. Read those pixels
+    # across the entire unchanged frame, after all existing variants; do not
+    # assume a button region or substitute the requested text for OCR output.
+    # Retain antialiased edges between teal ink and gold, not just solid core
+    # pixels: a core-only mask fragmented these actual 40 px letters.
+    teal_dark = red.point(lambda value: 255 if 18 <= value <= 110 else 0)
+    teal_blue = blue.point(lambda value: 255 if 40 <= value <= 110 else 0)
+    teal_balance = ImageChops.difference(green, blue).point(
+        lambda value: 255 if value <= 65 else 0)
+    teal_ink = ImageChops.multiply(ImageChops.multiply(teal_dark, teal_blue), teal_balance)
+    if teal_ink.getbbox():
+        variants.append(('teal-text-1x', ImageChops.invert(teal_ink), 'deu+eng', 1))
     for variant, pixels, language, scale in variants:
         remaining = deadline - time.monotonic()
         if remaining <= 0:
@@ -312,7 +460,8 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
             for start in range(len(words)):
                 for end in range(start+1,min(len(words),start+8)+1):
                     span=words[start:end]
-                    if normalized(' '.join(word['text'] for word in span)) == wanted:
+                    span_text = normalized(' '.join(word['text'] for word in span))
+                    if span_text == wanted or span_text in rejected_captions:
                         spans.append(span)
             for span in spans:
                 x0=min(int(word['left']) for word in span)/scale
@@ -321,11 +470,47 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
                 y1=max(int(word['top'])+int(word['height']) for word in span)/scale
                 result.append({'text':' '.join(word['text'] for word in span),
                                'bounds':[x0,y0,x1,y1],'variant':variant})
-        if wanted and any(wanted == normalized(line['text']) if exact
-                          else wanted in normalized(line['text']) for line in result):
+        if rejected_captions:
+            # Only an explicitly opted-in, actually observed complete caption
+            # rejects this frame. Preserve the existing source/time contract
+            # before recording negative evidence; this never accepts a return.
+            rejected = [line for line in result
+                        if normalized(line['text']) in rejected_captions and
+                        0 <= line['bounds'][0] < line['bounds'][2] <= image.width and
+                        0 <= line['bounds'][1] < line['bounds'][3] <= image.height]
+            if rejected:
+                if digest(source) != source_before:
+                    raise RuntimeError('Current screenshot changed during OCR')
+                if time.monotonic() >= deadline:
+                    raise TimeoutError('Current native screenshot OCR deadline exceeded')
+                (out / (tag + '-ocr.json')).write_text(
+                    json.dumps(result, indent=2, ensure_ascii=False))
+                (out / (tag + '-ocr-rejected.json')).write_text(json.dumps({
+                    'status': 'REJECTED_FRAME', 'source': source.name,
+                    'source_sha256': source_before, 'surface': list(image.size),
+                    'variant': variant, 'observed_captions': rejected,
+                    'scope': 'Negative current-frame evidence only; no input or positive acceptance',
+                }, indent=2, ensure_ascii=False) + '\n')
+                raise RuntimeError('Rejected captured Flutter frame: observed caption ' +
+                                   rejected[0]['text'])
+        if not all_caption_regions and wanted and any(
+                wanted == normalized(line['text']) if exact
+                else wanted in normalized(line['text']) for line in result):
             break
-    if wanted and not any(wanted == normalized(line['text']) if exact
-                          else wanted in normalized(line['text']) for line in result):
+    if wanted and (all_caption_regions or not any(
+            wanted == normalized(line['text']) if exact
+            else wanted in normalized(line['text']) for line in result)):
+        # Read every observed gold component, including when whole-frame OCR
+        # found an instruction containing the requested action word. Keep all
+        # distinct physical matches for the caller's ambiguity/role checks.
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError('Current native screenshot OCR deadline exceeded')
+        result.extend(read_component_caption(source, out, tag, wanted, base.command,
+                                             timeout=min(15, remaining)))
+    if not all_caption_regions and wanted and not any(
+            wanted == normalized(line['text']) if exact
+            else wanted in normalized(line['text']) for line in result):
         # The API 36 cover frame has a visible empty ITEM caption which all four
         # whole-frame variants miss among adjacent 3D edges. Read the same full
         # screenshot through systematic overlapping tiles, retaining actual
@@ -335,20 +520,80 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
             raise TimeoutError('Current native screenshot OCR deadline exceeded')
         result.extend(read_tiled_word(source, out, tag, wanted, normalized, base.command,
                                      timeout=min(45, remaining)))
+    if digest(source) != source_before:
+        raise RuntimeError('Current screenshot changed during OCR')
+    if time.monotonic() >= deadline:
+        raise TimeoutError('Current native screenshot OCR deadline exceeded')
     (out/(tag+'-ocr.json')).write_text(json.dumps(result,indent=2,ensure_ascii=False))
     return result
 
 
+def standalone_caption_target(lines: list[dict], label: str, *, pixels: list[int]) -> tuple[dict | None, dict]:
+    """Separate a complete caption from its word span inside another OCR line."""
+    wanted = normalized(label)
+    if (len(pixels) != 2 or any(type(value) is not int or value <= 0 for value in pixels)):
+        raise RuntimeError('Invalid observed standalone-caption dimensions')
+
+    def rectangle(row):
+        box = row.get('bounds')
+        if (not isinstance(box, (list, tuple)) or len(box) != 4
+                or any(isinstance(value, bool) or not isinstance(value, (int, float))
+                       or not math.isfinite(value) for value in box)
+                or not 0 <= box[0] < box[2] <= pixels[0]
+                or not 0 <= box[1] < box[3] <= pixels[1]):
+            raise RuntimeError('Invalid observed standalone-caption bounds')
+        return box
+
+    independent, embedded = [], []
+    for row in lines:
+        if normalized(row['text']) != wanted:
+            continue
+        box = rectangle(row)
+        contexts = []
+        for other in lines:
+            text = normalized(other['text'])
+            if (other.get('variant') != row.get('variant') or text == wanted
+                    or wanted not in text):
+                continue
+            outer = rectangle(other)
+            if outer[0] <= box[0] and outer[1] <= box[1] and outer[2] >= box[2] and outer[3] >= box[3]:
+                contexts.append(other)
+        if contexts:
+            embedded.append({'caption': row, 'containing_lines': contexts})
+        else:
+            independent.append(row)
+    selection = {'policy': 'exact caption outside a longer same-variant OCR line',
+                 'independent': independent, 'embedded_word_spans': embedded}
+    if not independent:
+        return None, selection
+    for index, left in enumerate(independent):
+        a = rectangle(left)
+        for right in independent[index + 1:]:
+            b = rectangle(right)
+            overlap = max(0, min(a[2], b[2]) - max(a[0], b[0])) * max(0, min(a[3], b[3]) - max(a[1], b[1]))
+            union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - overlap
+            if overlap / union < .6:
+                raise RuntimeError('Ambiguous distinct standalone caption controls: ' + label)
+    # All surviving observations refer to the same physical caption. Choose a
+    # deterministic original rectangle, independent of the OCR result order.
+    selected = min(independent, key=lambda row: tuple(row['bounds']))
+    selection['selected'] = selected
+    return selected, selection
+
+
 def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
-               exact: bool = False, missing_caption=None) -> None:
+               exact: bool = False, missing_caption=None, *,
+               orientation: str = 'landscape', standalone_caption: bool = False) -> None:
     """Wait for current full-surface evidence and two observed targets, then press once."""
+    if standalone_caption and not exact:
+        raise ValueError('Standalone caption selection requires an exact caption')
     wanted = normalized(label)
     anchors = {'rucksack': 'right-toolbar', 'neuespuzzlebeginnen': 'center-panel',
                'gespeichertespuzzlefortsetzen': 'center-panel'}
     started = time.monotonic()
     deadline = started + timeout
     evidence = {'status': 'WAITING', 'label': label, 'timeout_seconds': timeout,
-                'exact_caption_required': exact,
+                'exact_caption_required': exact, 'orientation_policy': orientation,
                 'scope': 'Observed touch prerequisites; post-action assertions still required',
                 'frames': []}
     journal = out / (tag + '-surface-readiness.json')
@@ -361,7 +606,7 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
             attempt += 1
             snapshot = capture(out, name, timeout=deadline - time.monotonic())
             source = out / snapshot['file']
-            frame = inspect_surface(source)
+            frame = inspect_surface(source, orientation=orientation)
             frame['captured_after_seconds'] = round(time.monotonic() - started, 6)
             evidence['frames'].append(frame)
             if not frame['acceptable_for_target_sampling']:
@@ -372,11 +617,18 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
             remaining = deadline - time.monotonic()
             if remaining <= 0:
                 break
-            lines = image_lines(out, name, wanted, source_path=source, timeout=remaining,
-                                exact=exact)
-            matches = [line for line in lines
-                       if (wanted == normalized(line['text']) if exact
-                           else wanted in normalized(line['text']))]
+            if standalone_caption:
+                lines = image_lines(out, name, wanted, source_path=source, timeout=remaining,
+                                    exact=True, all_caption_regions=True)
+                selected, selection = standalone_caption_target(lines, label, pixels=frame['pixels'])
+                frame['caption_selection'] = selection
+                matches = [selected] if selected is not None else []
+            else:
+                lines = image_lines(out, name, wanted, source_path=source, timeout=remaining,
+                                    exact=exact)
+                matches = [line for line in lines
+                           if (wanted == normalized(line['text']) if exact
+                               else wanted in normalized(line['text']))]
             if not matches:
                 frame['reasons'].append('actual requested caption not observed')
                 previous = None
@@ -420,11 +672,17 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
 
 
 def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool = False,
-                exact: bool = False) -> None:
+                exact: bool = False, *, orientation: str = 'landscape',
+                standalone_caption: bool = False) -> None:
     # All native presses need this guard, including Puzzle's previously
     # settle=False first start. Keep the existing keyword for callers.
     if tap:
-        return native_tap(out, label, tag, exact=exact)
+        if standalone_caption:
+            return native_tap(out, label, tag, exact=exact, orientation=orientation,
+                              standalone_caption=True)
+        return native_tap(out, label, tag, exact=exact, orientation=orientation)
+    if standalone_caption:
+        raise ValueError('Standalone caption selection is reserved for an exact press')
     wanted = normalized(label)
     for attempt in range(10):
         lines = image_lines(out, f'{tag}-{attempt}', wanted, exact=exact)
@@ -484,14 +742,15 @@ def enter(out: Path, title: str, header: str, tag: str, launch_label: str = '') 
     native_text(out, header, tag+'-header')
 
 
-def leave(out: Path, tag: str, already_menu: bool = False, return_label: str = '') -> None:
+def leave(out: Path, tag: str, already_menu: bool = False, return_label: str = '', *,
+          orientation: str = 'landscape') -> None:
     if not already_menu:
         base.adb('shell','input','keyevent','KEYCODE_BACK')
         time.sleep(1)
     if return_label:
-        native_text(out,return_label,tag+'-pause',tap=True,exact=True)
+        native_text(out,return_label,tag+'-pause',tap=True,exact=True,orientation=orientation)
     else:
-        native_text(out,'Zur Spielewelt',tag+'-pause',tap=True)
+        native_text(out,'Zur Spielewelt',tag+'-pause',tap=True,orientation=orientation)
     for _ in range(15):
         if not base.adb('shell','pidof',PACKAGE+':lumo_game',check=False):
             break
@@ -638,13 +897,24 @@ def onboard(out: Path) -> dict:
         time.sleep(1)
     else:
         raise RuntimeError('Saved full profile name missing from actual home UI')
-    home = capture(out,'07_home_after_onboarding')
-    base.tap_label(out,'Spiele','home-to-games')
-    games = capture(out,'08_games_after_navigation')
-    if not any(s in base.accessible_text(live.live_nodes(out,'onboard-games'))
-               for s in ('Lumo Cards','Lumo Kart','Spielewelt')):
-        raise RuntimeError('Actual games entry missing after onboarding')
-    return {'status':'PASS','profile_name':'LumoTest','captures':[home,games]}
+    home = capture_flutter_ready(out,'07_home_after_onboarding')
+    # One accessibility read 2 s after the tap missed a still-building games
+    # page (run 38909874763, same app that passed in run 38892673870). Wait
+    # boundedly for a real games entry; the current navigation says "Spielen".
+    for label in ('Spiele', 'Spielen'):
+        try:
+            base.tap_label(out, label, 'home-to-games' + ('' if label == 'Spiele' else '-spielen'))
+        except RuntimeError:
+            continue
+        for attempt in range(10):
+            text = base.accessible_text(live.live_nodes(out, f'onboard-games-{label}-{attempt}'))
+            if any(s in text for s in ('Lumo Cards','Lumo Kart','Spielewelt')):
+                games = capture(out,'08_games_after_navigation')
+                return {'status':'PASS','profile_name':'LumoTest','captures':[home,games],
+                        'games_label':label}
+            time.sleep(1)
+    capture(out,'08_games_after_navigation')
+    raise RuntimeError('Actual games entry missing after onboarding')
 
 
 def main() -> int:

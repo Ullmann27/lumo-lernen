@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
+import 'package:lumo_lernen/core/task_quality_guard.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
+import 'package:lumo_lernen/features/learning/widgets/interactive_task_workspace.dart';
 
 void main() {
   for (final target in [
@@ -26,9 +28,13 @@ void main() {
         if (legacy.answer == 'Oval') break;
       }
       expect(legacy.answer, 'Oval');
+      expect(const TaskQualityGuard().problems(legacy), isEmpty);
+      expect(const LegacyLumoTaskAdapter().qualityCheckedTask(legacy),
+          same(legacy));
       final task = const LegacyLumoTaskAdapter()
           .toTaskInstance(task: legacy, childId: 'synthetic', difficulty: 1);
       final answers = <bool>[];
+      final interactions = <TaskWorkspaceInteraction>[];
       const boundary = ValueKey('actual-shapes-runtime');
       await tester.pumpWidget(MaterialApp(
           home: MediaQuery(
@@ -42,13 +48,36 @@ void main() {
                           padding: const EdgeInsets.all(16),
                           child: AdaptiveTaskRenderer(
                               task: task,
+                              onInteraction: interactions.add,
                               onAnswered: (a) => answers.add(a.correct))))))));
       await tester.pumpAndSettle();
-      expect(find.byKey(const ValueKey('shape-help-Oval')), findsOneWidget);
+      expect(find.byType(InteractiveTaskWorkspace), findsOneWidget);
+      // The current workspace renders one explorable picture per option.
+      // Its focus controls must not select or evaluate an answer card.
+      for (var i = 0; i < legacy.choices.length; i++) {
+        final picture = find.byKey(ValueKey('shape-explore-$i'));
+        expect(picture, findsOneWidget);
+        final semantics = tester.widget<Semantics>(picture).properties;
+        expect(semantics.label, '${legacy.choices[i]}, Form untersuchen');
+        expect(semantics.selected, isFalse);
+        expect(semantics.enabled, isTrue);
+        expect(find.descendant(of: picture, matching: find.byType(CustomPaint)),
+            findsOneWidget);
+        final size = tester.getSize(picture);
+        expect(size.width, greaterThanOrEqualTo(48));
+        expect(size.height, greaterThanOrEqualTo(48));
+      }
+      expect(find.byKey(ValueKey('shape-explore-${legacy.choices.length}')),
+          findsNothing);
       for (final shape in ['Kreis', 'Dreieck', 'Quadrat', 'Rechteck', 'Oval']) {
-        expect(find.byKey(ValueKey('shape-help-$shape')),
+        expect(
+            find.byWidgetPredicate((widget) =>
+                widget is Semantics &&
+                widget.properties.label == '$shape, Form untersuchen'),
             legacy.choices.contains(shape) ? findsOneWidget : findsNothing);
       }
+      expect(find.text(legacy.explanation), findsNothing);
+      expect(answers, isEmpty);
       expect(tester.takeException(), isNull);
       final folder = Platform.environment['LUMO_SHAPE_CAPTURES'];
       if (folder != null) {
@@ -63,6 +92,17 @@ void main() {
           image.dispose();
         });
       }
+      final ovalIndex = legacy.choices.indexOf('Oval');
+      final ovalPicture = find.byKey(ValueKey('shape-explore-$ovalIndex'));
+      await tester.ensureVisible(ovalPicture);
+      await tester.tap(ovalPicture);
+      await tester.pumpAndSettle();
+      expect(tester.widget<Semantics>(ovalPicture).properties.selected, isTrue);
+      expect(interactions.last.action, 'focusShape');
+      expect(interactions.last.objectId, 'shape-$ovalIndex');
+      expect(interactions.last.taskId, task.taskInstanceId);
+      expect(answers, isEmpty,
+          reason: 'Looking at the right shape is not an answer.');
       final wrong =
           find.text(legacy.choices.firstWhere((x) => x != legacy.answer)).last;
       await tester.ensureVisible(wrong);

@@ -18,6 +18,8 @@ import 'package:lumo_lernen/domain/writing/writing_progress.dart';
 import 'package:lumo_lernen/features/writing/lumo_writing_word_coach_screen.dart';
 import 'package:lumo_lernen/features/writing/writing_engine.dart';
 
+import 'helpers/native_storage_fixture.dart';
+
 class _BlockedWallet extends RewardWalletRepository {
   bool reject = false;
   Completer<void>? gate;
@@ -79,8 +81,8 @@ Future<LumoAppState> _app({
     learningProfile: LearningProfileEngine(repository: profile),
   );
   app.updateSettings(const AppSettings(voiceEnabled: false));
-  await app.hydrateFromWallet();
-  await app.loadLearningProfile();
+  await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+  await app.loadLearningProfile().timeout(const Duration(seconds: 15));
   return app;
 }
 
@@ -330,7 +332,7 @@ void main() {
   testWidgets(
       'failed letter wallet write blocks touch and back, Retry saves original XP once',
       (tester) async {
-    final wallet = _BlockedWallet();
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
     final app = await tester.runAsync(() => _app(wallet: wallet));
     await _open(tester, app!, [_hi]);
     wallet.reject = true;
@@ -363,7 +365,7 @@ void main() {
   testWidgets(
       'word profile failure waits for Retry before finish without double Daily or wallet',
       (tester) async {
-    final profile = _BlockedProfile();
+    final profile = await nativeStorageFixture(tester, _BlockedProfile.new);
     final app = await tester.runAsync(() => _app(profile: profile));
     await _open(tester, app!, [_hi]);
     await _letter(tester, 'H');
@@ -390,7 +392,7 @@ void main() {
   testWidgets(
       'unmount during final reward completes accepted word storage without session bonus',
       (tester) async {
-    final wallet = _BlockedWallet();
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
     final app = await tester.runAsync(() => _app(wallet: wallet));
     await _open(tester, app!, [_hi]);
     await _letter(tester, 'H');

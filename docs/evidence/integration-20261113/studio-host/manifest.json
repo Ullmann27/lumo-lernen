@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "collected_at": "2026-11-13T12:59:14.703840+00:00",
+  "host_revision": "a8e09123805b2bf30706c8dd1914b928ae6b24ca",
+  "integration_base": "993fa4a2415690cabfe71c37405077e103429e91",
+  "validation_tree": "993fa4 integration base plus the six exact published host files",
+  "files": [
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "git_blob": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "sha256": "eafc477d639b59a1d5215a8934c1088e4563d84aaffc2795e57b7299085632ed",
+      "bytes": 7307
+    },
+    {
+      "path": "lib/features/learning/adapters/legacy_lumo_task_adapter.dart",
+      "git_blob": "f23b67f5b7c34c4d8518cbced2dd56f97d7ddb41",
+      "sha256": "e7f6455b679352b71025266e4c616647ebbd8510db2014e73ce56a6a37e46786",
+      "bytes": 41255
+    },
+    {
+      "path": "lib/features/learning/renderers/lumo_premium_visuals.dart",
+      "git_blob": "13c16636cd84dd809d7539fdc12635dba3e66bd3",
+      "sha256": "138735f766360109b12b05b860ac8e608064c767e23f4c34febde4065504d478",
+      "bytes": 61732
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "git_blob": "d57bb538f745aca436fcd9bc547e692f055e82fa",
+      "sha256": "7930a0eec8566bbd85c509f09cd15a9508b5781ce09e53a158d43e26c4567953",
+      "bytes": 16810
+    },
+    {
+      "path": "scripts/tests/test_studio_learning_contract.py",
+      "git_blob": "bab8e5f3fbfcb88793a6a29212978b81b33c86e9",
+      "sha256": "20e76daadfdb7a38d6e9cf8e559140dbc231606e23cd7559b56fb1e4788d9c0e",
+      "bytes": 2578
+    },
+    {
+      "path": "test/tutoring/native_sharing_activity_test.dart",
+      "git_blob": "0d30a6e25d584699aa6f97272ce64e4a2872ede6",
+      "sha256": "7fbd7e261329f89bd6811c2b0c4674306f23458ac35f9f2158c320b45e12052c",
+      "bytes": 9680
+    }
+  ],
+  "checks": {
+    "flutter": {
+      "passed": 91,
+      "failed": 0,
+      "skipped": 0,
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/tutoring/native_sharing_activity_test.dart",
+        "test/tutoring/native_learning_launch_test.dart",
+        "test/visual_payload_data_test.dart",
+        "test/task_visual_fallback_test.dart",
+        "test/premium_visual_renderer_test.dart",
+        "test/assisted_learning_evidence_test.dart",
+        "test/learning_dna_evidence_test.dart"
+      ],
+      "log": "flutter-targeted.log"
+    },
+    "android_host_generation": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_studio_learning_contract.py",
+        "-v"
+      ],
+      "log": "python-host-generation.log"
+    },
+    "git_diff_check": "passed",
+    "serialized_contract": {
+      "host_test": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "cases": 5,
+        "path": "test/tutoring/native_learning_serialized_contract_test.dart",
+        "source": {
+          "bytes": 12725,
+          "sha256": "01161e29f6864382deb32c081f8b8352fd5a56231679a8de5b8cd912e67f0e10",
+          "git_blob": "9c93f8aeca66991d43e79a699c95330601e110a7"
+        },
+        "log": "serialized-contract.log"
+      },
+      "native_test": {
+        "cases": 5,
+        "checks": 135,
+        "path": "scripts/tests/learning_host_payload_regression.gd",
+        "sha256": "53b39da402746d7998e707e07f2ff7bf4803c0c332be5fd0dbd9dc48ad4b7eea",
+        "git_blob": "c2ab1d716446820414bd8ebf286325b548b5154a",
+        "logs": [
+          "learning_host_payload_regression.log",
+          "learning_host_payload_fresh_export.log"
+        ],
+        "headless_runner_gate": "LearningHostPayload"
+      },
+      "fixture": {
+        "host_path": "test/fixtures/learning_host_payloads.json",
+        "native_path": "scripts/tests/fixtures/learning_host_payloads.json",
+        "evidence_path": "host-learning-payloads.json",
+        "bytes": 4951,
+        "sha256": "df186ff311e5775342793cbfd41911d9d4b5ca25a7b7083c19b8040448788264",
+        "git_blob": "f727299c8ec9194e8815c276a421215e354cf730"
+      },
+      "boundary": "Actual Dart launcher and StandardMethodCodec, then jsonEncode models Kotlin JSONObject(learning); Godot parses the actual exported JSON bytes. No Android IPC/JNI or Kotlin runtime execution is claimed.",
+      "identity": "Caller task ID, seed, prompt, answer unchanged; actual saved mission task hash reloaded and deduplicated; counts 0 after return, 1 after answer, 1 after replay.",
+      "data": "Deterministic synthetic profiles/tasks only."
+    }
+  },
+  "native_dependency": {
+    "published_candidate": "cfa9f6657a2fda218f8752dbd21e4cfb49045a70",
+    "current_pin_and_visual_receipt": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+    "candidate_acceptance": "pending independent native validation"
+  },
+  "limits": [
+    "This is host unit/widget and generated-source evidence, not an Android JVM build, Android IPC or emulator acceptance.",
+    "The native source pin and visual receipt remain unchanged.",
+    "Cross-runtime serialization is now covered by the shared fixture; actual Kotlin/Android IPC is not exercised by this evidence."
+  ],
+  "log_sha256": {
+    "python-host-generation.log": "60ff67e7b6d431a1f4fb662be3bfa9717d90277cfbd31a1bf3dbf0315e2322f5",
+    "serialized-contract.log": "52edefe27d3738072441230e03668df2378404e00dc8c57d372ada09d61d506c",
+    "flutter-targeted.log": "20da4743d4ffd4077cfbc381dbd4a7862d284e5f3b2a5b68eba7820da1687720",
+    "learning_host_payload_regression.log": "84c94aa24545aaa9db30624e75acf0a762ab94bbe625dc27efedc72eaae894d2",
+    "learning_host_payload_fresh_export.log": "84c94aa24545aaa9db30624e75acf0a762ab94bbe625dc27efedc72eaae894d2"
+  }
+}

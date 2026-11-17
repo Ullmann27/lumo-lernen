@@ -1,0 +1,22 @@
+{
+  "scope": "Completed actual Math original RED/current Dart GREEN plus successful strict pub resolution only",
+  "source_head": "bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7",
+  "source_tree": "e2db771277ed3d181ed34410a7a736252bcdf0df",
+  "summary": {
+    "path": "summary.json",
+    "sha256": "bc4b3bd2c41b2de2c863c48128543f3f2f61afdd540a43ad12c57cb13dbe3081"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "sha256": "833feced141b4170d5448dcf51bd1c86e6e13bddeebe139fca7b8dea0fc0e03a"
+  },
+  "archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 628446,
+    "sha256": "31346fa30e0889cae4caec2be7fc858cdebd104a089fe0ed20d38b204b3dff56"
+  },
+  "archive_binding_sha256": "0249dbdba0463d3f2006ea2c363c3169e58c4d9e88d82ad7aee7e1edcb78f4c0",
+  "all_original_bytes_preserved": true,
+  "product_sources_and_git_unchanged": true,
+  "tests_repeated_for_packaging": false
+}

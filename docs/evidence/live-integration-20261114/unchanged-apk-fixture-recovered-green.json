@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "scripts.tests.test_verify_unchanged_apk_diagnostic",
+    "scripts.tests.test_unchanged_apk_followup",
+    "scripts.tests.test_unchanged_creative_diagnostic",
+    "tools.android_qa.tests.test_preserved_source_proof",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 0.5984177589416504,
+  "source": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "test_sha256": "0c3259f54e16377a4ea70f079d57479d4fa43c809ffbfe0ef6365f4dd1ccb533",
+  "verifier_sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4",
+  "log_sha256": "221c988cdaaf83e8ed0fb8f65b5ce60d9f5c12cf4c4ddd692c8d09fa30e36238",
+  "scope": "Re-executed after environment recovery; previous local raw logs lost."
+}

@@ -1,0 +1,91 @@
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=play; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=play; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=play; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: example.retained.host; distribution=family; 3D bridge connected
+Android host prepared: example.retained.host; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+[LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+test_duplicate_unsafe_missing_and_additional_modules_are_rejected (scripts.tests.test_verify_play_bundle.ArchiveContracts.test_duplicate_unsafe_missing_and_additional_modules_are_rejected) ... ok
+test_synthetic_16k_elf_and_wrong_arch_alignment_or_bounds (scripts.tests.test_verify_play_bundle.ArchiveContracts.test_synthetic_16k_elf_and_wrong_arch_alignment_or_bounds) ... ok
+test_duplicate_distribution_metadata_is_rejected (scripts.tests.test_verify_play_bundle.ManifestContracts.test_duplicate_distribution_metadata_is_rejected) ... ok
+test_installer_permission_in_either_declaration_is_rejected (scripts.tests.test_verify_play_bundle.ManifestContracts.test_installer_permission_in_either_declaration_is_rejected) ... ok
+test_reviewed_synthetic_manifest_and_version_are_accepted_by_parser_only (scripts.tests.test_verify_play_bundle.ManifestContracts.test_reviewed_synthetic_manifest_and_version_are_accepted_by_parser_only) ... ok
+test_wrong_identity_version_sdk_channel_and_export_are_rejected (scripts.tests.test_verify_play_bundle.ManifestContracts.test_wrong_identity_version_sdk_channel_and_export_are_rejected) ... ok
+test_cli_failure_creates_no_evidence_and_never_overwrites_existing (scripts.tests.test_verify_play_bundle.PreflightContracts.test_cli_failure_creates_no_evidence_and_never_overwrites_existing) ... ok
+test_missing_signing_inputs_fail_before_any_tool_or_scaffold (scripts.tests.test_verify_play_bundle.PreflightContracts.test_missing_signing_inputs_fail_before_any_tool_or_scaffold) ... ok
+test_scaffold_independent_guard_rejects_repository_key_and_public_bytes (scripts.tests.test_verify_play_bundle.PreflightContracts.test_scaffold_independent_guard_rejects_repository_key_and_public_bytes) ... ok
+test_source_identity_rejects_tracked_and_untracked_inputs (scripts.tests.test_verify_play_bundle.PreflightContracts.test_source_identity_rejects_tracked_and_untracked_inputs) ... ok
+test_subprocess_failure_does_not_expose_provider_diagnostics (scripts.tests.test_verify_play_bundle.PreflightContracts.test_subprocess_failure_does_not_expose_provider_diagnostics) ... ok
+test_actual_java_source_rejects_invalid_command (scripts.tests.test_verify_play_bundle.RealJdkRejectionContracts.test_actual_java_source_rejects_invalid_command) ... ok
+test_actual_java_source_rejects_invalid_keystore_without_exposing_secrets (scripts.tests.test_verify_play_bundle.RealJdkRejectionContracts.test_actual_java_source_rejects_invalid_keystore_without_exposing_secrets) ... ok
+test_actual_java_source_rejects_standard_debug_alias_without_keys (scripts.tests.test_verify_play_bundle.RealJdkRejectionContracts.test_actual_java_source_rejects_standard_debug_alias_without_keys) ... ok
+test_actual_java_source_rejects_unsigned_archive (scripts.tests.test_verify_play_bundle.RealJdkRejectionContracts.test_actual_java_source_rejects_unsigned_archive) ... ok
+test_changed_pck_and_voice_bytes_are_rejected (scripts.tests.test_verify_play_bundle.SyntheticPayloadContracts.test_changed_pck_and_voice_bytes_are_rejected) ... ok
+test_complete_synthetic_payload_runs_real_byte_and_identity_guards (scripts.tests.test_verify_play_bundle.SyntheticPayloadContracts.test_complete_synthetic_payload_runs_real_byte_and_identity_guards) ... ok
+test_wrong_native_pin_missing_library_or_unexpected_abi_are_rejected (scripts.tests.test_verify_play_bundle.SyntheticPayloadContracts.test_wrong_native_pin_missing_library_or_unexpected_abi_are_rejected) ... ok
+test_debug_alias_and_repository_key_are_rejected (scripts.tests.test_play_distribution_prepare.PlayDistributionPreparationTest.test_debug_alias_and_repository_key_are_rejected) ... ok
+test_missing_credentials_reject_before_any_host_mutation (scripts.tests.test_play_distribution_prepare.PlayDistributionPreparationTest.test_missing_credentials_reject_before_any_host_mutation) ... ok
+test_play_rejects_preview_and_unknown_distribution_without_mutation (scripts.tests.test_play_distribution_prepare.PlayDistributionPreparationTest.test_play_rejects_preview_and_unknown_distribution_without_mutation) ... ok
+test_play_rejects_wrong_namespace_without_rewriting_it (scripts.tests.test_play_distribution_prepare.PlayDistributionPreparationTest.test_play_rejects_wrong_namespace_without_rewriting_it) ... ok
+test_play_removes_installer_permission_at_manifest_merge_and_uses_external_signing (scripts.tests.test_play_distribution_prepare.PlayDistributionPreparationTest.test_play_removes_installer_permission_at_manifest_merge_and_uses_external_signing) ... ok
+test_public_family_key_is_rejected_even_when_copied_outside_repository (scripts.tests.test_play_distribution_prepare.PlayDistributionPreparationTest.test_public_family_key_is_rejected_even_when_copied_outside_repository) ... ok
+test_switching_between_family_and_play_retains_each_channel_behavior (scripts.tests.test_play_distribution_prepare.PlayDistributionPreparationTest.test_switching_between_family_and_play_retains_each_channel_behavior) ... ok
+test_actual_local_voice_templates_preserve_host_namespace_and_user_files (scripts.tests.test_prepare_android.AndroidHostTest.test_actual_local_voice_templates_preserve_host_namespace_and_user_files)
+Real new source templates; fixtures do not prove Android compilation. ... ok
+test_kotlin_and_groovy_identity_transitions_and_explicit_signing (scripts.tests.test_prepare_android.AndroidHostTest.test_kotlin_and_groovy_identity_transitions_and_explicit_signing) ... ok
+test_namespace_permissions_signing_and_idempotence (scripts.tests.test_prepare_android.AndroidHostTest.test_namespace_permissions_signing_and_idempotence) ... ok
+test_build_failure_never_calls_final_verifier (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_build_failure_never_calls_final_verifier) ... ok
+test_conflicting_version_overrides_stop_before_preflight (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_conflicting_version_overrides_stop_before_preflight) ... ok
+test_current_documented_app_aab_name_and_default_unique_destination (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_current_documented_app_aab_name_and_default_unique_destination) ... ok
+test_dirty_or_untracked_build_sources_are_rejected_before_preflight (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_dirty_or_untracked_build_sources_are_rejected_before_preflight) ... ok
+test_existing_destination_is_preserved (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_existing_destination_is_preserved) ... ok
+test_invalid_arguments_do_not_reach_preflight (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_invalid_arguments_do_not_reach_preflight) ... ok
+test_missing_ambiguous_or_unexpected_bundle_is_rejected (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_missing_ambiguous_or_unexpected_bundle_is_rejected) ... ok
+test_nondefault_or_invalid_flutter_configuration_stops_before_preparation (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_nondefault_or_invalid_flutter_configuration_stops_before_preparation) ... ok
+test_orchestrates_play_only_flow_with_fake_tools_and_fresh_private_native_source (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_orchestrates_play_only_flow_with_fake_tools_and_fresh_private_native_source) ... ok
+test_output_inside_sources_is_rejected (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_output_inside_sources_is_rejected) ... ok
+test_preflight_failure_stops_before_flutter_and_any_preparation (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_preflight_failure_stops_before_flutter_and_any_preparation) ... ok
+test_source_change_after_build_or_verification_prevents_success_report (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_source_change_after_build_or_verification_prevents_success_report) ... ok
+test_stale_aab_is_never_removed_or_reused (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_stale_aab_is_never_removed_or_reused) ... ok
+test_symbolic_bundle_is_rejected (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_symbolic_bundle_is_rejected) ... ok
+test_verifier_failure_removes_even_a_partially_written_success_report (scripts.tests.test_build_play_bundle.PlayBundleBuilderTest.test_verifier_failure_removes_even_a_partially_written_success_report) ... ok
+test_adaptive_artwork_stays_inside_safe_zone (scripts.icon_tests.test_launcher_icons.LauncherTests.test_adaptive_artwork_stays_inside_safe_zone) ... ok
+test_all_densities_correct_dimensions (scripts.icon_tests.test_launcher_icons.LauncherTests.test_all_densities_correct_dimensions) ... ok
+test_idempotence_and_source_not_modified (scripts.icon_tests.test_launcher_icons.LauncherTests.test_idempotence_and_source_not_modified) ... ok
+test_manifest_links_only_lumo_and_preserves_host (scripts.icon_tests.test_launcher_icons.LauncherTests.test_manifest_links_only_lumo_and_preserves_host) ... ok
+test_missing_application_fails_before_resources_created (scripts.icon_tests.test_launcher_icons.LauncherTests.test_missing_application_fails_before_resources_created) ... ok
+test_monochrome_is_white_alpha_without_fake_background (scripts.icon_tests.test_launcher_icons.LauncherTests.test_monochrome_is_white_alpha_without_fake_background) ... ok
+test_separate_play_report_preserves_existing_family_provenance (scripts.icon_tests.test_launcher_icons.LauncherTests.test_separate_play_report_preserves_existing_family_provenance) ... ok
+test_versioned_layers_resolve (scripts.icon_tests.test_launcher_icons.LauncherTests.test_versioned_layers_resolve) ... ok
+test_wrong_source_fails_before_manifest_change (scripts.icon_tests.test_launcher_icons.LauncherTests.test_wrong_source_fails_before_manifest_change) ... ok
+
+----------------------------------------------------------------------
+Ran 52 tests in 10.622s
+
+OK

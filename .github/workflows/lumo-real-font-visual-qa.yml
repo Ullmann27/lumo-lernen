@@ -1,0 +1,70 @@
+name: Lumo real-font ABC and cross-grade visual proof
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1977-real-font-screenshot-qa-2026-10-18
+  pull_request:
+    paths:
+      - test/abc_premium_visual_test.dart
+      - test/cross_grade_visual_capture_test.dart
+      - test/helpers/lumo_capture.dart
+      - tools/qa/verify_capture_fonts.py
+      - tools/qa/tests/test_verify_capture_fonts.py
+      - .github/workflows/lumo-real-font-visual-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prove-real-glyphs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install real Linux color emoji glyphs for ABC (Android has its own)
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
+      - name: Restore exact Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Verify screenshot renderer and quality gate code
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+          python3 -m pip install --break-system-packages --disable-pip-version-check Pillow==12.3.0
+          python3 -m unittest discover -s tools/qa/tests -p 'test_verify_capture_fonts.py' -v
+      - name: Capture real ABC and cross-grade screens with real Nunito and icons
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=120s \
+            test/abc_premium_visual_test.dart test/cross_grade_visual_capture_test.dart
+      - name: Reject any placeholder text rectangles before publishing proof
+        run: |
+          set -euo pipefail
+          python3 tools/qa/verify_capture_fonts.py visual-evidence
+          python3 - <<'PY'
+          from pathlib import Path
+          files=sorted(Path("visual-evidence").glob("abc_premium_*.png")) + \
+                sorted(Path("visual-evidence").glob("cross_grade_*.png"))
+          assert len(files)==6, files
+          assert all(f.stat().st_size > 30000 for f in files)
+          print("LUMO_FONTS_READABLE: six verified genuine glyph screenshots")
+          PY
+      - name: Upload only readable true Flutter frames
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1977-real-fonts-abc-crossgrade-${{ github.run_id }}
+          path: |
+            visual-evidence/abc_premium_*.png
+            visual-evidence/cross_grade_*.png
+          if-no-files-found: error
+          retention-days: 30

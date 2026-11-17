@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "archive": "original-evidence.tar.gz",
+  "bytes": 709178,
+  "sha256": "02c17e40b4e571858c7d4fae05a9d1ed1c3cb4f6a457793e181811b992c0a4b4",
+  "members": 69,
+  "original_bytes": 1495813,
+  "roundtrip": "All complete members reread byte-for-byte against original source",
+  "files": [
+    {
+      "path": "diagnostic-pr472/README.md",
+      "bytes": 1964,
+      "sha256": "2ba8393b1086bf0641c9b14ee8e9e4283faed3c86630e7c3682666dc71a563ea"
+    },
+    {
+      "path": "diagnostic-pr472/SHA256SUMS",
+      "bytes": 2653,
+      "sha256": "26be3749a4b39e27161332ce4a3c9428b16f81e39b86cd687417bcb01ce9f347"
+    },
+    {
+      "path": "diagnostic-pr472/current51-overlay.diff",
+      "bytes": 898,
+      "sha256": "3a34ccdacd2ce4cfcab1303d20792efc1d05c27aca159e039f21174edba35944"
+    },
+    {
+      "path": "diagnostic-pr472/current51-source/scripts/android_framework_ready.py",
+      "bytes": 18083,
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4"
+    },
+    {
+      "path": "diagnostic-pr472/current51-source/scripts/prepare_android37_cli22.py",
+      "bytes": 21200,
+      "sha256": "83b8f30c9364124a97cf583a447bf08eb801c025a305df6b21602c768ab1abf7"
+    },
+    {
+      "path": "diagnostic-pr472/current51-source/scripts/prepare_android37_emulator_action.py",
+      "bytes": 8453,
+      "sha256": "b82ebc4cf1424ad4ff62c083b1685a245cae70e0cada3f3755ebbed376462199"
+    },
+    {
+      "path": "diagnostic-pr472/current51-source/scripts/tests/test_android37_cli22.py",
+      "bytes": 12249,
+      "sha256": "669d390d24bdb44cf3b94c057824254f5ede1cec4fdfebe68f2f973bfb2c2c26"
+    },
+    {
+      "path": "diagnostic-pr472/current51-source/scripts/tests/test_android_framework_ready.py",
+      "bytes": 11337,
+      "sha256": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d"
+    },
+    {
+      "path": "diagnostic-pr472/manifest.json",
+      "bytes": 4205,
+      "sha256": "d64daba5e7758dc5134c84f3a933ef148fd9b6abf203d74d77a5bc011003fdfd"
+    },
+    {
+      "path": "diagnostic-pr472/original-api/commit472.json",
+      "bytes": 1902,
+      "sha256": "4a29a6e45aab39b31a0c43cda39c8970635f7e08fae5c852f5b339a5b846371d"
+    },
+    {
+      "path": "diagnostic-pr472/original-api/compare472.json",
+      "bytes": 542643,
+      "sha256": "85c16f1a95c5a1993d824855890331f5dee2ee669f53f54186c95d0502bd4268"
+    },
+    {
+      "path": "diagnostic-pr472/original-api/current51Commit.json",
+      "bytes": 1207,
+      "sha256": "77c097692ef569801c8f8833e9ca56916a26a33c35d165b9f8395892578a1fe1"
+    },
+    {
+      "path": "diagnostic-pr472/original-api/pr472.json",
+      "bytes": 20761,
+      "sha256": "3a67907626f2fca14edd5eb8e3933ecfd90ff366720ca640f2be382a415b0397"
+    },
+    {
+      "path": "diagnostic-pr472/review.json",
+      "bytes": 8263,
+      "sha256": "fb1a8ab376e0ba9b58efac7b25888df10fc0de4d9995f8fab73b812205893d28"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/.github/workflows/lumo-android-recheck-2019.yml",
+      "bytes": 6461,
+      "sha256": "e9680fe33ff9e8470361da385aa4c9c9634ec12fc358eae129f2d1cfba7e1d62"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/.github/workflows/lumo-android37-cli22-recheck.yml",
+      "bytes": 9525,
+      "sha256": "c3d70c98771aaf1ef9d6856cf11d84df0d48ef008f0220396c48f6ca362a7fd7"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/.github/workflows/lumo-android37-framework-recheck.yml",
+      "bytes": 8407,
+      "sha256": "25f7413c856f4370ac4c214cd18dc533115f51de6b9950f8131e5c2ddbbc14d3"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/scripts/android_framework_ready.py",
+      "bytes": 18083,
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/scripts/prepare_android37_cli22.py",
+      "bytes": 21200,
+      "sha256": "83b8f30c9364124a97cf583a447bf08eb801c025a305df6b21602c768ab1abf7"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/scripts/prepare_android37_emulator_action.py",
+      "bytes": 8434,
+      "sha256": "ac1e40c8bc07cca1cbb58a3ce4b9d990bee98a156e13f33231887a835a4cbdfa"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/scripts/run_android_recheck_tour.sh",
+      "bytes": 1705,
+      "sha256": "312c8e4b83f7135f89cd7746ea55b04fa3ba4dc08531b899ff63f7ae5a3dc65a"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/scripts/tests/test_android37_cli22.py",
+      "bytes": 12249,
+      "sha256": "669d390d24bdb44cf3b94c057824254f5ede1cec4fdfebe68f2f973bfb2c2c26"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/scripts/tests/test_android_framework_ready.py",
+      "bytes": 11337,
+      "sha256": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/scripts/tests/test_android_recheck_identity.py",
+      "bytes": 9189,
+      "sha256": "2c34f3c7d097e3dbb5af1ecac01c879e6f1380a04f80bf0459bef016937c242b"
+    },
+    {
+      "path": "diagnostic-pr472/source-f636/scripts/verify_android_recheck_identity.py",
+      "bytes": 12157,
+      "sha256": "ca5a2cf289cd43a486ed8fbec4c6557802a4a67437330009c6989d40ffccbf41"
+    },
+    {
+      "path": "inventory/inventory.json",
+      "bytes": 17935,
+      "sha256": "160dcd9cd03967268b45499010df52fda5fc13cfa314aeabf39ddd0ac8c03a0c"
+    },
+    {
+      "path": "inventory/local-ancestry.json",
+      "bytes": 9079,
+      "sha256": "ce956e3f88adc609f306d9fc67108dd3c1744b3c846e016b33c5e99a33805fcb"
+    },
+    {
+      "path": "inventory/lumo-godot-ancestry-1.json.gz",
+      "bytes": 15929,
+      "sha256": "e2b8ed43e290d05aee28a1f3730dcaeebe449285c98c2507d07cca52b6780c2c"
+    },
+    {
+      "path": "inventory/lumo-godot-ancestry-2.json.gz",
+      "bytes": 12136,
+      "sha256": "17002c5264e25f6178ddeb89411265429d01fb4615a16db671099b2e92d61e73"
+    },
+    {
+      "path": "inventory/lumo-godot-page-1.json.gz",
+      "bytes": 28620,
+      "sha256": "c9cb2c0e65a309bf434d6396efc1579f24d9c9764bffef5e97fc112e7f6a0a4d"
+    },
+    {
+      "path": "inventory/lumo-godot-page-2.json.gz",
+      "bytes": 22335,
+      "sha256": "8a38eb4aec2dbdc05013c314a420a60e1b136ede6f7fb7ca287ba8452a7bbf8b"
+    },
+    {
+      "path": "inventory/lumo-godot-pr-152-files-1.json.gz",
+      "bytes": 86129,
+      "sha256": "a0a21c4069ff232e719a83891a9fa77be31be2f4108d216674f698a0ea4a5bd0"
+    },
+    {
+      "path": "inventory/lumo-godot-pr-152-files-2.json.gz",
+      "bytes": 61538,
+      "sha256": "2deb997128e66a1801b4c48e9462407f9873d3ccad94c7cab412aafc5ce0256b"
+    },
+    {
+      "path": "inventory/lumo-godot-pr-153-files-1.json.gz",
+      "bytes": 20394,
+      "sha256": "856dd4669fcf5ba125e598ddef366d9b6c1e6468d16f1094abc8737ddc2afe7b"
+    },
+    {
+      "path": "inventory/lumo-godot-pr-154-files-1.json.gz",
+      "bytes": 45206,
+      "sha256": "5ffd5c9da804bae68caa4ae6bfed1e3d001c63c4b84e6efc22a55b5b90f33788"
+    },
+    {
+      "path": "inventory/lumo-lernen-ancestry-1.json.gz",
+      "bytes": 15073,
+      "sha256": "64595509c18ba81ebbca8ba36344cf00f470994e7084f2d4b6f256a3c3c337a9"
+    },
+    {
+      "path": "inventory/lumo-lernen-ancestry-2.json.gz",
+      "bytes": 15397,
+      "sha256": "e6c665240593348fc58a285cfac0bbac45a0d7bbb3803ceb4256194a5cdcdcf7"
+    },
+    {
+      "path": "inventory/lumo-lernen-page-1.json.gz",
+      "bytes": 32069,
+      "sha256": "b0099ee2bf0a82705a30acc34868738983143120a0900a1b1404969d65ca1c0c"
+    },
+    {
+      "path": "inventory/lumo-lernen-page-2.json.gz",
+      "bytes": 20785,
+      "sha256": "154d6ff432f4835faf23f6e7656686b5f5fda80fcb4615e5811056f1bf519645"
+    },
+    {
+      "path": "inventory/lumo-lernen-pr-452-files-1.json.gz",
+      "bytes": 26580,
+      "sha256": "1ebf23dbe1f25cab2b1f9b2fe7d0531c70c69ec98adf27d9e62c4d7005f6bc14"
+    },
+    {
+      "path": "inventory/lumo-lernen-pr-455-files-1.json.gz",
+      "bytes": 10546,
+      "sha256": "266b930eab701014b9342e1efafb385ad1bc6f2c38c9ae87ef85fc8b8f3f0ab7"
+    },
+    {
+      "path": "inventory/older-pr-changed-files.json",
+      "bytes": 55864,
+      "sha256": "8caf6bc70398187771f1996d56a3e995cd0e19631bc8624b8fa30c9b278dde03"
+    },
+    {
+      "path": "inventory/older-pr-current-blob-comparison.json",
+      "bytes": 73594,
+      "sha256": "cb7dd8516903d9293e3fe0ab0682d49229a959b768423b90ee1ce1da806da727"
+    },
+    {
+      "path": "inventory/summary.json",
+      "bytes": 19759,
+      "sha256": "90571dc0d6e3a622c2c4d69f82314255690f7818c5ec61580bd650bab384129a"
+    },
+    {
+      "path": "native/historical-capture-reference-review.json",
+      "bytes": 8371,
+      "sha256": "7ca77da66f355ffd737fa7d9e5c463368697381739fc179dae623f2fd1945b83"
+    },
+    {
+      "path": "tutor-pr452/README.md",
+      "bytes": 2586,
+      "sha256": "43f0ce2bc8a7b0ba6fd8c4f80f7d737b02f5967b83ee16317a65f7c38f98d201"
+    },
+    {
+      "path": "tutor-pr452/current-commit.json.gz",
+      "bytes": 513,
+      "sha256": "926c6e2ff72757009c50da77ae99d0afd59699bdf901d2768927a82df6b7a9a3"
+    },
+    {
+      "path": "tutor-pr452/current/lib/app/app_state.dart.gz",
+      "bytes": 12755,
+      "sha256": "75f452fca4b3a0c004eb5519fd980c2e725d6bbe9026f4b89dba8b8e370def7b"
+    },
+    {
+      "path": "tutor-pr452/current/lib/core/learning_profile_engine.dart.gz",
+      "bytes": 4558,
+      "sha256": "e72bef36eeda94cfd26d215b3d39cb4e9cbb5c56dc83e36b5481ca23fa6e3515"
+    },
+    {
+      "path": "tutor-pr452/current/lib/core/progress_repository.dart.gz",
+      "bytes": 3546,
+      "sha256": "60d8d7df1271b78ad88274a09e1b805c548181dac5a001ee7578cb53ff96c748"
+    },
+    {
+      "path": "tutor-pr452/current/lib/features/tutoring/guided_lesson_screen.dart.gz",
+      "bytes": 7643,
+      "sha256": "7e99f74a9c10c55e200305c9ace996645ed40078953cb8826c0ccbbe6fe7d5de"
+    },
+    {
+      "path": "tutor-pr452/current/test/tutoring/guided_lesson_runtime_test.dart.gz",
+      "bytes": 7403,
+      "sha256": "594c7b32814b7219269b98a039fcacaa9a645ddcb31a70c525f8a0faf49f8c63"
+    },
+    {
+      "path": "tutor-pr452/diffs/lib/app/app_state.dart.patch",
+      "bytes": 4117,
+      "sha256": "e19991dcd713d55d32c015b57ca166ee02c00cf213c9bd3ecf5ec6de0c82c45c"
+    },
+    {
+      "path": "tutor-pr452/diffs/lib/core/learning_profile_engine.dart.patch",
+      "bytes": 1173,
+      "sha256": "38ff1457ce18b7e2f52e7f89fa6c31e8c8b1bf4bb0d2e02e766cf4730003ab16"
+    },
+    {
+      "path": "tutor-pr452/diffs/lib/core/progress_repository.dart.patch",
+      "bytes": 3555,
+      "sha256": "afa38a222689b3cbf07ee139842eda1c5cc8b950a489602f1b9ce31cc6970d62"
+    },
+    {
+      "path": "tutor-pr452/diffs/lib/features/tutoring/guided_lesson_screen.dart.patch",
+      "bytes": 6305,
+      "sha256": "73f5f441390f330e1f3bcfd4fe1a1592e689e3a05ef1e15e1f2522124320ce7a"
+    },
+    {
+      "path": "tutor-pr452/diffs/test/tutoring/guided_lesson_runtime_test.dart.patch",
+      "bytes": 3288,
+      "sha256": "93f6eebf938a2a89ab30c597c423d866dea0e183191c9dc7dccab1011d194e56"
+    },
+    {
+      "path": "tutor-pr452/manifest.json",
+      "bytes": 5686,
+      "sha256": "171173d587de825d03102c460612eb5743ce1458fde8826fafa4b30852dc6fb9"
+    },
+    {
+      "path": "tutor-pr452/old-commit.json.gz",
+      "bytes": 519,
+      "sha256": "622f244aafd40eff0ca376955cb4d96292413e7b99093fa4bfca074c64106ed1"
+    },
+    {
+      "path": "tutor-pr452/old/lib/app/app_state.dart.gz",
+      "bytes": 12305,
+      "sha256": "b40a5ce9fa559dc11707bc5601833e05d956c0e53b9b1a46904941f6959106f6"
+    },
+    {
+      "path": "tutor-pr452/old/lib/core/learning_profile_engine.dart.gz",
+      "bytes": 4476,
+      "sha256": "25d2883fc9446fde5f92f62d2028ab1acbf8d0d6d63e80a3b5b780b4d507bdaa"
+    },
+    {
+      "path": "tutor-pr452/old/lib/core/progress_repository.dart.gz",
+      "bytes": 3326,
+      "sha256": "c4f4c287492b858d2c40bb922d3d056f004d15e93e99bd6e368c9c2aa4489d58"
+    },
+    {
+      "path": "tutor-pr452/old/lib/features/tutoring/guided_lesson_screen.dart.gz",
+      "bytes": 7175,
+      "sha256": "41ba2a9060ddbb1d2605729c63d21cf287a1f3f0d0a49e0274acbd1d7f8de80c"
+    },
+    {
+      "path": "tutor-pr452/old/test/tutoring/guided_lesson_runtime_test.dart.gz",
+      "bytes": 7065,
+      "sha256": "1419b669821d0ce26ff81513ab281f32a609188aaaecae2e4934294b0aa76cb7"
+    },
+    {
+      "path": "tutor-pr452/pr452-inventory-excerpt.json",
+      "bytes": 6284,
+      "sha256": "a1c128f3c0a456c52d53968ae8cab02f7fcfb4b08519e7642c38d31b7030ff02"
+    },
+    {
+      "path": "tutor-pr452/preserved-blocks.json",
+      "bytes": 5698,
+      "sha256": "217cd31a2bd4c2290628bb2131280e0fbad6c61d4503dc2420157c479de7aa17"
+    },
+    {
+      "path": "tutor-pr452/review.json",
+      "bytes": 8058,
+      "sha256": "22acd0bf03c247c8d523d68d3912763cd6c7b9224a1cc2c306dd9c8d826e471f"
+    },
+    {
+      "path": "tutor-pr452/runtime-test-source-preservation.json",
+      "bytes": 940,
+      "sha256": "146545e1cc90a71492ee455813c53e9d4d544419b47128b735d221bb607c3cd2"
+    },
+    {
+      "path": "tutor-pr452/source-binding.json",
+      "bytes": 4935,
+      "sha256": "bc6a6a6108eb19becec6cb53417484927d32f5920f48d89f9ff2dd9dc9067c3a"
+    }
+  ]
+}

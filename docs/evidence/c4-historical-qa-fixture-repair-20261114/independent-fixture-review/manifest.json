@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 659,
+      "sha256": "49c3a6374af1e3f66cb94654e33b985f7935d7ba4a844fee84ceae1939851d8c"
+    },
+    {
+      "path": "review.json",
+      "bytes": 7085,
+      "sha256": "bb90f407f8184c733b20b0d92ccc90809929032af1d80c9123a67b163c77ab6c"
+    }
+  ],
+  "self_excluded": "manifest.json"
+}

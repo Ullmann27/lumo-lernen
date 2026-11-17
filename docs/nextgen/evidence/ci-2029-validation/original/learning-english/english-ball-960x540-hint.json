@@ -1,0 +1,230 @@
+{
+	"attempts": 1,
+	"background_depth": [
+		34.9988555908203,
+		44.7971038818359
+	],
+	"complete": false,
+	"controls": [
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"text": "1"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				86.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				86.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"text": "2"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				146.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				146.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"text": "3"
+		},
+		{
+			"enabled": false,
+			"exposed_px": [
+				206.0,
+				462.0,
+				73.0,
+				52.0
+			],
+			"rect_px": [
+				206.0,
+				462.0,
+				73.0,
+				52.0
+			],
+			"text": "Hinweis"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				287.0,
+				462.0,
+				58.0,
+				52.0
+			],
+			"rect_px": [
+				287.0,
+				462.0,
+				58.0,
+				52.0
+			],
+			"text": "Neu"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				353.0,
+				462.0,
+				153.0,
+				52.0
+			],
+			"rect_px": [
+				353.0,
+				462.0,
+				153.0,
+				52.0
+			],
+			"text": "Schritt anhören"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				514.0,
+				462.0,
+				129.0,
+				52.0
+			],
+			"rect_px": [
+				514.0,
+				462.0,
+				129.0,
+				52.0
+			],
+			"text": "Lumo fragen"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				651.0,
+				462.0,
+				125.0,
+				52.0
+			],
+			"rect_px": [
+				651.0,
+				462.0,
+				125.0,
+				52.0
+			],
+			"text": "Zur Aufgabe"
+		}
+	],
+	"density": 1.0,
+	"explanation": "Tippe selbst auf den hell umrandeten Gegenstand.",
+	"footer_px": [
+		12.0,
+		420.0,
+		936.0,
+		108.0
+	],
+	"foreground_far_depth": 17.8715724945068,
+	"header_px": [
+		12.0,
+		12.0,
+		936.0,
+		95.0
+	],
+	"hint_level": 2,
+	"lumo_px": [
+		152.216690063477,
+		123.909980773926,
+		169.069625854492,
+		279.179992675781
+	],
+	"name": "english-ball-960x540-hint",
+	"objects": [
+		{
+			"bounds_px": [
+				361.640075683594,
+				297.832702636719,
+				129.244842529297,
+				100.025817871094
+			],
+			"spatial_48dp_target_px": [
+				402.262512207031,
+				281.688049316406,
+				48.0,
+				48.0
+			],
+			"triangles": 804,
+			"word": "book"
+		},
+		{
+			"bounds_px": [
+				516.671752929688,
+				256.459533691406,
+				136.079833984375,
+				141.398986816406
+			],
+			"spatial_48dp_target_px": [
+				560.711669921875,
+				281.688049316406,
+				48.0,
+				48.0
+			],
+			"triangles": 4212,
+			"word": "ball"
+		},
+		{
+			"bounds_px": [
+				678.538452148438,
+				280.729614257812,
+				129.244812011719,
+				117.408508300781
+			],
+			"spatial_48dp_target_px": [
+				719.160888671875,
+				281.688049316406,
+				48.0,
+				48.0
+			],
+			"triangles": 4456,
+			"word": "car"
+		}
+	],
+	"objects_order": [
+		"book",
+		"ball",
+		"car"
+	],
+	"observation_source": "platform_fixture",
+	"stage_px": [
+		16.0,
+		115.0,
+		928.0,
+		297.0
+	],
+	"status": "Tippe den Gegenstand oder seine Zahl an.",
+	"title": "Englisch · ball",
+	"window_px": [
+		960,
+		540
+	],
+	"word": "ball"
+}

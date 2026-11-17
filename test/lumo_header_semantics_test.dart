@@ -70,7 +70,13 @@ void main() {
         find.bySemanticsLabel('Lumo, dein Lernfuchs. Hilfe öffnen');
     final firstTouch = tester.getRect(button);
     final firstAccessible = globalBounds(tester.getSemantics(accessibility));
-    expect(firstTouch.size, const Size(52, 52));
+    // Geometry can differ by sub-pixel epsilon after Material 3 layout.
+    // Preserve the actual accessibility contract (at least 48 dp), while
+    // rejecting meaningful layout drift from the intended 52 dp button.
+    expect(firstTouch.width, closeTo(52, .01));
+    expect(firstTouch.height, closeTo(52, .01));
+    expect(firstTouch.width, greaterThanOrEqualTo(48));
+    expect(firstTouch.height, greaterThanOrEqualTo(48));
     expect(
         tester
             .getSemantics(accessibility)
@@ -81,8 +87,16 @@ void main() {
         findsOneWidget);
     for (var i = 0; i < 8; i++) {
       await tester.pump(const Duration(milliseconds: 350));
-      expect(tester.getRect(button), firstTouch);
-      expect(globalBounds(tester.getSemantics(accessibility)), firstAccessible);
+      final nextTouch = tester.getRect(button);
+      final nextAccessible = globalBounds(tester.getSemantics(accessibility));
+      expect(nextTouch.left, closeTo(firstTouch.left, .01));
+      expect(nextTouch.top, closeTo(firstTouch.top, .01));
+      expect(nextTouch.width, closeTo(firstTouch.width, .01));
+      expect(nextTouch.height, closeTo(firstTouch.height, .01));
+      expect(nextAccessible.left, closeTo(firstAccessible.left, .01));
+      expect(nextAccessible.top, closeTo(firstAccessible.top, .01));
+      expect(nextAccessible.width, closeTo(firstAccessible.width, .01));
+      expect(nextAccessible.height, closeTo(firstAccessible.height, .01));
     }
     await tester.tap(button);
     for (var i = 0; i < 3; i++) {

@@ -1,0 +1,1731 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T05:36:15.764982+00:00",
+  "scope": "Independent audit of actual PR482 API35 originals; no product test, APK rebuild, rerun or new device command",
+  "status": "PASS_FOR_RECORDED_API35_MAIN_AND_NATIVE_SURFACES_SCOPE",
+  "github_job": {
+    "id": 132336853154,
+    "run_id": 43558497857,
+    "workflow_name": "LUMO unchanged 7b16 APK Android runtime follow-up",
+    "head_branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+    "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43558497857",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOSNzcp88AAAAez-Qgog",
+    "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132336853154",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43558497857/job/132336853154",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T04:49:48Z",
+    "started_at": "2026-11-14T04:49:49Z",
+    "completed_at": "2026-11-14T05:22:40Z",
+    "name": "unchanged-apk-followup-api35",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T04:49:50Z",
+        "completed_at": "2026-11-14T04:49:51Z"
+      },
+      {
+        "name": "Checkout the actual repaired probe source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T04:49:51Z",
+        "completed_at": "2026-11-14T04:50:12Z"
+      },
+      {
+        "name": "Checkout the unchanged APK source independently",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T04:50:12Z",
+        "completed_at": "2026-11-14T04:50:13Z"
+      },
+      {
+        "name": "Checkout the exact upstream Android17 action",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 4,
+        "started_at": "2026-11-14T04:50:13Z",
+        "completed_at": "2026-11-14T04:50:13Z"
+      },
+      {
+        "name": "Download the original successful build artifact without rebuilding",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T04:50:13Z",
+        "completed_at": "2026-11-14T04:50:20Z"
+      },
+      {
+        "name": "Download the original 2017 baseline only for the update",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 6,
+        "started_at": "2026-11-14T04:50:20Z",
+        "completed_at": "2026-11-14T04:50:20Z"
+      },
+      {
+        "name": "Install the unchanged live UI reader dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T04:50:20Z",
+        "completed_at": "2026-11-14T04:50:39Z"
+      },
+      {
+        "name": "Save authentic candidate and diagnostic API metadata separately",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T04:50:39Z",
+        "completed_at": "2026-11-14T04:50:41Z"
+      },
+      {
+        "name": "Bind both sources, exact build job, artifact, APK and actual embedded PCK",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T04:50:41Z",
+        "completed_at": "2026-11-14T04:50:43Z"
+      },
+      {
+        "name": "Enable the same disposable KVM emulator",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T04:50:43Z",
+        "completed_at": "2026-11-14T04:50:43Z"
+      },
+      {
+        "name": "Start the same software display for both renderer cases",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T04:50:43Z",
+        "completed_at": "2026-11-14T04:50:48Z"
+      },
+      {
+        "name": "Preserve the original tools and install the same verified official CLI22",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 12,
+        "started_at": "2026-11-14T04:50:48Z",
+        "completed_at": "2026-11-14T04:50:48Z"
+      },
+      {
+        "name": "Bind the actual new observer and the unchanged original APK separately",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 13,
+        "started_at": "2026-11-14T04:50:48Z",
+        "completed_at": "2026-11-14T04:50:48Z"
+      },
+      {
+        "name": "Run the actual API35 tour or complete update with the repaired driver observation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-14T04:50:48Z",
+        "completed_at": "2026-11-14T05:22:31Z"
+      },
+      {
+        "name": "Run the Android17 renderer comparison with continuous ANR observation",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 15,
+        "started_at": "2026-11-14T05:22:31Z",
+        "completed_at": "2026-11-14T05:22:31Z"
+      },
+      {
+        "name": "Preserve generated Android17 hardware even after a failed guard or tour",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 16,
+        "started_at": "2026-11-14T05:22:31Z",
+        "completed_at": "2026-11-14T05:22:31Z"
+      },
+      {
+        "name": "Close any remaining startup monitor after action cleanup",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 17,
+        "started_at": "2026-11-14T05:22:31Z",
+        "completed_at": "2026-11-14T05:22:31Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-11-14T05:22:31Z",
+        "completed_at": "2026-11-14T05:22:38Z"
+      },
+      {
+        "name": "Post Checkout the unchanged APK source independently",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 35,
+        "started_at": "2026-11-14T05:22:38Z",
+        "completed_at": "2026-11-14T05:22:39Z"
+      },
+      {
+        "name": "Post Checkout the actual repaired probe source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 36,
+        "started_at": "2026-11-14T05:22:39Z",
+        "completed_at": "2026-11-14T05:22:39Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 37,
+        "started_at": "2026-11-14T05:22:39Z",
+        "completed_at": "2026-11-14T05:22:39Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132336853154",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000017224,
+    "runner_name": "GitHub Actions 1000017224",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "terminal_run": {
+    "id": 43558497857,
+    "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "path": ".github/workflows/lumo-android-runtime-7b16-followup.yml",
+    "head_branch": "qa/lumo-android-runtime-7b16-followup-20261114"
+  },
+  "qa": {
+    "branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+    "job_conclusion": null,
+    "job_id": 132336853154,
+    "job_name": "unchanged-apk-followup-api35",
+    "job_status": "in_progress",
+    "run_attempt": 1,
+    "run_conclusion": null,
+    "run_id": 43558497857,
+    "run_status": "in_progress",
+    "source": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+    "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+    "workflow_path": ".github/workflows/lumo-android-runtime-7b16-followup.yml"
+  },
+  "candidate_build": {
+    "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight",
+    "artifact_bytes": 648186489,
+    "artifact_digest": "sha256:3f613c64c78c2b20dd0a91741627ab93a418a66bfc6df6292b041f06c36c2e30",
+    "artifact_id": 14093773196,
+    "artifact_name": "lumo-kart-graphics-2019-candidate",
+    "build_conclusion": "success",
+    "build_job_id": 132278438809,
+    "host_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+    "run_attempt": 1,
+    "run_conclusion": "failure",
+    "run_id": 43540111465,
+    "run_status": "completed",
+    "tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+    "workflow_path": ".github/workflows/lumo-kart-graphics-2019.yml"
+  },
+  "apk": {
+    "apk_bytes": 325657350,
+    "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+    "certificate_scope": "Original signer provenance bound by unchanged APK SHA; no new apksigner invocation",
+    "existing_apk_identity": {
+      "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+      "checks": {
+        "flutter_source_is_this_commit": true,
+        "godot_revision_is_pinned": true,
+        "sha256_matches_build_sums": true,
+        "sha256_matches_provenance": true,
+        "signing_certificate": true,
+        "tracked_source_clean": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      },
+      "flutter_source_commit": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+      "godot_pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d",
+      "godot_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "versionCode": 2019,
+      "versionName": "0.13.7"
+    },
+    "pck_bytes": 66595192,
+    "pck_member": "assets/lumo_game.pck",
+    "pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d"
+  },
+  "source_binding": {
+    "original": {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/candidate-and-probe-binding.json",
+      "bytes": 7452,
+      "sha256": "b0b40834b0e1e49983779388ed2bcd3cb2d9305fd8687c5359ec8850154433f3"
+    },
+    "git_sources": {
+      "candidate": {
+        "commit": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+        "tracked_source_clean": true,
+        "tree": "fe430b86449e4f4e221cadfc802f42db639f3133"
+      },
+      "qa": {
+        "commit": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen",
+        "tracked_source_clean": true,
+        "tree": "09776392ac3133c992a73809dc0f31e9def555a7"
+      }
+    },
+    "original_api_input_hashes_rechecked": true,
+    "separate_final_job_status": "Preflight QA metadata remains its original in_progress observation; final job SUCCESS is in the terminal snapshot",
+    "local_apk_bytes_rehashed": false,
+    "scope": "Actual CI binder hashed APK/PCK bytes; local review compares its original output with source APIs and actual tour identities"
+  },
+  "job_log": {
+    "path": "jobs/api35-132336853154.log",
+    "bytes": 1978752,
+    "sha256": "1437f6ebb92fdd7d9df4efcdd544f1cdb9bb59818af6bf5d302a4980c5e182cf"
+  },
+  "original_markers": [
+    {
+      "line": 624,
+      "text": "2026-11-14T04:50:43.7711529Z UNCHANGED_APK_DIAGNOSTIC BOUND: APK source 7b16f2f5ab16f3d913ee170aefd9807c87216260; QA source e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+    },
+    {
+      "line": 10871,
+      "text": "2026-11-14T05:22:30.6269305Z [NextgenAndroid] PASS: real learning touch, Cards IPC, save, pause, return and reopen"
+    }
+  ],
+  "main_tour": {
+    "original": {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/tour-result.json",
+      "bytes": 15751,
+      "sha256": "5a8e82ef49f878cec03522cf020cd2019a68821d8374fbdc71f19f8b49503b34"
+    },
+    "status": "PASS",
+    "android_sdk": "35",
+    "installed_package": {
+      "userId": "10209",
+      "firstInstallTime": "2026-11-14 04:52:58",
+      "versionCode": "2019 minSdk=24 targetSdk=36",
+      "versionName": "0.13.7"
+    },
+    "steps": [
+      {
+        "step": "apk-identity",
+        "ok": true,
+        "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+        "flutter_source_commit": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+        "godot_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+        "godot_pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d",
+        "versionName": "0.13.7",
+        "versionCode": 2019,
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "checks": {
+          "sha256_matches_provenance": true,
+          "sha256_matches_build_sums": true,
+          "flutter_source_is_this_commit": true,
+          "tracked_source_clean": true,
+          "godot_revision_is_pinned": true,
+          "signing_certificate": true,
+          "version_matches_pubspec": true,
+          "x86_64_native_code": true
+        }
+      },
+      {
+        "step": "launch",
+        "ok": true
+      },
+      {
+        "step": "onboarding",
+        "ok": true
+      },
+      {
+        "step": "navigate-start",
+        "ok": true,
+        "label": "Start"
+      },
+      {
+        "step": "atelier-roundtrip",
+        "ok": true,
+        "screen": "Real native-Android Flutter Zehnerbrücke",
+        "observed": [
+          "Hub",
+          "Worked example",
+          "Interactive ten-frame",
+          "Model check",
+          "Flutter return"
+        ],
+        "screenshots": [
+          "11_atelier_hub.png",
+          "12_atelier_beispiel.png",
+          "13_atelier_zehnerbruecke.png"
+        ]
+      },
+      {
+        "step": "navigate-lernen",
+        "ok": true,
+        "label": "Lernen",
+        "visible_labels": 50
+      },
+      {
+        "step": "navigate-spiele",
+        "ok": true,
+        "label": "Spielen"
+      },
+      {
+        "step": "open-kart",
+        "ok": true,
+        "label": "Lumo Kart. Fahre mit Lumo um die Wette! Spielen"
+      },
+      {
+        "step": "start-kart-race",
+        "ok": true,
+        "touches": [
+          {
+            "step": "premium-start",
+            "button": "START",
+            "tap": [
+              1545,
+              884
+            ]
+          }
+        ],
+        "expected_mode": "cup",
+        "expected_track": "sonnenhafen",
+        "garage_replaced": {
+          "changed_fraction": 0.904,
+          "mean_channel_delta": 92.58
+        },
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "detail": [
+            {
+              "colour_bins": 625,
+              "bright_fraction": 0.917
+            },
+            {
+              "colour_bins": 534,
+              "bright_fraction": 0.975
+            },
+            {
+              "colour_bins": 1036,
+              "bright_fraction": 0.796
+            }
+          ]
+        },
+        "spatial_menu_navigation": {
+          "status": "PASS",
+          "selected_mode": "cup",
+          "sections": [
+            {
+              "section": "garage",
+              "visible_label": "Garage",
+              "return_caption": "Kart-Menü",
+              "return_touch": [
+                614,
+                916
+              ],
+              "return_evidence": "21_stage_garage-return-readiness.json",
+              "landing_caption": "Grand Prix",
+              "touch_evidence": "21_stage_garage-open-surface-readiness.json"
+            },
+            {
+              "section": "driver",
+              "visible_label": "Fahrer",
+              "return_caption": "Kart-Menü",
+              "return_touch": [
+                614,
+                916
+              ],
+              "return_evidence": "21_stage_driver-return-readiness.json",
+              "landing_caption": "Grand Prix",
+              "touch_evidence": "21_stage_driver-open-surface-readiness.json"
+            }
+          ],
+          "selection_touches": [
+            {
+              "kart": "comet",
+              "caption": "Comet",
+              "touch": [
+                374,
+                486
+              ],
+              "readiness": "21_stage_select_comet-surface-readiness.json",
+              "scope": "Touch only; actual new race selection is checked separately"
+            },
+            {
+              "kart": "gecko_velo",
+              "caption": "Gecko Velo",
+              "touch": [
+                418,
+                536
+              ],
+              "readiness": "21_stage_select_gecko_velo-surface-readiness.json",
+              "scope": "Touch only; actual new race selection is checked separately"
+            },
+            {
+              "driver": "fox",
+              "caption": "Lumo",
+              "touch": [
+                222,
+                504
+              ],
+              "readiness": "21_stage_driver-select-original-lumo-surface-readiness.json",
+              "scope": "Observed driver-card touch; actual new race selection is checked separately"
+            }
+          ],
+          "expected_kart": "gecko_velo",
+          "mode_caption": "Grand Prix",
+          "mode_touch_evidence": "21_stage_mode_cup-surface-readiness.json",
+          "scope": "Live Android OCR touches; no injected Godot selection or coordinates"
+        },
+        "confirmed_selection": {
+          "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+          "selected_kart": "gecko_velo",
+          "selected_driver": "fox",
+          "mode": "cup",
+          "track_id": "sonnenhafen",
+          "countdown": 0.0,
+          "elapsed": 1.0000000000000013,
+          "distance": 3.9689185e-06,
+          "previous_result_id": null
+        }
+      },
+      {
+        "step": "race-running",
+        "ok": true,
+        "state": {
+          "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+          "countdown": 0.0,
+          "elapsed": 1.0000000000000013,
+          "distance": 3.9689185e-06,
+          "checkpoint_index": 0
+        }
+      },
+      {
+        "step": "race-hud",
+        "ok": true,
+        "capture": "21_race_hud_0",
+        "race_state": null,
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1.0,
+            0.999,
+            1.0
+          ],
+          "detail": [
+            {
+              "colour_bins": 906,
+              "bright_fraction": 0.828
+            },
+            {
+              "colour_bins": 1144,
+              "bright_fraction": 0.896
+            },
+            {
+              "colour_bins": 1249,
+              "bright_fraction": 0.679
+            }
+          ]
+        },
+        "hud_lines": [
+          "ni 2 PLATZ5/6 0O SU. * 5"
+        ],
+        "focused_hud": {
+          "ocr": "RUNDE 1/2 PLATZ5/6 Okm/h |",
+          "three_hud_indicators": true,
+          "not_paused_or_finished": true
+        }
+      },
+      {
+        "step": "race-drive",
+        "ok": true,
+        "gas_touch": [
+          2242,
+          936
+        ],
+        "hold_ms": 9000,
+        "gas_pulses": 3,
+        "world_moved": {
+          "changed_fraction": 0.722,
+          "mean_channel_delta": 64.52
+        },
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "detail": [
+            {
+              "colour_bins": 1027,
+              "bright_fraction": 0.891
+            },
+            {
+              "colour_bins": 985,
+              "bright_fraction": 0.906
+            },
+            {
+              "colour_bins": 1186,
+              "bright_fraction": 0.685
+            }
+          ]
+        },
+        "native_progress": {
+          "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+          "distance_gain": 76.18,
+          "elapsed_gain": 5.02,
+          "checkpoint_index": 0
+        }
+      },
+      {
+        "step": "pause-menu",
+        "ok": true,
+        "frozen_while_paused": {
+          "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+          "distance": 76.17570088326465,
+          "elapsed": 6.033333333333317,
+          "checkpoint_index": 0,
+          "finished": false
+        },
+        "state": {
+          "checkpoint_index": 0,
+          "lane": -4.9999046,
+          "distance": 76.17570088326465,
+          "countdown": 0.0,
+          "elapsed": 6.033333333333317,
+          "completed_race": false,
+          "finished": false,
+          "previous_road_distance": 76.17465826653643,
+          "player_heading": -2.16222948653874,
+          "selected_driver": "fox",
+          "mode": "cup",
+          "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+          "reset_count": 0,
+          "version": 4,
+          "selected_kart": "gecko_velo",
+          "speed": 0.0,
+          "difficulty": "pro",
+          "track_id": "sonnenhafen",
+          "result_payload": {}
+        },
+        "continued": {
+          "touch": [
+            1194,
+            408
+          ],
+          "touch_evidence": "21_continue_touch-surface-readiness.json",
+          "hud": {
+            "capture": "21_race_hud_1",
+            "race_state": {
+              "round": [
+                1,
+                2
+              ],
+              "place": [
+                6,
+                6
+              ]
+            },
+            "rendered_frame": {
+              "size": [
+                2400,
+                1080
+              ],
+              "visible_fractions": [
+                1.0,
+                0.994,
+                1.0
+              ],
+              "detail": [
+                {
+                  "colour_bins": 884,
+                  "bright_fraction": 0.818
+                },
+                {
+                  "colour_bins": 1182,
+                  "bright_fraction": 0.822
+                },
+                {
+                  "colour_bins": 1072,
+                  "bright_fraction": 0.731
+                }
+              ]
+            },
+            "hud_lines": [
+              "RUNDE 1/2 PLATZ6/6 Okm/h x0"
+            ],
+            "focused_hud": null
+          },
+          "drive": {
+            "gas_touch": [
+              2242,
+              936
+            ],
+            "hold_ms": 9000,
+            "gas_pulses": 3,
+            "world_moved": {
+              "changed_fraction": 0.686,
+              "mean_channel_delta": 66.45
+            },
+            "rendered_frame": {
+              "size": [
+                2400,
+                1080
+              ],
+              "visible_fractions": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "detail": [
+                {
+                  "colour_bins": 1006,
+                  "bright_fraction": 0.89
+                },
+                {
+                  "colour_bins": 887,
+                  "bright_fraction": 0.971
+                },
+                {
+                  "colour_bins": 1212,
+                  "bright_fraction": 0.746
+                }
+              ]
+            },
+            "native_progress": {
+              "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+              "distance_gain": 92.35,
+              "elapsed_gain": 5.0,
+              "checkpoint_index": 0
+            }
+          },
+          "progress": {
+            "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+            "kart": "gecko_velo",
+            "distance_gain_after_continue": 92.35009881854057,
+            "elapsed_gain_after_continue": 5.000000000000144
+          }
+        },
+        "paused_after_continue": {
+          "frozen_while_paused": {
+            "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+            "distance": 168.53104096173774,
+            "elapsed": 11.383333333333479,
+            "checkpoint_index": 0,
+            "finished": false
+          },
+          "state": {
+            "checkpoint_index": 0,
+            "lane": 0.38214844,
+            "distance": 168.53104096173774,
+            "countdown": 0.0,
+            "elapsed": 11.383333333333479,
+            "completed_race": false,
+            "finished": false,
+            "previous_road_distance": 168.52999834500952,
+            "player_heading": -2.1966372057875545,
+            "selected_driver": "fox",
+            "mode": "cup",
+            "result_id": "82944ea7-ad82-48bd-8c0a-28c1db2d23d2-1794632479356-385215725",
+            "reset_count": 0,
+            "version": 4,
+            "selected_kart": "gecko_velo",
+            "speed": 0.0,
+            "difficulty": "pro",
+            "track_id": "sonnenhafen",
+            "result_payload": {}
+          }
+        }
+      },
+      {
+        "step": "return-from-kart",
+        "ok": true,
+        "capture": "23_zurueck_in_flutter.png",
+        "foreground_is_flutter": true
+      },
+      {
+        "step": "learning-state-after-kart",
+        "ok": true,
+        "profile": {
+          "id": "1794632019147980",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T04:53:39.147980"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      {
+        "step": "lernen-usable-after-kart",
+        "ok": true,
+        "labels_before": 39,
+        "labels_after": 39,
+        "kept_fraction": 1.0
+      },
+      {
+        "step": "profile-after-kart",
+        "ok": true,
+        "profile_name_visible": "LumoTest",
+        "observed_after_scrolls": 3,
+        "source": "live Android accessibility tree"
+      },
+      {
+        "step": "restart-keeps-learning-state",
+        "ok": true,
+        "profile": {
+          "id": "1794632019147980",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T04:53:39.147980"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      {
+        "step": "display-fold_offen",
+        "ok": true,
+        "size": "1812x2176@420"
+      },
+      {
+        "step": "display-fold_aussen",
+        "ok": true,
+        "size": "904x2316@420"
+      },
+      {
+        "step": "display-quer",
+        "ok": true,
+        "size": "2400x1080@420"
+      }
+    ],
+    "independent_footer_observations": [
+      {
+        "original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/21_stage_garage-return-readiness.json",
+          "bytes": 7639,
+          "sha256": "5f56433ee3654e784e8bca36e4d279c433fa5a375d2c5c491a9fcc81c7a57cf1"
+        },
+        "touches": [
+          {
+            "status": "TOUCH_SENT",
+            "caption": "Kart-Menü",
+            "point": [
+              614,
+              916
+            ],
+            "bounds": [
+              469.0,
+              899.0,
+              758.0,
+              933.0
+            ],
+            "source_sha256": "812f17455e5b87e705356b1a76d30ea234a9d2cfef15c8974684052442d4da63",
+            "frame_index": 1,
+            "duration_ms": 120
+          }
+        ],
+        "elapsed_seconds": 68.108667,
+        "landing_frame_index": 4,
+        "two_final_landing_observations": true,
+        "scope": "Observed section/footer touches and confirmed landing; no race or gameplay PASS"
+      },
+      {
+        "original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/21_stage_driver-return-readiness.json",
+          "bytes": 7643,
+          "sha256": "72dee7a85074312118e7597b5f11b903162b6367fca0b44c7cc56f13033637da"
+        },
+        "touches": [
+          {
+            "status": "TOUCH_SENT",
+            "caption": "Kart-Menü",
+            "point": [
+              614,
+              916
+            ],
+            "bounds": [
+              469.0,
+              899.0,
+              758.0,
+              933.0
+            ],
+            "source_sha256": "118784aeff9d15c76acd3c772b088a2c37e9d4ce93aa265360d5f063af471082",
+            "frame_index": 1,
+            "duration_ms": 120
+          }
+        ],
+        "elapsed_seconds": 68.327328,
+        "landing_frame_index": 4,
+        "two_final_landing_observations": true,
+        "scope": "Observed section/footer touches and confirmed landing; no race or gameplay PASS"
+      }
+    ]
+  },
+  "native_surfaces": {
+    "original": {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/native-surfaces-result.json",
+      "bytes": 208088,
+      "sha256": "be9cdf01f36fdb87fb495387c0ae8ec39436461b65f38ce050f18bf1a13eb984"
+    },
+    "status": "PASS",
+    "android_runtime": {
+      "sdk": 35,
+      "release": "15",
+      "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+      "model": "sdk_gphone64_x86_64"
+    },
+    "offline": true,
+    "local_voice_permission": {
+      "local_model_assent": true,
+      "voice_enabled": true,
+      "auto_read": true,
+      "unrelated_permissions_unchanged": true,
+      "no_audio_emulator": true,
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "learning": {
+      "moves": {
+        "moved_objects": 5,
+        "ten_filled_after": 2,
+        "remainder": 3,
+        "target_indices": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "preservation": {
+        "profile": {
+          "id": "1794632019147980",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T04:53:39.147980"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      "same_lesson_after_return": true,
+      "speech": {
+        "initial": {
+          "native_process_pid": 7262,
+          "completed_utterance_ids": [
+            3
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "result": {
+          "native_process_pid": 7262,
+          "completed_utterance_ids": [
+            18
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "native_process_gone_on_return": true,
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "illustration_did_not_award_mastery": true
+    },
+    "cards": {
+      "initial_readiness": {
+        "status": "READY",
+        "states": [
+          {
+            "token": "5039b09b40e04358f76d50df07637737",
+            "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+            "viewer": 0,
+            "current": 0,
+            "phase": "playing",
+            "paused": false,
+            "canDraw": true,
+            "revision": 3,
+            "ack": 0
+          }
+        ],
+        "frames": [],
+        "touch": null,
+        "scope": "Actual initial Cards state and, only if needed, native resume",
+        "mode": "active_without_resume_touch",
+        "elapsed_seconds": 0.072028
+      },
+      "draw": {
+        "round_id": "cards-36cc2382d89714f4f558263e1c169659",
+        "owner": "fed828a029ab54f473395d3ef905bc3f63e9967254b3c9cbaa6da89b3c7be4d4",
+        "cards_conserved": 112,
+        "sequence": 1,
+        "revision_before": 3,
+        "revision_after": 4,
+        "child_cards_added": 1,
+        "draw_count_before": 97,
+        "draw_count_after": 96
+      },
+      "draw_after_visible_idle": {
+        "round_id": "cards-36cc2382d89714f4f558263e1c169659",
+        "owner": "fed828a029ab54f473395d3ef905bc3f63e9967254b3c9cbaa6da89b3c7be4d4",
+        "cards_conserved": 112,
+        "sequence": 2,
+        "revision_before": 4,
+        "revision_after": 6,
+        "child_cards_added": 1,
+        "draw_count_before": 96,
+        "draw_count_after": 95
+      },
+      "visible_idle_seconds": 36.046164235000106,
+      "android_authority_binding": [
+        {
+          "main_process_pid": 6178,
+          "native_process_pid": 7928,
+          "service": "dev.ullmann.lumo.lumo_lernen.CardsAuthorityService",
+          "bound": true
+        },
+        {
+          "main_process_pid": 6178,
+          "native_process_pid": 7928,
+          "service": "dev.ullmann.lumo.lumo_lernen.CardsAuthorityService",
+          "bound": true
+        }
+      ],
+      "pause_saved_state_unchanged": true,
+      "reopened_same_round": true,
+      "new_mailbox_token": true,
+      "learning_preservation": {
+        "profile": {
+          "id": "1794632019147980",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T04:53:39.147980"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      }
+    },
+    "card_layout_stages": [
+      {
+        "status": "PASS",
+        "stage": "11_cards_real_table_before_draw",
+        "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+        "consecutive_same_revision_frames": 2,
+        "revision": 3,
+        "page": "1/3",
+        "layout_sequence": 1,
+        "layout_sha256": "c1f10981e2f05bc79790cd719a6e5b078804d86aef3dbfd62f819907bbbd1831",
+        "token": "5039b09b40e04358f76d50df07637737",
+        "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+        "viewer": 0,
+        "source": "11_cards_real_table_before_draw.png",
+        "source_sha256": "16dbc13d7b822e46abde05b74d6b0b545d3871dc9ff5551ed7e4fcdb02d73d03",
+        "elapsed_seconds": 8.716839,
+        "accepted_original_frames": 2,
+        "rejected_original_frames": 0,
+        "rejection_statuses": {},
+        "rejection_errors": [],
+        "android_observation": {
+          "decor_size": [
+            1080.0,
+            2400.0
+          ],
+          "insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "render_rect": [
+            0.0,
+            0.0,
+            1080.0,
+            2400.0
+          ],
+          "system_insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "view_size": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "layout_binding": {
+          "layout_sha256": "c1f10981e2f05bc79790cd719a6e5b078804d86aef3dbfd62f819907bbbd1831",
+          "layout_sequence": 1,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      },
+      {
+        "status": "PASS",
+        "stage": "12_cards_real_table_persisted_draw",
+        "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+        "consecutive_same_revision_frames": 2,
+        "revision": 4,
+        "page": "1/3",
+        "layout_sequence": 2,
+        "layout_sha256": "0b4147c22568126b028fdf4e4e87dd867300b3f240b88c9f2585b20a12e95d58",
+        "token": "5039b09b40e04358f76d50df07637737",
+        "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+        "viewer": 0,
+        "source": "12_cards_real_table_persisted_draw.png",
+        "source_sha256": "84ea2aa66cb898c0345f22c8ddd71e27ee2e73062ffc6c7cc446f953fec8a9d7",
+        "elapsed_seconds": 13.013665,
+        "accepted_original_frames": 2,
+        "rejected_original_frames": 4,
+        "rejection_statuses": {
+          "REJECTED": 4
+        },
+        "rejection_errors": [
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-01-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-02-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-03-before-layout.json"
+        ],
+        "android_observation": {
+          "decor_size": [
+            1080.0,
+            2400.0
+          ],
+          "insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "render_rect": [
+            0.0,
+            0.0,
+            1080.0,
+            2400.0
+          ],
+          "system_insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "view_size": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "layout_binding": {
+          "layout_sha256": "0b4147c22568126b028fdf4e4e87dd867300b3f240b88c9f2585b20a12e95d58",
+          "layout_sequence": 2,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      },
+      {
+        "status": "PASS",
+        "stage": "12a_cards_real_table_before_late_draw",
+        "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+        "consecutive_same_revision_frames": 2,
+        "revision": 4,
+        "page": "1/3",
+        "layout_sequence": 2,
+        "layout_sha256": "0b4147c22568126b028fdf4e4e87dd867300b3f240b88c9f2585b20a12e95d58",
+        "token": "5039b09b40e04358f76d50df07637737",
+        "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+        "viewer": 0,
+        "source": "12a_cards_real_table_before_late_draw.png",
+        "source_sha256": "bc70969ab26e854f75048a28debc7634c3c4986d6e072d5eefa3a38fc4f52b65",
+        "elapsed_seconds": 9.940618,
+        "accepted_original_frames": 2,
+        "rejected_original_frames": 0,
+        "rejection_statuses": {},
+        "rejection_errors": [],
+        "android_observation": {
+          "decor_size": [
+            1080.0,
+            2400.0
+          ],
+          "insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "render_rect": [
+            0.0,
+            0.0,
+            1080.0,
+            2400.0
+          ],
+          "system_insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "view_size": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "layout_binding": {
+          "layout_sha256": "0b4147c22568126b028fdf4e4e87dd867300b3f240b88c9f2585b20a12e95d58",
+          "layout_sequence": 2,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      },
+      {
+        "status": "PASS",
+        "stage": "12b_cards_persisted_draw_after_visible_idle",
+        "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+        "consecutive_same_revision_frames": 2,
+        "revision": 6,
+        "page": "1/3",
+        "layout_sequence": 3,
+        "layout_sha256": "f52d68be4449830581c244219bb7c011cadb2cc19a53396c4052d2db8b184c39",
+        "token": "5039b09b40e04358f76d50df07637737",
+        "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+        "viewer": 0,
+        "source": "12b_cards_persisted_draw_after_visible_idle.png",
+        "source_sha256": "e6585d0cfe78d19777066db5e90d9b9e37cdf35e6ab88d5a3b0ccaefff434b76",
+        "elapsed_seconds": 13.860909,
+        "accepted_original_frames": 2,
+        "rejected_original_frames": 6,
+        "rejection_statuses": {
+          "REJECTED": 6
+        },
+        "rejection_errors": [
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-00-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-01-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-02-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-03-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-04-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-05-before-layout.json"
+        ],
+        "android_observation": {
+          "decor_size": [
+            1080.0,
+            2400.0
+          ],
+          "insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "render_rect": [
+            0.0,
+            0.0,
+            1080.0,
+            2400.0
+          ],
+          "system_insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "view_size": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "layout_binding": {
+          "layout_sha256": "f52d68be4449830581c244219bb7c011cadb2cc19a53396c4052d2db8b184c39",
+          "layout_sequence": 3,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      }
+    ],
+    "independent_saved_card_states": [
+      {
+        "state_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-mailbox-005-state.json",
+          "bytes": 1659,
+          "sha256": "384c5b0cacada79e6e4de28cb6b71234a376f54d887966141435012f31893896"
+        },
+        "state": {
+          "token": "5039b09b40e04358f76d50df07637737",
+          "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+          "revision": 3,
+          "ack": 0,
+          "phase": "playing",
+          "paused": false,
+          "drawCount": 97
+        },
+        "save_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-save-005-preferences.xml",
+          "bytes": 5980,
+          "sha256": "6a798a1e2e4b981202ea8f99a66a32aed9ede6499cecb151667b3c8ce4021235"
+        },
+        "saved_round": "cards-36cc2382d89714f4f558263e1c169659",
+        "saved_hands": [
+          7,
+          7
+        ],
+        "saved_draw": 97,
+        "saved_discard": 1
+      },
+      {
+        "state_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-mailbox-016-state.json",
+          "bytes": 1770,
+          "sha256": "aea1eb42b80916482507f63de074ed253282549b7aac5be6f4ea845ba34441ea"
+        },
+        "state": {
+          "token": "5039b09b40e04358f76d50df07637737",
+          "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+          "revision": 4,
+          "ack": 1,
+          "phase": "playing",
+          "paused": false,
+          "drawCount": 96
+        },
+        "save_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-save-016-preferences.xml",
+          "bytes": 5980,
+          "sha256": "8cb12be303451e9e6c72abe6d815be0ccc87e205ed4d8a3ca19b95f9ec0da356"
+        },
+        "saved_round": "cards-36cc2382d89714f4f558263e1c169659",
+        "saved_hands": [
+          8,
+          6
+        ],
+        "saved_draw": 96,
+        "saved_discard": 2
+      },
+      {
+        "state_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-mailbox-021-state.json",
+          "bytes": 1770,
+          "sha256": "aea1eb42b80916482507f63de074ed253282549b7aac5be6f4ea845ba34441ea"
+        },
+        "state": {
+          "token": "5039b09b40e04358f76d50df07637737",
+          "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+          "revision": 4,
+          "ack": 1,
+          "phase": "playing",
+          "paused": false,
+          "drawCount": 96
+        },
+        "save_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-save-021-preferences.xml",
+          "bytes": 5980,
+          "sha256": "8cb12be303451e9e6c72abe6d815be0ccc87e205ed4d8a3ca19b95f9ec0da356"
+        },
+        "saved_round": "cards-36cc2382d89714f4f558263e1c169659",
+        "saved_hands": [
+          8,
+          6
+        ],
+        "saved_draw": 96,
+        "saved_discard": 2
+      },
+      {
+        "state_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-mailbox-036-state.json",
+          "bytes": 1905,
+          "sha256": "2be7e20c5ac473d248d708e7b6f16ef79a4502c148759be82462c06a19fdbba7"
+        },
+        "state": {
+          "token": "5039b09b40e04358f76d50df07637737",
+          "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+          "revision": 6,
+          "ack": 2,
+          "phase": "playing",
+          "paused": false,
+          "drawCount": 95
+        },
+        "save_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-save-036-preferences.xml",
+          "bytes": 5980,
+          "sha256": "b77b2eb0cefffbb97189c29c3b7725e7c22db9185b2a443c1f981dca6b86b80f"
+        },
+        "saved_round": "cards-36cc2382d89714f4f558263e1c169659",
+        "saved_hands": [
+          9,
+          5
+        ],
+        "saved_draw": 95,
+        "saved_discard": 3
+      },
+      {
+        "state_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-mailbox-037-state.json",
+          "bytes": 1909,
+          "sha256": "fd474253ba1b23ab438a717d6cbce6e5c0c3f07a4a205b566bda354890f2f4bd"
+        },
+        "state": {
+          "token": "5039b09b40e04358f76d50df07637737",
+          "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+          "revision": 7,
+          "ack": 3,
+          "phase": "playing",
+          "paused": true,
+          "drawCount": 95
+        },
+        "save_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-save-037-preferences.xml",
+          "bytes": 5980,
+          "sha256": "b77b2eb0cefffbb97189c29c3b7725e7c22db9185b2a443c1f981dca6b86b80f"
+        },
+        "saved_round": "cards-36cc2382d89714f4f558263e1c169659",
+        "saved_hands": [
+          9,
+          5
+        ],
+        "saved_draw": 95,
+        "saved_discard": 3
+      },
+      {
+        "state_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-mailbox-038-state.json",
+          "bytes": 1909,
+          "sha256": "fd474253ba1b23ab438a717d6cbce6e5c0c3f07a4a205b566bda354890f2f4bd"
+        },
+        "state": {
+          "token": "5039b09b40e04358f76d50df07637737",
+          "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+          "revision": 7,
+          "ack": 3,
+          "phase": "playing",
+          "paused": true,
+          "drawCount": 95
+        },
+        "save_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-save-038-preferences.xml",
+          "bytes": 5980,
+          "sha256": "b77b2eb0cefffbb97189c29c3b7725e7c22db9185b2a443c1f981dca6b86b80f"
+        },
+        "saved_round": "cards-36cc2382d89714f4f558263e1c169659",
+        "saved_hands": [
+          9,
+          5
+        ],
+        "saved_draw": 95,
+        "saved_discard": 3
+      },
+      {
+        "state_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-mailbox-001-state.json",
+          "bytes": 1905,
+          "sha256": "36b02c2d3ebe7d6decc85a13f425ad0fbf88ed41ec5cb922c681bb0d63bd054d"
+        },
+        "state": {
+          "token": "28c43cd2363e6abd1473ef7bea143929",
+          "roundId": "cards-36cc2382d89714f4f558263e1c169659",
+          "revision": 3,
+          "ack": 0,
+          "phase": "playing",
+          "paused": false,
+          "drawCount": 95
+        },
+        "save_original": {
+          "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-save-001-preferences.xml",
+          "bytes": 5980,
+          "sha256": "b77b2eb0cefffbb97189c29c3b7725e7c22db9185b2a443c1f981dca6b86b80f"
+        },
+        "saved_round": "cards-36cc2382d89714f4f558263e1c169659",
+        "saved_hands": [
+          9,
+          5
+        ],
+        "saved_draw": 95,
+        "saved_discard": 3
+      }
+    ],
+    "saved_round_equal_at_pause_return_and_reopen": true,
+    "filename_reuse": "On reopen, cards-mailbox-001-state.json and cards-save-001-preferences.xml were overwritten in the original producer artifact by the reopened state. They are used as the reopened state only; initial state is embedded in the original result/layout frames and cards-mailbox-005-state.json.",
+    "speech_original": {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/learning-speech-logcat.txt",
+      "bytes": 2726,
+      "sha256": "cf221bb9fe020686855a20eaa8f1fabd7281073f1eaf6060e4e660645a7a7c24"
+    },
+    "speech_and_movement_original_bytes_equal": true,
+    "speech_original_warning_retained": "Failed to load cached shader, recompiling.",
+    "fatal_crashes_reported": 0
+  },
+  "independent_preferences": [
+    {
+      "before": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/before-kart-preferences.xml",
+        "bytes": 1646,
+        "sha256": "8262102f658a6428bd1a316469346380b7508ac33941c0bf98e58dfcee6a25b3"
+      },
+      "after": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/after-kart-preferences.xml",
+        "bytes": 2011,
+        "sha256": "2f463e1cc4547bceb0923542aac8e402fba202479988205d83158c1dafaa6745"
+      },
+      "before_keys": 7,
+      "after_keys": 9,
+      "changed": [],
+      "added": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1"
+      ],
+      "removed": []
+    },
+    {
+      "before": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/before-kart-preferences.xml",
+        "bytes": 1646,
+        "sha256": "8262102f658a6428bd1a316469346380b7508ac33941c0bf98e58dfcee6a25b3"
+      },
+      "after": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/after-restart-preferences.xml",
+        "bytes": 2011,
+        "sha256": "4d80d19af2ea3051d3e3473bc9c826f61f04438deea83e354b9d89eda42596fa"
+      },
+      "before_keys": 7,
+      "after_keys": 9,
+      "changed": [
+        {
+          "key": "flutter.lumo_daily_mission_v1::local-cf072000e0c98a53909875ce67e2d2db",
+          "before_value_sha256": "2ff07fc533353e08521e380b1c740c45dd7e7463b44e6f5dc1a98046faf97582",
+          "after_value_sha256": "0c4c70f3ecdfc8b9e8313332149ed7626bca0ea41164c615ac1c43855386d42a",
+          "changed_json_fields": [
+            "lastSeenAt"
+          ]
+        }
+      ],
+      "added": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1"
+      ],
+      "removed": []
+    },
+    {
+      "before": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/learning-before-native-preferences.xml",
+        "bytes": 2757,
+        "sha256": "7b57aac593ba304894e03ec7f2824a969e75b108cc4f8965b200ee464a71b84c"
+      },
+      "after": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/learning-after-native-preferences.xml",
+        "bytes": 2757,
+        "sha256": "7b57aac593ba304894e03ec7f2824a969e75b108cc4f8965b200ee464a71b84c"
+      },
+      "before_keys": 10,
+      "after_keys": 10,
+      "changed": [],
+      "added": [],
+      "removed": []
+    },
+    {
+      "before": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-before-native-preferences.xml",
+        "bytes": 5980,
+        "sha256": "6a798a1e2e4b981202ea8f99a66a32aed9ede6499cecb151667b3c8ce4021235"
+      },
+      "after": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/cards-after-native-preferences.xml",
+        "bytes": 5980,
+        "sha256": "b77b2eb0cefffbb97189c29c3b7725e7c22db9185b2a443c1f981dca6b86b80f"
+      },
+      "before_keys": 11,
+      "after_keys": 11,
+      "changed": [
+        {
+          "key": "flutter.lumo.cards.round.v1.fed828a029ab54f473395d3ef905bc3f63e9967254b3c9cbaa6da89b3c7be4d4.1.solo",
+          "before_value_sha256": "67d08523eacf2b3b307593ef35d5d681789e4fc2d067d6935a662b6f2d6d8e61",
+          "after_value_sha256": "3d81f6ccf436cb279ff578c7b25d7b54a035c297f30e438d512f4e272ea5e645",
+          "changed_json_fields": [
+            "discard",
+            "draw",
+            "players"
+          ]
+        }
+      ],
+      "added": [],
+      "removed": []
+    }
+  ],
+  "original_log_review": [
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/logcat.txt",
+      "bytes": 2000340,
+      "sha256": "9f7a8eb2eecda8ae1cbe1df3d2b78357d97e4f0de9f5c3ecd9b28d4165902bfd",
+      "explicit_fatal_anr_pattern_matches": []
+    },
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/logcat.txt",
+      "bytes": 2380076,
+      "sha256": "6dad5dd757d0fec4af5629e36b184fe4445260caa0d5e852cb76dd914abf2526",
+      "explicit_fatal_anr_pattern_matches": []
+    }
+  ],
+  "transport": {
+    "collector_report": {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/report.json",
+      "bytes": 596033,
+      "sha256": "ee02f50ba3392c825b933c3a6b8ecee8b236f291f1fd554d52e357f335a764ca"
+    },
+    "artifact": {
+      "id": 14100386232,
+      "bytes": 188751664,
+      "sha256": "fe10071607c89693da948eb057870b8b91ba4b5ccd2a05054a5bb7bf51c5226c",
+      "run_id": 43558497857,
+      "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+    },
+    "full_archive_only_retained_externally": true,
+    "input": {
+      "mode": "private_https_download",
+      "complete_zip_preexisted_locally": false,
+      "complete_zip_written_by_collector": false,
+      "complete_zip_retention": "Only the original external Actions artifact retains the complete ZIP; its retention policy is unchanged.",
+      "archive_buffer": "io.BytesIO; no automatic disk spool",
+      "url_recorded": false
+    },
+    "members_crc_and_sha256_verified": 2015,
+    "expanded_bytes": 204798433,
+    "selected_original_count": 1186,
+    "selected_original_bytes": 17068168,
+    "all_selected_files_rehashed_against_complete_inventory": true,
+    "two_ram_inventory_reports_identical": true,
+    "local_orchestration_error": {
+      "path": "artifacts/14100386232/local-selection-orchestration-error.json",
+      "bytes": 877,
+      "sha256": "f6f3b98336578277b5363915f9e5b7a9d19196bbf4b50bb70759fd26fc630c41"
+    },
+    "local_orchestration_scope": "Initial selection exceeded 20 MiB and was not written; a missing-selection-path error ended the first RAM pass without materializing files. Same authorized URL was reread in RAM after prechecking the corrected selection, without another GitHub artifact request or a full ZIP on disk."
+  },
+  "selected_images": [
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/23_zurueck_in_flutter.png",
+      "bytes": 1956882,
+      "sha256": "90988c9550e8bac67691aec3d1fe4dd9b508a0d519ab8ef74bbb58df71e6f274"
+    },
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/02_learning_native_eight_plus_five.png",
+      "bytes": 556643,
+      "sha256": "280fb7e69b2ae2bb08e3ccd9f32593cd84f8b405a2e49caa2af2fc752dfb1b24"
+    },
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/04_learning_native_thirteen.png",
+      "bytes": 579177,
+      "sha256": "e27c8c3201228b209e49147da655d20929a7bc5f9292123af6f9e8f0f47cf19e"
+    },
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1509070,
+      "sha256": "e7340d89a8e9ee0df4850a67895f85fe7ddf026333d4ad255187b144dfc16fbd"
+    },
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 1163122,
+      "sha256": "16dbc13d7b822e46abde05b74d6b0b545d3871dc9ff5551ed7e4fcdb02d73d03"
+    },
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 1140668,
+      "sha256": "e6585d0cfe78d19777066db5e90d9b9e37cdf35e6ab88d5a3b0ccaefff434b76"
+    },
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/15_cards_reopened_same_round.png",
+      "bytes": 1140811,
+      "sha256": "9ee6589b1f6ec05c70b5eb5493047ba2310f6c87226e4b34063277146179d3ee"
+    },
+    {
+      "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/16_cards_final_flutter_return.png",
+      "bytes": 522546,
+      "sha256": "0f291b062a8df6007b233146dc8dd7158b9549bd989ee16f208ca2be1d818140"
+    }
+  ],
+  "independent_direct_image_review": [
+    {
+      "original": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/04_learning_native_thirteen.png",
+        "bytes": 579177,
+        "sha256": "e27c8c3201228b209e49147da655d20929a7bc5f9292123af6f9e8f0f47cf19e"
+      },
+      "observation": "Rendered 8+5=10+3=13, moved tokens and completion controls are visible; observation by flutter_integration, not attributed to Root."
+    },
+    {
+      "original": {
+        "path": "artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+        "bytes": 1140668,
+        "sha256": "e6585d0cfe78d19777066db5e90d9b9e37cdf35e6ab88d5a3b0ccaefff434b76"
+      },
+      "observation": "Rendered Cards table, Du9/Lumo5, three displayed hand fronts, orange discard, 1/3 and Ziehen/Pause are visible; observation by flutter_integration, not a pixel card-identity or physical-device claim."
+    }
+  ],
+  "not_tested": [
+    "physical Samsung Fold",
+    "device GPU frame times / 60 FPS",
+    "audio output",
+    "complete two-lap race and reward (kart_complete_android_probe)",
+    "Audible voice quality or lip sync (no-audio emulator)",
+    "Continuous across-adbd-root API37 ANR completeness",
+    "All saved screenshots independently viewed",
+    "Release publication",
+    "New C4 builds or future source"
+  ],
+  "separation": "PR482 overall remains FAILURE because its three API37 after-root setup jobs failed before application installation. API35 and the separate Update original review are real scoped successes for unchanged APK7b16/Native17f5 only. PR481 Jump remains separately FAIL."
+}

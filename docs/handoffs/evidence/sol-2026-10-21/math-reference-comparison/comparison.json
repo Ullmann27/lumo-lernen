@@ -1,0 +1,42 @@
+{
+  "reference": {
+    "path": "docs/design/2026-10-10-lumo-games/references/50608.png",
+    "sha256": "d05e4cab8057250e13db22a0bffbdd9cba32304c61487dfe1ce1cbc127ff0ade",
+    "size": [
+      941,
+      1672
+    ],
+    "frame": 0
+  },
+  "actual": {
+    "path": "docs/handoffs/evidence/sol-2026-10-21/math/plus-bis-10-reference-phone-360x800.png",
+    "sha256": "2fc8c1af35f347545bd1387cf3af821a2261bb293121ebc26fdd41ae8afd4dfa",
+    "size": [
+      360,
+      800
+    ]
+  },
+  "alignment": "diagnostic resize",
+  "channel_threshold": 24,
+  "max_changed_fraction": null,
+  "regions": {
+    "full": {
+      "bounds": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "pixel_bounds": [
+        0,
+        0,
+        360,
+        800
+      ],
+      "changed_fraction": 0.839097,
+      "mean_channel_delta": 53.3354
+    }
+  },
+  "within_threshold": null,
+  "limitation": "Pixel differences do not certify reference fidelity, accessibility or performance."
+}

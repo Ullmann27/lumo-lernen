@@ -1,0 +1,112 @@
+{
+  "reviewer": "Team B / character_jump",
+  "reviewed_at_utc": "2026-11-13T04:47:25.731580+00:00",
+  "repository": "Ullmann27/lumo-godot",
+  "source_sha": "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+  "source_branch": "chatgpt/lumo-nextgen-20261113",
+  "workflow_run_id": 43365141980,
+  "workflow_conclusion": "success",
+  "scope": "Visual inspection of all 16 original Jump renderer captures, plus their capture metrics; no source edits.",
+  "all_original_images_opened": true,
+  "images_reviewed": [
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_ready.png",
+      "sha256": "96aa8aed9ceee879e771f3a4593b611f58d2357badd08e25ac45821e810f3a44"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_touch_ascent.png",
+      "sha256": "d50c269b2aa6f6e40b8bd97dfb724e0966e04c2aefa37ef6b95493558a6bac85"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_airborne.png",
+      "sha256": "af50068e9c04a108aede687a190cfeec422322d2d4fb447c9eb7bca509d73967"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_landed.png",
+      "sha256": "f8b6692ad31eb08ba6ae18ee99678441f23f7dcfb40aa7a02d27f9fe29a9bea8"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_ready.png",
+      "sha256": "f50fd64abcb2883c628805249259b5c2b71364c8504182129505589687f0ff78"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_touch_ascent.png",
+      "sha256": "fd68b356b92da0eb0c2465e1f8e91078b09d572915a8bf036a123df5e0608136"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_airborne.png",
+      "sha256": "f051264e04ed65887abb5280ad00616436a2d31c4eb5fe60799ed95403d822a8"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "sha256": "13c8baa3855b2ff77d8d8274d766cd91b1445aba40078c6af08a8467a3cc50ae"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_ready.png",
+      "sha256": "6b2338aab93784870a42b3fa44bd5e8d0441109823a18946755fdcd43ffa84f9"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "sha256": "e557bdd3abdb1e9699f4af3281df5fce3cf5b907668b02c532809ea3b3bd2843"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_airborne.png",
+      "sha256": "427ec1b7b070e2203574ea202e1c7ff821bedfb38b2e1c6d93157f4a3e2ed24b"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_landed.png",
+      "sha256": "8f727dcae84fcb7d8add23ca76abdebd8b2e04f1c6bcc3ce32e2b4e8794a642f"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_ready.png",
+      "sha256": "cb66ffce319fa6c2b8ef4ee624b620829cb27f02e5b8ca1a2fc83a92bf96449a"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_touch_ascent.png",
+      "sha256": "3de26d70c012e362e409c83d871de298c9e6adf8adebced65e283fc28bac9cb5"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "sha256": "1184392e12faa830494d9af4faa1ed7abd174980376d47c35b8b1975032f0d34"
+    },
+    {
+      "file": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_landed.png",
+      "sha256": "c7e5012ecaf4b45c948edabf9260f6eaa1ba09a152ce21d3ab561cdf738685ed"
+    }
+  ],
+  "findings": {
+    "touch_separation": "Movement stick left and jump button right are fully visible and separated in all four formats. Their labels remain in-frame and neither control covers Lumo.",
+    "touch_feedback": "Touch-ascent frames visibly show the displaced joystick knob and pressed jump-button color; released frames restore the visual state.",
+    "rig": "The original fox retains connected head, body, limbs and tail in all sampled phases. No visible stretched mesh, detached joint or inverted limb.",
+    "camera": "Lumo, the current ground and the next platform remain visible at ready, ascent, fall and settled landing.",
+    "landing": "Settled-landed frames show plausible foot-to-ground contact; capture metrics confirm grounded=true and zero velocity.",
+    "goals": "Island counter, route, stage target and bonus progress remain visible in all formats; narrow portrait wraps the counter line without button overlap."
+  },
+  "blocking_visual_defects": [],
+  "capture_metrics": {
+    "display": "X11",
+    "checks": 80,
+    "failures": [],
+    "draw_calls_range": [
+      223,
+      297
+    ],
+    "primitives_range": [
+      255094,
+      374984
+    ],
+    "rise_vertical_velocity": 4.899998,
+    "fall_vertical_velocity": -7.100004,
+    "all_rise_samples_use_jump_rise": true,
+    "all_fall_samples_use_jump_fall": true,
+    "all_settled_landings_grounded_and_stationary": true,
+    "device_fps_measured": false
+  },
+  "limits": [
+    "The landed images capture settled idle, not the exact impact-frame landing animation.",
+    "Static images cannot establish animation smoothness, real-device input latency, thermal behavior or Samsung Galaxy Z Fold7 frame rate.",
+    "Bright pastel lighting and a relatively small fox in wide landscape remain visible presentation limitations; this review does not claim AAA visual completion.",
+    "Draw-call and primitive samples are renderer evidence, not CPU/GPU timing or device-performance proof."
+  ],
+  "source_files_modified": []
+}

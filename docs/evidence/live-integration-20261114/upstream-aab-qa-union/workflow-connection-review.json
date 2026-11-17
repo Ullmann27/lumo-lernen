@@ -1,0 +1,62 @@
+{
+  "schema": "lumo-workflow-delivery-union-source-review/v1",
+  "workflow_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+  "delivery_blob": "5c64b8f5d81eddeadb49b99988006a834b0f5fee",
+  "initial_qa_checkpoint": "1ca9df78be94a7e2300dfb47472ea30a6e238b7c",
+  "review": {
+    "root_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+    "normalizes_to_current_951_byte_exact": true,
+    "upstream_steps": [
+      {
+        "step": "Require the additional pinned native Treasure wisp regression",
+        "byte_equal_to_upstream": true
+      },
+      {
+        "step": "Require acknowledged Connect Four return retry",
+        "byte_equal_to_upstream": true
+      },
+      {
+        "step": "Require actual Dream gates on the exact pinned native source",
+        "byte_equal_to_upstream": true
+      },
+      {
+        "step": "Retry the acknowledged native exit after a transient Android refusal",
+        "byte_equal_to_upstream": true
+      }
+    ],
+    "jobs": [
+      "connect-four-runtime",
+      "android-host-compile",
+      "verify-and-build",
+      "android-c4",
+      "update-2020-from-2017",
+      "verify-c4-candidate",
+      "prepare-c4-delivery"
+    ],
+    "execution": "NOT_RUN_EXECUTOR_UNAVAILABLE"
+  },
+  "additional_pipeline_test": {
+    "path": "scripts/tests/test_connect_four_pipeline.py",
+    "blob": "0836ae775c3524c8b4a691fef934d52caa20cbc8",
+    "original_blob": "5064b793d12ed3742b94698e7e85edc69d2a7c24",
+    "changes": [
+      {
+        "line": 141,
+        "before": "        self.assertIn(\"if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:' c4-runtime/return-recovery.log; then\",block)",
+        "after": "        self.assertIn(\"if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|Assertion failed' c4-runtime/return-recovery.log; then\",block)"
+      },
+      {
+        "line": 143,
+        "before": "        self.assertIn(\"grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log\",block)",
+        "after": "        self.assertIn(\"test \\\"$(grep -Fxc 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log)\\\" = 1\",block)"
+      }
+    ],
+    "test_roster_count": 18,
+    "test_roster_unchanged": true
+  },
+  "native_final_source_reported_by_root": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "native_pin_changes_owned_by_root": true,
+  "local_execution": "NOT_RUN_EXECUTOR_UNAVAILABLE",
+  "actual_merged_ci": "NOT_STARTED",
+  "publisher_bound": false
+}

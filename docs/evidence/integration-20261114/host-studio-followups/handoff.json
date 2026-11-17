@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "status": "FROZEN_LOCAL_EVIDENCE_ARCHIVE",
+  "created_at": "2026-11-14T00:38:26.226742+00:00",
+  "archive": {
+    "path": "late-followup-evidence.tar.gz",
+    "bytes": 914993,
+    "sha256": "12ce50076f040d397a2d20a9bad7c31939adad2b4155df3e5997e0bb8309065f"
+  },
+  "index_sha256": "2218684c733c96b522f6413f8b4c70e5f052bb85f787984dbce0557edd73c62b",
+  "roundtrip_sha256": "d76c92368dd2cefc0a50ae4705c80b7f18634b93744c7e3142384c714c135c7b",
+  "readme_sha256": "850b65e79e868e1f5cf1477930fd8ed2c18124b5bac5f88f8b4eee12a2004ee6",
+  "source_file_count": 82,
+  "original_bytes": 3792767,
+  "full_byte_roundtrips": 82,
+  "root_transport_history": {
+    "initial_error_record": "host-studio-evidence-publication-preparation/evidence-archive-blob.json",
+    "initial_error_record_sha256": "98b4ecdb5d8b30fa377d01b10f81afa1553eb9f6e96850bcfe2b3a1dfff417aa",
+    "message": "HTTP 400: MCP request body is invalid or exceeds the 16 MiB limit",
+    "successful_records": "host-studio-evidence-publication-preparation/split-blobs-progress.json",
+    "successful_records_sha256": "0dd83fe50ea9c274a40e6605e1268ec4051cb15182c1c7c8522db72b1c8e1553",
+    "successful_exact_blobs": 13,
+    "state": "BLOB_PREPARATION_ONLY_NO_COMMIT_NO_REF",
+    "no_ref_change_asserted_by_each_record": true
+  },
+  "limitations": [
+    "This packages existing evidence only; no new code, device, CI or visual test was executed.",
+    "Binary large archive parts, original APKs/ZIPs and raster payloads are not included.",
+    "No producer pin or receipt is adopted.",
+    "17f5 budget/timing follow-up is pending and separate."
+  ]
+}

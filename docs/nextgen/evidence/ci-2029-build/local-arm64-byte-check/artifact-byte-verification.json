@@ -1,0 +1,18 @@
+{
+  "artifact_id": 14190879074,
+  "run_id": 43785937519,
+  "source": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "archive_bytes": 535035272,
+  "archive_sha256": "1fd6cb41a0e43ef5c2a118daf88fc0fe1e79cea84f84b8699ee6c9f52948b8ac",
+  "apk_bytes": 535021166,
+  "apk_sha256": "bc8fdd9c1f70d7d6e374b5424029e127531525deb4f2dec1e69de4ea8f6ee0c3",
+  "destination": "/workspace/scratch/4fa97167812c/ci-2029-arm64-bytes",
+  "status": "PASS",
+  "allArchiveMembersCRCsVerified": true,
+  "completeArchiveSha256Verified": true,
+  "completeApkSha256Verified": true,
+  "metadataMatchedActualApkBytes": true,
+  "apkKeptOnDisk": false,
+  "apkArchiveKeptOnDisk": false,
+  "scope": "Complete local artifact/APK byte verification and metadata binding. Signature and ELF checks are the unchanged CI verifier results; apksigner was not rerun locally. No Android device or public download claim."
+}

@@ -1,0 +1,18 @@
+test_recorded_ready_dialog_uses_actual_runtime_xml_parser_and_element_nodes (__main__.MicrophonePermissionFlowTest.test_recorded_ready_dialog_uses_actual_runtime_xml_parser_and_element_nodes) ... ERROR
+
+======================================================================
+ERROR: test_recorded_ready_dialog_uses_actual_runtime_xml_parser_and_element_nodes (__main__.MicrophonePermissionFlowTest.test_recorded_ready_dialog_uses_actual_runtime_xml_parser_and_element_nodes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 445, in test_recorded_ready_dialog_uses_actual_runtime_xml_parser_and_element_nodes
+    self.assertEqual(probe.observed_microphone_allow(nodes),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/.github/probes/lumo_nextgen_learning_android_probe.py", line 233, in observed_microphone_allow
+    key = (node["package"], node.get("resource-id", ""), box)
+           ~~~~^^^^^^^^^^^
+TypeError: element indices must be integers
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (errors=1)

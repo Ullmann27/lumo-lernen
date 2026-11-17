@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "classification": "Obsolete test-navigation finder, before any writing input or progress assertion is reached.",
+  "failed_source": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+  "current_target": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+  "run_id": 43601673844,
+  "attempt": 1,
+  "build_job_id": 132468566278,
+  "artifact_id": 14117615115,
+  "original_result": {
+    "visible_pass": 2605,
+    "error": 3,
+    "skip": 0,
+    "flutter_exit": 1,
+    "terminal_machine_success": false,
+    "last_machine_line": 8324
+  },
+  "facts": [
+    "Each complete original stack ends in _revealWrittenWord at195:16, called at293,502,541.",
+    "The finder requires a GestureDetector with onPanStart and onPanUpdate, then evaluates .first; all three fail with No element before drag input.",
+    "Actual WortDiktatScreen builds four rows. Each row uses the existing LumoInkSurface, whose RawGestureDetector uses EagerGestureRecognizer and whose Listener forwards real pointer down/move/up/cancel.",
+    "The product stores only an ended non-cancelled stroke with more than one point. Fertig reveals the word only when a stored stroke exists.",
+    "The patch selects the actual four input surfaces within the one real Diktat screen and uses the original drag then original Fertig/self-rating flow."
+  ],
+  "preserved_assertions": [
+    "Exact subject/topic and stored correct/wrong/attempt counts.",
+    "Duplicate self-ratings accepted once; pending-save navigation protection.",
+    "Two complete20-word sessions and earned star/XP bonuses without extra Daily.",
+    "Existing persistence, wallet-failure and background-feedback contracts."
+  ],
+  "limits": [
+    "No new test execution or import was performed before source checkpoint.",
+    "These three traces diagnose an obsolete input selector; they do not independently prove all Diktat product behavior correct.",
+    "Current79c7 test bytes are bound by the independent original API reads; supporting local product contract reads are explicitly from immutable37ec.",
+    "No Android, APK, native, visual or overall suite acceptance follows from this source repair.",
+    "The active79c7 run is unchanged; the full37ec machine failure is retained as failure despite later run cancellation."
+  ]
+}

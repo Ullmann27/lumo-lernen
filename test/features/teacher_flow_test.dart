@@ -193,6 +193,92 @@ void main() {
     app.dispose();
   });
 
+  testWidgets('Fällige Lehrkraftaufgaben werden vor späteren und undatierten angezeigt',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    late final LumoAppState app;
+    await tester.runAsync(() async {
+      app = LumoAppState();
+      var d = await app.school.addClass('2a', 2);
+      final cls = d.classes.single.id;
+      d = await app.school.addStudent(cls, 'Mia');
+      await app.school.setActiveStudent(d.students.single.id);
+      final start = DateTime(2026, 10, 18);
+      Future<void> add(String unit, DateTime? due) => app.school.addAssignment(
+        Assignment(
+          id: unit,
+          classId: cls,
+          targetKind: AssignmentTargetKind.wholeClass,
+          subject: 'Mathematik',
+          unit: unit,
+          title: unit,
+          dueAt: due,
+          createdAt: start,
+        ),
+      ).then((_) {});
+      await add('Ohne Termin', null);
+      await add('Später', DateTime(2026, 10, 25));
+      await add('Zuerst', DateTime(2026, 10, 20));
+    });
+    await tester.pumpWidget(MaterialApp(home: Scaffold(
+      body: StudentAssignmentsCard(appState: app, onStart: (_, __) {}),
+    )));
+    await _settle(tester);
+    final first = tester.getTopLeft(find.text('Mathematik: Zuerst')).dy;
+    final second = tester.getTopLeft(find.text('Mathematik: Später')).dy;
+    final undated = tester.getTopLeft(find.text('Mathematik: Ohne Termin')).dy;
+    expect(first, lessThan(second));
+    expect(second, lessThan(undated));
+    expect(find.text('Fällig bis: 20.10.2026'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+    app.dispose();
+  });
+
+  testWidgets('Wechsel zwischen Kindern entfernt sofort fremde Aufgaben',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    late final LumoAppState app;
+    late String first;
+    late String second;
+    await tester.runAsync(() async {
+      app = LumoAppState();
+      var d = await app.school.addClass('2a', 2);
+      final cls = d.classes.single.id;
+      d = await app.school.addStudent(cls, 'Mia');
+      d = await app.school.addStudent(cls, 'Lena');
+      first = d.students[0].id;
+      second = d.students[1].id;
+      await app.school.setActiveStudent(first);
+      await app.school.addAssignment(Assignment(
+        id: 'for-mia',
+        classId: cls,
+        targetKind: AssignmentTargetKind.student,
+        targetId: first,
+        subject: 'Mathematik',
+        unit: 'Plus bis 10',
+        title: 'Nur für Mia',
+        createdAt: DateTime(2026, 10, 18),
+      ));
+    });
+    await tester.pumpWidget(MaterialApp(home: Scaffold(
+      body: StudentAssignmentsCard(appState: app, onStart: (_, __) {}),
+    )));
+    await _settle(tester);
+    expect(find.text('Mathematik: Nur für Mia'), findsOneWidget);
+    await tester.runAsync(() => app.school.setActiveStudent(second));
+    await tester.pump();
+    expect(find.text('Mathematik: Nur für Mia'), findsNothing);
+    await _settle(tester);
+    expect(find.byKey(const ValueKey('student-assignments')), findsNothing);
+    await tester.runAsync(() => app.school.setActiveStudent(first));
+    await _settle(tester);
+    expect(find.text('Mathematik: Nur für Mia'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+    app.dispose();
+  });
+
   testWidgets('Ohne Zuordnung bleibt das Feld unsichtbar', (tester) async {
     late final LumoAppState app;
     await tester.runAsync(() async => app = LumoAppState());

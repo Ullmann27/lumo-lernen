@@ -1,0 +1,16 @@
+{
+  "kind": "local_source_diagnosis_change_only_not_device_acceptance",
+  "host_baseline_sha": "1a5d456a6731d0ae319cbb95c17effd1ed106fba",
+  "file": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+  "before_sha256": "e7db2293e3174f954f05bd0fe31b2bbf01cb23a46e87776f60f60c3a33e14d2e",
+  "after_sha256": "3c35cde09c2d7d7ac9c82d1fc0201386a24cc7dd018d7a4f2ffebf977be0864b",
+  "old_message": "Current Cards frame still has a paused/modal transition",
+  "new_message": "Current Cards frame does not expose the visible Pause control",
+  "all_other_source_bytes_identical": true,
+  "condition_deadline_retry_and_pixel_guards_changed": false,
+  "test_command": "python3 -m unittest discover -s tools/android_qa/tests -p test_nextgen_cards_faces.py -v",
+  "test_count": 8,
+  "test_result": "PASS",
+  "native_layout_fix_source": "3c26573d070a131ed5215fbdbff2517e719b3bbd",
+  "android_fix_acceptance_claimed": false
+}

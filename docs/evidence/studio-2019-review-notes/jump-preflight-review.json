@@ -1,0 +1,410 @@
+{
+  "schema": 1,
+  "kind": "independent_jump_preflight_review",
+  "status": "preflight_no_additional_visible_blocker",
+  "final_visual_receipt": false,
+  "eligible_for_final_publication": false,
+  "reviewed_by": "Agent B /root/character_animation",
+  "reviewed_at": "2026-11-13T13:19:23.558205+00:00",
+  "source_commit": "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+  "scope": "Vorkontrolle des älteren vollständigen Native-Artefakts 9eb25fcb. Keine Freigabe des neu laufenden 64f-Standes und keine finale Studio-2019-Receipt. Der verworfene Puzzle-Stand wird damit nicht freigegeben.",
+  "original_archive": {
+    "file": "studio-full-native-9eb25fcb.zip",
+    "sha256": "1162b47fa9d4a965de56592580e9e9463b561f4836efd1645ef55c2c23b57c33",
+    "bytes": 102757674,
+    "all_reviewed_png_bytes_match_original_zip": true
+  },
+  "native_capture_source": {
+    "source_sha_entry": "nextgen-evidence/nextgen/source-sha.txt",
+    "source_dirty_entry": "nextgen-evidence/nextgen/source-dirty.txt",
+    "tracked_source_clean": true
+  },
+  "renderer": {
+    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+    "display": "X11",
+    "renderer": "OpenGL Compatibility, Mesa 25.2.8 llvmpipe (LLVM 20.1.2, 256 bits)",
+    "physical_android_device": false
+  },
+  "capture_report": {
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump-nextgen-evidence.json",
+    "sha256": "48f81595b32863f361b427857636310dd6c61d9d6f532f2ee6f801899b5ab63c",
+    "checks": 80,
+    "failures": [],
+    "render_log_entry": "nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log",
+    "render_log_sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+    "live_test_rerun_by_this_review": false
+  },
+  "formats_reviewed": [
+    {
+      "pixels": [
+        412,
+        915
+      ],
+      "display_density_in_probe": 1.0,
+      "type": "phone portrait"
+    },
+    {
+      "pixels": [
+        690,
+        829
+      ],
+      "display_density_in_probe": 1.0,
+      "type": "fold-like portrait viewport"
+    },
+    {
+      "pixels": [
+        1280,
+        720
+      ],
+      "display_density_in_probe": 1.0,
+      "type": "landscape viewport"
+    },
+    {
+      "pixels": [
+        2400,
+        1080
+      ],
+      "display_density_in_probe": 2.625,
+      "type": "high-density landscape viewport"
+    }
+  ],
+  "visual_conclusions": [
+    "Alle 16 PNGs einzeln mit view_image betrachtet; der zunächst wegen Ausgabelimit ausgelassene letzte Frame wurde anschließend separat geöffnet.",
+    "Originalfuchs-Rückansicht mit Ohren, orangefarbenem Fell, blauer Kleidung und zweifarbigem Schwanz in allen Phasen erkennbar. Keine sichtbar fehlenden, zerrissenen oder verdoppelten Gliedmaßen.",
+    "Aufstieg und Fallphase sind räumlich verschieden; die zugehörigen aufgezeichneten vertikalen Geschwindigkeiten sind etwa +4.9 und -7.1. Ready und Landed melden grounded=true und Nullgeschwindigkeit.",
+    "Bewegungsstick links und großer Sprungknopf rechts bleiben in allen vier Formaten vollständig innerhalb des Bildes und voneinander getrennt. Schrift und oberer Zurück-/Pausezugang sind sichtbar; der gesteuerte Lumo wird nicht von den Daumenbedienelementen verdeckt.",
+    "Die helle Umgebung und größere HUD-Skalierung im hochauflösenden Dichtefall sind sichtbar. In diesen geprüften Szenen ergibt sich daraus kein zusätzlicher belegter Spielblocker."
+  ],
+  "limitations": [
+    "Statische Rückansichten belegen weder Frontalmimik noch die zeitliche Qualität aller Animationstransitionen.",
+    "Die vier Landed-Captures entstehen nach 60 weiteren Physikframes und zeigen laut Capture-Metadaten idle. Sie belegen eine stabile Landung, nicht den kurzen Impact-Clip.",
+    "Die tatsächliche Capture-Probe fährt einen Zwei-Finger-Sprung auf der Startinsel. Sie ist keine vollständige Abnahme aller Plattformwechsel oder Level.",
+    "Die originalen 80 Prüfungen wurden anhand des gebundenen Capture-Logs und der JSON-Datei nachvollzogen, im Review nicht erneut ausgeführt.",
+    "Keine Messung auf einem physischen Fold7; keine Behauptung zu Android-DPI, Notch/Faltkante, 60 FPS, GPU-Zeiten, Temperatur oder Touchlatenz.",
+    "Der frische finale Native-Commit benötigt weiterhin eigene tatsächliche Bildprüfung und die separate Freigabe-Receipt."
+  ],
+  "additional_blockers": [],
+  "product_files_changed": false,
+  "images": [
+    {
+      "file": "jump_412x915_ready.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_ready.png",
+      "sha256": "6d0ddf1eff5a22e652b42b9c39b0a1eaa38cba7fa592ebb6f335280496337236",
+      "bytes": 414297,
+      "dimensions": [
+        412,
+        915
+      ],
+      "opened_with_view_image": true,
+      "phase": "ready",
+      "visual_blocker_found": false,
+      "findings": "Originalfuchs in vollständiger Rückansicht auf dem Startpfad; kein sichtbares abgelöstes Gliedmaß oder grobes Einsinken. Beide Daumenbedienelemente und obere Navigation vollständig sichtbar.",
+      "recorded_state": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle"
+      }
+    },
+    {
+      "file": "jump_412x915_touch_ascent.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_touch_ascent.png",
+      "sha256": "165e7994ddd3b65c2afc3660309811df47b9c31663557b38b3d7ef7bac130fa0",
+      "bytes": 458530,
+      "dimensions": [
+        412,
+        915
+      ],
+      "opened_with_view_image": true,
+      "phase": "touch_ascent",
+      "visual_blocker_found": false,
+      "findings": "Lumo sichtbar vom Startboden abgehoben, Beine und Schwanz zusammenhängend; nachgeführte Kamera behält Figur und nächsten Plattformrand im Blick. Linker Stick ausgelenkt und Sprungknopf im gedrückten Zustand.",
+      "recorded_state": {
+        "actor_position": "(-0.000001, 1.652589, -0.017352)",
+        "velocity": "(-0.000001, 4.899998, -3.193565)",
+        "grounded": false,
+        "animation": "jump_rise"
+      }
+    },
+    {
+      "file": "jump_412x915_airborne.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_airborne.png",
+      "sha256": "8738ee62861b167a87866aa61ffecc455a62fee3aeb25675f91f9605c16b7944",
+      "bytes": 491848,
+      "dimensions": [
+        412,
+        915
+      ],
+      "opened_with_view_image": true,
+      "phase": "airborne",
+      "visual_blocker_found": false,
+      "findings": "Fallphase oberhalb des Startpfads; die Figur bleibt vollständig und zentral sichtbar, mit zusammenhängender Bein-/Schwanzsilhouette. Sprungknopf bleibt während gehaltenem Finger gedrückt.",
+      "recorded_state": {
+        "actor_position": "(-0.000001, 0.819254, -0.735314)",
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "grounded": false,
+        "animation": "jump_fall"
+      }
+    },
+    {
+      "file": "jump_412x915_landed.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "sha256": "0e1c00c86e1a954ca161127449e3753921d8782707dcd3fcef50bf4189874f80",
+      "bytes": 473658,
+      "dimensions": [
+        412,
+        915
+      ],
+      "opened_with_view_image": true,
+      "phase": "landed",
+      "visual_blocker_found": false,
+      "findings": "Lumo steht nach dem kontrollierten Sprung wieder auf dem Pfad, mit Bodenschatten und vollständigen Gliedmaßen. Der Sprungknopf ist wieder freigegeben. Dieser spätere Frame zeigt bereits Idle und ist kein Standbild des kurzen Landekompressionsclips.",
+      "recorded_state": {
+        "actor_position": "(-0.000001, 0.200178, -0.735314)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle"
+      }
+    },
+    {
+      "file": "jump_690x829_ready.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_ready.png",
+      "sha256": "2da58c5f06bd8a4a490b553cacca9bdadead3c14d904f47bca2ebb5c99045d27",
+      "bytes": 540617,
+      "dimensions": [
+        690,
+        829
+      ],
+      "opened_with_view_image": true,
+      "phase": "ready",
+      "visual_blocker_found": false,
+      "findings": "Originalfuchs in vollständiger Rückansicht auf dem Startpfad; kein sichtbares abgelöstes Gliedmaß oder grobes Einsinken. Beide Daumenbedienelemente und obere Navigation vollständig sichtbar.",
+      "recorded_state": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle"
+      }
+    },
+    {
+      "file": "jump_690x829_touch_ascent.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "sha256": "c425532fc4ee80398dc186d71a181f52d6074f0fd450d973f3373deac437229f",
+      "bytes": 605820,
+      "dimensions": [
+        690,
+        829
+      ],
+      "opened_with_view_image": true,
+      "phase": "touch_ascent",
+      "visual_blocker_found": false,
+      "findings": "Lumo sichtbar vom Startboden abgehoben, Beine und Schwanz zusammenhängend; nachgeführte Kamera behält Figur und nächsten Plattformrand im Blick. Linker Stick ausgelenkt und Sprungknopf im gedrückten Zustand.",
+      "recorded_state": {
+        "actor_position": "(-0.0, 1.652587, -0.01735)",
+        "velocity": "(-0.000001, 4.899998, -3.193553)",
+        "grounded": false,
+        "animation": "jump_rise"
+      }
+    },
+    {
+      "file": "jump_690x829_airborne.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_airborne.png",
+      "sha256": "25e877ef0545a91f52465bddb34bd2479bf5e1e5573f6e17e556c863e12ab04c",
+      "bytes": 659594,
+      "dimensions": [
+        690,
+        829
+      ],
+      "opened_with_view_image": true,
+      "phase": "airborne",
+      "visual_blocker_found": false,
+      "findings": "Fallphase oberhalb des Startpfads; die Figur bleibt vollständig und zentral sichtbar, mit zusammenhängender Bein-/Schwanzsilhouette. Sprungknopf bleibt während gehaltenem Finger gedrückt.",
+      "recorded_state": {
+        "actor_position": "(-0.0, 0.819252, -0.735308)",
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "grounded": false,
+        "animation": "jump_fall"
+      }
+    },
+    {
+      "file": "jump_690x829_landed.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_landed.png",
+      "sha256": "1c7d4d41386f85a245955d6ab6df573266d78d69777fccdd79d9ae32a79058f6",
+      "bytes": 626412,
+      "dimensions": [
+        690,
+        829
+      ],
+      "opened_with_view_image": true,
+      "phase": "landed",
+      "visual_blocker_found": false,
+      "findings": "Lumo steht nach dem kontrollierten Sprung wieder auf dem Pfad, mit Bodenschatten und vollständigen Gliedmaßen. Der Sprungknopf ist wieder freigegeben. Dieser spätere Frame zeigt bereits Idle und ist kein Standbild des kurzen Landekompressionsclips.",
+      "recorded_state": {
+        "actor_position": "(-0.0, 0.200176, -0.735308)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle"
+      }
+    },
+    {
+      "file": "jump_1280x720_ready.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_ready.png",
+      "sha256": "df2f9c66f274ec8f47d833f27247cc4632efe5cec20be6864eb30cdd28165f78",
+      "bytes": 752350,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_with_view_image": true,
+      "phase": "ready",
+      "visual_blocker_found": false,
+      "findings": "Originalfuchs in vollständiger Rückansicht auf dem Startpfad; kein sichtbares abgelöstes Gliedmaß oder grobes Einsinken. Beide Daumenbedienelemente und obere Navigation vollständig sichtbar.",
+      "recorded_state": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle"
+      }
+    },
+    {
+      "file": "jump_1280x720_touch_ascent.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_touch_ascent.png",
+      "sha256": "2f729a365edc82bbdb199e6bdbc859b6583e8ecc4541d31b7925926286ef69ec",
+      "bytes": 838409,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_with_view_image": true,
+      "phase": "touch_ascent",
+      "visual_blocker_found": false,
+      "findings": "Lumo sichtbar vom Startboden abgehoben, Beine und Schwanz zusammenhängend; nachgeführte Kamera behält Figur und nächsten Plattformrand im Blick. Linker Stick ausgelenkt und Sprungknopf im gedrückten Zustand.",
+      "recorded_state": {
+        "actor_position": "(-0.0, 1.652588, -0.017345)",
+        "velocity": "(-0.000001, 4.899998, -3.193547)",
+        "grounded": false,
+        "animation": "jump_rise"
+      }
+    },
+    {
+      "file": "jump_1280x720_airborne.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_airborne.png",
+      "sha256": "2f6f0e4896508e7548711e85f36bc1ddde59904d95364ee0715bee08d9bb54f0",
+      "bytes": 895414,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_with_view_image": true,
+      "phase": "airborne",
+      "visual_blocker_found": false,
+      "findings": "Fallphase oberhalb des Startpfads; die Figur bleibt vollständig und zentral sichtbar, mit zusammenhängender Bein-/Schwanzsilhouette. Sprungknopf bleibt während gehaltenem Finger gedrückt.",
+      "recorded_state": {
+        "actor_position": "(-0.000001, 0.819253, -0.735302)",
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "grounded": false,
+        "animation": "jump_fall"
+      }
+    },
+    {
+      "file": "jump_1280x720_landed.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_landed.png",
+      "sha256": "5c26c6dad51917bf3b8a69c75e6ccf7264336d5918802d7939ce68c961599e62",
+      "bytes": 854867,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_with_view_image": true,
+      "phase": "landed",
+      "visual_blocker_found": false,
+      "findings": "Lumo steht nach dem kontrollierten Sprung wieder auf dem Pfad, mit Bodenschatten und vollständigen Gliedmaßen. Der Sprungknopf ist wieder freigegeben. Dieser spätere Frame zeigt bereits Idle und ist kein Standbild des kurzen Landekompressionsclips.",
+      "recorded_state": {
+        "actor_position": "(-0.000001, 0.200177, -0.735302)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle"
+      }
+    },
+    {
+      "file": "jump_2400x1080_ready.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_ready.png",
+      "sha256": "59a87fa593718d15dfb43d6a57de8131fedbf0ff6b40ea17244d9e48d2818f9b",
+      "bytes": 1846238,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "opened_with_view_image": true,
+      "phase": "ready",
+      "visual_blocker_found": false,
+      "findings": "Originalfuchs in vollständiger Rückansicht auf dem Startpfad; kein sichtbares abgelöstes Gliedmaß oder grobes Einsinken. Beide Daumenbedienelemente und obere Navigation vollständig sichtbar.",
+      "recorded_state": {
+        "actor_position": "(0.0, 0.199961, 1.5)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle"
+      }
+    },
+    {
+      "file": "jump_2400x1080_touch_ascent.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_touch_ascent.png",
+      "sha256": "4349b84fbd899b4798d9e0a0d8c18fb5ca64af57a6dd4152d43708adbe12c388",
+      "bytes": 2018842,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "opened_with_view_image": true,
+      "phase": "touch_ascent",
+      "visual_blocker_found": false,
+      "findings": "Lumo sichtbar vom Startboden abgehoben, Beine und Schwanz zusammenhängend; nachgeführte Kamera behält Figur und nächsten Plattformrand im Blick. Linker Stick ausgelenkt und Sprungknopf im gedrückten Zustand.",
+      "recorded_state": {
+        "actor_position": "(0.0, 1.652588, -0.017344)",
+        "velocity": "(0.000001, 4.899998, -3.193545)",
+        "grounded": false,
+        "animation": "jump_rise"
+      }
+    },
+    {
+      "file": "jump_2400x1080_airborne.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "sha256": "7d590b6bf01d1e7de5d33966b014535583671a4b686dca23903036c5df2e7b6c",
+      "bytes": 2132540,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "opened_with_view_image": true,
+      "phase": "airborne",
+      "visual_blocker_found": false,
+      "findings": "Fallphase oberhalb des Startpfads; die Figur bleibt vollständig und zentral sichtbar, mit zusammenhängender Bein-/Schwanzsilhouette. Sprungknopf bleibt während gehaltenem Finger gedrückt.",
+      "recorded_state": {
+        "actor_position": "(0.0, 0.819253, -0.735301)",
+        "velocity": "(0.0, -7.100004, 0.0)",
+        "grounded": false,
+        "animation": "jump_fall"
+      }
+    },
+    {
+      "file": "jump_2400x1080_landed.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_landed.png",
+      "sha256": "cdab06e572c47e16ee183f7ab7864cd3d22ad09ebb5d15db9a41da670f5d7c86",
+      "bytes": 2054796,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "opened_with_view_image": true,
+      "phase": "landed",
+      "visual_blocker_found": false,
+      "findings": "Lumo steht nach dem kontrollierten Sprung wieder auf dem Pfad, mit Bodenschatten und vollständigen Gliedmaßen. Der Sprungknopf ist wieder freigegeben. Dieser spätere Frame zeigt bereits Idle und ist kein Standbild des kurzen Landekompressionsclips.",
+      "recorded_state": {
+        "actor_position": "(0.0, 0.200177, -0.735301)",
+        "velocity": "(0.0, 0.0, 0.0)",
+        "grounded": true,
+        "animation": "idle"
+      }
+    }
+  ]
+}

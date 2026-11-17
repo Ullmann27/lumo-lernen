@@ -1,0 +1,83 @@
+{
+  "started_utc": "2026-11-13T17:09:58.340913+00:00",
+  "roots": {
+    "native": {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-native-published-followups",
+      "head": "176184c9ccef361266d888dbb023ffdad792f345"
+    },
+    "host": {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-lernen",
+      "head": "3deae002a9930bfc7bef7afeaed6ba4861125ec1"
+    }
+  },
+  "owned": {
+    "native:tools/validate_nextgen.sh": {
+      "bytes": 6450,
+      "sha256": "6c509c4ec559abcf9cb11bbd68142a306cabafa08012bdb75f14fea4c767ba23",
+      "git_blob": "3ae4198baa652eb17c1361887ac9397618e1617e",
+      "original_archive": "native-tools__validate_nextgen.sh.original.gz"
+    },
+    "native:tools/tests/test_nextgen_runner.py": {
+      "bytes": 13064,
+      "sha256": "3a0921e2d0a05e9c49354b1583e63e19dc777e78421dabb376a84a986bcbbadb",
+      "git_blob": "f2a6ec62a2f863ce9a3b53d14290f682ca0cc2b1",
+      "original_archive": "native-tools__tests__test_nextgen_runner.py.original.gz"
+    },
+    "host:scripts/verify_studio_delivery.py": {
+      "bytes": 41593,
+      "sha256": "e41de3892c8a3756b90eb208272b686a03ac3e9253664975580d1de9d7c6d2b4",
+      "git_blob": "b4a65471f71eabd723cb767ef722491ca1228025",
+      "original_archive": "host-scripts__verify_studio_delivery.py.original.gz"
+    },
+    "host:scripts/tests/test_nextgen_2019_review.py": {
+      "bytes": 25202,
+      "sha256": "c7c8881a32142bf50f0e63841e52ffe446fadaf8d64e49f6cce195756cee376f",
+      "git_blob": "8526eb3931bbfb8e4b235d35f3bcf7e5ab30183b",
+      "original_archive": "host-scripts__tests__test_nextgen_2019_review.py.original.gz"
+    },
+    "host:scripts/tests/test_kart_graphics_delivery.py": {
+      "bytes": 23411,
+      "sha256": "3e01707551258a3a0afa67daad2918b6ba8b6859a8296c685b606a6a939dc09d",
+      "git_blob": "61a3f4fd28e94aae2059e545c8b3fc8f1267e97f",
+      "original_archive": "host-scripts__tests__test_kart_graphics_delivery.py.original.gz"
+    }
+  },
+  "protected": {
+    "scripts/verify_nextgen_delivery.py": {
+      "exists": true,
+      "sha256": "db8810928b482e06b786dc20c4683c7a75ec4da1e5dd16c8d1f128c25a62a196"
+    },
+    "scripts/record_studio_visual_review.py": {
+      "exists": true,
+      "sha256": "ceb76980d34fe4520b56f40bdf08d41251f134012bdf47816320bd9480326572"
+    },
+    "config/godot-source.json": {
+      "exists": true,
+      "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2"
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "exists": true,
+      "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6"
+    },
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "exists": true,
+      "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac"
+    },
+    "config/nextgen-2018-visual-review.json": {
+      "exists": true,
+      "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3"
+    },
+    "config/studio-2019-visual-review.json": {
+      "exists": false,
+      "sha256": null
+    },
+    "config/nextgen-2019-visual-review.json": {
+      "exists": false,
+      "sha256": null
+    },
+    "config/kart-graphics-2019-visual-review.json": {
+      "exists": true,
+      "sha256": "effb7249f0844550e41c51b555f9fcf0f803ee990aea75cff03dfd2a5c9b703a"
+    }
+  }
+}

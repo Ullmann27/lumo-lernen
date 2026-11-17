@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "scope": "Exact two metadata files installed by the actual failed diagnostic, not an Android or CLI22 success fixture.",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_commit": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f",
+  "workflow_run": 43494312623,
+  "job": 132123295003,
+  "artifact_id": 14071940754,
+  "original_zip_sha256": "e603d7af1e6265a7a04834a828d5d973b4a3e39777e33ff136eb7e2043118570",
+  "files": [
+    {
+      "path": "source.properties",
+      "original_archive_entry": "framework-start/cli22/packages-original/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "package.xml",
+      "original_archive_entry": "framework-start/cli22/packages-original/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    }
+  ],
+  "observations": {
+    "source_properties_pkg_revision": "7",
+    "installed_localPackage_revision_major": 8,
+    "installed_localPackage_path": "system-images;android-37.0;google_apis;x86_64",
+    "original_cli_version": "12.0",
+    "install_archive": "x86_64-37.0_r08.zip",
+    "stage_reached": "SDK packages installed; helper stopped before old AVD creation or CLI22 installation"
+  }
+}

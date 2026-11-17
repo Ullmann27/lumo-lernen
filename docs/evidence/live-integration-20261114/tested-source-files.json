@@ -1,0 +1,46 @@
+{
+  "checkout_base": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "scope": "Identities of the ten QA-owned source files at evidence packaging. Per-run manifests bind the exact inputs actually tested; other agents integration changes are outside this source index.",
+  "files": {
+    "scripts/tests/test_verify_unchanged_apk_diagnostic.py": {
+      "sha256": "0c3259f54e16377a4ea70f079d57479d4fa43c809ffbfe0ef6365f4dd1ccb533",
+      "git_blob": "b113631081fc01c12c284743d2e21e6762709bfd"
+    },
+    "test/games/games_screen_flow_test.dart": {
+      "sha256": "f5785f46476b15a8f26c410705f81afb512012e593d15295b38f817ecd36e82d",
+      "git_blob": "13cba5bd740b3b63f0af8c234e634473cfc1f123"
+    },
+    "test/design/connect_four_visual_test.dart": {
+      "sha256": "6afa21c3bbac7d1b5dd3e193997cef7d85af014ca3f10447722126b4c1e1e099",
+      "git_blob": "8b685178fab49504a70cf0c63797d9fe7ce23d46"
+    },
+    "tools/android_qa/connect_four_android_evidence.py": {
+      "sha256": "6fe3c9ace1a970a4efad00a37f95e4dad63f6483ee6ae590bc49689ddeb70fc5",
+      "git_blob": "0666a912cb92d8530bba55ecde15c40ac80b0770"
+    },
+    "tools/android_qa/tests/test_connect_four_android_evidence.py": {
+      "sha256": "0bfe0b055c337ea4163be2bd535e2b8336f69ddd2896fd3be029bbd0a439f702",
+      "git_blob": "e84f81df5c2284599a6f55cdfb2b71d83df55d01"
+    },
+    ".github/workflows/lumo-connect-four-2020.yml": {
+      "sha256": "2bbf0ecbdd287ae293c0d9923b13c41e049a635d4c76765e54f08f8452a9ce93",
+      "git_blob": "42d009134b5413f59944b8e299fdb6c6f66bfb3c"
+    },
+    ".github/workflows/lumo-unified-integration-2026.yml": {
+      "sha256": "531357b8f1ac7b0208b227632ee1d43d056e8cd4a70358fd1e97936bb2337963",
+      "git_blob": "042c03ed618d5957d2d0a499e3eef4aa0d2a9e0d"
+    },
+    "scripts/verify_connect_four_delivery.py": {
+      "sha256": "3560b7180284b8542cac0d00db4a6b6863b0aa0c919918704fa6bd47c82b2055",
+      "git_blob": "682f75a1b545dc9da62c23f72c458266af1c6013"
+    },
+    "scripts/tests/test_connect_four_delivery.py": {
+      "sha256": "85919a0bc467581167d016d6bed9a81304706c395d91f1fe152db33ac025dc99",
+      "git_blob": "f355ae71b9db52fd1f56da6f722e41b7084515cc"
+    },
+    "scripts/tests/test_connect_four_pipeline.py": {
+      "sha256": "f5ad31e421200d140d64c99a95c091c12626084cee71c911930b08cdedb0f7a7",
+      "git_blob": "383f42cb41e94c1389d33286a2270bb44a0dd84d"
+    }
+  }
+}

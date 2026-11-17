@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/scripts/run_connect_four_runtime.py",
+    "--host",
+    "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+    "--native",
+    "/workspace/scratch/b3485b7bb989/lumo-native-connect-four-integration",
+    "--output",
+    "/workspace/scratch/b3485b7bb989/host-native-connect-four-integration-20261114/validation-06b3a113/actual-runtime-gate"
+  ],
+  "started_at": "2026-11-14T05:32:01.762604+00:00",
+  "completed_at": "2026-11-14T05:32:01.977812+00:00",
+  "seconds": 0.21523087899549864,
+  "returncode": 1,
+  "log_sha256": "3e8d23ece8200ab7e48a96dc32bef78b3d65bd086b0e6ef1eec008a5ade212d6"
+}

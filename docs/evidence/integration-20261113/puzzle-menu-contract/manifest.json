@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-13T17:56:53.526378+00:00",
+  "native_local_head": "a4de0e68a76ab37109cef5fd1bf499ff94464d10",
+  "host_local_base": "fd0d777e6a8bdb489d58efd93d42d08cee0f65f2",
+  "native_host_probe_pairs_equal": true,
+  "core_probe_pairs": 43,
+  "studio_pngs": 24,
+  "village_pngs": 4,
+  "puzzle_menu_pngs": 6,
+  "touch_probe_pairs": 6,
+  "touch_pngs": 32,
+  "native_tests": {
+    "tests": 15,
+    "result": "PASS",
+    "seconds": 43.453
+  },
+  "host_affected_tests": {
+    "tests": 76,
+    "result": "PASS",
+    "seconds": 64.257
+  },
+  "preimplementation_negative_tests": {
+    "native": {
+      "tests": 2,
+      "failures": 2,
+      "seconds": 8.352
+    },
+    "host": {
+      "tests": 2,
+      "failures": 2,
+      "seconds": 1.698
+    }
+  },
+  "scope": "Synthetic contract tests and exact source-binding equality only. Current-source rendered Puzzle acceptance remains pending. Published producer renderer evidence and local engine tests are stored separately.",
+  "objects": [
+    {
+      "path": "after/host/scripts/record_studio_visual_review.py.gz",
+      "bytes": 2318,
+      "sha256": "61b97ff237891521522760b83f281f037e19e6eec5d8608ffd2577269b22f120",
+      "original_path": "after/host/scripts/record_studio_visual_review.py",
+      "original_bytes": 6960,
+      "original_sha256": "dd8d73d72838186a51d494acb4d1b796bd12beebdd923e7bb48369f606bed64d"
+    },
+    {
+      "path": "after/host/scripts/tests/test_kart_graphics_delivery.py.gz",
+      "bytes": 5850,
+      "sha256": "dad9718c42a42f096c507c45e5c90a97bbdc49f51de8084875b352208a8195bd",
+      "original_path": "after/host/scripts/tests/test_kart_graphics_delivery.py",
+      "original_bytes": 24123,
+      "original_sha256": "74822d7b25059f22943db202ad2907048044a685db81442e45f557b8019ab1b7"
+    },
+    {
+      "path": "after/host/scripts/tests/test_nextgen_2019_review.py.gz",
+      "bytes": 7477,
+      "sha256": "e589719d0f88bdae3a0a5581ac205d81e68cebc1b499f7a81835d267f7d86950",
+      "original_path": "after/host/scripts/tests/test_nextgen_2019_review.py",
+      "original_bytes": 38537,
+      "original_sha256": "ce037aff18a5c9a1552bc5a1ff2caf5a8389f94cc01ec640ddd425a80ebb8165"
+    },
+    {
+      "path": "after/host/scripts/verify_studio_delivery.py.gz",
+      "bytes": 11676,
+      "sha256": "5487e448edcc525dae1b2c7f83000d2c40a074dd49b663378431cf3eaec0afaf",
+      "original_path": "after/host/scripts/verify_studio_delivery.py",
+      "original_bytes": 47035,
+      "original_sha256": "f5bfd40078087ec59442be19a400210ba18e4fd713b6f00bfe0853bf2de61ae4"
+    },
+    {
+      "path": "after/native/tools/tests/test_nextgen_runner.py.gz",
+      "bytes": 5868,
+      "sha256": "35c5c2cc25d21dcb6e4576eb4911cd3113f3403e17047185f647490713c420d8",
+      "original_path": "after/native/tools/tests/test_nextgen_runner.py",
+      "original_bytes": 24565,
+      "original_sha256": "08a157a743e4a3d37285c4850bc57712cd3d81acead7143577f8ab06211cac21"
+    },
+    {
+      "path": "after/native/tools/validate_nextgen.sh.gz",
+      "bytes": 2282,
+      "sha256": "d1dc95b4033788bdc15cf279742fc9b1ad5e59ae0b4e3288b81b6c735f53eb46",
+      "original_path": "after/native/tools/validate_nextgen.sh",
+      "original_bytes": 7285,
+      "original_sha256": "8b1844825b3c6ea6ecd4a186ca7d28b94ed4fd5a218f4e34a102cd739981c4b6"
+    },
+    {
+      "path": "after/native/tools/verify_puzzle_menu_rasters.py.gz",
+      "bytes": 658,
+      "sha256": "2623d5da543dd765e812114cac83dd7551d2301883997a103cec40c06d2ef90d",
+      "original_path": "after/native/tools/verify_puzzle_menu_rasters.py",
+      "original_bytes": 1191,
+      "original_sha256": "3afe208e8572b683d12a338d73cf261416958ec2306ae87007f9c2c6b35e4994"
+    },
+    {
+      "path": "after/native/tools/verify_village_rasters.py.gz",
+      "bytes": 1623,
+      "sha256": "fd96c13818c293a4b37e8c944de58e2fe16a585b23ff0a2dfad1a5013318c3d8",
+      "original_path": "after/native/tools/verify_village_rasters.py",
+      "original_bytes": 3859,
+      "original_sha256": "0605a556d45ba9a7d6db6f85bdab21f0bc338a9c5fb5b8efb0ff40d04fa472e5"
+    },
+    {
+      "path": "before/host/scripts/record_studio_visual_review.py.gz",
+      "bytes": 2288,
+      "sha256": "8d70e5c53568009b064269e581e1790f148cf1ec6e27f6f84fb90fdd28667ee9",
+      "original_path": "before/host/scripts/record_studio_visual_review.py",
+      "original_bytes": 6903,
+      "original_sha256": "98a99900971bb33ee4053d6f9ee4b4307ce548010fb6d3a40bac6aff73d19301"
+    },
+    {
+      "path": "before/host/scripts/tests/test_kart_graphics_delivery.py.gz",
+      "bytes": 5811,
+      "sha256": "5567d6a3490260c3f2a4469194674a1258abadd7d5c9a3d7e5f627c948132951",
+      "original_path": "before/host/scripts/tests/test_kart_graphics_delivery.py",
+      "original_bytes": 23763,
+      "original_sha256": "4d20ba926da3219030300f7c5ae440410512bb7e1267b59e4d993682371d12b1"
+    },
+    {
+      "path": "before/host/scripts/tests/test_nextgen_2019_review.py.gz",
+      "bytes": 6944,
+      "sha256": "a42a1aade876d5933875e0da690012a54bad66570ee97fc0d45c266156dfd1ca",
+      "original_path": "before/host/scripts/tests/test_nextgen_2019_review.py",
+      "original_bytes": 32179,
+      "original_sha256": "e7948f67cf9e4bfc2ec2aca9ec99d86578db110b9063a0c31544be7968bc9f29"
+    },
+    {
+      "path": "before/host/scripts/verify_studio_delivery.py.gz",
+      "bytes": 11400,
+      "sha256": "274d011c1ec4caa59e0e21e59919bc6837e668abea2f7d294abe17dbbcc698eb",
+      "original_path": "before/host/scripts/verify_studio_delivery.py",
+      "original_bytes": 45594,
+      "original_sha256": "56859949a678bfdbe0dd2d749bbae661a10a83be9a8af5c64fe34e190ea101c2"
+    },
+    {
+      "path": "before/native/tools/tests/test_nextgen_runner.py.gz",
+      "bytes": 5416,
+      "sha256": "1c311f8456f586132389993b8501ac7221e21988faac07e29ab060bdd8329841",
+      "original_path": "before/native/tools/tests/test_nextgen_runner.py",
+      "original_bytes": 20718,
+      "original_sha256": "a3954641c9d7278bad03cef142df077bfc6c06d4ed6a68c1e6c9d0f4c3399d89"
+    },
+    {
+      "path": "before/native/tools/validate_nextgen.sh.gz",
+      "bytes": 2232,
+      "sha256": "90e95501c183c762e1b87563b71b0d3edf3f6dcda2987b221d86e380d8239ad9",
+      "original_path": "before/native/tools/validate_nextgen.sh",
+      "original_bytes": 6944,
+      "original_sha256": "770e7f01a5f96f79c171673f9ccabcf05d4869bedcbe9002c23c5c4f2b402b47"
+    },
+    {
+      "path": "before/native/tools/verify_village_rasters.py.gz",
+      "bytes": 1467,
+      "sha256": "bc77602a693b87592fa36a4e0cdc3cdd1b76923f6c9a9a7920dd07b209921b5d",
+      "original_path": "before/native/tools/verify_village_rasters.py",
+      "original_bytes": 3461,
+      "original_sha256": "b7dade393091171ffd50b33d3918c48b9e1e47643ce5d44e62c12c20ec6814b3"
+    },
+    {
+      "path": "before-source-sha256.json",
+      "bytes": 808,
+      "sha256": "0d0f39f0339dcd3d114d5fbb21d636bc393adb929bd5bc8c7b14f5adbfed72eb"
+    },
+    {
+      "path": "contract-check.json",
+      "bytes": 983,
+      "sha256": "f54718cfd22a94ee83febe26333c29f25981ff541b91dadd0834f45110c8ef52"
+    },
+    {
+      "path": "host-after.log",
+      "bytes": 176,
+      "sha256": "253bb9ffea7125a6a6efd301af0328c2105a7a8d244878cc4583c2b1aa9e7b5f"
+    },
+    {
+      "path": "host-before.log",
+      "bytes": 1644,
+      "sha256": "01ba720c4d663fdad084bca96ac44c030a6f889fe03341b1172c44e0fb0c1d30"
+    },
+    {
+      "path": "native-after.log",
+      "bytes": 115,
+      "sha256": "7a06da338f8dd0d38cde40ecd288fe35097b6d1407b9a58c4bf1ce8660f2adfa"
+    },
+    {
+      "path": "native-before.log",
+      "bytes": 1338,
+      "sha256": "6e22340b05f719a8c7cd31f608751adf269063af8f9014d660485e2252b639e4"
+    }
+  ],
+  "packaging": "Source snapshots are lossless gzip originals; decompressed byte identities are explicit. Raw contract logs remain unchanged."
+}

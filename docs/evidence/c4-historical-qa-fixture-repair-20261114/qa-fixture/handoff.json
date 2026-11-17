@@ -1,0 +1,13 @@
+{
+  "status": "FROZEN",
+  "source_freeze_sha256": "6ea3be9cb817ae233c46ce3ce08f1ed916ed8f3510a18e9ca7fb7151e5c3f083",
+  "proposed_path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+  "final_blob": "90a58f5aab7c2b462bad377bd5fbfd03b218e14d",
+  "final_sha256": "7bc35982ad31c91a7d96f890e2521e5f775618b31c273175f0005dbb8379e7e5",
+  "source_unchanged": true,
+  "actual_original": "1ERROR, exit1, pin mismatch",
+  "actual_proposed": "1PASS, exit0,0.026s",
+  "same_case": "scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate",
+  "fixture_git_scope": "Git creation occurs only in the published test own disposable synthetic directory. Actual79c worktree/index/HEAD remain unchanged.",
+  "known_correction": "Earlier interpretation that isolated candidate_source alone solved the fixture was incomplete; QA side was still on live2020. Both observations and correction are explicit."
+}

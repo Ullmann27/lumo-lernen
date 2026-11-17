@@ -711,12 +711,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         const SizedBox(width: 8),
-        const Expanded(
-          child: _ExtraTile(
-            title: 'Dein Avatar',
-            text: 'Neue Outfits und Accessoires – bald verfügbar.',
-            icon: Icons.checkroom_rounded,
-            colors: [Color(0xFF14A08D), Color(0xFF0B6B5E)],
+        Expanded(
+          child: Semantics(
+            key: const ValueKey('profile-settings'),
+            button: true,
+            child: _ExtraTile(
+              title: 'Dein Profil',
+              text: 'Klasse und Einstellungen ansehen',
+              icon: Icons.person_rounded,
+              colors: const [Color(0xFF14A08D), Color(0xFF0B6B5E)],
+              onTap: () => widget.onSection(LumoSection.settings),
+            ),
           ),
         ),
       ]),

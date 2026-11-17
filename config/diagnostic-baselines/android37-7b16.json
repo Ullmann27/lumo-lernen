@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "scope": "Original failed API37 observations for a controlled, unchanged-APK renderer diagnostic. These fields are not an app acceptance or a hash of the complete system image.",
+  "original": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "run_id": 43540111465,
+    "attempt": 1,
+    "job_id": 132298281316,
+    "artifact_id": 14093659058,
+    "artifact_sha256": "d474905fe7024a95d6897e823e126f0ed817d06c4cbd80796853717f00c044a4",
+    "framework_report_sha256": "f7fcbe389918bb7e223ffbb9e8d4e6e7a8ac0f801c4db11a9e4fcba0293ce86b",
+    "effective_hardware_sha256": "0e30db1472fa409bf9dd67d73b464a556b81b83bd9aa7e0b2f6486334b6a0d3a",
+    "status": "FAILURE_GMS_ANR_BEFORE_APK_INSTALL"
+  },
+  "android_runtime": {
+    "sdk": "37",
+    "release": "17",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+  },
+  "package_files": {
+    "image/source.properties": {
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    "image/package.xml": {
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    "emulator/source.properties": {
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    "emulator/package.xml": {
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    }
+  },
+  "effective_hardware_unchanged": {
+    "hw.cpu.ncore": "2",
+    "hw.ramSize": "4096",
+    "hw.lcd.width": "1080",
+    "hw.lcd.height": "2340",
+    "vm.heapSize": "576"
+  },
+  "original_gpu_mode": "host",
+  "declared_action_heap": "512M",
+  "observed_effective_heap_mb": 576,
+  "image_metadata_note": "package.xml revision8 and source.properties Pkg.Revision7 are both original; compare their bytes separately."
+}

@@ -1,0 +1,210 @@
+{
+  "finished_utc": "2026-11-13T17:21:27.796069+00:00",
+  "owned": {
+    "native:tools/validate_nextgen.sh": {
+      "bytes": 6944,
+      "sha256": "770e7f01a5f96f79c171673f9ccabcf05d4869bedcbe9002c23c5c4f2b402b47",
+      "git_blob": "aa1ec07d7c6898574ee24e9a6819766bf41f24ac",
+      "final_archive": "native-tools__validate_nextgen.sh.final.gz"
+    },
+    "native:tools/verify_village_rasters.py": {
+      "bytes": 3461,
+      "sha256": "b7dade393091171ffd50b33d3918c48b9e1e47643ce5d44e62c12c20ec6814b3",
+      "git_blob": "b3eb2cef9991fe9d618ce9f8dcc1fce3d2b0b676",
+      "final_archive": "native-tools__verify_village_rasters.py.final.gz"
+    },
+    "native:tools/tests/test_nextgen_runner.py": {
+      "bytes": 20718,
+      "sha256": "a3954641c9d7278bad03cef142df077bfc6c06d4ed6a68c1e6c9d0f4c3399d89",
+      "git_blob": "9c253ddabae9d639a00d03fb26644a1449cc77e7",
+      "final_archive": "native-tools__tests__test_nextgen_runner.py.final.gz"
+    },
+    "host:scripts/verify_studio_delivery.py": {
+      "bytes": 45594,
+      "sha256": "56859949a678bfdbe0dd2d749bbae661a10a83be9a8af5c64fe34e190ea101c2",
+      "git_blob": "c0e6df50ff2ff171baf38d33f6fa5abdd97d77ac",
+      "final_archive": "host-scripts__verify_studio_delivery.py.final.gz"
+    },
+    "host:scripts/tests/test_nextgen_2019_review.py": {
+      "bytes": 32179,
+      "sha256": "e7948f67cf9e4bfc2ec2aca9ec99d86578db110b9063a0c31544be7968bc9f29",
+      "git_blob": "932c947d359106436a4068f8ad27507275b5c31d",
+      "final_archive": "host-scripts__tests__test_nextgen_2019_review.py.final.gz"
+    },
+    "host:scripts/tests/test_kart_graphics_delivery.py": {
+      "bytes": 23763,
+      "sha256": "4d20ba926da3219030300f7c5ae440410512bb7e1267b59e4d993682371d12b1",
+      "git_blob": "8b4fc31117aa718992851e611c90e40ebc315679",
+      "final_archive": "host-scripts__tests__test_kart_graphics_delivery.py.final.gz"
+    }
+  },
+  "protected": {
+    "scripts/verify_nextgen_delivery.py": {
+      "before": {
+        "exists": true,
+        "sha256": "db8810928b482e06b786dc20c4683c7a75ec4da1e5dd16c8d1f128c25a62a196"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "db8810928b482e06b786dc20c4683c7a75ec4da1e5dd16c8d1f128c25a62a196"
+      },
+      "unchanged": true
+    },
+    "scripts/record_studio_visual_review.py": {
+      "before": {
+        "exists": true,
+        "sha256": "ceb76980d34fe4520b56f40bdf08d41251f134012bdf47816320bd9480326572"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "98a99900971bb33ee4053d6f9ee4b4307ce548010fb6d3a40bac6aff73d19301"
+      },
+      "unchanged": false
+    },
+    "config/godot-source.json": {
+      "before": {
+        "exists": true,
+        "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2"
+      },
+      "unchanged": true
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "before": {
+        "exists": true,
+        "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6"
+      },
+      "unchanged": true
+    },
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "before": {
+        "exists": true,
+        "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac"
+      },
+      "unchanged": true
+    },
+    "config/nextgen-2018-visual-review.json": {
+      "before": {
+        "exists": true,
+        "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3"
+      },
+      "unchanged": true
+    },
+    "config/studio-2019-visual-review.json": {
+      "before": {
+        "exists": false,
+        "sha256": null
+      },
+      "after": {
+        "exists": false,
+        "sha256": null
+      },
+      "unchanged": true
+    },
+    "config/nextgen-2019-visual-review.json": {
+      "before": {
+        "exists": false,
+        "sha256": null
+      },
+      "after": {
+        "exists": false,
+        "sha256": null
+      },
+      "unchanged": true
+    },
+    "config/kart-graphics-2019-visual-review.json": {
+      "before": {
+        "exists": true,
+        "sha256": "effb7249f0844550e41c51b555f9fcf0f803ee990aea75cff03dfd2a5c9b703a"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "effb7249f0844550e41c51b555f9fcf0f803ee990aea75cff03dfd2a5c9b703a"
+      },
+      "unchanged": true
+    }
+  },
+  "patches": {
+    "native-village-contract.patch.gz": {
+      "bytes": 18132,
+      "sha256": "590745a01ec069fa0f8481fc9413251c84d65c1277ac664262515f4b00a4b43d",
+      "git_blob": "32149fff8672aa0ec82d069235d9f0f54f88e416"
+    },
+    "host-village-contract.patch.gz": {
+      "bytes": 21494,
+      "sha256": "f3f17c1c503dc1810123f4de2b1fec86253536948a711fdd7afaeccbd9b90373",
+      "git_blob": "21cf77bb34bf8fad34d2a161db63ff43108c5f09"
+    }
+  },
+  "native_tests": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/tests",
+      "-p",
+      "test_nextgen_runner.py",
+      "-v"
+    ],
+    "started_utc": "2026-11-13T17:17:19.315740+00:00",
+    "finished_utc": "2026-11-13T17:17:52.673715+00:00",
+    "seconds": 33.358,
+    "exit_code": 0,
+    "source_before": {
+      "tools/validate_nextgen.sh": "770e7f01a5f96f79c171673f9ccabcf05d4869bedcbe9002c23c5c4f2b402b47",
+      "tools/verify_village_rasters.py": "b7dade393091171ffd50b33d3918c48b9e1e47643ce5d44e62c12c20ec6814b3",
+      "tools/tests/test_nextgen_runner.py": "a3954641c9d7278bad03cef142df077bfc6c06d4ed6a68c1e6c9d0f4c3399d89"
+    },
+    "source_after": {
+      "tools/validate_nextgen.sh": "770e7f01a5f96f79c171673f9ccabcf05d4869bedcbe9002c23c5c4f2b402b47",
+      "tools/verify_village_rasters.py": "b7dade393091171ffd50b33d3918c48b9e1e47643ce5d44e62c12c20ec6814b3",
+      "tools/tests/test_nextgen_runner.py": "a3954641c9d7278bad03cef142df077bfc6c06d4ed6a68c1e6c9d0f4c3399d89"
+    },
+    "sources_unchanged": true,
+    "log_sha256": "41cc1ae100962c6a2ea29518717ba2590e334f7c93aec8925173e63c5adb98dd"
+  },
+  "host_tests": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-m",
+      "unittest",
+      "scripts.tests.test_studio_delivery",
+      "scripts.tests.test_nextgen_2019_review",
+      "scripts.tests.test_kart_graphics_delivery",
+      "-v"
+    ],
+    "started_utc": "2026-11-13T17:17:19.317271+00:00",
+    "finished_utc": "2026-11-13T17:18:12.478085+00:00",
+    "seconds": 53.161,
+    "exit_code": 0,
+    "source_before": {
+      "scripts/verify_studio_delivery.py": "56859949a678bfdbe0dd2d749bbae661a10a83be9a8af5c64fe34e190ea101c2",
+      "scripts/tests/test_nextgen_2019_review.py": "e7948f67cf9e4bfc2ec2aca9ec99d86578db110b9063a0c31544be7968bc9f29",
+      "scripts/tests/test_kart_graphics_delivery.py": "4d20ba926da3219030300f7c5ae440410512bb7e1267b59e4d993682371d12b1"
+    },
+    "source_after": {
+      "scripts/verify_studio_delivery.py": "56859949a678bfdbe0dd2d749bbae661a10a83be9a8af5c64fe34e190ea101c2",
+      "scripts/tests/test_nextgen_2019_review.py": "e7948f67cf9e4bfc2ec2aca9ec99d86578db110b9063a0c31544be7968bc9f29",
+      "scripts/tests/test_kart_graphics_delivery.py": "4d20ba926da3219030300f7c5ae440410512bb7e1267b59e4d993682371d12b1"
+    },
+    "sources_unchanged": true,
+    "log_sha256": "d07a641853645f841767a8bdb3d6cb159d6d274bcf73c8c486e1286127d0494d"
+  }
+}

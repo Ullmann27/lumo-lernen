@@ -1,0 +1,168 @@
+{
+  "qaCommit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+  "qaRun": 43819768114,
+  "sourceResultSha256": "058d7ba061370649ac8afa64674cbea73f7fd7c4c23b6f27a4c2938481069b40",
+  "sourceByteBindings": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "sha256": "2869bba0ac0c9a028653254cbd4627b961b2dbc7cf9a580b429cdf40f1face90"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "sha256": "8c5c08a2525f4b653c55a833e9b6f45b8fbd975127dde072b56027d6437a288b"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41"
+    }
+  ],
+  "overallOriginalStatusUnchanged": "FAIL",
+  "notAFullRuntimeCasePass": true,
+  "numericWrongThenCorrectVerified": [
+    {
+      "status": "PASS",
+      "stored_attempt": {
+        "id": "1794812352907640-0",
+        "sid": "self",
+        "sub": "Mathematik",
+        "unit": "Plus bis 20",
+        "comp": "Addition mit Zehnerübergang",
+        "ok": false,
+        "at": "2026-11-16T06:59:12.907640",
+        "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+        "a": "15",
+        "e": "16",
+        "ms": 14503
+      },
+      "lab_attempt_id": "lab-attempt-d6f43fbb7549278f50581a9ed3010106-2",
+      "journey_key": "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf",
+      "journey_attempts": 2,
+      "support": {
+        "checkpoint_support": 0,
+        "prior_wrong_answer": false,
+        "stored_hint_used": false,
+        "assisted_correct_delta": 0
+      },
+      "attempt_log_id_is_separate_from_lab_evidence_id": true
+    },
+    {
+      "status": "PASS",
+      "stored_attempt": {
+        "id": "1794812360396419-1",
+        "sid": "self",
+        "sub": "Mathematik",
+        "unit": "Plus bis 20",
+        "comp": "Addition mit Zehnerübergang",
+        "ok": true,
+        "at": "2026-11-16T06:59:20.396419",
+        "hint": true,
+        "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+        "a": "16",
+        "e": "16",
+        "ms": 7356
+      },
+      "lab_attempt_id": "lab-attempt-d6f43fbb7549278f50581a9ed3010106-3",
+      "journey_key": "flutter.lumo_progress_journey_v1::local-54af1e0cab42227f1036067cec6555bf",
+      "journey_attempts": 3,
+      "support": {
+        "checkpoint_support": 0,
+        "prior_wrong_answer": true,
+        "stored_hint_used": true,
+        "assisted_correct_delta": 1
+      },
+      "attempt_log_id_is_separate_from_lab_evidence_id": true
+    }
+  ],
+  "wordSwitchVerified": {
+    "status": "PASS",
+    "preservation": {
+      "profile_id": "1794812262632898",
+      "learning_keys_compared": 7,
+      "same_task_checkpoint": false
+    },
+    "from_problem": "word-banane",
+    "to_problem": "word-rakete",
+    "same_session": true,
+    "no_new_attempt_or_reward": true
+  },
+  "bananaSlower": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "visibleModelBefore": {
+      "kind": "syllables",
+      "word": "Banane",
+      "placed": 0,
+      "total": 3,
+      "visible_label": "0 / 3 bewegt"
+    },
+    "visibleModelAfter": {
+      "kind": "syllables",
+      "word": "Banane",
+      "placed": 0,
+      "total": 3,
+      "visible_label": "0 / 3 bewegt"
+    },
+    "fourCurrentSegments": {
+      "pid": 6407,
+      "utterance_ids": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "segments": 4,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "rawPlaybackLogMatches": [
+      {
+        "path": "android/runtime-cases/0375-native-speech.txt",
+        "sha256": "6691751aca31d2dbc34fd2b2986da6cc8d5543b1648a5ab60f7456c05c11b48e"
+      }
+    ],
+    "originalMediaVerified": [
+      {
+        "path": "android/runtime-cases/0339-runtime-banana-before-slower.png",
+        "bytes": 583966,
+        "sha256": "d303bdbe8c42f3396164df189581718bac96c0e353ee3b3061aadf4b2bb63750"
+      },
+      {
+        "path": "android/runtime-cases/0378-runtime-banana-after-slower.png",
+        "bytes": 620516,
+        "sha256": "024ea55003807f03ccd0852c5fa82f14b27d6ff9fe636ca688aa05c32b1a73ad"
+      },
+      {
+        "path": "android/runtime-cases/0395-runtime-banana-return-academy.png",
+        "bytes": 902787,
+        "sha256": "43c97074f49c3f5042cd9329035365c6f2fdeb17139aa8b3c1379dc351942c67"
+      },
+      {
+        "path": "android/runtime-cases/0346-runtime-banana-four-slower-segments.mp4",
+        "bytes": 1056206,
+        "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272"
+      }
+    ],
+    "preservationRecorded": {
+      "profile_id": "1794812262632898",
+      "learning_keys_compared": 7,
+      "same_task_checkpoint": true
+    },
+    "preservationIndependentlyRecomputed": false,
+    "acousticSpeedVerified": false,
+    "spokenWordsVerifiedAcoustically": false
+  },
+  "stopCaseStarted": false,
+  "newAndroidExecution": false,
+  "derivedVerifierCorrection": "First local subset analysis assumed a module attribute named native that does not exist; AttributeError occurred after numeric and word checks. The corrected read-only analysis imports the actual reference module directly. Original source/results unchanged.",
+  "limitations": [
+    "Only completed subcases verified; overall FAIL is unchanged",
+    "The active syllable switch uses the restored 440 to temporary 320 dpi emulator observation documented in original result",
+    "Playback callbacks are not acoustic recording, spoken-word or rate measurements",
+    "This proof does not independently recompute native preferences preservation"
+  ]
+}

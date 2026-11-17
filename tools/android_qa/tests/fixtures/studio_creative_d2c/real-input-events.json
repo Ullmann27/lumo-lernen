@@ -1,0 +1,3170 @@
+[
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "994"
+    ],
+    "monotonic_seconds": 252.872196411,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "launcher-recovery.json",
+        "onboard-welcome--1-0.xml",
+        "uiautomator-config.json",
+        "rooted-emulator.json"
+      ]
+    },
+    "capture": {
+      "file": "0001-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "63e634ff5a897806137ca5028202f9053521c1fb95bee716b52a6ee47dd57868"
+    },
+    "points": [
+      [
+        540.0,
+        994.0
+      ]
+    ],
+    "dispatch_monotonic": 254.075704033
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "540",
+      "1154",
+      "540",
+      "1154",
+      "120"
+    ],
+    "monotonic_seconds": 257.192489101,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-welcome--1-1.xml",
+        "real-input-events.json",
+        "launcher-recovery.json",
+        "onboard-welcome--1-0.xml"
+      ]
+    },
+    "capture": {
+      "file": "0002-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "e8270475bbb06bc6c278857f0764be45c7c93e511deba52ba80b5e58ef970b1c"
+    },
+    "points": [
+      [
+        540.0,
+        1154.0
+      ],
+      [
+        540.0,
+        1154.0
+      ]
+    ],
+    "dispatch_monotonic": 259.609400437
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "913"
+    ],
+    "monotonic_seconds": 262.28418662,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-name.xml",
+        "real-input-events.json",
+        "onboard-welcome--1-1.xml",
+        "launcher-recovery.json"
+      ]
+    },
+    "capture": {
+      "file": "0003-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "f81cb4cc6647c1d3c5aa5691d6be18cc3cb084c022be5dfe776caa63d6a29a1c"
+    },
+    "points": [
+      [
+        540.0,
+        913.0
+      ]
+    ],
+    "dispatch_monotonic": 263.902216942
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "L"
+    ],
+    "monotonic_seconds": 266.215277876,
+    "context": {},
+    "dispatch_monotonic": 266.215281146
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "u"
+    ],
+    "monotonic_seconds": 269.741481009,
+    "context": {},
+    "dispatch_monotonic": 269.741483524
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "m"
+    ],
+    "monotonic_seconds": 271.420955281,
+    "context": {},
+    "dispatch_monotonic": 271.420958509
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "o"
+    ],
+    "monotonic_seconds": 272.275417038,
+    "context": {},
+    "dispatch_monotonic": 272.275420181
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "T"
+    ],
+    "monotonic_seconds": 273.533828047,
+    "context": {},
+    "dispatch_monotonic": 273.533831015
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "e"
+    ],
+    "monotonic_seconds": 274.091596332,
+    "context": {},
+    "dispatch_monotonic": 274.091599846
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "s"
+    ],
+    "monotonic_seconds": 274.895834828,
+    "context": {},
+    "dispatch_monotonic": 274.895837797
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "t"
+    ],
+    "monotonic_seconds": 275.302832515,
+    "context": {},
+    "dispatch_monotonic": 275.302835718
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 276.815802032,
+    "context": {},
+    "dispatch_monotonic": 276.81580533
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "1030"
+    ],
+    "monotonic_seconds": 278.073915298,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-name-next-0.xml",
+        "real-input-events.json",
+        "onboard-ime-before-dismiss.xml",
+        "onboard-name-written-8-0.xml"
+      ]
+    },
+    "capture": {
+      "file": "0004-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "950b35fb15220e4e5c5568bb3ed66c172e3d1c804e743faa277b13abcae78aaa"
+    },
+    "points": [
+      [
+        540.0,
+        1030.0
+      ]
+    ],
+    "dispatch_monotonic": 280.187370358
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "915"
+    ],
+    "monotonic_seconds": 282.593293506,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-age-next-0.xml",
+        "real-input-events.json",
+        "onboard-name-next-0.xml",
+        "onboard-ime-before-dismiss.xml"
+      ]
+    },
+    "capture": {
+      "file": "0005-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "e6a6ee5244e2362701227a3db1b9eb38031113ab2515a8162be5cb544b8a11d8"
+    },
+    "points": [
+      [
+        540.0,
+        915.0
+      ]
+    ],
+    "dispatch_monotonic": 283.987481318
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "1043"
+    ],
+    "monotonic_seconds": 286.278184442,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-grade-save-0.xml",
+        "real-input-events.json",
+        "onboard-age-next-0.xml",
+        "onboard-name-next-0.xml"
+      ]
+    },
+    "capture": {
+      "file": "0006-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "2ab3acabcb6f539b1d5a85607eaf31d4fb7437e9a2634ed36d9d83fc98a9eb1c"
+    },
+    "points": [
+      [
+        540.0,
+        1043.0
+      ]
+    ],
+    "dispatch_monotonic": 288.266624622
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "125",
+      "542"
+    ],
+    "monotonic_seconds": 299.863189474,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "home-to-games-0.xml",
+        "07_home_after_onboarding-render-readiness.json",
+        "onboard-home-0.xml",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0007-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "d79d00c62492b61d6954b115ca4aa8bdc28c134e866b2fbff311763680f2021a"
+    },
+    "points": [
+      [
+        125.0,
+        542.0
+      ]
+    ],
+    "dispatch_monotonic": 304.595036096
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "858",
+      "1175",
+      "858",
+      "1175",
+      "120"
+    ],
+    "monotonic_seconds": 319.669574016,
+    "context": {
+      "caption": "Jump & Run. Spring. Laufe. Sei mutig! Spielen",
+      "bounds": [
+        674,
+        1030,
+        1041,
+        1320
+      ],
+      "actionability": "source-bound-game-tile-button",
+      "android_clickable": "false",
+      "capture": {
+        "file": "0009-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "60793cf42b5f5da33ee21308f7416fe6cb9a9042791a34350d70911841632996"
+      },
+      "hierarchy": "0008-hub-jumprun",
+      "basis": "Current51e live _GameTile complete Semantics; explicit click action or source-bound visible Button"
+    },
+    "capture": {
+      "file": "0010-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "0e1b1fba27c58d74f8810f9f61878c977bb0ba337fc1693cb330f8886e0b9fa5"
+    },
+    "points": [
+      [
+        858.0,
+        1175.0
+      ],
+      [
+        858.0,
+        1175.0
+      ]
+    ],
+    "dispatch_monotonic": 322.903451944
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "125",
+      "542",
+      "125",
+      "542",
+      "120"
+    ],
+    "monotonic_seconds": 509.591644122,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0017-recover-games--1-0.xml",
+        "0016-recovered-profile-preferences.xml",
+        "0013-native-pause-surface-readiness.json",
+        "0011-native-haltenhoherspringen-3-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0018-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "53d31276f51bd0db61eddf13dc111d30dc51ad7c95c5613dd7e0396817327c42"
+    },
+    "points": [
+      [
+        125.0,
+        542.0
+      ],
+      [
+        125.0,
+        542.0
+      ]
+    ],
+    "dispatch_monotonic": 513.964834179
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "472",
+      "868",
+      "472",
+      "868",
+      "120"
+    ],
+    "monotonic_seconds": 520.423840633,
+    "context": {
+      "caption": "Bauwelt. Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt! Spielen",
+      "bounds": [
+        288,
+        723,
+        656,
+        1012
+      ],
+      "actionability": "source-bound-game-tile-button",
+      "android_clickable": "false",
+      "capture": {
+        "file": "0021-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "3c06c59e1af00f90dbfe4af8f82df94c4798a6671c0629d68c1b8613df0aa19e"
+      },
+      "hierarchy": "0020-hub-bauwelt",
+      "basis": "Current51e live _GameTile complete Semantics; explicit click action or source-bound visible Button"
+    },
+    "capture": {
+      "file": "0022-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "8b136590793bd7b8d110aab06ac0298ffb606ec54bf4eb721b0ad16390e3c7ec"
+    },
+    "points": [
+      [
+        472.0,
+        868.0
+      ],
+      [
+        472.0,
+        868.0
+      ]
+    ],
+    "dispatch_monotonic": 525.178686026
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 573.252513607,
+    "context": {},
+    "dispatch_monotonic": 573.25251707
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "410",
+      "902",
+      "410",
+      "120"
+    ],
+    "monotonic_seconds": 650.437628132,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0027-native-weiterbauen-1-ocr.json",
+        "0027-native-weiterbauen-0-ocr.json",
+        "0026-build-save-lumo_build_p_3b8dc3851fcc35a6920a6a7bfcca99a9_1.json",
+        "0025-native-weiterbauen-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0028-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "3464762d8fc1cd54bab41be791a8dde1eee3a31ac3c7deabc5648c309f7f7662"
+    },
+    "points": [
+      [
+        902.0,
+        410.0
+      ],
+      [
+        902.0,
+        410.0
+      ]
+    ],
+    "dispatch_monotonic": 653.868596697
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "913",
+      "553",
+      "913",
+      "553",
+      "120"
+    ],
+    "monotonic_seconds": 662.51662158,
+    "context": {
+      "point": [
+        913.4324950781709,
+        552.9501628431914
+      ],
+      "cell": [
+        -3,
+        0,
+        2
+      ],
+      "green_fraction": 0.8571428571428571,
+      "viewport": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "saved_camera": {
+        "focus": [
+          0.600000023841858,
+          0.800000011920929,
+          4.0
+        ],
+        "orbit": 0.48,
+        "radius": 44.0,
+        "tilt": 0.48
+      },
+      "basis": "Actual saved camera + observed Android window frame + fresh visible green land",
+      "capture": {
+        "file": "0029-build-free-land.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "14a6d5314b8685b6e2ca08c0efd3362adbe686008a1fc606999efc6ee256c2be"
+      }
+    },
+    "capture": {
+      "file": "0031-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "f4c497080efbda878cfe2db2767c73508be40ed6ec430a4ac6a289d240706627"
+    },
+    "points": [
+      [
+        913.0,
+        553.0
+      ],
+      [
+        913.0,
+        553.0
+      ]
+    ],
+    "dispatch_monotonic": 665.873477228
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 666.259587362,
+    "context": {},
+    "dispatch_monotonic": 666.259591669
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "410",
+      "902",
+      "410",
+      "120"
+    ],
+    "monotonic_seconds": 748.99553642,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0034-native-weiterbauen-1-ocr.json",
+        "0034-native-weiterbauen-0-ocr.json",
+        "0033-build-save-lumo_build_p_3b8dc3851fcc35a6920a6a7bfcca99a9_1.json",
+        "0032-native-weiterbauen-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0035-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "69f7e607e022ade99f308966b11ff1dd821724675096d6a127a8370a6ca83a57"
+    },
+    "points": [
+      [
+        902.0,
+        410.0
+      ],
+      [
+        902.0,
+        410.0
+      ]
+    ],
+    "dispatch_monotonic": 751.886811637
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "1134",
+      "203",
+      "1134",
+      "203",
+      "120"
+    ],
+    "monotonic_seconds": 786.749827313,
+    "context": {
+      "text": "Rückgängig",
+      "bounds": [
+        1070.0,
+        191.0,
+        1199.0,
+        215.0
+      ],
+      "variant": "teal-text-1x",
+      "capture": {
+        "file": "0037-observe-ruckgangig.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "f0c37fc8cff148619cf8b9878164acc33bf88afb1e770ebf7e3e13123450b19e"
+      },
+      "stable": {
+        "surface_sha256": "f0c37fc8cff148619cf8b9878164acc33bf88afb1e770ebf7e3e13123450b19e",
+        "pixels": [
+          1920,
+          1080
+        ],
+        "bounds": [
+          1070.0,
+          191.0,
+          1199.0,
+          215.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    },
+    "capture": {
+      "file": "0038-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "8e601fcf31f9aea63390b03b4de2fbbf2e62b19f9032fd885304d8df506f2e0f"
+    },
+    "points": [
+      [
+        1134.0,
+        203.0
+      ],
+      [
+        1134.0,
+        203.0
+      ]
+    ],
+    "dispatch_monotonic": 792.338160455
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 793.355356792,
+    "context": {},
+    "dispatch_monotonic": 793.355363865
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "410",
+      "902",
+      "410",
+      "120"
+    ],
+    "monotonic_seconds": 870.010572892,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0041-native-weiterbauen-1-ocr.json",
+        "0041-native-weiterbauen-0-ocr.json",
+        "0040-build-save-lumo_build_p_3b8dc3851fcc35a6920a6a7bfcca99a9_1.json",
+        "0039-native-weiterbauen-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0042-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "f782ca5ce75984ad50132bc7afdc4de06e27f8b40165c62169a6212aeeb0d0bc"
+    },
+    "points": [
+      [
+        902.0,
+        410.0
+      ],
+      [
+        902.0,
+        410.0
+      ]
+    ],
+    "dispatch_monotonic": 872.51082268
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "1317",
+      "200",
+      "1317",
+      "200",
+      "120"
+    ],
+    "monotonic_seconds": 891.350284155,
+    "context": {
+      "text": "Wiederholen",
+      "bounds": [
+        1244.0,
+        191.0,
+        1390.0,
+        209.0
+      ],
+      "variant": "contrast",
+      "capture": {
+        "file": "0044-observe-wiederholen.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "8c1df60a9d6b02685be07f279b0feb68c6918e1a3de09f49312b955d19a021fa"
+      },
+      "stable": {
+        "surface_sha256": "8c1df60a9d6b02685be07f279b0feb68c6918e1a3de09f49312b955d19a021fa",
+        "pixels": [
+          1920,
+          1080
+        ],
+        "bounds": [
+          1244.0,
+          191.0,
+          1390.0,
+          209.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    },
+    "capture": {
+      "file": "0045-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "f9e10f417383a817c937f8ceb14fd2724185fbbac88355c8d858d0c67db2ce75"
+    },
+    "points": [
+      [
+        1317.0,
+        200.0
+      ],
+      [
+        1317.0,
+        200.0
+      ]
+    ],
+    "dispatch_monotonic": 894.33350374
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 895.358856368,
+    "context": {},
+    "dispatch_monotonic": 895.358861927
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "410",
+      "902",
+      "410",
+      "120"
+    ],
+    "monotonic_seconds": 965.586093712,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0048-native-weiterbauen-1-ocr.json",
+        "0048-native-weiterbauen-0-ocr.json",
+        "0047-build-save-lumo_build_p_3b8dc3851fcc35a6920a6a7bfcca99a9_1.json",
+        "0046-native-weiterbauen-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0049-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "93d10d1a76fc1742b85513fade1cb9a59947e6bc323e32ec228fca8d583672b2"
+    },
+    "points": [
+      [
+        902.0,
+        410.0
+      ],
+      [
+        902.0,
+        410.0
+      ]
+    ],
+    "dispatch_monotonic": 969.87332141
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "1440",
+      "200",
+      "461",
+      "200",
+      "500"
+    ],
+    "monotonic_seconds": 1010.546334144,
+    "context": {
+      "text": "Füllen",
+      "bounds": [
+        1443.0,
+        191.0,
+        1510.0,
+        209.0
+      ],
+      "variant": "contrast",
+      "capture": {
+        "file": "0053-observe-fullen.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "16a384e8015cd57e57bb3636196d2b65c8cba68de77066e276a5a2cb281452e3"
+      },
+      "stable": {
+        "surface_sha256": "16a384e8015cd57e57bb3636196d2b65c8cba68de77066e276a5a2cb281452e3",
+        "pixels": [
+          1920,
+          1080
+        ],
+        "bounds": [
+          1443.0,
+          191.0,
+          1510.0,
+          209.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      },
+      "basis": "Observed source-confirmed horizontal toolbar caption row"
+    },
+    "capture": {
+      "file": "0054-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b36c11124c9b416fdb17a2d161da89472ac93cca381f30f2038cdfaba1b35dce"
+    },
+    "points": [
+      [
+        1440.0,
+        200.0
+      ],
+      [
+        461.0,
+        200.0
+      ]
+    ],
+    "dispatch_monotonic": 1016.049026803
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "1454",
+      "200",
+      "1454",
+      "200",
+      "120"
+    ],
+    "monotonic_seconds": 1032.092741237,
+    "context": {
+      "text": "Bauziele",
+      "bounds": [
+        1407.0,
+        191.0,
+        1502.0,
+        209.0
+      ],
+      "variant": "contrast",
+      "capture": {
+        "file": "0056-observe-bauziele.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "753074f9f5dea3e03f89105a2060ca626f5f382cd55fa4c7157f37ce18735fe9"
+      },
+      "stable": {
+        "surface_sha256": "753074f9f5dea3e03f89105a2060ca626f5f382cd55fa4c7157f37ce18735fe9",
+        "pixels": [
+          1920,
+          1080
+        ],
+        "bounds": [
+          1407.0,
+          191.0,
+          1502.0,
+          209.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    },
+    "capture": {
+      "file": "0057-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "9cfc6fca7f41a902e3a492541b6e4e439a05caa768c5ad98d9d92bac94dde246"
+    },
+    "points": [
+      [
+        1454.0,
+        200.0
+      ],
+      [
+        1454.0,
+        200.0
+      ]
+    ],
+    "dispatch_monotonic": 1037.245771219
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "247",
+      "902",
+      "247",
+      "120"
+    ],
+    "monotonic_seconds": 1069.640666552,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0058-native-einzuhausebauen-2-ocr.json",
+        "0058-native-einzuhausebauen-1-ocr.json",
+        "0058-native-einzuhausebauen-0-ocr.json",
+        "0058-native-einzuhausebauen-0-ocr-tiles.json"
+      ]
+    },
+    "capture": {
+      "file": "0059-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "29048afe1e49732fe3ec47d01d53b5a2fd6fbd7cc5d5f6a385204f15eee6d8f7"
+    },
+    "points": [
+      [
+        902.0,
+        247.0
+      ],
+      [
+        902.0,
+        247.0
+      ]
+    ],
+    "dispatch_monotonic": 1071.644536007
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "233",
+      "443",
+      "233",
+      "443",
+      "120"
+    ],
+    "monotonic_seconds": 1111.110175499,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0060-native-meinbauwerktesten-1-ocr.json",
+        "0060-native-meinbauwerktesten-0-ocr.json",
+        "0058-native-einzuhausebauen-surface-readiness.json",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0061-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "89124ce9037db93044a7891cb8d0dca07c3682e4f1d86f5641142c9759f89577"
+    },
+    "points": [
+      [
+        233.0,
+        443.0
+      ],
+      [
+        233.0,
+        443.0
+      ]
+    ],
+    "dispatch_monotonic": 1121.497530735
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1130.147954344,
+    "context": {},
+    "dispatch_monotonic": 1130.147957136
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "904",
+      "569",
+      "904",
+      "569",
+      "120"
+    ],
+    "monotonic_seconds": 1164.77924323,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0063-leave-pause-1-ocr.json",
+        "0063-leave-pause-0-ocr.json",
+        "real-input-events.json",
+        "0062-native-schongeschafft-0-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0064-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "77c73f5f5e9baed37f09dc150c501441781bde0463354ba956e2fef159f12d78"
+    },
+    "points": [
+      [
+        904.0,
+        569.0
+      ],
+      [
+        904.0,
+        569.0
+      ]
+    ],
+    "dispatch_monotonic": 1168.627816142
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "472",
+      "868",
+      "472",
+      "868",
+      "120"
+    ],
+    "monotonic_seconds": 1188.090246764,
+    "context": {
+      "caption": "Bauwelt. Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt! Spielen",
+      "bounds": [
+        288,
+        723,
+        656,
+        1012
+      ],
+      "actionability": "source-bound-game-tile-button",
+      "android_clickable": "false",
+      "capture": {
+        "file": "0070-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "9073d001ab6898617ee7255e65af43853a61f7e1d01a293db6082473d5c6e4b0"
+      },
+      "hierarchy": "0069-hub-bauwelt",
+      "basis": "Current51e live _GameTile complete Semantics; explicit click action or source-bound visible Button"
+    },
+    "capture": {
+      "file": "0071-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "e88bbde85bdcdb018e0d376c1fa497d6bc9d9ca311b957249810f3346bbd1dce"
+    },
+    "points": [
+      [
+        472.0,
+        868.0
+      ],
+      [
+        472.0,
+        868.0
+      ]
+    ],
+    "dispatch_monotonic": 1192.897540518
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1229.167644873,
+    "context": {},
+    "dispatch_monotonic": 1229.167648721
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "410",
+      "902",
+      "410",
+      "120"
+    ],
+    "monotonic_seconds": 1303.950058303,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0076-native-weiterbauen-1-ocr.json",
+        "0076-native-weiterbauen-0-ocr.json",
+        "0075-build-save-lumo_build_p_3b8dc3851fcc35a6920a6a7bfcca99a9_1.json",
+        "0074-native-weiterbauen-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0077-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "274c9d3757f3bb4f4252e30db15778e0174376cc3d22aafc1fc9450c03220866"
+    },
+    "points": [
+      [
+        902.0,
+        410.0
+      ],
+      [
+        902.0,
+        410.0
+      ]
+    ],
+    "dispatch_monotonic": 1313.582578264
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "232",
+      "484",
+      "232",
+      "484",
+      "120"
+    ],
+    "monotonic_seconds": 1332.519912964,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0078-native-meinbauwerktesten-1-ocr.json",
+        "0078-native-meinbauwerktesten-0-ocr.json",
+        "0076-native-weiterbauen-surface-readiness.json",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0079-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b40134e1bb3fb4147693aed290244778d2daee0dcfb9ed971f2372ef68e199dc"
+    },
+    "points": [
+      [
+        232.0,
+        484.0
+      ],
+      [
+        232.0,
+        484.0
+      ]
+    ],
+    "dispatch_monotonic": 1337.105094014
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1338.840555303,
+    "context": {},
+    "dispatch_monotonic": 1338.840558575
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "904",
+      "569",
+      "904",
+      "569",
+      "120"
+    ],
+    "monotonic_seconds": 1374.85468274,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0080-leave-pause-1-ocr.json",
+        "0080-leave-pause-0-ocr.json",
+        "real-input-events.json",
+        "0078-native-meinbauwerktesten-surface-readiness.json"
+      ]
+    },
+    "capture": {
+      "file": "0081-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b0fa5853b49505114fad8fadf3ea2ce031ed1e1003b0c12bee0ee75a6ea78a3a"
+    },
+    "points": [
+      [
+        904.0,
+        569.0
+      ],
+      [
+        904.0,
+        569.0
+      ]
+    ],
+    "dispatch_monotonic": 1377.431705136
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "858",
+      "868",
+      "858",
+      "868",
+      "120"
+    ],
+    "monotonic_seconds": 1396.329264921,
+    "context": {
+      "caption": "Puzzle. Stück für Stück die Welt entdecken! Spielen",
+      "bounds": [
+        674,
+        723,
+        1041,
+        1012
+      ],
+      "actionability": "source-bound-game-tile-button",
+      "android_clickable": "false",
+      "capture": {
+        "file": "0086-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "d5146cc5929f26758f73c4530ebeee4c05860307baa9f96d113fb6499def6c34"
+      },
+      "hierarchy": "0085-hub-puzzle",
+      "basis": "Current51e live _GameTile complete Semantics; explicit click action or source-bound visible Button"
+    },
+    "capture": {
+      "file": "0087-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "ad6a730434ac99089c22138af0644953520f8cc3f51b619d83e289246ed80890"
+    },
+    "points": [
+      [
+        858.0,
+        868.0
+      ],
+      [
+        858.0,
+        868.0
+      ]
+    ],
+    "dispatch_monotonic": 1400.516367835
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "949",
+      "457",
+      "949",
+      "457",
+      "120"
+    ],
+    "monotonic_seconds": 1434.771663539,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0090-native-12teile-1-ocr.json",
+        "0090-native-12teile-0-ocr.json",
+        "0088-native-lumospuzzle-2-ocr.json",
+        "0088-native-lumospuzzle-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0091-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "8c9c5f3ae64db7b776d4e54ba80f79eae093809262798d4d125a3fd1553ff11a"
+    },
+    "points": [
+      [
+        949.0,
+        457.0
+      ],
+      [
+        949.0,
+        457.0
+      ]
+    ],
+    "dispatch_monotonic": 1438.080510022
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "948",
+      "457",
+      "948",
+      "457",
+      "120"
+    ],
+    "monotonic_seconds": 1450.098418298,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0092-native-24teile-1-ocr.json",
+        "0092-native-24teile-0-ocr.json",
+        "0090-native-12teile-surface-readiness.json",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0093-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "d6d67333ee2342df9c3f5ec0aa95905e1f0491685c93056f045461d66abc8bc9"
+    },
+    "points": [
+      [
+        948.0,
+        457.0
+      ],
+      [
+        948.0,
+        457.0
+      ]
+    ],
+    "dispatch_monotonic": 1452.712865344
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "956",
+      "457",
+      "956",
+      "457",
+      "120"
+    ],
+    "monotonic_seconds": 1465.157156387,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0094-native-48teile-1-ocr.json",
+        "0094-native-48teile-0-ocr.json",
+        "0092-native-24teile-surface-readiness.json",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0095-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "0d1b986b1fa831b575fb32ab4b0188c94afef1e3abb99bab926c5f5f8f98c918"
+    },
+    "points": [
+      [
+        956.0,
+        457.0
+      ],
+      [
+        956.0,
+        457.0
+      ]
+    ],
+    "dispatch_monotonic": 1469.02046055
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "956",
+      "457",
+      "956",
+      "457",
+      "120"
+    ],
+    "monotonic_seconds": 1480.633875298,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0096-native-96teile-1-ocr.json",
+        "0096-native-96teile-0-ocr.json",
+        "0094-native-48teile-surface-readiness.json",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0097-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "856aeaf3c119976d27aa88271427263df1a023bd711f87608339b91ffee1448a"
+    },
+    "points": [
+      [
+        956.0,
+        457.0
+      ],
+      [
+        956.0,
+        457.0
+      ]
+    ],
+    "dispatch_monotonic": 1483.936142996
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "472",
+      "916",
+      "472",
+      "916",
+      "120"
+    ],
+    "monotonic_seconds": 1500.432629418,
+    "context": {
+      "text": "Bild",
+      "bounds": [
+        452.0,
+        907.0,
+        492.0,
+        925.0
+      ],
+      "variant": "contrast",
+      "capture": {
+        "file": "0100-observe-bild.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "50b2854a9e6b7bcd32d454287b56b878088f785292e2e398e172636240f2186a"
+      },
+      "stable": {
+        "surface_sha256": "50b2854a9e6b7bcd32d454287b56b878088f785292e2e398e172636240f2186a",
+        "pixels": [
+          1920,
+          1080
+        ],
+        "bounds": [
+          452.0,
+          907.0,
+          492.0,
+          925.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    },
+    "capture": {
+      "file": "0101-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "50b2854a9e6b7bcd32d454287b56b878088f785292e2e398e172636240f2186a"
+    },
+    "points": [
+      [
+        472.0,
+        916.0
+      ],
+      [
+        472.0,
+        916.0
+      ]
+    ],
+    "dispatch_monotonic": 1503.023536211
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "472",
+      "916",
+      "472",
+      "916",
+      "120"
+    ],
+    "monotonic_seconds": 1513.426649325,
+    "context": {
+      "text": "Bild",
+      "bounds": [
+        452.0,
+        907.0,
+        492.0,
+        925.0
+      ],
+      "variant": "contrast",
+      "capture": {
+        "file": "0103-observe-bild.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986"
+      },
+      "stable": {
+        "surface_sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986",
+        "pixels": [
+          1920,
+          1080
+        ],
+        "bounds": [
+          452.0,
+          907.0,
+          492.0,
+          925.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    },
+    "capture": {
+      "file": "0104-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986"
+    },
+    "points": [
+      [
+        472.0,
+        916.0
+      ],
+      [
+        472.0,
+        916.0
+      ]
+    ],
+    "dispatch_monotonic": 1516.787928496
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "472",
+      "916",
+      "472",
+      "916",
+      "120"
+    ],
+    "monotonic_seconds": 1526.926384007,
+    "context": {
+      "text": "Bild",
+      "bounds": [
+        452.0,
+        907.0,
+        492.0,
+        925.0
+      ],
+      "variant": "contrast",
+      "capture": {
+        "file": "0106-observe-bild.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986"
+      },
+      "stable": {
+        "surface_sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986",
+        "pixels": [
+          1920,
+          1080
+        ],
+        "bounds": [
+          452.0,
+          907.0,
+          492.0,
+          925.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    },
+    "capture": {
+      "file": "0107-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986"
+    },
+    "points": [
+      [
+        472.0,
+        916.0
+      ],
+      [
+        472.0,
+        916.0
+      ]
+    ],
+    "dispatch_monotonic": 1530.661859934
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "472",
+      "916",
+      "472",
+      "916",
+      "120"
+    ],
+    "monotonic_seconds": 1540.469580705,
+    "context": {
+      "text": "Bild",
+      "bounds": [
+        452.0,
+        907.0,
+        492.0,
+        925.0
+      ],
+      "variant": "contrast",
+      "capture": {
+        "file": "0109-observe-bild.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986"
+      },
+      "stable": {
+        "surface_sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986",
+        "pixels": [
+          1920,
+          1080
+        ],
+        "bounds": [
+          452.0,
+          907.0,
+          492.0,
+          925.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    },
+    "capture": {
+      "file": "0110-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "48f8d204cb249e9a34f3836556909b7b3a640930f6131d4be6cc1f29bc5af986"
+    },
+    "points": [
+      [
+        472.0,
+        916.0
+      ],
+      [
+        472.0,
+        916.0
+      ]
+    ],
+    "dispatch_monotonic": 1543.4024027
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "125",
+      "542",
+      "125",
+      "542",
+      "120"
+    ],
+    "monotonic_seconds": 1565.176601706,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0116-recover-games--1-0.xml",
+        "0115-recovered-profile-preferences.xml",
+        "0112-observe-bild-ocr.json",
+        "0111-observe-bild-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0117-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "4352ad296593204adfac797fc1ca2cd6a0918296b3e01bb1a543e05d8b831700"
+    },
+    "points": [
+      [
+        125.0,
+        542.0
+      ],
+      [
+        125.0,
+        542.0
+      ]
+    ],
+    "dispatch_monotonic": 1568.74916133
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "858",
+      "1552",
+      "858",
+      "1552",
+      "120"
+    ],
+    "monotonic_seconds": 1575.114894708,
+    "context": {
+      "caption": "Schatzsuche. Rätsel. Hinweise. Schätze! Spielen",
+      "bounds": [
+        674,
+        1407,
+        1041,
+        1696
+      ],
+      "actionability": "source-bound-game-tile-button",
+      "android_clickable": "false",
+      "capture": {
+        "file": "0119-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "5b189dd51134508268f24aa1fb0eb0d54013f1285c515f029fd17f50d686a9d2"
+      },
+      "hierarchy": "0118-hub-schatzsuche",
+      "basis": "Current51e live _GameTile complete Semantics; explicit click action or source-bound visible Button"
+    },
+    "capture": {
+      "file": "0120-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "a27c3e1b35ca688c2b0477a7e091568e3f9551575a27e79fbe2b40865847335a"
+    },
+    "points": [
+      [
+        858.0,
+        1552.0
+      ],
+      [
+        858.0,
+        1552.0
+      ]
+    ],
+    "dispatch_monotonic": 1579.592187045
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1620.136319565,
+    "context": {},
+    "dispatch_monotonic": 1620.136323224
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 1656.425335266,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0125-native-weitererkunden-1-ocr.json",
+        "0125-native-weitererkunden-0-ocr.json",
+        "0124-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0123-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0126-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c7dc5f1bcfefbbc80176a9bd66fa27ac249e2882f4d9e691d470214cefd04241"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 1659.642973336
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "112",
+      "769",
+      "112",
+      "769",
+      "1500"
+    ],
+    "monotonic_seconds": 1663.736992223,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0127-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "9d42b75f4078f95af5c9941f71ec9440f3c710882c071e046cc2988513b86afc"
+      },
+      "axis_direction": [
+        -12.0,
+        -14.0
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0128-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "72264dacfcc2f1de8ae39e2ba2952062bcca5269b4aa33bb1202401e8f35ac16"
+    },
+    "points": [
+      [
+        112.0,
+        769.0
+      ],
+      [
+        112.0,
+        769.0
+      ]
+    ],
+    "dispatch_monotonic": 1666.768610037
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1668.689414993,
+    "context": {},
+    "dispatch_monotonic": 1668.689422137
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 1705.96689849,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0131-native-weitererkunden-1-ocr.json",
+        "0131-native-weitererkunden-0-ocr.json",
+        "0130-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0129-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0132-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "4ecc89d9d8ebaacdf7dc5a051e5becc7513723840cc192f3a139f404bb4fe906"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 1711.024900786
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "112",
+      "769",
+      "112",
+      "769",
+      "1500"
+    ],
+    "monotonic_seconds": 1716.397989918,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0133-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "e0553ed55d4addacf258451b6502668f3dcba1933ab15f40f20a6ddd61f7c9ec"
+      },
+      "axis_direction": [
+        -11.660968452692032,
+        -13.65000009536743
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0134-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b15187a91d896520fce4c4501a890d53bccec0aaa9709fd692f0ec18a442ca23"
+    },
+    "points": [
+      [
+        112.0,
+        769.0
+      ],
+      [
+        112.0,
+        769.0
+      ]
+    ],
+    "dispatch_monotonic": 1718.696617813
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1720.61228311,
+    "context": {},
+    "dispatch_monotonic": 1720.612291296
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 1758.711668658,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0137-native-weitererkunden-1-ocr.json",
+        "0137-native-weitererkunden-0-ocr.json",
+        "0136-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0135-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0138-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "ba920fb1f24e2205364e5713c92ac47c007a8efde05749544ea0a15a3da3661f"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 1761.956655553
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "111",
+      "770",
+      "111",
+      "770",
+      "1500"
+    ],
+    "monotonic_seconds": 1766.737253389,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        277.3333333333333,
+        946.6666666666666
+      ],
+      "center": [
+        164.0,
+        832.0
+      ],
+      "diameter": 228.0,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0139-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "915d3bb0045f01b74feb8e471b4a51da70088a15121f8859a3907a3969a9073a"
+      },
+      "axis_direction": [
+        -10.63808965682983,
+        -12.46040296554565
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0140-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a23966df5fd25356d139a982841d933c479415b97e2120c14a1d7a4decc64327"
+    },
+    "points": [
+      [
+        111.0,
+        770.0
+      ],
+      [
+        111.0,
+        770.0
+      ]
+    ],
+    "dispatch_monotonic": 1770.391336757
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1772.289248922,
+    "context": {},
+    "dispatch_monotonic": 1772.28925602
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 1810.970703548,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0143-native-weitererkunden-1-ocr.json",
+        "0143-native-weitererkunden-0-ocr.json",
+        "0142-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0141-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0144-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a5b0b4b816ea094425ac9ce77b0c2a01e0c60e49b2cd2f1119722928198e8216"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 1815.716224932
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "112",
+      "769",
+      "112",
+      "769",
+      "1500"
+    ],
+    "monotonic_seconds": 1820.945354357,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0145-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "1894714b3c689d7c1f8fcf90ff25ef6069b0453fede9e5b6bd87cd1a1856bf7b"
+      },
+      "axis_direction": [
+        -9.49599647521973,
+        -11.11880016326904
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0146-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "8f8425ac52cd0d6a9cd1a1fb986b382f561786d88a5173d1fcd5e1313c6d6854"
+    },
+    "points": [
+      [
+        112.0,
+        769.0
+      ],
+      [
+        112.0,
+        769.0
+      ]
+    ],
+    "dispatch_monotonic": 1823.862559342
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1825.911283544,
+    "context": {},
+    "dispatch_monotonic": 1825.911291286
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 1864.453980074,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0149-native-weitererkunden-1-ocr.json",
+        "0149-native-weitererkunden-0-ocr.json",
+        "0148-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0147-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0150-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "07b29eb607d605a8babaab2f0f9767afac78fbea5cacf9c2ad80bffd77ff4fc7"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 1867.499852375
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "111",
+      "769",
+      "111",
+      "769",
+      "1500"
+    ],
+    "monotonic_seconds": 1872.220960459,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        277.3333333333333,
+        944.0
+      ],
+      "center": [
+        164.0,
+        830.6666666666666
+      ],
+      "diameter": 226.66666666666666,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0151-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "87347a1a093ac3fbf70a97f027124afb5ff70416303c2a78896b07e8d60e4369"
+      },
+      "axis_direction": [
+        -9.1569652557373,
+        -10.768800258636471
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0152-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "9d82b8cdd03b109b84e4b9e0efa6c2dc9142e7aabc762a5954429e8d9629c36a"
+    },
+    "points": [
+      [
+        111.0,
+        769.0
+      ],
+      [
+        111.0,
+        769.0
+      ]
+    ],
+    "dispatch_monotonic": 1876.431672683
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1878.419208756,
+    "context": {},
+    "dispatch_monotonic": 1878.419216529
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 1917.532365865,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0155-native-weitererkunden-1-ocr.json",
+        "0155-native-weitererkunden-0-ocr.json",
+        "0154-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0153-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0156-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "84e36fd740d723916e711a771960fac9d86e2ca1c866a962a0a25dc0c34a893c"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 1920.302022572
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "112",
+      "769",
+      "112",
+      "769",
+      "1500"
+    ],
+    "monotonic_seconds": 1926.225177342,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0157-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "d06bc420ffbc4aa71d697fc9c20ec5ea6f116b6baa33128e52ed38854252dc13"
+      },
+      "axis_direction": [
+        -8.12264823913574,
+        -9.57920217514038
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0158-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "84de74cc756cf49a2073a8749b81b934efe665652c741bf97cabb860be876416"
+    },
+    "points": [
+      [
+        112.0,
+        769.0
+      ],
+      [
+        112.0,
+        769.0
+      ]
+    ],
+    "dispatch_monotonic": 1930.630486908
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1932.560053205,
+    "context": {},
+    "dispatch_monotonic": 1932.560061574
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 1968.627829719,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0161-native-weitererkunden-1-ocr.json",
+        "0161-native-weitererkunden-0-ocr.json",
+        "0160-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0159-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0162-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "f1d14410c6bd4fd4998ec0a95d5388c5924833667f9bc009d527be1672b894cd"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 1971.327403452
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "111",
+      "769",
+      "111",
+      "769",
+      "1375"
+    ],
+    "monotonic_seconds": 1976.433094862,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        277.3333333333333,
+        946.6666666666666
+      ],
+      "center": [
+        164.0,
+        832.0
+      ],
+      "diameter": 228.0,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0163-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "f83518b8674716ed913d2a72b6b276e8214b0c7161090f56dd94f95932d2bfec"
+      },
+      "axis_direction": [
+        -7.13797616958618,
+        -8.43667209148407
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0164-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "13652a8f3c6d756b9ff287ec81a792cff5d365ea6def128927ed2c7c7eaee670"
+    },
+    "points": [
+      [
+        111.0,
+        769.0
+      ],
+      [
+        111.0,
+        769.0
+      ]
+    ],
+    "dispatch_monotonic": 1979.700827396
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 1981.505694559,
+    "context": {},
+    "dispatch_monotonic": 1981.5057026
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 2022.689875552,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0167-native-weitererkunden-1-ocr.json",
+        "0167-native-weitererkunden-0-ocr.json",
+        "0166-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0165-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0168-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b8ba6c0e69dc71c578b37047296fbf1d59689f988e9c84f9b2bf171cd7f6c6e0"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 2026.088482135
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "112",
+      "769",
+      "112",
+      "769",
+      "1111"
+    ],
+    "monotonic_seconds": 2031.243958576,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0169-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "1485e49888021735ff29215e854da790116b8beb5d682fbef7e86cd35491fbbf"
+      },
+      "axis_direction": [
+        -6.10365724563599,
+        -7.238775670528412
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0170-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "456060af8dc109b7f5888dd54d910ca6a050048842752bf536141c115b743df6"
+    },
+    "points": [
+      [
+        112.0,
+        769.0
+      ],
+      [
+        112.0,
+        769.0
+      ]
+    ],
+    "dispatch_monotonic": 2033.774776915
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 2035.292171983,
+    "context": {},
+    "dispatch_monotonic": 2035.292179068
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 2079.083407558,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0173-native-weitererkunden-1-ocr.json",
+        "0173-native-weitererkunden-0-ocr.json",
+        "0172-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0171-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0174-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "52211e61ff3a4aa22f25126a4cf040804fc9cd1ec1a60723fb7ed09004eb8657"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 2082.432192728
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "112",
+      "769",
+      "112",
+      "769",
+      "950"
+    ],
+    "monotonic_seconds": 2087.544711454,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0175-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "c31869e6c1ff948452b5cd27b836e78f302ba15b0421a60402ed400c5061e145"
+      },
+      "axis_direction": [
+        -5.45801782608032,
+        -6.51584410667419
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0176-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b160e556b31ae7a6e078839f671e4dfe7391a9147663873c8e072492254e19c9"
+    },
+    "points": [
+      [
+        112.0,
+        769.0
+      ],
+      [
+        112.0,
+        769.0
+      ]
+    ],
+    "dispatch_monotonic": 2090.98174409
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 2092.437265183,
+    "context": {},
+    "dispatch_monotonic": 2092.437272557
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 2134.718635358,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0179-native-weitererkunden-1-ocr.json",
+        "0179-native-weitererkunden-0-ocr.json",
+        "0178-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0177-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0180-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "6016734ef402e9393d9b46ea14a55c647fe9dea77413fbac57f0611ddbc7578a"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 2137.864441896
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "113",
+      "768",
+      "113",
+      "768",
+      "746"
+    ],
+    "monotonic_seconds": 2145.099804048,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0181-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "b3c5583e50be109c9d0e49abe44be9856e4dafa3d1d150042629686edfbff896"
+      },
+      "axis_direction": [
+        -4.64174795150757,
+        -5.60624623298645
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0182-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "f4b2189854b9ff02766aaeb03a6e87a237826c2df6e62aa27c198d3e1a1d30fb"
+    },
+    "points": [
+      [
+        113.0,
+        768.0
+      ],
+      [
+        113.0,
+        768.0
+      ]
+    ],
+    "dispatch_monotonic": 2148.998699559
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 2150.147863793,
+    "context": {},
+    "dispatch_monotonic": 2150.147871442
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 2192.294168613,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0185-native-weitererkunden-1-ocr.json",
+        "0185-native-weitererkunden-0-ocr.json",
+        "0184-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0183-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0186-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "06b7ee20cebf2209ae387699a1c60e7198b96621df9496ab5d12205a4c022f90"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 2195.927203392
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "113",
+      "768",
+      "113",
+      "768",
+      "623"
+    ],
+    "monotonic_seconds": 2201.084288339,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0187-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "2cbe168dabbf7f55da8c2fad36ec953f6f7fe766fad4065d433915f1fbb23bfc"
+      },
+      "axis_direction": [
+        -4.15902090072632,
+        -5.04664778709412
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0188-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "3c0bf692262e898c1347322b491fa9265c8dd6bcfa5ec891b2c338ba96afe8e4"
+    },
+    "points": [
+      [
+        113.0,
+        768.0
+      ],
+      [
+        113.0,
+        768.0
+      ]
+    ],
+    "dispatch_monotonic": 2204.256742415
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 2205.337216511,
+    "context": {},
+    "dispatch_monotonic": 2205.337225279
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 2246.463098652,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0191-native-weitererkunden-1-ocr.json",
+        "0191-native-weitererkunden-0-ocr.json",
+        "0190-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0189-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0192-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "269cc5edbc46719b9bae1c3d992284f2174111e5fad0476985ddd5ae75d86096"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 2249.526137612
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "113",
+      "768",
+      "113",
+      "768",
+      "509"
+    ],
+    "monotonic_seconds": 2257.456221647,
+    "context": {
+      "bounds": [
+        50.666666666666664,
+        717.3333333333334,
+        280.0,
+        946.6666666666666
+      ],
+      "center": [
+        165.33333333333334,
+        832.0
+      ],
+      "diameter": 229.33333333333334,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture",
+      "capture": {
+        "file": "0193-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "63dee94348eaefb5b3b1f67cd8a88df5629fa1265d5c38a34a9178a1b3f150c9"
+      },
+      "axis_direction": [
+        -3.6831569671630895,
+        -4.54887008666992
+      ],
+      "input": "Single real pointer; no simultaneous jump"
+    },
+    "capture": {
+      "file": "0194-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "7989bc282bd8daa078ae7190e7bb48efd2cf4adaedfa0e53deca102cfb26f401"
+    },
+    "points": [
+      [
+        113.0,
+        768.0
+      ],
+      [
+        113.0,
+        768.0
+      ]
+    ],
+    "dispatch_monotonic": 2260.719508143
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 2261.651282168,
+    "context": {},
+    "dispatch_monotonic": 2261.651290078
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "902",
+      "505",
+      "902",
+      "505",
+      "120"
+    ],
+    "monotonic_seconds": 2304.349950301,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0197-native-weitererkunden-1-ocr.json",
+        "0197-native-weitererkunden-0-ocr.json",
+        "0196-treasure-save-lumo_treasure_p_3b8dc3851fcc35a6920a6a7bfcca99a9.json",
+        "0195-native-weitererkunden-1-ocr.json"
+      ]
+    },
+    "capture": {
+      "file": "0198-before-real-input.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b8ed467b287d0500453acdb8c8580abc05b6a425f755bbd5835788796e783be8"
+    },
+    "points": [
+      [
+        902.0,
+        505.0
+      ],
+      [
+        902.0,
+        505.0
+      ]
+    ],
+    "dispatch_monotonic": 2309.450424464
+  }
+]

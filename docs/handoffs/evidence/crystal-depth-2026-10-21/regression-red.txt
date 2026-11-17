@@ -1,0 +1,34 @@
+00:00 +0: loading /workspace/lumo-lernen/test/design/minus_crystal_depth_regression_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Akademie Minus route renders four deep, visible crystal answers
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value greater than or equal to <100>
+  Actual: <72.0>
+   Which: is not a value greater than or equal to <100>
+The crystal body and pedestal must not collapse into a bar
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/lumo-lernen/test/design/minus_crystal_depth_regression_test.dart:87:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/lumo-lernen/test/design/minus_crystal_depth_regression_test.dart line 87
+The test description was:
+  Akademie Minus route renders four deep, visible crystal answers
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:07 +0 -1: Akademie Minus route renders four deep, visible crystal answers [E]
+  Test failed. See exception logs above.
+  The test description was: Akademie Minus route renders four deep, visible crystal answers
+  
+00:07 +0 -1: (tearDownAll)
+00:07 +0 -1: Some tests failed.
+
+Failing tests:
+  /workspace/lumo-lernen/test/design/minus_crystal_depth_regression_test.dart: Akademie Minus route renders four deep, visible crystal answers

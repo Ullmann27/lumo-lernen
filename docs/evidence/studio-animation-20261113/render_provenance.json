@@ -1,0 +1,864 @@
+{
+  "kind": "offline_original_lumo_studio_animation",
+  "native_candidate": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "input_sha256": {
+    "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+    "docs/evidence/studio-character-20261113/Lumo-Studio-Actions.blend": "9c4d1695b86214b44ce97fc844abdf6a36316fc38d99c769f3a068ff803b2b9e",
+    "tools/lumo_animation/author_platform_clips.py": "cbb0823ac359ac45d323a9037f6cc7c10a903e44dff6c374689ba84a3ec429c3"
+  },
+  "blender": "4.3.2",
+  "render_engine": "CYCLES",
+  "device": "CPU",
+  "resolution": [
+    512,
+    512
+  ],
+  "samples": 64,
+  "denoising": false,
+  "adaptive_sampling": false,
+  "max_bounces": 4,
+  "threads": 8,
+  "color_transform": "AgX",
+  "media_fps": 25,
+  "source_action_timebase_fps": 60,
+  "available_actions": [
+    "studio_brake",
+    "studio_jump_fall",
+    "studio_jump_rise",
+    "studio_land",
+    "studio_sprint",
+    "studio_walk"
+  ],
+  "clips": [
+    {
+      "action": "studio_walk",
+      "source_frame_range": [
+        0,
+        60
+      ],
+      "duration_seconds": 1.0,
+      "rendered_frames": 25
+    },
+    {
+      "action": "studio_sprint",
+      "source_frame_range": [
+        0,
+        36
+      ],
+      "duration_seconds": 0.6,
+      "rendered_frames": 15
+    }
+  ],
+  "geometry_modified": false,
+  "face_modified": false,
+  "source_assets_written": false,
+  "root_motion": "in_place_authored_actions",
+  "gameplay_capture": false,
+  "device_performance_measurement": false,
+  "frames": [
+    {
+      "file": "studio_walk/0000.png",
+      "action": "studio_walk",
+      "source_frame": 0.0,
+      "media_time_seconds": 0.0,
+      "render_seconds": 4.902609235999989,
+      "sha256": "46ea9f411412b586bd250879a5310046b531cd1734c9d624afcd9b47f254ffe3",
+      "foot_heads_world": {
+        "L": [
+          0.1759766936302185,
+          -0.33144819736480713,
+          0.03652312979102135
+        ],
+        "R": [
+          -0.16933590173721313,
+          0.05855163559317589,
+          0.03652367368340492
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0001.png",
+      "action": "studio_walk",
+      "source_frame": 2.4,
+      "media_time_seconds": 0.04,
+      "render_seconds": 4.411962312995456,
+      "sha256": "1c73738f98b5ec7b47ad2d1a43f19d01f0e4007cd533a3b73f4c10f173f2e8cd",
+      "foot_heads_world": {
+        "L": [
+          0.175972118973732,
+          -0.2998172640800476,
+          0.03643008694052696
+        ],
+        "R": [
+          -0.16937565803527832,
+          0.08755766600370407,
+          0.03671237826347351
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0002.png",
+      "action": "studio_walk",
+      "source_frame": 4.8,
+      "media_time_seconds": 0.08,
+      "render_seconds": 4.486935010005254,
+      "sha256": "556fe8b3d82c0a8c26769b643ea1338ad4497da5eef65f45d3f3c489aba69069",
+      "foot_heads_world": {
+        "L": [
+          0.17599961161613464,
+          -0.2697291076183319,
+          0.03655146807432175
+        ],
+        "R": [
+          -0.1666877567768097,
+          0.11380124092102051,
+          0.05396268144249916
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0003.png",
+      "action": "studio_walk",
+      "source_frame": 7.2,
+      "media_time_seconds": 0.12,
+      "render_seconds": 4.580441423997399,
+      "sha256": "3bb0535ad9c3e52cf0dc248db2482abee0c7bc180e30c306d6da2c36febfffe1",
+      "foot_heads_world": {
+        "L": [
+          0.1759609878063202,
+          -0.23750588297843933,
+          0.0365290604531765
+        ],
+        "R": [
+          -0.16452057659626007,
+          0.1343032568693161,
+          0.07219338417053223
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0004.png",
+      "action": "studio_walk",
+      "source_frame": 9.6,
+      "media_time_seconds": 0.16,
+      "render_seconds": 4.051402224002231,
+      "sha256": "76c51ad1852f87dcae03897b8313f65335d860ff6de12dddfaa26379df7812be",
+      "foot_heads_world": {
+        "L": [
+          0.17598651349544525,
+          -0.20680713653564453,
+          0.03651311248540878
+        ],
+        "R": [
+          -0.16658082604408264,
+          0.13207241892814636,
+          0.08015644550323486
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0005.png",
+      "action": "studio_walk",
+      "source_frame": 12.0,
+      "media_time_seconds": 0.2,
+      "render_seconds": 3.9807638920028694,
+      "sha256": "5770d305ca9158207adf4117f784dd982f2afe55c63c083df79734b13ad51c83",
+      "foot_heads_world": {
+        "L": [
+          0.1759597659111023,
+          -0.1752576380968094,
+          0.03654273971915245
+        ],
+        "R": [
+          -0.1696351170539856,
+          0.10257081687450409,
+          0.09182745218276978
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0006.png",
+      "action": "studio_walk",
+      "source_frame": 14.4,
+      "media_time_seconds": 0.24,
+      "render_seconds": 4.59192244100268,
+      "sha256": "d36386739b67b28325fcdb58fe0e04b8f383d017f5186f5e90034136d2262293",
+      "foot_heads_world": {
+        "L": [
+          0.17604129016399384,
+          -0.14487206935882568,
+          0.036422692239284515
+        ],
+        "R": [
+          -0.1692565232515335,
+          0.041858941316604614,
+          0.11790858209133148
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0007.png",
+      "action": "studio_walk",
+      "source_frame": 16.8,
+      "media_time_seconds": 0.28,
+      "render_seconds": 4.608076724005514,
+      "sha256": "70b3eda5ffff48afdf23c7d90cb7d3f3191920e60963bf5c0730cee2d3044b46",
+      "foot_heads_world": {
+        "L": [
+          0.17592301964759827,
+          -0.11265265941619873,
+          0.03660961240530014
+        ],
+        "R": [
+          -0.16949303448200226,
+          -0.030431663617491722,
+          0.12773865461349487
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0008.png",
+      "action": "studio_walk",
+      "source_frame": 19.2,
+      "media_time_seconds": 0.32,
+      "render_seconds": 3.993305348994909,
+      "sha256": "f3b09d13c4ccb3b2a8fc5b2c9ee0aec6d5406f143440fe4b6f6173357c1d0ab3",
+      "foot_heads_world": {
+        "L": [
+          0.17600125074386597,
+          -0.08199964463710785,
+          0.03648535907268524
+        ],
+        "R": [
+          -0.168805792927742,
+          -0.10835161060094833,
+          0.13200892508029938
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0009.png",
+      "action": "studio_walk",
+      "source_frame": 21.6,
+      "media_time_seconds": 0.36,
+      "render_seconds": 4.280482554000628,
+      "sha256": "24b6c8d5fb38665be00d7f97675abfdc002f1cf55ecb3e6a53418af650706252",
+      "foot_heads_world": {
+        "L": [
+          0.17595519125461578,
+          -0.05047895386815071,
+          0.036545224487781525
+        ],
+        "R": [
+          -0.17031314969062805,
+          -0.18824990093708038,
+          0.1234477162361145
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0010.png",
+      "action": "studio_walk",
+      "source_frame": 24.0,
+      "media_time_seconds": 0.4,
+      "render_seconds": 4.071816503004811,
+      "sha256": "52324f8b3d35a5b95865937631870742dd0bbc03288a79baf17420dcc8659819",
+      "foot_heads_world": {
+        "L": [
+          0.1760389804840088,
+          -0.019950777292251587,
+          0.03644893318414688
+        ],
+        "R": [
+          -0.16854137182235718,
+          -0.2518199682235718,
+          0.10537761449813843
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0011.png",
+      "action": "studio_walk",
+      "source_frame": 26.4,
+      "media_time_seconds": 0.44,
+      "render_seconds": 4.031591913000739,
+      "sha256": "f123010dc4e593948a816705a3d28388a79eab7b441d8f0647fbd1de69678e5b",
+      "foot_heads_world": {
+        "L": [
+          0.17596885561943054,
+          0.012102385982871056,
+          0.036142509430646896
+        ],
+        "R": [
+          -0.16965728998184204,
+          -0.30279916524887085,
+          0.08438021689653397
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0012.png",
+      "action": "studio_walk",
+      "source_frame": 28.8,
+      "media_time_seconds": 0.48,
+      "render_seconds": 4.543727714997658,
+      "sha256": "9a93aacf3becca09896d395be3da2d9ecace87532f2cf9d1d9bd20963b1891bd",
+      "foot_heads_world": {
+        "L": [
+          0.17574946582317352,
+          0.04312244802713394,
+          0.038511428982019424
+        ],
+        "R": [
+          -0.1693052351474762,
+          -0.3297696113586426,
+          0.04617931693792343
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0013.png",
+      "action": "studio_walk",
+      "source_frame": 31.2,
+      "media_time_seconds": 0.52,
+      "render_seconds": 4.940362312001525,
+      "sha256": "bf7e527f735c8e30e49dcd688a9f79412f57be3f95e8833d5567684d171b0fe0",
+      "foot_heads_world": {
+        "L": [
+          0.17686744034290314,
+          0.06886415928602219,
+          0.030589384958148003
+        ],
+        "R": [
+          -0.1692485362291336,
+          -0.3174034357070923,
+          0.035662200301885605
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0014.png",
+      "action": "studio_walk",
+      "source_frame": 33.6,
+      "media_time_seconds": 0.56,
+      "render_seconds": 4.37229422499513,
+      "sha256": "c90b7636b9e1c1443fcaaa2767eec2d6604eb7f2e7bdd47981b6e1fc6f2c926b",
+      "foot_heads_world": {
+        "L": [
+          0.1738463044166565,
+          0.10892830789089203,
+          0.04831398278474808
+        ],
+        "R": [
+          -0.16939155757427216,
+          -0.2874184846878052,
+          0.03686966747045517
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0015.png",
+      "action": "studio_walk",
+      "source_frame": 36.0,
+      "media_time_seconds": 0.6,
+      "render_seconds": 4.762251854001079,
+      "sha256": "32b01eb03dade2e1ce7379f04f97b51e140d47a5fa7c254bd7a909d8f2c49254",
+      "foot_heads_world": {
+        "L": [
+          0.1722591668367386,
+          0.12411598861217499,
+          0.06282002478837967
+        ],
+        "R": [
+          -0.16927409172058105,
+          -0.25192829966545105,
+          0.03651817888021469
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0016.png",
+      "action": "studio_walk",
+      "source_frame": 38.4,
+      "media_time_seconds": 0.64,
+      "render_seconds": 4.519244900002377,
+      "sha256": "ca4c949a952a5dd82b7d93d11715ab7e0aa1556ddcda83df79b1b81a3572f489",
+      "foot_heads_world": {
+        "L": [
+          0.17126265168190002,
+          0.13468177616596222,
+          0.07690326124429703
+        ],
+        "R": [
+          -0.16935905814170837,
+          -0.22269101440906525,
+          0.03650498017668724
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0017.png",
+      "action": "studio_walk",
+      "source_frame": 40.8,
+      "media_time_seconds": 0.68,
+      "render_seconds": 4.726861501003441,
+      "sha256": "cf7ccf8bbc46154b0e3b601b01a6fefe7f1c9fce48365c49028e48383f31ae20",
+      "foot_heads_world": {
+        "L": [
+          0.17660653591156006,
+          0.12325182557106018,
+          0.08142748475074768
+        ],
+        "R": [
+          -0.1693185567855835,
+          -0.19082528352737427,
+          0.03654089570045471
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0018.png",
+      "action": "studio_walk",
+      "source_frame": 43.2,
+      "media_time_seconds": 0.72,
+      "render_seconds": 3.928832154000702,
+      "sha256": "81eca0fc09859312256baafd389b0cfe8c236d14e34972af7ff64f6adf9e1a14",
+      "foot_heads_world": {
+        "L": [
+          0.17582716047763824,
+          0.07268514484167099,
+          0.10940268635749817
+        ],
+        "R": [
+          -0.16937638819217682,
+          -0.16025836765766144,
+          0.036467306315898895
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0019.png",
+      "action": "studio_walk",
+      "source_frame": 45.6,
+      "media_time_seconds": 0.76,
+      "render_seconds": 3.9625117249961477,
+      "sha256": "09b0de46c03dd1fc155b7695c4d07bbb5e7dc63efe9ff5aa070a9f3fc7179d86",
+      "foot_heads_world": {
+        "L": [
+          0.1760706901550293,
+          0.00768381729722023,
+          0.12241285294294357
+        ],
+        "R": [
+          -0.16926607489585876,
+          -0.12804831564426422,
+          0.03664036840200424
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0020.png",
+      "action": "studio_walk",
+      "source_frame": 48.0,
+      "media_time_seconds": 0.8,
+      "render_seconds": 4.847638665996783,
+      "sha256": "1b8efb947dd6cea1490df976bd043c492c0efcff1822244bb6080736d56a2358",
+      "foot_heads_world": {
+        "L": [
+          0.17575636506080627,
+          -0.06923234462738037,
+          0.13173554837703705
+        ],
+        "R": [
+          -0.16936275362968445,
+          -0.0975591391324997,
+          0.03648877143859863
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0021.png",
+      "action": "studio_walk",
+      "source_frame": 50.4,
+      "media_time_seconds": 0.84,
+      "render_seconds": 4.354491979000159,
+      "sha256": "04a847c0aa250f9243a8972e7ed18477dff1c3ff61e992dcab96438b9dce0cb4",
+      "foot_heads_world": {
+        "L": [
+          0.17643287777900696,
+          -0.150017648935318,
+          0.12823264300823212
+        ],
+        "R": [
+          -0.16932736337184906,
+          -0.06631852686405182,
+          0.03651684895157814
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0022.png",
+      "action": "studio_walk",
+      "source_frame": 52.8,
+      "media_time_seconds": 0.88,
+      "render_seconds": 4.731099860997347,
+      "sha256": "368d56ad3f5fe742520873f942397577c20de1563578a3e80032eaa769c225c5",
+      "foot_heads_world": {
+        "L": [
+          0.17548918724060059,
+          -0.22129331529140472,
+          0.11583838611841202
+        ],
+        "R": [
+          -0.16934087872505188,
+          -0.03477689251303673,
+          0.03658252954483032
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0023.png",
+      "action": "studio_walk",
+      "source_frame": 55.2,
+      "media_time_seconds": 0.92,
+      "render_seconds": 4.757160647001001,
+      "sha256": "b29f074d8d5ecfecd1606e57e8304bc1e8a93084cb5d5ef46a77d424d407c7ca",
+      "foot_heads_world": {
+        "L": [
+          0.17612726986408234,
+          -0.28094953298568726,
+          0.09538277238607407
+        ],
+        "R": [
+          -0.16933241486549377,
+          -0.00444387923926115,
+          0.036373820155858994
+        ]
+      }
+    },
+    {
+      "file": "studio_walk/0024.png",
+      "action": "studio_walk",
+      "source_frame": 57.6,
+      "media_time_seconds": 0.96,
+      "render_seconds": 3.861401832997217,
+      "sha256": "35753f54005075566e4a2ed3b89a919816c15dc6f1674db70bd36d5d20c08685",
+      "foot_heads_world": {
+        "L": [
+          0.17594748735427856,
+          -0.31834572553634644,
+          0.06680774688720703
+        ],
+        "R": [
+          -0.1693417727947235,
+          0.028038503602147102,
+          0.03665030375123024
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0000.png",
+      "action": "studio_sprint",
+      "source_frame": 0.0,
+      "media_time_seconds": 0.0,
+      "render_seconds": 4.497514040005626,
+      "sha256": "49929e4bc4d682074301e9dcb099b4e17114f2260c1d6e9906f21fdf5ca71bf1",
+      "foot_heads_world": {
+        "L": [
+          0.1759766936302185,
+          -0.35944825410842896,
+          0.036522991955280304
+        ],
+        "R": [
+          -0.16933590173721313,
+          0.13179360330104828,
+          0.1336391717195511
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0001.png",
+      "action": "studio_sprint",
+      "source_frame": 2.4,
+      "media_time_seconds": 0.04,
+      "render_seconds": 3.6850696389956283,
+      "sha256": "9cd563c6b86f813592292204aecb537e65a0a000f25efeaed470eb6ca6b86b8a",
+      "foot_heads_world": {
+        "L": [
+          0.17618820071220398,
+          -0.2639390528202057,
+          0.03717342019081116
+        ],
+        "R": [
+          -0.16929152607917786,
+          0.06710624694824219,
+          0.17607387900352478
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0002.png",
+      "action": "studio_sprint",
+      "source_frame": 4.8,
+      "media_time_seconds": 0.08,
+      "render_seconds": 3.607926747004967,
+      "sha256": "73b0e366b2645a6b438b07bcf621ddbe30b0e8cdbc50bb2ecf17a357b3d83807",
+      "foot_heads_world": {
+        "L": [
+          0.17598818242549896,
+          -0.17042693495750427,
+          0.0364110954105854
+        ],
+        "R": [
+          -0.16933448612689972,
+          -0.01317928358912468,
+          0.19984684884548187
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0003.png",
+      "action": "studio_sprint",
+      "source_frame": 7.2,
+      "media_time_seconds": 0.12,
+      "render_seconds": 4.149453332000121,
+      "sha256": "a70086ce023643a6b064bbddfeb1d808408d7fbc3c8baa0f69a8c3414c9fb24a",
+      "foot_heads_world": {
+        "L": [
+          0.17599961161613464,
+          -0.0731293112039566,
+          0.03769619017839432
+        ],
+        "R": [
+          -0.16930024325847626,
+          -0.10397345572710037,
+          0.20571577548980713
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0004.png",
+      "action": "studio_sprint",
+      "source_frame": 9.6,
+      "media_time_seconds": 0.16,
+      "render_seconds": 4.895344575001218,
+      "sha256": "428fc58a903beb82baca995774bad8ab229fb8ca576e57e6a79788d39baa1638",
+      "foot_heads_world": {
+        "L": [
+          0.17416666448116302,
+          0.0274207703769207,
+          0.04855275899171829
+        ],
+        "R": [
+          -0.16945898532867432,
+          -0.1922866255044937,
+          0.1937815099954605
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0005.png",
+      "action": "studio_sprint",
+      "source_frame": 12.0,
+      "media_time_seconds": 0.2,
+      "render_seconds": 5.626118090003729,
+      "sha256": "83432f08ead721ecc29686f060f2e0a30c5c7059dd33297aac9d4de9d1c5dd86",
+      "foot_heads_world": {
+        "L": [
+          0.17166808247566223,
+          0.10074376314878464,
+          0.0664481595158577
+        ],
+        "R": [
+          -0.16933590173721313,
+          -0.26882117986679077,
+          0.16362394392490387
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0006.png",
+      "action": "studio_sprint",
+      "source_frame": 14.4,
+      "media_time_seconds": 0.24,
+      "render_seconds": 5.168809775997943,
+      "sha256": "6a6a058254e0cf29da242769b63f47d1b59491291aebe61934711092c7ab6b7d",
+      "foot_heads_world": {
+        "L": [
+          0.17179039120674133,
+          0.16400137543678284,
+          0.08410665392875671
+        ],
+        "R": [
+          -0.1693233996629715,
+          -0.3255593180656433,
+          0.11802349984645844
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0007.png",
+      "action": "studio_sprint",
+      "source_frame": 16.8,
+      "media_time_seconds": 0.28,
+      "render_seconds": 4.251064714000677,
+      "sha256": "f4d81ff32350d04971b4ced25ca0f59cdcb01172c07282ef84ec0672715e1f82",
+      "foot_heads_world": {
+        "L": [
+          0.1760580837726593,
+          0.15392398834228516,
+          0.11063601076602936
+        ],
+        "R": [
+          -0.16925841569900513,
+          -0.35621362924575806,
+          0.06151529401540756
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0008.png",
+      "action": "studio_sprint",
+      "source_frame": 19.2,
+      "media_time_seconds": 0.32,
+      "render_seconds": 3.873695388996566,
+      "sha256": "05b7d717054746b8ff022dedcaf522d6fd52fb30d0780ecef28f797494a8b9aa",
+      "foot_heads_world": {
+        "L": [
+          0.17595113813877106,
+          0.10295607149600983,
+          0.15541943907737732
+        ],
+        "R": [
+          -0.169195294380188,
+          -0.31510353088378906,
+          0.03573253005743027
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0009.png",
+      "action": "studio_sprint",
+      "source_frame": 21.6,
+      "media_time_seconds": 0.36,
+      "render_seconds": 4.257124270996428,
+      "sha256": "b148df761481a36a1f4879c1dde33b558c7ae9673770226a1862249dfb66530c",
+      "foot_heads_world": {
+        "L": [
+          0.17596958577632904,
+          0.029144324362277985,
+          0.18899713456630707
+        ],
+        "R": [
+          -0.1692207306623459,
+          -0.21737900376319885,
+          0.03637268394231796
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0010.png",
+      "action": "studio_sprint",
+      "source_frame": 24.0,
+      "media_time_seconds": 0.4,
+      "render_seconds": 4.046558948997699,
+      "sha256": "d77ca9dc4a64f5ba4bcf6b1d3571d4b46c335707a635848f62826f104db40100",
+      "foot_heads_world": {
+        "L": [
+          0.17597666382789612,
+          -0.057823359966278076,
+          0.20533624291419983
+        ],
+        "R": [
+          -0.16933590173721313,
+          -0.1227816790342331,
+          0.03652375936508179
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0011.png",
+      "action": "studio_sprint",
+      "source_frame": 26.4,
+      "media_time_seconds": 0.44,
+      "render_seconds": 4.992552368996257,
+      "sha256": "06e259af98118bb96d3a70fa4a68fda1316ee1902aa870a48c91f50f64c12364",
+      "foot_heads_world": {
+        "L": [
+          0.1759883165359497,
+          -0.14765796065330505,
+          0.20290689170360565
+        ],
+        "R": [
+          -0.16948288679122925,
+          -0.03900622949004173,
+          0.03394698724150658
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0012.png",
+      "action": "studio_sprint",
+      "source_frame": 28.8,
+      "media_time_seconds": 0.48,
+      "render_seconds": 5.729014234995702,
+      "sha256": "ef5482f8b970bae782bb099a8a9ad0c8cde0bbf5675a682efb90dc22deaf1dec",
+      "foot_heads_world": {
+        "L": [
+          0.1758422702550888,
+          -0.23195064067840576,
+          0.18069447576999664
+        ],
+        "R": [
+          -0.16681110858917236,
+          0.05721643939614296,
+          0.05507016181945801
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0013.png",
+      "action": "studio_sprint",
+      "source_frame": 31.2,
+      "media_time_seconds": 0.52,
+      "render_seconds": 4.6956979210008285,
+      "sha256": "b2e20397a02d16c60f5346dd9a13b8af32fbab456e038a5f5789811510b74675",
+      "foot_heads_world": {
+        "L": [
+          0.175959974527359,
+          -0.3004860579967499,
+          0.14315801858901978
+        ],
+        "R": [
+          -0.16240201890468597,
+          0.14123547077178955,
+          0.07850091904401779
+        ]
+      }
+    },
+    {
+      "file": "studio_sprint/0014.png",
+      "action": "studio_sprint",
+      "source_frame": 33.6,
+      "media_time_seconds": 0.56,
+      "render_seconds": 3.8359660140049527,
+      "sha256": "f9d525039177ede4bd827dbced5071435ad64c6f698c9ae56f1fe92462ed86d3",
+      "foot_heads_world": {
+        "L": [
+          0.17604009807109833,
+          -0.34370583295822144,
+          0.09538233280181885
+        ],
+        "R": [
+          -0.16857682168483734,
+          0.1674957275390625,
+          0.08249769359827042
+        ]
+      }
+    }
+  ],
+  "render_wall_seconds": 177.70173970999895,
+  "source_unchanged_after_render": true,
+  "probe_only": false,
+  "renderer_script_sha256": "c350b93210092f53565e0dd34dc5d77b63c5142c92ccf32bb8bd454c0d638b03"
+}

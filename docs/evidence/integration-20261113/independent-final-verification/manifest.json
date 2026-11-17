@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "scope": "Local contract tests and workflow review; no new CI, Android or visual approval",
+  "base_commit": "f9e1334f097d2b8d74acdd74d79d8f887a1eeb0d",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-kart-graphics-2019.yml",
+      "sha256": "233b89e4ef23331d88bde2c1172c13626061a358dbe097e65da47bcff40a6bc6",
+      "bytes": 42294,
+      "git_blob": "1dd93a2f9c2c135dc333682d67a14d3d53f91af1"
+    },
+    {
+      "path": "scripts/tests/test_kart_graphics_delivery.py",
+      "sha256": "3e01707551258a3a0afa67daad2918b6ba8b6859a8296c685b606a6a939dc09d",
+      "bytes": 23411,
+      "git_blob": "61a3f4fd28e94aae2059e545c8b3fc8f1267e97f"
+    },
+    {
+      "path": "scripts/verify_kart_graphics_review.py",
+      "sha256": "cfd126ce516647f4f29d0656756da06ee6219b9ce8961e9024973c87671c072a",
+      "bytes": 15197,
+      "git_blob": "922b3047d5fbefae17810867eb53e30614721289"
+    },
+    {
+      "path": "scripts/tests/test_kart_graphics_review.py",
+      "sha256": "1a664910b906884b19b5367c8e7ecd28aa11f738bbb70b9bbc2e3fe17bda30ed",
+      "bytes": 14147,
+      "git_blob": "15672ac3e1d13112bb50b304ce07cda982b55794"
+    }
+  ],
+  "tests": [
+    {
+      "suite": "delivery-workflow",
+      "passed": 17,
+      "skipped": 0,
+      "raw_sha256": "f11eed06a527a98f1c629e0015c211f1e0c280299a23c32253c660320fa3a306",
+      "lossless_log": "delivery-workflow.log.gz"
+    },
+    {
+      "suite": "graphics-review",
+      "passed": 7,
+      "skipped": 0,
+      "raw_sha256": "d64562d6c07d7657c303ec5e022789265c66a3921689427160beb794643ea52c",
+      "lossless_log": "graphics-review.log.gz"
+    }
+  ],
+  "checks": {
+    "actionlint": "PASS",
+    "integration_final_verification_allowed": true,
+    "integration_apk_publication_allowed": false,
+    "final_verification_permissions": {
+      "contents": "read",
+      "actions": "read"
+    }
+  }
+}

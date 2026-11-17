@@ -1,0 +1,110 @@
+{
+  "commit": "9f354f9308b0dbc02045d0a3135d57a82184ac93",
+  "tree": "3d10b7c3bd8cd17071fbaa3e1eb57308b6b77648",
+  "base": "daa69bf4d639ee1a35a4938bfb469311f85eec4c",
+  "commits": [
+    "6063dfe429ab3b2ac4f0144d92028066e18e747b",
+    "9f354f9308b0dbc02045d0a3135d57a82184ac93"
+  ],
+  "branch": "qa/lumo-recording-offline-observation-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-recording-offline-observation",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 92469,
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/README.md",
+      "bytes": 5117,
+      "sha256": "8acb34d82220ea39da34a5c5b9b4d5e397248eb14d4b044dc01e6e27f43d420c"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/joined-green.log",
+      "bytes": 4008,
+      "sha256": "6ea7e9189bc7aa514437546fd617bf7dabd65368f97be597bc5eebf8472f5192"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/red-source.json",
+      "bytes": 971,
+      "sha256": "a3916ea24657c79f9bb7bee40bfc868d183f7366af340b5704ac832948ccc0cc"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/red-test.patch",
+      "bytes": 7377,
+      "sha256": "eabdf3f70bbd04f4833a1eefeb9a32f27d2af80d339a29fd18e76316edc5c279"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/red.log",
+      "bytes": 1317,
+      "sha256": "4d997b3c0e9e3cd423c9b0912f276037839349eeb9aa370413b5ec510cb33763"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/source.json",
+      "bytes": 3013,
+      "sha256": "ad7b32c312bc237e7253f5025ae31c8e7d9141b6f083a4a287ba9660ac57246b"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/transfer-green-first.log",
+      "bytes": 2211,
+      "sha256": "b7bd9389da5323893a782f21b20cee810f52b2d070d81ec8fb2df9edefa4828d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-recording-error.json",
+      "bytes": 2266,
+      "sha256": "9423f41509214d85cc8849e62093fabeabcc39ba3418ea78df7b4ff97ada53a9"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/0090-banana-guided-navigation-video-transfer.json",
+      "bytes": 1352,
+      "sha256": "4a8317b77266ccdd78d29ea2da0221b10434818e47d7fbcac07b33eb42f8c408"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/manifest.json",
+      "bytes": 1836,
+      "sha256": "6f2404af49a53a861fe54e127002d015f2ac73ed822ac9df8c53396025c82482"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "bytes": 92612,
+      "sha256": "bfb4da34651acc7059055d0a49f47d7b55ec86b694a7c3c7b92d7b16d3861075"
+    }
+  ],
+  "original": {
+    "workflowRun": 43814971553,
+    "workflowJob": 133124836818,
+    "qaCommit": "e2713c27599b6659a6ad2fd31355effeae9f88c9",
+    "artifactId": 14203175225,
+    "archiveBytes": 75040815,
+    "archiveSha256": "3575c784355901d6d0f35cbce3de05bfd93186222047d2c1a62d29afcc565f76",
+    "status": "FAIL",
+    "observedAfterFailedTransfer": "adb: device offline",
+    "elapsedSeconds": 0.192
+  },
+  "tests": {
+    "redRegistered": 2,
+    "redFailures": 1,
+    "firstGreenPassed": 10,
+    "joinedPassed": 19,
+    "joinedFailed": 0,
+    "joinedSkipped": 0,
+    "scope": "Host transport/identity simulations plus unchanged real zero-duration MP4 decoding; no Android execution."
+  },
+  "unchanged": [
+    "Overall90-second transfer deadline",
+    "Maximum two copies of the same stopped remote path",
+    "recording() and positive ffprobe video gate",
+    "Owned recorder check, remote size/SHA and full local-byte equality",
+    "UI, product, workflow, publisher and current running supplemental tour"
+  ],
+  "newGate": "Bind observed ADB serial and kernel boot ID before copying; reject changed or unobservable identity. Only exact offline response after a failed copy may be observed passively again inside the existing deadline.",
+  "runtimeStatus": "NOT_RUN",
+  "remoteActions": false,
+  "worktreeClean": true,
+  "allCommittedBytesVerified": true
+}

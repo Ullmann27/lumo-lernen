@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "NOT_RUN_ENVIRONMENT_PREREQUISITE_MISSING",
+  "source": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "tree": "bffa6832adf0e5205a93ff964cc69d19457f7a8e",
+  "checked_utc": "2026-11-14T09:10:47.344434+00:00",
+  "planned_flutter_cases": 49,
+  "flutter_tests_started": false,
+  "dart_audit_started": false,
+  "audit_parser_started": false,
+  "missing_hosted_package_directories": 99,
+  "package_entries": 104,
+  "package_downloads": false,
+  "source_materialized_count": 2208,
+  "source_assets": 606,
+  "separate_cards_webp_bound": true,
+  "source_product17_matches_frozen_pack": true,
+  "protected_dependencies24_unchanged": true,
+  "source_changes": [],
+  "head_tree_index_status_unchanged": true,
+  "limits": [
+    "This is a source/environment preflight, not a Flutter or audit test result.",
+    "Previous successful sources are not credited to this checkpoint.",
+    "Root retained the no-download constraint and assigned actual validation to forthcoming CI."
+  ],
+  "before_binding": "before-binding.json",
+  "environment_failure": "environment-preflight.json"
+}

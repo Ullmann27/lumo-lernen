@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_V2_NOT_EXECUTED",
+  "base": {
+    "head": "a118409930ecdf605743382051e88f7e0898b8e9",
+    "tree": "68573f0c40ce641a6443a5648fd664bc44ca6c95"
+  },
+  "producer": {
+    "head": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+    "parent": [
+      "cf2593cb6dec51b66461c8e5984dfbfdd5091c22"
+    ],
+    "original_compare": {
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "identity": {
+        "bytes": 560969,
+        "sha256": "2c18a47de83c3bc156f09e79dc56334bb8e261b53e5e50de0cb3b593bd3333dd",
+        "git_blob": "b50b4ef45409a5f148b9043d63813d25c2af66cb"
+      }
+    }
+  },
+  "source_count": 3,
+  "ownership_paths": [
+    ".github/probes/lumo_village_android_probe.py",
+    "tools/android_qa/village_android_evidence.py",
+    "tools/android_qa/tests/test_village_android_evidence.py"
+  ],
+  "source_freeze": {
+    "path": "source-freeze-v2.json",
+    "bytes": 6758,
+    "sha256": "f65135ab34e78226e7b3a6a4efdb88378fa85c206063f329667ca72d22d60e37",
+    "git_blob": "b5a3da1a4eac0a04a30afefdf0cd97e8eae05d99"
+  },
+  "producer_original_freeze": {
+    "path": "producer-source-freeze.json",
+    "bytes": 2082,
+    "sha256": "293bc77fb0b51f4ebeb7490cd95071d38ab75f492c06fdf3f3f2e145ac85da74",
+    "git_blob": "5c78ff7cbbd5bc01b12d6a5873bc7b29f9900117"
+  },
+  "followup_patch": {
+    "path": "deadline-v2.patch",
+    "bytes": 4476,
+    "sha256": "827fba7c58cafc8c689578b1d57edcb165dbafb6cb4dc6047c5e9aec32e05a87",
+    "git_blob": "f5c23c95a6d41c72eb04af4a9cf5422b3f378ab2"
+  },
+  "dependency_binding": {
+    "path": "dependency-binding.json",
+    "bytes": 5717,
+    "sha256": "bc1459a400603f964aa1a6c0d6de32e811cdcebacc03ae155b1e5f63c2bc57b2",
+    "git_blob": "5a2c7a62081b42da05ae21f91c7d6cacd33ad736"
+  },
+  "tests": {
+    "static_methods": 34,
+    "original_methods": 31,
+    "new_methods": 3,
+    "execution": "NOT_RUN",
+    "red_green_results": null
+  },
+  "external_required_source_reference": {
+    "directory": "host-pr497-village-route-integration-a118-20261114",
+    "freeze": {
+      "bytes": 24911,
+      "sha256": "c5df8d36119680d4b634f3c294545d7d43be5b43fc6a1e8e819f956bfc9426c8",
+      "git_blob": "36a0657775ac4991acbf9f0714771e38d36a0dd9"
+    }
+  },
+  "gate_integration_owner": "Root; coordinate additive Discovery delivery modifications with godot_integration",
+  "workflows_pins_candidate_delivery_written": false,
+  "large_payloads_or_device_originals_collected": false,
+  "independent_review": "Final V2 requested from pipeline_repair; no prior producer result is transferred"
+}

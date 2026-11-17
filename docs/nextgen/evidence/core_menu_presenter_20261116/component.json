@@ -1,0 +1,12 @@
+{
+  "producerCommit": "80b18f63ebddd3e0c29607250ac0e4c3393f7548",
+  "publishedComponentCommit": "a73d515f26afcdd220b0d68ff6a81ae2421cffd5",
+  "publishedTree": "3d9ad6fe6d0f035e3a294d8c2dafc58f01067021",
+  "remoteBranch": "fix/lumo-core-menu-presenter-20261116",
+  "publishedBase": "b49cf9c7e1e60c4e3901883d1c6bfc4a46e9ede4",
+  "publishedBaseNote": "Remote snapshot includes its reviewed Core-dialog dependency; this integration cherry-picks only the two-file delta from producer80b18f6.",
+  "rootCherryPick": "fa49458122dd6b912088d28a352a6e53716d83a5",
+  "verifiedProducerFileCountAtIntegration": 2,
+  "runtimeTestsClaimedByTransportComponent": false,
+  "review": "Root read complete diff; existing default modal parameters and post-menu scope guard preserved. Presenters returning null cancel; only absent presenter selects default. Exact owned helper awaits completed. Integration and runtime checks are a separate Core-owner delivery."
+}

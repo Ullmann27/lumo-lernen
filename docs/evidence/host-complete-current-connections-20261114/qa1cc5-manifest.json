@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 910,
+      "sha256": "749e58126e9048a000c2ac50ae3d7ae8fc520c96d4aac5a03069c55d3a6faf7c"
+    },
+    {
+      "path": "after-binding.json",
+      "bytes": 536,
+      "sha256": "c2dba79b985748bdc05d2bd316f8ee145c8504ec89c808cfb9011d9f65773110"
+    },
+    {
+      "path": "after-git-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-sources.json.gz",
+      "bytes": 176910,
+      "sha256": "107f2f8053d745c41bb1f27215e1e7059c66bce622f37af83a6dc087a1ea1f47"
+    },
+    {
+      "path": "before-binding.json",
+      "bytes": 536,
+      "sha256": "e7ced103401abfccb76c9fefccc0ef14647825009476e3dc1eb058bc921a0a6c"
+    },
+    {
+      "path": "before-git-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-sources.json.gz",
+      "bytes": 176910,
+      "sha256": "107f2f8053d745c41bb1f27215e1e7059c66bce622f37af83a6dc087a1ea1f47"
+    },
+    {
+      "path": "execution-environment.json",
+      "bytes": 653,
+      "sha256": "c8a76697bb4827b50bf4dcbbf5cab5ed19e3bd30236597a8b1c5f0da60be78e4"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3184,
+      "sha256": "414adffceeadf7b599e2c7e363a69ef238a2b565034e419e1ca41bb2d060465a"
+    },
+    {
+      "path": "original-caption-red-result.json",
+      "bytes": 1381,
+      "sha256": "6b83e420fb809809cf7ca46e53405d5cd6de034fa6b948fd3c88c9842e7d4a86"
+    },
+    {
+      "path": "original-caption-red.log",
+      "bytes": 1177,
+      "sha256": "52475dcbc0f3c1c524c3fe3b2d66308918e113c6b67bdeabb10690ea95ea8a48"
+    },
+    {
+      "path": "pause-nine-result.json",
+      "bytes": 819,
+      "sha256": "df9784a2f2864163f38536a2815d38fef8eea8dfddab3df468bb70652b809997"
+    },
+    {
+      "path": "pause-nine.log",
+      "bytes": 1990,
+      "sha256": "efa04f13534dba6167fba51dec7d925b206020440799f0e554b1afeb500d09ea"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3847,
+      "sha256": "4b66a90875d67870373a2db3790e61b06b39499d9892eb04887a17f88376c665"
+    },
+    {
+      "path": "run_validation.py",
+      "bytes": 7961,
+      "sha256": "41e70db8bd5204b1db7da21fec4187d98d846f478bd4bd084c87325d23e1fbeb"
+    }
+  ],
+  "status": "PASS_9_WITH_SEPARATE_EXPECTED_ORIGINAL_RED"
+}

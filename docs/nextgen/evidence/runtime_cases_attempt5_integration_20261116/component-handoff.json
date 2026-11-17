@@ -1,0 +1,122 @@
+{
+  "producer_commit": "8aae320664ac3d39fdea80150b794aaaac89bd0a",
+  "tree": "3e09895a4374c26dbcf19b130f3227a21a3611c4",
+  "parent": "7b811531ecd3034c0689edd3b39e44223d966857",
+  "branch": "qa/lumo-supplemental-numeric-capture-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-supplemental-numeric-capture",
+  "frozen": true,
+  "original_run": 43822740773,
+  "original_job": 133149336951,
+  "original_artifact": 14204798832,
+  "original_status": "FAIL",
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 47419,
+      "sha256": "97017f2121fb47f2ada40bf108b26b76fd5101fe30d6689d48b2057fd7d469be"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/README.md",
+      "bytes": 4752,
+      "sha256": "6e58d24526f7ce9067b9371c4bf0088480c3e43fd22c46b35275322514562fbb"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/numeric-capture-green-execution.json",
+      "bytes": 243,
+      "sha256": "ede063b9b493433a3ef9a50447d4dd817b64dc6e10c229b94242d9c0ec7aaacf"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/numeric-capture-green.log",
+      "bytes": 5792,
+      "sha256": "fb972403746498dda3faaf243c406a252f09e25ea913b9c2ec0204f01fd34146"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/numeric-capture-red-provenance.json",
+      "bytes": 579,
+      "sha256": "ad3a5f490fbb4e0a9d3b393e825a306e2b89a5773ad7ae99d7001613591a1f97"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/numeric-capture-red-tests.patch.gz",
+      "bytes": 3698,
+      "sha256": "ed417df05c877da66621b31e48f4631ab1bb570c975dcb90a9e8bcdb2a6d4521"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/numeric-capture-red.log",
+      "bytes": 2178,
+      "sha256": "c1eaf8a9afac57d6f3d6fb81febd82da63bd138e2959ac75135df62575e8391b"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/source-review.json",
+      "bytes": 6846,
+      "sha256": "2298fd8804d47351de429b10e2e45141cbc92c5e5c9f3da8dbfbe2fb04b896bf"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_numeric_capture_43822740773/0113-numeric-build-before-graded-recall-ffprobe.json",
+      "bytes": 4358,
+      "sha256": "b25c5cb2bed81a7ff08d66bfa5da6c53e1d42aed8cb00b8fe4e4f1cd333d25a8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_numeric_capture_43822740773/0132-numeric-nine-plus-seven.xml",
+      "bytes": 25686,
+      "sha256": "3c7790b8d940868e62d2fe17e8c54aa5e133e351800a36ce8c51dc2105ea3d3b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_numeric_capture_43822740773/0134-numeric-before-wrong-answer-render-candidate-1.png",
+      "bytes": 994598,
+      "sha256": "4f35e9ad513aeb47822ff071fac20b46641347754834d394aac6768d2b180081"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_numeric_capture_43822740773/0134-numeric-before-wrong-answer-render-readiness.json",
+      "bytes": 4946,
+      "sha256": "385e7c5094a26ea9fe02f20855667202122d68cea1415452254c788c4b54b05b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_numeric_capture_43822740773/0135-runtime-failure-current-screen.png",
+      "bytes": 442618,
+      "sha256": "6d8ea6595439389ba2f87e65eb74721046354402b3022952c57dfaa056802264"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_numeric_capture_43822740773/manifest.json",
+      "bytes": 5103,
+      "sha256": "19002d9389ec35e08e9a55e3cf2a383abc542a87cbc98832e41154e0bac28bd4"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 46013,
+      "sha256": "17ad78d122e5cebc405ad87ac5cae6b22dcb83a437b747879c843f8fde3050ec"
+    }
+  ],
+  "tests": {
+    "red": {
+      "tests": 1,
+      "expected_errors": 1,
+      "production": "unchanged parent QA source",
+      "log": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/numeric-capture-red.log"
+    },
+    "green": {
+      "tests": 27,
+      "pass": 27,
+      "fail": 0,
+      "errors": 0,
+      "skip": 0,
+      "new_test_methods": 6,
+      "log": "docs/nextgen/evidence/2031_supplemental_numeric_capture_20261116/numeric-capture-green.log"
+    },
+    "android": "NOT_RUN"
+  },
+  "scope": {
+    "existing_production_files_changed": 1,
+    "shared_capture_recording_or_publisher_changes": false,
+    "bound_files_31_unchanged": true,
+    "all_other_preexisting_tracked_files_unchanged_except_specific_test": true,
+    "numeric_submission_loop_unchanged": true,
+    "native_active_stop_unchanged": true,
+    "remote_actions": false
+  },
+  "limits": [
+    "The deeper Android surface/display cause is unresolved.",
+    "No entropy false-negative is established: all rejected frames show wallpaper.",
+    "A new real supplemental run is required; prior FAIL and full-replay evidence are unchanged."
+  ]
+}

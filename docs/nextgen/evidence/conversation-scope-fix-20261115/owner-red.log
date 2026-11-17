@@ -1,0 +1,126 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart
+00:00 +0: task change has one bus invalidation, not a second old-owner stop
+00:00 +0 -1: task change has one bus invalidation, not a second old-owner stop [E]
+  Expected: <4>
+    Actual: <5>
+  Only the new task publication may retire the previous lease.
+  
+  package:matcher                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18      expect
+  test/lumo_conversation_owner_lifecycle_test.dart 120:5  main.<fn>
+  
+00:00 +0 -1: old pause preserves the new task, gesture and audio request
+00:00 +0 -2: old pause preserves the new task, gesture and audio request [E]
+  Expected: <16>
+    Actual: <17>
+  An old owner cannot stop a newer request during preflight.
+  
+  package:matcher                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18      expect
+  test/lumo_conversation_owner_lifecycle_test.dart 144:7  main.<fn>
+  
+00:00 +0 -2: old dispose preserves the new task, gesture and audio request
+00:00 +0 -3: old dispose preserves the new task, gesture and audio request [E]
+  Expected: <27>
+    Actual: <28>
+  An old owner cannot stop a newer request during preflight.
+  
+  package:matcher                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18      expect
+  test/lumo_conversation_owner_lifecycle_test.dart 144:7  main.<fn>
+  
+00:00 +0 -3: a replaced controller cannot cancel its successor on the same task
+00:00 +0 -4: a replaced controller cannot cancel its successor on the same task [E]
+  Expected: <37>
+    Actual: <39>
+  
+  package:matcher                                         expect
+  package:flutter_test/src/widget_tester.dart 473:18      expect
+  test/lumo_conversation_owner_lifecycle_test.dart 171:5  main.<fn>
+  
+00:00 +0 -4: explicit current Stop still cancels voice, mouth and figure together
+00:00 +1 -4: disposing the old Agent preserves a newer task and transport
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <58>
+  Actual: <61>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart:219:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart line 219
+The test description was:
+  disposing the old Agent preserves a newer task and transport
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +1 -5: disposing the old Agent preserves a newer task and transport [E]
+  Test failed. See exception logs above.
+  The test description was: disposing the old Agent preserves a newer task and transport
+  
+00:00 +1 -5: pending microphone initialization rejects foreign route
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <0>
+  Actual: <1>
+Native initialization cannot promote an obsolete tap.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart:289:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart line 289
+The test description was:
+  pending microphone initialization rejects foreign route
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +1 -6: pending microphone initialization rejects foreign route [E]
+  Test failed. See exception logs above.
+  The test description was: pending microphone initialization rejects foreign route
+  
+00:01 +1 -6: pending microphone initialization rejects new audio owner
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <0>
+  Actual: <1>
+Native initialization cannot promote an obsolete tap.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart:289:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart line 289
+The test description was:
+  pending microphone initialization rejects new audio owner
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +1 -7: pending microphone initialization rejects new audio owner [E]
+  Test failed. See exception logs above.
+  The test description was: pending microphone initialization rejects new audio owner
+  
+00:01 +1 -7: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: a replaced controller cannot cancel its successor on the same task
+  /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: disposing the old Agent preserves a newer task and transport
+  /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: old dispose preserves the new task, gesture and audio request
+  /workspace/scratch/4fa97167812c/agent-conversation-scope/test/lumo_conversation_owner_lifecycle_test.dart: old pause preserves the new task, gesture and audio request
+  ... and 3 more

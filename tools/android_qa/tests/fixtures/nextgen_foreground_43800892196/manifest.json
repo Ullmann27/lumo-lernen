@@ -1,0 +1,36 @@
+{
+  "source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "run": 43800892196,
+  "job": 133088843594,
+  "artifactId": 14197925395,
+  "archiveBytes": 29373558,
+  "archiveSha256": "f2d1ca9232685fe4d25fcd8d6bd745a687f08ac7eb4ef1c5ec36e469d0ba03f4",
+  "originalStatus": "FAIL",
+  "files": {
+    "0163-bridge-paused-activity.txt": {
+      "bytes": 225,
+      "sha256": "6af66e3d052d864726c772d5c75b890469f26d09088f3e4391b5c5957c8d36dd",
+      "originalMember": "original-android/0163-bridge-paused-activity.txt"
+    },
+    "0270-words-pause-return.mp4": {
+      "bytes": 120524,
+      "sha256": "3a30f75438608975984850032dd7f59469ac2f9e1288f6745cebec0f23c592a5",
+      "originalMember": "original-android/0270-words-pause-return.mp4"
+    },
+    "0270-words-pause-return-ffprobe.json": {
+      "bytes": 4225,
+      "sha256": "e1a41b9edc2fb90dbbf5ce55ff3042b390e1cb3af02852da61f35ab7c0c94f0e",
+      "originalMember": "original-android/0270-words-pause-return-ffprobe.json"
+    },
+    "learning-android-result.json": {
+      "bytes": 26858,
+      "sha256": "5f31c9edcea7c27e6e794db2d7ea2b6f8ecfb3746211435e44aa6889843a3ba8",
+      "originalMember": "original-android/learning-android-result.json"
+    }
+  },
+  "limits": [
+    "The early rejected words dumpsys response was not saved by the original probe.",
+    "0163 is the earlier actual bridge Home observation, not a fabricated later words dump.",
+    "Controlled transition schedules in tests are constructed; no Android replay is claimed."
+  ]
+}

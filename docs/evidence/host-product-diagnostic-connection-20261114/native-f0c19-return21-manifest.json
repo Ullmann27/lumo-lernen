@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 549,
+      "sha256": "ba432719659979efe96d6e3fde9be545aa6ead07fd121a6cdd72119a27431a23"
+    },
+    {
+      "path": "after-import.json",
+      "bytes": 391944,
+      "sha256": "4a2b11a5a6ab91ea88e3470c5ef791f973fb2a889e46d09a2cf48e6d3a52b652"
+    },
+    {
+      "path": "after.json",
+      "bytes": 391944,
+      "sha256": "4a2b11a5a6ab91ea88e3470c5ef791f973fb2a889e46d09a2cf48e6d3a52b652"
+    },
+    {
+      "path": "before.json",
+      "bytes": 374491,
+      "sha256": "3368f2443fe2b4d9421786f50da95d8b387a680ecd14fb6702bc42b5ff29dd29"
+    },
+    {
+      "path": "generated-editor-uids.tar.gz",
+      "bytes": 14743,
+      "sha256": "cfcc3f811c1f05bfb258e0a3a3237501be0602f42fa0bbca4cebbe05672ef9fd"
+    },
+    {
+      "path": "generated-metadata-restoration.json",
+      "bytes": 59763,
+      "sha256": "c56c99dc96d2259f2893bbbc4c71c078748999a0ee08c1a77933a96ebddcd87c"
+    },
+    {
+      "path": "godot-version.log",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 717,
+      "sha256": "bc2935e35a0d0783115a463e25870bc9fbde999aab8acd888552fac6af75ed42"
+    },
+    {
+      "path": "result.json",
+      "bytes": 19680,
+      "sha256": "1d6d5f07e6742743bf494c26cd4eea42705782cd0e52b2cfc7f3bba559259c54"
+    },
+    {
+      "path": "return-regression-execution.json",
+      "bytes": 635,
+      "sha256": "f47655d174e7e96c07ec640c0b30c0fc2f7c092e5d87ff9dc43ff0995bf64fc6"
+    },
+    {
+      "path": "return-regression.log",
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2"
+    },
+    {
+      "path": "run-native-return-validation.py",
+      "bytes": 4332,
+      "sha256": "829e687d554cbe060fc9bdfe45018184661d3bce4756304c8c16849a1024288b"
+    },
+    {
+      "path": "source-import-execution.json",
+      "bytes": 605,
+      "sha256": "18d7e72ed29c81499d7a7365f828d79e7301c28ad24935b3123387d2dc2b2a0a"
+    },
+    {
+      "path": "source-import.log",
+      "bytes": 135090,
+      "sha256": "09bfa76a54165218831abb0df7ca66dd8ee169fd0a084a8cc5c54b61553a1c62"
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+00:00 +0: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart
+00:00 +0: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: an outside contact already down cannot move a new stylus stroke
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <1>
+  Actual: <0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart:26:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart line 26
+The test description was:
+  an outside contact already down cannot move a new stylus stroke
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: an outside contact already down cannot move a new stylus stroke [E]
+  Test failed. See exception logs above.
+  The test description was: an outside contact already down cannot move a new stylus stroke
+  
+00:00 +0 -1: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: ink starts on the first contact while the page is coasting
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart:42:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart line 42
+The test description was:
+  ink starts on the first contact while the page is coasting
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -2: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: ink starts on the first contact while the page is coasting [E]
+  Test failed. See exception logs above.
+  The test description was: ink starts on the first contact while the page is coasting
+  
+00:00 +0 -2: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a pen takes over from an already moving outside contact
+[InkMotion] existing drag offset=60.0 during=40.0 starts=0 ends=0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <1>
+  Actual: <0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart:87:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart line 87
+The test description was:
+  a pen takes over from an already moving outside contact
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a pen takes over from an already moving outside contact [E]
+  Test failed. See exception logs above.
+  The test description was: a pen takes over from an already moving outside contact
+  
+00:00 +0 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: another canvas cannot replace the active drawing owner
+00:00 +1 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a second contact outside the canvas cannot scroll an ink stroke
+00:00 +2 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a layout translation cancels ink before it joins stale points
+00:00 +3 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a resize before pointer up cancels the incomplete stroke
+00:00 +4 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: ordinary parent rebuilds preserve the same active ink pointer
+00:00 +5 -3: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart
+00:02 +5 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: (setUpAll)
+00:02 +5 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: actual legacy practice route has no scrollable ancestor
+00:03 +6 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: starting actual legacy ink requests a repaint
+00:03 +7 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: extending actual legacy ink requests a repaint
+00:03 +8 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: clearing actual legacy ink requests a repaint
+00:03 +9 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: cancel discards only active stylus ink and ignores a second touch
+00:03 +10 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: actual legacy canvas accepts primary mouse ink
+00:03 +11 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: stylus movement stays within the visible legacy canvas
+00:03 +12 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: leaving legacy canvas during ink safely ignores later move and up
+00:03 +13 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: leaving legacy canvas during ink safely ignores later cancel
+00:03 +14 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: resizing actual legacy canvas to Size(320.0, 740.0) cancels active ink
+00:03 +15 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: resizing actual legacy canvas to Size(690.0, 829.0) cancels active ink
+00:03 +16 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: resizing actual legacy canvas to Size(915.0, 412.0) cancels active ink
+00:04 +17 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/legacy_letter_repaint_regression_test.dart: (tearDownAll)
+00:04 +17 -3: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart
+00:04 +17 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart: shape vertical ink keeps its scrollable learning page stationary
+[ShapeGesture] beforeOffset=20.0 during=[20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0] beforeOrigin=Offset(17.4, 121.4) duringOrigins=[Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4), Offset(17.4, 121.4)]
+00:05 +18 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart: a second shape pointer cannot replace the first complete drawing
+[ShapeGesture] secondPointer results=true:Super gezeichnet!
+00:05 +19 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_gesture_regression_test.dart: a cancelled shape pointer is not committed or evaluated
+[ShapeGesture] cancel results=
+00:05 +20 -3: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart
+00:05 +20 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: (setUpAll)
+00:05 +20 -3: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)
+[DiktatGesture] size=Size(430.0, 600.0) canvas=Rect.fromLTRB(38.5, 190.5, 391.5, 243.0) travel=40.5 initial=[122.0] during=[[122.0], [122.0], [122.0], [122.0], [122.0], [122.0], [122.0], [122.0]] origins=[Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.5), Offset(38.5, 190.0), Offset(38.5, 189.5), Offset(38.5, 189.0), Offset(38.5, 188.6)]
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value less than <0.001>
+  Actual: <0.5429918077776676>
+   Which: is not a value less than <0.001>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart:148:9)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart line 148
+The test description was:
+  actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:06 +20 -4: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0) [E]
+  Test failed. See exception logs above.
+  The test description was: actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)
+  
+00:06 +20 -4: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)
+[DiktatGesture] size=Size(640.0, 360.0) canvas=Rect.fromLTRB(214.5, 88.0, 593.5, 140.5) travel=40.5 initial=[228.5] during=[[228.5], [228.5], [228.5], [228.5], [233.5625], [238.625], [243.6875], [248.75]] origins=[Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 88.0), Offset(214.5, 82.9), Offset(214.5, 77.9), Offset(214.5, 72.8), Offset(214.5, 67.8)]
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a numeric value within <0.001> of <228.5>
+  Actual: <233.5625>
+   Which:  differs by <5.0625>
+The real writing row must not scroll while drawing.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart:143:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart line 143
+The test description was:
+  actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:06 +20 -5: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0) [E]
+  Test failed. See exception logs above.
+  The test description was: actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)
+  
+00:06 +20 -5: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: (tearDownAll)
+00:07 +20 -5: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_regression_test.dart
+00:07 +20 -5: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_regression_test.dart: vertical letter stroke does not scroll its learning page
+00:07 +21 -5: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_regression_test.dart: a second finger never creates a second ink stroke
+00:07 +22 -5: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_regression_test.dart
+00:08 +22 -5: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_regression_test.dart: vertical shape strokes keep the lesson stationary
+00:09 +23 -5: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_regression_test.dart: a second finger cannot replace or finish the active shape stroke
+00:09 +24 -5: /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_regression_test.dart: cancelling a pointer discards its unfinished shape stroke
+00:09 +25 -5: Some tests failed.
+
+Failing tests:
+  /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: a pen takes over from an already moving outside contact
+  /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: an outside contact already down cannot move a new stylus stroke
+  /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/lumo_ink_surface_motion_regression_test.dart: ink starts on the first contact while the page is coasting
+  /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)
+  /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/wort_diktat_gesture_regression_test.dart: actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)

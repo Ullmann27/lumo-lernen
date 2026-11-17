@@ -1,0 +1,19 @@
+test_apk7b16_and_prior_qa61c_cannot_identify_current_transport (test_verify_creative_parts.CreativePartsCases.test_apk7b16_and_prior_qa61c_cannot_identify_current_transport) ... ok
+test_changed_member_with_valid_new_zip_crc_and_digest_rejected (test_verify_creative_parts.CreativePartsCases.test_changed_member_with_valid_new_zip_crc_and_digest_rejected) ... ok
+test_cli_never_overwrites_an_existing_result (test_verify_creative_parts.CreativePartsCases.test_cli_never_overwrites_an_existing_result) ... ok
+test_exact_current_run_branch_tree_and_event_are_required (test_verify_creative_parts.CreativePartsCases.test_exact_current_run_branch_tree_and_event_are_required) ... ok
+test_foreign_api_source_rejected (test_verify_creative_parts.CreativePartsCases.test_foreign_api_source_rejected) ... ok
+test_foreign_run_attempt_and_index_workflow_rejected (test_verify_creative_parts.CreativePartsCases.test_foreign_run_attempt_and_index_workflow_rejected) ... ok
+test_materialized_manifest_or_complete_report_changed_rejected (test_verify_creative_parts.CreativePartsCases.test_materialized_manifest_or_complete_report_changed_rejected) ... ok
+test_missing_and_duplicate_part_rejected (test_verify_creative_parts.CreativePartsCases.test_missing_and_duplicate_part_rejected) ... ok
+test_missing_or_unexpected_original_rejected (test_verify_creative_parts.CreativePartsCases.test_missing_or_unexpected_original_rejected) ... ok
+test_part_manifest_remains_exact_integer_schema1 (test_verify_creative_parts.CreativePartsCases.test_part_manifest_remains_exact_integer_schema1) ... ok
+test_real_exporter_collector_and_cli_complete_transport_only (test_verify_creative_parts.CreativePartsCases.test_real_exporter_collector_and_cli_complete_transport_only) ... ok
+test_schema1_and_host_source_binding_never_alias_schema2_probe_source (test_verify_creative_parts.CreativePartsCases.test_schema1_and_host_source_binding_never_alias_schema2_probe_source) ... ok
+test_self_consistent_but_different_index_rejected (test_verify_creative_parts.CreativePartsCases.test_self_consistent_but_different_index_rejected) ... ok
+test_unsafe_original_path_and_published_limit_rejected (test_verify_creative_parts.CreativePartsCases.test_unsafe_original_path_and_published_limit_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.315s
+
+OK

@@ -112,13 +112,13 @@ class LumoColorArrows extends StatelessWidget {
   static Color _colorFor(LumoCardColor c) {
     switch (c) {
       case LumoCardColor.orange:
-        return const Color(0xFFFF4D4F);
+        return const Color(0xFFD44A6A);
       case LumoCardColor.purple:
-        return const Color(0xFFFFC83D);
+        return const Color(0xFFE0A83A);
       case LumoCardColor.blue:
-        return const Color(0xFF2D7BFF);
+        return const Color(0xFF4A58E0);
       case LumoCardColor.green:
-        return const Color(0xFF35C759);
+        return const Color(0xFF1E9A78);
     }
   }
 }

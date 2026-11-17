@@ -1,0 +1,37 @@
+name: Lumo Flutter screenshot readiness contract
+on:
+  push:
+    branches:
+      - chatgpt/lumo-flutter-render-readiness-2026-10-17
+    paths:
+      - .github/probes/flutter_surface_readiness.py
+      - .github/probes/creative_android_probe.py
+      - .github/probes/modernization_android_tour.py
+      - scripts/tests/test_flutter_surface_readiness.py
+      - .github/workflows/lumo-flutter-render-readiness-contract.yml
+  pull_request:
+    branches:
+      - chatgpt/lumo-stabilisierung-2026-10-17
+    paths:
+      - .github/probes/flutter_surface_readiness.py
+      - .github/probes/creative_android_probe.py
+      - .github/probes/modernization_android_tour.py
+      - scripts/tests/test_flutter_surface_readiness.py
+      - .github/workflows/lumo-flutter-render-readiness-contract.yml
+permissions:
+  contents: read
+jobs:
+  screenshot-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install verified screenshot processing dependency
+        run: python3 -m pip install --disable-pip-version-check 'Pillow>=10,<13'
+      - name: Parse actual Python tour and run adversarial screenshot-readiness tests
+        run: |
+          set -euo pipefail
+          python3 -m py_compile .github/probes/flutter_surface_readiness.py .github/probes/creative_android_probe.py .github/probes/modernization_android_tour.py
+          python3 -m unittest discover -s scripts/tests -p 'test_flutter_surface_readiness.py' -v

@@ -1,0 +1,200 @@
+{
+  "schema": 1,
+  "reviewer": "/root/pipeline_repair",
+  "created_at_utc": "2026-11-14T12:13:05Z",
+  "status": "READ_ONLY_REVIEW_COMPLETE_NO_CONCRETE_SOURCE_BLOCKER",
+  "scope": "Independent source review of exactly three proposed Village Android QA V2 files and their bound existing interfaces; no tests or Android execution.",
+  "source_pack": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114",
+  "source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/source-freeze-v2.json",
+    "bytes": 6758,
+    "sha256": "f65135ab34e78226e7b3a6a4efdb88378fa85c206063f329667ca72d22d60e37",
+    "git_blob": "b5a3da1a4eac0a04a30afefdf0cd97e8eae05d99"
+  },
+  "producer": {
+    "head": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+    "parent": [
+      "cf2593cb6dec51b66461c8e5984dfbfdd5091c22"
+    ],
+    "original_compare": {
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "identity": {
+        "bytes": 560969,
+        "sha256": "2c18a47de83c3bc156f09e79dc56334bb8e261b53e5e50de0cb3b593bd3333dd",
+        "git_blob": "b50b4ef45409a5f148b9043d63813d25c2af66cb"
+      }
+    }
+  },
+  "base": {
+    "head": "a118409930ecdf605743382051e88f7e0898b8e9",
+    "tree": "68573f0c40ce641a6443a5648fd664bc44ca6c95"
+  },
+  "source_files": [
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "producer_original": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/original-source/.github/probes/lumo_village_android_probe.py",
+        "bytes": 11328,
+        "sha256": "941176f413db24b78471bb2e374f7366236615d1599745e35afbf3bd92d3d59d",
+        "git_blob": "97434207488900ac8f9364d5120f163cbc3ff0d5"
+      },
+      "reviewed_final": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/final-source/.github/probes/lumo_village_android_probe.py",
+        "bytes": 11541,
+        "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+        "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+      },
+      "whole_file_equal": false
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "producer_original": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/original-source/tools/android_qa/village_android_evidence.py",
+        "bytes": 20967,
+        "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+        "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+      },
+      "reviewed_final": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/final-source/tools/android_qa/village_android_evidence.py",
+        "bytes": 20967,
+        "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+        "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+      },
+      "whole_file_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "producer_original": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/original-source/tools/android_qa/tests/test_village_android_evidence.py",
+        "bytes": 22017,
+        "sha256": "ec6e3f4e507e6e6cb592b38da4324b6dc54b878138137c5be22c465691a5344b",
+        "git_blob": "55053f72145aec5d10a2d1669ff93618c36a7ee3"
+      },
+      "reviewed_final": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/final-source/tools/android_qa/tests/test_village_android_evidence.py",
+        "bytes": 24849,
+        "sha256": "fde59828ffd27ac7ccad9d50f0678ddd3f28d34b5ff1e6e31c2e7e20718251d1",
+        "git_blob": "f515e404428edc8003f1191c77df214384f0eac7"
+      },
+      "whole_file_equal": false
+    }
+  ],
+  "checks": [
+    {
+      "area": "Published sources and dependencies",
+      "result": "The three final byte lengths, SHA256 values and Git blob identities match freeze f65135ab. All 22 manifest entries rehash exactly. All ten declared a118 dependency blobs/modes match the complete non-truncated original a118 tree. Six materialized dependency files additionally match their declared bytes/SHA256/Git blobs. All three new paths are absent from that base tree; no existing candidate, delivery, workflow or product path is part of this proposal."
+    },
+    {
+      "area": "Minimal deadline correction",
+      "result": "Only VillageProbe.await_processes changes among the seven existing top-level/class methods of the probe. It still establishes a local deadline bounded by remaining global time, obtains the real processes observation, then rejects time.monotonic() >= deadline before returning it. TimeoutError is not swallowed by the unchanged ValueError/RuntimeError retry clause. The same rule covers native observations and returned Flutter observations. The overall 900-second budget and existing native=90/returned-Flutter=60 call parameters remain unchanged."
+    },
+    {
+      "area": "Focused negative contracts",
+      "result": "All 31 original verifier test methods and their fixture methods are AST-identical. Three additional methods call the actual VillageProbe.await_processes with synthetic clock and process inputs, covering strictly late arrival, exact-deadline arrival and timely return for both 90-second native and 60-second Flutter waits. The late case explicitly leaves global time available; timely return checks object identity and one process call. Static total is 34 methods; zero were run by this reviewer."
+    },
+    {
+      "area": "Existing process and activity observations",
+      "result": "Probe inherits the current C4 original-command recorder with original stdout/stderr, exact command, return code, byte counts and hashes; calls remain global-budget limited. Village requires one host PID, a separate live native PID in LumoGameActivity, and native absence plus MainActivity on return. Replay binds the same Flutter PID throughout and the same native PID until the actual return touch. Failed/nonempty native absence output cannot be treated as successful return."
+    },
+    {
+      "area": "Actual Flutter entry",
+      "result": "The existing flutter_touch implementation is reused unchanged. It reads enabled clickable current Flutter semantics, full observed PNG dimensions and actual density, requires one complete target of at least 47.99 dp and two stable observations, then records one stationary 120 ms swipe. Village uses the exact complete portal label. No direct game-state, preference, board, reward or save mutation was introduced."
+    },
+    {
+      "area": "Native scene and owner",
+      "result": "Read-only preferences and the unique PID-attributed VillageHostReady marker establish settlement scene, living_village, host_entry, direct games return, slot 1 and unblocked save. The expected per-child village path is recomputed from the registered unique native child key; raw student hashing cannot substitute. Initialization counts are bounded. Learning/profile/reward selections and the current owner must remain unchanged, and the native child mapping remains consistent on return."
+    },
+    {
+      "area": "Rendered scene and visible return",
+      "result": "Replay fully opens original PNGs, verifies source hashes/dimensions and re-runs responsive surface inspection. Both Village HUD captions require observed original TSV word bounds. The direct Spiele return requires two distinct current surface frames, increasing observation times, re-derived exact caption bounds and stable target state. The recorded point and exact adb swipe are checked. Final evidence requires actual native process termination, a current Flutter image and enabled Spielen/portal semantics, plus exactly one fresh games ACK from the earlier native PID."
+    },
+    {
+      "area": "OCR replay interfaces",
+      "result": "The seven original whole-frame OCR variants and their 2x/1x scales match the bound UI implementation. Component and tiled fallback paths bind the source hash and dimensions, actual crop bounds and original TSV; replay recomputes crop/mask/scale pixels and checks exact bytes. This validates the existing original outputs without rerunning OCR or replacing missing captions with expected strings."
+    },
+    {
+      "area": "Source and candidate binding",
+      "result": "The producer requires actual source HEAD, clean tracked diff, verified version 2020/native pin, APK/provenance/SUMS identity, current run/attempt/artifact ID/digest and successful runtime/compile/build jobs. The complete main Android tour must already pass on the same APK before Village is attempted. Actual ro.build.version.sdk must be 35. CLI paths and flags match the bound C4/main/UI interfaces."
+    },
+    {
+      "area": "Failure and original-evidence preservation",
+      "result": "The standalone verifier is byte-for-byte the published producer original. Strict JSON rejects duplicate keys and non-finite numbers; the complete inventory rejects missing, extra, duplicate, traversing or symlinked members. Original command stderr/exit/hash mismatches fail. Both PID-filtered native initialization and final all-buffer log are checked for real Android/engine errors, including am_anr and GL_MAX_FRAGMENT_UNIFORM_VECTORS. A failing final log collection changes the result to FAIL. A replay failure propagates as process failure; a self-reported PASS is never sufficient by itself."
+    }
+  ],
+  "preservation": {
+    "probe_unchanged_definitions": [
+      "VillageProbe.remaining",
+      "VillageProbe.processes",
+      "VillageProbe.observe_village",
+      "VillageProbe.visible_return",
+      "VillageProbe.run",
+      "main"
+    ],
+    "probe_changed_definitions": [
+      "VillageProbe.await_processes"
+    ],
+    "verifier_whole_file_unchanged": true,
+    "original_test_methods": 31,
+    "original_test_methods_ast_identical": true,
+    "added_test_methods": [
+      "VillageProcessDeadlineTests.test_late_process_arrival_is_rejected_while_global_budget_remains",
+      "VillageProcessDeadlineTests.test_arrival_exactly_at_deadline_is_rejected_like_existing_c4_return",
+      "VillageProcessDeadlineTests.test_timely_arrival_returns_the_same_process_observation"
+    ],
+    "static_total_test_methods": 34,
+    "tests_executed": 0,
+    "device_commands_executed": 0,
+    "target_modules_imported": 0,
+    "source_or_git_changes": false
+  },
+  "integration_limits": [
+    "This is a source review, not a 34-test PASS, Android scene/touch/return acceptance, audio proof or performance result. No prior run result is transferred.",
+    "Candidate, delivery and workflow changes in reference-only-upstream-gate-hunks.txt are reference material only. Root still owns the additive integration; the final job must invoke the probe, preserve its exit status and replay verify_report against independently checked binding/identity together with the existing complete main tour.",
+    "The currently active C4 Host 3d91/Native bd run does not contain these Village product/QA sources. Its results cannot establish Village acceptance.",
+    "The paired Native source contract is afc0df9 as documented in the product pack. The actual final candidate pin must contain the required Village host marker and route; the historical a118 pin is not relabelled.",
+    "The local deadlines reject late successful observations; no new unconditional hard process-wall-time guarantee is claimed for every external action.",
+    "The four non-materialized dependencies are bound here through the original complete Git tree and their recorded sizes/blobs, not by a fresh full-file read. The six materialized interface files were rehashed and relevant callable definitions read."
+  ],
+  "findings": [],
+  "disposition": "Suitable for the next source checkpoint and explicitly authorized focused validation. Actual integrated API35 evidence remains required.",
+  "references": {
+    "product_review": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-product-independent-review-20261114/review.json",
+      "sha256": "6448e6663f8cb9831d0fe5460226bd9ed837e415812c0086a9fa52b4a7119367"
+    },
+    "base_tree": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-route-integration-a118-20261114/originals/a118-tree.json",
+      "identity": {
+        "bytes": 1345820,
+        "sha256": "05c4abf2fac1df106eeff281bdf8d386323506fd3cc19a3b3ea0a53ac81386d7",
+        "git_blob": "9f68325f8b8af216d94a89d8cc4306d813d63fb6"
+      },
+      "tree_sha": "68573f0c40ce641a6443a5648fd664bc44ca6c95",
+      "truncated": false
+    },
+    "producer_handoff": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/handoff.json",
+      "bytes": 2708,
+      "sha256": "d4b0c7d0ab5624d85e738992f124184870afb17ace024c8ce6b81c9f4603447d",
+      "git_blob": "9bcfbea264f28b907c2fcceac37492a36c22a9b4"
+    },
+    "author_manifest": {
+      "bytes": 5513,
+      "sha256": "1e289e87fd539d0cd9c80476e7615b1eb23f947e45bf9410183e0ffd5a4f40d8",
+      "git_blob": "9ec3f6e9fdd65687b3272cc531bac8fb9bb46d59"
+    },
+    "deadline_patch": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/deadline-v2.patch",
+      "bytes": 4476,
+      "sha256": "827fba7c58cafc8c689578b1d57edcb165dbafb6cb4dc6047c5e9aec32e05a87",
+      "git_blob": "f5c23c95a6d41c72eb04af4a9cf5422b3f378ab2"
+    },
+    "dependency_binding": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/dependency-binding.json",
+      "bytes": 5717,
+      "sha256": "bc1459a400603f964aa1a6c0d6de32e811cdcebacc03ae155b1e5f63c2bc57b2",
+      "git_blob": "5a2c7a62081b42da05ae21f91c7d6cacd33ad736"
+    }
+  }
+}

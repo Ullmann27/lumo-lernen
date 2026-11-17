@@ -1,0 +1,410 @@
+{
+  "schema": 1,
+  "kind": "independent_learning_preview_review",
+  "status": "blocked_for_hundred_summary_legibility",
+  "final_visual_receipt": false,
+  "publication_approved": false,
+  "reviewed_by": "Agent B /root/character_animation",
+  "reviewed_at": "2026-11-13T13:30:53.732772+00:00",
+  "source_commit": "64f75eb7725ebef898d0f259049bddef7021532f",
+  "source_tree": "e7e5bb4a3252123c867b99badb25d81eec810a9a",
+  "artifact_id": 14038914275,
+  "workflow_run_id": 43431630901,
+  "artifact_identity_provenance": "Artifact ID and run ID supplied by coordinating agent. Reviewer independently verified the original ZIP digest, source/tree stamps and all reviewed PNG bytes against the ZIP.",
+  "original_archive": {
+    "file": "studio-learning-64f75eb7.zip",
+    "sha256": "a0319343c38df1b5e09a7c33cb201613cf3d91d20394f7d2ab557852681a3ad9",
+    "bytes": 11430779,
+    "reviewed_pngs_match_original_zip": true
+  },
+  "scope": "Alle 21 tatsächlichen Rendererbilder des frischen 64f-Lern-Preview-Artefakts; insbesondere die neue Hunderter-Kontrastplatte. Keine Freigabe eines später korrigierten Commits, des kombinierten Native-Artefakts oder von Android.",
+  "renderer": {
+    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+    "display": "X11",
+    "backend": "OpenGL Compatibility / Mesa 25.2.8 llvmpipe (LLVM 20.1.2, 256 bits)",
+    "physical_device_performance_measured": false
+  },
+  "capture_log": {
+    "artifact_entry": "render.log",
+    "sha256": "cfcaad5ba3d4876aae0acc517d108766d0247de47d69cf270147225322629eab",
+    "reported_result": "[LearningCapture] PASS captures=21",
+    "reviewer_reran_capture": false,
+    "visual_result_is_separate_from_automated_capture_pass": true
+  },
+  "coverage": {
+    "actually_opened_pngs": 21,
+    "without_additional_visible_blocker": 19,
+    "blocked_pngs": 2,
+    "activities": [
+      "bridge_ten",
+      "syllables",
+      "plant_parts",
+      "subtract_ten",
+      "equal_groups",
+      "bridge_hundred",
+      "fraction_parts"
+    ]
+  },
+  "blocking_findings": [
+    {
+      "id": "hundred_summary_lower_glyph_occlusion",
+      "severity": "blocks_visual_approval_of_hundred_transition",
+      "observed": "In beiden frischen Hunderter-PNGs endet die untere Glyphenkontur der Stellenwertzerlegung an einer gemeinsamen horizontalen Schnittkante. Die Navyplatte ist vorhanden, die Buchstaben sind aber nicht vollständig sichtbar.",
+      "approximate_image_region_px": {
+        "x_min": 380,
+        "x_max": 885,
+        "y_min": 515,
+        "y_max": 550,
+        "reference_size": [
+          1280,
+          720
+        ]
+      },
+      "cause_assessment": "Visuell mit Überdeckung durch die goldene vordere Tablettkante vereinbar. Die Raumtiefe wird vom koordinierenden Agenten untersucht; dieser Bildreview behauptet keine separat ausgeführte Geometrie-Reproduktion.",
+      "fix_state": "Kontrastplatte sichtbar, konkrete Lesbarkeitskorrektur noch nicht visuell akzeptiert.",
+      "affected_images": [
+        {
+          "artifact_entry": "images/bridge_hundred-start.png",
+          "sha256": "8b12a480ad57b6efe506225880fbbdb0b8d73e7d3afb674ce34a0a47666a3a7e"
+        },
+        {
+          "artifact_entry": "images/bridge_hundred-complete.png",
+          "sha256": "770e8715ed0f2737bfcb1a7f77b13275cdcae2a0efa5295c5a80aa28cc62bf0a"
+        }
+      ],
+      "communicated_to_root": true
+    }
+  ],
+  "other_observations": [
+    "Die übrigen 19 Bilder zeigen in den geprüften Zuständen keinen zusätzlichen sichtbaren Blocker.",
+    "8+5 ist in drei Bildformaten als acht plus zwei bis zehn plus drei dargestellt; sichtbare Mengen und Erklärtexte passen zu den Zuständen.",
+    "Silbenreihenfolge, Pflanzenbestandteile, Subtraktion, drei gleiche Vierergruppen und markierte Viertel sind in ihren jeweiligen Start-/Abschlussbildern verständlich unterscheidbar.",
+    "Original-Lumo ist in sämtlichen Lernbildern sichtbar; Figur und zentrale Lernobjekte sind nicht von den großen Bedienbereichen vollständig verdeckt."
+  ],
+  "limitations": [
+    "Der automatisierte Capture-Lauf meldet PASS, obwohl die untere Hunderter-Beschriftung sichtbar angeschnitten bleibt. Capture-Erfolg wird nicht als visuelle Freigabe übernommen.",
+    "Nur die Addition 8+5 wurde im vorliegenden Artefakt in 412x915, 1280x720 und 2400x1080 erfasst. Die übrigen Aktivitäten sind hier ausschließlich in 1280x720 belegt.",
+    "Preview enthält source-sha.txt und source-tree.txt, aber keinen separaten source-dirty.txt-Nachweis. Aus diesem Bericht wird kein zusätzlicher Clean-Tree-Nachweis abgeleitet.",
+    "Die Capture-Szene verwendet reduzierte Animationen. Stills belegen weder vollständige Animationstransitionen noch Sprachausgabe.",
+    "Keine physische Fold7-/Android-17-, FPS-, Temperatur- oder Touchlatenzmessung.",
+    "Produktcode wurde im Review nicht geändert; ein Fix benötigt neue Originalrendererbilder und eine eigene neue Commitbindung."
+  ],
+  "product_code_changed": false,
+  "images": [
+    {
+      "file": "bridge_hundred-start.png",
+      "artifact_entry": "images/bridge_hundred-start.png",
+      "sha256": "8b12a480ad57b6efe506225880fbbdb0b8d73e7d3afb674ce34a0a47666a3a7e",
+      "bytes": 296552,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "bridge_hundred",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "blocked",
+      "findings": "Die neue Navy-Kontrastplatte ist sichtbar, aber die untere Kontur der Zerlegung „180 = 1 Hunderter + 8 Zehner“ ist über die gesamte Textzeile flach abgeschnitten. Betroffen sind auch die unteren Buchstabenformen von Hunderter/Zehner. Die goldene vordere Tablettkante liegt visuell an dieser Schnittlinie. Der Kontrastfix stellt damit noch keine vollständige Lesbarkeit her."
+    },
+    {
+      "file": "bridge_hundred-complete.png",
+      "artifact_entry": "images/bridge_hundred-complete.png",
+      "sha256": "770e8715ed0f2737bfcb1a7f77b13275cdcae2a0efa5295c5a80aa28cc62bf0a",
+      "bytes": 294419,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "bridge_hundred",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "blocked",
+      "findings": "Die Menge und der Header zeigen 180 + 50 = 230; die Zerlegung „230 = 2 Hunderter + 3 Zehner“ auf der neuen Navyplatte bleibt unten flach angeschnitten. Dieselbe horizontale Schnittkante wie im Startbild verhindert eine uneingeschränkte visuelle Freigabe."
+    },
+    {
+      "file": "syllables-start.png",
+      "artifact_entry": "images/syllables-start.png",
+      "sha256": "cd90ac66dd49f90c2ac876a6828f25cee5c90dddd32c4e4aac1ee859204b508b",
+      "bytes": 246466,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "syllables",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Wort Banane und Hinweis auf Ba lesbar. Die drei körperlichen Silben ne, na, Ba sind einzeln unterscheidbar; Zielplätze, Lumo und Bedienung bleiben sichtbar."
+    },
+    {
+      "file": "syllables-complete.png",
+      "artifact_entry": "images/syllables-complete.png",
+      "sha256": "11cebd9159f7b0098f6a861257dec87aac3ae0298e9646d11c38bb8d6db72917",
+      "bytes": 243605,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "syllables",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Ba–na–ne steht in korrekter Reihenfolge auf den drei Zielplätzen. Header benennt drei Silben; Wiederholung und Rückkehr bleiben sichtbar."
+    },
+    {
+      "file": "plant_parts-start.png",
+      "artifact_entry": "images/plant_parts-start.png",
+      "sha256": "0013fd54ec89d2cca1829bf1d13bf331c75c1defcc800f12b8540bc292913779",
+      "bytes": 284840,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "plant_parts",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Pflanzenmodell mit getrennt erkennbarer Wurzel, Stängel, Blättern und Blüte; Wasser-, Sonne- und Teilwahlbuttons sind lesbar und nicht gegenseitig überlagert."
+    },
+    {
+      "file": "plant_parts-complete.png",
+      "artifact_entry": "images/plant_parts-complete.png",
+      "sha256": "ae81e7c0cd33a0d13a912d7340e5976641ac70fd7c673a0232119c01ea34fca2",
+      "bytes": 301229,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "plant_parts",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Gewachsene Pflanze mit sichtbarer Blüte und Wurzeln; Erklärung der Blüte im Header vollständig lesbar. Die Teilwahl bleibt verfügbar, Wasser/Sonne sind nach Abschluss deaktiviert."
+    },
+    {
+      "file": "subtract_ten-start.png",
+      "artifact_entry": "images/subtract_ten-start.png",
+      "sha256": "268e8c2d671205894611bc6435aeeceb2ab0ce0d9d28ead0bd065b853135a7c1",
+      "bytes": 288792,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "subtract_ten",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "13 Würfel als volles Zehnerfeld und drei weitere Würfel sichtbar; Weg-Bereich und Hinweis auf zunächst drei bis zur Zehn nachvollziehbar."
+    },
+    {
+      "file": "subtract_ten-complete.png",
+      "artifact_entry": "images/subtract_ten-complete.png",
+      "sha256": "412b0990f744720991fe483e4c87d2cf442fabca9be0b4df273dc326eb4086d5",
+      "bytes": 287414,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "subtract_ten",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Acht verbleibende Würfel im ersten Feld und fünf im Weg-Bereich sichtbar. Header bestätigt 13 minus 5 ist 8; keine abgeschnittene Erklärung."
+    },
+    {
+      "file": "equal_groups-start.png",
+      "artifact_entry": "images/equal_groups-start.png",
+      "sha256": "f87b424fa3b5773f144d533a24344d99817c145da218cd0ba7341f3e8d8bbea1",
+      "bytes": 244128,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "equal_groups",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Drei getrennte Gruppenscheiben mit Nullanzeige und separatem Würfelvorrat. Aufgabe 3×4 und Aktion zum Einordnen lesbar."
+    },
+    {
+      "file": "equal_groups-complete.png",
+      "artifact_entry": "images/equal_groups-complete.png",
+      "sha256": "693e6d6443b55091ea64ce4a0a5431ef0f71015404890ed4d12653eafc9d67c5",
+      "bytes": 248558,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "equal_groups",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Drei Gruppen mit jeweils vier sichtbaren Würfeln und Ziffer 4; Header nennt die Summe zwölf. Alle Gruppen sind vollständig im Lernbereich."
+    },
+    {
+      "file": "fraction_parts-start.png",
+      "artifact_entry": "images/fraction_parts-start.png",
+      "sha256": "dae35db7fadfdbe3415146cc4a99f61b771b9d68f6d7a338deb413889e95b29e",
+      "bytes": 260944,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "fraction_parts",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Ein von vier gleich großen Feldern markiert; aktuelle 3D-Anzeige 1/4 passt zum Bild. Zwei gleich große zusätzliche Teile stehen getrennt bereit; Ziel 3/4 im Header erkennbar."
+    },
+    {
+      "file": "fraction_parts-complete.png",
+      "artifact_entry": "images/fraction_parts-complete.png",
+      "sha256": "bec647a0a84f5fc9f10f08fe2a04038e72f39d1dda13aa91102fec986b2da692",
+      "bytes": 259738,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "fraction_parts",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Drei von vier gleich großen Feldern sind markiert, 3D-Anzeige 3/4 und Header stimmen überein. Viertes Feld bleibt sichtbar; keine durch den Footer verdeckte Teilfläche."
+    },
+    {
+      "file": "math-start-1280x720.png",
+      "artifact_entry": "images/math-start-1280x720.png",
+      "sha256": "6bdbeb76a691f0bcef8e8ab39511da5b5e16c94deddf950a87ab67d9c352286e",
+      "bytes": 287808,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "bridge_ten",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Acht türkise Würfel im ersten Zehnerfeld, zwei freie Plätze und fünf goldene Würfel als Vorrat stimmen mit 8+5 überein. Querformat mit Lumo links vom Lernfeld und getrenntem Footer."
+    },
+    {
+      "file": "math-ten-1280x720.png",
+      "artifact_entry": "images/math-ten-1280x720.png",
+      "sha256": "4bc327656b40ce16795e08a5427f8c6bf541115ae8b2126763237dda0b533ae0",
+      "bytes": 288423,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "bridge_ten",
+      "stage": "ten",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Das erste Feld enthält acht türkise und zwei goldene Würfel; drei goldene Würfel bleiben im Vorrat. Die Erklärung „Zehn sind voll“ passt zum Zustand. Querformat mit Lumo links vom Lernfeld und getrenntem Footer."
+    },
+    {
+      "file": "math-complete-1280x720.png",
+      "artifact_entry": "images/math-complete-1280x720.png",
+      "sha256": "1d461553c8fc3dfead784a18fcd5fa348f7c7bc089e56b80a4a47d01dee90d8e",
+      "bytes": 289242,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "activity": "bridge_ten",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Volles erstes Zehnerfeld und drei goldene Würfel im zweiten Feld; Gleichung 8+5=10+3=13 und Abschlussmeldung stimmen überein. Rückkehr und Wiederholung sind sichtbar. Querformat mit Lumo links vom Lernfeld und getrenntem Footer."
+    },
+    {
+      "file": "math-start-412x915.png",
+      "artifact_entry": "images/math-start-412x915.png",
+      "sha256": "5f4f430fc7ba90b9223562087d92e73eccd98d5459c414f97cee77f89aad19e0",
+      "bytes": 129174,
+      "dimensions": [
+        412,
+        915
+      ],
+      "activity": "bridge_ten",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Acht türkise Würfel im ersten Zehnerfeld, zwei freie Plätze und fünf goldene Würfel als Vorrat stimmen mit 8+5 überein. Phone-Hochformat mit gestapelten Feldern, vollständig sichtbarer Figur und sinnvoll umgebrochenen Header-/Footertexten."
+    },
+    {
+      "file": "math-ten-412x915.png",
+      "artifact_entry": "images/math-ten-412x915.png",
+      "sha256": "5b55c28fffbe66904672af973af520312066def2ff43f8ea8471c989f22ec341",
+      "bytes": 129708,
+      "dimensions": [
+        412,
+        915
+      ],
+      "activity": "bridge_ten",
+      "stage": "ten",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Das erste Feld enthält acht türkise und zwei goldene Würfel; drei goldene Würfel bleiben im Vorrat. Die Erklärung „Zehn sind voll“ passt zum Zustand. Phone-Hochformat mit gestapelten Feldern, vollständig sichtbarer Figur und sinnvoll umgebrochenen Header-/Footertexten."
+    },
+    {
+      "file": "math-complete-412x915.png",
+      "artifact_entry": "images/math-complete-412x915.png",
+      "sha256": "c3f8e0527ff768531c9ff2b32e82c190f812d8ac2eccff31dac76b909a848ac1",
+      "bytes": 126214,
+      "dimensions": [
+        412,
+        915
+      ],
+      "activity": "bridge_ten",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Volles erstes Zehnerfeld und drei goldene Würfel im zweiten Feld; Gleichung 8+5=10+3=13 und Abschlussmeldung stimmen überein. Rückkehr und Wiederholung sind sichtbar. Phone-Hochformat mit gestapelten Feldern, vollständig sichtbarer Figur und sinnvoll umgebrochenen Header-/Footertexten."
+    },
+    {
+      "file": "math-start-2400x1080.png",
+      "artifact_entry": "images/math-start-2400x1080.png",
+      "sha256": "1ac999494b8a1ccb1ef9f8fcf7f46e7aa77d78de88cd4047cc2ffa6c63337bf7",
+      "bytes": 691167,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "activity": "bridge_ten",
+      "stage": "start",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Acht türkise Würfel im ersten Zehnerfeld, zwei freie Plätze und fünf goldene Würfel als Vorrat stimmen mit 8+5 überein. Hochauflösendes Querformat mit großer Bedienung; sämtliche Lernwürfel und die Figur bleiben zwischen Header und Footer sichtbar."
+    },
+    {
+      "file": "math-ten-2400x1080.png",
+      "artifact_entry": "images/math-ten-2400x1080.png",
+      "sha256": "4795caf4663c9b51167cb21243608d8c7ed354d4bf07fd6cb9293e95dde30db9",
+      "bytes": 705796,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "activity": "bridge_ten",
+      "stage": "ten",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Das erste Feld enthält acht türkise und zwei goldene Würfel; drei goldene Würfel bleiben im Vorrat. Die Erklärung „Zehn sind voll“ passt zum Zustand. Hochauflösendes Querformat mit großer Bedienung; sämtliche Lernwürfel und die Figur bleiben zwischen Header und Footer sichtbar."
+    },
+    {
+      "file": "math-complete-2400x1080.png",
+      "artifact_entry": "images/math-complete-2400x1080.png",
+      "sha256": "e969d77a7a1286732ff7d65465b1ff122e9caa615b8b019f6d17f52429a30b0b",
+      "bytes": 716783,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "activity": "bridge_ten",
+      "stage": "complete",
+      "actually_opened_with_view_image": true,
+      "visual_result": "no_additional_visible_blocker",
+      "findings": "Volles erstes Zehnerfeld und drei goldene Würfel im zweiten Feld; Gleichung 8+5=10+3=13 und Abschlussmeldung stimmen überein. Rückkehr und Wiederholung sind sichtbar. Hochauflösendes Querformat mit großer Bedienung; sämtliche Lernwürfel und die Figur bleiben zwischen Header und Footer sichtbar."
+    }
+  ]
+}

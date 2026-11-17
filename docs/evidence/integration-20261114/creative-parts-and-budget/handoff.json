@@ -1,0 +1,29 @@
+{
+  "archive": {
+    "bytes": 224438,
+    "path": "original-evidence.tar.gz",
+    "sha256": "a8535fb1d8501125536777768d40c27576a81563a32343abf42a95c1be4cb0b7"
+  },
+  "created_at_utc": "2026-11-14T01:04:07.300337+00:00",
+  "focus_tests": {
+    "errors": 0,
+    "existing": 6,
+    "failures": 0,
+    "new": 14,
+    "scope": "Prior frozen Pipeline execution; no new tests run for packaging",
+    "skips": 0,
+    "total": 20
+  },
+  "host_build_timeout_minutes": 90,
+  "independent_review": "No concrete blocker in frozen four-file source diff; read-only, no test rerun",
+  "native_pin_receipts_and_final_suite": "Outside this package scope",
+  "new_actions_parts": "Not yet observed; actual upload sizes, hashes and complete reconstruction remain future CI evidence",
+  "no_source_staging_commit_ref_or_ci_action": true,
+  "roundtrip_count": 44,
+  "schema": 1,
+  "security_exclusions": [],
+  "source_file_count": 44,
+  "source_packs_unchanged": true,
+  "state": "FROZEN_EVIDENCE_READY_FOR_ROOT_COMMIT",
+  "timeout_changed": false
+}

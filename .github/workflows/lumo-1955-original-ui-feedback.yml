@@ -1,0 +1,272 @@
+name: Lumo 1955 – Hologlas, Journal, Flutter und Android
+# Exact head of the modernization branch: full Flutter suite, real render
+# captures, signed unified Flutter+Godot APK (arm64 + x86_64) with hashes and
+# provenance, then the x86_64 APK installed and toured on an emulator.
+# No release, no main merge.
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - chatgpt/opus-1953-mentor-journal-followup-2026-10-16
+      - chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16
+      - chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16
+      - claude/lumo-android-integration-m0-aloove
+      - chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16
+      - chatgpt/lumo-1963-integrated-profile-fold-android-2026-10-16
+      - chatgpt/lumo-1964-abc-premium-design-2026-10-16
+      - chatgpt/lumo-1966-cards-route-race-telemetry-2026-10-16
+      - chatgpt/lumo-1967-sonnenhafen-crane-integrated-2026-10-17
+      - chatgpt/lumo-1968-audio-event-channel-capture-2026-10-17
+      - chatgpt/lumo-1958-visual-story-integration-2026-10-16
+    paths:
+      - lib/**
+      - test/**
+      - assets/**
+      - config/**
+      - scripts/**
+      - pubspec.yaml
+      - pubspec.lock
+      - .github/workflows/lumo-1955-original-ui-feedback.yml
+      - .github/workflows/lumo-unified-integration-2026.yml
+      - .github/probes/**
+      - tools/android_qa/**
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-1955-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked dependencies and analysis
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Complete Flutter test suite
+        run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Real render captures of the reworked screens
+        run: |
+          set -euo pipefail
+          LUMO_CAPTURE_DIR="$PWD/captures" flutter test --no-pub \
+            test/design/lumo_modernization_capture_test.dart
+          ls captures | wc -l
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1955-flutter-captures
+          path: captures/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Android QA probe and build-script regressions
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng ripgrep
+          python3 -m venv .qa-venv
+          .qa-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          .qa-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py'
+          .qa-venv/bin/python -m unittest discover -s scripts/tests
+  apk:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Record exact sources
+        run: |
+          set -euo pipefail
+          mkdir -p release-proof
+          git rev-parse HEAD | tee release-proof/FLUTTER-SOURCE.txt
+          cp config/godot-source.json release-proof/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml | tee release-proof/APP-VERSION.txt
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Flutter and Android toolchain
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh release-proof/ndk
+      - name: Exact Godot engine
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build signed unified Flutter and Godot APKs
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          for apk in dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk; do
+            test -s "$apk"
+          done
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > release-proof/VERIFICATION-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > release-proof/VERIFICATION-x86_64.json
+          sha256sum dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk | tee release-proof/SHA256SUMS.txt
+          cp dist/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE.json
+          cp dist/x86_64/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE-x86_64.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1955-android-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/x86_64/Lumo-Lernen-Neu.apk
+            release-proof/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      # Keep the combined two-ABI artifact for automated emulator QA, and
+      # publish an additional single ARM64 archive small enough to deliver
+      # directly without changing release signing or build provenance.
+      - name: Archive separate verified ARM64 APK for direct delivery
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1956-direct-arm64-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            release-proof/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+  android-tour:
+    needs: apk
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-1955-android-apk
+          path: candidate/
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/modernization_android_tour.py tools/android_qa/kart_tour_evidence.py
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      # The emulator runner uses sdkmanager internally. A damaged Android 35
+      # system-image ZIP must not be mistaken for an APK or gameplay failure.
+      # Preinstall this exact image with bounded retries; the runner will use
+      # the already installed package. Do not bypass any runtime QA assertions.
+      - name: Preinstall verified Android 35 system image
+        shell: bash
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          sdk_root="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
+          image_dir="${sdk_root}/system-images/android-35/google_apis/x86_64"
+          package='system-images;android-35;google_apis;x86_64'
+          # GitHub-hosted runners ship sdkmanager inside Android's SDK
+          # commandline-tools directory; this directory is not always on PATH
+          # until android-emulator-runner prepends it later in its action.
+          sdkmanager_bin=''
+          if command -v sdkmanager >/dev/null 2>&1; then
+            sdkmanager_bin="$(command -v sdkmanager)"
+          elif test -x "${sdk_root}/cmdline-tools/latest/bin/sdkmanager"; then
+            sdkmanager_bin="${sdk_root}/cmdline-tools/latest/bin/sdkmanager"
+          elif test -d "${sdk_root}/cmdline-tools"; then
+            sdkmanager_bin="$(find "${sdk_root}/cmdline-tools" -maxdepth 3 -type f -name sdkmanager -print -quit)"
+          fi
+          if test -z "${sdkmanager_bin}" || ! test -x "${sdkmanager_bin}"; then
+            echo '::error::Android SDK commandline-tools not installed on runner'
+            exit 1
+          fi
+          echo "Using Android SDK manager at ${sdkmanager_bin}"
+          for attempt in 1 2 3 4; do
+            if test -s "${image_dir}/system.img" && test -s "${image_dir}/source.properties"; then
+              echo 'Android API 35 google_apis x86_64 image verified'
+              exit 0
+            fi
+            echo "Installing ${package} (attempt ${attempt}/4)"
+            if "${sdkmanager_bin}" --sdk_root="${sdk_root}" --install "${package}" --channel=0; then
+              if test -s "${image_dir}/system.img" && test -s "${image_dir}/source.properties"; then
+                echo 'Android emulator image verified after installation'
+                exit 0
+              fi
+              echo '::warning::SDK manager returned success, but the Android image is incomplete'
+            fi
+            # Only remove the specific failed emulator image and disposable
+            # SDK download cache; never touch an installed NDK, build tools,
+            # application data, or the APK/provenance artifacts.
+            rm -rf -- "${image_dir}" "${HOME}/.android/cache"
+            if [ "${attempt}" -lt 4 ]; then
+              sleep "$(( attempt * 5 ))"
+            fi
+          done
+          echo '::error::Could not obtain a complete Android API 35 emulator image after four attempts'
+          exit 1
+      - name: Install and tour the exact APK
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/release-proof/BUILD-PROVENANCE-x86_64.json --sums candidate/release-proof/SHA256SUMS.txt --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1955-android-tour
+          path: tour/
+          retention-days: 30

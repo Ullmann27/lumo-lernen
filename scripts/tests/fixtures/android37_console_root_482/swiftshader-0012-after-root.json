@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/usr/local/lib/android/sdk/platform-tools/adb",
+    "-s",
+    "emulator-5554",
+    "shell",
+    "sh",
+    "-c",
+    "'set -eu\ntest ! -L /data/local/tmp/lumo-runtime-cec910c40d560c2f3abc40cfc424e0cd\ncd /data/local/tmp/lumo-runtime-cec910c40d560c2f3abc40cfc424e0cd\npid=$(cat session.pid)\ncase \"$pid\" in '\"'\"''\"'\"'|*[!0-9]*) exit 92;; esac\nprintf '\"'\"'__session_stat__\\n'\"'\"'\ncat /proc/$pid/stat\nprintf '\"'\"'__session_argv__\\n'\"'\"'\nod -An -v -tx1 /proc/$pid/cmdline\npid=$(cat logger.pid)\ncase \"$pid\" in '\"'\"''\"'\"'|*[!0-9]*) exit 92;; esac\nprintf '\"'\"'__logger_stat__\\n'\"'\"'\ncat /proc/$pid/stat\nprintf '\"'\"'__logger_argv__\\n'\"'\"'\nod -An -v -tx1 /proc/$pid/cmdline\ntest -f logcat.stdout && test ! -L logcat.stdout\nprintf '\"'\"'__file_logcat.stdout__\\n'\"'\"'\nstat -c '\"'\"'%d:%i:%s:%f'\"'\"' logcat.stdout\ntest -f logcat.stderr && test ! -L logcat.stderr\nprintf '\"'\"'__file_logcat.stderr__\\n'\"'\"'\nstat -c '\"'\"'%d:%i:%s:%f'\"'\"' logcat.stderr\ntest -f session.stdout && test ! -L session.stdout\nprintf '\"'\"'__file_session.stdout__\\n'\"'\"'\nstat -c '\"'\"'%d:%i:%s:%f'\"'\"' session.stdout\ntest -f session.stderr && test ! -L session.stderr\nprintf '\"'\"'__file_session.stderr__\\n'\"'\"'\nstat -c '\"'\"'%d:%i:%s:%f'\"'\"' session.stderr\ntest -f wait.stderr && test ! -L wait.stderr\nprintf '\"'\"'__file_wait.stderr__\\n'\"'\"'\nstat -c '\"'\"'%d:%i:%s:%f'\"'\"' wait.stderr\ntest -f run.sh && test ! -L run.sh\nprintf '\"'\"'__file_run.sh__\\n'\"'\"'\nstat -c '\"'\"'%d:%i:%s:%f'\"'\"' run.sh\nprintf '\"'\"'__script_hash__\\n'\"'\"'\nsha256sum run.sh\n'"
+  ],
+  "started_at": "2026-11-14T04:54:38.886681+00:00",
+  "finished_at": "2026-11-14T04:54:38.940241+00:00",
+  "returncode": 1,
+  "timed_out": false,
+  "stdout_file": "commands/0012-after-root.stdout",
+  "stderr_file": "commands/0012-after-root.stderr"
+}

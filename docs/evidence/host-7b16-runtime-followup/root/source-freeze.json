@@ -1,0 +1,48 @@
+{
+  "status": "FROZEN_ROOT_FOLLOWUP_ROUTES",
+  "created_at": "2026-11-14T04:27:23.941532+00:00",
+  "files": [
+    {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19885,
+      "sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4"
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82165,
+      "sha256": "d3e214c74579f251fd65bce70348dfbcba919818032049d954d713c3dd4bb1f2"
+    },
+    {
+      "path": "scripts/tests/test_unchanged_apk_followup.py",
+      "bytes": 4548,
+      "sha256": "20556ec0f706e4901775bf79bfe5aa48317065b43666168a8e29cccca5d88673"
+    }
+  ],
+  "qa_source_scope": "Five separately named runtime followup jobs; original4 runtime and originalCreative routes preserved",
+  "verification_function_ast_unchanged": [
+    "require",
+    "regular",
+    "file_digest",
+    "unique_object",
+    "read_json",
+    "complete_rows",
+    "load_module",
+    "verify_candidate",
+    "verify_qa",
+    "git",
+    "source_identity",
+    "committed_file",
+    "verify_apk",
+    "bind",
+    "write_report",
+    "main"
+  ],
+  "tests": {
+    "count": 4,
+    "errors": 0,
+    "skips": 0,
+    "log": "runtime-followup-route-contracts.log",
+    "sha256": "e5dd40fe93276de0d8bbbfbf589bea29d44bc000eb92d0abed1e355605a2efbe"
+  },
+  "no_device_acceptance": true
+}

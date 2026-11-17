@@ -1,0 +1,152 @@
+{
+  "timestamp_utc": "2026-11-14T03:14:51.003114+00:00",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER",
+  "scope": "Independent read-only review of the three Root-authored files and their actual existing invocation contracts. No tests, shell execution, emulator, SDK install or artifact download in this review.",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-unchanged-apk-diagnostic.yml",
+      "bytes": 12893,
+      "sha256": "d387d4d5ca4dc0b2700c915861f28d6e7bb2af3cc4341953e74a878dd0ac8be5",
+      "git_blob": "08e5c96a36563ad32e49f762e789c570773308f3"
+    },
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 6772,
+      "sha256": "c94033c7d3568ca7e432891d72dfe1a00be982166301815bb4b15f335891239d",
+      "git_blob": "fd92720471e626dfc80972a5a1f03d88505a779e"
+    },
+    {
+      "path": "config/diagnostic-baselines/android37-7b16.json",
+      "bytes": 1953,
+      "sha256": "4bff2aad1a8420118be47cb0679c211c83b2b99b5526321f9b338fcb8645c32f",
+      "git_blob": "98be937c27d9dd1ff67911360804012ba57815e7"
+    }
+  ],
+  "read_callee_hashes": [
+    {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19033,
+      "sha256": "cf9a078532093362e3c4c3fe0442697115bbc277b3c2cff1abb7a3103f0c437c"
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "bytes": 20361,
+      "sha256": "c71acb91a77285699b8bb70a8e4846f41363e378171707e2c06eae9367b55e60"
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 29916,
+      "sha256": "0b501e19f4aaa56c69c593a3fdbcacce508ef55dd255671e059651b1e8e0b190"
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "bytes": 9128,
+      "sha256": "ebb75b2dc289303962bc224ec739567f773ea7912bd07088f02b8ae4117a61ec"
+    },
+    {
+      "path": "scripts/prepare_android37_cli22.py",
+      "bytes": 21702,
+      "sha256": "4265f4c83bbf3bdd9d3d6fbaa744faa968829c6e8f8eb5281d8b0e604e0bb5ee"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 69612,
+      "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba"
+    },
+    {
+      "path": ".github/probes/lumo_2019_update_android_probe.py",
+      "bytes": 1894,
+      "sha256": "11ce5f349887a5d57544ea71abccb03d8ca1aa7a52293e574d622d2e3bd7e7f0"
+    },
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "bytes": 10588,
+      "sha256": "3b36098d2a3f2b897c0b0bc582e83e08ff913a0509efcd1bd33ec3ffed5f61f7"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6"
+    }
+  ],
+  "original_baseline_checks": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/packages-guard/image/source.properties",
+      "matches_baseline": true,
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/packages-guard/image/package.xml",
+      "matches_baseline": true,
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/packages-guard/emulator/source.properties",
+      "matches_baseline": true,
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/packages-guard/emulator/package.xml",
+      "matches_baseline": true,
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/framework-readiness.json",
+      "bytes": 53804,
+      "sha256": "f7fcbe389918bb7e223ffbb9e8d4e6e7a8ac0f801c4db11a9e4fcba0293ce86b",
+      "status": "FAIL",
+      "samples": 5,
+      "matches_baseline": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "bytes": 4148,
+      "sha256": "0e30db1472fa409bf9dd67d73b464a556b81b83bd9aa7e0b2f6486334b6a0d3a",
+      "matches_baseline": true,
+      "effective_gpu": "host"
+    }
+  ],
+  "findings": [
+    {
+      "topic": "Separate source identities",
+      "result": "QA checkout uses the actual PR head or dispatch SHA. Candidate checkout is hard-pinned to 7b16 and its sparse config/pubspec satisfy the existing APK verifier. New probes and venv are invoked absolutely; actual tour cwd is candidate-source. The update explicitly sets LUMO_CANDIDATE_SOURCE_SHA=7b16."
+    },
+    {
+      "topic": "Artifact binding and dependency order",
+      "result": "Original artifact ID14093773196/run43540111465 is downloaded without rebuilding. Both complete candidate and QA API collections are retained separately. The existing probe venv with Pillow/uiautomator2 is installed before the new preflight. New helper enforces exact size/digest/build/attempt/APK/PCK and four QA names; original run success is not fabricated."
+    },
+    {
+      "topic": "Fork/branch/needs boundary",
+      "result": "The contract job allows only the internal fixed QA branch on the specified integration PR base or matching explicit dispatch. All four diagnostic cases require its success. The workflow has contents/actions read only and no publisher."
+    },
+    {
+      "topic": "Exactly one execution per case",
+      "result": "API35 and both API37 cases execute the existing tour then mandatory Studio surfaces with the same APK/prior-tour and expected API35 or API37. Update2017 executes the actual 2017 wrapper with the original baseline. Conditions are disjoint; no failed case is substituted by another case."
+    },
+    {
+      "topic": "Runtime ANR and exit propagation",
+      "result": "API37 starts the original continuous monitor before boot; the guarded action must observe readiness. Wrapper begins the runtime interval before installation and registers EXIT/INT/TERM handling. Its EXIT trap preserves a failing tour code and converts an otherwise successful tour to failure when finish rejects observations. Finish does not restart or clear the monitor. The later always-stop is idempotent when monitor-stop.json exists."
+    },
+    {
+      "topic": "Renderer comparison source",
+      "result": "Four original package descriptors/properties, exact fingerprint, five explicit hardware fields and original FAIL report hashes are byte-bound to the actual old API37 artifact. Both API37 action paths keep configuration equal except requested GPU; actual hardware mode and current SurfaceFlinger GLES must match the requested case. The report explicitly does not claim full system-image identity or FPS."
+    },
+    {
+      "topic": "Original-byte preservation",
+      "result": "All four descriptor/property files match the baseline byte hashes, including original source.properties EOF bytes. Old failed readiness remains FAIL. No old evidence was edited or interpreted as success."
+    }
+  ],
+  "limits": [
+    "Source review only; actual Actions execution is still required",
+    "No current APK or emulator was run/read by this review",
+    "Declared GPU must still be independently observed in the future runtime; source code cannot establish that result",
+    "The preflight binds the original artifact API digest but does not rehash the full source ZIP",
+    "The 3600-second monitor budget is a bounded observation interval, not guaranteed completion of a 65-minute job"
+  ],
+  "source_changes_by_reviewer": false,
+  "additional_tests_by_reviewer": false
+}

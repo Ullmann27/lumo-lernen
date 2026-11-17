@@ -14,6 +14,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../widgets/fox/lumo_character.dart';
@@ -28,12 +29,18 @@ import '../../shared/widgets/lumo_premium_effects.dart';
 import 'lumo_cards_assets.dart';
 import 'lumo_cards_game_controller.dart';
 import 'lumo_cards_models.dart';
+import 'lumo_cards_session.dart';
+import 'lumo_cards_table_session.dart';
+import 'lumo_cards_bot_policy.dart';
+import '../../lumo3d/lumo3d_launcher.dart';
 import '../shared/lumo_game_pause_scope.dart';
 import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_card_burst.dart';
+import 'widgets/lumo_jump_celebration.dart';
 import 'widgets/lumo_card_fly.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_cards_score_header.dart';
+import 'widgets/lumo_cards_opponent_settings.dart';
 import 'widgets/lumo_color_arrows.dart';
 import 'widgets/lumo_color_picker.dart';
 import 'widgets/lumo_confetti.dart';
@@ -56,6 +63,15 @@ class LumoCardsScreen extends StatefulWidget {
     this.player2Name = 'Lumo',
     this.vsBot = true,
     this.seed,
+    this.skipIntro = false,
+    this.sessionSlot = '',
+    this.initialDifficulty = LumoCardsDifficulty.clever,
+    this.initialStyle = LumoCardsStyle.planner,
+    this.tournamentRound = 1,
+    this.tournamentRounds = 1,
+    this.onRoundCompleted,
+    this.continueLabel = 'Nochmal',
+    this.onContinue,
   });
 
   final LumoAppState appState;
@@ -63,6 +79,15 @@ class LumoCardsScreen extends StatefulWidget {
   final String player2Name;
   final bool vsBot;
   final int? seed;
+  final bool skipIntro;
+  final String sessionSlot;
+  final LumoCardsDifficulty initialDifficulty;
+  final LumoCardsStyle initialStyle;
+  final int tournamentRound;
+  final int tournamentRounds;
+  final Future<void> Function(String roundId, bool won)? onRoundCompleted;
+  final String continueLabel;
+  final void Function(BuildContext context)? onContinue;
 
   @override
   State<LumoCardsScreen> createState() => _LumoCardsScreenState();
@@ -72,8 +97,21 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   late final LumoCardsGameController _controller;
   bool _rewardGiven = false;
   bool _callRewardGiven = false;
+  int _rewardedLearningStars = 0;
+  bool _callRewardSettled = false;
+  final Set<String> _pendingBonusIds = {};
+  bool _sessionLoading = true;
+  String? _sessionLoadError;
+  bool _sessionSaveFailed = false;
+  LearningProfileLease? _sessionOwner;
+  LumoCardsSessionRepository? _sessions;
   int _roundSerial = 0;
   Timer? _pendingPlay;
+  bool _nativeTableActive = false;
+  LumoCardsTableSession? _nativeTable;
+  Future<void>? _externalRoundSettlement;
+  String? _settlingRoundId;
+  bool _profileInvalidated = false;
 
   /// Intro-Splash beim Spielstart (Heinz 2026-05-22). Verschwindet nach
   /// ~2 Sekunden automatisch oder per Tap. Wird beim Restart nicht
@@ -85,6 +123,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// Wird via onDone-Callback nach ca. 900 ms automatisch geleert.
   LumoBurstStyle? _activeBurst;
   int _burstKey = 0;
+  bool _showJumpFx = false;
+  int _jumpFxKey = 0;
 
   /// Tier 6 Karten-Polish 2026-05-25: aktiver Karten-Flug von Hand zu
   /// Discard. Wenn gesetzt, rendert der Screen oben ein LumoCardFly mit
@@ -131,15 +171,20 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   @override
   void initState() {
     super.initState();
+    widget.appState.addListener(_onProfileChanged);
+    _showIntro = !widget.skipIntro;
     _controller = LumoCardsGameController(
       player1Name: widget.player1Name,
       player2Name: widget.player2Name,
       vsBot: widget.vsBot,
       seed: widget.seed,
       grade: widget.appState.state.grade,
+      difficulty: widget.initialDifficulty,
+      style: widget.initialStyle,
     );
     _controller.addListener(_onStateChanged);
     _controller.turnClock.addListener(_onPauseChanged);
+    unawaited(_restoreSession());
     // Heinz Crash-Bericht 2026-05-22: '_dependents.isEmpty' Assertion.
     // Frueher hat sich beim ersten Start ein Avatar-Picker-Dialog
     // direkt aus addPostFrameCallback geoeffnet. Das fuehrte zu
@@ -155,6 +200,109 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => LumoMusic.instance.play(LumoMusicTrack.chillLoop),
     );
+  }
+
+  Future<void> _restoreSession() async {
+    setState(() {
+      _sessionLoading = true;
+      _sessionLoadError = null;
+    });
+    try {
+      final owner = await widget.appState.captureLearningProfile();
+      await widget.appState.prepareLearningLease(owner);
+      final sessions = LumoCardsSessionRepository(
+          studentId: owner.studentId,
+          grade: _controller.grade,
+          vsBot: widget.vsBot,
+          slot: widget.sessionSlot);
+      final round = await sessions.load(
+          player1Name: widget.player1Name, player2Name: widget.player2Name);
+      if (!mounted) return;
+      if (!widget.appState.isCurrentLearningLease(owner)) {
+        throw StateError('Cards profile changed while loading');
+      }
+      _sessionOwner = owner;
+      _sessions = sessions;
+      if (round == null) {
+        // Persist the stable result identity before enabling the first action.
+        await sessions.save(_controller.snapshot(),
+            canWrite: () => widget.appState.canUseLearningLease(owner));
+        if (!mounted) return;
+        if (!widget.appState.isCurrentLearningLease(owner)) {
+          throw StateError('Cards profile changed while saving');
+        }
+      }
+      if (round != null) {
+        _showIntro = false;
+        _callRewardGiven = round.callRewarded;
+        _rewardedLearningStars = round.rewardedLearningStars;
+        _callRewardSettled = round.callRewardSettled;
+        _prevKidStars = round.state.players[0].stars;
+        _prevPhase = round.state.phase;
+        _lastTopCardId = round.state.topCard?.id;
+        _controller.restoreRound(round);
+      }
+      _sessionLoading = false;
+      if (round != null) _onStateChanged();
+      setState(() {});
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _sessionLoading = false;
+        _sessionLoadError =
+            'Deine gespeicherte Runde konnte noch nicht geladen werden.';
+      });
+    }
+  }
+
+  Future<void> _saveRound() async {
+    final sessions = _sessions;
+    final owner = _sessionOwner;
+    if (_sessionLoading || sessions == null || owner == null) return;
+    final round = _controller.snapshot(
+        callRewarded: _callRewardGiven,
+        rewardedLearningStars: _rewardedLearningStars,
+        callRewardSettled: _callRewardSettled);
+    try {
+      await sessions.save(round,
+          canWrite: () => widget.appState.canUseLearningLease(owner));
+      if (mounted &&
+          _sessionSaveFailed &&
+          widget.appState.rewardSaveError == null) {
+        setState(() => _sessionSaveFailed = false);
+      }
+    } catch (_) {
+      if (mounted) setState(() => _sessionSaveFailed = true);
+    }
+  }
+
+  void _settleBonuses() {
+    if (_sessionLoading || _sessions == null) return;
+    final roundId = _controller.roundId;
+    final earned = _controller.state.players[0].stars;
+    void award(String suffix, {int? learningStar, bool call = false}) {
+      final id = '$roundId:$suffix';
+      if (!_pendingBonusIds.add(id)) return;
+      widget.appState.recordLumoCardsBonus(resultId: id).then<void>((_) {
+        _pendingBonusIds.remove(id);
+        if (!mounted || _controller.roundId != roundId) return;
+        if (learningStar != null && learningStar > _rewardedLearningStars) {
+          _rewardedLearningStars = learningStar;
+        }
+        if (call) _callRewardSettled = true;
+        unawaited(_saveRound());
+      }, onError: (Object _, StackTrace __) {
+        _pendingBonusIds.remove(id);
+        // The wallet retains the failed write; the snapshot also keeps it
+        // unsettled so process restart can retry the same idempotent event.
+        if (mounted) setState(() => _sessionSaveFailed = true);
+      });
+    }
+
+    for (var i = _rewardedLearningStars + 1; i <= earned; i++) {
+      award('question-$i', learningStar: i);
+    }
+    if (_callRewardGiven && !_callRewardSettled) award('call', call: true);
   }
 
   Future<void> _loadSavedAvatar() async {
@@ -187,6 +335,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
 
   @override
   void dispose() {
+    widget.appState.removeListener(_onProfileChanged);
+    unawaited(_nativeTable?.close().catchError((_) {}) ?? Future<void>.value());
+    unawaited(_saveRound());
     _pendingPlay?.cancel();
     _controller.turnClock.removeListener(_onPauseChanged);
     _controller.removeListener(_onStateChanged);
@@ -198,17 +349,61 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     super.dispose();
   }
 
+  void _onProfileChanged() {
+    final owner = _sessionOwner;
+    if (!mounted ||
+        owner == null ||
+        _profileInvalidated ||
+        widget.appState.isCurrentLearningLease(owner)) {
+      return;
+    }
+    _profileInvalidated = true;
+    _controller.turnClock.pause();
+    unawaited(_nativeTable?.close().catchError((_) {}) ?? Future<void>.value());
+    setState(() {});
+  }
+
+  Future<void> _settleTournamentRound() async {
+    if (_controller.state.phase != GamePhase.gameOver ||
+        widget.onRoundCompleted == null) {
+      return;
+    }
+    final roundId = _controller.roundId;
+    if (_settlingRoundId == roundId && _externalRoundSettlement != null) {
+      return _externalRoundSettlement;
+    }
+    _settlingRoundId = roundId;
+    final future = Future<void>.sync(() =>
+        widget.onRoundCompleted!(roundId, _controller.state.winnerIndex == 0));
+    _externalRoundSettlement = future;
+    try {
+      await future;
+    } catch (_) {
+      if (_settlingRoundId == roundId &&
+          identical(_externalRoundSettlement, future)) {
+        _externalRoundSettlement = null;
+      }
+      rethrow;
+    }
+  }
+
   void _onPauseChanged() {
     if (!mounted || !_controller.turnClock.value) return;
     _pendingPlay?.cancel();
     _pendingPlay = null;
     _clearFly();
+    unawaited(_saveRound());
   }
 
   void _onStateChanged() {
     // mounted ZUERST pruefen - Bot-Timer kann nach Screen-Pop noch feuern.
-    if (!mounted) return;
+    if (!mounted || _sessionLoading || _profileInvalidated) return;
     final s = _controller.state;
+    unawaited(_saveRound());
+    _settleBonuses();
+    if (s.phase == GamePhase.gameOver && widget.onRoundCompleted != null) {
+      unawaited(_settleTournamentRound().catchError((_) {}));
+    }
     // Bei Game-Over: Streak-System ueber AppState aufrufen.
     // Nur einmal pro Gewinner.
     if (s.phase == GamePhase.gameOver &&
@@ -222,7 +417,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
         // Wackeln statt Schadenfreude.
         kindWon ? _lumo.cheer() : _lumo.wiggle();
       }
-      widget.appState.recordLumoCardsResult(won: kindWon).then<void>((_) {
+      widget.appState
+          .recordLumoCardsResult(won: kindWon, resultId: _controller.roundId)
+          .then<void>((_) {
         if (mounted) setState(() {});
       }, onError: (Object _, StackTrace __) {
         if (!mounted) return;
@@ -255,6 +452,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       } else if (top.type == LumoCardType.superRain) {
         _activeBurst = LumoBurstStyle.thunder;
         _burstKey += 1;
+      } else if (top.type == LumoCardType.lumoJump) {
+        _showJumpFx = true;
+        _jumpFxKey += 1;
       }
     }
 
@@ -266,7 +466,6 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     final wasLearning = _prevPhase == GamePhase.learningQuestion;
     final isLearningNow = s.phase == GamePhase.learningQuestion;
     if (wasLearning && !isLearningNow && kidStarsNow > _prevKidStars) {
-      widget.appState.addStars(kidStarsNow - _prevKidStars);
       _triggerStarBurst();
     }
     _prevPhase = s.phase;
@@ -360,8 +559,139 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     );
   }
 
+  Future<void> _openOpponentSettings() async {
+    if (!mounted || !widget.vsBot || widget.tournamentRounds > 1) return;
+    _controller.turnClock.pause();
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFF071B3B),
+      builder: (context) => ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(context).height * .90,
+        ),
+        child: LumoCardsOpponentSettings(
+          difficulty: _controller.difficulty,
+          style: _controller.style,
+          onChanged: (difficulty, style) => _controller.configureOpponent(
+            difficulty: difficulty,
+            style: style,
+          ),
+        ),
+      ),
+    );
+    // An Android lifecycle pause remains in force; resume is explicit.
+  }
+
+  Future<void> _openNativeTable() async {
+    if (_nativeTableActive || _sessionLoading || _sessionOwner == null) return;
+    final owner = _sessionOwner!;
+    if (!widget.appState.isCurrentLearningLease(owner)) return;
+    _pendingPlay?.cancel();
+    _clearFly();
+    final reduceMotion = _reduceMotion;
+    setState(() => _nativeTableActive = true);
+    // Remove the Flutter pause-scope observer before Android hides this Activity.
+    // Native lifecycle heartbeats now own pause; losing them pauses the same clock.
+    await WidgetsBinding.instance.endOfFrame;
+    if (!mounted) return;
+    final table = LumoCardsTableSession(
+      controller: _controller,
+      reduceMotion: reduceMotion,
+      round: widget.tournamentRound,
+      totalRounds: widget.tournamentRounds,
+      canCallLumo: () =>
+          !_callRewardGiven &&
+          _controller.state.phase == GamePhase.playing &&
+          _isMyTurnVisible(_controller.state) &&
+          _controller.state.currentPlayer.hand.length <= 2 &&
+          !_controller.turnClock.value,
+      onCallLumo: _onLumoCall,
+      canUseProfile: () =>
+          mounted &&
+          widget.appState.isCurrentLearningLease(owner) &&
+          widget.appState.canPlayToday,
+      persist: () async {
+        if (!mounted || !widget.appState.isCurrentLearningLease(owner)) {
+          throw StateError('Cards profile changed');
+        }
+        await _saveRound();
+        await _settleTournamentRound();
+        await widget.appState.flushRewards();
+        if (_sessionSaveFailed ||
+            !widget.appState.isCurrentLearningLease(owner)) {
+          throw StateError('Cards round was not saved');
+        }
+      },
+    );
+    _nativeTable = table;
+    try {
+      await widget.appState.ensureSettingsLoaded();
+      if (widget.appState.state.settings.requireDailyMissionForGames) {
+        await widget.appState.loadDailyMission();
+      }
+      if (!mounted ||
+          !widget.appState.isCurrentLearningLease(owner) ||
+          !widget.appState.canPlayToday) {
+        return;
+      }
+      await table.open();
+      if (mounted && widget.appState.isCurrentLearningLease(owner)) {
+        await launchLumo3D(context,
+            scene: 'cards', appState: widget.appState, cardsToken: table.token);
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                'Der 3D-Tisch konnte noch nicht öffnen. Deine Runde bleibt erhalten.')));
+      }
+    } finally {
+      try {
+        await table.close();
+      } catch (_) {}
+      _nativeTable = null;
+      if (mounted) setState(() => _nativeTableActive = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_profileInvalidated) {
+      return Scaffold(
+          appBar: AppBar(title: const Text('Lumo Cards')),
+          body: const Center(
+              child: Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Text(
+                      'Das Kinderprofil hat gewechselt. Bitte öffne das Kartenspiel erneut.'))));
+    }
+    if (_nativeTableActive) {
+      return const Scaffold(
+          backgroundColor: Color(0xFF071B3B),
+          body: Center(child: Text('Deine Runde ist am 3D-Tisch geöffnet.')));
+    }
+    if (_sessionLoading || _sessionLoadError != null) {
+      return Scaffold(
+        backgroundColor: const Color(0xFF071B3B),
+        body: Center(
+            child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: _sessionLoadError == null
+                    ? const CircularProgressIndicator(
+                        semanticsLabel: 'Runde laden')
+                    : Column(mainAxisSize: MainAxisSize.min, children: [
+                        Text(_sessionLoadError!, textAlign: TextAlign.center),
+                        const SizedBox(height: 16),
+                        FilledButton(
+                            onPressed: _restoreSession,
+                            style: FilledButton.styleFrom(
+                                minimumSize: const Size(48, 52)),
+                            child: const Text('Erneut laden')),
+                      ]))),
+      );
+    }
     final s = _controller.state;
     final compact = MediaQuery.sizeOf(context).height < 760;
     // Kleine Handys und Handy quer: Hand und Lumo kleiner, damit der Tisch
@@ -414,8 +744,17 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                           padding: EdgeInsets.zero,
                           tintColor: const Color(0xFF0B2A5C),
                           child: LumoCardsScoreHeader(
-                            round: 1,
-                            totalRounds: 1,
+                            onOpponentSettings:
+                                widget.vsBot && widget.tournamentRounds == 1
+                                    ? _openOpponentSettings
+                                    : null,
+                            onNativeTable: !kIsWeb &&
+                                    defaultTargetPlatform ==
+                                        TargetPlatform.android
+                                ? _openNativeTable
+                                : null,
+                            round: widget.tournamentRound,
+                            totalRounds: widget.tournamentRounds,
                             targetPoints: widget.appState.state.stars,
                             onClose: () {
                               LumoSound.instance.play(SoundEffect.click);
@@ -443,7 +782,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                           isActive: oppActive,
                           compact: true,
                           avatarAssetPath: widget.vsBot
-                              ? null
+                              ? LumoDesignFoxPose.avatar.assetPath
                               : LumoCardsAssets.avatarRedGirl,
                           ringColor: const Color(0xFF8B5CF6),
                         ),
@@ -484,7 +823,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                         child: Stack(
                             key: const ValueKey('cards-arena'),
                             children: [
-                              // Runder Steintisch mit Cyan-Ring unter den Stapeln.
+                              // Runder Holztisch unter den Stapeln.
                               const Positioned.fill(
                                 child: IgnorePointer(
                                   child: RepaintBoundary(
@@ -493,33 +832,32 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                   ),
                                 ),
                               ),
-                              // Tierfreunde am Tisch (Bild 03), nur Deko.
-                              if (!compact) ...[
-                                Positioned(
-                                  left: -8,
-                                  bottom: 0,
-                                  height: 120,
-                                  child: IgnorePointer(
-                                    child: Image.asset(
-                                      'assets/lumo_design/cards_game/friend_panda.png',
-                                      fit: BoxFit.contain,
-                                      filterQuality: FilterQuality.medium,
-                                    ),
+                              // Tierfreunde am Tisch, nur Deko — sichtbar
+                              // auch auf dem Handy, kleiner bei wenig Höhe.
+                              Positioned(
+                                left: compact ? -4 : -8,
+                                bottom: compact ? 4 : 8,
+                                height: compact ? 72 : 128,
+                                child: IgnorePointer(
+                                  child: Image.asset(
+                                    'assets/lumo_design/cards_game/friend_panda.png',
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.medium,
                                   ),
                                 ),
-                                Positioned(
-                                  right: -6,
-                                  bottom: 0,
-                                  height: 150,
-                                  child: IgnorePointer(
-                                    child: Image.asset(
-                                      'assets/lumo_design/cards_game/friend_giraffe.png',
-                                      fit: BoxFit.contain,
-                                      filterQuality: FilterQuality.medium,
-                                    ),
+                              ),
+                              Positioned(
+                                right: compact ? -4 : -6,
+                                bottom: compact ? 4 : 8,
+                                height: compact ? 88 : 158,
+                                child: IgnorePointer(
+                                  child: Image.asset(
+                                    'assets/lumo_design/cards_game/friend_giraffe.png',
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.medium,
                                   ),
                                 ),
-                              ],
+                              ),
                               Positioned.fill(
                                 child: ClipRect(
                                   child: Center(
@@ -534,6 +872,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             LumoDrawPile(
+                                              reduceMotion: _reduceMotion,
                                               cardsLeft: s.drawPile.length,
                                               onDraw: s.phase ==
                                                           GamePhase.playing &&
@@ -639,6 +978,24 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                   ),
                 ),
               ),
+              if (_sessionSaveFailed)
+                Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: SafeArea(
+                        child: Material(
+                            color: const Color(0xFF163A60),
+                            child: TextButton(
+                                onPressed: () {
+                                  unawaited(_saveRound());
+                                  _settleBonuses();
+                                  unawaited(widget.appState
+                                      .retryRewards()
+                                      .catchError((_) {}));
+                                },
+                                child: const Text(
+                                    'Runde wartet aufs Speichern · Erneut versuchen'))))),
               // ── Overlays ÜBER der SafeArea ──
               // Garantiert vollflaechig, deckt auch Status-/Navi-Bar ab.
               // Im vsBot-Modus: kein Pass-Device-Overlay (Lumo's Zuege
@@ -655,6 +1012,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                   (!widget.vsBot || s.currentPlayerIndex == 0) &&
                   s.pendingLearningQuestion != null)
                 LumoLearningCardOverlay(
+                  appState: widget.appState,
+                  roundId: _controller.roundId,
                   question: s.pendingLearningQuestion!,
                   onAnswer: _controller.answerLearningQuestion,
                 ),
@@ -662,13 +1021,28 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 LumoResultDialog(
                   winnerName: s.players[s.winnerIndex ?? 0].name,
                   kindWon: s.winnerIndex == 0,
-                  reward: _rewardForStreak(s.winnerIndex == 0
-                      ? widget.appState.lumoCardsWinStreak
-                      : 0),
+                  reward: s.winnerIndex == 0
+                      ? _rewardForStreak(widget.appState.lumoCardsWinStreak)
+                      : 1,
                   streak: widget.appState.lumoCardsWinStreak,
-                  onRestart: () {
+                  continueLabel: widget.continueLabel,
+                  onRestart: () async {
                     LumoSound.instance.play(SoundEffect.click);
-                    _restartGame();
+                    if (widget.onContinue == null) {
+                      _restartGame();
+                      return;
+                    }
+                    try {
+                      await _settleTournamentRound();
+                      await widget.appState.flushRewards();
+                      if (context.mounted) widget.onContinue!(context);
+                    } catch (_) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
+                                'Dein Pokalergebnis wartet aufs Speichern. Bitte erneut versuchen.')));
+                      }
+                    }
                   },
                   onExit: () {
                     LumoSound.instance.play(SoundEffect.click);
@@ -699,6 +1073,20 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               // Pile sitzt). Partikel spawnen von der Mitte des Positioned-
               // Bereichs aus, daher die ungleichmaessigen Insets - die Mitte
               // soll genau ueber dem Discard liegen.
+              if (_showJumpFx)
+                Positioned.fill(
+                  key: const ValueKey('cards-lumo-jump-fx'),
+                  child: IgnorePointer(
+                    child: Center(
+                      child: LumoJumpCelebration(
+                        key: ValueKey('cards-lumo-jump-fx-$_jumpFxKey'),
+                        onDone: () {
+                          if (mounted) setState(() => _showJumpFx = false);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               if (_activeBurst != null)
                 Positioned(
                   top: MediaQuery.of(context).size.height * 0.30,
@@ -783,9 +1171,25 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
           width: (c.maxWidth * .32).clamp(240.0, 380.0),
-          child: SingleChildScrollView(
-            child: Column(mainAxisSize: MainAxisSize.min, children: top),
-          ),
+          child: shortLandscape
+              ? Column(children: [
+                  top.first,
+                  // System bars and larger text reduce the available height.
+                  // Keep controls and the actual turn fixed on screen; only
+                  // the opponent/character area may scroll when necessary.
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Row(children: [
+                        for (final child in top.skip(1))
+                          if (child is! LumoTurnBanner) Expanded(child: child),
+                      ]),
+                    ),
+                  ),
+                  ...top.whereType<LumoTurnBanner>(),
+                ])
+              : SingleChildScrollView(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: top),
+                ),
         ),
         Expanded(
           child: Column(children: [...banner, children[arena], ...bottom]),
@@ -798,9 +1202,13 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     _pendingPlay?.cancel();
     _pendingPlay = null;
     _roundSerial++;
+    _externalRoundSettlement = null;
+    _settlingRoundId = null;
     _lumoReacted = false;
     _rewardGiven = false;
     _callRewardGiven = false;
+    _rewardedLearningStars = 0;
+    _callRewardSettled = false;
     _flyingCard = null;
     _flyStart = null;
     _flyEnd = null;
@@ -863,7 +1271,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       return;
     }
     setState(() => _callRewardGiven = true);
-    widget.appState.addStars(1);
+    unawaited(_saveRound());
+    _settleBonuses();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('LUMO! +1 Stern - bring jetzt die letzte Karte!'),

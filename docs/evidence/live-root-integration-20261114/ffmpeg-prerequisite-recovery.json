@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "workflow_run": 43576227534,
+  "job": 132390953713,
+  "observed_tests": 868,
+  "errors": 1,
+  "failed_setup": "test_studio_jump_decode.StudioJumpDecodeOriginalTests",
+  "original_error": "RuntimeError: ffmpeg is required for the original MP4 regression",
+  "fix": "Install ffmpeg (including ffprobe) before the existing whole app-script suite; retain strict actual MP4 decode and all tests.",
+  "original_log_retained_in_connector_result": true
+}

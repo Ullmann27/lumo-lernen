@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CHECKPOINT_NOT_PRODUCT_ACCEPTANCE",
+  "host_parent": "4f5d66f96c5ad84939e4cd09bc66fb4744ae2a6b",
+  "producer": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+  "native_contract_source": "afc0df9a2b1794f39051add9dfce0cf947bb177b",
+  "native_pin": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "native_pin_changed": false,
+  "source_paths": 16,
+  "exact_producer_files": 14,
+  "narrow_connection_files": 2,
+  "protected_dependencies_preserved": 52,
+  "root_original_archive_members_checked": 77,
+  "root_original_archive_bytes_checked": 4603132,
+  "actual_tests": {
+    "host_source": "4f5d66f96c5ad84939e4cd09bc66fb4744ae2a6b",
+    "delivery": 69,
+    "pipeline": 11,
+    "skips": 0,
+    "actionlint": "PASS",
+    "tracked_entries": 4325,
+    "source_and_index_unchanged": true,
+    "village_widget_runs": 0,
+    "android_device_runs": 0
+  },
+  "pending": [
+    "Native Discovery actual original acceptance and exact final source pin",
+    "Combined Host village widget and six actual capture cases",
+    "Separate Village QA checkpoint and additive Android delivery connection",
+    "Current APK, emulator entry/return/state evidence and release"
+  ],
+  "active_c4_branch_changed": false,
+  "main_or_historical_releases_changed": false
+}

@@ -1,0 +1,45 @@
+{
+  "actual_2020_build_engine_android_release_operations": false,
+  "actual_actionlint_exit": 0,
+  "actual_inactive_publisher_syntax_exit": 0,
+  "actual_local_tests": {
+    "errors": 0,
+    "existing_pipeline_update": 9,
+    "failures": 0,
+    "new_delivery": 30,
+    "skips": 0
+  },
+  "created_at_utc": "2026-11-14T06:56:10.509697+00:00",
+  "external_publication_procedure_in_repository_patch": false,
+  "limitations": [
+    "Final configured Native pin and exact Host commit must come from Root final integration",
+    "Actual C4/52-mode/API35/update runs remain required on that final source",
+    "The separately credentialed publication procedure has not run",
+    "No verified public APK URL exists from this patch"
+  ],
+  "no_existing_tag_permission_exception_assumed": true,
+  "pack": "/tmp/lumo-c4-delivery-20261114",
+  "patch": {
+    "bytes": 89666,
+    "sha256": "53132114d0a1ba2febe43b23fbd35127b92eb7a5eb4e331e8985bf1ba58245fb"
+  },
+  "paths": {
+    "inactive_future_publication": "publication/",
+    "primary_sources": "primary-sources.json",
+    "proposed": "proposed/",
+    "raw_original_tests": "evidence/"
+  },
+  "publication_enabled": false,
+  "repo_source_count": 4,
+  "required_external_credentials_proven": false,
+  "schema": 1,
+  "source_freeze": {
+    "bytes": 2547,
+    "sha256": "3921641b874b9c1c2672b272e3dbbe6ba5a1c453efbdaa919fd1d7e55b566578"
+  },
+  "status": "READ_ONLY_DELIVERY_PATCH_FROZEN_NOT_PUBLISHED",
+  "test_binding": {
+    "bytes": 2364,
+    "sha256": "dadf19f4aec5d014b22c5da183058c2431e727faf8ecfda2655559dfc7793e8c"
+  }
+}

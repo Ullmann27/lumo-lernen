@@ -116,7 +116,7 @@ void main() {
       }
     }
     final addition = GuidedLessonCatalog.bridgeTen.steps[2];
-    expect(addition.a + addition.b, 12);
+    expect(addition.a + addition.b, 13);
     final groups = GuidedLessonCatalog.equalGroups.steps[2];
     expect(groups.a * groups.b, 6);
     final minus = GuidedLessonCatalog.subtractTen.steps[2];

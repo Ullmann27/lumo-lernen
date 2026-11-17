@@ -1,0 +1,20 @@
+{
+  "source": "f0f3d29ce66265f90c5e0b0205144e46addb58cb",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_nextgen_learning_android_probe.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/4fa97167812c/lumo-lernen",
+  "exitCode": 0,
+  "elapsedSeconds": 0.502,
+  "logBytes": 15823,
+  "logSha256": "8a82305747f68064babe2d1ea622d65fa5037438156188a449321f155663353f",
+  "scope": "Full affected host probe test module; no new Android execution."
+}

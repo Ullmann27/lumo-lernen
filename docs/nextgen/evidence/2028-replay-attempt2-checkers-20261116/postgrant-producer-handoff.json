@@ -1,0 +1,63 @@
+{
+  "schema": "lumo.qa.microphone.postgrant.handoff",
+  "version": 1,
+  "producer_commit": "752fb29ee369e54b951ead4d5cfc672d9e7f3185",
+  "producer_tree": "4a6c03e36f4006702e6cf8c5fdce9246b7785f51",
+  "branch": "qa/lumo-mic-postgrant-reader-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-mic-postgrant-reader",
+  "base": "1269d48dd28e3a0641c5b734e98cfc55f89792e9",
+  "prerequisite_reader_fix": "7ec6e995bb517f3b8fd74b39522404db3f1f594d",
+  "local_prerequisite_cherry_pick": "0e16bf36429649fd47f884c5d19f744a84e7df90",
+  "integrate_only": "752fb29ee369e54b951ead4d5cfc672d9e7f3185",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 81929,
+      "sha256": "f96a12f3aebd1803c05f154197a38b680a128c0e7508a36f4f0bb887549fa256"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "bytes": 58944,
+      "sha256": "c39ba8e32944c51cbe2044bfcd20e6f75b409c3f37121c8dfa7d2ccf3d9d5991"
+    }
+  ],
+  "tests": {
+    "module": "test_nextgen_learning_android_probe.py",
+    "green": {
+      "tests": 72,
+      "failures": 0,
+      "errors": 0
+    },
+    "new_flow_test_methods": 8,
+    "red": {
+      "tests": 72,
+      "failures": 6,
+      "errors": 0
+    }
+  },
+  "logs": [
+    {
+      "path": "/workspace/scratch/4fa97167812c/mic-postgrant-reader-fix/postgrant-red.log",
+      "bytes": 20569,
+      "sha256": "17fd547d35c9437b5cb7fb3522228612ea924d976a4ace7e45d2233232afb859"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/mic-postgrant-reader-fix/postgrant-green.log",
+      "bytes": 14026,
+      "sha256": "7c0d1ff5bdd4392054fa027bc115a9a88f00eb657ad53a02a99584e761bec8ea"
+    }
+  ],
+  "preserved": {
+    "original_seconds_budget": 35,
+    "listening_or_explicit_limitation_gate": true,
+    "readiness_is_not_success": true,
+    "product_code_unchanged": true,
+    "apk_unchanged": true
+  },
+  "new_gesture": "At most one extra real UI tap, only after this attempt observed and tapped the verified grant, no remaining permission nodes, fresh owned visible exact task and German ready status, unique enabled visible Sprechen target, before original deadline.",
+  "new_evidence_file": "microphone-postgrant-explicit-start.json",
+  "postgrant_android_state_observed": false,
+  "android_runtime_executed": false,
+  "remote_changed": false,
+  "limitation": "Conditional XML fixtures and the existing source/lifecycle contract justify this QA branch; no new Android/STT success is claimed."
+}

@@ -1,0 +1,23 @@
+test_2017_events_and_legacy_kart (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_2017_events_and_legacy_kart) ... ok
+test_cold_recreated_host_preserves_fallback (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_cold_recreated_host_preserves_fallback) ... ok
+test_failed_commit_retains_fallback_and_explicit_reset_still_works (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_failed_commit_retains_fallback_and_explicit_reset_still_works) ... ok
+test_foreign_stale_and_wrong_destination (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_foreign_stale_and_wrong_destination) ... ok
+test_invalid_session_never_writes (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_invalid_session_never_writes) ... ok
+test_new_launch_supersedes_only_stale_navigation (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_new_launch_supersedes_only_stale_navigation) ... ok
+test_result_before_resume (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_result_before_resume) ... ok
+test_resume_before_result (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_resume_before_result) ... ok
+test_stale_ack_keeps_return_and_unacknowledged_rewards (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_stale_ack_keeps_return_and_unacknowledged_rewards) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 13.767s
+
+OK
+GAME_RETURN_STORE_PASS legacy-2017
+GAME_RETURN_STORE_PASS cold-recreated
+GAME_RETURN_STORE_PASS storage-failure-and-reset
+GAME_RETURN_STORE_PASS foreign-stale-and-destination
+GAME_RETURN_STORE_PASS invalid-session
+GAME_RETURN_STORE_PASS new-launch-stale-navigation
+GAME_RETURN_STORE_PASS result-before-resume
+GAME_RETURN_STORE_PASS resume-before-result
+GAME_RETURN_STORE_PASS stale-ack-and-rewards

@@ -1,0 +1,57 @@
+test_android_tour_keeps_full_original_and_new_surface_gates (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_android_tour_keeps_full_original_and_new_surface_gates) ... FAIL
+test_historical_release_pins_remain_byte_equivalent_as_2018_is_added (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_historical_release_pins_remain_byte_equivalent_as_2018_is_added) ... ok
+test_historical_unified_workflow_cannot_build_2018_under_another_branch (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_historical_unified_workflow_cannot_build_2018_under_another_branch) ... 
+  test_historical_unified_workflow_cannot_build_2018_under_another_branch (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_historical_unified_workflow_cannot_build_2018_under_another_branch) (version='0.13.6+2018') ... FAIL
+test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches) ... 
+  test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches) (head='chatgpt/lumo-2018-android-acceptance-20261113', ref='462/merge') ... FAIL
+  test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches) (head='', ref='chatgpt/lumo-2018-android-acceptance-20261113') ... FAIL
+test_nextgen_has_one_automatic_apk_event_and_shared_branch_concurrency (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_nextgen_has_one_automatic_apk_event_and_shared_branch_concurrency) ... FAIL
+test_nextgen_rejects_an_otherwise_valid_historical_candidate (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_nextgen_rejects_an_otherwise_valid_historical_candidate) ... ok
+test_publication_stays_blocked_until_review_and_keeps_all_actual_dependencies (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_publication_stays_blocked_until_review_and_keeps_all_actual_dependencies) ... ok
+test_update_wrapper_binds_the_real_2017_baseline_and_rejects_old_candidate (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_update_wrapper_binds_the_real_2017_baseline_and_rejects_old_candidate) ... ok
+
+======================================================================
+FAIL: test_android_tour_keeps_full_original_and_new_surface_gates (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_android_tour_keeps_full_original_and_new_surface_gates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/scripts/tests/test_nextgen_workflow_contract.py", line 84, in test_android_tour_keeps_full_original_and_new_surface_gates
+    self.assertIn("-p 'test_nextgen*.py'", job)
+AssertionError: "-p 'test_nextgen*.py'" not found in '    needs: [verify-and-build, android-host-compile]\n    runs-on: ubuntu-latest\n    timeout-minutes: 65\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          persist-credentials: false\n          ref: ${{ github.event.pull_request.head.sha || github.sha }}\n      - uses: actions/download-artifact@v4\n        with:\n          name: lumo-nextgen-2018-candidate\n          path: candidate/dist/\n      - name: Live UI reader\n        timeout-minutes: 8\n        run: |\n          set -euo pipefail\n          mkdir -p tour\n          sudo apt-get -o Acquire::Retries=2 update -qq\n          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng\n          command -v tesseract\n          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt\n          grep -Fxq \'deu\' tour/tesseract-installed-languages.txt\n          grep -Fxq \'eng\' tour/tesseract-installed-languages.txt\n          python3 -m venv .probe-venv\n          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0\n          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_nextgen_surfaces_android_probe.py\n          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_nextgen_evidence.py -v\n          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt\n      - name: Enable accelerated disposable emulator\n        run: |\n          echo \'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"\' | sudo tee /etc/udev/rules.d/99-kvm4all.rules\n          sudo udevadm control --reload-rules\n          sudo udevadm trigger --name-match=kvm\n          sudo udevadm settle\n          sudo chmod a+rw /dev/kvm\n      - name: Software display\n        env:\n          DISPLAY: \':99\'\n          LIBGL_ALWAYS_SOFTWARE: \'true\'\n          GALLIUM_DRIVER: llvmpipe\n          LP_NUM_THREADS: \'2\'\n        run: |\n          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &\n          for attempt in $(seq 1 20); do\n            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi\n            sleep 0.25\n          done\n          grep -i \'OpenGL renderer string\' tour/mesa-renderer.txt\n      - name: Install and tour the exact APK\n        uses: reactivecircus/android-emulator-runner@v2\n        env:\n          LUMO_NATIVE_STAGE_MENU: \'1\'\n          DISPLAY: \':99\'\n          LIBGL_ALWAYS_SOFTWARE: \'true\'\n          GALLIUM_DRIVER: llvmpipe\n          LP_NUM_THREADS: \'2\'\n        with:\n          api-level: 35\n          target: google_apis\n          arch: x86_64\n          profile: pixel_5\n          emulator-build: \'14472402\'\n          ram-size: 3072M\n          heap-size: 512M\n          disable-animations: true\n          emulator-boot-timeout: 300\n          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none\n          script: |\n            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour\n            .probe-venv/bin/python .github/probes/lumo_nextgen_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --out tour/nextgen\n      - uses: actions/upload-artifact@v4\n        if: always()\n        with:\n          name: lumo-nextgen-2018-android-tour\n          path: tour/\n          retention-days: 30\n\n'
+
+======================================================================
+FAIL: test_historical_unified_workflow_cannot_build_2018_under_another_branch (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_historical_unified_workflow_cannot_build_2018_under_another_branch) (version='0.13.6+2018')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/scripts/tests/test_nextgen_workflow_contract.py", line 78, in test_historical_unified_workflow_cannot_build_2018_under_another_branch
+    self.assertEqual(result.returncode, expected, result.stderr)
+AssertionError: 0 != 1 : 
+
+======================================================================
+FAIL: test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches) (head='chatgpt/lumo-2018-android-acceptance-20261113', ref='462/merge')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/scripts/tests/test_nextgen_workflow_contract.py", line 141, in test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches
+    self.assertIs(eval(executable, {'__builtins__': {}}, {}), expected)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches) (head='', ref='chatgpt/lumo-2018-android-acceptance-20261113')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/scripts/tests/test_nextgen_workflow_contract.py", line 141, in test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches
+    self.assertIs(eval(executable, {'__builtins__': {}}, {}), expected)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_nextgen_has_one_automatic_apk_event_and_shared_branch_concurrency (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_nextgen_has_one_automatic_apk_event_and_shared_branch_concurrency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/scripts/tests/test_nextgen_workflow_contract.py", line 35, in test_nextgen_has_one_automatic_apk_event_and_shared_branch_concurrency
+    self.assertEqual(set(re.findall(r'^  ([a-z_]+):', triggers, re.M)),
+AssertionError: Items in the first set but not the second:
+'push'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.065s
+
+FAILED (failures=5)

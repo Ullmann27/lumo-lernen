@@ -1,0 +1,775 @@
+{
+  "schema": "lumo.nextgen.runtime6.completed-subcases.readonly-review",
+  "version": 1,
+  "reviewedUtc": "2026-11-16T08:30:41.148336+00:00",
+  "reviewStatus": "COMPLETED_SUBCASES_RECHECKED",
+  "originalOverallStatus": "FAIL",
+  "overallPass": false,
+  "release_eligible": false,
+  "workflowRun": 43828196598,
+  "artifactId": 14208352381,
+  "qaCommit": "1c84838538f79100f660fefc776d8ba7472a61a2",
+  "qaTree": "d98ca3f9ec556ad39867cc7cacd0804382eaa8d3",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "evidenceRoot": "/workspace/scratch/4fa97167812c/lumo-lernen/docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure",
+  "originalResult": {
+    "path": "android/runtime-cases/runtime-cases-result.json",
+    "bytes": 115484,
+    "sha256": "c6f33b636e734ad9d091403f773fa21aa78f177c271d6c644ca929aa49d0d7d6",
+    "local_selected_copy_identical": true,
+    "zip_crc_verified_on_read": true
+  },
+  "archive": {
+    "bytes": 61713245,
+    "sha256": "2919adada699c2614dfea8daa193d51a5f9619c2f51ed0d43909792671c67c01",
+    "partCount": 8,
+    "memberCount": 1674,
+    "readOnceIntoRam": true,
+    "partsBytesAndShaVerified": true,
+    "wholeZipShaVerified": true,
+    "centralDirectoryMemberNamesAndCountVerified": true,
+    "all1674MemberHashesIndependentlyRecomputed": false,
+    "usedMembersCRCSizeAndSHA256Verified": true,
+    "uncontrolledExtractionPerformed": false
+  },
+  "unchangedSourceFiles": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "sha256": "97017f2121fb47f2ada40bf108b26b76fd5101fe30d6689d48b2057fd7d469be",
+      "bytes": 47419,
+      "worktree_equal_qa_commit": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8",
+      "bytes": 26339,
+      "worktree_equal_qa_commit": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py",
+      "sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c",
+      "bytes": 21096,
+      "worktree_equal_qa_commit": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "sha256": "7c9cc53a453acb14e0be0c9badbeb8253a88637c984c6b1ec3f264b1a3a49892",
+      "bytes": 7227,
+      "worktree_equal_qa_commit": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
+      "bytes": 44802,
+      "worktree_equal_qa_commit": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206",
+      "bytes": 92469,
+      "worktree_equal_qa_commit": true
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_native_reader.py",
+      "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97",
+      "bytes": 5817,
+      "worktree_equal_qa_commit": true
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "sha256": "4943b286dde1c44eb7236341bb6c16b25ccbfe27e2ed6cec7cbb623c86d19994",
+      "bytes": 11091,
+      "worktree_equal_qa_commit": true
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "bytes": 65137,
+      "worktree_equal_qa_commit": true
+    }
+  ],
+  "unchangedPureFunctionsApplied": [
+    ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py::verify_runtime_config",
+    ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py::verify_numeric_submission(correct=False)",
+    ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py::verify_numeric_submission(correct=True)",
+    ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py::verify_word_switch",
+    ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py::verify_switch_viewport",
+    ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py::observed_active_next",
+    ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py::observed_switch_ready",
+    ".github/probes/lumo_nextgen_learning_android_probe.py::learning_snapshot",
+    ".github/probes/lumo_nextgen_learning_android_probe.py::checkpoint",
+    ".github/probes/lumo_nextgen_learning_android_probe.py::require_preserved",
+    ".github/probes/lumo_nextgen_learning_android_probe.py::verify_voice_settings",
+    ".github/probes/lumo_nextgen_reference_android_probe.py::action_playback",
+    ".github/probes/lumo_nextgen_2031_native_runtime_cases.py::current_events"
+  ],
+  "fullRuntimeAndNativeCompletionGatesNotReclassified": "Both require the missing native stop case. No synthetic PASS result or missing-case fixture was supplied.",
+  "numeric_wrong_then_correct": {
+    "wrong": {
+      "status": "PASS",
+      "stored_attempt": {
+        "id": "1794816534452613-0",
+        "sid": "self",
+        "sub": "Mathematik",
+        "unit": "Plus bis 20",
+        "comp": "Addition mit Zehnerübergang",
+        "ok": false,
+        "at": "2026-11-16T08:08:54.452613",
+        "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+        "a": "15",
+        "e": "16",
+        "ms": 13948
+      },
+      "lab_attempt_id": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602-2",
+      "journey_key": "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2",
+      "journey_attempts": 2,
+      "support": {
+        "checkpoint_support": 0,
+        "prior_wrong_answer": false,
+        "stored_hint_used": false,
+        "assisted_correct_delta": 0
+      },
+      "attempt_log_id_is_separate_from_lab_evidence_id": true
+    },
+    "corrected": {
+      "status": "PASS",
+      "stored_attempt": {
+        "id": "1794816541937895-1",
+        "sid": "self",
+        "sub": "Mathematik",
+        "unit": "Plus bis 20",
+        "comp": "Addition mit Zehnerübergang",
+        "ok": true,
+        "at": "2026-11-16T08:09:01.937895",
+        "hint": true,
+        "q": "9 + 7 = ? Rechne zuerst bis zur Zehn.",
+        "a": "16",
+        "e": "16",
+        "ms": 7481
+      },
+      "lab_attempt_id": "lab-attempt-bd64da4eddfab9dbba3857f6f4516602-3",
+      "journey_key": "flutter.lumo_progress_journey_v1::local-72b69a971935e429fe250826b02d60b2",
+      "journey_attempts": 3,
+      "support": {
+        "checkpoint_support": 0,
+        "prior_wrong_answer": true,
+        "stored_hint_used": true,
+        "assisted_correct_delta": 1
+      },
+      "attempt_log_id_is_separate_from_lab_evidence_id": true
+    },
+    "pre_submission_capture_preservation": {
+      "profile_id": "1794816441215694",
+      "learning_keys_compared": 3,
+      "same_task_checkpoint": true
+    },
+    "fresh_9_plus_7_xml_after_video": true
+  },
+  "flutter_switch_during_syllable_playback": {
+    "status": "PASS",
+    "preservation": {
+      "profile_id": "1794816441215694",
+      "learning_keys_compared": 7,
+      "same_task_checkpoint": false
+    },
+    "from_problem": "word-banane",
+    "to_problem": "word-rakete",
+    "same_session": true,
+    "no_new_attempt_or_reward": true,
+    "active_label": "Silbe 1: Ba, gerade aktiv",
+    "capture_to_requested_touch_seconds": 0.21917332999998962,
+    "real_input_delivery_time_measured": false,
+    "density_dpi": [
+      440,
+      320,
+      440
+    ],
+    "pixels_unchanged": [
+      1080,
+      2340
+    ],
+    "old_active_marker_absent_in_fresh_xml": true,
+    "auto_read_restored": true
+  },
+  "restoredVoiceSettings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "native_banana_slower": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "action": "slower",
+    "current_task": "Ba – na – ne",
+    "observed_control": {
+      "label": "Frag Lumo / Langsamer",
+      "observed_bounds": [
+        493.0,
+        1509.0,
+        739.0,
+        1554.0
+      ]
+    },
+    "previous_ids_from_original_log": [
+      3
+    ],
+    "playback": {
+      "pid": 6359,
+      "utterance_ids": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "segments": 4,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "ordered_original_events": [
+      [
+        "started",
+        7,
+        "lumo-free-supertonic-de-v1"
+      ],
+      [
+        "completed",
+        7,
+        ""
+      ],
+      [
+        "started",
+        8,
+        "lumo-free-supertonic-de-v1"
+      ],
+      [
+        "completed",
+        8,
+        ""
+      ],
+      [
+        "started",
+        9,
+        "lumo-free-supertonic-de-v1"
+      ],
+      [
+        "completed",
+        9,
+        ""
+      ],
+      [
+        "started",
+        10,
+        "lumo-free-supertonic-de-v1"
+      ],
+      [
+        "completed",
+        10,
+        ""
+      ]
+    ],
+    "model_before": {
+      "kind": "syllables",
+      "word": "Banane",
+      "placed": 0,
+      "total": 3,
+      "visible_label": "0 / 3 bewegt"
+    },
+    "model_after": {
+      "kind": "syllables",
+      "word": "Banane",
+      "placed": 0,
+      "total": 3,
+      "visible_label": "0 / 3 bewegt"
+    },
+    "model_images_visually_reviewed": [
+      "0343-runtime-banana-before-slower.png",
+      "0385-runtime-banana-after-slower.png"
+    ],
+    "preservation_recomputed_from_original_preferences": {
+      "profile_id": "1794816441215694",
+      "learning_keys_compared": 7,
+      "same_task_checkpoint": true
+    },
+    "entire_preferences_file_claimed_identical": false,
+    "video": {
+      "file": "0350-runtime-banana-four-slower-segments.mp4",
+      "bytes": 1212933,
+      "sha256": "f142496416982d79e37d9b405cbb9af423e8287981d1caca659901b6f4974a64",
+      "duration_seconds": 81.996644,
+      "video_streams": 1,
+      "width": 1080,
+      "height": 2340,
+      "audio_streams": 0,
+      "nb_frames": "82",
+      "transfer_json": "0350-runtime-banana-four-slower-segments-video-transfer.json",
+      "transfer_status": "VERIFIED_TRANSFER"
+    },
+    "segment_order_source_contract": [
+      "Banane",
+      "Ba",
+      "na",
+      "ne"
+    ],
+    "spoken_segment_words_verified_acoustically": false,
+    "speed_verified_acoustically": false,
+    "mouth_timing_verified": false,
+    "stop_verified": false
+  },
+  "native_stop": {
+    "status": "NOT_COMPLETED",
+    "stopTapVerified": false,
+    "originalError": "Command '('tesseract', 'evidence/android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-8.png', 'evidence/android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-8', '--psm', '6', '-l', 'deu+eng', 'tsv')' timed out after 0.02607989000011912 seconds",
+    "failedAt": "observed_voice_target before stop_active_playback calls probe.touch",
+    "claim": "No acoustic, mouth/gesture, millisecond stop or completed stop control is certified."
+  },
+  "videosIndependentlyReadWithFfprobe": [
+    {
+      "file": "0118-numeric-build-before-graded-recall.mp4",
+      "bytes": 794523,
+      "sha256": "73a6fdf907d76b722ba40bbea7d0f701d299fcd52e82bb7c98204130c4fdc03a",
+      "duration_seconds": 5.275022,
+      "video_streams": 1,
+      "width": 1080,
+      "height": 2340,
+      "audio_streams": 0,
+      "nb_frames": "27",
+      "transfer_json": "0118-numeric-build-before-graded-recall-video-transfer.json",
+      "transfer_status": "VERIFIED_TRANSFER"
+    },
+    {
+      "file": "0145-numeric-wrong-submission.mp4",
+      "bytes": 681005,
+      "sha256": "5917661f8bc0283057dce7091bac4619f89079abb6a0f8318e0eb06bf5a1498a",
+      "duration_seconds": 6.107767,
+      "video_streams": 1,
+      "width": 1080,
+      "height": 2340,
+      "audio_streams": 0,
+      "nb_frames": "39",
+      "transfer_json": "0145-numeric-wrong-submission-video-transfer.json",
+      "transfer_status": "VERIFIED_TRANSFER"
+    },
+    {
+      "file": "0159-numeric-corrected-submission.mp4",
+      "bytes": 605123,
+      "sha256": "1d44dbc746443b930f4497525c4088d5998510959bbe9066f16ff072ded3c185",
+      "duration_seconds": 5.7948,
+      "video_streams": 1,
+      "width": 1080,
+      "height": 2340,
+      "audio_streams": 0,
+      "nb_frames": "37",
+      "transfer_json": "0159-numeric-corrected-submission-video-transfer.json",
+      "transfer_status": "VERIFIED_TRANSFER"
+    },
+    {
+      "file": "0216-switch-during-actual-active-syllable.mp4",
+      "bytes": 646148,
+      "sha256": "405583622e00835e2f2f85c2d4f5760d975e041a32629b5688200fc5756cb96a",
+      "duration_seconds": 8.922478,
+      "video_streams": 1,
+      "width": 1080,
+      "height": 2340,
+      "audio_streams": 0,
+      "nb_frames": "24",
+      "transfer_json": "0216-switch-during-actual-active-syllable-video-transfer.json",
+      "transfer_status": "VERIFIED_TRANSFER"
+    },
+    {
+      "file": "0350-runtime-banana-four-slower-segments.mp4",
+      "bytes": 1212933,
+      "sha256": "f142496416982d79e37d9b405cbb9af423e8287981d1caca659901b6f4974a64",
+      "duration_seconds": 81.996644,
+      "video_streams": 1,
+      "width": 1080,
+      "height": 2340,
+      "audio_streams": 0,
+      "nb_frames": "82",
+      "transfer_json": "0350-runtime-banana-four-slower-segments-video-transfer.json",
+      "transfer_status": "VERIFIED_TRANSFER"
+    }
+  ],
+  "originalFilesUsed": [
+    {
+      "path": "android/runtime-cases/0118-numeric-build-before-graded-recall-video-transfer.json",
+      "bytes": 2063,
+      "sha256": "dad0303cd9e8c9e19b7e198c9b7a125aa8c699b4802f46887248d076afe284dc",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0118-numeric-build-before-graded-recall.mp4",
+      "bytes": 794523,
+      "sha256": "73a6fdf907d76b722ba40bbea7d0f701d299fcd52e82bb7c98204130c4fdc03a",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0139-bridge-checkpoint-preferences.xml",
+      "bytes": 3819,
+      "sha256": "bff3d216a6c5e3ef1760fdb97373e471aad42f377c043932df0e9671f40d3e7d",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0140-numeric-before-first-check-preferences.xml",
+      "bytes": 3819,
+      "sha256": "bff3d216a6c5e3ef1760fdb97373e471aad42f377c043932df0e9671f40d3e7d",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0141-numeric-nine-plus-seven-after-video.xml",
+      "bytes": 25719,
+      "sha256": "d76f0eba009cc73532fe59a0bd3c91517dc8713293e4096447ea92e995c4d6ea",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0142-bridge-checkpoint-preferences.xml",
+      "bytes": 3819,
+      "sha256": "bff3d216a6c5e3ef1760fdb97373e471aad42f377c043932df0e9671f40d3e7d",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0143-numeric-after-build-video-preferences.xml",
+      "bytes": 3819,
+      "sha256": "bff3d216a6c5e3ef1760fdb97373e471aad42f377c043932df0e9671f40d3e7d",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0144-numeric-before-wrong-answer.png",
+      "bytes": 443033,
+      "sha256": "31a6cbf3e0ad1539dfd15af1435d887a1f5c326a22c3880eed4de1f076afa87f",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0145-numeric-wrong-submission-video-transfer.json",
+      "bytes": 1992,
+      "sha256": "9af08218531fa37401fb8c985b02a54cf3f03cbd29d2d25ecd94f88805b8b5c3",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0145-numeric-wrong-submission.mp4",
+      "bytes": 681005,
+      "sha256": "5917661f8bc0283057dce7091bac4619f89079abb6a0f8318e0eb06bf5a1498a",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0154-bridge-checkpoint-preferences.xml",
+      "bytes": 5328,
+      "sha256": "9fd026a10c8007daa925b05d4426a3fa030e56c117a7276b8b26bfddde35359c",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0157-numeric-wrong-stored-preferences.xml",
+      "bytes": 5328,
+      "sha256": "9fd026a10c8007daa925b05d4426a3fa030e56c117a7276b8b26bfddde35359c",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0158-numeric-wrong-after-assessment.png",
+      "bytes": 458059,
+      "sha256": "56d17342a49c4e72bffaf7c85c5d631190ab19a6d3e599a8e8c5658567a0d0a5",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0159-numeric-corrected-submission-video-transfer.json",
+      "bytes": 2020,
+      "sha256": "437944539721fb2c3df4aa6a669883d9ed9d8f09992b81f9cee9d97144d5cf4e",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0159-numeric-corrected-submission.mp4",
+      "bytes": 605123,
+      "sha256": "1d44dbc746443b930f4497525c4088d5998510959bbe9066f16ff072ded3c185",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0168-bridge-checkpoint-preferences.xml",
+      "bytes": 5943,
+      "sha256": "13ae1afb790d338e6312917834904419108f9039a97b27997293aa6e46e0c7a3",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0171-numeric-corrected-stored-preferences.xml",
+      "bytes": 5943,
+      "sha256": "13ae1afb790d338e6312917834904419108f9039a97b27997293aa6e46e0c7a3",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0172-numeric-corrected-after-assessment.png",
+      "bytes": 503760,
+      "sha256": "e7d7e336a03a27219b277b5ffc78f0abf60ef4c107571bc81d58044cee18249b",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0208-words-checkpoint-preferences.xml",
+      "bytes": 7103,
+      "sha256": "bdc80cdef382c7f2173c62b20cd2b409f98efb588503944488c8755ec66b1ff1",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0209-switch-learning-before-preferences.xml",
+      "bytes": 7103,
+      "sha256": "bdc80cdef382c7f2173c62b20cd2b409f98efb588503944488c8755ec66b1ff1",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0211-switch-original-density.png",
+      "bytes": 624450,
+      "sha256": "89f6fd9069ec4dc98607f2d08bf2d467e95249de5cd0de9ca220f5f2a69778fa",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0213-words-checkpoint-preferences.xml",
+      "bytes": 7103,
+      "sha256": "bdc80cdef382c7f2173c62b20cd2b409f98efb588503944488c8755ec66b1ff1",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0214-switch-density-320-learning-preferences.xml",
+      "bytes": 7103,
+      "sha256": "bdc80cdef382c7f2173c62b20cd2b409f98efb588503944488c8755ec66b1ff1",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0215-switch-density-320.png",
+      "bytes": 624450,
+      "sha256": "89f6fd9069ec4dc98607f2d08bf2d467e95249de5cd0de9ca220f5f2a69778fa",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0216-switch-during-actual-active-syllable-video-transfer.json",
+      "bytes": 2076,
+      "sha256": "238b1767ade5e15e5adf7370625a3a7b39ac1295e2d5e12f9e806e5b617e8c26",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0216-switch-during-actual-active-syllable.mp4",
+      "bytes": 646148,
+      "sha256": "405583622e00835e2f2f85c2d4f5760d975e041a32629b5688200fc5756cb96a",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0218-switch-joint-viewport-before-replay.png",
+      "bytes": 643076,
+      "sha256": "a9119baa195a6db350e7d36f295bfed98368026ec8290e4f9a5da5c7a324e839",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0219-switch-final-joint-viewport.xml",
+      "bytes": 27443,
+      "sha256": "0433725eb0060e39876cc75eb1ce845f6ff9f1444dc2a62f7ce37c0e03c3db54",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0240-switch-live-active-and-next.xml",
+      "bytes": 27456,
+      "sha256": "7810d8b1cb2f70124df5239fb5bd02b2f3910b94da11a1a3fce30a15e8e4ed70",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0242-words-checkpoint-preferences.xml",
+      "bytes": 7046,
+      "sha256": "05d88db8315eec42450ac9dba22cdd67551ba465450d79911489b33b14e0e946",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0243-switch-new-rakete-prompt.xml",
+      "bytes": 25724,
+      "sha256": "1d2b7ae7bcd6ce4a2303218a73d1585ffff67c128aceb60040e99e3dce6e7d57",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0245-switch-no-old-active-syllable.xml",
+      "bytes": 25724,
+      "sha256": "1d2b7ae7bcd6ce4a2303218a73d1585ffff67c128aceb60040e99e3dce6e7d57",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0246-switch-learning-after-preferences.xml",
+      "bytes": 7046,
+      "sha256": "05d88db8315eec42450ac9dba22cdd67551ba465450d79911489b33b14e0e946",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0247-switch-new-unanswered-rakete.png",
+      "bytes": 293817,
+      "sha256": "417c93db3bbedf90f0218b1e74fb57387f621c63f9079734a3670fcfb3caf9aa",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0249-words-checkpoint-preferences.xml",
+      "bytes": 7046,
+      "sha256": "05d88db8315eec42450ac9dba22cdd67551ba465450d79911489b33b14e0e946",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0250-switch-restored-learning-preferences.xml",
+      "bytes": 7046,
+      "sha256": "05d88db8315eec42450ac9dba22cdd67551ba465450d79911489b33b14e0e946",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0251-switch-original-density-restored.png",
+      "bytes": 293817,
+      "sha256": "417c93db3bbedf90f0218b1e74fb57387f621c63f9079734a3670fcfb3caf9aa",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0263-voice-before-preferences.xml",
+      "bytes": 7046,
+      "sha256": "05d88db8315eec42450ac9dba22cdd67551ba465450d79911489b33b14e0e946",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0293-voice-after-preferences.xml",
+      "bytes": 7045,
+      "sha256": "73d5e19a09ba9c6125e536009384719f0e1d39ce224cfc1364aca34aa445d24d",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0295-runtime-auto-read-restored-preferences.xml",
+      "bytes": 7045,
+      "sha256": "73d5e19a09ba9c6125e536009384719f0e1d39ce224cfc1364aca34aa445d24d",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0330-runtime-banana-before-native-preferences.xml",
+      "bytes": 7045,
+      "sha256": "73d5e19a09ba9c6125e536009384719f0e1d39ce224cfc1364aca34aa445d24d",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0343-runtime-banana-before-slower.png",
+      "bytes": 583804,
+      "sha256": "b0385c1056d8203ff8ebb9634faec48b9ea034fae3ee301c2b01d99313e6f618",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0349-native-speech.txt",
+      "bytes": 21248,
+      "sha256": "7666d90fa26fb21fc34fc58d82ff23dd2a41e927da91993c4ebdbb2cd5f36ffb",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0350-runtime-banana-four-slower-segments-video-transfer.json",
+      "bytes": 2075,
+      "sha256": "8a1ccdbcc8e65abc29ca48df557b15fe36721522c2470d11263d0116b7aaea8d",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0350-runtime-banana-four-slower-segments.mp4",
+      "bytes": 1212933,
+      "sha256": "f142496416982d79e37d9b405cbb9af423e8287981d1caca659901b6f4974a64",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0351-runtime-banana-slower-touch.json",
+      "bytes": 112,
+      "sha256": "c624e511c91a0370eda44fc7896e7fe100e71fc260abc65bcd2afaae7f045e14",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0382-native-speech.txt",
+      "bytes": 25014,
+      "sha256": "fa69e1c62e1fe6e0d0e4f5002246554decd448a457b122cad013953e2f147940",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0385-runtime-banana-after-slower.png",
+      "bytes": 621070,
+      "sha256": "bd3f7e3f5e71bae112298d884f1f03695958b9ad0bafba7c869de986c174822f",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0398-runtime-banana-after-native-preferences.xml",
+      "bytes": 7410,
+      "sha256": "86a26d27b945c7e881ffb51387161b4363f149ceff78e009da6c9d42aa27dbd1",
+      "local_selected_copy_identical": null,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/0401-runtime-banana-return-academy.png",
+      "bytes": 901925,
+      "sha256": "c98c46a9c1e67fe0bcf15148086934f2072b1dc64ceb6ee257e84420188c3b31",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    },
+    {
+      "path": "android/runtime-cases/runtime-cases-result.json",
+      "bytes": 115484,
+      "sha256": "c6f33b636e734ad9d091403f773fa21aa78f177c271d6c644ca929aa49d0d7d6",
+      "local_selected_copy_identical": true,
+      "zip_crc_verified_on_read": true
+    }
+  ],
+  "executionBoundary": {
+    "newAndroidRun": false,
+    "testSuiteExecuted": false,
+    "codeChanged": false,
+    "repositoryChanged": false,
+    "remoteMutation": false,
+    "newMediaGenerated": false,
+    "existingVideoMetadataReadOnly": true,
+    "writes": "Only this derived Scratch JSON."
+  },
+  "limitations": [
+    "This verifies three completed subcases inside an unchanged FAIL run; it is not a complete supplemental acceptance.",
+    "9+7 was entered as text: wrong 15 then assisted correct 16; no spoken misrecognition and not an 8+5 numeric answer case.",
+    "The Flutter switch is bound to active syllable semantics and the next control in one original XML. Capture to requested tap is measured; actual input delivery and acoustic playback are not.",
+    "The switch uses 1080x2340 pixels with temporary 320dpi and exact restoration to440dpi; it is not a physical device/Fold proof.",
+    "Native logs prove ordered MediaPlayer callbacks. Word sequence and slower-rate formula are source contracts, not recorded words or an acoustic tempo measurement.",
+    "Profile plus seven canonical learning/reward keys were compared around native Banane; entire SharedPreferences XML equality is not claimed.",
+    "All videos inspected here have no audio stream."
+  ]
+}

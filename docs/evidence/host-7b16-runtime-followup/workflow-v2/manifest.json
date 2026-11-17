@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "files": {
+    "README.md": {
+      "bytes": 972,
+      "sha256": "4bbf48240ec0d9877c2e482c99ea5185614ce23008e8b4505cb610a592be2784"
+    },
+    "actionlint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "after/.github/workflows/lumo-android-runtime-7b16-followup.yml": {
+      "bytes": 13521,
+      "sha256": "a0f99f5bdf09a6f20e1800425497129f9ce9b3e68b19ca3d1a38feb9eab51a31"
+    },
+    "after/scripts/tests/test_runtime_followup_workflow.py": {
+      "bytes": 10381,
+      "sha256": "15d0d7aa8a37aff6ff6d419135d73674a9a5ea236d03174238a14eb325adad83"
+    },
+    "before/.github/workflows/lumo-android-runtime-7b16-followup.yml": {
+      "bytes": 13465,
+      "sha256": "b6573b0ee0a2364b305e69693813b358a65245e1143876c09c8b0aecb809a71c"
+    },
+    "before/scripts/tests/test_runtime_followup_workflow.py": {
+      "bytes": 10332,
+      "sha256": "6c65b0957e388eedb53d973de12aa8a799accde6a2a968678ec584bc8be1c473"
+    },
+    "before.json": {
+      "bytes": 334,
+      "sha256": "d0c59bf422d2454459ec3295825c89481d8f263430df8d23c4faaba0b67a2756"
+    },
+    "handoff.json": {
+      "bytes": 757,
+      "sha256": "1cb7a27edb5d3262697d85c2ba2abe5ef2cb017f699341d9f4104bc7bee39460"
+    },
+    "source-freeze.json": {
+      "bytes": 1210,
+      "sha256": "556776a6152f8c0e62ddf497ccdfc3ea7bbf8fb60656e5303793ad7a0b5f78df"
+    },
+    "tests-after.json": {
+      "bytes": 1426,
+      "sha256": "f1c2fe70b6d735888614c961a68f3f489cd6a13d43b5ff4e375757b799e7507d"
+    },
+    "tests-before.json": {
+      "bytes": 1426,
+      "sha256": "f1c2fe70b6d735888614c961a68f3f489cd6a13d43b5ff4e375757b799e7507d"
+    },
+    "v1-to-v2.patch": {
+      "bytes": 1073,
+      "sha256": "0b84dbadc2326a0a1c5796236574a07fada5fb4459e2837e8d5ba9c0817be854"
+    },
+    "validation.json": {
+      "bytes": 1225,
+      "sha256": "d3758d8611ba823fd30239a3d1e253970f8a28a7cd7f5d9983e8197390827afa"
+    },
+    "workflow-and-routes.log": {
+      "bytes": 2462,
+      "sha256": "d912d2e24513436d6a4384b84d8ca72690db957f6e9ad9d8691246c2384c02b1"
+    }
+  },
+  "count": 14,
+  "bytes": 58584
+}

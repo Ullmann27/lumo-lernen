@@ -7,6 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -16,6 +17,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 class ArtikelLernenScreen extends StatefulWidget {
@@ -50,6 +52,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
     ['das', 'Wasser', '💧'], ['das', 'Bett', '🛏️'], ['das', 'Fahrrad', '🚲'],
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -120,6 +123,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
     });
     final isCorrect = answer == _correctArticle;
     final saved = await _progress.saveAnswer(
+      problemKey: 'Artikel: $_word',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 6 : 0,
@@ -226,6 +230,27 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 'd2_artikel',
+        taskKey: _taskIdx,
+        prompt: 'Welcher Artikel passt zu „$_word“?',
+        objective: 'Du verbindest ein Nomen mit seinem Artikel.',
+        answerChoices: const ['der', 'die', 'das'],
+        onConfirmChoice: (index) => _onAnswer(['der', 'die', 'das'][index]),
+        helpSteps: [
+          'Sprich das Wort „$_word“ einmal mit jedem Artikel: der, die, das.',
+          'Setze „$_word“ in einen kleinen Satz: Hier ist … $_word. Probiere die drei Artikel einzeln.',
+          'Den Artikel lernen wir zusammen mit dem Nomen: $_correctArticle $_word. Sprich beides und wähle dann selbst.',
+        ],
+        answering: !_answered,
+        lastAnswer: _selectedAnswer,
+        lastCorrect: _answered ? _selectedAnswer == _correctArticle : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -241,7 +266,8 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
         progressLabel: 'Wort',
         hasMistake: _answered && _selectedAnswer != _correctArticle,
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -262,7 +288,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
             const SizedBox(height: 16),
             _buildAnswerColumn(),
           ]),
-        ),
+        )),
       ),
     );
   }
@@ -291,7 +317,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
           ],
         ),
         child: Column(children: [
-          Text(_emoji, style: const TextStyle(fontSize: 80)),
+          LumoTaskObjectArt(name: _word, emoji: _emoji, size: 96),
           const SizedBox(height: 8),
           Text(_word,
               style: TextStyle(

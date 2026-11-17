@@ -1,0 +1,22 @@
+{
+  "artifactId": 14201531176,
+  "workflowRun": 43812538819,
+  "archiveBytes": 15469393,
+  "archiveSha256": "8290ce1dfcd5779df8e2de1c3900fb8eada31ed6f48cf7236c23ad666da1dac8",
+  "format": "Ordered byte-exact concatenation of listed parts reconstructs original ZIP",
+  "partSizeLimit": 8388608,
+  "allOriginalsRetainedInArchiveParts": true,
+  "memberVerification": "artifact-verification.json",
+  "parts": [
+    {
+      "path": "archive-parts/artifact.zip.part001",
+      "bytes": 8388608,
+      "sha256": "d27b4e6a1cb97bb506a4dc4d42bcb836b9c5826e92eb46ba2766cb1b8b7bcf79"
+    },
+    {
+      "path": "archive-parts/artifact.zip.part002",
+      "bytes": 7080785,
+      "sha256": "21a0f61bc0ae7dac99133efa6df5b096c5aa8152d7560962b057fabc9df1d725"
+    }
+  ]
+}

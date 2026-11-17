@@ -1,0 +1,96 @@
+{
+  "baseCommit": "daa69bf4d639ee1a35a4938bfb469311f85eec4c",
+  "testExecutionHead": "6063dfe429ab3b2ac4f0144d92028066e18e747b",
+  "testExecutionSourceState": "The two source/test files were modified in this own worktree; exact tested bytes are bound below and retained in the final commit.",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 92469,
+      "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "bytes": 92612,
+      "sha256": "bfb4da34651acc7059055d0a49f47d7b55ec86b694a7c3c7b92d7b16d3861075"
+    }
+  ],
+  "originalFixtureManifest": {
+    "path": "tools/android_qa/tests/fixtures/nextgen_recording_offline_43814971553/manifest.json",
+    "bytes": 1836,
+    "sha256": "6f2404af49a53a861fe54e127002d015f2ac73ed822ac9df8c53396025c82482"
+  },
+  "unchangedMethods": [
+    {
+      "method": "recording",
+      "byteIdenticalToBase": true,
+      "sourceSha256": "d51f33f80579c1b2a265e04eea29f240c65f2972f381671f45bdafee165a433d"
+    },
+    {
+      "method": "task_roundtrips",
+      "byteIdenticalToBase": true,
+      "sourceSha256": "07f8ac11b78155c4152ed23b9a026f8a7d8874146cfadc10b88200bc534c7568"
+    }
+  ],
+  "logs": [
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/joined-green.log",
+      "bytes": 4008,
+      "sha256": "6ea7e9189bc7aa514437546fd617bf7dabd65368f97be597bc5eebf8472f5192"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/red.log",
+      "bytes": 1317,
+      "sha256": "4d997b3c0e9e3cd423c9b0912f276037839349eeb9aa370413b5ec510cb33763"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_offline_2031_20261116/transfer-green-first.log",
+      "bytes": 2211,
+      "sha256": "b7bd9389da5323893a782f21b20cee810f52b2d070d81ec8fb2df9edefa4828d"
+    }
+  ],
+  "red": {
+    "registered": 2,
+    "failures": 1,
+    "exitCode": 1,
+    "productionUnchanged": true
+  },
+  "green": {
+    "focusedRegistered": 10,
+    "joinedRegistered": 19,
+    "joinedPassed": 19,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "joinedCommand": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_nextgen_learning_android_probe.py",
+    "-k",
+    "RecordingTransferTest",
+    "-k",
+    "ResizeRecordingTest",
+    "-k",
+    "ForegroundTransitionTest",
+    "-v"
+  ],
+  "astParsed": true,
+  "diffCheck": "PASS",
+  "productChanged": false,
+  "workflowChanged": false,
+  "remoteActions": false,
+  "androidExecuted": false,
+  "originalStatus": "FAIL",
+  "newRuntimeStatus": "NOT_RUN",
+  "limits": [
+    "Only the exact offline response after an aborted copy is passively observed again.",
+    "Overall90s/two-copy/owned-PID/file-identity/positive-video gates remain required.",
+    "Constructed ADB/identity/positive-decoder boundaries are not a successful Android recovery."
+  ]
+}

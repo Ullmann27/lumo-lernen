@@ -1,0 +1,24 @@
+== Lumo Zero-Defect Repair Guard ==
+ok file: pubspec.yaml
+ok file: lib/main.dart
+ok file: lib/app/app_shell.dart
+ok file: lib/app/app_state.dart
+ok file: lib/features/home/home_content.dart
+ok file: lib/features/learning/learning_content.dart
+ok file: lib/features/learning/renderers/adaptive_task_renderer.dart
+ok file: lib/features/reading/reading_content.dart
+ok file: lib/features/settings/settings_content.dart
+ok file: lib/features/agent/lumo_agent_content.dart
+ok file: lib/widgets/shell/left_navigation.dart
+ok file: lib/core/lumo_voice.dart
+ok file: lib/core/lumo_speech_listener.dart
+ok file: lib/core/ai_tutor_service.dart
+ok file: lib/core/lumo_tutor_engine.dart
+ok file: lib/core/reading_v2_pronunciation_analyzer.dart
+ok connection: pubspec.yaml -> assets/images/
+ok connection: pubspec.yaml -> assets/videos/
+ok connection: lib/main.dart -> WidgetsFlutterBinding.ensureInitialized()
+ok connection: lib/main.dart -> runApp(const LumoApp())
+ok connection: lib/main.dart -> try {
+ok connection: lib/main.dart -> profile = null
+REPAIR-GUARD-FAIL: Missing connection in lib/main.dart: AppShell(profile: _profile

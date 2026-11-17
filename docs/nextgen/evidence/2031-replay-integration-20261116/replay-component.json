@@ -1,0 +1,28 @@
+{
+  "producerCommit": "d0b0de4f4a57efefb9bd40c0c25ddc80e57cfd2b",
+  "publishedCommit": "5b08d82e6939288a324ba50442794bbbb2f8cd94",
+  "publishedTree": "800cbe5d47c84d63b81cd1eded84c622921e177b",
+  "integrationProducerCommit": "e6dfb1a44bbbdf86db0227dbf607784916783fa1",
+  "integrationProducerTree": "87f9038dbaa6da335f4febe546869dd9f21e550b",
+  "all15OwnerFilesByteEqual": true,
+  "ownerHandoffSha256": "e2f66fc869ef0b92b366ed6515abcec991c3b34656e7d5996fb5ff0f1474aea3",
+  "rootSourceReview": [
+    "All2031 source/job/artifact/APK/PCK/version/certificate constants match retained originals.",
+    "Inherited CurrentCandidateProbe preserves current wrapped-pattern reader; original/full-reference gates unchanged.",
+    "Original shell failure prevents reference run/reset; replay source boundary compares committed trees, including sparse-hidden runtime paths.",
+    "Publisher binds31 actual source/helper/test files, requires originalFAIL and completed current replay, exact ARM64 bytes and matching native pack.",
+    "Actual404 required before new release; public release/tag bind APK source; anonymous full byte/hash download uses existing helper."
+  ],
+  "joinedHostGateTests": {
+    "passed": 168,
+    "failed": 0,
+    "skipped": 0,
+    "log": "integrated-complete-replay-gates.log",
+    "overlappingOwner81And24NotAdded": true
+  },
+  "runtimeChangesAgainstApkSource": false,
+  "newAndroidPass": false,
+  "activationBranch": "qa/lumo-nextgen-2031-android-20261116",
+  "activationBranchExistingBase": "8d920eeebe8a5b19ad65aa1ce0ccfb03b8c766a1",
+  "publicationConfigExists": false
+}

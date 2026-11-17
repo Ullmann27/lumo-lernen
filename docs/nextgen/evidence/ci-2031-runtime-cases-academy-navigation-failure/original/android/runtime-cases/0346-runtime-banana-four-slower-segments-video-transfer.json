@@ -1,0 +1,49 @@
+{
+  "status": "VERIFIED_TRANSFER",
+  "remote": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0346-runtime-banana-four-slower-segments.mp4",
+  "owned_recorder_pid": "6718",
+  "maximum_seconds": 90,
+  "maximum_transfers": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "local": "0346-runtime-banana-four-slower-segments.mp4.pull-1.partial",
+      "adb_output": "/sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0346-runtime-banana-four-slower-segments.mp4: 1 file pulled, 0 skipped. 18.4 MB/s (1056206 bytes in 0.055s)",
+      "status": "VERIFIED_TRANSFER",
+      "bytes": 1056206,
+      "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272",
+      "verified_file": "0346-runtime-banana-four-slower-segments.mp4"
+    }
+  ],
+  "remote_observations": [
+    {
+      "stage": "before-transfer",
+      "screenrecord_pids": "",
+      "serial_output": "emulator-5554",
+      "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+      "size_output": "1056206",
+      "sha256_output": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0346-runtime-banana-four-slower-segments.mp4"
+    },
+    {
+      "stage": "after-complete-transfer",
+      "screenrecord_pids": "",
+      "serial_output": "emulator-5554",
+      "boot_id_output": "db321c59-dc20-4a0a-8218-d74921c7e822",
+      "size_output": "1056206",
+      "sha256_output": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272  /sdcard/lumo-learning-978061c0c9124e0f8f3a0e15f2a31a33-0346-runtime-banana-four-slower-segments.mp4"
+    }
+  ],
+  "recording_or_ui_repeated": false,
+  "device_identity": {
+    "serial": "emulator-5554",
+    "boot_id": "db321c59-dc20-4a0a-8218-d74921c7e822"
+  },
+  "expected": {
+    "bytes": 1056206,
+    "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272"
+  },
+  "file": "0346-runtime-banana-four-slower-segments.mp4",
+  "bytes": 1056206,
+  "sha256": "22114b71c69a28dee00e59eb39f00954544dd7d0b94fca9a1028863dc7db5272",
+  "elapsed_seconds": 1.985
+}

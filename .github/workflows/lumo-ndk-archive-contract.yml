@@ -1,0 +1,32 @@
+name: Lumo NDK unknown archive recovery contract
+on:
+  push:
+    branches:
+      - chatgpt/lumo-stability-ndk-unknown-archive-2026-10-17
+    paths:
+      - scripts/install_ndk_for_build.sh
+      - scripts/tests/test_install_ndk_for_build.py
+      - .github/workflows/lumo-ndk-archive-contract.yml
+  pull_request:
+    branches:
+      - chatgpt/lumo-stabilisierung-2026-10-17
+    paths:
+      - scripts/install_ndk_for_build.sh
+      - scripts/tests/test_install_ndk_for_build.py
+      - .github/workflows/lumo-ndk-archive-contract.yml
+permissions:
+  contents: read
+jobs:
+  ndk-fail-closed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Shell syntax
+        run: bash -n scripts/install_ndk_for_build.sh
+      - name: Exact NDK integration and adversarial recovery scenarios
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s scripts/tests -p 'test_install_ndk_for_build.py' -v

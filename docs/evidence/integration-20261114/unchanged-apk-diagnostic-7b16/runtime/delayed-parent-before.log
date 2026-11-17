@@ -1,0 +1,14 @@
+test_monitor_start_stamp_precedes_child_with_delayed_parent (scripts.tests.test_verify_android_runtime_anr.MonitorDurationTests.test_monitor_start_stamp_precedes_child_with_delayed_parent) ... FAIL
+
+======================================================================
+FAIL: test_monitor_start_stamp_precedes_child_with_delayed_parent (scripts.tests.test_verify_android_runtime_anr.MonitorDurationTests.test_monitor_start_stamp_precedes_child_with_delayed_parent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/scripts/tests/test_verify_android_runtime_anr.py", line 277, in test_monitor_start_stamp_precedes_child_with_delayed_parent
+    self.assertLessEqual(ANR.timestamp(info["started_at"]), ANR.timestamp(child["wait_started_at"]))
+AssertionError: datetime.datetime(2026, 11, 14, 2, 28, 48, tzinfo=datetime.timezone.utc) not less than or equal to datetime.datetime(2026, 11, 14, 2, 28, 39, tzinfo=datetime.timezone.utc)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

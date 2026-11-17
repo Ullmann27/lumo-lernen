@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "scope": "Only known Host PR491/492/493 since previous09:15 snapshot; no Native scan, no current C4-run poll.",
+  "snapshot_utc": "2026-11-14T09:44:38Z",
+  "integrated_source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "integrated_tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+  "prs": [
+    {
+      "pr": 491,
+      "previous_head": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "current_head": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "source_changed": false,
+      "head_ref": "work/lumo-play-quality-20261114",
+      "base_snapshot_sha": "729585db3f49ecff7f0632439f90edb882f09454",
+      "updated_at": "2026-11-14T09:36:54Z",
+      "original": {
+        "path": "/tmp/host-producer-incremental-20261114-094438/originals/pr-491.json",
+        "bytes": 25305,
+        "sha256": "ec0cd6aa8d5a794fab9e9bf1e770b88ff5e2370ee6c834733ddcbcc639373249",
+        "git_blob": "cbdf3fc2e105ac864354bb6264d01ed9d5085a65"
+      }
+    },
+    {
+      "pr": 492,
+      "previous_head": "de3b74c56052794196b9f14fc65a13412209651f",
+      "current_head": "de3b74c56052794196b9f14fc65a13412209651f",
+      "source_changed": false,
+      "head_ref": "work/lumo-dream-ui-recovery-20261114",
+      "base_snapshot_sha": "4564ad40c4d000b764e67719d19bd2445c04c870",
+      "updated_at": "2026-11-14T08:49:44Z",
+      "original": {
+        "path": "/tmp/host-producer-incremental-20261114-094438/originals/pr-492.json",
+        "bytes": 21348,
+        "sha256": "fdb256552d648811cac9b97ea5fd6f023feb2a3514b507704e8b8bf4cde9d3f6",
+        "git_blob": "873f199a29b8a4a693d7cfc305e60af048d50fe0"
+      }
+    },
+    {
+      "pr": 493,
+      "previous_head": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+      "current_head": "26a127bb897c9dd0832512d2ae3b80a6495f7f7e",
+      "source_changed": true,
+      "head_ref": "integration/lumo-agent-execution-20261114",
+      "base_snapshot_sha": "2b586530db4f2cb20c28f426e2549342316151bf",
+      "updated_at": "2026-11-14T09:40:53Z",
+      "original": {
+        "path": "/tmp/host-producer-incremental-20261114-094438/originals/pr-493.json",
+        "bytes": 20771,
+        "sha256": "c9cbbccf696f36237c04b94b7b3671cca0fb2ff1fef91400bf7911091bf2d876",
+        "git_blob": "db19e4fd832467e105c0f762cb0ee5a6914d5061"
+      }
+    }
+  ],
+  "compare": {
+    "base": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+    "merge_base": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+    "head": "26a127bb897c9dd0832512d2ae3b80a6495f7f7e",
+    "head_tree": "d58fd7f8353f05bb3f327b08ec1fa37e1ccb1264",
+    "ahead_by": 4,
+    "behind_by": 0,
+    "file_count": 54,
+    "commits": [
+      {
+        "sha": "2b586530db4f2cb20c28f426e2549342316151bf",
+        "tree": "bffa6832adf0e5205a93ff964cc69d19457f7a8e",
+        "parents": [
+          "729585db3f49ecff7f0632439f90edb882f09454"
+        ]
+      },
+      {
+        "sha": "bb968e2807be266d9ff990e9a1e73e05c9cacaa5",
+        "tree": "8b6b86df28faf8f32a5d5ca528be13d074a8561f",
+        "parents": [
+          "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34"
+        ]
+      },
+      {
+        "sha": "51a33d79bcd94ae6ad310f61c9bf90f8a6a73244",
+        "tree": "c40221d6810adc94cee21cbc8472bb32182184da",
+        "parents": [
+          "bb968e2807be266d9ff990e9a1e73e05c9cacaa5"
+        ]
+      },
+      {
+        "sha": "26a127bb897c9dd0832512d2ae3b80a6495f7f7e",
+        "tree": "d58fd7f8353f05bb3f327b08ec1fa37e1ccb1264",
+        "parents": [
+          "51a33d79bcd94ae6ad310f61c9bf90f8a6a73244",
+          "2b586530db4f2cb20c28f426e2549342316151bf"
+        ]
+      }
+    ]
+  },
+  "conclusions": {
+    "491": "No new source commit since prior snapshot; metadata update alone is not product work.",
+    "492": "No new source commit since prior snapshot.",
+    "493_fixture": "A real missing historical QA-side source fixture is reproduced on79c and fixed only in the test. Candidate isolation alone did not isolate the QA-side pin.",
+    "493_product": "No additional product change is recommended. The shared scroll area, 48dp targets, padding and pressedScale=1 are already integrated. Remaining code is equivalent reordering/renaming plus explicit Stack width in the already bounded shared parent. This is a source review, not a layout execution.",
+    "493_tests": "Three separate visibility/RenderBox test improvements are preserved as exact NOT_RUN proposal.",
+    "workflow_c4": "Current79c already has ffmpeg/ffprobe prerequisites and mandatory separate Return21 and Wisp14 original gates plus current delivery/source checks. Do not overwrite them with a Producer workflow.",
+    "workflow_astra": "Producer adds ffmpeg+ffprobe availability to the older broad Astra recovery workflow. Current79c Astra file still explicitly installs only ripgrep/Pillow and is skipped for the exact active integration/lumo-c4-connections-20261114 branch. Therefore this is a separate future non-C4 workflow prerequisite, not a missing current C4-build prerequisite; no workflow patch is included.",
+    "protected": "No writing-trainer, journal, original-Lumo, pin, workflow, app-source, index or ref change."
+  },
+  "fixture_pack": {
+    "path": "/tmp/host-79c-qa-fixture-repair-20261114",
+    "source_freeze_sha256": "6ea3be9cb817ae233c46ce3ce08f1ed916ed8f3510a18e9ca7fb7151e5c3f083",
+    "actual_original": "same one case:1ERROR/exit1",
+    "actual_proposed": "same one case:1PASS/exit0",
+    "prior_interpretation_correction": "Candidate was already isolated, but QA source still used live2020/f052 and failed the unchanged17f5 guard."
+  },
+  "c4_test_proposal": {
+    "path": "/tmp/host-c4-visibility-tests-followup-79c-20261114",
+    "source_freeze": {
+      "bytes": 2864,
+      "sha256": "f1da92337b7c5cb9ccc3500fb9f4eb217e53593309f507b8442cb21ef4034c2b",
+      "git_blob": "d1f371b51b736ebece1c2ce0459e7b2ac3ff63cf"
+    },
+    "tests": "NOT_RUN"
+  },
+  "ci_limits": "No fresh26a CI result was fetched or inferred. Historical18c full Flutter success and later Python fixture failure remain historical evidence only. Current79c APK build remains owned by Root."
+}

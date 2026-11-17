@@ -1,0 +1,96 @@
+{
+  "scope": "Unmodified original OCR and surface-readiness JSON from failed Host51e API35/API37/update jobs. Pixel payloads remain in original Actions artifacts; original PNG identity recorded here. Recorded-observation regression is not a new Android/device acceptance.",
+  "run_id": 43502594333,
+  "run_attempt": 1,
+  "host_source": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "native_source": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "cases": [
+    {
+      "name": "api35",
+      "job_id": 132181019048,
+      "artifact_id": 14079550748,
+      "archive_sha256": "8aa2f7e0ad17cf5796a97ebf30e99e4efb2ae62485849c66850f90db5d706f39",
+      "original_files": {
+        "ocr": {
+          "archive_member": "21_stage_mode_cup-0-ocr.json",
+          "bytes": 43609,
+          "sha256": "067a0c78f5621e356ae86260ca1d349fd6874062b0017de0d06dca1ddfd21dbc"
+        },
+        "readiness": {
+          "archive_member": "21_stage_mode_cup-surface-readiness.json",
+          "bytes": 959,
+          "sha256": "489dbf80654527505e167526e29d6dddfe62977d1f2703111d2fa30d34a57233"
+        }
+      },
+      "ocr": "api35-ocr.json",
+      "readiness": "api35-readiness.json",
+      "png": {
+        "archive_member": "21_stage_mode_cup-0.png",
+        "bytes": 1091325,
+        "sha256": "22e2e5a29031db9656037f5213fcc66d418e7ac76b17b26368ddf179e2b65fe5",
+        "pixels": [
+          2400,
+          1080
+        ]
+      }
+    },
+    {
+      "name": "api37",
+      "job_id": 132181019099,
+      "artifact_id": 14078303745,
+      "archive_sha256": "7c125864835f2f91903f0942c4db7659c38aff6d5246eaba5ab8b53e7a949ef7",
+      "original_files": {
+        "ocr": {
+          "archive_member": "21_stage_mode_cup-0-ocr.json",
+          "bytes": 44143,
+          "sha256": "8dd1b7ca7ccbff497c66479c446335b84c413f9bd5af15c275aaa381614286ef"
+        },
+        "readiness": {
+          "archive_member": "21_stage_mode_cup-surface-readiness.json",
+          "bytes": 959,
+          "sha256": "ceb98ee659b1691ccfbd5d39719ff5a081a8b8ccad39b7087e5ce7e32a326d52"
+        }
+      },
+      "ocr": "api37-ocr.json",
+      "readiness": "api37-readiness.json",
+      "png": {
+        "archive_member": "21_stage_mode_cup-0.png",
+        "bytes": 1094780,
+        "sha256": "73cf10437d3feccf4f0aa6a83384339da93a7ecdabed049332bd1602a2af7826",
+        "pixels": [
+          2400,
+          1080
+        ]
+      }
+    },
+    {
+      "name": "update",
+      "job_id": 132181019088,
+      "artifact_id": 14078383602,
+      "archive_sha256": "b9a34af78be372699f7d390b7ee09970e96c7bc50131dcf197f3a10ece38d447",
+      "original_files": {
+        "ocr": {
+          "archive_member": "21_stage_mode_cup-0-ocr.json",
+          "bytes": 43285,
+          "sha256": "124d854817f68343a5d1b8287277e9ebb02e8831b221dece2fc6332154b218ea"
+        },
+        "readiness": {
+          "archive_member": "21_stage_mode_cup-surface-readiness.json",
+          "bytes": 958,
+          "sha256": "098a531ede25e29cd6ff719200f6cc7cd579f8e7e156be6a9d3550e7f69fcc06"
+        }
+      },
+      "ocr": "update-ocr.json",
+      "readiness": "update-readiness.json",
+      "png": {
+        "archive_member": "21_stage_mode_cup-0.png",
+        "bytes": 1090684,
+        "sha256": "f8cee7069945c7b0e91d359ec84bbed904a0d4818a034d8ca0179d61b00a2160",
+        "pixels": [
+          2400,
+          1080
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,264 @@
+RED against original reader commit dd89719f84405cd6b570c094042d2c71ca30c731
+Original reader SHA-256: 91ccd91d3e92f73cedcb312b3ab3059fcb4e9daf458e695ce5b7e894b1cbf0ba
+Current regression test SHA-256: 278aac01220a392bd11b2b9dbca2e049b848b7fbe6cc10ca63993625eef640fe
+
+test_already_authorized_listening_ui_or_explicit_limitation_needs_no_grant (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_already_authorized_listening_ui_or_explicit_limitation_needs_no_grant) ... ok
+test_audio_prompt_must_itself_be_visible_in_the_same_system_package (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_audio_prompt_must_itself_be_visible_in_the_same_system_package) ... 
+  test_audio_prompt_must_itself_be_visible_in_the_same_system_package (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_audio_prompt_must_itself_be_visible_in_the_same_system_package) (changes={'visible-to-user': 'false'}) ... FAIL
+  test_audio_prompt_must_itself_be_visible_in_the_same_system_package (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_audio_prompt_must_itself_be_visible_in_the_same_system_package) (changes={'bounds': '[30,40][1030,40]'}) ... FAIL
+  test_audio_prompt_must_itself_be_visible_in_the_same_system_package (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_audio_prompt_must_itself_be_visible_in_the_same_system_package) (changes={'package': 'dev.ullmann.lumo.lumo_lernen.coachpreview'}) ... FAIL
+test_case_aliases_and_duplicate_semantics_are_one_real_allow_target (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_case_aliases_and_duplicate_semantics_are_one_real_allow_target) ... ERROR
+test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) ... 
+  test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) (changes={'visible-to-user': 'false'}) ... FAIL
+  test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) (changes={'enabled': 'false'}) ... FAIL
+  test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) (changes={'clickable': 'false'}) ... FAIL
+  test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) (changes={'bounds': '[130,1120][950,1120]'}) ... FAIL
+test_late_ready_hierarchy_cannot_extend_original_deadline_or_trigger_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_late_ready_hierarchy_cannot_extend_original_deadline_or_trigger_touch) ... FAIL
+test_original_zero_height_dialog_is_polled_until_a_fresh_visible_audio_target (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_original_zero_height_dialog_is_polled_until_a_fresh_visible_audio_target) ... ERROR
+test_permission_disappearance_alone_is_not_a_microphone_outcome (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_permission_disappearance_alone_is_not_a_microphone_outcome) ... FAIL
+test_permission_transition_timeout_fails_after_only_one_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_permission_transition_timeout_fails_after_only_one_touch) ... FAIL
+test_system_packages_and_caption_case_variants_keep_one_target (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_system_packages_and_caption_case_variants_keep_one_target) ... ok
+test_two_different_allow_buttons_remain_ambiguous (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_two_different_allow_buttons_remain_ambiguous) ... ok
+test_underlying_app_outcome_does_not_pass_while_dialog_is_present (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_underlying_app_outcome_does_not_pass_while_dialog_is_present) ... FAIL
+test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) ... 
+  test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) (prompt='Allow Lumo Lernen Neu to take pictures and record video?') ... FAIL
+  test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) (prompt="Allow Lumo Lernen Neu to access this device's location?") ... FAIL
+  test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) (prompt='Allow Another App to record audio?') ... FAIL
+  test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) (prompt='Allow Lumo Lernen Neu to record audio and access location?') ... FAIL
+test_visible_button_waits_for_fresh_audio_prompt_before_grant (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_visible_button_waits_for_fresh_audio_prompt_before_grant) ... FAIL
+test_visible_permission_after_tap_waits_for_transition_without_retapping (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_visible_permission_after_tap_waits_for_transition_without_retapping) ... FAIL
+
+======================================================================
+ERROR: test_case_aliases_and_duplicate_semantics_are_one_real_allow_target (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_case_aliases_and_duplicate_semantics_are_one_real_allow_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 304, in test_case_aliases_and_duplicate_semantics_are_one_real_allow_target
+    self.assertEqual(run.run()["microphone_ui_outcome"], "listening_ui_observed")
+                     ^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 284, in run
+    return instance.conversation()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/.github/probes/lumo_nextgen_learning_android_probe.py", line 912, in conversation
+    "grounded-task-dialogue", scroll=True)
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/.github/probes/lumo_nextgen_learning_android_probe.py", line 70, in require
+    if not condition:
+        ^^^^^^^^^^^^^^
+RuntimeError: Observed microphone permission has no unambiguous allow control
+
+======================================================================
+ERROR: test_original_zero_height_dialog_is_polled_until_a_fresh_visible_audio_target (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_original_zero_height_dialog_is_polled_until_a_fresh_visible_audio_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 294, in test_original_zero_height_dialog_is_polled_until_a_fresh_visible_audio_target
+    result = run.run()
+             ^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 284, in run
+    return instance.conversation()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/.github/probes/lumo_nextgen_learning_android_probe.py", line 912, in conversation
+    "grounded-task-dialogue", scroll=True)
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/.github/probes/lumo_nextgen_learning_android_probe.py", line 70, in require
+    if not condition:
+        ^^^^^^^^^^^^^^
+RuntimeError: Observed microphone permission has no unambiguous allow control
+
+======================================================================
+FAIL: test_audio_prompt_must_itself_be_visible_in_the_same_system_package (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_audio_prompt_must_itself_be_visible_in_the_same_system_package) (changes={'visible-to-user': 'false'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 349, in test_audio_prompt_must_itself_be_visible_in_the_same_system_package
+    self.assertEqual(run.touches, [])
+AssertionError: Lists differ: [((130, 1120, 950, 1280), 'microphone-perm[1885 chars]016)] != []
+
+First list contains 22 additional elements.
+First extra element 0:
+((130, 1120, 950, 1280), 'microphone-permission', 'While using the app', 1)
+
+Diff is 2159 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_audio_prompt_must_itself_be_visible_in_the_same_system_package (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_audio_prompt_must_itself_be_visible_in_the_same_system_package) (changes={'bounds': '[30,40][1030,40]'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 349, in test_audio_prompt_must_itself_be_visible_in_the_same_system_package
+    self.assertEqual(run.touches, [])
+AssertionError: Lists differ: [((130, 1120, 950, 1280), 'microphone-perm[1885 chars]016)] != []
+
+First list contains 22 additional elements.
+First extra element 0:
+((130, 1120, 950, 1280), 'microphone-permission', 'While using the app', 1)
+
+Diff is 2159 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_audio_prompt_must_itself_be_visible_in_the_same_system_package (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_audio_prompt_must_itself_be_visible_in_the_same_system_package) (changes={'package': 'dev.ullmann.lumo.lumo_lernen.coachpreview'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 349, in test_audio_prompt_must_itself_be_visible_in_the_same_system_package
+    self.assertEqual(run.touches, [])
+AssertionError: Lists differ: [((130, 1120, 950, 1280), 'microphone-perm[1885 chars]016)] != []
+
+First list contains 22 additional elements.
+First extra element 0:
+((130, 1120, 950, 1280), 'microphone-permission', 'While using the app', 1)
+
+Diff is 2159 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) (changes={'visible-to-user': 'false'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 369, in test_invisible_disabled_or_zero_height_allow_cannot_be_tapped
+    self.assertEqual(run.touches, [])
+AssertionError: Lists differ: [((130, 1120, 950, 1280), 'microphone-perm[1885 chars]016)] != []
+
+First list contains 22 additional elements.
+First extra element 0:
+((130, 1120, 950, 1280), 'microphone-permission', 'While using the app', 1)
+
+Diff is 2159 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) (changes={'enabled': 'false'})
+----------------------------------------------------------------------
+RuntimeError: Observed microphone permission has no unambiguous allow control
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 367, in test_invisible_disabled_or_zero_height_allow_cannot_be_tapped
+    with self.assertRaisesRegex(RuntimeError, "Microphone request produced neither"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Microphone request produced neither" does not match "Observed microphone permission has no unambiguous allow control"
+
+======================================================================
+FAIL: test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) (changes={'clickable': 'false'})
+----------------------------------------------------------------------
+RuntimeError: Observed microphone permission has no unambiguous allow control
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 367, in test_invisible_disabled_or_zero_height_allow_cannot_be_tapped
+    with self.assertRaisesRegex(RuntimeError, "Microphone request produced neither"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Microphone request produced neither" does not match "Observed microphone permission has no unambiguous allow control"
+
+======================================================================
+FAIL: test_invisible_disabled_or_zero_height_allow_cannot_be_tapped (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_invisible_disabled_or_zero_height_allow_cannot_be_tapped) (changes={'bounds': '[130,1120][950,1120]'})
+----------------------------------------------------------------------
+RuntimeError: Observed microphone permission has no unambiguous allow control
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 367, in test_invisible_disabled_or_zero_height_allow_cannot_be_tapped
+    with self.assertRaisesRegex(RuntimeError, "Microphone request produced neither"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Microphone request produced neither" does not match "Observed microphone permission has no unambiguous allow control"
+
+======================================================================
+FAIL: test_late_ready_hierarchy_cannot_extend_original_deadline_or_trigger_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_late_ready_hierarchy_cannot_extend_original_deadline_or_trigger_touch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 406, in test_late_ready_hierarchy_cannot_extend_original_deadline_or_trigger_touch
+    self.assertEqual(run.touches, [])
+AssertionError: Lists differ: [((130, 1120, 950, 1280), 'microphone-permission', 'While using the app', 36)] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+((130, 1120, 950, 1280), 'microphone-permission', 'While using the app', 36)
+
+- [((130, 1120, 950, 1280), 'microphone-permission', 'While using the app', 36)]
++ []
+
+======================================================================
+FAIL: test_permission_disappearance_alone_is_not_a_microphone_outcome (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_permission_disappearance_alone_is_not_a_microphone_outcome)
+----------------------------------------------------------------------
+RuntimeError: Microphone request produced neither listening state nor explicit device limitation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 391, in test_permission_disappearance_alone_is_not_a_microphone_outcome
+    with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Microphone permission did not transition" does not match "Microphone request produced neither listening state nor explicit device limitation"
+
+======================================================================
+FAIL: test_permission_transition_timeout_fails_after_only_one_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_permission_transition_timeout_fails_after_only_one_touch)
+----------------------------------------------------------------------
+RuntimeError: Microphone request produced neither listening state nor explicit device limitation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 382, in test_permission_transition_timeout_fails_after_only_one_touch
+    with self.assertRaisesRegex(RuntimeError, "Microphone permission did not transition"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Microphone permission did not transition" does not match "Microphone request produced neither listening state nor explicit device limitation"
+
+======================================================================
+FAIL: test_underlying_app_outcome_does_not_pass_while_dialog_is_present (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_underlying_app_outcome_does_not_pass_while_dialog_is_present)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 400, in test_underlying_app_outcome_does_not_pass_while_dialog_is_present
+    self.assertEqual(len(run.touches), 1)
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) (prompt='Allow Lumo Lernen Neu to take pictures and record video?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 336, in test_unrelated_permission_and_other_app_are_refused_before_touch
+    with self.assertRaisesRegex(RuntimeError, "audio permission"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) (prompt="Allow Lumo Lernen Neu to access this device's location?")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 336, in test_unrelated_permission_and_other_app_are_refused_before_touch
+    with self.assertRaisesRegex(RuntimeError, "audio permission"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) (prompt='Allow Another App to record audio?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 336, in test_unrelated_permission_and_other_app_are_refused_before_touch
+    with self.assertRaisesRegex(RuntimeError, "audio permission"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unrelated_permission_and_other_app_are_refused_before_touch (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_unrelated_permission_and_other_app_are_refused_before_touch) (prompt='Allow Lumo Lernen Neu to record audio and access location?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 336, in test_unrelated_permission_and_other_app_are_refused_before_touch
+    with self.assertRaisesRegex(RuntimeError, "audio permission"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_visible_button_waits_for_fresh_audio_prompt_before_grant (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_visible_button_waits_for_fresh_audio_prompt_before_grant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 359, in test_visible_button_waits_for_fresh_audio_prompt_before_grant
+    self.assertEqual(len(run.touches), 1)
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_visible_permission_after_tap_waits_for_transition_without_retapping (permission_reader_regression_tests.MicrophonePermissionFlowTest.test_visible_permission_after_tap_waits_for_transition_without_retapping)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-permission-reader/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 377, in test_visible_permission_after_tap_waits_for_transition_without_retapping
+    self.assertEqual(len(run.touches), 1)
+AssertionError: 3 != 1
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.009s
+
+FAILED (failures=17, errors=2)

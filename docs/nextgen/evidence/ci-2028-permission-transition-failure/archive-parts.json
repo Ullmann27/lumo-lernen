@@ -1,0 +1,18 @@
+{
+  "originalName": "artifact-14186359772.zip",
+  "originalBytes": 13472105,
+  "originalSha256": "275aed0ea814438c8e4ddb845fc3a5e12eb835586866823036930696c94821f7",
+  "partsInOrder": [
+    {
+      "path": "artifact-14186359772.zip.part01",
+      "bytes": 8388608,
+      "sha256": "602093ca7c2b856de5d130a4da310f3cf552290b9963a3b36a7aa3227c7f3d45"
+    },
+    {
+      "path": "artifact-14186359772.zip.part02",
+      "bytes": 5083497,
+      "sha256": "215b211089cf8b2dbef4435d5b52adccbfd0d613941bf176c8acb929ab42a63d"
+    }
+  ],
+  "reassembly": "Concatenate binary parts in partsInOrder; resulting bytes are the original ZIP."
+}

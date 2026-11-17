@@ -1,0 +1,363 @@
+{
+  "schema": 1,
+  "source_head": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "source_tree": "a13ab981d917c7788f35318cf10d962c1bf657f7",
+  "archive": "original-evidence.tar.gz",
+  "archive_bytes": 372354,
+  "archive_sha256": "d42d41ed7a5619afb24c1b52bbb0340848552acff0777e28db0238065cb7a0be",
+  "member_count": 70,
+  "original_bytes": 560300,
+  "roundtrip": "Every member byte-identical to frozen original evidence",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6103,
+      "sha256": "3a0122b0d6da10a4bc16a68cf5d8144471dfa9daf063ca1cc7c5af3d6832b46e"
+    },
+    {
+      "path": "app-script-14075845335.zip",
+      "bytes": 15220,
+      "sha256": "c0d6de764c8c9c270ae087999fa8112978e344a6d2381218fecddb69d08977e9"
+    },
+    {
+      "path": "app-script-artifact-verification.json",
+      "bytes": 745,
+      "sha256": "dbfd5e6b65d43c08a9a6fb090de47e3c81831558ac9922f536d39f01dd897a6f"
+    },
+    {
+      "path": "initial/jobs-43502593749.json.gz",
+      "bytes": 753,
+      "sha256": "bd0e6bd18d39f614889e9c1c3b3fc41275b5ce59738a9f1397e4fe4e11c6d846"
+    },
+    {
+      "path": "initial/jobs-43502593799.json.gz",
+      "bytes": 945,
+      "sha256": "1e88b020561c462df7e736d13dd0c90f0dd6f0545cb70dabacb8bde9452e0f0b"
+    },
+    {
+      "path": "initial/jobs-43502593875.json.gz",
+      "bytes": 781,
+      "sha256": "7eaeb2f9b82b066c434d87e4869d7648c2c0f44f5051c6a1a02a795736dfd295"
+    },
+    {
+      "path": "initial/jobs-43502594007.json.gz",
+      "bytes": 735,
+      "sha256": "8c29462df314490571176288807731badde8d49e5d42d6bc6dd960bb0aa0edd8"
+    },
+    {
+      "path": "initial/jobs-43502594046.json.gz",
+      "bytes": 769,
+      "sha256": "a420ea91909c4479d5233972432f4fb04e6920490e0e5cdcaabc0c6bcc8b6060"
+    },
+    {
+      "path": "initial/jobs-43502594148.json.gz",
+      "bytes": 653,
+      "sha256": "53b62cba4225bc4f6cdb4f87a2b64fd20ed8e8147438683d9d23a53e4cf32b36"
+    },
+    {
+      "path": "initial/jobs-43502594257.json.gz",
+      "bytes": 802,
+      "sha256": "cebf1c46886abbb19fd7b268995b7e362bcdf4244401ace0813e8c7751368e7b"
+    },
+    {
+      "path": "initial/workflow-runs.json.gz",
+      "bytes": 5501,
+      "sha256": "b3f969959151127cd207c4ca5f27c05a672cab5d82fd801b8696ba018db7ad0e"
+    },
+    {
+      "path": "input-source/android37-image-source.properties.gz",
+      "bytes": 225,
+      "sha256": "01506c880428d189957a2b5cc67adb87220543ae0b8bd61bbae44c6c63615cdf"
+    },
+    {
+      "path": "input-source/sdk-fixture-binding.json",
+      "bytes": 629,
+      "sha256": "53b89ca97d59d16b83dc456809f0d91b83c7e2e496981467e0f5307070e47dc1"
+    },
+    {
+      "path": "job-132151949578.log.gz",
+      "bytes": 12904,
+      "sha256": "59f60613eab1d34c2381accdf6836e78cefa1d42fe478437331c4f810922e954"
+    },
+    {
+      "path": "job-132151950619.log.gz",
+      "bytes": 1984,
+      "sha256": "044e79d1bb7b63fcd423af234b79e1bc4eb7e8d89b27265c818623e5e196dc6c"
+    },
+    {
+      "path": "job-132151950827.log.gz",
+      "bytes": 26455,
+      "sha256": "2fff7199dd3ddde2b8017b86c209a864f7e5b2323dbc2d73102b87127ed21f2a"
+    },
+    {
+      "path": "job-132151950952.log.gz",
+      "bytes": 11569,
+      "sha256": "e8988fb387dfc46f63d8afb35b0aa7266c4f4ebf3aaa841b0bf0cdc407cb42a6"
+    },
+    {
+      "path": "job-132151951246.log.gz",
+      "bytes": 7177,
+      "sha256": "2682207c6514ea4a9ffbdfbb95127eccfcc01965a390f7b14e8619d8f0af9764"
+    },
+    {
+      "path": "job-132151951251.log.gz",
+      "bytes": 5822,
+      "sha256": "0ecced9bd171ccf00af52ce3ed7db0d021b7759acf02e5af673097c349157c0e"
+    },
+    {
+      "path": "job-132151951394.log.gz",
+      "bytes": 6258,
+      "sha256": "b3df69378d6c695ba2ffccb134fad0b0569b079d886d03ac3895ccd6644f2882"
+    },
+    {
+      "path": "job-132151951446-flutter-skips.json",
+      "bytes": 47581,
+      "sha256": "8d0863c3d1723322d42f25d911e7f2a3a03216512af9af689a67921a1bed22c9"
+    },
+    {
+      "path": "job-132151951446.log.gz",
+      "bytes": 76572,
+      "sha256": "dca827f32560c9a7ef4a4af76b455872475cced1a6091fb4954b7b14d35857ff"
+    },
+    {
+      "path": "job-132151951573.log.gz",
+      "bytes": 3607,
+      "sha256": "ed4fdc2c7815c2b61a861e2652da64f0c1ef786ebb0a5cc1bdea0a07cda86160"
+    },
+    {
+      "path": "job-132152058241-flutter-skips.json",
+      "bytes": 47985,
+      "sha256": "880b4a53f580c9ffafc91a266c2ceddd6bb72985ed74136d4698b830cb692373"
+    },
+    {
+      "path": "job-132152058241.log.gz",
+      "bytes": 73825,
+      "sha256": "4829e0cd43af1425b661dbdeceec376ccec4e11a2c7ee36a4aaf892d09a9d270"
+    },
+    {
+      "path": "job-132156514580.log.gz",
+      "bytes": 2105,
+      "sha256": "7425550d05018f0e0face0158c64fcbd191d3b11bae55caf777a28b6b1f3d70f"
+    },
+    {
+      "path": "jobs-43502593679.json.gz",
+      "bytes": 472,
+      "sha256": "1c8263ae804beca8475db96c0ee9837a6af44c115baf947089a3939412b8b11c"
+    },
+    {
+      "path": "jobs-43502593713.json.gz",
+      "bytes": 469,
+      "sha256": "68fc42ba2fdb8fa8ef90c5a914cabfc768bca7ff4042fcc290c93c933b521c53"
+    },
+    {
+      "path": "jobs-43502593749.json.gz",
+      "bytes": 763,
+      "sha256": "885b1d9dba249a615d013a15c68a4e82de1adbaea68bffb3f8ac5d6a064325bc"
+    },
+    {
+      "path": "jobs-43502593799.json.gz",
+      "bytes": 1101,
+      "sha256": "4ba1b3dffb8ceee51511e7e086ac1860a6fd1bcfb8350a50fa2d02d177c88a13"
+    },
+    {
+      "path": "jobs-43502593848.json.gz",
+      "bytes": 465,
+      "sha256": "bcafddba9001a73ba61b8fa575b729981fbbe4822d2830d517f91d7d237b0b91"
+    },
+    {
+      "path": "jobs-43502593875.json.gz",
+      "bytes": 784,
+      "sha256": "47d251bac337adaf780a7ece5ea28e18026519d6cd3dbed865606223214debca"
+    },
+    {
+      "path": "jobs-43502593983.json.gz",
+      "bytes": 611,
+      "sha256": "38ca3f71592676ea4d54af7b964f2f71f120b7a0ec24335d41ff7c63492cb5d1"
+    },
+    {
+      "path": "jobs-43502593989.json.gz",
+      "bytes": 472,
+      "sha256": "3c764f3f9333188b230af891af0ec7ac9e7e3731b1ca168b07c58aa89f40eb77"
+    },
+    {
+      "path": "jobs-43502594007.json.gz",
+      "bytes": 739,
+      "sha256": "056c8c8ee03b3ca650888809d69c73a7be55cf51bda78a1a847193dc01d07fdf"
+    },
+    {
+      "path": "jobs-43502594046.json.gz",
+      "bytes": 768,
+      "sha256": "bd5f88bfe389e21097440ce5f1416d85adc2dbcb313d324dadfd584e74d98432"
+    },
+    {
+      "path": "jobs-43502594051.json.gz",
+      "bytes": 731,
+      "sha256": "eeedf32fbfd4fc5cdf75983f0358c75a297ee0613a9bbcfcae9439fb780c65b2"
+    },
+    {
+      "path": "jobs-43502594128.json.gz",
+      "bytes": 476,
+      "sha256": "d7b0a171a81b1324a39ac9aa66f2cbeda6b4f2391357b006eefdd7e729a3dc97"
+    },
+    {
+      "path": "jobs-43502594139.json.gz",
+      "bytes": 809,
+      "sha256": "c2ff715eb2d1e2b01b03257cea68198fb06594e51c2426093a647b1c12445ef8"
+    },
+    {
+      "path": "jobs-43502594148.json.gz",
+      "bytes": 664,
+      "sha256": "794e956f6fd80bed934cdc42aa2c6ab26ffdea393aa4aba317faf935cf39d024"
+    },
+    {
+      "path": "jobs-43502594197.json.gz",
+      "bytes": 472,
+      "sha256": "99bdd2b52b2f3f78ec4ff7733cb4d1d012280ea18627994b16435da4dad278d2"
+    },
+    {
+      "path": "jobs-43502594257.json.gz",
+      "bytes": 839,
+      "sha256": "e81df2ba62ef0a9c1ddb91268b38af9d0109587e376760d6817af0d229a21b08"
+    },
+    {
+      "path": "jobs-43502594303.json.gz",
+      "bytes": 975,
+      "sha256": "09b123ea8e9d3bdc8bcb2752c0cd328b88d4c5c6b601ee5c8e067e9932bc875c"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 19199,
+      "sha256": "ba493725b6a991687721690b1088dd6dcbe13906d9e8948ed8c692cfb9a7cf66"
+    },
+    {
+      "path": "pr-merge-commit.json.gz",
+      "bytes": 1248,
+      "sha256": "8c81f9123a6e5c3f991d2b6362e198839789c8ee646f0388c4e1cd8cab974468"
+    },
+    {
+      "path": "pull-465-final.json.gz",
+      "bytes": 4488,
+      "sha256": "62283ae6681350b4c412318b24fc1fda7f3c19d791feab6ab0b23e601ab2db79"
+    },
+    {
+      "path": "pull-465-initial.json.gz",
+      "bytes": 4486,
+      "sha256": "8f29b7d2d99ad3a2da1c3d7140e637538999c6cb2e3623884faa04df8f1dbde9"
+    },
+    {
+      "path": "script-recovery-artifacts.json.gz",
+      "bytes": 461,
+      "sha256": "105adeed95fbaf103ae3845262ba3a850bccc371a42f137ce65495d1f57098c2"
+    },
+    {
+      "path": "source-commit.json.gz",
+      "bytes": 513,
+      "sha256": "926c6e2ff72757009c50da77ae99d0afd59699bdf901d2768927a82df6b7a9a3"
+    },
+    {
+      "path": "source-ref.json.gz",
+      "bytes": 275,
+      "sha256": "cdb287beea48a703b73fa07a6e0a1afb58ab660690dea249cbeb1d42154de81c"
+    },
+    {
+      "path": "verification-summary.json",
+      "bytes": 33592,
+      "sha256": "8ba582e3e2d9f2cdad782449747c1cfdf857cf781c35243e6c9158fe95cebdb4"
+    },
+    {
+      "path": "workflow-runs-final.json.gz",
+      "bytes": 5510,
+      "sha256": "25d728a20daac547f190a989055b10af5c49ac4e3910a34a9f95201c44aa8415"
+    },
+    {
+      "path": "workflow-source-index.json",
+      "bytes": 68980,
+      "sha256": "a77cc55e45fe1322607c88f2a2b5e7d0961bf177b2344f6067cd9977d8a5a0db"
+    },
+    {
+      "path": "workflow-source/lumo-1954-tour-cli-contract.yml.gz",
+      "bytes": 445,
+      "sha256": "013a8d272db70e6ac84b1dc8f9827d49ce9acfd469b4265995dcf8b68c64543a"
+    },
+    {
+      "path": "workflow-source/lumo-1965-cards-reference-hub.yml.gz",
+      "bytes": 1148,
+      "sha256": "19f7fec3250ec7f3a79026b90a4bf34c92dbe8e3a6811e5c53c8d26c619be937"
+    },
+    {
+      "path": "workflow-source/lumo-1966-cards-route-kart-qa.yml.gz",
+      "bytes": 911,
+      "sha256": "7fe1df4c5b8020c110f1887a914d5b9caebe658d8289f8d8be16f6025e3eb1af"
+    },
+    {
+      "path": "workflow-source/lumo-1999-update-gate.yml.gz",
+      "bytes": 2487,
+      "sha256": "241b158fe17a28df69ab49ea64422cddd86f0682f886bb40b88c4247e2a6fa9a"
+    },
+    {
+      "path": "workflow-source/lumo-2000-actual-update-gate.yml.gz",
+      "bytes": 2995,
+      "sha256": "4d27601da5655ffbf618e7932d4cc75438f92403dacb736a8b6390c984079047"
+    },
+    {
+      "path": "workflow-source/lumo-2001-actual-update-gate.yml.gz",
+      "bytes": 2991,
+      "sha256": "d5fa995a6c9b6ac368b2f4f579e3c4bf3c47e72e9d040c710997723426885477"
+    },
+    {
+      "path": "workflow-source/lumo-2002-actual-update-gate.yml.gz",
+      "bytes": 2995,
+      "sha256": "8dfc304d39b88b18d3f5d18f42e173e127f0d7e116e1763e572c32a7c1fe16c8"
+    },
+    {
+      "path": "workflow-source/lumo-2003-actual-update-gate.yml.gz",
+      "bytes": 2991,
+      "sha256": "f0bf42a23ea3b81aed8bd1651d288977f57dacc303320617cdb787ee12417a29"
+    },
+    {
+      "path": "workflow-source/lumo-2003-direct-release.yml.gz",
+      "bytes": 2969,
+      "sha256": "8e32bee4fe150881199fa16efe341ec1a9245b8c724e8a4501eb042672cef329"
+    },
+    {
+      "path": "workflow-source/lumo-astra-script-recovery.yml.gz",
+      "bytes": 824,
+      "sha256": "d90e713987b02e4568999a60341f4ec26ed1ffaa337f5dd6c8d476d0004673d9"
+    },
+    {
+      "path": "workflow-source/lumo-change-review.yml.gz",
+      "bytes": 3298,
+      "sha256": "b08cb45f3d3a519c3dac5005466d1a78a40a63455ed66621257278292590ea68"
+    },
+    {
+      "path": "workflow-source/lumo-family-draft-release.yml.gz",
+      "bytes": 2344,
+      "sha256": "01e2102b727a59477ecc0c0bfbb38a4532d538334790fb3f758740a2f386eded"
+    },
+    {
+      "path": "workflow-source/lumo-living-intelligence-core.yml.gz",
+      "bytes": 1213,
+      "sha256": "9858c4d2a30c9d28c5744a8e6b6d22f3594384e082b557ea3972f738e0cc87ef"
+    },
+    {
+      "path": "workflow-source/lumo-living-workshop-visual-qa.yml.gz",
+      "bytes": 1319,
+      "sha256": "631e07e06794cde21f40e8551324a50c548bcd4e1db70bdaaf2af4bd14c192c1"
+    },
+    {
+      "path": "workflow-source/lumo-real-race-hud-ocr.yml.gz",
+      "bytes": 612,
+      "sha256": "63e2d46dc5874a54d1b5742596fa655d4d9833931280d1839530fb615e188c35"
+    },
+    {
+      "path": "workflow-source/lumo-studio-2019.yml.gz",
+      "bytes": 9348,
+      "sha256": "38b60bd7cc856f00594aa6077857dbedff0ce94db4ce764126b608fcdac9e947"
+    },
+    {
+      "path": "workflow-source/lumo-unified-integration-2026.yml.gz",
+      "bytes": 13343,
+      "sha256": "d44d644b50e8ef4cce30fb832876f1550ff75467682a41f97f2b833e391c8e19"
+    }
+  ]
+}

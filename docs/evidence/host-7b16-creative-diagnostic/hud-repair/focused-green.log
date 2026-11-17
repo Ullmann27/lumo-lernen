@@ -1,0 +1,18 @@
+test_api37_first_attempt_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_api37_first_attempt_original_recovers_all_three_hud_features) ... Actual raster api37-host-20: '| RUNDE 1/2 PLATZ6/6 0 km/h'
+ok
+test_existing_pause_and_result_guards_reject_a_readable_real_hud (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_existing_pause_and_result_guards_reject_a_readable_real_hud) ... ok
+test_first_update_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_first_update_original_recovers_all_three_hud_features) ... Actual raster update-0: '| RUNDE 1/2 PLATZ5/6 0 km/h'
+ok
+test_incomplete_current_hud_letters_do_not_become_a_visual_pass (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_incomplete_current_hud_letters_do_not_become_a_visual_pass) ... ok
+test_last_update_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_last_update_original_recovers_all_three_hud_features) ... Actual raster update-17: '| RUNDE 1/2 PLATZ6/6 0 km/h'
+ok
+test_observation_budget_and_three_feature_guard_remain_strict (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_observation_budget_and_three_feature_guard_remain_strict) ... ok
+test_original_fixtures_keep_their_recorded_bytes_and_dimensions (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_original_fixtures_keep_their_recorded_bytes_and_dimensions) ... ok
+test_exactly_three_independent_visual_race_hud_markers (test_focused_race_hud.FocusedKartHudOCRTests.test_exactly_three_independent_visual_race_hud_markers) ... ok
+test_genuine_screen_pixels_recover_lap_rank_and_speed (test_focused_race_hud.FocusedKartHudOCRTests.test_genuine_screen_pixels_recover_lap_rank_and_speed) ... ok
+test_only_real_landscape_frame_is_accepted (test_focused_race_hud.FocusedKartHudOCRTests.test_only_real_landscape_frame_is_accepted) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 2.646s
+
+OK

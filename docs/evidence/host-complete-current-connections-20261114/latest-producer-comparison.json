@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "kind": "read-only-incremental-producer-check",
+  "observed_window_utc": {
+    "start": "2026-11-14T09:14:49Z",
+    "finish": "2026-11-14T09:26:56Z"
+  },
+  "integration_base": {
+    "sha": "2b586530db4f2cb20c28f426e2549342316151bf",
+    "tree": "bffa6832adf0e5205a93ff964cc69d19457f7a8e"
+  },
+  "producers": {
+    "host491": {
+      "baseline": "95f12c7173e6ee718b03dce67ca2d7c6543fe716",
+      "selected": [
+        "lib/core/lumo_image_generator.dart",
+        "test/core/lumo_image_generator_test.dart",
+        "tools/android_qa/tests/test_update_2019_preservation.py"
+      ],
+      "sourcePack": "/tmp/host-privacy-historical2019-followup-2b586530-20261114",
+      "review": "Two actual independent issues, source freeze only; no production pin/2019 wrapper/Play changes. Current C4 CI in progress at single query; Astra872PASS on PR merge with head-identical tree. Full producer CI success not asserted.",
+      "head": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+      "parents": [
+        "7c1d1bbf10a3ea7006fa86ead5469ebb329ac555",
+        "7f254c68afab93d54929e19b7a1b1a739ace2c9e",
+        "31ea02adb9dff26fa5aea3a6e49603bba2ad963c",
+        "57c7022eae80377d4a63bc7a3479f68758e8b370"
+      ],
+      "pathCount": 110,
+      "rawFiles": {
+        "pr": "originals/host491-pr.json",
+        "compare": "originals/host491-compare.json",
+        "runs": "originals/host491-runs.json"
+      }
+    },
+    "host492": {
+      "baseline": "f3a79f01fc5fb11d9cd9faa033dfdab3aeb8c3c4",
+      "selected": [],
+      "newTestOnly": "test/games/connect_four_navigation_test.dart",
+      "review": "Four previously integrated atmosphere/card product files unchanged. New two-size actual Navigator leave/reopen fixture adds coverage, but does not repair product code; not included in the priority source patch. Its full producer suite still has three historical C4 failures; no stronger version claim.",
+      "head": "de3b74c56052794196b9f14fc65a13412209651f",
+      "tree": "abf0193944d3c4ae97c603963a4a33fcf7eab114",
+      "parents": [
+        "afc8b756426b131bab71a43a7acbb00de866a32a"
+      ],
+      "pathCount": 16,
+      "rawFiles": {
+        "pr": "originals/host492-pr.json",
+        "compare": "originals/host492-compare.json",
+        "runs": "originals/host492-runs.json"
+      }
+    },
+    "host493": {
+      "baseline": "b3f75f6fe3506321b7991f975cdc3854b341c596",
+      "selected": [
+        "lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "test/design/connect_four_visual_test.dart",
+        "test/games/connect_four_fold_controls_test.dart",
+        "test/games/games_screen_flow_test.dart"
+      ],
+      "sourcePack": "/tmp/host-c4-pressed-target-followup-2b586530-20261114",
+      "review": "Single required production line disables pressed target shrink; existing 491 layout retained. Tests retain our ensureVisible. Exact producer18c12 full Flutter2562PASS, then Python832/1ERROR; no claim that new combination is tested.",
+      "head": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+      "tree": "b2db4ba6e06e8345370c6b970c7895315ca8df24",
+      "parents": [
+        "a1e655e6319e4aeb8ed39cc36097e775c00b2990"
+      ],
+      "pathCount": 75,
+      "rawFiles": {
+        "pr": "originals/host493-pr.json",
+        "compare": "originals/host493-compare.json",
+        "runs": "originals/host493-runs.json"
+      }
+    },
+    "native173": {
+      "baseline": "d1191322989a7f20db66d4da9ba641bf6e8702ac",
+      "selected": [],
+      "review": "No own head actions runs. Read-only dedup by Godot against Root f052: current Treasure/C4/raster blobs already identical; older wisp/test would overwrite PR174 learning/celebration and are excluded. Dream garden/ambience is a separate unintegrated dependency set; Root excludes it from this build.",
+      "head": "454e81229b0193cba75844e9985a53deb2ce5c91",
+      "tree": "ab886683d8bc1ef86f2fff5e154a6dcb654ffb21",
+      "parents": [
+        "9ad09a32bcd42d21b89b2a83ceee68b1dd2bd7cf",
+        "0e26153f0e58cc05739e72923b4c563a4cf380b8"
+      ],
+      "pathCount": 59,
+      "rawFiles": {
+        "pr": "originals/native173-pr.json",
+        "compare": "originals/native173-compare.json",
+        "runs": "originals/native173-runs.json"
+      }
+    }
+  },
+  "local_tests": "NOT_RUN",
+  "git_worktree_ci_mutations": false,
+  "scope_limits": [
+    "One bounded head/CI query; no recurring monitoring.",
+    "Only fixed baseline-to-fixed-head deltas read.",
+    "No new Native Dream assets or old Magic blobs copied.",
+    "No Play production, installer, signing, keys, version or pin source included.",
+    "Current combined source remains untested; prior producer passes remain separate.",
+    "New route-restoration fixture492 retained only as read-only source; current priority pack contains only authorized seven source paths."
+  ],
+  "excluded_condition": "The fallback Play-bundle review was conditional on no new source changes; actual source changes were found, so no Play/installer expansion is needed for this task."
+}

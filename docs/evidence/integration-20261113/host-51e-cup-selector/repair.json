@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "prepared_at_utc": "2026-11-13T21:45:27.869681+00:00",
+  "base_source": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "base_tree": "a13ab981d917c7788f35318cf10d962c1bf657f7",
+  "worktree": "/workspace/scratch/b3485b7bb989/lumo-host-android-selector-repair-51e",
+  "changed_source_files": [
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "bytes": 11374,
+      "sha256": "03b3b9b690b93b74a3a4e385efcb5e4f13de16a1d3f3a6a589bb8caefc0978f6",
+      "git_blob": "6f6c3396ef83291333a3cdd49e8e942893d1eceb"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_cup_recorded_ocr.py",
+      "bytes": 5429,
+      "sha256": "a9c2b47565e29553f41eea3f2d84614fcc55fba0af030e6da02442d653a13d3e",
+      "git_blob": "d748396c43b1993c37ed5008608a7f28199dcf15"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-cup-host51e/api35-ocr.json",
+      "bytes": 43609,
+      "sha256": "067a0c78f5621e356ae86260ca1d349fd6874062b0017de0d06dca1ddfd21dbc",
+      "git_blob": "3d6bc0ac900df030a115d441d4b53e434ff46c6b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-cup-host51e/api35-readiness.json",
+      "bytes": 959,
+      "sha256": "489dbf80654527505e167526e29d6dddfe62977d1f2703111d2fa30d34a57233",
+      "git_blob": "3a2fbb4a8bad3623e3be57e2f0408819511e27c6"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-cup-host51e/api37-ocr.json",
+      "bytes": 44143,
+      "sha256": "8dd1b7ca7ccbff497c66479c446335b84c413f9bd5af15c275aaa381614286ef",
+      "git_blob": "5304db802105c4b1b222cae08922616cf3590e6d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-cup-host51e/api37-readiness.json",
+      "bytes": 959,
+      "sha256": "ceb98ee659b1691ccfbd5d39719ff5a081a8b8ccad39b7087e5ce7e32a326d52",
+      "git_blob": "92af517d9d18ed8130827135b24716cea9d57479"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-cup-host51e/manifest.json",
+      "bytes": 3365,
+      "sha256": "ce8397d3ff06c4ca2b6b6b1aedf2c1d3cecb18332cdfcccd5736989d77869fae",
+      "git_blob": "01d29440fc3ca569f11002a01a0e3bcdbc6bce52"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-cup-host51e/update-ocr.json",
+      "bytes": 43285,
+      "sha256": "124d854817f68343a5d1b8287277e9ebb02e8831b221dece2fc6332154b218ea",
+      "git_blob": "d316a3287316120a607102e2f249888132c4171f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-cup-host51e/update-readiness.json",
+      "bytes": 958,
+      "sha256": "098a531ede25e29cd6ff719200f6cc7cd579f8e7e156be6a9d3550e7f69fcc06",
+      "git_blob": "cf02bd174120f7e2e22a4d20278c48cec8804523"
+    }
+  ],
+  "runtime_source_changed": false,
+  "workflow_changed": false,
+  "tour_source_unchanged": true,
+  "original_shared_normalizer_unchanged": true,
+  "tests": {
+    "red": "red-original-selector.json",
+    "green": "green-focused-cup.json",
+    "green_count": 12,
+    "green_skips": 0
+  },
+  "git_diff_check_exit": 0,
+  "limits": [
+    "No Android rerun; original three jobs remain failures.",
+    "Unit replay uses the real selector with original recorded OCR; synthetic negative cases are clearly labeled.",
+    "Complete original candidate ZIP exceeds the connector export limit, separately documented in the main CI evidence."
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2973,
+      "sha256": "8176b15340a95bbbf18c57042bfca432cb66c64fa6fb4bb9919811680c1cd395"
+    },
+    {
+      "path": "after/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 11374,
+      "sha256": "03b3b9b690b93b74a3a4e385efcb5e4f13de16a1d3f3a6a589bb8caefc0978f6"
+    },
+    {
+      "path": "after/tools/android_qa/tests/fixtures/kart-cup-host51e/api35-ocr.json",
+      "bytes": 43609,
+      "sha256": "067a0c78f5621e356ae86260ca1d349fd6874062b0017de0d06dca1ddfd21dbc"
+    },
+    {
+      "path": "after/tools/android_qa/tests/fixtures/kart-cup-host51e/api35-readiness.json",
+      "bytes": 959,
+      "sha256": "489dbf80654527505e167526e29d6dddfe62977d1f2703111d2fa30d34a57233"
+    },
+    {
+      "path": "after/tools/android_qa/tests/fixtures/kart-cup-host51e/api37-ocr.json",
+      "bytes": 44143,
+      "sha256": "8dd1b7ca7ccbff497c66479c446335b84c413f9bd5af15c275aaa381614286ef"
+    },
+    {
+      "path": "after/tools/android_qa/tests/fixtures/kart-cup-host51e/api37-readiness.json",
+      "bytes": 959,
+      "sha256": "ceb98ee659b1691ccfbd5d39719ff5a081a8b8ccad39b7087e5ce7e32a326d52"
+    },
+    {
+      "path": "after/tools/android_qa/tests/fixtures/kart-cup-host51e/update-ocr.json",
+      "bytes": 43285,
+      "sha256": "124d854817f68343a5d1b8287277e9ebb02e8831b221dece2fc6332154b218ea"
+    },
+    {
+      "path": "after/tools/android_qa/tests/fixtures/kart-cup-host51e/update-readiness.json",
+      "bytes": 958,
+      "sha256": "098a531ede25e29cd6ff719200f6cc7cd579f8e7e156be6a9d3550e7f69fcc06"
+    },
+    {
+      "path": "after/tools/android_qa/tests/test_kart_cup_recorded_ocr.py",
+      "bytes": 5429,
+      "sha256": "a9c2b47565e29553f41eea3f2d84614fcc55fba0af030e6da02442d653a13d3e"
+    },
+    {
+      "path": "before/.github/probes/modernization_android_tour.py",
+      "bytes": 61503,
+      "sha256": "ff4b39d822b1f8fa9c542fbf3a677d2e628f8238deccd9c2c32067f28019acf1"
+    },
+    {
+      "path": "before/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 11148,
+      "sha256": "07f7d5b0c76b3c3f62f5f57cd5675f536e4eee9fc1049469c7cb96f2dd810de1"
+    },
+    {
+      "path": "before/tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 30190,
+      "sha256": "cc7913d2137909628235d6e558e1be33180ca950cef4fe6dcfaa6d9458b0c5a1"
+    },
+    {
+      "path": "diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "green-focused-cup.json",
+      "bytes": 5305,
+      "sha256": "4a3fa45cb899a1227c0e743ddaa0f5dc1ef72b0d9d43751cc3c05f3a5adaa9df"
+    },
+    {
+      "path": "green-focused-cup.log",
+      "bytes": 2326,
+      "sha256": "a7cb5e557383405928c45365052e820f3de1932f942f678ed697397191e19ba9"
+    },
+    {
+      "path": "original-ci-references.json",
+      "bytes": 1861,
+      "sha256": "d16c78efcf592254cd5b7bada12c9f46088d48cfe3209b6d76819e1b6b769d2e"
+    },
+    {
+      "path": "red-original-selector.json",
+      "bytes": 4318,
+      "sha256": "9138702b332f44fbe28957f78e2d21f9fd4f13ebe248a16561ee2d7b8c2a64c7"
+    },
+    {
+      "path": "red-original-selector.log",
+      "bytes": 17025,
+      "sha256": "337cf014675c55072edbe22696326c41d6a6ef671461e050415d684909540c0b"
+    },
+    {
+      "path": "selector.diff",
+      "bytes": 963,
+      "sha256": "d95c3aa5d5963d9bc8f1d1d363a7b878b149ff04a93dc5b646d4da5267773fba"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 2498,
+      "sha256": "af9ed5ea8ba92b3f36b98e41dcdc3681b11bea1f819b71e9ca7f209b7c228583"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 743,
+      "sha256": "7fb8c97981996380cacd5dfe0252de41f0fdffbe9d3f62ea3c40d839fe49765c"
+    }
+  ]
+}

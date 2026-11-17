@@ -1,0 +1,20 @@
+diff --git a/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py b/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py
+index 45be752..9724990 100644
+--- a/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py
++++ b/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py
+@@ -298,6 +298,15 @@ class RuntimeCaseGates(unittest.TestCase):
+             with self.assertRaisesRegex(RuntimeError, "missing native audio evidence"):
+                 probe.verify_runtime_cases(result, qa_commit=QA, workflow_run_id=RUN)
+ 
++    def test_switch_without_joint_viewport_and_restored_density_cannot_pass(self):
++        # The recorded run sampled a viewport containing Next but no syllable
++        # nodes. A separately claimed active result must not omit the new
++        # same-view preparation and actual density-restoration evidence.
++        result = complete_result()
++        result["flutter_switch_during_syllable_playback"].pop("viewport", None)
++        with patch.object(probe, "native_cases_module"), self.assertRaisesRegex(RuntimeError, "viewport"):
++            probe.verify_runtime_cases(result, qa_commit=QA, workflow_run_id=RUN)
++
+     def test_pure_gate_rejects_slow_capture_even_with_zero_post_capture_delay(self):
+         for scenario in ("slow-capture", "hidden-capture-age", "nonfinite", "reversed"):
+             result = complete_result()

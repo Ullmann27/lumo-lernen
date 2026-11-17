@@ -24,7 +24,10 @@ int? _readInt(Object? value) {
 /// Findet die erste/zweite Zahl im Aufgabentext, falls Payload leer.
 List<int> _digitsFromPrompt(String prompt) {
   final regex = RegExp(r'\d+');
-  return regex.allMatches(prompt).map((m) => int.parse(m.group(0)!)).toList(growable: false);
+  return regex
+      .allMatches(prompt)
+      .map((m) => int.parse(m.group(0)!))
+      .toList(growable: false);
 }
 
 /// Sichere Extraktion des letzten Worts aus einem Prompt.
@@ -32,7 +35,10 @@ List<int> _digitsFromPrompt(String prompt) {
 String _safeLastWord(String prompt) {
   final trimmed = prompt.trim();
   if (trimmed.isEmpty) return '';
-  final words = trimmed.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList(growable: false);
+  final words = trimmed
+      .split(RegExp(r'\s+'))
+      .where((w) => w.isNotEmpty)
+      .toList(growable: false);
   if (words.isEmpty) return '';
   return words.last;
 }
@@ -47,8 +53,16 @@ BoxDecoration _stageDecoration(Color tint) => BoxDecoration(
       borderRadius: BorderRadius.circular(LumoRadius.lg),
       border: Border.all(color: tint.withOpacity(0.22), width: 1.4),
       boxShadow: [
-        BoxShadow(color: tint.withOpacity(0.18), blurRadius: 20, offset: const Offset(0, 8), spreadRadius: -3),
-        BoxShadow(color: Colors.white.withOpacity(0.65), blurRadius: 6, offset: const Offset(-2, -2), spreadRadius: -2),
+        BoxShadow(
+            color: tint.withOpacity(0.18),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+            spreadRadius: -3),
+        BoxShadow(
+            color: Colors.white.withOpacity(0.65),
+            blurRadius: 6,
+            offset: const Offset(-2, -2),
+            spreadRadius: -2),
       ],
     );
 
@@ -74,23 +88,36 @@ class QuantityCompareVisual extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(child: _Pile(count: left, emoji: emoji, accent: const Color(0xFF60A5FA))),
+          Expanded(
+              child: _Pile(
+                  count: left, emoji: emoji, accent: const Color(0xFF60A5FA))),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 12),
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)]),
+              gradient: const LinearGradient(
+                  colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)]),
               borderRadius: BorderRadius.circular(LumoRadius.pill),
               boxShadow: [
-                BoxShadow(color: LumoColors.orange.withOpacity(0.40), blurRadius: 10, offset: const Offset(0, 4)),
+                BoxShadow(
+                    color: LumoColors.orange.withOpacity(0.40),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4)),
               ],
             ),
             child: const Text(
               'oder',
-              style: TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: 0.4),
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                  letterSpacing: 0.4),
             ),
           ),
-          Expanded(child: _Pile(count: right, emoji: emoji, accent: const Color(0xFFF472B6))),
+          Expanded(
+              child: _Pile(
+                  count: right, emoji: emoji, accent: const Color(0xFFF472B6))),
         ],
       ),
     );
@@ -113,7 +140,10 @@ class _Pile extends StatelessWidget {
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: accent.withOpacity(0.30), width: 1.4),
         boxShadow: [
-          BoxShadow(color: accent.withOpacity(0.18), blurRadius: 10, offset: const Offset(0, 4)),
+          BoxShadow(
+              color: accent.withOpacity(0.18),
+              blurRadius: 10,
+              offset: const Offset(0, 4)),
         ],
       ),
       child: Column(
@@ -122,13 +152,24 @@ class _Pile extends StatelessWidget {
             alignment: WrapAlignment.center,
             spacing: 2,
             runSpacing: 2,
-            children: List.generate(clamped, (_) => Text(emoji, style: const TextStyle(fontSize: 22, height: 1.0))),
+            children: List.generate(
+                clamped,
+                (_) => Text(emoji,
+                    style: const TextStyle(fontSize: 22, height: 1.0))),
           ),
           const SizedBox(height: 6),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-            decoration: BoxDecoration(color: accent.withOpacity(0.15), borderRadius: BorderRadius.circular(99)),
-            child: Text('$count', style: TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: accent, height: 1.0)),
+            decoration: BoxDecoration(
+                color: accent.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(99)),
+            child: Text('$count',
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: accent,
+                    height: 1.0)),
           ),
         ],
       ),
@@ -144,32 +185,52 @@ class ClockFaceVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final hour = _readInt(data['hour']) ?? _hourFromPrompt(task.prompt);
-    final minute = _readInt(data['minute']) ?? _minuteFromPrompt(task.prompt);
+    final explicit = data.containsKey('hour') || data.containsKey('minute');
+    final time = RegExp(r'(?<![\d:])(\d{1,2}):([0-5]\d)(?!\d)')
+        .firstMatch(task.prompt);
+    final hour = explicit
+        ? _exactNonNegativeInt(data['hour'])
+        : int.tryParse(time?.group(1) ?? '');
+    final minute = explicit
+        ? _exactNonNegativeInt(data['minute'])
+        : int.tryParse(time?.group(2) ?? '');
+    if (hour == null || hour > 23 || minute == null || minute > 59) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: _stageDecoration(LumoColors.blue),
+        child: const Text('Schau auf die Zeitangaben in der Aufgabe.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+      );
+    }
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: _stageDecoration(LumoColors.blue),
       child: Center(
-        child: SizedBox(
-          width: 180,
-          height: 180,
-          child: CustomPaint(painter: _ClockPainter(hour: hour, minute: minute)),
+        child: Semantics(
+          key: const ValueKey('learning-clock-known'),
+          label: 'Uhr: Stunde $hour, Minute $minute',
+          image: true,
+          child: SizedBox(
+            width: 180,
+            height: 180,
+            child: CustomPaint(painter: _ClockPainter(hour: hour, minute: minute)),
+          ),
         ),
       ),
     );
   }
 
-  int _hourFromPrompt(String p) {
-    final m = RegExp(r'(\d{1,2}):(\d{2})').firstMatch(p);
-    if (m != null) return int.tryParse(m.group(1)!) ?? 12;
-    return 12;
-  }
+}
 
-  int _minuteFromPrompt(String p) {
-    final m = RegExp(r'(\d{1,2}):(\d{2})').firstMatch(p);
-    if (m != null) return int.tryParse(m.group(2)!) ?? 0;
-    return 0;
+int? _exactNonNegativeInt(Object? value) {
+  if (value is int) return value >= 0 ? value : null;
+  if (value is double && value.isFinite &&
+      value >= 0 && value == value.truncateToDouble()) {
+    return value.toInt();
   }
+  final text = value?.toString() ?? '';
+  return RegExp(r'^\d+$').hasMatch(text) ? int.tryParse(text) : null;
 }
 
 class _ClockPainter extends CustomPainter {
@@ -229,23 +290,43 @@ class MoneyCoinsVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final amountCents = _readInt(data['cents']) ?? _readInt(data['amount']) ?? _amountFromPrompt(task.prompt);
-    final coins = _splitInCoins(amountCents);
+    final explicit = data.containsKey('cents') || data.containsKey('amount');
+    final amountCents = explicit
+        ? _exactNonNegativeInt(data['cents'] ?? data['amount'])
+        : _amountFromPrompt(task.prompt);
+    if (amountCents == null || amountCents > 100000000) {
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: _stageDecoration(LumoColors.gold),
+        child: const Text('Achte auf die Beträge und die Einheit: Euro oder Cent.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+      );
+    }
+    final pieces = _splitMoney(amountCents);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: _stageDecoration(LumoColors.gold),
       child: Column(
         children: [
-          const Text(
-            '💰',
-            style: TextStyle(fontSize: 32),
-          ),
+          const Text('Geldbetrag',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
           const SizedBox(height: 8),
           Wrap(
             alignment: WrapAlignment.center,
             spacing: 8,
             runSpacing: 8,
-            children: coins.map((c) => _Coin(value: c)).toList(growable: false),
+            children: [
+              for (var index = 0; index < pieces.length; index++)
+                _MoneyPiece(
+                  key: ValueKey('money-piece-$index'),
+                  value: pieces[index].$1,
+                  count: pieces[index].$2,
+                ),
+              if (pieces.isEmpty)
+                const Text('Keine Münzen oder Scheine',
+                    style: TextStyle(fontSize: 15)),
+            ],
           ),
           const SizedBox(height: 10),
           Container(
@@ -267,25 +348,41 @@ class MoneyCoinsVisual extends StatelessWidget {
     );
   }
 
-  int _amountFromPrompt(String p) {
-    final euro = RegExp(r'(\d+)(?:[.,](\d{1,2}))?\s*€').firstMatch(p);
+  int? _amountFromPrompt(String p) {
+    final euro = RegExp(
+        r'(?<![\d.,-])(\d+)(?:[.,](\d{1,2}))?\s*(?:€|Euro\b|EUR\b)',
+        caseSensitive: false).firstMatch(p);
     if (euro != null) {
-      final e = int.tryParse(euro.group(1)!) ?? 0;
-      final c = int.tryParse(euro.group(2) ?? '0') ?? 0;
+      final e = int.tryParse(euro.group(1)!);
+      final c = int.tryParse((euro.group(2) ?? '').padRight(2, '0'));
+      if (e == null || c == null) return null;
       return e * 100 + c;
     }
-    return 100;
+    final cents = RegExp(r'(?<![\d.,-])(\d+)\s*(?:Cent\b|ct\b)',
+        caseSensitive: false).firstMatch(p);
+    return int.tryParse(cents?.group(1) ?? '');
   }
 
-  List<int> _splitInCoins(int cents) {
-    const denominations = <int>[200, 100, 50, 20, 10, 5, 2, 1];
-    final out = <int>[];
+  /// Every piece contributes its full value. Large counts use an explicit
+  /// multiplicity rather than silently dropping the remaining money.
+  List<(int, int)> _splitMoney(int cents) {
+    const denominations = <int>[
+      50000, 20000, 10000, 5000, 2000, 1000, 500,
+      200, 100, 50, 20, 10, 5, 2, 1,
+    ];
+    final out = <(int, int)>[];
     var remaining = cents;
     for (final d in denominations) {
-      while (remaining >= d && out.length < 12) {
-        out.add(d);
-        remaining -= d;
+      final count = remaining ~/ d;
+      if (count == 0) continue;
+      if (count > 4) {
+        out.add((d, count));
+      } else {
+        for (var i = 0; i < count; i++) {
+          out.add((d, 1));
+        }
       }
+      remaining %= d;
     }
     return out;
   }
@@ -298,25 +395,32 @@ class MoneyCoinsVisual extends StatelessWidget {
   }
 }
 
-class _Coin extends StatelessWidget {
-  const _Coin({required this.value});
-  final int value;
+class _MoneyPiece extends StatelessWidget {
+  const _MoneyPiece({super.key, required this.value, required this.count});
+  final int value, count;
 
   @override
   Widget build(BuildContext context) {
     final isEuro = value >= 100;
-    final label = isEuro ? '${value ~/ 100}€' : '${value}c';
+    final isNote = value >= 500;
+    final denomination = isEuro ? '${value ~/ 100}€' : '${value}c';
+    final label = count == 1 ? denomination : '$count × $denomination';
     final color = isEuro ? const Color(0xFFFFB800) : const Color(0xFFC0C0C0);
-    return Container(
-      width: 44,
-      height: 44,
+    return Semantics(
+      label: '$count ${isNote ? 'Geldscheine' : 'Münzen'} zu '
+          '${isEuro ? value ~/ 100 : value} ${isEuro ? 'Euro' : 'Cent'}',
+      excludeSemantics: true,
+      child: Container(
+      width: count > 1 ? 150 : isNote ? 86 : 48,
+      height: isNote ? 54 : 48,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         gradient: RadialGradient(
           colors: [Colors.white, color],
           radius: 0.85,
         ),
-        shape: BoxShape.circle,
+        shape: isNote || count > 1 ? BoxShape.rectangle : BoxShape.circle,
+        borderRadius: isNote || count > 1 ? BorderRadius.circular(9) : null,
         border: Border.all(color: color.withOpacity(0.55), width: 2),
         boxShadow: [
           BoxShadow(color: color.withOpacity(0.40), blurRadius: 6, offset: const Offset(0, 2)),
@@ -326,10 +430,11 @@ class _Coin extends StatelessWidget {
         label,
         style: TextStyle(
           fontFamily: 'Nunito',
-          fontSize: 12,
+          fontSize: 14,
           fontWeight: FontWeight.w900,
           color: isEuro ? const Color(0xFF78350F) : const Color(0xFF374151),
         ),
+      ),
       ),
     );
   }
@@ -347,11 +452,13 @@ class FractionPizzaVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     final fractions = _allFractionsFromPrompt(task.prompt);
     if (fractions.length >= 2) {
-      return _buildDual(fractions[0], fractions[1]);
+      return _buildDual(fractions[0], fractions[1],
+          operator: task.prompt.contains('+') ? '+' : '=');
     }
     final data = task.visualPayload.data;
     final rawNum = _readInt(data['numerator']) ?? 1;
-    final rawDen = _readInt(data['denominator']) ?? _denomFromPrompt(task.prompt);
+    final rawDen =
+        _readInt(data['denominator']) ?? _denomFromPrompt(task.prompt);
     // FIX: Erst Nenner clampen, dann Zaehler an den geclampten Nenner clampen.
     // Vorher konnte numerator > denominator entstehen (z.B. 14/12 als Pizza),
     // wenn den ungeclampt zur Numerator-Clamp-Grenze wurde.
@@ -364,13 +471,14 @@ class FractionPizzaVisual extends StatelessWidget {
         child: SizedBox(
           width: 160,
           height: 160,
-          child: CustomPaint(painter: _PizzaPainter(numerator: num, denominator: den)),
+          child: CustomPaint(
+              painter: _PizzaPainter(numerator: num, denominator: den)),
         ),
       ),
     );
   }
 
-  Widget _buildDual(List<int> a, List<int> b) {
+  Widget _buildDual(List<int> a, List<int> b, {required String operator}) {
     final denA = a[1].clamp(1, 12);
     final numA = a[0].clamp(0, denA);
     final denB = b[1].clamp(1, 12);
@@ -389,9 +497,9 @@ class FractionPizzaVisual extends StatelessWidget {
               painter: _PizzaPainter(numerator: numA, denominator: denA),
             ),
           ),
-          const Text(
-            '=',
-            style: TextStyle(
+          Text(
+            operator,
+            style: const TextStyle(
               fontFamily: 'Nunito',
               fontSize: 36,
               fontWeight: FontWeight.w900,
@@ -441,7 +549,8 @@ class _PizzaPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = math.min(size.width, size.height) / 2 - 6;
-    canvas.drawCircle(center.translate(0, 5), radius, Paint()..color = Colors.black.withOpacity(0.14));
+    canvas.drawCircle(center.translate(0, 5), radius,
+        Paint()..color = Colors.black.withOpacity(0.14));
     // Background
     canvas.drawCircle(center, radius, Paint()..color = const Color(0xFFFFF3D6));
     // Slices
@@ -449,16 +558,29 @@ class _PizzaPainter extends CustomPainter {
     for (var i = 0; i < denominator; i++) {
       final start = -math.pi / 2 + i * perSlice;
       final fillPaint = Paint()
-        ..color = i < numerator ? const Color(0xFFFF7A2F) : const Color(0xFFFFE08A);
+        ..color =
+            i < numerator ? const Color(0xFFFF7A2F) : const Color(0xFFFFE08A);
       final rect = Rect.fromCircle(center: center, radius: radius);
       canvas.drawArc(rect, start, perSlice, true, fillPaint);
       // Slice border
-      canvas.drawArc(rect, start, perSlice, true,
-          Paint()..style = PaintingStyle.stroke..strokeWidth = 2.4..color = Colors.white);
+      canvas.drawArc(
+          rect,
+          start,
+          perSlice,
+          true,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2.4
+            ..color = Colors.white);
     }
     // Outer ring
-    canvas.drawCircle(center, radius,
-        Paint()..style = PaintingStyle.stroke..strokeWidth = 3..color = const Color(0xFFC2410C));
+    canvas.drawCircle(
+        center,
+        radius,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 3
+          ..color = const Color(0xFFC2410C));
   }
 
   @override
@@ -493,7 +615,11 @@ class BarChartMiniVisual extends StatelessWidget {
               Text(
                 'Schau die Aufgabe an und überlege die Zahlen.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w700, color: LumoColors.ink500),
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: LumoColors.ink500),
               ),
             ],
           ),
@@ -526,7 +652,12 @@ class BarChartMiniVisual extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text('$v', style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w900, color: colors[i % colors.length])),
+                  Text('$v',
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w900,
+                          color: colors[i % colors.length])),
                   const SizedBox(height: 4),
                   TweenAnimationBuilder<double>(
                     duration: Duration(milliseconds: 540 + i * 80),
@@ -539,11 +670,19 @@ class BarChartMiniVisual extends StatelessWidget {
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                          colors: [colors[i % colors.length], colors[i % colors.length].withOpacity(0.65)],
+                          colors: [
+                            colors[i % colors.length],
+                            colors[i % colors.length].withOpacity(0.65)
+                          ],
                         ),
-                        borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+                        borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(8)),
                         boxShadow: [
-                          BoxShadow(color: colors[i % colors.length].withOpacity(0.30), blurRadius: 6, offset: const Offset(0, 3)),
+                          BoxShadow(
+                              color:
+                                  colors[i % colors.length].withOpacity(0.30),
+                              blurRadius: 6,
+                              offset: const Offset(0, 3)),
                         ],
                       ),
                     ),
@@ -575,7 +714,8 @@ class RhymeBubbleVisual extends StatelessWidget {
         ? raw.map((e) => e.toString()).toList(growable: false)
         : <String>[];
     // Sicheres Wort-Extraktion: leerer Prompt -> leerer String, kein Crash
-    final fromPayload = data['word']?.toString() ?? task.parameters['word']?.toString();
+    final fromPayload =
+        data['word']?.toString() ?? task.parameters['word']?.toString();
     final word = fromPayload ?? _safeLastWord(task.prompt);
     return Container(
       padding: const EdgeInsets.all(16),
@@ -585,21 +725,31 @@ class RhymeBubbleVisual extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)]),
+              gradient: const LinearGradient(
+                  colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)]),
               borderRadius: BorderRadius.circular(LumoRadius.pill),
               boxShadow: [
-                BoxShadow(color: LumoColors.purple.withOpacity(0.40), blurRadius: 12, offset: const Offset(0, 5)),
+                BoxShadow(
+                    color: LumoColors.purple.withOpacity(0.40),
+                    blurRadius: 12,
+                    offset: const Offset(0, 5)),
               ],
             ),
             child: Text(word,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 22, fontWeight: FontWeight.w900, color: Colors.white)),
+                style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white)),
           ),
           const SizedBox(height: 14),
           Wrap(
             alignment: WrapAlignment.center,
             spacing: 10,
             runSpacing: 8,
-            children: rhymes.map((r) => _RhymeBubble(text: r)).toList(growable: false),
+            children: rhymes
+                .map((r) => _RhymeBubble(text: r))
+                .toList(growable: false),
           ),
         ],
       ),
@@ -618,12 +768,21 @@ class _RhymeBubble extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(LumoRadius.pill),
-        border: Border.all(color: LumoColors.purple.withOpacity(0.30), width: 1.4),
+        border:
+            Border.all(color: LumoColors.purple.withOpacity(0.30), width: 1.4),
         boxShadow: [
-          BoxShadow(color: LumoColors.purple.withOpacity(0.18), blurRadius: 6, offset: const Offset(0, 3)),
+          BoxShadow(
+              color: LumoColors.purple.withOpacity(0.18),
+              blurRadius: 6,
+              offset: const Offset(0, 3)),
         ],
       ),
-      child: Text(text, style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoColors.ink700)),
+      child: Text(text,
+          style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 14,
+              fontWeight: FontWeight.w800,
+              color: LumoColors.ink700)),
     );
   }
 }
@@ -637,7 +796,8 @@ class SyllableClapVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
     final raw = data['syllables'];
-    final word = data['word']?.toString() ?? task.parameters['word']?.toString() ?? '';
+    final word =
+        data['word']?.toString() ?? task.parameters['word']?.toString() ?? '';
     final syllables = raw is List
         ? raw.map((e) => e.toString()).toList(growable: false)
         : (word.isEmpty ? <String>[] : <String>[word]);
@@ -653,15 +813,25 @@ class SyllableClapVisual extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: syllables.asMap().entries.map((e) {
-              const colors = [Color(0xFFF472B6), Color(0xFF60A5FA), Color(0xFF34D399), Color(0xFFFFB800)];
-              return _SyllableChip(text: e.value, color: colors[e.key % colors.length]);
+              const colors = [
+                Color(0xFFF472B6),
+                Color(0xFF60A5FA),
+                Color(0xFF34D399),
+                Color(0xFFFFB800)
+              ];
+              return _SyllableChip(
+                  text: e.value, color: colors[e.key % colors.length]);
             }).toList(growable: false),
           ),
           const SizedBox(height: 10),
           Text(
             'Sprich langsam und klatsche bei jeder Silbe.',
             textAlign: TextAlign.center,
-            style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w700, color: LumoColors.ink500),
+            style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: LumoColors.ink500),
           ),
         ],
       ),
@@ -682,11 +852,18 @@ class _SyllableChip extends StatelessWidget {
         gradient: LinearGradient(colors: [color, color.withOpacity(0.75)]),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         boxShadow: [
-          BoxShadow(color: color.withOpacity(0.40), blurRadius: 8, offset: const Offset(0, 4)),
+          BoxShadow(
+              color: color.withOpacity(0.40),
+              blurRadius: 8,
+              offset: const Offset(0, 4)),
         ],
       ),
       child: Text(text,
-          style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: Colors.white)),
+          style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 18,
+              fontWeight: FontWeight.w900,
+              color: Colors.white)),
     );
   }
 }
@@ -699,7 +876,9 @@ class WordFamilyTreeVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final root = data['root']?.toString() ?? task.parameters['root']?.toString() ?? 'fahren';
+    final root = data['root']?.toString() ??
+        task.parameters['root']?.toString() ??
+        'fahren';
     final raw = data['family'];
     final family = raw is List
         ? raw.map((e) => e.toString()).toList(growable: false)
@@ -714,14 +893,22 @@ class WordFamilyTreeVisual extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [Color(0xFF34D399), Color(0xFF10B981)]),
+              gradient: const LinearGradient(
+                  colors: [Color(0xFF34D399), Color(0xFF10B981)]),
               borderRadius: BorderRadius.circular(LumoRadius.md),
               boxShadow: [
-                BoxShadow(color: LumoColors.teal.withOpacity(0.40), blurRadius: 10, offset: const Offset(0, 4)),
+                BoxShadow(
+                    color: LumoColors.teal.withOpacity(0.40),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4)),
               ],
             ),
             child: Text(root,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: Colors.white)),
+                style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white)),
           ),
           const SizedBox(height: 12),
           Wrap(
@@ -747,12 +934,21 @@ class _Leaf extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(LumoRadius.pill),
-        border: Border.all(color: LumoColors.teal.withOpacity(0.40), width: 1.4),
+        border:
+            Border.all(color: LumoColors.teal.withOpacity(0.40), width: 1.4),
         boxShadow: [
-          BoxShadow(color: LumoColors.teal.withOpacity(0.18), blurRadius: 6, offset: const Offset(0, 3)),
+          BoxShadow(
+              color: LumoColors.teal.withOpacity(0.18),
+              blurRadius: 6,
+              offset: const Offset(0, 3)),
         ],
       ),
-      child: Text(text, style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoColors.ink700)),
+      child: Text(text,
+          style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 13,
+              fontWeight: FontWeight.w800,
+              color: LumoColors.ink700)),
     );
   }
 }
@@ -778,8 +974,12 @@ class SentenceBlocksVisual extends StatelessWidget {
         runSpacing: 6,
         children: words.asMap().entries.map((e) {
           const colors = [
-            Color(0xFFFF7A2F), Color(0xFF60A5FA), Color(0xFF34D399),
-            Color(0xFFF472B6), Color(0xFFFFB800), Color(0xFF8B5CF6),
+            Color(0xFFFF7A2F),
+            Color(0xFF60A5FA),
+            Color(0xFF34D399),
+            Color(0xFFF472B6),
+            Color(0xFFFFB800),
+            Color(0xFF8B5CF6),
           ];
           return _Block(text: e.value, color: colors[e.key % colors.length]);
         }).toList(growable: false),
@@ -801,10 +1001,18 @@ class _Block extends StatelessWidget {
         gradient: LinearGradient(colors: [color, color.withOpacity(0.75)]),
         borderRadius: BorderRadius.circular(LumoRadius.sm),
         boxShadow: [
-          BoxShadow(color: color.withOpacity(0.40), blurRadius: 6, offset: const Offset(0, 3)),
+          BoxShadow(
+              color: color.withOpacity(0.40),
+              blurRadius: 6,
+              offset: const Offset(0, 3)),
         ],
       ),
-      child: Text(text, style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: Colors.white)),
+      child: Text(text,
+          style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 14,
+              fontWeight: FontWeight.w900,
+              color: Colors.white)),
     );
   }
 }
@@ -835,7 +1043,12 @@ class WordTypeColorVisual extends StatelessWidget {
           Text(
             task.prompt,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: LumoColors.ink900, height: 1.3),
+            style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+                color: LumoColors.ink900,
+                height: 1.3),
           ),
         ],
       ),
@@ -858,7 +1071,11 @@ class _ColorTag extends StatelessWidget {
         border: Border.all(color: color, width: 1.4),
       ),
       child: Text(label,
-          style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: color)),
+          style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 11,
+              fontWeight: FontWeight.w900,
+              color: color)),
     );
   }
 }
@@ -876,11 +1093,14 @@ class ArticleCardsVisual extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _ArticleCard(article: 'der', color: const Color(0xFF60A5FA), icon: '👨'),
+          _ArticleCard(
+              article: 'der', color: const Color(0xFF60A5FA), icon: '👨'),
           const SizedBox(width: 8),
-          _ArticleCard(article: 'die', color: const Color(0xFFF472B6), icon: '👩'),
+          _ArticleCard(
+              article: 'die', color: const Color(0xFFF472B6), icon: '👩'),
           const SizedBox(width: 8),
-          _ArticleCard(article: 'das', color: const Color(0xFF34D399), icon: '🧒'),
+          _ArticleCard(
+              article: 'das', color: const Color(0xFF34D399), icon: '🧒'),
         ],
       ),
     );
@@ -888,7 +1108,8 @@ class ArticleCardsVisual extends StatelessWidget {
 }
 
 class _ArticleCard extends StatelessWidget {
-  const _ArticleCard({required this.article, required this.color, required this.icon});
+  const _ArticleCard(
+      {required this.article, required this.color, required this.icon});
   final String article;
   final Color color;
   final String icon;
@@ -899,11 +1120,15 @@ class _ArticleCard extends StatelessWidget {
       width: 78,
       padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [Colors.white, color.withOpacity(0.18)]),
+        gradient:
+            LinearGradient(colors: [Colors.white, color.withOpacity(0.18)]),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: color, width: 1.6),
         boxShadow: [
-          BoxShadow(color: color.withOpacity(0.30), blurRadius: 10, offset: const Offset(0, 5)),
+          BoxShadow(
+              color: color.withOpacity(0.30),
+              blurRadius: 10,
+              offset: const Offset(0, 5)),
         ],
       ),
       child: Column(
@@ -911,7 +1136,11 @@ class _ArticleCard extends StatelessWidget {
           Text(icon, style: const TextStyle(fontSize: 28)),
           const SizedBox(height: 4),
           Text(article,
-              style: TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: color)),
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  color: color)),
         ],
       ),
     );
@@ -996,19 +1225,24 @@ class _RectangleMeasurePainter extends CustomPainter {
     _drawArrow(canvas, Offset(leftX, rect.bottom), const Offset(0, 1), guide);
 
     // Beschriftungen.
-    _drawLabel(canvas, '$length cm', rect.center.dx, topY - 12, anchor: Alignment.center, color: const Color(0xFF065F46));
-    _drawLabel(canvas, '$width cm', leftX - 12, rect.center.dy, anchor: Alignment.centerRight, color: const Color(0xFF065F46));
+    _drawLabel(canvas, '$length cm', rect.center.dx, topY - 12,
+        anchor: Alignment.center, color: const Color(0xFF065F46));
+    _drawLabel(canvas, '$width cm', leftX - 12, rect.center.dy,
+        anchor: Alignment.centerRight, color: const Color(0xFF065F46));
   }
 
   void _drawArrow(Canvas canvas, Offset tip, Offset dir, Paint paint) {
     const len = 6.0;
     final perp = Offset(-dir.dy, dir.dx);
     final base = tip - Offset(dir.dx * len, dir.dy * len);
-    canvas.drawLine(tip, base + Offset(perp.dx * len * 0.6, perp.dy * len * 0.6), paint);
-    canvas.drawLine(tip, base - Offset(perp.dx * len * 0.6, perp.dy * len * 0.6), paint);
+    canvas.drawLine(
+        tip, base + Offset(perp.dx * len * 0.6, perp.dy * len * 0.6), paint);
+    canvas.drawLine(
+        tip, base - Offset(perp.dx * len * 0.6, perp.dy * len * 0.6), paint);
   }
 
-  void _drawLabel(Canvas canvas, String text, double x, double y, {required Alignment anchor, required Color color}) {
+  void _drawLabel(Canvas canvas, String text, double x, double y,
+      {required Alignment anchor, required Color color}) {
     final tp = TextPainter(
       text: TextSpan(
         text: text,
@@ -1030,7 +1264,6 @@ class _RectangleMeasurePainter extends CustomPainter {
   bool shouldRepaint(_RectangleMeasurePainter old) =>
       old.length != length || old.width != width;
 }
-
 
 /// Lineal-Vergleich fuer Laengen-Umrechnung (cm/m, mm/cm).
 /// Zeigt zwei Lineale uebereinander mit Skala + farblicher Markierung.
@@ -1070,9 +1303,14 @@ class _RulerPainter extends CustomPainter {
     final markStep = w / 10;
     // Oberes Lineal: Meter
     final rect1 = Rect.fromLTWH(0, 12, w, 28);
-    canvas.drawRRect(RRect.fromRectAndRadius(rect1, const Radius.circular(4)), fill);
-    canvas.drawRRect(RRect.fromRectAndRadius(rect1, const Radius.circular(4)),
-        Paint()..color = const Color(0xFF1E3A8A)..style = PaintingStyle.stroke..strokeWidth = 2);
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(rect1, const Radius.circular(4)), fill);
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(rect1, const Radius.circular(4)),
+        Paint()
+          ..color = const Color(0xFF1E3A8A)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2);
     for (var i = 0; i <= 10; i++) {
       final x = i * markStep;
       final h = i % 5 == 0 ? 14.0 : 8.0;
@@ -1083,25 +1321,41 @@ class _RulerPainter extends CustomPainter {
 
     // Unteres Lineal: cm (1m = 100cm)
     final rect2 = Rect.fromLTWH(0, 64, w, 28);
-    canvas.drawRRect(RRect.fromRectAndRadius(rect2, const Radius.circular(4)), fill);
-    canvas.drawRRect(RRect.fromRectAndRadius(rect2, const Radius.circular(4)),
-        Paint()..color = const Color(0xFF991B1B)..style = PaintingStyle.stroke..strokeWidth = 2);
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(rect2, const Radius.circular(4)), fill);
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(rect2, const Radius.circular(4)),
+        Paint()
+          ..color = const Color(0xFF991B1B)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2);
     for (var i = 0; i <= 10; i++) {
       final x = i * markStep;
       final h = i % 5 == 0 ? 14.0 : 8.0;
-      canvas.drawLine(Offset(x, 64), Offset(x, 64 + h),
-          Paint()..color = const Color(0xFF991B1B)..strokeWidth = 2);
+      canvas.drawLine(
+          Offset(x, 64),
+          Offset(x, 64 + h),
+          Paint()
+            ..color = const Color(0xFF991B1B)
+            ..strokeWidth = 2);
     }
-    _label(canvas, '0 cm', 0, 96, anchor: Alignment.centerLeft, color: const Color(0xFF991B1B));
-    _label(canvas, '${meters * 100} cm', w, 96, anchor: Alignment.centerRight, color: const Color(0xFF991B1B));
+    _label(canvas, '0 cm', 0, 96,
+        anchor: Alignment.centerLeft, color: const Color(0xFF991B1B));
+    _label(canvas, '${meters * 100} cm', w, 96,
+        anchor: Alignment.centerRight, color: const Color(0xFF991B1B));
   }
 
   void _label(Canvas canvas, String text, double x, double y,
       {required Alignment anchor, Color color = const Color(0xFF1E3A8A)}) {
     final tp = TextPainter(
-      text: TextSpan(text: text, style: TextStyle(
-        fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: color,
-      )),
+      text: TextSpan(
+          text: text,
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 13,
+            fontWeight: FontWeight.w900,
+            color: color,
+          )),
       textDirection: TextDirection.ltr,
     )..layout();
     final dx = x - tp.width * (anchor.x + 1) / 2;
@@ -1112,7 +1366,6 @@ class _RulerPainter extends CustomPainter {
   @override
   bool shouldRepaint(_RulerPainter old) => old.meters != meters;
 }
-
 
 /// Skala-Visualisierung fuer Masse (kg/g) und Hohlmasse (l/ml).
 /// Zwei Bechertank-Symbole mit beschrifteter Skala 1:1000.
@@ -1126,7 +1379,7 @@ class ScaleMeasureVisual extends StatelessWidget {
     final nums = _digitsFromPrompt(task.prompt);
     final value = _readInt(data['value']) ?? (nums.isNotEmpty ? nums[0] : 1);
     final isVolume = task.prompt.toLowerCase().contains('liter') ||
-                     task.prompt.toLowerCase().contains('milliliter');
+        task.prompt.toLowerCase().contains('milliliter');
     final bigUnit = isVolume ? 'Liter' : 'kg';
     final smallUnit = isVolume ? 'ml' : 'g';
     final emoji = isVolume ? '🫗' : '⚖️';
@@ -1136,15 +1389,25 @@ class ScaleMeasureVisual extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _ScaleChip(value: '$value', unit: bigUnit, emoji: emoji,
-                    color: const Color(0xFF9D174D)),
+          _ScaleChip(
+              value: '$value',
+              unit: bigUnit,
+              emoji: emoji,
+              color: const Color(0xFF9D174D)),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text('=', style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900,
-                color: Color(0xFF9D174D), fontFamily: 'Nunito')),
+            child: Text('=',
+                style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF9D174D),
+                    fontFamily: 'Nunito')),
           ),
-          _ScaleChip(value: '${value * 1000}', unit: smallUnit, emoji: emoji,
-                    color: const Color(0xFFA855F7)),
+          _ScaleChip(
+              value: '${value * 1000}',
+              unit: smallUnit,
+              emoji: emoji,
+              color: const Color(0xFFA855F7)),
         ],
       ),
     );
@@ -1152,7 +1415,11 @@ class ScaleMeasureVisual extends StatelessWidget {
 }
 
 class _ScaleChip extends StatelessWidget {
-  const _ScaleChip({required this.value, required this.unit, required this.emoji, required this.color});
+  const _ScaleChip(
+      {required this.value,
+      required this.unit,
+      required this.emoji,
+      required this.color});
   final String value;
   final String unit;
   final String emoji;
@@ -1167,17 +1434,29 @@ class _ScaleChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: color.withOpacity(0.40), width: 1.6),
         boxShadow: [
-          BoxShadow(color: color.withOpacity(0.18), blurRadius: 8, offset: const Offset(0, 3)),
+          BoxShadow(
+              color: color.withOpacity(0.18),
+              blurRadius: 8,
+              offset: const Offset(0, 3)),
         ],
       ),
       child: Column(
         children: [
           Text(emoji, style: const TextStyle(fontSize: 28, height: 1.0)),
           const SizedBox(height: 4),
-          Text(value, style: TextStyle(fontFamily: 'Nunito', fontSize: 22,
-              fontWeight: FontWeight.w900, color: color, height: 1.0)),
-          Text(unit, style: TextStyle(fontFamily: 'Nunito', fontSize: 12,
-              fontWeight: FontWeight.w800, color: color.withOpacity(0.85))),
+          Text(value,
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w900,
+                  color: color,
+                  height: 1.0)),
+          Text(unit,
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  color: color.withOpacity(0.85))),
         ],
       ),
     );
@@ -1243,7 +1522,9 @@ class WrittenArithmeticVisual extends StatelessWidget {
   }
 
   String _detectOp(String prompt) {
-    if (prompt.contains('×') || prompt.toLowerCase().contains('mal')) return '×';
+    if (prompt.contains('×') || prompt.toLowerCase().contains('mal')) {
+      return '×';
+    }
     if (prompt.contains('-')) return '−';
     return '+';
   }
@@ -1299,20 +1580,37 @@ class WrittenArithmeticVisual extends StatelessWidget {
   }
 }
 
-
-/// Division als Gruppen: X Objekte (Emoji) in N Schalen aufgeteilt.
-/// Beispiel: '24 : 4 = ?' zeigt 4 Schalen mit je 6 Emoji-Items.
+/// Every displayed group represents its complete quantity. Larger quantities
+/// use explicitly valued bundles instead of silently clipping visible objects.
 class DivisionGroupsVisual extends StatelessWidget {
   const DivisionGroupsVisual({super.key, required this.task});
   final TaskInstance task;
 
   @override
   Widget build(BuildContext context) {
-    final nums = _digitsFromPrompt(task.prompt);
-    final dividend = nums.isNotEmpty ? nums[0] : 24;
-    final divisor = nums.length > 1 ? nums[1] : 4;
-    final perGroup = divisor > 0 ? (dividend ~/ divisor) : 0;
-    final showGroups = divisor.clamp(2, 6);
+    final data = task.visualPayload.data;
+    final expression = RegExp(r'^\s*(\d+)\s*[:÷]\s*(\d+)\s*=\s*\?\s*$')
+        .firstMatch(task.prompt);
+    final dividend = data['operation'] == 'division' && data['left'] is int
+        ? data['left'] as int
+        : int.tryParse(expression?[1] ?? '');
+    final divisor = data['operation'] == 'division' && data['right'] is int
+        ? data['right'] as int
+        : int.tryParse(expression?[2] ?? '');
+    if (dividend == null ||
+        divisor == null ||
+        divisor < 1 ||
+        divisor > 12 ||
+        dividend < 1 ||
+        dividend % divisor != 0 ||
+        dividend ~/ divisor > 999 ||
+        task.correctAnswer != dividend ~/ divisor) {
+      return Text(task.prompt, textAlign: TextAlign.center);
+    }
+    final perGroup = dividend ~/ divisor;
+    final hundreds = perGroup ~/ 100;
+    final tens = perGroup % 100 ~/ 10;
+    final ones = perGroup % 10;
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       decoration: _stageDecoration(const Color(0xFFA855F7)),
@@ -1320,7 +1618,7 @@ class DivisionGroupsVisual extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '$dividend Aepfel in $divisor gleiche Schalen',
+            '$dividend Objekte in $divisor gleich große Gruppen',
             style: const TextStyle(
               fontFamily: 'Nunito',
               fontSize: 13,
@@ -1334,8 +1632,9 @@ class DivisionGroupsVisual extends StatelessWidget {
             runSpacing: 8,
             alignment: WrapAlignment.center,
             children: [
-              for (var i = 0; i < showGroups; i++)
+              for (var i = 0; i < divisor; i++)
                 Container(
+                  key: ValueKey('division-group-$i'),
                   padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -1344,13 +1643,19 @@ class DivisionGroupsVisual extends StatelessWidget {
                         color: const Color(0xFFA855F7).withOpacity(0.45),
                         width: 1.2),
                   ),
-                  child: Wrap(
-                    spacing: 1,
-                    children: [
-                      for (var k = 0; k < perGroup.clamp(0, 9); k++)
-                        const Text('🍎', style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    Text('Gruppe ${i + 1} · $perGroup',
+                        style: const TextStyle(fontWeight: FontWeight.w800)),
+                    const SizedBox(height: 4),
+                    Wrap(spacing: 4, runSpacing: 4, children: [
+                      for (var k = 0; k < hundreds; k++)
+                        _bundle(100, 'division-hundred-$i-$k'),
+                      for (var k = 0; k < tens; k++)
+                        _bundle(10, 'division-ten-$i-$k'),
+                      for (var k = 0; k < ones; k++)
+                        _bundle(1, 'division-one-$i-$k'),
+                    ]),
+                  ]),
                 ),
             ],
           ),
@@ -1358,21 +1663,46 @@ class DivisionGroupsVisual extends StatelessWidget {
       ),
     );
   }
+
+  Widget _bundle(int value, String key) => Semantics(
+        label: '$value ${value == 1 ? 'Objekt' : 'Objekte'}',
+        child: Container(
+          key: ValueKey(key),
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+          decoration: BoxDecoration(
+            color:
+                value == 1 ? const Color(0xFFFFD081) : const Color(0xFFE2D1F7),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Text('$value',
+              style: const TextStyle(fontWeight: FontWeight.w800)),
+        ),
+      );
 }
 
-
-/// Zahlenvergleich: zwei grosse Zahlen mit dem richtigen Vergleichssymbol
-/// (>, <, =) zwischen ihnen als Hilfe-Visualisierung.
+/// Displays only the given numbers. The caller may reveal a symbol after the
+/// owning lesson has evaluated it; the view never supplies the missing answer.
 class NumberCompareVisual extends StatelessWidget {
-  const NumberCompareVisual({super.key, required this.task});
+  const NumberCompareVisual(
+      {super.key, required this.task, this.evaluatedSymbol});
   final TaskInstance task;
+  final String? evaluatedSymbol;
 
   @override
   Widget build(BuildContext context) {
-    final nums = _digitsFromPrompt(task.prompt);
-    final a = nums.isNotEmpty ? nums[0] : 42;
-    final b = nums.length > 1 ? nums[1] : 24;
-    final symbol = a > b ? '>' : (a < b ? '<' : '=');
+    final data = task.visualPayload.data;
+    final prompt = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
+        .firstMatch(task.prompt.trim());
+    final a = data['left'] is int
+        ? data['left'] as int
+        : int.tryParse(prompt?.group(1) ?? '');
+    final b = data['right'] is int
+        ? data['right'] as int
+        : int.tryParse(prompt?.group(2) ?? '');
+    if (a == null || b == null) return const SizedBox.shrink();
+    final symbol = const ['<', '>', '='].contains(evaluatedSymbol)
+        ? evaluatedSymbol!
+        : '?';
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
       decoration: _stageDecoration(const Color(0xFFEC4899)),
@@ -1421,7 +1751,10 @@ class NumberCompareVisual extends StatelessWidget {
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: color, width: 1.6),
         boxShadow: [
-          BoxShadow(color: color.withOpacity(0.20), blurRadius: 10, offset: const Offset(0, 4)),
+          BoxShadow(
+              color: color.withOpacity(0.20),
+              blurRadius: 10,
+              offset: const Offset(0, 4)),
         ],
       ),
       child: Text(
@@ -1436,7 +1769,6 @@ class NumberCompareVisual extends StatelessWidget {
     );
   }
 }
-
 
 /// Einfaches Saeulen-Bar-Chart - 2 Balken nebeneinander mit Werten.
 class SimpleBarChartVisual extends StatelessWidget {
@@ -1486,7 +1818,10 @@ class SimpleBarChartVisual extends StatelessWidget {
             color: c,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
             boxShadow: [
-              BoxShadow(color: c.withOpacity(0.35), blurRadius: 10, offset: const Offset(0, 4)),
+              BoxShadow(
+                  color: c.withOpacity(0.35),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4)),
             ],
           ),
         ),
@@ -1509,7 +1844,6 @@ class SimpleBarChartVisual extends StatelessWidget {
     );
   }
 }
-
 
 // ─────────────────────────────────────────────────────────────────────
 //  ITER 19/B3 (2026-06-05) - Story-Stage fuer Sachaufgaben
@@ -1556,8 +1890,7 @@ class StoryStageVisual extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(LumoRadius.pill),
               border: Border.all(
-                  color: const Color(0xFFFB923C).withOpacity(0.45),
-                  width: 1.2),
+                  color: const Color(0xFFFB923C).withOpacity(0.45), width: 1.2),
             ),
             child: const Text(
               '📖 Lies die Geschichte langsam',
@@ -1582,24 +1915,33 @@ class StoryStageVisual extends StatelessWidget {
     if (p.contains('apfel') || p.contains('aepfel') || p.contains('äpfel')) {
       return '🍎';
     }
-    if (p.contains('baecker') || p.contains('bäcker') ||
-        p.contains('brot') || p.contains('kuchen') || p.contains('semmel')) {
+    if (p.contains('baecker') ||
+        p.contains('bäcker') ||
+        p.contains('brot') ||
+        p.contains('kuchen') ||
+        p.contains('semmel')) {
       return '🥨';
     }
     if (p.contains('schwimm') || p.contains('schwimmbad')) return '🏊';
-    if (p.contains('schule') || p.contains('klasse') ||
-        p.contains('schüler') || p.contains('schueler')) {
+    if (p.contains('schule') ||
+        p.contains('klasse') ||
+        p.contains('schüler') ||
+        p.contains('schueler')) {
       return '🏫';
     }
     if (p.contains('blume') || p.contains('garten') || p.contains('baum')) {
       return '🌳';
     }
-    if (p.contains('tier') || p.contains('hund') || p.contains('katze') ||
+    if (p.contains('tier') ||
+        p.contains('hund') ||
+        p.contains('katze') ||
         p.contains('hase')) {
       return '🐶';
     }
     if (p.contains('vogel') || p.contains('biene')) return '🐦';
-    if (p.contains('euro') || p.contains('geld') || p.contains('cent') ||
+    if (p.contains('euro') ||
+        p.contains('geld') ||
+        p.contains('cent') ||
         p.contains('€')) {
       return '💶';
     }

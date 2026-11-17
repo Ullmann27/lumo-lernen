@@ -1,0 +1,9 @@
+{
+  "base": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "changed_files": [
+    ".github/probes/lumo_village_android_probe.py",
+    "tools/android_qa/tests/test_village_android_evidence.py"
+  ],
+  "original_verifiers_and_shared_helpers_byte_identical": true,
+  "scope": "Only the Village observer and its existing contract test file changed; no product, native pin, source binding or workflow change"
+}

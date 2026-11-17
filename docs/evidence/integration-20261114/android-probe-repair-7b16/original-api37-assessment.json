@@ -1,0 +1,369 @@
+{
+  "schema": 1,
+  "assessed_at": "2026-11-14T02:54:04.497876+00:00",
+  "host_sha": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "host_tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+  "run_id": 43540111465,
+  "attempt": 1,
+  "job": {
+    "id": 132298281316,
+    "run_id": 43540111465,
+    "workflow_name": "LUMO Kart graphics 2019 Android candidate",
+    "head_branch": "integration/lumo-connections-20261113",
+    "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43540111465",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOSNzcp88AAAAezZeRZA",
+    "head_sha": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132298281316",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43540111465/job/132298281316",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-11-14T02:26:13Z",
+    "started_at": "2026-11-14T02:26:15Z",
+    "completed_at": "2026-11-14T02:30:01Z",
+    "name": "Android API 37 live application tour",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T02:26:15Z",
+        "completed_at": "2026-11-14T02:26:16Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T02:26:16Z",
+        "completed_at": "2026-11-14T02:26:37Z"
+      },
+      {
+        "name": "Checkout exact upstream action only for Android 17",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T02:26:37Z",
+        "completed_at": "2026-11-14T02:26:38Z"
+      },
+      {
+        "name": "Verify framework guard before the Android 17 emulator",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T02:26:38Z",
+        "completed_at": "2026-11-14T02:26:38Z"
+      },
+      {
+        "name": "Run actions/download-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T02:26:38Z",
+        "completed_at": "2026-11-14T02:26:45Z"
+      },
+      {
+        "name": "Live UI reader",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T02:26:45Z",
+        "completed_at": "2026-11-14T02:27:27Z"
+      },
+      {
+        "name": "Enable accelerated disposable emulator",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T02:27:27Z",
+        "completed_at": "2026-11-14T02:27:27Z"
+      },
+      {
+        "name": "Software display",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T02:27:27Z",
+        "completed_at": "2026-11-14T02:27:31Z"
+      },
+      {
+        "name": "Verify the Android 17 CLI22 source and AVD counterexamples",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T02:27:31Z",
+        "completed_at": "2026-11-14T02:27:31Z"
+      },
+      {
+        "name": "Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T02:27:31Z",
+        "completed_at": "2026-11-14T02:28:28Z"
+      },
+      {
+        "name": "Bind the Android 17 guard to this actual new graphics APK source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T02:28:28Z",
+        "completed_at": "2026-11-14T02:28:29Z"
+      },
+      {
+        "name": "Install and tour the exact APK",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 12,
+        "started_at": "2026-11-14T02:28:29Z",
+        "completed_at": "2026-11-14T02:28:29Z"
+      },
+      {
+        "name": "Install and tour the exact APK after Android 17 framework readiness",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 13,
+        "started_at": "2026-11-14T02:28:29Z",
+        "completed_at": "2026-11-14T02:29:58Z"
+      },
+      {
+        "name": "Preserve actual Android 17 generated hardware and disk configuration",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-14T02:29:58Z",
+        "completed_at": "2026-11-14T02:29:58Z"
+      },
+      {
+        "name": "Preserve Android 17 startup diagnostics even after action failure",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-11-14T02:29:58Z",
+        "completed_at": "2026-11-14T02:29:58Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16,
+        "started_at": "2026-11-14T02:29:58Z",
+        "completed_at": "2026-11-14T02:29:59Z"
+      },
+      {
+        "name": "Post Checkout exact upstream action only for Android 17",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-14T02:29:59Z",
+        "completed_at": "2026-11-14T02:29:59Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32,
+        "started_at": "2026-11-14T02:29:59Z",
+        "completed_at": "2026-11-14T02:30:00Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33,
+        "started_at": "2026-11-14T02:30:00Z",
+        "completed_at": "2026-11-14T02:30:00Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132298281316",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000017099,
+    "runner_name": "GitHub Actions 1000017099",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "actual_status": "FAILURE",
+  "phase": "Android emulator pre-app framework guard, before successful Lumo install/tour acknowledgment",
+  "apk_prepared_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+  "apk_install_or_tour_pass": false,
+  "cards_result": "NOT_REACHED",
+  "key_phases": [
+    {
+      "name": "Checkout exact upstream action only for Android 17",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-14T02:26:37Z",
+      "completed_at": "2026-11-14T02:26:38Z"
+    },
+    {
+      "name": "Verify framework guard before the Android 17 emulator",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-14T02:26:38Z",
+      "completed_at": "2026-11-14T02:26:38Z"
+    },
+    {
+      "name": "Verify the Android 17 CLI22 source and AVD counterexamples",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-11-14T02:27:31Z",
+      "completed_at": "2026-11-14T02:27:31Z"
+    },
+    {
+      "name": "Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-14T02:27:31Z",
+      "completed_at": "2026-11-14T02:28:28Z"
+    },
+    {
+      "name": "Bind the Android 17 guard to this actual new graphics APK source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-11-14T02:28:28Z",
+      "completed_at": "2026-11-14T02:28:29Z"
+    },
+    {
+      "name": "Install and tour the exact APK after Android 17 framework readiness",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 13,
+      "started_at": "2026-11-14T02:28:29Z",
+      "completed_at": "2026-11-14T02:29:58Z"
+    },
+    {
+      "name": "Preserve actual Android 17 generated hardware and disk configuration",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 14,
+      "started_at": "2026-11-14T02:29:58Z",
+      "completed_at": "2026-11-14T02:29:58Z"
+    },
+    {
+      "name": "Preserve Android 17 startup diagnostics even after action failure",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 15,
+      "started_at": "2026-11-14T02:29:58Z",
+      "completed_at": "2026-11-14T02:29:58Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 16,
+      "started_at": "2026-11-14T02:29:58Z",
+      "completed_at": "2026-11-14T02:29:59Z"
+    }
+  ],
+  "original_guard": {
+    "status": "FAIL",
+    "reason": "observed_android_anr",
+    "elapsed_seconds": 26.64634719099999,
+    "consecutive_ready_samples": 0,
+    "unlock_action": {
+      "attempted": false,
+      "scope": "At most one observed nonsecure keyguard request; no MENU82 or dialog clicks."
+    },
+    "redundant_menu_keyevent_82": "NOT_SENT",
+    "monitor_alive_at_finish": true
+  },
+  "first_failure": {
+    "job_log_line": 1404,
+    "job_log_timestamp": "2026-11-14T02:29:56.7711498Z",
+    "reason": "observed_android_anr",
+    "actual_event_time": "2026-11-14T02:29:49.711Z",
+    "process": "com.google.android.gms.persistent",
+    "pid": 1411,
+    "cause_reported_by_android": "SIM_STATE_CHANGED broadcast to GmsIntentOperationService$PersistentTrustedReceiver",
+    "runtime_root_cause_established": false
+  },
+  "archive_integrity": {
+    "artifact_id": 14093659058,
+    "archive_bytes": 1128063,
+    "archive_sha256": "d474905fe7024a95d6897e823e126f0ed817d06c4cbd80796853717f00c044a4",
+    "all_members_crc_and_sha256_verified": true,
+    "expanded_bytes": 6536844
+  },
+  "archive_storage": {
+    "full_zip_downloaded_and_verified_in_ram": true,
+    "full_zip_locally_retained": false,
+    "original_actions_artifact_retained": true,
+    "all_335_small_members_materialized": true,
+    "no_png_or_apk_payload_present": true
+  },
+  "original_bindings": [
+    {
+      "path": "jobs/android-api37-132298281316.log",
+      "bytes": 150215,
+      "sha256": "fc6a8272d414e1f5021ded57c1f74fd6ec14ad4faa93e0f347ef7886fec54bd3"
+    },
+    {
+      "path": "jobs/android-api37-132298281316.log.gz",
+      "bytes": 28386,
+      "sha256": "0187eac265d74d0330fc1f1c08d607bcadbe42addc0c0216bd625b43d6e51482"
+    },
+    {
+      "path": "snapshots/20261114T024859Z/run.json",
+      "bytes": 12960,
+      "sha256": "ad55457fbbda8f1b25e197bef8281147f385b939753c7033d10ae86a2d38737a"
+    },
+    {
+      "path": "snapshots/20261114T024859Z/jobs.json",
+      "bytes": 27227,
+      "sha256": "46528430c8863664a0573822088125046e10f37767e8e8751bd4d4cb359ca8f8"
+    },
+    {
+      "path": "artifacts/14093659058/artifact.json",
+      "bytes": 743,
+      "sha256": "18be405b26927f2d4280237dca59280fb61dd276c5c034d7235cc3a8ee713492"
+    },
+    {
+      "path": "artifacts/14093659058/verification.json",
+      "bytes": 110060,
+      "sha256": "d085534c032cada3e5275017cc53727379363652ea32c9e273729d1ef30cbea4"
+    },
+    {
+      "path": "artifacts/14093659058/originals/tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "263316ac045537a6352dc5ad78744d67fc1ce76966765add606002ca61c1c34d"
+    },
+    {
+      "path": "artifacts/14093659058/originals/framework-start/framework-readiness.json",
+      "bytes": 53804,
+      "sha256": "f7fcbe389918bb7e223ffbb9e8d4e6e7a8ac0f801c4db11a9e4fcba0293ce86b"
+    },
+    {
+      "path": "artifacts/14093659058/originals/framework-start/logcat-all.stdout",
+      "bytes": 5273010,
+      "sha256": "0e484eaaac9909f544740cec58728122d7abf0de1a7b914f4790b733d8a254e7"
+    },
+    {
+      "path": "artifacts/14093659058/originals/framework-start/cli22/verified-guard.json",
+      "bytes": 37839,
+      "sha256": "51e5275948a4fd305a7972899b370ca2848fc90b91f2e35b6c9992ffdd25a77b"
+    },
+    {
+      "path": "artifacts/14093659058/originals/framework-start/cli22/observed-guard.json",
+      "bytes": 13839,
+      "sha256": "121b0771efcb0461a22e719a019ebbc61ecbde069ee81e707a6a057e39f81281"
+    }
+  ],
+  "gzip_roundtrip": {
+    "path": "jobs/android-api37-132298281316.log.gz",
+    "decoded_sha256": "fc6a8272d414e1f5021ded57c1f74fd6ec14ad4faa93e0f347ef7886fec54bd3",
+    "decoded_bytes": 150215,
+    "exact_match": true
+  },
+  "separate_repair_evidence": "/workspace/scratch/b3485b7bb989/host-7b16-api37-parser-repair/handoff.json",
+  "repair_scope": "Separate uncommitted parser revision with synthetic input-dispatcher supplements. It does not rewrite any original, supply missing historical input observations or resolve the actual GMS ANR.",
+  "overall_run_status_scope": "The separately running Creative job was not terminal at this assessment; this is only the final API37 job result."
+}

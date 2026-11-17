@@ -1,18 +1,30 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/app_settings.dart';
+import '../domain/games/memory_board.dart';
+import '../domain/games/game_level_catalog.dart';
+import '../domain/games/game_level_model.dart';
+import '../core/daily_mission_repository.dart';
 import '../core/learning_profile_engine.dart';
+import '../core/learning_journey.dart';
+import '../domain/learning_intelligence/scene_memory.dart';
+import '../domain/learning_intelligence/lesson_scene_engine.dart';
+import '../domain/learning_intelligence/learning_scene_contract.dart';
 import '../core/legacy_learning_data.dart';
 import '../core/lumo_cosmos.dart';
 import '../core/progress_repository.dart';
 import '../core/profile_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/attempt_log_repository.dart';
+import '../core/error_breakdown_repository.dart';
 import '../core/lumo_error_log.dart';
 import '../core/reward_wallet_repository.dart';
 import '../core/school_repository.dart';
@@ -42,15 +54,27 @@ enum LumoSection {
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 
 class _PendingRewardWrite {
-  const _PendingRewardWrite({this.stars = 0, this.xp = 0, this.cardsWon});
+  const _PendingRewardWrite({
+    this.stars = 0,
+    this.xp = 0,
+    this.cardsWon,
+    this.resultId,
+    this.quizMilestone = false,
+  });
   final int stars;
   final int xp;
   final bool? cardsWon;
+  final String? resultId;
+  final bool quizMilestone;
 
   Future<RewardWallet> persist(RewardWalletRepository wallet) =>
-      cardsWon == null
-          ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
-          : wallet.awardLumoCardsResult(won: cardsWon!);
+      cardsWon != null
+          ? wallet.awardLumoCardsResult(won: cardsWon!, resultId: resultId)
+          : quizMilestone
+              ? wallet.awardQuizResult(resultId: resultId!, stars: stars)
+              : resultId == null
+                  ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
+                  : wallet.awardGameResult(resultId: resultId!, stars: stars, xp: xp);
 }
 
 enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
@@ -181,12 +205,25 @@ class LearningProfileLease {
   CosmosWorld get cosmos => _session.cosmos;
 }
 
+class _PendingMissionAnswer {
+  _PendingMissionAnswer(this.taskId, this.subject);
+  final String taskId;
+  final String subject;
+  bool schoolSaved = false;
+}
+
 class _LearningSession {
   _LearningSession(this.studentId, this.profile)
       : cosmos = CosmosWorld(studentId: studentId);
   final String studentId;
   final LearningProfileEngine profile;
   final CosmosWorld cosmos;
+  final Queue<_PendingMissionAnswer> pendingMissionAnswers = Queue();
+  Future<void>? missionDrain;
+  final Queue<({String subject, String unit, LearningEvidence evidence})>
+      tutorPending = Queue();
+  Future<void>? tutorDrain;
+  String? tutorError;
   int epoch = 0;
 }
 
@@ -269,10 +306,12 @@ class LumoAppState extends ChangeNotifier {
       {RewardWalletRepository? walletRepository,
       LearningProfileEngine? learningProfile,
       LearningProfileEngine Function(String studentId)? learningProfileFactory,
+      DailyMissionRepository Function(String studentId)? dailyMissionFactory,
       AttemptLogRepository? attemptLog})
       : _walletRepository = walletRepository ?? RewardWalletRepository.instance,
         _learningProfile = learningProfile ?? LearningProfileEngine(),
         _learningProfileFactory = learningProfileFactory,
+        _dailyMissionFactory = dailyMissionFactory,
         attemptLog = attemptLog ?? AttemptLogRepository() {
     _localProfileSeed = _learningProfile;
     school.addListener(_schoolSelectionChanged);
@@ -292,6 +331,87 @@ class LumoAppState extends ChangeNotifier {
   LearningProfileEngine _learningProfile;
   late LearningProfileEngine _localProfileSeed;
   final LearningProfileEngine Function(String)? _learningProfileFactory;
+  final DailyMissionRepository Function(String)? _dailyMissionFactory;
+  final Map<String, DailyMissionRepository> _dailyMissionRepositories = {};
+  DailyMissionSnapshot? _dailyMission;
+  String? _dailyMissionError;
+
+  DailyMissionSnapshot? get dailyMission => _dailyMission;
+  String? get dailyMissionError => _dailyMissionError;
+
+  /// A presentation/access decision, never a native authorization token.
+  /// Call loadDailyMission immediately before a game start to refresh the day.
+  bool get canPlayToday =>
+      !_state.settings.requireDailyMissionForGames ||
+      (!_resetting &&
+          _dailyMissionError == null &&
+          _dailyMission?.isComplete == true &&
+          _dailyMission?.clockUncertain == false);
+
+  DailyMissionRepository _missionRepository(LearningProfileLease owner) =>
+      _dailyMissionRepositories.putIfAbsent(
+          owner.studentId,
+          () =>
+              _dailyMissionFactory?.call(owner.studentId) ??
+              DailyMissionRepository(studentId: owner.studentId));
+
+  Future<void> loadDailyMission() {
+    if (_disposed || _resetting) return Future<void>.value();
+    final generation = _profileGeneration;
+    final source = captureLearningProfile();
+    return _trackLearning(() async {
+      LearningProfileLease? owner;
+      try {
+        owner = await source;
+        if (!canUseLearningLease(owner)) return;
+        _installLearningLease(owner);
+        if (owner._session.pendingMissionAnswers
+            .any((answer) => !answer.schoolSaved)) {
+          await flushLearningProgress(lease: owner);
+        } else {
+          await _flushDailyMission(owner);
+        }
+        final snapshot = await _missionRepository(owner)
+            .load(tasksPerStation: _state.settings.missionTasksPerStation);
+        if (isCurrentLearningLease(owner)) {
+          _dailyMission = snapshot;
+          _dailyMissionError = null;
+          _safeNotify();
+        }
+      } catch (_) {
+        if ((owner != null && isCurrentLearningLease(owner)) ||
+            (owner == null && !_disposed && generation == _profileGeneration)) {
+          _dailyMissionError = 'Deine Tagesmission konnte nicht sicher '
+              'gespeichert oder geladen werden. Bitte versuche es erneut.';
+          _safeNotify();
+        }
+      }
+    }());
+  }
+
+  Future<void> _flushDailyMission(LearningProfileLease owner) {
+    final session = owner._session;
+    return session.missionDrain ??= () async {
+      while (session.pendingMissionAnswers.isNotEmpty &&
+          canUseLearningLease(owner)) {
+        final answer = session.pendingMissionAnswers.first;
+        if (!answer.schoolSaved) return;
+        final snapshot = await _missionRepository(owner).recordAnswer(
+          taskId: answer.taskId,
+          subject: answer.subject,
+          correct: true,
+          tasksPerStation: _state.settings.missionTasksPerStation,
+        );
+        session.pendingMissionAnswers.removeFirst();
+        if (isCurrentLearningLease(owner)) {
+          _dailyMission = snapshot;
+          _dailyMissionError = null;
+        }
+      }
+    }()
+        .whenComplete(() => session.missionDrain = null);
+  }
+
   final LegacyLearningDataRepository legacyLearningData =
       LegacyLearningDataRepository();
   final Map<String, _LearningSession> _learningSessions = {};
@@ -567,6 +687,7 @@ class LumoAppState extends ChangeNotifier {
 
   void _clearLearningDisplay() {
     final requests = LumoCompanionRequests.instance;
+    requests.tutor.activateProfile(_profileGeneration);
     if (requests.taskContext.value?.profileGeneration != _profileGeneration) {
       requests.clearLearningScope();
     }
@@ -580,6 +701,8 @@ class LumoAppState extends ChangeNotifier {
     _state.learningRecommendationSubject = null;
     _state.learningRecommendationUnit = null;
     _state.lastScanAnalysis = null;
+    _dailyMission = null;
+    _dailyMissionError = null;
   }
 
   void _schoolSelectionChanged() {
@@ -639,6 +762,14 @@ class LumoAppState extends ChangeNotifier {
     try {
       lease = await source;
       await _prepareLearningLease(lease);
+      try {
+        await lease.profile.loadJourney();
+        await lease.profile.loadSceneMemory();
+      } catch (_) {
+        lease._session.tutorError =
+            'Dein Lernweg konnte noch nicht geladen werden.';
+      }
+      if (isCurrentLearningLease(lease)) _safeNotify();
     } catch (_) {
       if (_disposed ||
           (lease != null && lease.generation != _profileGeneration)) {
@@ -650,6 +781,25 @@ class LumoAppState extends ChangeNotifier {
       );
       _safeNotify();
     }
+  }
+
+  /// Accepted independent error evidence retains its actual profile owner.
+  /// Diagnostic storage is optional; the canonical answer log remains separate.
+  Future<void> recordLearningErrorType(String label) {
+    if (_disposed || _resetting) return Future<void>.value();
+    final source = captureLearningProfile();
+    return _trackLearning(() async {
+      try {
+        final owner = await source;
+        if (!canUseLearningLease(owner)) return;
+        await const ErrorBreakdownRepository().incrementForProfile(
+            owner.studentId, label,
+            mayWrite: () => canUseLearningLease(owner));
+      } catch (_) {
+        // A diagnostic failure must not manufacture evidence or replace an
+        // existing, potentially damaged record. Answer persistence is separate.
+      }
+    }());
   }
 
   Future<void> recordLearningAnswer({
@@ -664,6 +814,7 @@ class LumoAppState extends ChangeNotifier {
     int? durationMs,
     double? score,
     LearningProfileLease? lease,
+    String? taskId,
   }) {
     if (_disposed || _resetting) return Future<void>.value();
     final source = lease == null
@@ -675,6 +826,10 @@ class LumoAppState extends ChangeNotifier {
         owner = await source;
         await _prepareLearningLease(owner);
         if (!canUseLearningLease(owner)) return;
+        if (correct && taskId != null) {
+          owner._session.pendingMissionAnswers
+              .add(_PendingMissionAnswer(taskId, subject));
+        }
         try {
           await owner.profile.recordAnswer(
             subject: subject,
@@ -682,6 +837,11 @@ class LumoAppState extends ChangeNotifier {
             isCorrect: correct,
             hintUsed: hintUsed,
           );
+          // The serialized school write also includes earlier accepted work
+          // for this owner, including a previous failed-save attempt.
+          for (final pending in owner._session.pendingMissionAnswers) {
+            pending.schoolSaved = true;
+          }
         } finally {
           // A failed progress write is retried without counting again. Keep
           // this accepted attempt's original owner in its log during retry.
@@ -697,6 +857,20 @@ class LumoAppState extends ChangeNotifier {
             durationMs: durationMs,
             score: score,
           );
+        }
+        // Only an explicit identity from an assessed task can enter a mission.
+        // Legacy callers keep their school progress without invented evidence.
+        if (correct && taskId != null) {
+          try {
+            await _flushDailyMission(owner);
+          } catch (_) {
+            if (isCurrentLearningLease(owner)) {
+              _dailyMissionError = 'Deine Tagesmission wartet noch aufs '
+                  'Speichern. Bitte versuche es erneut.';
+              _safeNotify();
+            }
+            rethrow;
+          }
         }
         if (isCurrentLearningLease(owner)) {
           _syncLearningRecommendation();
@@ -877,7 +1051,11 @@ class LumoAppState extends ChangeNotifier {
       final owner = await source;
       if (!canUseLearningLease(owner)) return;
       await owner.profile.flush();
+      for (final pending in owner._session.pendingMissionAnswers) {
+        pending.schoolSaved = true;
+      }
       await flushAttemptLog();
+      await _flushDailyMission(owner);
       if (isCurrentLearningLease(owner)) {
         _syncLearningRecommendation();
         _safeNotify();
@@ -971,6 +1149,116 @@ class LumoAppState extends ChangeNotifier {
       ? _learningProfile.skills
       : <String, SkillRecord>{};
 
+  Map<String, JourneySkill> learningJourney() =>
+      _learningProfileLoaded && _learningProfile.isJourneyLoaded
+          ? _learningProfile.journey.records
+          : const {};
+
+  String? get tutorSaveError => _activeLearningSession?.tutorError;
+
+  /// Capture the owner before asynchronous storage, just like school answers.
+  /// Only semantic evidence enters the existing per-child journal; no rewards.
+  Future<void> recordTutorEvidence(
+      {required String subject,
+      required String unit,
+      required LearningEvidence evidence,
+      LearningProfileLease? lease}) {
+    evidence.validate();
+    if (_disposed || _resetting) return Future.value();
+    final source =
+        lease == null ? captureLearningProfile() : Future.value(lease);
+    return _trackLearning(() async {
+      final owner = await source;
+      if (!canUseLearningLease(owner)) return;
+      owner._session.tutorPending
+          .add((subject: subject, unit: unit, evidence: evidence));
+      await _drainTutorEvidence(owner);
+    }());
+  }
+
+  Future<void> _drainTutorEvidence(LearningProfileLease owner) async {
+    final session = owner._session;
+    if (session.tutorDrain != null) {
+      await session.tutorDrain;
+      if (session.tutorPending.isNotEmpty && session.tutorError == null) {
+        return _drainTutorEvidence(owner);
+      }
+      return;
+    }
+    final operation = () async {
+      try {
+        await _prepareLearningLease(owner);
+        await owner.profile.loadJourney();
+        while (session.tutorPending.isNotEmpty && canUseLearningLease(owner)) {
+          final pending = session.tutorPending.first;
+          await owner.profile.recordJourneyEvidence(
+              subject: pending.subject,
+              unit: pending.unit,
+              evidence: pending.evidence);
+          session.tutorPending.removeFirst();
+        }
+        session.tutorError = null;
+      } catch (_) {
+        session.tutorError = 'Dein Lernschritt wartet noch aufs Speichern.';
+      }
+      if (isCurrentLearningLease(owner)) _safeNotify();
+    }();
+    session.tutorDrain = operation;
+    try {
+      await operation;
+    } finally {
+      session.tutorDrain = null;
+    }
+  }
+
+  Future<bool> saveLearningScene({required SceneObservation observation, LearningProfileLease? lease}) {
+    final source = lease == null ? captureLearningProfile() : Future.value(lease);
+    return _trackLearning(() async {
+      final owner = await source;
+      if (!canUseLearningLease(owner)) return false;
+      await _prepareLearningLease(owner);
+      await owner.profile.loadSceneMemory();
+      if (!canUseLearningLease(owner)) return false;
+      await owner.profile.recordSceneObservation(observation);
+      if (isCurrentLearningLease(owner)) _safeNotify();
+      return true;
+    }());
+  }
+
+  Future<bool> saveLearningSceneCompletion({required String subject, required String unit,
+      required SceneCompletion proof, required ExplanationMethod method, LearningProfileLease? lease}) {
+    if (lease == null && proof.generation != _profileGeneration) return Future.value(false);
+    final source = lease == null ? captureLearningProfile() : Future.value(lease);
+    return _trackLearning(() async {
+      final owner = await source;
+      if (!canUseLearningLease(owner) || proof.generation != owner.generation) return false;
+      await _prepareLearningLease(owner);
+      await owner.profile.loadSceneMemory();
+      await owner.profile.loadJourney();
+      if (!canUseLearningLease(owner)) return false;
+      await owner.profile.recordSceneCompletion(subject: subject, unit: unit, proof: proof, method: method);
+      if (isCurrentLearningLease(owner)) _safeNotify();
+      return true;
+    }());
+  }
+
+  Future<void> flushTutorEvidence() => _trackLearning(() async {
+        final owner = await captureLearningProfile();
+        if (canUseLearningLease(owner)) await _drainTutorEvidence(owner);
+      }());
+
+  Future<void> loadTutorJourney() => _trackLearning(() async {
+        final owner = await captureLearningProfile();
+        try {
+          await _prepareLearningLease(owner);
+          await owner.profile.loadJourney();
+        } catch (_) {
+          owner._session.tutorError =
+              'Dein Lernweg konnte noch nicht geladen werden.';
+        }
+        if (isCurrentLearningLease(owner)) _safeNotify();
+      }());
+
   /// Heinz 2026-05-21: 'Lumo Cards ist zu langweilig'. Streak-Counter
   /// fuer aufeinanderfolgende Siege gegen Lumo - gibt Bonus-Sterne und
   /// macht Wiederspielen attraktiver. Wallet speichert Serie und Belohnung atomar.
@@ -980,10 +1268,169 @@ class LumoAppState extends ChangeNotifier {
   /// Wird nach einem Lumo-Cards-Spiel aufgerufen. Bei Sieg: Streak +1,
   /// Bonus-Sterne nach Streak-Hoehe. Bei Niederlage: Streak auf 0,
   /// kleiner Trost-Stern.
-  Future<void> recordLumoCardsResult({required bool won}) {
+  Future<void> recordLumoCardsResult({required bool won, String? resultId}) {
     if (_disposed || _resetting) return Future<void>.value();
-    _rewardWrites.add(_PendingRewardWrite(cardsWon: won));
+    _rewardWrites.add(_PendingRewardWrite(cardsWon: won, resultId: resultId));
     return _beginRewardDrain();
+  }
+
+  /// Existing C4 amounts through the injected, idempotent wallet transaction.
+  Future<void> recordConnectFourResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required int stars,
+    required int xp,
+  }) async {
+    final owner = sha256.convert(utf8.encode(lease.studentId)).toString();
+    void guard() {
+      if (!canUseLearningLease(lease) ||
+          lease.generation != _profileGeneration ||
+          school.cachedActiveStudentId !=
+              (lease.logStudentId == 'self' ? null : lease.studentId) ||
+          _disposed || _resetting ||
+          !RegExp('^c4:$owner:[a-f0-9]{32}\$').hasMatch(resultId) ||
+          !const {(3, 20), (5, 40), (2, 16)}.contains((stars, xp))) {
+        throw StateError('Vier-Gewinnt-Ergebnis nicht freigegeben');
+      }
+    }
+    guard();
+    // Do not enqueue an old child's result behind an unrelated pending write.
+    // Once this write starts it keeps its captured owner/result ID, and the
+    // caller must recheck the lease before acknowledging the round.
+    await flushRewards();
+    guard();
+    _rewardWrites.add(_PendingRewardWrite(stars: stars, xp: xp, resultId: resultId));
+    await _beginRewardDrain();
+    guard();
+  }
+
+
+  /// The existing five mini-game routes settle a completed, journaled round
+  /// once. Their level order, wallet amounts and school progress stay unchanged.
+  Future<void> recordMiniGameResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required int levelId,
+    required int stars,
+    required int xp,
+  }) async {
+    final level = GameLevelCatalog.byId(levelId);
+    if (level == null || level.id == 50 || stars < 0 || xp < 0) {
+      throw StateError('Lernspiel-Ergebnis nicht freigegeben');
+    }
+    final valid = switch (level.miniType) {
+      // These routes finish only after all five problems have been solved;
+      // first-attempt mistakes select 1/2/3 stars, never an invented score.
+      GameMiniType.starsPath || GameMiniType.numberHouse =>
+        xp == 40 && stars >= 1 && stars <= level.maxStars,
+      GameMiniType.colorBoxes => stars == 5 && xp == 25,
+      // LetterFill retains its original six first-answer reward formula.
+      GameMiniType.letterFill => xp <= 48 && xp % 8 == 0 &&
+        stars == ((xp ~/ 8) * 5 / 6).round().clamp(1, 5),
+      GameMiniType.numberPath || GameMiniType.wordForest || GameMiniType.mixedQuiz =>
+        xp == (level.id == 13 ? 80 : 40) &&
+        stars >= 1 && stars <= level.maxStars,
+    };
+    if (!valid) throw StateError('Die Belohnung passt nicht zur Lernspiel-Runde');
+    await _recordTableGameResult(lease: lease, resultId: resultId,
+        game: 'mini', stars: stars, xp: xp);
+  }
+
+  /// Preserve the existing Memory reward formula with an owner-bound result ID.
+  Future<void> recordMemoryResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required String difficulty,
+    required int kindPairs,
+    required int lumoPairs,
+  }) async {
+    final level = MemoryDifficulty.values.where((v) => v.name == difficulty);
+    if (level.length != 1 || kindPairs < 0 || lumoPairs < 0 ||
+        kindPairs + lumoPairs != level.single.pairs) {
+      throw StateError('Memory-Ergebnis nicht freigegeben');
+    }
+    final stars = level.single.starsFor(
+        won: kindPairs > lumoPairs, draw: kindPairs == lumoPairs);
+    await _recordTableGameResult(lease: lease, resultId: resultId,
+        game: 'memory', stars: stars, xp: stars * 8);
+  }
+
+  /// Quiz milestones use the existing 50/200/800/5000-star amounts and no XP.
+  Future<void> recordQuizShowResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required int stars,
+  }) async {
+    if (!const {50, 200, 800, 5000}.contains(stars)) {
+      throw StateError('Quiz-Ergebnis nicht freigegeben');
+    }
+    await _recordTableGameResult(lease: lease, resultId: resultId,
+        game: 'quiz', stars: stars, xp: 0);
+  }
+
+  Future<void> _recordTableGameResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required String game,
+    required int stars,
+    required int xp,
+  }) async {
+    final owner = sha256.convert(utf8.encode(lease.studentId)).toString();
+    void guard() {
+      if (!canUseLearningLease(lease) ||
+          lease.generation != _profileGeneration ||
+          school.cachedActiveStudentId !=
+              (lease.logStudentId == 'self' ? null : lease.studentId) ||
+          _disposed || _resetting ||
+          !const {'memory', 'quiz', 'mini'}.contains(game) ||
+          !RegExp('^$game:$owner:[a-f0-9]{32}\$').hasMatch(resultId)) {
+        throw StateError('Spielergebnis gehört nicht zum aktiven Kinderprofil');
+      }
+    }
+    guard();
+    await flushRewards();
+    guard();
+    _rewardWrites.add(_PendingRewardWrite(
+        stars: stars, xp: xp, resultId: resultId,
+        quizMilestone: game == 'quiz'));
+    await _beginRewardDrain();
+    guard();
+  }
+
+  /// A resumed Cards question/call can replay its pending star safely.
+  Future<void> recordLumoCardsBonus({required String resultId}) {
+    if (_disposed || _resetting) return Future<void>.value();
+    _rewardWrites.add(_PendingRewardWrite(stars: 1, resultId: resultId));
+    return _beginRewardDrain();
+  }
+
+  /// Parents may discard tutor assessments without changing real answers,
+  /// rewards, discovery, writing or profile identity. Confirm the captured child.
+  Future<bool> resetTutorObservations(
+      {required LearningProfileLease lease}) async {
+    if (!isCurrentLearningLease(lease)) return false;
+    final id = lease.studentId;
+    if (!_resolvingLegacy.add(id)) return false;
+    lease._session.epoch++;
+    try {
+      await _drainLearningOperations();
+      lease._session.tutorPending.clear();
+      lease._session.tutorError = null;
+      await lease.profile.resetTutorObservations();
+      await lease.profile.loadJourney();
+      await lease.profile.loadSceneMemory();
+    } finally {
+      _resolvingLegacy.remove(id);
+      // Old lesson actions cannot repopulate the cleared assessments.
+      if (identical(_activeLearningSession, lease._session)) {
+        _profileGeneration++;
+        final requests = LumoCompanionRequests.instance;
+        requests.tutor.activateProfile(_profileGeneration);
+        requests.clearLearningScope();
+      }
+      _safeNotify();
+    }
+    return true;
   }
 
   Future<void> resetLearningProfile() async {
@@ -996,6 +1443,9 @@ class LumoAppState extends ChangeNotifier {
     try {
       await _drainLearningOperations();
       await owner.profile.reset();
+      await const ErrorBreakdownRepository().resetForProfile(id);
+      await _missionRepository(owner).reset();
+      owner._session.pendingMissionAnswers.clear();
       await owner.cosmos.reset();
       await attemptLog.clear(studentId: owner.logStudentId);
       _unsavedAttempts.removeWhere(
@@ -1057,6 +1507,9 @@ class LumoAppState extends ChangeNotifier {
       if (!await prefs.clear()) throw StateError('Profile reset was not saved');
       school.resetSelectionCache();
       _learningSessions.clear();
+      _dailyMissionRepositories.clear();
+      _dailyMission = null;
+      _dailyMissionError = null;
       for (final action in _learningActions.toList()) {
         action.close();
       }
@@ -1180,9 +1633,13 @@ class LumoAppState extends ChangeNotifier {
     );
   }
 
-  void wrongAnswer(String unit) {
+  void wrongAnswer(String unit, {bool independentEvidence = true}) {
     final weak = Map<String, int>.from(_state.weakSkills);
-    weak[unit] = (weak[unit] ?? 0) + 1;
+    // Guided attempts still receive encouragement and enter the attempt log.
+    // Only unaided evidence may influence the next task's legacy selection.
+    if (independentEvidence) {
+      weak[unit] = (weak[unit] ?? 0) + 1;
+    }
     final errors = _state.practiceErrors + 1;
     update(
       _state.copyWith(

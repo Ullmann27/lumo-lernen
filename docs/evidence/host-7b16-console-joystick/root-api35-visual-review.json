@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-14T05:45:52.178527+00:00",
+  "reviewer": "Root direct view_image reading",
+  "scope": "Only the listed actual frames were visually inspected here. No audible speech, temporal motion, FPS or Android17 approval is inferred.",
+  "frames": [
+    {
+      "original_path": "host-pr482-e6a940-runtime-evidence/artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/04_learning_native_thirteen.png",
+      "bytes": 579177,
+      "sha256": "e27c8c3201228b209e49147da655d20929a7bc5f9292123af6f9e8f0f47cf19e",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "direct_visual_observation": "The actual portrait frame shows the completed8+5=10+3=13 task, a filled ten tray and three remaining gold objects. The completion card and return controls are visible."
+    },
+    {
+      "original_path": "host-pr482-e6a940-runtime-evidence/artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 1140668,
+      "sha256": "e6585d0cfe78d19777066db5e90d9b9e37cdf35e6ab88d5a3b0ccaefff434b76",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "direct_visual_observation": "The actual portrait Cards frame shows9 player cards,5 Lumo cards, page1/3, a visible draw control and the native back/pause header."
+    },
+    {
+      "original_path": "host-pr482-e6a940-runtime-evidence/artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/15_cards_reopened_same_round.png",
+      "bytes": 1140811,
+      "sha256": "9ee6589b1f6ec05c70b5eb5493047ba2310f6c87226e4b34063277146179d3ee",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "direct_visual_observation": "The reopened actual portrait frame shows the same visible9/5 hand counts and page1/3. Persisted round identity is established by separate original state records, not by pixels alone."
+    },
+    {
+      "original_path": "host-pr482-e6a940-runtime-evidence/artifacts/14100386232/repeat-ram-pass/selected-originals/originals/nextgen/16_cards_final_flutter_return.png",
+      "bytes": 522546,
+      "sha256": "0f291b062a8df6007b233146dc8dd7158b9549bd989ee16f208ca2be1d818140",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "direct_visual_observation": "The actual returned Flutter frame is the Spiel pausiert dialog, with Fortsetzen, Zur Spieleauswahl and Neu starten visible. It is not an unobscured game-selection screen."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "scope": "Read-only ZIP structure, CRC and all manifested PNG byte/hash checks on existing failed-run originals; not a visual review or full workflow acceptance",
+  "is_receipt": false,
+  "archives": [
+    {
+      "area": "home",
+      "archive": "/workspace/scratch/b3485b7bb989/pipeline-evidence/pr160-cf039ad8-graphics/home-14049265406.zip",
+      "sha256": "a311a60de79fd82a479a6070915707041f54a0160c68a5ee5168944defb8be4c",
+      "zip_members": 1035,
+      "manifest_pngs": 44,
+      "current_pngs": 24,
+      "baseline_pngs": 20,
+      "source_sha": "cf039ad8c834522f355b858e3bee1e201e397da4",
+      "source_tree": "4fdbcbfcf069c6790e17101a09d4fb3f2955c2e2"
+    },
+    {
+      "area": "worlds",
+      "archive": "/workspace/scratch/b3485b7bb989/pipeline-evidence/pr160-cf039ad8-graphics/worlds-14047548008-attempt1.zip",
+      "sha256": "faa5624566720da5e85b21ed3beaf624f9a61d6d11d0820ad1dcedb4f11bd226",
+      "zip_members": 350,
+      "manifest_pngs": 6,
+      "current_pngs": 6,
+      "baseline_pngs": 0,
+      "source_sha": "cf039ad8c834522f355b858e3bee1e201e397da4",
+      "source_tree": "4fdbcbfcf069c6790e17101a09d4fb3f2955c2e2"
+    },
+    {
+      "area": "feedback",
+      "archive": "/workspace/scratch/b3485b7bb989/pipeline-evidence/pr160-cf039ad8-graphics/feedback-14046817841.zip",
+      "sha256": "d0a9425c0759e27f3142c14aaee8861e6fa6df38b29b620d447da0c014cca4c6",
+      "zip_members": 793,
+      "manifest_pngs": 6,
+      "current_pngs": 6,
+      "baseline_pngs": 0,
+      "source_sha": "cf039ad8c834522f355b858e3bee1e201e397da4",
+      "source_tree": "4fdbcbfcf069c6790e17101a09d4fb3f2955c2e2"
+    }
+  ]
+}

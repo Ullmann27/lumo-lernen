@@ -1,3 +1,4 @@
+import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
 import 'dart:async';
 import 'dart:io';
 
@@ -12,6 +13,8 @@ import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart';
+
+import '../helpers/native_storage_fixture.dart';
 
 class _BlockedWallet extends RewardWalletRepository {
   bool reject = false;
@@ -42,11 +45,6 @@ class _BlockedProgress extends ProgressRepository {
   }
 }
 
-/// Bild 03 zeigt nur „Lernen“; der Bereichsname bleibt für Vorlesen und die
-/// Android-Prüfung als Semantik-Beschriftung erhalten.
-final _akademieCaption = find.byWidgetPredicate(
-    (widget) => widget is Semantics && widget.properties.label == 'LUMO AKADEMIE');
-
 Future<void> _frames(WidgetTester tester, [int count = 90]) async {
   // _open creates cached storage Futures in runAsync. Let that event loop
   // complete its awaits between the unchanged fake UI/feedback frames.
@@ -58,48 +56,41 @@ Future<void> _frames(WidgetTester tester, [int count = 90]) async {
 
 Future<void> _open(WidgetTester tester, LumoAppState app) async {
   await tester.binding.setSurfaceSize(const Size(480, 800));
-  await tester.runAsync(() async {
-    await app.hydrateFromWallet();
-    await app.loadLearningProfile();
+  final ready = await tester.runAsync(() async {
+    await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+    await app.loadLearningProfile().timeout(const Duration(seconds: 15));
+    return true;
   });
+  expect(ready, isTrue,
+      reason: 'The real wallet and learning profile must load');
   await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
   await _frames(tester);
-  expect(_akademieCaption, findsOneWidget);
-  expect(find.text('Lernen'), findsOneWidget);
-  expect(find.text('Heute lernen. Morgen mehr können!'), findsOneWidget);
-  expect(find.text('Deine Ziele'), findsOneWidget);
-  expect(find.text('0 von 3 Aufgaben geschafft'), findsOneWidget);
-  await tester.ensureVisible(find.text('1. Klasse'));
+  expect(find.text('Was möchtest du lernen?'), findsOneWidget);
+  expect(find.text('1. Klasse · aus deinem Profil'), findsOneWidget);
+  for (final subject in [
+    'Mathematik',
+    'Deutsch',
+    'Englisch',
+    'Sachunterricht'
+  ]) {
+    expect(find.byKey(ValueKey('learning-subject-$subject')), findsOneWidget);
+  }
+  expect(find.text('Deine Ziele'), findsNothing,
+      reason: 'The removed Academy dashboard must not precede real topics.');
+  final grade = find.byKey(const ValueKey('grade-pill-1'));
+  await tester.ensureVisible(grade);
+  await tester.tap(grade);
   await tester.pump();
-  await tester.tap(find.text('1. Klasse'));
+  final math = find.byKey(const ValueKey('learning-subject-Mathematik'));
+  await tester.ensureVisible(math);
+  await tester.tap(math);
   await tester.pump();
-  // These area cards live in a lazily built sliver below the header. Tests
-  // must navigate to them exactly as a child does, not assume they already
-  // exist at the top of a 480dp-high viewport.
-  final mathArea = find.byKey(const ValueKey('learning-area-mathe'));
-  await tester.scrollUntilVisible(
-    mathArea, 180,
-    scrollable: find.byType(Scrollable).first,
-    maxScrolls: 35,
-  );
+  final topic =
+      find.byKey(const ValueKey('learning-unit-Mathematik-Plus bis 10'));
+  await tester.scrollUntilVisible(topic, 180,
+      scrollable: find.byType(Scrollable).first, maxScrolls: 35);
   await tester.pump();
-  expect(find.text('Mathe'), findsOneWidget);
-  expect(find.text('Deutsch'), findsOneWidget);
-  expect(find.text('Lesen'), findsOneWidget);
-  expect(find.text('Schreiben'), findsOneWidget);
-  expect(find.text('Englisch'), findsOneWidget);
-  expect(find.text('Sachunterricht'), findsOneWidget);
-  await tester.tap(mathArea);
-  await tester.pump();
-  // Die Themenkarten werden in einem Lazy-Sliver erst beim Scrollen gebaut.
-  // Wie ein Kind die Akademie wirklich benutzt: bis zum Thema scrollen.
-  await tester.scrollUntilVisible(
-    find.text('Plus bis 10'),
-    220,
-    scrollable: find.byType(Scrollable).first,
-  );
-  await tester.pump();
-  await tester.tap(find.text('Plus bis 10'));
+  await tester.tap(topic);
   await _frames(tester);
   expect(find.byType(PlusBis10Screen), findsOneWidget);
   expect(find.text('Mathe-Abenteuer'), findsOneWidget);
@@ -185,9 +176,12 @@ void main() {
   testWidgets(
       'actual Akademie grade1 topic gives local help then saves a single answer and reward',
       (tester) async {
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app);
+    expect(find.byType(LumoAnswerCrystal), findsNWidgets(4),
+        reason: 'The actual Akademie route must use the shared crystals');
     final prompt = _prompt(tester);
     final correct = _answer(tester);
     final wrong = tester
@@ -200,7 +194,8 @@ void main() {
     expect(app.learningDailyDone(), 0);
     await _tap(tester, wrong);
     expect(_prompt(tester), prompt);
-    expect(find.byKey(const ValueKey('plus10-actual-companion-hint')), findsNothing);
+    expect(find.byKey(const ValueKey('plus10-actual-companion-hint')),
+        findsNothing);
     await tester.ensureVisible(find.text('Tipp'));
     await tester.tap(find.text('Tipp'));
     await _frames(tester, 10);
@@ -211,9 +206,11 @@ void main() {
     await tester.binding.handlePopRoute();
     await _frames(tester);
     expect(find.byType(PlusBis10Screen), findsNothing);
-    await tester.drag(find.byType(CustomScrollView), const Offset(0, 2000));
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, 2000));
     await _frames(tester);
-    expect(_akademieCaption, findsOneWidget);
+    expect(find.byType(LumoAkademieScreen), findsOneWidget);
+    expect(find.byKey(const ValueKey('learning-unit-Mathematik-Plus bis 10')),
+        findsOneWidget);
     await _assertStored(tester,
         correct: 1, wrong: 2, hints: 1, stars: 1, xp: 5);
     await _dispose(tester, app);
@@ -222,8 +219,9 @@ void main() {
   testWidgets(
       'wallet failure blocks next task and Back then retries one atomic reward',
       (tester) async {
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app);
     wallet.reject = true;
     final correct = _answer(tester);
@@ -255,11 +253,13 @@ void main() {
   testWidgets(
       'profile failure retries existing counters without double-counting answer or reward',
       (tester) async {
-    final repository = _BlockedProgress();
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(
-        walletRepository: wallet,
-        learningProfile: LearningProfileEngine(repository: repository));
+    final repository = await nativeStorageFixture(tester, _BlockedProgress.new);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester,
+        () => LumoAppState(
+            walletRepository: wallet,
+            learningProfile: LearningProfileEngine(repository: repository)));
     await _open(tester, app);
     repository.reject = true;
     await _tap(tester, _answer(tester));
@@ -283,8 +283,9 @@ void main() {
   testWidgets(
       'accepted answer continues durable saving after external unmount and background',
       (tester) async {
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app);
     wallet.gate = Completer<void>();
     await _tap(tester, _answer(tester), frames: 1);
@@ -305,11 +306,13 @@ void main() {
   testWidgets(
       'a pending wrong answer cannot accept a new answer before profile saving',
       (tester) async {
-    final repository = _BlockedProgress();
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(
-        walletRepository: wallet,
-        learningProfile: LearningProfileEngine(repository: repository));
+    final repository = await nativeStorageFixture(tester, _BlockedProgress.new);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester,
+        () => LumoAppState(
+            walletRepository: wallet,
+            learningProfile: LearningProfileEngine(repository: repository)));
     await _open(tester, app);
     repository.gate = Completer<void>();
     final correct = _answer(tester);
@@ -332,7 +335,8 @@ void main() {
   testWidgets(
       'saved correct feedback waits for foreground before advancing the real task',
       (tester) async {
-    final app = LumoAppState(walletRepository: RewardWalletRepository());
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: RewardWalletRepository()));
     await _open(tester, app);
     await _tap(tester, _answer(tester), frames: 1);
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
@@ -382,8 +386,9 @@ void main() {
   testWidgets(
       'thirty real visible sums complete the module and restart without farming saved bonus',
       (tester) async {
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app);
     for (var task = 1; task <= 30; task++) {
       expect(find.text('Aufgabe $task / 30'), findsOneWidget);

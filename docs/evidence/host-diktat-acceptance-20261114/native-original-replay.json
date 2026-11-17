@@ -1,0 +1,2180 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "run": 43600806315,
+  "job": 132464933411,
+  "attempt": 1,
+  "native_source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "python_tests": [
+    {
+      "path": "tests/dream-raster-tests.log",
+      "tests": 12,
+      "bytes": 1883,
+      "sha256": "1a5b5f744bdb7a9c4565cbe687b686b5f2f3d130bc61471576bff7698c6f3b81",
+      "git_blob": "be4dda6ad1f0ee30714fcb3c0aee2ed7e46835ee"
+    },
+    {
+      "path": "tests/discovery-originals-tests.log",
+      "tests": 24,
+      "bytes": 3931,
+      "sha256": "7b79653937e79f266fc0e316262976a94fc06742413a72ffe95590696af06ec7",
+      "git_blob": "e767636ca77c1178479028a5273f2418f4847331"
+    },
+    {
+      "path": "tests/discovery-producer-reader-tests.log",
+      "tests": 11,
+      "bytes": 1434,
+      "sha256": "dd21e75027f161db742c22b73a1618febc1414674663332e784109f292ee8968",
+      "git_blob": "ff00c41bdac9580c5e8339c74cd2447ff9aba183"
+    }
+  ],
+  "python_count": 47,
+  "headless": [
+    {
+      "path": "headless/connect_four_return_regression.log",
+      "marker": "CONNECT_FOUR_RETURN_PASS checks=21",
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+      "git_blob": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    {
+      "path": "headless/treasure_wisp_regression.log",
+      "marker": "[TreasureWisp] PASS checks=14",
+      "bytes": 499,
+      "sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39",
+      "git_blob": "a9af201e589b4813f21814579f5112b87e66b46a"
+    },
+    {
+      "path": "headless/treasure_exploration_regression.log",
+      "marker": "[TreasureExploration] PASS 92 checks: branching, actual location questions, movement, legacy saves and original rewards",
+      "bytes": 589,
+      "sha256": "6303eda4f9dfbf0eae58630858cdd5ec5cf1dfd19767d484bf72b3001d713b5e",
+      "git_blob": "c8146adee3e0045b27b144aa8cf07ca70b795f45"
+    },
+    {
+      "path": "headless/learning_world_regression.log",
+      "marker": "[LearningWorld] PASS checks=5347",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+    }
+  ],
+  "dream": {
+    "schema": 1,
+    "native_source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+    "engine": "4.6.3.stable.official.7d41c59c4",
+    "probes": [
+      {
+        "path": "lumo_dream_ambience_regression-headless.log",
+        "bytes": 593,
+        "sha256": "0e06fbe26cc4fab495f303f614749b1164b2ea673a17c70ee7a38f2b18600709",
+        "probe": "lumo_dream_ambience_regression",
+        "mode": "headless",
+        "marker": "[DreamAmbience] 170 checks, 0 failures"
+      },
+      {
+        "path": "dream_garden_props_regression-headless.log",
+        "bytes": 505,
+        "sha256": "bbfcbd97e786dad12bb49ebf8a088d2b7e0c6a1a834e413c018c0c8c52c5013f",
+        "probe": "dream_garden_props_regression",
+        "mode": "headless",
+        "marker": "[DreamGarden] checks=544 failures=0"
+      },
+      {
+        "path": "lumo_dream_ambience_capture-rendered-treasure.log",
+        "bytes": 1286,
+        "sha256": "6577c3d33a03b70361e4c7004d9267447722809546333cfe65acbe62e27ed402",
+        "probe": "lumo_dream_ambience_capture",
+        "mode": "rendered-treasure",
+        "marker": "[DreamAmbienceCapture] PASS treasure original frames in /home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/dream/captures/treasure"
+      },
+      {
+        "path": "lumo_dream_ambience_capture-rendered-learning.log",
+        "bytes": 1286,
+        "sha256": "ad4c2520698eda6d5fb0781e1bee55cd393a7d04b5360110402b5f234cf2b7b9",
+        "probe": "lumo_dream_ambience_capture",
+        "mode": "rendered-learning",
+        "marker": "[DreamAmbienceCapture] PASS learning original frames in /home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/dream/captures/learning"
+      },
+      {
+        "path": "dream_garden_capture-rendered.log",
+        "bytes": 1634,
+        "sha256": "bcfae668a0880b51fdb5c90c1c6e836d0dd4f5170d1ed61e18fbc67de9be0a94",
+        "probe": "dream_garden_capture",
+        "mode": "rendered",
+        "marker": "[DreamGardenCapture] failures=0"
+      }
+    ],
+    "results": {
+      "path": "results.tsv",
+      "bytes": 244,
+      "sha256": "e13332961fe89a044b7b25aff2408199425dbf9935be79ffca222f214442a169"
+    },
+    "source_stamps": [
+      {
+        "path": "source-sha.txt",
+        "bytes": 41,
+        "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5"
+      },
+      {
+        "path": "source-sha-after.txt",
+        "bytes": 41,
+        "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5"
+      },
+      {
+        "path": "source-tree.txt",
+        "bytes": 41,
+        "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6"
+      },
+      {
+        "path": "source-tree-after.txt",
+        "bytes": 41,
+        "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6"
+      },
+      {
+        "path": "source-dirty.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "source-dirty-after.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "engine.txt",
+        "bytes": 32,
+        "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+      },
+      {
+        "path": "capture-root.txt",
+        "bytes": 68,
+        "sha256": "229c1753642aaca2442f37c838ed33a0063502c6f8e1c5ffba7be89780d5d9de"
+      }
+    ],
+    "source_inventories": [
+      {
+        "path": "source-inventory-before.json",
+        "bytes": 1914378,
+        "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff"
+      },
+      {
+        "path": "source-inventory-after.json",
+        "bytes": 1914378,
+        "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff"
+      }
+    ],
+    "untracked_inventory_counts": [
+      {
+        "generated_uid": 357,
+        "generated_import_metadata": 604,
+        "other_untracked": 0
+      },
+      {
+        "generated_uid": 357,
+        "generated_import_metadata": 604,
+        "other_untracked": 0
+      }
+    ],
+    "original_pngs": [
+      {
+        "path": "captures/treasure/treasure_00.png",
+        "bytes": 1138159,
+        "sha256": "a21a675d1c1192ebf3f96210a28002304065a0466b4678c5cd7e6ecc10c0bc68",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "path": "captures/treasure/treasure_01.png",
+        "bytes": 1137621,
+        "sha256": "fbeb27aad2068ff7cef26206228361e963605de5bea4e4e3da2576e8e2bc3cc5",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "path": "captures/learning/learning_00.png",
+        "bytes": 287549,
+        "sha256": "f31b5ed96810d971a5b1f8b9869ad2ec43ecdfdda046496b6ba0d067bb858840",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "path": "captures/learning/learning_01.png",
+        "bytes": 288733,
+        "sha256": "5c127d13f001ac9e7ccf147d2d5bf7b625809d76d0dcf33e17b93d668d67d4c6",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "path": "captures/garden/learning-dream-1280x720.png",
+        "bytes": 346738,
+        "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/garden/learning-dream-412x915.png",
+        "bytes": 139598,
+        "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/garden/learning-dream-2400x1080.png",
+        "bytes": 614390,
+        "sha256": "d61733698a17eff4089c2500b8e6ac8a900837ca55b81f97af27744145926da7",
+        "width": 2400,
+        "height": 1080
+      }
+    ],
+    "original_reports": [
+      {
+        "path": "captures/treasure/treasure.json",
+        "bytes": 848,
+        "sha256": "9633398dfd13f2fcfee94ee92f321a25b697e58898e6a62c7c7c800b98d021aa"
+      },
+      {
+        "path": "captures/learning/learning.json",
+        "bytes": 852,
+        "sha256": "c132a51d4a32140fa297e619f4106d432b860a18d8664045f4e7a4bc064d3fd2"
+      }
+    ],
+    "changed_pairs": [
+      {
+        "world": "treasure",
+        "animation_times": [
+          0.5,
+          1.9
+        ],
+        "changed_pixel_bounds": [
+          0,
+          0,
+          720,
+          1280
+        ]
+      },
+      {
+        "world": "learning",
+        "animation_times": [
+          0.5,
+          1.9
+        ],
+        "changed_pixel_bounds": [
+          43,
+          209,
+          334,
+          521
+        ]
+      }
+    ],
+    "scope": "Five separate Dream probes and seven original renderer PNGs; existing52/17, Android and visual review remain separate",
+    "physical_android_fps_measured": false
+  },
+  "discovery": {
+    "schema": 1,
+    "contract": "discovery-originals-10-38-2",
+    "native_source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+    "probe_count": 10,
+    "png_count": 38,
+    "report_count": 2,
+    "source_scope": "Complete tracked HEAD tree/index/bytes unchanged; generated import files separately inventoried",
+    "probes": [
+      {
+        "path": "logs/01-learning_world_regression-headless.log",
+        "bytes": 10599,
+        "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+        "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb",
+        "runner": {
+          "path": "logs/01-learning_world_regression-headless.runner.log",
+          "bytes": 10599,
+          "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+          "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+        },
+        "probe": "learning_world_regression",
+        "mode": "headless",
+        "timeout_seconds": 420,
+        "elapsed_seconds": 19.521513526,
+        "marker": "[LearningWorld] PASS checks=5347"
+      },
+      {
+        "path": "logs/02-learning_sharing_regression-headless.log",
+        "bytes": 1482,
+        "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+        "git_blob": "732d54f13499cd10ebc00935e394aac578658904",
+        "runner": {
+          "path": "logs/02-learning_sharing_regression-headless.runner.log",
+          "bytes": 1482,
+          "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+          "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+        },
+        "probe": "learning_sharing_regression",
+        "mode": "headless",
+        "timeout_seconds": 420,
+        "elapsed_seconds": 2.973266853,
+        "marker": "[LearningSharing] PASS checks=1811"
+      },
+      {
+        "path": "logs/03-learning_studio_regression-headless.log",
+        "bytes": 1805,
+        "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+        "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654",
+        "runner": {
+          "path": "logs/03-learning_studio_regression-headless.runner.log",
+          "bytes": 1805,
+          "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+          "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654"
+        },
+        "probe": "learning_studio_regression",
+        "mode": "headless",
+        "timeout_seconds": 420,
+        "elapsed_seconds": 7.901581197,
+        "marker": "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+      },
+      {
+        "path": "logs/04-game_hub_magic_regression-headless.log",
+        "bytes": 1331,
+        "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+        "git_blob": "46c336c5528f770216224855309e219cfac4e17c",
+        "runner": {
+          "path": "logs/04-game_hub_magic_regression-headless.runner.log",
+          "bytes": 1331,
+          "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+          "git_blob": "46c336c5528f770216224855309e219cfac4e17c"
+        },
+        "probe": "game_hub_magic_regression",
+        "mode": "headless",
+        "timeout_seconds": 150,
+        "elapsed_seconds": 0.743821013,
+        "marker": "[LumoHub] PASS 8 visible native game entrances, active village route, preserved child settings and 3D reduced-motion portal"
+      },
+      {
+        "path": "logs/05-village_host_launch_regression-headless.log",
+        "bytes": 1641,
+        "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+        "git_blob": "904bb871432b11a43b8b396b563b3765e1aa0bd5",
+        "runner": {
+          "path": "logs/05-village_host_launch_regression-headless.runner.log",
+          "bytes": 1641,
+          "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+          "git_blob": "904bb871432b11a43b8b396b563b3765e1aa0bd5"
+        },
+        "probe": "village_host_launch_regression",
+        "mode": "headless",
+        "timeout_seconds": 150,
+        "elapsed_seconds": 0.83769653,
+        "marker": "[VillageHost] PASS Flutter village request, native boot scene and child context"
+      },
+      {
+        "path": "logs/06-learning_wonder_details_regression-headless.log",
+        "bytes": 3912,
+        "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+        "git_blob": "3756c768b8fb5eaf06a32713fa6fe2536bc0bd98",
+        "runner": {
+          "path": "logs/06-learning_wonder_details_regression-headless.runner.log",
+          "bytes": 3912,
+          "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+          "git_blob": "3756c768b8fb5eaf06a32713fa6fe2536bc0bd98"
+        },
+        "probe": "learning_wonder_details_regression",
+        "mode": "headless",
+        "timeout_seconds": 150,
+        "elapsed_seconds": 5.299410515,
+        "marker": "[LearningWonder] checks=100 failures=0 renderer=headless invalid_scene_checked=false"
+      },
+      {
+        "path": "logs/07-learning_wonder_details_regression-rendered.log",
+        "bytes": 4553,
+        "sha256": "0e149d618147faaf6db8be2cf656483a306c91d0ecf288a9fafefbc6a4de9b9b",
+        "git_blob": "9dd9605cdabe163b4c15f4c45e7c2820c938642f",
+        "runner": {
+          "path": "logs/07-learning_wonder_details_regression-rendered.runner.log",
+          "bytes": 4553,
+          "sha256": "0e149d618147faaf6db8be2cf656483a306c91d0ecf288a9fafefbc6a4de9b9b",
+          "git_blob": "9dd9605cdabe163b4c15f4c45e7c2820c938642f"
+        },
+        "probe": "learning_wonder_details_regression",
+        "mode": "rendered",
+        "timeout_seconds": 420,
+        "elapsed_seconds": 133.974229516,
+        "marker": "[LearningWonder] checks=108 failures=0 renderer=X11 invalid_scene_checked=true"
+      },
+      {
+        "path": "logs/08-game_hub_magic_capture-rendered.log",
+        "bytes": 1300,
+        "sha256": "aed3c1931aee8b507f8f4e262536b35cf2e650f019b13d5512835e9f92d9c990",
+        "git_blob": "1ffd931f0011a3e18a877a3496975db1b6be362d",
+        "runner": {
+          "path": "logs/08-game_hub_magic_capture-rendered.runner.log",
+          "bytes": 1300,
+          "sha256": "aed3c1931aee8b507f8f4e262536b35cf2e650f019b13d5512835e9f92d9c990",
+          "git_blob": "1ffd931f0011a3e18a877a3496975db1b6be362d"
+        },
+        "probe": "game_hub_magic_capture",
+        "mode": "rendered",
+        "timeout_seconds": 180,
+        "elapsed_seconds": 13.957873008,
+        "marker": "[LumoHubCapture] PASS 2 original current-source rendered PNGs"
+      },
+      {
+        "path": "logs/09-learning_world_capture-rendered.log",
+        "bytes": 8471,
+        "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+        "git_blob": "4d69a730591612d7803b4ba697fd34440f6d2323",
+        "runner": {
+          "path": "logs/09-learning_world_capture-rendered.runner.log",
+          "bytes": 8471,
+          "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+          "git_blob": "4d69a730591612d7803b4ba697fd34440f6d2323"
+        },
+        "probe": "learning_world_capture",
+        "mode": "rendered",
+        "timeout_seconds": 900,
+        "elapsed_seconds": 613.305867736,
+        "marker": "[LearningCapture] PASS captures=25"
+      },
+      {
+        "path": "logs/10-learning_wonder_details_capture-rendered.log",
+        "bytes": 3163,
+        "sha256": "75dbe833a9b9358b2bda4d794aaed06080cd932d957f88ec4166d257589feb9b",
+        "git_blob": "1b57aa17a8bd5099ec783f63dde584015a298d0e",
+        "runner": {
+          "path": "logs/10-learning_wonder_details_capture-rendered.runner.log",
+          "bytes": 3163,
+          "sha256": "75dbe833a9b9358b2bda4d794aaed06080cd932d957f88ec4166d257589feb9b",
+          "git_blob": "1b57aa17a8bd5099ec783f63dde584015a298d0e"
+        },
+        "probe": "learning_wonder_details_capture",
+        "mode": "rendered",
+        "timeout_seconds": 420,
+        "elapsed_seconds": 111.771235665,
+        "marker": "[WonderCapture] checks=136 failures=0 captures=11"
+      }
+    ],
+    "original_pngs": [
+      {
+        "path": "captures/hub/hub_portrait.png",
+        "bytes": 1821890,
+        "sha256": "819c7e304c2fb5034cdf31111ec252d95ba1e300d1c29e23fb8508e8dccf3453",
+        "git_blob": "bf016529cb9dbdb2d20a85db9861d865bd0ffcc2",
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "path": "captures/hub/hub_fold_landscape.png",
+        "bytes": 1878546,
+        "sha256": "f93ef335f42fe9a567de7bda1278c07632a1c7f1ea0c7b3df98162d8eefb40b8",
+        "git_blob": "adacd3b42b9f942707ed573639a5dd83c5c2d468",
+        "width": 2400,
+        "height": 1080
+      },
+      {
+        "path": "captures/learning/math-start-1280x720.png",
+        "bytes": 346738,
+        "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+        "git_blob": "e07e50053314da3aa031c279b9ff375fbae28477",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/math-ten-1280x720.png",
+        "bytes": 353450,
+        "sha256": "c48d94aa57ec3412736754d6c9844ac2857a7f58a8eec2f2ecb779c230a204ec",
+        "git_blob": "8c8d0e472ac9403e798efb0df757e792269032a8",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/math-complete-1280x720.png",
+        "bytes": 359803,
+        "sha256": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab",
+        "git_blob": "01c12e908ddbe41982d6a5b6e0d0eb025352a695",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/math-start-412x915.png",
+        "bytes": 139598,
+        "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+        "git_blob": "d341e5b725eec41807a30d1ce344784a67938cb5",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/learning/math-ten-412x915.png",
+        "bytes": 144541,
+        "sha256": "f8146ddc462f3163b4754cd76866e1eb8cbb052c880c980b9daee2402a3e7cfb",
+        "git_blob": "9a5332bafd5378ef99653db8ff8ee433ad5a6ba6",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/learning/math-complete-412x915.png",
+        "bytes": 144204,
+        "sha256": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8",
+        "git_blob": "efeabdcf9d87f93e9d7569c2ee6a106900f2b4f6",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/learning/math-start-2400x1080.png",
+        "bytes": 614390,
+        "sha256": "d61733698a17eff4089c2500b8e6ac8a900837ca55b81f97af27744145926da7",
+        "git_blob": "30d9e589359bfd05bda4b0d87f87aa0c0d37e90a",
+        "width": 2400,
+        "height": 1080
+      },
+      {
+        "path": "captures/learning/math-ten-2400x1080.png",
+        "bytes": 634242,
+        "sha256": "8a6eee43cdd4ebe4d829d233b650d5b305f8afa7b04af7eba40092e594b8ad66",
+        "git_blob": "afb6d8a8f95c4afa24d6f2bc1da2aca2928c1eeb",
+        "width": 2400,
+        "height": 1080
+      },
+      {
+        "path": "captures/learning/math-complete-2400x1080.png",
+        "bytes": 652893,
+        "sha256": "3dcbc484ed57bf999e20fcfe1c4b786db1a33300be0119755196f3b27da25b61",
+        "git_blob": "5818a6397991f447a96719545119282a1327dcb0",
+        "width": 2400,
+        "height": 1080
+      },
+      {
+        "path": "captures/learning/syllables-start.png",
+        "bytes": 322084,
+        "sha256": "9bd464681be73f59a089375ab95b05dc9203946666ae6e04b4f63741baa5e9ac",
+        "git_blob": "fc33e32d72affd9d228203a0a787da93f76380f5",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/syllables-complete.png",
+        "bytes": 331920,
+        "sha256": "b8e3f46d48120761edf2fba71cf1f83dc9bba67f7e4e83edbe1f9cf807f11c27",
+        "git_blob": "d2088c5d10c6e91bc86b94894cf9ed6f254c95f0",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/plant_parts-start.png",
+        "bytes": 350824,
+        "sha256": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326",
+        "git_blob": "7e507b01cd345ef910129d08f3f2390a3228126d",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/plant_parts-complete.png",
+        "bytes": 373016,
+        "sha256": "48c1a8f9ff5971937a42f7049fb12fe6364c6cf20369e451aa64bbabf385f4aa",
+        "git_blob": "61c4a1edaacb97f712a51237793ed0b74800870e",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/subtract_ten-start.png",
+        "bytes": 348921,
+        "sha256": "80b7c6dba3603378800c292d804179f7ff1a98d6f5bcbbae3ff995351a96c592",
+        "git_blob": "ad8b943ed4a7d13ed1d7e36569481bc60e74ce68",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/subtract_ten-complete.png",
+        "bytes": 357989,
+        "sha256": "186a15fd5fe718b2f00b924ac0730820e6e654956c1addfa61a7e9b57b8d00ba",
+        "git_blob": "6959279d523317138ba60babacda70f2efa8dc0d",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/equal_groups-start.png",
+        "bytes": 322084,
+        "sha256": "da6258bc5a17a90f7c85915c6485a65dd717128a0498f309495dcde225c9966a",
+        "git_blob": "71a072aee866ba9510af6b69cc5decd82851de79",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/equal_groups-complete.png",
+        "bytes": 335744,
+        "sha256": "80531c6c9b37a3c9867440a563b05b3e03b26e8252af21d640e3ae0bc2bb7784",
+        "git_blob": "8f4db8ffc4bca029cd960e983e168bdf0caf324a",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/bridge_hundred-start.png",
+        "bytes": 354258,
+        "sha256": "7eb6e728babaa5209b2ec9f8960a52d509c8a100852e46eaa09f780662c5b206",
+        "git_blob": "de063065b385097732090d7323b8a1471fc34147",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/bridge_hundred-complete.png",
+        "bytes": 363900,
+        "sha256": "335865b34d321ef5f4942a5a85c3be670bbf3e12f4999da16bd6188b914ef2b3",
+        "git_blob": "4dc36835c859b0edbc503959470410021f203b30",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/fraction_parts-start.png",
+        "bytes": 322375,
+        "sha256": "21f39f28efd623b9c3bb5bc99ac0a8b140b495404192a3b55a039e536100da4a",
+        "git_blob": "a68ab7a6e7f51deffef22882f300866b3dcdaafd",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/fraction_parts-complete.png",
+        "bytes": 332831,
+        "sha256": "defcd507a087d84dc7249cb7757bf1c15d58b9b2217f6666626666b14c0559e9",
+        "git_blob": "85d144619b09ed3cf68048e65932bcb87c284826",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/learning/bridge_hundred-start-412x915.png",
+        "bytes": 146569,
+        "sha256": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc",
+        "git_blob": "8d48b44cf081d0ba7ecccf70bd00fbe354b1e7c1",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/learning/bridge_hundred-complete-412x915.png",
+        "bytes": 149617,
+        "sha256": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286",
+        "git_blob": "8dccb6c9b75df4b2002a7fdfc9629f5bc1c6e84a",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/learning/bridge_hundred-start-2400x1080.png",
+        "bytes": 642151,
+        "sha256": "a3fafad94bc683dd9880d2bbdd6de4bd99b433b9073767984f824f8c437d0519",
+        "git_blob": "247895e532b379db10b1c6e0abf82062116fecee",
+        "width": 2400,
+        "height": 1080
+      },
+      {
+        "path": "captures/learning/bridge_hundred-complete-2400x1080.png",
+        "bytes": 659859,
+        "sha256": "6a7306d126cf239c2377a5b045fbf9efae043e26761cd9c106f1a09bfc33830f",
+        "git_blob": "36542445b3a591de8478928f62a255a936d8a699",
+        "width": 2400,
+        "height": 1080
+      },
+      {
+        "path": "captures/wonder/current-numbers-start-1280x720.png",
+        "bytes": 346738,
+        "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+        "git_blob": "e07e50053314da3aa031c279b9ff375fbae28477",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/wonder/current-numbers-complete-1280x720.png",
+        "bytes": 359803,
+        "sha256": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab",
+        "git_blob": "01c12e908ddbe41982d6a5b6e0d0eb025352a695",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/wonder/current-numbers-start-412x915.png",
+        "bytes": 139598,
+        "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+        "git_blob": "d341e5b725eec41807a30d1ce344784a67938cb5",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/wonder/current-numbers-complete-412x915.png",
+        "bytes": 144204,
+        "sha256": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8",
+        "git_blob": "efeabdcf9d87f93e9d7569c2ee6a106900f2b4f6",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/wonder/current-numbers-one-step-1280x720.png",
+        "bytes": 349727,
+        "sha256": "cd9fe65a73149dc6cabc684b454b99ce2f94e1f70d0af60b9fbfed3806c0960b",
+        "git_blob": "c77964ea6ca7dd639192c9862c322f9b0feec55d",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/wonder/current-syllables-start.png",
+        "bytes": 322083,
+        "sha256": "29d040d47db0a127405be702fdb2486f88147b36c544c579a18e60fa1065661b",
+        "git_blob": "9c3bf53600a14d1f816feeaa643fd927fb299079",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/wonder/current-syllables-complete.png",
+        "bytes": 331917,
+        "sha256": "c0dd74767241c0dac43e09d1e0b07ff049736e0ed7277b92692783126e6090e4",
+        "git_blob": "f2ddc6054c12fdb961fd0f2e3ee348e851bce222",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/wonder/current-plant_parts-start.png",
+        "bytes": 350824,
+        "sha256": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326",
+        "git_blob": "7e507b01cd345ef910129d08f3f2390a3228126d",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/wonder/current-plant_parts-complete.png",
+        "bytes": 369395,
+        "sha256": "4a884534a30245646d04c30ace1f44dd12429ffc56bfe56cb9725c303b34745b",
+        "git_blob": "82154fef0530b0fd2a36539ecb5d8441e308070c",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "captures/wonder/current-hundreds-phone-start.png",
+        "bytes": 146569,
+        "sha256": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc",
+        "git_blob": "8d48b44cf081d0ba7ecccf70bd00fbe354b1e7c1",
+        "width": 412,
+        "height": 915
+      },
+      {
+        "path": "captures/wonder/current-hundreds-phone-complete.png",
+        "bytes": 149617,
+        "sha256": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286",
+        "git_blob": "8dccb6c9b75df4b2002a7fdfc9629f5bc1c6e84a",
+        "width": 412,
+        "height": 915
+      }
+    ],
+    "original_reports": [
+      {
+        "path": "captures/hub/hub-original-identity.json",
+        "bytes": 2703,
+        "sha256": "12feeba1ca0437c6dca58a2ad3ca47f93d24919af96d79cce263e6a37f9c7f80",
+        "git_blob": "65dc177dc6a70225390c1d3b629240f9d49f2efd"
+      },
+      {
+        "path": "captures/wonder/captures.json",
+        "bytes": 10018,
+        "sha256": "0d50806be4be8f72c691659e253768ae4932cad1aa3096e7f0027efbc153f7cf",
+        "git_blob": "d34255cdd8a50b2a5a81740f3726c35de71114a3"
+      }
+    ],
+    "bound_helpers": [
+      {
+        "path": "helpers/verify_discovery_rasters.py",
+        "bytes": 11528,
+        "sha256": "55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da",
+        "git_blob": "219e691fc8aa119cc80221b3db6c77e63caf8bfe"
+      },
+      {
+        "path": "helpers/verify_dream_rasters.py",
+        "bytes": 20254,
+        "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+        "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+      },
+      {
+        "path": "helpers/run_godot_probe.py",
+        "bytes": 2934,
+        "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+        "git_blob": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+      },
+      {
+        "path": "helpers/collect_discovery_connections.py",
+        "bytes": 9979,
+        "sha256": "bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83",
+        "git_blob": "1ebdec66300dfb87bf9287d194525d3c374c8aee"
+      },
+      {
+        "path": "helpers/verify_discovery_connections.py",
+        "bytes": 23700,
+        "sha256": "5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf",
+        "git_blob": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc"
+      }
+    ],
+    "originals": [
+      {
+        "path": "captures/hub/hub-original-identity.json",
+        "bytes": 2703,
+        "sha256": "12feeba1ca0437c6dca58a2ad3ca47f93d24919af96d79cce263e6a37f9c7f80",
+        "git_blob": "65dc177dc6a70225390c1d3b629240f9d49f2efd"
+      },
+      {
+        "path": "captures/hub/hub_fold_landscape.png",
+        "bytes": 1878546,
+        "sha256": "f93ef335f42fe9a567de7bda1278c07632a1c7f1ea0c7b3df98162d8eefb40b8",
+        "git_blob": "adacd3b42b9f942707ed573639a5dd83c5c2d468"
+      },
+      {
+        "path": "captures/hub/hub_portrait.png",
+        "bytes": 1821890,
+        "sha256": "819c7e304c2fb5034cdf31111ec252d95ba1e300d1c29e23fb8508e8dccf3453",
+        "git_blob": "bf016529cb9dbdb2d20a85db9861d865bd0ffcc2"
+      },
+      {
+        "path": "captures/learning/bridge_hundred-complete-2400x1080.png",
+        "bytes": 659859,
+        "sha256": "6a7306d126cf239c2377a5b045fbf9efae043e26761cd9c106f1a09bfc33830f",
+        "git_blob": "36542445b3a591de8478928f62a255a936d8a699"
+      },
+      {
+        "path": "captures/learning/bridge_hundred-complete-412x915.png",
+        "bytes": 149617,
+        "sha256": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286",
+        "git_blob": "8dccb6c9b75df4b2002a7fdfc9629f5bc1c6e84a"
+      },
+      {
+        "path": "captures/learning/bridge_hundred-complete.png",
+        "bytes": 363900,
+        "sha256": "335865b34d321ef5f4942a5a85c3be670bbf3e12f4999da16bd6188b914ef2b3",
+        "git_blob": "4dc36835c859b0edbc503959470410021f203b30"
+      },
+      {
+        "path": "captures/learning/bridge_hundred-start-2400x1080.png",
+        "bytes": 642151,
+        "sha256": "a3fafad94bc683dd9880d2bbdd6de4bd99b433b9073767984f824f8c437d0519",
+        "git_blob": "247895e532b379db10b1c6e0abf82062116fecee"
+      },
+      {
+        "path": "captures/learning/bridge_hundred-start-412x915.png",
+        "bytes": 146569,
+        "sha256": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc",
+        "git_blob": "8d48b44cf081d0ba7ecccf70bd00fbe354b1e7c1"
+      },
+      {
+        "path": "captures/learning/bridge_hundred-start.png",
+        "bytes": 354258,
+        "sha256": "7eb6e728babaa5209b2ec9f8960a52d509c8a100852e46eaa09f780662c5b206",
+        "git_blob": "de063065b385097732090d7323b8a1471fc34147"
+      },
+      {
+        "path": "captures/learning/equal_groups-complete.png",
+        "bytes": 335744,
+        "sha256": "80531c6c9b37a3c9867440a563b05b3e03b26e8252af21d640e3ae0bc2bb7784",
+        "git_blob": "8f4db8ffc4bca029cd960e983e168bdf0caf324a"
+      },
+      {
+        "path": "captures/learning/equal_groups-start.png",
+        "bytes": 322084,
+        "sha256": "da6258bc5a17a90f7c85915c6485a65dd717128a0498f309495dcde225c9966a",
+        "git_blob": "71a072aee866ba9510af6b69cc5decd82851de79"
+      },
+      {
+        "path": "captures/learning/fraction_parts-complete.png",
+        "bytes": 332831,
+        "sha256": "defcd507a087d84dc7249cb7757bf1c15d58b9b2217f6666626666b14c0559e9",
+        "git_blob": "85d144619b09ed3cf68048e65932bcb87c284826"
+      },
+      {
+        "path": "captures/learning/fraction_parts-start.png",
+        "bytes": 322375,
+        "sha256": "21f39f28efd623b9c3bb5bc99ac0a8b140b495404192a3b55a039e536100da4a",
+        "git_blob": "a68ab7a6e7f51deffef22882f300866b3dcdaafd"
+      },
+      {
+        "path": "captures/learning/math-complete-1280x720.png",
+        "bytes": 359803,
+        "sha256": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab",
+        "git_blob": "01c12e908ddbe41982d6a5b6e0d0eb025352a695"
+      },
+      {
+        "path": "captures/learning/math-complete-2400x1080.png",
+        "bytes": 652893,
+        "sha256": "3dcbc484ed57bf999e20fcfe1c4b786db1a33300be0119755196f3b27da25b61",
+        "git_blob": "5818a6397991f447a96719545119282a1327dcb0"
+      },
+      {
+        "path": "captures/learning/math-complete-412x915.png",
+        "bytes": 144204,
+        "sha256": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8",
+        "git_blob": "efeabdcf9d87f93e9d7569c2ee6a106900f2b4f6"
+      },
+      {
+        "path": "captures/learning/math-start-1280x720.png",
+        "bytes": 346738,
+        "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+        "git_blob": "e07e50053314da3aa031c279b9ff375fbae28477"
+      },
+      {
+        "path": "captures/learning/math-start-2400x1080.png",
+        "bytes": 614390,
+        "sha256": "d61733698a17eff4089c2500b8e6ac8a900837ca55b81f97af27744145926da7",
+        "git_blob": "30d9e589359bfd05bda4b0d87f87aa0c0d37e90a"
+      },
+      {
+        "path": "captures/learning/math-start-412x915.png",
+        "bytes": 139598,
+        "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+        "git_blob": "d341e5b725eec41807a30d1ce344784a67938cb5"
+      },
+      {
+        "path": "captures/learning/math-ten-1280x720.png",
+        "bytes": 353450,
+        "sha256": "c48d94aa57ec3412736754d6c9844ac2857a7f58a8eec2f2ecb779c230a204ec",
+        "git_blob": "8c8d0e472ac9403e798efb0df757e792269032a8"
+      },
+      {
+        "path": "captures/learning/math-ten-2400x1080.png",
+        "bytes": 634242,
+        "sha256": "8a6eee43cdd4ebe4d829d233b650d5b305f8afa7b04af7eba40092e594b8ad66",
+        "git_blob": "afb6d8a8f95c4afa24d6f2bc1da2aca2928c1eeb"
+      },
+      {
+        "path": "captures/learning/math-ten-412x915.png",
+        "bytes": 144541,
+        "sha256": "f8146ddc462f3163b4754cd76866e1eb8cbb052c880c980b9daee2402a3e7cfb",
+        "git_blob": "9a5332bafd5378ef99653db8ff8ee433ad5a6ba6"
+      },
+      {
+        "path": "captures/learning/plant_parts-complete.png",
+        "bytes": 373016,
+        "sha256": "48c1a8f9ff5971937a42f7049fb12fe6364c6cf20369e451aa64bbabf385f4aa",
+        "git_blob": "61c4a1edaacb97f712a51237793ed0b74800870e"
+      },
+      {
+        "path": "captures/learning/plant_parts-start.png",
+        "bytes": 350824,
+        "sha256": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326",
+        "git_blob": "7e507b01cd345ef910129d08f3f2390a3228126d"
+      },
+      {
+        "path": "captures/learning/subtract_ten-complete.png",
+        "bytes": 357989,
+        "sha256": "186a15fd5fe718b2f00b924ac0730820e6e654956c1addfa61a7e9b57b8d00ba",
+        "git_blob": "6959279d523317138ba60babacda70f2efa8dc0d"
+      },
+      {
+        "path": "captures/learning/subtract_ten-start.png",
+        "bytes": 348921,
+        "sha256": "80b7c6dba3603378800c292d804179f7ff1a98d6f5bcbbae3ff995351a96c592",
+        "git_blob": "ad8b943ed4a7d13ed1d7e36569481bc60e74ce68"
+      },
+      {
+        "path": "captures/learning/syllables-complete.png",
+        "bytes": 331920,
+        "sha256": "b8e3f46d48120761edf2fba71cf1f83dc9bba67f7e4e83edbe1f9cf807f11c27",
+        "git_blob": "d2088c5d10c6e91bc86b94894cf9ed6f254c95f0"
+      },
+      {
+        "path": "captures/learning/syllables-start.png",
+        "bytes": 322084,
+        "sha256": "9bd464681be73f59a089375ab95b05dc9203946666ae6e04b4f63741baa5e9ac",
+        "git_blob": "fc33e32d72affd9d228203a0a787da93f76380f5"
+      },
+      {
+        "path": "captures/wonder/captures.json",
+        "bytes": 10018,
+        "sha256": "0d50806be4be8f72c691659e253768ae4932cad1aa3096e7f0027efbc153f7cf",
+        "git_blob": "d34255cdd8a50b2a5a81740f3726c35de71114a3"
+      },
+      {
+        "path": "captures/wonder/current-hundreds-phone-complete.png",
+        "bytes": 149617,
+        "sha256": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286",
+        "git_blob": "8dccb6c9b75df4b2002a7fdfc9629f5bc1c6e84a"
+      },
+      {
+        "path": "captures/wonder/current-hundreds-phone-start.png",
+        "bytes": 146569,
+        "sha256": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc",
+        "git_blob": "8d48b44cf081d0ba7ecccf70bd00fbe354b1e7c1"
+      },
+      {
+        "path": "captures/wonder/current-numbers-complete-1280x720.png",
+        "bytes": 359803,
+        "sha256": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab",
+        "git_blob": "01c12e908ddbe41982d6a5b6e0d0eb025352a695"
+      },
+      {
+        "path": "captures/wonder/current-numbers-complete-412x915.png",
+        "bytes": 144204,
+        "sha256": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8",
+        "git_blob": "efeabdcf9d87f93e9d7569c2ee6a106900f2b4f6"
+      },
+      {
+        "path": "captures/wonder/current-numbers-one-step-1280x720.png",
+        "bytes": 349727,
+        "sha256": "cd9fe65a73149dc6cabc684b454b99ce2f94e1f70d0af60b9fbfed3806c0960b",
+        "git_blob": "c77964ea6ca7dd639192c9862c322f9b0feec55d"
+      },
+      {
+        "path": "captures/wonder/current-numbers-start-1280x720.png",
+        "bytes": 346738,
+        "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+        "git_blob": "e07e50053314da3aa031c279b9ff375fbae28477"
+      },
+      {
+        "path": "captures/wonder/current-numbers-start-412x915.png",
+        "bytes": 139598,
+        "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+        "git_blob": "d341e5b725eec41807a30d1ce344784a67938cb5"
+      },
+      {
+        "path": "captures/wonder/current-plant_parts-complete.png",
+        "bytes": 369395,
+        "sha256": "4a884534a30245646d04c30ace1f44dd12429ffc56bfe56cb9725c303b34745b",
+        "git_blob": "82154fef0530b0fd2a36539ecb5d8441e308070c"
+      },
+      {
+        "path": "captures/wonder/current-plant_parts-start.png",
+        "bytes": 350824,
+        "sha256": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326",
+        "git_blob": "7e507b01cd345ef910129d08f3f2390a3228126d"
+      },
+      {
+        "path": "captures/wonder/current-syllables-complete.png",
+        "bytes": 331917,
+        "sha256": "c0dd74767241c0dac43e09d1e0b07ff049736e0ed7277b92692783126e6090e4",
+        "git_blob": "f2ddc6054c12fdb961fd0f2e3ee348e851bce222"
+      },
+      {
+        "path": "captures/wonder/current-syllables-start.png",
+        "bytes": 322083,
+        "sha256": "29d040d47db0a127405be702fdb2486f88147b36c544c579a18e60fa1065661b",
+        "git_blob": "9c3bf53600a14d1f816feeaa643fd927fb299079"
+      },
+      {
+        "path": "collection-context.json",
+        "bytes": 668,
+        "sha256": "fac7bf67f83a3ac37f425de238c26a2218b0a75e44e6ec43e67f58074f11c70a",
+        "git_blob": "455d6b9993b120fd999e68bafb9f25f52fdba133"
+      },
+      {
+        "path": "engine-binary.json",
+        "bytes": 215,
+        "sha256": "aac82a5f97b00b8ef4c4db8a8043bfdc63886ab39671c41751c337c48e2fc61a",
+        "git_blob": "9d190474717721906e1787065b6888f75811836a"
+      },
+      {
+        "path": "engine.txt",
+        "bytes": 32,
+        "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+        "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+      },
+      {
+        "path": "helpers/collect_discovery_connections.py",
+        "bytes": 9979,
+        "sha256": "bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83",
+        "git_blob": "1ebdec66300dfb87bf9287d194525d3c374c8aee"
+      },
+      {
+        "path": "helpers/run_godot_probe.py",
+        "bytes": 2934,
+        "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+        "git_blob": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+      },
+      {
+        "path": "helpers/verify_discovery_connections.py",
+        "bytes": 23700,
+        "sha256": "5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf",
+        "git_blob": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc"
+      },
+      {
+        "path": "helpers/verify_discovery_rasters.py",
+        "bytes": 11528,
+        "sha256": "55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da",
+        "git_blob": "219e691fc8aa119cc80221b3db6c77e63caf8bfe"
+      },
+      {
+        "path": "helpers/verify_dream_rasters.py",
+        "bytes": 20254,
+        "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+        "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+      },
+      {
+        "path": "invocations.json",
+        "bytes": 23016,
+        "sha256": "ac4271733f83f577368a2587ba55c8d9e6d523b64212789118dea8b72ebcdd2e",
+        "git_blob": "d7918bf0aa94d33428ae4a8786d8f75cb0b7f7b3"
+      },
+      {
+        "path": "logs/01-learning_world_regression-headless.log",
+        "bytes": 10599,
+        "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+        "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+      },
+      {
+        "path": "logs/01-learning_world_regression-headless.runner.log",
+        "bytes": 10599,
+        "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+        "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+      },
+      {
+        "path": "logs/02-learning_sharing_regression-headless.log",
+        "bytes": 1482,
+        "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+        "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+      },
+      {
+        "path": "logs/02-learning_sharing_regression-headless.runner.log",
+        "bytes": 1482,
+        "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+        "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+      },
+      {
+        "path": "logs/03-learning_studio_regression-headless.log",
+        "bytes": 1805,
+        "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+        "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654"
+      },
+      {
+        "path": "logs/03-learning_studio_regression-headless.runner.log",
+        "bytes": 1805,
+        "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+        "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654"
+      },
+      {
+        "path": "logs/04-game_hub_magic_regression-headless.log",
+        "bytes": 1331,
+        "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+        "git_blob": "46c336c5528f770216224855309e219cfac4e17c"
+      },
+      {
+        "path": "logs/04-game_hub_magic_regression-headless.runner.log",
+        "bytes": 1331,
+        "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+        "git_blob": "46c336c5528f770216224855309e219cfac4e17c"
+      },
+      {
+        "path": "logs/05-village_host_launch_regression-headless.log",
+        "bytes": 1641,
+        "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+        "git_blob": "904bb871432b11a43b8b396b563b3765e1aa0bd5"
+      },
+      {
+        "path": "logs/05-village_host_launch_regression-headless.runner.log",
+        "bytes": 1641,
+        "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+        "git_blob": "904bb871432b11a43b8b396b563b3765e1aa0bd5"
+      },
+      {
+        "path": "logs/06-learning_wonder_details_regression-headless.log",
+        "bytes": 3912,
+        "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+        "git_blob": "3756c768b8fb5eaf06a32713fa6fe2536bc0bd98"
+      },
+      {
+        "path": "logs/06-learning_wonder_details_regression-headless.runner.log",
+        "bytes": 3912,
+        "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+        "git_blob": "3756c768b8fb5eaf06a32713fa6fe2536bc0bd98"
+      },
+      {
+        "path": "logs/07-learning_wonder_details_regression-rendered.log",
+        "bytes": 4553,
+        "sha256": "0e149d618147faaf6db8be2cf656483a306c91d0ecf288a9fafefbc6a4de9b9b",
+        "git_blob": "9dd9605cdabe163b4c15f4c45e7c2820c938642f"
+      },
+      {
+        "path": "logs/07-learning_wonder_details_regression-rendered.runner.log",
+        "bytes": 4553,
+        "sha256": "0e149d618147faaf6db8be2cf656483a306c91d0ecf288a9fafefbc6a4de9b9b",
+        "git_blob": "9dd9605cdabe163b4c15f4c45e7c2820c938642f"
+      },
+      {
+        "path": "logs/08-game_hub_magic_capture-rendered.log",
+        "bytes": 1300,
+        "sha256": "aed3c1931aee8b507f8f4e262536b35cf2e650f019b13d5512835e9f92d9c990",
+        "git_blob": "1ffd931f0011a3e18a877a3496975db1b6be362d"
+      },
+      {
+        "path": "logs/08-game_hub_magic_capture-rendered.runner.log",
+        "bytes": 1300,
+        "sha256": "aed3c1931aee8b507f8f4e262536b35cf2e650f019b13d5512835e9f92d9c990",
+        "git_blob": "1ffd931f0011a3e18a877a3496975db1b6be362d"
+      },
+      {
+        "path": "logs/09-learning_world_capture-rendered.log",
+        "bytes": 8471,
+        "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+        "git_blob": "4d69a730591612d7803b4ba697fd34440f6d2323"
+      },
+      {
+        "path": "logs/09-learning_world_capture-rendered.runner.log",
+        "bytes": 8471,
+        "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+        "git_blob": "4d69a730591612d7803b4ba697fd34440f6d2323"
+      },
+      {
+        "path": "logs/10-learning_wonder_details_capture-rendered.log",
+        "bytes": 3163,
+        "sha256": "75dbe833a9b9358b2bda4d794aaed06080cd932d957f88ec4166d257589feb9b",
+        "git_blob": "1b57aa17a8bd5099ec783f63dde584015a298d0e"
+      },
+      {
+        "path": "logs/10-learning_wonder_details_capture-rendered.runner.log",
+        "bytes": 3163,
+        "sha256": "75dbe833a9b9358b2bda4d794aaed06080cd932d957f88ec4166d257589feb9b",
+        "git_blob": "1b57aa17a8bd5099ec783f63dde584015a298d0e"
+      },
+      {
+        "path": "results.tsv",
+        "bytes": 444,
+        "sha256": "8caf920c92ea08a4080056a89e27e71a5193858633d443bc4978f0a06e438b12",
+        "git_blob": "483ed08ab5bb014cc016213afe6a09af3da8e989"
+      },
+      {
+        "path": "source-commit.raw",
+        "bytes": 322,
+        "sha256": "1c66d69aea47f32c1b45c313b09dac4268b22af79fec353c81998adb1aa50b25",
+        "git_blob": "2b95dffcbe7d9988af5c2a63f3ea7aec22a0f44b"
+      },
+      {
+        "path": "source-dirty-after.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "source-dirty.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "source-index-after.bin",
+        "bytes": 541956,
+        "sha256": "9db75b50e4a8014358382cbbdf4291fcdb2bd7012ff0517a5c1212cad19d7701",
+        "git_blob": "2711a731dc751b1521cd972c9c8d0b115aa511b3"
+      },
+      {
+        "path": "source-index-before.bin",
+        "bytes": 541956,
+        "sha256": "9db75b50e4a8014358382cbbdf4291fcdb2bd7012ff0517a5c1212cad19d7701",
+        "git_blob": "2711a731dc751b1521cd972c9c8d0b115aa511b3"
+      },
+      {
+        "path": "source-inventory-after.json",
+        "bytes": 1914378,
+        "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+        "git_blob": "1c73492fc04a6caac07bc236d5cc5925fbaa78b4"
+      },
+      {
+        "path": "source-inventory-before.json",
+        "bytes": 1914378,
+        "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff",
+        "git_blob": "1c73492fc04a6caac07bc236d5cc5925fbaa78b4"
+      },
+      {
+        "path": "source-sha-after.txt",
+        "bytes": 41,
+        "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+        "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+      },
+      {
+        "path": "source-sha.txt",
+        "bytes": 41,
+        "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+        "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+      },
+      {
+        "path": "source-tree-after.bin",
+        "bytes": 461586,
+        "sha256": "f752c28fc98c3d5aff0c5946a411b46af1170541d6977bef8a02dbd4a363eece",
+        "git_blob": "fbe8d0c7f35590e59986e0dfaf6464de07667edb"
+      },
+      {
+        "path": "source-tree-after.txt",
+        "bytes": 41,
+        "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+        "git_blob": "89355489a63529cc2cb058a7c5159c8644d36116"
+      },
+      {
+        "path": "source-tree-before.bin",
+        "bytes": 461586,
+        "sha256": "f752c28fc98c3d5aff0c5946a411b46af1170541d6977bef8a02dbd4a363eece",
+        "git_blob": "fbe8d0c7f35590e59986e0dfaf6464de07667edb"
+      },
+      {
+        "path": "source-tree.txt",
+        "bytes": 41,
+        "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+        "git_blob": "89355489a63529cc2cb058a7c5159c8644d36116"
+      }
+    ],
+    "physical_android_fps_measured": false,
+    "complete_native52_acceptance": false,
+    "scope": "Separate source-bound Discovery renderer evidence; no Android, device FPS or combined Host acceptance"
+  },
+  "village": {
+    "schema": 1,
+    "status": "PASS",
+    "native_sha": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+    "source_inventories": [
+      {
+        "path": "source/source-inventory-before.json",
+        "bytes": 1914378,
+        "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff"
+      },
+      {
+        "path": "source/source-inventory-after.json",
+        "bytes": 1914378,
+        "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff"
+      }
+    ],
+    "probes": [
+      {
+        "probe": "build_village_economy_regression",
+        "mode": "headless",
+        "timeout_seconds": 420,
+        "required_marker": "[VillageEconomy] PASS 339 checks",
+        "log": {
+          "path": "logs/01-economy-headless.log",
+          "bytes": 628,
+          "sha256": "1381f36239164a4b77f21050c2619cb4dbcba281571419ed6cbe544db824c1bb"
+        },
+        "runner": {
+          "path": "logs/01-economy-headless.runner.log",
+          "bytes": 628,
+          "sha256": "1381f36239164a4b77f21050c2619cb4dbcba281571419ed6cbe544db824c1bb"
+        }
+      },
+      {
+        "probe": "build_village_scaling_regression",
+        "mode": "headless",
+        "timeout_seconds": 180,
+        "required_marker": "[VillageScaling] PASS 42 checks: full 2178-house model, camera and explorer",
+        "log": {
+          "path": "logs/02-scaling-headless.log",
+          "bytes": 1701,
+          "sha256": "85418374e7b1b87bd3309904c888530ab5bf4fe21a10851d5a91b05567a18178"
+        },
+        "runner": {
+          "path": "logs/02-scaling-headless.runner.log",
+          "bytes": 1701,
+          "sha256": "85418374e7b1b87bd3309904c888530ab5bf4fe21a10851d5a91b05567a18178"
+        }
+      },
+      {
+        "probe": "build_village_scaling_regression",
+        "mode": "rendered",
+        "timeout_seconds": 300,
+        "required_marker": "[VillageScaling] PASS 46 checks: full 2178-house model, camera and explorer",
+        "log": {
+          "path": "logs/03-scaling-rendered.log",
+          "bytes": 2348,
+          "sha256": "3557a77abf56c329d496a9f5453a76429e02c216e8830f48480e2873ff416f15"
+        },
+        "runner": {
+          "path": "logs/03-scaling-rendered.runner.log",
+          "bytes": 2348,
+          "sha256": "3557a77abf56c329d496a9f5453a76429e02c216e8830f48480e2873ff416f15"
+        }
+      }
+    ],
+    "images": [
+      {
+        "path": "captures/01-home-region.png",
+        "bytes": 767343,
+        "sha256": "39a4c6b15f78cc050f5c9aa73da92430bd28b61da96121984a2f52fc3bf914d7",
+        "width": 1280,
+        "height": 720,
+        "decoded_rgb_sha256": "dc9698600e36fdcc75469b7ea87f92d1d52a8efd5fab3aca805c5f25d92b66b3"
+      },
+      {
+        "path": "captures/02-river-boundary.png",
+        "bytes": 994331,
+        "sha256": "737c1aca17c740005c955981c5dcc6bbbff42f1af1983db9c7ac23809edc5b62",
+        "width": 1280,
+        "height": 720,
+        "decoded_rgb_sha256": "9cf98ac787e216b392a2fea5639bdc0df6ff62193f0c3d01d9c446a75e99797b"
+      }
+    ],
+    "scope": "Three additional Village probes and two actual renderer PNGs; no complete52/17, Android or device-FPS acceptance"
+  },
+  "mobile": {
+    "schema": 1,
+    "status": "PASS",
+    "native_sha": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+    "source_inventories": [
+      {
+        "path": "source/source-inventory-before.json",
+        "bytes": 1914378,
+        "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff"
+      },
+      {
+        "path": "source/source-inventory-after.json",
+        "bytes": 1914378,
+        "sha256": "819797ef607b1b6e614adc281db9a949e560166abbf3e18ee55e99a0874867ff"
+      }
+    ],
+    "log": {
+      "path": "logs/mobile-safe-area-rendered.log",
+      "bytes": 11441,
+      "sha256": "5c12a9a06b2f2220444cf2ee484890d4fd8403441fde7fed4198520de9c5a6ad"
+    },
+    "runner": {
+      "path": "logs/mobile-safe-area-rendered.runner.log",
+      "bytes": 11441,
+      "sha256": "5c12a9a06b2f2220444cf2ee484890d4fd8403441fde7fed4198520de9c5a6ad"
+    },
+    "report": {
+      "path": "captures/mobile/mobile-safe-area.json",
+      "bytes": 59823,
+      "sha256": "9d59b73cafcc6c8a65a0f4ca3ec7665741cf67d6234a0de2564be257eecc6aca"
+    },
+    "checks": 428,
+    "layouts": [
+      "dense-left-cutout",
+      "dense-right-cutout",
+      "same-pixels-density-one",
+      "expanded-inner-display",
+      "compact-portrait",
+      "short-landscape",
+      "dense-restored"
+    ],
+    "hint_transitions": [
+      "expanded-hint-visible",
+      "expanded-hint-hidden"
+    ],
+    "safe_area_images": [
+      {
+        "path": "captures/mobile/jump-landscape-cutout.png",
+        "bytes": 1857659,
+        "sha256": "e62165411acfb0d931b8a39a3854ec3124e8717e636ed32607ebbd685601bb98",
+        "width": 2400,
+        "height": 1080,
+        "decoded_rgb_sha256": "4bac15e08d632cc56e93e5c74fe9e7ef56d2e08ab24ced0c325bf2cce25e7074"
+      },
+      {
+        "path": "captures/mobile/build-landscape-cutout.png",
+        "bytes": 2489770,
+        "sha256": "e72d4252d70487815ae987d4765b5a9ddc189ada5eeddbb8f285577422861d19",
+        "width": 2400,
+        "height": 1080,
+        "decoded_rgb_sha256": "005c0ee8dafddfba270eb6d76490aefc2f06552575637f34bc9d72abdcf42e9f"
+      },
+      {
+        "path": "captures/mobile/puzzle-landscape-cutout.png",
+        "bytes": 480217,
+        "sha256": "5d1117258b17bab6ecd5b2c97115854520aee92253013ee677da0b2b7b0b794b",
+        "width": 2400,
+        "height": 1080,
+        "decoded_rgb_sha256": "dbc21f4e6e90c2ee63dc6f759d7cb1d364fa52ea0d95d2c92014a70484e351d9"
+      },
+      {
+        "path": "captures/mobile/treasure-landscape-cutout.png",
+        "bytes": 2624405,
+        "sha256": "d10c0d920b303a1c43c9e8150fbab3482c3a13e6470dd90e4318c8a14a4621a4",
+        "width": 2400,
+        "height": 1080,
+        "decoded_rgb_sha256": "25c335f4499ece7ac6e37608a5e29d365e7021d659c26cf3df36f52984bcde9b"
+      }
+    ],
+    "minimap_images": [
+      {
+        "path": "captures/minimap/dense-left-cutout.png",
+        "bytes": 1853060,
+        "sha256": "582c5b082e82e6b1860c72df5c6a171163e6b7e09e99de1d3ed8419290664861",
+        "width": 2400,
+        "height": 1080,
+        "label": "dense-left-cutout",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/dense-left-cutout.png",
+        "decoded_rgb_sha256": "eab3c194b6e8e7f50e00d498226060b92091abaf65048bb6470644e5068b6ca0"
+      },
+      {
+        "path": "captures/minimap/dense-right-cutout.png",
+        "bytes": 1849942,
+        "sha256": "3d343f153633e8ba1afefb2e21d522f7360aee715c35ce247da71a5462641d8d",
+        "width": 2400,
+        "height": 1080,
+        "label": "dense-right-cutout",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/dense-right-cutout.png",
+        "decoded_rgb_sha256": "1f2c4d9097f0c583883e4c5cfce8743267c5b0142fd2d4f7d0b3e014a48c3f2e"
+      },
+      {
+        "path": "captures/minimap/same-pixels-density-one.png",
+        "bytes": 1681448,
+        "sha256": "ee12d5d32478ded5eb262acbf0c69e382a6d2bc857ddb3b70de9441291ee953b",
+        "width": 2400,
+        "height": 1080,
+        "label": "same-pixels-density-one",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/same-pixels-density-one.png",
+        "decoded_rgb_sha256": "6a432d40ad5bca5b862a4bc741c08bc7344fac3a1d36d37b94c13f005e5e1730"
+      },
+      {
+        "path": "captures/minimap/expanded-inner-display.png",
+        "bytes": 2675963,
+        "sha256": "2a9727fd4c7d145da3569361bdfb6b7b3e8863336ff4c7993f701d93380b894e",
+        "width": 2176,
+        "height": 1812,
+        "label": "expanded-inner-display",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/expanded-inner-display.png",
+        "decoded_rgb_sha256": "2d1e87f92cfdb3bb94d9346cc2e8dfea7a3f80b76844b6a7c95b257968f02a96"
+      },
+      {
+        "path": "captures/minimap/expanded-hint-visible.png",
+        "bytes": 2649180,
+        "sha256": "03a4eaecf44d2d3aa70a5fd67b76faa8293d1035bbda02791e62351502c2efe5",
+        "width": 2176,
+        "height": 1812,
+        "label": "expanded-hint-visible",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/expanded-hint-visible.png",
+        "decoded_rgb_sha256": "f0529ce08c0e17dd9adc8a2e461bd8b2fa25e3f8f35b8f37e517706a086bf8ef"
+      },
+      {
+        "path": "captures/minimap/expanded-hint-hidden.png",
+        "bytes": 2678275,
+        "sha256": "00df8c937eb4b9799793d40bf2356b556c590ed5f34f06772bca9259a76088d3",
+        "width": 2176,
+        "height": 1812,
+        "label": "expanded-hint-hidden",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/expanded-hint-hidden.png",
+        "decoded_rgb_sha256": "d34005b356650a12bbec1229ebcc0abcb3f727f1c3eed61feb61bd2e55aee7ca"
+      },
+      {
+        "path": "captures/minimap/compact-portrait.png",
+        "bytes": 263887,
+        "sha256": "c80117c3ed49936a7146ddcdc832e71bd296599d50ec9103f97027b117b9bc05",
+        "width": 360,
+        "height": 800,
+        "label": "compact-portrait",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/compact-portrait.png",
+        "decoded_rgb_sha256": "5cf73711bd1df5057ba3e39caf9534741cd1c9fa026f240072681d0393f38ebe"
+      },
+      {
+        "path": "captures/minimap/short-landscape.png",
+        "bytes": 747837,
+        "sha256": "16eb6a08770acf891034e1d05ea37b01ac724accd7f1d8cb278508353797fe47",
+        "width": 1280,
+        "height": 640,
+        "label": "short-landscape",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/short-landscape.png",
+        "decoded_rgb_sha256": "94fa1cf65e73b8fc77a789bd3ee6cd631a5634eb5ec6da3c32b85d63711bdce0"
+      },
+      {
+        "path": "captures/minimap/dense-restored.png",
+        "bytes": 1852740,
+        "sha256": "1da03aed67dfe60e32fd7d0064933cad792929fe4c83a002ce8536e0c7fcf6b5",
+        "width": 2400,
+        "height": 1080,
+        "label": "dense-restored",
+        "original_report_path": "/home/runner/work/_temp/lumo-discovery-43600806315-1/evidence/mobile-minimap/captures/minimap/dense-restored.png",
+        "decoded_rgb_sha256": "efe7d5f6fd89ee629285c9279dd8612d8310dfada995198f2f0cdd6638836783"
+      }
+    ],
+    "scope": "Actual desktop renderer with asynchronous Android boundary fixture; no Android/device/FPS claim"
+  },
+  "all_original_pngs": [
+    {
+      "path": "discovery/captures/hub/hub_fold_landscape.png",
+      "bytes": 1878546,
+      "sha256": "f93ef335f42fe9a567de7bda1278c07632a1c7f1ea0c7b3df98162d8eefb40b8",
+      "crc32": "67f0388c",
+      "compressed_bytes": 1878025,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "08bc9087c45ca0a52d65d3e98572e9bafb92da380cb1c7ad722f86f18f8ed364"
+    },
+    {
+      "path": "discovery/captures/learning/bridge_hundred-complete-2400x1080.png",
+      "bytes": 659859,
+      "sha256": "6a7306d126cf239c2377a5b045fbf9efae043e26761cd9c106f1a09bfc33830f",
+      "crc32": "71e4fd43",
+      "compressed_bytes": 651020,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "8c4d5a95bde9fdabaeeb601f6182ce2c0e28742385f2594965483ee64e6e7885"
+    },
+    {
+      "path": "discovery/captures/hub/hub_portrait.png",
+      "bytes": 1821890,
+      "sha256": "819c7e304c2fb5034cdf31111ec252d95ba1e300d1c29e23fb8508e8dccf3453",
+      "crc32": "80cd6cab",
+      "compressed_bytes": 1821487,
+      "width": 1080,
+      "height": 1920,
+      "decoded_rgba_sha256": "2b0efe391801684822cced9dac347ffc6f36aef4149c30bc99729002e104f9a7"
+    },
+    {
+      "path": "discovery/captures/learning/bridge_hundred-complete-412x915.png",
+      "bytes": 149617,
+      "sha256": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286",
+      "crc32": "163dd308",
+      "compressed_bytes": 148969,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "87d20f2aa53e9d66b2117a7ab089b30428b8ed318dc579770fb596ddc5cb00de"
+    },
+    {
+      "path": "discovery/captures/learning/bridge_hundred-complete.png",
+      "bytes": 363900,
+      "sha256": "335865b34d321ef5f4942a5a85c3be670bbf3e12f4999da16bd6188b914ef2b3",
+      "crc32": "ab3a9028",
+      "compressed_bytes": 362190,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "d3935401e35f44478835893b6fd8c9e0f190fbed65bc0e1eab2f2eac0f8329f0"
+    },
+    {
+      "path": "discovery/captures/learning/bridge_hundred-start-2400x1080.png",
+      "bytes": 642151,
+      "sha256": "a3fafad94bc683dd9880d2bbdd6de4bd99b433b9073767984f824f8c437d0519",
+      "crc32": "ef62e9ae",
+      "compressed_bytes": 633157,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "d36080b35d6affc2583dcab9437dced224cf702671e6a7f714518122a07ec70e"
+    },
+    {
+      "path": "discovery/captures/learning/bridge_hundred-start-412x915.png",
+      "bytes": 146569,
+      "sha256": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc",
+      "crc32": "4c029deb",
+      "compressed_bytes": 146192,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "9c3576b75879809a6332ef771a13851084117416c5ed7080d7a84ef91bf0362f"
+    },
+    {
+      "path": "discovery/captures/learning/bridge_hundred-start.png",
+      "bytes": 354258,
+      "sha256": "7eb6e728babaa5209b2ec9f8960a52d509c8a100852e46eaa09f780662c5b206",
+      "crc32": "f93e774d",
+      "compressed_bytes": 352616,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "7e5750c2cb2fe84eecbbb7eea93c6faba77aed615ef3239165245d7175b6f41d"
+    },
+    {
+      "path": "discovery/captures/learning/equal_groups-complete.png",
+      "bytes": 335744,
+      "sha256": "80531c6c9b37a3c9867440a563b05b3e03b26e8252af21d640e3ae0bc2bb7784",
+      "crc32": "d720f7bb",
+      "compressed_bytes": 333878,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "93424aa481f1cbf7747eea8b621e9f1609f87dac8d1f5bb9ffe99888d7783869"
+    },
+    {
+      "path": "discovery/captures/learning/equal_groups-start.png",
+      "bytes": 322084,
+      "sha256": "da6258bc5a17a90f7c85915c6485a65dd717128a0498f309495dcde225c9966a",
+      "crc32": "44831d0e",
+      "compressed_bytes": 320267,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "3b20943db52945ecef4cdb7c0e81516497cfe1a4938470750e5ce7b45df0647f"
+    },
+    {
+      "path": "discovery/captures/learning/fraction_parts-complete.png",
+      "bytes": 332831,
+      "sha256": "defcd507a087d84dc7249cb7757bf1c15d58b9b2217f6666626666b14c0559e9",
+      "crc32": "2413a3aa",
+      "compressed_bytes": 330972,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "8855c52c9357b9b52ba81c6b50f17d3e676b68b0fa7c3c6d10db0902e58c081e"
+    },
+    {
+      "path": "discovery/captures/learning/fraction_parts-start.png",
+      "bytes": 322375,
+      "sha256": "21f39f28efd623b9c3bb5bc99ac0a8b140b495404192a3b55a039e536100da4a",
+      "crc32": "679f44de",
+      "compressed_bytes": 320873,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "9c3e13b24dc4fced1d51845d4422b1928fef3fca32aa1e1bc088470e7c4a2e8f"
+    },
+    {
+      "path": "discovery/captures/learning/math-complete-1280x720.png",
+      "bytes": 359803,
+      "sha256": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab",
+      "crc32": "c9cdabe9",
+      "compressed_bytes": 358311,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "c239df37935acfaa4bceb5bb1478255492014f75ceaef4d6b8d3edd8cf2a4dd0"
+    },
+    {
+      "path": "discovery/captures/learning/math-complete-2400x1080.png",
+      "bytes": 652893,
+      "sha256": "3dcbc484ed57bf999e20fcfe1c4b786db1a33300be0119755196f3b27da25b61",
+      "crc32": "888ae0ad",
+      "compressed_bytes": 643716,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "c15e05d63a31c58b3b7b7fae9cfe94c88f9b78f399fdda6d19c8d06f4bfd63ab"
+    },
+    {
+      "path": "discovery/captures/learning/math-complete-412x915.png",
+      "bytes": 144204,
+      "sha256": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8",
+      "crc32": "5de0ee23",
+      "compressed_bytes": 143536,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "e60ed454fd0e819e6e75a05069acb63be4f2b3975aa30bdf2e3250681fcb1a79"
+    },
+    {
+      "path": "discovery/captures/learning/math-start-1280x720.png",
+      "bytes": 346738,
+      "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+      "crc32": "dbdc5876",
+      "compressed_bytes": 345252,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "9612126c24372e3f9009525a1bde57924a80f4f4ae303571e60c361e45748585"
+    },
+    {
+      "path": "discovery/captures/learning/math-start-2400x1080.png",
+      "bytes": 614390,
+      "sha256": "d61733698a17eff4089c2500b8e6ac8a900837ca55b81f97af27744145926da7",
+      "crc32": "0332cc4e",
+      "compressed_bytes": 604933,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "c438e71836fbcb5b98ef4c485bea8998971674aeaffe1e445eac11e76f80fb78"
+    },
+    {
+      "path": "discovery/captures/learning/math-start-412x915.png",
+      "bytes": 139598,
+      "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+      "crc32": "b0bc137d",
+      "compressed_bytes": 139101,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "10da4a747a3dd83deefdf18f1edd270c0fc05500dbb8618b49fb6bf47af89e8e"
+    },
+    {
+      "path": "discovery/captures/learning/math-ten-1280x720.png",
+      "bytes": 353450,
+      "sha256": "c48d94aa57ec3412736754d6c9844ac2857a7f58a8eec2f2ecb779c230a204ec",
+      "crc32": "d0ce5d73",
+      "compressed_bytes": 351829,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "c79170c35d7e1dd3b5622edd427783a4e5942683d146cd4f86c8f7d0162c76a7"
+    },
+    {
+      "path": "discovery/captures/learning/math-ten-2400x1080.png",
+      "bytes": 634242,
+      "sha256": "8a6eee43cdd4ebe4d829d233b650d5b305f8afa7b04af7eba40092e594b8ad66",
+      "crc32": "c78ab2dc",
+      "compressed_bytes": 624964,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "69cf3a3fe53c938440fa0275f15e60a1271cfb9fa349372e97f96cd19f273f22"
+    },
+    {
+      "path": "discovery/captures/learning/math-ten-412x915.png",
+      "bytes": 144541,
+      "sha256": "f8146ddc462f3163b4754cd76866e1eb8cbb052c880c980b9daee2402a3e7cfb",
+      "crc32": "d1ebeabe",
+      "compressed_bytes": 144099,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "eaca0f37f038ea1f914fc2b3c9bf01eeaeaaceb78a1849f681963df7e1b5de7c"
+    },
+    {
+      "path": "discovery/captures/learning/plant_parts-complete.png",
+      "bytes": 373016,
+      "sha256": "48c1a8f9ff5971937a42f7049fb12fe6364c6cf20369e451aa64bbabf385f4aa",
+      "crc32": "e5efe840",
+      "compressed_bytes": 371269,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "66b645311ef40e99be611cf4b278dbf22aa0f9dd026b99d5ebda403da4d16655"
+    },
+    {
+      "path": "discovery/captures/learning/plant_parts-start.png",
+      "bytes": 350824,
+      "sha256": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326",
+      "crc32": "095f7edb",
+      "compressed_bytes": 348845,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "1ca08df4d6196dbb61914c784b44f503c721099dbce55405cc22d4d631d07d6b"
+    },
+    {
+      "path": "discovery/captures/learning/subtract_ten-complete.png",
+      "bytes": 357989,
+      "sha256": "186a15fd5fe718b2f00b924ac0730820e6e654956c1addfa61a7e9b57b8d00ba",
+      "crc32": "88e460f2",
+      "compressed_bytes": 356538,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "aa12e933d76dae450fbc44fea7edcc8c5fc8fb47cbcfd1c8621d7c3a1d309fe9"
+    },
+    {
+      "path": "discovery/captures/learning/subtract_ten-start.png",
+      "bytes": 348921,
+      "sha256": "80b7c6dba3603378800c292d804179f7ff1a98d6f5bcbbae3ff995351a96c592",
+      "crc32": "6abcf26c",
+      "compressed_bytes": 347245,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "da6076c3ada6ba3aff0defb4b370285c622395602cb9dc2759773e13e7e232ec"
+    },
+    {
+      "path": "discovery/captures/learning/syllables-start.png",
+      "bytes": 322084,
+      "sha256": "9bd464681be73f59a089375ab95b05dc9203946666ae6e04b4f63741baa5e9ac",
+      "crc32": "407c7f2b",
+      "compressed_bytes": 320524,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "131848cbaacd88d08f199cb9286f5be219f216d7420ce7158772fab992e7d206"
+    },
+    {
+      "path": "discovery/captures/learning/syllables-complete.png",
+      "bytes": 331920,
+      "sha256": "b8e3f46d48120761edf2fba71cf1f83dc9bba67f7e4e83edbe1f9cf807f11c27",
+      "crc32": "85b2aafc",
+      "compressed_bytes": 329962,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "27fa6956872035e54522422c6c64c38db7b4092a527545fc8621aa42938e5e73"
+    },
+    {
+      "path": "discovery/captures/wonder/current-hundreds-phone-complete.png",
+      "bytes": 149617,
+      "sha256": "d713a5780fde893a9c3c0c4eaefffa09b69739d63a23eb567cc9bf04765a8286",
+      "crc32": "163dd308",
+      "compressed_bytes": 148969,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "87d20f2aa53e9d66b2117a7ab089b30428b8ed318dc579770fb596ddc5cb00de"
+    },
+    {
+      "path": "discovery/captures/wonder/current-hundreds-phone-start.png",
+      "bytes": 146569,
+      "sha256": "081d01c599541be88fee4b5082ec56c3b797369312c9af43797a2fa8d48eddcc",
+      "crc32": "4c029deb",
+      "compressed_bytes": 146192,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "9c3576b75879809a6332ef771a13851084117416c5ed7080d7a84ef91bf0362f"
+    },
+    {
+      "path": "discovery/captures/wonder/current-numbers-complete-1280x720.png",
+      "bytes": 359803,
+      "sha256": "7b6c764e769aeef10d5395444871984a59bd228e0c61f7ac38956daaa6a397ab",
+      "crc32": "c9cdabe9",
+      "compressed_bytes": 358311,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "c239df37935acfaa4bceb5bb1478255492014f75ceaef4d6b8d3edd8cf2a4dd0"
+    },
+    {
+      "path": "discovery/captures/wonder/current-numbers-complete-412x915.png",
+      "bytes": 144204,
+      "sha256": "962634f012b10c172eead7c0302c2b57e8c9084ca41ace789c51e5280348c9e8",
+      "crc32": "5de0ee23",
+      "compressed_bytes": 143536,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "e60ed454fd0e819e6e75a05069acb63be4f2b3975aa30bdf2e3250681fcb1a79"
+    },
+    {
+      "path": "discovery/captures/wonder/current-numbers-one-step-1280x720.png",
+      "bytes": 349727,
+      "sha256": "cd9fe65a73149dc6cabc684b454b99ce2f94e1f70d0af60b9fbfed3806c0960b",
+      "crc32": "e5676633",
+      "compressed_bytes": 348305,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "ea41cec8f0e8c650e10cda780d914a0b12551e52cc7201fb342aee8561674922"
+    },
+    {
+      "path": "discovery/captures/wonder/current-numbers-start-1280x720.png",
+      "bytes": 346738,
+      "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+      "crc32": "dbdc5876",
+      "compressed_bytes": 345252,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "9612126c24372e3f9009525a1bde57924a80f4f4ae303571e60c361e45748585"
+    },
+    {
+      "path": "discovery/captures/wonder/current-numbers-start-412x915.png",
+      "bytes": 139598,
+      "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+      "crc32": "b0bc137d",
+      "compressed_bytes": 139101,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "10da4a747a3dd83deefdf18f1edd270c0fc05500dbb8618b49fb6bf47af89e8e"
+    },
+    {
+      "path": "discovery/captures/wonder/current-plant_parts-complete.png",
+      "bytes": 369395,
+      "sha256": "4a884534a30245646d04c30ace1f44dd12429ffc56bfe56cb9725c303b34745b",
+      "crc32": "7a17d9d1",
+      "compressed_bytes": 367691,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "b2a98817ef41b93a644749ece4c42fe0209d1952b741313d3f693a671a78cfc5"
+    },
+    {
+      "path": "discovery/captures/wonder/current-plant_parts-start.png",
+      "bytes": 350824,
+      "sha256": "c1baef37292fdf9911377833c0de6561214d691d69d55651b31c7a43a6207326",
+      "crc32": "095f7edb",
+      "compressed_bytes": 348845,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "1ca08df4d6196dbb61914c784b44f503c721099dbce55405cc22d4d631d07d6b"
+    },
+    {
+      "path": "discovery/captures/wonder/current-syllables-complete.png",
+      "bytes": 331917,
+      "sha256": "c0dd74767241c0dac43e09d1e0b07ff049736e0ed7277b92692783126e6090e4",
+      "crc32": "ceb1e6a2",
+      "compressed_bytes": 329960,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "6b06006bd708f4380ed910d83c0bc1864a8b948f32cfc7b6b4ab0826b70a240d"
+    },
+    {
+      "path": "discovery/captures/wonder/current-syllables-start.png",
+      "bytes": 322083,
+      "sha256": "29d040d47db0a127405be702fdb2486f88147b36c544c579a18e60fa1065661b",
+      "crc32": "dc72b480",
+      "compressed_bytes": 320501,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "da11291744f610e934b72ea673de18506da6388c66bd7a20801c01633422a78c"
+    },
+    {
+      "path": "dream/captures/garden/learning-dream-1280x720.png",
+      "bytes": 346738,
+      "sha256": "ae2aea3e664cb92354505de68457135409b7d7c35c46b0cb6dd641b85c1318e5",
+      "crc32": "dbdc5876",
+      "compressed_bytes": 345252,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "9612126c24372e3f9009525a1bde57924a80f4f4ae303571e60c361e45748585"
+    },
+    {
+      "path": "dream/captures/garden/learning-dream-412x915.png",
+      "bytes": 139598,
+      "sha256": "cc267aea99c4152e6c300331a6527ef9b8fdaf9b867e5c6f32c20313d4f8db06",
+      "crc32": "b0bc137d",
+      "compressed_bytes": 139101,
+      "width": 412,
+      "height": 915,
+      "decoded_rgba_sha256": "10da4a747a3dd83deefdf18f1edd270c0fc05500dbb8618b49fb6bf47af89e8e"
+    },
+    {
+      "path": "dream/captures/garden/learning-dream-2400x1080.png",
+      "bytes": 614390,
+      "sha256": "d61733698a17eff4089c2500b8e6ac8a900837ca55b81f97af27744145926da7",
+      "crc32": "0332cc4e",
+      "compressed_bytes": 604933,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "c438e71836fbcb5b98ef4c485bea8998971674aeaffe1e445eac11e76f80fb78"
+    },
+    {
+      "path": "dream/captures/learning/learning_00.png",
+      "bytes": 287549,
+      "sha256": "f31b5ed96810d971a5b1f8b9869ad2ec43ecdfdda046496b6ba0d067bb858840",
+      "crc32": "b954c3ff",
+      "compressed_bytes": 285835,
+      "width": 720,
+      "height": 1280,
+      "decoded_rgba_sha256": "927f7b7976e79ec9b2261a5d2eecad68d1d9ab753cbed1d24b87b581af36dcc6"
+    },
+    {
+      "path": "dream/captures/learning/learning_01.png",
+      "bytes": 288733,
+      "sha256": "5c127d13f001ac9e7ccf147d2d5bf7b625809d76d0dcf33e17b93d668d67d4c6",
+      "crc32": "32ac03dc",
+      "compressed_bytes": 286997,
+      "width": 720,
+      "height": 1280,
+      "decoded_rgba_sha256": "bda711d45166b355e130c44258db23d4805a8b4c057149c428cbe09b64259c85"
+    },
+    {
+      "path": "dream/captures/treasure/treasure_00.png",
+      "bytes": 1138159,
+      "sha256": "a21a675d1c1192ebf3f96210a28002304065a0466b4678c5cd7e6ecc10c0bc68",
+      "crc32": "ff69d206",
+      "compressed_bytes": 1138497,
+      "width": 720,
+      "height": 1280,
+      "decoded_rgba_sha256": "d27a9b86136d833e8cd80597adec8ccb084830f5c0afa3b680e000176d74a2dd"
+    },
+    {
+      "path": "dream/captures/treasure/treasure_01.png",
+      "bytes": 1137621,
+      "sha256": "fbeb27aad2068ff7cef26206228361e963605de5bea4e4e3da2576e8e2bc3cc5",
+      "crc32": "1aa484ed",
+      "compressed_bytes": 1137971,
+      "width": 720,
+      "height": 1280,
+      "decoded_rgba_sha256": "216b1aa3370ce31e32c82015ab43e5c01d4bb4b5f687f6d8c78f578b67776b3c"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/dense-left-cutout.png",
+      "bytes": 1853060,
+      "sha256": "582c5b082e82e6b1860c72df5c6a171163e6b7e09e99de1d3ed8419290664861",
+      "crc32": "90ad7264",
+      "compressed_bytes": 1853222,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "8ab27bc29213382a7b54e8294548ac2076fdd3b0c8f276f79561463447a02e02"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/compact-portrait.png",
+      "bytes": 263887,
+      "sha256": "c80117c3ed49936a7146ddcdc832e71bd296599d50ec9103f97027b117b9bc05",
+      "crc32": "d86da67b",
+      "compressed_bytes": 263972,
+      "width": 360,
+      "height": 800,
+      "decoded_rgba_sha256": "1ab778856522f31f16c701e86c2342fd31980c507355bbe374c315fe3c0ca6f6"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/dense-restored.png",
+      "bytes": 1852740,
+      "sha256": "1da03aed67dfe60e32fd7d0064933cad792929fe4c83a002ce8536e0c7fcf6b5",
+      "crc32": "d3bdda1b",
+      "compressed_bytes": 1852903,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "b33885d952cecccf5fbeae5b3c8553ac3cd6e326277bdb04af353d089e7ea325"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/dense-right-cutout.png",
+      "bytes": 1849942,
+      "sha256": "3d343f153633e8ba1afefb2e21d522f7360aee715c35ce247da71a5462641d8d",
+      "crc32": "7fa042ca",
+      "compressed_bytes": 1850050,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "e63873fc7f3c2e594f27bc78a6e198af4f253db501d6d8124d26db3834879792"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/expanded-hint-hidden.png",
+      "bytes": 2678275,
+      "sha256": "00df8c937eb4b9799793d40bf2356b556c590ed5f34f06772bca9259a76088d3",
+      "crc32": "fd22b65d",
+      "compressed_bytes": 2678122,
+      "width": 2176,
+      "height": 1812,
+      "decoded_rgba_sha256": "cc9892e8dea9cab1a72886ffe389374eabbf1d36bab59b22849819862b9adfe0"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/expanded-inner-display.png",
+      "bytes": 2675963,
+      "sha256": "2a9727fd4c7d145da3569361bdfb6b7b3e8863336ff4c7993f701d93380b894e",
+      "crc32": "a3b0c171",
+      "compressed_bytes": 2675780,
+      "width": 2176,
+      "height": 1812,
+      "decoded_rgba_sha256": "86b5d57a5f48c97956c3dc4e0d0e9c1b26c6dbe261cc4f514ce91cd138dae74a"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/expanded-hint-visible.png",
+      "bytes": 2649180,
+      "sha256": "03a4eaecf44d2d3aa70a5fd67b76faa8293d1035bbda02791e62351502c2efe5",
+      "crc32": "6de70e7a",
+      "compressed_bytes": 2648849,
+      "width": 2176,
+      "height": 1812,
+      "decoded_rgba_sha256": "00a96a2027eb12c3f2a97ce5c1ba45a9025e7f21c28a133259ce2f251c1e8ea8"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/same-pixels-density-one.png",
+      "bytes": 1681448,
+      "sha256": "ee12d5d32478ded5eb262acbf0c69e382a6d2bc857ddb3b70de9441291ee953b",
+      "crc32": "78575ab0",
+      "compressed_bytes": 1681703,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "138b7b0f8ea890a52fefefea281e8e0f16f91e3c83ea3233a81d2c50af4a2dcc"
+    },
+    {
+      "path": "mobile-minimap/captures/minimap/short-landscape.png",
+      "bytes": 747837,
+      "sha256": "16eb6a08770acf891034e1d05ea37b01ac724accd7f1d8cb278508353797fe47",
+      "crc32": "168a9a63",
+      "compressed_bytes": 748064,
+      "width": 1280,
+      "height": 640,
+      "decoded_rgba_sha256": "a93523c55b66792836f2fdc793867578f6a03a0d6c02b314a01c84cf781b6005"
+    },
+    {
+      "path": "mobile-minimap/captures/mobile/build-landscape-cutout.png",
+      "bytes": 2489770,
+      "sha256": "e72d4252d70487815ae987d4765b5a9ddc189ada5eeddbb8f285577422861d19",
+      "crc32": "1bf0d8d0",
+      "compressed_bytes": 2490262,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "291ce12296dfa2e27ca5f772127cd9ee995cc55c78ee36247cdc47c9f4f04c96"
+    },
+    {
+      "path": "mobile-minimap/captures/mobile/jump-landscape-cutout.png",
+      "bytes": 1857659,
+      "sha256": "e62165411acfb0d931b8a39a3854ec3124e8717e636ed32607ebbd685601bb98",
+      "crc32": "697de8e6",
+      "compressed_bytes": 1857652,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "f947ff290ffd911bf0c74518be4e1e053176fee7c4a3d1b676f9914617a9c6fe"
+    },
+    {
+      "path": "mobile-minimap/captures/mobile/puzzle-landscape-cutout.png",
+      "bytes": 480217,
+      "sha256": "5d1117258b17bab6ecd5b2c97115854520aee92253013ee677da0b2b7b0b794b",
+      "crc32": "ab063e04",
+      "compressed_bytes": 475324,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "e35d6dd6fc5af232517c7dc2b6601ebf38eea8fb0e074b8f39d06dc7e3a49f3d"
+    },
+    {
+      "path": "mobile-minimap/captures/mobile/treasure-landscape-cutout.png",
+      "bytes": 2624405,
+      "sha256": "d10c0d920b303a1c43c9e8150fbab3482c3a13e6470dd90e4318c8a14a4621a4",
+      "crc32": "64958bbd",
+      "compressed_bytes": 2624915,
+      "width": 2400,
+      "height": 1080,
+      "decoded_rgba_sha256": "a42d527338e4f092ee09481dc47502d0d4e481cbcda63c4f512842d4daabd0c5"
+    },
+    {
+      "path": "village-scaling/captures/01-home-region.png",
+      "bytes": 767343,
+      "sha256": "39a4c6b15f78cc050f5c9aa73da92430bd28b61da96121984a2f52fc3bf914d7",
+      "crc32": "c1087867",
+      "compressed_bytes": 766937,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "3d63e568e7eb54dd9ab8e3a46d4389fcbf10eb4cd4da306311d6988483224908"
+    },
+    {
+      "path": "village-scaling/captures/02-river-boundary.png",
+      "bytes": 994331,
+      "sha256": "737c1aca17c740005c955981c5dcc6bbbff42f1af1983db9c7ac23809edc5b62",
+      "crc32": "412d4db4",
+      "compressed_bytes": 994259,
+      "width": 1280,
+      "height": 720,
+      "decoded_rgba_sha256": "7563d4273255cfbfa6b21d2cbcda41a03c240046ba7d9481b9fb9aabf223701c"
+    }
+  ],
+  "png_count": 60,
+  "tracked_entries": 3689,
+  "originals_unchanged": true,
+  "scope": "Exact separate Native CI and original renderer evidence; no visual review, Android, FPS or full52 acceptance",
+  "new_engine_invocations_by_replay": 0
+}

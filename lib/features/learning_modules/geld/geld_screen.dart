@@ -19,6 +19,7 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 
 class _Muenze {
   const _Muenze({
@@ -82,6 +83,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
@@ -196,6 +198,9 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: _typ == _GeldFrageTyp.zaehlen
+          ? 'Münzen: ${(_muenzenAufTisch.map((m) => m.wert).toList()..sort()).join(",")}'
+          : 'Münze finden: ${_gefragteMuenze.wert}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -296,6 +301,52 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final counting = _typ == _GeldFrageTyp.zaehlen;
+    final choices = counting
+        ? _answers.map(_formatCent).toList()
+        : _muenzenAufTisch.map((coin) => coin.label).toList();
+    final selected = _selectedAnswer;
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 'm2_geld',
+      taskKey: _taskIdx,
+      prompt: counting
+          ? 'Wie viel Geld siehst du? Münzen: ${_muenzenAufTisch.map((coin) => coin.label).join(', ')}.'
+          : 'Welche Münze ist ${_gefragteMuenze.label}?',
+      objective: counting
+          ? 'Du addierst die Werte der Münzen in Euro und Cent.'
+          : 'Du erkennst eine Münze an ihrer Zahl und ihrer Einheit.',
+      answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          counting
+              ? _answers[index] == _gesamtWert
+              : _muenzenAufTisch[index] == _gefragteMuenze),
+      helpSteps: counting
+          ? [
+              'Lies den Wert jeder Münze. Die Anzahl der Münzen allein sagt noch nicht, wie viel Geld es ist.',
+              'Rechne zunächst in Cent: 1 Euro sind 100 Cent. Hier stehen ${_muenzenAufTisch.map((coin) => coin.wert).join(' + ')} Cent.',
+              'Beginne mit der ersten Münze: ${_formatCent(_muenzenAufTisch.first.wert)}. Addiere jeden weiteren Münzwert genau einmal und vergleiche dann mit den Antworten.',
+            ]
+          : [
+              'Gesucht ist ${_gefragteMuenze.label}. Vergleiche die Zahl auf jeder Münze.',
+              'Achte auch auf die Einheit: Das Eurozeichen bedeutet Euro; „c“ bedeutet Cent. 1 Euro sind 100 Cent.',
+              'Prüfe Zahl und Einheit gemeinsam. Eine ähnlich aussehende Münze kann einen anderen Wert haben.',
+            ],
+      answering: !_answered,
+      lastAnswer: selected == null ? null : choices[selected],
+      lastCorrect: selected == null
+          ? null
+          : counting
+              ? _answers[selected] == _gesamtWert
+              : _muenzenAufTisch[selected] == _gefragteMuenze,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -310,7 +361,8 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -330,7 +382,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
               _buildCoinAnswerGrid(),
             ],
           ]),
-        ),
+        )),
       ),
     );
   }

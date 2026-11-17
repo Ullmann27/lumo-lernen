@@ -1,0 +1,37 @@
+{
+  "scope": "Unchanged actual OS service dump before the failing parser; partial evidence, not a completed Cards/Android tour.",
+  "workflow_run": 43395154888,
+  "android_tour_job": 131785002542,
+  "artifact": {
+    "id": 14024066056,
+    "bytes": 106986544,
+    "sha256": "8469e33431576f00d38242aa94dbfdf456487d98f1e3c575034274030e362328",
+    "crc_checked": true,
+    "local": "tour-failed/"
+  },
+  "apk_identity": {
+    "apk_sha256": "768364f33ac3280f39da74db8f75f9d77fca0986050f2da6a0b831508266cf50",
+    "flutter_source_commit": "a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9",
+    "godot_revision": "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+    "godot_pck_sha256": "e1bb847cb2410a8ce81fbcc319520ec823e27c38690aad123dff5513e329b2b2",
+    "versionName": "0.13.6",
+    "versionCode": 2018,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "fixture": "android_2018_cards_authority_recorded.txt",
+  "original": "nextgen/cards-authority-services-before-idle.txt",
+  "bytes": 3348,
+  "sha256": "196b4bd103984b65f63adf10cb1171405163dad2a07df27264ee71e079101aa5",
+  "observed_apk_target_sdk": 36,
+  "device_sdk_not_inferred_from_target_sdk": true
+}

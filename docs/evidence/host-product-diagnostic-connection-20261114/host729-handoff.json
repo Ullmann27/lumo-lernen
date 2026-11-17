@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "ASSIGNED_LOCAL_VALIDATION_COMPLETE",
+  "host_head": "729585db3f49ecff7f0632439f90edb882f09454",
+  "host_tree": "93301ed1c1e0b18f15163ae6198be0bc6b962762",
+  "native_pin": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "source_pack_freeze_sha256": "da9b218fa0323f802105d9bf1f3d9caf3e89de3f185f8bc9c54ecb3464f324e4",
+  "python": {
+    "passed": 142,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "counts": {
+      "scripts.tests.test_connect_four_delivery": 41,
+      "scripts.tests.test_connect_four_pipeline": 11,
+      "scripts.tests.test_candidate_2011_pin": 24,
+      "scripts.tests.test_legacy_release_pin": 40,
+      "scripts.tests.test_studio_jump_decode": 4,
+      "scripts.tests.test_console_launch_originals": 7,
+      "scripts.tests.test_console_launch_failure_diagnostics": 9,
+      "scripts.tests.test_console_logger_printf": 6
+    },
+    "test_seconds": 1.826,
+    "raw_log": {
+      "bytes": 28938,
+      "sha256": "0c595ff833a14a0c10604d675fc9829907463319718110a9eeaf56ad96030ed5"
+    }
+  },
+  "actionlint": {
+    "exit_code": 0,
+    "workflows": [
+      ".github/workflows/lumo-connect-four-2020.yml",
+      ".github/workflows/lumo-learning-curriculum-audit.yml"
+    ]
+  },
+  "flutter": {
+    "passed": 7,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "command_seconds": 9.047522480002954,
+    "raw_log": {
+      "bytes": 931,
+      "sha256": "7af576045c54be68a7275c2b5bd68164ddc9a63c01ac91b58a0dd58bb439bc2c"
+    },
+    "original_first_attempt": {
+      "exit_code": 1,
+      "test_cases_started": 0,
+      "reason": "Sparse checkout omitted the exact already-committed Cards WebP; Root materialized its original Git blob",
+      "raw_log": {
+        "bytes": 172,
+        "sha256": "fa32f9b58533b55cc9636d689ffd3104801c3bdf3b421cc0518841a3237c2899"
+      }
+    }
+  },
+  "audit": {
+    "family_count": 236,
+    "sample_count": 7552,
+    "structural_issues": 0,
+    "status": "SAMPLED_CONTRACT_PASS",
+    "exact_workflow_stream_consumer": "PASS",
+    "build_hook_lines_only_on_stderr": true,
+    "ci_identity_not_invented": true
+  },
+  "source_preservation": "source-preservation.json",
+  "toolchain": "toolchain.json",
+  "original_logs": "logs/",
+  "no_worktree_source_index_commit_ref_or_ci_mutations_by_agent": true,
+  "limitations": [
+    "No Android, audible playback, rendered device or semantic curriculum approval",
+    "Local FFmpeg 7.1.5 and Pillow 13.0.0 differ from CI FFmpeg 6.1.1 and Pillow 12.3.0; exact older FFmpeg demux support was previously source-reviewed, not executed here",
+    "This is a targeted gate, not a repeated full project suite"
+  ],
+  "archive": "compact-originals.tar.gz",
+  "created_at_utc": "2026-11-14T08:26:22.388884+00:00"
+}

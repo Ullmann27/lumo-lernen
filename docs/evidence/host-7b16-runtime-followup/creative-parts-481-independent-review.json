@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T04:37:05.953098+00:00",
+  "status": "NO_CONCRETE_BLOCKER_FOUND",
+  "review_only": true,
+  "own_tests": false,
+  "downloads": false,
+  "source_writes": false,
+  "source_freeze": {
+    "bytes": 2487,
+    "sha256": "bfc66ed6ff9bebda1639e5f9351e1bb4376afab072c51fb8727bfe6949487c5a"
+  },
+  "script": {
+    "bytes": 19476,
+    "sha256": "0146cb4132dfca9cdb6c764e2d6e738083e3b590abebc8cee610c7676d668537"
+  },
+  "test": {
+    "bytes": 15784,
+    "sha256": "97ce8e21e3d9ca223cc9a689965dc211461cf654d441705dcb3b660ed5116ddb"
+  },
+  "actual_current_run_original": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr481-f89b77-creative-evidence/snapshots/20261114T043542Z/run.json",
+    "bytes": 12985,
+    "sha256": "30b55b958d2350a23aad4965ada1de0f89f65e0e494836f841e4d546fe5154ff"
+  },
+  "published_workflow_snapshot": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-qa-preparation/final-source/.github/workflows/lumo-creative-7b16-diagnostic.yml",
+    "bytes": 12106,
+    "sha256": "66fa993e4c093bf2b054eab67cb9afcc8ab58226e08325a09cba784434838741"
+  },
+  "changed_functions": [
+    "load_part",
+    "verify_index",
+    "verify_parts",
+    "verify_run"
+  ],
+  "other_function_class_asts_identical": [
+    "Rejected",
+    "SafeParser",
+    "digest",
+    "integer",
+    "invalid_number",
+    "main",
+    "read_json",
+    "require",
+    "safe_path",
+    "sha256_value",
+    "unique_object",
+    "verify_inventory"
+  ],
+  "checks": [
+    "Actual current run/head/tree/event/branch/attempt match all new fixed verifier constants.",
+    "Schema2 index uses only probe_source_sha; old APK/source keys and previous schemas are rejected. Part manifests remain exact integer schema1.",
+    "Exporter blob4c113e5b is computed from the preserved source bytes; all eight published upload names match.",
+    "All unchanged inventory/path/limit/fullness/member-SHA and authentic collector-report prerequisites remain.",
+    "All six owner-frozen source files match; the owner14-test full log was read, not rerun.",
+    "The result remains transport-only with explicit no product/device/functionality/visual/FPS/full-archive-equality claims."
+  ],
+  "limits": [
+    "No actual PR481 archive was downloaded or verified in this review.",
+    "External authenticity of supplied GitHub objects and checked collector reports is still required.",
+    "The real full archive CRC/SHA checks remain the memory collector responsibility."
+  ]
+}

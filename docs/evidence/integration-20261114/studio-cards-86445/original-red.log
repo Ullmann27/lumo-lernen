@@ -1,0 +1,98 @@
+test_foreign_session_and_oversized_layout_remain_rejected (cards_layout_original_red.CardsLayoutReadinessTests.test_foreign_session_and_oversized_layout_remain_rejected) ... ok
+test_missing_between_observations_resets_the_two_frame_requirement (cards_layout_original_red.CardsLayoutReadinessTests.test_missing_between_observations_resets_the_two_frame_requirement) ... ERROR
+test_one_transient_missing_reply_still_requires_two_complete_stable_frames (cards_layout_original_red.CardsLayoutReadinessTests.test_one_transient_missing_reply_still_requires_two_complete_stable_frames) ... ERROR
+test_original_missing_file_reply_is_saved_before_a_readiness_error (cards_layout_original_red.CardsLayoutReadinessTests.test_original_missing_file_reply_is_saved_before_a_readiness_error) ... ERROR
+test_persistent_missing_reply_expires_without_a_fallback_or_accepted_image (cards_layout_original_red.CardsLayoutReadinessTests.test_persistent_missing_reply_expires_without_a_fallback_or_accepted_image) ... ERROR
+test_valid_but_stale_layout_cannot_satisfy_the_current_public_revision (cards_layout_original_red.CardsLayoutReadinessTests.test_valid_but_stale_layout_cannot_satisfy_the_current_public_revision) ... ok
+
+======================================================================
+ERROR: test_missing_between_observations_resets_the_two_frame_requirement (cards_layout_original_red.CardsLayoutReadinessTests.test_missing_between_observations_resets_the_two_frame_requirement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_cards_layout_readiness.py", line 128, in test_missing_between_observations_resets_the_two_frame_requirement
+    _, report = scope['capture_cards_faces'](self.out, box, 'gap', state, self.layout['density'])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-7b16-followup-root-cards/baseline-lumo_studio_surfaces_android_probe.py", line 593, in capture_cards_faces
+    layout_before = read_cards_layout(out, box, name + '-before',
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-7b16-followup-root-cards/baseline-lumo_studio_surfaces_android_probe.py", line 557, in read_cards_layout
+    layout = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+ERROR: test_one_transient_missing_reply_still_requires_two_complete_stable_frames (cards_layout_original_red.CardsLayoutReadinessTests.test_one_transient_missing_reply_still_requires_two_complete_stable_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_cards_layout_readiness.py", line 115, in test_one_transient_missing_reply_still_requires_two_complete_stable_frames
+    returned, report = function(self.out, box, 'transient', state, self.layout['density'])
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-7b16-followup-root-cards/baseline-lumo_studio_surfaces_android_probe.py", line 593, in capture_cards_faces
+    layout_before = read_cards_layout(out, box, name + '-before',
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-7b16-followup-root-cards/baseline-lumo_studio_surfaces_android_probe.py", line 557, in read_cards_layout
+    layout = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+ERROR: test_original_missing_file_reply_is_saved_before_a_readiness_error (cards_layout_original_red.CardsLayoutReadinessTests.test_original_missing_file_reply_is_saved_before_a_readiness_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_cards_layout_readiness.py", line 106, in test_original_missing_file_reply_is_saved_before_a_readiness_error
+    scope['read_cards_layout'](self.out, box, 'original', timeout=60)
+  File "/workspace/scratch/b3485b7bb989/host-7b16-followup-root-cards/baseline-lumo_studio_surfaces_android_probe.py", line 557, in read_cards_layout
+    layout = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+ERROR: test_persistent_missing_reply_expires_without_a_fallback_or_accepted_image (cards_layout_original_red.CardsLayoutReadinessTests.test_persistent_missing_reply_expires_without_a_fallback_or_accepted_image)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_cards_layout_readiness.py", line 138, in test_persistent_missing_reply_expires_without_a_fallback_or_accepted_image
+    scope['capture_cards_faces'](self.out, box, 'persistent', state,
+  File "/workspace/scratch/b3485b7bb989/host-7b16-followup-root-cards/baseline-lumo_studio_surfaces_android_probe.py", line 593, in capture_cards_faces
+    layout_before = read_cards_layout(out, box, name + '-before',
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-7b16-followup-root-cards/baseline-lumo_studio_surfaces_android_probe.py", line 557, in read_cards_layout
+    layout = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.427s
+
+FAILED (errors=4)

@@ -1,0 +1,346 @@
+{
+  "schema": "lumo.android_cards_header_failure_evidence.v1",
+  "scope": "Historical failed Android run only: Host8eab and Nativeada5. No new Android PASS.",
+  "repository": "Ullmann27/lumo-lernen",
+  "run": {
+    "id": 43428626135,
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43428626135",
+    "head_sha": "8eab228433f124c1e2332e3d3c2ecf462ec8b136",
+    "head_branch": "chatgpt/lumo-nextgen-20261113",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 1,
+    "created_at": "2026-11-13T12:50:49Z",
+    "updated_at": "2026-11-13T13:55:16Z"
+  },
+  "job": {
+    "id": 131917895312,
+    "name": "android-tour",
+    "status": "completed",
+    "conclusion": "failure",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43428626135/job/131917895312",
+    "failed_step": "Install and tour the exact APK"
+  },
+  "artifact": {
+    "id": 14043514997,
+    "name": "lumo-nextgen-2018-android-tour",
+    "size_in_bytes": 109693887,
+    "sha256": "60b1397d3fb5ef9a35c83fdd5adca26bd81ab3c10a5daba19aa91ebbbf5a646b",
+    "github_digest": "sha256:60b1397d3fb5ef9a35c83fdd5adca26bd81ab3c10a5daba19aa91ebbbf5a646b",
+    "created_at": "2026-11-13T13:55:13Z",
+    "expires_at": "2026-12-13T13:55:09Z",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14043514997/zip",
+    "entry_count": 873,
+    "whole_zip_digest_verified": true,
+    "zip_in_package": false,
+    "selected_entries_preserved_byte_for_byte": true
+  },
+  "apk_identity": {
+    "apk_sha256": "3304827de77c3177e07679f44b1ce70635fa515cb79664b7a07e7526bfc992b1",
+    "flutter_source_commit": "8eab228433f124c1e2332e3d3c2ecf462ec8b136",
+    "godot_revision": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+    "godot_pck_sha256": "a42cf83991fc5b230a818e7edce66b41cbe8da176d02e7e3fafae4dccf2fe8cf",
+    "versionName": "0.13.6",
+    "versionCode": 2018,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "environment": {
+    "android_sdk": "35",
+    "installed_package": {
+      "userId": "10209",
+      "firstInstallTime": "2026-11-13 13:39:15",
+      "versionCode": "2018 minSdk=24 targetSdk=36",
+      "versionName": "0.13.6"
+    },
+    "screenshot_pixels": [
+      1080,
+      2400
+    ],
+    "display_density": 2.625,
+    "physical_device_acceptance": false
+  },
+  "observed_failure": {
+    "native_result": "FAIL",
+    "initial_readiness": {
+      "status": "READY",
+      "mode": "native_resume_acknowledged",
+      "elapsed_seconds": 11.680944
+    },
+    "rejected_frames": 4,
+    "frame_sha256": {
+      "11_cards_real_table_before_draw-face-check-00.png": "c90d4d7a30bba7a0384d73508f75b1fc4a908dc2d4513c92feb42b4cb8696163",
+      "11_cards_real_table_before_draw-face-check-01.png": "c90d4d7a30bba7a0384d73508f75b1fc4a908dc2d4513c92feb42b4cb8696163",
+      "11_cards_real_table_before_draw-face-check-02.png": "c90d4d7a30bba7a0384d73508f75b1fc4a908dc2d4513c92feb42b4cb8696163",
+      "11_cards_real_table_before_draw-face-check-03.png": "c90d4d7a30bba7a0384d73508f75b1fc4a908dc2d4513c92feb42b4cb8696163"
+    },
+    "public_revision": 5,
+    "public_paused": false,
+    "public_canDraw": true,
+    "public_phase": "playing",
+    "public_current": 0,
+    "exact_pause_ocr_matches": 0,
+    "visible_status_bar_overlaps_header": "Observed in original frame; not inferred from IPC alone.",
+    "recorded_frame_diagnostic": "Current Cards frame still has a paused/modal transition",
+    "final_error": "TimeoutExpired: Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 1.4779134119999071 seconds",
+    "face_gate_elapsed_seconds": 60.003826,
+    "card_front_pixel_classifier_reached": false,
+    "card_draw_roundtrip_proven": false,
+    "earlier_general_tour_status": "PASS",
+    "general_tour_pass_is_not_native_cards_acceptance": true
+  },
+  "job_summary": [
+    {
+      "id": 131896299330,
+      "name": "android-host-compile",
+      "conclusion": "success"
+    },
+    {
+      "id": 131896299810,
+      "name": "verify-and-build",
+      "conclusion": "success"
+    },
+    {
+      "id": 131917895298,
+      "name": "update-2018-from-2017",
+      "conclusion": "success"
+    },
+    {
+      "id": 131917895312,
+      "name": "android-tour",
+      "conclusion": "failure"
+    },
+    {
+      "id": 131927631312,
+      "name": "Publish visually reviewed Build 2018 ARM64 APK for direct Chrome download",
+      "conclusion": "skipped"
+    }
+  ],
+  "files": [
+    {
+      "path": "11_cards_real_table_before_draw-face-check-03.png",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "nextgen/11_cards_real_table_before_draw-face-check-03.png"
+      },
+      "encoding": "identity",
+      "uncompressed_bytes": 987785,
+      "uncompressed_sha256": "c90d4d7a30bba7a0384d73508f75b1fc4a908dc2d4513c92feb42b4cb8696163",
+      "stored_bytes": 987785,
+      "stored_sha256": "c90d4d7a30bba7a0384d73508f75b1fc4a908dc2d4513c92feb42b4cb8696163",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/cards-face-evidence.json.gz",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "nextgen/11_cards_real_table_before_draw-face-evidence.json"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 10347,
+      "uncompressed_sha256": "01ef7b278af8a5aa0131df0a64995432feec0ff1fc62c4ff9a44f09fb703f1a3",
+      "stored_bytes": 975,
+      "stored_sha256": "aedf96a6b02e02c1c0736ca841e67a36cf05886c4ed95e9f392f3db5b8d79fe6",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/cards-face-check-03-ocr.json.gz",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "nextgen/11_cards_real_table_before_draw-face-check-03-ocr.json"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 16145,
+      "uncompressed_sha256": "76f4be88dfc4a396d03c6bd5bc5956a1c49afb87aa5d063003320bcbf0be256a",
+      "stored_bytes": 1931,
+      "stored_sha256": "1e2a5f8fe8a8d89a359264e8888bde318baafeafee0b6a1a971bdbb0fbf614f7",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/cards-face-check-03-ocr-tiles.json.gz",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "nextgen/11_cards_real_table_before_draw-face-check-03-ocr-tiles.json"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 5514,
+      "uncompressed_sha256": "768431d7a7fabb2a83f5529b6243feb97db5683e861eefc7846ea31fa8c17576",
+      "stored_bytes": 713,
+      "stored_sha256": "3f3745a5fc93e17eea475f728e0c0629a4cab133dbec504be59c987608400308",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/cards-initial-readiness.json.gz",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "nextgen/cards-initial-readiness.json"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 4286,
+      "uncompressed_sha256": "bd6fe0a3018ba079f37151fac0bf2802853ddcc006222588366d2552bb499c91",
+      "stored_bytes": 832,
+      "stored_sha256": "47b21cc206fdcd9b6451e90cd90f2357245173cf962707b8d6140fb1fc98dacd",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/cards-actual-display-density.txt.gz",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "nextgen/cards-actual-display-density.txt"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 44,
+      "uncompressed_sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee",
+      "stored_bytes": 55,
+      "stored_sha256": "edf9cb9edff07e7249a4578cb6052a9ccea5d0c4063befcc95cf6644493bd027",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/native-surfaces-result.json.gz",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "nextgen/native-surfaces-result.json"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 6243,
+      "uncompressed_sha256": "bae6e2e087f5ce2464ecd42cab91172cff52ca33a86dcd2be0bb15d01df7c5d1",
+      "stored_bytes": 1870,
+      "stored_sha256": "d5f4986db82fcc200117d23c0484760a15f1cb8dc6ca40ee9a14168692fa9e65",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/nextgen-logcat.txt.gz",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "nextgen/logcat.txt"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 1462661,
+      "uncompressed_sha256": "87988e2f15c1150f1e25501d7ad337ebef2e848748e686294d4eada2cd7958f7",
+      "stored_bytes": 139863,
+      "stored_sha256": "20ddae69baada8f0072948d19156437e0ed845291eb2d4cb5aa36a438b0753ce",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/tour-result.json.gz",
+      "origin": {
+        "kind": "original_workflow_artifact_entry",
+        "artifact_id": 14043514997,
+        "zip_entry": "tour-result.json"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 9770,
+      "uncompressed_sha256": "9d8d346ed62c3f3bafaee95aa07070bad74903785bafd6e10af501b10938e9c7",
+      "stored_bytes": 2568,
+      "stored_sha256": "3754e0ae565bb9d5209fd76843f89b39ec92b04e19a1d1fa0d28d83e480f9730",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/github-run.json.gz",
+      "origin": {
+        "kind": "GitHub REST run response",
+        "run_id": 43428626135,
+        "job_id": null
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 13032,
+      "uncompressed_sha256": "a7021e7e2ce306dc425266ff2c2e018b3e803f194a00cd42146839890f5267b9",
+      "stored_bytes": 1791,
+      "stored_sha256": "b0a0f82a510c1ec5472137b84f367762fbb3e1202f4ae95243639f58c08b6689",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/github-artifacts.json.gz",
+      "origin": {
+        "kind": "GitHub artifacts returned by connector",
+        "run_id": 43428626135,
+        "job_id": null
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 8044,
+      "uncompressed_sha256": "d7e58fba9a162d60d9fd89c71677e2cddf17a222c7570441baa81a5f1176cc4f",
+      "stored_bytes": 1308,
+      "stored_sha256": "29d6069ba2f48386b57cb67e4d1a3b3f420f91d6e91321b2bc8e193aa84c52b6",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/github-jobs-normalized.json.gz",
+      "origin": {
+        "kind": "GitHub jobs returned by connector; normalized fields",
+        "run_id": 43428626135,
+        "job_id": null
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 12938,
+      "uncompressed_sha256": "1ca3672db3b82a3d9b78576ad44db16dcf4abc76e30892a6aa6d8c427a26933f",
+      "stored_bytes": 1571,
+      "stored_sha256": "8c327bd4e94768911460d7e384bc01efb2af4ac6731bf85375cc48b7c19e1996",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/android-tour-job.log.gz",
+      "origin": {
+        "kind": "GitHub job log decoded by connector; exact fetched text",
+        "run_id": 43428626135,
+        "job_id": 131917895312
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 1567414,
+      "uncompressed_sha256": "61acfcfb58d0f7d295f0fb01605d480a9eb238f400d2ea3ad5f6bc8f5a796596",
+      "stored_bytes": 919406,
+      "stored_sha256": "f70858a27ce212748696ff2adfe56719d5b6370eb222b21d9d7f3dd71c9f7435",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/diagnosis-only-tests.log.gz",
+      "origin": {
+        "kind": "local_diagnosis_only_verification",
+        "host_baseline_sha": "1a5d456a6731d0ae319cbb95c17effd1ed106fba"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 1612,
+      "uncompressed_sha256": "456e8c55abb7a1aaeb43ea0b3667fcf924d48765f2f58ecb9144f7be08a3973f",
+      "stored_bytes": 424,
+      "stored_sha256": "00a88bc71a8ab390cec5159c3a0e2d1c433ea08fa2ecff66b66d30e43a43e5ee",
+      "lossless_roundtrip_verified": true
+    },
+    {
+      "path": "raw/diagnosis-only-byte-check.log.gz",
+      "origin": {
+        "kind": "local_diagnosis_only_verification",
+        "host_baseline_sha": "1a5d456a6731d0ae319cbb95c17effd1ed106fba"
+      },
+      "encoding": "gzip",
+      "uncompressed_bytes": 241,
+      "uncompressed_sha256": "e6aea69bea6b2babfcad0eae11016844ff37b6db204a8967b74c9bfd22dd2f31",
+      "stored_bytes": 208,
+      "stored_sha256": "6c762969bfc95ea00b05afb3ca011264d64f77877553b7cf0f0664d330c2a5c5",
+      "lossless_roundtrip_verified": true
+    }
+  ],
+  "limits": [
+    "Only the failed8eab/ada5 APK is evidenced; no later source is accepted.",
+    "Native producer3c26573 is the separate layout repair; the Host diagnostic text only corrects the description.",
+    "No APK or emulator was launched during triage.",
+    "Native system-inset acquisition and the next rendered APK need exact-source Android acceptance.",
+    "No original frame, report, OCR output, log byte or recorded failure was edited."
+  ]
+}

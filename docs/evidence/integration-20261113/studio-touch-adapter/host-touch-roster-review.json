@@ -1,0 +1,262 @@
+{
+  "status": "READ_ONLY_SOURCE_CONTRACT_MATCH_NO_RENDER_CLAIM",
+  "native_source": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "host_verifier_sha256": "074fa561e078b56476f539827db516e27a815104d51b74ea898644a1cb0bba8a",
+  "results": [
+    {
+      "scope": "workshop",
+      "probe": "kart_workshop_density_regression",
+      "published_test_blob": "df50ac4c3df74d3c4937cb0f0ef93d9af317182c",
+      "capture_count": 6,
+      "profiles": [
+        [
+          1280,
+          720,
+          1.0
+        ],
+        [
+          640,
+          360,
+          1.0
+        ],
+        [
+          640,
+          320,
+          1.0
+        ],
+        [
+          412,
+          915,
+          1.0
+        ],
+        [
+          690,
+          829,
+          1.0
+        ],
+        [
+          2400,
+          1080,
+          2.625
+        ],
+        [
+          1080,
+          2400,
+          2.625
+        ],
+        [
+          2176,
+          1812,
+          2.25
+        ]
+      ],
+      "stages": [
+        "paint-purchase",
+        "performance",
+        "refund"
+      ],
+      "exact_relative_paths_and_dimensions_match": true,
+      "expected": {
+        "captures/kart_workshop_density_regression/workshop-2400x1080-paint-purchase.png": [
+          2400,
+          1080
+        ],
+        "captures/kart_workshop_density_regression/workshop-2400x1080-performance.png": [
+          2400,
+          1080
+        ],
+        "captures/kart_workshop_density_regression/workshop-2400x1080-refund.png": [
+          2400,
+          1080
+        ],
+        "captures/kart_workshop_density_regression/workshop-1080x2400-paint-purchase.png": [
+          1080,
+          2400
+        ],
+        "captures/kart_workshop_density_regression/workshop-1080x2400-performance.png": [
+          1080,
+          2400
+        ],
+        "captures/kart_workshop_density_regression/workshop-1080x2400-refund.png": [
+          1080,
+          2400
+        ]
+      }
+    },
+    {
+      "scope": "treasure",
+      "probe": "treasure_density_regression",
+      "published_test_blob": "22f3cf0b4203edaa98887c4af159f826c56923ed",
+      "capture_count": 14,
+      "profiles": [
+        [
+          412,
+          915,
+          1.0
+        ],
+        [
+          690,
+          829,
+          1.0
+        ],
+        [
+          2176,
+          1812,
+          2.25
+        ],
+        [
+          2400,
+          1080,
+          2.625
+        ],
+        [
+          1080,
+          2400,
+          2.625
+        ],
+        [
+          640,
+          320,
+          1.0
+        ]
+      ],
+      "stages": [
+        "complete",
+        "inventory",
+        "play",
+        "question"
+      ],
+      "exact_relative_paths_and_dimensions_match": true,
+      "expected": {
+        "captures/treasure_density_regression/treasure-2176x1812-complete.png": [
+          2176,
+          1812
+        ],
+        "captures/treasure_density_regression/treasure-2176x1812-play.png": [
+          2176,
+          1812
+        ],
+        "captures/treasure_density_regression/treasure-2400x1080-complete.png": [
+          2400,
+          1080
+        ],
+        "captures/treasure_density_regression/treasure-2400x1080-inventory.png": [
+          2400,
+          1080
+        ],
+        "captures/treasure_density_regression/treasure-2400x1080-play.png": [
+          2400,
+          1080
+        ],
+        "captures/treasure_density_regression/treasure-2400x1080-question.png": [
+          2400,
+          1080
+        ],
+        "captures/treasure_density_regression/treasure-1080x2400-complete.png": [
+          1080,
+          2400
+        ],
+        "captures/treasure_density_regression/treasure-1080x2400-inventory.png": [
+          1080,
+          2400
+        ],
+        "captures/treasure_density_regression/treasure-1080x2400-play.png": [
+          1080,
+          2400
+        ],
+        "captures/treasure_density_regression/treasure-1080x2400-question.png": [
+          1080,
+          2400
+        ],
+        "captures/treasure_density_regression/treasure-640x320-complete.png": [
+          640,
+          320
+        ],
+        "captures/treasure_density_regression/treasure-640x320-inventory.png": [
+          640,
+          320
+        ],
+        "captures/treasure_density_regression/treasure-640x320-play.png": [
+          640,
+          320
+        ],
+        "captures/treasure_density_regression/treasure-640x320-question.png": [
+          640,
+          320
+        ]
+      }
+    },
+    {
+      "scope": "build",
+      "probe": "build_dialog_density_regression",
+      "published_test_blob": "e8b5263b1ace06d22f97ddb7e4c2257804e8584c",
+      "capture_count": 8,
+      "profiles": [
+        [
+          2400,
+          1080,
+          2.625
+        ],
+        [
+          1080,
+          2400,
+          2.625
+        ],
+        [
+          2176,
+          1812,
+          2.25
+        ],
+        [
+          640,
+          360,
+          1.0
+        ],
+        [
+          640,
+          320,
+          1.0
+        ]
+      ],
+      "stages": [
+        "templates-bottom",
+        "templates-top"
+      ],
+      "exact_relative_paths_and_dimensions_match": true,
+      "expected": {
+        "captures/build_dialog_density_regression/build-dialog-2400x1080-templates-bottom.png": [
+          2400,
+          1080
+        ],
+        "captures/build_dialog_density_regression/build-dialog-2400x1080-templates-top.png": [
+          2400,
+          1080
+        ],
+        "captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png": [
+          1080,
+          2400
+        ],
+        "captures/build_dialog_density_regression/build-dialog-1080x2400-templates-top.png": [
+          1080,
+          2400
+        ],
+        "captures/build_dialog_density_regression/build-dialog-2176x1812-templates-bottom.png": [
+          2176,
+          1812
+        ],
+        "captures/build_dialog_density_regression/build-dialog-2176x1812-templates-top.png": [
+          2176,
+          1812
+        ],
+        "captures/build_dialog_density_regression/build-dialog-640x360-templates-bottom.png": [
+          640,
+          360
+        ],
+        "captures/build_dialog_density_regression/build-dialog-640x360-templates-top.png": [
+          640,
+          360
+        ]
+      }
+    }
+  ]
+}

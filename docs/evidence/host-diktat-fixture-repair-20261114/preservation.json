@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "changed_paths": [
+    "test/learning_modules/deutsch_sach_module_progress_test.dart"
+  ],
+  "only_edits": [
+    "Two imports of the already-existing WortDiktatScreen and LumoInkSurface classes.",
+    "Replace only the obsolete pan-GestureDetector finder inside _revealWrittenWord with the actual screen-scoped four-row InkSurface selection, then ensureVisible and one pump."
+  ],
+  "exact_reverse_patch_equals_before": true,
+  "prefix_except_two_imports_identical": true,
+  "complete_suffix_from_revealedWord_identical": true,
+  "suffix_identity": {
+    "bytes": 14317,
+    "sha256": "a929f5247b8f069279bb18fc57b22362c1d19bacf8898cdfb849ccd685ebb659",
+    "git_blob": "b6f0e97e55fcaf572089242dd8ee556324d602e0"
+  },
+  "all_test_bodies_identical": true,
+  "all_existing_expect_calls_preserved": true,
+  "lexical_expect_call_count_before": 66,
+  "lexical_expect_call_count_after": 68,
+  "new_expectations": [
+    "Exactly one WortDiktatScreen.",
+    "Exactly four LumoInkSurface rows inside that screen."
+  ],
+  "existing_drag_unchanged": "await tester.drag(canvas, const Offset(70, 20));",
+  "existing_reveal_and_self_rating_assertions_unchanged": true,
+  "real_fertig_completed_stroke_gate_preserved": true,
+  "changed_product_paths": [],
+  "test_execution": "NOT_RUN before Root source checkpoint"
+}

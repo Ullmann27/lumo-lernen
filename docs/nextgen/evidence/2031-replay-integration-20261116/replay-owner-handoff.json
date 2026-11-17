@@ -1,0 +1,90 @@
+{
+  "producer_commit": "d0b0de4f4a57efefb9bd40c0c25ddc80e57cfd2b",
+  "tree": "800cbe5d47c84d63b81cd1eded84c622921e177b",
+  "parent": "9886f6637589c23cbae23ccca311090c35cdea8e",
+  "branch": "qa/lumo-2031-immutable-replay-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-2031-immutable-replay",
+  "files": {
+    ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py": {
+      "bytes": 21096,
+      "sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c"
+    },
+    ".github/probes/run_lumo_nextgen_2031_replay_android.sh": {
+      "bytes": 944,
+      "sha256": "535ffcc68ad4242c66f97ec36ca230f38e53e191a0ad84e80e9320971ca55088"
+    },
+    ".github/workflows/lumo-nextgen-2031-replay-publish.yml": {
+      "bytes": 2034,
+      "sha256": "eb1d4f1af74a5d6fb290d25e731cd69f89e74940f9ca8b717c4b22421cbaad3e"
+    },
+    ".github/workflows/lumo-nextgen-2031-replay.yml": {
+      "bytes": 6214,
+      "sha256": "325b0cbdc6f0af416ca3f5481599a9918b52daaeedb90c10cfcac20f5cb9c5d7"
+    },
+    "config/nextgen-2031-replay.json": {
+      "bytes": 851,
+      "sha256": "ef86eb63f316252d9a7b5dafb6a13e982f449c428a1b58cd9ba6b67bc7a49001"
+    },
+    "docs/nextgen/evidence/2031_immutable_replay_20261116/README.md": {
+      "bytes": 6787,
+      "sha256": "c48a10b842e87b8179b1bb0949068525dab7415144bbb8dd9753af51d405f656"
+    },
+    "docs/nextgen/evidence/2031_immutable_replay_20261116/component-gates.log": {
+      "bytes": 5108,
+      "sha256": "7bef337190d20920eccdc076e22ecdc2d635b9e2affaa670ad3c7a95be3415a0"
+    },
+    "docs/nextgen/evidence/2031_immutable_replay_20261116/original-android-failure-artifact.json": {
+      "bytes": 773,
+      "sha256": "d0a3d6711677ba86100954b35833ed59c44a0fae3ddc6ab3ec6a3aee31257b06"
+    },
+    "docs/nextgen/evidence/2031_immutable_replay_20261116/original-arm64-artifact.json": {
+      "bytes": 763,
+      "sha256": "f675685081c714f836cc0644a3d7a818e2169f844747ae6a9e8c4427b23c58a9"
+    },
+    "docs/nextgen/evidence/2031_immutable_replay_20261116/original-x86-upload.log": {
+      "bytes": 1206,
+      "sha256": "61db61f623c1b054d6d300880679909180e2f6e9405bc3622e9b0c3f7dfb6723"
+    },
+    "docs/nextgen/evidence/2031_immutable_replay_20261116/source.json": {
+      "bytes": 8295,
+      "sha256": "03c8065a30bfc3919d2d1dff6eb6d976c2027b3c4c07ce0a12ff3e88c01f0d3a"
+    },
+    "docs/nextgen/evidence/2031_immutable_replay_20261116/syntax-cli.json": {
+      "bytes": 1671,
+      "sha256": "3d1838255ce47ae51b1385a82a85d8b40d0bf056258049f3e6ce6a6e40786892"
+    },
+    "tools/android_qa/tests/test_nextgen_2031_replay.py": {
+      "bytes": 19097,
+      "sha256": "5a3f985095fb156ecb85a82eb0665fbac962ebd931077c209828d540925878e1"
+    },
+    "tools/nextgen/prepare_2031_learning_replay_release.py": {
+      "bytes": 17952,
+      "sha256": "acdfa74f980a4e017724792e55740465182b24249031a4f8479eb421b5e7f347"
+    },
+    "tools/nextgen/test_prepare_2031_learning_replay_release.py": {
+      "bytes": 9851,
+      "sha256": "89d7daf02c500134da2dc6ac71c5df1befaecd816ee876b3d037ccf22e46c0de"
+    }
+  },
+  "scope": "Only eight new 2031 QA/component files and seven evidence files; no preexisting file changed.",
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "source_build_run": 43800892196,
+  "original_android_outcome": "FAIL; retained unchanged",
+  "tests": {
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "log": "docs/nextgen/evidence/2031_immutable_replay_20261116/component-gates.log",
+    "kind": "Python fixtures and real local Git/shell processes; no Android"
+  },
+  "additional_static_checks": "Python AST, YAML, all shell blocks, CLI help and diff whitespace check passed",
+  "qa_bound_files": 31,
+  "qa_activation_branch": "qa/lumo-nextgen-2031-android-20261116",
+  "publication_branch": "delivery/lumo-nextgen-2031-replay-20261116",
+  "pending": "Integrate separate Home-transition fix before final combined check and QA activation; only later observed successful QA run/artifact may supply the publishconfig.",
+  "publication_config_created": false,
+  "new_android_execution": false,
+  "apk_rebuilt": false,
+  "remote_actions": false,
+  "worktree_clean": true
+}

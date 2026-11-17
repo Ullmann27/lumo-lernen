@@ -4,6 +4,8 @@
 /// and later backed by Drift/Isar repositories.
 library;
 
+import 'independent_evidence.dart';
+
 enum LearningSubject {
   deutsch,
   mathematik,
@@ -159,6 +161,7 @@ class SkillState {
     this.currentDifficulty = 1,
     this.consecutiveCorrect = 0,
     this.consecutiveWrong = 0,
+    this.independentEvidence,
   });
 
   final String childId;
@@ -179,6 +182,16 @@ class SkillState {
   final int currentDifficulty;
   final int consecutiveCorrect;
   final int consecutiveWrong;
+  final IndependentEvidence? independentEvidence;
+
+  IndependentEvidence get assessed =>
+      independentEvidence ??
+      IndependentEvidence.fromLegacy(
+          correct: correct,
+          wrong: wrong,
+          helpCount: helpCount,
+          correctStreak: consecutiveCorrect,
+          wrongStreak: consecutiveWrong);
 
   double get accuracy => attempts == 0 ? 0 : correct / attempts;
 
@@ -199,6 +212,7 @@ class SkillState {
     int? currentDifficulty,
     int? consecutiveCorrect,
     int? consecutiveWrong,
+    IndependentEvidence? independentEvidence,
   }) {
     return SkillState(
       childId: childId,
@@ -219,6 +233,7 @@ class SkillState {
       currentDifficulty: currentDifficulty ?? this.currentDifficulty,
       consecutiveCorrect: consecutiveCorrect ?? this.consecutiveCorrect,
       consecutiveWrong: consecutiveWrong ?? this.consecutiveWrong,
+      independentEvidence: independentEvidence ?? assessed,
     );
   }
 }
@@ -283,7 +298,8 @@ class AnswerOption {
 }
 
 class VisualPayload {
-  const VisualPayload({required this.type, this.data = const <String, Object?>{}});
+  const VisualPayload(
+      {required this.type, this.data = const <String, Object?>{}});
   final VisualType type;
   final Map<String, Object?> data;
 }

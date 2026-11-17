@@ -1,0 +1,17 @@
+{
+  "schema": "lumo.component.integration",
+  "version": 1,
+  "component": "German quote local speech fix and current failure logs",
+  "producerLocalCommit": "5b539569bab806e8d002bdfdd6bd694a70a6a00f",
+  "publishedComponentCommit": "9aa6c53f806ee4ff5d75ecdf083b44a26a54eeb1",
+  "componentTree": "0f90158ee1683e6c2d7df7bd86decddd847bcf43",
+  "componentBranch": "fix/lumo-banana-speech-quote-20261116",
+  "rootCherryPick": "4e273a0cd091915df5a86f68dbac748185996554",
+  "review": "Root and Learning independently reviewed the two production deltas, true Java-tokenizer RED/GREEN boundary, generation guards, private-error exclusion and actual host template copy. All 14 integrated file hashes match the producer handoff.",
+  "androidFixVerified": false,
+  "productionFiles": [
+    "tools/auto_install/LumoOfflineSpeechEngine.java",
+    "tools/auto_install/LumoLearningSpeech.kt"
+  ],
+  "nativeSourceUnchanged": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef"
+}

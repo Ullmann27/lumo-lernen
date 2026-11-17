@@ -1,0 +1,22 @@
+test_native_transition_frame_is_preserved_before_current_flutter_passes (test_village_android_evidence.VillageVisibleReturnObservationTests.test_native_transition_frame_is_preserved_before_current_flutter_passes) ... ERROR
+
+======================================================================
+ERROR: test_native_transition_frame_is_preserved_before_current_flutter_passes (test_village_android_evidence.VillageVisibleReturnObservationTests.test_native_transition_frame_is_preserved_before_current_flutter_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/909ddb52fe7b/village-return-repair-6b/tools/android_qa/tests/test_village_android_evidence.py", line 545, in test_native_transition_frame_is_preserved_before_current_flutter_passes
+    result = self.observe()
+             ^^^^^^^^^^^^^^
+  File "/workspace/scratch/909ddb52fe7b/village-return-repair-6b/tools/android_qa/tests/test_village_android_evidence.py", line 537, in observe
+    result = self.probe.visible_return(200)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/909ddb52fe7b/village-return-repair-6b/.github/probes/lumo_village_android_probe.py", line 113, in visible_return
+    village.caption(self.out, image, row['visible_ocr'], 'Spielen')
+  File "/workspace/scratch/909ddb52fe7b/village-return-repair-6b/tools/android_qa/village_android_evidence.py", line 270, in caption
+    raise ValueError('Actual original TSV/PNG does not establish caption: '+wanted)
+ValueError: Actual original TSV/PNG does not establish caption: Spielen
+
+----------------------------------------------------------------------
+Ran 1 test in 0.933s
+
+FAILED (errors=1)

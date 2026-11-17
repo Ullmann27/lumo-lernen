@@ -1,3 +1,4 @@
+import '../../../widgets/design/lumo_answer_crystal.dart';
 // ════════════════════════════════════════════════════════════════════════
 // MINUS BIS 10 — Klasse 1 Mathematik (interaktiv, kein Chat)
 // ════════════════════════════════════════════════════════════════════════
@@ -7,10 +8,10 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
-import '../../../widgets/design/lumo_quantity_art.dart';
+import '../../learning/widgets/lumo_quantity_workbenches.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
-
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,6 +46,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   late final _rng = widget.taskRandom ?? math.Random();
   late final List<(int, int)> _round;
@@ -55,6 +57,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   bool _showHint = false;
   bool _answered = false;
   int? _selectedAnswer;
+  Set<int> _removedBonbons = {};
 
   late int _a;
   late int _b;
@@ -67,8 +70,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     super.initState();
     _round = [
       for (var a = 3; a <= 10; a++)
-        for (var b = 1; b < a; b++)
-          (a, b),
+        for (var b = 1; b < a; b++) (a, b),
     ]..shuffle(math.Random());
     _progress = LearningModuleProgress(
       appState: widget.appState,
@@ -124,6 +126,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     _selectedAnswer = null;
     _showHint = false;
     _wrongAttempts = 0;
+    _removedBonbons = {};
   }
 
   void _speakTask() {
@@ -142,6 +145,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     });
     final isCorrect = answer == _correct;
     final saved = await _progress.saveAnswer(
+      problemKey: '$_a - $_b',
       cosmosSubjectId: 'm1_minus10',
       cosmosIsMath: true,
       correct: isCorrect,
@@ -283,28 +287,52 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
         progressLabel: 'Aufgabe',
         hasMistake: _answered && _selectedAnswer != _correct,
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
-          animation: _entryCtrl,
-          builder: (_, child) {
-            return Opacity(
-                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
-                    ? 1
-                    : _entryCtrl.value,
-                child: child);
-          },
-          child: LumoLessonTaskLayout(
-            task: Column(children: [
-              _buildTaskHeader(),
-              const SizedBox(height: 12),
-              _buildBonbonsVisualization(),
-            ]),
-            answers: Column(children: [
-              _buildAnswerGrid(),
-              if (_showHint) ...[
-                const SizedBox(height: 20),
-                _buildHintCard(),
-              ],
-            ]),
+        companionUnit: _progress.unit,
+        child: ModuleTaskScope(
+          key: _taskScopeKey,
+          appState: widget.appState,
+          progress: _progress,
+          moduleId: 'm1_minus10',
+          taskKey: _taskIdx,
+          prompt: '$_a − $_b = ?',
+          objective: 'Eine Menge verkleinern und den Rest bestimmen.',
+          answerChoices: _answers.map((answer) => '$answer').toList(),
+          onConfirmChoice: (index) => _onAnswer(_answers[index]),
+          helpSteps: [
+            'Bei Minus nimmst du etwas von der Startmenge weg.',
+            'Tippe $_b Bonbons an. Sie werden durchgestrichen. '
+                'Ein zweites Antippen legt einen Bonbon zurück.',
+            'Prüfe zuerst: Hast du genau $_b weggenommen? '
+                'Zähle dann nur die Bonbons ohne Kreuz.',
+          ],
+          answering: !_answered && !_progress.hasPending,
+          lastAnswer: _selectedAnswer?.toString(),
+          lastCorrect: _answered ? _selectedAnswer == _correct : null,
+          child: AnimatedBuilder(
+            animation: _entryCtrl,
+            builder: (_, child) {
+              return Opacity(
+                  opacity:
+                      LumoLessonStyle.reducedMotion(context, widget.appState)
+                          ? 1
+                          : _entryCtrl.value,
+                  child: child);
+            },
+            child: LumoLessonTaskLayout(
+              landscapeAlignment: CrossAxisAlignment.start,
+              task: Column(children: [
+                _buildTaskHeader(),
+                const SizedBox(height: 12),
+                _buildBonbonsVisualization(),
+              ]),
+              answers: Column(children: [
+                _buildAnswerGrid(),
+                if (_showHint) ...[
+                  const SizedBox(height: 20),
+                  _buildHintCard(),
+                ],
+              ]),
+            ),
           ),
         ),
       ),
@@ -344,59 +372,18 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     );
   }
 
-  // Visualisierung: a Bonbons, davon b durchgestrichen
-  Widget _buildBonbonsVisualization() {
-    return Semantics(
-      label: '$_a Bonbons, davon $_b weggenommen',
-      excludeSemantics: true,
-      child: LumoLessonSurface(
-        padding: const EdgeInsets.all(8),
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          spacing: 6,
-          runSpacing: 6,
-          children: List.generate(_a, (i) {
-            final isRemoved = i < _b;
-            return Container(
-              key: ValueKey('minus-quantity-$i'),
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: LumoVisualTokens.navigation.withValues(alpha: .55),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: isRemoved
-                      ? LumoVisualTokens.muted.withValues(alpha: .3)
-                      : LumoVisualTokens.cyan.withValues(alpha: .65),
-                ),
-              ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Opacity(
-                    opacity: isRemoved ? .28 : 1,
-                    child: const LumoQuantityArt.candy(),
-                  ),
-                  if (isRemoved)
-                    const Icon(Icons.close_rounded,
-                        color: LumoVisualTokens.gold, size: 24),
-                ],
-              ),
-            );
-          }),
-        ),
-      ),
-    );
-  }
+  Widget _buildBonbonsVisualization() => LumoSubtractionWorkbench(
+        start: _a,
+        takeAway: _b,
+        removed: _removedBonbons,
+        enabled: !_answered && !_progress.hasPending,
+        onChanged: (removed) => setState(() => _removedBonbons = removed),
+      );
 
   Widget _buildAnswerGrid() {
-    return LumoLessonAnswerGrid(
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 12,
-      crossAxisSpacing: 12,
-      childAspectRatio: 1.8,
+    // The compact lesson grid caps cells at 68–84 dp and flattens the body
+    // and pedestal. Reserve the existing crystal grid's full material height.
+    return LumoCrystalAnswerGrid(
       children: _answers.map((a) => _buildAnswerButton(a)).toList(),
     );
   }
@@ -404,55 +391,24 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   Widget _buildAnswerButton(int value) {
     final isSelected = _selectedAnswer == value;
     final isCorrect = value == _correct;
-    Color bgColor = LumoVisualTokens.lessonAnswer;
-    Color textColor = LumoVisualTokens.white;
-    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
-    if (_answered && isSelected) {
-      if (isCorrect) {
-        bgColor = const Color(0xFFD1FAE5);
-        textColor = const Color(0xFF065F46);
-        borderColor = const Color(0xFF10B981);
-      } else {
-        bgColor = const Color(0xFFFEE2E2);
-        textColor = const Color(0xFF991B1B);
-        borderColor = const Color(0xFFEF4444);
-      }
-    } else if (_answered && isCorrect && _wrongAttempts >= 2) {
-      // Erst nach dem zweiten Fehlversuch die Loesung zeigen. Mit >= 1 wurde
-      // sie schon beim ersten Fehler gelb markiert (die Wackel-Animation baut
-      // neu), und der zweite Versuch war verraten.
-      bgColor = const Color(0xFFFEF3C7);
-      textColor = const Color(0xFF713F12);
-      borderColor = const Color(0xFFFCD34D);
-    }
     return AnimatedBuilder(
       animation: _bounceCtrl,
-      builder: (_, child) {
-        final bounceScale = isSelected &&
+      builder: (_, child) => Transform.scale(
+        scale: isSelected &&
                 isCorrect &&
                 !LumoLessonStyle.reducedMotion(context, widget.appState)
-            ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
-            : 1.0;
-        return Transform.scale(scale: bounceScale, child: child);
-      },
-      child: LumoLessonAnswerTap(
-        correct: _answered && isSelected ? isCorrect : null,
-        onTap: _answered ? null : () => _onAnswer(value),
-        child: AnimatedContainer(
-          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
-              ? Duration.zero
-              : const Duration(milliseconds: 200),
-          decoration:
-              LumoLessonStyle.answer(background: bgColor, border: borderColor),
-          child: Center(
-            child: Text('$value',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 36,
-                    fontWeight: FontWeight.w900,
-                    color: textColor)),
-          ),
-        ),
+            ? 1 + math.sin(_bounceCtrl.value * math.pi) * .1
+            : 1,
+        child: child,
+      ),
+      child: LumoAnswerCrystal(
+        label: '$value',
+        onPressed: _answered ? null : () => _onAnswer(value),
+        state: _answered && isCorrect && (isSelected || _wrongAttempts >= 2)
+            ? LumoCrystalState.correct
+            : _answered && isSelected
+                ? LumoCrystalState.retry
+                : LumoCrystalState.neutral,
       ),
     );
   }

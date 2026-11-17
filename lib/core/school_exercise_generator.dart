@@ -9,6 +9,7 @@ import 'reading_comprehension_data.dart';
 import 'science_task_data.dart';
 import 'science_quality_extension.dart';
 import 'spelling_context_data.dart';
+import 'task_quality_guard.dart';
 
 class LumoTask {
   const LumoTask({
@@ -280,6 +281,43 @@ class ExerciseFactory {
 
   String? _childName;
 
+  /// Explicit grade/subject/unit selection for the curriculum audit and
+  /// progressively upgraded callers. The old mixed-task API remains intact.
+  /// Unrecognized input must never silently turn into a different lesson.
+  LumoTask nextExact({
+    required int grade,
+    required String subject,
+    required String unit,
+    bool currentGradeOnly = false,
+    Map<String, int> weakSkills = const <String, int>{},
+    String? childName,
+  }) {
+    if (grade < 1 || grade > 4) {
+      throw ArgumentError.value(grade, 'grade', 'Expected class 1 through 4');
+    }
+    if (!Curriculum.exerciseSubjectsForGrade(grade).contains(subject)) {
+      throw ArgumentError.value(subject, 'subject', 'Unknown explicit subject');
+    }
+    final available = Curriculum.unitsForGrade(
+      subject, grade, currentGradeOnly: currentGradeOnly,
+    );
+    if (unit == 'Alle' || !available.contains(unit)) {
+      throw ArgumentError.value(
+        unit, 'unit', 'Topic is not available in the selected subject and grade');
+    }
+    final task = next(
+      grade: grade,
+      subject: subject,
+      unit: unit,
+      weakSkills: weakSkills,
+      childName: childName,
+    );
+    if (task.grade != grade || task.subject != subject || task.unit != unit) {
+      throw StateError('Generator changed an explicit grade, subject or unit');
+    }
+    return task;
+  }
+
   LumoTask next({
     required int grade,
     String subject = 'Alle',
@@ -417,6 +455,18 @@ class ExerciseFactory {
   }
 
   LumoTask _build({required int grade, required String subject, required String unit}) {
+    // Every entry point, including direct cross-grade practice, receives a
+    // checked task. Retry within the requested topic; changing subjects is
+    // not a repair for an invalid generated variant.
+    const quality = TaskQualityGuard();
+    for (var attempt = 0; attempt < 32; attempt++) {
+      final task = _buildUnchecked(grade: grade, subject: subject, unit: unit);
+      if (quality.validate(task)) return task;
+    }
+    throw StateError('No validated task available for $grade/$subject/$unit');
+  }
+
+  LumoTask _buildUnchecked({required int grade, required String subject, required String unit}) {
     _serial++;
     if (LumoAdventureTasks.handles(subject, unit)) return _adventure(grade, subject, unit);
     switch (subject) {
@@ -458,6 +508,7 @@ class ExerciseFactory {
           'Das Muster wiederholt sich immer gleich: ${shown.join(' – ')} – ? Welche Form folgt?',
           pattern.first,
           'Die Gruppe ${pattern.join(' – ')} wiederholt sich. Nach ${pattern.last} kommt wieder ${pattern.first}.',
+          visual: 'pattern',
           customChoices: symbols);
     }
     if (unit == 'Zahlenmuster') {

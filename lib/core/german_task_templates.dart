@@ -255,7 +255,13 @@ class GermanTaskTemplates {
       {required int grade, required String unit, required int seed}) {
     // Die Auswahl der Familie muss unabhängig vom Wiederholungsviertel sein.
     // seed % pool.length ließ bei Pools mit acht Familien manche nie zu.
-    final available = templatesForGrade(grade, unit: unit);
+    final availableWithAliases = templatesForGrade(grade, unit: unit);
+    // For a named topic, never substitute a loosely related legacy family.
+    // The general pool and unknown legacy keys keep their former behavior.
+    final exact = availableWithAliases
+        .where((item) => item.unit == unit)
+        .toList(growable: false);
+    final available = exact.isNotEmpty ? exact : availableWithAliases;
     final current =
         available.where((item) => item.grade == grade.clamp(1, 4)).toList();
     final earlier =

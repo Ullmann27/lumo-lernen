@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../domain/games/game_world.dart';
-import '../../../theme/lumo_visual_tokens.dart';
+import 'spielwelt_routes.dart';
+import 'spielwelt_game_icon.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/fox/lumo_character.dart';
 
@@ -16,102 +17,197 @@ class SpielweltPortal {
     required this.state,
     required this.onOpen,
     this.semanticTitle,
+    this.specialId,
   });
 
-  final GameDefinition game;
+  /// The quiz is a genuine route, never an alias for GameId.kart.
+  const SpielweltPortal.quizShow({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Wer wird Lumo-Meister?',
+        specialId = 'quizShow';
+
+  /// Vier Gewinnt is a first-class game in the hub reference, not a hidden
+  /// extra-mode tile. It keeps its existing Flutter game/session intact.
+  const SpielweltPortal.connectFour({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumo 4 Gewinnt',
+        specialId = 'connectFour';
+
+  /// Direct economic village; independent of the classic Bauwelt's unlocks.
+  /// The native Android bridge must still validate the child's actual launch.
+  const SpielweltPortal.village({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Dorf & Wirtschaft',
+        specialId = 'village';
+
+  final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
+  final String? specialId;
+
+  String get identity => game?.id.name ?? specialId ?? 'special';
+
+  /// Visible hub-tile label. Product names stay on [semanticTitle].
+  String get title {
+    switch (identity) {
+      case 'quizShow':
+        return 'Quizshow';
+      case 'connectFour':
+        return '4 Gewinnt';
+      case 'village':
+        return 'Dorfwirtschaft';
+      case 'rhythm':
+        return 'Rhythm';
+      default:
+        break;
+    }
+    try {
+      return SpielweltRoutes.byIdentity(identity).title;
+    } catch (_) {
+      return game?.title ?? 'Lumo Spiel';
+    }
+  }
+
+  String get tagline => switch (specialId) {
+        'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
+        'village' => 'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
+        'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
+        _ => game?.tagline ?? '',
+      };
+  bool get playable =>
+      specialId != null || game?.availability == GameAvailability.playable;
 
   /// Vorleser- und Prüftext, falls er vom sichtbaren Titel abweicht.
   final String? semanticTitle;
 }
 
-/// Lumo Spielwelt nach Bild 01: Logo, sieben schwebende Glas-Portale,
-/// Lumo in der Mitte, „Auf ins Abenteuer!“ und die Leiste unten.
+const _gameTileTitleStyle = TextStyle(
+  fontFamily: 'Nunito',
+  fontSize: 17,
+  height: 1.08,
+  fontWeight: FontWeight.w900,
+  color: Colors.white,
+);
+
+double _gameTileHorizontalInset(SpielweltPortal portal) =>
+    portal.identity == 'village' ? 5 : 9;
+
+/// The familiar game grid, presented as one calm blue stage. Each tile opens
+/// its original game directly; neither artwork nor layout owns save state.
 class SpielweltHub extends StatefulWidget {
   const SpielweltHub({
     super.key,
     required this.portals,
     required this.onAdventure,
+    this.onEnterNative3D,
+    required this.onHome,
+    required this.onLearn,
+    required this.onTests,
     required this.onParents,
     required this.onProgress,
     required this.onSettings,
+    this.stars = 0,
     this.reduceMotion = false,
   });
 
   final List<SpielweltPortal> portals;
   final VoidCallback onAdventure;
+  /// Entry to the existing native Godot game hub. Null in legacy callers.
+  final VoidCallback? onEnterNative3D;
+  final VoidCallback onHome;
+  final VoidCallback onLearn;
+  final VoidCallback onTests;
   final VoidCallback onParents;
   final VoidCallback onProgress;
   final VoidCallback onSettings;
+  final int stars;
   final bool reduceMotion;
 
   @override
   State<SpielweltHub> createState() => _SpielweltHubState();
 }
 
-/// Lage der Elemente im Bild 01 (1672 × 941) als Anteile von Breite/Höhe.
-class _Frac {
-  const _Frac(this.left, this.top, this.width, this.height);
-  final double left, top, width, height;
-}
-
-const double _refAspect = 1672 / 941;
-
-const Map<GameId, _Frac> _wideSlots = {
-  GameId.memory: _Frac(.048, .250, .175, .271),
-  GameId.cards: _Frac(.242, .260, .159, .260),
-  GameId.puzzle: _Frac(.585, .260, .164, .266),
-  GameId.jumpRun: _Frac(.773, .260, .181, .266),
-  GameId.rhythm: _Frac(.118, .531, .200, .276),
-  GameId.treasure: _Frac(.541, .542, .187, .266),
-  GameId.build: _Frac(.734, .542, .178, .271),
-};
-
-class _SpielweltHubState extends State<SpielweltHub>
-    with SingleTickerProviderStateMixin {
-  // Ein gemeinsamer Takt für Glühen, Funkeln und lebende Vorschauen.
-  late final AnimationController _clock = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 6000));
+class _SpielweltHubState extends State<SpielweltHub> {
   final LumoCharacterController _lumo = LumoCharacterController();
 
-  @override
-  void initState() {
-    super.initState();
-    if (!widget.reduceMotion) _clock.repeat();
-  }
-
-  @override
-  void didUpdateWidget(SpielweltHub oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.reduceMotion && _clock.isAnimating) {
-      _clock.stop();
-    } else if (!widget.reduceMotion && !_clock.isAnimating) {
-      _clock.repeat();
-    }
-  }
+  static const _featuredOrder = [
+    'kart',
+    'village',
+    'cards',
+    'build',
+    'puzzle',
+    'memory',
+    'jumpRun',
+  ];
 
   @override
   void dispose() {
-    _clock.dispose();
     _lumo.dispose();
     super.dispose();
   }
 
-  Widget _portal(SpielweltPortal portal, int index, {double? width}) =>
-      _GlassPortal(
-        key: ValueKey('spielwelt-portal-${portal.game.id.name}'),
-        portal: portal,
-        clock: _clock,
-        phase: index / 7,
-        onTap: () {
-          if (portal.state.unlocked &&
-              portal.game.availability == GameAvailability.playable) {
-            _lumo.cheer();
-          }
-          portal.onOpen();
-        },
-      );
+  List<SpielweltPortal> get _featured => [
+        for (final identity in _featuredOrder)
+          ...widget.portals.where((portal) => portal.identity == identity),
+      ];
+
+  List<SpielweltPortal> get _other => [
+        for (final portal in widget.portals)
+          if (!_featuredOrder.contains(portal.identity)) portal,
+      ];
+
+  Widget _grid(List<SpielweltPortal> portals, double width, int columns) {
+    const gap = 12.0;
+    // The tile's Material supplies bodyMedium, including letter spacing.
+    final titleStyle =
+        Theme.of(context).textTheme.bodyMedium!.merge(_gameTileTitleStyle);
+    final textScaler = MediaQuery.textScalerOf(context);
+    var fittedColumns = columns;
+    for (final portal in portals.where((portal) => portal.identity == 'village')) {
+      final title = TextPainter(
+        text: TextSpan(text: portal.title, style: titleStyle),
+        textDirection: Directionality.of(context),
+        textScaler: textScaler,
+        locale: Localizations.maybeLocaleOf(context),
+      )..layout();
+      // Reserve the focused 2 dp border as well as the real text inset.
+      final minimumWidth =
+          title.minIntrinsicWidth + 2 * (_gameTileHorizontalInset(portal) + 2);
+      title.dispose();
+      final availableColumns =
+          math.max(1, ((width + gap) / (minimumWidth + gap)).floor());
+      fittedColumns = math.min(fittedColumns, availableColumns);
+    }
+    final tileWidth =
+        (width - gap * (fittedColumns - 1)) / fittedColumns;
+    final textScale = textScaler.scale(1).clamp(1.0, 2.0);
+    final iconHeight = (tileWidth * .67).clamp(76.0, 139.0);
+    final tileHeight = iconHeight + 54 * textScale;
+    return Wrap(
+      spacing: gap,
+      runSpacing: gap,
+      children: [
+        for (final portal in portals)
+          SizedBox(
+            width: tileWidth,
+            height: tileHeight,
+            child: _GameTile(
+              key: ValueKey('spielwelt-portal-${portal.identity}'),
+              portal: portal,
+              titleStyle: titleStyle,
+              reduceMotion: widget.reduceMotion,
+              onTap: () {
+                if (portal.state.unlocked && portal.playable) _lumo.cheer();
+                portal.onOpen();
+              },
+            ),
+          ),
+      ],
+    );
+  }
 
   Widget _fox(double size) => LumoCharacter(
         key: const ValueKey('spielwelt-lumo'),
@@ -119,1019 +215,742 @@ class _SpielweltHubState extends State<SpielweltHub>
         celebratePose: LumoDesignFoxPose.spielweltJump,
         size: size,
         shadow: false,
+        idleHops: false,
+        intro: false,
         reduceMotion: widget.reduceMotion,
         controller: _lumo,
-        onTap: _lumo.cheer,
+        onTap: _lumo.wave,
       );
 
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final width = constraints.maxWidth;
-      final viewHeight = MediaQuery.sizeOf(context).height;
-      final wide = width >= 720 && width / math.max(viewHeight, 1) >= 1.15;
-      return wide ? _buildWide(width) : _buildNarrow(width);
-    });
-  }
-
-  // Quer (Fold offen quer, Tablet, Handy quer): Anordnung wie Bild 01.
-  Widget _buildWide(double width) {
-    final height = width / _refAspect;
-    Widget at(_Frac f, Widget child) => Positioned(
-          left: f.left * width,
-          top: f.top * height,
-          width: f.width * width,
-          height: f.height * height,
-          child: child,
-        );
-    final byId = {for (final p in widget.portals) p.game.id: p};
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Stack(clipBehavior: Clip.none, children: [
-        Positioned.fill(child: _Sparkles(clock: _clock)),
-        at(const _Frac(.011, .085, .078, .125),
-            const _WoodSign(text: 'Neugier\nmacht die Welt\nbunter!')),
-        at(const _Frac(.021, .610, .078, .150),
-            const _WoodSign(text: 'Heute\nein bisschen\nmutiger\nals gestern!')),
-        at(const _Frac(.918, .680, .072, .135),
-            const _WoodSign(text: 'Spielend\neine bessere\nWelt\nentdecken!')),
-        at(const _Frac(.930, .016, .062, .118),
-            const _PaperBanner(text: 'Fantasie\nFreunde\nFür immer')),
-        at(const _Frac(.700, .045, .095, .140), const _HandNote()),
-        at(const _Frac(.310, .000, .380, .245),
-            _HubLogo(clock: _clock, compact: false)),
-        // Fels-Bühne unter Lumo.
-        at(const _Frac(.330, .740, .300, .110), const _StoneStage()),
-        at(const _Frac(.329, .262, .281, .545),
-            Center(child: _fox(.545 * height))),
-        for (final entry in _wideSlots.entries)
-          if (byId[entry.key] != null)
-            at(entry.value,
-                _portal(byId[entry.key]!, entry.key.index, width: entry.value.width * width)),
-        at(const _Frac(.383, .815, .234, .075),
-            _AdventureButton(clock: _clock, onTap: widget.onAdventure)),
-        at(const _Frac(.015, .900, .970, .090),
-            _HubBar(
-              onParents: widget.onParents,
-              onProgress: widget.onProgress,
-              onSettings: widget.onSettings,
-              showSlogans: true,
-            )),
-      ]),
-    );
-  }
-
-  // Hochformat (Handy, Fold zu): Logo, Lumo mit Knopf, Portale in Spalten.
-  Widget _buildNarrow(double width) {
-    final columns = width >= 560 ? 3 : 2;
-    const gap = 12.0;
-    final tileWidth = (width - 24 - gap * (columns - 1)) / columns;
-    final tileHeight = tileWidth * 0.86;
-    final foxSize = math.min(width * .62, 300.0);
+  Widget _companion(double width, {required bool sideBySide}) {
+    if (sideBySide) {
+      final foxSize = (width * 1.12).clamp(170.0, 330.0);
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: foxSize * 1.03,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: foxSize * .24,
+                  child: const CustomPaint(painter: _CompanionStagePainter()),
+                ),
+                Positioned(bottom: foxSize * .025, child: _fox(foxSize)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
+          _AdventureButton(onTap: widget.onAdventure),
+          const SizedBox(height: 9),
+          const Text(
+            'Spring mit Lumo los',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 13,
+              color: Color(0xFFC4D8EF),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      );
+    }
+    final compact = MediaQuery.sizeOf(context).height < 650;
+    final foxSize = compact ? 80.0 : 108.0;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        SizedBox(
-          height: math.min(width * .42, 190),
-          child: _HubLogo(clock: _clock, compact: true),
-        ),
-        SizedBox(
-          height: foxSize * 1.02,
-          child: Stack(alignment: Alignment.bottomCenter, children: [
-            Positioned.fill(child: _Sparkles(clock: _clock)),
-            Positioned(
-              bottom: 0,
-              width: foxSize * 1.1,
-              height: foxSize * .22,
-              child: const _StoneStage(),
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Dein nächstes Abenteuer',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 17,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                _AdventureButton(onTap: widget.onAdventure),
+              ],
             ),
-            Positioned(bottom: foxSize * .06, child: _fox(foxSize * .92)),
-          ]),
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 60,
-          width: math.min(width - 24, 380),
-          child: _AdventureButton(clock: _clock, onTap: widget.onAdventure),
-        ),
-        const SizedBox(height: 16),
-        Wrap(spacing: gap, runSpacing: gap, children: [
-          for (var i = 0; i < widget.portals.length; i++)
-            SizedBox(
-              width: tileWidth,
-              height: tileHeight,
-              child: _portal(widget.portals[i], i, width: tileWidth),
-            ),
-        ]),
-        const SizedBox(height: 14),
-        _HubBar(
-          onParents: widget.onParents,
-          onProgress: widget.onProgress,
-          onSettings: widget.onSettings,
-          showSlogans: width >= 360,
-        ),
-      ]),
+          ),
+          const SizedBox(width: 8),
+          _fox(foxSize),
+        ],
+      ),
     );
   }
-}
-
-// ───────────────────────────── Logo ─────────────────────────────
-
-class _HubLogo extends StatelessWidget {
-  const _HubLogo({required this.clock, required this.compact});
-  final Animation<double> clock;
-  final bool compact;
 
   @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      label: 'Lumo Spielewelt',
-      header: true,
-      excludeSemantics: true,
-      child: LayoutBuilder(builder: (context, c) {
-        final subtitleSize = (c.maxWidth * .028).clamp(9.0, 15.0);
-        return Column(mainAxisSize: MainAxisSize.min, children: [
-          Expanded(
-            child: Stack(alignment: Alignment.center, children: [
-              Positioned.fill(
-                child: RepaintBoundary(
-                  child: CustomPaint(painter: _OrbitPainter(clock)),
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) {
+          final width = math.min(constraints.maxWidth, 1360.0);
+          const padding = 16.0;
+          final innerWidth = width - padding * 2;
+          final wide =
+              width >= 640 && MediaQuery.textScalerOf(context).scale(1) < 1.6;
+          final heroWidth = wide ? (innerWidth * .29).clamp(178.0, 285.0) : 0.0;
+          final gridWidth = wide ? innerWidth - heroWidth - 22 : innerWidth;
+          final columns = wide ? 3 : SpielweltLayout.tileColumns(width);
+          return Align(
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              width: width,
+              child: Padding(
+                // Keep the established key so the existing routing/capture
+                // contract continues to identify the familiar tile hub.
+                key: const ValueKey('spielwelt-narrow-hub'),
+                padding: const EdgeInsets.fromLTRB(padding, 8, padding, 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _HubHeader(stars: widget.stars),
+                    const SizedBox(height: 12),
+                    if (wide)
+                      Row(
+                        key: const ValueKey('spielwelt-wide-stage'),
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: gridWidth,
+                            child: _grid(_featured, gridWidth, columns),
+                          ),
+                          const SizedBox(width: 22),
+                          SizedBox(
+                            width: heroWidth,
+                            child: _companion(heroWidth, sideBySide: true),
+                          ),
+                        ],
+                      )
+                    else ...[
+                      _companion(innerWidth, sideBySide: false),
+                      _grid(_featured, gridWidth, columns),
+                    ],
+                    if (_other.isNotEmpty) ...[
+                      const SizedBox(height: 23),
+                      const Text(
+                        'Noch mehr Abenteuer',
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFFD7EAFF),
+                        ),
+                      ),
+                      const SizedBox(height: 11),
+                      _grid(
+                          _other,
+                          innerWidth,
+                          wide
+                              ? math.min(4, _other.length)
+                              : SpielweltLayout.tileColumns(width)),
+                    ],
+                    if (widget.onEnterNative3D != null) ...[
+                      const SizedBox(height: 12),
+                      SizedBox(
+                        height: 56,
+                        child: OutlinedButton.icon(
+                          key: const ValueKey('spielwelt-native-3d-hub'),
+                          onPressed: widget.onEnterNative3D,
+                          icon: const Icon(Icons.view_in_ar),
+                          label: const Text(
+                            'Magische 3D-Spielewelt betreten',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                            ),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: const Color(0xFFFFE7A0),
+                            backgroundColor: const Color(0xFF123354),
+                            side: const BorderSide(color: Color(0xFF53DDFD), width: 1.5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    const SizedBox(height: 19),
+                    _HubActions(
+                      onParents: widget.onParents,
+                      onProgress: widget.onProgress,
+                      onSettings: widget.onSettings,
+                    ),
+                  ],
                 ),
               ),
-              Image.asset(
-                'assets/lumo_design/spielwelt/logo_spielwelt.png',
-                fit: BoxFit.contain,
-                filterQuality: FilterQuality.medium,
-              ),
-            ]),
+            ),
+          );
+        },
+      );
+}
+
+/// Used by both the games page and its shell edges. No decorative landscape
+/// sits behind labels; the dimensional floor is painted once, without blur.
+class SpielweltBackdrop extends StatelessWidget {
+  const SpielweltBackdrop({super.key, this.child});
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) => DecoratedBox(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF0B2851), Color(0xFF07152F), Color(0xFF102C51)],
+            stops: [0, .55, 1],
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 2),
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Row(mainAxisSize: MainAxisSize.min, children: [
-                for (var i = 0; i < 3; i++) ...[
-                  if (i > 0)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Icon(Icons.star_rounded,
-                          size: subtitleSize * 1.2,
-                          color: LumoVisualTokens.gold),
-                    ),
-                  Text(
-                    const ['SPIELEN', 'ENTDECKEN', 'WACHSEN'][i],
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: subtitleSize,
-                      letterSpacing: 2.4,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
-                      shadows: const [
-                        Shadow(color: Color(0xCC0A2A66), blurRadius: 6),
-                      ],
+        ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            const Positioned.fill(
+              child: IgnorePointer(
+                child: RepaintBoundary(
+                  child: CustomPaint(painter: _StageBackdropPainter()),
+                ),
+              ),
+            ),
+            if (child != null) child!,
+          ],
+        ),
+      );
+}
+
+class _HubHeader extends StatelessWidget {
+  const _HubHeader({required this.stars});
+  final int stars;
+
+  @override
+  Widget build(BuildContext context) => Row(
+        children: [
+          Expanded(
+            child: Semantics(
+              label: 'Lumo Spielewelt',
+              header: true,
+              excludeSemantics: true,
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/lumo_design/logo/logo_lumo.png',
+                    width: 91,
+                    height: 54,
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.medium,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      'Spielewelt',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize:
+                            MediaQuery.sizeOf(context).width < 380 ? 20 : 25,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
-              ]),
+              ),
             ),
           ),
-        ]);
-      }),
-    );
-  }
+          const SizedBox(width: 10),
+          Semantics(
+            label: '$stars Sterne',
+            excludeSemantics: true,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
+              decoration: BoxDecoration(
+                color: const Color(0xFF07182F),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: const Color(0xFF3B729F)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/lumo_design/icons/star_gold.png',
+                    width: 24,
+                    height: 24,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    '$stars',
+                    key: const ValueKey('spielwelt-stars'),
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 17,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xFFFFE7A0),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
 }
 
-/// Goldene Umlaufbahn mit wanderndem Funken um das Logo.
-class _OrbitPainter extends CustomPainter {
-  _OrbitPainter(this.clock) : super(repaint: clock);
-  final Animation<double> clock;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final rect = Rect.fromCenter(
-      center: size.center(Offset.zero).translate(0, -size.height * .02),
-      width: size.width * .98,
-      height: size.height * .62,
-    );
-    canvas.save();
-    canvas.translate(rect.center.dx, rect.center.dy);
-    canvas.rotate(-.09);
-    canvas.translate(-rect.center.dx, -rect.center.dy);
-    final ring = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.2
-      ..shader = const SweepGradient(colors: [
-        Color(0x00FFC94A),
-        Color(0xFFFFD86B),
-        Color(0x55FFC94A),
-        Color(0xFFFFE9A6),
-        Color(0x00FFC94A),
-      ]).createShader(rect);
-    canvas.drawOval(rect, ring);
-    final t = clock.value * 2 * math.pi;
-    final spark = Offset(
-      rect.center.dx + math.cos(t) * rect.width / 2,
-      rect.center.dy + math.sin(t) * rect.height / 2,
-    );
-    canvas.drawCircle(
-        spark,
-        7,
-        Paint()
-          ..color = const Color(0x88FFE08A)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6));
-    canvas.drawCircle(spark, 2.6, Paint()..color = const Color(0xFFFFF6D8));
-    canvas.restore();
-  }
-
-  @override
-  bool shouldRepaint(_OrbitPainter oldDelegate) => false;
-}
-
-// ─────────────────────────── Portale ───────────────────────────
-
-IconData _iconFor(GameId id) => switch (id) {
-      GameId.memory => Icons.psychology_alt_rounded,
-      GameId.cards => Icons.style_rounded,
-      GameId.puzzle => Icons.extension_rounded,
-      GameId.jumpRun => Icons.directions_run_rounded,
-      GameId.rhythm => Icons.music_note_rounded,
-      GameId.treasure => Icons.explore_rounded,
-      GameId.build => Icons.view_in_ar_rounded,
-      GameId.kart => Icons.sports_motorsports_rounded,
-    };
-
-String _artFor(GameId id) => switch (id) {
-      GameId.memory => 'assets/lumo_design/spielwelt/portal_memory.png',
-      GameId.cards => 'assets/lumo_design/spielwelt/portal_cards.png',
-      GameId.puzzle => 'assets/lumo_design/spielwelt/portal_puzzle.png',
-      GameId.jumpRun => 'assets/lumo_design/spielwelt/portal_jump_run.png',
-      GameId.rhythm => 'assets/lumo_design/spielwelt/portal_rhythm.png',
-      GameId.treasure => 'assets/lumo_design/spielwelt/portal_schatzsuche.png',
-      GameId.build => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
-      GameId.kart => 'assets/lumo_design/cards/game_kart.png',
-    };
-
-class _GlassPortal extends StatefulWidget {
-  const _GlassPortal({
+class _GameTile extends StatefulWidget {
+  const _GameTile({
     super.key,
     required this.portal,
-    required this.clock,
-    required this.phase,
+    required this.titleStyle,
     required this.onTap,
+    required this.reduceMotion,
   });
-
   final SpielweltPortal portal;
-  final Animation<double> clock;
-  final double phase;
+  final TextStyle titleStyle;
   final VoidCallback onTap;
+  final bool reduceMotion;
 
   @override
-  State<_GlassPortal> createState() => _GlassPortalState();
+  State<_GameTile> createState() => _GameTileState();
 }
 
-class _GlassPortalState extends State<_GlassPortal> {
+class _GameTileState extends State<_GameTile> {
   bool _pressed = false;
+  bool _highlighted = false;
 
   @override
   Widget build(BuildContext context) {
     final portal = widget.portal;
-    final game = portal.game;
-    final open = portal.state.unlocked;
-    final playable = game.availability == GameAvailability.playable;
-    final status = !playable
+    final featured = portal.identity == 'kart';
+    final open = portal.state.unlocked && portal.playable;
+    final accent = featured ? const Color(0xFFFFCE50) : const Color(0xFF56D4FA);
+    final status = !portal.playable
         ? 'Kommt bald'
-        : open
+        : portal.state.unlocked
             ? 'Spielen'
             : 'Noch gesperrt';
+    final duration =
+        widget.reduceMotion ? Duration.zero : const Duration(milliseconds: 140);
     return Semantics(
       button: true,
-      label: '${portal.semanticTitle ?? game.title}. ${game.tagline} $status',
+      enabled: open,
+      onTap: open ? widget.onTap : null,
+      label:
+          '${portal.semanticTitle ?? portal.title}. ${portal.tagline} $status',
       excludeSemantics: true,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTapDown: (_) => setState(() => _pressed = true),
-        onTapCancel: () => setState(() => _pressed = false),
-        onTapUp: (_) => setState(() => _pressed = false),
-        onTap: () {
-          HapticFeedback.selectionClick();
-          widget.onTap();
-        },
-        child: AnimatedScale(
-          scale: _pressed ? .96 : 1,
-          duration: const Duration(milliseconds: 120),
-          child: AnimatedBuilder(
-            animation: widget.clock,
-            builder: (context, child) {
-              final wave =
-                  math.sin((widget.clock.value + widget.phase) * 2 * math.pi);
-              return Transform.translate(
-                offset: Offset(0, wave * 2.5),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(26),
-                    boxShadow: [
-                      BoxShadow(
-                        color: LumoVisualTokens.cyan
-                            .withOpacity(.30 + .14 * wave),
-                        blurRadius: 18 + 6 * wave,
-                        spreadRadius: 1,
-                      ),
-                      const BoxShadow(
-                        color: Color(0x88020A24),
-                        blurRadius: 16,
-                        offset: Offset(0, 10),
-                      ),
+      child: AnimatedScale(
+        duration: duration,
+        scale: _pressed ? .96 : 1,
+        curve: Curves.easeOutCubic,
+        child: AnimatedContainer(
+          duration: duration,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: featured
+                  ? const [
+                      Color(0xFF385C7A),
+                      Color(0xFF152D4F),
+                      Color(0xFF131E34),
+                    ]
+                  : const [
+                      Color(0xFF245D91),
+                      Color(0xFF12365E),
+                      Color(0xFF0A2446),
                     ],
-                  ),
-                  child: child,
-                ),
-              );
-            },
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(26),
-              child: Stack(fit: StackFit.expand, children: [
-                // Glaskörper mit Cyan-Kante und innerem Licht.
-                const DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [Color(0xCC1A5AA8), Color(0xE00A2A66)],
-                    ),
-                  ),
-                ),
-                Positioned.fill(
-                  bottom: null,
-                  child: AspectRatio(
-                    aspectRatio: 1.62,
-                    child: _LivePreview(
-                      game: game.id,
-                      clock: widget.clock,
-                      phase: widget.phase,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: _PortalLabel(game: game),
-                ),
-                const _GlassRim(),
-                if (!open || !playable)
-                  Positioned(
-                    top: 8,
-                    right: 8,
-                    child: _StatusChip(
-                      locked: !open,
-                      text: playable ? 'Gesperrt' : 'Bald',
-                    ),
-                  ),
-              ]),
+              stops: const [0, .4, 1],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Lebende Vorschau: jede Welt bewegt sich auf ihre Art.
-class _LivePreview extends StatelessWidget {
-  const _LivePreview(
-      {required this.game, required this.clock, required this.phase});
-  final GameId game;
-  final Animation<double> clock;
-  final double phase;
-
-  @override
-  Widget build(BuildContext context) {
-    final image = Image.asset(
-      _artFor(game),
-      fit: BoxFit.cover,
-      filterQuality: FilterQuality.medium,
-      gaplessPlayback: true,
-    );
-    return RepaintBoundary(
-      child: AnimatedBuilder(
-        animation: clock,
-        child: image,
-        builder: (context, child) {
-          final t = (clock.value + phase) % 1.0;
-          final s = math.sin(t * 2 * math.pi);
-          final Matrix4 m = switch (game) {
-            // Karten drehen sich leicht.
-            GameId.memory => Matrix4.identity()
-              ..setEntry(3, 2, .0012)
-              ..rotateY(s * .10)
-              ..scale(1.08),
-            // Karten schweben.
-            GameId.cards => Matrix4.identity()
-              ..translate(0.0, s * 3)
-              ..scale(1.08),
-            // Puzzleteile ziehen sich zusammen.
-            GameId.puzzle => Matrix4.identity()..scale(1.06 + .03 * s),
-            // Lumo läuft über die Inseln.
-            GameId.jumpRun => Matrix4.identity()
-              ..translate(s * 6, -(s.abs()) * 3)
-              ..scale(1.1),
-            // Musikfelder pulsieren im Takt (zwei Schläge pro Runde).
-            GameId.rhythm =>
-              Matrix4.identity()..scale(1.06 + .025 * math.sin(t * 8 * math.pi).abs()),
-            // Bausteine wippen.
-            GameId.build => Matrix4.identity()
-              ..translate(0.0, -s.abs() * 3)
-              ..scale(1.08),
-            _ => Matrix4.identity()..scale(1.06),
-          };
-          return Stack(fit: StackFit.expand, children: [
-            Transform(
-              alignment: Alignment.center,
-              transform: m,
-              child: child,
+            border: Border.all(
+              color: _highlighted
+                  ? Colors.white
+                  : accent.withOpacity(featured ? 1 : .62),
+              width: featured || _highlighted ? 2 : 1.3,
             ),
-            if (game == GameId.treasure || game == GameId.rhythm)
-              CustomPaint(
-                painter: _GlitterPainter(
-                  t: t,
-                  color: game == GameId.treasure
-                      ? const Color(0xFFFFE08A)
-                      : const Color(0xFFFF8BE8),
-                ),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0x88020A18),
+                blurRadius: 16,
+                offset: Offset(0, _pressed ? 3 : 7),
               ),
-            // Weicher Übergang in das Glas unten.
-            const DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [.55, 1],
-                  colors: [Color(0x00000000), Color(0xDD0A2A66)],
-                ),
-              ),
-            ),
-          ]);
-        },
-      ),
-    );
-  }
-}
-
-class _GlitterPainter extends CustomPainter {
-  _GlitterPainter({required this.t, required this.color});
-  final double t;
-  final Color color;
-
-  static const _spots = [
-    Offset(.52, .38),
-    Offset(.62, .30),
-    Offset(.44, .52),
-    Offset(.70, .48),
-    Offset(.35, .30),
-  ];
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    for (var i = 0; i < _spots.length; i++) {
-      final a = math.sin((t * 3 + i / _spots.length) * 2 * math.pi);
-      if (a <= 0) continue;
-      final p = Offset(_spots[i].dx * size.width, _spots[i].dy * size.height);
-      final r = 2 + 4 * a;
-      final paint = Paint()..color = color.withOpacity(.85 * a);
-      canvas.drawCircle(p, r * .5, paint);
-      canvas.drawRect(Rect.fromCenter(center: p, width: r * 3, height: 1.2),
-          paint);
-      canvas.drawRect(Rect.fromCenter(center: p, width: 1.2, height: r * 3),
-          paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(_GlitterPainter old) => old.t != t;
-}
-
-class _PortalLabel extends StatelessWidget {
-  const _PortalLabel({required this.game});
-  final GameDefinition game;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, c) {
-      final scale = (c.maxWidth / 260).clamp(.62, 1.15);
-      final disc = 50 * scale;
-      return Container(
-        margin: EdgeInsets.fromLTRB(8 * scale, 0, 8 * scale, 8 * scale),
-        padding: EdgeInsets.fromLTRB(6 * scale, 5 * scale, 10 * scale, 5 * scale),
-        decoration: BoxDecoration(
-          color: const Color(0xCC082455),
-          borderRadius: BorderRadius.circular(22 * scale),
-          border: Border.all(color: const Color(0x6637D2FD)),
-        ),
-        child: Row(children: [
-          Container(
-            width: disc,
-            height: disc,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: const Color(0xFF0B3A7E),
-              border: Border.all(
-                  color: LumoVisualTokens.cyanBright, width: 2.2 * scale),
-              boxShadow: [
+              if (featured || _highlighted)
                 BoxShadow(
-                    color: LumoVisualTokens.cyan.withOpacity(.6),
-                    blurRadius: 10 * scale),
-              ],
-            ),
-            child: Icon(_iconFor(game.id),
-                color: LumoVisualTokens.white, size: disc * .56),
+                  color: accent.withOpacity(_highlighted ? .35 : .18),
+                  blurRadius: 17,
+                  spreadRadius: 1,
+                ),
+            ],
           ),
-          SizedBox(width: 8 * scale),
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    game.title,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 22 * scale,
-                      height: 1.05,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
-                      shadows: const [
-                        Shadow(color: Color(0xAA37D2FD), blurRadius: 8),
+          child: Material(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(23),
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: () {
+                HapticFeedback.selectionClick();
+                widget.onTap();
+              },
+              onHighlightChanged: (value) => setState(() => _pressed = value),
+              onHover: (value) => setState(() => _highlighted = value),
+              onFocusChange: (value) => setState(() => _highlighted = value),
+              splashColor: accent.withOpacity(.22),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: RadialGradient(
+                            center: const Alignment(-.35, -.55),
+                            radius: 1.2,
+                            colors: [
+                              accent.withOpacity(.14),
+                              Colors.transparent,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      _gameTileHorizontalInset(portal),
+                      9,
+                      _gameTileHorizontalInset(portal),
+                      11,
+                    ),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: SpielweltGameIcon(identity: portal.identity),
+                        ),
+                        const SizedBox(height: 7),
+                        Text(
+                          portal.title,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: widget.titleStyle,
+                        ),
                       ],
                     ),
                   ),
+                  if (!open)
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xF20A1730),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              portal.playable
+                                  ? Icons.lock_rounded
+                                  : Icons.schedule,
+                              size: 14,
+                              color: const Color(0xFFFFD477),
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              portal.playable ? 'Gesperrt' : 'Bald',
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _AdventureButton extends StatelessWidget {
+  const _AdventureButton({required this.onTap});
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFFFEA8B), Color(0xFFFFC841), Color(0xFFF4AD25)],
+            stops: [0, .5, 1],
+          ),
+          border: Border.all(color: const Color(0xFFFFF3BC), width: 1.6),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x44F9B52F),
+              blurRadius: 17,
+              offset: Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            key: const ValueKey('spielwelt-adventure'),
+            borderRadius: BorderRadius.circular(20),
+            onTap: onTap,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 52, minWidth: 48),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 9),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.play_arrow_rounded,
+                      size: 26,
+                      color: Color(0xFF152647),
+                    ),
+                    const SizedBox(width: 5),
+                    Flexible(
+                      child: Text(
+                        'Auf ins Abenteuer!',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 16,
+                          height: 1.1,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xFF152647),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+              ),
+            ),
+          ),
+        ),
+      );
+}
+
+class _HubActions extends StatelessWidget {
+  const _HubActions({
+    required this.onParents,
+    required this.onProgress,
+    required this.onSettings,
+  });
+  final VoidCallback onParents;
+  final VoidCallback onProgress;
+  final VoidCallback onSettings;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget action(
+      String id,
+      IconData icon,
+      String label,
+      VoidCallback callback,
+    ) =>
+        Expanded(
+          child: TextButton(
+            key: ValueKey(id),
+            onPressed: callback,
+            style: TextButton.styleFrom(
+              foregroundColor: const Color(0xFFCADEEF),
+              minimumSize: const Size(48, 56),
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: 22, color: const Color(0xFF7CDCF1)),
+                const SizedBox(height: 3),
                 Text(
-                  game.tagline,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                  label,
                   textAlign: TextAlign.center,
-                  textScaler: MediaQuery.textScalerOf(context)
-                      .clamp(maxScaleFactor: 1.2),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'Nunito',
-                    fontSize: 11.5 * scale,
-                    height: 1.15,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFFE6F4FF),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ],
             ),
           ),
-        ]),
-      );
-    });
-  }
-}
-
-class _GlassRim extends StatelessWidget {
-  const _GlassRim();
-
-  @override
-  Widget build(BuildContext context) => IgnorePointer(
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(26),
-            border: Border.all(color: const Color(0xCC53DDFD), width: 2),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.center,
-              colors: [Color(0x33FFFFFF), Color(0x00FFFFFF)],
-            ),
-          ),
-        ),
-      );
-}
-
-class _StatusChip extends StatelessWidget {
-  const _StatusChip({required this.locked, required this.text});
-  final bool locked;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
-        decoration: BoxDecoration(
-          color: const Color(0xE6061A44),
-          borderRadius: BorderRadius.circular(99),
-          border: Border.all(color: LumoVisualTokens.gold),
-        ),
-        child: Row(mainAxisSize: MainAxisSize.min, children: [
-          Icon(locked ? Icons.lock_rounded : Icons.auto_awesome_rounded,
-              size: 13, color: LumoVisualTokens.gold),
-          const SizedBox(width: 4),
-          Text(text,
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 11,
-                fontWeight: FontWeight.w900,
-                color: LumoVisualTokens.white,
-              )),
-        ]),
-      );
-}
-
-// ─────────────────────── Knopf, Leiste, Deko ───────────────────────
-
-class _AdventureButton extends StatefulWidget {
-  const _AdventureButton({required this.clock, required this.onTap});
-  final Animation<double> clock;
-  final VoidCallback onTap;
-
-  @override
-  State<_AdventureButton> createState() => _AdventureButtonState();
-}
-
-class _AdventureButtonState extends State<_AdventureButton> {
-  bool _pressed = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      label: 'Auf ins Abenteuer!',
-      excludeSemantics: true,
-      child: GestureDetector(
-        key: const ValueKey('spielwelt-adventure'),
-        onTapDown: (_) => setState(() => _pressed = true),
-        onTapCancel: () => setState(() => _pressed = false),
-        onTapUp: (_) => setState(() => _pressed = false),
-        onTap: () {
-          HapticFeedback.mediumImpact();
-          widget.onTap();
-        },
-        child: AnimatedScale(
-          scale: _pressed ? .95 : 1,
-          duration: const Duration(milliseconds: 110),
-          child: AnimatedBuilder(
-            animation: widget.clock,
-            builder: (context, child) {
-              final pulse =
-                  (math.sin(widget.clock.value * 4 * math.pi) + 1) / 2;
-              return Container(
-                constraints: const BoxConstraints(minHeight: 48),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(99),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFF63E4FF),
-                      Color(0xFF1E9BE8),
-                      Color(0xFF1466C8)
-                    ],
-                  ),
-                  border: Border.all(color: const Color(0xFFBDF4FF), width: 2),
-                  boxShadow: [
-                    BoxShadow(
-                      color: LumoVisualTokens.cyan.withOpacity(.45 + .3 * pulse),
-                      blurRadius: 16 + 10 * pulse,
-                      spreadRadius: 1 + 2 * pulse,
-                    ),
-                  ],
-                ),
-                child: child,
-              );
-            },
-            child: LayoutBuilder(builder: (context, c) {
-              final h = c.maxHeight.isFinite ? c.maxHeight : 56.0;
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: h * .4),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(Icons.play_arrow_rounded,
-                        color: Colors.white, size: h * .78),
-                    SizedBox(width: h * .12),
-                    Text(
-                      'Auf ins Abenteuer!',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: h * .4,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                        shadows: const [
-                          Shadow(color: Color(0x88083A80), blurRadius: 4),
-                        ],
-                      ),
-                    ),
-                  ]),
-                ),
-              );
-            }),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _HubBar extends StatelessWidget {
-  const _HubBar({
-    required this.onParents,
-    required this.onProgress,
-    required this.onSettings,
-    required this.showSlogans,
-  });
-
-  final VoidCallback onParents;
-  final VoidCallback onProgress;
-  final VoidCallback onSettings;
-  final bool showSlogans;
-
-  @override
-  Widget build(BuildContext context) {
-    Widget slogan(IconData icon, Color color, String text) => Padding(
-          padding: const EdgeInsets.only(right: 18),
-          child: Row(mainAxisSize: MainAxisSize.min, children: [
-            Icon(icon, color: color, size: 22),
-            const SizedBox(width: 6),
-            Text(text,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800,
-                  color: LumoVisualTokens.white,
-                )),
-          ]),
         );
-    Widget action(String key, IconData icon, String label, VoidCallback onTap) =>
-        Semantics(
-          button: true,
-          label: label,
-          excludeSemantics: true,
-          child: InkResponse(
-            key: ValueKey(key),
-            onTap: onTap,
-            radius: 36,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(minWidth: 64, minHeight: 48),
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Icon(icon, color: LumoVisualTokens.cyanBright, size: 24),
-                const SizedBox(height: 2),
-                Text(label,
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 11.5,
-                      fontWeight: FontWeight.w800,
-                      color: LumoVisualTokens.white,
-                    )),
-              ]),
-            ),
-          ),
-        );
-    final actions = Row(mainAxisSize: MainAxisSize.min, children: [
-      action('spielwelt-parents', Icons.groups_rounded, 'Elternbereich',
-          onParents),
-      action('spielwelt-progress', Icons.bar_chart_rounded, 'Fortschritt',
-          onProgress),
-      action('spielwelt-settings', Icons.settings_rounded, 'Einstellungen',
-          onSettings),
-    ]);
-    final slogans = Row(mainAxisSize: MainAxisSize.min, children: [
-      slogan(Icons.star_rounded, LumoVisualTokens.gold, 'Spielerisch lernen.'),
-      slogan(Icons.eco_rounded, const Color(0xFF7BE08C), 'Neues entdecken.'),
-      slogan(Icons.favorite_rounded, const Color(0xFFFF8A6B), 'Stärker werden.'),
-    ]);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+    return DecoratedBox(
       decoration: BoxDecoration(
-        color: const Color(0xCC061A44),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0x9937D2FD), width: 1.4),
-        boxShadow: [
-          BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.22), blurRadius: 14),
+        color: const Color(0xB307142C),
+        borderRadius: BorderRadius.circular(21),
+        border: Border.all(color: const Color(0xFF244B72)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          action(
+            'spielwelt-parents',
+            Icons.groups_rounded,
+            'Elternbereich',
+            onParents,
+          ),
+          action(
+            'spielwelt-progress',
+            Icons.bar_chart_rounded,
+            'Fortschritt',
+            onProgress,
+          ),
+          action(
+            'spielwelt-settings',
+            Icons.settings_rounded,
+            'Einstellungen',
+            onSettings,
+          ),
         ],
       ),
-      child: LayoutBuilder(builder: (context, c) {
-        final inline = showSlogans && c.maxWidth >= 640;
-        if (inline) {
-          return Row(children: [
-            Expanded(
-              child: FittedBox(
-                alignment: Alignment.centerLeft,
-                fit: BoxFit.scaleDown,
-                child: slogans,
-              ),
-            ),
-            FittedBox(fit: BoxFit.scaleDown, child: actions),
-          ]);
-        }
-        return Column(mainAxisSize: MainAxisSize.min, children: [
-          if (showSlogans)
-            Padding(
-              padding: const EdgeInsets.only(top: 6),
-              child: FittedBox(fit: BoxFit.scaleDown, child: slogans),
-            ),
-          FittedBox(fit: BoxFit.scaleDown, child: actions),
-        ]);
-      }),
     );
   }
 }
 
-/// Fels-Bühne unter Lumo mit Cyan-Schimmer an der Kante.
-class _StoneStage extends StatelessWidget {
-  const _StoneStage();
-
-  @override
-  Widget build(BuildContext context) =>
-      const IgnorePointer(child: CustomPaint(painter: _StagePainter()));
-}
-
-class _StagePainter extends CustomPainter {
-  const _StagePainter();
+class _CompanionStagePainter extends CustomPainter {
+  const _CompanionStagePainter();
 
   @override
   void paint(Canvas canvas, Size size) {
     final top = Rect.fromLTWH(
-        size.width * .04, size.height * .05, size.width * .92, size.height * .55);
-    final body = Path()
-      ..moveTo(top.left, top.center.dy)
-      ..lineTo(top.left + size.width * .06, size.height)
-      ..lineTo(top.right - size.width * .06, size.height)
-      ..lineTo(top.right, top.center.dy)
-      ..close();
-    canvas.drawPath(
-        body,
-        Paint()
-          ..shader = const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF34405E), Color(0xFF141B33)],
-          ).createShader(Offset.zero & size));
+      size.width * .04,
+      0,
+      size.width * .92,
+      size.height * .62,
+    );
+    final rim = RRect.fromRectAndRadius(
+      top.shift(Offset(0, size.height * .18)),
+      Radius.circular(size.height * .4),
+    );
+    canvas.drawRRect(rim, Paint()..color = const Color(0xFF0B172C));
     canvas.drawOval(
-        top,
-        Paint()
-          ..shader = const RadialGradient(
-            colors: [Color(0xFF7D8AA8), Color(0xFF4A5677), Color(0xFF2B3552)],
-            stops: [0, .6, 1],
-          ).createShader(top));
+      top,
+      Paint()
+        ..shader = const RadialGradient(
+          colors: [Color(0xFF5085AA), Color(0xFF244C76), Color(0xFF112745)],
+        ).createShader(top),
+    );
     canvas.drawOval(
-        top,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2
-          ..color = const Color(0x7737D2FD)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3));
+      top.deflate(3),
+      Paint()
+        ..color = const Color(0xFF4DA9CE)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2,
+    );
+    canvas.drawOval(
+      top.deflate(11),
+      Paint()
+        ..color = const Color(0x883367A0)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1,
+    );
   }
 
   @override
-  bool shouldRepaint(_StagePainter oldDelegate) => false;
+  bool shouldRepaint(_CompanionStagePainter oldDelegate) => false;
 }
 
-/// Funkelnde Sterne über der Szene.
-class _Sparkles extends StatelessWidget {
-  const _Sparkles({required this.clock});
-  final Animation<double> clock;
-
-  @override
-  Widget build(BuildContext context) => IgnorePointer(
-        child: RepaintBoundary(
-          child: CustomPaint(painter: _SparklePainter(clock)),
-        ),
-      );
-}
-
-class _SparklePainter extends CustomPainter {
-  _SparklePainter(this.clock) : super(repaint: clock);
-  final Animation<double> clock;
-
-  static final List<Offset> _points = () {
-    final r = math.Random(7);
-    return List.generate(26, (_) => Offset(r.nextDouble(), r.nextDouble()));
-  }();
+class _StageBackdropPainter extends CustomPainter {
+  const _StageBackdropPainter();
 
   @override
   void paint(Canvas canvas, Size size) {
-    for (var i = 0; i < _points.length; i++) {
-      final a = (math.sin((clock.value * 2 + i * .37) * 2 * math.pi) + 1) / 2;
-      final p = Offset(_points[i].dx * size.width, _points[i].dy * size.height);
-      final gold = i % 3 == 0;
-      canvas.drawCircle(
-          p,
-          1.1 + 1.8 * a,
-          Paint()
-            ..color = (gold ? const Color(0xFFFFE08A) : const Color(0xFFBDF4FF))
-                .withOpacity(.25 + .6 * a));
+    final blue = Rect.fromCircle(
+      center: Offset(size.width * .92, size.height * .27),
+      radius: size.width * .65,
+    );
+    canvas.drawOval(
+      blue,
+      Paint()
+        ..shader = const RadialGradient(
+          colors: [Color(0x552E80BD), Color(0x003272AD)],
+        ).createShader(blue),
+    );
+    final horizon = size.height * .52;
+    final floor = Rect.fromLTWH(0, horizon, size.width, size.height - horizon);
+    canvas.drawRect(
+      floor,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0x000D2651), Color(0x663A6C91), Color(0x000C244C)],
+        ).createShader(floor),
+    );
+    for (var i = 0; i < 5; i++) {
+      final y = horizon + math.pow(i / 4, 1.8) * floor.height;
+      canvas.drawLine(
+        Offset(0, y),
+        Offset(size.width, y),
+        Paint()
+          ..color = Color.lerp(
+            const Color(0x00000000),
+            const Color(0x224DA6D3),
+            i / 4,
+          )!
+          ..strokeWidth = 1,
+      );
     }
+    for (var i = -3; i <= 4; i++) {
+      canvas.drawLine(
+        Offset(size.width * .55, horizon),
+        Offset(size.width * i * .35, size.height),
+        Paint()
+          ..color = const Color(0x104DA6D3)
+          ..strokeWidth = 1,
+      );
+    }
+    final arc = Rect.fromLTWH(
+      -size.width * .22,
+      -size.height * .12,
+      size.width * 1.35,
+      size.height * .88,
+    );
+    canvas.drawArc(
+      arc,
+      -.8,
+      1.6,
+      false,
+      Paint()
+        ..shader = const LinearGradient(
+          colors: [Color(0x002CCBF2), Color(0x4856CBEA), Color(0x002CCBF2)],
+        ).createShader(arc)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2,
+    );
   }
 
   @override
-  bool shouldRepaint(_SparklePainter oldDelegate) => false;
-}
-
-class _WoodSign extends StatelessWidget {
-  const _WoodSign({required this.text});
-  final String text;
-
-  @override
-  Widget build(BuildContext context) => ExcludeSemantics(
-        child: Container(
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            gradient: const LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Color(0xFF7A5435), Color(0xFF4E3220)],
-            ),
-            border: Border.all(color: const Color(0xFF2E1D12), width: 2),
-            boxShadow: const [
-              BoxShadow(color: Color(0x88000000), blurRadius: 8, offset: Offset(0, 4)),
-            ],
-          ),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Text(
-                text,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 14,
-                  height: 1.15,
-                  fontWeight: FontWeight.w800,
-                  color: Color(0xFFFFF1DC),
-                ),
-              ),
-              const Icon(Icons.favorite_border_rounded,
-                  size: 14, color: Color(0xFFFFC27A)),
-            ]),
-          ),
-        ),
-      );
-}
-
-class _PaperBanner extends StatelessWidget {
-  const _PaperBanner({required this.text});
-  final String text;
-
-  @override
-  Widget build(BuildContext context) => ExcludeSemantics(
-        child: Transform.rotate(
-          angle: .06,
-          child: Container(
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF3ECDD),
-              borderRadius: BorderRadius.circular(4),
-              boxShadow: const [
-                BoxShadow(color: Color(0x88000000), blurRadius: 6),
-              ],
-            ),
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF1B3B78),
-                  ),
-                ),
-                const Icon(Icons.favorite_rounded,
-                    size: 14, color: Color(0xFF1B6FE0)),
-              ]),
-            ),
-          ),
-        ),
-      );
-}
-
-class _HandNote extends StatelessWidget {
-  const _HandNote();
-
-  @override
-  Widget build(BuildContext context) => ExcludeSemantics(
-        child: Transform.rotate(
-          angle: -.22,
-          child: const FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              'Kleine\nSpiele.\nGroße\nAbenteuer!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 18,
-                height: 1.05,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w800,
-                color: Color(0xFFEAF6FF),
-                shadows: [Shadow(color: Color(0xAA37D2FD), blurRadius: 8)],
-              ),
-            ),
-          ),
-        ),
-      );
+  bool shouldRepaint(_StageBackdropPainter oldDelegate) => false;
 }

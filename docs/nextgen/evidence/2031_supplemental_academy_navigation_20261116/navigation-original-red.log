@@ -1,0 +1,22 @@
+test_open_original_return_reaches_current_guided_entry_without_toggling (test_nextgen_2031_native_runtime_cases.AcademyReturnNavigationTest.test_open_original_return_reaches_current_guided_entry_without_toggling) ... ERROR
+
+======================================================================
+ERROR: test_open_original_return_reaches_current_guided_entry_without_toggling (test_nextgen_2031_native_runtime_cases.AcademyReturnNavigationTest.test_open_original_return_reaches_current_guided_entry_without_toggling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-academy-navigation/tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py", line 456, in test_open_original_return_reaches_current_guided_entry_without_toggling
+    self.run_to_entry(probe)
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-academy-navigation/tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py", line 434, in run_to_entry
+    cases.bridge_active_stop(probe)
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-academy-navigation/.github/probes/lumo_nextgen_2031_native_runtime_cases.py", line 298, in bridge_active_stop
+    probe.academy()
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-academy-navigation/.github/probes/lumo_nextgen_learning_android_probe.py", line 1029, in academy
+    self.see("Dein Lernatelier", "academy-tools-open", scroll=True)
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-academy-navigation/.github/probes/lumo_nextgen_learning_android_probe.py", line 659, in see
+    raise RuntimeError("Current visible Flutter text missing: " + text)
+RuntimeError: Current visible Flutter text missing: Dein Lernatelier
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+FAILED (errors=1)

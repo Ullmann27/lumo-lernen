@@ -1,0 +1,876 @@
+﻿2026-11-14T07:25:54.6337808Z Current runner version: '2.338.2'
+2026-11-14T07:25:54.6354715Z ##[group]Runner Image Provisioner
+2026-11-14T07:25:54.6355269Z Hosted Compute Agent
+2026-11-14T07:25:54.6355646Z Version: 20261103.629
+2026-11-14T07:25:54.6356114Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T07:25:54.6356568Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T07:25:54.6357019Z Worker ID: {6155d519-f4c8-47d6-95a9-19d33ea8353b}
+2026-11-14T07:25:54.6357499Z Region: southcentralus
+2026-11-14T07:25:54.6357875Z Cloud: Azure
+2026-11-14T07:25:54.6358311Z ##[endgroup]
+2026-11-14T07:25:54.6359069Z ##[group]Operating System
+2026-11-14T07:25:54.6359434Z Ubuntu
+2026-11-14T07:25:54.6359815Z 24.04.5
+2026-11-14T07:25:54.6360146Z LTS
+2026-11-14T07:25:54.6360524Z ##[endgroup]
+2026-11-14T07:25:54.6360886Z ##[group]Runner Image
+2026-11-14T07:25:54.6361266Z Image: ubuntu-24.04
+2026-11-14T07:25:54.6361660Z Version: 20261111.370.1
+2026-11-14T07:25:54.6362584Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T07:25:54.6363519Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T07:25:54.6364098Z ##[endgroup]
+2026-11-14T07:25:54.6364819Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T07:25:54.6366007Z Contents: read
+2026-11-14T07:25:54.6366418Z Metadata: read
+2026-11-14T07:25:54.6366804Z ##[endgroup]
+2026-11-14T07:25:54.6368093Z Secret source: Actions
+2026-11-14T07:25:54.6368684Z Cache mode: write
+2026-11-14T07:25:54.6369091Z Prepare workflow directory
+2026-11-14T07:25:54.6615785Z Prepare all required actions
+2026-11-14T07:25:54.6647221Z Getting action download info
+2026-11-14T07:25:54.9003585Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T07:25:55.0199933Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+2026-11-14T07:25:55.5690164Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-11-14T07:25:55.8447509Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T07:25:56.0452891Z Getting action download info
+2026-11-14T07:25:56.1286910Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-11-14T07:25:56.6135240Z Complete job name: verify-and-build
+2026-11-14T07:25:56.6902424Z ##[group]Run actions/checkout@v4
+2026-11-14T07:25:56.6903413Z with:
+2026-11-14T07:25:56.6903913Z   persist-credentials: false
+2026-11-14T07:25:56.6904552Z   ref: 682f5991feb49d3a73ab7e2b42e23af725857ea9
+2026-11-14T07:25:56.6905246Z   repository: Ullmann27/lumo-lernen
+2026-11-14T07:25:56.6910015Z   token: ***
+2026-11-14T07:25:56.6910514Z   ssh-strict: true
+2026-11-14T07:25:56.6911013Z   ssh-user: git
+2026-11-14T07:25:56.6911495Z   clean: true
+2026-11-14T07:25:56.6912029Z   sparse-checkout-cone-mode: true
+2026-11-14T07:25:56.6912718Z   fetch-depth: 1
+2026-11-14T07:25:56.6913204Z   fetch-tags: false
+2026-11-14T07:25:56.6913721Z   show-progress: true
+2026-11-14T07:25:56.6914223Z   lfs: false
+2026-11-14T07:25:56.6914694Z   submodules: false
+2026-11-14T07:25:56.6915215Z   set-safe-directory: true
+2026-11-14T07:25:56.6915800Z   allow-unsafe-pr-checkout: false
+2026-11-14T07:25:56.6916453Z env:
+2026-11-14T07:25:56.6916915Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:25:56.6917428Z ##[endgroup]
+2026-11-14T07:25:56.9773637Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T07:25:56.9775154Z ##[group]Getting Git version info
+2026-11-14T07:25:56.9775939Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T07:25:56.9777079Z [command]/usr/bin/git version
+2026-11-14T07:25:56.9866026Z git version 2.56.1
+2026-11-14T07:25:56.9877660Z ##[endgroup]
+2026-11-14T07:25:56.9886324Z Temporarily overriding HOME='/home/runner/work/_temp/c7348f7e-b914-46de-8365-1901964ab262' before making global git config changes
+2026-11-14T07:25:56.9888348Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T07:25:56.9890497Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T07:25:57.0099278Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T07:25:57.0102626Z ##[group]Initializing the repository
+2026-11-14T07:25:57.0104928Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T07:25:57.0328904Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T07:25:57.0329993Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T07:25:57.0330983Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T07:25:57.0331874Z hint: call:
+2026-11-14T07:25:57.0332319Z hint:
+2026-11-14T07:25:57.0333243Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T07:25:57.0334047Z hint:
+2026-11-14T07:25:57.0334692Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T07:25:57.0335687Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T07:25:57.0336451Z hint:
+2026-11-14T07:25:57.0336908Z hint: 	git branch -m <name>
+2026-11-14T07:25:57.0337407Z hint:
+2026-11-14T07:25:57.0338069Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T07:25:57.0340865Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T07:25:57.0348269Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T07:25:57.1136530Z ##[endgroup]
+2026-11-14T07:25:57.1137805Z ##[group]Disabling automatic garbage collection
+2026-11-14T07:25:57.1138806Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T07:25:57.1410060Z ##[endgroup]
+2026-11-14T07:25:57.1410849Z ##[group]Setting up auth
+2026-11-14T07:25:57.1414156Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:25:57.1442073Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:25:57.1735007Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:25:57.1763405Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:25:57.1954267Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:25:57.1983343Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:25:57.2171847Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T07:25:57.2606276Z ##[endgroup]
+2026-11-14T07:25:57.2607376Z ##[group]Fetching the repository
+2026-11-14T07:25:57.2615147Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 682f5991feb49d3a73ab7e2b42e23af725857ea9
+2026-11-14T07:26:15.9492955Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T07:26:15.9493567Z  * branch            682f5991feb49d3a73ab7e2b42e23af725857ea9 -> FETCH_HEAD
+2026-11-14T07:26:15.9497000Z ##[endgroup]
+2026-11-14T07:26:15.9497410Z ##[group]Determining the checkout info
+2026-11-14T07:26:15.9499061Z ##[endgroup]
+2026-11-14T07:26:15.9503851Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T07:26:15.9549518Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T07:26:15.9581443Z ##[group]Checking out the ref
+2026-11-14T07:26:15.9586176Z [command]/usr/bin/git checkout --progress --force 682f5991feb49d3a73ab7e2b42e23af725857ea9
+2026-11-14T07:26:16.9636002Z Note: switching to '682f5991feb49d3a73ab7e2b42e23af725857ea9'.
+2026-11-14T07:26:16.9636301Z 
+2026-11-14T07:26:16.9636805Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T07:26:16.9637213Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T07:26:16.9637596Z state without impacting any branches by switching back to a branch.
+2026-11-14T07:26:16.9637861Z 
+2026-11-14T07:26:16.9638064Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T07:26:16.9638437Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T07:26:16.9638647Z 
+2026-11-14T07:26:16.9638879Z   git switch -c <new-branch-name>
+2026-11-14T07:26:16.9663387Z 
+2026-11-14T07:26:16.9663662Z Or undo this operation with:
+2026-11-14T07:26:16.9663849Z 
+2026-11-14T07:26:16.9663941Z   git switch -
+2026-11-14T07:26:16.9664191Z 
+2026-11-14T07:26:16.9664556Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T07:26:16.9664835Z 
+2026-11-14T07:26:16.9665124Z HEAD is now at 682f599 test(integration): activate the bound C4 2020 native and Android acceptance pipeline
+2026-11-14T07:26:16.9739053Z ##[endgroup]
+2026-11-14T07:26:16.9783336Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T07:26:16.9802582Z 682f5991feb49d3a73ab7e2b42e23af725857ea9
+2026-11-14T07:26:16.9814608Z ##[group]Removing auth
+2026-11-14T07:26:16.9814978Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:26:16.9837986Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:26:17.0033712Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:26:17.0045171Z http.https://github.com/.extraheader
+2026-11-14T07:26:17.0051300Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T07:26:17.0079758Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:26:17.0264585Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:26:17.0290389Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:26:17.0460167Z ##[endgroup]
+2026-11-14T07:26:17.0627889Z ##[group]Run set -euo pipefail
+2026-11-14T07:26:17.0628114Z [36;1mset -euo pipefail[0m
+2026-11-14T07:26:17.0628256Z [36;1mmkdir -p dist[0m
+2026-11-14T07:26:17.0628428Z [36;1mgit rev-parse HEAD | tee dist/BUILD-SOURCE.txt[0m
+2026-11-14T07:26:17.0628659Z [36;1mcat config/godot-source.json | tee dist/GODOT-SOURCE.json[0m
+2026-11-14T07:26:17.0628856Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T07:26:17.0628986Z [36;1mimport json[0m
+2026-11-14T07:26:17.0629102Z [36;1mimport re[0m
+2026-11-14T07:26:17.0629217Z [36;1mimport sys[0m
+2026-11-14T07:26:17.0629418Z [36;1mfrom pathlib import Path[0m
+2026-11-14T07:26:17.0629581Z [36;1msys.path.insert(0, "scripts")[0m
+2026-11-14T07:26:17.0629755Z [36;1mfrom verify_legacy_release_pin import verify[0m
+2026-11-14T07:26:17.0630042Z [36;1mbuild, native = verify(Path("pubspec.yaml").read_text(), Path("config/godot-source.json").read_text())[0m
+2026-11-14T07:26:17.0630368Z [36;1massert build == 2020, "C4 test workflow requires build 2020"[0m
+2026-11-14T07:26:17.0630602Z [36;1mfrom release_pipeline_gates import parse_pubspec_version[0m
+2026-11-14T07:26:17.0630915Z [36;1massert parse_pubspec_version(Path("pubspec.yaml").read_text())[1] == 2020, "Wrong C4 test candidate version"[0m
+2026-11-14T07:26:17.0631214Z [36;1mconfig=json.load(open("config/godot-source.json"))[0m
+2026-11-14T07:26:17.0631531Z [36;1massert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"[0m
+2026-11-14T07:26:17.0631993Z [36;1massert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"[0m
+2026-11-14T07:26:17.0632738Z [36;1massert config["engine"]=="4.6.3", "Unexpected Godot engine"[0m
+2026-11-14T07:26:17.0632995Z [36;1m# Historical bad sources remain rejected on this separate candidate.[0m
+2026-11-14T07:26:17.0633250Z [36;1m# Actual rendered review exposed native menu geometry defects.[0m
+2026-11-14T07:26:17.0633506Z [36;1m# This workflow revision rejects the measured candidates on every run.[0m
+2026-11-14T07:26:17.0633765Z [36;1m# It cannot alter historical workflow revisions used by older runs.[0m
+2026-11-14T07:26:17.0633988Z [36;1mrejected_android_layout_sources = {[0m
+2026-11-14T07:26:17.0634183Z [36;1m    "0aa89cdea3a07d0c2bc0a31a153737a1fee41454":[0m
+2026-11-14T07:26:17.0634424Z [36;1m        "Android 2400x1080: header/tab overlap and landing model occlusion",[0m
+2026-11-14T07:26:17.0634666Z [36;1m    "f04e580ec0d7d8f70e8be269523fabedd15b0766":[0m
+2026-11-14T07:26:17.0634904Z [36;1m        "Android 2400x1080: selected kart card exceeds visible scroll viewport",[0m
+2026-11-14T07:26:17.0635141Z [36;1m}[0m
+2026-11-14T07:26:17.0635311Z [36;1massert config["revision"] not in rejected_android_layout_sources, ([0m
+2026-11-14T07:26:17.0635616Z [36;1m    "Rejected Android menu layout: " + rejected_android_layout_sources.get(config["revision"], "")[0m
+2026-11-14T07:26:17.0635861Z [36;1m)[0m
+2026-11-14T07:26:17.0636047Z [36;1m# scripts/export_embedded_game.py subsequently fetches/checks out this[0m
+2026-11-14T07:26:17.0636316Z [36;1m# exact SHA, then compares its HEAD before packaging the native PCK.[0m
+2026-11-14T07:26:17.0636514Z [36;1mPY[0m
+2026-11-14T07:26:17.0653793Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:26:17.0653940Z env:
+2026-11-14T07:26:17.0654053Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:17.0654180Z ##[endgroup]
+2026-11-14T07:26:17.0717772Z 682f5991feb49d3a73ab7e2b42e23af725857ea9
+2026-11-14T07:26:17.0728818Z {
+2026-11-14T07:26:17.0729192Z   "repository": "https://github.com/Ullmann27/lumo-godot.git",
+2026-11-14T07:26:17.0729530Z   "revision": "504c8ba70d02702cbccc370d0d96c36a292c5d27",
+2026-11-14T07:26:17.0729788Z   "engine": "4.6.3"
+2026-11-14T07:26:17.0729924Z }
+2026-11-14T07:26:17.1048491Z ##[group]Run actions/setup-java@v4
+2026-11-14T07:26:17.1048647Z with:
+2026-11-14T07:26:17.1048763Z   distribution: temurin
+2026-11-14T07:26:17.1048888Z   java-version: 17
+2026-11-14T07:26:17.1049005Z   java-package: jdk
+2026-11-14T07:26:17.1049124Z   check-latest: false
+2026-11-14T07:26:17.1049243Z   server-id: github
+2026-11-14T07:26:17.1049366Z   server-username: GITHUB_ACTOR
+2026-11-14T07:26:17.1049508Z   server-password: GITHUB_TOKEN
+2026-11-14T07:26:17.1049652Z   overwrite-settings: true
+2026-11-14T07:26:17.1049784Z   job-status: success
+2026-11-14T07:26:17.1051138Z   token: ***
+2026-11-14T07:26:17.1051247Z env:
+2026-11-14T07:26:17.1051358Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:17.1051485Z ##[endgroup]
+2026-11-14T07:26:17.2142824Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+2026-11-14T07:26:17.2147943Z ##[group]Installed distributions
+2026-11-14T07:26:17.2172739Z Resolved Java 17.0.21+9 from tool-cache
+2026-11-14T07:26:17.2172990Z Setting Java 17.0.21+9 as the default
+2026-11-14T07:26:17.2178495Z (node:2226) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T07:26:17.2179022Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T07:26:17.2180597Z Creating toolchains.xml for JDK version 17 from temurin
+2026-11-14T07:26:17.2240572Z Writing to /home/runner/.m2/toolchains.xml
+2026-11-14T07:26:17.2240955Z 
+2026-11-14T07:26:17.2241094Z Java configuration:
+2026-11-14T07:26:17.2241290Z   Distribution: temurin
+2026-11-14T07:26:17.2241480Z   Version: 17.0.21+9
+2026-11-14T07:26:17.2241746Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.2242237Z 
+2026-11-14T07:26:17.2242588Z ##[endgroup]
+2026-11-14T07:26:17.2255348Z Creating settings.xml with server-id: github
+2026-11-14T07:26:17.2255553Z Writing to /home/runner/.m2/settings.xml
+2026-11-14T07:26:17.2528905Z ##[group]Run subosito/flutter-action@v2
+2026-11-14T07:26:17.2529065Z with:
+2026-11-14T07:26:17.2529185Z   flutter-version: 3.44.9
+2026-11-14T07:26:17.2529315Z   channel: stable
+2026-11-14T07:26:17.2529427Z   cache: true
+2026-11-14T07:26:17.2529540Z   architecture: X64
+2026-11-14T07:26:17.2529663Z   pub-cache-path: default
+2026-11-14T07:26:17.2529791Z   dry-run: false
+2026-11-14T07:26:17.2529937Z   git-source: https://github.com/flutter/flutter.git
+2026-11-14T07:26:17.2530105Z env:
+2026-11-14T07:26:17.2530215Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:17.2530399Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.2530665Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.2530875Z ##[endgroup]
+2026-11-14T07:26:17.2568375Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-11-14T07:26:17.2574041Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T07:26:17.2575213Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-11-14T07:26:17.2607690Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-11-14T07:26:17.2607901Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-11-14T07:26:17.2626082Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T07:26:17.2626268Z env:
+2026-11-14T07:26:17.2626382Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:17.2626569Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.2626833Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.2627038Z ##[endgroup]
+2026-11-14T07:26:17.2677147Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=10]
+2026-11-14T07:26:17.2678546Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-11-14T07:26:17.2702860Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-11-14T07:26:17.2703071Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-11-14T07:26:17.2703232Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T07:26:17.2703356Z [36;1m  -f '' \[0m
+2026-11-14T07:26:17.2703470Z [36;1m  -a 'X64' \[0m
+2026-11-14T07:26:17.2703585Z [36;1m  -k '' \[0m
+2026-11-14T07:26:17.2703693Z [36;1m  -c '' \[0m
+2026-11-14T07:26:17.2703802Z [36;1m  -l '' \[0m
+2026-11-14T07:26:17.2703915Z [36;1m  -d 'default' \[0m
+2026-11-14T07:26:17.2704083Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-11-14T07:26:17.2704260Z [36;1m  stable[0m
+2026-11-14T07:26:17.2717705Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T07:26:17.2717884Z env:
+2026-11-14T07:26:17.2717996Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:17.2718187Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.2718461Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.2718666Z ##[endgroup]
+2026-11-14T07:26:17.4520706Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=184]
+2026-11-14T07:26:17.4524500Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-11-14T07:26:17.4559325Z ##[group]Run actions/cache@v5
+2026-11-14T07:26:17.4559466Z with:
+2026-11-14T07:26:17.4559612Z   path: /opt/hostedtoolcache/flutter/stable-3.44.9-x64
+2026-11-14T07:26:17.4559871Z   key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T07:26:17.4560110Z   enableCrossOsArchive: false
+2026-11-14T07:26:17.4560252Z   fail-on-cache-miss: false
+2026-11-14T07:26:17.4560384Z   lookup-only: false
+2026-11-14T07:26:17.4560503Z   save-always: false
+2026-11-14T07:26:17.4560792Z env:
+2026-11-14T07:26:17.4560906Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:17.4561089Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.4561484Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:17.4561689Z ##[endgroup]
+2026-11-14T07:26:17.6923179Z Cache hit for: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T07:26:18.8465813Z Received 134217728 of 1692352766 (7.9%), 128.0 MBs/sec
+2026-11-14T07:26:19.8520187Z Received 352321536 of 1692352766 (20.8%), 167.6 MBs/sec
+2026-11-14T07:26:20.8526744Z Received 490733568 of 1692352766 (29.0%), 155.7 MBs/sec
+2026-11-14T07:26:21.8527474Z Received 696254464 of 1692352766 (41.1%), 165.8 MBs/sec
+2026-11-14T07:26:22.8529151Z Received 922746880 of 1692352766 (54.5%), 175.8 MBs/sec
+2026-11-14T07:26:23.8564120Z Received 1086324736 of 1692352766 (64.2%), 172.5 MBs/sec
+2026-11-14T07:26:24.8540084Z Received 1291845632 of 1692352766 (76.3%), 175.8 MBs/sec
+2026-11-14T07:26:25.8560550Z Received 1480589312 of 1692352766 (87.5%), 176.3 MBs/sec
+2026-11-14T07:26:26.8600133Z Received 1688158462 of 1692352766 (99.8%), 178.7 MBs/sec
+2026-11-14T07:26:26.8800965Z Received 1692352766 of 1692352766 (100.0%), 178.7 MBs/sec
+2026-11-14T07:26:26.8803306Z Cache Size: ~1614 MB (1692352766 B)
+2026-11-14T07:26:26.9029077Z [command]/usr/bin/tar -xf /home/runner/work/_temp/059069d3-69c2-46c0-8d85-51283e5b018e/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T07:26:36.8597931Z Cache restored successfully
+2026-11-14T07:26:36.9562801Z Cache restored from key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T07:26:36.9821329Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=19529]
+2026-11-14T07:26:36.9823384Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-11-14T07:26:37.2162191Z ##[group]Run actions/cache@v5
+2026-11-14T07:26:37.2162355Z with:
+2026-11-14T07:26:37.2162641Z   path: /home/runner/.pub-cache
+2026-11-14T07:26:37.2163062Z   key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T07:26:37.2163456Z   enableCrossOsArchive: false
+2026-11-14T07:26:37.2163599Z   fail-on-cache-miss: false
+2026-11-14T07:26:37.2163734Z   lookup-only: false
+2026-11-14T07:26:37.2163852Z   save-always: false
+2026-11-14T07:26:37.2163967Z env:
+2026-11-14T07:26:37.2164075Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:37.2164267Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:37.2164538Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:37.2164745Z ##[endgroup]
+2026-11-14T07:26:37.4527196Z Cache hit for: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T07:26:38.4243201Z Received 81849709 of 81849709 (100.0%), 97.8 MBs/sec
+2026-11-14T07:26:38.4244814Z Cache Size: ~78 MB (81849709 B)
+2026-11-14T07:26:38.4287908Z [command]/usr/bin/tar -xf /home/runner/work/_temp/76e60abb-9115-4bc0-a86d-7e3b6ab4e902/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T07:26:39.1078511Z Cache restored successfully
+2026-11-14T07:26:39.1162058Z Cache restored from key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T07:26:39.1297627Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=2147]
+2026-11-14T07:26:39.1299339Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-11-14T07:26:39.1326237Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-11-14T07:26:39.1326454Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-11-14T07:26:39.1326617Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T07:26:39.1326905Z [36;1m  -a 'x64' \[0m
+2026-11-14T07:26:39.1327084Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.44.9-x64' \[0m
+2026-11-14T07:26:39.1327422Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-11-14T07:26:39.1327576Z [36;1m  stable[0m
+2026-11-14T07:26:39.1343438Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T07:26:39.1343626Z env:
+2026-11-14T07:26:39.1343744Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:39.1343937Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:39.1344206Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:39.1344419Z ##[endgroup]
+2026-11-14T07:26:39.3059638Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=175]
+2026-11-14T07:26:39.3116629Z ##[group]Run set -euo pipefail
+2026-11-14T07:26:39.3116828Z [36;1mset -euo pipefail[0m
+2026-11-14T07:26:39.3117006Z [36;1msudo apt-get -o Acquire::Retries=2 update -qq[0m
+2026-11-14T07:26:39.3117275Z [36;1msudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji[0m
+2026-11-14T07:26:39.3117540Z [36;1mtest -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf[0m
+2026-11-14T07:26:39.3133404Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:26:39.3133551Z env:
+2026-11-14T07:26:39.3133670Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:39.3133861Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:39.3134126Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:39.3134383Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T07:26:39.3134590Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T07:26:39.3134738Z ##[endgroup]
+2026-11-14T07:26:44.8452859Z Reading package lists...
+2026-11-14T07:26:45.0021656Z Building dependency tree...
+2026-11-14T07:26:45.0026969Z Reading state information...
+2026-11-14T07:26:45.1242094Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-11-14T07:26:45.1242740Z 0 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.
+2026-11-14T07:26:45.1298673Z ##[group]Run flutter pub get --enforce-lockfile
+2026-11-14T07:26:45.1298916Z [36;1mflutter pub get --enforce-lockfile[0m
+2026-11-14T07:26:45.1315135Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:26:45.1315278Z env:
+2026-11-14T07:26:45.1315393Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:45.1315584Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:45.1315855Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:45.1316114Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T07:26:45.1316321Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T07:26:45.1316471Z ##[endgroup]
+2026-11-14T07:26:45.3614285Z Resolving dependencies...
+2026-11-14T07:26:45.8750610Z Downloading packages...
+2026-11-14T07:26:47.0062433Z   clock 1.1.2 (1.1.3 available)
+2026-11-14T07:26:47.0062907Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-14T07:26:47.0063159Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-14T07:26:47.0063447Z   crypto 3.0.7 (3.0.8 available)
+2026-11-14T07:26:47.0063699Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-14T07:26:47.0063976Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-14T07:26:47.0064232Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-14T07:26:47.0064533Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-14T07:26:47.0064816Z   hooks 2.0.2 (2.2.0 available)
+2026-11-14T07:26:47.0065041Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-14T07:26:47.0065251Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-14T07:26:47.0065500Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-14T07:26:47.0065792Z   jni 1.1.0 (1.1.2 available)
+2026-11-14T07:26:47.0066012Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-14T07:26:47.0066242Z   lints 4.0.0 (6.1.0 available)
+2026-11-14T07:26:47.0066704Z   matcher 0.12.19 (0.12.20 available)
+2026-11-14T07:26:47.0066966Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-14T07:26:47.0067238Z   meta 1.18.0 (1.19.0 available)
+2026-11-14T07:26:47.0067464Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-14T07:26:47.0067696Z   record_use 0.6.0 (1.1.1 available)
+2026-11-14T07:26:47.0067939Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-14T07:26:47.0068223Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-14T07:26:47.0068475Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-14T07:26:47.0068648Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-14T07:26:47.0068797Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-14T07:26:47.0068949Z   test_api 0.7.11 (0.7.15 available)
+2026-11-14T07:26:47.0069100Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-14T07:26:47.0069245Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-14T07:26:47.0069390Z   web 1.1.1 (1.1.2 available)
+2026-11-14T07:26:47.0069562Z Got dependencies!
+2026-11-14T07:26:47.0069758Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-14T07:26:47.0070000Z Try `flutter pub outdated` for more information.
+2026-11-14T07:26:47.1666645Z ##[group]Run flutter analyze --no-fatal-infos --no-fatal-warnings
+2026-11-14T07:26:47.1666948Z [36;1mflutter analyze --no-fatal-infos --no-fatal-warnings[0m
+2026-11-14T07:26:47.1683679Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:26:47.1683825Z env:
+2026-11-14T07:26:47.1683946Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:47.1684143Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:47.1684418Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:47.1684686Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T07:26:47.1684895Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T07:26:47.1685046Z ##[endgroup]
+2026-11-14T07:26:47.2786488Z Resolving dependencies...
+2026-11-14T07:26:47.3409343Z Downloading packages...
+2026-11-14T07:26:47.3950511Z   clock 1.1.2 (1.1.3 available)
+2026-11-14T07:26:47.3950825Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-14T07:26:47.3951143Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-14T07:26:47.3951376Z   crypto 3.0.7 (3.0.8 available)
+2026-11-14T07:26:47.3951624Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-14T07:26:47.3951885Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-14T07:26:47.3952134Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-14T07:26:47.3952426Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-14T07:26:47.3952862Z   hooks 2.0.2 (2.2.0 available)
+2026-11-14T07:26:47.3953087Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-14T07:26:47.3953344Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-14T07:26:47.3953650Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-14T07:26:47.3953937Z   jni 1.1.0 (1.1.2 available)
+2026-11-14T07:26:47.3954154Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-14T07:26:47.3954386Z   lints 4.0.0 (6.1.0 available)
+2026-11-14T07:26:47.3954613Z   matcher 0.12.19 (0.12.20 available)
+2026-11-14T07:26:47.3954878Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-14T07:26:47.3955136Z   meta 1.18.0 (1.19.0 available)
+2026-11-14T07:26:47.3955285Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-14T07:26:47.3955439Z   record_use 0.6.0 (1.1.1 available)
+2026-11-14T07:26:47.3955595Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-14T07:26:47.3955777Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-14T07:26:47.3955970Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-14T07:26:47.3956141Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-14T07:26:47.3956296Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-14T07:26:47.3956460Z   test_api 0.7.11 (0.7.15 available)
+2026-11-14T07:26:47.3956610Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-14T07:26:47.3956760Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-14T07:26:47.3956907Z   web 1.1.1 (1.1.2 available)
+2026-11-14T07:26:47.3957406Z Got dependencies!
+2026-11-14T07:26:47.3973450Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-14T07:26:47.3973868Z Try `flutter pub outdated` for more information.
+2026-11-14T07:26:58.9024572Z Analyzing lumo-lernen...                                        
+2026-11-14T07:26:58.9028414Z 
+2026-11-14T07:26:58.9051041Z    info • The file name 'build-path-boundary.dart' isn't a lower_case_with_underscores identifier. Try changing the name to follow the lower_case_with_underscores style • docs/evidence/connect-four-integration-20261114/validation-06b3a113/build-path-boundary.dart:1:1 • file_names
+2026-11-14T07:26:58.9055498Z    info • The imported package 'file' isn't a dependency of the importing package. Try adding a dependency for 'file' in the 'pubspec.yaml' file • docs/evidence/connect-four-integration-20261114/validation-06b3a113/build-path-boundary.dart:2:8 • depend_on_referenced_packages
+2026-11-14T07:26:58.9058238Z    info • Don't invoke 'print' in production code. Try using a logging framework • docs/evidence/connect-four-integration-20261114/validation-06b3a113/build-path-boundary.dart:37:3 • avoid_print
+2026-11-14T07:26:58.9068422Z   error • Target of URI doesn't exist: 'connect_four_engine.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:9:8 • uri_does_not_exist
+2026-11-14T07:26:58.9070494Z   error • Undefined class 'ConnectLumoLevel'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectLumoLevel' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:30:9 • undefined_class
+2026-11-14T07:26:58.9089187Z   error • Undefined class 'ConnectFourEngine'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectFourEngine' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:48:3 • undefined_class
+2026-11-14T07:26:58.9092794Z   error • The method 'ConnectFourEngine' isn't defined for the type 'ConnectFourRound'. Try correcting the name to the name of an existing method, or defining a method named 'ConnectFourEngine' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:49:20 • undefined_method
+2026-11-14T07:26:58.9098683Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:56:37 • undefined_identifier
+2026-11-14T07:26:58.9124151Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:106:10 • undefined_identifier
+2026-11-14T07:26:58.9127879Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:115:14 • undefined_identifier
+2026-11-14T07:26:58.9129757Z   error • Undefined class 'ConnectLumoLevel'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectLumoLevel' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:124:32 • undefined_class
+2026-11-14T07:26:58.9131702Z   error • Undefined class 'ConnectFourEngine'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectFourEngine' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:188:3 • undefined_class
+2026-11-14T07:26:58.9133806Z   error • Undefined class 'ConnectFourEngine'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectFourEngine' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:190:3 • undefined_class
+2026-11-14T07:26:58.9135965Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:192:34 • undefined_identifier
+2026-11-14T07:26:58.9137771Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:195:26 • undefined_identifier
+2026-11-14T07:26:58.9145605Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:198:26 • undefined_identifier
+2026-11-14T07:26:58.9153682Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:204:34 • undefined_identifier
+2026-11-14T07:26:58.9154669Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:235:18 • undefined_identifier
+2026-11-14T07:26:58.9155859Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:248:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9157152Z   error • The name 'ConnectPosition' isn't a type, so it can't be used as a type argument. Try correcting the name to an existing type, or defining a type named 'ConnectPosition' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:269:10 • non_type_as_type_argument
+2026-11-14T07:26:58.9158410Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:271:30 • undefined_identifier
+2026-11-14T07:26:58.9159543Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:272:59 • undefined_identifier
+2026-11-14T07:26:58.9160682Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:275:33 • undefined_identifier
+2026-11-14T07:26:58.9161946Z   error • The name 'ConnectPosition' isn't a type, so it can't be used as a type argument. Try correcting the name to an existing type, or defining a type named 'ConnectPosition' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:286:10 • non_type_as_type_argument
+2026-11-14T07:26:58.9163317Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:288:30 • undefined_identifier
+2026-11-14T07:26:58.9164438Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:289:29 • undefined_identifier
+2026-11-14T07:26:58.9165700Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:289:48 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9166918Z   error • Undefined class 'ConnectLumoLevel'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectLumoLevel' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:303:25 • undefined_class
+2026-11-14T07:26:58.9168103Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:320:36 • undefined_identifier
+2026-11-14T07:26:58.9169315Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:321:48 • undefined_identifier
+2026-11-14T07:26:58.9170931Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart:332:26 • undefined_identifier
+2026-11-14T07:26:58.9173061Z   error • Target of URI doesn't exist: 'connect_four_engine.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:6:8 • uri_does_not_exist
+2026-11-14T07:26:58.9174689Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:38:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9175990Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:81:34 • undefined_identifier
+2026-11-14T07:26:58.9177254Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:83:37 • undefined_identifier
+2026-11-14T07:26:58.9178543Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:121:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9180531Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:124:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9182345Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:126:44 • undefined_identifier
+2026-11-14T07:26:58.9189127Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:142:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9190998Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:171:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9193116Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:183:38 • undefined_identifier
+2026-11-14T07:26:58.9194864Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:185:37 • undefined_identifier
+2026-11-14T07:26:58.9196719Z   error • A value of type 'num' can't be assigned to a variable of type 'int'. Try changing the type of the variable, or casting the right-hand type to 'int' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:187:40 • invalid_assignment
+2026-11-14T07:26:58.9198684Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:219:27 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9200546Z   error • A value of type 'num' can't be assigned to a variable of type 'int'. Try changing the type of the variable, or casting the right-hand type to 'int' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:237:24 • invalid_assignment
+2026-11-14T07:26:58.9202366Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:239:50 • undefined_identifier
+2026-11-14T07:26:58.9204225Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:252:53 • undefined_identifier
+2026-11-14T07:26:58.9206053Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:253:13 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9207817Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:258:16 • undefined_identifier
+2026-11-14T07:26:58.9209656Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:259:13 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9211442Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:260:37 • undefined_identifier
+2026-11-14T07:26:58.9213430Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart:264:57 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9215341Z   error • Target of URI doesn't exist: '../../../app/app_state.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:8:8 • uri_does_not_exist
+2026-11-14T07:26:58.9217415Z   error • Target of URI doesn't exist: '../../../core/lumo_voice.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:9:8 • uri_does_not_exist
+2026-11-14T07:26:58.9219409Z   error • Target of URI doesn't exist: '../../../widgets/design/lumo_motion.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:10:8 • uri_does_not_exist
+2026-11-14T07:26:58.9221525Z   error • Target of URI doesn't exist: '../shared/lumo_game_pause_scope.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:11:8 • uri_does_not_exist
+2026-11-14T07:26:58.9223647Z   error • Target of URI doesn't exist: 'connect_four_engine.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:12:8 • uri_does_not_exist
+2026-11-14T07:26:58.9225626Z   error • Target of URI doesn't exist: '../../lumo3d/lumo3d_launcher.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:15:8 • uri_does_not_exist
+2026-11-14T07:26:58.9227617Z   error • Target of URI doesn't exist: 'lumo_connect_four_stage.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:16:8 • uri_does_not_exist
+2026-11-14T07:26:58.9229550Z   error • Undefined class 'LumoAppState'. Try changing the name to the name of an existing class, or creating a class with the name 'LumoAppState' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:26:9 • undefined_class
+2026-11-14T07:26:58.9231524Z   error • Undefined class 'ConnectFourEngine'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectFourEngine' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:35:9 • undefined_class
+2026-11-14T07:26:58.9233746Z   error • The method 'ConnectFourEngine' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'ConnectFourEngine' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:35:36 • undefined_method
+2026-11-14T07:26:58.9235864Z   error • Undefined class 'LearningProfileLease'. Try changing the name to the name of an existing class, or creating a class with the name 'LearningProfileLease' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:37:3 • undefined_class
+2026-11-14T07:26:58.9237816Z   error • Undefined class 'ConnectFourEngine'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectFourEngine' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:38:3 • undefined_class
+2026-11-14T07:26:58.9239637Z   error • Undefined name 'LumoVoice'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:77:17 • undefined_identifier
+2026-11-14T07:26:58.9241424Z   error • Undefined name 'VoiceStyle'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:78:50 • undefined_identifier
+2026-11-14T07:26:58.9243199Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:81:33 • undefined_identifier
+2026-11-14T07:26:58.9244922Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:83:25 • undefined_identifier
+2026-11-14T07:26:58.9246777Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:88:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9248513Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:103:31 • undefined_identifier
+2026-11-14T07:26:58.9250228Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:105:26 • undefined_identifier
+2026-11-14T07:26:58.9251940Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:106:30 • undefined_identifier
+2026-11-14T07:26:58.9253775Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:111:29 • undefined_identifier
+2026-11-14T07:26:58.9255508Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:130:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9257249Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:143:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9259328Z   error • The method 'launchLumo3D' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'launchLumo3D' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:143:24 • undefined_method
+2026-11-14T07:26:58.9261676Z    info • Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:143:37 • use_build_context_synchronously
+2026-11-14T07:26:58.9263918Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:153:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9265670Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:163:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9267483Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:172:25 • undefined_identifier
+2026-11-14T07:26:58.9269174Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:173:26 • undefined_identifier
+2026-11-14T07:26:58.9270886Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:173:48 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9272825Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:175:23 • undefined_identifier
+2026-11-14T07:26:58.9274523Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:176:24 • undefined_identifier
+2026-11-14T07:26:58.9276520Z   error • The method 'LumoGameTurnClock' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoGameTurnClock' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:181:18 • undefined_method
+2026-11-14T07:26:58.9278598Z   error • Undefined class 'ConnectPosition'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectPosition' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:184:3 • undefined_class
+2026-11-14T07:26:58.9280528Z   error • Undefined class 'ConnectPiece'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectPiece' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:185:3 • undefined_class
+2026-11-14T07:26:58.9282343Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:185:29 • undefined_identifier
+2026-11-14T07:26:58.9284552Z   error • Undefined class 'ConnectLumoLevel'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectLumoLevel' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:189:3 • undefined_class
+2026-11-14T07:26:58.9286495Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:189:33 • undefined_identifier
+2026-11-14T07:26:58.9288230Z   error • Undefined name 'LumoMotion'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:198:7 • undefined_identifier
+2026-11-14T07:26:58.9289915Z   error • Undefined name 'LumoVoice'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:212:17 • undefined_identifier
+2026-11-14T07:26:58.9291865Z   error • Undefined name 'LumoVoice'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:227:15 • undefined_identifier
+2026-11-14T07:26:58.9293751Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:247:22 • undefined_identifier
+2026-11-14T07:26:58.9295512Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:269:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9297606Z   error • Undefined class 'ConnectLumoLevel'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectLumoLevel' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:272:26 • undefined_class
+2026-11-14T07:26:58.9299469Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:287:24 • undefined_identifier
+2026-11-14T07:26:58.9301218Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:287:46 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9303166Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:288:39 • undefined_identifier
+2026-11-14T07:26:58.9305080Z   error • Undefined class 'ConnectPosition'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectPosition' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:297:5 • undefined_class
+2026-11-14T07:26:58.9306925Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:300:55 • undefined_identifier
+2026-11-14T07:26:58.9308661Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:310:18 • undefined_identifier
+2026-11-14T07:26:58.9310379Z   error • The argument type 'double' can't be assigned to the parameter type 'int'.  • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:314:34 • argument_type_not_assignable
+2026-11-14T07:26:58.9311981Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:321:27 • undefined_identifier
+2026-11-14T07:26:58.9314270Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:335:26 • undefined_identifier
+2026-11-14T07:26:58.9315895Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:337:48 • undefined_identifier
+2026-11-14T07:26:58.9317806Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:347:36 • undefined_identifier
+2026-11-14T07:26:58.9319554Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:353:27 • undefined_identifier
+2026-11-14T07:26:58.9321289Z   error • Undefined name 'LumoVoice'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:356:21 • undefined_identifier
+2026-11-14T07:26:58.9323350Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:375:34 • undefined_identifier
+2026-11-14T07:26:58.9325062Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:376:46 • undefined_identifier
+2026-11-14T07:26:58.9326784Z   error • Undefined name 'LumoVoice'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:393:15 • undefined_identifier
+2026-11-14T07:26:58.9328541Z   error • Undefined name 'VoiceStyle'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:394:36 • undefined_identifier
+2026-11-14T07:26:58.9330250Z   error • Undefined name 'VoiceStyle'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:394:59 • undefined_identifier
+2026-11-14T07:26:58.9332183Z   error • The name 'ConnectPosition' isn't a type, so it can't be used as a type argument. Try correcting the name to an existing type, or defining a type named 'ConnectPosition' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:403:27 • non_type_as_type_argument
+2026-11-14T07:26:58.9334630Z   error • The method 'LumoGameResultBack' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoGameResultBack' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:424:35 • undefined_method
+2026-11-14T07:26:58.9336977Z   error • The method 'LumoPressable' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoPressable' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:451:13 • undefined_method
+2026-11-14T07:26:58.9339247Z   error • The method 'LumoPressable' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoPressable' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:459:13 • undefined_method
+2026-11-14T07:26:58.9341238Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:476:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9343707Z   error • The method 'LumoGamePauseScope' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoGamePauseScope' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:488:12 • undefined_method
+2026-11-14T07:26:58.9345755Z   error • The name 'LumoConnectFourRoom' isn't a class. Try correcting the name to match an existing class • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:494:17 • creation_with_non_type
+2026-11-14T07:26:58.9347933Z   error • The method 'LumoPressable' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoPressable' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:541:11 • undefined_method
+2026-11-14T07:26:58.9350164Z   error • The method 'LumoPressable' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoPressable' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:571:11 • undefined_method
+2026-11-14T07:26:58.9352018Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:586:33 • undefined_identifier
+2026-11-14T07:26:58.9354266Z   error • The method 'LumoPressable' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoPressable' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:589:24 • undefined_method
+2026-11-14T07:26:58.9356346Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:610:23 • undefined_identifier
+2026-11-14T07:26:58.9358122Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:611:23 • undefined_identifier
+2026-11-14T07:26:58.9359858Z   error • Undefined name 'ConnectLumoLevel'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:612:23 • undefined_identifier
+2026-11-14T07:26:58.9361875Z   error • The method 'LumoPressable' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoPressable' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:620:22 • undefined_method
+2026-11-14T07:26:58.9363513Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:655:38 • undefined_identifier
+2026-11-14T07:26:58.9364489Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:731:45 • undefined_identifier
+2026-11-14T07:26:58.9365613Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:734:45 • undefined_identifier
+2026-11-14T07:26:58.9366579Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:749:42 • undefined_identifier
+2026-11-14T07:26:58.9367543Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:787:42 • undefined_identifier
+2026-11-14T07:26:58.9368729Z   error • Undefined class 'ConnectPiece'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectPiece' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:792:30 • undefined_class
+2026-11-14T07:26:58.9369623Z   error • Invalid constant value • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:868:34 • invalid_constant
+2026-11-14T07:26:58.9370730Z   error • The method 'LumoConnectFourTablePedestal' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoConnectFourTablePedestal' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:868:34 • undefined_method
+2026-11-14T07:26:58.9371930Z   error • Undefined name 'ConnectFourEngine'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:904:38 • undefined_identifier
+2026-11-14T07:26:58.9373098Z   error • Undefined name 'ConnectFourEngine'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:908:39 • undefined_identifier
+2026-11-14T07:26:58.9374243Z   error • The method 'LumoPressable' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoPressable' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:910:30 • undefined_method
+2026-11-14T07:26:58.9375353Z   error • Undefined name 'ConnectPhase'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:927:50 • undefined_identifier
+2026-11-14T07:26:58.9376380Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:935:51 • undefined_identifier
+2026-11-14T07:26:58.9377358Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1033:41 • undefined_identifier
+2026-11-14T07:26:58.9378184Z   error • Invalid constant value • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1068:40 • invalid_constant
+2026-11-14T07:26:58.9379307Z   error • The method 'LumoConnectFourGlassPlate' isn't defined for the type '_LumoConnectFourScreenState'. Try correcting the name to the name of an existing method, or defining a method named 'LumoConnectFourGlassPlate' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1068:40 • undefined_method
+2026-11-14T07:26:58.9380584Z   error • Undefined name 'ConnectFourEngine'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1069:42 • undefined_identifier
+2026-11-14T07:26:58.9381583Z   error • Undefined name 'ConnectFourEngine'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1070:39 • undefined_identifier
+2026-11-14T07:26:58.9382852Z   error • Undefined class 'ConnectPiece'. Try changing the name to the name of an existing class, or creating a class with the name 'ConnectPiece' • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1086:16 • undefined_class
+2026-11-14T07:26:58.9383884Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1088:28 • undefined_identifier
+2026-11-14T07:26:58.9384851Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1089:28 • undefined_identifier
+2026-11-14T07:26:58.9385823Z   error • Undefined name 'ConnectPiece'. Try correcting the name to one that is defined, or defining the name • docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart:1162:32 • undefined_identifier
+2026-11-14T07:26:58.9386776Z warning • The asset directory 'assets/videos/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:31:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9387668Z warning • The asset directory 'assets/images/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:32:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9388571Z warning • The asset directory 'assets/lumo_design/fox/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:33:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9389482Z warning • The asset directory 'assets/lumo_design/bg/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:34:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9390435Z warning • The asset directory 'assets/lumo_design/learning_world/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:35:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9391367Z warning • The asset directory 'assets/lumo_design/logo/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:36:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9392280Z warning • The asset directory 'assets/lumo_design/cards/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:37:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9393343Z warning • The asset directory 'assets/lumo_design/gameplay/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:38:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9394785Z warning • The asset directory 'assets/lumo_design/board_games/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:39:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9396287Z warning • The asset directory 'assets/lumo_design/ui/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:40:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9397698Z warning • The asset directory 'assets/lumo_design/icons/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:41:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9403943Z warning • The asset directory 'assets/lumo_design/task_objects/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:42:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9404907Z warning • The asset directory 'assets/lumo_design/badges/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:43:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9405861Z warning • The asset directory 'assets/lumo_design/onboarding/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:44:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9406805Z warning • The asset directory 'assets/lumo_design/spielwelt/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:45:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9407743Z warning • The asset directory 'assets/lumo_design/memory/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:46:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9408674Z warning • The asset directory 'assets/lumo_design/cards_game/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:47:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9409630Z warning • The asset directory 'assets/lumo_design/buildings/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:48:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9410580Z warning • The asset directory 'assets/lumo_design/characters/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:49:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9411509Z warning • The asset directory 'assets/lumo_design/deco/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:50:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9412427Z warning • The asset directory 'assets/lumo_design/garage/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:51:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9413575Z warning • The asset directory 'assets/lumo_design/kart_items/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:52:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9414691Z warning • The asset directory 'assets/lumo_design/nature/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:53:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9415621Z warning • The asset directory 'assets/lumo_design/rewards/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:54:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9416549Z warning • The asset directory 'assets/lumo_design/track/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:55:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9417491Z warning • The asset directory 'assets/lumo_jump/fox/master/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:56:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9418462Z warning • The asset directory 'assets/lumo_jump/fox/sprite_sheets/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:57:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9419401Z warning • The asset directory 'assets/lumo_jump/fox/idle/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:58:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9420318Z warning • The asset directory 'assets/lumo_jump/fox/run/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:59:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9421245Z warning • The asset directory 'assets/lumo_jump/fox/jump/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:60:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9422164Z warning • The asset directory 'assets/lumo_jump/fox/fall/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:61:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9423233Z warning • The asset directory 'assets/lumo_jump/fox/duck/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:62:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9424152Z warning • The asset directory 'assets/lumo_jump/fox/roll/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:63:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9425170Z warning • The asset directory 'assets/lumo_sprite_pack/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:64:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9426099Z warning • The asset directory 'assets/lumo_sprite_pack/cheer/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:65:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9427014Z warning • The asset directory 'assets/lumo_cards/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:66:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9428012Z warning • The asset directory 'assets/lumo_cards/cards/red/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:67:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9428958Z warning • The asset directory 'assets/lumo_cards/cards/yellow/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:68:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9429910Z warning • The asset directory 'assets/lumo_cards/cards/green/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:69:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9430872Z warning • The asset directory 'assets/lumo_cards/cards/blue/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:70:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9431824Z warning • The asset directory 'assets/lumo_cards/cards/special/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:71:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9433420Z warning • The asset directory 'assets/lumo_cards/cards/back/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:72:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9434934Z warning • The asset directory 'assets/lumo_cards/avatars/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:73:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9436228Z warning • The asset file 'docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp' doesn't exist. Try creating the file or fixing the path to the file • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:74:7 • asset_does_not_exist
+2026-11-14T07:26:58.9437164Z warning • The asset directory 'assets/rivals/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:75:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9438050Z warning • The asset directory 'assets/audio/sfx/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:76:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9438946Z warning • The asset directory 'assets/audio/music/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:77:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9439861Z warning • The asset directory 'assets/audio/voice/lumo/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:78:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9440920Z warning • The asset directory 'assets/audio/voice/lumo_free/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:79:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9441831Z warning • The asset directory 'assets/companion/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:80:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9442919Z warning • The asset directory 'assets/lottie/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:81:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9444485Z warning • The asset directory 'assets/learning_questions/' doesn't exist. Try creating the directory or fixing the path to the directory • docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml:82:7 • asset_directory_does_not_exist
+2026-11-14T07:26:58.9445389Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/core/app_update_service.dart:79:5 • prefer_const_declarations
+2026-11-14T07:26:58.9446042Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/app_update_service.dart:89:58 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9446696Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:644:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9447347Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1003:13 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9448016Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1035:68 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9448669Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1095:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9449319Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:299:40 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9449973Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:302:37 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9450628Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:328:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9451288Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:330:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9451937Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:332:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9452749Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:335:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9453403Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:341:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9454055Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:343:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9454801Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:345:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9455451Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:354:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9456103Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_guide.dart:212:51 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9456782Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:69:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9457563Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:73:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9458259Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:75:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9458953Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:192:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9459638Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:105:66 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9460316Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:136:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9461001Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:168:37 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9461670Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:187:53 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9462373Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/concept_graph.dart:31:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9463271Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:155:32 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9464042Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:158:45 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9464803Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:184:37 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9465557Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:224:45 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9466315Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:227:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9467070Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:235:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9467917Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:253:51 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9468692Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:137:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9469436Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:153:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9470171Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:165:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9470998Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:206:5 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9471742Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:38:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9472614Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:42:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9473386Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:46:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9474153Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:66:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9474949Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:104:11 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9475711Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:146:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9476469Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:152:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9477209Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:78:15 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9477930Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:90:44 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9478641Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:123:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9479351Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:150:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9480061Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:160:5 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9480868Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:198:32 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9481580Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:205:11 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9482290Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:221:40 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9483123Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:235:50 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9483875Z    info • Dangling library doc comment. Add a 'library' directive after the library comment • lib/domain/quiz/quiz_rewards.dart:1:1 • dangling_library_doc_comments
+2026-11-14T07:26:58.9484530Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/agent/lumo_agent_content.dart:90:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9485247Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_round.dart:248:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9501738Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_round.dart:289:48 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9503627Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:38:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9504892Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:121:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9506139Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:124:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9507381Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:142:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9508609Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:171:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9509874Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:219:27 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9511126Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:253:13 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9511947Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:259:13 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9512832Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:264:57 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9513716Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:88:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9514464Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:130:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9515211Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:143:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9516046Z    info • Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check • lib/features/games/connect_four/lumo_connect_four_game.dart:143:37 • use_build_context_synchronously
+2026-11-14T07:26:58.9516958Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:153:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9517708Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:163:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9518479Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:173:48 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9519227Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:269:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9519980Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:287:46 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9520737Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:476:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9521476Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/mini_games/lesson_trail_game.dart:48:55 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9522257Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:86:25 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9523195Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:88:25 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9524019Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:92:25 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9524832Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:210:16 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9525652Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:304:14 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9526439Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/features/learning/cross_grade_practice_screen.dart:193:5 • prefer_const_declarations
+2026-11-14T07:26:58.9527265Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_hub.dart:50:59 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9528026Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_hub.dart:181:41 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9528839Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:43:7 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9529674Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:91:19 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9530528Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_screen.dart:96:52 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9531241Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_screen.dart:179:38 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9532010Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:383:43 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9532915Z    info • Unnecessary braces in a string interpolation. Try removing the braces • lib/features/learning/lumo_rechentricks_poster_screen.dart:435:30 • unnecessary_brace_in_string_interps
+2026-11-14T07:26:58.9533645Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:63:59 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9534401Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:78:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9535147Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:108:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9535894Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:152:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9536639Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:161:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9537350Z warning • The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto' • lib/features/live/lumo_live_pro_screen.dart:343:16 • unused_element
+2026-11-14T07:26:58.9538025Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/lumo3d/lumo3d_launcher.dart:45:67 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9538712Z warning • Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import
+2026-11-14T07:26:58.9539418Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/magic_hub/lumo_magic_hub_screen.dart:104:47 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9540118Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:229:52 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9540910Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:232:52 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9541596Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:242:52 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9542306Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/story/lumo_story_library_screen.dart:50:20 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9543141Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/story/lumo_story_library_screen.dart:55:20 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9543885Z    info • The private field _companion could be 'final'. Try making the field 'final' • lib/features/story/lumo_story_setup_screen.dart:34:10 • prefer_final_fields
+2026-11-14T07:26:58.9544475Z    info • The private field _magicItem could be 'final'. Try making the field 'final' • lib/features/story/lumo_story_setup_screen.dart:35:10 • prefer_final_fields
+2026-11-14T07:26:58.9545060Z warning • The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field
+2026-11-14T07:26:58.9545710Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/features/story/widgets/lumo_story_scene.dart:327:5 • prefer_const_declarations
+2026-11-14T07:26:58.9546426Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/teacher/student_assignments_card.dart:105:45 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9547136Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tests/iq_test_screen.dart:177:53 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9547863Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tutoring/guided_language_nature_illustration.dart:154:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9548634Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tutoring/guided_language_nature_illustration.dart:192:9 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9549540Z    info • The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart'. Try removing the import directive • lib/widgets/design/lumo_design_system.dart:1:8 • unnecessary_import
+2026-11-14T07:26:58.9550451Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/widgets/design/lumo_design_system.dart:1056:39 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9551241Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/widgets/design/lumo_design_system.dart:1187:23 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9552005Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import
+2026-11-14T07:26:58.9552841Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/games/connect_four_runtime_bridge.dart:40:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9553446Z    info • Don't invoke 'print' in production code. Try using a logging framework • test/games/connect_four_runtime_bridge.dart:62:5 • avoid_print
+2026-11-14T07:26:58.9554076Z    info • Don't invoke 'print' in production code. Try using a logging framework • test/games/connect_four_runtime_bridge.dart:71:5 • avoid_print
+2026-11-14T07:26:58.9554600Z    info • Don't invoke 'print' in production code. Try using a logging framework • test/games/connect_four_runtime_bridge.dart:78:5 • avoid_print
+2026-11-14T07:26:58.9555120Z    info • Don't invoke 'print' in production code. Try using a logging framework • test/games/connect_four_runtime_bridge.dart:80:5 • avoid_print
+2026-11-14T07:26:58.9555780Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • test/games/star_trail_visual_test.dart:34:17 • prefer_interpolation_to_compose_strings
+2026-11-14T07:26:58.9556515Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/grade_1_to_4_subject_menu_integrity_test.dart:83:41 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9557418Z    info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive • test/helpers/lumo_capture.dart:2:8 • unnecessary_import
+2026-11-14T07:26:58.9558229Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:106:66 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9558918Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:137:7 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9559595Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:168:37 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9560300Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/live_alternative_scene_test.dart:30:51 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9560988Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import
+2026-11-14T07:26:58.9561811Z    info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive • test/lumo_cards_reference_showcase_test.dart:2:8 • unnecessary_import
+2026-11-14T07:26:58.9562787Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • test/tutoring/language_nature_lessons_test.dart:19:7 • prefer_const_declarations
+2026-11-14T07:26:58.9563497Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/tutoring/language_nature_runtime_test.dart:133:15 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9564213Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/tutoring/language_nature_runtime_test.dart:183:13 • curly_braces_in_flow_control_structures
+2026-11-14T07:26:58.9564906Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • test/tutoring/place_value_tutor_test.dart:22:5 • prefer_const_declarations
+2026-11-14T07:26:58.9565247Z 
+2026-11-14T07:26:58.9565353Z 338 issues found. (ran in 11.2s)
+2026-11-14T07:26:58.9569613Z ##[error]Process completed with exit code 1.
+2026-11-14T07:26:58.9611885Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T07:26:58.9612052Z with:
+2026-11-14T07:26:58.9612182Z   name: lumo-1983-quiz-studio-captures
+2026-11-14T07:26:58.9612356Z   path: .ci-results/quiz-premium-stage/
+2026-11-14T07:26:58.9612686Z   include-hidden-files: true
+2026-11-14T07:26:58.9612944Z   if-no-files-found: warn
+2026-11-14T07:26:58.9613082Z   retention-days: 30
+2026-11-14T07:26:58.9613213Z   compression-level: 6
+2026-11-14T07:26:58.9613342Z   overwrite: false
+2026-11-14T07:26:58.9613464Z env:
+2026-11-14T07:26:58.9613577Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:58.9613769Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:58.9614044Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:58.9614311Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T07:26:58.9614521Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T07:26:58.9614673Z ##[endgroup]
+2026-11-14T07:26:59.0735182Z (node:3028) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T07:26:59.0735584Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T07:26:59.0746869Z ##[warning]No files were found with the provided path: .ci-results/quiz-premium-stage/. No artifacts will be uploaded.
+2026-11-14T07:26:59.0903423Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T07:26:59.0903677Z with:
+2026-11-14T07:26:59.0903912Z   name: lumo-candidate-all-flutter-tests-and-captures
+2026-11-14T07:26:59.0904217Z   path: .ci-results/full-acceptance/
+2026-11-14T07:26:59.0904462Z   include-hidden-files: true
+2026-11-14T07:26:59.0904688Z   if-no-files-found: warn
+2026-11-14T07:26:59.0904896Z   retention-days: 30
+2026-11-14T07:26:59.0905098Z   compression-level: 6
+2026-11-14T07:26:59.0905297Z   overwrite: false
+2026-11-14T07:26:59.0905485Z env:
+2026-11-14T07:26:59.0905664Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:59.0905960Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:59.0906387Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:59.0906809Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T07:26:59.0907138Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T07:26:59.0907384Z ##[endgroup]
+2026-11-14T07:26:59.2072148Z (node:3040) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T07:26:59.2072700Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T07:26:59.2082313Z ##[warning]No files were found with the provided path: .ci-results/full-acceptance/. No artifacts will be uploaded.
+2026-11-14T07:26:59.2901255Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T07:26:59.2901429Z with:
+2026-11-14T07:26:59.2901571Z   name: lumo-connect-four-2020-build-contracts
+2026-11-14T07:26:59.2901752Z   path: .ci-results/build-contracts.log
+2026-11-14T07:26:59.2901909Z   if-no-files-found: error
+2026-11-14T07:26:59.2902046Z   retention-days: 30
+2026-11-14T07:26:59.2902174Z   compression-level: 6
+2026-11-14T07:26:59.2902301Z   overwrite: false
+2026-11-14T07:26:59.2902430Z   include-hidden-files: false
+2026-11-14T07:26:59.2902734Z env:
+2026-11-14T07:26:59.2902863Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:59.2903050Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:59.2903450Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:59.2903827Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T07:26:59.2904033Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T07:26:59.2904184Z ##[endgroup]
+2026-11-14T07:26:59.3980492Z (node:3064) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T07:26:59.3981172Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T07:26:59.3994871Z ##[error]No files were found with the provided path: .ci-results/build-contracts.log. No artifacts will be uploaded.
+2026-11-14T07:26:59.4200787Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T07:26:59.4201042Z with:
+2026-11-14T07:26:59.4201257Z   name: lumo-candidate-pinned-native-gameplay
+2026-11-14T07:26:59.4201709Z   path: acceptance-native/
+2026-11-14T07:26:59.4201935Z   if-no-files-found: warn
+2026-11-14T07:26:59.4202142Z   retention-days: 30
+2026-11-14T07:26:59.4202339Z   compression-level: 6
+2026-11-14T07:26:59.4202681Z   overwrite: false
+2026-11-14T07:26:59.4202879Z   include-hidden-files: false
+2026-11-14T07:26:59.4203093Z env:
+2026-11-14T07:26:59.4203269Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T07:26:59.4203563Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:59.4203997Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T07:26:59.4204417Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T07:26:59.4204745Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T07:26:59.4204979Z ##[endgroup]
+2026-11-14T07:26:59.5266861Z (node:3076) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T07:26:59.5267531Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T07:26:59.5277979Z ##[warning]No files were found with the provided path: acceptance-native/. No artifacts will be uploaded.
+2026-11-14T07:26:59.5924757Z Post job cleanup.
+2026-11-14T07:26:59.5927143Z ##[start-action display=Cache pub dependencies;id=__19c95f31-6a44-4c6b-ac63-ac520cc8f5ff.cache-pub]
+2026-11-14T07:26:59.5928581Z ##[end-action id=__19c95f31-6a44-4c6b-ac63-ac520cc8f5ff.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T07:26:59.5929787Z ##[start-action display=Cache Flutter;id=__19c95f31-6a44-4c6b-ac63-ac520cc8f5ff.cache-flutter]
+2026-11-14T07:26:59.5931235Z ##[end-action id=__19c95f31-6a44-4c6b-ac63-ac520cc8f5ff.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T07:26:59.7132766Z Post job cleanup.
+2026-11-14T07:26:59.8037034Z (node:3088) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T07:26:59.8037730Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T07:26:59.8724705Z Post job cleanup.
+2026-11-14T07:26:59.9326230Z [command]/usr/bin/git version
+2026-11-14T07:26:59.9357763Z git version 2.56.1
+2026-11-14T07:26:59.9380958Z Temporarily overriding HOME='/home/runner/work/_temp/b688fe0f-8c48-49fe-8f93-1a955770f1ac' before making global git config changes
+2026-11-14T07:26:59.9381732Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T07:26:59.9383190Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T07:26:59.9822392Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:26:59.9856139Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:27:00.0066500Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:27:00.0099147Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:27:00.0286039Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:27:00.0310376Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:27:00.0820573Z Evaluate and set job outputs
+2026-11-14T07:27:00.0824601Z Cleaning up orphan processes
+2026-11-14T07:27:00.1074226Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

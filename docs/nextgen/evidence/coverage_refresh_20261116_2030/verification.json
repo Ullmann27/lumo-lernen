@@ -1,0 +1,21 @@
+{
+  "checkedAtUtc": "2026-11-16T02:11:26.924484+00:00",
+  "catalogSourceCommit": "83038afc19365196eeaa49432e0025bba0975518",
+  "catalogSha256": "0e8fd6d3e27bf6f8536f403d566a48a78aaf67a860b171f503684a8a91fc05d4",
+  "coverageJsonSha256": "c695d38378a8ca760ec60fdb41a2c5f22fef900e1bc9bd56c732564609d5fad7",
+  "coverageMarkdownSha256": "a930ded8fc31a502ac14205f2e427fc900f5a109b5b17e072d13a9b1f74b14d9",
+  "sourceHashesVerified": 248,
+  "sparseCommittedBlobReads": [
+    {
+      "path": "docs/evidence/lumo-nextgen-game-questions/focused-tests.log",
+      "sha256": "59f9b16e734b79c9e07b01bc5d7d69e8837c7814d48bab981f02269f812f7685",
+      "readFrom": "committed_head_blob"
+    }
+  ],
+  "protectedFilesComparedByteForByte": 18,
+  "protectedBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
+  "catalogExportTestsPassed": 1,
+  "fullModernizationComplete": false,
+  "android2030Passed": false,
+  "note": "Executed catalog at published product checkpoint83038. No subsequent lib/assets/android delta is allowed without a renewed snapshot. Version/delivery metadata follows separately."
+}

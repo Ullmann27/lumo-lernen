@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T04:09:04.015360+00:00",
+  "result": "NO_CONCRETE_SOURCE_EXECUTION_OR_BINDING_BLOCKER",
+  "review_kind": "Independent read-only source review; no tests, imports of executable code, emulator, APK download, Git/index/ref mutation or source edit.",
+  "source_files": [
+    {
+      "path": "scripts/run_unchanged_creative_diagnostic.py",
+      "bytes": 9941,
+      "sha256": "9c816f83af236b9275c1d40124450361783d211fcf9f317c5a128adef9e12085",
+      "git_blob": "a8ed9acb0f48c390538226ff5f45f5d4fa8f06a1"
+    },
+    {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19392,
+      "sha256": "0be6f50c409ce620ca98594850a2cdc7b661e8f059229cb9fca41bf53fcbb10a",
+      "git_blob": "6b302d3b23d50ea7fc09b381f5eff69de96d31c2"
+    },
+    {
+      "path": ".github/workflows/lumo-creative-7b16-diagnostic.yml",
+      "bytes": 12106,
+      "sha256": "66fa993e4c093bf2b054eab67cb9afcc8ab58226e08325a09cba784434838741",
+      "git_blob": "28c5150608a8fc35a2756a32901981bdd6954fa3"
+    },
+    {
+      "path": "scripts/export_creative_evidence_parts.py",
+      "bytes": 12904,
+      "sha256": "2b1dc64b75456b92a46e2017b6d28ffac11e35b6dcfbb0e20a9d32f32d7fa092",
+      "git_blob": "4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "bytes": 79049,
+      "sha256": "7e22b769aca9482efef313307c4369a6d311e4dfaeb8c7d85d072bb2df12a824",
+      "git_blob": "3a03ab1fd9ae6e9bef9dabeba2fa038e2488fcb8"
+    }
+  ],
+  "reviewed_local_parent": "76443d3969856bfbba0e5b19231917f1743cf2a6",
+  "distinct_identities": {
+    "qa": "Future committed QA source from PR head or workflow-dispatch SHA, original QA run/attempt/job metadata; never asserted to be the APK source.",
+    "apk_host": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "native": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+    "original_build_run": 43540111465,
+    "original_artifact_id": 14093773196,
+    "original_build_run_overall_failure_preserved": true
+  },
+  "findings": [
+    {
+      "area": "Metadata and source routing",
+      "detail": "The new job name maps to exactly the Creative workflow and branch. The four runtime diagnostic routes retain their original mappings. Complete original candidate/QA collections, successful original build step/job, artifact ID/digest/size, both source HEAD/tree identities and original APK/PCK bytes remain mandatory."
+    },
+    {
+      "area": "Import and pre-input order",
+      "detail": "prepare resolves distinct real checkouts and invokes common.bind. It then binds native source/files and the committed runner, revalidates every context input hash and required committed helper collection, and writes separate preflight reports. Tour.__init__ checks that the imported runner is the committed QA file and revalidates context before loading live helpers. Tour.run verifies actual imported QA helper paths/bytes and all tracked-clean HEADs before actual root/display/install/input operations."
+    },
+    {
+      "area": "Candidate CWD and bytes",
+      "detail": "The existing APK verifier temporarily runs in the candidate checkout during common.bind; Tour.run independently switches to candidate cwd before calling the original verifier and reading the embedded PCK again. Native and candidate provenance are not replaced by QA values. The original candidate ZIP itself is not read by preflight, and that limitation is explicitly recorded."
+    },
+    {
+      "area": "Workflow inputs and checkout closure",
+      "detail": "QA checkout uses the actual PR head, not synthetic mergeSHA. Candidate sparse paths include config, original probes and the two Spielwelt source files; cone checkout includes root pubspec.yaml. Native sparse paths include all9 required source files. The original build workflow creates dist/ANDROID-TOUR-SHA256SUMS.txt, matching the new command. OCR dependencies include both German and English data. Fixed internal branch/repository guard excludes forks; contents/actions permissions are read-only and there is no APK build/publish action."
+    },
+    {
+      "area": "Exporter schema",
+      "detail": "Only the explicitly named Creative diagnostic workflow uses export-index schema2 and probe_source_sha. Other workflows retain schema1/host_source_sha. Every part still has the same complete hashed index and preserved original paths/bytes; original candidate/source binding remains in the separately indexed preflight payload. Eight correctly named bounded part uploads remain conditional on successful exporter outputs, and the original full upload remains independent with always(). No success flag replaces a failed tour."
+    },
+    {
+      "area": "Exit and review semantics",
+      "detail": "The runner returns the tour exit code, preflight errors return1, and failed game rows prevent overall success. A successful recording remains RECORDED_REVIEW_REQUIRED, including mandatory later human Jump-video review. No FPS, physical Fold or new Android result is claimed by this source review."
+    }
+  ],
+  "existing_common_functions_AST_identical_to_original_QA": [
+    "verify_candidate",
+    "source_identity",
+    "committed_file",
+    "verify_apk",
+    "bind",
+    "read_json",
+    "complete_rows",
+    "write_report"
+  ],
+  "studio_changed_nodes_relative_to_frozen_godot_source": [
+    "committed_helper",
+    "Tour.__init__",
+    "Tour.audit_adb",
+    "Tour.run"
+  ],
+  "committed_helper_predicates_unchanged_only_two_error_labels_changed": true,
+  "godot_functional_source_sha256": "05678c1812305acaf1ed53c791e05a5c1c175830e5029053bf4ab2febfb79f4b",
+  "remaining_required_validation": [
+    "Full binder test must run after committing these exact sources in a clean snapshot; the existing dirty-checkout RED is valid and must remain unchanged.",
+    "The actual future Actions run must independently establish downloads, checkout trees, emulator boot, installation, input progression and all game results.",
+    "Full original APK ZIP authenticity is bound by official metadata plus unchanged extracted APK/PCK digests, not independently recomputed ZIP bytes in this preflight.",
+    "Export parts retain source hashes and original report bytes but do not themselves validate game functionality or create a visual approval."
+  ]
+}

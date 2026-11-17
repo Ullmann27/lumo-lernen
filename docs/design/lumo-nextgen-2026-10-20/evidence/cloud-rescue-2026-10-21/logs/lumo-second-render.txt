@@ -1,0 +1,24 @@
+00:00 +0: loading /workspace/lumo-lernen/test/home_hero_accessibility_test.dart
+00:00 +0: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: (setUpAll)
+00:00 +0: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: Home keeps the complete fox and welcome at 840.0 / 1.0
+00:01 +1: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: Home keeps the complete fox and welcome at 393.0 / 2.0
+00:01 +2: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: Home keeps the complete fox and welcome at 320.0 / 1.2
+00:02 +3: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: (tearDownAll)
+00:02 +3: loading /workspace/lumo-lernen/test/nextgen_premium_tiles_test.dart
+00:03 +3: /workspace/lumo-lernen/test/nextgen_premium_tiles_test.dart: Next Gen tile remains accessible and opens its real action
+00:03 +4: /workspace/lumo-lernen/test/nextgen_premium_tiles_test.dart: Next Gen card stays usable at compact phone width
+00:04 +5: loading /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart
+00:04 +5: /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart: HIGH requires measured headroom; repeated slow frames stop effects
+00:04 +6: /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart: one isolated expensive frame does not downgrade a smooth window
+00:04 +7: /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart: reduced motion and hidden routes stop the scene clock
+00:05 +8: /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart: scene pauses when scrolled out and resumes when visible
+00:05 +9: loading /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart
+00:11 +9: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: (setUpAll)
+00:12 +9: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home phone
+00:15 +10: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home small-phone
+00:16 +11: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home fold-cover
+00:17 +12: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home fold-open
+00:19 +13: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home landscape
+00:20 +14: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home large-text
+00:22 +15: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: (tearDownAll)
+00:22 +15: All tests passed!

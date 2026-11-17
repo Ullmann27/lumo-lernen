@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_LINT0_PEER_REVIEW_PENDING_NO_CI_START",
+  "created_at_utc": "2026-11-14T11:41:10.207601+00:00",
+  "branch": "integration/lumo-feature-connections-20261114",
+  "product_checkpoint": "a118409930ecdf605743382051e88f7e0898b8e9",
+  "source_count": 1,
+  "source": {
+    "path": ".github/workflows/lumo-feature-connections.yml",
+    "mode": "100644",
+    "bytes": 11982,
+    "sha256": "7e63176552cd978bde34aa15f23fec998799d998e8c6ae4dced249269140c3ae",
+    "git_blob": "41dec34d4e04a07f006c62bba8c00f6937fb48a5"
+  },
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 4387,
+    "sha256": "67aa517d6d58772c8d525d05816208a9294db6f2d436aa3022a3923fba3afe65",
+    "git_blob": "7b0f6ddf7f6911c290a12ccd4b42f673e837b313"
+  },
+  "patch": {
+    "path": "workflow.patch",
+    "bytes": 12548,
+    "sha256": "18e260e091863c411f152fe2d8dcc7a165785ca4614ac7670dba0a699a405531",
+    "git_blob": "1cecd2fcc2456283d8cb4bcad06097b0fc27c35d"
+  },
+  "actionlint": {
+    "path": "actionlint-result.json",
+    "bytes": 714,
+    "sha256": "f835c20a9f9f421a8070cc4fdccb66b16e2684628de6f19e90f1850e6b8ca812",
+    "git_blob": "16bb2defb28043de2b3899daa3846f138f6410b6",
+    "exit_code": 0,
+    "source_unchanged": true
+  },
+  "expected_test_count": 22,
+  "actual_product_tests": "NOT_RUN",
+  "preflight": {
+    "path": "preflight/preflight.json",
+    "bytes": 52907,
+    "sha256": "305b261a216a5cbfdff0842fd3d1c0a79a171d7bc0e9603039d5e1ec8a9ac72c",
+    "git_blob": "17a67db6b331154b353cbc936a6f8f5c6a595e6a"
+  },
+  "peer_review": {
+    "agent": "/root/pipeline_repair",
+    "requested": true,
+    "status": "PENDING"
+  },
+  "scope": "Single workflow source only; no existing workflow, product, pin, release, index, Git or CI mutation.",
+  "next": "Root independent review, exact source checkpoint and separate branch push activation; no result transfer from another source."
+}

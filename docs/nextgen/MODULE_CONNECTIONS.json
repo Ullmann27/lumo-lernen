@@ -1,0 +1,892 @@
+{
+  "schemaVersion": 1,
+  "description": "Concrete specialist-module connections; not a full 3D completion claim.",
+  "integrationBase": "daa3e2d867a7de307c721c1f38faff2effe0845e",
+  "rootBase": "afb6aadd3fb3e1ff2c5220603c86478a31e531be",
+  "ownerSource": {
+    "head": "573eb1a14045eb2e7071f250107d6b9a4fb3bf96",
+    "frozenSources": "8d612f074254548ef8e9296423222832c61f0375",
+    "uncommittedOwnerFilesExplicitlyFrozen": true
+  },
+  "counts": {
+    "screens": 18,
+    "routeIds": 19,
+    "moduleTaskScopeScreens": 17,
+    "legacyPlusBindingScreens": 1
+  },
+  "verification": {
+    "testsPassed": 134,
+    "analyzedDartFiles": 21,
+    "testsLog": "docs/nextgen/evidence/chat2_completion_20261115/module_tests.log",
+    "analysisLog": "docs/nextgen/evidence/chat2_completion_20261115/module_analyze.log",
+    "nativePlatformChannelMocked": true
+  },
+  "excludedProtectedRoute": "d1_woerter",
+  "modules": [
+    {
+      "routeIds": [
+        "d2_artikel"
+      ],
+      "screen": "ArtikelLernenScreen",
+      "file": "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart",
+      "sha256": "c6c436beb3aac11f10da851d15559cd533e29cc191740dcb7d6eff7049c0fb3e",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m4_bruch"
+      ],
+      "screen": "BruchrechnenScreen",
+      "file": "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart",
+      "sha256": "3ebafd28a0398ae83efe27cd2c23c0733e8d6b27553c029b118d66465814cc62",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m2_einmaleins",
+        "m3_einmaleins_voll"
+      ],
+      "screen": "EinmaleinsScreen",
+      "file": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart",
+      "sha256": "8d06dd4f85f4399e7acf0d01fc74e35a6cd2140872c94c553739e6693673b49c",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "s1_farben"
+      ],
+      "screen": "FarbenScreen",
+      "file": "lib/features/learning_modules/farben/farben_screen.dart",
+      "sha256": "862022e4d886b57d5f9fe5fdaa9db81593d1fff25d3e56e2f5fbfb25652dbded",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/farben/farben_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m1_formen"
+      ],
+      "screen": "FormenScreen",
+      "file": "lib/features/learning_modules/formen/formen_screen.dart",
+      "sha256": "f41d5b4083ad186e62ba69cd1f67990ff37da32668243699c5021c8a5ea7e589",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/formen/formen_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m2_geld"
+      ],
+      "screen": "GeldScreen",
+      "file": "lib/features/learning_modules/geld/geld_screen.dart",
+      "sha256": "d9c027bbe040fe4d9a431d9e6f2dd87bf231698fcc6d7041fa385eb4ed522f66",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/geld/geld_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "s2_jahreszeiten"
+      ],
+      "screen": "JahreszeitenScreen",
+      "file": "lib/features/learning_modules/jahreszeiten/jahreszeiten_screen.dart",
+      "sha256": "ed4e5fa1f675666ef4ee6e6e8efaff8d4f5cfff6bee7ca98fbd663117be9d754",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/jahreszeiten/jahreszeiten_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "d2_mehrzahl"
+      ],
+      "screen": "MehrzahlScreen",
+      "file": "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart",
+      "sha256": "e8434659878c6aa47dca30485ef3c30e8f63edb65daa0f4d91f3c5a86aa755e2",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m1_minus10"
+      ],
+      "screen": "MinusBis10Screen",
+      "file": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+      "sha256": "621e27be21059d66ea34f6d094ece254b30cf86b09cb0ef764753d2ea5cd762d",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m1_plus10"
+      ],
+      "screen": "PlusBis10Screen",
+      "file": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+      "sha256": "31ad5bde3d8cb897d3feebf85edf21f60e7a5643d1bb3f98c92053db4c7b3872",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "LearningCoachBinding with existing plus task serial",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "existing _handleAnswer(int)",
+        "scoringAuthority": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart::_handleAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "plus10-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "s1_tiere"
+      ],
+      "screen": "TiereScreen",
+      "file": "lib/features/learning_modules/tiere/tiere_screen.dart",
+      "sha256": "06335fa4649bc559d68b2f7c50bed9c0876b76f7c52c5a5e07e60536b3b2cc12",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/tiere/tiere_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m2_uhr"
+      ],
+      "screen": "UhrLernenScreen",
+      "file": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+      "sha256": "d75005c24c4c34bc6d5628a3bba6c44c3f63dc56610b6e3bcf2ab0f70368ec63",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "s2_verkehr"
+      ],
+      "screen": "VerkehrScreen",
+      "file": "lib/features/learning_modules/verkehr/verkehr_screen.dart",
+      "sha256": "4d035b56ad5d402bf0fb72f0074b8f55cff0d8e2d679d8d0d955053bf6b92c1e",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/verkehr/verkehr_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "s2_wetter"
+      ],
+      "screen": "WetterScreen",
+      "file": "lib/features/learning_modules/wetter/wetter_screen.dart",
+      "sha256": "f85bd00c961bf5de8351d59c4ca32b4d8621405c5375905f4cf9a79729be108e",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/wetter/wetter_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "d3_wortarten"
+      ],
+      "screen": "WortartenScreen",
+      "file": "lib/features/learning_modules/wortarten/wortarten_screen.dart",
+      "sha256": "876d14c168fe3f2941ba0bfb5dbc5beb49f36c7bdd17b61e838ce958555f7696",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/wortarten/wortarten_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m2_zahlen100"
+      ],
+      "screen": "ZahlenBis100Screen",
+      "file": "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart",
+      "sha256": "136fc4f02d9aa9f43b9a0626c147ca505eb82626390a9c0f897d7219c4ff5963",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "m1_zahlen10"
+      ],
+      "screen": "ZahlenBis10Screen",
+      "file": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+      "sha256": "2cd5083572830dc8b6d2462a314e4356716cd31b868300e17030eee36d1bfa57",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/math_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    },
+    {
+      "routeIds": [
+        "d3_zeitformen"
+      ],
+      "screen": "ZeitformenScreen",
+      "file": "lib/features/learning_modules/zeitformen/zeitformen_screen.dart",
+      "sha256": "399a03a682d68829c65d7be2d79fae62006747a59486407bf0439328b6e21769",
+      "reachable": {
+        "entry": "LumoAkademieScreen -> LearningModuleRegistry.builderFor",
+        "actualWidgetRouteTest": true,
+        "test": "test/design/all_learning_module_routes_test.dart"
+      },
+      "canonicalTaskBinding": "ModuleTaskScope(taskKey, GlobalKey)",
+      "proposal": {
+        "visible": true,
+        "editable": true,
+        "explicitConfirmation": true,
+        "staleConfirmationRejected": true,
+        "callback": "onConfirmChoice(index) -> existing _onAnswer",
+        "scoringAuthority": "lib/features/learning_modules/zeitformen/zeitformen_screen.dart::_onAnswer",
+        "unmatchedCandidateGrades": false
+      },
+      "help": {
+        "staged": true,
+        "repeatAdvancesHint": false,
+        "hiddenHelpRemainsAssisted": true
+      },
+      "native": {
+        "entryKey": "module-open-3d",
+        "factory": "NativeLearningActivity.fromCompanionContext",
+        "launcher": "launchLumo3D(scene: 'learning')",
+        "kind": "task_card",
+        "helpMarkedBeforeAwait": true,
+        "sameTaskRetainedAcrossNativePause": true,
+        "specializedSpatialManipulation": false,
+        "androidDeviceVerified": false
+      },
+      "tests": [
+        "test/design/all_learning_module_routes_test.dart",
+        "test/design/learning_adventure_layout_test.dart",
+        "test/learning/module_coach_confirmation_test.dart (shared adapter + Plus)",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "gaps": [
+        "No specialized native subject-object manipulation is supplied by this generic task_card adapter.",
+        "Native renderer, real microphone and physical-device performance need Root end-to-end verification."
+      ]
+    }
+  ]
+}

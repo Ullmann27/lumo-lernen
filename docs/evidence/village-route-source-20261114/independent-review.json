@@ -1,0 +1,481 @@
+{
+  "schema": 1,
+  "kind": "independent_source_review",
+  "reviewer": "pipeline_repair",
+  "created_at_utc": "2026-11-14T12:08:41Z",
+  "verdict": "NO_CONCRETE_SOURCE_BLOCKER_IN_FROZEN_VILLAGE_PRODUCT_SCOPE",
+  "source_pack": "/workspace/scratch/b3485b7bb989/host-pr497-village-route-integration-a118-20261114",
+  "source_freeze": {
+    "bytes": 24911,
+    "sha256": "c5df8d36119680d4b634f3c294545d7d43be5b43fc6a1e8e819f956bfc9426c8",
+    "git_blob": "36a0657775ac4991acbf9f0714771e38d36a0dd9"
+  },
+  "integration_patch": {
+    "bytes": 29600,
+    "sha256": "72424cc613ae80653ab6bc492abb1ff52bfc365c472c0382d006a167be56da28",
+    "git_blob": "12ded8db35215d05b73c6420630f83e25d8f0250"
+  },
+  "base": {
+    "head": "a118409930ecdf605743382051e88f7e0898b8e9",
+    "tree": "68573f0c40ce641a6443a5648fd664bc44ca6c95"
+  },
+  "producer": {
+    "head": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+    "parent": [
+      "cf2593cb6dec51b66461c8e5984dfbfdd5091c22"
+    ],
+    "original_compare": {
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "identity": {
+        "bytes": 560969,
+        "sha256": "2c18a47de83c3bc156f09e79dc56334bb8e261b53e5e50de0cb3b593bd3333dd",
+        "git_blob": "b50b4ef45409a5f148b9043d63813d25c2af66cb"
+      }
+    }
+  },
+  "native_pairing": {
+    "head": "afc0df9a2b1794f39051add9dfce0cf947bb177b",
+    "tree": "3e621dc8230e155e1089deb1a40c22f177e546b3",
+    "sha256": "a700a2eafb9f53adc4d46c45b532fc246fe3ae3c9213d32ab1529011b876a091"
+  },
+  "reviewed_source_identities": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "after": {
+        "bytes": 60198,
+        "sha256": "7b69bd88bb6651c65981e1d64252614848999326b0d14881b86aa305e96db5ca",
+        "git_blob": "166ee19435146a9d42c69eeadd71754dac88d9d7"
+      },
+      "before": {
+        "bytes": 59951,
+        "sha256": "4e155fe8681944ffe29be3c5e348845332b988bee580a667a5db6a98a7bdf577",
+        "git_blob": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b"
+      },
+      "producer": {
+        "bytes": 60198,
+        "sha256": "7b69bd88bb6651c65981e1d64252614848999326b0d14881b86aa305e96db5ca",
+        "git_blob": "166ee19435146a9d42c69eeadd71754dac88d9d7"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+      "after": {
+        "bytes": 11910,
+        "sha256": "0e5dd5c39ce1f60a56943c2aa6abb3dd956df1b80015e9c482fd0b461c7cb9bc",
+        "git_blob": "4411dc35a0d9dbb063d061f532698fb27bd9a6ea"
+      },
+      "before": {
+        "bytes": 11838,
+        "sha256": "ebc84df2994ddd9834f0af1a88660380e88ecadb733924b1de5d434490e3ad6e",
+        "git_blob": "c3cb6bb44c1eff098245aec5d06fbda97b7ab87d"
+      },
+      "producer": {
+        "bytes": 11910,
+        "sha256": "0e5dd5c39ce1f60a56943c2aa6abb3dd956df1b80015e9c482fd0b461c7cb9bc",
+        "git_blob": "4411dc35a0d9dbb063d061f532698fb27bd9a6ea"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "after": {
+        "bytes": 30182,
+        "sha256": "be8a64d99829b60f974c9c907126c1f0f11597fb9ce88ef61c50ce56d851ffc4",
+        "git_blob": "597defa53a3959a3b1fa95f1e495b91a9ce47af5"
+      },
+      "before": {
+        "bytes": 28438,
+        "sha256": "c23fc88187cfea258250262c510e599c71a42466cd2058f151f3fe5ab39cf146",
+        "git_blob": "8097e4695614b8215e59025707ec9cc1b12c4d80"
+      },
+      "producer": {
+        "bytes": 30182,
+        "sha256": "be8a64d99829b60f974c9c907126c1f0f11597fb9ce88ef61c50ce56d851ffc4",
+        "git_blob": "597defa53a3959a3b1fa95f1e495b91a9ce47af5"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "after": {
+        "bytes": 6778,
+        "sha256": "bbbd9aaf38dd1034005c05c5a6f78869b50932aead3a2c18d4b1703c100f8a67",
+        "git_blob": "a5ad13f364e40d19ab2b4c809dbb4ea3729f631d"
+      },
+      "before": {
+        "bytes": 6340,
+        "sha256": "086df3ad460485fe309c53ada07743b83880f6e79bd140159ed9dd92e67ca64c",
+        "git_blob": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8"
+      },
+      "producer": {
+        "bytes": 6778,
+        "sha256": "bbbd9aaf38dd1034005c05c5a6f78869b50932aead3a2c18d4b1703c100f8a67",
+        "git_blob": "a5ad13f364e40d19ab2b4c809dbb4ea3729f631d"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "after": {
+        "bytes": 10640,
+        "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+        "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+      },
+      "before": {
+        "bytes": 10336,
+        "sha256": "900e533784109cecc11e0da27cb7ae1e6909de74e58a9119c030b91e8956085f",
+        "git_blob": "dd95361b132c7a73b372a3225c75e645be07e1b7"
+      },
+      "producer": {
+        "bytes": 10640,
+        "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+        "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+      "after": {
+        "bytes": 13724,
+        "sha256": "c8445a1808f38957f73d776ab3c97d8319b94b000a91f3abfd9985aa4f48c316",
+        "git_blob": "fe23f1ad8ceb3f8c26d378b475e1f3d946929b36"
+      },
+      "before": {
+        "bytes": 13559,
+        "sha256": "ca75568750c8ea1efdc3ead7863f5d91b8330e565597173bed9af84bf4c32b74",
+        "git_blob": "3408e5f304003c91fc3172d03b4d22ad467d8ec0"
+      },
+      "producer": {
+        "bytes": 13724,
+        "sha256": "c8445a1808f38957f73d776ab3c97d8319b94b000a91f3abfd9985aa4f48c316",
+        "git_blob": "fe23f1ad8ceb3f8c26d378b475e1f3d946929b36"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "after": {
+        "bytes": 6523,
+        "sha256": "d51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d",
+        "git_blob": "9999632174044af584c87147c5347c167b830918"
+      },
+      "before": {
+        "bytes": 6483,
+        "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+        "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+      },
+      "producer": null,
+      "freeze_match": true
+    },
+    {
+      "path": "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "after": {
+        "bytes": 5217,
+        "sha256": "cc42bda018a3433cebaef86177bb72fc1279f38f91e2def6f59b2fb66289db0a",
+        "git_blob": "935ca225a6fa67df73f520494d61480943435595"
+      },
+      "before": null,
+      "producer": {
+        "bytes": 5217,
+        "sha256": "cc42bda018a3433cebaef86177bb72fc1279f38f91e2def6f59b2fb66289db0a",
+        "git_blob": "935ca225a6fa67df73f520494d61480943435595"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "test/games/dorfwirtschaft_portal_test.dart",
+      "after": {
+        "bytes": 3074,
+        "sha256": "bc036e23a30432e83fb8946adf6a997ebf0173ea360ec7697866f96221ddd321",
+        "git_blob": "bbc01f1341ba6f6dce42c907cd52d45ffe21108f"
+      },
+      "before": null,
+      "producer": {
+        "bytes": 3074,
+        "sha256": "bc036e23a30432e83fb8946adf6a997ebf0173ea360ec7697866f96221ddd321",
+        "git_blob": "bbc01f1341ba6f6dce42c907cd52d45ffe21108f"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "test/games/games_world_layout_test.dart",
+      "after": {
+        "bytes": 7065,
+        "sha256": "659bac62f8046bdb41be0708ebb12a601448b5fc3b295953b7ffd88f794162ba",
+        "git_blob": "7448e1633da016e23d316b134f837ab26355080d"
+      },
+      "before": {
+        "bytes": 6993,
+        "sha256": "abdd474a4c652487bf4f96504dfee07f9d0224c00a5cba331ac277ef068f0e4d",
+        "git_blob": "7bbd14eb377b54166146f6a5b36998cb70f1f744"
+      },
+      "producer": {
+        "bytes": 7065,
+        "sha256": "659bac62f8046bdb41be0708ebb12a601448b5fc3b295953b7ffd88f794162ba",
+        "git_blob": "7448e1633da016e23d316b134f837ab26355080d"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "test/games/spielwelt_hub_capture_test.dart",
+      "after": {
+        "bytes": 3521,
+        "sha256": "540659d39bb47bc2027b37ec34549475ce65b31f6025c53b33a9172129c7c54e",
+        "git_blob": "69285945ceb09770b21f6fbb9aaded4f1092fe35"
+      },
+      "before": {
+        "bytes": 3473,
+        "sha256": "beacea39304c689520c96bbbdc436cbe75b6f82e461cb6b42bd175ff27fccb89",
+        "git_blob": "5b28919bc753727f6f6a35d01392fb42d6f86081"
+      },
+      "producer": {
+        "bytes": 3521,
+        "sha256": "540659d39bb47bc2027b37ec34549475ce65b31f6025c53b33a9172129c7c54e",
+        "git_blob": "69285945ceb09770b21f6fbb9aaded4f1092fe35"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "test/games/spielwelt_routing_test.dart",
+      "after": {
+        "bytes": 5470,
+        "sha256": "70766c77e6fef0827832c542a43310f031debd3f422a0dcb615e77ff96c0979e",
+        "git_blob": "e5cfc3a8bfff14d5f2d7f7870c33c01e3cc6fafb"
+      },
+      "before": {
+        "bytes": 5467,
+        "sha256": "99e59d8e2c5cbb7b36525f92f599138b3e69db69e942a19c782f681e7f87aade",
+        "git_blob": "8fb8128bcd86183dd305bcc83d3a5e8ff4e4fd58"
+      },
+      "producer": {
+        "bytes": 5470,
+        "sha256": "70766c77e6fef0827832c542a43310f031debd3f422a0dcb615e77ff96c0979e",
+        "git_blob": "e5cfc3a8bfff14d5f2d7f7870c33c01e3cc6fafb"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "test/games/spielwelt_semantics_action_test.dart",
+      "after": {
+        "bytes": 6088,
+        "sha256": "b86aed9f7381def7ad814a9f74eda2286fae51ad183ad668a9393b2f4df520a4",
+        "git_blob": "6d09c8e2bce791cde645a627b74dfa614d5d5161"
+      },
+      "before": {
+        "bytes": 5847,
+        "sha256": "0a36e6270c802223e373d8f86b817eb988f68c50650023327893978c2223531e",
+        "git_blob": "b702778f7553fd1bbb3a40d87bfee1458a7ab0a4"
+      },
+      "producer": {
+        "bytes": 6088,
+        "sha256": "b86aed9f7381def7ad814a9f74eda2286fae51ad183ad668a9393b2f4df520a4",
+        "git_blob": "6d09c8e2bce791cde645a627b74dfa614d5d5161"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "test/lumo_game_entry_overlay_test.dart",
+      "after": {
+        "bytes": 4854,
+        "sha256": "92a00eee6b346f020ecf5e620f302e650d1cfbc9b9eb08e05cbb1999274e3d20",
+        "git_blob": "a8e6a325f8f1aaf501eda50019e7b7f6a4a43556"
+      },
+      "before": {
+        "bytes": 4763,
+        "sha256": "981318f74af4b43037da6101d457cf3fd4c7a22dda02e9dd2b1c519a16fe534c",
+        "git_blob": "7e22e412a919ec26d049602682c6931da21adf26"
+      },
+      "producer": {
+        "bytes": 4854,
+        "sha256": "92a00eee6b346f020ecf5e620f302e650d1cfbc9b9eb08e05cbb1999274e3d20",
+        "git_blob": "a8e6a325f8f1aaf501eda50019e7b7f6a4a43556"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "after": {
+        "bytes": 12726,
+        "sha256": "ac43bed87efbecd7fd7535120b5eff2839cb05b19662eb9ac93c0bf7f9963287",
+        "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08"
+      },
+      "before": {
+        "bytes": 12712,
+        "sha256": "6808e0ab858907aec1b1e149b53184aa3ad72d1a214ce4d252a8ddc91c01f5e2",
+        "git_blob": "0621cafe29b703d29f7b067991a90c8ceac84ba6"
+      },
+      "producer": {
+        "bytes": 12726,
+        "sha256": "ac43bed87efbecd7fd7535120b5eff2839cb05b19662eb9ac93c0bf7f9963287",
+        "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08"
+      },
+      "freeze_match": true
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "after": {
+        "bytes": 18356,
+        "sha256": "5a375bca191a12ae09d7480f6c21ce39d1097e35112dd5ca65ca1043e54433a1",
+        "git_blob": "0d78214087b9f1b7115a1f090aa4c05bdc1a87fe"
+      },
+      "before": {
+        "bytes": 17671,
+        "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946",
+        "git_blob": "9027d1106287c1c295a94ebcf3828e5dcac35b7b"
+      },
+      "producer": {
+        "bytes": 19093,
+        "sha256": "b1b223b5e39cd4989505f83a9ecef9bd33bc21ee5a17fd377d6e41137fa8a5d7",
+        "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b"
+      },
+      "freeze_match": true
+    }
+  ],
+  "bound_native_sources": [
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "bytes": 5604,
+      "sha256": "6b86fda5b38f2b966d0da4d26eb9cae24e2185ef9d067b0dfb99aa86bfe644b4",
+      "git_blob": "1845617ed2659dd377f433209799b12ddf310deb",
+      "freeze_match": true
+    },
+    {
+      "path": "scripts/app/app_boot.gd",
+      "bytes": 18819,
+      "sha256": "e01899fb45fe4b0b8a7f0d54c9751d099bc1431b17668017233d5eeac96dab1f",
+      "git_blob": "125376b9018d03258a2be41da99efce175bbca6c",
+      "freeze_match": true
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "bytes": 46954,
+      "sha256": "6bd9dd4380db95962f370aa2703e7f41b51eab2430f33ea4874c60de0b73bcfb",
+      "git_blob": "e6a2a84447757c04a7f07436b162ed698b827a33",
+      "freeze_match": true
+    },
+    {
+      "path": "scripts/tests/village_host_launch_regression.gd",
+      "bytes": 6598,
+      "sha256": "82626bead8f00e83270d298cbebc607d887c83f474dda11ef58fb84792411230",
+      "git_blob": "082cecfc4a6542c8372bc592b4729051b105a079",
+      "freeze_match": true
+    }
+  ],
+  "scope": "Eight bounded village product paths, seven widget/capture test files and exactly one capture-environment mapping; new QA proposal is reviewed separately.",
+  "findings": [
+    {
+      "id": "route_identity",
+      "result": "CONFIRMED_BY_SOURCE",
+      "detail": "The new unique village portal is distinct from classic build, has its own identity/semantic title/cover and explicitly calls _launch3D('settlement', livingVillage:true). It does not replace any of the ten prior portals, GameId unlock rules or the current Flutter C4 entry. The old C4 _launchConnectFour Navigator route and all unrelated product code remain unchanged."
+    },
+    {
+      "id": "three_layer_opt_in",
+      "result": "CONFIRMED_BY_SOURCE",
+      "detail": "Dart rejects a mismatch between settlement and livingVillage before launch. It emits both livingVillage:true and settlementMode:'settlement'. MainActivity independently rejects an inconsistent scene/opt-in/mode, then retains settlement in the allowed game set and carries both explicit options into the native JSON. The bound Native HostBridge validates the same pair and refuses an unconfirmed settlement by routing to games, not Kart or classic settlement. The bound app_boot explicitly registers the settlement cover/title/scene. No unvalidated Kart fallback is introduced for a village request."
+    },
+    {
+      "id": "profile_and_launch_ownership",
+      "result": "PRESERVED",
+      "detail": "The current global launch-in-progress guard, origin-route/generation/lease ownership, daily-mission check, reward flush before launch, child save-key resolution, post-wallet owner check, Cards/C4 token requirements, actual MethodChannel return wait, nonempty destination validation and profile checks on return are unchanged. The new route does not use the legacyGameKey bypass. GamesContent still invokes onGameReturn only after launchLumo3D succeeds and reloads only while mounted."
+    },
+    {
+      "id": "android_activity_return",
+      "result": "PRESERVED",
+      "detail": "MainActivity bytes before the requested-scene block and every byte from the Cards token guard to EOF match the base. This includes the existing installer channel, token/authority checks, pending result owner, engine process gate, Activity selection, caller-return sessions, wait-for-process shutdown and destruction guards. LumoGameActivity changes only its speech-helper creation game set; all Cards heartbeat/Binder/window code and durable return/finish/isolated-process termination remain unchanged. Village uses the existing games destination rather than pretending to be a C4 or learning caller-owned session."
+    },
+    {
+      "id": "native_save_and_return_pairing",
+      "result": "SOURCE_AND_SEPARATE_EXISTING_REFERENCE",
+      "detail": "The four exact afc0df9 Native reference files preserve childKey/slot/mode. The existing village uses an explicit separate village project path, validates restored child/slot/mode, identifies direct embedded settlement entry and exposes a games return while retaining a separate Bauwelt action. Normal return saves before navigation and the original HostBridge requires durable acceptance; existing corrupt/blocked-save handling is unchanged. The bound village_host_launch_regression source checks refused ACK retry, failed save blocking, same-child saved state, subsequent accepted return and preserved internal Bauwelt routing. The pre-existing Headless result in native-pairing.json belongs to Root's afc0df9 run, not to this review or a new Android run."
+    },
+    {
+      "id": "shared_layout_and_input",
+      "result": "SOURCE_CONTRACT_CONSISTENT",
+      "detail": "The title measurement uses the actual merged theme/TextStyle, actual text scaler, locale and text direction; it includes inner padding and focused border and reduces columns only as needed. It does not shrink the 17-point title to fake a fit. The existing GameTile semantics and single actual touch callback structure remain, with village added to both semantic/touch test rosters. No new touch listener or competing global gesture ownership is introduced. Full actual layout/render success is still pending test execution."
+    },
+    {
+      "id": "six_original_widget_captures",
+      "result": "EXACT_STATIC_ROSTER_NOT_RUN",
+      "detail": "The new capture file combines the unchanged helper's fold-cover 344x882, phone 412x915 and fold-open 690x829 with fold-landscape 1200x900, fold-wide-min 640x829 and fold-open-large-text 690x829 at scale1.2. Each tests a hit-testable tile at least48x48, complete one-line Dorfwirtschaft glyph bounds inside the card, unchanged17-point typography, no ellipsis and exactly one settlement/opt-in/mode channel call. It writes a genuine RepaintBoundary image before that call. Mock Android channel replies are explicitly widget-test evidence, not a real Activity result."
+    },
+    {
+      "id": "full_suite_capture_mapping",
+      "result": "BYTE_COMPARISON_CONFIRMED",
+      "detail": "Removing the one exact LUMO_VILLAGE_CAPTURES:'village' mapping line recovers the entire old runner byte-for-byte. Both existing functions are AST-identical. The runner creates this real output directory and supplies the env var, so all six optional capture cases must execute in full acceptance. Existing no-skip, Flutter exit, completed stream, timeout/watchdog and capture-error rejection remain unchanged."
+    },
+    {
+      "id": "test_and_protected_module_preservation",
+      "result": "DIFF_AND_BOUNDARY_CONFIRMED",
+      "detail": "The seven widget/capture deltas add village to existing exact portal/title/layout/action assertions and increase10→11 portals and20→22 paired actions; they do not delete the old routes or assertions. The more recent games_screen_flow_test.dart is explicitly excluded from the delta; its preserved a118 bytes have Git blob254267c9f84d5c8e507307178015d281db238e4f. The final16-path set contains no InkSurface, writing/Journal/C4 engine/session/product, Camera/Permission/Profile, lock/version/pin/receipt or workflow edits. Protected dependency identities are recorded in the author freeze; this narrow review does not claim a full re-read of every unrelated protected module."
+    },
+    {
+      "id": "speech_boundary",
+      "result": "EXPLICIT_LIMIT_PRESERVED",
+      "detail": "The route forwards the existing selected voice, consent, auto-read, calm/reduced-motion and bounded rate options. The unchanged LumoLearningSpeech allowed predicate still permits only learning/build, and the bound settlement world contains no direct speech call. Creating its lifecycle helper on settlement does not prove or newly authorize audible village speech. No PCM or consent guard is weakened, and no audio acceptance is claimed."
+    }
+  ],
+  "independently_confirmed_preservation": {
+    "main_activity": {
+      "prefix_unchanged": true,
+      "suffix_from_cards_guard_unchanged": true
+    },
+    "capture_runner": {
+      "only_one_mapping_line": true,
+      "function_ast_equal": true
+    },
+    "current_games_flow": {
+      "bytes": 15447,
+      "sha256": "1c77db4149a9c584cb20efbf68daacbf69f2a3d2878f93e3c9206f88a099c870",
+      "git_blob": "254267c9f84d5c8e507307178015d281db238e4f"
+    },
+    "games_flow_not_in_delta": true
+  },
+  "capture_matrix": [
+    {
+      "name": "fold-cover",
+      "width": 344,
+      "height": 882,
+      "text_scale": 1
+    },
+    {
+      "name": "phone",
+      "width": 412,
+      "height": 915,
+      "text_scale": 1
+    },
+    {
+      "name": "fold-open",
+      "width": 690,
+      "height": 829,
+      "text_scale": 1
+    },
+    {
+      "name": "fold-landscape",
+      "width": 1200,
+      "height": 900,
+      "text_scale": 1
+    },
+    {
+      "name": "fold-wide-min",
+      "width": 640,
+      "height": 829,
+      "text_scale": 1
+    },
+    {
+      "name": "fold-open-large-text",
+      "width": 690,
+      "height": 829,
+      "text_scale": 1.2
+    }
+  ],
+  "limitations": [
+    "This is a source review, not an executed widget, Kotlin/JVM, renderer, Android or capture gate. No test was run and no new image was produced or visually approved.",
+    "The new route is source-paired to exact afc0df9 Native reference bytes. An eventual new combined Host APK must bind its actual final native pin and supply its own entry/touch/save/return/reopen proof; the active3d91/bd071225 CI cannot be relabelled.",
+    "The review directly reads the complete changed diff, full launcher/Activity/route definitions, relevant shared tile and Native save/return code, all new tests and changed assertions. All16 final files and four Native reference files are independently hash/blob checked. Unchanged protected modules outside that scope were not all re-read or executed.",
+    "No source, author pack, worktree, index, Git ref or workflow was mutated by the reviewer. The new Android-QA-V2 proposal remains a distinct review and is not approved by this report."
+  ],
+  "tests_executed": [],
+  "concrete_blockers": []
+}

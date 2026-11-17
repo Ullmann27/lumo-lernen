@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../helpers/native_storage_fixture.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/learning_profile_engine.dart';
@@ -13,7 +15,9 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_registry.dart';
+import 'package:lumo_lernen/features/learning_modules/wort_diktat/wort_diktat_screen.dart';
 import 'package:lumo_lernen/features/teacher_mode/topic_curriculum.dart';
+import 'package:lumo_lernen/features/writing/widgets/lumo_ink_surface.dart';
 import 'package:lumo_lernen/widgets/design/lumo_learning_module_frame.dart';
 
 class _ControlledWallet extends RewardWalletRepository {
@@ -123,10 +127,13 @@ Future<Type> _open(
     voiceEnabled: false,
     autoReadEnabled: false,
   ));
-  await tester.runAsync(() async {
-    await app.hydrateFromWallet();
-    await app.loadLearningProfile();
+  final ready = await tester.runAsync(() async {
+    await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+    await app.loadLearningProfile().timeout(const Duration(seconds: 15));
+    return true;
   });
+  expect(ready, isTrue,
+      reason: 'The real wallet and learning profile must load');
   final navigator = GlobalKey<NavigatorState>();
   await tester.pumpWidget(MaterialApp(
     navigatorKey: navigator,
@@ -181,12 +188,17 @@ Finder _firstVisibleAnswer() => find
 
 Future<void> _revealWrittenWord(WidgetTester tester) async {
   expect(find.text('Das richtige Wort war:'), findsNothing);
-  final canvas = find
-      .byWidgetPredicate((widget) =>
-          widget is GestureDetector &&
-          widget.onPanStart != null &&
-          widget.onPanUpdate != null)
-      .first;
+  final screen = find.byType(WortDiktatScreen);
+  expect(screen, findsOneWidget);
+  final rows = find.descendant(
+    of: screen,
+    matching: find.byType(LumoInkSurface),
+  );
+  expect(rows, findsNWidgets(4));
+  final canvas = rows.at(0);
+  await tester.ensureVisible(canvas);
+  await tester.pump();
+  expect(canvas.hitTestable(), findsOneWidget);
   await tester.drag(canvas, const Offset(70, 20));
   await tester.pump();
   await _tapText(tester, 'Fertig ✓', frames: 40);
@@ -279,8 +291,9 @@ void main() {
         '${module.topicId} real registry answer persists its exact subject and topic',
         (tester) async {
       expect(TopicCurriculum.of(module.topicId)!.title, module.unit);
-      final wallet = _ControlledWallet();
-      final app = LumoAppState(walletRepository: wallet);
+      final wallet = await nativeStorageFixture(tester, _ControlledWallet.new);
+      final app = await nativeStorageFixture(
+          tester, () => LumoAppState(walletRepository: wallet));
       await _open(tester, app, module.topicId);
       final initialTask = _taskLabel(tester);
       if (module.topicId == 'd1_woerter') {
@@ -314,8 +327,9 @@ void main() {
   testWidgets(
       'visible noun determines right and wrong articles and only right advances Daily',
       (tester) async {
-    final wallet = _ControlledWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _ControlledWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app, 'd2_artikel');
     final initialTask = _taskLabel(tester);
     final firstWord = _visibleNoun(tester);
@@ -337,8 +351,9 @@ void main() {
   testWidgets(
       'article wallet rejection blocks Back and task change; duplicate retries save one answer',
       (tester) async {
-    final wallet = _ControlledWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _ControlledWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     final screen = await _open(tester, app, 'd2_artikel');
     final initialTask = _taskLabel(tester);
     final word = _visibleNoun(tester);
@@ -382,11 +397,14 @@ void main() {
   testWidgets(
       'article learning-save rejection retries existing counters without another reward',
       (tester) async {
-    final progress = _ControlledProgress();
-    final wallet = _ControlledWallet();
-    final app = LumoAppState(
-        walletRepository: wallet,
-        learningProfile: LearningProfileEngine(repository: progress));
+    final progress =
+        await nativeStorageFixture(tester, _ControlledProgress.new);
+    final wallet = await nativeStorageFixture(tester, _ControlledWallet.new);
+    final app = await nativeStorageFixture(
+        tester,
+        () => LumoAppState(
+            walletRepository: wallet,
+            learningProfile: LearningProfileEngine(repository: progress)));
     final screen = await _open(tester, app, 'd2_artikel');
     final initialTask = _taskLabel(tester);
     final word = _visibleNoun(tester);
@@ -424,11 +442,14 @@ void main() {
   testWidgets(
       'pending wrong article rejects a second answer until learning storage finishes',
       (tester) async {
-    final progress = _ControlledProgress();
-    final wallet = _ControlledWallet();
-    final app = LumoAppState(
-        walletRepository: wallet,
-        learningProfile: LearningProfileEngine(repository: progress));
+    final progress =
+        await nativeStorageFixture(tester, _ControlledProgress.new);
+    final wallet = await nativeStorageFixture(tester, _ControlledWallet.new);
+    final app = await nativeStorageFixture(
+        tester,
+        () => LumoAppState(
+            walletRepository: wallet,
+            learningProfile: LearningProfileEngine(repository: progress)));
     await _open(tester, app, 'd2_artikel');
     final initialTask = _taskLabel(tester);
     final word = _visibleNoun(tester);
@@ -456,7 +477,8 @@ void main() {
   testWidgets(
       'saved article feedback waits for foreground before showing the next word',
       (tester) async {
-    final app = LumoAppState(walletRepository: RewardWalletRepository());
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: RewardWalletRepository()));
     await _open(tester, app, 'd2_artikel');
     final initialTask = _taskLabel(tester);
     final word = _visibleNoun(tester);
@@ -479,8 +501,9 @@ void main() {
   testWidgets(
       'actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word',
       (tester) async {
-    final wallet = _ControlledWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _ControlledWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     final screen = await _open(tester, app, 'd1_woerter');
     final initialTask = _taskLabel(tester);
     await _revealWrittenWord(tester);
@@ -515,8 +538,9 @@ void main() {
   testWidgets(
       'two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily',
       (tester) async {
-    final wallet = _ControlledWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _ControlledWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     for (var session = 1; session <= 2; session++) {
       final screen = await _open(tester, app, 'd1_woerter');
       for (var word = 1; word <= 20; word++) {

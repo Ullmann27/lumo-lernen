@@ -1,0 +1,62 @@
+{
+  "utc": "2026-11-16T08:43:42.768960+00:00",
+  "head": "3bbbfec00f1c8bcdc6222674b2e9f99d279a24ca",
+  "remoteHeadVerified": "3bbbfec00f1c8bcdc6222674b2e9f99d279a24ca",
+  "action": "Dematerialize exact committed and remotely retained archive parts only; every Git blob and original archive remains recoverable without history changes",
+  "bytesDematerialized": 61713245,
+  "files": [
+    {
+      "path": "docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/artifact.zip.part001",
+      "bytes": 8388608,
+      "sha256": "62ba02294082c849a8bca161f9b517999a825f8d33f717792e50baebc530cf5f",
+      "gitBlob": "36aca7aa79a5547977cb4923374ec051b700c567"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/artifact.zip.part002",
+      "bytes": 8388608,
+      "sha256": "415603bcbaa24b4d36362e8f81b7296f3f0a3f266ce2c3d92f8153ffad94a6d7",
+      "gitBlob": "8948d8654d746f1c4c33ddc283ffe430ce07e8ca"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/artifact.zip.part003",
+      "bytes": 8388608,
+      "sha256": "20315f27269667858be156be9de0e6b85fee9f06536f214976b0d00418373a55",
+      "gitBlob": "30002d693a4474f1f3c10c4b64fd7e89a67d195c"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/artifact.zip.part004",
+      "bytes": 8388608,
+      "sha256": "6a6391791001282ce595ddb968012480a91ca9f8d4207eeab1e908684f9ee38e",
+      "gitBlob": "d8aa4c9b89572ca59dd81a330f346efb8ce66151"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/artifact.zip.part005",
+      "bytes": 8388608,
+      "sha256": "1699d93f6b908bf80da2b306a38a413c7d0592dcff9cf6d6170557c12b3bd351",
+      "gitBlob": "601ae8ee5bfc2f78631c812d8c5256c14d8f33eb"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/artifact.zip.part006",
+      "bytes": 8388608,
+      "sha256": "9f57ae02874fd757e8eb704b7dc4358e07ef4283bc650c547689893c046657ce",
+      "gitBlob": "d4f69b6e8ae735b1901df691baddf00d47966730"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/artifact.zip.part007",
+      "bytes": 8388608,
+      "sha256": "ad7b1f0d68a7525169add4098865ef459307c78cb8ae09736733b4cac2ff20de",
+      "gitBlob": "0423eababbcddfb7a10746285aab805ec12ee2a5"
+    },
+    {
+      "path": "docs/nextgen/evidence/ci-2031-runtime-cases-active-stop-observation-failure/archive-parts/artifact.zip.part008",
+      "bytes": 2992989,
+      "sha256": "ba1679c05eebc298b6b2425656735ad7b5ecf3e4eaad8b2c9038a365f6365a2f",
+      "gitBlob": "fb8b853bb32c852e5e28062da79f2d0949ee1cc6"
+    }
+  ],
+  "selectedOriginalsRemainMaterialized": true,
+  "sourceCodeChangedByThisOperation": false,
+  "gitObjectsRemoved": false,
+  "reversibleByRestoringSparsePatterns": true,
+  "priorAttempt": "First attempted inspection also named a non-existing archive-parts directory for the original build failure; FileNotFoundError occurred before any mutation. This operation selects only the actually observed runtime6 archive-parts directory."
+}

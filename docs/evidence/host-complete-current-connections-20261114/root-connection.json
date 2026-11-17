@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T09:31:58.112148+00:00",
+  "kind": "CURRENT_C4_SOURCE_AND_CI_ACTIVATION",
+  "parent": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "native_source": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "source_files": 22,
+  "source_groups": {
+    "root_gate_and_pin": 6,
+    "c4_pressed_target": 4,
+    "privacy_and_historical_fixture": 3,
+    "common_pause_repair_with_pillow_harness": 9
+  },
+  "native_contract": {
+    "core_calls": 52,
+    "studio_images": 17,
+    "core_unchanged": true,
+    "additional_required_checks": {
+      "acknowledged_exit": 21,
+      "treasure_wisps": 14
+    }
+  },
+  "actual_prior_native": {
+    "source": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    "wisp_checks_pass": 14,
+    "treasure_checks_pass": 92,
+    "learning_checks_pass": 5347,
+    "rendered_status": "SETUP_BLOCKED_BEFORE_GODOT_XORG_CANNOT_OPEN_LOCAL_UNIX_LISTENERS",
+    "new_images": 0
+  },
+  "actual_prior_pause": {
+    "source": "1cc5cf4fb7da382fb9833b9d52cf53540306b405",
+    "methods_pass": 9,
+    "errors": 0,
+    "skips": 0,
+    "original0d_positive_case_expected_red": true,
+    "actual_bad_original_touch": [
+      1694,
+      282
+    ],
+    "actual_replayed_fixed_touch": [
+      1262,
+      408
+    ],
+    "real_new_android_tour": false
+  },
+  "actual_host2b_preflight": {
+    "source_files_unchanged": 2208,
+    "hosted_package_directories_missing": 99,
+    "flutter_tests": "NOT_RUN",
+    "audit": "NOT_RUN"
+  },
+  "producer_results_are_separately_bound_not_transferred": true,
+  "archives": [
+    {
+      "file": "c4-pressed-complete-originals.tar.gz",
+      "sha256": "d590e99b3e97dec1d6cefa5547533e7ef6455fb0d9f07fa7f7916e6d9c1ba6e5",
+      "original_producer_archive": true
+    },
+    {
+      "file": "privacy-history-complete-originals.tar.gz",
+      "sha256": "db3b9a0b5578d92cfb1581297f0d180159246fd9dd79d2585506e3fcb4f51d47",
+      "original_producer_archive": true
+    },
+    {
+      "file": "root-gates-complete-source-pack.tar.gz",
+      "members": 13,
+      "bytes": 83361,
+      "sha256": "779d0fc28282bda1e12553ca418f3c97042998ac05a844c3502f781dbb312bb1",
+      "complete_original_roundtrip": true
+    },
+    {
+      "file": "host2b-original-missing-cache-preflight.tar.gz",
+      "members": 11,
+      "bytes": 260078,
+      "sha256": "c9565859829c65cb398a78f94c7eb3c697f0e879bc180c9e5333c830740527a8",
+      "complete_original_roundtrip": true
+    },
+    {
+      "file": "qa1cc5-complete-nine-pass-and-original-red.tar.gz",
+      "members": 17,
+      "bytes": 364549,
+      "sha256": "ccc66ff2e7da59d34fe3ff776ee0e2bdf43945a93b87cc0cab552e23e98a3ed8",
+      "complete_original_roundtrip": true
+    }
+  ],
+  "source_protection": {
+    "historical_versions_and_pins_unchanged": true,
+    "main_and_base_unchanged": true,
+    "writing_trainer_and_journal_unchanged": true,
+    "consent_gate_unchanged": true,
+    "production_2019_wrapper_unchanged": true
+  },
+  "deferred_native173_dream": "Separate future source review; older Wisp files deliberately not substituted.",
+  "release2020_and_tag2020_before_activation": "Both actual GitHub API404; no current release link is claimed.",
+  "pending": [
+    "Actual current full Flutter suite and structural learning audit",
+    "Current52-mode native renderer/raster/movie validation",
+    "ExactAPK build, AndroidC4 tour, in-place2017-to2020 upgrade and verified delivery bundle",
+    "Public release only if actual authorized publishing capability and completed evidence permit it"
+  ],
+  "scope": "No present APK, physical Android, audible speech, measured60FPS or public release success inferred from source checkpoints."
+}

@@ -1,19 +1,23 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
 import 'lumo_companion_host.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
+import '../widgets/fox/lumo_free_companion.dart';
 import '../core/lumo_asset_paths.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
+import '../features/games/spielwelt/spielwelt_hub.dart';
 import '../features/home/home_content.dart';
 import '../features/teacher_mode/lumo_akademie_screen.dart';
 import '../features/tests/lumo_tests_screen.dart';
 import '../features/learning/learning_content.dart';
+import '../features/learning/learning_navigation.dart';
 import '../features/reading/reading_content.dart';
 import '../features/shared/widgets/lumo_section_transition.dart';
 import '../features/sections/section_content.dart';
@@ -25,6 +29,8 @@ import '../core/achievements/lumo_achievement.dart';
 import '../core/lumo_ai_proxy_client.dart';
 import '../core/lumo_companion_agent.dart';
 import '../core/lumo_voice.dart';
+import '../core/lumo_sound.dart';
+import '../core/lumo_interaction_feedback_policy.dart';
 import '../core/user_profile.dart';
 import '../core/embedded_game_service.dart';
 import '../widgets/design/lumo_design_system.dart';
@@ -32,7 +38,12 @@ import '../widgets/design/lumo_motion.dart';
 import '../theme/lumo_visual_tokens.dart';
 
 class AppShell extends StatefulWidget {
-  const AppShell({super.key, this.profile, this.initialSection});
+  const AppShell({
+    super.key,
+    this.profile,
+    this.initialSection,
+    this.deepLinkRequestId = 0,
+  });
 
   final UserProfile? profile;
 
@@ -42,6 +53,10 @@ class AppShell extends StatefulWidget {
   /// Lern-Bereich statt das Home.
   final LumoSection? initialSection;
 
+  /// Changes for every platform navigation event, including repeated links to
+  /// the same section after the child has navigated elsewhere.
+  final int deepLinkRequestId;
+
   @override
   State<AppShell> createState() => _AppShellState();
 }
@@ -49,6 +64,11 @@ class AppShell extends StatefulWidget {
 class _AppShellState extends State<AppShell>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   final _appState = LumoAppState();
+  final _learningNavigation = LearningNavigation();
+  final _coreConversation = LearningConversationEntry();
+  GlobalKey _coreSubtreeKey = GlobalKey(debugLabel: 'core-learning-content');
+  String? _coreSubtreeScope;
+  int _browsingProfileGeneration = 0;
   late final _embeddedGames = EmbeddedGameService(
     appState: _appState,
     onDestination: (section) {
@@ -65,6 +85,8 @@ class _AppShellState extends State<AppShell>
   final _proxyClient = const LumoAiProxyClient();
   Timer? _keepAliveTimer;
   StreamSubscription<LumoAchievement>? _achievementSubscription;
+  int _navigationRequest = 0;
+  bool _criticalTileArtWarmupStarted = false;
 
   late final AnimationController _fadeCtrl = AnimationController(
     vsync: this,
@@ -110,6 +132,44 @@ class _AppShellState extends State<AppShell>
     // 2026-06-04: Achievement-Tracker hydrieren + Unlock-Toast-Listener.
     _hydrateAchievements();
     _appState.addListener(_syncAchievementMetrics);
+    _browsingProfileGeneration = _appState.profileGeneration;
+    _appState.addListener(_syncLearningProfile);
+  }
+
+  @override
+  void didUpdateWidget(covariant AppShell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.deepLinkRequestId == widget.deepLinkRequestId) return;
+    final target = widget.initialSection;
+    if (target == null) return;
+    final request = widget.deepLinkRequestId;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || request != widget.deepLinkRequestId) return;
+      Navigator.of(context).popUntil((route) => route.isFirst);
+      unawaited(_navigateTo(target));
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_criticalTileArtWarmupStarted) return;
+    _criticalTileArtWarmupStarted = true;
+    // The bundled dashboard bitmaps are frequently first decoded only
+    // after onboarding. Warm only the four tiny Bento icons and the home
+    // backdrop; never stall navigation or preload every 3D/game texture.
+    for (final asset in const <String>[
+      'assets/lumo_design/bg/bg_glass_islands.png',
+      'assets/lumo_design/icons/book_open.png',
+      'assets/lumo_design/icons/gamepad.png',
+      'assets/lumo_design/icons/trophy_gold.png',
+      'assets/lumo_design/icons/treasure_chest.png',
+    ]) {
+      unawaited(precacheImage(AssetImage(asset), context,
+          onError: (error, stackTrace) {
+        debugPrint('Lumo home asset cache skipped: $asset');
+      }));
+    }
   }
 
   /// 2026-06-04: Lumo Achievements Live-System. Tracker laed Persistence
@@ -226,11 +286,31 @@ class _AppShellState extends State<AppShell>
     );
     try {
       await _appState.loadLearningProfile();
+      await _appState.loadDailyMission();
     } catch (_) {}
     // Persistente Sterne/XP laden (Heinz: 'bleibt nach Neustart')
     try {
       await _appState.hydrateFromWallet();
     } catch (_) {}
+    // Existing real audio files; audio initialization does not block UI.
+    unawaited(LumoSound.instance.init());
+    // Exact pre-recorded Lumo Frei clip. Respect preferences and do not
+    // greet again when Godot deep-links back into the Flutter shell.
+    if (mounted &&
+        LumoInteractionFeedbackPolicy.shouldGreet(
+          hasProfile: widget.profile != null,
+          isDeepLink: widget.initialSection != null,
+          enabled: settings.voiceEnabled,
+          autoRead: settings.autoReadEnabled,
+        )) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted || _appState.state.section != LumoSection.home) return;
+        unawaited(LumoVoice.instance.speak(
+          LumoInteractionFeedbackPolicy.recordedGreeting,
+          style: VoiceStyle.greeting,
+        ));
+      });
+    }
     // Sofortiger Warmup beim App-Start. Render Free-Tier schlaeft
     // nach 15min ein und braucht 30-45s zum Aufwachen - wenn das
     // Kind direkt in einen Lernmodus geht, wartet es sonst.
@@ -249,6 +329,15 @@ class _AppShellState extends State<AppShell>
         _proxyClient.warmup(settings);
       }
     });
+  }
+
+  Future<void> _openConversation() async {
+    if (_appState.state.section == LumoSection.exercises && !_isReadingMode()) {
+      await _coreConversation.open(_navigateTo);
+      return;
+    }
+    await showLumoConversation(context,
+        appState: _appState, onSection: _navigateTo);
   }
 
   @override
@@ -297,33 +386,90 @@ class _AppShellState extends State<AppShell>
     _keepAliveTimer?.cancel();
     _achievementSubscription?.cancel();
     _appState.removeListener(_syncAchievementMetrics);
+    _appState.removeListener(_syncLearningProfile);
+    _learningNavigation.dispose();
     _appState.dispose();
     _fadeCtrl.dispose();
     super.dispose();
+  }
+
+  void _syncLearningProfile() {
+    if (_browsingProfileGeneration == _appState.profileGeneration) return;
+    _browsingProfileGeneration = _appState.profileGeneration;
+    _learningNavigation.selectGrade(_appState.state.grade);
+  }
+
+  void _openLearningSubject(String subject) {
+    _learningNavigation.selectGrade(_appState.state.grade);
+    _learningNavigation.selectSubject(subject);
+    _navigateTo(LumoSection.learn);
+  }
+
+  void _navigateFromMenu(LumoSection section) {
+    // A menu opens the topic chooser. Only an explicit task CTA starts work.
+    _navigateTo(section == LumoSection.exercises ? LumoSection.learn : section);
+  }
+
+  void _goBack() {
+    final section = _appState.state.section;
+    if (section == LumoSection.learn && _learningNavigation.backToSubjects()) {
+      return;
+    }
+    _navigateTo(
+        section == LumoSection.exercises || section == LumoSection.reading
+            ? LumoSection.learn
+            : LumoSection.home);
   }
 
   bool _isReadingMode() {
     final st = _appState.state;
     final subject = st.subject.trim().toLowerCase();
     final unit = st.unit.trim().toLowerCase();
-    return subject == 'lesen' || unit == 'aktives lesen' || unit == 'vorlesen';
+    return unit == 'aktives lesen' ||
+        unit == 'vorlesen' ||
+        (subject == 'lesen' && (unit.isEmpty || unit == 'alle'));
   }
 
   Future<void> _navigateTo(LumoSection section) async {
-    if (_appState.state.section == section) return;
+    // A faster second tap wins; stale animation callbacks cannot navigate
+    // to an outdated page or play its sound.
+    final request = ++_navigationRequest;
+    if (_appState.state.section == section) {
+      unawaited(_fadeCtrl.forward());
+      return;
+    }
     if (_requiresLoadedSettings(section)) {
       await _appState.ensureSettingsLoaded();
-      if (!mounted || !_appState.settingsLoaded) return;
+      if (!mounted ||
+          !_appState.settingsLoaded ||
+          request != _navigationRequest) {
+        return;
+      }
     }
     if (!mounted) return;
+    if (section == LumoSection.exercises) {
+      _learningNavigation.selectGrade(_appState.state.grade);
+      _learningNavigation.selectSubject(_appState.state.subject);
+    }
     await _fadeCtrl.reverse();
-    if (!mounted) return;
+    if (!mounted || request != _navigationRequest) {
+      return;
+    }
     _appState.setSection(section);
     final settings = _appState.state.settings;
+    if (LumoInteractionFeedbackPolicy.shouldPlayTap(
+      soundEnabled: settings.soundEnabled,
+      destinationChanged: true,
+    )) {
+      unawaited(LumoSound.instance.play(SoundEffect.click));
+    }
+    if (!settings.calmMode) {
+      unawaited(HapticFeedback.selectionClick());
+    }
     if (settings.voiceEnabled && settings.autoReadEnabled) {
-      LumoVoice.instance.speak(
+      unawaited(LumoVoice.instance.speak(
         _appState.state.lumoMessage.replaceAll('\n', ' '),
-      );
+      ));
     }
     if (mounted) await _fadeCtrl.forward();
   }
@@ -372,16 +518,28 @@ class _AppShellState extends State<AppShell>
 
   Widget _buildContent({bool fullBleed = false}) {
     final section = _appState.state.section;
+    if (section != LumoSection.exercises || _isReadingMode()) {
+      // A later real navigation gets its own subtree, even while the previous
+      // section is still fading out. Width-only reparenting retains this key.
+      _coreSubtreeScope = null;
+    }
     switch (section) {
       case LumoSection.home:
         return HomeContent(
             appState: _appState,
             onSection: _navigateTo,
+            onBrowseSubject: _openLearningSubject,
             drawBackground: !fullBleed);
       case LumoSection.games:
         return GamesContent(
           appState: _appState,
-          onSection: _navigateTo,
+          onSection: (section) {
+            if (section == LumoSection.learn) {
+              _openLearningSubject(_appState.state.subject);
+            } else {
+              _navigateTo(section);
+            }
+          },
           onGameReturn: _embeddedGames.synchronize,
           drawBackground: !fullBleed,
         );
@@ -392,7 +550,9 @@ class _AppShellState extends State<AppShell>
             drawBackground: !fullBleed);
       case LumoSection.learn:
         return LumoAkademieScreen(
-            appState: _appState, drawBackground: !fullBleed);
+            appState: _appState,
+            navigation: _learningNavigation,
+            drawBackground: !fullBleed);
       case LumoSection.exercises:
         if (_isReadingMode()) {
           return ReadingContent(
@@ -401,10 +561,19 @@ class _AppShellState extends State<AppShell>
           );
         }
         final state = _appState.state;
-        return LearningContent(
-          key: ValueKey(
-              '${state.grade}:${state.subject}:${state.unit}:${state.sessionKind.name}'),
-          appState: _appState,
+        final scope =
+            '${state.grade}:${state.subject}:${state.unit}:${state.sessionKind.name}';
+        if (_coreSubtreeScope != scope) {
+          _coreSubtreeScope = scope;
+          _coreSubtreeKey = GlobalKey(debugLabel: 'core-learning-content');
+        }
+        return KeyedSubtree(
+          key: _coreSubtreeKey,
+          child: LearningContent(
+            key: ValueKey(scope),
+            appState: _appState,
+            conversationEntry: _coreConversation,
+          ),
         );
       case LumoSection.reading:
         return ReadingContent(
@@ -464,7 +633,7 @@ class _AppShellState extends State<AppShell>
         return PopScope(
             canPop: _appState.state.section == LumoSection.home,
             onPopInvokedWithResult: (didPop, _) {
-              if (!didPop) _navigateTo(LumoSection.home);
+              if (!didPop) _goBack();
             },
             child: Scaffold(
               backgroundColor: LumoVisualTokens.night,
@@ -479,18 +648,20 @@ class _AppShellState extends State<AppShell>
                   final section = _appState.state.section;
                   final study = section == LumoSection.learn ||
                       section == LumoSection.exercises;
-                  final fullBleedScene = outer.maxWidth < 720 ||
-                          (study && outer.maxWidth < 880)
-                      ? _fullBleedScene(section)
-                      : null;
+                  final fullBleedScene =
+                      outer.maxWidth < 720 || (study && outer.maxWidth < 880)
+                          ? _fullBleedScene(section)
+                          : null;
                   return Stack(children: [
                     if (fullBleedScene != null)
                       Positioned.fill(
-                        child: LumoSceneBackground(
-                          scene: fullBleedScene,
-                          showPlaceholderLabel: false,
-                          dimmed: true,
-                        ),
+                        child: section == LumoSection.games
+                            ? const SpielweltBackdrop()
+                            : LumoSceneBackground(
+                                scene: fullBleedScene,
+                                showPlaceholderLabel: false,
+                                dimmed: true,
+                              ),
                       ),
                     SafeArea(
                       child: LayoutBuilder(
@@ -502,6 +673,11 @@ class _AppShellState extends State<AppShell>
                               _appState.state.section == LumoSection.home;
                           final navWidth = width < 980 ? 160.0 : 200.0;
                           final gap = width < 980 ? 6.0 : 10.0;
+                          final coreMenuPresenter =
+                              section == LumoSection.exercises &&
+                                      !_isReadingMode()
+                                  ? _coreConversation.presentMenu
+                                  : null;
 
                           if (mobile) {
                             final fullBleed = fullBleedScene != null;
@@ -513,11 +689,10 @@ class _AppShellState extends State<AppShell>
                               ),
                             );
                             return Column(children: [
-                              _MobileLumoHeader(
-                                  appState: _appState,
-                                  onFoxTap: () => showLumoConversation(context,
-                                      appState: _appState,
-                                      onSection: _navigateTo)),
+                              if (section != LumoSection.games)
+                                _MobileLumoHeader(
+                                    appState: _appState,
+                                    onFoxTap: _openConversation),
                               Expanded(
                                   child: fullBleed
                                       // Zielbild-Seiten: Lumo steht als kleiner
@@ -532,15 +707,19 @@ class _AppShellState extends State<AppShell>
                               if (fullBleed)
                                 _LumoHelpDock(
                                     appState: _appState,
-                                    onSection: _navigateTo),
+                                    onSection: _navigateTo,
+                                    onAskLumo: _openConversation,
+                                    menuPresenter: coreMenuPresenter),
                               if (!fullBleed)
                                 LumoCompanionHost(
                                     appState: _appState,
                                     onSection: _navigateTo,
+                                    onAskLumo: _openConversation,
+                                    menuPresenter: coreMenuPresenter,
                                     compact: constraints.maxHeight < 650),
                               LumoBottomNavigation(
                                   active: _appState.state.section,
-                                  onSelect: _navigateTo),
+                                  onSelect: _navigateFromMenu),
                             ]);
                           }
 
@@ -552,7 +731,7 @@ class _AppShellState extends State<AppShell>
                                 if (showNav) ...[
                                   LeftNavigation(
                                     appState: _appState,
-                                    onSelect: _navigateTo,
+                                    onSelect: _navigateFromMenu,
                                     width: navWidth,
                                   ),
                                   SizedBox(width: gap),
@@ -569,25 +748,16 @@ class _AppShellState extends State<AppShell>
                                         ),
                                       ),
                                       child: Column(children: [
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              16, 10, 16, 6),
-                                          child: LumoTopBar(
-                                            appState: _appState,
-                                            onTapStatus: () =>
-                                                showLumoConversation(
-                                              context,
+                                        if (section != LumoSection.games)
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                16, 10, 16, 6),
+                                            child: LumoTopBar(
                                               appState: _appState,
-                                              onSection: _navigateTo,
-                                            ),
-                                            onTapFox: () =>
-                                                showLumoConversation(
-                                              context,
-                                              appState: _appState,
-                                              onSection: _navigateTo,
+                                              onTapStatus: _openConversation,
+                                              onTapFox: _openConversation,
                                             ),
                                           ),
-                                        ),
                                         Expanded(
                                             child: FadeTransition(
                                           opacity: _fadeCtrl,
@@ -597,11 +767,20 @@ class _AppShellState extends State<AppShell>
                                             child: _buildContent(),
                                           ),
                                         )),
-                                        LumoCompanionHost(
-                                            appState: _appState,
-                                            onSection: _navigateTo,
-                                            compact:
-                                                constraints.maxHeight < 600),
+                                        if (section == LumoSection.home ||
+                                            section == LumoSection.games)
+                                          _LumoHelpDock(
+                                              appState: _appState,
+                                              onSection: _navigateTo,
+                                              onAskLumo: _openConversation)
+                                        else
+                                          LumoCompanionHost(
+                                              appState: _appState,
+                                              onSection: _navigateTo,
+                                              onAskLumo: _openConversation,
+                                              menuPresenter: coreMenuPresenter,
+                                              compact:
+                                                  constraints.maxHeight < 600),
                                       ]),
                                     ),
                                   ),
@@ -632,9 +811,16 @@ class _AppShellState extends State<AppShell>
 /// Lumo keeps his initiative/menu listeners, with his own space outside the
 /// scrolling page. No game card or answer can be hidden behind the fox.
 class _LumoHelpDock extends StatelessWidget {
-  const _LumoHelpDock({required this.appState, required this.onSection});
+  const _LumoHelpDock({
+    required this.appState,
+    required this.onSection,
+    required this.onAskLumo,
+    this.menuPresenter,
+  });
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
+  final VoidCallback onAskLumo;
+  final LumoCompanionMenuPresenter? menuPresenter;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -664,7 +850,11 @@ class _LumoHelpDock extends StatelessWidget {
                         TextStyle(color: LumoVisualTokens.muted, fontSize: 12)),
               ])),
           LumoCompanionHost(
-              appState: appState, onSection: onSection, floating: true),
+              appState: appState,
+              onSection: onSection,
+              onAskLumo: onAskLumo,
+              menuPresenter: menuPresenter,
+              floating: true),
         ]),
       );
 }

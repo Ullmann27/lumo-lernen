@@ -1,0 +1,31 @@
+[
+  {
+    "name": "host-actionlint",
+    "argv": [
+      "/workspace/scratch/909ddb52fe7b/native-upstream-057-review/trigger-patch/bin/actionlint",
+      ".github/workflows/lumo-connect-four-2020.yml",
+      ".github/workflows/lumo-feature-connections.yml"
+    ],
+    "exit_code": 0,
+    "seconds": 0.021417275000203517,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native_pin": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+  },
+  {
+    "name": "current-native-pin",
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "scripts.tests.test_candidate_2011_pin"
+    ],
+    "exit_code": 0,
+    "seconds": 0.19131991100039158,
+    "bytes": 4556,
+    "sha256": "893a756a05389c467b70a2e41c2b4d86df6a07a035f9b8cffee835321916e43a",
+    "native_pin": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+  }
+]

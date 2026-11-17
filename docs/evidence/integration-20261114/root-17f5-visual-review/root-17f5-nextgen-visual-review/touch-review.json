@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-11-14T00:33:09.922531+00:00",
+  "status": "THREE_CURRENT_TOUCH_ORIGINALS_DIRECTLY_VIEWED_FINAL_BUNDLE_PENDING",
+  "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "source_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+  "run_id": 43532048311,
+  "images": [
+    {
+      "module": "garage",
+      "touch_group": "workshop",
+      "artifact_id": 14088417302,
+      "artifact_sha256": "e1df532819af81796075f6c6a6366b1b86da1f788ae251400bd711b6ddd759e0",
+      "artifact_entry": "workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+      "expected_bundle_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14088417302/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+      "bytes": 976617,
+      "sha256": "cef48afdf710990c9d46784b4b3bd8d92ddd6d6e3344844b70e0b14c2c989c9e",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "directly_viewed_by_root": true,
+      "findings": "Root directly opened this new 1080x2400 Workshop original. Lumo and the selected kart are visible above five labeled tuning bars. Zurück, the free-star count, Prüflauf starten and the Motor, Bremsen and Reifen upgrade controls are readable and distinct. The workshop title is ellipsized. The lower panel is a scrolled viewport, starting part-way through the performance information; its scrollbar remains visible. No natural scrolling, simulation accuracy or device frame rate is established by this still image."
+    },
+    {
+      "module": "treasure",
+      "touch_group": "treasure",
+      "artifact_id": 14088113248,
+      "artifact_sha256": "1bcebf4e8a884dc9ed7b49e8bfb5f2a560299f67a0df5f6ef424ea08e9601dec",
+      "artifact_entry": "treasure/captures/treasure_density_regression/treasure-1080x2400-question.png",
+      "expected_bundle_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-1080x2400-question.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14088113248/treasure/captures/treasure_density_regression/treasure-1080x2400-question.png",
+      "bytes": 1831861,
+      "sha256": "f40a8312c9f61c426e57bfabc2d2fc15e8e1af590398c21af5a6a071e5fbae91",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "directly_viewed_by_root": true,
+      "findings": "Root directly opened this new 1080x2400 Treasure original. Der alte Sternenbaum, the growth question, all three answers and Weiter erkunden fit within the central panel. Spiele, Rucksack, pause, the thumbstick, Springen and Ansehen remain separated and visible. The world title is ellipsized and the discovery count wraps before its final 3; the panel obscures part of the scene. This is a static question layout, not a successful actual Android clue/answer or exploration test."
+    },
+    {
+      "module": "build",
+      "touch_group": "build",
+      "artifact_id": 14088391493,
+      "artifact_sha256": "2f5c60b44ce390f9631a297ec8ccbb295464abc1cc568082e6f5711b0015b121",
+      "artifact_entry": "build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "expected_bundle_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14088391493/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "bytes": 130362,
+      "sha256": "871dddb6d6259e7745386252efe5bcb322ce9feeae7fc42d61ec4738cd969944",
+      "dimensions": [
+        640,
+        360
+      ],
+      "directly_viewed_by_root": true,
+      "findings": "Root directly opened this new 640x360 Build-dialog original. Aktuelles Bauziel, Verbinde die Inseln and the river-path instruction are readable, with the instruction wrapping within the dialog. Mein Bauwerk testen and Abbrechen fit fully inside the modal. Background toolbar controls are partially obscured or clipped in their separate viewport; they are not represented as exposed modal actions. No natural touch or successful construction is inferred from this image."
+    }
+  ],
+  "scope": "Actual current individual renderer artifacts inspected. Every selected byte must still match the final successful combined archive. No Core48/Android/release approval."
+}

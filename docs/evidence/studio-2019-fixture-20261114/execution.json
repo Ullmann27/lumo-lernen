@@ -1,0 +1,46 @@
+{
+  "source_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "patch_checkpoint": "cadfeb090a5d665557fd5ffa4d7943ef1a4a50c1",
+  "tested_test_blob": "b9c667de8d9d9fd3ec158141d17d09d899aea2b6",
+  "started_utc": "2026-11-14T08:59:04.619768+00:00",
+  "finished_utc": "2026-11-14T08:59:04.782817+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "tools.android_qa.tests.test_update_2019_preservation.StudioUpdateWrapperExecutionTests",
+    "-v"
+  ],
+  "cwd": "/home/agent/lumo-2019-fixture-run-2708",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "exit_code": 0,
+  "elapsed_seconds": 0.16305452499364037,
+  "source_git_blobs_before": {
+    ".github/probes/lumo_2019_update_android_probe.py": "7a59bf3842b49737115005c452e36565582b6410",
+    ".github/probes/lumo_2003_update_android_probe.py": "f8afca6f798fd4c309ee97737a2fcb983081d65a",
+    "scripts/verify_legacy_release_pin.py": "28f3aee40eb0028c5a4aa80196749f5867cbffc4",
+    "tools/android_qa/tests/test_update_preservation.py": "b2463c175c2beafcb44c11e40f061e2018c2c406",
+    "tools/android_qa/update_preservation.py": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+    "tools/android_qa/update_artifact_identity.py": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+    "tools/android_qa/kart_tour_evidence.py": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+    "tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json": "dc3792760859e23561d13988350de3353d832577",
+    "pubspec.yaml": "7f504396071cf3af57164187a29ea74b74c62413",
+    "config/godot-source.json": "72dc631c9e27885cb3ab38ce446a66416f818ebb",
+    "tools/android_qa/tests/test_update_2019_preservation.py": "b9c667de8d9d9fd3ec158141d17d09d899aea2b6"
+  },
+  "source_git_blobs_after": {
+    ".github/probes/lumo_2019_update_android_probe.py": "7a59bf3842b49737115005c452e36565582b6410",
+    ".github/probes/lumo_2003_update_android_probe.py": "f8afca6f798fd4c309ee97737a2fcb983081d65a",
+    "scripts/verify_legacy_release_pin.py": "28f3aee40eb0028c5a4aa80196749f5867cbffc4",
+    "tools/android_qa/tests/test_update_preservation.py": "b2463c175c2beafcb44c11e40f061e2018c2c406",
+    "tools/android_qa/update_preservation.py": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+    "tools/android_qa/update_artifact_identity.py": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+    "tools/android_qa/kart_tour_evidence.py": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+    "tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json": "dc3792760859e23561d13988350de3353d832577",
+    "pubspec.yaml": "7f504396071cf3af57164187a29ea74b74c62413",
+    "config/godot-source.json": "72dc631c9e27885cb3ab38ce446a66416f818ebb",
+    "tools/android_qa/tests/test_update_2019_preservation.py": "b9c667de8d9d9fd3ec158141d17d09d899aea2b6"
+  },
+  "raw_log_sha256": "adaa65538f90fbe0d97e9825e59fc6c29c5f2783c1496335e94fc4df0016c354",
+  "scope": "Only StudioUpdateWrapperExecutionTests; no Android/emulator or full-suite execution."
+}

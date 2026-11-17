@@ -29,3 +29,19 @@ Diese Anleitung gehört zur unabhängigen APK-Variante `dev.ullmann.lumo.lumo_le
 ## Grenzen
 
 Der Kanal ist für öffentlich lesbare Releases, **nicht** ein privater, authentifizierter Familienverteiler. APK-Downloadlinks können von Dritten gesehen werden. Keine privaten Nutzerprofile, API-Schlüssel oder Familiendaten in GitHub-Releases packen. Geräte ohne passende Signatur können nicht aktualisieren. Keine automatische Download-/Installationsausführung ohne Nutzerhandlung. Die Android-Installation selbst bestätigt die gleiche Paketkennung/Signatur; der Kanal ersetzt keine Signaturprüfung.
+
+## Wiederverwendbare Pipeline (ab 2012)
+
+Nicht mehr für jeden Build eine neue Einmal-Workflow-Datei anlegen. Die historische `lumo-2004-family-button-release.yml` bleibt unverändert als Nachweis für 2004.
+
+1. Der Integrationszweig setzt `version:` in `pubspec.yaml` auf den neuen Stand (für das nächste Familienupdate voraussichtlich `0.13.0+2012`). Dieser Pipeline-Zweig ändert die Versionsnummer nicht.
+2. Workflow `.github/workflows/lumo-family-draft-release.yml`:
+   - `verify-only` (Standard, auch auf passenden Pull Requests): Gates und Vertragstests, kein Release.
+   - `build-only` (`workflow_dispatch`): APK mit `scripts/build_unified_apk.sh` bauen, `scripts/verify_unified_apk.py` und `scripts/release_pipeline_gates.py` ausführen, Artefakte inklusive `Lumo-Lernen-Neu.apk.sha256` hochladen, **kein** GitHub-Release.
+   - `draft-release` (`workflow_dispatch`): zusätzlich ein **Draft** `coachpreview-build-N` mit genau `Lumo-Lernen-Neu.apk` und `.sha256` anlegen. Nicht als fertiges Update veröffentlichen.
+3. Dasselbe lokal: `scripts/prepare_family_draft_release.sh` (Standard: Dry-Run). Erst `--create-draft` lädt einen Entwurf hoch.
+4. Gates: `versionCode` größer als der zuletzt veröffentlichte Familien-Build (mindestens 2004), Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Zertifikat SHA-256 `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`, ABI `arm64-v8a`, `verify_unified_apk.py`.
+5. Erst nach ausdrücklicher Freigabe den Draft in der GitHub-Oberfläche als **Prerelease** veröffentlichen, nicht als Latest/Stabil. Erst dann findet der Update-Button in der App den Build. Ein Draft bleibt unsichtbar, auch für Geräte ohne GitHub-Anmeldung.
+
+Die Familien-Signatur liegt im öffentlichen Testdepot (`tools/lumo-debug.keystore`). Für diesen Kanal ist kein zusätzliches GitHub-Secret nötig; `GITHUB_TOKEN` reicht zum Anlegen eines Drafts. Ein Play-Store-Upload ist ein anderer Kanal und hier nicht enthalten.
+

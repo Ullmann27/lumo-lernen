@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "0186-bridge-compact",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "0186-bridge-compact-render-candidate-1.png",
+      "sha256": "7c1f82e316bfcaeca28383fa0d18d5e866c11e45711eddcecc6fb7d9fd0ea847",
+      "width": 720,
+      "height": 1600,
+      "content_entropy_bits": 5.861,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 0.746
+}

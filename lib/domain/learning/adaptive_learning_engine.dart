@@ -9,7 +9,8 @@ class ScoredSkill {
 }
 
 class DifficultyWindow {
-  const DifficultyWindow({required this.min, required this.target, required this.max});
+  const DifficultyWindow(
+      {required this.min, required this.target, required this.max});
   final int min;
   final int target;
   final int max;
@@ -24,7 +25,8 @@ class AdaptiveTaskSelector {
     DateTime? now,
   }) {
     if (candidates.isEmpty) {
-      throw ArgumentError('AdaptiveTaskSelector requires at least one SkillState.');
+      throw ArgumentError(
+          'AdaptiveTaskSelector requires at least one SkillState.');
     }
 
     final currentTime = now ?? DateTime.now();
@@ -33,12 +35,15 @@ class AdaptiveTaskSelector {
       final repetition = skill.repetitionNeed.clamp(0.0, 1.0);
       final decay = _daysSince(skill.lastSeenAt, currentTime) / 14.0;
       final decayScore = max(skill.decayScore, decay.clamp(0.0, 1.0));
-      final frustrationPenalty = (skill.frustrationSignals * 0.04).clamp(0.0, 0.25);
+      final frustrationPenalty =
+          (skill.frustrationSignals * 0.04).clamp(0.0, 0.25);
       final unseenBoost = skill.attempts == 0 ? 0.18 : 0.0;
 
       final modeScore = switch (mode) {
-        LearningMode.tutoring => weakness * 0.48 + repetition * 0.34 + decayScore * 0.10,
-        LearningMode.practice => weakness * 0.34 + repetition * 0.28 + decayScore * 0.20,
+        LearningMode.tutoring =>
+          weakness * 0.48 + repetition * 0.34 + decayScore * 0.10,
+        LearningMode.practice =>
+          weakness * 0.34 + repetition * 0.28 + decayScore * 0.20,
         LearningMode.weaknessTest => weakness * 0.70 + decayScore * 0.10,
         LearningMode.blitzTest => decayScore * 0.35 + weakness * 0.25,
         LearningMode.subjectTest => decayScore * 0.30 + weakness * 0.30,
@@ -70,13 +75,14 @@ class DifficultyEngine {
     int minDifficulty = 1,
     int maxDifficulty = 6,
   }) {
-    var target = skill.currentDifficulty.clamp(minDifficulty, maxDifficulty).toInt();
+    var target =
+        skill.currentDifficulty.clamp(minDifficulty, maxDifficulty).toInt();
 
-    if (skill.consecutiveCorrect >= 3 && skill.masteryScore >= 0.78 && skill.helpCount <= skill.attempts * 0.25) {
+    if (skill.assessed.correctStreak >= 3 && skill.masteryScore >= 0.78) {
       target += 1;
     }
 
-    if (skill.consecutiveWrong >= 2 || skill.frustrationSignals >= 2) {
+    if (skill.assessed.wrongStreak >= 2 || skill.frustrationSignals >= 2) {
       target -= 1;
     }
 
@@ -106,16 +112,20 @@ class TaskTypeSelector {
     required LearningMode mode,
   }) {
     if (templates.isEmpty) {
-      throw ArgumentError('TaskTypeSelector requires at least one TaskTemplate.');
+      throw ArgumentError(
+          'TaskTypeSelector requires at least one TaskTemplate.');
     }
 
     final preferred = skill.preferredTaskType;
-    if (preferred != null && templates.any((template) => template.taskType == preferred)) {
+    if (preferred != null &&
+        templates.any((template) => template.taskType == preferred)) {
       return preferred;
     }
 
     if (mode == LearningMode.tutoring) {
-      final visualTemplate = templates.where((template) => template.visualType != VisualType.none).toList();
+      final visualTemplate = templates
+          .where((template) => template.visualType != VisualType.none)
+          .toList();
       if (visualTemplate.isNotEmpty) return visualTemplate.first.taskType;
     }
 
@@ -125,7 +135,9 @@ class TaskTypeSelector {
         error == ErrorType.incompleteShape ||
         error == ErrorType.wrongDirection);
 
-    if (writingError && templates.any((template) => template.taskType == TaskType.writingCanvas)) {
+    if (writingError &&
+        templates
+            .any((template) => template.taskType == TaskType.writingCanvas)) {
       return TaskType.writingCanvas;
     }
 
@@ -141,29 +153,34 @@ class SkillStateUpdater {
     required TaskResult result,
     DateTime? now,
   }) {
+    final evidence = result.helpUsed
+        ? before.assessed
+        : before.assessed.record(result.correct);
     final attempts = before.attempts + 1;
     final correct = before.correct + (result.correct ? 1 : 0);
     final wrong = before.wrong + (result.correct ? 0 : 1);
     final helpCount = before.helpCount + (result.helpUsed ? 1 : 0);
     final avgResponse = before.attempts == 0
         ? result.responseTimeMs
-        : ((before.avgResponseTimeMs * before.attempts + result.responseTimeMs) / attempts).round();
-    final frustration = before.frustrationSignals + (result.frustrationSignal ? 1 : 0);
+        : ((before.avgResponseTimeMs * before.attempts +
+                    result.responseTimeMs) /
+                attempts)
+            .round();
+    final frustration = before.frustrationSignals +
+        (!result.helpUsed && result.frustrationSignal ? 1 : 0);
 
     final recentErrors = <ErrorType>[
       ...before.recentErrorTypes,
-      ...result.detectedErrorTypes,
+      if (!result.helpUsed) ...result.detectedErrorTypes,
     ];
     final trimmedErrors = recentErrors.length <= 8
         ? recentErrors
         : recentErrors.sublist(recentErrors.length - 8);
 
-    final consecutiveCorrect = result.correct ? before.consecutiveCorrect + 1 : 0;
-    final consecutiveWrong = result.correct ? 0 : before.consecutiveWrong + 1;
-
-    final handwritingScore = result.handwritingScore == null
+    final handwritingScore = result.helpUsed || result.handwritingScore == null
         ? before.handwritingScore
-        : _rollingAverage(before.handwritingScore, result.handwritingScore!, before.attempts);
+        : _rollingAverage(before.handwritingScore, result.handwritingScore!,
+            before.assessed.attempts);
 
     final updated = before.copyWith(
       attempts: attempts,
@@ -175,13 +192,23 @@ class SkillStateUpdater {
       lastSeenAt: now ?? DateTime.now(),
       recentErrorTypes: trimmedErrors,
       handwritingScore: handwritingScore,
-      consecutiveCorrect: consecutiveCorrect,
-      consecutiveWrong: consecutiveWrong,
+      consecutiveCorrect: evidence.correctStreak,
+      consecutiveWrong: evidence.wrongStreak,
+      independentEvidence: evidence,
     );
 
-    final mastery = computeMastery(updated);
-    final repetition = computeRepetitionNeed(updated.copyWith(masteryScore: mastery));
-    final nextDifficulty = _nextDifficulty(updated.copyWith(masteryScore: mastery));
+    // Keep practice visible without turning a revealed solution (or a guided
+    // error) into a new capability/weakness claim. The separate evidence also
+    // prevents these totals from re-entering a later independent calculation.
+    if (result.helpUsed) return updated;
+    final measuredMastery = computeMastery(updated);
+    final mastery = result.correct
+        ? measuredMastery
+        : min(before.masteryScore, measuredMastery);
+    final repetition =
+        computeRepetitionNeed(updated.copyWith(masteryScore: mastery));
+    final nextDifficulty =
+        _nextDifficulty(updated.copyWith(masteryScore: mastery));
 
     return updated.copyWith(
       masteryScore: mastery,
@@ -191,15 +218,16 @@ class SkillStateUpdater {
   }
 
   double computeMastery(SkillState state) {
-    final accuracy = state.accuracy.clamp(0.0, 1.0);
-    final helpRatio = state.attempts == 0 ? 0.0 : (state.helpCount / state.attempts).clamp(0.0, 1.0);
-    final frustrationPenalty = (state.frustrationSignals * 0.05).clamp(0.0, 0.30);
+    if (state.assessed.attempts == 0) return state.masteryScore;
+    final accuracy = state.assessed.accuracy.clamp(0.0, 1.0);
+    final frustrationPenalty =
+        (state.frustrationSignals * 0.05).clamp(0.0, 0.30);
     final decayPenalty = state.decayScore.clamp(0.0, 0.40);
     final handwriting = (state.handwritingScore ?? 1.0).clamp(0.0, 1.0);
 
     return (accuracy * 0.55 +
             handwriting * 0.15 +
-            (1 - helpRatio) * 0.15 +
+            0.15 +
             (1 - frustrationPenalty) * 0.10 +
             (1 - decayPenalty) * 0.05)
         .clamp(0.0, 1.0);
@@ -209,12 +237,20 @@ class SkillStateUpdater {
     final weakness = 1.0 - state.masteryScore.clamp(0.0, 1.0);
     final recentWrong = state.consecutiveWrong >= 2 ? 0.25 : 0.0;
     final errorBoost = state.recentErrorTypes.isEmpty ? 0.0 : 0.10;
-    return (weakness * 0.55 + state.decayScore * 0.25 + recentWrong + errorBoost).clamp(0.0, 1.0);
+    return (weakness * 0.55 +
+            state.decayScore * 0.25 +
+            recentWrong +
+            errorBoost)
+        .clamp(0.0, 1.0);
   }
 
-  double _rollingAverage(double? oldValue, double newValue, int previousAttempts) {
-    if (oldValue == null || previousAttempts <= 0) return newValue.clamp(0.0, 1.0);
-    return ((oldValue * previousAttempts + newValue) / (previousAttempts + 1)).clamp(0.0, 1.0);
+  double _rollingAverage(
+      double? oldValue, double newValue, int previousAttempts) {
+    if (oldValue == null || previousAttempts <= 0) {
+      return newValue.clamp(0.0, 1.0);
+    }
+    return ((oldValue * previousAttempts + newValue) / (previousAttempts + 1))
+        .clamp(0.0, 1.0);
   }
 
   int _nextDifficulty(SkillState state) {
@@ -235,11 +271,17 @@ class ErrorClassifier {
     if (answerGiven == task.correctAnswer) return const <ErrorType>[];
 
     if (task.subject == LearningSubject.mathematik) {
-      final given = int.tryParse('$answerGiven'.replaceAll(RegExp(r'[^0-9-]'), ''));
-      final expected = int.tryParse('${task.correctAnswer}'.replaceAll(RegExp(r'[^0-9-]'), ''));
+      final given =
+          int.tryParse('$answerGiven'.replaceAll(RegExp(r'[^0-9-]'), ''));
+      final expected = int.tryParse(
+          '${task.correctAnswer}'.replaceAll(RegExp(r'[^0-9-]'), ''));
       if (given != null && expected != null) {
-        if ((given - expected).abs() == 1) return const <ErrorType>[ErrorType.countingError];
-        if ((given - expected).abs() == 10) return const <ErrorType>[ErrorType.placeValueWeak];
+        if ((given - expected).abs() == 1) {
+          return const <ErrorType>[ErrorType.countingError];
+        }
+        if ((given - expected).abs() == 10) {
+          return const <ErrorType>[ErrorType.placeValueWeak];
+        }
       }
       if (task.prompt.contains('+') || task.prompt.contains('-')) {
         return const <ErrorType>[ErrorType.plusMinusConfusion];
@@ -248,8 +290,12 @@ class ErrorClassifier {
     }
 
     if (task.subject == LearningSubject.deutsch) {
-      if (task.skillId.value.contains('silbe')) return const <ErrorType>[ErrorType.syllableCountWrong];
-      if (task.skillId.value.contains('laut')) return const <ErrorType>[ErrorType.soundMisread];
+      if (task.skillId.value.contains('silbe')) {
+        return const <ErrorType>[ErrorType.syllableCountWrong];
+      }
+      if (task.skillId.value.contains('laut')) {
+        return const <ErrorType>[ErrorType.soundMisread];
+      }
       return const <ErrorType>[ErrorType.wordImageMismatch];
     }
 

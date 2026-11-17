@@ -1,0 +1,66 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-conversation/test/lumo_agent_microphone_lifecycle_test.dart
+00:00 +0: a microphone start pending during pause cannot revive on resume
+══╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════
+The following assertion was thrown while dispatching notifications for
+WidgetsBindingObserver.didChangeAppLifecycleState:
+Invalid state transition from AppLifecycleState.paused to AppLifecycleState.resumed
+'package:flutter/src/widgets/app_lifecycle_listener.dart':
+Failed assertion: line 225 pos 11: 'previousState == null ||
+              previousState == AppLifecycleState.inactive ||
+              previousState == AppLifecycleState.detached'
+
+Either the assertion indicates an error in the framework itself, or we should provide substantially
+more information in this error message to help you determine and fix the underlying cause.
+In either case, please report this assertion by filing a bug on GitHub:
+  https://github.com/flutter/flutter/issues/new?template=02_bug.yml
+
+When the exception was thrown, this was the stack:
+#2      AppLifecycleListener.didChangeAppLifecycleState (package:flutter/src/widgets/app_lifecycle_listener.dart:225:11)
+#3      WidgetsBinding.handleAppLifecycleStateChanged (package:flutter/src/widgets/binding.dart:1334:18)
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-conversation/test/lumo_agent_microphone_lifecycle_test.dart:75:20)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 3 frames from class _AssertionError and package:stack_trace)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: empty
+  Actual: WhereIterable<MethodCall>:[
+            MethodCall:MethodCall(listen, {partialResults: true, onDevice: true, listenMode: 1,
+sampleRate: 0, enableHaptics: false, autoPunctuation: false, pauseFor: 3000, listenFor: 32000,
+localeId: de_AT})
+          ]
+The microphone request belongs to the pre-pause context.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/4fa97167812c/agent-conversation/test/lumo_agent_microphone_lifecycle_test.dart:80:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/4fa97167812c/agent-conversation/test/lumo_agent_microphone_lifecycle_test.dart line 80
+The test description was:
+  a microphone start pending during pause cannot revive on resume
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following message was thrown:
+Multiple exceptions (2) were detected during the running of the current test, and at least one was
+unexpected.
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: a microphone start pending during pause cannot revive on resume [E]
+  Test failed. See exception logs above.
+  The test description was: a microphone start pending during pause cannot revive on resume
+  
+00:01 +0 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/4fa97167812c/agent-conversation/test/lumo_agent_microphone_lifecycle_test.dart: a microphone start pending during pause cannot revive on resume

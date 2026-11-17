@@ -1,0 +1,60 @@
+{
+  "sourceHead": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
+  "sourceHashesVerified": 359,
+  "protectedFilesByteEqual": 18,
+  "protectedBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
+  "counts": {
+    "curriculumFamilies": 236,
+    "mathTemplates": 60,
+    "germanTemplates": 32,
+    "academyTopics": 79,
+    "registeredModuleIds": 20,
+    "practicalActivities": 60,
+    "labTopics": 6,
+    "guidedLessons": 7,
+    "gameLevels": 50,
+    "readingTexts": 24,
+    "quests": 4,
+    "cognitiveQuestions": 200,
+    "reviewedInventoryEntries": 61,
+    "reviewedRoutes": 61,
+    "screenInventoryFiles": 55,
+    "activeSpecialistScreens": 18,
+    "activeSpecialistRoutes": 19,
+    "protectedShadowedRegistryRoutes": 1,
+    "labModes": 6,
+    "labProblemIds": 35,
+    "miniGameLevels": 49,
+    "quizFinalLevels": 1,
+    "nativeKinds": 12,
+    "protectedByteIdenticalFiles": 18,
+    "quizDeclaredQuestionIds": 108,
+    "cardsBankItems": 200
+  },
+  "fullModernizationComplete": false,
+  "verification": "Fresh Dart source export and exact current source/protected byte checks; not device or all-generated-variant acceptance.",
+  "catalog.json": {
+    "bytes": 115256,
+    "sha256": "ed4cdafda16a03cee80d170da8b2a0491934409c098dbe06b11017f97bd0d67d"
+  },
+  "export.log": {
+    "bytes": 218,
+    "sha256": "61046bd4a371512f9e68fcb090d3a208059cb00589466cec75edfa0a31b68364"
+  },
+  "export-provenance.json": {
+    "bytes": 1039,
+    "sha256": "52948946f453ea83c5ddd01cd6e6c4dece91c1e116a1b942febb4b00b514ed4d"
+  },
+  "builder.log": {
+    "bytes": 826,
+    "sha256": "de4ab59cf3fc8cb230f413b9b21c2511f2b5a89f4646a192b5ad6fc8bb7c6f79"
+  },
+  "COVERAGE.json": {
+    "bytes": 997955,
+    "sha256": "cf2df0c6220a65d7baf133edc68b5041b4fb40047cfc75b79efc67c50aba9ade"
+  },
+  "COVERAGE.md": {
+    "bytes": 15142,
+    "sha256": "c81bd9f16f8f61f07ba18c5bd3ff0da1164849524bd8292378ed129ece97654a"
+  }
+}

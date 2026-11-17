@@ -1,0 +1,41 @@
+{
+  "worktree": "/workspace/scratch/4fa97167812c/qa-2031-replay",
+  "branch": "qa/lumo-nextgen-2031-android-20261116",
+  "config": ".github/probes/lumo_nextgen_2031_runtime_cases.json",
+  "before": {
+    "commit": "59ab8cd000d4cca1c9c414920ccebf9fc5d1c7ba",
+    "tree": "79f623d398e7c64275d8f3b894f169c2d29b54c4",
+    "caseAttempt": 5,
+    "config_bytes": 411,
+    "config_sha256": "0885a84c9fc727023da9de32d7d898a17e6f15ee43073cd529861cf32bc4c487"
+  },
+  "after": {
+    "commit": "fde05e41ef4b6337a2f19e017d62ad04c96b2107",
+    "tree": "d98ca3f9ec556ad39867cc7cacd0804382eaa8d3",
+    "caseAttempt": 6,
+    "config_bytes": 411,
+    "config_sha256": "42e137bf9fe7a8cbf7c38b17b20d72dde44dcd4c0e0bcf1dc272f66b02c562ae"
+  },
+  "only_changed_path": ".github/probes/lumo_nextgen_2031_runtime_cases.json",
+  "exact_zero_context_diff": "diff --git a/.github/probes/lumo_nextgen_2031_runtime_cases.json b/.github/probes/lumo_nextgen_2031_runtime_cases.json\nindex c37d2a6..369e4c1 100644\n--- a/.github/probes/lumo_nextgen_2031_runtime_cases.json\n+++ b/.github/probes/lumo_nextgen_2031_runtime_cases.json\n@@ -8 +8 @@\n-  \"caseAttempt\": 5,\n+  \"caseAttempt\": 6,\n",
+  "only_changed_content_lines": [
+    "-  \"caseAttempt\": 5,",
+    "+  \"caseAttempt\": 6,"
+  ],
+  "worktree_clean": true,
+  "sparse_unchanged": true,
+  "source_gate_fixture_product_changes": false,
+  "other_config_changes": false,
+  "root_index_changed": false,
+  "tests_run": false,
+  "remote_action": false,
+  "workflow_started": false,
+  "original_attempt5": {
+    "run": 43826704611,
+    "job": 133162141099,
+    "qa_commit": "59ab8cd000d4cca1c9c414920ccebf9fc5d1c7ba",
+    "status": "FAIL",
+    "original_evidence_unchanged": true
+  },
+  "attempt6_runtime": "NOT_STARTED"
+}

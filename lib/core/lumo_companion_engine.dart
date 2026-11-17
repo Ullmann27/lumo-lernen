@@ -59,7 +59,14 @@ class LumoCompanionEngine {
           'erklär',
           'noch einmal',
           'nochmal',
+          'wiederhol',
+          'langsamer',
+          'langsam',
+          'hinweis',
+          'tipp',
           'warum',
+          'wieso',
+          'weshalb',
           'hilf mir',
         ])) {
       if (task.isExam) {
@@ -68,13 +75,17 @@ class LumoCompanionEngine {
                 'können wir die Aufgabe gemeinsam anschauen.',
             mood: LumoMood.comfort);
       }
-      if (!task.answering) {
+      if (!task.answering && !task.isExplanation) {
         return const LumoReply(
             text: 'Diese Aufgabe ist schon abgeschlossen. '
                 'Mit Weiter öffnest du die nächste Aufgabe.',
             mood: LumoMood.point);
       }
-      var hint = task.localHelp?.trim();
+      final bridge = _bridgeExplanation(q, task);
+      if (bridge != null) {
+        return LumoReply(text: bridge, mood: LumoMood.point);
+      }
+      var hint = (task.explanation ?? task.localHelp)?.trim();
       // Keep a lesson's deliberately changed explanation. If it still offers
       // the same hint after repeated errors, use the existing local hint
       // service with the visible task instead of repeating that text.
@@ -357,6 +368,25 @@ class LumoCompanionEngine {
 
   bool _containsAny(String value, List<String> words) =>
       words.any(value.contains);
+
+  String? _bridgeExplanation(String question, LumoCompanionTaskContext task) {
+    if (!task.isExplanation ||
+        !task.objectIds.contains('ten_frame') ||
+        !RegExp(r'\b(warum|wieso|weshalb)\b').hasMatch(question)) return null;
+    final source = '${task.prompt} ${task.explanation ?? ''}'.toLowerCase();
+    final match = RegExp(r'(?<!\d)([1-9])\s*(?:\+|plus)\s*([1-9])(?!\d)')
+        .firstMatch(source);
+    if (match == null) return null;
+    final left = int.parse(match.group(1)!);
+    final right = int.parse(match.group(2)!);
+    if (left + right <= 10) return null;
+    final needed = 10 - left;
+    final remainder = right - needed;
+    return 'Im Zehnerfeld sind $left Plätze besetzt. Bis zur Zehn fehlen '
+        '$needed, denn 10 minus $left ist $needed. Von den $right zusätzlichen '
+        'Objekten ergänzen wir deshalb zuerst $needed. Dann bleiben '
+        '$remainder übrig.';
+  }
 }
 
 class LumoReply {

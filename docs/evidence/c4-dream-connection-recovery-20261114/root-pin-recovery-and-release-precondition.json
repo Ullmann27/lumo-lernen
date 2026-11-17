@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "recovered_at_utc": "2026-11-14T10:59:52.666Z",
+  "kind": "Exact frozen source-byte recovery from immutable base blobs; no new local test execution",
+  "base_host": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "native_tree": "2eb628d3e3a327ee8985385130c96168db7aa852",
+  "changes": [
+    {
+      "path": "config/godot-source.json",
+      "before": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2",
+      "after": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+      "sha256": "9190ff1a60b61ce8cb40d44daea300315a359a5ff1d7d47b4623a4c4ae9bb240"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "before": "fc050358bce96db9e6cb1ffec77a4ea9e53c1cbb",
+      "after": "b10d2ba20c93d17f723b9c190652060968505b53",
+      "sha256": "14f363f836072e194b0a188af43bc76c9133adcc8a5c04157f25fc7a1217ca2c"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "before": "3f3a74806b29f07b18bcc3ecc88da982bb28f3c1",
+      "after": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06",
+      "sha256": "512094ced303fdffb955eee93fce5ce71a8de757a9510940b8f6cac3da0ac931"
+    }
+  ],
+  "all_git_blob_and_sha256_identities_match_pre_outage_freeze": true,
+  "pre_outage_pin_manifest_sha256": "82da94c157e10e9aba083c2df5034727cb4e60bf8255643b2cef34d0d51f00e7",
+  "pre_outage_independent_review_sha256": "bb005c0d0e514a1282cc5053d9d0c0543c46d50ab66a09b8192d0bfd5324d722",
+  "original_local_manifest_and_review_bytes_currently_unavailable": true,
+  "historical_approved_pins_verified_unchanged_before_outage": 50,
+  "tests_after_checkpoint": "NOT_RUN_EXECUTOR_UNAVAILABLE",
+  "release_absence": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}"
+        }
+      ],
+      "structuredContent": {
+        "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+        "error_code": "NOT_FOUND",
+        "error_data": {
+          "message": "Not Found",
+          "documentation_url": "https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name",
+          "status": "404"
+        }
+      },
+      "isError": true
+    }
+  },
+  "tag_absence": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}"
+        }
+      ],
+      "structuredContent": {
+        "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}",
+        "error_code": "NOT_FOUND",
+        "error_data": {
+          "message": "Not Found",
+          "documentation_url": "https://docs.github.com/rest/git/refs#get-a-reference",
+          "status": "404"
+        }
+      },
+      "isError": true
+    }
+  }
+}

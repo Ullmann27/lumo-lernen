@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "status": "FROZEN_NOT_RUN",
+  "base_source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "base_tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+  "producer_source": "26a127bb897c9dd0832512d2ae3b80a6495f7f7e",
+  "producer_tree": "d58fd7f8353f05bb3f327b08ec1fa37e1ccb1264",
+  "files": [
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "mode": "exact published PR493 test blob",
+      "before": {
+        "bytes": 6322,
+        "sha256": "57063af997b5a27ee35b8c4a7974237224fdb378fbf92c357d7a91d754792b4c",
+        "git_blob": "390bcc219e636e63177f1d36613ee78de0a68db2"
+      },
+      "final": {
+        "bytes": 6406,
+        "sha256": "87b1091e117f341e7ef1f8d9d3492824a90a370b7221bf5f959085920dfd1078",
+        "git_blob": "4169f06a21138d253ec3b4298720e97fa9854d95"
+      },
+      "purpose": "After every existing ensureVisible, pump and require the actual control to be hitTestable before the existing six move taps."
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "mode": "exact published PR493 test blob",
+      "before": {
+        "bytes": 3776,
+        "sha256": "420c0bfb92c9dfabc828c7188a30608fcb957180f26f5d6b3f1f86f2090646ff",
+        "git_blob": "29cd071778aae6d5b643e48df7c6a67a4d993db6"
+      },
+      "final": {
+        "bytes": 4116,
+        "sha256": "ab18f5b477d7b8f69fd5ffff8f0f2164f7e3d8579a97a42d73463750f275c54d",
+        "git_blob": "b05fa2ececfef096db3c4c6f7b116ac79e61d197"
+      },
+      "purpose": "Require actual RenderBox width/height >=48, then allow only 1e-9 roundoff between global subtraction and the real box. Existing visibility, alignment, viewport, disjointness and eight actual moves remain."
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "mode": "exact published PR493 test blob",
+      "before": {
+        "bytes": 14954,
+        "sha256": "9d6a283c6e64a80b0d1d25a3e45ae16a3c402ad5a1be4dce6160dbf2850d6797",
+        "git_blob": "e234c15a45d5ced14b605290e30927baafc0c25d"
+      },
+      "final": {
+        "bytes": 15447,
+        "sha256": "1c77db4149a9c584cb20efbf68daacbf69f2a3d2878f93e3c9206f88a099c870",
+        "git_blob": "254267c9f84d5c8e507307178015d281db238e4f"
+      },
+      "purpose": "After existing per-turn scrolling require hitTestable; also scroll/pump/require hitTestable before replay and delayed-native-refusal taps. Existing result/save/fallback assertions remain."
+    }
+  ],
+  "protected_product": {
+    "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+    "decision": "Keep current 79c product layout; no concrete additional product repair demonstrated by the producer variant."
+  },
+  "validation": "No Flutter execution, package operation, device action or test was performed for this three-file proposal."
+}

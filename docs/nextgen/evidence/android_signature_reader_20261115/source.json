@@ -1,0 +1,21 @@
+{
+  "apkSourceCommit": "72a7914059d10152604b877cfeaf8bd1d2155810",
+  "nativeSourceCommit": "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
+  "workflowRun": 43759362796,
+  "androidJob": 132959417938,
+  "artifactId": 14180492732,
+  "artifactSha256": "fc95c615db7c867f38353addd04a3dd2e50b3cf5e7084f227d1bc4656e0fc2c1",
+  "originalOutcome": "FAIL before APK installation: certificate output label unrecognized",
+  "repairScope": "QA parser and regression only; no APK product source or bytes changed",
+  "files": {
+    "0001-failure-current-screen.png": "ca2e7ef708be4e086e78c6921ab25cbd9b871744c1c983089c7de250f7104528",
+    "archive-14180492732.zip": "fc95c615db7c867f38353addd04a3dd2e50b3cf5e7084f227d1bc4656e0fc2c1",
+    "candidate-BUILD-PROVENANCE.json": "5f278ea278454fd2995da44ac52a1ff86c2bf540fa29bc1b8d87c74b1a8a8012",
+    "candidate-manifest.txt": "e3b30d1d394dd97d4c1d1247458b6d11a101d2e6c5dcafa04e7ffacb5cf77e27",
+    "candidate-signature.txt": "7075dd546122a7dbe8dbfd071c94caa00bebc4a5db90c9bdd2df24e19659ef41",
+    "github-artifact.json": "31bdd7fa7488f93eb0f750e174fc0ae1cfb74cbe01edc9729344c055c031b2a5",
+    "learning-android-result.json": "91a4c84609aec6f0b8f0d2907ef1c6540d32f0056d20665696d9a2e4f8fb0caa",
+    "mesa-renderer.txt": "90877f74bcb370cc0b62bb493e8f30e6fc6dcaecd59b3709948a590e221d2d50",
+    "xvfb.log": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+  }
+}

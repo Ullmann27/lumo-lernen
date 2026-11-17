@@ -1,0 +1,148 @@
+{
+  "schema": "lumo.host_contract_followup_evidence.v1",
+  "recorded_at_utc": "2026-11-13T17:24:34.930879+00:00",
+  "scope": "Lossless preservation of two already-completed local contract runs; source identities remain distinct.",
+  "runs": [
+    {
+      "stored_directory": "current-village",
+      "original_directory": "/workspace/scratch/b3485b7bb989/host-village-full-contract-evidence",
+      "classification": "Current local Village follow-up contract run, bound by its exact source fingerprint; base_local_commit is not a claim that the modified worktree equals the historical remote commit.",
+      "tests": 414,
+      "skipped": 0,
+      "exit_code": 0,
+      "source_files": 1705,
+      "source_hashes_unchanged": true,
+      "source_before_sha256": "d6186a105d5e4e1e4bd9b8bc2f280a52028a012aab2a1397d83ee995d5fd3753",
+      "source_after_sha256": "d6186a105d5e4e1e4bd9b8bc2f280a52028a012aab2a1397d83ee995d5fd3753",
+      "log_sha256": "a3613c9a4bd8608a21bfb1c128e45ae527b8b479133689173f259ee9fee500eb",
+      "result_sha256": "c27e11f0c7c3d0dd215b7cd15c2bfab08c29884ca276b200b7bd6a20b1305e97",
+      "started_at": "2026-11-13T17:19:55.228230+00:00",
+      "finished_at": "2026-11-13T17:21:57.204184+00:00",
+      "original_source_identifiers": {
+        "base_local_commit": "3deae002a9930bfc7bef7afeaed6ba4861125ec1"
+      },
+      "unittest_reported_seconds": 121.567,
+      "new_test_execution_by_packager": false
+    },
+    {
+      "stored_directory": "historical-9e285e1",
+      "original_directory": "/workspace/scratch/b3485b7bb989/host-9e285e1-full-contract-evidence",
+      "classification": "Historical independent source checkpoint: remote 9e285e1, local 3deae00, tree a62c2186; not the current Village follow-up.",
+      "tests": 409,
+      "skipped": 0,
+      "exit_code": 0,
+      "source_files": 1849,
+      "source_hashes_unchanged": true,
+      "source_before_sha256": "48cd94dece1e0427c0a29718af1314eea7c55ad4dad1b950d282af0b7b254be8",
+      "source_after_sha256": "48cd94dece1e0427c0a29718af1314eea7c55ad4dad1b950d282af0b7b254be8",
+      "log_sha256": "528b05d7f5180a1a65fe2833dfb3d3575960236689b766140c4e2db743b0b3c0",
+      "result_sha256": "0ca969b9151dc63cec5807566c321803fed5b5e55c8c2bd27e3c56c87692a3f7",
+      "started_at": "2026-11-13T16:48:55.837534+00:00",
+      "finished_at": "2026-11-13T16:50:31.102692+00:00",
+      "original_source_identifiers": {
+        "remote_commit": "9e285e17a8cbd54f73cf5a14ccdad07c0ad29199",
+        "local_commit": "3deae002a9930bfc7bef7afeaed6ba4861125ec1",
+        "tree": "a62c2186c5a5f4b9d89b172f67a0625d8736098c"
+      },
+      "unittest_reported_seconds": 94.838,
+      "new_test_execution_by_packager": false
+    }
+  ],
+  "original_files": [
+    {
+      "file": "current-village/result.json",
+      "original_absolute_path": "/workspace/scratch/b3485b7bb989/host-village-full-contract-evidence/result.json",
+      "original_bytes": 1733,
+      "original_sha256": "c27e11f0c7c3d0dd215b7cd15c2bfab08c29884ca276b200b7bd6a20b1305e97",
+      "stored_bytes": 1733,
+      "stored_sha256": "c27e11f0c7c3d0dd215b7cd15c2bfab08c29884ca276b200b7bd6a20b1305e97",
+      "encoding": "identity",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "current-village/source-before.json.gz",
+      "original_absolute_path": "/workspace/scratch/b3485b7bb989/host-village-full-contract-evidence/source-before.json",
+      "original_bytes": 201652,
+      "original_sha256": "d6186a105d5e4e1e4bd9b8bc2f280a52028a012aab2a1397d83ee995d5fd3753",
+      "stored_bytes": 84866,
+      "stored_sha256": "ecaa9c17aebb18b646f2c0799ed23cf0f857c546e0c734dd2ab17302737c33b5",
+      "encoding": "gzip-mtime-0-no-filename-level-9",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "current-village/source-after.json.gz",
+      "original_absolute_path": "/workspace/scratch/b3485b7bb989/host-village-full-contract-evidence/source-after.json",
+      "original_bytes": 201652,
+      "original_sha256": "d6186a105d5e4e1e4bd9b8bc2f280a52028a012aab2a1397d83ee995d5fd3753",
+      "stored_bytes": 84866,
+      "stored_sha256": "ecaa9c17aebb18b646f2c0799ed23cf0f857c546e0c734dd2ab17302737c33b5",
+      "encoding": "gzip-mtime-0-no-filename-level-9",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "current-village/full-build-contracts.log.gz",
+      "original_absolute_path": "/workspace/scratch/b3485b7bb989/host-village-full-contract-evidence/full-build-contracts.log",
+      "original_bytes": 83319,
+      "original_sha256": "a3613c9a4bd8608a21bfb1c128e45ae527b8b479133689173f259ee9fee500eb",
+      "stored_bytes": 12819,
+      "stored_sha256": "a5eec21d929bf2a2595ba1fc5a7916b490d74f31efaf1e461d0514e362988747",
+      "encoding": "gzip-mtime-0-no-filename-level-9",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "historical-9e285e1/result.json",
+      "original_absolute_path": "/workspace/scratch/b3485b7bb989/host-9e285e1-full-contract-evidence/result.json",
+      "original_bytes": 707,
+      "original_sha256": "0ca969b9151dc63cec5807566c321803fed5b5e55c8c2bd27e3c56c87692a3f7",
+      "stored_bytes": 707,
+      "stored_sha256": "0ca969b9151dc63cec5807566c321803fed5b5e55c8c2bd27e3c56c87692a3f7",
+      "encoding": "identity",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "historical-9e285e1/source-before.json.gz",
+      "original_absolute_path": "/workspace/scratch/b3485b7bb989/host-9e285e1-full-contract-evidence/source-before.json",
+      "original_bytes": 218804,
+      "original_sha256": "48cd94dece1e0427c0a29718af1314eea7c55ad4dad1b950d282af0b7b254be8",
+      "stored_bytes": 92150,
+      "stored_sha256": "6582433a695222ca5dc70649145feb1b33b375c7464672bad187d8d0ebb6700e",
+      "encoding": "gzip-mtime-0-no-filename-level-9",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "historical-9e285e1/source-after.json.gz",
+      "original_absolute_path": "/workspace/scratch/b3485b7bb989/host-9e285e1-full-contract-evidence/source-after.json",
+      "original_bytes": 218804,
+      "original_sha256": "48cd94dece1e0427c0a29718af1314eea7c55ad4dad1b950d282af0b7b254be8",
+      "stored_bytes": 92150,
+      "stored_sha256": "6582433a695222ca5dc70649145feb1b33b375c7464672bad187d8d0ebb6700e",
+      "encoding": "gzip-mtime-0-no-filename-level-9",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "historical-9e285e1/full-build-contracts.log.gz",
+      "original_absolute_path": "/workspace/scratch/b3485b7bb989/host-9e285e1-full-contract-evidence/full-build-contracts.log",
+      "original_bytes": 82249,
+      "original_sha256": "528b05d7f5180a1a65fe2833dfb3d3575960236689b766140c4e2db743b0b3c0",
+      "stored_bytes": 12659,
+      "stored_sha256": "3d131b45e9d9036cd1b39a96808b32e10f249d546ccc67ddd1aae978a715b370",
+      "encoding": "gzip-mtime-0-no-filename-level-9",
+      "roundtrip_verified": true
+    }
+  ],
+  "readme_sha256": "00acea6376cb01d7a393cd30eb54c4fceafda801f948dfb802f09a7f493ba054",
+  "actions": {
+    "new_tests": false,
+    "source_changes": false,
+    "other_document_changes": false,
+    "staging": false,
+    "commits": false,
+    "ref_changes": false,
+    "receipt": false
+  },
+  "limits": [
+    "Local Python contract tests only; not Android runtime, APK/AAR or renderer acceptance.",
+    "The current modified worktree is bound by its exact fingerprint, not retroactively by its base commit.",
+    "Historical remote/local/tree identities are retained without relabeling."
+  ]
+}

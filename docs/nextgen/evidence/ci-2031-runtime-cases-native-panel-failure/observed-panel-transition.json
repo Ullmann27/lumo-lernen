@@ -1,0 +1,35 @@
+{
+  "qaCommit": "25d4aa1eb3b684eb10e38b4fa7e0270d02e8f9b3",
+  "method": "Unchanged expected RGB255,248,232 and per-channel tolerance3; actual original images only",
+  "images": [
+    {
+      "path": "original/android/runtime-cases/0343-runtime-banana-slower-panel.png",
+      "sha256": "9419d773b43857ade01de637758e028017c3857a96857b32ab675a595ac7a54c",
+      "imageDimensions": [
+        1080,
+        2340
+      ],
+      "matchingPixels": 0,
+      "matchingBounds": null,
+      "occupancyInBounds": null
+    },
+    {
+      "path": "original/android/runtime-cases/0344-runtime-failure-current-screen.png",
+      "sha256": "fca950e7623a57f7e417c715b66daf881a67a84690d699e888d93158931d7d1e",
+      "imageDimensions": [
+        1080,
+        2340
+      ],
+      "matchingPixels": 749307,
+      "matchingBounds": [
+        40,
+        606,
+        1040,
+        1803
+      ],
+      "occupancyInBounds": 0.6259874686716792
+    }
+  ],
+  "inference": "The first post-tap frame has no rendered panel; the next actual failure screenshot has the expected panel. No color/layout change is justified.",
+  "imagesModified": false
+}

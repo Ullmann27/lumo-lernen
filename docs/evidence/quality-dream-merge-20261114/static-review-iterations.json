@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "scope": "Local static merge-review helper iterations, before candidate tests; no production or test assertion was changed.",
+  "first_attempt": {
+    "chunk_id": "e75937",
+    "wall_time_seconds": 0.075230038,
+    "exit_code": 1,
+    "original_token_count": 82,
+    "output": "Traceback (most recent call last):\n  File \"/home/agent/lumo-host-merged-check-2708/resolve_dream_merge.py\", line 100, in <module>\n    assert all(new_methods.get(name) == body for name, body in old_methods.items()), label\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: theirs\n"
+  },
+  "first_correction": "Preserve all 47 ours methods and all 11 actual incoming method additions relative to the common base; the already strengthened quality-branch method correctly differs from the incoming historical base.",
+  "second_attempt": {
+    "exit_code": 1,
+    "assertion": "All old functions unchanged except checked_native_originals/prepare",
+    "actual_changed_functions": [
+      "checked_native",
+      "prepare"
+    ],
+    "correction": "Use the actual production function name checked_native and require it to equal the incoming Dream implementation exactly. All other old functions remain byte-identical."
+  },
+  "final_attempt": {
+    "chunk_id": "83ce8c",
+    "wall_time_seconds": 0.162520885,
+    "exit_code": 0,
+    "original_token_count": 994,
+    "output": "{\n  \"recorded_at_utc\": \"2026-11-14T11:32:35.369247+00:00\",\n  \"base\": \"32e7efbff427fef64e90b3a1fcecd3b52f00af42\",\n  \"parents\": [\n    \"38c2fe8cb9e1b1021842e886c1a7cfa199e687ca\",\n    \"3d91bd8355a539c3c2413760959684cd3fee985a\"\n  ],\n  \"native_revision\": \"e2d15dbc5f3709306decb139eeb70a1cf30c0b73\",\n  \"resolved_files\": [\n    {\n      \"path\": \".github/workflows/lumo-connect-four-2020.yml\",\n      \"strategy\": \"Preserve both independent additions, return first and Dream second.\",\n      \"bytes\": 47632,\n      \"blob\": \"a0bf885564ec322b3d830bcc661d0417926fbb2d\",\n      \"sha256\": \"5b53838ce50eafa9f4cae38f1a69acb227edb15d1b36c99201dcde60314d01e4\"\n    },\n    {\n      \"path\": \"config/godot-source.json\",\n      \"strategy\": \"Bind only the current 2020 identity to the actual preserving Native merge.\",\n      \"bytes\": 145,\n      \"blob\": \"3ce3b0d1f53f5d9b9f7ff0dcb7c3bd519c250788\",\n      \"sha256\": \"1b7c5f504dd2de26b0ae889f32f16971d960e18374b169c5862c3b1bd9a0b20f\"\n    },\n    {\n      \"path\": \"scripts/tests/test_candidate_2011_pin.py\",\n      \"strategy\": \"Bind only the current 2020 identity to the actual preserving Native merge.\",\n      \"bytes\": 17696,\n      \"blob\": \"acc41e8b9f664441eca1f49eb984adefda2fa65a\",\n      \"sha256\": \"ac8b6033ed884a7d5bb14dda97bfc04aef9ac1e8139ac784bad241c7bb954d74\"\n    },\n    {\n      \"path\": \"scripts/tests/test_connect_four_delivery.py\",\n      \"strategy\": \"Actual conflict-free git merge-file output; preserve all parent changes.\",\n      \"bytes\": 67475,\n      \"blob\": \"cbc7d6c5f1544bd29af56226c93a8f1b53e049eb\",\n      \"sha256\": \"d7bcf66b0b95802004c2f63d8487035d569386909e3bb7afb56a8b71739a4c36\"\n    },\n    {\n      \"path\": \"scripts/verify_connect_four_delivery.py\",\n      \"strategy\": \"Preserve both independent additions, return first and Dream second.\",\n      \"bytes\": 57147,\n      \"blob\": \"18fdff098115570b69fc43ccfe6a3d573605e55b\",\n      \"sha256\": \"f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a\"\n    },\n    {\n      \"path\": \"scripts/verify_legacy_release_pin.py\",\n      \"strategy\": \"Bind the actual Native merge and clarify the unchanged source-only approval scope.\",\n      \"bytes\": 10712,\n      \"blob\": \"58dc14602f6f0333170d3bcc6c6271fb349153fc\",\n      \"sha256\": \"6753f5c90d72f4e70885451320dc10616b05f02418253e98306e7f52d19630a1\"\n    },\n    {\n      \"path\": \"tools/android_qa/tests/test_kart_garage_evidence.py\",\n      \"strategy\": \"Actual conflict-free git merge-file output; preserve all parent changes.\",\n      \"bytes\": 30218,\n      \"blob\": \"66bede79ae3ec7eb01a65a1f692e747bac9d5b0d\",\n      \"sha256\": \"3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae\"\n    }\n  ],\n  \"unchanged_workflow_steps\": [\n    {\n      \"name\": \"Retry the acknowledged native exit after a transient Android refusal\",\n      \"unchanged_from\": \"38c2fe8cb9e1b1021842e886c1a7cfa199e687ca\"\n    },\n    {\n      \"name\": \"Require the additional pinned native Treasure wisp regression\",\n      \"unchanged_from\": \"38c2fe8cb9e1b1021842e886c1a7cfa199e687ca\"\n    },\n    {\n      \"name\": \"Require actual gameplay gates on the exact pinned native source\",\n      \"unchanged_from\": \"38c2fe8cb9e1b1021842e886c1a7cfa199e687ca\"\n    },\n    {\n      \"name\": \"Require acknowledged Connect Four return retry\",\n      \"unchanged_from\": \"38c2fe8cb9e1b1021842e886c1a7cfa199e687ca\"\n    },\n    {\n      \"name\": \"Require actual Dream gates on the exact pinned native source\",\n      \"unchanged_from\": \"3d91bd8355a539c3c2413760959684cd3fee985a\"\n    }\n  ],\n  \"original_native_artifact_upload_unchanged\": true,\n  \"delivery_test_methods_unchanged_from_each_parent\": {\n    \"ours_unchanged\": 47,\n    \"incoming_additions_or_changes_unchanged\": 11,\n    \"incoming_total\": 56,\n    \"common_base_total\": 45\n  },\n  \"merged_delivery_test_methods\": 58,\n  \"all_pre_2020_native_policies_unchanged\": true,\n  \"delivery_functions_unchanged_except_additional_dream_collection_and_release_text\": true,\n  \"scope\": \"Actual source merge and static identity assertions; no execution or new APK approval is implied.\"\n}\n"
+  }
+}

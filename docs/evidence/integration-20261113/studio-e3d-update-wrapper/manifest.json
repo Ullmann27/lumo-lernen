@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "upstream_revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "recorded_at": "2026-11-13T16:37:30.062912+00:00",
+  "scope": "Published wrapper/identity tests incorporated into the existing 2019 test module. Runtime validators and distinct 2018/2019 opt-ins unchanged; producer receipt is not reused. 37 tests pass, with all 168 scoped source hashes unchanged during execution. Synthetic provenance metadata stops at a mocked Android boundary; no actual APK/device result.",
+  "files": [
+    {
+      "path": "integration.json",
+      "sha256": "96976889dcbe408bda2bbb2dd7acabb42797be3014e1f0f329b94a003e8ee817",
+      "bytes": 892,
+      "original_name": "integration.json",
+      "original_sha256": "96976889dcbe408bda2bbb2dd7acabb42797be3014e1f0f329b94a003e8ee817",
+      "original_bytes": 892,
+      "encoding": "original"
+    },
+    {
+      "path": "integration.patch.gz",
+      "sha256": "d856fd000160363cf1bc6402808ce9121cdfc40e78b26c7b9c6b762b42b0ac38",
+      "bytes": 2585,
+      "original_name": "integration.patch",
+      "original_sha256": "ac8fff8a7c9c31510427665b2d898f2d0aab25cf6b70d22c975ce05e561f8067",
+      "original_bytes": 7172,
+      "encoding": "gzip"
+    },
+    {
+      "path": "original-test-update-2019-preservation.py",
+      "sha256": "40d2b8fdc7592c14761681521272db8d7d35dce6ee3bfc0695bc39063d102a90",
+      "bytes": 3820,
+      "original_name": "original-test-update-2019-preservation.py",
+      "original_sha256": "40d2b8fdc7592c14761681521272db8d7d35dce6ee3bfc0695bc39063d102a90",
+      "original_bytes": 3820,
+      "encoding": "original"
+    },
+    {
+      "path": "result.json",
+      "sha256": "4ef58d2ff7993d47e59f0e3b05f99ef6803af360715d5a1f64c98bc013cbf2f0",
+      "bytes": 617,
+      "original_name": "result.json",
+      "original_sha256": "4ef58d2ff7993d47e59f0e3b05f99ef6803af360715d5a1f64c98bc013cbf2f0",
+      "original_bytes": 617,
+      "encoding": "original"
+    },
+    {
+      "path": "source-after.json.gz",
+      "sha256": "04f01dced6c37a85598fa43c70a4ef5d237513f8367cc99882c8f799f25a51d6",
+      "bytes": 8557,
+      "original_name": "source-after.json",
+      "original_sha256": "a6635e87c017aa512fceecbe4779eb668a85093589854a3a7a910d588dc04a8d",
+      "original_bytes": 21244,
+      "encoding": "gzip"
+    },
+    {
+      "path": "source-before.json.gz",
+      "sha256": "04f01dced6c37a85598fa43c70a4ef5d237513f8367cc99882c8f799f25a51d6",
+      "bytes": 8557,
+      "original_name": "source-before.json",
+      "original_sha256": "a6635e87c017aa512fceecbe4779eb668a85093589854a3a7a910d588dc04a8d",
+      "original_bytes": 21244,
+      "encoding": "gzip"
+    },
+    {
+      "path": "update-preservation.log.gz",
+      "sha256": "6089c202b31b9632f1eb1717f14fdd9477fe4078b05a02888ab389f5cc63c3c6",
+      "bytes": 1054,
+      "original_name": "update-preservation.log",
+      "original_sha256": "a5d9fdc020a1bf3cbedbe060c260bb19c7618819df74c2ff32ab9904e1d36c69",
+      "original_bytes": 7891,
+      "encoding": "gzip"
+    },
+    {
+      "path": "upstream-wrapper-class.py.gz",
+      "sha256": "5b0ea52fa08c8b6fd637afb99589b0edcd3d34323f4884fb60aa5428d4889cde",
+      "bytes": 2081,
+      "original_name": "upstream-wrapper-class.py",
+      "original_sha256": "ad3785ef84b6bca1af648bde00a852b46ba9de4ffb386f074ec59074ad36ab4d",
+      "original_bytes": 5614,
+      "encoding": "gzip"
+    }
+  ]
+}

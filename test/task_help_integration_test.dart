@@ -46,17 +46,25 @@ void main() {
       expect(requests.taskContext.value?.prompt, before.prompt);
       final isExam = kind != LumoSessionKind.quickPractice;
       expect(requests.taskContext.value?.isExam, isExam);
+      final helpButton = find.widgetWithText(OutlinedButton, 'Hilf mir');
       requests.requestTaskHelp();
       await tester.pump();
       if (isExam) {
         expect(find.text('Lumo erklärt'), findsNothing);
-        expect(find.text('Lumo, hilf mir'), findsNothing);
+        expect(helpButton, findsNothing);
       } else {
         expect(find.text('Lumo erklärt'), findsOneWidget);
         expect(find.textContaining('Beginne mit der ersten Menge'),
             findsOneWidget);
-        expect(find.text('Lumo, hilf mir'), findsOneWidget);
-        requests.requestTaskHelp();
+        expect(helpButton, findsOneWidget);
+        expect(tester.widget<OutlinedButton>(helpButton).onPressed, isNotNull);
+        final helpSize = tester.getSize(helpButton);
+        expect(helpSize.width, greaterThanOrEqualTo(48));
+        expect(helpSize.height, greaterThanOrEqualTo(48));
+        // The visible canonical control must advance the same staged help
+        // as a companion request, without submitting or replacing the task.
+        await tester.ensureVisible(helpButton);
+        await tester.tap(helpButton);
         await tester.pump();
         expect(find.textContaining('Starte bei'), findsOneWidget);
         expect(
@@ -79,6 +87,54 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  testWidgets('disposing helped lesson preserves the next screen task owner',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final state = LumoAppState(walletRepository: RewardWalletRepository());
+    addTearDown(state.dispose);
+    state.update(state.state.copyWith(
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      sessionKind: LumoSessionKind.quickPractice,
+      settings: const AppSettings(aiProxyEnabled: false, voiceEnabled: false),
+    ));
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(body: LearningContent(appState: state)),
+    ));
+    await tester.pump();
+    final requests = LumoCompanionRequests.instance;
+    for (var level = 0; level < 3; level++) {
+      requests.requestTaskHelp();
+      await tester.pump();
+    }
+    final formerOwner = requests.taskContext.value;
+    expect(formerOwner, isNotNull);
+    final successor = LumoCompanionTaskContext(
+      subject: 'Deutsch',
+      unit: 'Silben',
+      prompt: 'Wie viele Silben hat Banane?',
+      taskId: 'successor-screen-task',
+      profileGeneration: state.profileGeneration,
+    );
+    await tester.pumpWidget(MaterialApp(
+      home: Builder(builder: (context) {
+        // The new page schedules its publication while replacing the old
+        // page. It publishes before the old page's post-frame owner cleanup.
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          requests.publishTask(successor);
+        });
+        return const SizedBox.shrink();
+      }),
+    ));
+    await tester.pump();
+    expect(requests.taskContext.value, same(successor));
+    expect(requests.taskContext.value, isNot(same(formerOwner)));
+    expect(tester.takeException(), isNull);
+    requests.clearTask(successor);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 
   testWidgets(
       'changing the selected activity replaces the active task and help',

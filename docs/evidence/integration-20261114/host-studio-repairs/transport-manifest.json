@@ -1,0 +1,60 @@
+{
+  "archive": {
+    "bytes": 16935599,
+    "git_blob": "801fe04f32dc80c5fee6cdfd479ad4ad06e82b78",
+    "path": "host-studio-integration-evidence.tar.gz",
+    "sha256": "df58f8725f38135f8bdc594850365474033b9fdcd8c338362a8abd807422ec60"
+  },
+  "assembly_readme": {
+    "bytes": 6672,
+    "git_blob": "5cbbb765973b199f2da29031dec160b85e244228",
+    "path": "ASSEMBLY_README.md",
+    "sha256": "ee3cf73ca17ac7ac796ae7eef5afe598b3a07851030af08f91bd9c8275beade2"
+  },
+  "external_roundtrip_handoff": "host-studio-evidence-split-transport/handoff.json",
+  "full_archive_verifier": {
+    "bytes": 6886,
+    "git_blob": "f583d39f69d99a1768ded7772b8debbf24cb2809",
+    "path": "verify_assembly.py",
+    "sha256": "845e2c396b028b3919364493f9769215d2b48702baa7c961b2b7e88f92e04137"
+  },
+  "original_external_archive": "/workspace/scratch/b3485b7bb989/host-studio-integration-evidence-assembly/host-studio-integration-evidence.tar.gz",
+  "parts": [
+    {
+      "base64_bytes": 11290400,
+      "bytes": 8467800,
+      "git_blob": "2693b0824f13d0eb3a62611a7a3f95bacf8d11da",
+      "offset": 0,
+      "path": "host-studio-integration-evidence.tar.gz.part-01",
+      "sha256": "a508f9a4ed78c27b0753ab1b726663f565c8dc4eedf6bff704f347623e7c78a7"
+    },
+    {
+      "base64_bytes": 11290400,
+      "bytes": 8467799,
+      "git_blob": "45ea3fc5f5a60099a58cf5755e603d9fab69b202",
+      "offset": 8467800,
+      "path": "host-studio-integration-evidence.tar.gz.part-02",
+      "sha256": "1ac20088aac6e458d5cdcc13a0df8711c432fe8bb024638dd1b893fb64e19be3"
+    }
+  ],
+  "reassembler": {
+    "atomic_publish": "Verified temporary file plus no-overwrite hard-link; existing targets must match the complete frozen archive.",
+    "bytes": 6155,
+    "git_blob": "24d342ef63271cc5bf3487b813239f3dd4bef999",
+    "path": "reassemble_archive.py",
+    "sha256": "439c45925f31c25992bf007f905325a25b814d86dc9d38a785f392efc98ab7e8"
+  },
+  "schema": 1,
+  "scope": "Lossless two-part repository transport only; original evidence outcomes and source bindings unchanged.",
+  "split_is_not_new_acceptance": true,
+  "transport": {
+    "each_part_base64_bytes": 11290400,
+    "observed_original_error": "HTTP 400: MCP request body is invalid or exceeds the 16 MiB limit",
+    "original_error_reference": {
+      "path": "host-studio-evidence-publication-preparation/evidence-archive-blob.json",
+      "sha256": "98b4ecdb5d8b30fa377d01b10f81afa1553eb9f6e96850bcfe2b3a1dfff417aa"
+    },
+    "reported_request_limit_bytes": 16777216,
+    "repository_requests_not_performed_by_splitter": true
+  }
+}

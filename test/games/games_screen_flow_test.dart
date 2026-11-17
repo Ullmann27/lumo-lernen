@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
@@ -16,6 +19,40 @@ import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_learning_card
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_result_dialog.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_intro_splash.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_playing_card.dart';
+
+List<int> _playableConnectColumns(WidgetTester tester) {
+  final columns = <int>[];
+  for (var column = 0; column < 7; column++) {
+    final button = find.byKey(ValueKey('connect-column-$column'));
+    if (button.evaluate().isNotEmpty &&
+        tester.widget<IconButton>(button).onPressed != null) {
+      columns.add(column);
+    }
+  }
+  return columns;
+}
+
+String _connectState(WidgetTester tester) {
+  final labels = tester
+      .widgetList<Text>(find.byType(Text))
+      .map((text) => text.data)
+      .whereType<String>()
+      .join(' | ');
+  return 'Enabled columns: ${_playableConnectColumns(tester)}. '
+      'Pause panel: ${find.text('Spiel pausiert').evaluate().isNotEmpty}. '
+      'Visible labels: $labels';
+}
+
+Future<void> _waitForConnectTurn(WidgetTester tester, String stage) async {
+  for (var frame = 0;
+      frame < 50 && _playableConnectColumns(tester).isEmpty;
+      frame++) {
+    await tester.pump(const Duration(milliseconds: 100));
+  }
+  expect(_playableConnectColumns(tester), isNotEmpty,
+      reason: '$stage must expose a playable column within five seconds. '
+          '${_connectState(tester)}');
+}
 
 void main() {
   setUp(() {
@@ -129,11 +166,25 @@ void main() {
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(360, 780));
     addTearDown(() => tester.binding.setSurfaceSize(null));
+    const channel = MethodChannel('lumo_lernen/connect_four');
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(channel,
+        (_) async => throw MissingPluginException('Flutter fallback fixture'));
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
     final app = LumoAppState(walletRepository: RewardWalletRepository());
+    addTearDown(() async {
+      await tester.pumpWidget(const SizedBox());
+      app.dispose();
+    });
     await app.hydrateFromWallet();
+    LumoVoice.instance.isEnabled = false;
     await tester.pumpWidget(
         MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
+    // Loading the durable round and the explicit native-unavailable fallback
+    // both finish before the first real Flutter move can be accepted.
     await tester.pump();
+    await _waitForConnectTurn(tester, 'Initial Flutter fallback');
     var turns = 0;
     while (find.byType(AlertDialog).evaluate().isEmpty && turns < 60) {
       final buttons = [
@@ -141,11 +192,28 @@ void main() {
       ];
       final enabled =
           buttons.where((f) => tester.widget<IconButton>(f).onPressed != null);
-      expect(enabled, isNotEmpty);
+      expect(enabled, isNotEmpty,
+          reason: 'Turn $turns must be playable or show the actual result. '
+              '${_connectState(tester)}');
+      await tester.ensureVisible(enabled.first);
+      await tester.pump();
+      expect(enabled.first.hitTestable(), findsOneWidget);
       await tester.tap(enabled.first);
       await tester.pump(const Duration(milliseconds: 1000));
       await tester.pump(const Duration(milliseconds: 600));
       await tester.pump(const Duration(milliseconds: 400));
+      // A completed game now highlights all four winning stones before
+      // opening its result. During that finite replay no column is playable.
+      // Advance actual UI time until the next turn or result, with a hard
+      // deadline so a stuck animation still fails this complete-game test.
+      for (var frame = 0; frame < 30; frame++) {
+        if (find.byType(AlertDialog).evaluate().isNotEmpty ||
+            buttons
+                .any((f) => tester.widget<IconButton>(f).onPressed != null)) {
+          break;
+        }
+        await tester.pump(const Duration(milliseconds: 100));
+      }
       turns++;
     }
     expect(find.byType(AlertDialog), findsOneWidget);
@@ -154,7 +222,20 @@ void main() {
     expect((await RewardWalletRepository().load()).stars, app.state.stars);
     await tester.tap(find.text('Nochmal!'));
     await tester.pump();
-    await tester.tap(find.byKey(const ValueKey('connect-column-0')));
+    await _waitForConnectTurn(tester, 'Replay after the completed game');
+    final firstColumn = find.byKey(const ValueKey('connect-column-0'));
+    await tester.ensureVisible(firstColumn);
+    await tester.pump();
+    expect(firstColumn.hitTestable(), findsOneWidget);
+    await tester.tap(firstColumn);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-0')))
+            .properties
+            .label,
+        endsWith(': child'));
     await tester.tap(find.byTooltip('Pausieren / Zurück'));
     await tester.pump();
     await tester.tap(find.text('Neu starten'));
@@ -164,10 +245,98 @@ void main() {
             .widget<IconButton>(find.byKey(const ValueKey('connect-column-0')))
             .onPressed,
         isNotNull);
-    expect(find.text('Lumo denkt... 🦊'), findsNothing);
+    expect(find.text('Lumo denkt nach …'), findsNothing);
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is Semantics &&
+            (widget.properties.label?.startsWith('Reihe ') ?? false) &&
+            (widget.properties.label?.endsWith(': empty') ?? false)),
+        findsNWidgets(42),
+        reason: 'An old bot callback must not place a stone after restart.');
+    for (final piece in ['child', 'lumo']) {
+      expect(
+          find.byWidgetPredicate((widget) =>
+              widget is Semantics &&
+              (widget.properties.label?.startsWith('Reihe ') ?? false) &&
+              (widget.properties.label?.endsWith(': $piece') ?? false)),
+          findsNothing,
+          reason: 'Restart must leave no $piece stones after old bot time');
+    }
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
-    app.dispose();
+  });
+
+  testWidgets(
+      'Four in a row delayed native refusal unlocks the real Flutter board',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 780));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final nativeOpen = Completer<bool>();
+    var openCalls = 0;
+    const channel = MethodChannel('lumo_lernen/connect_four');
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      if (call.method == 'open') {
+        openCalls++;
+        return nativeOpen.future;
+      }
+      return true;
+    });
+    final app = LumoAppState(walletRepository: RewardWalletRepository());
+    addTearDown(() async {
+      if (!nativeOpen.isCompleted) nativeOpen.complete(false);
+      await tester.pumpWidget(const SizedBox());
+      app.dispose();
+    });
+    await app.hydrateFromWallet();
+    LumoVoice.instance.isEnabled = false;
+    await tester.pumpWidget(
+        MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
+    await _waitForConnectTurn(tester, 'Initial playable Flutter round');
+    expect(openCalls, 0,
+        reason: 'Opening 4 Gewinnt must not automatically start Godot');
+    final nativeButton = find.byKey(const ValueKey('connect-open-native'));
+    expect(nativeButton, findsOneWidget);
+    await tester.tap(nativeButton);
+    // A direct tap sends input immediately; a frame is required to rebuild
+    // the disabled column buttons before checking their visible state.
+    await tester.pump();
+    for (var frame = 0; frame < 50 && openCalls == 0; frame++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(openCalls, 1,
+        reason: 'Only the requested 3D action may open the native table');
+    expect(_playableConnectColumns(tester), isEmpty);
+    await tester.pump(const Duration(seconds: 1));
+    expect(_playableConnectColumns(tester), isEmpty,
+        reason: 'Flutter must not accept moves while native opening is pending');
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-0')))
+            .properties
+            .label,
+        endsWith(': empty'));
+
+    nativeOpen.completeError(
+        MissingPluginException('Delayed Flutter fallback fixture'));
+    await _waitForConnectTurn(tester, 'Fallback after delayed native refusal');
+    expect(find.text('Spiel pausiert'), findsNothing);
+    await tester.ensureVisible(find.byKey(const ValueKey('connect-column-0')));
+    await tester.pump();
+    expect(find.byKey(const ValueKey('connect-column-0')).hitTestable(),
+        findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('connect-column-0')));
+    await tester.pump();
+    expect(
+        tester
+            .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-0')))
+            .properties
+            .label,
+        endsWith(': child'));
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
   });
 
   testWidgets(

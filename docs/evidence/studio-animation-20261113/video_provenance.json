@@ -1,0 +1,572 @@
+{
+  "kind": "offline_original_lumo_studio_video_provenance",
+  "file": "Lumo-Original-Studio-Walk-Sprint.mp4",
+  "sha256": "5fffbecb6ef858d562d2d3ef5a6fabac085d27ea7a38e906120f30188397cc5f",
+  "bytes": 499133,
+  "ffmpeg_version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+  "encoding_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-y",
+    "-f",
+    "concat",
+    "-safe",
+    "0",
+    "-i",
+    "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-animation-20261113/studio-timeline.ffconcat",
+    "-an",
+    "-r",
+    "25",
+    "-fps_mode",
+    "cfr",
+    "-frames:v",
+    "95",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-crf",
+    "17",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "-metadata",
+    "title=Lumo Original: authored walk and sprint Actions",
+    "-metadata",
+    "comment=Offline Blender Cycles CPU studio render; 40 genuine rendered PNGs, explicit repeated loops; not gameplay or device FPS evidence.",
+    "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-animation-20261113/Lumo-Original-Studio-Walk-Sprint.mp4"
+  ],
+  "metadata": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 512,
+        "height": 512,
+        "pix_fmt": "yuv420p",
+        "avg_frame_rate": "25/1",
+        "duration": "3.800000",
+        "nb_read_frames": "95"
+      }
+    ],
+    "format": {
+      "duration": "3.800000",
+      "size": "499133"
+    }
+  },
+  "render_provenance_file": "render_provenance.json",
+  "render_provenance_sha256": "5afc78368ac54e02737d2ce935cba3879e2aab1850e120e4ab4ce8241dfef76c",
+  "input_sha256": {
+    "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+    "docs/evidence/studio-character-20261113/Lumo-Studio-Actions.blend": "9c4d1695b86214b44ce97fc844abdf6a36316fc38d99c769f3a068ff803b2b9e",
+    "tools/lumo_animation/author_platform_clips.py": "cbb0823ac359ac45d323a9037f6cc7c10a903e44dff6c374689ba84a3ec429c3"
+  },
+  "actual_cycles_rendered_frames": 40,
+  "encoded_frames": 95,
+  "duration_seconds": 3.8,
+  "media_fps": 25,
+  "loop_segments": [
+    {
+      "action": "studio_walk",
+      "start_seconds": 0,
+      "end_seconds": 2,
+      "loops": 2,
+      "unique_rendered_frames": 25
+    },
+    {
+      "action": "studio_sprint",
+      "start_seconds": 2,
+      "end_seconds": 3.8,
+      "loops": 3,
+      "unique_rendered_frames": 15
+    }
+  ],
+  "transition": "hard cut between two independent authored action loops",
+  "frame_interpolation_or_morphing": false,
+  "image_generation_used": false,
+  "full_video_decode_errors": [],
+  "source_assets_unchanged": true,
+  "gameplay_capture": false,
+  "physical_android_measurement": false,
+  "no_60_fps_claim": true,
+  "frame_mapping": [
+    {
+      "encoded_frame": 0,
+      "source_png": "studio_walk/0000.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 1,
+      "source_png": "studio_walk/0001.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 2,
+      "source_png": "studio_walk/0002.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 3,
+      "source_png": "studio_walk/0003.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 4,
+      "source_png": "studio_walk/0004.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 5,
+      "source_png": "studio_walk/0005.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 6,
+      "source_png": "studio_walk/0006.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 7,
+      "source_png": "studio_walk/0007.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 8,
+      "source_png": "studio_walk/0008.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 9,
+      "source_png": "studio_walk/0009.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 10,
+      "source_png": "studio_walk/0010.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 11,
+      "source_png": "studio_walk/0011.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 12,
+      "source_png": "studio_walk/0012.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 13,
+      "source_png": "studio_walk/0013.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 14,
+      "source_png": "studio_walk/0014.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 15,
+      "source_png": "studio_walk/0015.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 16,
+      "source_png": "studio_walk/0016.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 17,
+      "source_png": "studio_walk/0017.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 18,
+      "source_png": "studio_walk/0018.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 19,
+      "source_png": "studio_walk/0019.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 20,
+      "source_png": "studio_walk/0020.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 21,
+      "source_png": "studio_walk/0021.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 22,
+      "source_png": "studio_walk/0022.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 23,
+      "source_png": "studio_walk/0023.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 24,
+      "source_png": "studio_walk/0024.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 25,
+      "source_png": "studio_walk/0000.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 26,
+      "source_png": "studio_walk/0001.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 27,
+      "source_png": "studio_walk/0002.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 28,
+      "source_png": "studio_walk/0003.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 29,
+      "source_png": "studio_walk/0004.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 30,
+      "source_png": "studio_walk/0005.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 31,
+      "source_png": "studio_walk/0006.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 32,
+      "source_png": "studio_walk/0007.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 33,
+      "source_png": "studio_walk/0008.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 34,
+      "source_png": "studio_walk/0009.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 35,
+      "source_png": "studio_walk/0010.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 36,
+      "source_png": "studio_walk/0011.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 37,
+      "source_png": "studio_walk/0012.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 38,
+      "source_png": "studio_walk/0013.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 39,
+      "source_png": "studio_walk/0014.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 40,
+      "source_png": "studio_walk/0015.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 41,
+      "source_png": "studio_walk/0016.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 42,
+      "source_png": "studio_walk/0017.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 43,
+      "source_png": "studio_walk/0018.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 44,
+      "source_png": "studio_walk/0019.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 45,
+      "source_png": "studio_walk/0020.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 46,
+      "source_png": "studio_walk/0021.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 47,
+      "source_png": "studio_walk/0022.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 48,
+      "source_png": "studio_walk/0023.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 49,
+      "source_png": "studio_walk/0024.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 50,
+      "source_png": "studio_sprint/0000.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 51,
+      "source_png": "studio_sprint/0001.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 52,
+      "source_png": "studio_sprint/0002.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 53,
+      "source_png": "studio_sprint/0003.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 54,
+      "source_png": "studio_sprint/0004.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 55,
+      "source_png": "studio_sprint/0005.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 56,
+      "source_png": "studio_sprint/0006.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 57,
+      "source_png": "studio_sprint/0007.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 58,
+      "source_png": "studio_sprint/0008.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 59,
+      "source_png": "studio_sprint/0009.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 60,
+      "source_png": "studio_sprint/0010.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 61,
+      "source_png": "studio_sprint/0011.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 62,
+      "source_png": "studio_sprint/0012.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 63,
+      "source_png": "studio_sprint/0013.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 64,
+      "source_png": "studio_sprint/0014.png",
+      "loop_repetition": 1
+    },
+    {
+      "encoded_frame": 65,
+      "source_png": "studio_sprint/0000.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 66,
+      "source_png": "studio_sprint/0001.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 67,
+      "source_png": "studio_sprint/0002.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 68,
+      "source_png": "studio_sprint/0003.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 69,
+      "source_png": "studio_sprint/0004.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 70,
+      "source_png": "studio_sprint/0005.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 71,
+      "source_png": "studio_sprint/0006.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 72,
+      "source_png": "studio_sprint/0007.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 73,
+      "source_png": "studio_sprint/0008.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 74,
+      "source_png": "studio_sprint/0009.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 75,
+      "source_png": "studio_sprint/0010.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 76,
+      "source_png": "studio_sprint/0011.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 77,
+      "source_png": "studio_sprint/0012.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 78,
+      "source_png": "studio_sprint/0013.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 79,
+      "source_png": "studio_sprint/0014.png",
+      "loop_repetition": 2
+    },
+    {
+      "encoded_frame": 80,
+      "source_png": "studio_sprint/0000.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 81,
+      "source_png": "studio_sprint/0001.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 82,
+      "source_png": "studio_sprint/0002.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 83,
+      "source_png": "studio_sprint/0003.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 84,
+      "source_png": "studio_sprint/0004.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 85,
+      "source_png": "studio_sprint/0005.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 86,
+      "source_png": "studio_sprint/0006.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 87,
+      "source_png": "studio_sprint/0007.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 88,
+      "source_png": "studio_sprint/0008.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 89,
+      "source_png": "studio_sprint/0009.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 90,
+      "source_png": "studio_sprint/0010.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 91,
+      "source_png": "studio_sprint/0011.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 92,
+      "source_png": "studio_sprint/0012.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 93,
+      "source_png": "studio_sprint/0013.png",
+      "loop_repetition": 3
+    },
+    {
+      "encoded_frame": 94,
+      "source_png": "studio_sprint/0014.png",
+      "loop_repetition": 3
+    }
+  ],
+  "encoder_script_sha256": "be90273f97ea16c02fa2f78c9faef7ce284a34ebe75dc93245a3d082470833e3"
+}

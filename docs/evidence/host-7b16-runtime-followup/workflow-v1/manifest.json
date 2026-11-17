@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "files": {
+    "README.md": {
+      "bytes": 2216,
+      "sha256": "9bfdd13d0590883ef5b55e5a3da105b8fea764ea94c5936acf8c960fb290c106"
+    },
+    "actionlint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "after/.github/workflows/lumo-android-runtime-7b16-followup.yml": {
+      "bytes": 13465,
+      "sha256": "b6573b0ee0a2364b305e69693813b358a65245e1143876c09c8b0aecb809a71c"
+    },
+    "after/scripts/run_unchanged_apk_diagnostic.sh": {
+      "bytes": 7218,
+      "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50"
+    },
+    "after/scripts/tests/test_runtime_followup_workflow.py": {
+      "bytes": 10332,
+      "sha256": "6c65b0957e388eedb53d973de12aa8a799accde6a2a968678ec584bc8be1c473"
+    },
+    "before/.github/workflows/lumo-unchanged-apk-diagnostic.yml": {
+      "bytes": 12962,
+      "sha256": "e186bc6ec6e3dd946d77213307ad7c3b5152e0431b820e0f4c60c399d6fe46fa"
+    },
+    "before/scripts/run_unchanged_apk_diagnostic.sh": {
+      "bytes": 6960,
+      "sha256": "02d369163de84cb80bf63ef55ecb6397f9df2a2c2c0356fd13efdf399a4f12a5"
+    },
+    "followup.patch": {
+      "bytes": 26756,
+      "sha256": "cbb3453583ba89aad81197c472eb66843513a6c800c5c9677e9ba43e27a2e2c8"
+    },
+    "handoff.json": {
+      "bytes": 1166,
+      "sha256": "1249498e318e3cfae923c7b9aac736e937e7e7770bbbf39060d66dd6fda85031"
+    },
+    "logger-reference-clarification.json": {
+      "bytes": 1040,
+      "sha256": "465e32e16abd73f13e664283ad4855ac773a93dc83915ee9e38ab32ccedb7eb6"
+    },
+    "primary-source-notes.json": {
+      "bytes": 1267,
+      "sha256": "df3b6c785ca4249c00b61d7b8e2630dcc29afbb65c281926d8c557ba0f19e5e5"
+    },
+    "source-freeze.json": {
+      "bytes": 1202,
+      "sha256": "f8305a2f383777f478a7f84bd4027eb688834bd8aecf5cbdb7576c6cfeecbe5c"
+    },
+    "swangle-only-wrapper.patch": {
+      "bytes": 2320,
+      "sha256": "2c04a5b51ab648a7760fb0e34be0466c830a35dd91a351b99dee3ee68fbfdfba"
+    },
+    "tests-after.json": {
+      "bytes": 922,
+      "sha256": "cadc7cc7c5989dc63fef10c7b2b49283c2abb8b4674847c2e25c0c7a94dfb98a"
+    },
+    "tests-before.json": {
+      "bytes": 922,
+      "sha256": "cadc7cc7c5989dc63fef10c7b2b49283c2abb8b4674847c2e25c0c7a94dfb98a"
+    },
+    "validation.json": {
+      "bytes": 1632,
+      "sha256": "f21e93fcfd79e5c1ee2723fcb0ad06a1678d0fbf2551e50a2a459f61a9b3e259"
+    },
+    "workflow-contracts.log": {
+      "bytes": 1653,
+      "sha256": "8018dcccc27c73a54a1b5e9989e73edf699082acd3c827ae1f955a913acdef67"
+    },
+    "workflow-derivation.patch": {
+      "bytes": 4903,
+      "sha256": "030bacc76dd7ba746b196fcdc11ef223dc71775f8f6714bb0c5bb215adac829f"
+    },
+    "wrapper-syntax.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "count": 19,
+  "bytes": 96936
+}

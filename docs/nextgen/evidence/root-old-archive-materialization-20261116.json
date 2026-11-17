@@ -1,0 +1,198 @@
+{
+  "observedAtUtc": "2026-11-16T07:55:50.046864+00:00",
+  "scope": "Reversibly dematerialize only three old complete byte-verified archive-parts folders in own Root worktree; all Git objects/remote bytes/history unchanged, original selected media/metadata retained",
+  "remoteVerifiedCommit": "150e745db045dfdd947b08fb745eff1b191ff85e",
+  "unchangedTree": "d832c22146aae7944519149195af4a3817ad8e2e",
+  "priorSparseSelection": "/*\n!/docs/evidence/*\n/docs/evidence/conversation-lifecycle-20261115/\n",
+  "currentSparseSelection": "/*\n!/docs/evidence/*\n/docs/evidence/conversation-lifecycle-20261115/\n!/docs/nextgen/evidence/ci-2031-replay-banana-reader-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-replay-transfer-state-failure/archive-parts/\n!/docs/nextgen/evidence/ci-2031-replay-video-transfer-failure/archive-parts/\n",
+  "archives": [
+    {
+      "folder": "docs/nextgen/evidence/ci-2031-replay-banana-reader-failure/archive-parts",
+      "archiveBytes": 113034986,
+      "archiveSha256": "0b36fdffcd68b4855591b4662b5282eb40e8e615c4d0c647dd6f2e440f08637f",
+      "parts": [
+        {
+          "path": "archive-parts/artifact.zip.part001",
+          "bytes": 8388608,
+          "sha256": "a4effd79a977ec9e5ea2f9fca720f14fe40b770b12c5602a9136df65d3652aa7"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part002",
+          "bytes": 8388608,
+          "sha256": "9644cb42933f5b79f51c590fcaa7baa36d6d16077fdd98980417f43ffa3beff9"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part003",
+          "bytes": 8388608,
+          "sha256": "d79966339a00a913a1fde54a6cf1d464bd41790b84a2ad839d6a8abb9ab6a2f8"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part004",
+          "bytes": 8388608,
+          "sha256": "f0c890c245eb5d5464801b97a7dfb0735e9b42fe360debff5b36217cae9f8f14"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part005",
+          "bytes": 8388608,
+          "sha256": "0d977f6abf1d5d3e944d129c80a5abd50ff0cfa227ab172ada3bfa2331adae56"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part006",
+          "bytes": 8388608,
+          "sha256": "9a5d9fe3ed2ee1d68dbf6d04bd21107d69048dad846110c03b397425cbafbc3a"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part007",
+          "bytes": 8388608,
+          "sha256": "9129fb8b920b5c702037a5e2a1e1840e7b50e1b3152560ab44eaff4872ebfc1b"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part008",
+          "bytes": 8388608,
+          "sha256": "38a1e77c7b19f3250c1852255f7faa8ce2d8aeb798126cc3673d3b3f60b598bf"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part009",
+          "bytes": 8388608,
+          "sha256": "7ba7ba6329dadb90636b9711df037027753a8038e4de5c591837cabb9986fab6"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part010",
+          "bytes": 8388608,
+          "sha256": "c2e83b1be12201875653430578bd8505aac80e306031c097bf4a305337ee6e8b"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part011",
+          "bytes": 8388608,
+          "sha256": "027b7ef0388636408cbf95da09f7e48a01b0e02b36942be329f8eccc39bfce00"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part012",
+          "bytes": 8388608,
+          "sha256": "3c24e66cdf66ff0875908a45c480ac192419b6111c233250c4c4e9fc58209772"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part013",
+          "bytes": 8388608,
+          "sha256": "cdfeb72b1425f2764763033393eff003b34ca065d4a53b1237e5c9a7db4ab42f"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part014",
+          "bytes": 3983082,
+          "sha256": "c67e5d813de9b377c43c5a4ce79c6f0c101d54a396f1ad1820519cbc1df2a151"
+        }
+      ],
+      "workingCopyBytesEqualRemoteBackedCommit": true
+    },
+    {
+      "folder": "docs/nextgen/evidence/ci-2031-replay-transfer-state-failure/archive-parts",
+      "archiveBytes": 75040815,
+      "archiveSha256": "3575c784355901d6d0f35cbce3de05bfd93186222047d2c1a62d29afcc565f76",
+      "parts": [
+        {
+          "path": "archive-parts/artifact.zip.part001",
+          "bytes": 8388608,
+          "sha256": "6305273f929f8d5782b88b2619e7fe1f0273d34c30cda3b3c7b9654a1f35220f"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part002",
+          "bytes": 8388608,
+          "sha256": "4ed9578999c4101c63b00025bbdbe4c6be9d02ad2fd59aed96d121f69c48a964"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part003",
+          "bytes": 8388608,
+          "sha256": "9ab78ebad6f99e0f760f83092846692200c3670d71f011080a47c707e65718a6"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part004",
+          "bytes": 8388608,
+          "sha256": "584469df2bb542ac01dd600ef439f8fd2c969ee1b9f37b64cb984bc27e9576f7"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part005",
+          "bytes": 8388608,
+          "sha256": "c5efb13b49c10aa91f2ff70450ba1439a45cbba99487c9c3787559a313d01358"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part006",
+          "bytes": 8388608,
+          "sha256": "1945b65b807e82b2075c8f28cb83af2696e510cbe7aa48e1407a1f9eb7861c19"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part007",
+          "bytes": 8388608,
+          "sha256": "f954be4b1946062fc2dd8b9e60abfcd63a818dc7b6327c18fe7c671e805bc749"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part008",
+          "bytes": 8388608,
+          "sha256": "c659f0eaa4bb80f06cdfb6e3ea5543ab6186dd0dec9b71c3703163df429ca987"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part009",
+          "bytes": 7931951,
+          "sha256": "d976400dd2ff78dcdd830ddad9dd28b5704f1bf02264105f393f3b0c7e75bf1a"
+        }
+      ],
+      "workingCopyBytesEqualRemoteBackedCommit": true
+    },
+    {
+      "folder": "docs/nextgen/evidence/ci-2031-replay-video-transfer-failure/archive-parts",
+      "archiveBytes": 74671895,
+      "archiveSha256": "cbd6a659a292804df4c81928c6c4b942c94a67c969055f05b556393788253609",
+      "parts": [
+        {
+          "path": "archive-parts/artifact.zip.part001",
+          "bytes": 8388608,
+          "sha256": "55d6c0ad0a378e122fa59603e0894a17e41bb34215bf30545526bacd4ba4de2f"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part002",
+          "bytes": 8388608,
+          "sha256": "6ca9a920945df2bc892045a887bd92166fb832942927b8f242b1d7b1f77b53fd"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part003",
+          "bytes": 8388608,
+          "sha256": "def4fa502eadc19e9d95be525f7cd06ab35e0965a0bc432b34609e7f1f482a47"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part004",
+          "bytes": 8388608,
+          "sha256": "8cede4538b21fe87a468b641094703d4736abc9151f94820946f6eb89239f96d"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part005",
+          "bytes": 8388608,
+          "sha256": "47b3cc937c9eed7e20cb387c8c1971c18bd2ba1956ba3ac72d300a48ba1b69b7"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part006",
+          "bytes": 8388608,
+          "sha256": "6cc3dd125e5cb3d1e842f617c1f77eeb23933f6baa62828b0765f55cc8c197e9"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part007",
+          "bytes": 8388608,
+          "sha256": "4be80486fe78df48b57069f2c6c32092c2d0a33e5395d94fa83ed21a5bfb9828"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part008",
+          "bytes": 8388608,
+          "sha256": "3015771784921beb8a8efa3b544fa971083e0b31f5378770c3b6e06b33556ee8"
+        },
+        {
+          "path": "archive-parts/artifact.zip.part009",
+          "bytes": 7563031,
+          "sha256": "9c527453509403e82f5d493174f70cd13927998ba88fc70c696df678d4a6eb6a"
+        }
+      ],
+      "workingCopyBytesEqualRemoteBackedCommit": true
+    }
+  ],
+  "freedWorkingCopyBytes": 262747696,
+  "restore": "Remove only these three exclusion lines from this worktree-specific sparse selection, then git sparse-checkout reapply; or read exact blobs from the bound commit. No reset/clean/force required.",
+  "otherScratchEvidenceUntouched": true,
+  "untrackedStoryStorageUntouched": true
+}

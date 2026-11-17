@@ -1,0 +1,17 @@
+{
+  "baseCommit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "test_nextgen_2031_native_runtime_cases.AcademyReturnNavigationTest.test_open_original_return_reaches_current_guided_entry_without_toggling",
+    "-v"
+  ],
+  "exitCode": 1,
+  "productionBytesUnchangedAtRed": true,
+  "productionSha256": "8c5c08a2525f4b653c55a833e9b6f45b8fbd975127dde072b56027d6437a288b",
+  "logSha256": "980303f17b913612cab69571025867d307814d10e425335ff48a0a603e700c12",
+  "testSha256": "507d0e9b94a9807c61a5ef5515c83c69c442fc1b2dfe63acff654631417cf85d",
+  "expectedFailure": "Current visible Flutter text missing: Dein Lernatelier",
+  "androidExecuted": false
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43574161418,
+  "run_attempt": 1,
+  "job_id": 132384862551,
+  "source_sha": "08e63bd32917a6672ae99b66a17c3fa57c83977a",
+  "artifact_id": 14106471875,
+  "archive_bytes": 116961715,
+  "archive_sha256": "e044ba0959d2099a5b2b498f1ca31d9f6ac7f9fbad4fabffb2d0d00c92dfc3f3",
+  "prior_full_inventory_sha256": "0fd5830abea121cff74350e0563702ffd396023e89126fc39ec85155b184fd91",
+  "files": [
+    {
+      "file": "21_continue_touch-0.png",
+      "original_member": "21_continue/21_continue_touch-0.png",
+      "bytes": 857960,
+      "sha256": "472138fabf87a063f46a97e772c1118c8751d180f930a85c27fabd3c86967236"
+    },
+    {
+      "file": "21_continue_touch-1.png",
+      "original_member": "21_continue/21_continue_touch-1.png",
+      "bytes": 858521,
+      "sha256": "4d4d4e52bf2d5f2b536b4cf3049db6783097ea94ea90e50acf3dc25f41b1e7fd"
+    },
+    {
+      "file": "21_continue_touch-0-ocr.json",
+      "original_member": "21_continue/21_continue_touch-0-ocr.json",
+      "bytes": 1682,
+      "sha256": "63e651f95bfaf92ad84a611115e3f497fb883459fc9a0131391b302920ec4a04"
+    },
+    {
+      "file": "21_continue_touch-1-ocr.json",
+      "original_member": "21_continue/21_continue_touch-1-ocr.json",
+      "bytes": 1682,
+      "sha256": "63e651f95bfaf92ad84a611115e3f497fb883459fc9a0131391b302920ec4a04"
+    },
+    {
+      "file": "21_continue_touch-surface-readiness.json",
+      "original_member": "21_continue/21_continue_touch-surface-readiness.json",
+      "bytes": 2747,
+      "sha256": "1147bae3acb44a1eec0e323599c07f9f5c8c5cf9092fffec9bfae1bfa127a9ce"
+    }
+  ],
+  "scope": "Byte-identical original frames/OCR/readiness from the failed run. No PNG re-encoding, new Android execution or successful Continue claim."
+}

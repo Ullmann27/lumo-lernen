@@ -339,11 +339,11 @@ abstract final class GuidedLessonCatalog {
       ),
       GuidedLessonStep(
         type: TutoringStepType.showExample,
-        title: 'Sieben und fünf',
-        instruction: 'Sieben Äpfel sind schon da. Von den fünf neuen '
-            'nehmen wir drei. Sieben plus drei ist zehn. '
-            'Dann bleiben zwei. Zehn plus zwei ist zwölf.',
-        a: 7,
+        title: 'Acht und fünf',
+        instruction: 'Acht Äpfel sind schon da. Von den fünf neuen '
+            'nehmen wir zwei. Acht plus zwei ist zehn. '
+            'Dann bleiben drei. Zehn plus drei ist dreizehn.',
+        a: 8,
         b: 5,
       ),
       GuidedLessonStep(

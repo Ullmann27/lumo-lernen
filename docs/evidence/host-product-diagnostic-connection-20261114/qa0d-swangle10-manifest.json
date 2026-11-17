@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "created_at_utc": "2026-11-14T08:45:35.135590+00:00",
+  "file_count": 17,
+  "total_bytes": 488719,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2660,
+      "sha256": "2b6c83c84643ba67c78892de7f46f1fa1c63a4d6f7a9bed9686c29603791a4bb"
+    },
+    {
+      "path": "after-git-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-source-manifest.json.gz",
+      "bytes": 90464,
+      "sha256": "252075c14911cece57a339ab8a6dc10da2bb1f17098197ed4c85ab7905c3aa65"
+    },
+    {
+      "path": "after-tracked-index.bin.gz",
+      "bytes": 145445,
+      "sha256": "63b5eea56eb52794a25d531671067c908536bf35ca44e077259a531092f873ce"
+    },
+    {
+      "path": "before-git-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-source-manifest.json.gz",
+      "bytes": 90464,
+      "sha256": "252075c14911cece57a339ab8a6dc10da2bb1f17098197ed4c85ab7905c3aa65"
+    },
+    {
+      "path": "before-tracked-index.bin.gz",
+      "bytes": 145445,
+      "sha256": "63b5eea56eb52794a25d531671067c908536bf35ca44e077259a531092f873ce"
+    },
+    {
+      "path": "commit-object.raw",
+      "bytes": 339,
+      "sha256": "b6a24eaa5ae79e9b85cf065a08607facf0e5f6a72f159273c6bff1d48fc7c78a"
+    },
+    {
+      "path": "contracts-10.log",
+      "bytes": 2346,
+      "sha256": "5d8db10b2ef166abd21483ba610a877768997e19e2ead45c82c02835622a5bf0"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1687,
+      "sha256": "07b8a0eac88ce4165aa00b035e7c9fddb9fe574e6adab784a0ece2ee0c2579e3"
+    },
+    {
+      "path": "invocation.json",
+      "bytes": 540,
+      "sha256": "9ee1f7ee878307e372e0fd67fc82bc618fb571b360ca08d7206458fd1334c0d0"
+    },
+    {
+      "path": "preflight-missing-inputs.json",
+      "bytes": 1065,
+      "sha256": "aa79e847d1bafcab26f8ce65b9c34a1190ea0aabcbc42b87a0d771364bbd77de"
+    },
+    {
+      "path": "preflight-ready.json",
+      "bytes": 881,
+      "sha256": "e761c269b454f9bde2c7a611d50c6309ffea15fdc170cd76f7466bec6502af3b"
+    },
+    {
+      "path": "repair-source-freeze.json",
+      "bytes": 3125,
+      "sha256": "2ea77b280905bb6482ebf93a11fccdcc771fab1fda220e1b12070ab067a5e9fe"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1175,
+      "sha256": "4684acad6f480df21f6460d0381f8a103c61b9b79c5813261a81ecdce6da955f"
+    },
+    {
+      "path": "root-wrapper-materialization.json",
+      "bytes": 462,
+      "sha256": "26ab88915884c6799b7bcff4a820513bac36c1bfc1e57144b5b7a3c2711c7970"
+    },
+    {
+      "path": "storage-provenance.json",
+      "bytes": 2621,
+      "sha256": "ca1dc7b8de59ac12fe13f29627809e60b94b3303452ac966c384524aeb91ee58"
+    }
+  ]
+}

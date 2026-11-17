@@ -1,0 +1,31 @@
+{
+  "artifactId": 14197925395,
+  "workflowRun": 43800892196,
+  "archiveBytes": 29373558,
+  "archiveSha256": "f2d1ca9232685fe4d25fcd8d6bd745a687f08ac7eb4ef1c5ec36e469d0ba03f4",
+  "members": 335,
+  "uncompressedBytes": 33679689,
+  "allOriginalsVerifiedAgainstArchive": true,
+  "parts": [
+    {
+      "file": "artifact-14197925395.zip.part01",
+      "bytes": 8388608,
+      "sha256": "04a3caeeeb2afff94f77eeb0acbe8e317113a95755e67c4a1a36cf26fd474f48"
+    },
+    {
+      "file": "artifact-14197925395.zip.part02",
+      "bytes": 8388608,
+      "sha256": "d9899822b22b66dfd8d5de08aa3ae23069e1336ff603b9dfa79dde96d0b5722b"
+    },
+    {
+      "file": "artifact-14197925395.zip.part03",
+      "bytes": 8388608,
+      "sha256": "60eab60d09d0243e3e15f31ced9a2c7a359777efcbf49d95b8298103a35a7dfd"
+    },
+    {
+      "file": "artifact-14197925395.zip.part04",
+      "bytes": 4207734,
+      "sha256": "3fe6878b675f54f7ef4f38ad1e801aef742a76e86049f3e0abcdc5441b97fb48"
+    }
+  ]
+}

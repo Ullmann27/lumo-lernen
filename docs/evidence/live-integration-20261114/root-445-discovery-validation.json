@@ -1,0 +1,44 @@
+{
+  "source_commit": "445094a101f1a3176c5ef7ae03c1e44c07d3c3d4",
+  "files": {
+    ".github/workflows/lumo-connect-four-2020.yml": "74e5cc1c398fab5829006e4b92c2b17886458d969950554c7183445062841c97",
+    "scripts/tests/test_connect_four_pipeline.py": "f7fca7ed7577bb89004d1cde11f23fee31578f5879dccabdabd1639520e27abb"
+  },
+  "dependency_source_commit": "7fd9e91683ecf703c00f100e314aced9191f7847",
+  "scope": "Actual Pipeline tests and Actionlint; native discovery runtime not executed",
+  "results": [
+    {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "exit_code": 0,
+      "log": "root-445-discovery-actionlint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.tests.test_connect_four_pipeline",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "root-445-discovery-pipeline-original.log",
+      "sha256": "76be70622d0d52a5732f32de9b22ec1231941164939e5407ff889a9e3e9b79db"
+    }
+  ],
+  "git_blobs": {
+    ".github/workflows/lumo-connect-four-2020.yml": "6b9ac34c8b71103dfadc2e5766e5aa6acdb549a6",
+    "scripts/tests/test_connect_four_pipeline.py": "5cd0e875e4deb2e487718cb3d8c8c0b84e00b13f"
+  },
+  "summary": {
+    "tests": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "actionlint_exit_code": 0
+  }
+}

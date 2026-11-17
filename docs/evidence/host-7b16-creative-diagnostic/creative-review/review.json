@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T04:03:52.886123+00:00",
+  "result": "NO_CONCRETE_SOURCE_INTEGRATION_BLOCKER",
+  "scope": "Independent read-only review of two Creative probe deltas using final-source snapshots; no own test, OCR run, ADB call, SDK action or source write.",
+  "source_files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "frozen_path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/final-source/.github/probes/creative_android_probe.py",
+      "bytes": 59770,
+      "sha256": "9a769e99d8671260f45dd86684f8d5fa3cadc20f11e2dc888ce0f63493133f0f",
+      "git_blob": "55b0b4ef56cb9ef2ba3be78c31f7a32f90a996ca"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "frozen_path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/final-source/.github/probes/studio_creative_android_probe.py",
+      "bytes": 77331,
+      "sha256": "05678c1812305acaf1ed53c791e05a5c1c175830e5029053bf4ab2febfb79f4b",
+      "git_blob": "d89f3c5aa2f74ff07edb99c222ba5bc9eb69c09e"
+    }
+  ],
+  "all_announced_source_files_hash_checked": 63,
+  "fixed_source_base": "76443d3969856bfbba0e5b19231917f1743cf2a6",
+  "findings": [
+    {
+      "area": "Build state before Back",
+      "result": "Blank/partial captures return no state. The persistent LUMO BAUWELT heading alone and top-right walk-mode Weiterbauen cannot identify pause. Paused requires exact central Deine Welt wartet auf dich plus central Weiterbauen in the source panel order; active requires title plus distinct Mit Lumo laufen in their observed header roles."
+    },
+    {
+      "area": "One input and two observations",
+      "result": "observe_build_pause requires two consecutive stable target observations of the same state, actual SHA equality and an unexpired60s prerequisite. pause_save dispatches one Back only if the observed state is active, then waits for paused. Already paused dispatches no Back; failed observation never retries Back. Save is read only after observed pause; optional resume retains the existing exact caption touch."
+    },
+    {
+      "area": "Gold components and early caption",
+      "result": "Components derive from current RGB pixels; all proposed gold regions are read within remaining deadlines, retaining distinct exact-caption word bounds. Full-region reading is opt-in and requires an exact requested caption. Jump opts in so the upper instruction cannot hide the lower-right action; source-specific jump role and same-control ambiguity checks remain. Normal learning retains early successful full-frame reads, with the component fallback only when the requested caption is absent."
+    },
+    {
+      "area": "Source and budget integrity",
+      "result": "Input source hash is checked before/after OCR; the final deadline check refuses a late result. Existing source/APK/run bindings, input-audit deadline, durable save assertions and Treasure movement are AST-identical on this reviewed freeze. No changed product/runtime file is included in this review."
+    },
+    {
+      "area": "Puzzle raster",
+      "result": "The broadened observed felt colour proposes candidates only. Full contiguous interior, straight opposite side edges, perspective widening, gold side rims and uniqueness are still required. Actual six-piece empty save, initial first tray position, unchanged homography and subsequent real quarter-turn save check remain."
+    }
+  ],
+  "unchanged_guard_nodes": [
+    {
+      "node": "candidate_binding",
+      "unchanged": true,
+      "ast_sha256": "9f4c0fe30cb0654a707ab058794409f19c8a31f9f3cf399178db26070f57afb4"
+    },
+    {
+      "node": "committed_helper",
+      "unchanged": true,
+      "ast_sha256": "71d8c0901936942e293243b54f311090bce43d7ece78ca91341bc89c3069ea0b"
+    },
+    {
+      "node": "Tour.__init__",
+      "unchanged": true,
+      "ast_sha256": "75240e7e801a78bc563638b6ec14da37d6545fc49d14588b05d6710282930740"
+    },
+    {
+      "node": "Tour.run",
+      "unchanged": true,
+      "ast_sha256": "0d5baed358df2c3abc73db95ca1c295622d504c03ecdb344fe3e215165070e36"
+    },
+    {
+      "node": "one_added_piece",
+      "unchanged": true,
+      "ast_sha256": "2a0183ad46157407e12b4d01653d3f70aeb58741f07ba36764d229c6fd2b4d16"
+    },
+    {
+      "node": "one_quarter_turn",
+      "unchanged": true,
+      "ast_sha256": "55cda1a518e98d08796055e79cfcb3a3d6d303532d8f13a9d2c81ceec410e609"
+    },
+    {
+      "node": "resume_equal",
+      "unchanged": true,
+      "ast_sha256": "a8eee96de03fe5ede13bc41ce6634e4f6c2eb67a2a2116f6de591ecf9df22fea"
+    },
+    {
+      "node": "Tour.audit_adb",
+      "unchanged": true,
+      "ast_sha256": "91d14da7e6a9cf4ee998b6ed3cb41baa0af6c0a6c37201cf52581dda85c0244d"
+    },
+    {
+      "node": "Tour.touch",
+      "unchanged": true,
+      "ast_sha256": "36b261b9fb5cc8d1516bb83cbd0d259af31e8806a652e37730bad04b5533b021"
+    },
+    {
+      "node": "jump_action_choice",
+      "unchanged": true,
+      "ast_sha256": "a8a32719fd4209f4f579ed7023224ed6fc41127d2dc73ec84fdb34bef12533dd"
+    },
+    {
+      "node": "full_caption_choice",
+      "unchanged": true,
+      "ast_sha256": "127cb24fdd0099cbb210e2f79f8107779371a7b03bf0dec8e2e94656503eed3f"
+    },
+    {
+      "node": "treasure_movement_duration",
+      "unchanged": true,
+      "ast_sha256": "2b9b9e73d6b4b92095f3f7839b231f9221d1d0b315d2954012a0bc5d5968ae23"
+    }
+  ],
+  "current_61c_png_byte_binding": [
+    {
+      "fixture": "tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0.png",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-android35-update-evidence/artifacts/14097450952/memory-originals/originals/nextgen/learning-move-1-0.png",
+      "bytes": 554441,
+      "sha256": "4362e3030fb3a040e76ce90c6520eca15dba3617397ee497ca5054c1e7b45663"
+    }
+  ],
+  "read_existing_evidence": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/source-freeze.json",
+      "bytes": 20402,
+      "sha256": "718830b2dc1d1261159f78c3c81fa94da617110f31f96b154dd59b09ca306364"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/final-after-manifest.json",
+      "bytes": 19978,
+      "sha256": "8884f0c9f8ed02d88d57dd77344a23ce852bf28c30494336b260793d2a37266c"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/final-gate.json",
+      "bytes": 1229,
+      "sha256": "34e690fe5c905f28e237a48ee09999e276a95120063f2cdd9816ccd1f9a8568f"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/final-tests.log",
+      "bytes": 10907,
+      "sha256": "6abfccecc4755de1afdd7bd116d982eaa26cbe35e267e20b685389d7f3d6c887"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/final-original-replay/replay.json",
+      "bytes": 5026,
+      "sha256": "ae602af9dcba306ce80a9fa8360deb1dd2c2beb47e49c5bb201df5e4285c0f62"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/final-original-replay.log",
+      "bytes": 2297,
+      "sha256": "21eb6fbfaabd08e667d3bc89fe0baa4ff38fa52416f7f5252ce51907098c795d"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/current-learning-61c-replay.log",
+      "bytes": 996,
+      "sha256": "6ccead741e859e8802ace81948bc231f2601d3809ac1f8d4634df2d901ed2ad0"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/native-source-contracts.json",
+      "bytes": 1463,
+      "sha256": "86843344c4a952657cf21024b46ae708ce8dc3f5b0fc77d2794ef68adb4d7b1a"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-followup-repair/unchanged-guards.json",
+      "bytes": 1269,
+      "sha256": "6a3864f95f794fd434b91d5a1adf25f17183fb42907f47a3ef1a968b2e00f186"
+    }
+  ],
+  "limitations": [
+    "51 PASS and offline OCR/geometry replays are existing author-run evidence, not independently rerun by this reviewer.",
+    "Actual input dispatch/Back consumption on a new emulator remains pending. The original blank-entry and missing prerequisite are proven; original native callback timing is not.",
+    "Two stable offline observations in a replay do not establish an Android device transition.",
+    "No full Studio, learning, Jump, Puzzle or game-completion acceptance is created by this source review.",
+    "Root plans a separate change to QA entry/source binding after this freeze; any subsequent source is outside these two hashes.",
+    "Only the first current61c learning PNG is copied as a repository fixture; the second remains in selected original evidence and is referenced by the authors separate real replay."
+  ]
+}

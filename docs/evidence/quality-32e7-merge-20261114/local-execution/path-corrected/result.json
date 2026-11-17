@@ -1,0 +1,112 @@
+{
+  "recorded_at_utc": "2026-11-14T11:15:27.324082+00:00",
+  "scope": "Actual focused Python contracts with the Android test sibling directory on the module path, matching discovery availability; actual merged workflow syntax. No new full Flutter, native, APK, Android or device acceptance.",
+  "before": {
+    "head": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+    "tree": "01b3eaddc6b58a0c7f741b039a87f0e26e8af61e",
+    "tracked_status": "",
+    "index_sha256": "055d48ebae38ee3b30417bfc3a2d07a0ebed80a3772df89e87aeeffae7e74b44"
+  },
+  "after": {
+    "head": "dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f",
+    "tree": "01b3eaddc6b58a0c7f741b039a87f0e26e8af61e",
+    "tracked_status": "",
+    "index_sha256": "055d48ebae38ee3b30417bfc3a2d07a0ebed80a3772df89e87aeeffae7e74b44"
+  },
+  "source_and_index_unchanged": true,
+  "results": [
+    {
+      "label": "combined-contracts",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "scripts.tests.test_legacy_release_pin",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_connect_four_pipeline",
+        "scripts.tests.test_connect_four_delivery",
+        "scripts.tests.test_verify_unchanged_apk_diagnostic",
+        "scripts.tests.test_connect_four_return_gate",
+        "tools.android_qa.tests.test_connect_four_android_evidence",
+        "tools.android_qa.tests.test_kart_continue_caption",
+        "tools.android_qa.tests.test_kart_garage_evidence",
+        "tools.android_qa.tests.test_update_2019_preservation",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 26.600930350003182,
+      "log_bytes": 46663,
+      "log_sha256": "273d6443596fb0ed430adec2b1632fe67c45cd9d882777ee6e6ee219f21d6627",
+      "reported_test_totals": [
+        [
+          "226",
+          "26.443"
+        ]
+      ]
+    },
+    {
+      "label": "actionlint",
+      "argv": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.008008852004422806,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-0-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-merged-check-2708/path-corrected/actual-step-0.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003583436002372764,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-1-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-merged-check-2708/path-corrected/actual-step-1.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0017412229935871437,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-2-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-merged-check-2708/path-corrected/actual-step-2.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0015180519985733554,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-3-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-merged-check-2708/path-corrected/actual-step-3.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.001434681995306164,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    }
+  ]
+}

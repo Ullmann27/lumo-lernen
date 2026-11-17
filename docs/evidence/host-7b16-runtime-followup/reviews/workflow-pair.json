@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T04:30:56.323675+00:00",
+  "status": "READ_ONLY_FOLLOWUP_PAIR_REVIEW_ACCEPTED",
+  "concrete_blockers": [],
+  "scope": "Independent source, exact file/hash, argument and existing-log review only. No tests, Git commands, emulator or artifact downloads performed for this pairing.",
+  "root_route_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-independent-review/root-route-review.json",
+    "bytes": 4683,
+    "sha256": "041177588dd604ea3a2e37bd4df277dfc4395dfc23c2f1cea9fa531d2b97fefc",
+    "git_blob_sha1": "6bdd229f72136446a3e85ce9b75d882727b8b66a"
+  },
+  "root_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/root-source-freeze.json",
+    "bytes": 1348,
+    "sha256": "95d3596b75d3231f6b4b3a03478cf5df404bf7ec3ffcd344c54449911e37114e",
+    "git_blob_sha1": "d92237f8cb2f05896f9096400c9cadd2ea066d5a"
+  },
+  "workflow_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/source-freeze.json",
+    "bytes": 1202,
+    "sha256": "f8305a2f383777f478a7f84bd4027eb688834bd8aecf5cbdb7576c6cfeecbe5c",
+    "git_blob_sha1": "5c10fa905d7794811285abc37d4868254d607788"
+  },
+  "sources": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/final-source/scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19885,
+      "sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4",
+      "git_blob_sha1": "11749337af0aff31d7541702890459126675fd08"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/final-source/.github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82165,
+      "sha256": "d3e214c74579f251fd65bce70348dfbcba919818032049d954d713c3dd4bb1f2",
+      "git_blob_sha1": "7fb028eda997c4576eb1d4611bbef6de751b1862"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-preparation/final-source/scripts/tests/test_unchanged_apk_followup.py",
+      "bytes": 4548,
+      "sha256": "20556ec0f706e4901775bf79bfe5aa48317065b43666168a8e29cccca5d88673",
+      "git_blob_sha1": "5de9cb453f9b79e6a1ceb5b084fcc13fb4afdde1"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/after/.github/workflows/lumo-android-runtime-7b16-followup.yml",
+      "bytes": 13465,
+      "sha256": "b6573b0ee0a2364b305e69693813b358a65245e1143876c09c8b0aecb809a71c",
+      "git_blob_sha1": "4e24af3722b610f763d6ac1a3ba4c9435debce71"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/after/scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 7218,
+      "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50",
+      "git_blob_sha1": "b413b6b605d387e3ebbb3c29d79f4245c08ece02"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/after/scripts/tests/test_runtime_followup_workflow.py",
+      "bytes": 10332,
+      "sha256": "6c65b0957e388eedb53d973de12aa8a799accde6a2a968678ec584bc8be1c473",
+      "git_blob_sha1": "d4d0cd66b006f495580aafc937a055c0ab15f333"
+    }
+  ],
+  "matrix_to_binder": [
+    {
+      "case": "api35",
+      "api": 35,
+      "renderer": "host",
+      "timeout_minutes": 65,
+      "job_name": "unchanged-apk-followup-api35"
+    },
+    {
+      "case": "api37-host",
+      "api": 37,
+      "renderer": "host",
+      "timeout_minutes": 65,
+      "job_name": "unchanged-apk-followup-api37-host"
+    },
+    {
+      "case": "api37-swiftshader",
+      "api": 37,
+      "renderer": "swiftshader",
+      "timeout_minutes": 65,
+      "job_name": "unchanged-apk-followup-api37-swiftshader"
+    },
+    {
+      "case": "api37-swangle",
+      "api": 37,
+      "renderer": "swangle",
+      "timeout_minutes": 65,
+      "job_name": "unchanged-apk-followup-api37-swangle"
+    },
+    {
+      "case": "update2017",
+      "api": 35,
+      "renderer": "host",
+      "timeout_minutes": 55,
+      "job_name": "unchanged-apk-followup-update2017"
+    }
+  ],
+  "logger_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-independent-review/review.json",
+    "bytes": 14774,
+    "sha256": "d9860b981f4c1f44487672ed9966af19389c9a05b6039c29e9dd1b9de9c797df",
+    "git_blob_sha1": "63b0b1f8d8ba57f474c994f365faa2bbe0d80c00"
+  },
+  "wrapper_logger_parent": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/before/scripts/run_unchanged_apk_diagnostic.sh",
+    "bytes": 6960,
+    "sha256": "02d369163de84cb80bf63ef55ecb6397f9df2a2c2c0356fd13efdf399a4f12a5",
+    "git_blob_sha1": "ec6f1250f22ad3cea4dad1a505d93075b09f862b"
+  },
+  "findings": [
+    "All five expanded Actions job names equal the five fixed binder entries, including api37-swangle. Workflow path, exact internal branch and original-repository/fork guard agree; QA_SOURCE uses the actual PR head, not merge SHA.",
+    "Both source checkouts remain separate. The exact original APK artifact14093773196/run43540111465, APK/PCK hashes and candidate7b16/native17f5 are retained; metadata binding precedes any KVM/emulator/tour action. Original failing overall run is not relabelled.",
+    "The native API35 action and the prepared API37 action are mutually exclusive matrix paths. The wrapper accepts every actual case; expected API remains37 for all three API37 cases. The existing action adapter accepts this actual workflow path inside the clean committed probe checkout and records its exact bytes.",
+    "The post-logger wrapper changes only allowed cases and actual renderer-report handling for swangle. Its explicit API37 begin/root-overlap, preserve-context export, EXIT/TERM/INT traps and strict runtime-failure propagation are preserved.",
+    "SWANGLE requires both actual ANGLE and SwiftShader tokens in exactly one GLES line plus hw.gpu.mode=swangle, unchanged original package descriptors/fingerprint and non-graphics hardware. No automatic fallback or acceptance from the requested option alone exists.",
+    "All five jobs need the successful contract job, use fail-fast:false and distinct artifact names, and preserve failed-case originals. No continue-on-error, APK rebuild or publishing path was added. Old workflow and original4/Creative routes remain unchanged."
+  ],
+  "existing_validation_read": {
+    "validation": {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/validation.json",
+      "bytes": 1632,
+      "sha256": "f21e93fcfd79e5c1ee2723fcb0ad06a1678d0fbf2551e50a2a459f61a9b3e259",
+      "git_blob_sha1": "5ad7b612e3f39ec57d19b64c4cda2da5cafa1d0f"
+    },
+    "workflow_contracts_log": {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/workflow-contracts.log",
+      "bytes": 1653,
+      "sha256": "8018dcccc27c73a54a1b5e9989e73edf699082acd3c827ae1f955a913acdef67",
+      "git_blob_sha1": "554e145575aa6475564cd7801c9f7ade73e736e8"
+    },
+    "actionlint_log": {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "wrapper_syntax_log": {
+      "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-followup-workflow/wrapper-syntax.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "description": "Seven existing focused contracts, actionlint and bash syntax records read, not rerun. Root four-route contract log is bound by the separate root-route review."
+  },
+  "limits": [
+    "The new swangle emulator backend must still actually start and satisfy its recorded hardware/GLES and full readiness/ANR guards; no support/performance or device PASS is inferred from the synthetic report tests.",
+    "Continuous device logging through the genuine root operation and full API35/API37/update results remain to be obtained in the new run. Historical61c and7b16 runtime failures are unchanged.",
+    "The full final checkpoint must include both reviewed sets, the previously reviewed logger/clear/speech repair and the already-required helpers; clean-source binding remains mandatory."
+  ]
+}

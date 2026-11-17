@@ -1,0 +1,55 @@
+14:37:39 | INFO: Data are loaded, start creating Blender stuff
+14:37:39 | INFO: Blender create Mesh node Mesh_0
+14:37:40 | INFO: glTF import finished in 0.27s
+Blender 4.3.2
+Fra:0 Mem:23.09M (Peak 23.09M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mesh_0
+Fra:0 Mem:23.09M (Peak 23.09M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Plane
+Fra:0 Mem:31.39M (Peak 32.08M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:0 Mem:31.39M (Peak 32.08M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Image_2
+Fra:0 Mem:31.39M (Peak 32.08M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Image_1
+Fra:0 Mem:31.39M (Peak 32.08M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Image_0
+Fra:0 Mem:43.40M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Waiting for render to start
+Fra:0 Mem:43.40M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:0 Mem:43.40M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Scene
+Fra:0 Mem:43.40M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Shaders
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Procedurals
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Background
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Camera
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Objects
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Particle Systems
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:0 Mem:43.48M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Meshes
+Fra:0 Mem:43.94M (Peak 59.42M) | Time:00:00.14 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:0 Mem:46.25M (Peak 59.42M) | Time:00:00.15 | Mem:12.00M, Peak:12.00M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:0 Mem:46.25M (Peak 59.42M) | Time:00:00.15 | Mem:14.31M, Peak:14.31M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:0 Mem:46.25M (Peak 59.42M) | Time:00:00.15 | Mem:14.31M, Peak:14.31M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:0 Mem:46.25M (Peak 59.42M) | Time:00:00.15 | Mem:15.23M, Peak:15.23M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:0 Mem:46.25M (Peak 59.42M) | Time:00:00.16 | Mem:16.32M, Peak:17.24M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:0 Mem:46.25M (Peak 59.42M) | Time:00:00.16 | Mem:16.32M, Peak:17.24M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:0 Mem:47.48M (Peak 59.42M) | Time:00:00.16 | Mem:16.32M, Peak:17.24M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:0 Mem:47.48M (Peak 59.42M) | Time:00:00.16 | Mem:17.55M, Peak:17.55M | Scene, ViewLayer | Updating Objects Flags
+Fra:0 Mem:47.48M (Peak 59.42M) | Time:00:00.16 | Mem:17.55M, Peak:17.55M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:0 Mem:47.48M (Peak 59.42M) | Time:00:00.16 | Mem:17.55M, Peak:17.55M | Scene, ViewLayer | Updating Images
+Fra:0 Mem:47.48M (Peak 59.42M) | Time:00:00.16 | Mem:17.55M, Peak:17.55M | Scene, ViewLayer | Updating Camera Volume
+Fra:0 Mem:47.48M (Peak 59.42M) | Time:00:00.16 | Mem:17.55M, Peak:17.55M | Scene, ViewLayer | Updating Lookup Tables
+Fra:0 Mem:47.48M (Peak 59.42M) | Time:00:00.16 | Mem:17.63M, Peak:17.63M | Scene, ViewLayer | Updating Lights
+Fra:0 Mem:47.48M (Peak 59.42M) | Time:00:00.16 | Mem:17.64M, Peak:17.64M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:0 Mem:47.49M (Peak 59.42M) | Time:00:00.16 | Mem:17.64M, Peak:17.64M | Scene, ViewLayer | Updating Integrator
+Fra:0 Mem:47.49M (Peak 59.42M) | Time:00:00.16 | Mem:17.64M, Peak:17.64M | Scene, ViewLayer | Updating Film
+Fra:0 Mem:47.49M (Peak 59.42M) | Time:00:00.16 | Mem:17.55M, Peak:17.64M | Scene, ViewLayer | Updating Lookup Tables
+Fra:0 Mem:47.49M (Peak 59.42M) | Time:00:00.16 | Mem:17.64M, Peak:17.64M | Scene, ViewLayer | Updating Baking
+Fra:0 Mem:47.49M (Peak 59.42M) | Time:00:00.16 | Mem:17.64M, Peak:17.64M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:0 Mem:47.49M (Peak 59.42M) | Time:00:00.16 | Mem:17.64M, Peak:17.64M | Scene, ViewLayer | Sample 0/24
+Fra:0 Mem:51.52M (Peak 59.42M) | Time:00:00.26 | Remaining:00:02.38 | Mem:21.65M, Peak:21.65M | Scene, ViewLayer | Sample 1/24
+Fra:0 Mem:55.52M (Peak 63.52M) | Time:00:01.90 | Mem:21.65M, Peak:21.65M | Scene, ViewLayer | Sample 24/24
+Fra:0 Mem:55.52M (Peak 63.52M) | Time:00:01.90 | Mem:21.65M, Peak:21.65M | Scene, ViewLayer | Finished
+Saved: '/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-animation-20261113/studio_walk/0000.png'
+Time: 00:02.10 (Saving: 00:00.19)
+
+STUDIO_FRAME {"file": "studio_walk/0000.png", "action": "studio_walk", "source_frame": 0.0, "media_time_seconds": 0.0, "render_seconds": 2.1055284489993937, "sha256": "c4f2c53e09c93ab077eefdf9f746f81467fb14fb6db23d2080db22c944082fbc", "foot_heads_world": {"L": [0.1759766936302185, -0.33144819736480713, 0.03652312979102135], "R": [-0.16933590173721313, 0.05855163559317589, 0.03652367368340492]}}
+STUDIO_RENDER_COMPLETE /workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-animation-20261113/probe_provenance.json
+
+Blender quit

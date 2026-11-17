@@ -1,0 +1,93 @@
+{
+  "schema": "lumo.diagnostic.original-evidence",
+  "version": 1,
+  "scene": "banana",
+  "status": "DIAGNOSTIC_ONLY",
+  "diagnosticOutcome": "FAILED",
+  "releaseEligible": false,
+  "original2029AndroidReclassified": false,
+  "runId": 43790709991,
+  "jobId": 133048238984,
+  "qaCommit": "e04e29437e2c28f40e492191f430cd49ddc456fa",
+  "apkCommit": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "nativeCommit": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "artifactId": 14192477999,
+  "archiveBytes": 19029379,
+  "archiveSha256": "81229cc72d7b9618716e42860e1059dd5213b91fd30cb0737bbd63dbd66a910d",
+  "originalMembers": 563,
+  "jobLog": {
+    "uncompressedUtf8Bytes": 531017,
+    "sha256": "fdcbcd2e167f46638bc71b1b03acf45c2958fd56a8df41b0179883741ccc4b5f",
+    "gzipSha256": "6700b36aee1e7d099b95f95629930eeaef9ddfd4080f367f7c560700a09debeb",
+    "whitespaceNormalized": false
+  },
+  "selectedOriginalMembers": [
+    {
+      "path": "diagnostic-android/diagnostic-android-result.json",
+      "bytes": 9351,
+      "sha256": "f3a5711a1472164f1d3018e8b482d3ad5ee229074b65414cfb7e366c488f92aa"
+    },
+    {
+      "path": "diagnostic-android/0123-banana-native-entry.png",
+      "bytes": 584223,
+      "sha256": "fe7900783cfd0460a82df48f1b34a87c2fe4bc318de9a85a9e1ce76dd0152ba1"
+    },
+    {
+      "path": "diagnostic-android/0125-banana-first-syllable.png",
+      "bytes": 583921,
+      "sha256": "e9abc5e6ad5c0e43d7fae927b8345149652ce8ff0f414f60aa67d27386b2feb4"
+    },
+    {
+      "path": "diagnostic-android/0314-diagnostic-failure-screen.png",
+      "bytes": 583066,
+      "sha256": "5d879a57e73d2156c11042d0af715bd3350b6cae62176ae796bda8b380a31d8c"
+    },
+    {
+      "path": "diagnostic-android/0126-native-speech.txt",
+      "bytes": 9503,
+      "sha256": "247d898fc77382d67c0ade25f20ffd6e412714ba592a9d059a36bd56da7e4a2f"
+    },
+    {
+      "path": "diagnostic-android/0315-native-speech.txt",
+      "bytes": 31446,
+      "sha256": "b5371dfd2a509dd2ad9c74358467b14c32ee6a67e73d1dee4f82ed048be531c6"
+    },
+    {
+      "path": "origin/qa-source-binding.json",
+      "bytes": 955,
+      "sha256": "0315178093076590997550c25d8ca424cc24416309c52c0718f8f10f18f6328e"
+    },
+    {
+      "path": "origin/source-artifact.json",
+      "bytes": 810,
+      "sha256": "f3156f958cb728b70b42214db8f937d3e93286328df893c4f151ae65703ac5db"
+    },
+    {
+      "path": "origin/source-build-job.json",
+      "bytes": 4514,
+      "sha256": "88579975f353888921a7b94c2910b9e11b5da04484707015055dc5b453ba5377"
+    },
+    {
+      "path": "origin/source-failed-android-job.json",
+      "bytes": 4294,
+      "sha256": "f9bf89e0396c8b65768a38d379281eacb9cf8df10605bd1fc6e7079d60771f3e"
+    },
+    {
+      "path": "origin/source-run.json",
+      "bytes": 13764,
+      "sha256": "93f56c17b02cf0273d48b750580058bd444aa747e96222cd4003f287db28104a"
+    },
+    {
+      "path": "origin/source-validate-job.json",
+      "bytes": 5726,
+      "sha256": "1ec9ccfb88fa49d17eea8b0337d07f1b753b276caa966ab7e0fec1919bd89b77"
+    },
+    {
+      "path": "origin/verified-download.json",
+      "bytes": 2713,
+      "sha256": "ecc6cf73e7f3ffefd1cade3f568805f5cb6f355bf06cb2392df8cc7f0ef05724"
+    }
+  ],
+  "observation": "Native Banane and first syllable Ba were visible. The first playback wait failed with no complete accepted event pair. Playback cause remains under review; later syllable and repeat gates were not reached.",
+  "current2030RunAccepted": false
+}

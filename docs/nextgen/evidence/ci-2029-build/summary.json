@@ -1,0 +1,38 @@
+{
+  "observedAtUtc": "2026-11-16T01:50:05.294183+00:00",
+  "runId": 43785937519,
+  "jobId": 133037491223,
+  "buildConclusion": "success",
+  "flutterSource": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "versionName": "0.13.17",
+  "versionCode": 2029,
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "arm64": {
+    "apkBytes": 535021166,
+    "apkSha256": "bc8fdd9c1f70d7d6e374b5424029e127531525deb4f2dec1e69de4ea8f6ee0c3",
+    "artifactId": 14190879074,
+    "artifactBytes": 535035272,
+    "artifactSha256": "1fd6cb41a0e43ef5c2a118daf88fc0fe1e79cea84f84b8699ee6c9f52948b8ac",
+    "fullArtifactAndApkBytesIndependentlyReadLocally": true
+  },
+  "x86": {
+    "apkBytes": 538184171,
+    "apkSha256": "01e0c126930b48cb8089f0671ed9238b5dc6ded903e288ad7c1fda452ed3cf0f",
+    "artifactId": 14191466126,
+    "artifactBytes": 538198271,
+    "artifactSha256": "059ac8a9e2d13d1c52ac35237a465fbfaeba7d7cb6d3de352f47ae6a5113e2c9"
+  },
+  "godotPack": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+    "engine": "4.6.3",
+    "pck_sha256": "9aeb88d1dc52f612ea591c04d7651ccc3eef8b807b33b8b78c2f82b4e4eea303",
+    "bytes": 278589612
+  },
+  "androidConclusion": null,
+  "publicDownloadVerified": false,
+  "physicalArm64Run": false,
+  "note": "CI independently reran the actual APK verifier for both ABIs; local verification additionally streamed the entire downloaded ARM64 ZIP and every APK byte, validated archive CRCs and matched original metadata. Local apksigner was not rerun; no large local APK/archive copy was retained."
+}

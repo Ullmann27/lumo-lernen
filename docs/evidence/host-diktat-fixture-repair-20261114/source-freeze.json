@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T14:18:07.899739+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "target_parent": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+  "target_parent_tree": "c72bdd5b19cffcd9d05bb5bd4a5507c7a83a1fb1",
+  "source_count": 1,
+  "sources": [
+    {
+      "path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 20825,
+        "sha256": "e648cbb6d83d0a386f6dda15128950ad3974881fe439d270383fa18c25300ca1",
+        "git_blob": "c794b4239d1d402b3084a67ba49ea81d28d8d4a3"
+      },
+      "after": {
+        "bytes": 21107,
+        "sha256": "e0eced5d27a8e2606816a4cc83d39edc2047f906b035f2d3e9e50c8c8fd45849",
+        "git_blob": "c1123ff353e10308d454449fe9eccf4df5ff1b64"
+      },
+      "before_file": "before/test/learning_modules/deutsch_sach_module_progress_test.dart",
+      "after_file": "final-source/test/learning_modules/deutsch_sach_module_progress_test.dart"
+    }
+  ],
+  "patch": {
+    "path": "repair.patch",
+    "bytes": 1534,
+    "sha256": "7d8c8d1cfad8e97892118463d80bdf87a5429e8c78daeab80779661e32fd1ef9",
+    "git_blob": "ec8b5dfe408a564c878b78d753f18a4a77dc3b6a"
+  },
+  "original_source_binding": {
+    "path": "originals/source-binding.json",
+    "bytes": 2041,
+    "sha256": "2d5b62b8de7d136501a7c325b8adbb96df27086708ad198be7b94c48f26cf7da",
+    "git_blob": "77b2d10a20abc8e9cd913e0118a3d87f1bbc3c3e"
+  },
+  "test_status": "NOT_RUN; Root source checkpoint required before executing the entire existing test file once.",
+  "source_checkout_untouched": true,
+  "product_changes": [],
+  "publisher_v1_unchanged": true
+}

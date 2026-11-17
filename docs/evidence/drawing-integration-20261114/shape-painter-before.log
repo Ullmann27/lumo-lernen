@@ -1,0 +1,31 @@
+00:00 +0: loading /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart
+00:00 +0: undo and clear invalidate ink without an ancestor repaint
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+Undo must invalidate ink even when the surrounding page is idle
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart:199:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart line 199
+The test description was:
+  undo and clear invalidate ink without an ancestor repaint
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: undo and clear invalidate ink without an ancestor repaint [E]
+  Test failed. See exception logs above.
+  The test description was: undo and clear invalidate ink without an ancestor repaint
+  
+00:00 +0 -1: Some tests failed.
+
+Failing tests:
+  /tmp/lumo-integration-909ddb52fe7b/lumo-lernen/test/shape_trace_input_test.dart: undo and clear invalidate ink without an ancestor repaint

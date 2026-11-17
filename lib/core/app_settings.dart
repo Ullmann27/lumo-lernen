@@ -8,6 +8,8 @@ class AppSettings {
 
   const AppSettings({
     this.dailyGoal = 3,
+    this.requireDailyMissionForGames = false,
+    this.missionTasksPerStation = 4,
     this.soundEnabled = true,
     this.voiceEnabled = true,
     this.autoReadEnabled = true,
@@ -26,6 +28,8 @@ class AppSettings {
     this.voicePitch = 1.0,
   });
   final int dailyGoal;
+  final bool requireDailyMissionForGames;
+  final int missionTasksPerStation;
   final bool soundEnabled;
   final bool voiceEnabled;
   final bool autoReadEnabled;
@@ -50,6 +54,8 @@ class AppSettings {
 
   AppSettings copyWith({
     int? dailyGoal,
+    bool? requireDailyMissionForGames,
+    int? missionTasksPerStation,
     bool? soundEnabled,
     bool? voiceEnabled,
     bool? autoReadEnabled,
@@ -69,6 +75,10 @@ class AppSettings {
   }) {
     return AppSettings(
       dailyGoal: dailyGoal ?? this.dailyGoal,
+      requireDailyMissionForGames:
+          requireDailyMissionForGames ?? this.requireDailyMissionForGames,
+      missionTasksPerStation:
+          missionTasksPerStation ?? this.missionTasksPerStation,
       soundEnabled: soundEnabled ?? this.soundEnabled,
       voiceEnabled: voiceEnabled ?? this.voiceEnabled,
       autoReadEnabled: autoReadEnabled ?? this.autoReadEnabled,
@@ -91,6 +101,8 @@ class AppSettings {
 
   Map<String, dynamic> toJson() => {
         'dailyGoal': dailyGoal,
+        'requireDailyMissionForGames': requireDailyMissionForGames,
+        'missionTasksPerStation': missionTasksPerStation,
         'soundEnabled': soundEnabled,
         'voiceEnabled': voiceEnabled,
         'autoReadEnabled': autoReadEnabled,
@@ -116,6 +128,10 @@ class AppSettings {
         fallback: 3,
         allowed: const [3, 5, 10, 15],
       ),
+      requireDailyMissionForGames:
+          _bool(json['requireDailyMissionForGames'], fallback: false),
+      missionTasksPerStation: _intIn(
+        json['missionTasksPerStation'], fallback: 4, allowed: const [2, 4, 6]),
       soundEnabled: _bool(json['soundEnabled'], fallback: true),
       voiceEnabled: _bool(json['voiceEnabled'], fallback: true),
       autoReadEnabled: _bool(json['autoReadEnabled'], fallback: true),

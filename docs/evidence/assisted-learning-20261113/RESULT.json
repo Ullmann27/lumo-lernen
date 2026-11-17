@@ -1,0 +1,128 @@
+{
+  "executed_at_utc": "2026-11-13T02:49:15.299646+00:00",
+  "repository_head_at_execution": "47889f74a651b073965def70743417cf320b1eb9",
+  "worktree_changes_included": true,
+  "toolchain": {
+    "flutter": "3.44.9",
+    "dart": "3.12.2"
+  },
+  "regression_before": {
+    "tests": 7,
+    "failed": 7,
+    "log": "before.log"
+  },
+  "regression_after": {
+    "tests": 91,
+    "passed": 91,
+    "exit_code": 0,
+    "log": "after.log",
+    "command": [
+      "flutter",
+      "--no-version-check",
+      "test",
+      "--no-pub",
+      "test/assisted_learning_evidence_test.dart",
+      "test/assisted_learning_dna_test.dart",
+      "test/reward_engine_test.dart",
+      "test/progress_repository_corruption_test.dart",
+      "test/progress_repository_storage_test.dart",
+      "test/learning_profile_isolation_test.dart",
+      "test/adaptive_task_help_test.dart",
+      "test/tutoring/native_learning_launch_test.dart",
+      "test/learning_dna_evidence_test.dart",
+      "test/parents/learning_dna_dashboard_evidence_test.dart",
+      "--reporter",
+      "expanded"
+    ]
+  },
+  "static_analysis": {
+    "files": [
+      "lib/domain/learning/independent_evidence.dart",
+      "lib/domain/learning/lumo_learning_domain.dart",
+      "lib/domain/learning/adaptive_learning_engine.dart",
+      "lib/core/progress_repository.dart",
+      "lib/core/learning_profile_engine.dart",
+      "lib/core/weakness_detection_engine.dart",
+      "lib/features/learning/widgets/lumo_learning_tree_card.dart",
+      "test/assisted_learning_evidence_test.dart",
+      "lib/domain/learning/learning_dna.dart",
+      "lib/domain/learning/learning_dna_engine.dart",
+      "lib/features/parents/widgets/lumo_insight_heatmap.dart",
+      "test/assisted_learning_dna_test.dart"
+    ],
+    "result": "No issues found!",
+    "exit_code": 0,
+    "log": "analyze.log"
+  },
+  "sources": {
+    "lib/domain/learning/independent_evidence.dart": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d",
+    "lib/domain/learning/lumo_learning_domain.dart": "5c7ace9e4ed6471800a28d39be18095e3964d7a48c63a74bc3690bc569d615ec",
+    "lib/domain/learning/adaptive_learning_engine.dart": "296bd392fdbc0f57618c939ab866538a4d447498f6d030471cfb34d5f85566ba",
+    "lib/core/progress_repository.dart": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+    "lib/core/learning_profile_engine.dart": "af40237d4f43d2cb195337aacdbd3de8abefb14094ecc31be06e1da9fe5c49be",
+    "lib/core/weakness_detection_engine.dart": "b79357f6a53fd92d6d57fb1d9cc27c2e12a56339efb53ee1602ccd1bc2f912af",
+    "lib/features/learning/widgets/lumo_learning_tree_card.dart": "ed19d087cf7f9042bc5a8e53a3d1746b2c9b0b91171b36bbeba145126e01e0d0",
+    "test/assisted_learning_evidence_test.dart": "1e5f3cc750f2feff4200cef1a10defefec279c6dede46d833162f861a805479b",
+    "lib/domain/learning/learning_dna.dart": "ce196234439f607b315a124331f2e1dbbcf7ad65373c7d5b4fcba18037921007",
+    "lib/domain/learning/learning_dna_engine.dart": "a4502d305ffdc4960d11404de0faefc260bac458082087f35d48ee9c3b0f181a",
+    "lib/features/parents/widgets/lumo_insight_heatmap.dart": "f5f6347e4e36e1e533f0125cf280dd1a979d53f15b7b09d797b0aefcd6b77a9b",
+    "test/assisted_learning_dna_test.dart": "3ed3e7809a9b013a484eba5502f426924cd101eff963dfb320c9c73fdcb087e2"
+  },
+  "native_sources_unchanged": {
+    "scripts/games/jump_islands.gd": {
+      "sha256": "4953e584f125d1269a6e3fce2b5281ed3ec4dc6602936c7d873f9c28bfc2f5d1",
+      "matches_prior_verified_source": true
+    },
+    "scripts/games/jump_touch_button.gd": {
+      "sha256": "5cba0aad81d84f82bb7f3b91355a98db88996de8a1f154dc27536669fbe294ed",
+      "matches_prior_verified_source": true
+    },
+    "scripts/games/jump_expeditions.gd": {
+      "sha256": "05cafaa99d44788ade81b33dfc4fa3e44f037f9f9d78fc15899ed2dd8fe10c8b",
+      "matches_prior_verified_source": true
+    },
+    "scripts/characters/lumo/lumo_rigged_actor.gd": {
+      "sha256": "16a2cbc7939bf256ad8846e9cd0c9f089029f4e094d5fb85e6891a46df93d8a6",
+      "matches_prior_verified_source": true
+    },
+    "scripts/characters/lumo/lumo_platform_pose.gd": {
+      "sha256": "f0a899c6bb99ca1512332f7852ec1a64fd38c0f2fdece2201b68a575ea6228e1",
+      "matches_prior_verified_source": true
+    },
+    "scripts/characters/lumo/lumo_teacher_pose.gd": {
+      "sha256": "d20a3ec1d351277c4af9d36a926db11afe43cc8870a453eac519cd93e6807695",
+      "matches_prior_verified_source": true
+    },
+    "scripts/tests/jump_nextgen_regression.gd": {
+      "sha256": "2e14b09a323e66dd69d91bee2cee20056cacd1bbd5532feee72880e9cd4e1c7a",
+      "matches_prior_verified_source": true
+    },
+    "scripts/tests/jump_nextgen_capture.gd": {
+      "sha256": "2b4533ea07b458056d2de21c99489a0109015b9b837b8c5d4b539417c60cf0b8",
+      "matches_prior_verified_source": true
+    },
+    "scripts/tests/jump_expeditions_regression.gd": {
+      "sha256": "345c320e9bb19e28e0384acf0a04e618db6fa4c7ddcfb8f28fa3c3da32c4bd55",
+      "matches_prior_verified_source": true
+    },
+    "scripts/tests/lumo_teacher_pose_regression.gd": {
+      "sha256": "5219e4559302603e0e8b4e961ec385b27ac51202851164636b9a6ec6868c54c9",
+      "matches_prior_verified_source": true
+    }
+  },
+  "original_model": {
+    "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+    "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+    "matches_checkout_head": true
+  },
+  "evidence_files": {
+    "after.log": "ab9cf6ec1de38eef230137f4f6ca1526aa676eb3f7d36b27daea2dfd5f4264ac",
+    "analyze.log": "e774e2fc7457569b9cb14acff2efde93b0751bc2df850c3ba4129995da110646",
+    "before.log": "92cf2395cc2b72a7221610c20791a8e74d4c95f8bbee2a5432432aee10dfb18c",
+    "independent-review.png": "5dd2f063ab2def0f2f6a65f7a1d1793584a0b1eb59e6ab05693d6286406fc10d",
+    "independent-strength.png": "22e6ecdf8355bf94268dcadcbc5d02d90f88dc7446666cb2583044a472c7f147"
+  },
+  "renderer": "Flutter test RepaintBoundary.toImage",
+  "android_device_test": false,
+  "hardware_fps_measured": false
+}

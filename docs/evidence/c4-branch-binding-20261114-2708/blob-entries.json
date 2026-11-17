@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "f4df466ed004879fc56284b024475a0ab0661259",
+  "base_tree": "350c713c20e58d17991d8bd09a160206e97dd119",
+  "source_scope": "Three production-line changes for the two explicitly authorized C4 candidate branches, three additive binding test methods, and unchanged original red/green evidence.",
+  "original_run_id": 43578509499,
+  "original_source": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "original_native": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "original_android_artifact": 14110022118,
+  "validation": {
+    "original_metadata_red": 1,
+    "original_metadata_green": 0,
+    "focused_test_methods": 15,
+    "red_test_errors": 1,
+    "green_test_errors": 0,
+    "test_bytes_identical_red_green": true,
+    "delivery_code_and_tests_unchanged": true,
+    "git_diff_check": 0
+  },
+  "entries": [
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f39b85fb1559a6229f0b381afa5d85a081703bd",
+      "sha256": "41b421013c1f1d1e3e47480b7ecd20b6775dde84647eb4474aa60469fa9087d3",
+      "bytes": 36248
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b64071e3c99ebe6529a3fa9237192208e03a16ee",
+      "sha256": "daec2473fccb4e1785bf7e8ef884be5c484bbb1b86163f73f40314b9abc64ad5",
+      "bytes": 27119
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a33a76ce0923fc03c96eaa9248081dd536695eca",
+      "sha256": "3635abba904f7217fcf2acbb5197c0fff8d9a2ca8c490315ed7fa1920ef5ae05",
+      "bytes": 6072
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/green/contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52da471fd16c9b364e73f5c157f881ab6f869768",
+      "sha256": "9320189559bf33d4a7a250dd84cb1dda9c8560bf498d693df055e842e82da9fe",
+      "bytes": 2947
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/green/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8cfab0a4416fcfdb03d4bbbd8624ef364b6f81e",
+      "sha256": "6a26fde233144e336b6f724ea2adebfa2016a785ac2a06bfce366fb0bc6db4d5",
+      "bytes": 3590
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/green/original-metadata.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fb26be841f2f4b0c3715c975f6a063ac9c3a4b",
+      "sha256": "caf84af5898e298f5b207e28eb19f2a1efd008a42cd82e5855755bf138f6338b",
+      "bytes": 3864
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/green/original-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fb26be841f2f4b0c3715c975f6a063ac9c3a4b",
+      "sha256": "caf84af5898e298f5b207e28eb19f2a1efd008a42cd82e5855755bf138f6338b",
+      "bytes": 3864
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/originals/artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f79d280270e11d3013a7908bd6acbdd3f5fdeb2",
+      "sha256": "05850b4cebd4be31dd594b4b27ed2eb07efcdaa19cebefb105b800811a2e9a19",
+      "bytes": 8144
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/originals/c4-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04944e28351e80331095913b286e95fe258904d7",
+      "sha256": "131569701fffc061340102af7bc4a52eb2f82c81bfbb6471004fd0e4f123155d",
+      "bytes": 2453
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/originals/jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b22b2c32382d3852dd6c76e0042db7f51317b57",
+      "sha256": "ba59afefb85509399fed958506e705cfbb72b853a3d3a5967ca96776d604c2ac",
+      "bytes": 20090
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/originals/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0211dc95dfd401650f80fcdc8055dc9d1de82ec4",
+      "sha256": "8480ba970b217123bebe9167a803a40c19f26c97a1e0f3769fdf58d757eb8f88",
+      "bytes": 13448
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/red/contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f60c0fec9d70fcb157b2e71bd5e5486cb1331ad",
+      "sha256": "b57a0de8f0b76f3dc77eb35a589bb1981d8e489ad6f9470fc16e7d73fe132d60",
+      "bytes": 4621
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/red/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d7f89581be6ebd5f0e18dd5066b73265b29c0c3",
+      "sha256": "77bc29f88eed2ce259a45ccea63ceab757281eacafb06db8ef8573cddeac4b4f",
+      "bytes": 3503
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/red/original-metadata.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec00c922df43ed0a7f6776f6280242a1d63bec7c",
+      "sha256": "18def11ec800e42f00017e13d70c3fc216c1886b170ff947d2c0a5151fd15769",
+      "bytes": 4146
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/red/original-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec00c922df43ed0a7f6776f6280242a1d63bec7c",
+      "sha256": "18def11ec800e42f00017e13d70c3fc216c1886b170ff947d2c0a5151fd15769",
+      "bytes": 4146
+    },
+    {
+      "path": "docs/evidence/c4-branch-binding-20261114-2708/replay_original_metadata.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fe626cb8c817a551a7615f028fa24a0dcd49ccc",
+      "sha256": "70b1a2bcf80d2fc6d02bd1b08f264264d0303bce6d463510967b98d461142428",
+      "bytes": 4454
+    }
+  ],
+  "limits": [
+    "No APK, Android, engine or final candidate/delivery run was repeated.",
+    "The original 803a CI run remains failed; its final candidate/delivery jobs were skipped.",
+    "All returned GitData blob hashes were compared with hashes of the actual local file bytes. No candidate ref was changed."
+  ]
+}

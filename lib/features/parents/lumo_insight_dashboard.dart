@@ -222,24 +222,44 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     final streak = widget.appState.learningStreakDays();
     final strengths = _dna!.strengths.length;
     final weaknesses = _dna!.weaknesses.length;
-    return Row(
-      children: [
-        Expanded(
-            child: _statCard(
-                'Gesamt', '$answered', '📝', const Color(0xFF60A5FA))),
-        const SizedBox(width: 8),
-        Expanded(
-            child: _statCard(
-                'Streak', '$streak T.', '🔥', const Color(0xFFFF7A2F))),
-        const SizedBox(width: 8),
-        Expanded(
-            child: _statCard(
-                'Staerken', '$strengths', '💪', const Color(0xFF34D399))),
-        const SizedBox(width: 8),
-        Expanded(
-            child: _statCard(
-                'Übung', '$weaknesses', '🎯', const Color(0xFFF472B6))),
-      ],
+
+    // Two spacious tiles on phones, four on an unfolded display.
+    // Short viewports can scroll naturally with the existing page; no
+    // independent scrollable is introduced in the parent dashboard.
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const gap = 8.0;
+        final columns = constraints.maxWidth >= 640
+            ? 4
+            : constraints.maxWidth >= 260
+                ? 2
+                : 1;
+        final tileWidth =
+            (constraints.maxWidth - gap * (columns - 1)) / columns;
+        return Wrap(
+          key: const ValueKey('insight-stats-grid'),
+          spacing: gap,
+          runSpacing: gap,
+          children: [
+            SizedBox(
+                width: tileWidth,
+                child: _statCard(
+                    'Gesamt', '$answered', '📝', const Color(0xFF60A5FA))),
+            SizedBox(
+                width: tileWidth,
+                child: _statCard(
+                    'Streak', '$streak T.', '🔥', const Color(0xFFFF7A2F))),
+            SizedBox(
+                width: tileWidth,
+                child: _statCard(
+                    'Staerken', '$strengths', '💪', const Color(0xFF34D399))),
+            SizedBox(
+                width: tileWidth,
+                child: _statCard(
+                    'Übung', '$weaknesses', '🎯', const Color(0xFFF472B6))),
+          ],
+        );
+      },
     );
   }
 

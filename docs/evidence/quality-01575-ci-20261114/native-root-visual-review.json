@@ -1,0 +1,28 @@
+{
+  "host_source": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "native_source": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "run_id": 43576227541,
+  "job_id": 132390954119,
+  "artifact_id": 14106378584,
+  "archive_sha256": "6b0d92bedcec17726c68092b8f5a173221e7d5addabe8f80f63a322088a5d173",
+  "source_before_after_equal": true,
+  "native_checks": 170,
+  "original_frames": 250,
+  "all_recorded_image_hashes_rechecked": 259,
+  "opened_by_root": [
+    "connect_four_phone_portrait.png",
+    "connect_four_small_landscape.png",
+    "connect_four_fold_landscape.png",
+    "connect_four_phone_playing.png",
+    "connect_four_phone_bot_response.png",
+    "connect_four_empty.png",
+    "connect_four_win.png"
+  ],
+  "visual_observations": [
+    "Seven columns, empty board, human/bot discs and winning line are visible in the playing screenshots.",
+    "Landscape screenshots show the original Lumo companion beside the board. The portrait playing captures frame the board without showing that companion.",
+    "The finished-round menu is intentionally scrollable on short landscape viewports; lower menu actions are outside the initial viewport."
+  ],
+  "scope": "Root visual inspection of actual desktop-rendered CI images; not a physical Android performance measurement, user/human receipt or all-app visual acceptance.",
+  "recording_fixed_fps": 24
+}

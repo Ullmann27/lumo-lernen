@@ -1,0 +1,29 @@
+{
+  "workflowRun": 43806736020,
+  "artifactId": 14199706359,
+  "archiveSha256": "0b36fdffcd68b4855591b4662b5282eb40e8e615c4d0c647dd6f2e440f08637f",
+  "qaCommit": "51a3bfdedf4d6a745fb574ae9186c1094eb11abf",
+  "originalReferenceOutcome": "FAIL",
+  "synthetic": false,
+  "originalArchiveVerification": "docs/nextgen/evidence/ci-2031-replay-banana-reader-failure/artifact-verification.json",
+  "files": [
+    {
+      "file": "0138-banana-syllable-status-3-9.png",
+      "originalMember": "android/reference-android/0138-banana-syllable-status-3-9.png",
+      "bytes": 591322,
+      "sha256": "bfbc8b9c904d991106d1c596854ef6b0d4e4922cb16c5a53e116feb3229a1e1a"
+    },
+    {
+      "file": "0138-banana-syllable-status-3-9-ocr.json",
+      "originalMember": "android/reference-android/0138-banana-syllable-status-3-9-ocr.json",
+      "bytes": 17785,
+      "sha256": "a03e26e5fbbc21635e1dc36dd7722a5a17afd1b590fb4fe4905904d22712905a"
+    },
+    {
+      "file": "reference-android-result.json",
+      "originalMember": "android/reference-android/reference-android-result.json",
+      "bytes": 11078,
+      "sha256": "d564f845768d6f26493efbb65b41158c874da3a4d8a9ff8ba20c055372c8823a"
+    }
+  ]
+}

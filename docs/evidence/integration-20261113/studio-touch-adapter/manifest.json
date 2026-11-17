@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "scope": "Published Studio touch contract integrated into fixed Nextgen-2019 review; synthetic parser tests, no approval",
+  "created_at": "2026-11-13T14:36:57.016875+00:00",
+  "base_head": "1a5d456a6731d0ae319cbb95c17effd1ed106fba",
+  "producer_host": "5e07d7d6cb5d3b127d15b819e97dbe67c0ad4864",
+  "producer_native": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "files": [
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "bytes": 41577,
+      "sha256": "074fa561e078b56476f539827db516e27a815104d51b74ea898644a1cb0bba8a",
+      "git_blob": "55f600365a5158e3deca8514a88f952a7608547d"
+    },
+    {
+      "path": "scripts/record_studio_visual_review.py",
+      "bytes": 6840,
+      "sha256": "ebacaa1f58e7b3735bc46bb322a6767347ecae5a36f8fc0ed1ce093cd51acbbd",
+      "git_blob": "f0a46078df315d7ffacf4bd590d18ba6db802298"
+    },
+    {
+      "path": "scripts/tests/test_nextgen_2019_review.py",
+      "bytes": 23214,
+      "sha256": "77588e83f82bc72b9094002e176f19e41e7edb63b5c39b173114addb0ee5c52a",
+      "git_blob": "8e706bfed7b91e0116f462b7d1215e8e40f58fe8"
+    },
+    {
+      "path": "scripts/tests/test_studio_delivery.py",
+      "bytes": 39316,
+      "sha256": "a3a512e437bdc70b14e30b045a5798e677ec020ba6651322e71630cbc29d79ed",
+      "git_blob": "8e71ec82cb8c6d3cc1f287a8c307c5189cef9133"
+    },
+    {
+      "path": "scripts/tests/test_kart_graphics_delivery.py",
+      "bytes": 23411,
+      "sha256": "3e01707551258a3a0afa67daad2918b6ba8b6859a8296c685b606a6a939dc09d",
+      "git_blob": "61a3f4fd28e94aae2059e545c8b3fc8f1267e97f"
+    },
+    {
+      "path": "scripts/verify_kart_graphics_delivery.py",
+      "bytes": 13393,
+      "sha256": "af648591f65b214499c9a60416b996920b32b76eba2606b2a72c6d020c355ad8",
+      "git_blob": "a3e1cdd8fd80985f0ab3a5434107da8625103177"
+    },
+    {
+      "path": "docs/integration/2026-11-13/nextgen_2019_native_review_handoff.md",
+      "bytes": 7727,
+      "sha256": "2880185548e7679a4c281f012c2268276ea9ca8b05804dcd6a51197d08f630a5",
+      "git_blob": "51f2090a541dbe50dc12c79d30ca5c25cd8a07b7"
+    }
+  ],
+  "tests": {
+    "status": "PASS",
+    "count": 66,
+    "duration_seconds": 35.896,
+    "skipped": 0,
+    "suites": {
+      "test_studio_delivery": 35,
+      "test_nextgen_2019_review": 14,
+      "test_kart_graphics_delivery": 17
+    },
+    "log": "/workspace/scratch/b3485b7bb989/studio-touch-adapter-evidence/recorder-delivery-contracts.log",
+    "sha256": "30792be8541cdef75b92efe1088cb2bf1013bf2850eb1af3076cb59873d0de91"
+  },
+  "contract": {
+    "core_pass_pairs": 37,
+    "core_studio_pngs": 24,
+    "touch_pass_pairs": 6,
+    "touch_pngs": 28,
+    "touch_prefixes": [
+      "touch-evidence/workshop",
+      "touch-evidence/treasure",
+      "touch-evidence/build"
+    ],
+    "native_jobs": 7,
+    "all_touch_tree_stamps_equal_fresh_workflow_tree": true,
+    "all_touch_source_dirty_after_stamps_present_and_empty": true
+  },
+  "identity_paths_unchanged_against_head": true,
+  "publication_or_approval_created": false
+}

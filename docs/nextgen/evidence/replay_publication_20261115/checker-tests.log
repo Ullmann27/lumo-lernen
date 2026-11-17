@@ -1,0 +1,11 @@
+test_additional_tour_cannot_replace_original_performance (tools.nextgen.test_prepare_learning_replay_release.ReplayPublicationTest.test_additional_tour_cannot_replace_original_performance) ... ok
+test_cross_installation_or_different_candidate_is_rejected (tools.nextgen.test_prepare_learning_replay_release.ReplayPublicationTest.test_cross_installation_or_different_candidate_is_rejected) ... ok
+test_missing_banana_or_native_grading_claim_is_rejected (tools.nextgen.test_prepare_learning_replay_release.ReplayPublicationTest.test_missing_banana_or_native_grading_claim_is_rejected) ... ok
+test_same_source_and_both_actual_result_contracts_are_required (tools.nextgen.test_prepare_learning_replay_release.ReplayPublicationTest.test_same_source_and_both_actual_result_contracts_are_required) ... ok
+test_wrong_expired_or_foreign_artifact_metadata_is_rejected (tools.nextgen.test_prepare_learning_replay_release.ReplayPublicationTest.test_wrong_expired_or_foreign_artifact_metadata_is_rejected) ... ok
+test_wrong_or_rebuilt_apk_cannot_be_relabelled (tools.nextgen.test_prepare_learning_replay_release.ReplayPublicationTest.test_wrong_or_rebuilt_apk_cannot_be_relabelled) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK

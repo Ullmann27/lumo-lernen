@@ -1,0 +1,34 @@
+{
+  "engine": "Godot 4.6.3-stable official 7d41c59c4",
+  "baseline_native_commit": "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+  "baseline_table_git_blob": "26c10c9da7f8795dac9322f26ef8dced8a29f068",
+  "fixed_files_git_blobs": {
+    "scripts/games/cards/cards_table.gd": "9de98a6dd4c0fd9dfad5e199ba91fc243433c44f",
+    "scripts/tests/cards_table_regression.gd": "dbd87e1167969b35985be97b4b04840b8376a0f4",
+    "scripts/tests/cards_table_capture.gd": "c6bb8b8417cf87ccd068e7df167d27962f6f7141"
+  },
+  "red": {
+    "checks": 208,
+    "failures": 44,
+    "exit": 1
+  },
+  "green": {
+    "checks": 208,
+    "failures": 0,
+    "exit": 0
+  },
+  "renderer": "Android failure log: OpenGL ES 3.1 / gl_compatibility / Android Emulator OpenGL ES Translator / llvmpipe",
+  "after_render_verified": false,
+  "after_android_verified": false,
+  "new_capture_script_check_only_exit": 0,
+  "original_input_sha256": "477834fc1f0371c10541daba18982e81537bb167c9e36095b791325c0a25824f",
+  "files": {
+    "before.log": "83612134385382358331bb581c6a03f56c22978858abec6bec4688352fdeb0af",
+    "after.log": "5a695d6e8589477376ac867783fe450db142fc99fcca118209695e47d3f5056f",
+    "regression-before.log": "21516cd68165e9ce8554d7ab6d777dbbb0a0e4e43982064f98b9406a6ae64a46",
+    "regression-after.log": "946bd041e827350f242acb9391ebf37c71aea50bb9e4ddd50bbae204700424cc",
+    "local-render-attempt.log": "d096401011fa22341c2954c12c156b1acf40c050a5dc1f0c3a219f08d0f0fb6a",
+    "mailbox-card-faces.json": "80ec457c9da2ba3befccb10b4bedfd09749223ea3675957fbe3209b591e0a78a",
+    "reproduce_cards_face.gd": "eae89d71ed4c9f60e99ef130b641a8848d76cd8b3134df844998b55e5d5f7ad1"
+  }
+}

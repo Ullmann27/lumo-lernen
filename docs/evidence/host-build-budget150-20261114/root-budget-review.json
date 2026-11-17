@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "source": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "run_id": 43590864772,
+  "job_id": 132436033818,
+  "actual_api_job_conclusion": "cancelled",
+  "job_elapsed_seconds": 5416,
+  "selected_original_steps": {
+    "Require actual gameplay gates on the exact pinned native source": {
+      "name": "Require actual gameplay gates on the exact pinned native source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 31,
+      "started_at": "2026-11-14T12:03:05Z",
+      "completed_at": "2026-11-14T13:07:12Z",
+      "elapsed_seconds": 3847
+    },
+    "Require actual Dream gates on the exact pinned native source": {
+      "name": "Require actual Dream gates on the exact pinned native source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 33,
+      "started_at": "2026-11-14T13:07:12Z",
+      "completed_at": "2026-11-14T13:08:29Z",
+      "elapsed_seconds": 77
+    },
+    "Build unified real Android APK": {
+      "name": "Build unified real Android APK",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "number": 35,
+      "started_at": "2026-11-14T13:08:45Z",
+      "completed_at": "2026-11-14T13:11:12Z",
+      "elapsed_seconds": 147
+    }
+  },
+  "pre_native_elapsed_seconds": 1326,
+  "explicit_limit_observation": "The separate unchanged published original records a 90-minute service annotation. Root read that existing file; Root did not use CUA. The direct check-run annotations endpoint was unavailable through the connector.",
+  "current_candidate": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+  "current_candidate_has_not_timed_out": true,
+  "reason_for_repair": "The 64m07 Native step, preceding 22m06, Dream1m17, additional current Discovery phase (19m05 on c300), and unfinished APK/verification/upload leave limited reserve inside the current 120-minute build budget. Raise only the outer build budget to 150 minutes, keeping all probe timeouts, Android80, exact source policies, required steps and error gates. This is a preventive integration repair based on observed predecessor duration, not a failed current APK claim.",
+  "original_files": [
+    {
+      "path": "jobs.original.json",
+      "bytes": 19607,
+      "sha256": "ad545779c4dedf469c61c51884d162fa7ea2527679123a466ceb1174fe8f0bb6"
+    },
+    {
+      "path": "producer-pr491.original.json",
+      "bytes": 32417,
+      "sha256": "35912a5df7e0816cc62673d07a9daeffc8b2048cb799c19da2d925eff0d2a964"
+    },
+    {
+      "path": "published-timeout-observation.original.json",
+      "bytes": 1155,
+      "sha256": "57abeaf695ce45e62707aaaf26ea05e4ef15ddea09a648053e6e6037071d081b"
+    }
+  ]
+}

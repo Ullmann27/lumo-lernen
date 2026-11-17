@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "kind": "exact_three_file_final_native_pin",
+  "created_at_utc": "2026-11-14T13:39:59.035Z",
+  "host_base": {
+    "repository": "Ullmann27/lumo-lernen",
+    "commit": "a9e03188083db5517d0614b2acfa289342f2de8b",
+    "tree": "1d8abe5d94ef20cb224b271e50bc384a400432ea",
+    "parent": "adb88bef880861e23b451166c04ee7d28c96a95d",
+    "work_branch": "integration/lumo-discovery-host-7136-20261114"
+  },
+  "native_before": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "native_after": {
+    "repository": "Ullmann27/lumo-godot",
+    "commit": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+    "parent": "4d2cbb6ea235c7bf519aa5f3873a16f6b177be2b",
+    "original": "originals/native-commit.json",
+    "ci_result": "NOT_ASSERTED"
+  },
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 145,
+        "sha256": "9190ff1a60b61ce8cb40d44daea300315a359a5ff1d7d47b4623a4c4ae9bb240",
+        "git_blob": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad"
+      },
+      "after": {
+        "bytes": 145,
+        "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+        "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a"
+      },
+      "allowed_literal_before": "  \"revision\": \"bd0712259bb64908a5649ee1999638826c9eb597\",",
+      "allowed_literal_after": "  \"revision\": \"baf148b03a7a32c6ad9f737d731f900eb9113ea1\","
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 10687,
+        "sha256": "14f363f836072e194b0a188af43bc76c9133adcc8a5c04157f25fc7a1217ca2c",
+        "git_blob": "b10d2ba20c93d17f723b9c190652060968505b53"
+      },
+      "after": {
+        "bytes": 10687,
+        "sha256": "722028c30150beccc14f2169f2cea89c97c0f0c3305399029c4b5d9a3c8ea515",
+        "git_blob": "9cbc865858f3337ca2cef66bf0d90d29e2b8777c"
+      },
+      "allowed_literal_before": "    2020: \"bd0712259bb64908a5649ee1999638826c9eb597\",",
+      "allowed_literal_after": "    2020: \"baf148b03a7a32c6ad9f737d731f900eb9113ea1\","
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 17393,
+        "sha256": "512094ced303fdffb955eee93fce5ce71a8de757a9510940b8f6cac3da0ac931",
+        "git_blob": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06"
+      },
+      "after": {
+        "bytes": 17393,
+        "sha256": "0e5c26ad2722735bb9b891827fb52f638363df3fc649162a8c95f99446be1c3e",
+        "git_blob": "77e84cbc276f1653c23e6ebd3b5bd06f3fc4aeec"
+      },
+      "allowed_literal_before": "CONNECT_FOUR_2020_REVISION = \"bd0712259bb64908a5649ee1999638826c9eb597\"",
+      "allowed_literal_after": "CONNECT_FOUR_2020_REVISION = \"baf148b03a7a32c6ad9f737d731f900eb9113ea1\""
+    }
+  ],
+  "scope": "Exactly three SHA literals only; no workflow, budget, product, historical pin or other test change.",
+  "tests": "NOT_RUN; Root must publish checkpoint before exactly 24 Candidate + 40 Legacy methods."
+}

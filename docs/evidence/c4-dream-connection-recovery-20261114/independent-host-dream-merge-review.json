@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "kind": "independent_host_dream_merge_source_review",
+  "reviewer": "/root/lumo_release_lead",
+  "baseline": {
+    "host": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+    "incoming_host": "3d91bd8355a539c3c2413760959684cd3fee985a",
+    "incoming_tree": "d5bef399ddf3e6a87d9305253ee8042ec1eb0820",
+    "quality_checkpoint": "38c2fe8cb9e1b1021842e886c1a7cfa199e687ca",
+    "quality_tree": "3d007b2c54703879cdaae850557934456a927a35"
+  },
+  "scope": "Read-only exact source/evidence review. No test, engine, render, Android, full-suite or workflow execution. No source/index/ref or release mutation.",
+  "incoming_identity": {
+    "incomingDeliveryMinusDreamEqualsBase": true,
+    "workflow_base_equal": true,
+    "tests_base_equal": true,
+    "paths": [
+      {
+        "path": ".github/workflows/lumo-connect-four-2020.yml",
+        "base": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af",
+        "incoming": "d56118529b7493e819262e61427d627c01ee0753"
+      },
+      {
+        "path": "scripts/verify_connect_four_delivery.py",
+        "base": "eb35329baf46efa5cdf17af1187e8c460d93c752",
+        "incoming": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff"
+      },
+      {
+        "path": "scripts/tests/test_connect_four_delivery.py",
+        "base": "c7b9461ed056521a5da1fb528afe614b7cdeecee",
+        "incoming": "a91e25120489d21fc409930d893f52b31448aea3"
+      }
+    ]
+  },
+  "findings": [
+    "The complete incoming workflow equals exact base after removing only the 22-line Dream step.",
+    "The complete incoming delivery implementation equals exact base after removing only Dream constants, its required-step entry, helper/call/result field and one release-description sentence.",
+    "The complete incoming delivery tests equal exact base after removing only the two new Dream classes: 45 unchanged methods plus 11 new methods. The quality checkpoint contains 47 pre-Dream methods.",
+    "The additive workflow runs after old complete Native acceptance and before its existing always-upload and APK build. It uses absolute existing Python venv, checks the configured source and the approved reader blob/SHA256, requires fresh output paths, preserves exact reader bytes, and pipefail propagates actual runner failure.",
+    "The reader imported by delivery is the exact hash-bound pinned checkout source; the downloaded preserved copy is evidence only. Replay uses write=False and checks schema, native commit/tree, exact engine, five probes, seven PNGs, two reports, and explicitly no physical Android FPS measurement.",
+    "Indexed original paths must be safe, unique and nonsymlinked; all bytes and SHA256 are checked. After replay the manifest, runner, both reader copies and all indexed originals must be unchanged. Exact unique runner success endings and error rejection remain required.",
+    "Dream originals remain in the existing dedicated lumo-candidate-pinned-native-gameplay artifact. Delivery facts retain their identities and complete fresh recomputation. The delivery ZIP does not separately duplicate all Native PNG originals; no standalone-all-originals claim is made.",
+    "Existing source HEAD/tree/clean binding, complete 52-mode ordered roster, 17-image/movie extension, Return21/Wisp14, APK signing and original artifact/job contracts are unchanged by incoming Dream additions.",
+    "The approved merge intent keeps the quality checkpoint's exact Return-21 block first and the incoming exact Dream block second, both mandatory delivery step names, and both narrow allowed branches with exact run/PR branch and source equality.",
+    "Host Dream unit fixtures explicitly simulate the decoder and are not renderer proof. Separate saved bd071 Native CI evidence is source-specific and is not acceptance for this combined Host/Native candidate.",
+    "Final three merged files were actually read. Removing only incoming Dream additions reproduces every byte of the corresponding quality38c2 file in all three cases. The exact original Return block immediately precedes the exact Dream block. All 47 quality test methods and 11 incoming Dream methods remain, for 58 total."
+  ],
+  "native_subreview": {
+    "host_blob": "2e318b7198689d244954f0a355cbd03fbace3e87",
+    "path": "docs/evidence/c4-dream-connection-recovery-20261114/independent-native-dream-producer-reader-review.json",
+    "native_source": "bd0712259bb64908a5649ee1999638826c9eb597",
+    "native_tree": "2eb628d3e3a327ee8985385130c96168db7aa852",
+    "expected_reader_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+    "expected_reader_sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d"
+  },
+  "existing_evidence_read": [
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-frozen-originals/gate-contract.json",
+      "blob": "50d1f91f36d5d1b4707c5612fc8a0833d65131eb"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/host-dream-and-garage-independent-review/review.json",
+      "blob": "f74f6ff8c763840d8a7b6066123d9ebf90817634"
+    },
+    {
+      "path": "docs/evidence/c4-dream-connection-recovery-20261114/root-pin-recovery-and-release-precondition.json",
+      "blob": "2c3582247d58275950ff201061124623cb84ad7f"
+    },
+    {
+      "path": "docs/evidence/c4-dream-d826-targeted-validation-20261114/root-activation.json",
+      "blob": "9b1b7f1d771c9742e06feff155d11a28f30e7491"
+    }
+  ],
+  "remaining": [
+    "Root must bind all three final Host Native pin constants to the actual merge and freeze the final complete Host tree; this review covers the three listed merged Host blobs and the listed Native source identities.",
+    "Fresh complete same-source candidate CI including old52/17, hard Return21, Wisp14, Dream5/7/2, Flutter, APK and Android/update/delivery gates.",
+    "No publication, actual Play AAB approval, physical-device FPS, new screenshot visibility or final full-Host acceptance is asserted."
+  ],
+  "recorded_utc": "2026-11-14 11:33:13 UTC",
+  "verdict": "NO_STATIC_BLOCKER_IN_EXACT_REVIEWED_MERGE",
+  "final_local_root": "/home/agent/lumo-host-dream-merge-2708/resolved",
+  "final_sources": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "git_blob": "a0bf885564ec322b3d830bcc661d0417926fbb2d",
+      "sha256": "5b53838ce50eafa9f4cae38f1a69acb227edb15d1b36c99201dcde60314d01e4",
+      "bytes": 47632
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "git_blob": "18fdff098115570b69fc43ccfe6a3d573605e55b",
+      "sha256": "f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a",
+      "bytes": 57147
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "git_blob": "cbc7d6c5f1544bd29af56226c93a8f1b53e049eb",
+      "sha256": "d7bcf66b0b95802004c2f63d8487035d569386909e3bb7afb56a8b71739a4c36",
+      "bytes": 67475
+    }
+  ],
+  "final_additive_identity": {
+    "workflow": {
+      "dreamStepExactlyOnce": true,
+      "returnStepExactlyOnce": true,
+      "returnImmediatelyBeforeDream": true,
+      "entireFinalMinusOnlyDreamEqualsOurWorkflow": true,
+      "coreBeforeReturn": true
+    },
+    "delivery": {
+      "entireFinalMinusOnlyDreamEqualsOurDelivery": true,
+      "finalRequiredReturnStep": true,
+      "exactNarrowBranchSet": true,
+      "exactRunPRBranchEquality": true,
+      "exactRunAndPRSourceEquality": true
+    },
+    "tests": {
+      "dreamClassesExactlyOnce": true,
+      "entireFinalMinusOnlyDreamClassesEqualsOurTests": true,
+      "methods": 58
+    }
+  },
+  "final_native": {
+    "source": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "parents": [
+      "bd0712259bb64908a5649ee1999638826c9eb597",
+      "6ecc560ea16202b935c4f1d32b08b93cda358e02"
+    ],
+    "commit_api_independently_read": true,
+    "directly_read_source_blobs": {
+      "tools/verify_dream_rasters.py": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+      "tools/validate_dream_connections.sh": "834ea912003f5e27a271139646a857601baea905",
+      "tools/validate_nextgen.sh": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+    },
+    "conclusion": "Actual two-parent Native merge confirmed. Dream producer/reader bytes and the original 52-mode runner remain identical to their reviewed sources. No execution result is inferred from source identity."
+  }
+}

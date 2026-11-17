@@ -1,0 +1,26 @@
+{
+  "base_commit": "428619f45ccd945a11b806765245302aee9bcffb",
+  "source_state": "unchanged production probe; working-tree synthetic transport regression with byte-identical original error fixtures",
+  "command": "python3 -B -m unittest tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest -v",
+  "registered_tests": 2,
+  "failed": 1,
+  "exit_code": 1,
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 86111,
+      "sha256": "5c5c8a7483c9d4c6e860febcf660613a10acee8ba07e1e3dec5c1cd0eb0c88a9"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "bytes": 81525,
+      "sha256": "49c3e27b020d6252484fc9d6e84d4f58df0849726d2db68bbf87128c67163ed7"
+    },
+    {
+      "path": "docs/nextgen/evidence/recording_transfer_2031_20261116/red.log",
+      "bytes": 1681,
+      "sha256": "2652f4804fe229df9d809c97934b50a10125e006f488261f980ce14a5fa5f91b"
+    }
+  ],
+  "android_execution": false
+}

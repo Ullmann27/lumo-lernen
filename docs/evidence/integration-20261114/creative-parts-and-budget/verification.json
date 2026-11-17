@@ -1,0 +1,54 @@
+{
+  "all_existing_source_manifests_rechecked": true,
+  "all_original_files_roundtrip_byte_equal": true,
+  "application_tests_run": false,
+  "archive": {
+    "bytes": 224438,
+    "path": "original-evidence.tar.gz",
+    "sha256": "a8535fb1d8501125536777768d40c27576a81563a32343abf42a95c1be4cb0b7"
+  },
+  "large_payload_copies": 0,
+  "lossless_budget_gzip_originals": [
+    {
+      "raw_bytes": 12888,
+      "raw_sha256": "fb72e70213e93d90068c7bce08c80b27f2f60403640ddfa14bba3e3b955e2625",
+      "stored_path": "originals/nextgen-run.json.gz"
+    },
+    {
+      "raw_bytes": 17654,
+      "raw_sha256": "2803cf87e1b4db2cfc86396fcd12e709af6c3c902c6bc87d314b94dea76f065f",
+      "stored_path": "originals/nextgen-jobs.json.gz"
+    },
+    {
+      "raw_bytes": 12890,
+      "raw_sha256": "ed81688900113ec9d9f1021b73efe7436ce74d8a2fc28fc1c2b332e9fdca12b0",
+      "stored_path": "originals/graphics-run.json.gz"
+    },
+    {
+      "raw_bytes": 9359,
+      "raw_sha256": "231ae84086d67e173733d6ad21288e8a6eb99ca372d328eff793041da5c1c9c9",
+      "stored_path": "originals/graphics-jobs.json.gz"
+    },
+    {
+      "raw_bytes": 25538,
+      "raw_sha256": "1874b757db95fe37878b50cedecd745cded098bb305307ed17c9805118deb532",
+      "stored_path": "originals/godot-observed-spans.json.gz"
+    },
+    {
+      "raw_bytes": 24328,
+      "raw_sha256": "e0814d00b108d28a149d5ac1e3c6224174e0592bdae04ba7414f91fe55c28e5b",
+      "stored_path": "originals/host848-jobs.json.gz"
+    },
+    {
+      "raw_bytes": 2401,
+      "raw_sha256": "4db99e2a3d3206b532c9a17a4be8e7ec38a64836442092535aff22d471fd4fde",
+      "stored_path": "originals/baseline848.json.gz"
+    }
+  ],
+  "roundtrip_members": 44,
+  "schema": 1,
+  "source_changes": [],
+  "source_files_rehashed_after_roundtrip": 44,
+  "source_or_workflow_changes": false,
+  "verified_at_utc": "2026-11-14T01:04:07.299945+00:00"
+}

@@ -139,6 +139,63 @@ class IqPanel extends StatelessWidget {
       );
 }
 
+/// Reusable compact category chip for Knobel-Test and Denkprofil.
+/// One shared implementation keeps typography, spacing and contrast aligned.
+class IqSkillChip extends StatelessWidget {
+  const IqSkillChip({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.color,
+    this.description,
+  });
+
+  final String label;
+  final String? description;
+  final IconData icon;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+        label: description == null ? label : '$label: $description',
+        excludeSemantics: true,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(99),
+            color: color.withValues(alpha: .16),
+            border: Border.all(color: color.withValues(alpha: .65)),
+            boxShadow: [BoxShadow(
+                color: color.withValues(alpha: .15),
+                blurRadius: 13,
+                spreadRadius: -3)],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(4, 4, 14, 4),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: 34,
+                  width: 34,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(colors: [
+                      color.withValues(alpha: .80),
+                      color.withValues(alpha: .30),
+                    ]),
+                    border: Border.all(color: Colors.white.withValues(alpha: .45)),
+                  ),
+                  child: Icon(icon, size: 19, color: Colors.white),
+                ),
+                const SizedBox(width: 8),
+                Text(label, style: iqText(13.5, weight: FontWeight.w900)),
+              ],
+            ),
+          ),
+        ),
+      );
+}
+
 /// Glas-Kachel für ein Feld (Figur, Zahl, Merk-Feld).
 class IqTile extends StatelessWidget {
   const IqTile({

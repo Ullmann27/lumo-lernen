@@ -1,0 +1,56 @@
+name: LUMO 2023 verified ARM64 APK – accessible single-file download
+on:
+  push:
+    branches: [delivery/lumo-2023-complete-update-20261115]
+    paths: [.github/workflows/lumo-2023-single-apk-download.yml]
+  workflow_dispatch:
+permissions:
+  actions: read
+  contents: read
+jobs:
+  single-verified-arm64-file:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Download exact source-bound completed Build 2023 artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 43702321274
+          name: lumo-2023-complete-family-update-apk
+          path: original-artifact
+      - name: Verify published ARM64 and embedded-native provenance
+        run: |
+          set -euo pipefail
+          find original-artifact -maxdepth 5 -type f | sort
+          test -s original-artifact/dist/Lumo-Lernen-Neu.apk
+          test -s original-artifact/build-proof/VERIFY-arm64.json
+          printf '%s  %s\n' c835e0461e168008c4fdee5bbb9d5dd108a05e8b3433308f7f909206f3dea90e original-artifact/dist/Lumo-Lernen-Neu.apk | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          base=Path('original-artifact')
+          source=json.loads((base/'build-proof/GODOT-SOURCE.json').read_text())
+          assert source['revision'] == 'd38967f6d39bc20188afe525b0af122d80634029'
+          assert source['engine'] == '4.6.3'
+          version=(base/'build-proof/APP-VERSION.txt').read_text()
+          assert '0.13.11+2023' in version
+          proof=(base/'build-proof/VERIFY-arm64.json').read_text()
+          assert '2023' in proof
+          assert 'dev.ullmann.lumo.lumo_lernen.coachpreview' in proof
+          assert 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702' in proof
+          assert 'd38967f6d39bc20188afe525b0af122d80634029' in proof
+          print('[FamilyUpdate] PASS verified build 2023, same package and signing cert, new Godot source')
+          PY
+      - name: Upload only arm64 APK and verification, under the connector size cap
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-Familienupdate-2023-ARM64
+          path: |
+            original-artifact/dist/Lumo-Lernen-Neu.apk
+            original-artifact/build-proof/VERIFY-arm64.json
+            original-artifact/build-proof/GODOT-SOURCE.json
+            original-artifact/build-proof/SHA256SUMS.txt
+          retention-days: 30
+          compression-level: 0
+          if-no-files-found: error

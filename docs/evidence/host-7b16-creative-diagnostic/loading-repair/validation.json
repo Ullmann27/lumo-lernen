@@ -1,0 +1,25 @@
+{
+  "recorded_source_tests": {
+    "count": 21,
+    "errors": 0,
+    "skips": 0,
+    "log": "focused-green.log",
+    "sha256": "ee022534931c26abdf5a57fda2bb304b6dbe5ebbc73f1e320c2fa786753ff6f9"
+  },
+  "actual_tesseract_replays": {
+    "count": 6,
+    "errors": 0,
+    "skips": 0,
+    "log": "actual-green.log",
+    "scope": "Published original PNGs from Producer3e08/4ab/Native803e, not a new7b Android result",
+    "sha256": "bc4f56fe8f865436938070f0d5354b3e26d4662b65c701978681e9f9312ec412"
+  },
+  "behavioral_red": {
+    "log": "baseline-red.log",
+    "actual_original_png": true,
+    "failure": "RuntimeError not raised: reader accepted observed positive title despite observed opted-in loading caption",
+    "sha256": "fc395d720506e3164bc1ffcc24d4257232691dcb306a26a2ab287512868ec7ef"
+  },
+  "source_guard_extension": "Early negative branch checks unchanged screenshot hash and unexpired deadline before journaling; ordinary successful readers retain early success; default reject_captions is empty",
+  "scope": "Opted-in negative frame never grants input, readiness or positive return acceptance"
+}

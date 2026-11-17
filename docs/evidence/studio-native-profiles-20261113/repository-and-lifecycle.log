@@ -1,0 +1,29 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart
+00:00 +0: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: sole local 2017 profile keeps exact file key through rename, grade and reload
+00:00 +1: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: same-name school pupils get different stable main keys
+00:00 +2: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: local fallback never auto-claims legacy when school directory is ambiguous
+00:00 +3: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: active school selection blocks automatic solo fallback even without directory
+00:00 +4: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: adult legacy assignment is separate, exclusive and reopens exact historical key
+00:00 +5: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: a retained solo key cannot also be assigned to a school child
+00:00 +6: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: concurrent claims cannot bind an old key to two owners
+00:00 +7: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: rejected persistence reloads optimistic cache and permits a durable retry
+00:00 +8: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: stale lease before write leaves registry untouched
+00:00 +9: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: switch during persistence never returns a key for the next child
+00:00 +10: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: corrupt registry and missing salt fail closed without discarding data
+00:00 +11: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: fresh installation has no invented historical identity
+00:00 +12: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: profile change during lifetime-wallet load cancels stale native launch
+00:01 +13: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: saves rewards first and waits for native return
+00:01 +14: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: does not launch from an already removed context
+00:01 +15: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: leaving during reward save cancels the delayed launch
+00:01 +16: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: a newer route prevents launch from a covered games page
+00:01 +17: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: profile change during save cancels old launch request
+00:01 +18: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: reset in progress prevents a launch and reward flush
+00:01 +19: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: two taps while saving start only one native game
+00:01 +20: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: recreated games page cannot launch while native game is open
+00:01 +21: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: reward save failure blocks launch and explains safe retry
+00:01 +22: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: native busy error is not a restart instruction
+00:01 +23: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: native failure releases lock for a later retry
+00:01 +24: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: null native response is not a confirmed successful return
+00:01 +25: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: missing native plugin fails safely and remains retryable
+00:01 +26: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: non Android does not flush rewards or invoke bridge
+00:01 +27: All tests passed!

@@ -11,6 +11,8 @@
 // hat diesen Lehrplan-spezifischen Workflow.
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
@@ -22,6 +24,8 @@ import '../../core/lumo_feature_permissions.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/scan_screen.dart';
 import 'photo_lesson_practice.dart';
+import 'photo_lesson_session.dart';
+import 'photo_lesson_practice_screen.dart';
 
 class LumoPhotoLessonScreen extends StatefulWidget {
   const LumoPhotoLessonScreen({super.key, required this.appState});
@@ -36,6 +40,120 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
   List<LumoTask> _exercises = const <LumoTask>[];
   String _practiceNotice = '';
   bool _scanning = false;
+  bool _opening = false;
+  LearningProfileLease? _lease;
+  PhotoLessonSessionRepository? _sessions;
+  PhotoLessonSession? _resume;
+  String? _storageError;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.appState.addListener(_profileChanged);
+    unawaited(_restore());
+  }
+
+  @override
+  void dispose() {
+    widget.appState.removeListener(_profileChanged);
+    super.dispose();
+  }
+
+  void _profileChanged() {
+    final lease = _lease;
+    if (!mounted ||
+        lease == null ||
+        (lease.generation == widget.appState.profileGeneration &&
+            widget.appState.canUseLearningLease(lease))) {
+      return;
+    }
+    setState(() {
+      _lease = null;
+      _sessions = null;
+      _resume = null;
+      _analysis = null;
+      _exercises = const [];
+      _scanning = false;
+      _storageError =
+          'Das Kinderprofil hat gewechselt. Lade die Foto-Lektion erneut.';
+    });
+  }
+
+  Future<void> _restore() async {
+    if (_opening) return;
+    setState(() {
+      _opening = true;
+      _storageError = null;
+    });
+    try {
+      final lease = await widget.appState.captureLearningProfile();
+      await widget.appState.prepareLearningLease(lease);
+      final repository = PhotoLessonSessionRepository(
+        studentId: lease.studentId,
+        mayWrite: () =>
+            widget.appState.canUseLearningLease(lease) &&
+            lease.generation == widget.appState.profileGeneration,
+      );
+      final session = await repository.load();
+      if (!mounted || !widget.appState.isCurrentLearningLease(lease)) return;
+      setState(() {
+        _lease = lease;
+        _sessions = repository;
+        _resume = session;
+      });
+    } catch (_) {
+      if (mounted) {
+        setState(() => _storageError =
+            'Deine gespeicherten Foto-Übungen konnten noch nicht geladen werden.');
+      }
+    } finally {
+      if (mounted) setState(() => _opening = false);
+    }
+  }
+
+  Future<void> _openPractice({bool resume = false}) async {
+    final repository = _sessions;
+    final lease = _lease;
+    if (_opening ||
+        repository == null ||
+        lease == null ||
+        !widget.appState.isCurrentLearningLease(lease)) {
+      return;
+    }
+    setState(() {
+      _opening = true;
+      _storageError = null;
+    });
+    try {
+      // Finish a durable, accepted observation before replacing its view.
+      final continuePending = _resume?.needsEvidenceSync == true;
+      final session = resume || continuePending
+          ? _resume!
+          : PhotoLessonSession.start(_exercises);
+      if (!resume && !continuePending) {
+        await repository.save(session, replacing: _resume);
+        _resume = session;
+      }
+      if (!mounted || !widget.appState.isCurrentLearningLease(lease)) return;
+      await Navigator.of(context).push<void>(MaterialPageRoute(
+          builder: (_) => PhotoLessonPracticeScreen(
+              appState: widget.appState,
+              lease: lease,
+              repository: repository,
+              session: session)));
+      final updated = await repository.load();
+      if (mounted && widget.appState.isCurrentLearningLease(lease)) {
+        setState(() => _resume = updated);
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() => _storageError =
+            'Die Übungen warten noch aufs Speichern. Bitte erneut versuchen.');
+      }
+    } finally {
+      if (mounted) setState(() => _opening = false);
+    }
+  }
 
   Future<void> _startScan({bool reset = false}) async {
     if (!await LumoFeaturePermissions.camera(context, widget.appState) ||
@@ -99,21 +217,56 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
         child: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-            child: _scanning
-                ? ScanScreen(
-                    onTextDetected: _onTextDetected,
-                    onCancel: () => setState(() => _scanning = false),
-                  )
-                : _analysis == null
-                    ? _IntroPanel(
-                        onCapture: _startScan,
-                      )
-                    : _ResultsPanel(
-                        analysis: _analysis!,
-                        exercises: _exercises,
-                        practiceNotice: _practiceNotice,
-                        onScanAgain: () => _startScan(reset: true),
-                      ),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (_resume != null && !_scanning) ...[
+                    FilledButton.icon(
+                      key: const ValueKey('photo-resume'),
+                      onPressed: _opening
+                          ? null
+                          : () => unawaited(_openPractice(resume: true)),
+                      style: FilledButton.styleFrom(
+                          minimumSize: const Size(48, 52)),
+                      icon: const Icon(Icons.play_arrow_rounded),
+                      label: Text(_resume!.complete
+                          ? 'Gespeicherte Foto-Übungen ansehen'
+                          : 'Foto-Übungen fortsetzen'),
+                    ),
+                    const SizedBox(height: 12),
+                  ],
+                  if (_storageError != null) ...[
+                    Text(_storageError!,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16)),
+                    OutlinedButton(
+                        onPressed:
+                            _opening ? null : () => unawaited(_restore()),
+                        style: OutlinedButton.styleFrom(
+                            minimumSize: const Size(48, 48)),
+                        child: const Text('Lernstand erneut laden')),
+                  ],
+                  if (_opening && _sessions == null)
+                    const LinearProgressIndicator(),
+                  _scanning
+                      ? ScanScreen(
+                          onTextDetected: _onTextDetected,
+                          onCancel: () => setState(() => _scanning = false),
+                        )
+                      : _analysis == null
+                          ? _IntroPanel(
+                              onCapture: _startScan,
+                            )
+                          : _ResultsPanel(
+                              analysis: _analysis!,
+                              exercises: _exercises,
+                              practiceNotice: _practiceNotice,
+                              onScanAgain: () => _startScan(reset: true),
+                              onStartPractice: _opening || _sessions == null
+                                  ? null
+                                  : () => unawaited(_openPractice()),
+                            ),
+                ]),
           ),
         ),
       ),
@@ -170,7 +323,8 @@ class _IntroPanel extends StatelessWidget {
                     'assets/companion/lumo_think.png',
                     fit: BoxFit.contain,
                     errorBuilder: (_, __, ___) => const Center(
-                      child: LumoFoxPose(pose: LumoDesignFoxPose.tabletThumb, size: 64),
+                      child: LumoFoxPose(
+                          pose: LumoDesignFoxPose.tabletThumb, size: 64),
                     ),
                   ),
                 ),
@@ -331,12 +485,14 @@ class _ResultsPanel extends StatelessWidget {
     required this.exercises,
     required this.practiceNotice,
     required this.onScanAgain,
+    required this.onStartPractice,
   });
 
   final ScannedWorkAnalysis analysis;
   final List<LumoTask> exercises;
   final String practiceNotice;
   final VoidCallback onScanAgain;
+  final VoidCallback? onStartPractice;
 
   @override
   Widget build(BuildContext context) {
@@ -459,7 +615,9 @@ class _ResultsPanel extends StatelessWidget {
         ),
         const SizedBox(height: 18),
         Text(
-          exercises.isEmpty ? 'Passende Übungen' : '${exercises.length} Übungen zum Trainieren',
+          exercises.isEmpty
+              ? 'Passende Übungen'
+              : '${exercises.length} Übungen zum Trainieren',
           style: const TextStyle(
             fontFamily: 'Nunito',
             fontSize: 16,
@@ -471,7 +629,8 @@ class _ResultsPanel extends StatelessWidget {
         if (practiceNotice.isNotEmpty && exercises.isNotEmpty) ...[
           Text(
             practiceNotice,
-            style: const TextStyle(color: Colors.white, fontFamily: 'Nunito', fontSize: 13),
+            style: const TextStyle(
+                color: Colors.white, fontFamily: 'Nunito', fontSize: 13),
           ),
           const SizedBox(height: 10),
         ],
@@ -483,9 +642,10 @@ class _ResultsPanel extends StatelessWidget {
               borderRadius: BorderRadius.circular(14),
             ),
             child: Text(
-              practiceNotice.isNotEmpty ? practiceNotice :
-                  'Lumo konnte keine passenden Aufgaben generieren. '
-                  'Versuch ein anderes Foto oder ein anderes Heft-Bild.',
+              practiceNotice.isNotEmpty
+                  ? practiceNotice
+                  : 'Lumo konnte keine passenden Aufgaben generieren. '
+                      'Versuch ein anderes Foto oder ein anderes Heft-Bild.',
               style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 13,
@@ -494,11 +654,20 @@ class _ResultsPanel extends StatelessWidget {
               ),
             ),
           )
-        else
+        else ...[
+          FilledButton.icon(
+            key: const ValueKey('photo-start-practice'),
+            onPressed: onStartPractice,
+            style: FilledButton.styleFrom(minimumSize: const Size(48, 56)),
+            icon: const Icon(Icons.touch_app_rounded),
+            label: const Text('Jetzt selbst üben'),
+          ),
+          const SizedBox(height: 14),
           for (var i = 0; i < exercises.length; i++) ...[
             _ExerciseCard(index: i + 1, task: exercises[i]),
             const SizedBox(height: 10),
           ],
+        ],
         const SizedBox(height: 20),
         Center(
           child: GestureDetector(
@@ -535,145 +704,34 @@ class _ResultsPanel extends StatelessWidget {
   }
 }
 
-class _ExerciseCard extends StatefulWidget {
+class _ExerciseCard extends StatelessWidget {
   const _ExerciseCard({required this.index, required this.task});
   final int index;
   final LumoTask task;
 
   @override
-  State<_ExerciseCard> createState() => _ExerciseCardState();
-}
-
-class _ExerciseCardState extends State<_ExerciseCard> {
-  bool _showAnswer = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '${widget.task.subject} · ${Curriculum.prettifyUnit(widget.task.unit)}',
-            style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, color: LumoColors.ink600),
-          ),
-          const SizedBox(height: 6),
-          Row(
-            children: [
-              Container(
-                width: 30,
-                height: 30,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFF6366F1),
-                ),
-                child: Text(
-                  '${widget.index}',
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  widget.task.prompt,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
-                    height: 1.25,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          GestureDetector(
-            onTap: () => setState(() => _showAnswer = !_showAnswer),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              decoration: BoxDecoration(
-                color: _showAnswer
-                    ? const Color(0xFFDCFCE7)
-                    : const Color(0xFFEEF2FF),
-                borderRadius: BorderRadius.circular(99),
-                border: Border.all(
-                  color: _showAnswer
-                      ? const Color(0xFF22C55E)
-                      : const Color(0xFF6366F1),
-                  width: 1.3,
-                ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    _showAnswer
-                        ? Icons.lightbulb_rounded
-                        : Icons.lightbulb_outline_rounded,
-                    color: _showAnswer
-                        ? const Color(0xFF14532D)
-                        : const Color(0xFF4338CA),
-                    size: 18,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    _showAnswer
-                        ? 'Antwort: ${widget.task.answer}'
-                        : 'Antwort zeigen',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 13,
-                      fontWeight: FontWeight.w900,
-                      color: _showAnswer
-                          ? const Color(0xFF14532D)
-                          : const Color(0xFF4338CA),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          if (_showAnswer && widget.task.explanation.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF7E5),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                widget.task.explanation,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 12.5,
-                  fontWeight: FontWeight.w800,
-                  color: Color(0xFF7C2D12),
-                  height: 1.4,
-                ),
-              ),
-            ),
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFF123960),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: const Color(0xFF4386B8)),
+          boxShadow: const [
+            BoxShadow(
+                color: Color(0x55000000), offset: Offset(0, 5), blurRadius: 12)
           ],
-        ],
-      ),
-    );
-  }
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+              'Aufgabe $index · ${task.subject} · ${Curriculum.prettifyUnit(task.unit)}',
+              style: const TextStyle(color: Color(0xFFB8D5EE), fontSize: 13)),
+          const SizedBox(height: 8),
+          Text(task.prompt,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  height: 1.35)),
+        ]),
+      );
 }

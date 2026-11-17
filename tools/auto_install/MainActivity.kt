@@ -2,6 +2,7 @@ package dev.ullmann.lumo
 
 import android.content.Intent
 import android.app.ActivityManager
+import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
@@ -16,12 +17,21 @@ import org.json.JSONObject
 import java.util.UUID
 import java.security.MessageDigest
 import android.content.pm.PackageManager
-import android.speech.SpeechRecognizer
+import android.util.Log
 
 class MainActivity : FlutterActivity() {
     private var offlineSpeech: LumoOfflineSpeechBridge? = null
+    private var localRecognition: LumoLocalRecognition? = null
     private val installerChannel = "lumo_lernen/installer"
+    private val distributionChannel: String by lazy {
+        try {
+            @Suppress("DEPRECATION")
+            val info = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+            info.metaData?.getString("dev.ullmann.lumo.DISTRIBUTION") ?: "unavailable"
+        } catch (_: Exception) { "unavailable" }
+    }
     private var pendingGame: MethodChannel.Result? = null
+    private var pendingCallerReturnSession: String? = null
     private val gameRequest = 8201
     private fun engineProcessRunning(pid: Int? = null): Boolean {
         val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
@@ -32,15 +42,25 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        // Keep the pinned Dart API; replace its native recognition handler
+        // after registration so every capture either stays local or fails.
+        localRecognition = LumoLocalRecognition(this, flutterEngine.dartExecutor.binaryMessenger)
+        CardsTableBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
+        ConnectFourBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
+        TableGamesBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
         offlineSpeech = LumoOfflineSpeechBridge(applicationContext).also {
             it.attach(flutterEngine)
         }
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "lumo_lernen/diagnostics")
             .setMethodCallHandler { call, result ->
                 when (call.method) {
+                    "mediaAudible" -> result.success(try {
+                        val manager = getSystemService(AUDIO_SERVICE) as? AudioManager
+                        manager != null && !manager.isStreamMute(AudioManager.STREAM_MUSIC) &&
+                            manager.getStreamVolume(AudioManager.STREAM_MUSIC) > 0
+                    } catch (_: Exception) { false })
                     "onDeviceSpeechAvailable" -> result.success(
-                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
-                            SpeechRecognizer.isOnDeviceRecognitionAvailable(this))
+                        localRecognition?.onDeviceAvailable() == true)
                     "runtimeIdentity" -> {
                         try {
                             @Suppress("DEPRECATION")
@@ -72,6 +92,15 @@ class MainActivity : FlutterActivity() {
             flutterEngine.dartExecutor.binaryMessenger,
             installerChannel
         ).setMethodCallHandler { call, result ->
+            if (call.method == "distribution") {
+                result.success(distributionChannel)
+                return@setMethodCallHandler
+            }
+            // The manifest is authoritative even if a caller bypasses the Dart UI.
+            if (distributionChannel != "family") {
+                result.success(false)
+                return@setMethodCallHandler
+            }
             when (call.method) {
                 "canInstall" -> {
                     val allowed = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -154,14 +183,16 @@ class MainActivity : FlutterActivity() {
                         } catch (error: Exception) { result.error("storage", "Spielstände konnten nicht zurückgesetzt werden.", null) }
                     }
                     "pendingGameEvents" -> {
-                        try { result.success(GameEventStore.pending(this)) }
+                        try { result.success(GameEventStore.pending(this,
+                            pendingCallerReturnSession.takeIf { pendingGame != null })) }
                         catch (error: Exception) { result.error("storage", "Spielstände konnten nicht gelesen werden.", null) }
                     }
                     "acknowledgeGameEvents" -> {
                         try {
                             GameEventStore.acknowledge(this,
                                 call.argument<List<String>>("resultIds") ?: emptyList(),
-                                call.argument<String>("destination"))
+                                call.argument<String>("destination"),
+                                pendingCallerReturnSession.takeIf { pendingGame != null })
                             result.success(true)
                         } catch (error: Exception) { result.error("storage", "Spielstände konnten nicht bestätigt werden.", null) }
                     }
@@ -173,21 +204,95 @@ class MainActivity : FlutterActivity() {
                     try {
                         assets.open("lumo_game.pck").close()
                         val requested = call.argument<String>("scene")
-                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "rhythm", "treasure")) requested!! else "kart"
+                        val villageRequested = call.argument<Boolean>("livingVillage") == true
+                        if ((requested == "settlement") != villageRequested ||
+                            (villageRequested && call.argument<String>("settlementMode") != "settlement")) {
+                            result.error("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.", null)
+                            return@setMethodCallHandler
+                        }
+                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four", "games", "memory", "quiz")) requested!! else "kart"
                         val options = JSONObject()
                             .put("game", game)
                             .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
-                            .put("subject", call.argument<String>("subject")?.takeIf { it in setOf("Mathematik", "Deutsch", "Sachunterricht", "Logik") } ?: "Mathematik")
+                            .put("subject", call.argument<String>("subject")?.takeIf { it in setOf("Mathematik", "Deutsch", "Sachunterricht", "Englisch", "Logik") } ?: "Mathematik")
                             .put("sessionId", UUID.randomUUID().toString())
                             .put("stars", (call.argument<Int>("stars") ?: 0).coerceAtLeast(0))
                             .put("lifetimeStars", (call.argument<Int>("lifetimeStars") ?: 0).coerceAtLeast(0))
                             .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
-                        val intent = Intent(this, LumoGameActivity::class.java)
+                        if (game == "settlement") {
+                            options.put("livingVillage", true).put("settlementMode", "settlement")
+                        }
+                        if (game == "learning") {
+                            val learning = call.argument<Map<String, Any?>>("learning")
+                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts", "english_objects", "pattern", "task_card")) {
+                                result.error("invalid_learning", "Die Lernansicht ist nicht verfügbar.", null)
+                                return@setMethodCallHandler
+                            }
+                            val descriptor = JSONObject(learning)
+                            val scope = descriptor.optJSONObject("scope") ?: JSONObject()
+                            scope.put("protocolVersion", 1)
+                                .put("sessionId", options.getString("sessionId"))
+                                .put("taskId", scope.optString("taskId").ifBlank {
+                                    descriptor.optString("sourceTaskId").ifBlank { "native-" + options.getString("sessionId") }
+                                })
+                                .put("revision", scope.optLong("revision", 0).coerceAtLeast(0))
+                                .put("cancelEpoch", scope.optLong("cancelEpoch", 0).coerceAtLeast(0))
+                            descriptor.put("scope", scope)
+                            options.put("learning", descriptor)
+                                .put("learningMicrophoneEnabled", call.argument<Boolean>("learningMicrophoneEnabled") == true)
+                        }
+                        if (game in setOf("learning", "build", "settlement")) {
+                            options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
+                                .put("localVoiceLicenseAccepted", call.argument<Boolean>("localVoiceLicenseAccepted") == true)
+                                .put("learningAutoRead", call.argument<Boolean>("learningAutoRead") == true)
+                                .put("learningVoiceRate", (call.argument<Number>("learningVoiceRate")?.toDouble()
+                                    ?.takeIf { it.isFinite() } ?: 1.0).coerceIn(0.70, 1.60))
+                            // Release Flutter's local inference model before the
+                            // isolated lesson or village owns the same original voice.
+                            offlineSpeech?.release()
+                        }
+                        if (game == "cards") {
+                            val token = call.argument<String>("cardsToken")
+                            if (token == null || !token.matches(Regex("[a-f0-9]{32}"))) {
+                                result.error("invalid_cards", "Der Kartentisch konnte nicht geöffnet werden.", null)
+                                return@setMethodCallHandler
+                            }
+                            options.put("cardsToken", token)
+                        }
+                        if (game == "connect_four") {
+                            val token = call.argument<String>("connectFourToken")
+                            if (token == null || !ConnectFourBridge.hasAuthority(token)) {
+                                result.error("invalid_connect_four", "Deine Vier-Gewinnt-Runde ist nicht verfügbar.", null)
+                                return@setMethodCallHandler
+                            }
+                            options.put("connectFourToken", token)
+                        }
+                        if (game in setOf("memory", "quiz")) {
+                            val token = call.argument<String>("tableToken")
+                            if (token == null || !TableGamesBridge.hasAuthority(token, game)) {
+                                result.error("invalid_table_game", "Deine Spielrunde ist nicht verfügbar.", null)
+                                return@setMethodCallHandler
+                            }
+                            options.put("tableToken", token)
+                        }
+                        options.put("reduceAnimations", call.argument<Boolean>("reduceAnimations") ?: false)
+                        val callerSession = options.getString("sessionId")
+                            .takeIf { game in setOf("learning", "cards", "connect_four", "memory", "quiz") }
+                        val activity = when (game) {
+                            "connect_four" -> ConnectFourGameActivity::class.java
+                            "memory", "quiz" -> TableGameActivity::class.java
+                            else -> LumoGameActivity::class.java
+                        }
+                        val intent = Intent(this, activity)
                             .putExtra("lumoLaunchOptions", options.toString())
+                            .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession)
+                        if (callerSession != null) GameEventStore.beginCallerReturn(this)
                         pendingGame = result
+                        pendingCallerReturnSession = callerSession
                         startActivityForResult(intent, gameRequest)
                     } catch (e: Exception) {
                         pendingGame = null
+                        pendingCallerReturnSession = null
                         result.error("game_unavailable", "Das enthaltene Spiel konnte nicht gestartet werden.", null)
                     }
                     }
@@ -199,20 +304,59 @@ class MainActivity : FlutterActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == gameRequest) {
-            val destination = data?.getStringExtra("destination") ?: "games"
+            // A recreated host has no live Dart caller. Its durable return is
+            // intentionally left for EmbeddedGameService's normal navigation.
+            val callback = pendingGame ?: return
+            val callerSession = pendingCallerReturnSession
+            val returnedSession = data?.getStringExtra(GameEventStore.CALLER_RETURN_SESSION)
+            if (returnedSession != null && returnedSession != callerSession) {
+                Log.w("LumoHost", "Ignoring a return from another launch session")
+                return
+            }
+            val destination = if (data?.getStringExtra("destination") == "learn") "learn" else "games"
+            val callerOwned = resultCode == RESULT_OK && callerSession != null && returnedSession == callerSession
             val pid = data?.getIntExtra("gamePid", -1)?.takeIf { it > 0 }
             // Engine globals need a fresh process. Do not enable another launch while
             // the previous engine's delayed shutdown can still kill that process.
             fun completeWhenStopped(attempt: Int) {
+                if (isDestroyed || pendingGame !== callback || pendingCallerReturnSession != callerSession) return
                 if (engineProcessRunning(pid) && attempt < 100) {
                     Handler(Looper.getMainLooper()).postDelayed({ completeWhenStopped(attempt + 1) }, 100)
                 } else {
-                    pendingGame?.success(mapOf("destination" to destination))
+                    if (callerOwned) {
+                        try {
+                            GameEventStore.completeCallerReturn(this, destination, callerSession!!)
+                        } catch (error: Exception) {
+                            // Keep the owner and fallback until the atomic commit
+                            // succeeds. Never unlock into a stale generic return.
+                            Log.e("LumoHost", "Could not commit caller return; retrying", error)
+                            Handler(Looper.getMainLooper()).postDelayed({ completeWhenStopped(attempt) }, 1000)
+                            return
+                        }
+                    }
+                    callback.success(mapOf("destination" to destination))
                     pendingGame = null
+                    pendingCallerReturnSession = null
                 }
             }
             completeWhenStopped(0)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        localRecognition?.setForeground(true)
+    }
+
+    override fun onPause() {
+        localRecognition?.setForeground(false)
+        super.onPause()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+        permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        localRecognition?.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onTrimMemory(level: Int) {
@@ -223,6 +367,15 @@ class MainActivity : FlutterActivity() {
     }
 
     override fun onDestroy() {
+        // Do not let an old Activity's delayed completion consume the fallback
+        // belonging to a recreated host that no longer owns the Dart call.
+        pendingGame = null
+        pendingCallerReturnSession = null
+        CardsTableBridge.detach()
+        ConnectFourBridge.detach()
+        TableGamesBridge.detach()
+        localRecognition?.destroy()
+        localRecognition = null
         offlineSpeech?.destroy()
         offlineSpeech = null
         super.onDestroy()

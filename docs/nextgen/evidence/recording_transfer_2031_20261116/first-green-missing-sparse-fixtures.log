@@ -1,0 +1,110 @@
+test_aborted_transfer_retries_same_completed_bytes_without_replaying_the_ui_or_recorder (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_aborted_transfer_retries_same_completed_bytes_without_replaying_the_ui_or_recorder) ... ok
+test_expired_original_budget_never_buys_a_second_transfer (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_expired_original_budget_never_buys_a_second_transfer) ... ok
+test_first_complete_transfer_needs_no_retry_and_keeps_full_identity (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_first_complete_transfer_needs_no_retry_and_keeps_full_identity) ... ok
+test_original_transfer_failure_does_not_claim_a_missing_recording_or_start_failure (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_original_transfer_failure_does_not_claim_a_missing_recording_or_start_failure) ... ok
+test_real_recording_or_identity_failures_are_not_retried (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_real_recording_or_identity_failures_are_not_retried) ... ok
+test_two_aborts_preserve_both_partials_and_still_fail (tools.android_qa.tests.test_nextgen_learning_android_probe.RecordingTransferTest.test_two_aborts_preserve_both_partials_and_still_fail) ... ok
+test_original_single_frame_is_still_rejected_by_actual_recording_gate (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_original_single_frame_is_still_rejected_by_actual_recording_gate) ... ok
+test_recording_and_initial_view_precede_every_wm_change (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_recording_and_initial_view_precede_every_wm_change) ... ok
+test_target_pixel_and_progress_gates_still_fail_and_restore_display (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_target_pixel_and_progress_gates_still_fail_and_restore_display) ... ok
+test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence) ... ERROR
+test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) ... ERROR
+test_observation_returning_after_deadline_cannot_pass (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_observation_returning_after_deadline_cannot_pass) ... ERROR
+test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump) ... ERROR
+test_original_zero_duration_video_cannot_mask_primary_home_failure (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_cannot_mask_primary_home_failure) ... ERROR
+test_original_zero_duration_video_still_fails_an_otherwise_successful_body (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_still_fails_an_otherwise_successful_body) ... ERROR
+
+======================================================================
+ERROR: test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 329, in setUp
+    manifest = json.loads((self.fixtures / 'manifest.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json'
+
+======================================================================
+ERROR: test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 329, in setUp
+    manifest = json.loads((self.fixtures / 'manifest.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json'
+
+======================================================================
+ERROR: test_observation_returning_after_deadline_cannot_pass (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_observation_returning_after_deadline_cannot_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 329, in setUp
+    manifest = json.loads((self.fixtures / 'manifest.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json'
+
+======================================================================
+ERROR: test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 329, in setUp
+    manifest = json.loads((self.fixtures / 'manifest.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json'
+
+======================================================================
+ERROR: test_original_zero_duration_video_cannot_mask_primary_home_failure (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_cannot_mask_primary_home_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 329, in setUp
+    manifest = json.loads((self.fixtures / 'manifest.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json'
+
+======================================================================
+ERROR: test_original_zero_duration_video_still_fails_an_otherwise_successful_body (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_still_fails_an_otherwise_successful_body)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 329, in setUp
+    manifest = json.loads((self.fixtures / 'manifest.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4fa97167812c/agent-recording-start/tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json'
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.153s
+
+FAILED (errors=6)

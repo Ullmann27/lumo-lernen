@@ -1,0 +1,115 @@
+name: LUMO 2031 – additional observed Android runtime cases
+
+on:
+  push:
+    branches: [qa/lumo-nextgen-2031-android-20261116]
+    paths: [.github/probes/lumo_nextgen_2031_runtime_cases.json]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-2031-runtime-cases-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  PYTHONDONTWRITEBYTECODE: '1'
+
+jobs:
+  android-runtime-cases:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'qa/lumo-nextgen-2031-android-20261116'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          sparse-checkout: |
+            .github/probes
+            .github/workflows
+            config
+            scripts
+            tools/android_qa
+            tools/nextgen
+      - name: Verify unchanged source boundary and download immutable APK 2031
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 .github/probes/lumo_nextgen_2031_replay_reference_android_probe.py download
+          --candidate candidate/x86 --out evidence/download --qa-commit "$GITHUB_SHA"
+          --workflow-run-id "$GITHUB_RUN_ID"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools build-tools;36.0.0'
+      - name: Prepare observed UI readers and the same software renderer
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/emulator
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 ffmpeg tesseract-ocr tesseract-ocr-deu
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Check original and additional acceptance validators
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/checkers
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_learning_android_probe.py' -v 2>&1 | tee evidence/checkers/original-gates.log
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_reference_android_probe.py' -v 2>&1 | tee evidence/checkers/reference-gates.log
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_current_candidate.py' -v 2>&1 | tee evidence/checkers/current-gates.log
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_native_reader.py' -v 2>&1 | tee evidence/checkers/wrapped-reader.log
+          .probe-venv/bin/python -c 'from pathlib import Path; assert all((Path("tools/android_qa/tests") / name).is_file() for name in ("test_nextgen_2031_replay.py", "test_nextgen_2031_runtime_cases.py", "test_nextgen_2031_native_runtime_cases.py")), "Required immutable runtime-case validators are missing"'
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_2031*.py' -v 2>&1 | tee evidence/checkers/runtime-case-gates.log
+          .probe-venv/bin/python -m unittest discover -s tools/nextgen -p 'test_prepare_2031_learning_replay_release.py' -v 2>&1 | tee evidence/checkers/publication-gates.log
+          .probe-venv/bin/python -m unittest discover -s tools/nextgen -p 'test_public_learning_download.py' -v 2>&1 | tee evidence/checkers/public-download-gates.log
+      - name: Start the observed software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > evidence/emulator/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > evidence/emulator/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' evidence/emulator/mesa-renderer.txt
+      - name: Run additional cases with a fresh fictional profile
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py --candidate candidate/x86 --download-evidence evidence/download --qa-commit "$GITHUB_SHA" --workflow-run-id "$GITHUB_RUN_ID" --out evidence/android/runtime-cases
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-2031-runtime-cases-evidence
+          path: evidence/
+          retention-days: 30
+          if-no-files-found: error

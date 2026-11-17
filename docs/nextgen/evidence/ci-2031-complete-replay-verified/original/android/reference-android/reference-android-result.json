@@ -1,0 +1,1233 @@
+{
+  "schema": "lumo.nextgen.reference.android.probe",
+  "version": 1,
+  "status": "PASS_WITH_LIMITATIONS",
+  "mode": "immutable-replay",
+  "run_id": "bfd9c48ee51941be98cb7bc6fd4f74ee",
+  "started_utc": "2026-11-16T07:04:22Z",
+  "qa_commit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+  "qa_workflow_run": 43819768411,
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "source_build_run": 43800892196,
+  "probe_sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c",
+  "reference_probe_sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "apk_rebuilt_by_probe": false,
+  "fullModernizationComplete": false,
+  "previous_complete_probe": {
+    "original_result_sha256": "ab8f1e2750993d4e4436b1d7e7f10fd5e51128397bf76cbb8f2e6c854b2854ea",
+    "original_result": "evidence/android/original-android/learning-android-result.json",
+    "original_status": "PASS_WITH_LIMITATIONS",
+    "original_run_id": "21bdb4cc154d4cdabae567ccdb394539",
+    "installed_before_reset": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2031,
+      "versionName": "0.13.19",
+      "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+    },
+    "synthetic_profile_before_reset": {
+      "id": "1794812208000781",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T06:56:48.000781"
+    },
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "reason": "Fresh UI-created fixture for additional scenes after complete original PASS",
+    "uninstall_output": "Success"
+  },
+  "candidate": {
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "flutter_source_commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "versionCode": 2031,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.19",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef",
+      "bytes": 278589756
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2031,
+    "versionName": "0.13.19",
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794812694880848",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T07:04:54.880848"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0024-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "7a5168f53afb50d78ffe0e11e32fbb7389a370087711f1d98a03b5a0987625ec",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.082,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0060-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e8a721d554530854eb2ab723e289ad52c2db1e22a73e0bbbb4f68d1c8c7dc755",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0077-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2fcc267f5a4b737078a38e11bb6b2036ec3506a2c03807a630ffb2ba47f6b197",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.215,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0097-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "0d83180047253e90090543d25170451e4ad39056e203e9befcf357ff339be35f",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.567,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0103-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "45e6d11cd5b735e512f6a1e8c1d90f0d3a6f028193d0066b86b12375d2e10564",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.57,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0109-banana-guided-before-native.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "fd9ed0392a3fb020a40f98efcde69284f0cd28e51a276f065d2da190783c5d6b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.51,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0119-banana-native-entry.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2f65bc207c738db01eb2a6a262f66be3bb65eb47f923eb4f8873f5210d2cacb6"
+    },
+    {
+      "file": "0128-banana-syllable-1.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "c7c0e7a498ee92d613ecbfe3145544e83afd598c79ec6e7a42564356d915f80d"
+    },
+    {
+      "file": "0134-banana-syllable-2.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "d3233ae5887f560173f49c9264a1ab308afd2b6853ea131fbacb84b72a071807"
+    },
+    {
+      "file": "0141-banana-syllable-3.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "fe5383270cdca5bf6a1d0081a0f66a52d74bbeff9b97f497a87a35f1d5562349"
+    },
+    {
+      "file": "0189-banana-repeat-completed.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "9a41a5f4e5a2b01c61852f3d24c84a0df9b6fdfb395d1d6828c1f5037e12a42a"
+    },
+    {
+      "file": "0195-banana-flutter-return.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "838de03072efe1976dd2aeb0d342883e4f4bbd1d15d888220d3230f022b51a10",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.969,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0219-pattern-unanswered-before-native.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "f6614798db7aa24ab27c17f7e0b084026a3c575ebb9ae5874e32ee15a5c8c1b5",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.495,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0227-pattern-native-entry.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "572875ea3132bc1677380c413af1901862e078cf12d5b9db7a507bf2b848f99c"
+    },
+    {
+      "file": "0251-pattern-two-sign-group.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "83e34c365ba8f09e03561c3ea31c8f01ebcf5dd81496eea248226bd605f83500"
+    },
+    {
+      "file": "0255-pattern-unconfirmed-native-proposal.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "20c0be6558baa90f7639892892679d0bcdced7fef87699de5a60bcf91f502b9c"
+    },
+    {
+      "file": "0260-pattern-flutter-return.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "3865aecc5e1349f42a7dacffcc410bad20e38ffe76bd1b480f7e0770039226d7",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.495,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0267-pattern-current-unanswered-return.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "3865aecc5e1349f42a7dacffcc410bad20e38ffe76bd1b480f7e0770039226d7",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.495,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    }
+  ],
+  "recording_transfers": [
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0002-onboarding.mp4",
+      "owned_recorder_pid": "8595",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0002-onboarding.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0002-onboarding.mp4: 1 file pulled, 0 skipped. 115.5 MB/s (1941449 bytes in 0.016s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1941449,
+          "sha256": "c193c51ce40eb558037bcc408e376a65196316788edd587db281d276fcd9e9bc",
+          "verified_file": "0002-onboarding.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1941449",
+          "sha256_output": "c193c51ce40eb558037bcc408e376a65196316788edd587db281d276fcd9e9bc  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0002-onboarding.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1941449",
+          "sha256_output": "c193c51ce40eb558037bcc408e376a65196316788edd587db281d276fcd9e9bc  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0002-onboarding.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 1941449,
+        "sha256": "c193c51ce40eb558037bcc408e376a65196316788edd587db281d276fcd9e9bc"
+      },
+      "file": "0002-onboarding.mp4",
+      "bytes": 1941449,
+      "sha256": "c193c51ce40eb558037bcc408e376a65196316788edd587db281d276fcd9e9bc",
+      "elapsed_seconds": 0.196
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0091-banana-guided-navigation.mp4",
+      "owned_recorder_pid": "9205",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0091-banana-guided-navigation.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0091-banana-guided-navigation.mp4: 1 file pulled, 0 skipped. 113.7 MB/s (879853 bytes in 0.007s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 879853,
+          "sha256": "6dbfe8172acd1413c8b73ce41649a80eba672fc1044862016da68772d965da57",
+          "verified_file": "0091-banana-guided-navigation.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "879853",
+          "sha256_output": "6dbfe8172acd1413c8b73ce41649a80eba672fc1044862016da68772d965da57  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0091-banana-guided-navigation.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "879853",
+          "sha256_output": "6dbfe8172acd1413c8b73ce41649a80eba672fc1044862016da68772d965da57  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0091-banana-guided-navigation.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 879853,
+        "sha256": "6dbfe8172acd1413c8b73ce41649a80eba672fc1044862016da68772d965da57"
+      },
+      "file": "0091-banana-guided-navigation.mp4",
+      "bytes": 879853,
+      "sha256": "6dbfe8172acd1413c8b73ce41649a80eba672fc1044862016da68772d965da57",
+      "elapsed_seconds": 0.297
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0111-banana-native-entry-and-first-playback.mp4",
+      "owned_recorder_pid": "9326",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0111-banana-native-entry-and-first-playback.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0111-banana-native-entry-and-first-playback.mp4: 1 file pulled, 0 skipped. 59.6 MB/s (1608421 bytes in 0.026s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1608421,
+          "sha256": "128eaa306581cb6c10cc73c10cc73505d68eadde2615c4a986d40ed0ba267925",
+          "verified_file": "0111-banana-native-entry-and-first-playback.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1608421",
+          "sha256_output": "128eaa306581cb6c10cc73c10cc73505d68eadde2615c4a986d40ed0ba267925  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0111-banana-native-entry-and-first-playback.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1608421",
+          "sha256_output": "128eaa306581cb6c10cc73c10cc73505d68eadde2615c4a986d40ed0ba267925  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0111-banana-native-entry-and-first-playback.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 1608421,
+        "sha256": "128eaa306581cb6c10cc73c10cc73505d68eadde2615c4a986d40ed0ba267925"
+      },
+      "file": "0111-banana-native-entry-and-first-playback.mp4",
+      "bytes": 1608421,
+      "sha256": "128eaa306581cb6c10cc73c10cc73505d68eadde2615c4a986d40ed0ba267925",
+      "elapsed_seconds": 0.8
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0123-banana-visible-syllable-step-1.mp4",
+      "owned_recorder_pid": "9618",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0123-banana-visible-syllable-step-1.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0123-banana-visible-syllable-step-1.mp4: 1 file pulled, 0 skipped. 40.4 MB/s (793959 bytes in 0.019s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 793959,
+          "sha256": "d72613e992ceab9541278ddf06679bf4e742effdd3b300e1424d90065666f913",
+          "verified_file": "0123-banana-visible-syllable-step-1.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "793959",
+          "sha256_output": "d72613e992ceab9541278ddf06679bf4e742effdd3b300e1424d90065666f913  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0123-banana-visible-syllable-step-1.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "793959",
+          "sha256_output": "d72613e992ceab9541278ddf06679bf4e742effdd3b300e1424d90065666f913  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0123-banana-visible-syllable-step-1.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 793959,
+        "sha256": "d72613e992ceab9541278ddf06679bf4e742effdd3b300e1424d90065666f913"
+      },
+      "file": "0123-banana-visible-syllable-step-1.mp4",
+      "bytes": 793959,
+      "sha256": "d72613e992ceab9541278ddf06679bf4e742effdd3b300e1424d90065666f913",
+      "elapsed_seconds": 0.579
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0129-banana-visible-syllable-step-2.mp4",
+      "owned_recorder_pid": "9794",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0129-banana-visible-syllable-step-2.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0129-banana-visible-syllable-step-2.mp4: 1 file pulled, 0 skipped. 47.9 MB/s (849293 bytes in 0.017s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 849293,
+          "sha256": "c5477dbb470bbbeda874afa70336fac629508eb5f085bbffb3e354d493135a15",
+          "verified_file": "0129-banana-visible-syllable-step-2.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "849293",
+          "sha256_output": "c5477dbb470bbbeda874afa70336fac629508eb5f085bbffb3e354d493135a15  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0129-banana-visible-syllable-step-2.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "849293",
+          "sha256_output": "c5477dbb470bbbeda874afa70336fac629508eb5f085bbffb3e354d493135a15  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0129-banana-visible-syllable-step-2.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 849293,
+        "sha256": "c5477dbb470bbbeda874afa70336fac629508eb5f085bbffb3e354d493135a15"
+      },
+      "file": "0129-banana-visible-syllable-step-2.mp4",
+      "bytes": 849293,
+      "sha256": "c5477dbb470bbbeda874afa70336fac629508eb5f085bbffb3e354d493135a15",
+      "elapsed_seconds": 0.97
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0135-banana-visible-syllable-step-3.mp4",
+      "owned_recorder_pid": "9964",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0135-banana-visible-syllable-step-3.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0135-banana-visible-syllable-step-3.mp4: 1 file pulled, 0 skipped. 54.7 MB/s (1143803 bytes in 0.020s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1143803,
+          "sha256": "b7b191bca150fd9db051e43443c8bb748c75ca0e50a3851b9020239baf2cab1f",
+          "verified_file": "0135-banana-visible-syllable-step-3.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1143803",
+          "sha256_output": "b7b191bca150fd9db051e43443c8bb748c75ca0e50a3851b9020239baf2cab1f  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0135-banana-visible-syllable-step-3.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1143803",
+          "sha256_output": "b7b191bca150fd9db051e43443c8bb748c75ca0e50a3851b9020239baf2cab1f  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0135-banana-visible-syllable-step-3.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 1143803,
+        "sha256": "b7b191bca150fd9db051e43443c8bb748c75ca0e50a3851b9020239baf2cab1f"
+      },
+      "file": "0135-banana-visible-syllable-step-3.mp4",
+      "bytes": 1143803,
+      "sha256": "b7b191bca150fd9db051e43443c8bb748c75ca0e50a3851b9020239baf2cab1f",
+      "elapsed_seconds": 1.077
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0159-banana-four-segment-repeat.mp4",
+      "owned_recorder_pid": "10273",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0159-banana-four-segment-repeat.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0159-banana-four-segment-repeat.mp4: 1 file pulled, 0 skipped. 46.5 MB/s (840758 bytes in 0.017s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 840758,
+          "sha256": "1a3f919434e4ebb1bdfc6573b2644304c43c949140f7128f70ab9d07caac2c12",
+          "verified_file": "0159-banana-four-segment-repeat.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "840758",
+          "sha256_output": "1a3f919434e4ebb1bdfc6573b2644304c43c949140f7128f70ab9d07caac2c12  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0159-banana-four-segment-repeat.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "840758",
+          "sha256_output": "1a3f919434e4ebb1bdfc6573b2644304c43c949140f7128f70ab9d07caac2c12  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0159-banana-four-segment-repeat.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 840758,
+        "sha256": "1a3f919434e4ebb1bdfc6573b2644304c43c949140f7128f70ab9d07caac2c12"
+      },
+      "file": "0159-banana-four-segment-repeat.mp4",
+      "bytes": 840758,
+      "sha256": "1a3f919434e4ebb1bdfc6573b2644304c43c949140f7128f70ab9d07caac2c12",
+      "elapsed_seconds": 0.578
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0191-banana-return-to-same-guided-step.mp4",
+      "owned_recorder_pid": "10520",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0191-banana-return-to-same-guided-step.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0191-banana-return-to-same-guided-step.mp4: 1 file pulled, 0 skipped. 133.0 MB/s (1121535 bytes in 0.008s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1121535,
+          "sha256": "75eec83c044451b0f145c3704f691d779af675a0fd558c649e4343e7e8ed0d6a",
+          "verified_file": "0191-banana-return-to-same-guided-step.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1121535",
+          "sha256_output": "75eec83c044451b0f145c3704f691d779af675a0fd558c649e4343e7e8ed0d6a  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0191-banana-return-to-same-guided-step.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1121535",
+          "sha256_output": "75eec83c044451b0f145c3704f691d779af675a0fd558c649e4343e7e8ed0d6a  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0191-banana-return-to-same-guided-step.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 1121535,
+        "sha256": "75eec83c044451b0f145c3704f691d779af675a0fd558c649e4343e7e8ed0d6a"
+      },
+      "file": "0191-banana-return-to-same-guided-step.mp4",
+      "bytes": 1121535,
+      "sha256": "75eec83c044451b0f145c3704f691d779af675a0fd558c649e4343e7e8ed0d6a",
+      "elapsed_seconds": 0.164
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0199-pattern-visible-academy-navigation.mp4",
+      "owned_recorder_pid": "10716",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0199-pattern-visible-academy-navigation.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0199-pattern-visible-academy-navigation.mp4: 1 file pulled, 0 skipped. 112.7 MB/s (1025062 bytes in 0.009s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1025062,
+          "sha256": "6281f0f1861c386b3e44bffebc07636827642dc9c3e72ba457f86d82e57778b9",
+          "verified_file": "0199-pattern-visible-academy-navigation.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1025062",
+          "sha256_output": "6281f0f1861c386b3e44bffebc07636827642dc9c3e72ba457f86d82e57778b9  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0199-pattern-visible-academy-navigation.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1025062",
+          "sha256_output": "6281f0f1861c386b3e44bffebc07636827642dc9c3e72ba457f86d82e57778b9  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0199-pattern-visible-academy-navigation.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 1025062,
+        "sha256": "6281f0f1861c386b3e44bffebc07636827642dc9c3e72ba457f86d82e57778b9"
+      },
+      "file": "0199-pattern-visible-academy-navigation.mp4",
+      "bytes": 1025062,
+      "sha256": "6281f0f1861c386b3e44bffebc07636827642dc9c3e72ba457f86d82e57778b9",
+      "elapsed_seconds": 0.181
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0221-pattern-native-entry-and-playback.mp4",
+      "owned_recorder_pid": "10866",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0221-pattern-native-entry-and-playback.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0221-pattern-native-entry-and-playback.mp4: 1 file pulled, 0 skipped. 79.0 MB/s (1881808 bytes in 0.023s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1881808,
+          "sha256": "e9f5e0fe7be3cf8dcd223211e077c83527a407bbebe52698d8a82876f6ede7dc",
+          "verified_file": "0221-pattern-native-entry-and-playback.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1881808",
+          "sha256_output": "e9f5e0fe7be3cf8dcd223211e077c83527a407bbebe52698d8a82876f6ede7dc  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0221-pattern-native-entry-and-playback.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1881808",
+          "sha256_output": "e9f5e0fe7be3cf8dcd223211e077c83527a407bbebe52698d8a82876f6ede7dc  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0221-pattern-native-entry-and-playback.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 1881808,
+        "sha256": "e9f5e0fe7be3cf8dcd223211e077c83527a407bbebe52698d8a82876f6ede7dc"
+      },
+      "file": "0221-pattern-native-entry-and-playback.mp4",
+      "bytes": 1881808,
+      "sha256": "e9f5e0fe7be3cf8dcd223211e077c83527a407bbebe52698d8a82876f6ede7dc",
+      "elapsed_seconds": 0.816
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0230-pattern-observed-group-and-unconfirmed-proposal.mp4",
+      "owned_recorder_pid": "11126",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0230-pattern-observed-group-and-unconfirmed-proposal.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0230-pattern-observed-group-and-unconfirmed-proposal.mp4: 1 file pulled, 0 skipped. 62.6 MB/s (1586277 bytes in 0.024s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1586277,
+          "sha256": "c58cddf6dcbac3ba4879d514dd06047ff6a255807f3e20646a2f1ef8fe244bdc",
+          "verified_file": "0230-pattern-observed-group-and-unconfirmed-proposal.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1586277",
+          "sha256_output": "c58cddf6dcbac3ba4879d514dd06047ff6a255807f3e20646a2f1ef8fe244bdc  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0230-pattern-observed-group-and-unconfirmed-proposal.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1586277",
+          "sha256_output": "c58cddf6dcbac3ba4879d514dd06047ff6a255807f3e20646a2f1ef8fe244bdc  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0230-pattern-observed-group-and-unconfirmed-proposal.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 1586277,
+        "sha256": "c58cddf6dcbac3ba4879d514dd06047ff6a255807f3e20646a2f1ef8fe244bdc"
+      },
+      "file": "0230-pattern-observed-group-and-unconfirmed-proposal.mp4",
+      "bytes": 1586277,
+      "sha256": "c58cddf6dcbac3ba4879d514dd06047ff6a255807f3e20646a2f1ef8fe244bdc",
+      "elapsed_seconds": 0.64
+    },
+    {
+      "status": "VERIFIED_TRANSFER",
+      "remote": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0256-pattern-return-to-same-unanswered-question.mp4",
+      "owned_recorder_pid": "11447",
+      "maximum_seconds": 90,
+      "maximum_transfers": 2,
+      "attempts": [
+        {
+          "attempt": 1,
+          "local": "0256-pattern-return-to-same-unanswered-question.mp4.pull-1.partial",
+          "adb_output": "/sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0256-pattern-return-to-same-unanswered-question.mp4: 1 file pulled, 0 skipped. 114.2 MB/s (1287369 bytes in 0.011s)",
+          "status": "VERIFIED_TRANSFER",
+          "bytes": 1287369,
+          "sha256": "db3129ab9ea78cfd79199f7136fea117e18944a83e6deecd557584e5bdd297b9",
+          "verified_file": "0256-pattern-return-to-same-unanswered-question.mp4"
+        }
+      ],
+      "remote_observations": [
+        {
+          "stage": "before-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1287369",
+          "sha256_output": "db3129ab9ea78cfd79199f7136fea117e18944a83e6deecd557584e5bdd297b9  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0256-pattern-return-to-same-unanswered-question.mp4"
+        },
+        {
+          "stage": "after-complete-transfer",
+          "screenrecord_pids": "",
+          "serial_output": "emulator-5554",
+          "boot_id_output": "6fd735a2-e9f9-438f-a0a1-d15317d88adf",
+          "size_output": "1287369",
+          "sha256_output": "db3129ab9ea78cfd79199f7136fea117e18944a83e6deecd557584e5bdd297b9  /sdcard/lumo-learning-bfd9c48ee51941be98cb7bc6fd4f74ee-0256-pattern-return-to-same-unanswered-question.mp4"
+        }
+      ],
+      "recording_or_ui_repeated": false,
+      "device_identity": {
+        "serial": "emulator-5554",
+        "boot_id": "6fd735a2-e9f9-438f-a0a1-d15317d88adf"
+      },
+      "expected": {
+        "bytes": 1287369,
+        "sha256": "db3129ab9ea78cfd79199f7136fea117e18944a83e6deecd557584e5bdd297b9"
+      },
+      "file": "0256-pattern-return-to-same-unanswered-question.mp4",
+      "bytes": 1287369,
+      "sha256": "db3129ab9ea78cfd79199f7136fea117e18944a83e6deecd557584e5bdd297b9",
+      "elapsed_seconds": 0.16
+    }
+  ],
+  "videos": [
+    {
+      "file": "0002-onboarding.mp4",
+      "sha256": "c193c51ce40eb558037bcc408e376a65196316788edd587db281d276fcd9e9bc",
+      "bytes": 1941449,
+      "duration_seconds": 11.8252,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0002-onboarding-video-transfer.json",
+      "block_elapsed_seconds": 14.36,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0091-banana-guided-navigation.mp4",
+      "sha256": "6dbfe8172acd1413c8b73ce41649a80eba672fc1044862016da68772d965da57",
+      "bytes": 879853,
+      "duration_seconds": 7.504756,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0091-banana-guided-navigation-video-transfer.json",
+      "block_elapsed_seconds": 10.1,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0111-banana-native-entry-and-first-playback.mp4",
+      "sha256": "128eaa306581cb6c10cc73c10cc73505d68eadde2615c4a986d40ed0ba267925",
+      "bytes": 1608421,
+      "duration_seconds": 51.397067,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0111-banana-native-entry-and-first-playback-video-transfer.json",
+      "block_elapsed_seconds": 50.63,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0123-banana-visible-syllable-step-1.mp4",
+      "sha256": "d72613e992ceab9541278ddf06679bf4e742effdd3b300e1424d90065666f913",
+      "bytes": 793959,
+      "duration_seconds": 56.647533,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0123-banana-visible-syllable-step-1-video-transfer.json",
+      "block_elapsed_seconds": 57.56,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0129-banana-visible-syllable-step-2.mp4",
+      "sha256": "c5477dbb470bbbeda874afa70336fac629508eb5f085bbffb3e354d493135a15",
+      "bytes": 849293,
+      "duration_seconds": 60.247478,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0129-banana-visible-syllable-step-2-video-transfer.json",
+      "block_elapsed_seconds": 61.59,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0135-banana-visible-syllable-step-3.mp4",
+      "sha256": "b7b191bca150fd9db051e43443c8bb748c75ca0e50a3851b9020239baf2cab1f",
+      "bytes": 1143803,
+      "duration_seconds": 61.625633,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0135-banana-visible-syllable-step-3-video-transfer.json",
+      "block_elapsed_seconds": 64.43,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0159-banana-four-segment-repeat.mp4",
+      "sha256": "1a3f919434e4ebb1bdfc6573b2644304c43c949140f7128f70ab9d07caac2c12",
+      "bytes": 840758,
+      "duration_seconds": 39.384733,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0159-banana-four-segment-repeat-video-transfer.json",
+      "block_elapsed_seconds": 39.88,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0191-banana-return-to-same-guided-step.mp4",
+      "sha256": "75eec83c044451b0f145c3704f691d779af675a0fd558c649e4343e7e8ed0d6a",
+      "bytes": 1121535,
+      "duration_seconds": 33.639044,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0191-banana-return-to-same-guided-step-video-transfer.json",
+      "block_elapsed_seconds": 35.52,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0199-pattern-visible-academy-navigation.mp4",
+      "sha256": "6281f0f1861c386b3e44bffebc07636827642dc9c3e72ba457f86d82e57778b9",
+      "bytes": 1025062,
+      "duration_seconds": 6.549089,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0199-pattern-visible-academy-navigation-video-transfer.json",
+      "block_elapsed_seconds": 8.07,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0221-pattern-native-entry-and-playback.mp4",
+      "sha256": "e9f5e0fe7be3cf8dcd223211e077c83527a407bbebe52698d8a82876f6ede7dc",
+      "bytes": 1881808,
+      "duration_seconds": 45.115167,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0221-pattern-native-entry-and-playback-video-transfer.json",
+      "block_elapsed_seconds": 45.37,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0230-pattern-observed-group-and-unconfirmed-proposal.mp4",
+      "sha256": "c58cddf6dcbac3ba4879d514dd06047ff6a255807f3e20646a2f1ef8fe244bdc",
+      "bytes": 1586277,
+      "duration_seconds": 103.121444,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0230-pattern-observed-group-and-unconfirmed-proposal-video-transfer.json",
+      "block_elapsed_seconds": 104.77,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0256-pattern-return-to-same-unanswered-question.mp4",
+      "sha256": "db3129ab9ea78cfd79199f7136fea117e18944a83e6deecd557584e5bdd297b9",
+      "bytes": 1287369,
+      "duration_seconds": 30.014289,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0256-pattern-return-to-same-unanswered-question-video-transfer.json",
+      "block_elapsed_seconds": 33.4,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "banana": {
+    "current_task": "Ba – na – ne",
+    "word": "Banane",
+    "syllables": [
+      "Ba",
+      "na",
+      "ne"
+    ],
+    "initial_playback": {
+      "pid": 9377,
+      "utterance_ids": [
+        3
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "steps": [
+      {
+        "step": 1,
+        "observed_status": "Als Nächstes kommt die Silbe „na“",
+        "playback": {
+          "pid": 9377,
+          "utterance_ids": [
+            7
+          ],
+          "segments": 1,
+          "profile": "lumo-free-supertonic-de-v1",
+          "evidence": "ordered MediaPlayer started/completed callbacks",
+          "spoken_words_in_log": false,
+          "audible_quality_verified": false
+        },
+        "screenshot": {
+          "file": "0128-banana-syllable-1.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "c7c0e7a498ee92d613ecbfe3145544e83afd598c79ec6e7a42564356d915f80d"
+        }
+      },
+      {
+        "step": 2,
+        "observed_status": "Als Nächstes kommt die Silbe „ne“",
+        "playback": {
+          "pid": 9377,
+          "utterance_ids": [
+            11
+          ],
+          "segments": 1,
+          "profile": "lumo-free-supertonic-de-v1",
+          "evidence": "ordered MediaPlayer started/completed callbacks",
+          "spoken_words_in_log": false,
+          "audible_quality_verified": false
+        },
+        "screenshot": {
+          "file": "0134-banana-syllable-2.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "d3233ae5887f560173f49c9264a1ab308afd2b6853ea131fbacb84b72a071807"
+        }
+      },
+      {
+        "step": 3,
+        "observed_status": "Das Wort hat 3 Silben",
+        "playback": {
+          "pid": 9377,
+          "utterance_ids": [
+            15
+          ],
+          "segments": 1,
+          "profile": "lumo-free-supertonic-de-v1",
+          "evidence": "ordered MediaPlayer started/completed callbacks",
+          "spoken_words_in_log": false,
+          "audible_quality_verified": false
+        },
+        "screenshot": {
+          "file": "0141-banana-syllable-3.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "fe5383270cdca5bf6a1d0081a0f66a52d74bbeff9b97f497a87a35f1d5562349"
+        }
+      }
+    ],
+    "repeat_playback": {
+      "pid": 9377,
+      "utterance_ids": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "segments": 4,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "repeat_video": {
+      "file": "0159-banana-four-segment-repeat.mp4",
+      "sha256": "1a3f919434e4ebb1bdfc6573b2644304c43c949140f7128f70ab9d07caac2c12",
+      "bytes": 840758,
+      "duration_seconds": 39.384733,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "transfer_verification": "0159-banana-four-segment-repeat-video-transfer.json",
+      "block_elapsed_seconds": 39.88,
+      "whole_block_within_recording_limit": true
+    },
+    "segment_order_source_contract": [
+      "Banane",
+      "Ba",
+      "na",
+      "ne"
+    ],
+    "segment_words_verified_acoustically": false,
+    "preservation": {
+      "profile_id": "1794812694880848",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false
+    },
+    "native_answer_submitted": false
+  },
+  "pattern": {
+    "task": {
+      "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Stern – Quadrat – Stern – ? Welche Form folgt?",
+      "sequence": [
+        "Quadrat",
+        "Stern",
+        "Quadrat",
+        "Stern"
+      ],
+      "period": 2,
+      "next": "Quadrat"
+    },
+    "returned_task": {
+      "prompt": "Das Muster wiederholt sich immer gleich: Quadrat – Stern – Quadrat – Stern – ? Welche Form folgt?",
+      "sequence": [
+        "Quadrat",
+        "Stern",
+        "Quadrat",
+        "Stern"
+      ],
+      "period": 2,
+      "next": "Quadrat"
+    },
+    "initial_playback": {
+      "pid": 10900,
+      "utterance_ids": [
+        3
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "hint_playback": {
+      "pid": 10900,
+      "utterance_ids": [
+        7
+      ],
+      "segments": 1,
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "ordered MediaPlayer started/completed callbacks",
+      "spoken_words_in_log": false,
+      "audible_quality_verified": false
+    },
+    "observed_group_hint": "Die kleinste Gruppe hat 2 Zeichen",
+    "native_proposal": "Quadrat",
+    "native_confirmation_performed": false,
+    "core_answer_submitted": false,
+    "core_submission_boundary": "A Core answer-card tap submits directly; no separate confirmation exists for a native-only proposal.",
+    "preservation": {
+      "profile_id": "1794812694880848",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false
+    },
+    "core_submission": {
+      "status": "NOT_EXERCISED",
+      "reason": "No simultaneous unique observed Core answer heading and four enabled shape cards; ungraded roundtrip remains separately evidenced."
+    }
+  },
+  "final_profile": {
+    "id": "1794812694880848",
+    "name": "LumoNextTest",
+    "age": 7,
+    "grade": 1,
+    "createdAt": "2026-11-16T07:04:54.880848"
+  },
+  "limitations": [
+    "Same immutable APK in a new disposable installation with a newly UI-created fictional grade-1 profile.",
+    "MediaPlayer callbacks prove current native playback, not audible pronunciation or acoustic segment identity; videos have no audio track.",
+    "Native pattern selection is ungraded; a later Core assessment is reported only if its current answer card and actual stored result were observed.",
+    "No STT, physical Android device, frame-rate, lip-sync, or English-only layout telemetry claim is made by this additional probe."
+  ],
+  "finished_utc": "2026-11-16T07:16:25Z"
+}

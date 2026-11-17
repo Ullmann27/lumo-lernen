@@ -1,0 +1,28 @@
+{
+  "observedAtUtc": "2026-11-16T07:21:13.638981+00:00",
+  "scope": "Only two frozen, clean, remote-verified own implementation working copies reduced reversibly; no active worker, branch, commit or history change",
+  "records": [
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-conversation-scope",
+      "commit": "bb2d5dc4b193bb816d51e590de48088581158542",
+      "treeUnchanged": "2cba00d8fb15de469f3f139b48aea997973aa560",
+      "priorSparseSelection": "/lib/\n/test/\n/assets/\n/pubspec.yaml\n/pubspec.lock\n/analysis_options.yaml\n/AGENTS.md\n/CLAUDE.md\n/.gitignore\n/docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp\n/tools/auto_install/LumoLearningConversation.kt\n/tools/auto_install/LumoLearningDialogLogic.java\n/scripts/tests/test_learning_conversation_contract.py\n/scripts/tests/test_learning_dialog_logic.py\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 103455297,
+      "workingCopyBytesAfter": 11819272,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    },
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-lab-route-scope",
+      "commit": "a4e73ccf5b7ea0686d941d9160957230a94b93a6",
+      "treeUnchanged": "c63544ea2271b18555e498f5b360ecabb5d82a7e",
+      "priorSparseSelection": "/*\n!/*/\n/docs/\n!/docs/*/\n/docs/lumo_game_specs/\n!/docs/lumo_game_specs/*/\n/docs/lumo_game_specs/2026-10-05/\n!/docs/lumo_game_specs/2026-10-05/*/\n/docs/nextgen/\n!/docs/nextgen/*/\n/docs/nextgen/evidence/\n!/docs/nextgen/evidence/*/\n/assets/\n/docs/lumo_game_specs/2026-10-05/03_cards/\n/docs/nextgen/evidence/lab_return_frames_20261116/\n/docs/nextgen/evidence/lab_route_return_20261116/\n/lib/\n/test/\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 105697780,
+      "workingCopyBytesAfter": 11887567,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    }
+  ]
+}

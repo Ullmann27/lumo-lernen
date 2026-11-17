@@ -1,0 +1,29 @@
+{
+  "artifactId": 14192539626,
+  "workflowRun": 43790915460,
+  "jobId": 133056371546,
+  "flutterSource": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "archiveBytes": 19467723,
+  "archiveSha256": "e7ca12c47729ece9ca880db91a80beea0dec63cc5d82f5d7c0c975e3c9885b35",
+  "members": 225,
+  "partBytesMaximum": 8388608,
+  "partsInOrder": [
+    {
+      "path": "artifact-14192539626.zip.part01",
+      "bytes": 8388608,
+      "sha256": "cfa726788746269f6bb9bdf344b36e26494c91efe299ca06c93fe22ea3f0ae0d"
+    },
+    {
+      "path": "artifact-14192539626.zip.part02",
+      "bytes": 8388608,
+      "sha256": "6b4d0d1ed8b925cd5eccca7aba01fdc5ae0d1b2cd15514801fa230f794ac2525"
+    },
+    {
+      "path": "artifact-14192539626.zip.part03",
+      "bytes": 2690507,
+      "sha256": "f7ed71e2fc1d023fe08cce112f0fdff2e975918bcaadd91d8a8ee481580e98d3"
+    }
+  ],
+  "reassembly": "Concatenate parts in listed order; verify original size and SHA-256 before reading the ZIP. All 225 original members are retained without alteration.",
+  "reassembledSizeAndSha256Verified": true
+}

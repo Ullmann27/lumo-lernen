@@ -1,0 +1,14 @@
+{
+  "kind": "studio_24fb_host_contract_execution",
+  "native_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "status": "PASS",
+  "tests": 353,
+  "seconds": 60.546,
+  "skipped": 0,
+  "command": "PATH=/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/bin:$PATH python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v",
+  "first_attempt": "The first invocation omitted the already-installed Gradle toolchain from PATH: GameReturnStore setUpClass failed and the Gradle mirror test skipped. The complete suite was rerun with that toolchain available, without changing sources or assertions.",
+  "scope": "Local build, host, source and delivery contracts. This is not an Android emulator or physical-device acceptance result.",
+  "log_sha256": "6d036d95ae49049bb13a6f1dcfa10654d8f9ed1d8011a52ea21e056625a5d0d3",
+  "pin_tests": 23,
+  "pin_log_sha256": "33f47362c59743f31253e78603d75acb5eb3d1ea7be8ecdb9193671a4bf115f2"
+}

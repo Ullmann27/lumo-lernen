@@ -1,0 +1,28 @@
+[
+  {
+    "label": "original-red",
+    "returncode": 1,
+    "bytes": 8686,
+    "sha256": "ad8495e02667a58d52a6ea2f1eed9ed2f4b27ddf0026356ebbe434d2d39b66af",
+    "summary": [
+      "",
+      "----------------------------------------------------------------------",
+      "Ran 6 tests in 0.427s",
+      "",
+      "FAILED (errors=4)"
+    ]
+  },
+  {
+    "label": "patched-green",
+    "returncode": 0,
+    "bytes": 5271,
+    "sha256": "27d883d7c93403a29b4b9548a37637da78321eec9a79569a8c997eb91382cf46",
+    "summary": [
+      "",
+      "----------------------------------------------------------------------",
+      "Ran 24 tests in 5.150s",
+      "",
+      "OK"
+    ]
+  }
+]

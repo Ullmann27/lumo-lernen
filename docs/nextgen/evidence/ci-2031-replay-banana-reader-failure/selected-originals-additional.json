@@ -1,0 +1,147 @@
+{
+  "artifactId": 14199706359,
+  "workflowRun": 43806736020,
+  "archiveSha256": "0b36fdffcd68b4855591b4662b5282eb40e8e615c4d0c647dd6f2e440f08637f",
+  "byteExactOriginals": [
+    {
+      "path": "checkers/current-gates.log",
+      "bytes": 2382,
+      "sha256": "c9d68f19b41037b5e1c13870e4d796ecb9182172756977a479f6a556f95bfea4"
+    },
+    {
+      "path": "checkers/original-gates.log",
+      "bytes": 15823,
+      "sha256": "1a2a5adb71b5dc411022f9a8eaad073c11757ef06f8d9689daecccad504e0aa9"
+    },
+    {
+      "path": "checkers/public-download-gates.log",
+      "bytes": 2755,
+      "sha256": "c818663a4b91c5cde6257ee33c4cd43040c28646e75c9f12533d171094260102"
+    },
+    {
+      "path": "checkers/publication-gates.log",
+      "bytes": 1902,
+      "sha256": "f67109e49036f617ed7a4fdb2bdcb08792a8c19044f7187eb62d1f7e7fbd2b39"
+    },
+    {
+      "path": "checkers/reference-gates.log",
+      "bytes": 5274,
+      "sha256": "91dcbd5402afd5006678a2f1630371f92ddc25ec47b47282bd6cdd2f4a3943e4"
+    },
+    {
+      "path": "checkers/replay-gates.log",
+      "bytes": 2833,
+      "sha256": "3a3149a290e907ec3bea7714914399f6f7f5296508f9ff99f89c25fe84b0cae7"
+    },
+    {
+      "path": "checkers/wrapped-reader.log",
+      "bytes": 2060,
+      "sha256": "84a34da8d26fee9b23441826c229d756c2cd5f001437c94b499e8cc55a36850c"
+    },
+    {
+      "path": "download/original-build-job.json",
+      "bytes": 4514,
+      "sha256": "1905f9a78cb2085451bcd7e5e26a4b018459942e811aaba9360021e8a2e2773e"
+    },
+    {
+      "path": "download/original-run.json",
+      "bytes": 13802,
+      "sha256": "0148a252c8f7833dbec7fbcbb12c170fc9b4bba14c122ff0df1bfc37e2269d46"
+    },
+    {
+      "path": "download/original-validate-job.json",
+      "bytes": 5726,
+      "sha256": "d5f557e1c706ec9505aaa7e6e45624ad6b27bb0692b51ecaed3ad3a740d729a7"
+    },
+    {
+      "path": "download/verified-download.json",
+      "bytes": 18311,
+      "sha256": "d30b76ea71fec03007a9cae46af4a93d2651b692316cefe730cfb18b07079122"
+    },
+    {
+      "path": "download/original-x86-artifact.json",
+      "bytes": 810,
+      "sha256": "3e898baecfa54d1d0e9ce0001e408ab7188bfd2a9f28089188f02d6a50d86959"
+    },
+    {
+      "path": "emulator/mesa-renderer.txt",
+      "bytes": 1774,
+      "sha256": "9488d55450fa9ad1fde0c092ca0cf507cd71c5fd827eed7e57dc8096aacc1e4e"
+    },
+    {
+      "path": "emulator/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    },
+    {
+      "path": "source/qa-source-binding.json",
+      "bytes": 16111,
+      "sha256": "f9f644661395135825b4ec9cfbb07d19b0742a80a5fc8ae14b6b243bac0513c0"
+    },
+    {
+      "path": "android/reference-android/0138-banana-syllable-status-3-9.png",
+      "bytes": 591322,
+      "sha256": "bfbc8b9c904d991106d1c596854ef6b0d4e4922cb16c5a53e116feb3229a1e1a"
+    },
+    {
+      "path": "android/reference-android/0138-banana-syllable-status-3-9-ocr.json",
+      "bytes": 17785,
+      "sha256": "a03e26e5fbbc21635e1dc36dd7722a5a17afd1b590fb4fe4905904d22712905a"
+    },
+    {
+      "path": "android/original-android/native-learning-performance.json",
+      "bytes": 62950,
+      "sha256": "55f2efefd92d1cf5e12e9c1023fd88653b981cf5f9f5d3c89f59ec5448e94c6c"
+    },
+    {
+      "path": "android/original-android/0419-native-why-two-question-and-demonstration.mp4",
+      "bytes": 2547058,
+      "sha256": "c3f847703c081336c6f8552969f4c71ce6e5fd27dc199287d90eec1458e346e0"
+    },
+    {
+      "path": "android/original-android/0442-native-three-dimensional-performance.mp4",
+      "bytes": 628850,
+      "sha256": "5416c9724e858ed80cf0bfe01537d0e8010711770c683d013ef45a3bbfc232b2"
+    },
+    {
+      "path": "android/original-android/0441-why-native-ten-and-three-after-explanation.png",
+      "bytes": 681707,
+      "sha256": "6f52ae6d5d70a081165b2e97a6af84c4e9727b6dbd9cbe22e897abf4315aa04d"
+    },
+    {
+      "path": "android/original-android/0489-native-performance-observed-scene.png",
+      "bytes": 677448,
+      "sha256": "640f619c8e53decad9f2b9bdac948d0259cf7250d370e814685826f4f4214e2d"
+    },
+    {
+      "path": "android/original-android/0238-banane-syllables.mp4",
+      "bytes": 1118237,
+      "sha256": "9c9cf416f9fba6b6292c23e0d7738631e337e7ec26fcc997cc1e3b867e7fca10"
+    },
+    {
+      "path": "android/original-android/0302-pattern-hint-and-correction.mp4",
+      "bytes": 1095064,
+      "sha256": "f534b732baa9f3a81e6c7e6906d3f8da9a8bd5aba7bcb27971296f04d10988f5"
+    },
+    {
+      "path": "android/original-android/0195-bridge-compact.png",
+      "bytes": 380013,
+      "sha256": "52257eec1647a17a061dddbad2a551d1a063d51e1679f0b12d1af880176c9f43"
+    },
+    {
+      "path": "android/original-android/0205-bridge-expanded.png",
+      "bytes": 819924,
+      "sha256": "7e6cab52bd8470a04e08aa5dad0128cbb904971a229667d4c8e6e6b00fdab29e"
+    },
+    {
+      "path": "android/original-android/0215-bridge-fold7-cover-emulated.png",
+      "bytes": 807481,
+      "sha256": "2b743ff941f0316cd5fda8d31c5059bdaf2d21218a35a6fa0bf939c8618e5f38"
+    },
+    {
+      "path": "android/original-android/0225-bridge-fold7-inner-emulated.png",
+      "bytes": 818613,
+      "sha256": "fe88cdee97e170d87b04172a68abbc288666eb8a8ce46758ba80fd001092f894"
+    }
+  ]
+}

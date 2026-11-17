@@ -1,0 +1,172 @@
+{
+  "artifactId": 14204544628,
+  "workflowRun": 43819768411,
+  "archiveSha256": "4becebd332755f1046d945f61dcfcf4317316d617d568c685576edcd69bcee9f",
+  "byteExactOriginals": [
+    {
+      "path": "checkers/current-gates.log",
+      "bytes": 2382,
+      "sha256": "139acc6b273e406ee5a6a1e41caa5478fd9ab5b1501666c112bdbf9220a5f793"
+    },
+    {
+      "path": "checkers/original-gates.log",
+      "bytes": 17935,
+      "sha256": "55826953a9ab4f54a8eba85f0e85685c727550d30c1d67091d3f8f6060c1e3d8"
+    },
+    {
+      "path": "checkers/public-download-gates.log",
+      "bytes": 2755,
+      "sha256": "760fb73f00f0b9558e241a62dd3050fe037eb69b3ae0b37de225693c8fb78b1b"
+    },
+    {
+      "path": "checkers/publication-gates.log",
+      "bytes": 1902,
+      "sha256": "7000a68e6429ef036717fee3ae829961ebacea5e15b4468f1335d0f226178eef"
+    },
+    {
+      "path": "checkers/reference-gates.log",
+      "bytes": 7018,
+      "sha256": "c02e8b531690c303bf6ff2d8631b1c310a7befae74dd74cae9df6fc745a6e7c7"
+    },
+    {
+      "path": "checkers/replay-gates.log",
+      "bytes": 11057,
+      "sha256": "87679d6469a082cdcb67b0d53b37c25a2ada897267a6e6b5fad92364134f6fb0"
+    },
+    {
+      "path": "checkers/wrapped-reader.log",
+      "bytes": 2824,
+      "sha256": "3db0a4b8e37cb4afa01e9e014eb04e8f514c1b3f9a7a03aa38d7443b95f30872"
+    },
+    {
+      "path": "download/original-build-job.json",
+      "bytes": 4514,
+      "sha256": "1905f9a78cb2085451bcd7e5e26a4b018459942e811aaba9360021e8a2e2773e"
+    },
+    {
+      "path": "download/original-run.json",
+      "bytes": 13802,
+      "sha256": "0148a252c8f7833dbec7fbcbb12c170fc9b4bba14c122ff0df1bfc37e2269d46"
+    },
+    {
+      "path": "download/original-validate-job.json",
+      "bytes": 5726,
+      "sha256": "d5f557e1c706ec9505aaa7e6e45624ad6b27bb0692b51ecaed3ad3a740d729a7"
+    },
+    {
+      "path": "download/original-x86-artifact.json",
+      "bytes": 810,
+      "sha256": "3e898baecfa54d1d0e9ce0001e408ab7188bfd2a9f28089188f02d6a50d86959"
+    },
+    {
+      "path": "download/verified-download.json",
+      "bytes": 26625,
+      "sha256": "74197cb4e495d44e71b85400f79a63d53573362d5e4ac30600bc1738ccd0155c"
+    },
+    {
+      "path": "emulator/mesa-renderer.txt",
+      "bytes": 1774,
+      "sha256": "851d720f48ee2c604c0836bb54dd9ad7f579c27a86af8fbd52e424b40069c9f3"
+    },
+    {
+      "path": "emulator/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    },
+    {
+      "path": "android/original-android/0379-native-current-eight-plus-five.png",
+      "bytes": 646399,
+      "sha256": "07878a24a19222e4ae3bb0da5a0254980c6bb0990dd049326e97fa7177231237"
+    },
+    {
+      "path": "android/original-android/0400-native-ten-and-three.png",
+      "bytes": 662708,
+      "sha256": "9cde8dacd2aade964a04665ff582cd52ff8b7b0932f37d006df7a86c0f2ae29e"
+    },
+    {
+      "path": "android/original-android/0405-why-native-eight-and-five-before-question.png",
+      "bytes": 641378,
+      "sha256": "bb52b4a7639de982c0096d6b505358676a4a67a0f8a236ff4145da07812b2be4"
+    },
+    {
+      "path": "android/original-android/0426-why-native-ten-and-three-after-explanation.png",
+      "bytes": 682197,
+      "sha256": "f8d8954de358e59c99c01866c94b390c051dae713dce12c3fe87902e39652162"
+    },
+    {
+      "path": "android/original-android/0474-native-performance-observed-scene.png",
+      "bytes": 676742,
+      "sha256": "7eb65288fc515282298921704c0f7a0f49ad549a494dc929a2038ff2cd0f4f5f"
+    },
+    {
+      "path": "android/original-android/0215-bridge-fold7-cover-emulated.png",
+      "bytes": 807980,
+      "sha256": "c2ae7d9c0555ae51fe102328907350bcb9a577ca03cab28ff6bca1342a208aae"
+    },
+    {
+      "path": "android/original-android/0225-bridge-fold7-inner-emulated.png",
+      "bytes": 820385,
+      "sha256": "f349e872b2b77a12fe0c893d309806bc876840707ae9d17f3d5427d708f257bc"
+    },
+    {
+      "path": "android/original-android/0402-native-why-two-question-and-demonstration.mp4",
+      "bytes": 2212596,
+      "sha256": "f250fdfd9761e72cf20a3af224634085c5e25123717f2acb1215ffc9185ca6a4"
+    },
+    {
+      "path": "android/original-android/0427-native-three-dimensional-performance.mp4",
+      "bytes": 615742,
+      "sha256": "0d93493190e22b7431fb6ccbceb59ac867d486af74dae75731f087fcc8a19799"
+    },
+    {
+      "path": "android/original-android/native-why-two-result.json",
+      "bytes": 2274,
+      "sha256": "83c5c9f22eaf5756d540575bfd9c359eb4075119ede0b7d2ad9b9f5ac3a1407c"
+    },
+    {
+      "path": "android/reference-android/0128-banana-syllable-1.png",
+      "bytes": 589697,
+      "sha256": "c7c0e7a498ee92d613ecbfe3145544e83afd598c79ec6e7a42564356d915f80d"
+    },
+    {
+      "path": "android/reference-android/0134-banana-syllable-2.png",
+      "bytes": 592801,
+      "sha256": "d3233ae5887f560173f49c9264a1ab308afd2b6853ea131fbacb84b72a071807"
+    },
+    {
+      "path": "android/reference-android/0141-banana-syllable-3.png",
+      "bytes": 593382,
+      "sha256": "fe5383270cdca5bf6a1d0081a0f66a52d74bbeff9b97f497a87a35f1d5562349"
+    },
+    {
+      "path": "android/reference-android/0189-banana-repeat-completed.png",
+      "bytes": 649871,
+      "sha256": "9a41a5f4e5a2b01c61852f3d24c84a0df9b6fdfb395d1d6828c1f5037e12a42a"
+    },
+    {
+      "path": "android/reference-android/0251-pattern-two-sign-group.png",
+      "bytes": 646716,
+      "sha256": "83e34c365ba8f09e03561c3ea31c8f01ebcf5dd81496eea248226bd605f83500"
+    },
+    {
+      "path": "android/reference-android/0255-pattern-unconfirmed-native-proposal.png",
+      "bytes": 643243,
+      "sha256": "20c0be6558baa90f7639892892679d0bcdced7fef87699de5a60bcf91f502b9c"
+    },
+    {
+      "path": "android/reference-android/0267-pattern-current-unanswered-return.png",
+      "bytes": 2172634,
+      "sha256": "3865aecc5e1349f42a7dacffcc410bad20e38ffe76bd1b480f7e0770039226d7"
+    },
+    {
+      "path": "android/reference-android/0159-banana-four-segment-repeat.mp4",
+      "bytes": 840758,
+      "sha256": "1a3f919434e4ebb1bdfc6573b2644304c43c949140f7128f70ab9d07caac2c12"
+    },
+    {
+      "path": "android/reference-android/0230-pattern-observed-group-and-unconfirmed-proposal.mp4",
+      "bytes": 1586277,
+      "sha256": "c58cddf6dcbac3ba4879d514dd06047ff6a255807f3e20646a2f1ef8fe244bdc"
+    }
+  ]
+}

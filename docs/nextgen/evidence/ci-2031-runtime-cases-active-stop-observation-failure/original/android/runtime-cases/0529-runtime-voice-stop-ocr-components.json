@@ -1,0 +1,327 @@
+{
+  "status": "FAIL",
+  "scope": "Independent OCR; no gameplay or visibility PASS",
+  "source": "0529-runtime-voice-stop.png",
+  "source_sha256": "9a3c7634f851fe976ea3d925af2749fa59be3b6d32ce2d79f55bb871e76009b1",
+  "surface": [
+    1080,
+    2340
+  ],
+  "wanted": "stimmestoppen",
+  "confidence_minimum": 15,
+  "timeout_seconds": 2.4215199350001058,
+  "components": [
+    {
+      "index": 0,
+      "bounds": [
+        64,
+        1720,
+        536,
+        1880
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-0.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-0.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": []
+    },
+    {
+      "index": 1,
+      "bounds": [
+        20,
+        1548,
+        1060,
+        1628
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-1.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-1.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": []
+    },
+    {
+      "index": 2,
+      "bounds": [
+        492,
+        968,
+        1016,
+        1132
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-2.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-2.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": []
+    },
+    {
+      "index": 3,
+      "bounds": [
+        328,
+        1292,
+        752,
+        1424
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-3.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-3.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": []
+    },
+    {
+      "index": 4,
+      "bounds": [
+        328,
+        1156,
+        752,
+        1288
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-4.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-4.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": []
+    },
+    {
+      "index": 5,
+      "bounds": [
+        832,
+        1428,
+        1080,
+        1560
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-5.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-5.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": []
+    },
+    {
+      "index": 6,
+      "bounds": [
+        0,
+        1456,
+        300,
+        1560
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-6.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-6.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": []
+    },
+    {
+      "index": 7,
+      "bounds": [
+        736,
+        1104,
+        1000,
+        1220
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-7.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-7.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": []
+    },
+    {
+      "index": 8,
+      "bounds": [
+        20,
+        1276,
+        300,
+        1356
+      ],
+      "image": "0529-runtime-voice-stop-ocr-gold-component-8.png",
+      "tsv": "0529-runtime-voice-stop-ocr-gold-component-8.tsv",
+      "psm": 6,
+      "scale": 1
+    }
+  ],
+  "matches": [],
+  "observed_component_boxes": [
+    [
+      64,
+      1720,
+      536,
+      1880
+    ],
+    [
+      20,
+      1548,
+      1060,
+      1628
+    ],
+    [
+      492,
+      968,
+      1016,
+      1132
+    ],
+    [
+      328,
+      1292,
+      752,
+      1424
+    ],
+    [
+      328,
+      1156,
+      752,
+      1288
+    ],
+    [
+      832,
+      1428,
+      1080,
+      1560
+    ],
+    [
+      0,
+      1456,
+      300,
+      1560
+    ],
+    [
+      736,
+      1104,
+      1000,
+      1220
+    ],
+    [
+      20,
+      1276,
+      300,
+      1356
+    ],
+    [
+      84,
+      1104,
+      348,
+      1184
+    ],
+    [
+      84,
+      1036,
+      364,
+      1116
+    ],
+    [
+      832,
+      1276,
+      1060,
+      1356
+    ],
+    [
+      12,
+      1180,
+      300,
+      1252
+    ],
+    [
+      20,
+      1240,
+      300,
+      1288
+    ],
+    [
+      832,
+      1240,
+      1060,
+      1288
+    ],
+    [
+      92,
+      1172,
+      300,
+      1220
+    ],
+    [
+      96,
+      1444,
+      300,
+      1492
+    ],
+    [
+      428,
+      1048,
+      572,
+      1132
+    ],
+    [
+      832,
+      1208,
+      980,
+      1252
+    ],
+    [
+      192,
+      1376,
+      300,
+      1424
+    ],
+    [
+      180,
+      1344,
+      300,
+      1388
+    ],
+    [
+      224,
+      972,
+      376,
+      1052
+    ],
+    [
+      580,
+      1424,
+      648,
+      1492
+    ],
+    [
+      180,
+      1412,
+      300,
+      1456
+    ],
+    [
+      832,
+      1412,
+      908,
+      1456
+    ],
+    [
+      832,
+      1376,
+      900,
+      1424
+    ],
+    [
+      832,
+      1344,
+      900,
+      1388
+    ],
+    [
+      1004,
+      1180,
+      1076,
+      1232
+    ],
+    [
+      340,
+      932,
+      404,
+      980
+    ]
+  ],
+  "error": "Command '('tesseract', 'evidence/android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-8.png', 'evidence/android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-8', '--psm', '6', '-l', 'deu+eng', 'tsv')' timed out after 0.02607989000011912 seconds",
+  "elapsed_seconds": 2.428995
+}

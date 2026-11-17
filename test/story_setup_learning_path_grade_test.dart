@@ -68,8 +68,13 @@ void main() {
       await tester.pump();
     }
 
-    await tester.ensureVisible(find.text('Geschichte starten!'));
-    await tester.tap(find.text('Geschichte starten!'));
+    // Additional companion and magic-item selections lengthen the lazy ListView.
+    // Scroll the real action into view before opening the reader.
+    final startButton = find.byKey(const ValueKey('lumo-story-generate'));
+    await tester.scrollUntilVisible(startButton, 240,
+        scrollable: find.byType(Scrollable).first);
+    await tester.pump();
+    await tester.tap(startButton);
     await _pumpRoute(tester);
 
     final reader = tester.widget<LumoStoryReaderScreen>(

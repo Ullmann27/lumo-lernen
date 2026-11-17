@@ -1,0 +1,132 @@
+{
+  "artifactId": 14203032627,
+  "workflowRun": 43816667737,
+  "archiveSha256": "663d9f34fcfbbcf12360ee03dfd889df9469bbd13f3ef7ca67dcfa11ec09411a",
+  "byteExactOriginals": [
+    {
+      "path": "checkers/current-gates.log",
+      "bytes": 2382,
+      "sha256": "e29abd976afc5f5477a9686cb6bc7c83e50a040930c56cf040253b456c35c470"
+    },
+    {
+      "path": "checkers/original-gates.log",
+      "bytes": 17041,
+      "sha256": "b08b0cada49eecc545a4d7139625c4b3d3d743dc34962502f27481dc3594e662"
+    },
+    {
+      "path": "checkers/public-download-gates.log",
+      "bytes": 2755,
+      "sha256": "5dde74a1675df8fe500d866365ffcbc55890fcdf74075440831aff49bc26c641"
+    },
+    {
+      "path": "checkers/publication-gates.log",
+      "bytes": 1902,
+      "sha256": "ab8802c97979231d866fcb1c07484ea03b77ec2405d1bc7b96f4c64baf85e85b"
+    },
+    {
+      "path": "checkers/reference-gates.log",
+      "bytes": 5274,
+      "sha256": "e16e3d7b2b8696d163b7f7de86e3ffbc2a9657dddf4d457449e807ff1d275eee"
+    },
+    {
+      "path": "checkers/runtime-case-gates.log",
+      "bytes": 9570,
+      "sha256": "fa2b112ba710989d39a3a2af1d9f77bc6deb47bcc63d0c99f43ed4b1cc123dc7"
+    },
+    {
+      "path": "checkers/wrapped-reader.log",
+      "bytes": 2824,
+      "sha256": "ea2f5baeebd4eba5a0205c520e4c8f70bf2cf6373d91a4fa49e7d5842d220b99"
+    },
+    {
+      "path": "download/original-build-job.json",
+      "bytes": 4514,
+      "sha256": "1905f9a78cb2085451bcd7e5e26a4b018459942e811aaba9360021e8a2e2773e"
+    },
+    {
+      "path": "download/original-run.json",
+      "bytes": 13802,
+      "sha256": "0148a252c8f7833dbec7fbcbb12c170fc9b4bba14c122ff0df1bfc37e2269d46"
+    },
+    {
+      "path": "download/original-validate-job.json",
+      "bytes": 5726,
+      "sha256": "d5f557e1c706ec9505aaa7e6e45624ad6b27bb0692b51ecaed3ad3a740d729a7"
+    },
+    {
+      "path": "download/original-x86-artifact.json",
+      "bytes": 810,
+      "sha256": "3e898baecfa54d1d0e9ce0001e408ab7188bfd2a9f28089188f02d6a50d86959"
+    },
+    {
+      "path": "download/verified-download.json",
+      "bytes": 24471,
+      "sha256": "b0802db104da5245393b1787c8a4ac934d1c3e07245d1c15717abc657416ed19"
+    },
+    {
+      "path": "emulator/mesa-renderer.txt",
+      "bytes": 1745,
+      "sha256": "376f9fa668f8cc0f8a82e69010a59aaca950d991f2f6243550cce45f10c16f84"
+    },
+    {
+      "path": "emulator/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    },
+    {
+      "path": "source/qa-source-binding.json",
+      "bytes": 22131,
+      "sha256": "07c69f0457099506519f57678451a9542247ae6549387b79a8e688c851b1ebdc"
+    },
+    {
+      "path": "android/runtime-cases/0239-switch-live-active-and-next.xml",
+      "bytes": 27028,
+      "sha256": "08db01521bee24553d653d75049b0b6b649c33f92743056807456caed100679b"
+    },
+    {
+      "path": "android/runtime-cases/0221-switch-final-joint-viewport.xml",
+      "bytes": 27015,
+      "sha256": "13a763dcde250b3091682b95b1eb0a995b465fa780678a741f69cf8f7e451e3e"
+    },
+    {
+      "path": "android/runtime-cases/0213-switch-original-density.png",
+      "bytes": 623427,
+      "sha256": "deeeda9d83970cb21db5cd7a373f657453c0260a6d5137f8c4596edf2da05f70"
+    },
+    {
+      "path": "android/runtime-cases/0217-switch-density-320.png",
+      "bytes": 623427,
+      "sha256": "deeeda9d83970cb21db5cd7a373f657453c0260a6d5137f8c4596edf2da05f70"
+    },
+    {
+      "path": "android/runtime-cases/0250-switch-original-density-restored.png",
+      "bytes": 293395,
+      "sha256": "d1534a720c43430de42568cc56478721d354f5e8145fa28191bc685b5d91a68d"
+    },
+    {
+      "path": "android/runtime-cases/0246-switch-new-unanswered-rakete.png",
+      "bytes": 293395,
+      "sha256": "d1534a720c43430de42568cc56478721d354f5e8145fa28191bc685b5d91a68d"
+    },
+    {
+      "path": "android/runtime-cases/0160-numeric-wrong-after-assessment.png",
+      "bytes": 458152,
+      "sha256": "680303a256ed4f1de2afbb393d0849d6a1abc594fb60d9f48c63c5de7746633b"
+    },
+    {
+      "path": "android/runtime-cases/0174-numeric-corrected-after-assessment.png",
+      "bytes": 503536,
+      "sha256": "830d42f93826d535994283411cbffbe5ba9ae58ec476cf63ac63f2e45cf8b4f8"
+    },
+    {
+      "path": "android/runtime-cases/0220-switch-joint-viewport-before-replay.png",
+      "bytes": 642801,
+      "sha256": "a2a976e8a36a6e41d3c5290a78af649dd8ebe64dc9b9b98bb226b119a689edae"
+    },
+    {
+      "path": "android/runtime-cases/0218-switch-during-actual-active-syllable.mp4",
+      "bytes": 578897,
+      "sha256": "6acd410f494a0c8d0dce470f7cdd914ea714e5313ada2381081062f313683493"
+    }
+  ]
+}

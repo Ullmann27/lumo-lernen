@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "observed_at": "2026-11-14T09:52:12.550438+00:00",
+  "host_source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "host_tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+  "run_id": 43581113174,
+  "attempt": 1,
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "compile": {
+    "job_id": 132405832302,
+    "status": "completed",
+    "conclusion": "success",
+    "completed_at": "2026-11-14T09:37:56Z",
+    "all_original_job_steps_success": true,
+    "original_job_step_count": 12,
+    "status_report": "PASS",
+    "host_class_names": [
+      "MainActivity",
+      "LumoGameActivity",
+      "LumoHostPlugin",
+      "CardsTableBridge",
+      "CardsAuthorityService",
+      "CardsAuthorityRegistry",
+      "LumoLearningSpeech",
+      "LumoOfflineSpeechBridge",
+      "LumoOfflineSpeechEngine"
+    ],
+    "host_class_records": 9,
+    "c4_class_names": [
+      "ConnectFourGameActivity",
+      "ConnectFourAuthorityService",
+      "ConnectFourBridge"
+    ],
+    "c4_class_records": 3,
+    "registry_window_contracts": {
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "reported_seconds": 22.527
+    },
+    "gradle": {
+      "result": "BUILD SUCCESSFUL",
+      "reported_duration": "2m 41s",
+      "tasks": 107,
+      "executed": 102,
+      "up_to_date": 5
+    },
+    "scope": "Actual Android Kotlin/Java compilation only; no APK or runtime claim",
+    "class_bytecode_limit": "The archive contains CI-generated class size/hash reports, not the class payloads. The exact workflow verifies the C4 class CAFEBABE headers before writing the report. No local class-bytecode replay is claimed."
+  },
+  "curriculum": {
+    "artifact_id": 14108337255,
+    "status": "SAMPLED_CONTRACT_PASS",
+    "families": 236,
+    "samples": 7552,
+    "samples_per_family": 32,
+    "issues": 0,
+    "grades": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "samples_by_grade": {
+      "1": 2208,
+      "2": 1856,
+      "3": 1792,
+      "4": 1696
+    },
+    "samples_by_subject": {
+      "Mathematik": 2016,
+      "Deutsch": 1248,
+      "Lesen": 640,
+      "Rechtschreibung": 896,
+      "Schreiben": 640,
+      "Sachunterricht": 1216,
+      "Englisch": 672,
+      "Logik": 224
+    },
+    "all7552_semantic_review_pending": true,
+    "all7552_3d_scene_approval_false": true,
+    "summary_flags": {
+      "allExistingTasksReviewed": false,
+      "officialCurriculumApproval": false,
+      "allVariantsEnumerated": false,
+      "scope": "ExerciseFactory core only. Other reading, handwriting, games, lesson banks need separate review."
+    },
+    "internal_original_hash_bindings_verified": true,
+    "six_source_files_match_immutable_host_git_bytes": true
+  },
+  "logs": {
+    "originals/jobs/compile-job-132405832302.log": {
+      "bytes": 239892,
+      "sha256": "b735092853de08ce6593c692aaf5cb1338340c64c639c77ff63d359d7dab6274",
+      "line_count": 1802,
+      "observed_markers": [
+        {
+          "line": 1272,
+          "text": "2026-11-14T09:34:47.8514766Z Ran 10 tests in 22.527s"
+        },
+        {
+          "line": 1277,
+          "text": "2026-11-14T09:34:47.8515926Z CARDS_WINDOW_CALLS_PASS cards (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 1278,
+          "text": "2026-11-14T09:34:47.8516640Z CARDS_WINDOW_CALLS_PASS delayed-engine (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 1279,
+          "text": "2026-11-14T09:34:47.8517208Z CARDS_WINDOW_CALLS_PASS authority (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 1280,
+          "text": "2026-11-14T09:34:47.8517581Z CARDS_WINDOW_CALLS_PASS non-cards (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 1713,
+          "text": "2026-11-14T09:37:50.2594354Z BUILD SUCCESSFUL in 2m 41s"
+        },
+        {
+          "line": 1714,
+          "text": "2026-11-14T09:37:50.2595312Z 107 actionable tasks: 102 executed, 5 up-to-date"
+        }
+      ]
+    },
+    "artifact-14108218483/originals/compile.log": {
+      "bytes": 34085,
+      "sha256": "eedf1944b9016384277659a2bb6709c4b925b579508309eb7fe6b9a3c8e43e49",
+      "line_count": 326,
+      "observed_markers": [
+        {
+          "line": 324,
+          "text": "BUILD SUCCESSFUL in 2m 41s"
+        },
+        {
+          "line": 325,
+          "text": "107 actionable tasks: 102 executed, 5 up-to-date"
+        }
+      ]
+    },
+    "artifact-14108218483/originals/cards-authority-registry.log": {
+      "bytes": 2556,
+      "sha256": "13dcf4b76e52ee2231957035d4a83bd5b2b39c41ff0741e523efc45614291351",
+      "line_count": 21,
+      "observed_markers": [
+        {
+          "line": 13,
+          "text": "Ran 10 tests in 22.527s"
+        },
+        {
+          "line": 15,
+          "text": "OK"
+        },
+        {
+          "line": 18,
+          "text": "CARDS_WINDOW_CALLS_PASS cards (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 19,
+          "text": "CARDS_WINDOW_CALLS_PASS delayed-engine (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 20,
+          "text": "CARDS_WINDOW_CALLS_PASS authority (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 21,
+          "text": "CARDS_WINDOW_CALLS_PASS non-cards (JVM boundary adapters; no Android pixels or measured insets)"
+        }
+      ]
+    }
+  },
+  "source_native_pin_as_context_only": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    "engine": "4.6.3"
+  },
+  "boundaries": [
+    "Compile success is not an APK build, signature, installation or device-runtime acceptance.",
+    "The curriculum audit is sampled ExerciseFactory-core coverage; semantic curriculum review and other reading, handwriting, games and lesson-bank reviews remain separate.",
+    "The overall run/build is monitored by Root. Existing 09:44 originals were reused; no new run/job/build polling, test or device execution occurred.",
+    "Two individual artifact metadata GET attempts were rejected by the connector. Their original errors are preserved; final metadata came byte-exactly from Roots existing complete artifact list."
+  ]
+}

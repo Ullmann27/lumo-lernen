@@ -1,0 +1,84 @@
+{
+  "created_utc": "2026-11-16T05:36:02.089530+00:00",
+  "producer_commit": "9cfa4b0760403ac4b489bea440d3ea6040e09dc0",
+  "tree": "3be1dc24579b1e56b98ec7becbd93db034bec6de",
+  "parent": "51a3bfdedf4d6a745fb574ae9186c1094eb11abf",
+  "branch": "qa/lumo-2031-lab-runtime-cases-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-2031-runtime-cases",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 30885,
+      "sha256": "9b86c48ff904b24384128860437a95c05ea83ddeef00f945076bfef76cce6fbd"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/README.md",
+      "bytes": 5484,
+      "sha256": "3556b62ca9540c2a9a056fe5e6950ce228e45cd8abdb5396eac1de3520fc8fdf"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final-14.log",
+      "bytes": 2974,
+      "sha256": "b693381043e48004a96bafde179502ae7c51b2c4c6b6f09d5411130ad581aa9c"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final.log",
+      "bytes": 2794,
+      "sha256": "e2e4eff1ce09d7aa1bb1ec600931c2083a322fc9e2823994bc979d82f2280627"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-first.log",
+      "bytes": 2558,
+      "sha256": "8e7a3786a51aeaea715760d0e16b16f5289d9d977a713cad78989412f864bf91"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/source.json",
+      "bytes": 3826,
+      "sha256": "88a74b774013cb2295ab8cc66d7e73821dcbf91f271de248214ad05aa75c126a"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/syntax-cli.json",
+      "bytes": 1770,
+      "sha256": "fd8880aa4efab67f1816f665d64526a49ee35b461cd3d7a19408843429404b88"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 20454,
+      "sha256": "7b8821b69535aad2e1fda3e293b334291ce04840a0d7048bd4519b05ebf2f730"
+    }
+  ],
+  "tests": {
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "log": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final-14.log",
+    "provenance": "docs/nextgen/evidence/runtime_cases_2031_20261116/source.json",
+    "native_owner_validator": "delegation isolated in component unit tests; actual native owner module requires Root integration",
+    "android_executed": false
+  },
+  "syntax": {
+    "python_ast": "PASS",
+    "cli_help": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "runtime_entry": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+  "result_file": "runtime-cases-result.json",
+  "result_schema": "lumo.nextgen.runtime_cases.android",
+  "mode": "immutable-runtime-cases",
+  "release_eligible": false,
+  "original_probe_requirement_satisfied": false,
+  "remote_action_performed": false,
+  "existing_files_changed": [],
+  "integration_requirements": [
+    "Root-owned .github/probes/lumo_nextgen_2031_runtime_cases.json and separate workflow",
+    "Conversation-owned .github/probes/lumo_nextgen_2031_native_runtime_cases.py with run_native_cases(probe) and verify_native_cases(result, *, candidate)",
+    "CurrentCandidateProbe wrapped final Banane caption correction supplied independently by Root"
+  ],
+  "review_notes": [
+    "No private state writes; real numeric 15 then16 via Antwort prüfen at9+7",
+    "Lab saved-attempt IDs and AttemptLog IDs are deliberately distinct; correction requires persisted hint and assisted journey delta",
+    "AutoRead false is observed/persisted through real settings, preserving the explicit syllable replay before model completion; restored via configure_local_voice before native cases",
+    "One current XML must simultaneously expose own active syllable and enabled Next; stale/late/ambiguous/missed playback cannot succeed",
+    "No claim that typed correction is recognition, no acoustic/physical-device or full-tour PASS"
+  ]
+}

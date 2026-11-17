@@ -1,0 +1,78 @@
+name: Lumo crystal depth – exact integrated production route
+
+on:
+  push:
+    branches:
+      - chatgpt/lumo-crystal-depth-integration-20261021
+    paths:
+      - lib/widgets/design/lumo_answer_crystal.dart
+      - lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart
+      - test/design/minus_crystal_depth_regression_test.dart
+      - .github/workflows/lumo-crystal-depth-integration-20261021.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production-crystal-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      LUMO_CRYSTAL_CAPTURE_DIR: ${{ github.workspace }}/proof/crystals
+    steps:
+      - name: Exact source checkout without write credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Flutter production SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked production dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p proof/crystals
+          git rev-parse HEAD > proof/crystals/source-sha.txt
+          flutter pub get --enforce-lockfile
+      - name: Analyze actual crystal and academy route
+        run: |
+          set -euo pipefail
+          flutter analyze --no-pub \
+            lib/widgets/design/lumo_answer_crystal.dart \
+            lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart \
+            test/design/minus_crystal_depth_regression_test.dart
+      - name: Recreate SOL's real academy route and persistent learning regression
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=120s \
+            test/design/minus_crystal_depth_regression_test.dart \
+            test/learning_modules/math_module_progress_test.dart \
+            2>&1 | tee proof/crystals/real-route-tests.log
+          test -s proof/crystals/minus-phone.png
+      - name: Reject fake or missing visual screenshot
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+          p=Path('proof/crystals/minus-phone.png')
+          raw=p.read_bytes()
+          assert raw[:8]==b'\x89PNG\r\n\x1a\n', "Missing actual PNG image"
+          width,height=struct.unpack('>II',raw[16:24])
+          assert (width,height)==(360,800), (width,height)
+          assert len(raw)>30000, len(raw)
+          txt=Path('proof/crystals/real-route-tests.log').read_text()
+          assert 'All tests passed!' in txt, 'Full test suite did not complete'
+          print('PASS actual 360x800 composite Flutter image and learning tests')
+          PY
+      - name: Save actual after screenshot, SHA and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-integrated-crystal-depth-runtime-proof
+          path: proof/crystals/
+          if-no-files-found: warn
+          retention-days: 30

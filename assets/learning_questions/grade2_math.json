@@ -440,7 +440,7 @@
     "hint": "Halb 5 ist vor 5."
   },
   {
-    "prompt": "Lisa hat 3 Äpfel, bekommt 4.",
+    "prompt": "Lisa hat 3 Äpfel und bekommt 4 dazu. Wie viele Äpfel hat sie dann?",
     "options": [
       "7",
       "6",
@@ -451,7 +451,7 @@
     "hint": "Plus bedeutet dazu."
   },
   {
-    "prompt": "Tom hat 10 Karten, gibt 2 weg.",
+    "prompt": "Tom hat 10 Karten und gibt 2 weg. Wie viele Karten bleiben ihm?",
     "options": [
       "8",
       "12",
@@ -462,7 +462,7 @@
     "hint": "Weggeben heißt minus."
   },
   {
-    "prompt": "2 Kinder haben je 5 Sterne.",
+    "prompt": "2 Kinder haben je 5 Sterne. Wie viele Sterne haben sie zusammen?",
     "options": [
       "10",
       "7",
@@ -473,7 +473,7 @@
     "hint": "Rechne 2 mal 5."
   },
   {
-    "prompt": "Ein Buch hat 20 Seiten, 5 gelesen.",
+    "prompt": "Ein Buch hat 20 Seiten. 5 Seiten sind schon gelesen. Wie viele Seiten fehlen noch?",
     "options": [
       "15",
       "25",
@@ -484,7 +484,7 @@
     "hint": "Gelesene Seiten wegnehmen."
   },
   {
-    "prompt": "4 Tische mit je 3 Stiften.",
+    "prompt": "Auf 4 Tischen liegen je 3 Stifte. Wie viele Stifte sind es zusammen?",
     "options": [
       "12",
       "7",

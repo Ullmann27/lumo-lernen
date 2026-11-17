@@ -1,0 +1,27 @@
+{
+  "scope": "Only unused committed working copies trimmed by sparse checkout; branch/commit/tree and complete Git history preserved; no active worker touched",
+  "records": [
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-2031-immutable-replay",
+      "commit": "5b08d82e6939288a324ba50442794bbbb2f8cd94",
+      "treeUnchanged": "800cbe5d47c84d63b81cd1eded84c622921e177b",
+      "priorSparseSelection": "/.github/probes/\n/.github/workflows/\n/tools/android_qa/\n/tools/nextgen/\n/scripts/\n/config/\n/AGENTS.md\n/CLAUDE.md\n/docs/nextgen/evidence/2031_immutable_replay_20261116/",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py",
+      "workingCopyBytesBefore": 63211228,
+      "workingCopyBytesAfter": 1483466,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    },
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-mic-postgrant-reader",
+      "commit": "6cd862b820c09dd3cafec98c9f55bf25c3c7dd52",
+      "treeUnchanged": "4a6c03e36f4006702e6cf8c5fdce9246b7785f51",
+      "priorSparseSelection": ".github/probes\nscripts/probes\ntools/android_qa",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py",
+      "workingCopyBytesBefore": 53791155,
+      "workingCopyBytesAfter": 1131728,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    }
+  ]
+}

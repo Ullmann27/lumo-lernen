@@ -1,0 +1,26 @@
+{
+  "source_head": "bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7",
+  "source_tree": "e2db771277ed3d181ed34410a7a736252bcdf0df",
+  "result": "9 focused Flutter cases PASS, 0 failures/skips, actual exit 0; source and index unchanged",
+  "summary_sha256": "93314dcdef1d09ad028d101829feeb4ffe990c0d44b652ac39d602ee4ec7a2f1",
+  "manifest_sha256": "cd9eed9b8d1ba943bbe56197becc51e9e94a5b5003d130dc4873dccce515e0c3",
+  "archive": {
+    "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/compact-originals.tar.gz",
+    "bytes": 4692443,
+    "sha256": "27394c321116b509b97bbca2736f5c0a84aa29969e4a602fda85a99a4b96ac74",
+    "members": 56
+  },
+  "archive_binding_sha256": "e84cb58e828353f4469493213787aaaab2b4c07ca58255f038b41ab05670f28e",
+  "original_failed_adapter_attempt_retained": true,
+  "complete_prior_dart_pub_archive": {
+    "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-dart-pub-evidence-20261114/compact-originals.tar.gz",
+    "sha256": "31346fa30e0889cae4caec2be7fc858cdebd104a089fe0ed20d38b204b3dff56",
+    "bytes": 628446
+  },
+  "limits": [
+    "No native/Android/device/FPS/audio acceptance",
+    "No human visual approval of six captured PNGs",
+    "No optional Feature22 repeat",
+    "No result transferred to newer Host heads"
+  ]
+}

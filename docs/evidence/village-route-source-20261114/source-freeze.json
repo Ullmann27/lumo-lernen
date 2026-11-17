@@ -1,0 +1,716 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY_NOT_TESTED",
+  "created_at_utc": "2026-11-14T12:01:35.141594+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "base": {
+    "head": "a118409930ecdf605743382051e88f7e0898b8e9",
+    "tree": "68573f0c40ce641a6443a5648fd664bc44ca6c95"
+  },
+  "producer": {
+    "head": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+    "parent": [
+      "cf2593cb6dec51b66461c8e5984dfbfdd5091c22"
+    ],
+    "original_compare": {
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "identity": {
+        "bytes": 560969,
+        "sha256": "2c18a47de83c3bc156f09e79dc56334bb8e261b53e5e50de0cb3b593bd3333dd",
+        "git_blob": "b50b4ef45409a5f148b9043d63813d25c2af66cb"
+      }
+    }
+  },
+  "native_pairing": {
+    "head": "afc0df9a2b1794f39051add9dfce0cf947bb177b",
+    "tree": "3e621dc8230e155e1089deb1a40c22f177e546b3",
+    "four_bound_contract_files": [
+      {
+        "path": "scripts/systems/host_bridge.gd",
+        "identity": {
+          "bytes": 5604,
+          "sha256": "6b86fda5b38f2b966d0da4d26eb9cae24e2185ef9d067b0dfb99aa86bfe644b4",
+          "git_blob": "1845617ed2659dd377f433209799b12ddf310deb"
+        },
+        "source": "afc0df9a2b1794f39051add9dfce0cf947bb177b"
+      },
+      {
+        "path": "scripts/app/app_boot.gd",
+        "identity": {
+          "bytes": 18819,
+          "sha256": "e01899fb45fe4b0b8a7f0d54c9751d099bc1431b17668017233d5eeac96dab1f",
+          "git_blob": "125376b9018d03258a2be41da99efce175bbca6c"
+        },
+        "source": "afc0df9a2b1794f39051add9dfce0cf947bb177b"
+      },
+      {
+        "path": "scripts/creative/build_settlement_world.gd",
+        "identity": {
+          "bytes": 46954,
+          "sha256": "6bd9dd4380db95962f370aa2703e7f41b51eab2430f33ea4874c60de0b73bcfb",
+          "git_blob": "e6a2a84447757c04a7f07436b162ed698b827a33"
+        },
+        "source": "afc0df9a2b1794f39051add9dfce0cf947bb177b"
+      },
+      {
+        "path": "scripts/tests/village_host_launch_regression.gd",
+        "identity": {
+          "bytes": 6598,
+          "sha256": "82626bead8f00e83270d298cbebc607d887c83f474dda11ef58fb84792411230",
+          "git_blob": "082cecfc4a6542c8372bc592b4729051b105a079"
+        },
+        "source": "afc0df9a2b1794f39051add9dfce0cf947bb177b"
+      }
+    ]
+  },
+  "source_files": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 59951,
+        "sha256": "4e155fe8681944ffe29be3c5e348845332b988bee580a667a5db6a98a7bdf577",
+        "git_blob": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b"
+      },
+      "producer": {
+        "bytes": 60198,
+        "sha256": "7b69bd88bb6651c65981e1d64252614848999326b0d14881b86aa305e96db5ca",
+        "git_blob": "166ee19435146a9d42c69eeadd71754dac88d9d7"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 60198,
+        "sha256": "7b69bd88bb6651c65981e1d64252614848999326b0d14881b86aa305e96db5ca",
+        "git_blob": "166ee19435146a9d42c69eeadd71754dac88d9d7"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 11838,
+        "sha256": "ebc84df2994ddd9834f0af1a88660380e88ecadb733924b1de5d434490e3ad6e",
+        "git_blob": "c3cb6bb44c1eff098245aec5d06fbda97b7ab87d"
+      },
+      "producer": {
+        "bytes": 11910,
+        "sha256": "0e5dd5c39ce1f60a56943c2aa6abb3dd956df1b80015e9c482fd0b461c7cb9bc",
+        "git_blob": "4411dc35a0d9dbb063d061f532698fb27bd9a6ea"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 11910,
+        "sha256": "0e5dd5c39ce1f60a56943c2aa6abb3dd956df1b80015e9c482fd0b461c7cb9bc",
+        "git_blob": "4411dc35a0d9dbb063d061f532698fb27bd9a6ea"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 28438,
+        "sha256": "c23fc88187cfea258250262c510e599c71a42466cd2058f151f3fe5ab39cf146",
+        "git_blob": "8097e4695614b8215e59025707ec9cc1b12c4d80"
+      },
+      "producer": {
+        "bytes": 30182,
+        "sha256": "be8a64d99829b60f974c9c907126c1f0f11597fb9ce88ef61c50ce56d851ffc4",
+        "git_blob": "597defa53a3959a3b1fa95f1e495b91a9ce47af5"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 30182,
+        "sha256": "be8a64d99829b60f974c9c907126c1f0f11597fb9ce88ef61c50ce56d851ffc4",
+        "git_blob": "597defa53a3959a3b1fa95f1e495b91a9ce47af5"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 6340,
+        "sha256": "086df3ad460485fe309c53ada07743b83880f6e79bd140159ed9dd92e67ca64c",
+        "git_blob": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8"
+      },
+      "producer": {
+        "bytes": 6778,
+        "sha256": "bbbd9aaf38dd1034005c05c5a6f78869b50932aead3a2c18d4b1703c100f8a67",
+        "git_blob": "a5ad13f364e40d19ab2b4c809dbb4ea3729f631d"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 6778,
+        "sha256": "bbbd9aaf38dd1034005c05c5a6f78869b50932aead3a2c18d4b1703c100f8a67",
+        "git_blob": "a5ad13f364e40d19ab2b4c809dbb4ea3729f631d"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 10336,
+        "sha256": "900e533784109cecc11e0da27cb7ae1e6909de74e58a9119c030b91e8956085f",
+        "git_blob": "dd95361b132c7a73b372a3225c75e645be07e1b7"
+      },
+      "producer": {
+        "bytes": 10640,
+        "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+        "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 10640,
+        "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+        "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 13559,
+        "sha256": "ca75568750c8ea1efdc3ead7863f5d91b8330e565597173bed9af84bf4c32b74",
+        "git_blob": "3408e5f304003c91fc3172d03b4d22ad467d8ec0"
+      },
+      "producer": {
+        "bytes": 13724,
+        "sha256": "c8445a1808f38957f73d776ab3c97d8319b94b000a91f3abfd9985aa4f48c316",
+        "git_blob": "fe23f1ad8ceb3f8c26d378b475e1f3d946929b36"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 13724,
+        "sha256": "c8445a1808f38957f73d776ab3c97d8319b94b000a91f3abfd9985aa4f48c316",
+        "git_blob": "fe23f1ad8ceb3f8c26d378b475e1f3d946929b36"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 6483,
+        "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+        "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+      },
+      "producer": null,
+      "producer_source": null,
+      "after": {
+        "bytes": 6523,
+        "sha256": "d51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d",
+        "git_blob": "9999632174044af584c87147c5347c167b830918"
+      },
+      "kind": "one_capture_environment_mapping"
+    },
+    {
+      "path": "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "mode": "100644",
+      "before": null,
+      "producer": {
+        "bytes": 5217,
+        "sha256": "cc42bda018a3433cebaef86177bb72fc1279f38f91e2def6f59b2fb66289db0a",
+        "git_blob": "935ca225a6fa67df73f520494d61480943435595"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 5217,
+        "sha256": "cc42bda018a3433cebaef86177bb72fc1279f38f91e2def6f59b2fb66289db0a",
+        "git_blob": "935ca225a6fa67df73f520494d61480943435595"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "test/games/dorfwirtschaft_portal_test.dart",
+      "mode": "100644",
+      "before": null,
+      "producer": {
+        "bytes": 3074,
+        "sha256": "bc036e23a30432e83fb8946adf6a997ebf0173ea360ec7697866f96221ddd321",
+        "git_blob": "bbc01f1341ba6f6dce42c907cd52d45ffe21108f"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 3074,
+        "sha256": "bc036e23a30432e83fb8946adf6a997ebf0173ea360ec7697866f96221ddd321",
+        "git_blob": "bbc01f1341ba6f6dce42c907cd52d45ffe21108f"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "test/games/games_world_layout_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 6993,
+        "sha256": "abdd474a4c652487bf4f96504dfee07f9d0224c00a5cba331ac277ef068f0e4d",
+        "git_blob": "7bbd14eb377b54166146f6a5b36998cb70f1f744"
+      },
+      "producer": {
+        "bytes": 7065,
+        "sha256": "659bac62f8046bdb41be0708ebb12a601448b5fc3b295953b7ffd88f794162ba",
+        "git_blob": "7448e1633da016e23d316b134f837ab26355080d"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 7065,
+        "sha256": "659bac62f8046bdb41be0708ebb12a601448b5fc3b295953b7ffd88f794162ba",
+        "git_blob": "7448e1633da016e23d316b134f837ab26355080d"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "test/games/spielwelt_hub_capture_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 3473,
+        "sha256": "beacea39304c689520c96bbbdc436cbe75b6f82e461cb6b42bd175ff27fccb89",
+        "git_blob": "5b28919bc753727f6f6a35d01392fb42d6f86081"
+      },
+      "producer": {
+        "bytes": 3521,
+        "sha256": "540659d39bb47bc2027b37ec34549475ce65b31f6025c53b33a9172129c7c54e",
+        "git_blob": "69285945ceb09770b21f6fbb9aaded4f1092fe35"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 3521,
+        "sha256": "540659d39bb47bc2027b37ec34549475ce65b31f6025c53b33a9172129c7c54e",
+        "git_blob": "69285945ceb09770b21f6fbb9aaded4f1092fe35"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "test/games/spielwelt_routing_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 5467,
+        "sha256": "99e59d8e2c5cbb7b36525f92f599138b3e69db69e942a19c782f681e7f87aade",
+        "git_blob": "8fb8128bcd86183dd305bcc83d3a5e8ff4e4fd58"
+      },
+      "producer": {
+        "bytes": 5470,
+        "sha256": "70766c77e6fef0827832c542a43310f031debd3f422a0dcb615e77ff96c0979e",
+        "git_blob": "e5cfc3a8bfff14d5f2d7f7870c33c01e3cc6fafb"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 5470,
+        "sha256": "70766c77e6fef0827832c542a43310f031debd3f422a0dcb615e77ff96c0979e",
+        "git_blob": "e5cfc3a8bfff14d5f2d7f7870c33c01e3cc6fafb"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "test/games/spielwelt_semantics_action_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 5847,
+        "sha256": "0a36e6270c802223e373d8f86b817eb988f68c50650023327893978c2223531e",
+        "git_blob": "b702778f7553fd1bbb3a40d87bfee1458a7ab0a4"
+      },
+      "producer": {
+        "bytes": 6088,
+        "sha256": "b86aed9f7381def7ad814a9f74eda2286fae51ad183ad668a9393b2f4df520a4",
+        "git_blob": "6d09c8e2bce791cde645a627b74dfa614d5d5161"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 6088,
+        "sha256": "b86aed9f7381def7ad814a9f74eda2286fae51ad183ad668a9393b2f4df520a4",
+        "git_blob": "6d09c8e2bce791cde645a627b74dfa614d5d5161"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "test/lumo_game_entry_overlay_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 4763,
+        "sha256": "981318f74af4b43037da6101d457cf3fd4c7a22dda02e9dd2b1c519a16fe534c",
+        "git_blob": "7e22e412a919ec26d049602682c6931da21adf26"
+      },
+      "producer": {
+        "bytes": 4854,
+        "sha256": "92a00eee6b346f020ecf5e620f302e650d1cfbc9b9eb08e05cbb1999274e3d20",
+        "git_blob": "a8e6a325f8f1aaf501eda50019e7b7f6a4a43556"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 4854,
+        "sha256": "92a00eee6b346f020ecf5e620f302e650d1cfbc9b9eb08e05cbb1999274e3d20",
+        "git_blob": "a8e6a325f8f1aaf501eda50019e7b7f6a4a43556"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "mode": "100644",
+      "before": {
+        "bytes": 12712,
+        "sha256": "6808e0ab858907aec1b1e149b53184aa3ad72d1a214ce4d252a8ddc91c01f5e2",
+        "git_blob": "0621cafe29b703d29f7b067991a90c8ceac84ba6"
+      },
+      "producer": {
+        "bytes": 12726,
+        "sha256": "ac43bed87efbecd7fd7535120b5eff2839cb05b19662eb9ac93c0bf7f9963287",
+        "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 12726,
+        "sha256": "ac43bed87efbecd7fd7535120b5eff2839cb05b19662eb9ac93c0bf7f9963287",
+        "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "mode": "100644",
+      "before": {
+        "bytes": 17671,
+        "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946",
+        "git_blob": "9027d1106287c1c295a94ebcf3828e5dcac35b7b"
+      },
+      "producer": {
+        "bytes": 19093,
+        "sha256": "b1b223b5e39cd4989505f83a9ecef9bd33bc21ee5a17fd377d6e41137fa8a5d7",
+        "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 18356,
+        "sha256": "5a375bca191a12ae09d7480f6c21ce39d1097e35112dd5ca65ca1043e54433a1",
+        "git_blob": "0d78214087b9f1b7115a1f090aa4c05bdc1a87fe"
+      },
+      "kind": "producer_village_hunks_only_preserving_current_installer"
+    }
+  ],
+  "protected_dependencies": [
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "mode": "100644",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420",
+      "bytes": 2434
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "mode": "100644",
+      "git_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "bytes": 54663
+    },
+    {
+      "path": "lib/core/app_settings.dart",
+      "mode": "100644",
+      "git_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "bytes": 11518
+    },
+    {
+      "path": "lib/core/lumo_feature_permissions.dart",
+      "mode": "100644",
+      "git_blob": "1f7d10536def0389ed5e45b7df659ab83987e0de",
+      "bytes": 1182
+    },
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "mode": "100644",
+      "git_blob": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "bytes": 6130
+    },
+    {
+      "path": "lib/core/lumo_brain.dart",
+      "mode": "100644",
+      "git_blob": "47dd9462cdc7852a287c10a4738064012864256b",
+      "bytes": 46810
+    },
+    {
+      "path": "lib/core/lumo_voice.dart",
+      "mode": "100644",
+      "git_blob": "22e7ebaa40c270fe3d0a76d22294ad3667745b08",
+      "bytes": 25712
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_progress.dart",
+      "mode": "100644",
+      "git_blob": "b48854f40a5df977635227635e88724c833e70a0",
+      "bytes": 19947
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "mode": "100644",
+      "git_blob": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "bytes": 28949
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "mode": "100644",
+      "git_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "bytes": 3696
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "mode": "100644",
+      "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "bytes": 33174
+    },
+    {
+      "path": "lib/widgets/lumo_mirror.dart",
+      "mode": "100644",
+      "git_blob": "14863ad233150c9ed36b58fea895acd7a224ca1e",
+      "bytes": 15150
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "mode": "100644",
+      "git_blob": "95b57595d0cc788746c20fe5c26ef448c18121c2",
+      "bytes": 8921
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "mode": "100644",
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "bytes": 4697
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_avatar.png",
+      "mode": "100644",
+      "git_blob": "2528db26b4288d89e905c03ec1015ac7b8798538",
+      "bytes": 381950
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_book_point.png",
+      "mode": "100644",
+      "git_blob": "0ee53bec6758833d2d3f64e0ca12a2a208878c0b",
+      "bytes": 1125367
+    },
+    {
+      "path": "assets/fonts/Nunito-Regular.ttf",
+      "mode": "100644",
+      "git_blob": "4ed809463fcba2afd71553075412a6d7e74dcedf",
+      "bytes": 39332
+    },
+    {
+      "path": "assets/fonts/Nunito-Bold.ttf",
+      "mode": "100644",
+      "git_blob": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb",
+      "bytes": 39284
+    },
+    {
+      "path": "assets/fonts/Nunito-ExtraBold.ttf",
+      "mode": "100644",
+      "git_blob": "d3168c268b0f8c20edc534be678ab53300ba0828",
+      "bytes": 39300
+    },
+    {
+      "path": "assets/fonts/Nunito-Black.ttf",
+      "mode": "100644",
+      "git_blob": "9e7743ebb7efc2bda51e99eda079cb9b2061f566",
+      "bytes": 39260
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "mode": "100644",
+      "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c",
+      "bytes": 26157
+    },
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "mode": "100644",
+      "git_blob": "f592b2459a6b79a1b2fe685c15671df908c5ad15",
+      "bytes": 29612
+    },
+    {
+      "path": "lib/widgets/profile_screen.dart",
+      "mode": "100644",
+      "git_blob": "5cc989e2258cf5123d306f01ca268d007a4de105",
+      "bytes": 34479
+    },
+    {
+      "path": "test/wort_diktat_gesture_regression_test.dart",
+      "mode": "100644",
+      "git_blob": "d8507944cb1ac781ab2ccb3eb428152549a0df17",
+      "bytes": 12858
+    },
+    {
+      "path": "test/feature_permission_regression_test.dart",
+      "mode": "100644",
+      "git_blob": "613aad5272caacc668908baa9b899469e7caec17",
+      "bytes": 18339
+    },
+    {
+      "path": "test/profile_screen_test.dart",
+      "mode": "100644",
+      "git_blob": "f741789b917858aa0f8ec141395b4d8115470a14",
+      "bytes": 5106
+    },
+    {
+      "path": "pubspec.yaml",
+      "mode": "100644",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "bytes": 2718
+    },
+    {
+      "path": "pubspec.lock",
+      "mode": "100644",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+      "bytes": 24469
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "mode": "100644",
+      "git_blob": "254267c9f84d5c8e507307178015d281db238e4f",
+      "bytes": 15447
+    },
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "git_blob": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+      "bytes": 145
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "git_blob": "b10d2ba20c93d17f723b9c190652060968505b53",
+      "bytes": 10687
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "git_blob": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06",
+      "bytes": 17393
+    },
+    {
+      "path": "scripts/tests/test_embedded_android.py",
+      "mode": "100644",
+      "git_blob": "7639755789f4e5abbfa0743173532cd2b2b29f49",
+      "bytes": 21985
+    },
+    {
+      "path": "test/lumo3d_launcher_lifecycle_test.dart",
+      "mode": "100644",
+      "git_blob": "620a4d74132a516142f2757610c65971909fc166",
+      "bytes": 13742
+    },
+    {
+      "path": "test/tutoring/native_learning_launch_test.dart",
+      "mode": "100644",
+      "git_blob": "240da9cc4a559ef44b17db8b8e1693292e423fe8",
+      "bytes": 19792
+    },
+    {
+      "path": "test/helpers/lumo_capture.dart",
+      "mode": "100644",
+      "git_blob": "439c2a8862effae26907ef655304e0c57f76a56c",
+      "bytes": 2703
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_bauwelt.png",
+      "mode": "100644",
+      "git_blob": "501ca1a5988cc60d89b816e9f7cfd06388b1f295",
+      "bytes": 74725
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_engine.dart",
+      "mode": "100644",
+      "git_blob": "0ad49aeaab65ea34ceb387e73788cdb886a210db",
+      "bytes": 9755
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "mode": "100644",
+      "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "bytes": 12082
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "mode": "100644",
+      "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "bytes": 9737
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "git_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+      "bytes": 43222
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+      "mode": "100644",
+      "git_blob": "84c5ff9949a216331d228128f02415a47833396b",
+      "bytes": 10519
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "mode": "100644",
+      "git_blob": "4169f06a21138d253ec3b4298720e97fa9854d95",
+      "bytes": 6406
+    },
+    {
+      "path": "test/games/connect_four_engine_test.dart",
+      "mode": "100644",
+      "git_blob": "965abef6cda8a22fd4b3776d0dfac6721d68c27e",
+      "bytes": 3420
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "mode": "100644",
+      "git_blob": "d5e847507275b67d6d3aa4bdbaf2991f01817bca",
+      "bytes": 4409
+    },
+    {
+      "path": "test/games/connect_four_interaction_test.dart",
+      "mode": "100644",
+      "git_blob": "379c1dee8358507493ba60dbd683ca7f4a3821a6",
+      "bytes": 5768
+    },
+    {
+      "path": "test/games/connect_four_lumo_level_test.dart",
+      "mode": "100644",
+      "git_blob": "229a531e9fe61337e05f92cb50409eef409bd57f",
+      "bytes": 3831
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "mode": "100644",
+      "git_blob": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0",
+      "bytes": 4803
+    },
+    {
+      "path": "test/games/connect_four_native_session_test.dart",
+      "mode": "100644",
+      "git_blob": "a540779dc16fe894493e1b13b4de720a33765c7d",
+      "bytes": 19735
+    },
+    {
+      "path": "test/games/connect_four_runtime_bridge.dart",
+      "mode": "100644",
+      "git_blob": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0",
+      "bytes": 4838
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "mode": "100644",
+      "git_blob": "b05fa2ececfef096db3c4c6f7b116ac79e61d197",
+      "bytes": 4116
+    },
+    {
+      "path": "test/games/connect_four_tactics_test.dart",
+      "mode": "100644",
+      "git_blob": "80ceaa6273a34d1e844a3735878a949c3e34d129",
+      "bytes": 3577
+    }
+  ],
+  "scope": "Eight bounded village product paths, seven exact producer widget/capture files, one full-suite capture mapping.",
+  "tests_executed": 0,
+  "engines_invoked": 0,
+  "downloads_of_assets_sdks_or_packages": 0,
+  "worktree_or_git_mutations": false,
+  "workflow_pin_version_or_receipt_changes": false,
+  "future_capture_requirement": "All six LUMO_VILLAGE_CAPTURES cases must run; the existing no-skip gate is unchanged.",
+  "speech_limit": "Existing consent/PCM helper still permits only learning/build. No direct speech call is present in the bound settlement world; no Village audio claim.",
+  "android_qa": "Separate exact three-source proposal; candidate/delivery/workflow hooks are references only."
+}

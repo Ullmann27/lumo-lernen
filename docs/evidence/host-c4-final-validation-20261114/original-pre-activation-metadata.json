@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-11-14T07:18:27Z",
+  "release": {
+    "content": [
+      {
+        "type": "text",
+        "text": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}"
+      }
+    ],
+    "structuredContent": {
+      "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+      "error_code": "NOT_FOUND",
+      "error_data": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name",
+        "status": "404"
+      }
+    },
+    "isError": true
+  },
+  "tag": {
+    "content": [
+      {
+        "type": "text",
+        "text": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}"
+      }
+    ],
+    "structuredContent": {
+      "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}",
+      "error_code": "NOT_FOUND",
+      "error_data": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest/git/refs#get-a-reference",
+        "status": "404"
+      }
+    },
+    "isError": true
+  },
+  "base_ref": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "content": "{\"ref\":\"refs/heads/integration/lumo-connections-20261113\",\"node_id\":\"REF_kwDOSNzcp9oAMHJlZnMvaGVhZHMvaW50ZWdyYXRpb24vbHVtby1jb25uZWN0aW9ucy0yMDI2MTExMw\",\"url\":\"https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/integration/lumo-connections-20261113\",\"object\":{\"sha\":\"7b16f2f5ab16f3d913ee170aefd9807c87216260\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/7b16f2f5ab16f3d913ee170aefd9807c87216260\"}}",
+      "title": "lumo-connections-20261113",
+      "modified_date": null,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/ref/heads/integration/lumo-connections-20261113",
+      "display_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/ref/heads/integration/lumo-connections-20261113",
+      "display_title": "lumo-connections-20261113",
+      "structuredContent": {
+        "title": "lumo-connections-20261113",
+        "content": "{\"ref\":\"refs/heads/integration/lumo-connections-20261113\",\"node_id\":\"REF_kwDOSNzcp9oAMHJlZnMvaGVhZHMvaW50ZWdyYXRpb24vbHVtby1jb25uZWN0aW9ucy0yMDI2MTExMw\",\"url\":\"https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/integration/lumo-connections-20261113\",\"object\":{\"sha\":\"7b16f2f5ab16f3d913ee170aefd9807c87216260\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/7b16f2f5ab16f3d913ee170aefd9807c87216260\"}}",
+        "display_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/ref/heads/integration/lumo-connections-20261113"
+      }
+    },
+    "isError": false
+  }
+}

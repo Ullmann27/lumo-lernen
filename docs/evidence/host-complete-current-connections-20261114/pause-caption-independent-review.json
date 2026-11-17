@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T09:13:13.630000+00:00",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "scope": "Independent read-only source/original review; no test execution, Tesseract, ADB, device, downloads or source/Git mutation.",
+  "source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr486-pause-caption-repair-20261114/source-freeze.json",
+    "sha256": "3387f3240023ee63c4eb23c62f7d694e27e5041096c3b52a537e84d14123bc7b"
+  },
+  "source_files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 71930,
+      "sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+      "git_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0-ocr.json",
+      "bytes": 1682,
+      "sha256": "63e651f95bfaf92ad84a611115e3f497fb883459fc9a0131391b302920ec4a04",
+      "git_blob": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0.png",
+      "bytes": 857960,
+      "sha256": "472138fabf87a063f46a97e772c1118c8751d180f930a85c27fabd3c86967236",
+      "git_blob": "f4050401ac73ada62cb3517ec7204f33916517b8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1-ocr.json",
+      "bytes": 1682,
+      "sha256": "63e651f95bfaf92ad84a611115e3f497fb883459fc9a0131391b302920ec4a04",
+      "git_blob": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1.png",
+      "bytes": 858521,
+      "sha256": "4d4d4e52bf2d5f2b536b4cf3049db6783097ea94ea90e50acf3dc25f41b1e7fd",
+      "git_blob": "7c4702094de7317487568ccdd875b874d243a0bd"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-surface-readiness.json",
+      "bytes": 2747,
+      "sha256": "1147bae3acb44a1eec0e323599c07f9f5c8c5cf9092fffec9bfae1bfa127a9ce",
+      "git_blob": "35b5cdb2d5e6c55d2083bbb41aafc34611d5ebfe"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/provenance.json",
+      "bytes": 1776,
+      "sha256": "5e53c5c9a62d0ee732acf5df20fc9e558ae596fa8df80a847ca1a4ec69c26a8b",
+      "git_blob": "f63d6917ba8b5404d4deb1209a75486c33e90caf"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "bytes": 8194,
+      "sha256": "d1e4f1392f4d3e3b3312729e8a5d1e91e6a9f5d91d997640b40a900b66ba3568",
+      "git_blob": "3b545455d4ce98b4cb31c238aa2e38df37cbf6e1"
+    }
+  ],
+  "current_integration_source": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "current_integration_tree": "bffa6832adf0e5205a93ff964cc69d19457f7a8e",
+  "both_before_production_files_equal_current_integration": true,
+  "original_binding": {
+    "run": 43574161418,
+    "attempt": 1,
+    "job": 132384862551,
+    "source": "08e63bd32917a6672ae99b66a17c3fa57c83977a",
+    "artifact": 14106471875,
+    "archive_bytes": 116961715,
+    "archive_sha256": "e044ba0959d2099a5b2b498f1ca31d9f6ac7f9fbad4fabffb2d0d00c92dfc3f3",
+    "inventory_path": "/workspace/scratch/b3485b7bb989/host-pr486-08e63bd3-console-evidence/artifacts/14106471875/verification.json",
+    "inventory_sha256": "0fd5830abea121cff74350e0563702ffd396023e89126fc39ec85155b184fd91",
+    "five_fixture_members_match_original_inventory": true,
+    "three_json_fixtures_equal_separate_original_copies": true,
+    "two_original_pngs_actually_viewed": [
+      "21_continue_touch-0.png",
+      "21_continue_touch-1.png"
+    ],
+    "direct_visual_observation": "Both original pause frames show the explanatory sentence above the separate Weiterfahren button. The instruction word is not the visible button; no resumed race was observed in these two frames.",
+    "instruction_word_bounds": [
+      1540,
+      264,
+      1848,
+      300
+    ],
+    "button_caption_bounds": [
+      1093,
+      388,
+      1430,
+      427
+    ],
+    "original_failed_touch": [
+      1694,
+      282
+    ]
+  },
+  "review_findings": [
+    {
+      "id": "explicit_scope",
+      "finding": "Only _continue_actual_race opts into standalone_caption=True. Existing caller defaults and forwarding remain unchanged."
+    },
+    {
+      "id": "original_caption_role",
+      "finding": "Exact normalized caption spans inside longer same-variant containing OCR lines remain negative role evidence. Original button observations survive; no fixed coordinates or synthetic captions are introduced."
+    },
+    {
+      "id": "strict_ambiguity",
+      "finding": "All independent matches must pairwise identify the same region with IoU >=0.6. Distinct original controls raise RuntimeError. Invalid, nonfinite or out-of-surface matching/context bounds remain errors."
+    },
+    {
+      "id": "preservation",
+      "finding": "21 other helper and28 other tour top-level functions are AST-identical. Replacing only native_tap/native_text and the sole Continue keyword and removing the new selector yields identical full module ASTs."
+    },
+    {
+      "id": "freshness_timing",
+      "finding": "image_lines and read_component_caption are byte-identical. Existing target stability, current PNG digest, deadline-before-dispatch, actual input and finally-report suffix are byte-identical."
+    },
+    {
+      "id": "post_action",
+      "finding": "Continue still requires the real race HUD, GAS input/changing pixels, later native save and resumed progress before producing its result."
+    },
+    {
+      "id": "prepared_tests",
+      "finding": "Nine prepared methods use actual probe/tour methods and original PNG/OCR with explicit mocked delivery/ADB/time boundaries. Positive replay stops at the unchanged mandatory HUD call; no actual device or OCR execution was performed for this review."
+    }
+  ],
+  "limits": [
+    "The full all-caption OCR search on a new device and its ability to complete two observations inside120seconds remain a future actual-run requirement. The deadline was not extended.",
+    "This review validates source connection and original membership only. It does not claim the nine prepared tests have run or that Continue resumed a real race.",
+    "Historical full-runFAIL and independent GMS ANRs/SwiftShader shader failures remain unchanged.",
+    "The separate two-file workflow follow-up was not included in this source review."
+  ]
+}

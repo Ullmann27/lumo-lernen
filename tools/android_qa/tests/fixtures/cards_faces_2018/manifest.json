@@ -1,0 +1,611 @@
+{
+  "scope": "Immutable actual negative Android captures and actual positive native CI captures; offline pixel regression, not an Android PASS.",
+  "cases": [
+    {
+      "name": "android_before",
+      "image": "android_before.png",
+      "sha256": "b4f6c3efaccbad4b98b619d9fc9f500761080b8f4cf989a128449e3ed8db8616",
+      "source_path": "nextgen/11_cards_real_table_before_draw.png",
+      "workflow_run": 43395154888,
+      "artifact_id": 14024066056,
+      "source_state": "nextgen/cards-mailbox-007-state.json",
+      "source_state_sha256": "da7e6085293cbacd61c6ac94579f51614e89853f549766b391a7b2ec36a30a1e",
+      "density": 2.625,
+      "public": {
+        "protocol": 1,
+        "token": "a18942ba93626715dbfecb0ab3cb159e",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-7a7ec25fe0f67947cbccba26d01601b2",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 7,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 7,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-6",
+            "color": "orange",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-80",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-64",
+            "color": "blue",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-10",
+            "color": "orange",
+            "type": "number",
+            "number": 5,
+            "playable": true
+          },
+          {
+            "id": "num-15",
+            "color": "orange",
+            "type": "number",
+            "number": 8,
+            "playable": false
+          },
+          {
+            "id": "jump-45",
+            "color": "purple",
+            "type": "lumoJump",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "num-87",
+          "color": "green",
+          "type": "number",
+          "number": 5
+        },
+        "selectedColor": "green",
+        "drawCount": 97,
+        "canDraw": true,
+        "message": "Du fängt an. Lege eine passende Karte!",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "expected": "reject",
+      "scope": "actual Android failure capture",
+      "capture_state_note": "Original screenshot still shows native paused overlay while subsequent public state was resumed. Negative pixel/UI fixture; not a synchronized successful frame."
+    },
+    {
+      "name": "android_after",
+      "image": "android_after.png",
+      "sha256": "438b34550cf01e2af1419853f1e9ee5db38bd711f6f028189ddc3119e3ccfa45",
+      "source_path": "nextgen/12_cards_real_table_persisted_draw.png",
+      "workflow_run": 43395154888,
+      "artifact_id": 14024066056,
+      "source_state": "nextgen/cards-mailbox-010-state.json",
+      "source_state_sha256": "129906cac0aff87dc532ae6eb550e43025a8a874fee58504e7d7212e966ffbdf",
+      "density": 2.625,
+      "public": {
+        "protocol": 1,
+        "token": "a18942ba93626715dbfecb0ab3cb159e",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-7a7ec25fe0f67947cbccba26d01601b2",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-6",
+            "color": "orange",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-80",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-64",
+            "color": "blue",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-10",
+            "color": "orange",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-15",
+            "color": "orange",
+            "type": "number",
+            "number": 8,
+            "playable": true
+          },
+          {
+            "id": "jump-45",
+            "color": "purple",
+            "type": "lumoJump",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": false
+          },
+          {
+            "id": "num-81",
+            "color": "green",
+            "type": "number",
+            "number": 2,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-93",
+          "color": "green",
+          "type": "number",
+          "number": 8
+        },
+        "selectedColor": "green",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt green 8.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "expected": "reject",
+      "scope": "actual Android failure capture",
+      "capture_state_note": "Original screenshot shows the child draw before the bot completes, while subsequent public state is the next child turn. The same projected first hand page and discard are blank; this is negative evidence only."
+    },
+    {
+      "name": "native_1280x720",
+      "image": "native_1280x720.png",
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "source_path": "nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "workflow_run": 43399721309,
+      "native_source": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "source_state": "scripts/tests/cards_table_regression.gd::wire_fixture()",
+      "source_state_sha256": "a09ed2c0ff977fa3979936e652f787fb986167b7046cd1d92e4cf28de139d522",
+      "json_mailbox_roundtrip": true,
+      "density": 1.0,
+      "public": {
+        "ack": 0.0,
+        "canDraw": true,
+        "current": 0.0,
+        "drawCount": 97.0,
+        "hand": [
+          {
+            "color": "orange",
+            "id": "r1",
+            "number": 1.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "blue",
+            "id": "b2",
+            "number": 2.0,
+            "playable": false,
+            "type": "number"
+          },
+          {
+            "color": "green",
+            "id": "wild",
+            "playable": true,
+            "type": "colorMagic"
+          },
+          {
+            "color": "green",
+            "id": "g4",
+            "number": 4.0,
+            "playable": false,
+            "type": "number"
+          },
+          {
+            "color": "purple",
+            "id": "y5",
+            "number": 5.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "orange",
+            "id": "r6",
+            "number": 6.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "blue",
+            "id": "pause",
+            "playable": false,
+            "type": "thinkPause"
+          }
+        ],
+        "message": "Dein Zug · Goldene Karten passen.",
+        "paused": false,
+        "phase": "playing",
+        "players": [
+          {
+            "count": 7.0,
+            "name": "Du",
+            "stars": 0.0
+          },
+          {
+            "count": 7.0,
+            "name": "Lumo",
+            "stars": 0.0
+          }
+        ],
+        "protocol": 1.0,
+        "reduceMotion": true,
+        "revision": 4.0,
+        "roundId": "cards-render-fixture",
+        "selectedColor": "orange",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "top": {
+          "color": "orange",
+          "id": "r5",
+          "number": 5.0,
+          "type": "number"
+        },
+        "viewer": 0.0,
+        "winner": null
+      },
+      "expected": "accept"
+    },
+    {
+      "name": "native_412x915",
+      "image": "native_412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "source_path": "nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "workflow_run": 43399721309,
+      "native_source": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "source_state": "scripts/tests/cards_table_regression.gd::wire_fixture()",
+      "source_state_sha256": "a09ed2c0ff977fa3979936e652f787fb986167b7046cd1d92e4cf28de139d522",
+      "json_mailbox_roundtrip": true,
+      "density": 1.0,
+      "public": {
+        "ack": 0.0,
+        "canDraw": true,
+        "current": 0.0,
+        "drawCount": 97.0,
+        "hand": [
+          {
+            "color": "orange",
+            "id": "r1",
+            "number": 1.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "blue",
+            "id": "b2",
+            "number": 2.0,
+            "playable": false,
+            "type": "number"
+          },
+          {
+            "color": "green",
+            "id": "wild",
+            "playable": true,
+            "type": "colorMagic"
+          },
+          {
+            "color": "green",
+            "id": "g4",
+            "number": 4.0,
+            "playable": false,
+            "type": "number"
+          },
+          {
+            "color": "purple",
+            "id": "y5",
+            "number": 5.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "orange",
+            "id": "r6",
+            "number": 6.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "blue",
+            "id": "pause",
+            "playable": false,
+            "type": "thinkPause"
+          }
+        ],
+        "message": "Dein Zug · Goldene Karten passen.",
+        "paused": false,
+        "phase": "playing",
+        "players": [
+          {
+            "count": 7.0,
+            "name": "Du",
+            "stars": 0.0
+          },
+          {
+            "count": 7.0,
+            "name": "Lumo",
+            "stars": 0.0
+          }
+        ],
+        "protocol": 1.0,
+        "reduceMotion": true,
+        "revision": 4.0,
+        "roundId": "cards-render-fixture",
+        "selectedColor": "orange",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "top": {
+          "color": "orange",
+          "id": "r5",
+          "number": 5.0,
+          "type": "number"
+        },
+        "viewer": 0.0,
+        "winner": null
+      },
+      "expected": "accept"
+    },
+    {
+      "name": "native_690x829",
+      "image": "native_690x829.png",
+      "sha256": "62bd3ce901232399b1f3fb2181d010923a84b904c4f42beec4cfec48feb76042",
+      "source_path": "nextgen/captures/cards_table_capture/cards-table-690x829.png",
+      "workflow_run": 43399721309,
+      "native_source": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "source_state": "scripts/tests/cards_table_regression.gd::wire_fixture()",
+      "source_state_sha256": "a09ed2c0ff977fa3979936e652f787fb986167b7046cd1d92e4cf28de139d522",
+      "json_mailbox_roundtrip": true,
+      "density": 1.0,
+      "public": {
+        "ack": 0.0,
+        "canDraw": true,
+        "current": 0.0,
+        "drawCount": 97.0,
+        "hand": [
+          {
+            "color": "orange",
+            "id": "r1",
+            "number": 1.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "blue",
+            "id": "b2",
+            "number": 2.0,
+            "playable": false,
+            "type": "number"
+          },
+          {
+            "color": "green",
+            "id": "wild",
+            "playable": true,
+            "type": "colorMagic"
+          },
+          {
+            "color": "green",
+            "id": "g4",
+            "number": 4.0,
+            "playable": false,
+            "type": "number"
+          },
+          {
+            "color": "purple",
+            "id": "y5",
+            "number": 5.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "orange",
+            "id": "r6",
+            "number": 6.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "blue",
+            "id": "pause",
+            "playable": false,
+            "type": "thinkPause"
+          }
+        ],
+        "message": "Dein Zug · Goldene Karten passen.",
+        "paused": false,
+        "phase": "playing",
+        "players": [
+          {
+            "count": 7.0,
+            "name": "Du",
+            "stars": 0.0
+          },
+          {
+            "count": 7.0,
+            "name": "Lumo",
+            "stars": 0.0
+          }
+        ],
+        "protocol": 1.0,
+        "reduceMotion": true,
+        "revision": 4.0,
+        "roundId": "cards-render-fixture",
+        "selectedColor": "orange",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "top": {
+          "color": "orange",
+          "id": "r5",
+          "number": 5.0,
+          "type": "number"
+        },
+        "viewer": 0.0,
+        "winner": null
+      },
+      "expected": "accept"
+    },
+    {
+      "name": "native_2400x1080",
+      "image": "native_2400x1080.png",
+      "sha256": "f83e7e0dd30064841cd10689e73c8cf2b4a8c7258e6377a5fbc9528e54cb464a",
+      "source_path": "nextgen/captures/cards_table_capture/cards-table-2400x1080.png",
+      "workflow_run": 43399721309,
+      "native_source": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "source_state": "scripts/tests/cards_table_regression.gd::wire_fixture()",
+      "source_state_sha256": "a09ed2c0ff977fa3979936e652f787fb986167b7046cd1d92e4cf28de139d522",
+      "json_mailbox_roundtrip": true,
+      "density": 2.625,
+      "public": {
+        "ack": 0.0,
+        "canDraw": true,
+        "current": 0.0,
+        "drawCount": 97.0,
+        "hand": [
+          {
+            "color": "orange",
+            "id": "r1",
+            "number": 1.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "blue",
+            "id": "b2",
+            "number": 2.0,
+            "playable": false,
+            "type": "number"
+          },
+          {
+            "color": "green",
+            "id": "wild",
+            "playable": true,
+            "type": "colorMagic"
+          },
+          {
+            "color": "green",
+            "id": "g4",
+            "number": 4.0,
+            "playable": false,
+            "type": "number"
+          },
+          {
+            "color": "purple",
+            "id": "y5",
+            "number": 5.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "orange",
+            "id": "r6",
+            "number": 6.0,
+            "playable": true,
+            "type": "number"
+          },
+          {
+            "color": "blue",
+            "id": "pause",
+            "playable": false,
+            "type": "thinkPause"
+          }
+        ],
+        "message": "Dein Zug · Goldene Karten passen.",
+        "paused": false,
+        "phase": "playing",
+        "players": [
+          {
+            "count": 7.0,
+            "name": "Du",
+            "stars": 0.0
+          },
+          {
+            "count": 7.0,
+            "name": "Lumo",
+            "stars": 0.0
+          }
+        ],
+        "protocol": 1.0,
+        "reduceMotion": true,
+        "revision": 4.0,
+        "roundId": "cards-render-fixture",
+        "selectedColor": "orange",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "top": {
+          "color": "orange",
+          "id": "r5",
+          "number": 5.0,
+          "type": "number"
+        },
+        "viewer": 0.0,
+        "winner": null
+      },
+      "expected": "accept"
+    }
+  ],
+  "production_geometry_sha256": "2ef7ca39e79f4f07ac2405e1f1f9ee0d57d4c9d3d460f1f9ca2a7be95bf30113"
+}

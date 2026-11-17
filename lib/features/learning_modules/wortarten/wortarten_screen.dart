@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 enum _Wortart { nomen, verb, adjektiv }
@@ -99,6 +100,7 @@ class _WortartenScreenState extends State<WortartenScreen>
     _WortItem('schön', _Wortart.adjektiv),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
 
   late final AnimationController _bounceCtrl;
@@ -123,8 +125,7 @@ class _WortartenScreenState extends State<WortartenScreen>
     super.initState();
     _round = [
       for (var kind = 0; kind < _WortartenFrageTyp.values.length; kind++)
-        for (final word in _woerter)
-          (kind: kind, item: word),
+        for (final word in _woerter) (kind: kind, item: word),
     ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
@@ -188,6 +189,7 @@ class _WortartenScreenState extends State<WortartenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: '${_typ.name}:${_korrektWort.wort}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -290,6 +292,46 @@ class _WortartenScreenState extends State<WortartenScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final categorize = _typ == _WortartenFrageTyp.wortKategorisieren;
+    final choices = categorize
+        ? _wortartOptions.map((kind) => kind.label).toList()
+        : _woerterOptions.map((word) => word.wort).toList();
+    final selected = _selectedIdx;
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 'd3_wortarten',
+      taskKey: _taskIdx,
+      prompt: categorize
+          ? 'Ist „${_korrektWort.wort}“ ein Nomen, Verb oder Adjektiv?'
+          : 'Welches Wort ist ein ${_gefragteArt.label}?',
+      objective: 'Du unterscheidest Nomen, Verben und Adjektive.',
+      answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          categorize
+              ? _wortartOptions[index] == _korrektWort.art
+              : _woerterOptions[index].art == _gefragteArt),
+      helpSteps: [
+        'Überlege, was das Wort ausdrückt: einen Namen für etwas, eine Tätigkeit oder eine Eigenschaft.',
+        'Nomen benennen zum Beispiel Menschen, Tiere oder Dinge. Verben sagen, was geschieht. Adjektive beschreiben, wie etwas ist.',
+        categorize
+            ? 'Prüfe „${_korrektWort.wort}“ mit diesen Fragen: Kann ein Artikel davorstehen? Kann man es tun? Beschreibt es, wie etwas ist?'
+            : 'Prüfe jedes gezeigte Wort einzeln. Gesucht ist die Wortart ${_gefragteArt.label}; die Beispiele der anderen Wortarten kannst du ausschließen.',
+      ],
+      answering: !_answered,
+      lastAnswer: selected == null ? null : choices[selected],
+      lastCorrect: selected == null
+          ? null
+          : categorize
+              ? _wortartOptions[selected] == _korrektWort.art
+              : _woerterOptions[selected].art == _gefragteArt,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -304,7 +346,8 @@ class _WortartenScreenState extends State<WortartenScreen>
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -324,7 +367,7 @@ class _WortartenScreenState extends State<WortartenScreen>
               _buildWortGrid(),
             ],
           ]),
-        ),
+        )),
       ),
     );
   }

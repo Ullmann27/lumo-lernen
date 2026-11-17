@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "parent": "c77e2456ac8eb7e02a9950e7b764684da6f5eb7b",
+  "parent_tree": "d124623c936de7d2fe142a22c2683dfbb1343ac2",
+  "native_source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "review": "Root directly read the complete actual 71-method stderr and invocation/result receipts. All 37 original archive members were independently compared byte-for-byte. Only documentation and these original proofs are added; checked workflow/test/product/pin/verifier bytes remain unchanged.",
+  "actual_local_result": {
+    "schema": 1,
+    "status": "PASS",
+    "host_commit": "c77e2456ac8eb7e02a9950e7b764684da6f5eb7b",
+    "host_tree": "d124623c936de7d2fe142a22c2683dfbb1343ac2",
+    "native_commit": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "methods": 71,
+    "passed_method_lines": 71,
+    "errors": 0,
+    "failures": 0,
+    "skipped_method_lines": 0,
+    "actionlint_exit_code": 0,
+    "source_index_status_unchanged": true,
+    "indexed_paths": 4460,
+    "materialized_paths": 749,
+    "sparse_absent_paths": 3711,
+    "index_sha256": "295cb672714edbe7c4b7eec55d1be26a3c493098ed9a05a2ab20d8a2c8892124",
+    "processes": [
+      {
+        "label": "unittest",
+        "argv": [
+          "/tmp/lumo-root-recovery-1242/py/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_connect_four_delivery",
+          "-v"
+        ],
+        "cwd": "/tmp/host-c77e2456-budget150-validation-20261114/checkout",
+        "started_at": "2026-11-14T14:00:51.437979+00:00",
+        "ended_at": "2026-11-14T14:00:54.025953+00:00",
+        "elapsed_seconds": 2.5879786730001797,
+        "exit_code": 0,
+        "invocations": 1,
+        "stdout": {
+          "path": "unittest.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "unittest.stderr.log",
+          "bytes": 15776,
+          "sha256": "d78d2dc8610e66263e0a32a228b969c78bcb6cd7c348b79e27fc88be8e2512c1"
+        }
+      },
+      {
+        "label": "actionlint",
+        "argv": [
+          "/tmp/lumo-root-recovery-1242/bin/actionlint",
+          ".github/workflows/lumo-connect-four-2020.yml"
+        ],
+        "cwd": "/tmp/host-c77e2456-budget150-validation-20261114/checkout",
+        "started_at": "2026-11-14T14:00:54.026676+00:00",
+        "ended_at": "2026-11-14T14:00:54.037390+00:00",
+        "elapsed_seconds": 0.010716802999922947,
+        "exit_code": 0,
+        "invocations": 1,
+        "stdout": {
+          "path": "actionlint.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "actionlint.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "scope": "Exactly one71-method Delivery suite and one actionlint on the changed workflow. No Pipeline17/Pin64 repeat, no engine/device/CI action."
+  },
+  "activation_policy": "Non-forced leased fast-forward of the active C4 branch from37ec only after publication and readback of this documentary successor. No manual cancellation or rerun. Read actual new run before claiming progress.",
+  "uncompleted_claims": "No new complete APK, Android acceptance or public download is claimed by this document."
+}

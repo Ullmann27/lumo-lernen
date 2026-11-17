@@ -1,0 +1,2904 @@
+{
+  "schema": "lumo.nextgen.learning.android.probe",
+  "version": 1,
+  "status": "PASS_WITH_LIMITATIONS",
+  "run_id": "f4e88a35b57f4b71871dafab7d34fd65",
+  "started_utc": "2026-11-16T05:40:42Z",
+  "probe_sha256": "5c5c8a7483c9d4c6e860febcf660613a10acee8ba07e1e3dec5c1cd0eb0c88a9",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "synthetic_profile": "LumoNextTest",
+  "candidate": {
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "flutter_source_commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "versionCode": 2031,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.19",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef",
+      "bytes": 278589756
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2031,
+    "versionName": "0.13.19",
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794807717531527",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T05:41:57.531527"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0023-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "72e4979dd8e9553fe055b2435cfb9b22f59d5a29344b6201db194c5a5c4b94de",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.082,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0058-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "1f90ae28b73a66c12cefc2a6529086366dc2f85c75b1014ad01ac101fedb3b68",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0075-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2ac52897f59ccf1c269f77f16c5f63df1c8a34058eef7705d6a92fcb42b61d1b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.184,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0108-bridge-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "c66f55a4a2a31e4d7a287c5f0ff4f62f6f30edc7cb4e13a6b1ddba93058dd9c9",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.891,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0127-typed-why-response.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "fc6f85983bc321ec1992ee7728f70e8a8e9d254e7fe56a29c9fbce9e1e44527f",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.928,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0135-conversation-stopped.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "208763701af9652020cc25dd1d644b75f6c3165073631ccd252df20836060e26",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.758,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0143-actual-microphone-outcome.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "dc7fd71b835a5cac8b7ae4490ff1e8e443df312bb239f054b73c1f7a72a0afe4",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.769,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0164-bridge-before-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "3dfde989cb8bcba878494d067834821bb740c224c606c44ad20b0462a2aee30b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.034,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0170-bridge-after-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "3dfde989cb8bcba878494d067834821bb740c224c606c44ad20b0462a2aee30b",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.034,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0181-bridge-same-model-after-return.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e30345351f22341b258243f37d80a28bed7569eb86461c1f97dd457fce6c04ba",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.868,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0185-bridge-compact-before-resize.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e30345351f22341b258243f37d80a28bed7569eb86461c1f97dd457fce6c04ba",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.868,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0191-bridge-compact.png",
+      "width": 720,
+      "height": 1600,
+      "sha256": "f7d471ab202fd7b7a3b53b44647888575b38c0c2c40d93bc211c49911accbdcc",
+      "render_readiness": {
+        "width": 720,
+        "height": 1600,
+        "content_entropy_bits": 5.861,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0195-bridge-expanded-before-resize.png",
+      "width": 720,
+      "height": 1600,
+      "sha256": "f7d471ab202fd7b7a3b53b44647888575b38c0c2c40d93bc211c49911accbdcc",
+      "render_readiness": {
+        "width": 720,
+        "height": 1600,
+        "content_entropy_bits": 5.861,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0201-bridge-expanded.png",
+      "width": 1768,
+      "height": 2208,
+      "sha256": "5acf26b7c984b7ebf3945108d609ccfc20fb1c1dfb4e94f8e4edab39ccbc8fff",
+      "render_readiness": {
+        "width": 1768,
+        "height": 2208,
+        "content_entropy_bits": 4.819,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0205-bridge-fold7-cover-emulated-before-resize.png",
+      "width": 1768,
+      "height": 2208,
+      "sha256": "5acf26b7c984b7ebf3945108d609ccfc20fb1c1dfb4e94f8e4edab39ccbc8fff",
+      "render_readiness": {
+        "width": 1768,
+        "height": 2208,
+        "content_entropy_bits": 4.819,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0211-bridge-fold7-cover-emulated.png",
+      "width": 1080,
+      "height": 2520,
+      "sha256": "8fece3324d3d0b7990aab6dfde274a82334cb49cc7802acd6a16ee38e2960b99",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2520,
+        "content_entropy_bits": 5.981,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0215-bridge-fold7-inner-emulated-before-resize.png",
+      "width": 1080,
+      "height": 2520,
+      "sha256": "8fece3324d3d0b7990aab6dfde274a82334cb49cc7802acd6a16ee38e2960b99",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2520,
+        "content_entropy_bits": 5.981,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0221-bridge-fold7-inner-emulated.png",
+      "width": 1968,
+      "height": 2184,
+      "sha256": "e292322b35500ecc29be8f82e0094f767d70e6d52d2119b3e1c4968f1fd0f19b",
+      "render_readiness": {
+        "width": 1968,
+        "height": 2184,
+        "content_entropy_bits": 4.553,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0269-banane-slower-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "a3f9cf73581e20c3eadebb954611310620673a85ae043cc327617d311df2d4e2",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.729,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0273-words-before-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "a3f9cf73581e20c3eadebb954611310620673a85ae043cc327617d311df2d4e2",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.729,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0279-words-after-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "1783232cdc9a04a9ce5e3811149386ffb2bcb94b386072073938c610f53488bb",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.652,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0290-words-same-model-after-return.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "be42a0c4df38c958cedced19aaa408f6acd595898fff511e05e479242eb039f8",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.629,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0320-pattern-stopped-same-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "08420adf7c781d51d54d4d2210759579f05d44646cdd47fac5e7323c06999f1e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.859,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0325-patterns-before-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "08420adf7c781d51d54d4d2210759579f05d44646cdd47fac5e7323c06999f1e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.859,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0331-patterns-after-pause.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "8266d9458b19e9dec9b4307ab224f317b2571b72d5f9570daabe97b3100f0c76",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.859,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0342-patterns-same-model-after-return.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "feaa36c48c927e2045ea87dd15be16ce6fdcc30ced6b6ba7fbb1407cd925bcaa",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 5.872,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0365-native-entry-same-guided-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "46716f6f4499af32925ed2cd367d7ed6522de06374a456f8d650e800b5bfb9ae",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.566,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0375-native-current-eight-plus-five.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "be6b3c3fcafe56ac1328d6778ce2e3be6183d6c2ada4d765bbf0e4dc69cb5971"
+    },
+    {
+      "file": "0407-native-ten-and-three.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "6e98efc0cfe47ab586cea1e65c3746328e95788c1939990b8e5ec5f0a32f6a6a"
+    },
+    {
+      "file": "0435-why-native-eight-and-five-before-question.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "02da661a204244d165f41571bd335e927815fd2bd6c75cc9c28f726fe8670384"
+    },
+    {
+      "file": "0440-why-native-written-before-send.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2c85a3d27b0dc92370606ccb7ec228996a42d69584faeee555b1c70648ffd246"
+    },
+    {
+      "file": "0453-why-native-ten-and-three-after-explanation.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "d75223de036cce27a81b26bf6b82efa0593e165691dd27fb7109ef600b4a7ccd"
+    },
+    {
+      "file": "0504-native-performance-observed-scene.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "78ab5dcbaa53b1838a1397bcd8541cfc405c6d27de6e07b19901d8d9c6ecc79c"
+    },
+    {
+      "file": "0511-native-return-current-task.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "1e7146e4005b1c27e4b1ed7ca47462033ff94ce1c5b08e0ef32f3ec9e3d9e34a",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.378,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    }
+  ],
+  "videos": [
+    {
+      "file": "0001-onboarding.mp4",
+      "sha256": "6f5d182223fa4ce48ab3f3d0b80c6ae61b106134c784038cbe1e1ab0031df445",
+      "bytes": 2057765,
+      "duration_seconds": 25.756522,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 31.74,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0096-eight-plus-five-explanation.mp4",
+      "sha256": "df9223ae0cb1e7ea103c5541f6fb7ff54f95c8a8ea3911bfe48ec50a85ffd0cb",
+      "bytes": 1234521,
+      "duration_seconds": 8.958611,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 31.11,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0163-bridge-pause-return.mp4",
+      "sha256": "a8a107da5b4b52d3ae0de93525a0bcaf8b38be74e45ff7b54596a330a525200c",
+      "bytes": 1133407,
+      "duration_seconds": 6.436622,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 12.16,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0184-bridge-resize-compact.mp4",
+      "sha256": "5512f58c00b7483765d433aaf7100e91930f3d0ad9d671da389b86f993170abd",
+      "bytes": 1013941,
+      "duration_seconds": 4.601311,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 6.26,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0194-bridge-resize-expanded.mp4",
+      "sha256": "bb1af479c11181d7ed7a17ec5bacdb414825dbf66c236807f8b82d05567b4067",
+      "bytes": 473734,
+      "duration_seconds": 5.114844,
+      "width": 720,
+      "height": 1600,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 6.56,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0204-bridge-resize-fold7-cover-emulated.mp4",
+      "sha256": "4447df53ff504998f8f405d358e5e12a674c78d3e48424ed65497e644c2699dd",
+      "bytes": 924683,
+      "duration_seconds": 5.003067,
+      "width": 1768,
+      "height": 2208,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 6.72,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0214-bridge-resize-fold7-inner-emulated.mp4",
+      "sha256": "d20ea22095f5b83bd097da03ff1b4698053751a059ef3100f3c4aa2f0ae71079",
+      "bytes": 564130,
+      "duration_seconds": 3.9631,
+      "width": 1080,
+      "height": 2520,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 6.17,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0234-banane-syllables.mp4",
+      "sha256": "562c79e8b88cbdee6b034396045601e41f5958c089455287052697ad7f479e7e",
+      "bytes": 835729,
+      "duration_seconds": 9.966133,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 11.54,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0272-words-pause-return.mp4",
+      "sha256": "7432d523e529f825f90ad96255b103484e3e8d28ffe1ed5c206d31b21314a783",
+      "bytes": 1428397,
+      "duration_seconds": 16.493889,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 12.26,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0298-pattern-hint-and-correction.mp4",
+      "sha256": "b5cd089bbabe3821ae22fa79d819a759130ad8fe1a8b5fba42e3910e8654dfa7",
+      "bytes": 1110302,
+      "duration_seconds": 5.578778,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 7.15,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0324-patterns-pause-return.mp4",
+      "sha256": "4a70bab6afa61197847db601fefb16ae33dd2e9f486ae441704468a4dd3190d3",
+      "bytes": 1117427,
+      "duration_seconds": 12.541978,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 11.78,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0367-native-three-dimensional-learning.mp4",
+      "sha256": "0df68c336fe7f3f03faf6afcf680efdcad006c256638d93bdd13a2a54de51459",
+      "bytes": 2234469,
+      "duration_seconds": 110.8033,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 110.55,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0432-native-why-two-question-and-demonstration.mp4",
+      "sha256": "b8876012d211b17f00dd9b0678fbd850c8414d7a9323993676160e56e58fc7f3",
+      "bytes": 2137417,
+      "duration_seconds": 106.416422,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 108.45,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0454-native-three-dimensional-performance.mp4",
+      "sha256": "b58300bc8844b8c5fa2f78dcc11598f5feffebbe24906b81710754485a621df7",
+      "bytes": 637184,
+      "duration_seconds": 46.001233,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 47.34,
+      "whole_block_within_recording_limit": true
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "conversation": {
+    "ui_contract": "ea",
+    "typed_question": "Warum zuerst zwei?",
+    "visible_explanation": "Im Zehnerfeld sind 8 Plätze besetzt. Bis zur Zehn fehlen 2, denn 10 minus 8 ist 2. Von den 5 zusätzlichen Objekten ergänzen wir deshalb zuerst 2. Dann bleiben 3 übrig.",
+    "task_grounding_label_observed": true,
+    "stop_visible": true,
+    "microphone_request_observed": true,
+    "microphone_ui_outcome": "explicit_device_limitation",
+    "postgrant_explicit_start": false,
+    "recognition": "NOT_VERIFIED",
+    "recognition_observations": [
+      "5:43",
+      "5:43 AM",
+      "Android System notification:",
+      "Wifi signal full.",
+      "Phone signal full.",
+      "Battery charging, 100 percent.",
+      "Dismiss",
+      "Mit Lumo sprechen",
+      "Zurück zur Aufgabe",
+      "Deine Aufgabe",
+      "8 + 5 = ? Rechne zuerst bis zur Zehn.",
+      "Frag nach, wiederhole einen Schritt oder ändere deinen Antwortvorschlag.",
+      "Lumo antwortet",
+      "Wir sind bei einer neuen Aufgabe. Was möchtest du dazu wissen?",
+      "Lumo",
+      "Vorlesen",
+      "Stopp",
+      "Frag Lumo",
+      "Senden",
+      "Sprechen",
+      "Spracherkennung: nach Tippen auf Sprechen",
+      "..",
+      "Eine deutsche Spracherkennung ist auf diesem Gerät noch nicht bestätigt. Du kannst tippen; deine Eltern können die lokale deutsche Sprache in den Geräteeinstellungen prüfen.",
+      "Erklären",
+      "Noch einmal",
+      "Scrim"
+    ],
+    "limitation": "No real spoken utterance was supplied; emulator recognizer availability is recorded separately."
+  },
+  "foreground_transitions": [
+    {
+      "status": "PASS",
+      "timeout_seconds": 15,
+      "observations": [
+        {
+          "file": "0166-bridge-paused-activity.txt",
+          "sha256": "15a90c92baeb67722678123ee8bd980a5e46b7df4317a1d8ec5ef132d696a08b",
+          "elapsed_seconds": 0.234,
+          "non_app_component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+          "accepted": true
+        }
+      ],
+      "observed_component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+      "elapsed_seconds": 0.235
+    },
+    {
+      "status": "PASS",
+      "timeout_seconds": 15,
+      "observations": [
+        {
+          "file": "0275-words-paused-activity.txt",
+          "sha256": "8ede4314b6c066e35b420ac6ce5e63e7d4431314bf9ad80a9f0b1fe1197a5beb",
+          "elapsed_seconds": 0.217,
+          "non_app_component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+          "accepted": true
+        }
+      ],
+      "observed_component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+      "elapsed_seconds": 0.217
+    },
+    {
+      "status": "PASS",
+      "timeout_seconds": 15,
+      "observations": [
+        {
+          "file": "0327-patterns-paused-activity.txt",
+          "sha256": "ef657c492754da05e384ef4ad338671ba61a37b2d679ce414c26c3d819a09f69",
+          "elapsed_seconds": 0.108,
+          "non_app_component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+          "accepted": true
+        }
+      ],
+      "observed_component": "com.google.android.apps.nexuslauncher/.NexusLauncherActivity",
+      "elapsed_seconds": 0.108
+    }
+  ],
+  "bridge": {
+    "checkpoint": {
+      "topicId": "bridge",
+      "seed": 0,
+      "sessionId": "lab-attempt-f4b5b3274f6a19a6f5831cb64fa6e166",
+      "phase": "example",
+      "problemId": "bridge-8-5",
+      "moved": 1,
+      "pieces": [],
+      "tokens": [],
+      "patternChoice": null,
+      "hint": 3,
+      "support": 3,
+      "wrongBefore": false,
+      "attempt": 0,
+      "answer": "",
+      "done": false,
+      "pendingAttemptId": null,
+      "lastSavedAttemptId": null
+    },
+    "pause_resume": {
+      "profile_id": "1794807717531527",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "route_return": {
+      "profile_id": "1794807717531527",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "resize": {
+      "layouts": [
+        "720x1600@320dpi",
+        "1768x2208@360dpi",
+        "1080x2520@420dpi",
+        "1968x2184@420dpi"
+      ],
+      "observations": [
+        {
+          "layout": "compact",
+          "width": 720,
+          "height": 1600,
+          "android_test_density_dpi": 320,
+          "wm_size": "Physical size: 1080x2340\nOverride size: 720x1600",
+          "wm_density": "Physical density: 440\nOverride density: 320",
+          "physical_ppi_claimed": false,
+          "initial_screenshot": {
+            "file": "0185-bridge-compact-before-resize.png",
+            "width": 1080,
+            "height": 2340,
+            "sha256": "e30345351f22341b258243f37d80a28bed7569eb86461c1f97dd457fce6c04ba",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2340,
+              "content_entropy_bits": 5.868,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "screenshot": {
+            "file": "0191-bridge-compact.png",
+            "width": 720,
+            "height": 1600,
+            "sha256": "f7d471ab202fd7b7a3b53b44647888575b38c0c2c40d93bc211c49911accbdcc",
+            "render_readiness": {
+              "width": 720,
+              "height": 1600,
+              "content_entropy_bits": 5.861,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "preservation": {
+            "profile_id": "1794807717531527",
+            "learning_keys_compared": 2,
+            "same_task_checkpoint": true
+          }
+        },
+        {
+          "layout": "expanded",
+          "width": 1768,
+          "height": 2208,
+          "android_test_density_dpi": 360,
+          "wm_size": "Physical size: 1080x2340\nOverride size: 1768x2208",
+          "wm_density": "Physical density: 440\nOverride density: 360",
+          "physical_ppi_claimed": false,
+          "initial_screenshot": {
+            "file": "0195-bridge-expanded-before-resize.png",
+            "width": 720,
+            "height": 1600,
+            "sha256": "f7d471ab202fd7b7a3b53b44647888575b38c0c2c40d93bc211c49911accbdcc",
+            "render_readiness": {
+              "width": 720,
+              "height": 1600,
+              "content_entropy_bits": 5.861,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "screenshot": {
+            "file": "0201-bridge-expanded.png",
+            "width": 1768,
+            "height": 2208,
+            "sha256": "5acf26b7c984b7ebf3945108d609ccfc20fb1c1dfb4e94f8e4edab39ccbc8fff",
+            "render_readiness": {
+              "width": 1768,
+              "height": 2208,
+              "content_entropy_bits": 4.819,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "preservation": {
+            "profile_id": "1794807717531527",
+            "learning_keys_compared": 2,
+            "same_task_checkpoint": true
+          }
+        },
+        {
+          "layout": "fold7-cover-emulated",
+          "width": 1080,
+          "height": 2520,
+          "android_test_density_dpi": 420,
+          "wm_size": "Physical size: 1080x2340\nOverride size: 1080x2520",
+          "wm_density": "Physical density: 440\nOverride density: 420",
+          "physical_ppi_claimed": false,
+          "initial_screenshot": {
+            "file": "0205-bridge-fold7-cover-emulated-before-resize.png",
+            "width": 1768,
+            "height": 2208,
+            "sha256": "5acf26b7c984b7ebf3945108d609ccfc20fb1c1dfb4e94f8e4edab39ccbc8fff",
+            "render_readiness": {
+              "width": 1768,
+              "height": 2208,
+              "content_entropy_bits": 4.819,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "screenshot": {
+            "file": "0211-bridge-fold7-cover-emulated.png",
+            "width": 1080,
+            "height": 2520,
+            "sha256": "8fece3324d3d0b7990aab6dfde274a82334cb49cc7802acd6a16ee38e2960b99",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2520,
+              "content_entropy_bits": 5.981,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "preservation": {
+            "profile_id": "1794807717531527",
+            "learning_keys_compared": 2,
+            "same_task_checkpoint": true
+          }
+        },
+        {
+          "layout": "fold7-inner-emulated",
+          "width": 1968,
+          "height": 2184,
+          "android_test_density_dpi": 420,
+          "wm_size": "Physical size: 1080x2340\nOverride size: 1968x2184",
+          "wm_density": "Physical density: 440\nOverride density: 420",
+          "physical_ppi_claimed": false,
+          "initial_screenshot": {
+            "file": "0215-bridge-fold7-inner-emulated-before-resize.png",
+            "width": 1080,
+            "height": 2520,
+            "sha256": "8fece3324d3d0b7990aab6dfde274a82334cb49cc7802acd6a16ee38e2960b99",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2520,
+              "content_entropy_bits": 5.981,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "screenshot": {
+            "file": "0221-bridge-fold7-inner-emulated.png",
+            "width": 1968,
+            "height": 2184,
+            "sha256": "e292322b35500ecc29be8f82e0094f767d70e6d52d2119b3e1c4968f1fd0f19b",
+            "render_readiness": {
+              "width": 1968,
+              "height": 2184,
+              "content_entropy_bits": 4.553,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "preservation": {
+            "profile_id": "1794807717531527",
+            "learning_keys_compared": 2,
+            "same_task_checkpoint": true
+          }
+        }
+      ],
+      "restored_display_preservation": {
+        "profile_id": "1794807717531527",
+        "learning_keys_compared": 2,
+        "same_task_checkpoint": true
+      },
+      "video_dimension_scope": "The encoder size stays fixed within each clip and is recorded from ffprobe. Target display pixels are verified independently by WM and full-size PNGs.",
+      "fold7_pixel_specification_source": "https://news.samsung.com/global/samsung-galaxy-z-fold7-raising-the-bar-for-smartphones",
+      "fold7_scope": "Emulated Galaxy Z Fold7 portrait resolutions with a chosen Android 420-dpi test density. This logical density is not the physical pixel density (PPI).",
+      "physical_fold_verified": false,
+      "hinge_verified": false
+    }
+  },
+  "word": {
+    "checkpoint": {
+      "topicId": "words",
+      "seed": 0,
+      "sessionId": "lab-attempt-572c45a6163da5e74c27d3d5f14a3631",
+      "phase": "example",
+      "problemId": "word-banane",
+      "moved": 0,
+      "pieces": [],
+      "tokens": [
+        2,
+        3,
+        0
+      ],
+      "patternChoice": null,
+      "hint": 0,
+      "support": 0,
+      "wrongBefore": false,
+      "attempt": 0,
+      "answer": "",
+      "done": false,
+      "pendingAttemptId": null,
+      "lastSavedAttemptId": null
+    },
+    "pause_resume": {
+      "profile_id": "1794807717531527",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "route_return": {
+      "profile_id": "1794807717531527",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    }
+  },
+  "pattern": {
+    "checkpoint": {
+      "topicId": "patterns",
+      "seed": 0,
+      "sessionId": "lab-attempt-7c6c44ad3437655a7cd85a1835c73d5f",
+      "phase": "example",
+      "problemId": "pattern-kreis-dreieck-5",
+      "moved": 0,
+      "pieces": [],
+      "tokens": [],
+      "patternChoice": 1,
+      "hint": 1,
+      "support": 1,
+      "wrongBefore": false,
+      "attempt": 0,
+      "answer": "",
+      "done": false,
+      "pendingAttemptId": null,
+      "lastSavedAttemptId": null
+    },
+    "pause_resume": {
+      "profile_id": "1794807717531527",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "route_return": {
+      "profile_id": "1794807717531527",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    }
+  },
+  "native_learning": {
+    "first_playback": {
+      "pid": 6674,
+      "utterance_ids": [
+        3
+      ],
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "Android MediaPlayer callbacks",
+      "audible_quality_verified": false
+    },
+    "second_playback": {
+      "pid": 6674,
+      "utterance_ids": [
+        11
+      ],
+      "profile": "lumo-free-supertonic-de-v1",
+      "evidence": "Android MediaPlayer callbacks",
+      "audible_quality_verified": false
+    },
+    "why_question": {
+      "question": "Warum zuerst zwei?",
+      "input_method": "observed Godot input plus real Android keyboard text",
+      "observed_initial_moved": 0,
+      "observed_final_moved": 2,
+      "manual_move_buttons_pressed_after_question": false,
+      "answer_or_score_api_called": false,
+      "initial_screenshot": {
+        "file": "0435-why-native-eight-and-five-before-question.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "02da661a204244d165f41571bd335e927815fd2bd6c75cc9c28f726fe8670384"
+      },
+      "written_question_screenshot": {
+        "file": "0440-why-native-written-before-send.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "2c85a3d27b0dc92370606ccb7ec228996a42d69584faeee555b1c70648ffd246"
+      },
+      "response": {
+        "variant": "contrast",
+        "text": "5:48 U VAG Zahlen zum Anfassen : 8 + > Im Zehnerfeld liegen 8. Bis zehn fehlen 2, denn 10 minus 8 ist 2. fehlen Deshalb nehmen wir zuerst 2 von den 5. Danach bleiben 3 übrig w va Ls | Dolls iat < ‘2 ® oe OOOO CO Pd Ä N 10 m uhr 2/5 bewegt Ziehen oder antippen Ein Objekt zeigen Noch einmal Stimme stoppen Lumo fragen Zur Aufgabe",
+        "screenshot": {
+          "file": "0445-why-native-current-explanation.png",
+          "width": 1080,
+          "height": 2340,
+          "sha256": "246707f540a7d03dd55eb16a199350971d1b82fa4be48ab86331701c05cbc567"
+        }
+      },
+      "playback": {
+        "pid": 6674,
+        "utterance_ids": [
+          19
+        ],
+        "profile": "lumo-free-supertonic-de-v1",
+        "evidence": "Android MediaPlayer callbacks",
+        "audible_quality_verified": false
+      },
+      "final_screenshot": {
+        "file": "0453-why-native-ten-and-three-after-explanation.png",
+        "width": 1080,
+        "height": 2340,
+        "sha256": "d75223de036cce27a81b26bf6b82efa0593e165691dd27fb7109ef600b4a7ccd"
+      },
+      "video": {
+        "file": "0432-native-why-two-question-and-demonstration.mp4",
+        "sha256": "b8876012d211b17f00dd9b0678fbd850c8414d7a9323993676160e56e58fc7f3",
+        "bytes": 2137417,
+        "duration_seconds": 106.416422,
+        "width": 1080,
+        "height": 2340,
+        "audio_recorded": false,
+        "maximum_seconds": 180,
+        "block_elapsed_seconds": 108.45,
+        "whole_block_within_recording_limit": true
+      },
+      "acoustic_words_verified": false
+    },
+    "performance": {
+      "capture_status": "MEASURED",
+      "native_pid": 6674,
+      "scene_observed_seconds": 47.15158563099999,
+      "window_count": 7,
+      "sample_count": 47,
+      "windows": [
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 917.143,
+            "mean": 817.084285714286,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 834.744,
+            "p95": 917.143,
+            "p99": 917.143
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 895.088,
+            "mean": 784.771,
+            "p95": 895.088
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 269.142857142857,
+            "nodes_mean": 197.0,
+            "objects_mean": 2045.14285714286,
+            "primitives_mean": 318348.428571429,
+            "render_objects_mean": 472.142857142857
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 38,
+          "window_ms": 5719.59
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 934.493,
+            "mean": 809.766,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 794.692,
+            "p95": 934.493,
+            "p99": 934.493
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 903.815,
+            "mean": 771.670142857143,
+            "p95": 903.815
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2049.0,
+            "primitives_mean": 318008.428571429,
+            "render_objects_mean": 470.714285714286
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 39,
+          "window_ms": 5668.362
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 834.793,
+            "mean": 809.7,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 810.774,
+            "p95": 834.793,
+            "p99": 834.793
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 809.911,
+            "mean": 788.013714285714,
+            "p95": 809.911
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2052.42857142857,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 40,
+          "window_ms": 5667.9
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 901.363,
+            "mean": 843.1435,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 815.923,
+            "p95": 901.363,
+            "p99": 901.363
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 876.329,
+            "mean": 824.761666666667,
+            "p95": 876.329
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2054.5,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 41,
+          "window_ms": 5058.861
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 893.518,
+            "mean": 839.127,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 822.935,
+            "p95": 893.518,
+            "p99": 893.518
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 864.71,
+            "mean": 835.236833333333,
+            "p95": 864.71
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2052.66666666667,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 1,
+          "speech_playing_audible_samples": 1,
+          "speech_playing_samples": 1,
+          "version": 1,
+          "window_index": 42,
+          "window_ms": 5034.762
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 858.5,
+            "mean": 813.080714285714,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 849.842,
+            "p95": 858.5,
+            "p99": 858.5
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 837.763,
+            "mean": 808.841857142857,
+            "p95": 837.763
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2033.14285714286,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 6,
+          "speech_playing_audible_samples": 7,
+          "speech_playing_samples": 7,
+          "version": 1,
+          "window_index": 43,
+          "window_ms": 5691.565
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 859.528,
+            "mean": 801.334857142857,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 850.957,
+            "p95": 859.528,
+            "p99": 859.528
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 831.352,
+            "mean": 793.150857142857,
+            "p95": 831.352
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2035.28571428571,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 6,
+          "speech_playing_audible_samples": 7,
+          "speech_playing_samples": 7,
+          "version": 1,
+          "window_index": 44,
+          "window_ms": 5609.344
+        }
+      ],
+      "measured_window_seconds": 38.450384,
+      "combined_audio_figure_effect_windows": [
+        42,
+        43,
+        44
+      ],
+      "mean_process_frame_interval_ms": 818.0932765957447,
+      "mean_process_frame_rate_hz": 1.2223545023633575,
+      "process_frames_over_16_7_ms": 47,
+      "process_frames_over_16_7_fraction": 1.0,
+      "worst_window_p95_ms": 934.493,
+      "worst_window_p99_ms": 934.493,
+      "minimum_samples_per_window": 6,
+      "windows_with_fewer_than_100_samples": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "percentile_boundary": "Nearest-rank percentiles describe these samples only. With fewer than 100 samples, P99 selects the maximum; small windows do not establish a stable tail-latency estimate.",
+      "physical_device_60fps_verified": false,
+      "measurement_boundary": "Actual Godot _process intervals in the Android emulator; per-window percentiles are not global percentiles or display presentation timestamps.",
+      "audio_boundary": "Accepted native playing/audible status; no human listening or acoustic waveform capture.",
+      "system_rendering_evidence": {
+        "native_pid": 6674,
+        "files": [
+          {
+            "file": "0499-gfxinfo-native.txt",
+            "status": "raw_response_recorded"
+          },
+          {
+            "file": "0500-gfxinfo-package.txt",
+            "status": "raw_response_recorded"
+          },
+          {
+            "file": "0501-surfaceflinger-observed-layers.txt",
+            "status": "raw_response_recorded"
+          },
+          {
+            "file": "0502-surfaceflinger-native-0.txt",
+            "status": "raw_response_recorded"
+          },
+          {
+            "file": "0503-surfaceflinger-native-1.txt",
+            "status": "raw_response_recorded"
+          }
+        ],
+        "observed_native_layers": [
+          "RequestedLayerState{Background for SurfaceView[dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity]#320 parentId=318 relativeParentId=314 z=-2147483648}",
+          "RequestedLayerState{SurfaceView[dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity]#318 parentId=317 relativeParentId=314 z=-2}"
+        ],
+        "interpretation": "Supplementary raw Android reports. HWUI gfxinfo can omit Godot SurfaceView rendering; SurfaceFlinger latency can be unsupported. Neither substitutes for the measured native frame windows."
+      },
+      "current_step_replay_requested": true,
+      "current_step_replay_playback": {
+        "pid": 6674,
+        "utterance_ids": [
+          21
+        ],
+        "profile": "lumo-free-supertonic-de-v1",
+        "evidence": "Android MediaPlayer callbacks",
+        "audible_quality_verified": false
+      },
+      "premeasurement_windows": [
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 7,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 959.971,
+            "mean": 806.356,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 782.417,
+            "p95": 959.971,
+            "p99": 959.971
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 11485.805,
+            "mean": 2291.10585714286,
+            "p95": 11485.805
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.285714285714,
+            "objects_mean": 2026.42857142857,
+            "primitives_mean": 316498.142857143,
+            "render_objects_mean": 394.571428571429
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 1,
+          "window_ms": 5644.492
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 984.243,
+            "mean": 880.9545,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 856.87,
+            "p95": 984.243,
+            "p99": 984.243
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 960.522,
+            "mean": 848.8165,
+            "p95": 960.522
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2026.0,
+            "primitives_mean": 316497.0,
+            "render_objects_mean": 394.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 2,
+          "window_ms": 5285.727
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 927.415,
+            "mean": 835.765333333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 775.656,
+            "p95": 927.415,
+            "p99": 927.415
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 903.278,
+            "mean": 781.432,
+            "p95": 903.278
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2024.5,
+            "primitives_mean": 316497.0,
+            "render_objects_mean": 394.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 3,
+          "window_ms": 5014.592
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 900.877,
+            "mean": 820.415714285714,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 803.996,
+            "p95": 900.877,
+            "p99": 900.877
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 871.267,
+            "mean": 795.854714285714,
+            "p95": 871.267
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 258.142857142857,
+            "nodes_mean": 197.0,
+            "objects_mean": 2026.0,
+            "primitives_mean": 316836.428571429,
+            "render_objects_mean": 395.142857142857
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 4,
+          "window_ms": 5742.91
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 899.831,
+            "mean": 793.988428571429,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 778.339,
+            "p95": 899.831,
+            "p99": 899.831
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 874.042,
+            "mean": 756.267,
+            "p95": 874.042
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2025.28571428571,
+            "primitives_mean": 316497.0,
+            "render_objects_mean": 394.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 5,
+          "speech_playing_audible_samples": 6,
+          "speech_playing_samples": 6,
+          "version": 1,
+          "window_index": 5,
+          "window_ms": 5557.919
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1248.46,
+            "mean": 911.883166666667,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 810.873,
+            "p95": 1248.46,
+            "p99": 1248.46
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 957.685,
+            "mean": 850.187833333333,
+            "p95": 957.685
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2030.0,
+            "primitives_mean": 316499.0,
+            "render_objects_mean": 395.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 6,
+          "window_ms": 5471.299
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1637.511,
+            "mean": 1056.36433333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 940.764,
+            "p95": 1637.511,
+            "p99": 1637.511
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1625.685,
+            "mean": 990.046833333333,
+            "p95": 1625.685
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.166666666667,
+            "nodes_mean": 197.0,
+            "objects_mean": 2032.5,
+            "primitives_mean": 316463.666666667,
+            "render_objects_mean": 395.166666666667
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 7,
+          "window_ms": 6338.186
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1124.302,
+            "mean": 940.844833333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 888.316,
+            "p95": 1124.302,
+            "p99": 1124.302
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1001.409,
+            "mean": 858.2835,
+            "p95": 1001.409
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.166666666667,
+            "nodes_mean": 197.0,
+            "objects_mean": 2037.66666666667,
+            "primitives_mean": 316246.0,
+            "render_objects_mean": 394.666666666667
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 8,
+          "window_ms": 5645.069
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 4,
+          "fox_usable_samples": 5,
+          "frame_ms": {
+            "max": 1273.603,
+            "mean": 1126.8572,
+            "over_16_7_count": 5,
+            "over_16_7_fraction": 1.0,
+            "p50": 1162.492,
+            "p95": 1273.603,
+            "p99": 1273.603
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1220.046,
+            "mean": 1106.8074,
+            "p95": 1220.046
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2038.2,
+            "primitives_mean": 316237.0,
+            "render_objects_mean": 394.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 5,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 9,
+          "window_ms": 5634.286
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 4,
+          "fox_usable_samples": 5,
+          "frame_ms": {
+            "max": 1193.178,
+            "mean": 1062.1232,
+            "over_16_7_count": 5,
+            "over_16_7_fraction": 1.0,
+            "p50": 1070.677,
+            "p95": 1193.178,
+            "p99": 1193.178
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1146.832,
+            "mean": 1021.0662,
+            "p95": 1146.832
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 256.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2040.8,
+            "primitives_mean": 316197.0,
+            "render_objects_mean": 393.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 5,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 10,
+          "window_ms": 5310.616
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 4,
+          "fox_usable_samples": 5,
+          "frame_ms": {
+            "max": 1086.509,
+            "mean": 1030.7484,
+            "over_16_7_count": 5,
+            "over_16_7_fraction": 1.0,
+            "p50": 1070.68,
+            "p95": 1086.509,
+            "p99": 1086.509
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1023.483,
+            "mean": 964.501,
+            "p95": 1023.483
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 256.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2045.4,
+            "primitives_mean": 316197.0,
+            "render_objects_mean": 393.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 5,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 11,
+          "window_ms": 5153.742
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1227.51,
+            "mean": 992.559666666667,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 1013.525,
+            "p95": 1227.51,
+            "p99": 1227.51
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1254.2,
+            "mean": 928.3165,
+            "p95": 1254.2
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.666666666667,
+            "nodes_mean": 197.0,
+            "objects_mean": 2049.33333333333,
+            "primitives_mean": 316374.333333333,
+            "render_objects_mean": 407.333333333333
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 12,
+          "window_ms": 5955.358
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 892.682,
+            "mean": 820.793857142857,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 819.358,
+            "p95": 892.682,
+            "p99": 892.682
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 832.629,
+            "mean": 789.283571428571,
+            "p95": 832.629
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2050.28571428571,
+            "primitives_mean": 316294.714285714,
+            "render_objects_mean": 406.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 13,
+          "window_ms": 5745.557
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 856.496,
+            "mean": 814.169428571429,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 815.594,
+            "p95": 856.496,
+            "p99": 856.496
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 867.74,
+            "mean": 804.065428571428,
+            "p95": 867.74
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 255.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2054.85714285714,
+            "primitives_mean": 315921.0,
+            "render_objects_mean": 404.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 14,
+          "window_ms": 5699.186
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 911.625,
+            "mean": 803.546714285714,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 767.107,
+            "p95": 911.625,
+            "p99": 911.625
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 879.709,
+            "mean": 778.383,
+            "p95": 879.709
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 255.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2027.28571428571,
+            "primitives_mean": 315921.0,
+            "render_objects_mean": 404.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 6,
+          "speech_playing_audible_samples": 7,
+          "speech_playing_samples": 7,
+          "version": 1,
+          "window_index": 15,
+          "window_ms": 5624.827
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1068.797,
+            "mean": 876.533666666667,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 835.14,
+            "p95": 1068.797,
+            "p99": 1068.797
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 907.573,
+            "mean": 814.379,
+            "p95": 907.573
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 255.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2030.5,
+            "primitives_mean": 315922.333333333,
+            "render_objects_mean": 404.666666666667
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 1,
+          "speech_playing_samples": 1,
+          "version": 1,
+          "window_index": 16,
+          "window_ms": 5259.202
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 1006.409,
+            "mean": 839.339,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 784.606,
+            "p95": 1006.409,
+            "p99": 1006.409
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 974.951,
+            "mean": 821.625285714286,
+            "p95": 974.951
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 256.142857142857,
+            "nodes_mean": 197.0,
+            "objects_mean": 2034.57142857143,
+            "primitives_mean": 316262.428571429,
+            "render_objects_mean": 406.142857142857
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 17,
+          "window_ms": 5875.373
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1070.415,
+            "mean": 894.106833333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 851.497,
+            "p95": 1070.415,
+            "p99": 1070.415
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1051.736,
+            "mean": 883.408833333333,
+            "p95": 1051.736
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 256.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2037.0,
+            "primitives_mean": 316211.0,
+            "render_objects_mean": 400.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 18,
+          "window_ms": 5364.641
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1207.396,
+            "mean": 969.8295,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 926.866,
+            "p95": 1207.396,
+            "p99": 1207.396
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1211.992,
+            "mean": 932.158166666667,
+            "p95": 1211.992
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2040.0,
+            "primitives_mean": 316497.333333333,
+            "render_objects_mean": 394.166666666667
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 19,
+          "window_ms": 5818.977
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1178.185,
+            "mean": 977.409333333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 929.222,
+            "p95": 1178.185,
+            "p99": 1178.185
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1150.804,
+            "mean": 938.363333333333,
+            "p95": 1150.804
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 257.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2043.0,
+            "primitives_mean": 316497.0,
+            "render_objects_mean": 394.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 20,
+          "window_ms": 5864.456
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 917.278,
+            "mean": 864.451,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 849.02,
+            "p95": 917.278,
+            "p99": 917.278
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 863.201,
+            "mean": 773.9585,
+            "p95": 863.201
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 276.166666666667,
+            "nodes_mean": 197.0,
+            "objects_mean": 2048.66666666667,
+            "primitives_mean": 319385.333333333,
+            "render_objects_mean": 571.5
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 21,
+          "window_ms": 5186.706
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1068.772,
+            "mean": 886.547,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 880.237,
+            "p95": 1068.772,
+            "p99": 1068.772
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 907.852,
+            "mean": 795.816166666667,
+            "p95": 907.852
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 280.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2052.33333333333,
+            "primitives_mean": 319963.0,
+            "render_objects_mean": 607.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 22,
+          "window_ms": 5319.282
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1041.918,
+            "mean": 931.311333333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 919.723,
+            "p95": 1041.918,
+            "p99": 1041.918
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 979.525,
+            "mean": 850.875166666667,
+            "p95": 979.525
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 281.333333333333,
+            "nodes_mean": 197.0,
+            "objects_mean": 2054.0,
+            "primitives_mean": 320171.666666667,
+            "render_objects_mean": 604.666666666667
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 23,
+          "window_ms": 5587.868
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 4,
+          "fox_usable_samples": 5,
+          "frame_ms": {
+            "max": 1143.308,
+            "mean": 1003.0518,
+            "over_16_7_count": 5,
+            "over_16_7_fraction": 1.0,
+            "p50": 988.306,
+            "p95": 1143.308,
+            "p99": 1143.308
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1113.569,
+            "mean": 943.8176,
+            "p95": 1113.569
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 282.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2058.0,
+            "primitives_mean": 320273.0,
+            "render_objects_mean": 602.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 5,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 24,
+          "window_ms": 5015.259
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1058.301,
+            "mean": 970.933666666667,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 953.061,
+            "p95": 1058.301,
+            "p99": 1058.301
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 988.786,
+            "mean": 906.256833333333,
+            "p95": 988.786
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 283.333333333333,
+            "nodes_mean": 197.0,
+            "objects_mean": 2060.0,
+            "primitives_mean": 320669.0,
+            "render_objects_mean": 603.333333333333
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 25,
+          "window_ms": 5825.602
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1053.481,
+            "mean": 855.232333333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 821.309,
+            "p95": 1053.481,
+            "p99": 1053.481
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 992.049,
+            "mean": 780.457166666667,
+            "p95": 992.049
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 282.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2062.5,
+            "primitives_mean": 320273.0,
+            "render_objects_mean": 602.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 26,
+          "window_ms": 5131.394
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1067.527,
+            "mean": 876.183333333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 797.489,
+            "p95": 1067.527,
+            "p99": 1067.527
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 936.793,
+            "mean": 824.156166666667,
+            "p95": 936.793
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 282.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2065.5,
+            "primitives_mean": 320273.0,
+            "render_objects_mean": 602.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 27,
+          "window_ms": 5257.1
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 916.267,
+            "mean": 807.125571428571,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 816.635,
+            "p95": 916.267,
+            "p99": 916.267
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 821.785,
+            "mean": 737.542142857143,
+            "p95": 821.785
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 282.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2069.28571428571,
+            "primitives_mean": 320273.0,
+            "render_objects_mean": 602.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 28,
+          "window_ms": 5649.879
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 1040.454,
+            "mean": 842.995333333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 804.373,
+            "p95": 1040.454,
+            "p99": 1040.454
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 984.396,
+            "mean": 795.908,
+            "p95": 984.396
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 264.166666666667,
+            "nodes_mean": 197.0,
+            "objects_mean": 2078.33333333333,
+            "primitives_mean": 317319.666666667,
+            "render_objects_mean": 447.5
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 29,
+          "window_ms": 5057.972
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 4,
+          "fox_usable_samples": 5,
+          "frame_ms": {
+            "max": 1147.818,
+            "mean": 1080.2544,
+            "over_16_7_count": 5,
+            "over_16_7_fraction": 1.0,
+            "p50": 1136.508,
+            "p95": 1147.818,
+            "p99": 1147.818
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1114.786,
+            "mean": 1048.2032,
+            "p95": 1114.786
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2076.8,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 5,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 30,
+          "window_ms": 5401.272
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 4,
+          "fox_usable_samples": 5,
+          "frame_ms": {
+            "max": 1134.231,
+            "mean": 1058.499,
+            "over_16_7_count": 5,
+            "over_16_7_fraction": 1.0,
+            "p50": 1064.7,
+            "p95": 1134.231,
+            "p99": 1134.231
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1093.543,
+            "mean": 1017.296,
+            "p95": 1093.543
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2079.2,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 5,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 31,
+          "window_ms": 5292.495
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 4,
+          "fox_usable_samples": 5,
+          "frame_ms": {
+            "max": 1197.894,
+            "mean": 1053.1168,
+            "over_16_7_count": 5,
+            "over_16_7_fraction": 1.0,
+            "p50": 1033.927,
+            "p95": 1197.894,
+            "p99": 1197.894
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 1144.245,
+            "mean": 1012.8916,
+            "p95": 1144.245
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2081.8,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 5,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 32,
+          "window_ms": 5265.584
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 952.852,
+            "mean": 845.92,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 814.631,
+            "p95": 952.852,
+            "p99": 952.852
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 904.726,
+            "mean": 810.029833333333,
+            "p95": 904.726
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 269.333333333333,
+            "nodes_mean": 197.0,
+            "objects_mean": 2075.16666666667,
+            "primitives_mean": 318403.0,
+            "render_objects_mean": 471.333333333333
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 0,
+          "speech_playing_samples": 0,
+          "version": 1,
+          "window_index": 33,
+          "window_ms": 5075.52
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 968.838,
+            "mean": 852.487166666667,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 838.979,
+            "p95": 968.838,
+            "p99": 968.838
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 890.223,
+            "mean": 825.497166666667,
+            "p95": 890.223
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2031.5,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 5,
+          "speech_playing_audible_samples": 6,
+          "speech_playing_samples": 6,
+          "version": 1,
+          "window_index": 34,
+          "window_ms": 5114.923
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 6,
+          "fox_usable_samples": 7,
+          "frame_ms": {
+            "max": 1024.814,
+            "mean": 817.856,
+            "over_16_7_count": 7,
+            "over_16_7_fraction": 1.0,
+            "p50": 772.441,
+            "p95": 1024.814,
+            "p99": 1024.814
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 983.737,
+            "mean": 796.076285714286,
+            "p95": 983.737
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2034.71428571429,
+            "primitives_mean": 318007.0,
+            "render_objects_mean": 470.0
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 7,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 6,
+          "speech_playing_audible_samples": 7,
+          "speech_playing_samples": 7,
+          "version": 1,
+          "window_index": 35,
+          "window_ms": 5724.992
+        },
+        {
+          "adapter": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+          "display_driver": "Android",
+          "effects_active_samples": 5,
+          "fox_usable_samples": 6,
+          "frame_ms": {
+            "max": 984.738,
+            "mean": 869.819833333333,
+            "over_16_7_count": 6,
+            "over_16_7_fraction": 1.0,
+            "p50": 859.834,
+            "p95": 984.738,
+            "p99": 984.738
+          },
+          "kind": "bridge_ten",
+          "platform": "Android",
+          "process_ms": {
+            "max": 930.312,
+            "mean": 855.010666666667,
+            "p95": 930.312
+          },
+          "reduced_motion": false,
+          "render": {
+            "draw_calls_mean": 268.0,
+            "nodes_mean": 197.0,
+            "objects_mean": 2038.0,
+            "primitives_mean": 318008.333333333,
+            "render_objects_mean": 470.666666666667
+          },
+          "renderer": "gl_compatibility",
+          "sample_count": 6,
+          "schema": "lumo.learning.perf",
+          "speech_fox_effects_samples": 0,
+          "speech_playing_audible_samples": 1,
+          "speech_playing_samples": 1,
+          "version": 1,
+          "window_index": 36,
+          "window_ms": 5218.919
+        }
+      ],
+      "premeasurement_windows_used_in_summary": false,
+      "discarded_partial_window_after_index": 36,
+      "capture_scope": "Visible 8+5 scene after initial startup; no task, model or progress reset.",
+      "video": {
+        "file": "0454-native-three-dimensional-performance.mp4",
+        "sha256": "b58300bc8844b8c5fa2f78dcc11598f5feffebbe24906b81710754485a621df7",
+        "bytes": 637184,
+        "duration_seconds": 46.001233,
+        "width": 1080,
+        "height": 2340,
+        "audio_recorded": false,
+        "maximum_seconds": 180,
+        "block_elapsed_seconds": 47.34,
+        "whole_block_within_recording_limit": true
+      }
+    },
+    "preservation": {
+      "profile_id": "1794807717531527",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": false
+    },
+    "entry": "existing guided lesson button",
+    "current_task": "Acht und fünf"
+  },
+  "final_profile": {
+    "id": "1794807717531527",
+    "name": "LumoNextTest",
+    "age": 7,
+    "grade": 1,
+    "createdAt": "2026-11-16T05:41:57.531527"
+  },
+  "limitations": [
+    "Real spoken recognition was not exercised; actual request, system availability and Stop were observed.",
+    "Native MediaPlayer start/completion proves playback callbacks, not audible quality or phoneme lip sync.",
+    "Actual emulator frame intervals and render counters were collected with audio/figure/effect overlap; this is not a verified 60-FPS result on a physical device.",
+    "Real emulator screenshots/video and resized displays do not replace physical Fold/phone acceptance."
+  ],
+  "finished_utc": "2026-11-16T05:49:58Z"
+}

@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1548,
+      "sha256": "3c571e0fa8f82bbf24fd917fbd4554102891784173a99c0878180f4ba130f874",
+      "git_blob": "72344ef3b858ee83e0526158de37a70d827586b3"
+    },
+    {
+      "path": "before/scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "bytes": 21760,
+      "sha256": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da",
+      "git_blob": "4716d1f8beb20bc349b3a97b347136cd7d8d6664"
+    },
+    {
+      "path": "final-source/scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "bytes": 24110,
+      "sha256": "7bc35982ad31c91a7d96f890e2521e5f775618b31c273175f0005dbb8379e7e5",
+      "git_blob": "90a58f5aab7c2b462bad377bd5fbfd03b218e14d"
+    },
+    {
+      "path": "fixture.patch",
+      "bytes": 5444,
+      "sha256": "ce4e1a3b7a5d59cf291eaf06f139e77823cb7c14f55695747ab37622c892f54a",
+      "git_blob": "3efa9e582b9bcfc0e6766b0b8feb36a01a776f45"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 959,
+      "sha256": "66dd31ca0687f79c0e7088ff303937a8b8e5b71c60fbc774c45b07db198c6db6",
+      "git_blob": "658c84b85427babf445a8bc534a0c391cc5f427e"
+    },
+    {
+      "path": "original-bindings.json",
+      "bytes": 973,
+      "sha256": "de8a51bb88a44dead0532a1c8464e0042d70098ed0abf62a2b8f75a315ad5e2b",
+      "git_blob": "d5b4fddc9546afa8cdb16e718f5b0127be2df644"
+    },
+    {
+      "path": "original-red-execution.json",
+      "bytes": 566,
+      "sha256": "ac39afd3f0d33391335c84250d3fd7572d74ddadd422d778ecded59275b19f1c",
+      "git_blob": "7f32f5cfba1b0ea8881ee6f610dc4e2202b56a58"
+    },
+    {
+      "path": "original-red.log",
+      "bytes": 1249,
+      "sha256": "641c43b6456acb912085069e589fb7d23f92c5a21c72572e654df6f26259df39",
+      "git_blob": "3d4ed0499bf8430f35bebaa6f68316c159f01eef"
+    },
+    {
+      "path": "originals/pr-493.json.gz",
+      "bytes": 4332,
+      "sha256": "c232526409107640a55b6f57ab5e2ef1ce34d1179bd71290ad5439d3800d3c16",
+      "git_blob": "95663bcb830c6fcbeb42228cab2354e540031a8f"
+    },
+    {
+      "path": "originals/pr493-18c12-to-26a127-compare.json.gz",
+      "bytes": 54500,
+      "sha256": "bdfa2890ccdf59c6e4bccc8db8474e62e938c74bc8d59008d33049b9a18be871",
+      "git_blob": "c89c8ad072a5981baa70e4af0e2405e2e6501b79"
+    },
+    {
+      "path": "producer-binding.json",
+      "bytes": 515,
+      "sha256": "a559c700a25b8686d9d54289b88620010986181a9fa9bd984b84b81075dcb7b9",
+      "git_blob": "2929deeebc5c2bf6ae612e41c39098d4967cd9c7"
+    },
+    {
+      "path": "proposed-green-execution.json",
+      "bytes": 714,
+      "sha256": "f3d57350228462cea714d607df005e5cbfa263f89427d84aaa8232f37ff79457",
+      "git_blob": "414efc48aea5fcbde9e633e949b52c1ba445234b"
+    },
+    {
+      "path": "proposed-green.log",
+      "bytes": 284,
+      "sha256": "44bc531e2c08f6c3856e3efb9a313f8edc6e337b6fa475f440aad9efe30fab46",
+      "git_blob": "08eb53e2612982a584accf7a14d5145e48739d96"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2627,
+      "sha256": "b3fab5a5371d22e9a478a630c97edb0e8da3c23adfa25a00eac1221f1485156f",
+      "git_blob": "1303c154e34bac60da75c2efaef70a98df5342d0"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 2259,
+      "sha256": "913fdafaaea93e627f024bed827e4a33ed24b3490a52b4612ccafc79cc64e1ee",
+      "git_blob": "cdb0ea90076e74288f720bf31b6acaf1cc482c9f"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 2259,
+      "sha256": "913fdafaaea93e627f024bed827e4a33ed24b3490a52b4612ccafc79cc64e1ee",
+      "git_blob": "cdb0ea90076e74288f720bf31b6acaf1cc482c9f"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 2807,
+      "sha256": "6ea3be9cb817ae233c46ce3ce08f1ed916ed8f3510a18e9ca7fb7151e5c3f083",
+      "git_blob": "9ba60c54d65b6d16e9ecd3efc6ec6a29cb7f9a85"
+    },
+    {
+      "path": "test-view-binding.json",
+      "bytes": 8857,
+      "sha256": "4284735f42fd3ca3155cb5f55a10db32928b3257b452b97a44765f1bc1853b99",
+      "git_blob": "54a4feb5a95da33a750b991dc6b5712fb36bde38"
+    }
+  ]
+}

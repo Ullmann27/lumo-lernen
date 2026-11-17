@@ -1,0 +1,533 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "head": "cfa4725263f15e9cc3f75d8f6dfae0949fbb86ab",
+  "tree": "d0fedc2ceeb02e7eefea61b2667195a43f14bdf6",
+  "source_unchanged": true,
+  "process": {
+    "schema": 1,
+    "argv": [
+      "/workspace/scratch/b3485b7bb989/toolchains/flutter-3.44.9/flutter/bin/flutter",
+      "test",
+      "--no-pub",
+      "--reporter=json",
+      "test/learning_modules/deutsch_sach_module_progress_test.dart"
+    ],
+    "started_at": "2026-11-14T14:22:49.983668+00:00",
+    "finished_at": "2026-11-14T14:23:49.535140+00:00",
+    "duration_seconds": 59.55156570100007,
+    "child_exit_code": 0,
+    "child_exit_known": true,
+    "retry": false
+  },
+  "counts": {
+    "pass": 17,
+    "errors_or_failures": 0,
+    "skips": 0,
+    "total": 17
+  },
+  "all_original_case_names_preserved": true,
+  "test_results": [
+    {
+      "line": 10,
+      "test": {
+        "start_line": 9,
+        "id": 4,
+        "name": "d2_artikel real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 4,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 11331
+    },
+    {
+      "line": 12,
+      "test": {
+        "start_line": 11,
+        "id": 5,
+        "name": "d2_mehrzahl real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 5,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 13183
+    },
+    {
+      "line": 14,
+      "test": {
+        "start_line": 13,
+        "id": 6,
+        "name": "d3_wortarten real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 6,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14503
+    },
+    {
+      "line": 16,
+      "test": {
+        "start_line": 15,
+        "id": 7,
+        "name": "d3_zeitformen real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 7,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15489
+    },
+    {
+      "line": 18,
+      "test": {
+        "start_line": 17,
+        "id": 8,
+        "name": "d1_woerter real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 8,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 16711
+    },
+    {
+      "line": 20,
+      "test": {
+        "start_line": 19,
+        "id": 9,
+        "name": "s1_tiere real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 9,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17688
+    },
+    {
+      "line": 22,
+      "test": {
+        "start_line": 21,
+        "id": 10,
+        "name": "s1_farben real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 10,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18938
+    },
+    {
+      "line": 24,
+      "test": {
+        "start_line": 23,
+        "id": 11,
+        "name": "s2_jahreszeiten real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 11,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19899
+    },
+    {
+      "line": 26,
+      "test": {
+        "start_line": 25,
+        "id": 12,
+        "name": "s2_wetter real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 12,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 21034
+    },
+    {
+      "line": 28,
+      "test": {
+        "start_line": 27,
+        "id": 13,
+        "name": "s2_verkehr real registry answer persists its exact subject and topic",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 289,
+        "root_column": 5,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 13,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22115
+    },
+    {
+      "line": 30,
+      "test": {
+        "start_line": 29,
+        "id": 14,
+        "name": "visible noun determines right and wrong articles and only right advances Daily",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 326,
+        "root_column": 3,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 14,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 24131
+    },
+    {
+      "line": 32,
+      "test": {
+        "start_line": 31,
+        "id": 15,
+        "name": "article wallet rejection blocks Back and task change; duplicate retries save one answer",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 350,
+        "root_column": 3,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 15,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 28023
+    },
+    {
+      "line": 34,
+      "test": {
+        "start_line": 33,
+        "id": 16,
+        "name": "article learning-save rejection retries existing counters without another reward",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 396,
+        "root_column": 3,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 16,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 30249
+    },
+    {
+      "line": 36,
+      "test": {
+        "start_line": 35,
+        "id": 17,
+        "name": "pending wrong article rejects a second answer until learning storage finishes",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 441,
+        "root_column": 3,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 17,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 32106
+    },
+    {
+      "line": 38,
+      "test": {
+        "start_line": 37,
+        "id": 18,
+        "name": "saved article feedback waits for foreground before showing the next word",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 476,
+        "root_column": 3,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 18,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 32983
+    },
+    {
+      "line": 40,
+      "test": {
+        "start_line": 39,
+        "id": 19,
+        "name": "actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 500,
+        "root_column": 3,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 19,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 35585
+    },
+    {
+      "line": 42,
+      "test": {
+        "start_line": 41,
+        "id": 20,
+        "name": "two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+        "suiteID": 0,
+        "groupIDs": [
+          2
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 537,
+        "root_column": 3,
+        "root_url": "file:///workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout/test/learning_modules/deutsch_sach_module_progress_test.dart"
+      },
+      "testID": 20,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 57487
+    }
+  ],
+  "done": [
+    {
+      "line": 45,
+      "success": true,
+      "type": "done",
+      "time": 57607
+    }
+  ],
+  "error_events": [],
+  "non_machine_lines": [],
+  "stdout": {
+    "bytes": 10997,
+    "sha256": "c21fafc262708b9fc86316530976d5bf2d171870ead7ddfe454bb546ef6a6c2c",
+    "git_blob": "bbf184d0d541e41877c62d2e3aeda0c009e87dd6"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "limits": [
+    "One local existing17-case Flutter test file, not the full suite.",
+    "No new Android/APK/native or overall candidate acceptance.",
+    "Original failed37ec CI evidence remains unchanged."
+  ]
+}

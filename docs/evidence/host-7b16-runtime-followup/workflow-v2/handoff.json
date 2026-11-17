@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "LOCAL_11_CONTRACTS_PASS_DEVICE_PENDING",
+  "source_freeze": {
+    "bytes": 1210,
+    "sha256": "556776a6152f8c0e62ddf497ccdfc3ea7bbf8fb60656e5303793ad7a0b5f78df"
+  },
+  "v1_to_v2": {
+    "bytes": 1073,
+    "sha256": "0b84dbadc2326a0a1c5796236574a07fada5fb4459e2837e8d5ba9c0817be854"
+  },
+  "tests": {
+    "run": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "actionlint_exit": 0
+  },
+  "log": {
+    "bytes": 2462,
+    "sha256": "d912d2e24513436d6a4384b84d8ca72690db957f6e9ad9d8691246c2384c02b1"
+  },
+  "old_workflow_unchanged": true,
+  "runtime_logger_unchanged": true,
+  "wrapper_unchanged_from_v1": true,
+  "scope": "No publication/ref/index action; Root owns final source publication."
+}

@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_kart_garage*.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/909ddb52fe7b/garage-probe-repair-1e22",
+  "started_utc": "2026-11-14T15:39:09.170878+00:00",
+  "exit_code": 0,
+  "scope": "Offline exact-source contract and original-fixture replay; ADB mocked; no Android/Flutter/OCR engine execution"
+}

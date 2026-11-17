@@ -10,7 +10,12 @@ import 'package:lumo_lernen/features/story/lumo_story_reader_screen.dart';
 import 'package:lumo_lernen/features/story/lumo_story_setup_screen.dart';
 
 Future<void> _routeFrames(WidgetTester tester) async {
-  await tester.pump();
+  // Completion now waits for both the reward wallet and completed-read write.
+  // Drain their real platform futures between Flutter's fake-clock frames.
+  for (var i = 0; i < 4; i++) {
+    await tester.pump();
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+  }
   await tester.pump(const Duration(milliseconds: 500));
   await tester.pump(const Duration(milliseconds: 16));
 }
@@ -51,24 +56,59 @@ void main() {
       final exercise = story.pages[index].exercise;
       if (exercise != null) {
         final options = exercise.options;
-        final label = options == null
-            ? 'Wort merken!'
-            : options.firstWhere((o) => o != exercise.correctAnswer);
+        final label = options == null ? 'Wort merken!' : exercise.correctAnswer;
         await tester.ensureVisible(find.text(label));
         await tester.tap(find.text(label));
         await tester.pump();
       }
-      final label = index + 1 == story.pages.length
-          ? 'Erzähl mir die Geschichte!'
-          : 'Weiterlesen';
-      await tester.runAsync(() => tester.tap(find.text(label)));
+      final next = find.byKey(const ValueKey('lumo-story-continue'));
+      expect(next, findsOneWidget,
+          reason:
+              'Story must expose its next-reading action on page ${index + 1}');
+      final nextButton = tester.widget<ElevatedButton>(next);
+      expect(nextButton.onPressed, isNotNull,
+          reason: 'Story cannot advance until an active clue is solved');
+      // This is a route/state regression, not a pointer hit-target test.
+      // Calling the live button callback avoids the unrelated desktop-size
+      // test-binding hit-test warning in the bottom system inset.
+      nextButton.onPressed!.call();
       await _routeFrames(tester);
+      if (index + 1 < story.pages.length) {
+        expect(find.byKey(ValueKey('lumo-story-scene-${index + 2}')),
+            findsOneWidget,
+            reason: 'The next real illustrated page must render');
+      }
+    }
+    if (story.bookQuestions.isNotEmpty) {
+      expect(
+          find.byKey(const ValueKey('lumo-book-reading-quiz')), findsOneWidget,
+          reason: 'The book must open its independent comprehension check');
+      for (var questionIndex = 0;
+          questionIndex < story.bookQuestions.length;
+          questionIndex++) {
+        final question = story.bookQuestions[questionIndex];
+        await _routeFrames(tester);
+        expect(find.byKey(ValueKey('lumo-book-question-$questionIndex')),
+            findsOneWidget);
+        final correctIndex = question.options.indexOf(question.correctAnswer);
+        expect(correctIndex, greaterThanOrEqualTo(0));
+        final answer = find.byKey(ValueKey('book-answer-$correctIndex'));
+        await tester.ensureVisible(answer);
+        await tester.pump();
+        await tester.tap(answer);
+        await _routeFrames(tester);
+        final next = find.byKey(const ValueKey('lumo-book-quiz-next'));
+        await tester.ensureVisible(next);
+        await tester.pump();
+        await tester.tap(next);
+        await _routeFrames(tester);
+      }
     }
     if (story.keyPoints.isNotEmpty) {
       await tester.enterText(
           find.byType(TextField), 'Ich habe eine Geschichte gelesen.');
-      await tester.ensureVisible(find.text('Bewertung holen'));
-      await tester.tap(find.text('Bewertung holen'));
+      await tester.ensureVisible(find.text('Rückmeldung holen'));
+      await tester.tap(find.text('Rückmeldung holen'));
       await tester.pump(const Duration(seconds: 3));
       await tester.runAsync(() => tester.tap(find.text('Fertig!')));
       await _routeFrames(tester);

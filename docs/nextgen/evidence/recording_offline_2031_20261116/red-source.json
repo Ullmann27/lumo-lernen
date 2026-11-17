@@ -1,0 +1,32 @@
+{
+  "baseCommit": "daa69bf4d639ee1a35a4938bfb469311f85eec4c",
+  "productionUnchanged": true,
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_nextgen_learning_android_probe.py",
+    "-k",
+    "original_offline",
+    "-v"
+  ],
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 90802,
+      "sha256": "5edad1d34a25b2d9a3bd4fc46ffdf51840defa7609943d07996cd3df8efb6fb5"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_android_probe.py",
+      "bytes": 88350,
+      "sha256": "d5c4a1ea3fc3990ed69ec3a3b7e012205142a4c320895320187751e0e90320ed"
+    }
+  ],
+  "testPatchSha256": "eabdf3f70bbd04f4833a1eefeb9a32f27d2af80d339a29fd18e76316edc5c279",
+  "boundary": "Original raw offline response and failed-copy error, with explicitly constructed subsequent ADB/device/video transport. No Android execution."
+}

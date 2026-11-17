@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-13T13:59:15.548231+00:00",
+  "host_commit": "732056af52826920e4228fc9e68e188cc8f27a82",
+  "host_tree": "bb004af27000a0b910ac5d93b644fd40740c12f7",
+  "passed": 55,
+  "failed": 0,
+  "skipped": 0,
+  "scope": "Seven real Flutter test files on merged Studio, build voice and integration host; actual Android IPC and device rendering are not claimed. The five learning payloads still match the unchanged original a8e0912 fixture.",
+  "raw_log_sha256": "26bdcf458c148fa4c26a653e4e3f9ee42f5173df77ed68d0eec2da05a65b9c33",
+  "archive_sha256": "57d073cc279900aaf5c51740f9974c67efb3a31172009d23fc077b7590b8becb",
+  "files_equal_to_commit_after_run": [
+    {
+      "path": "lib/core/native_profile_key_repository.dart",
+      "sha256": "27790a3fecd569a57a0c6fb6905636773bc95938fe22f9c8bbe84b677603471c",
+      "blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "sha256": "846b99af1e424646b051610e37867319371e81ee0f09f73e0fe4b3fbc9ea0cdb",
+      "blob": "9e76be4522a1f27ca56da0b9d2989984a14b4701"
+    },
+    {
+      "path": "lib/features/lumo3d/native_game_saves_screen.dart",
+      "sha256": "05e45625de473f6dddbe81567e3412a441e29d2a335a121be115ddb855065d9b",
+      "blob": "8f5cbee67a38777ebfe8818002416ef26f3ca22a"
+    },
+    {
+      "path": "lib/features/settings/native_game_saves_card.dart",
+      "sha256": "1678bb967c1177a17a0e36e5995c416c15e2095356191637cea667e37c4025d7",
+      "blob": "36e401e8a5bc13208be2368240772bf84e385633"
+    },
+    {
+      "path": "lib/features/settings/settings_content.dart",
+      "sha256": "0f692e8dcd4d3562feaf443631aee7b5eb013e62495f537f1f996835f8b13cb1",
+      "blob": "88505af2708e316c72448695e6279fc08e9312e9"
+    },
+    {
+      "path": "test/native_profile_key_repository_test.dart",
+      "sha256": "e21108a09054ce35cf8d55b9bcd33d970330ab315102b399f80e456d8fb95944",
+      "blob": "908a85c6e18c527837eff5e2fcf77066ae4d8ada"
+    },
+    {
+      "path": "test/native_profile_keys_ui_test.dart",
+      "sha256": "957388e7161a05ba3faeda333ed26b954354f613dfdf7fdab063b5a4f890004c",
+      "blob": "c152d173df4d5dc7bebee33a741f9ada0159fc2f"
+    },
+    {
+      "path": "test/lumo3d_launcher_lifecycle_test.dart",
+      "sha256": "6247e2439809312f1f06a7455c78b35269f4c44ed87dc23cf3062119a5851a3d",
+      "blob": "620a4d74132a516142f2757610c65971909fc166"
+    },
+    {
+      "path": "test/tutoring/native_learning_launch_test.dart",
+      "sha256": "4fff9015bba0fbbe5a69c6de613a1b1123db97c76e17b49ecca5e20426c15824",
+      "blob": "240da9cc4a559ef44b17db8b8e1693292e423fe8"
+    },
+    {
+      "path": "test/tutoring/native_sharing_activity_test.dart",
+      "sha256": "23aa35bffa4a78fc173167eabb1d4dec41d80fe30453a51544f6989e8b56855f",
+      "blob": "f2db4fb1fe0d4ebc5a5158ce04e6db083e3990f5"
+    },
+    {
+      "path": "test/tutoring/native_learning_serialized_contract_test.dart",
+      "sha256": "01161e29f6864382deb32c081f8b8352fd5a56231679a8de5b8cd912e67f0e10",
+      "blob": "9c93f8aeca66991d43e79a699c95330601e110a7"
+    },
+    {
+      "path": "test/games/build_world_voice_launch_test.dart",
+      "sha256": "98eb2f796e5fd6938bbe0e98fc61d9edbc4c039b8ed3e69af395418d4eb70693",
+      "blob": "14a3775eab7213ff7fd195a32fde38fe1030044f"
+    }
+  ]
+}

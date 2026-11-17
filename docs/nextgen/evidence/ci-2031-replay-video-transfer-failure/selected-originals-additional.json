@@ -1,0 +1,92 @@
+{
+  "artifactId": 14201128406,
+  "workflowRun": 43811505799,
+  "archiveSha256": "cbd6a659a292804df4c81928c6c4b942c94a67c969055f05b556393788253609",
+  "byteExactOriginals": [
+    {
+      "path": "checkers/current-gates.log",
+      "bytes": 2382,
+      "sha256": "c9d68f19b41037b5e1c13870e4d796ecb9182172756977a479f6a556f95bfea4"
+    },
+    {
+      "path": "checkers/original-gates.log",
+      "bytes": 15823,
+      "sha256": "ecd6f7cdc9c61207653f512029c3050b8f09106e169afc7020935f6daf1ecb5f"
+    },
+    {
+      "path": "checkers/public-download-gates.log",
+      "bytes": 2755,
+      "sha256": "20e40bc4f5b4adac818ac337ef0e343bf7d23d6a608c8b36efede809f53878cf"
+    },
+    {
+      "path": "checkers/publication-gates.log",
+      "bytes": 1902,
+      "sha256": "e58d3a103e681b39ec3c18ecd120e7c4d0039d8b7a87924894f2f38ebc138035"
+    },
+    {
+      "path": "checkers/reference-gates.log",
+      "bytes": 5274,
+      "sha256": "3d6c9a05c60d9d1ddeae9bd84c3fa2cd108088f2439b44f2ff1fad1583d062d2"
+    },
+    {
+      "path": "checkers/replay-gates.log",
+      "bytes": 2833,
+      "sha256": "51f0d0fa6c66fd538dc2f74a59de491982637dc1708117952425e449e6dc3592"
+    },
+    {
+      "path": "checkers/wrapped-reader.log",
+      "bytes": 2824,
+      "sha256": "0e7ffef39d5d9c2d7adada0dfe36403f6e8ae4f0276b77b46105044ae0d4c91f"
+    },
+    {
+      "path": "download/original-build-job.json",
+      "bytes": 4514,
+      "sha256": "1905f9a78cb2085451bcd7e5e26a4b018459942e811aaba9360021e8a2e2773e"
+    },
+    {
+      "path": "download/original-run.json",
+      "bytes": 13802,
+      "sha256": "0148a252c8f7833dbec7fbcbb12c170fc9b4bba14c122ff0df1bfc37e2269d46"
+    },
+    {
+      "path": "download/original-validate-job.json",
+      "bytes": 5726,
+      "sha256": "d5f557e1c706ec9505aaa7e6e45624ad6b27bb0692b51ecaed3ad3a740d729a7"
+    },
+    {
+      "path": "download/original-x86-artifact.json",
+      "bytes": 810,
+      "sha256": "3e898baecfa54d1d0e9ce0001e408ab7188bfd2a9f28089188f02d6a50d86959"
+    },
+    {
+      "path": "download/verified-download.json",
+      "bytes": 19256,
+      "sha256": "85512207d33b63e65d08e14849e434e3a89dd20060a0632396731a84a3d6e50b"
+    },
+    {
+      "path": "emulator/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    },
+    {
+      "path": "emulator/mesa-renderer.txt",
+      "bytes": 1774,
+      "sha256": "90877f74bcb370cc0b62bb493e8f30e6fc6dcaecd59b3709948a590e221d2d50"
+    },
+    {
+      "path": "source/qa-source-binding.json",
+      "bytes": 17034,
+      "sha256": "df781339c2433da4c9c582a6177790e9c4331cdf81a54bfd9abf7ecf2ddc5389"
+    },
+    {
+      "path": "android/reference-android/0091-banana-guided-navigation-recording-error.json",
+      "bytes": 1448,
+      "sha256": "860a599a7e234eccb76216f71971154dc70785726406f376cc1a143fddcb3598"
+    },
+    {
+      "path": "android/original-android/native-learning-performance.json",
+      "bytes": 51771,
+      "sha256": "a7f9ce613d09d7e1636befa0c366efb5f5286ceb6d47c4ed745f4cdb9332d287"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "parent": "68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697",
+  "parent_tree": "ecd5df0797c2b4102f2c7bbc30146f3061d713ce",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "source_changes": [],
+  "documents": [
+    {
+      "path": "STATUS.md",
+      "prepared_sha256": "fa3cc8a7741ca7a6618caf2c0197e8ff231dc0ea912c24d1b8e6b6c36cab7fb5",
+      "final_sha256": "958b0109649183ad93b990410d6945aafcbb86e6dc14b579648450d9c0a45da2",
+      "historical_suffix_byte_equal": true
+    },
+    {
+      "path": "CONTINUE.md",
+      "prepared_sha256": "321ccfb22bc77ef35a58be4609a03f76358a11450840a06990db7c9e5a604498",
+      "final_sha256": "a5892ec95f38683ed72025b9de070f262dbead56078d6fe6b1a19cd396f88a71",
+      "historical_suffix_byte_equal": true
+    }
+  ],
+  "root_review": "Complete new STATUS and CONTINUE sections and their factual source bindings read directly. Root read the actual 64-method result, process exit receipt and complete original stderr, then independently read every compact archive member byte-for-byte. Two documents now add only the actually completed 64-method evidence and preserve their complete historical suffixes.",
+  "pin_test_result": {
+    "schema": 1,
+    "status": "PASS",
+    "host_commit": "68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697",
+    "host_tree": "ecd5df0797c2b4102f2c7bbc30146f3061d713ce",
+    "native_commit": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "methods": 64,
+    "method_counts": {
+      "test_candidate_2011_pin.py": 24,
+      "test_legacy_release_pin.py": 40
+    },
+    "passed_method_lines": 64,
+    "errors": 0,
+    "failures": 0,
+    "skipped_method_lines": 0,
+    "source_index_status_unchanged": true,
+    "indexed_paths": 4440,
+    "materialized_paths": 7,
+    "sparse_absent_paths": 4433,
+    "index_sha256": "bac1910eac440acf484e889d26fc3c13d8d8e13eba26b76846431beb7b3af616",
+    "process": {
+      "argv": [
+        "/tmp/lumo-root-recovery-1242/py/bin/python",
+        "-m",
+        "unittest",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_legacy_release_pin",
+        "-v"
+      ],
+      "cwd": "/tmp/host-68f86b7-final-pin-validation-20261114/checkout",
+      "started_at": "2026-11-14T13:45:57.261233+00:00",
+      "ended_at": "2026-11-14T13:45:57.389660+00:00",
+      "elapsed_seconds": 0.1283994020004684,
+      "exit_code": 0,
+      "test_invocations": 1,
+      "stdout": {
+        "path": "unittest.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "unittest.stderr.log",
+        "bytes": 12267,
+        "sha256": "856bf81fa60db7c7c087f6b4f2fd388553a6bc8ea4fd0ee76d4d8c031f953e44"
+      }
+    },
+    "scope": "One local 64-method pin/source contract invocation only; no workflow/engine/renderer/Android or release acceptance."
+  },
+  "activation": "Publish this documentation/evidence-only successor on the working integration ref, then non-forced leased fast-forward of existing PR485 head from 3d91bd8355a539c3c2413760959684cd3fee985a. Read actual new workflow identity before claiming it running.",
+  "native_ci_status_at_preparation": "Run 43600806315 attempt1 in progress; renderer acceptance still open",
+  "apk_status": "No newly accepted or published APK. Historical 43589206933 remains failed and unpublished."
+}

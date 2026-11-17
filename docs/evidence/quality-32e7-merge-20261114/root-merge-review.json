@@ -1,0 +1,583 @@
+{
+  "schema": 1,
+  "scope": "Root source merge review; local runtime unavailable, no new execution",
+  "first_parent": "182e5e236a9a08fa4e8b33778338ac22ac05575a",
+  "second_parent": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "merge_base": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "classification": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "before": "2daf7b3c84495a60aef2bf4459cab697549bca88",
+      "ours": "2daf7b3c84495a60aef2bf4459cab697549bca88",
+      "theirs": "c996a022d388632ed13965b392181aef773d9025",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "before": "60c6341da4b249fe142a1289599ad02475326c33",
+      "ours": "60c6341da4b249fe142a1289599ad02475326c33",
+      "theirs": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "before": "83546f7e1fed0ce6943128167aada51a73ee0251",
+      "ours": "6d281c42e2997a8a421721e9b80ff5d8e6439570",
+      "theirs": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af",
+      "resolution": "conflict"
+    },
+    {
+      "path": "config/godot-source.json",
+      "before": "72dc631c9e27885cb3ab38ce446a66416f818ebb",
+      "ours": "3f24f85434618cf26af87ed977c884dae8bd064a",
+      "theirs": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2",
+      "resolution": "conflict"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/complete-original-failure.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "81804c32c36497793d110f6397378007a140c1cd",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "f6e435c93ac6bcb86de38f72fb2533539205d886",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/original-archive-bindings.json",
+      "before": null,
+      "ours": null,
+      "theirs": "c73815f64b09592de920b52b69026b4e89bf0615",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/prepare-connection.py",
+      "before": null,
+      "ours": null,
+      "theirs": "a1fe6273fcecf9d4bd5e87a5d1b9edd424aadfff",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/result.json",
+      "before": null,
+      "ours": null,
+      "theirs": "9a6f16fad26392b0f9305dd964082aac6900718b",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-79c-original-failure-20261114/root-connection.json",
+      "before": null,
+      "ours": null,
+      "theirs": "91c817bba254ef9940422e3a11c8203a895d4090",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/actual-compile-curriculum/complete-originals.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "7f02010479ee7f64fb191127c3910dc784d1925d",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/actual-compile-curriculum/handoff.json",
+      "before": null,
+      "ours": null,
+      "theirs": "1b2ebaf0004bf216931c629aad2cfd6dfc37bbe4",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/actual-compile-curriculum/manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "728783c43d8c8069c81e294971e7eb60c956b124",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/actual-compile-curriculum/verification.json",
+      "before": null,
+      "ours": null,
+      "theirs": "f378abdf020090983af2d03d89510a946b818b0a",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/c4-visible-targets/complete-originals.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "41fbdd8f6de0080feb084f73feadf952ccc6ab35",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/c4-visible-targets/manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "2b567eaa2132101e34a783a5863f7c38a86cdd46",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/c4-visible-targets/source-freeze.json",
+      "before": null,
+      "ours": null,
+      "theirs": "d1f371b51b736ebece1c2ce0459e7b2ac3ff63cf",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/c4-visible-targets/tests-only.patch",
+      "before": null,
+      "ours": null,
+      "theirs": "24196294da11bbd9b5094b952ef41aa1bff44e50",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/independent-fixture-review/manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "e2ddf801e3f4c243ab848530cff4b116ba93d57b",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/independent-fixture-review/review.json",
+      "before": null,
+      "ours": null,
+      "theirs": "6049ce484c15fd584107c4ef2daabe7cdb159010",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/original-archive-bindings.json",
+      "before": null,
+      "ours": null,
+      "theirs": "fb5ece8481eab0a5df07129d4e47b32902bb810f",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/prepare-connection.py",
+      "before": null,
+      "ours": null,
+      "theirs": "a1fe6273fcecf9d4bd5e87a5d1b9edd424aadfff",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/producer/complete-comparison.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "f0efd9f0fcba3e107a2eac3cdc4da76fa27ebb55",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/producer/manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "b297675db30f3b961ef13f43261b37a64de6afb2",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/producer/review.json",
+      "before": null,
+      "ours": null,
+      "theirs": "2e4afc51ded9b0bbc496ab37f4239da843199e37",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/complete-originals.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "25cc2f26f11c51c56e023f50226384cd0d4ef598",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/fixture.patch",
+      "before": null,
+      "ours": null,
+      "theirs": "3efa9e582b9bcfc0e6766b0b8feb36a01a776f45",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/handoff.json",
+      "before": null,
+      "ours": null,
+      "theirs": "658c84b85427babf445a8bc534a0c391cc5f427e",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "3ab53390df445bd36531d1d2f70669855f15a6b7",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/result.json",
+      "before": null,
+      "ours": null,
+      "theirs": "1303c154e34bac60da75c2efaef70a98df5342d0",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/qa-fixture/source-freeze.json",
+      "before": null,
+      "ours": null,
+      "theirs": "9ba60c54d65b6d16e9ecd3efc6ec6a29cb7f9a85",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/c4-historical-qa-fixture-repair-20261114/root-connection.json",
+      "before": null,
+      "ours": null,
+      "theirs": "b05f2d9330c51a4424b227326b7d50314d6e8e3c",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-complete-originals.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "36150dd6d7734b65e4e50ad8db19ff4fa05f242c",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-handoff.json",
+      "before": null,
+      "ours": null,
+      "theirs": "7e43e13ba25c5b06c724dd8dcece878bb3aecc12",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "1482a7add0dc0fe52ffcae84ae708858c0cbd4d4",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-source-freeze.json",
+      "before": null,
+      "ours": null,
+      "theirs": "2f4eaa30c659a7f6ca245f3b1a91d0154eb558bc",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/c4-pressed-source-review.json",
+      "before": null,
+      "ours": null,
+      "theirs": "f64d00127559f18a749c035d9eb533a9588524ab",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/combined-source-freeze.json",
+      "before": null,
+      "ours": null,
+      "theirs": "8ab702b3726ea1b52d265fae4b7eb4cee0c1b64b",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/host2b-original-missing-cache-preflight.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "54a23a18f611abe6709c2511ca1f51dcd8e3b201",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/host2b-preflight-result.json",
+      "before": null,
+      "ours": null,
+      "theirs": "7fe0ceaa49becbe3d713a123dcb16c8cd66498c1",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/latest-producer-comparison.json",
+      "before": null,
+      "ours": null,
+      "theirs": "c533a6eafbf26c552d90d2e3747eca863eba01a4",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/native-f052-complete-validation.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "f6581c7c27b61603b58871ac80e0a3018be6d391",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/native-f052-manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "d86311803b058427812672f90891ad9358dcd186",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/native-f052-summary.json",
+      "before": null,
+      "ours": null,
+      "theirs": "fc518b552aa0650de8b34d5cea49e27448d36ba6",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/pause-caption-independent-review.json",
+      "before": null,
+      "ours": null,
+      "theirs": "4039f0c7c266650152da25e85e0951d80f8207d2",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/prepare-root-gate-sources.py",
+      "before": null,
+      "ours": null,
+      "theirs": "fa01bf9b1dd692f7d78a197abacceb8c34fd50f7",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-complete-originals.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "062571f1ffcace87c3b3cb956d0a8fadf68ba52e",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-handoff.json",
+      "before": null,
+      "ours": null,
+      "theirs": "d07d69a81c3fe06d021285adfe66b9cc9cff35ed",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "b8b9158b5e79881bbed6a7f6bd1bc795650894e4",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-source-freeze.json",
+      "before": null,
+      "ours": null,
+      "theirs": "cf8660204b1a61660922bd619d05d2e10ba16cae",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/privacy-history-source-review.json",
+      "before": null,
+      "ours": null,
+      "theirs": "2fc40e231500e694b931f335997f87b279d312a5",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/qa1cc5-complete-nine-pass-and-original-red.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "ac0e3ea6add4a456182ca702916de2e199795b52",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/qa1cc5-handoff.json",
+      "before": null,
+      "ours": null,
+      "theirs": "5bfcb74b54855a97ab764f33b2be5e7e241444da",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/qa1cc5-manifest.json",
+      "before": null,
+      "ours": null,
+      "theirs": "ee89fc48467db923419eca0e7bad6dd362765b7e",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/recover-sparse-objects.py",
+      "before": null,
+      "ours": null,
+      "theirs": "4b255538a7a464e5aefee0105c4bab5a4c22a18c",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/root-connection.json",
+      "before": null,
+      "ours": null,
+      "theirs": "9c402236aa7b1e0ae26f053a35ae9470ceec85d6",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/root-gates-complete-source-pack.tar.gz",
+      "before": null,
+      "ours": null,
+      "theirs": "de5e8c49c2943e78edc26f5db3551ca537639340",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/root-gates-independent-review.json",
+      "before": null,
+      "ours": null,
+      "theirs": "a28637b448a105247b38b0bd06d9bbdf4a1f6a52",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "docs/evidence/host-complete-current-connections-20261114/root-gates-source-freeze.json",
+      "before": null,
+      "ours": null,
+      "theirs": "8c554466f7e5db54991c0854b4bedb5af4ef19e7",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "lib/core/lumo_image_generator.dart",
+      "before": "c9e8e01014362f2d1f9ab1b8dd1de893928fe3b4",
+      "ours": "d8f14f1c344e7c3721f6f337b733fded012db897",
+      "theirs": "d8f14f1c344e7c3721f6f337b733fded012db897",
+      "resolution": "already-identical"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "before": "4d2bb14a89f0988e8d61567225403ee9416cf681",
+      "ours": "4d2bb14a89f0988e8d61567225403ee9416cf681",
+      "theirs": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "before": "6367ea2cb9b562f56056623ff289c3e71de28157",
+      "ours": "67735aea96e81287057b7ec7903ff77e5a3f3744",
+      "theirs": "3f3a74806b29f07b18bcc3ecc88da982bb28f3c1",
+      "resolution": "conflict"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "before": "5760ec96f3002a782708b13c9b2f019a26109c33",
+      "ours": "11bea238317d8436a6babe35262f437039ce74d6",
+      "theirs": "c7b9461ed056521a5da1fb528afe614b7cdeecee",
+      "resolution": "conflict"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "before": "4716d1f8beb20bc349b3a97b347136cd7d8d6664",
+      "ours": "4d707757b07622b7caa74a9094309fb2052a82a6",
+      "theirs": "90a58f5aab7c2b462bad377bd5fbfd03b218e14d",
+      "resolution": "conflict"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "before": "528e70ec56a5d990faa7ce6d10e61345870c7aee",
+      "ours": "8c79b9ea748944b2601f59795014af70df0b929f",
+      "theirs": "eb35329baf46efa5cdf17af1187e8c460d93c752",
+      "resolution": "conflict"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "before": "28f3aee40eb0028c5a4aa80196749f5867cbffc4",
+      "ours": "12f4a7916c820acecccbcdf1b4f8f73257f73a7c",
+      "theirs": "fc050358bce96db9e6cb1ffec77a4ea9e53c1cbb",
+      "resolution": "conflict"
+    },
+    {
+      "path": "test/core/lumo_image_generator_test.dart",
+      "before": "a6d7315ecf417519126ae0536bdf1321b1c61fb5",
+      "ours": "59fe89a46a5d52e2f97529a21832240ecf2a8a46",
+      "theirs": "59fe89a46a5d52e2f97529a21832240ecf2a8a46",
+      "resolution": "already-identical"
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "before": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+      "ours": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+      "theirs": "4169f06a21138d253ec3b4298720e97fa9854d95",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "before": "92956444dee338921853aea037ca32033bcd3b2e",
+      "ours": "92956444dee338921853aea037ca32033bcd3b2e",
+      "theirs": "d5e847507275b67d6d3aa4bdbaf2991f01817bca",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "before": "29cd071778aae6d5b643e48df7c6a67a4d993db6",
+      "ours": "29cd071778aae6d5b643e48df7c6a67a4d993db6",
+      "theirs": "b05fa2ececfef096db3c4c6f7b116ac79e61d197",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "before": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+      "ours": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+      "theirs": "254267c9f84d5c8e507307178015d281db238e4f",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0-ocr.json",
+      "before": null,
+      "ours": null,
+      "theirs": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0.png",
+      "before": null,
+      "ours": null,
+      "theirs": "f4050401ac73ada62cb3517ec7204f33916517b8",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1-ocr.json",
+      "before": null,
+      "ours": null,
+      "theirs": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1.png",
+      "before": null,
+      "ours": null,
+      "theirs": "7c4702094de7317487568ccdd875b874d243a0bd",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-surface-readiness.json",
+      "before": null,
+      "ours": null,
+      "theirs": "35b5cdb2d5e6c55d2083bbb41aafc34611d5ebfe",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/provenance.json",
+      "before": null,
+      "ours": null,
+      "theirs": "f63d6917ba8b5404d4deb1209a75486c33e90caf",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "before": null,
+      "ours": null,
+      "theirs": "1d02ca8663998dcbddb6c02107148672c5882b52",
+      "resolution": "take-base-new"
+    },
+    {
+      "path": "tools/android_qa/tests/test_update_2019_preservation.py",
+      "before": "fdafce627a7399fa30d7bae933afe779f8ff3365",
+      "ours": "b9c667de8d9d9fd3ec158141d17d09d899aea2b6",
+      "theirs": "b9c667de8d9d9fd3ec158141d17d09d899aea2b6",
+      "resolution": "already-identical"
+    }
+  ],
+  "resolutions": [
+    "Combine exact disjoint base-relative hunks for workflow, delivery verifier and its tests; reconstruction of both originals was checked before combining.",
+    "Keep quality-only branch equality and mandatory full-native return gate; retain incoming C4 return/wisp steps and original-log delivery binding.",
+    "Advance only the current 2020 native pin to actual f052 descendant while retaining historical identities and the quality old-0e rejection.",
+    "Keep incoming real committed helper fixture for the historical APK diagnostic, add independent synthetic QA pin input and fresh per-call fixture directory, retain all quality negative pin cases and all incoming positive path assertions.",
+    "Update the pre-existing mock expectation in the actual failed Continue wiring contract to require standalone_caption=True; all touch, physical drive, race identity and original evidence assertions remain byte-identical."
+  ],
+  "actual_base_failure": {
+    "run_id": 43583493817,
+    "job_id": 132414225517,
+    "head_sha": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+    "test": "test_continue_requires_touch_then_physical_drive_and_retains_original_evidence",
+    "total_tests": 938,
+    "failures": 1,
+    "seconds": 120.671,
+    "actual": "standalone_caption=True",
+    "stale_expected": "only tap=True and exact=True",
+    "raw_log_pending_anchor": false,
+    "raw_log_blob": "b3131ce8197ea47fa14930d0f928e1e6f3beb279"
+  },
+  "tests_executed": false
+}

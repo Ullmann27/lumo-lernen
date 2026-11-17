@@ -1,0 +1,63 @@
+{
+  "schema": "lumo.core_resize_scope_fix.v1",
+  "baseCommit": "fd4a1eea31bcf1aeff41086e3e739da1136933d2",
+  "executionWorktreeDirty": true,
+  "sourceHashes": {
+    "lib/app/app_shell.dart": {
+      "bytes": 38117,
+      "sha256": "37171d78e5651117ce6b300ca943c244d519a544b6cba2016515d4865e7a4ac2"
+    },
+    "lib/features/learning/learning_content.dart": {
+      "bytes": 152734,
+      "sha256": "0a96884deb2e214e557ecb8c200aa81aad92c8a74df7c98bfd35fcc5c001cf18"
+    },
+    "test/learning/core_conversation_route_test.dart": {
+      "bytes": 11360,
+      "sha256": "6e956cdc117d6fb1367383e3d3f936af466fe9fe384531bdc695911d4e17e8ad"
+    }
+  },
+  "evidenceHashes": {
+    "analyze.log": {
+      "bytes": 96,
+      "sha256": "3d1b8e5f21c3a232381c958c2022d476bb93f386ca5eb05448d071bf05ea33e7"
+    },
+    "green.log": {
+      "bytes": 273,
+      "sha256": "047d1955af68c949880df3a23b26ba8451f30b9620236cd7fd0a81592bbb50ae"
+    },
+    "joined-green.log": {
+      "bytes": 3762,
+      "sha256": "d4ea594d113c571b9ba18f3d2dd19af10cdc3611f1b2e01e64393a3ce9b60e84"
+    },
+    "red-provenance.json": {
+      "bytes": 668,
+      "sha256": "80f7dc973f79f5f8ba145a4a500a77051dd8e8a8d8385eb5e3525e1adefcaef4"
+    },
+    "red-test.dart.txt": {
+      "bytes": 11360,
+      "sha256": "6e956cdc117d6fb1367383e3d3f936af466fe9fe384531bdc695911d4e17e8ad"
+    },
+    "red.log": {
+      "bytes": 2327,
+      "sha256": "b9d3e7f8677320031c89131a0f86ba3a6ba468d69bfc020221a43f57e9e50089"
+    }
+  },
+  "red": {
+    "passed": 0,
+    "failed": 1,
+    "case": "430\u21921000dp during actual own Core conversation: old State disposed, new renderer taskId, bus null"
+  },
+  "green": {
+    "focusedPassed": 1,
+    "joinedPassed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "overlappingRunsNotAdded": true
+  },
+  "analysisIssues": 0,
+  "limits": [
+    "Synthetic artwork transport and SDK fonts. No visual or Android claim.",
+    "Actual Flutter layout breakpoint reparenting, not physical folding/hinges.",
+    "Only Core subtree retention changes; existing subject/unit/session ValueKey values remain unchanged."
+  ]
+}

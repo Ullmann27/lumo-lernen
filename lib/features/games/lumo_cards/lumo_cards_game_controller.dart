@@ -19,7 +19,9 @@ import '../../../core/lumo_sound.dart';
 import '../../../core/lumo_voice.dart';
 import 'learning_question_repository.dart';
 import 'lumo_cards_deck.dart';
+import 'lumo_cards_bot_policy.dart';
 import 'lumo_cards_models.dart';
+import 'lumo_cards_session.dart';
 import 'lumo_cards_rules.dart';
 import '../shared/lumo_game_pause_scope.dart';
 
@@ -30,8 +32,12 @@ class LumoCardsGameController extends ChangeNotifier {
     this.vsBot = true,
     this.enableVoice = true,
     this.grade = 1,
+    LumoCardsDifficulty difficulty = LumoCardsDifficulty.clever,
+    LumoCardsStyle style = LumoCardsStyle.planner,
     int? seed,
-  })  : _rng = seed == null ? Random() : Random(seed),
+  })  : _difficulty = difficulty,
+        _style = style,
+        _rng = seed == null ? Random() : Random(seed),
         _player1Name = player1Name,
         _player2Name = player2Name {
     _startNewGame();
@@ -47,10 +53,57 @@ class LumoCardsGameController extends ChangeNotifier {
   /// Sprachausgabe an/aus.
   final bool enableVoice;
   final int grade;
+  LumoCardsDifficulty _difficulty;
+  LumoCardsStyle _style;
+  LumoCardsDifficulty get difficulty => _difficulty;
+  LumoCardsStyle get style => _style;
+
+  /// Apply to the next bot decision without redealing or changing the board.
+  void configureOpponent({
+    required LumoCardsDifficulty difficulty,
+    required LumoCardsStyle style,
+  }) {
+    if (_disposed || !vsBot) return;
+    _difficulty = difficulty;
+    _style = style;
+    notifyListeners();
+  }
 
   static const int _initialHandSize = 7;
 
   late LumoCardsGameState _state;
+  late String _roundId;
+  String get roundId => _roundId;
+
+  LumoCardsRound snapshot({
+    bool callRewarded = false,
+    int rewardedLearningStars = 0,
+    bool callRewardSettled = false,
+  }) => LumoCardsRound(
+    id: _roundId,
+    state: _state,
+    grade: grade,
+    vsBot: vsBot,
+    difficulty: _difficulty,
+    style: _style,
+    callRewarded: callRewarded,
+    rewardedLearningStars: rewardedLearningStars,
+    callRewardSettled: callRewardSettled,
+  );
+
+  /// Restoring never auto-plays behind a loading screen or on Android resume.
+  void restoreRound(LumoCardsRound round) {
+    if (_disposed || round.grade != grade || round.vsBot != vsBot) return;
+    turnClock.cancel();
+    turnClock.pause();
+    _roundId = round.id;
+    _state = round.state;
+    _difficulty = round.difficulty;
+    _style = round.style;
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
+
   LumoCardsGameState get state => _state;
 
   /// Bot-Timer (cancelled on dispose).
@@ -69,6 +122,7 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Startet eine neue Runde mit frischem Deck.
   void _startNewGame() {
+    _roundId = LumoCardsRound.newId();
     final deck = LumoCardsDeck.buildDeck(rng: _rng);
     // 7 Karten pro Spieler.
     final (hand1, rest1) = LumoCardsDeck.draw(deck, _initialHandSize);
@@ -99,6 +153,9 @@ class LumoCardsGameController extends ChangeNotifier {
       drawPile = [...drawPile, drawn.first];
     }
 
+    final openingMessage = _player1Name == 'Du'
+        ? 'Du fängst an.'
+        : '$_player1Name fängt an.';
     _state = LumoCardsGameState(
       players: [
         LumoPlayer(id: 'p1', name: _player1Name, hand: hand1),
@@ -114,12 +171,12 @@ class LumoCardsGameController extends ChangeNotifier {
       selectedColor: topCard.color,
       phase: GamePhase.playing,
       lastActionMessage: vsBot
-          ? '$_player1Name fängt an. Lege eine passende Karte!'
-          : '$_player1Name fängt an. Lege eine passende Karte oder ziehe eine.',
+          ? '$openingMessage Lege eine passende Karte!'
+          : '$openingMessage Lege eine passende Karte oder ziehe eine.',
     );
     _speak(vsBot
         ? 'Willkommen bei Lumo Cards! Du fängst an.'
-        : 'Willkommen bei Lumo Cards! $_player1Name fängt an.');
+        : 'Willkommen bei Lumo Cards! $openingMessage');
   }
 
   /// Karte spielen (wenn moeglich).
@@ -329,7 +386,8 @@ class LumoCardsGameController extends ChangeNotifier {
     if (s.phase == GamePhase.learningQuestion) {
       final q = s.pendingLearningQuestion;
       if (q == null) return;
-      final lumoCorrect = _rng.nextDouble() < 0.60;
+      final lumoCorrect = _rng.nextDouble() <
+          LumoCardsBotPolicy.answerProbability(grade);
       final chosen = lumoCorrect
           ? q.correctIndex
           : (q.correctIndex + 1 + _rng.nextInt(q.options.length - 1)) %
@@ -375,77 +433,25 @@ class LumoCardsGameController extends ChangeNotifier {
     }
   }
 
-  /// Strategische Karten-Auswahl fuer den Bot.
-  ///
-  /// Heinz 2026-05-22: 'cleverer + strategischer'.
-  /// Statt der ersten spielbaren Karte wertet der Bot jede Option per Score:
-  ///  - Wild Draw 4: nur wenn keine andere Option ODER der Gegner schon
-  ///    fast leer ist (Killer-Move). Sonst zurueckhalten als Joker.
-  ///  - Wild: nur wenn keine Farbe matcht. Sonst Color-Karte spielen.
-  ///  - Block-Karten (Skip/Reverse/+2): besonders hoch wenn der Gegner
-  ///    schon 1-2 Karten hat -> Tempo rausnehmen.
-  ///  - Zahlen: bevorzugt aus der Farbe in der wir VIELE Karten haben
-  ///    (behalten Farbkontrolle) und hohe Zahlen zuerst (Punkt-Strafe
-  ///    minimieren falls wir verlieren).
-  LumoCard? _chooseBestPlay(LumoCardsGameState s, LumoCard topCard) {
-    final playables = s.currentPlayer.hand
-        .where((c) => LumoCardsRules.isPlayable(
-              card: c,
-              topCard: topCard,
-              selectedColor: s.selectedColor,
-            ))
-        .toList();
-    if (playables.isEmpty) return null;
-    if (playables.length == 1) return playables.first;
+  /// Lumo sees only its own hand and public opponent card count.
+  /// Playing strength is independent of the school year used for questions.
+  LumoCard? _chooseBestPlay(LumoCardsGameState s, LumoCard topCard) =>
+      LumoCardsBotPolicy.select(
+        ownHand: s.currentPlayer.hand,
+        topCard: topCard,
+        selectedColor: s.selectedColor,
+        opponentCardCount: s.otherPlayer.hand.length,
+        difficulty: _difficulty,
+        style: _style,
+        grade: grade,
+        rng: _rng,
+      );
 
-    final oppLow = s.otherPlayer.hand.length <= 2;
-    final hand = s.currentPlayer.hand;
-
-    int colorCountInHand(LumoCardColor c) =>
-        hand.where((h) => h.color == c).length;
-
-    int score(LumoCard c) {
-      switch (c.type) {
-        case LumoCardType.superRain:
-          // Wild Draw 4: heben fuer Notfall. Killer wenn Gegner low.
-          return oppLow ? 92 : 8;
-        case LumoCardType.colorMagic:
-          // Wild: nur wenn wir KEINE Farbkarte haben die passt.
-          final hasColorMatch = playables.any((p) =>
-              !p.isWild &&
-              (p.color == s.selectedColor || p.number == topCard.number));
-          return hasColorMatch ? 12 : 75;
-        case LumoCardType.lumoJump: // Skip
-        case LumoCardType.whirlwind: // Reverse
-        case LumoCardType.starRain: // +2
-          return oppLow ? 88 : 58;
-        case LumoCardType.thinkPause:
-          return 48;
-        case LumoCardType.number:
-          // Behalte Farbkontrolle: bevorzugt die Farbe mit den meisten
-          // Karten in unserer Hand. Plus hohe Zahlen zuerst.
-          final dominance = colorCountInHand(c.color);
-          final num = c.number ?? 0;
-          return 30 + num + dominance * 3;
-      }
-    }
-
-    playables.sort((a, b) => score(b).compareTo(score(a)));
-    return playables.first;
-  }
-
-  /// Bot waehlt die haeufigste Farbe in seiner Hand.
-  LumoCardColor _pickBotColor(LumoCardsGameState s) {
-    final counts = <LumoCardColor, int>{
-      for (final c in LumoCardColor.values) c: 0,
-    };
-    for (final card in s.currentPlayer.hand) {
-      counts[card.color] = (counts[card.color] ?? 0) + 1;
-    }
-    final sorted = counts.entries.toList()
-      ..sort((a, b) => b.value.compareTo(a.value));
-    return sorted.first.key;
-  }
+  LumoCardColor _pickBotColor(LumoCardsGameState s) =>
+      LumoCardsBotPolicy.selectColor(
+        ownHand: s.currentPlayer.hand,
+        rng: _rng,
+      );
 
   // ──────────────────────────────────────────────────────────────────
   // VOICE-KOMMENTARE

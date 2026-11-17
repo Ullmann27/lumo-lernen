@@ -1,3 +1,4 @@
+import '../../../widgets/design/lumo_answer_crystal.dart';
 // ════════════════════════════════════════════════════════════════════════
 // PLUS BIS 10 — Erstes echtes interaktives Lern-Modul (Klasse 1 Mathematik)
 // ════════════════════════════════════════════════════════════════════════
@@ -24,9 +25,17 @@ import '../../../app/app_state.dart';
 import '../../../app/lumo_companion_host.dart';
 import '../../../core/lumo_companion_guide.dart';
 import '../../../core/lumo_voice.dart';
+import '../../../core/learning_attempt_id.dart';
+import '../../../core/lumo_learning_session_contract.dart';
+import '../../../domain/tutoring/native_learning_activity.dart';
+import '../../learning/nextgen/learning_coach_binding.dart';
+import '../../learning/nextgen/module_task_scope.dart'
+    show LearningAnswerCandidateCard;
+import '../../lumo3d/lumo3d_launcher.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/design/lumo_quantity_art.dart';
+import '../../../widgets/design/lumo_lesson_progress.dart';
 import '../../../widgets/design/lumo_learning_module_frame.dart';
 import '../../../widgets/fox/lumo_companion_requests.dart';
 import '../lumo_phrases.dart';
@@ -64,7 +73,20 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   final _lessonId = 'plus10-${++_nextLessonSerial}';
   late final int _profileGeneration;
   LumoCompanionTaskContext? _publishedContext;
+  late final LearningCoachBinding _coach;
+  final _candidateController = TextEditingController();
+  final _candidateAnchor = GlobalKey();
+  LumoLearningIdentity? _candidateIdentity;
+  String? _candidateNotice;
+  String? _nativeNotice;
+  bool _routeVisible = true;
+  bool _nativeLearningOpen = false;
+  bool _nativeReturnPending = false;
+  bool _focused = false;
+  bool _coachSpeaking = false;
+  int _coachSpeechEpoch = 0;
   int _taskSerial = 0;
+  late String _missionTaskId;
   int _submittedAttempts = 0;
   int _helpLevel = 0;
   bool? _lastCorrect;
@@ -102,6 +124,33 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   void initState() {
     super.initState();
     _profileGeneration = widget.appState.profileGeneration;
+    _foreground = WidgetsBinding.instance.lifecycleState == null ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
+    _coach = LearningCoachBinding(
+      isActive: () =>
+          mounted &&
+          !_scopeExpired &&
+          !widget.appState.resetting &&
+          widget.appState.profileGeneration == _profileGeneration &&
+          _routeVisible &&
+          (_foreground || _nativeLearningOpen),
+      onHint: _requestTaskHelp,
+      onExplain: _requestTaskHelp,
+      onRepeat: _repeatCoach,
+      onSlower: () => _repeatCoach(slower: true),
+      onStop: () {
+        _cancelCoach();
+        unawaited(LumoVoice.instance.stop());
+      },
+      onCancel: _cancelCoach,
+      onTryMyself: _tryMyself,
+      onProposeAnswer: _proposeAnswer,
+      onFocus: (id, action) {
+        if (id != 'plus10-task') return;
+        setState(() => _focused = true);
+        _coach.present(objectId: id, point: action == LumoLearningAction.point);
+      },
+    );
     widget.appState.addListener(_profileChanged);
     LumoCompanionRequests.instance.helpRequested.addListener(_requestTaskHelp);
     WidgetsBinding.instance.addObserver(this);
@@ -119,8 +168,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     );
     _round = [
       for (var a = 1; a <= 5; a++)
-        for (var b = 1; b <= 10 - a; b++)
-          (a, b),
+        for (var b = 1; b <= 10 - a; b++) (a, b),
     ]..shuffle(_rng);
     _generateTask();
     _entryCtrl.forward();
@@ -130,7 +178,25 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _routeVisible = ModalRoute.isCurrentOf(context) ?? true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (_routeVisible) {
+        _publishTaskContext();
+      } else {
+        _cancelCoach();
+        _coach.clear();
+      }
+    });
+  }
+
+  @override
   void dispose() {
+    _cancelCoach(rebuild: false);
+    _coach.dispose();
+    _candidateController.dispose();
     widget.appState.removeListener(_profileChanged);
     LumoCompanionRequests.instance.helpRequested
         .removeListener(_requestTaskHelp);
@@ -149,6 +215,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   }
 
   void _generateTask() {
+    _cancelCoach(rebuild: false);
+    _nativeNotice = null;
+    _missionTaskId = newLearningAttemptId();
     _taskSerial++;
     _submittedAttempts = 0;
     _helpLevel = 0;
@@ -197,11 +266,14 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   void _profileChanged() {
     if (_scopeExpired ||
-        widget.appState.profileGeneration == _profileGeneration) {
+        (widget.appState.profileGeneration == _profileGeneration &&
+            !widget.appState.resetting)) {
       return;
     }
     _feedbackTimer?.cancel();
     _afterFeedback = null;
+    _cancelCoach();
+    _coach.clear();
     if (mounted) setState(() => _scopeExpired = true);
   }
 
@@ -216,7 +288,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             'Zähle alle Äpfel langsam von eins an.',
       };
 
-  void _publishTaskContext() {
+  void _publishTaskContext({bool immediately = false}) {
     if (_scopeExpired ||
         widget.appState.profileGeneration != _profileGeneration) {
       return;
@@ -236,21 +308,51 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       lastCorrect: _lastCorrect,
       previousHelp: _showHint ? _localHelp : null,
       localHelp: _localHelp,
+      stepId: _showHint ? 'help_$_helpLevel' : 'answer',
+      objectIds: const ['plus10-task'],
+      explanation: _showHint ? _localHelp : null,
+      answerChoices: _answers.map((answer) => '$answer').toList(),
+      allowedActions: {
+        ...lumoDefaultLearningActions,
+        LumoLearningAction.look,
+        LumoLearningAction.point,
+        LumoLearningAction.highlight,
+        if (!_answered &&
+            !_saving &&
+            _pendingAnswer == null &&
+            _afterFeedback == null &&
+            !_finishSavePending)
+          LumoLearningAction.proposeAnswer,
+      },
+      isExplanation: _showHint,
     );
     _publishedContext = task;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    void publish() {
       if (mounted && !_scopeExpired && identical(_publishedContext, task)) {
-        LumoCompanionRequests.instance.publishTask(task);
+        _coach.publish(task);
       }
-    });
+    }
+
+    if (immediately) {
+      publish();
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((_) => publish());
+    }
   }
 
-  void _event(LumoLearningEventKind kind) => LumoCompanionRequests.instance
-      .recordLearningEvent(kind, context: _publishedContext);
+  void _event(LumoLearningEventKind kind) {
+    final evidence = LumoCompanionRequests.instance
+        .recordLearningEvent(kind, context: _publishedContext);
+    if (evidence != null) {
+      unawaited(widget.appState.recordTutorEvidence(
+          subject: 'Mathematik', unit: 'Plus bis 10', evidence: evidence));
+    }
+  }
 
   void _requestTaskHelp() {
     if (!mounted ||
         _scopeExpired ||
+        (!_foreground && !_nativeLearningOpen) ||
         _answered ||
         _saving ||
         _pendingAnswer != null) {
@@ -268,10 +370,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _publishTaskContext();
     _event(LumoLearningEventKind.hintAccepted);
     _lumo.think();
-    if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(
-          LumoVoice.instance.speak(_localHelp, style: VoiceStyle.explain));
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _coach.ownsCurrentTask) unawaited(_speakCoach(_localHelp));
+    });
   }
 
   @override
@@ -280,8 +381,17 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     if (!_foreground) {
       _feedbackTimer?.cancel();
       _feedbackTimer = null;
-    } else if (_afterFeedback != null) {
-      _scheduleFeedback(const Duration(milliseconds: 1300), _afterFeedback!);
+      _cancelCoach(discardCandidate: !_nativeLearningOpen);
+      if (!_nativeLearningOpen) _coach.clear();
+    } else {
+      if (_nativeReturnPending) {
+        _nativeLearningOpen = false;
+        _nativeReturnPending = false;
+      }
+      _publishTaskContext();
+      if (_afterFeedback != null) {
+        _scheduleFeedback(const Duration(milliseconds: 1300), _afterFeedback!);
+      }
     }
   }
 
@@ -301,10 +411,238 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         widget.appState.profileGeneration != _profileGeneration) {
       return;
     }
-    try {
-      LumoVoice.instance.speak('$_a plus $_b - wie viel ist das?');
-    } catch (_) {}
+    final serial = _taskSerial;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && serial == _taskSerial) {
+        unawaited(_speakCoach('$_a plus $_b - wie viel ist das?'));
+      }
+    });
   }
+
+  void _cancelCoach({bool rebuild = true, bool discardCandidate = true}) {
+    ++_coachSpeechEpoch;
+    if (_coachSpeaking) {
+      _coachSpeaking = false;
+      unawaited(LumoVoice.instance.stop());
+      unawaited(LumoVoice.instance
+          .configure(rate: widget.appState.state.settings.voiceRate));
+    }
+    void clear() {
+      _focused = false;
+      if (discardCandidate) {
+        _candidateIdentity = null;
+        _candidateController.clear();
+        _candidateNotice = null;
+      }
+    }
+
+    if (rebuild && mounted) {
+      setState(clear);
+    } else {
+      clear();
+    }
+  }
+
+  Future<void> _speakCoach(String text, {bool slower = false}) async {
+    if (!_coach.ownsCurrentTask ||
+        !_foreground ||
+        _nativeLearningOpen ||
+        !widget.appState.state.settings.voiceEnabled) {
+      return;
+    }
+    final identity = _coach.identity!;
+    final epoch = ++_coachSpeechEpoch;
+    _coachSpeaking = true;
+    final rate = widget.appState.state.settings.voiceRate;
+    try {
+      await LumoVoice.instance.configure(rate: slower ? rate * .7 : rate);
+      if (epoch != _coachSpeechEpoch || !_coach.matches(identity)) return;
+      await LumoVoice.instance.speakAndWait(text, style: VoiceStyle.explain);
+    } finally {
+      if (epoch == _coachSpeechEpoch) {
+        _coachSpeaking = false;
+        await LumoVoice.instance
+            .configure(rate: widget.appState.state.settings.voiceRate);
+      }
+    }
+  }
+
+  void _repeatCoach({bool slower = false}) {
+    if (!_coach.ownsCurrentTask) return;
+    _event(LumoLearningEventKind.taskRepeated);
+    unawaited(_speakCoach(
+        _showHint ? _localHelp : '$_a plus $_b - wie viel ist das?',
+        slower: slower));
+  }
+
+  void _tryMyself() {
+    if (!_coach.ownsCurrentTask) return;
+    _coach.interrupt('self_try');
+    setState(() => _showHint = false);
+    _publishTaskContext();
+  }
+
+  void _proposeAnswer(String value) {
+    if (!_coach.ownsCurrentTask ||
+        _answered ||
+        _saving ||
+        _pendingAnswer != null ||
+        _afterFeedback != null ||
+        _finishSavePending) {
+      return;
+    }
+    setState(() {
+      _candidateIdentity = _coach.identity;
+      _candidateController.text = value;
+      _candidateNotice = null;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final anchor = _candidateAnchor.currentContext;
+      if (mounted &&
+          _foreground &&
+          !_nativeLearningOpen &&
+          _candidateIdentity != null &&
+          anchor != null) {
+        unawaited(Scrollable.ensureVisible(anchor, duration: Duration.zero));
+      }
+    });
+  }
+
+  VoidCallback? _boundCandidateConfirmation() {
+    final captured = _candidateIdentity;
+    if (captured == null) return null;
+    return () {
+      if (_candidateIdentity?.matches(captured) != true) return;
+      _confirmCandidate();
+    };
+  }
+
+  void _confirmCandidate() {
+    final identity = _candidateIdentity;
+    if (identity == null ||
+        !_coach.matches(identity) ||
+        !_foreground ||
+        _nativeLearningOpen ||
+        _saving ||
+        _pendingAnswer != null) {
+      return;
+    }
+    final answer = int.tryParse(_candidateController.text.trim());
+    if (answer == null || !_answers.contains(answer)) {
+      setState(() => _candidateNotice =
+          'Das passt noch nicht zu einer Antwort. Ändere die Zahl oder tippe auf eine Antwortkarte.');
+      return;
+    }
+    _cancelCoach();
+    _handleAnswer(answer);
+  }
+
+  Future<void> _openNativeLearning() async {
+    if (!_coach.ownsCurrentTask ||
+        _nativeLearningOpen ||
+        _answered ||
+        _saving ||
+        _pendingAnswer != null ||
+        _afterFeedback != null) {
+      return;
+    }
+    final serial = _taskSerial;
+    // A free-form module context cannot authorize an unrelated 3D task card.
+    // Give the existing, interactive apple explanation instead.
+    if (_publishedContext == null ||
+        NativeLearningActivity.fromCompanionContext(_publishedContext!) ==
+            null) {
+      _requestTaskHelp();
+      return;
+    }
+    _cancelCoach();
+    setState(() {
+      _nativeLearningOpen = true;
+      _nativeReturnPending = false;
+      _nativeNotice = null;
+      _showHint = true;
+      _helpLevel = math.max(1, _helpLevel);
+    });
+    _publishTaskContext(immediately: true);
+    final task = _publishedContext;
+    final activity =
+        task == null ? null : NativeLearningActivity.fromCompanionContext(task);
+    try {
+      if (activity == null) return;
+      await launchLumo3D(context,
+          scene: 'learning',
+          appState: widget.appState,
+          subject: 'Mathematik',
+          learning: activity);
+    } catch (_) {
+      if (mounted && serial == _taskSerial) {
+        setState(
+            () => _nativeNotice = 'Die 3D-Ansicht ist gerade nicht verfügbar. '
+                'Du kannst mit den Äpfeln hier weiterarbeiten.');
+      }
+    } finally {
+      if (mounted && serial == _taskSerial) {
+        setState(() {
+          _nativeReturnPending = !_foreground;
+          _nativeLearningOpen = !_foreground;
+        });
+        _publishTaskContext(immediately: true);
+      }
+    }
+  }
+
+  Widget _buildCoachPanel() => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (_candidateIdentity != null) ...[
+            const SizedBox(height: 12),
+            LearningAnswerCandidateCard(
+                key: _candidateAnchor,
+                keyPrefix: 'plus10',
+                controller: _candidateController,
+                notice: _candidateNotice,
+                onConfirm: _boundCandidateConfirmation(),
+                onDiscard: _cancelCoach),
+          ],
+          const SizedBox(height: 12),
+          FilledButton.icon(
+              key: const ValueKey('plus10-open-3d'),
+              onPressed: _nativeLearningOpen ||
+                      _answered ||
+                      _saving ||
+                      _pendingAnswer != null
+                  ? null
+                  : () => unawaited(_openNativeLearning()),
+              style: FilledButton.styleFrom(minimumSize: const Size(48, 52)),
+              icon: const Icon(Icons.view_in_ar_rounded),
+              label: const Text('Lumo erklärt mit Äpfeln')),
+          if (_nativeNotice != null)
+            Text(_nativeNotice!,
+                style: const TextStyle(color: LumoVisualTokens.white)),
+          Wrap(alignment: WrapAlignment.center, spacing: 4, children: [
+            for (final entry in const [
+              ('Noch einmal', LumoLearningAction.repeat),
+              ('Langsamer', LumoLearningAction.slower),
+              ('Stopp', LumoLearningAction.stop),
+            ])
+              TextButton(
+                  key: ValueKey('plus10-${entry.$2.name}'),
+                  style: TextButton.styleFrom(
+                      minimumSize: const Size(48, 48),
+                      foregroundColor: LumoVisualTokens.white),
+                  onPressed: () => _coach.request(entry.$2),
+                  child: Text(entry.$1)),
+            if (_showHint)
+              TextButton(
+                  key: const ValueKey('plus10-self-try'),
+                  style: TextButton.styleFrom(
+                      minimumSize: const Size(48, 48),
+                      foregroundColor: LumoVisualTokens.white),
+                  onPressed: _tryMyself,
+                  child: const Text('Selbst versuchen')),
+          ]),
+        ],
+      );
 
   void _handleAnswer(int answer) {
     if (_scopeExpired ||
@@ -322,7 +660,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       _selectedAnswer = answer;
       _pendingAnswer = answer;
       _submittedAttempts++;
-      _pendingHintUsed = _showHint;
+      _pendingHintUsed = _showHint || _helpLevel > 0;
       _saving = true;
       _answered = answer == _correct;
       if (!_answered) _wrongAttempts++;
@@ -370,6 +708,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
           correct: correct,
           hintUsed: hintUsed,
           requireSaved: true,
+          taskId: _missionTaskId,
           lease: owner,
           prompt: '$_a + $_b = ?',
           given: '$answer',
@@ -708,19 +1047,25 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                 hasMistake: _answered && _selectedAnswer != _correct,
                 characterController: _lumo,
                 canLeave: () => _canLeave,
-                child: LumoLessonTaskLayout(
-                  spacing: 8,
-                  task: Column(
+                child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      _buildTaskCard(),
-                      const SizedBox(height: 8),
-                      _buildLearningHelp(),
-                      if (_saving || _saveError != null) _buildSaveStatus(),
-                    ],
-                  ),
-                  answers: _buildAnswerButtons(wide: true),
-                ),
+                      LumoLessonTaskLayout(
+                        spacing: 8,
+                        task: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            _buildTaskCard(),
+                            const SizedBox(height: 8),
+                            _buildLearningHelp(),
+                            if (_saving || _saveError != null)
+                              _buildSaveStatus(),
+                          ],
+                        ),
+                        answers: _buildAnswerButtons(wide: true),
+                      ),
+                      _buildCoachPanel()
+                    ]),
               );
             }
             return Scaffold(
@@ -794,6 +1139,24 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         // Antippen: Lumo wackelt kitzlig.
         onTap: () {},
       );
+      if (MediaQuery.textScalerOf(context).scale(1) > 1.25 || width < 330) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(12, 4, 12, 10),
+          child: Row(children: [
+            SizedBox(width: 100, height: 116, child: fox),
+            const SizedBox(width: 10),
+            const Expanded(
+                child: LumoGlassCard(
+              padding: EdgeInsets.all(12),
+              child: Text('Gemeinsam rechnen wir das!',
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: LumoVisualTokens.white)),
+            )),
+          ]),
+        );
+      }
       return SizedBox(
         height: height,
         child: Stack(clipBehavior: Clip.none, children: [
@@ -859,6 +1222,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             if (_saving || _saveError != null) _buildSaveStatus(),
             const SizedBox(height: 8),
             _buildAnswerButtons(),
+            _buildCoachPanel(),
           ],
         ),
       ),
@@ -893,8 +1257,6 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
           children: [
             Text(
               'Mathe-Abenteuer',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontFamily: 'Nunito',
                 color: LumoVisualTokens.white,
@@ -905,7 +1267,6 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             ),
             Text(
               'Entdecke Zahlen, löse Aufgaben, werde ein Mathe-Profi!',
-              maxLines: 2,
               style: TextStyle(
                 fontFamily: 'Nunito',
                 color: LumoVisualTokens.white,
@@ -921,170 +1282,110 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
 
   /// „Aufgabe N / M“ mit zehn Leuchtsegmenten und der echten XP pro Aufgabe.
   Widget _buildProgressRow() {
-    const segments = 10;
-    final filled = ((_taskIdx + 1) / _totalTasks * segments).ceil();
-    if (MediaQuery.textScalerOf(context).scale(1) > 1.35) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-              style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  color: LumoVisualTokens.white,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800)),
-          const SizedBox(height: 8),
-          Row(children: [
-            Expanded(
-              child: LinearProgressIndicator(
-                value: (_taskIdx + 1) / _totalTasks,
-                minHeight: 9,
-                color: LumoVisualTokens.cyanBright,
-                backgroundColor: const Color(0xFF1C3A66),
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-            const SizedBox(width: 12),
-            const Icon(Icons.star_rounded,
-                color: LumoVisualTokens.gold, size: 20),
-            const SizedBox(width: 4),
-            const Text('+5 XP',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    color: LumoVisualTokens.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w900)),
-          ]),
-        ],
-      );
-    }
-    return Row(children: [
-      Expanded(
-        child: Container(
-          height: 34,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          decoration: BoxDecoration(
-            color: LumoVisualTokens.navigation.withOpacity(.7),
-            borderRadius: BorderRadius.circular(99),
-            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.35)),
-          ),
-          child: Row(children: [
-            Text(
-              'Aufgabe ${_taskIdx + 1} / $_totalTasks',
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                color: LumoVisualTokens.white,
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Row(children: [
-                for (var i = 0; i < segments; i++)
-                  Expanded(
-                    child: AnimatedContainer(
-                      duration: _reduceMotion
-                          ? Duration.zero
-                          : const Duration(milliseconds: 450),
-                      curve: Curves.easeOutCubic,
-                      height: 9,
-                      margin: const EdgeInsets.symmetric(horizontal: 1),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: i < filled
-                            ? LumoVisualTokens.cyanBright
-                            : const Color(0xFF1C3A66),
-                        boxShadow: i < filled
-                            ? [
-                                BoxShadow(
-                                  color: LumoVisualTokens.cyan.withOpacity(.6),
-                                  blurRadius: 6,
-                                ),
-                              ]
-                            : null,
-                      ),
-                    ),
-                  ),
-              ]),
-            ),
-          ]),
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xD9051836),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .35)),
       ),
-      const SizedBox(width: 8),
-      Container(
-        height: 34,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-          color: LumoVisualTokens.glassRow,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.5)),
-        ),
-        child: const Row(children: [
-          Icon(Icons.star_rounded, color: LumoVisualTokens.gold, size: 20),
-          SizedBox(width: 4),
-          Text(
-            '+5 XP',
-            style: TextStyle(
-              fontFamily: 'Nunito',
-              color: LumoVisualTokens.white,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-        ]),
-      ),
-    ]);
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            spacing: 8,
+            runSpacing: 6,
+            children: [
+              Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w800,
+                      color: LumoVisualTokens.white,
+                      fontSize: 13)),
+              Text('$_correctCount beim ersten Versuch',
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w800,
+                      color: LumoVisualTokens.gold,
+                      fontSize: 12)),
+              // A correct answer actually awards five XP in _saveAnswer().
+              // Keep this earned-reward indicator visible alongside the
+              // premium progress bar, including in narrow/Fold layouts.
+              const Tooltip(
+                message: 'Fünf Erfahrungspunkte pro richtiger Antwort',
+                child: Text('+5 XP',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w900,
+                        color: LumoVisualTokens.gold,
+                        fontSize: 12)),
+              ),
+            ]),
+        const SizedBox(height: 9),
+        LumoLessonProgress(
+            value: _taskIdx / _totalTasks,
+            totalTasks: _totalTasks,
+            reduceMotion: _reduceMotion),
+      ]),
+    );
   }
 
   Widget _buildTaskCard() {
     const decoStar = Icon(Icons.star_border_rounded,
         color: LumoVisualTokens.cyanBright, size: 18);
-    return Container(
-      padding: const EdgeInsets.fromLTRB(12, 6, 12, 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFF0A3A78).withOpacity(.55),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.6)),
-        boxShadow: [
-          BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(.18), blurRadius: 14),
-        ],
-      ),
-      child: Stack(children: [
-        const Positioned(left: 0, top: 4, child: decoStar),
-        const Positioned(right: 0, top: 4, child: decoStar),
-        Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          const SizedBox(width: double.infinity),
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              '$_a + $_b = ?',
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 42,
-                height: 1.1,
-                fontWeight: FontWeight.w900,
-                color: LumoVisualTokens.white,
-                letterSpacing: 2,
-                shadows: [
-                  Shadow(color: LumoVisualTokens.cyan, blurRadius: 14),
-                ],
+    return Semantics(
+        key: const ValueKey('plus10-task'),
+        identifier: 'plus10-task',
+        container: true,
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(12, 6, 12, 8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF0A3A78).withOpacity(.55),
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(
+                color: _focused
+                    ? LumoVisualTokens.gold
+                    : LumoVisualTokens.cyan.withOpacity(.6)),
+            boxShadow: [
+              BoxShadow(
+                  color: LumoVisualTokens.cyan.withOpacity(.18),
+                  blurRadius: 14),
+            ],
+          ),
+          child: Stack(children: [
+            const Positioned(left: 0, top: 4, child: decoStar),
+            const Positioned(right: 0, top: 4, child: decoStar),
+            Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              const SizedBox(width: double.infinity),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  '$_a + $_b = ?',
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 42,
+                    height: 1.1,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                    letterSpacing: 2,
+                    shadows: [
+                      Shadow(color: LumoVisualTokens.cyan, blurRadius: 14),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-          const Text(
-            'Wähle die richtige Antwort aus.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: 'Nunito',
-              color: LumoVisualTokens.white,
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ]),
-      ]),
-    );
+              const Text(
+                'Wähle die richtige Antwort aus.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  color: LumoVisualTokens.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ]),
+          ]),
+        ));
   }
 
   Widget _buildLearningHelp() => Column(
@@ -1383,112 +1684,73 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     final canContinue = _answered && _pendingAnswer == null && !_saving;
     final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.35;
     final landscape = LumoLessonStyle.shortLandscape(context);
-    final stackActions = largeText ||
-        landscape ||
-        (_showHint && !wide && MediaQuery.sizeOf(context).width < 500);
-    return Column(children: [
-      LumoLessonAnswerGrid(
-        crossAxisCount: largeText || landscape ? 2 : 4,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        childAspectRatio: wide ? 2.2 : 1.5,
-        minimumHeight: wide && !landscape ? 72 : 56,
-        children: _answers.map((ans) {
-          final isSelected = _selectedAnswer == ans;
-          final isCorrect = _answered && ans == _correct;
-          final isWrong = isSelected && ans != _correct;
+    return LayoutBuilder(builder: (context, constraints) {
+      final stackActions = largeText ||
+          landscape ||
+          constraints.maxWidth < 400 ||
+          (_showHint && constraints.maxWidth < 560);
+      return Column(children: [
+        LumoLessonAnswerGrid(
+          crossAxisCount: largeText || landscape ? 2 : 4,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          childAspectRatio: wide ? 2.2 : 1.5,
+          minimumHeight: wide && !landscape ? 72 : 56,
+          children: _answers.map((ans) {
+            final isSelected = _selectedAnswer == ans;
+            final isCorrect = _answered && ans == _correct;
+            final isWrong = isSelected && ans != _correct;
 
-          var colors = const [Color(0xFF1C5BB8), Color(0xFF0E3A82)];
-          var borderColor = LumoVisualTokens.cyan.withOpacity(.55);
-          if (isCorrect) {
-            colors = const [Color(0xFF1FA27A), Color(0xFF0F6B50)];
-            borderColor = const Color(0xFF4BE0A5);
-          } else if (isWrong) {
-            colors = const [Color(0xFF9B2C55), Color(0xFF6B1D3B)];
-            borderColor = const Color(0xFFFF6B8A);
-          } else if (isSelected) {
-            colors = const [Color(0xFF2AA7E8), Color(0xFF1466B8)];
-            borderColor = LumoVisualTokens.cyanBright;
-          }
-
-          return AnimatedScale(
-            scale: isCorrect && !_reduceMotion
-                ? 1.0 + (_bounceCtrl.value * 0.1)
-                : 1.0,
-            duration: _reduceMotion
-                ? Duration.zero
-                : const Duration(milliseconds: 200),
-            // Vorleser (TalkBack) nennt die Karte als Schaltfläche „Antwort 7“
-            // statt nur „7“; dieselbe Beschriftung nutzt die Android-Prüfung.
-            child: Semantics(
-              button: true,
-              label: 'Antwort $ans',
-              excludeSemantics: true,
-              onTap: () => _handleAnswer(ans),
-              child: GestureDetector(
-                onTap: () => _handleAnswer(ans),
-                child: AnimatedContainer(
-                  duration: _reduceMotion
-                      ? Duration.zero
-                      : const Duration(milliseconds: 200),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: colors,
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: borderColor, width: 1.6),
-                    boxShadow: [
-                      BoxShadow(
-                          color: borderColor.withOpacity(0.35),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4))
-                    ],
-                  ),
-                  alignment: Alignment.center,
-                  child: Text('$ans',
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      )),
-                ),
+            return AnimatedScale(
+              scale:
+                  isCorrect && !_reduceMotion ? 1 + _bounceCtrl.value * .1 : 1,
+              duration: _reduceMotion
+                  ? Duration.zero
+                  : const Duration(milliseconds: 200),
+              child: LumoAnswerCrystal(
+                label: '$ans',
+                semanticLabel: 'Antwort $ans',
+                onPressed:
+                    _saving || _answered ? null : () => _handleAnswer(ans),
+                state: isCorrect
+                    ? LumoCrystalState.correct
+                    : isWrong
+                        ? LumoCrystalState.retry
+                        : LumoCrystalState.neutral,
               ),
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 12),
+        Flex(
+          direction: stackActions ? Axis.vertical : Axis.horizontal,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: stackActions
+              ? CrossAxisAlignment.stretch
+              : CrossAxisAlignment.center,
+          children: [
+            _pillButton(
+              label: _showHint ? 'Anderer Tipp' : 'Tipp',
+              onPressed: _answered || _saving ? null : _requestTaskHelp,
+              leading: const Icon(Icons.lightbulb_rounded,
+                  color: LumoVisualTokens.gold, size: 24),
+              colors: const [Color(0xFF123F7C), Color(0xFF0B2A5A)],
+              border: LumoVisualTokens.cyan.withOpacity(.6),
             ),
-          );
-        }).toList(),
-      ),
-      const SizedBox(height: 12),
-      Flex(
-        direction: stackActions ? Axis.vertical : Axis.horizontal,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: stackActions
-            ? CrossAxisAlignment.stretch
-            : CrossAxisAlignment.center,
-        children: [
-          _pillButton(
-            label: _showHint ? 'Anderer Tipp' : 'Tipp',
-            onPressed: _answered || _saving ? null : _requestTaskHelp,
-            leading: const Icon(Icons.lightbulb_rounded,
-                color: LumoVisualTokens.gold, size: 24),
-            colors: const [Color(0xFF123F7C), Color(0xFF0B2A5A)],
-            border: LumoVisualTokens.cyan.withOpacity(.6),
-          ),
-          if (stackActions) const SizedBox(height: 8) else const Spacer(),
-          _pillButton(
-            label: 'Weiter',
-            onPressed: canContinue ? _continueAfterCorrect : null,
-            colors: const [Color(0xFF4FE3C1), Color(0xFF16A889)],
-            border: const Color(0xFFB4FFEE),
-            wide: true,
-          ),
-        ],
-      ),
-    ]);
+            if (stackActions) const SizedBox(height: 8) else const Spacer(),
+            _pillButton(
+              label: 'Weiter',
+              onPressed: canContinue ? _continueAfterCorrect : null,
+              colors: const [Color(0xFF4FE3C1), Color(0xFF16A889)],
+              border: const Color(0xFFB4FFEE),
+              wide: true,
+            ),
+          ],
+        ),
+      ]);
+    });
   }
 
   /// Glas-Pillen „Tipp“ und „Weiter“ wie in Bild 02; gesperrt wirken sie

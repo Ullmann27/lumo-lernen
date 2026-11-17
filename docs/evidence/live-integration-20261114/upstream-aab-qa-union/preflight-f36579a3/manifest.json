@@ -1,0 +1,233 @@
+{
+  "schema": 1,
+  "kind": "actual_focused_offline_union_preflight",
+  "source_commit": "f36579a3a7e06045eaecea7c00e497ac06930100",
+  "source_tree": "ed67b3939bb3caeb69231a2c70387860155b1a83",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "source_unchanged": true,
+  "all_tracked_git_blobs_match_before_and_after": true,
+  "tracked_files": 4655,
+  "tracked_bytes": 665294437,
+  "tracked_identity_sha256": "aeca529c3f6a4ae39dc8e6289ac8fb896a2f62fadb89d8940082850a830ff77a",
+  "status": "PASS",
+  "tests": 373,
+  "skipped": 0,
+  "test_files": 16,
+  "yaml_files": 6,
+  "bash_native_run_blocks": 6,
+  "bash_existing_diagnostic_script": 1,
+  "started_utc": "2026-11-14T12:47:32.776739+00:00",
+  "completed_utc": "2026-11-14T12:49:03.671637+00:00",
+  "local_runtime_claims": {
+    "flutter": false,
+    "android": false,
+    "native_renderer": false,
+    "apk_build": false,
+    "publication": false
+  },
+  "limitations": [
+    "No Flutter, Android, Godot renderer, APK build or publication executed by this preflight.",
+    "Actionlint was not present on PATH and was not run in this preflight.",
+    "Actual emulator and all seven final candidate jobs still require the new shared CI run."
+  ],
+  "files": [
+    {
+      "file": "bash-diagnostic.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "bash-native-01.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "bash-native-02.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "bash-native-03.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "bash-native-04.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "bash-native-05.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "bash-native-06.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "native-step-shells/01.sh",
+      "bytes": 708,
+      "sha256": "3a2dec16d087db1978b9f783e069b819af9084177b72bd1092a8a0360f2f9d49",
+      "git_blob": "1273aaffcfa7ddd06782fe9c1bd792eae46a15dc"
+    },
+    {
+      "file": "native-step-shells/02.sh",
+      "bytes": 564,
+      "sha256": "58edced51b33f9813683d716389fa291a62af10f53a5bb5a4d547fdabd668ea0",
+      "git_blob": "d2cf7e2ff1f642b76da8f56a51237eda3511fa93"
+    },
+    {
+      "file": "native-step-shells/03.sh",
+      "bytes": 1739,
+      "sha256": "270c3a79ac7c4b9ed272baef2077e9b67cac2dfed1dcaf57b2f8935d6792dee6",
+      "git_blob": "a0e7a3b5566c77d9007e61841c3e2855b0b32acd"
+    },
+    {
+      "file": "native-step-shells/04.sh",
+      "bytes": 1561,
+      "sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+      "git_blob": "9b11cb0a45c73b719e7b2e0adc8030eaa639ca72"
+    },
+    {
+      "file": "native-step-shells/05.sh",
+      "bytes": 1273,
+      "sha256": "e4c69c4347437e64da635396d94f10ace3d1d1c40dfde3f2c097a0a7dbc80168",
+      "git_blob": "428beb8a0aef6486cd6693cfe4b7d698790802c1"
+    },
+    {
+      "file": "native-step-shells/06.sh",
+      "bytes": 886,
+      "sha256": "2a7164a06e0734ee6a13864852d59b8a4a180f7e094f416845288ca964549678",
+      "git_blob": "3ec4d8b9db8276cfa6f7a55f631934540f0b887a"
+    },
+    {
+      "file": "preflight-report.json",
+      "bytes": 22376,
+      "sha256": "4780d9c4e846e7e3c9d5ff76c902502fbabd22ebc79f5c941a8086192aea7bdd",
+      "git_blob": "6dfe1de4346ff441c0626c164e04afc7fd213f0d"
+    },
+    {
+      "file": "run_preflight.py",
+      "bytes": 10813,
+      "sha256": "62c488206a5fcc9f769fbac6a1f28c184e1d2a5113e1b062cdc47dab932883c7",
+      "git_blob": "5e9facfbae4aeb1a354faefd13599056a96f66e1"
+    },
+    {
+      "file": "source-after.json",
+      "bytes": 5559,
+      "sha256": "f2e7adc6d41994fa5f4c76fa115f2ed200f809250a447882c0ec543ea9d743ec",
+      "git_blob": "c5a570545fd7c3760fa8687c40d4b8f7f4b15494"
+    },
+    {
+      "file": "source-before.json",
+      "bytes": 5559,
+      "sha256": "f2e7adc6d41994fa5f4c76fa115f2ed200f809250a447882c0ec543ea9d743ec",
+      "git_blob": "c5a570545fd7c3760fa8687c40d4b8f7f4b15494"
+    },
+    {
+      "file": "unittest-01-test_candidate_2011_pin.log",
+      "bytes": 4206,
+      "sha256": "cac8aeb5f5ddc1988c3bf21b7eff0ff7aa4980d69097215aa895154392969664",
+      "git_blob": "1f3cf9797f0001d14df632b19461d4e30c573840"
+    },
+    {
+      "file": "unittest-02-test_legacy_release_pin.log",
+      "bytes": 7443,
+      "sha256": "1df14c7aa0c2e76a4982ae614d5ac5d93a67b5cdfd0481be5533a3c9c3a03a7a",
+      "git_blob": "094607fb0c0ab813df3f4b01e9b6d47c459723bd"
+    },
+    {
+      "file": "unittest-03-test_connect_four_delivery.log",
+      "bytes": 14783,
+      "sha256": "01d584caefd4887ae8fd07cfe25e9c34401191447779ee6515427e822f8e95b2",
+      "git_blob": "511b4ced3e684799b8163ed778a9274ea71158b7"
+    },
+    {
+      "file": "unittest-04-test_connect_four_pipeline.log",
+      "bytes": 3477,
+      "sha256": "2895f0c6ff8fe2fd11e3f4d6b6c1317a5d1d3b8cec8b793594296135b4c9cd2d",
+      "git_blob": "99f42a1643db3894c2000c7912c31f1c48391fde"
+    },
+    {
+      "file": "unittest-05-test_connect_four_return_gate.log",
+      "bytes": 1987,
+      "sha256": "e0c3b61ebbd187d8bb2337dbae31b4659dbd7a881f6017bdffdd9937d2b46030",
+      "git_blob": "ad1b23235c690740af4f53d2d1587d6d5b3c2477"
+    },
+    {
+      "file": "unittest-06-test_verify_unchanged_apk_diagnostic.log",
+      "bytes": 3539,
+      "sha256": "9c770fb2f4c5b2e04e49f2b417ad93947024aa55beed4343c4231a8fccda3a8c",
+      "git_blob": "2671cdae38c9b43627c44acc8fa7583106cdc99b"
+    },
+    {
+      "file": "unittest-07-test_runtime_followup_workflow.log",
+      "bytes": 2206,
+      "sha256": "2e96fdfbde5e39c59528f36a4ca1afdd1cc421e3161b2c9fc34d6cbdf69cb032",
+      "git_blob": "79974b95d2be23fdc0fb5dfa84932607fab8b46d"
+    },
+    {
+      "file": "unittest-08-test_android_runtime_wait_notification.log",
+      "bytes": 1818,
+      "sha256": "bbbd40be2f10c3bebf446f2ceb7a05117ff31162ff67fffba6abe9834d2abc33",
+      "git_blob": "5dd7d255ac4721c54d7e2b2cb3d1b547003fc066"
+    },
+    {
+      "file": "unittest-09-test_verify_android_runtime_anr.log",
+      "bytes": 3498,
+      "sha256": "fdcf9b02853951de43fe4bbe17980bf2262a43c1ec115d6097ab8a9fa8b6843a",
+      "git_blob": "147fbd447d3065acdfcf7cfc79495d0491c7b0f6"
+    },
+    {
+      "file": "unittest-10-test_android_runtime_device_logger.log",
+      "bytes": 4278,
+      "sha256": "79a8b28c2dcfce1f8a5ad924f98f3ced3a0f357eed8c0353f0976f5a852f73ce",
+      "git_blob": "bf8f47c50cad9ce039edc4a9e54c319fdec9c381"
+    },
+    {
+      "file": "unittest-11-test_connect_four_android_evidence.log",
+      "bytes": 4155,
+      "sha256": "89f8d5e0bed8063f77e8c824f3238ec0b538933659afe2bd5997fada3b3343db",
+      "git_blob": "999afcc1feff1aa5f60a0862c31f3fa3929b79f8"
+    },
+    {
+      "file": "unittest-12-test_village_android_evidence.log",
+      "bytes": 5928,
+      "sha256": "6696e8c92b8e50d8a24434e387e33329cf3c09c2409b6024ebb56d2097fbd4e0",
+      "git_blob": "9210572483204b0ef4292a739ccef8bf60235b1d"
+    },
+    {
+      "file": "unittest-13-test_kart_continue_caption.log",
+      "bytes": 1783,
+      "sha256": "877b14e9657ccb6179096b955fdf058fd2e99c6c350168c36cf1562a7566e275",
+      "git_blob": "c973572f49a82548490e2e49593d5ae3c7eb64fc"
+    },
+    {
+      "file": "unittest-14-test_kart_garage_evidence.log",
+      "bytes": 5073,
+      "sha256": "ca0119aef12463ba61f0f6a8ca322ccce255eea851935501bbd8c40ae5a9c9c7",
+      "git_blob": "107ea918a496c8444b2cc222aeee2a038eaa9840"
+    },
+    {
+      "file": "unittest-15-test_update_2019_preservation.log",
+      "bytes": 4222,
+      "sha256": "fa363623cda7635f8e4d4764e7198fbaac2f1b13aca5fbfcde6b418238427404",
+      "git_blob": "039f62abaa19b1985012e8c7f719e701a77b344b"
+    },
+    {
+      "file": "unittest-16-test_update_2020_preservation.log",
+      "bytes": 4607,
+      "sha256": "175b26bdb4854f041a0f690f10f1f2b810179cdaba3ce035b93f85c400dc78b5",
+      "git_blob": "75a83e7f967b0868fcf92a879ee67e62cfbaf8a7"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import 'package:lumo_lernen/core/lumo_sound.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_game_controller.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_models.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_bot_policy.dart';
 
 LumoCardsGameController _controller({bool vsBot = false}) =>
     LumoCardsGameController(
@@ -23,6 +24,32 @@ void main() {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     LumoSound.instance.muted = true;
     LumoVoice.instance.isEnabled = false;
+  });
+
+  testWidgets('Opponent choice preserves the paused round and pending timer', (
+    tester,
+  ) async {
+    final controller = _controller(vsBot: true);
+    addTearDown(controller.dispose);
+    controller.drawCard();
+    controller.turnClock.pause();
+    final before = controller.state;
+    controller.configureOpponent(
+      difficulty: LumoCardsDifficulty.expert,
+      style: LumoCardsStyle.collector,
+    );
+    expect(controller.state, same(before));
+    expect(controller.grade, 1);
+    expect(controller.difficulty, LumoCardsDifficulty.expert);
+    expect(controller.style, LumoCardsStyle.collector);
+    await tester.pump(const Duration(seconds: 5));
+    expect(controller.state, same(before));
+    controller.turnClock.resume();
+    await tester.pump(const Duration(seconds: 2));
+    expect(controller.state, isNot(same(before)));
+    controller.restart();
+    expect(controller.difficulty, LumoCardsDifficulty.expert);
+    expect(controller.style, LumoCardsStyle.collector);
   });
 
   testWidgets('Paused handover cannot expose or advance the next hand', (

@@ -1,0 +1,104 @@
+{
+  "schema": "lumo.nextgen.current.native.stop.handoff",
+  "version": 1,
+  "producer_commit": "e0df201c73509a44384bcce3ebaad82cce00bde3",
+  "tree": "41ed1d22425f6a1c499b3986bd81738f1cba620d",
+  "base_commit": "362b6ac36fb645bb5266205f17c5504a8fbf22a3",
+  "branch": "qa/lumo-current-native-stop-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-current-native-stop",
+  "clean": true,
+  "commits": [
+    "b97edebdc8614412e1e67b6098bd48f0e96358a3",
+    "34a0f314f9df4d0ac23a2032bd324b43072542d7",
+    "e0df201c73509a44384bcce3ebaad82cce00bde3"
+  ],
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_current_native_stop.py",
+      "bytes": 10248,
+      "sha256": "2d8e70a2ab3e9a8d0756b6a20341d5d639833c9854e4e087556cf81bb2776b56"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "bytes": 7595,
+      "sha256": "81efab46dbb85c4d22745bbfbf637ea5389548cb19508ec424948c2bb221c449"
+    },
+    {
+      "path": "docs/nextgen/evidence/current_native_stop_2032_20261116/README.md",
+      "bytes": 3726,
+      "sha256": "e2568083ee2b0c87a4a95870fdbe73555197b8cff4d53c0ce01d696b5079ce49"
+    },
+    {
+      "path": "docs/nextgen/evidence/current_native_stop_2032_20261116/green.log",
+      "bytes": 5626,
+      "sha256": "b23e8a90c55b82513f603891a94f1fac31f2946bcdace26af41c8ecfddc48add"
+    },
+    {
+      "path": "docs/nextgen/evidence/current_native_stop_2032_20261116/red.log",
+      "bytes": 2196,
+      "sha256": "266aeccd84732688be43362e3ec42fc40e341c458142ea3c57a4c03496c25cec"
+    },
+    {
+      "path": "docs/nextgen/evidence/current_native_stop_2032_20261116/source.json",
+      "bytes": 7663,
+      "sha256": "96a6fd6c2c7a6470c6fa44e951f3562a04c8c254b3b0afbf677d7f182dc473cc"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_current_native_stop.py",
+      "bytes": 14231,
+      "sha256": "1ebb3bf459324a7b7418f5beb12b2dd9d2a65e43723bedd4a0d4d8a91465deb4"
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "bytes": 11429,
+      "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441"
+    }
+  ],
+  "source_provenance": "docs/nextgen/evidence/current_native_stop_2032_20261116/source.json",
+  "red": {
+    "commit": "b97edebdc8614412e1e67b6098bd48f0e96358a3",
+    "command": "python3 -B -m unittest -v tools.android_qa.tests.test_nextgen_current_native_stop",
+    "tests": 2,
+    "expected_failures": 2,
+    "unexpected_errors": 0,
+    "reason": "New >=2032 publisher accepts missing stop; inherited run omits stop between complete banana and pattern.",
+    "test_source": {
+      "bytes": 3111,
+      "sha256": "ff7ae3925aeccded850d198a1fbb36476eba062749f7cc91289195ab8c89daaa"
+    },
+    "log": {
+      "bytes": 2196,
+      "sha256": "266aeccd84732688be43362e3ec42fc40e341c458142ea3c57a4c03496c25cec"
+    }
+  },
+  "green": {
+    "commit": "34a0f314f9df4d0ac23a2032bd324b43072542d7",
+    "clean_before_run": true,
+    "command": "python3 -B -m unittest -v tools.android_qa.tests.test_nextgen_current_native_stop tools.android_qa.tests.test_nextgen_current_candidate tools.android_qa.tests.test_nextgen_2031_native_runtime_cases.DirectStopTimingTest",
+    "tests": 26,
+    "passed": 26,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "groups": {
+      "new_current_stop": 11,
+      "existing_current_candidate": 12,
+      "existing_direct_stop_timing": 3
+    },
+    "log": {
+      "bytes": 5626,
+      "sha256": "b23e8a90c55b82513f603891a94f1fac31f2946bcdace26af41c8ecfddc48add"
+    }
+  },
+  "historical_boundaries": {
+    "historical_runner_and_verifier_not_called": true,
+    "shared_verify_observed_execution_byte_equal": true,
+    "historical_sources_and_fixtures_unchanged": true,
+    "only_current_version_2032_or_later_requires_stop": true
+  },
+  "android_execution": "NOT_RUN",
+  "remote_mutations": false,
+  "ci_started": false,
+  "review_ready": true,
+  "integration": "Apply the three commits in order or the exact eight-file delta from the base. No Native pin/version/workflow/config change is included."
+}

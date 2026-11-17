@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_connect_four_delivery",
+    "scripts.tests.test_connect_four_pipeline",
+    "scripts.tests.test_candidate_2011_pin",
+    "scripts.tests.test_console_launch_failure_diagnostics",
+    "scripts.tests.test_console_launch_originals",
+    "scripts.tests.test_console_logger_printf",
+    "scripts.tests.test_studio_jump_decode",
+    "scripts.tests.test_verify_unchanged_apk_diagnostic"
+  ],
+  "returncode": 0,
+  "duration_seconds": 1.885,
+  "source_commit": "c1fef2d548ceaf42ccde8c8d8553d81f8400c349",
+  "source_tree": "a2c9c60f56d536241ccc6ac84d8bf90b26734044",
+  "log_sha256": "9785255d189c52b7ce359aa479a9efd1f0a53a53db7ca2e3c55b918622df40d7"
+}

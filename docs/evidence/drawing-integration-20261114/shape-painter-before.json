@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--no-test-assets",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/shape_trace_input_test.dart",
+    "--plain-name",
+    "undo and clear invalidate ink without an ancestor repaint"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 3.23
+}

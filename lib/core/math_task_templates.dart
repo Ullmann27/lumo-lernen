@@ -182,12 +182,21 @@ class MathTaskTemplates {
   }) {
     // 75% aktuelle Klassenstufe (strict), 25% Wiederholung aus Vorjahren.
     final useStrict = seed.abs() % 4 != 0;
-    final pool = useStrict
-        ? templatesForGradeStrict(grade, unit: unit)
-        : templatesForGrade(grade, unit: unit);
+    final available = templatesForGrade(grade, unit: unit);
+    // Exact cumulative topics outrank current-grade aliases. Otherwise a
+    // selected review topic such as 'Geld' can become 'Geld wechseln'.
+    final exact = available.where((item) => item.unit == unit).toList();
+    final current = exact
+        .where((item) => item.grade == grade.clamp(1, 4))
+        .toList();
+    final selected = exact.isNotEmpty
+        ? (useStrict && current.isNotEmpty ? current : exact)
+        : (useStrict
+            ? templatesForGradeStrict(grade, unit: unit)
+            : available);
     // Auswahl und Wiederholungsquote dürfen nicht denselben Modulo nutzen:
     // Bei 16 Templates wären sonst ganze Familien nie erreichbar.
-    final template = pool[_positive(_mixSeed(seed + 101), pool.length)];
+    final template = selected[_positive(_mixSeed(seed + 101), selected.length)];
     return template.concretize(_mixSeed(seed + 809));
   }
 

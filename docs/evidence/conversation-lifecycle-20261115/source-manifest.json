@@ -1,0 +1,38 @@
+{
+  "base_commit": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
+  "baseline_source_sha256": "26e7ca0bdc51372acb5bd48b35e8ebf74100ea7ffbb278d4a0e1f467b36927d6",
+  "source_files": {
+    "lib/features/agent/lumo_agent_content.dart": "6f5309de607adb7ca97ddc4cb43501716ac5d9b509f30c5db0dac275ab81cc8c",
+    "test/lumo_agent_microphone_lifecycle_test.dart": "24763ea9bc47c33e9aa91d56abcdc88255db21818c53af0eb3debd7d10d7d48a"
+  },
+  "toolchain": {
+    "frameworkVersion": "3.44.9",
+    "frameworkRevision": "6b182d2c7585eba26d4edce0f97630effd256c33",
+    "engineRevision": "5a2a6a42cce67f965cf540fcecf616faca624aa1",
+    "dartSdkVersion": "3.12.2",
+    "channel": "stable"
+  },
+  "checks": {
+    "baseline_regression": {
+      "exit_code": 1,
+      "expected_red": true,
+      "cause": "listen called after paused microphone initialization"
+    },
+    "fixed_regression": {
+      "exit_code": 0,
+      "passed": 1
+    },
+    "final_focused_regression": {
+      "exit_code": 0,
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "final_analysis": {
+      "exit_code": 0,
+      "issues": 0
+    }
+  },
+  "native_method_channel_mocked": true,
+  "android_device_validation": "NOT_RUN"
+}

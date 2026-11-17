@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
@@ -10,6 +12,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 Finder _backs() => find.byWidgetPredicate((w) =>
     w.key is ValueKey<String> &&
     (w.key! as ValueKey<String>).value.startsWith('memory-back-'));
+
+Future<String> _statsKey(LumoAppState app) async =>
+    'lumo.memory.stats.v1.${sha256.convert(utf8.encode((await app.captureLearningProfile()).studentId))}';
 
 Future<void> _open(WidgetTester tester, LumoAppState app,
     {MemoryDifficulty? difficulty, Size size = const Size(392, 850)}) async {
@@ -51,15 +56,17 @@ void main() {
       expect(_backs(), findsNWidgets(d.cards), reason: d.label);
     }
     final prefs = await SharedPreferences.getInstance();
-    expect(prefs.getString('lumo_memory_v2'), contains('profi'));
+    expect(prefs.getString(await _statsKey(app)), contains('profi'));
+    expect(prefs.getString('lumo_memory_v2'), isNull);
     await tester.pumpWidget(const SizedBox());
     app.dispose();
   });
 
-  testWidgets('Zuletzt gespielte Stufe wird wiederhergestellt', (tester) async {
-    SharedPreferences.setMockInitialValues(
-        {'lumo_memory_v2': '{"difficulty":"leicht","best":{"leicht":5}}'});
+  testWidgets('Die eigene zuletzt gespielte Stufe wird wiederhergestellt', (tester) async {
     final app = LumoAppState();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(await _statsKey(app),
+        '{"difficulty":"leicht","best":{"leicht":5}}');
     await _open(tester, app);
     await tester.pump(const Duration(milliseconds: 100));
     expect(_backs(), findsNWidgets(8));

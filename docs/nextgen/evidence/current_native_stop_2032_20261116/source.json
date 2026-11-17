@@ -1,0 +1,215 @@
+{
+  "schema": "lumo.nextgen.current.native.stop.host.validation",
+  "version": 1,
+  "base_commit": "362b6ac36fb645bb5266205f17c5504a8fbf22a3",
+  "android_execution": "NOT_RUN",
+  "runtime_acceptance": "NOT_CLAIMED",
+  "red": {
+    "commit": "b97edebdc8614412e1e67b6098bd48f0e96358a3",
+    "command": "python3 -B -m unittest -v tools.android_qa.tests.test_nextgen_current_native_stop",
+    "tests": 2,
+    "expected_failures": 2,
+    "unexpected_errors": 0,
+    "reason": "New >=2032 publisher accepts missing stop; inherited run omits stop between complete banana and pattern.",
+    "test_source": {
+      "bytes": 3111,
+      "sha256": "ff7ae3925aeccded850d198a1fbb36476eba062749f7cc91289195ab8c89daaa"
+    },
+    "log": {
+      "bytes": 2196,
+      "sha256": "266aeccd84732688be43362e3ec42fc40e341c458142ea3c57a4c03496c25cec"
+    }
+  },
+  "green": {
+    "commit": "34a0f314f9df4d0ac23a2032bd324b43072542d7",
+    "clean_before_run": true,
+    "command": "python3 -B -m unittest -v tools.android_qa.tests.test_nextgen_current_native_stop tools.android_qa.tests.test_nextgen_current_candidate tools.android_qa.tests.test_nextgen_2031_native_runtime_cases.DirectStopTimingTest",
+    "tests": 26,
+    "passed": 26,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "groups": {
+      "new_current_stop": 11,
+      "existing_current_candidate": 12,
+      "existing_direct_stop_timing": 3
+    },
+    "log": {
+      "bytes": 5626,
+      "sha256": "b23e8a90c55b82513f603891a94f1fac31f2946bcdace26af41c8ecfddc48add"
+    }
+  },
+  "sources": {
+    ".github/probes/lumo_nextgen_current_native_stop.py": {
+      "tested": {
+        "bytes": 10248,
+        "sha256": "2d8e70a2ab3e9a8d0756b6a20341d5d639833c9854e4e087556cf81bb2776b56"
+      },
+      "base": null,
+      "unchanged_from_base": false
+    },
+    ".github/probes/lumo_nextgen_current_reference_android_probe.py": {
+      "tested": {
+        "bytes": 7595,
+        "sha256": "81efab46dbb85c4d22745bbfbf637ea5389548cb19508ec424948c2bb221c449"
+      },
+      "base": {
+        "bytes": 7227,
+        "sha256": "7c9cc53a453acb14e0be0c9badbeb8253a88637c984c6b1ec3f264b1a3a49892"
+      },
+      "unchanged_from_base": false
+    },
+    "tools/nextgen/prepare_current_learning_release.py": {
+      "tested": {
+        "bytes": 11429,
+        "sha256": "3bf23c9b3199250ad194b4cc0f1fb02c2560d0b4dbb65504ff597f5b1e173441"
+      },
+      "base": {
+        "bytes": 11091,
+        "sha256": "4943b286dde1c44eb7236341bb6c16b25ccbfe27e2ed6cec7cbb623c86d19994"
+      },
+      "unchanged_from_base": false
+    },
+    "tools/android_qa/tests/test_nextgen_current_native_stop.py": {
+      "tested": {
+        "bytes": 14231,
+        "sha256": "1ebb3bf459324a7b7418f5beb12b2dd9d2a65e43723bedd4a0d4d8a91465deb4"
+      },
+      "base": null,
+      "unchanged_from_base": false
+    },
+    ".github/probes/lumo_nextgen_2031_native_runtime_cases.py": {
+      "tested": {
+        "bytes": 26339,
+        "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8"
+      },
+      "base": {
+        "bytes": 26339,
+        "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8"
+      },
+      "unchanged_from_base": true
+    },
+    ".github/probes/lumo_nextgen_reference_android_probe.py": {
+      "tested": {
+        "bytes": 44802,
+        "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41"
+      },
+      "base": {
+        "bytes": 44802,
+        "sha256": "5c3232a39bd6a4f1c2b8ad1f3e27eca097c1eb17f1775e51b314aab9b7950b41"
+      },
+      "unchanged_from_base": true
+    },
+    ".github/probes/lumo_nextgen_learning_android_probe.py": {
+      "tested": {
+        "bytes": 92469,
+        "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206"
+      },
+      "base": {
+        "bytes": 92469,
+        "sha256": "4a6e75aea292b4d8786f4a2a6803395388db5f5eae59215da1d1afa028821206"
+      },
+      "unchanged_from_base": true
+    },
+    ".github/probes/lumo_nextgen_native_reader.py": {
+      "tested": {
+        "bytes": 5817,
+        "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97"
+      },
+      "base": {
+        "bytes": 5817,
+        "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97"
+      },
+      "unchanged_from_base": true
+    },
+    ".github/probes/creative_android_probe.py": {
+      "tested": {
+        "bytes": 65137,
+        "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced"
+      },
+      "base": {
+        "bytes": 65137,
+        "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced"
+      },
+      "unchanged_from_base": true
+    },
+    ".github/probes/run_lumo_nextgen_current_android.sh": {
+      "tested": {
+        "bytes": 1168,
+        "sha256": "a54f2ec1ca5a64eb7ea1f2d3dc80f19db55354cf2137aaec1c175667b8740d47"
+      },
+      "base": {
+        "bytes": 1168,
+        "sha256": "a54f2ec1ca5a64eb7ea1f2d3dc80f19db55354cf2137aaec1c175667b8740d47"
+      },
+      "unchanged_from_base": true
+    },
+    ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py": {
+      "tested": {
+        "bytes": 21096,
+        "sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c"
+      },
+      "base": {
+        "bytes": 21096,
+        "sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c"
+      },
+      "unchanged_from_base": true
+    },
+    "tools/nextgen/prepare_2031_learning_replay_release.py": {
+      "tested": {
+        "bytes": 17952,
+        "sha256": "acdfa74f980a4e017724792e55740465182b24249031a4f8479eb421b5e7f347"
+      },
+      "base": {
+        "bytes": 17952,
+        "sha256": "acdfa74f980a4e017724792e55740465182b24249031a4f8479eb421b5e7f347"
+      },
+      "unchanged_from_base": true
+    },
+    "tools/android_qa/tests/test_nextgen_current_candidate.py": {
+      "tested": {
+        "bytes": 15487,
+        "sha256": "b48002a7916ae856b30c715318ecf98fde2dceaf0ee63a598c95744d8eb7bb48"
+      },
+      "base": {
+        "bytes": 15487,
+        "sha256": "b48002a7916ae856b30c715318ecf98fde2dceaf0ee63a598c95744d8eb7bb48"
+      },
+      "unchanged_from_base": true
+    },
+    "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py": {
+      "tested": {
+        "bytes": 26664,
+        "sha256": "507d0e9b94a9807c61a5ef5515c83c69c442fc1b2dfe63acff654631417cf85d"
+      },
+      "base": {
+        "bytes": 26664,
+        "sha256": "507d0e9b94a9807c61a5ef5515c83c69c442fc1b2dfe63acff654631417cf85d"
+      },
+      "unchanged_from_base": true
+    },
+    "tools/android_qa/tests/test_nextgen_reference_android_probe.py": {
+      "tested": {
+        "bytes": 29647,
+        "sha256": "bc904c33ab00f449e61ef8b62fbf33ec71bb33dd0bdbac6e2868a95a6b5f93bf"
+      },
+      "base": {
+        "bytes": 29647,
+        "sha256": "bc904c33ab00f449e61ef8b62fbf33ec71bb33dd0bdbac6e2868a95a6b5f93bf"
+      },
+      "unchanged_from_base": true
+    }
+  },
+  "historical_shared_verifier": {
+    "symbol": "verify_observed_execution",
+    "unchanged": true,
+    "bytes": 3401,
+    "sha256": "07160852da96b1dcb4960d379c9e42f906e9b25c363f2b94985b20d930d0d785"
+  },
+  "limitations": [
+    "Synthetic positive result inputs validate result contracts only.",
+    "Native stop timing tests simulate transport/time and target evidence; they do not execute Android or certify actual two-frame OCR on the device.",
+    "Existing native action, PID/playback, two-fresh-frame, 45-second and quiet-window implementation is imported byte-for-byte unchanged.",
+    "No new installation, APK, spoken input, acoustic stop, mouth/gesture timing or physical-device evidence was created."
+  ]
+}

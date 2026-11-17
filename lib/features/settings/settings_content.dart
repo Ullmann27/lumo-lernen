@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../../widgets/design/lumo_night_scope.dart';
 import '../../widgets/lumo_speech_controls.dart';
 import '../../core/ai_task_cache.dart';
@@ -19,6 +21,7 @@ import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import '../teacher/teacher_dashboard_screen.dart';
 import 'legacy_learning_data_card.dart';
+import 'native_game_saves_card.dart';
 import 'parent_report_card.dart';
 import 'writing_report_card.dart';
 import 'lumo_voice_diagnostics_card.dart';
@@ -125,6 +128,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   }
 
   Future<void> _save(AppSettings next) async {
+    if (_saving) return;
     setState(() {
       _settings = next;
       _saving = true;
@@ -141,6 +145,30 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     );
     await SettingsRepository.save(next);
     if (mounted) setState(() => _saving = false);
+  }
+
+  Future<void> _saveMissionSettings(AppSettings next) async {
+    if (_saving) return;
+    setState(() => _saving = true);
+    try {
+      await SettingsRepository.save(next);
+      widget.appState.updateSettings(next);
+      if (mounted) setState(() => _settings = next);
+    } catch (_) {
+      // A rejected platform write may still have changed the plugin cache.
+      // Keep the previous effective parent choice until durable saving works.
+      try {
+        await (await SharedPreferences.getInstance()).reload();
+      } catch (_) {}
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Die Einstellung konnte nicht gespeichert werden. '
+              'Bitte versuche es erneut.'),
+        ));
+      }
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
   }
 
   Future<void> _resetSettings() async {
@@ -318,6 +346,16 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         _updateInfo = info;
         _updateError = info.error;
       });
+      if (info.managedByPlay) {
+        final opened = await service.openUpdate(info);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(opened
+              ? 'Du kannst Lumo jetzt über Google Play aktualisieren.'
+              : 'Öffne Google Play und suche dort nach Lumo Lernen.')),
+        );
+        return;
+      }
       // Direkt weiter zum Auto-Install wenn ein Update verfuegbar ist.
       // 2026-06-06 Heinz: 'einfach Update-Button druecken, alles automatisch'.
       // Statt Browser-Launch jetzt: APK direkt in den App-Cache laden, dann
@@ -428,7 +466,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       scene: LumoScene.profile,
       dimmed: true,
       showPlaceholderLabel: false,
-      child: SingleChildScrollView(
+      child: AbsorbPointer(absorbing: _saving, child: SingleChildScrollView(
       padding: EdgeInsets.all(MediaQuery.sizeOf(context).width < 600 ? 14 : 24),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         _Header(
@@ -437,7 +475,14 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           emoji: '⚙️',
           accent: LumoVisualTokens.white,
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Gerät und Sicherheit',
+          subtitle: 'Updates und Einstellungen für einen sicheren Betrieb',
+          icon: Icons.verified_user_rounded,
+          accent: LumoVisualTokens.cyanBright,
+        ),
+        const SizedBox(height: 12),
         _AppUpdateCard(
           info: _updateInfo,
           checking: _checkingUpdate,
@@ -445,7 +490,14 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           error: _updateError,
           onUpdate: _checkAndUpdate,
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Schule und Lernwege',
+          subtitle: 'Klassenstufe, Lehreraufgaben und lokale Lerndaten',
+          icon: Icons.school_rounded,
+          accent: LumoVisualTokens.gold,
+        ),
+        const SizedBox(height: 12),
         _ParentSchoolGradeCard(
           grade: state.grade,
           childName: state.childName,
@@ -469,10 +521,21 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           appState: widget.appState,
           refreshRevision: _legacyDataRevision,
         ),
+        NativeGameSavesCard(
+          appState: widget.appState,
+          refreshRevision: _legacyDataRevision,
+        ),
         const SizedBox(height: 18),
         _ProfileResetCard(
           onReset: () => _confirmResetProfile(context)),
-        const SizedBox(height: 18),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Lernfortschritt verstehen',
+          subtitle: 'Berichte und Hinweise auf einen Blick',
+          icon: Icons.insights_rounded,
+          accent: LumoVisualTokens.cyanBright,
+        ),
+        const SizedBox(height: 12),
         ParentReportCard(appState: widget.appState),
         const SizedBox(height: 18),
         // Phase 6b: Schreibcoach-Uebungsstand (geuebte/schwache Buchstaben,
@@ -531,6 +594,29 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         ),
         const SizedBox(height: 18),
         _SettingsCard(title: 'Lernen', children: [
+          _SwitchRow(
+            title: 'Tagesmission vor dem Spielen',
+            subtitle: 'Optional: Erst die drei Lernstationen abschließen. '
+                'Auch richtig gelöste Aufgaben mit Hilfe zählen.',
+            value: _settings.requireDailyMissionForGames,
+            onChanged: (value) => _saveMissionSettings(
+                _settings.copyWith(requireDailyMissionForGames: value)),
+          ),
+          const SizedBox(height: 10),
+          const Text('Aufgaben je Station (ab der nächsten Tagesmission)'),
+          Wrap(
+            spacing: 8,
+            children: [
+              for (final count in const [2, 4, 6])
+                ChoiceChip(
+                  label: Text('$count'),
+                  selected: _settings.missionTasksPerStation == count,
+                  onSelected: _saving ? null : (_) => _saveMissionSettings(
+                      _settings.copyWith(missionTasksPerStation: count)),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
           _DailyGoalSelector(value: _settings.dailyGoal, onChanged: (v) => _save(_settings.copyWith(dailyGoal: v)),
                 ),
           const SizedBox(height: 12),
@@ -726,7 +812,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         const _ErrorLogCard(),
       ],
         ),
-      ), // close SingleChildScrollView
+      )), // close SingleChildScrollView and pending-save input lock
     ); // close night scene
   }
 }
@@ -852,24 +938,29 @@ class _SettingsCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+          colors: [Color(0xF01B4A80), Color(0xF00A2852)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.40)),
+        border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .52), width: 1.25),
         boxShadow: [
           BoxShadow(
-            color: LumoVisualTokens.cyan.withOpacity(.12),
-            blurRadius: 18,
+            color: LumoVisualTokens.cyan.withValues(alpha: .15),
+            blurRadius: 22,
             offset: const Offset(0, 8),
+            spreadRadius: -5,
           ),
         ],
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
+          style: LumoTextStyles.heading3.copyWith(
+            color: LumoVisualTokens.white,
+            fontSize: 18,
+            height: 1.2,
+          ),
         ),
         const SizedBox(height: 12),
         ...children,
@@ -1567,6 +1658,7 @@ class _AppUpdateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasUpdate = info?.available == true;
+    final playManaged = info?.managedByPlay == true;
     const familyPreview = AppUpdateService.isFamilyPreview;
     // Wenn Update verfuegbar: gruener Akzent. Sonst: orange wie der Rest.
     final accent = hasUpdate ? const Color(0xFF22C55E) : LumoColors.orange;
@@ -1625,7 +1717,9 @@ class _AppUpdateCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      hasUpdate
+                      playManaged
+                          ? 'Aktualisierungen über Google Play'
+                          : hasUpdate
                           ? 'Neue Version verfügbar'
                           : familyPreview ? 'Lumo Familien-Testversion' : 'App-Version',
                       style: const TextStyle(
@@ -1639,7 +1733,11 @@ class _AppUpdateCard extends StatelessWidget {
                     Text(
                       info == null
                           ? 'Aktuell: Build ${AppUpdateService.currentBuildNumber} (${AppUpdateService.currentVersionName})'
-                          : hasUpdate
+                          : playManaged
+                              ? 'Google Play prüft, ob ein Update verfügbar ist.'
+                              : info!.error != null
+                                  ? 'Die Updateprüfung wurde nicht abgeschlossen.'
+                                  : hasUpdate
                               ? 'Build ${info!.latestBuildNumber} ist neuer als deine Build ${info!.currentBuildNumber}.'
                               : familyPreview
                                   ? 'Kein neuer freigegebener Familien-Build. Installiert: ${info!.currentBuildNumber}.'
@@ -1715,7 +1813,9 @@ class _AppUpdateCard extends StatelessWidget {
               label: Text(
                 checking
                     ? progress != null ? 'Lade Update…' : 'Prüfe…'
-                    : hasUpdate
+                    : playManaged
+                        ? 'Google Play öffnen'
+                        : hasUpdate
                         ? 'Jetzt aktualisieren'
                         : 'Auf Update prüfen',
                 style: const TextStyle(

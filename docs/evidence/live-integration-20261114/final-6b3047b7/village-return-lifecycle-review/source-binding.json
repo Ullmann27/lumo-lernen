@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "host_commit": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "host_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "native_commit": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+  "host": [
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "bytes": 11541,
+      "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+      "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99",
+      "committed_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+    },
+    {
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "bytes": 4078,
+      "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc",
+      "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+      "committed_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "committed_blob": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+      "committed_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8"
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "bytes": 20967,
+      "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+      "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3",
+      "committed_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "bytes": 12726,
+      "sha256": "ac43bed87efbecd7fd7535120b5eff2839cb05b19662eb9ac93c0bf7f9963287",
+      "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08",
+      "committed_blob": "81e96786d30c223e9ba145b4f50cbae737946c08"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "bytes": 19093,
+      "sha256": "b1b223b5e39cd4989505f83a9ecef9bd33bc21ee5a17fd377d6e41137fa8a5d7",
+      "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b",
+      "committed_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b"
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "bytes": 10377,
+      "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+      "git_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "committed_blob": "a1615455b5ea6251926d5037900e025d46971c18"
+    },
+    {
+      "path": "lib/core/embedded_game_service.dart",
+      "bytes": 4109,
+      "sha256": "1ed92caa82d678cf7b97badfa4f1dab6934449f3c0727d72b2eac00b6f816449",
+      "git_blob": "2cf39b896ab7121ec45384f9d2b65147f16b9156",
+      "committed_blob": "2cf39b896ab7121ec45384f9d2b65147f16b9156"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10640,
+      "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+      "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1",
+      "committed_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+    },
+    {
+      "path": "lib/features/games/games_content.dart",
+      "bytes": 60198,
+      "sha256": "7b69bd88bb6651c65981e1d64252614848999326b0d14881b86aa305e96db5ca",
+      "git_blob": "166ee19435146a9d42c69eeadd71754dac88d9d7",
+      "committed_blob": "166ee19435146a9d42c69eeadd71754dac88d9d7"
+    },
+    {
+      "path": "lib/app/app_shell.dart",
+      "bytes": 37822,
+      "sha256": "02087dfed14848d84c52877c7bf8d7756bd265a31f06544230cda41b74bb3cbb",
+      "git_blob": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+      "committed_blob": "db141faa7f922d136a822cfd6c49b4153d904a9a"
+    },
+    {
+      "path": "lib/widgets/shell/left_navigation.dart",
+      "bytes": 16048,
+      "sha256": "ab1c0adfffa3092fb135bf8466f387608c6be3a24ca86f7b81dd25b9800a7580",
+      "git_blob": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086",
+      "committed_blob": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086"
+    },
+    {
+      "path": "lib/widgets/design/lumo_design_system.dart",
+      "bytes": 58867,
+      "sha256": "2ecd5be524b6f833197e12af0c3ccb453d5b8af4377e7b02eff9dcd2c190ad7a",
+      "git_blob": "79175b2dac6f52c73bd2f8737e9a94f7bddfa16b",
+      "committed_blob": "79175b2dac6f52c73bd2f8737e9a94f7bddfa16b"
+    }
+  ],
+  "native": [
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "bytes": 50514,
+      "sha256": "5849c7afa7a8bc7a42e2158ded98b7ec4ea1d777f8607a9721727ec6cdc9c588",
+      "git_blob": "149a4386225812592917b1bcac0b85294413f1b4",
+      "committed_blob": "149a4386225812592917b1bcac0b85294413f1b4"
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "committed_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "bytes": 5604,
+      "sha256": "6b86fda5b38f2b966d0da4d26eb9cae24e2185ef9d067b0dfb99aa86bfe644b4",
+      "git_blob": "1845617ed2659dd377f433209799b12ddf310deb",
+      "committed_blob": "1845617ed2659dd377f433209799b12ddf310deb"
+    }
+  ],
+  "verification": "Every local source byte hash equals the exact committed Git blob; read-only source inspection, no compiler/test/build execution."
+}

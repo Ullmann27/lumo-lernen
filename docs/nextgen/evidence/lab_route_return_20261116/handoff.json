@@ -1,0 +1,123 @@
+{
+  "schema": "lumo.lab.route-return.fix.v1",
+  "base_commit": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "product_files": [
+    "lib/features/learning/lab/learning_lab_screen.dart"
+  ],
+  "new_test_file": "test/learning/lab_conversation_return_test.dart",
+  "original_run": 43783036351,
+  "original_job": 133024363592,
+  "qa_commit": "0919f32431ce07491e0e182b3ea12b21aaaf9540",
+  "artifact": {
+    "artifactId": 14189855923,
+    "archiveBytes": 15081417,
+    "archiveSha256": "a45af48603774f8a8da9619fd1be0c03e6196723a0e31ab69de1bd6e5d076c81",
+    "allMemberCRCsVerified": true
+  },
+  "original_evidence": [
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2028-replay-bridge-checkpoint-failure/original/android/original-android/0157-conversation-returned-task.xml",
+      "bytes": 27094,
+      "sha256": "54952d9c3b77c2f13701e54d5e7a253cf0af74cba20e9bf6579a58eccd8be851"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2028-replay-bridge-checkpoint-failure/original/android/original-android/0160-bridge-move-one.xml",
+      "bytes": 27094,
+      "sha256": "54952d9c3b77c2f13701e54d5e7a253cf0af74cba20e9bf6579a58eccd8be851"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2028-replay-bridge-checkpoint-failure/original/android/original-android/0162-bridge-move-one-touch.json",
+      "bytes": 117,
+      "sha256": "7ee7e3a265ab7fa49ce43dbf20c6d3c126177ce1aeecf6968506234f4518ee05"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2028-replay-bridge-checkpoint-failure/original/android/original-android/0236-failure-current-screen.png",
+      "bytes": 589187,
+      "sha256": "889630972f65d385d80124a3c7f970160f4ab9e988672ef34686e14e654a72cc"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2028-replay-bridge-checkpoint-failure/original/android/original-android/microphone-observation.json",
+      "bytes": 1392,
+      "sha256": "d0ca749d91df03ea7ae303d06690f4d2a7eb8ed03fa750c8ddebd31d4cdf23ee"
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/ci-2028-replay-bridge-checkpoint-failure/original/android/original-android/learning-android-result.json",
+      "bytes": 9934,
+      "sha256": "ec75293aeb84da7c75ae4f707384ef5090b149259922db268e1ba247c75a6929"
+    }
+  ],
+  "red": {
+    "exit_code": 1,
+    "failed": 3,
+    "source": "unchanged fc5 Lab file",
+    "test_file_same_as_green": true
+  },
+  "green": {
+    "exit_code": 0,
+    "passed": 27,
+    "new_regressions": 3,
+    "existing_tests": 24,
+    "command": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/learning/lab_conversation_return_test.dart",
+      "test/learning/nextgen_lab_bus_integration_test.dart",
+      "test/learning/lab_native_entry_test.dart",
+      "test/learning_lab_runtime_test.dart"
+    ]
+  },
+  "analysis": {
+    "exit_code": 0,
+    "files": 2,
+    "issues": 0
+  },
+  "android_reader_changed": false,
+  "android_moved_gate_changed": false,
+  "new_android_runtime_pass": false,
+  "new_apk_built": false,
+  "files": [
+    {
+      "path": "lib/features/learning/lab/learning_lab_screen.dart",
+      "bytes": 56163,
+      "sha256": "9ba19a3101125f1ae111c3ec963758a4edd914367ba8c31c69237055e2e9ab45"
+    },
+    {
+      "path": "test/learning/lab_conversation_return_test.dart",
+      "bytes": 7260,
+      "sha256": "ff5bc1ed4e8540ab78a2a24f907a6c1d36b3023fd4197c5e2ac93aaf11b8951b"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_route_return_20261116/analyze.log",
+      "bytes": 96,
+      "sha256": "f097a65ebeb694c4d591ee50f5539f211e17b837052f4b9b7eecf04e417ebd67"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_route_return_20261116/green.log",
+      "bytes": 4813,
+      "sha256": "063fccc3041165e09b53a00173a66a37d781ff306194ec0cb29f0bd75c228502"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_route_return_20261116/red-initial-two-cases.log",
+      "bytes": 4258,
+      "sha256": "538e261a9dc40100f4f9c3d9bb36cfc9d563f562676b70ab2af000f994aef293"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_route_return_20261116/red.log",
+      "bytes": 6056,
+      "sha256": "36162489fcaeb3d43e2058779c5009995fafedf859ba166450c50aa52a976b52"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_route_return_20261116/red-provenance.json",
+      "bytes": 697,
+      "sha256": "a60b932b1af6ffd40b9c41946604479244654f5cac9c743295f6db78f012cfc3"
+    },
+    {
+      "path": "docs/nextgen/evidence/lab_route_return_20261116/README.md",
+      "bytes": 3178,
+      "sha256": "88a4ae7922e1a1dd32334aa7c8b5992da89fb7feb26a3c169e3cfcad0a9f731e"
+    }
+  ]
+}

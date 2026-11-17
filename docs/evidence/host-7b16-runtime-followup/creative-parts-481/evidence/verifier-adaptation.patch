@@ -1,0 +1,105 @@
+--- legacy/verify_creative_parts.py
++++ pr481/verify_creative_parts.py
+@@ -3,6 +3,8 @@
+ 
+ Inputs must be original GitHub API objects, complete reports from the previously
+ checked memory collector, and its byte-identical materialized index/part files.
++This fixed PR481 verifier expects a schema-2 index bound to its QA probe source;
++the unchanged built APK is not the transport source. Part manifests stay schema 1.
+ This program neither downloads nor reopens ZIP payloads and does not authenticate
+ the external provenance of supplied JSON files. It grants no product acceptance.
+ """
+@@ -17,14 +19,15 @@
+ import stat
+ import sys
+ 
+-HOST = '7b16f2f5ab16f3d913ee170aefd9807c87216260'
+-TREE = 'fe430b86449e4f4e221cadfc802f42db639f3133'
+-RUN = 43540111465
++PROBE_SOURCE = 'f89b77bbc9caacfb677a8f0b7922f27fcbbd546f'
++PROBE_TREE = '5c42a92ae49e73d4739cacaaf35f2102561d841a'
++RUN = 43556708653
+ ATTEMPT = 1
+ REPOSITORY = 'Ullmann27/lumo-lernen'
+ REPOSITORY_ID = 1222433959
+-WORKFLOW = '.github/workflows/lumo-kart-graphics-2019.yml'
+-NAME_PREFIX = 'lumo-kart-graphics-2019-creative-part-'
++WORKFLOW = '.github/workflows/lumo-creative-7b16-diagnostic.yml'
++BRANCH = 'qa/lumo-creative-7b16-20261114'
++NAME_PREFIX = 'lumo-creative-7b16-diagnostic-creative-part-'
+ MAX_PART_BYTES = 256 * 1024 * 1024
+ MAX_PARTS = 8
+ MAX_FILES = 20000
+@@ -32,10 +35,10 @@
+ MAX_PART_JSON = 16 * 1024
+ MAX_API_BYTES = 1024 * 1024
+ MAX_REPORT_BYTES = 16 * 1024 * 1024
+-EXPORT_BLOB = '28e4456a211c4735f8caefa34d11c6dd681117ed'
++EXPORT_BLOB = '4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9'
+ COLLECTOR_SHA256 = '9d7b07d27657b9c9a62c7027393419006480bc3d28848cfabe6811be21a6204e'
+ EXPECTED_BINDING = {'repository': REPOSITORY, 'workflow_path': WORKFLOW,
+-                    'host_source_sha': HOST, 'run_id': RUN, 'run_attempt': ATTEMPT}
++                    'probe_source_sha': PROBE_SOURCE, 'run_id': RUN, 'run_attempt': ATTEMPT}
+ EMPTY_SHA = hashlib.sha256(b'').hexdigest()
+ 
+ 
+@@ -110,16 +113,17 @@
+     require(integer(run.get('id'), 1) and run['id'] == RUN and
+             integer(run.get('run_attempt'), 1) and run['run_attempt'] == ATTEMPT,
+             'RUN_OR_ATTEMPT_MISMATCH')
+-    require(run.get('head_sha') == HOST and run.get('event') == 'pull_request' and
+-            run.get('path') == WORKFLOW, 'RUN_SOURCE_OR_WORKFLOW_MISMATCH')
++    require(run.get('head_sha') == PROBE_SOURCE and run.get('event') == 'pull_request' and
++            run.get('path') == WORKFLOW and run.get('head_branch') == BRANCH,
++            'RUN_SOURCE_OR_WORKFLOW_MISMATCH')
+     for key in ('repository', 'head_repository'):
+         repository = run.get(key)
+         require(isinstance(repository, dict) and repository.get('full_name') == REPOSITORY and
+                 type(repository.get('id')) is int and repository['id'] == REPOSITORY_ID,
+                 'RUN_REPOSITORY_MISMATCH')
+     commit = run.get('head_commit')
+-    require(isinstance(commit, dict) and commit.get('id') == HOST and
+-            commit.get('tree_id') == TREE, 'RUN_TREE_MISMATCH')
++    require(isinstance(commit, dict) and commit.get('id') == PROBE_SOURCE and
++            commit.get('tree_id') == PROBE_TREE, 'RUN_TREE_MISMATCH')
+     return identity
+ 
+ 
+@@ -189,7 +193,7 @@
+             'ARTIFACT_REPOSITORY_MISMATCH')
+     workflow_run = metadata.get('workflow_run')
+     require(isinstance(workflow_run, dict) and type(workflow_run.get('id')) is int and
+-            workflow_run['id'] == RUN and workflow_run.get('head_sha') == HOST,
++            workflow_run['id'] == RUN and workflow_run.get('head_sha') == PROBE_SOURCE,
+             'ARTIFACT_RUN_OR_SOURCE_MISMATCH')
+     require(all(type(workflow_run.get(key)) is int and workflow_run[key] == REPOSITORY_ID
+                 for key in ('repository_id', 'head_repository_id')), 'ARTIFACT_REPOSITORY_MISMATCH')
+@@ -200,7 +204,7 @@
+     require(isinstance(report_artifact, dict) and
+             all(type(report_artifact.get(key)) is int for key in ('id', 'bytes', 'run_id')) and
+             report_artifact == {'id': aid, 'bytes': size, 'sha256': checksum[7:],
+-                                'run_id': RUN, 'head_sha': HOST}, 'REPORT_ARTIFACT_MISMATCH')
++                                'run_id': RUN, 'head_sha': PROBE_SOURCE}, 'REPORT_ARTIFACT_MISMATCH')
+     files, directories = verify_inventory(report)
+     require(size <= report['limits']['archive_bytes'], 'COLLECTOR_ARCHIVE_LIMIT_MISMATCH')
+     for member, raw in (('export-index.json', index_raw), ('part.json', part_raw)):
+@@ -216,7 +220,7 @@
+ def verify_index(index, raw):
+     require(set(index) == {'schema', 'binding', 'original_path_prefix', 'limits', 'file_count',
+                           'total_bytes', 'part_count', 'parts', 'files'}, 'INDEX_SCHEMA_MISMATCH')
+-    require(type(index.get('schema')) is int and index['schema'] == 1 and
++    require(type(index.get('schema')) is int and index['schema'] == 2 and
+             index.get('original_path_prefix') == 'originals/', 'INDEX_SCHEMA_MISMATCH')
+     binding = index.get('binding')
+     require(isinstance(binding, dict) and binding == EXPECTED_BINDING and
+@@ -304,7 +308,9 @@
+                        {'original_file_count': declared['file_count'],
+                         'original_payload_bytes': declared['payload_bytes']})
+     return {'schema': 1, 'status': 'CREATIVE_PARTS_TRANSPORT_SNAPSHOT_COMPLETE',
+-            'binding': EXPECTED_BINDING, 'host_tree': TREE, 'run_metadata': run_identity,
++            'binding': EXPECTED_BINDING, 'probe_source_tree': PROBE_TREE,
++            'probe_branch': BRANCH, 'export_index_schema': 2, 'part_manifest_schema': 1,
++            'transport_source_role': 'qa_probe_source', 'run_metadata': run_identity,
+             'part_count': index['part_count'], 'original_file_count': index['file_count'],
+             'original_payload_bytes': index['total_bytes'], 'identical_index_bytes': len(raw),
+             'identical_index_sha256': digest(raw), 'parts': results,

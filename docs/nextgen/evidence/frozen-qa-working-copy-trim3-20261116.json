@@ -1,0 +1,66 @@
+{
+  "observedAtUtc": "2026-11-16T07:19:48.986319+00:00",
+  "scope": "Only five frozen, clean, remote-verified own QA working copies reduced reversibly; no active worker, branch, commit, history or product change",
+  "records": [
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-2031-runtime-cases",
+      "branch": "qa/lumo-2031-lab-runtime-cases-20261116",
+      "commit": "d05419d986d523d0905bb1016afeee6b10346c67",
+      "treeUnchanged": "4f2d40dab8765d91dd905a6baa6f5746906b179f",
+      "priorSparseSelection": "/AGENTS.md\n/CLAUDE.md\n/OPUS_NEXT.md\n/docs/OPUS_ENTWICKLUNGSAUFTRAG.md\n/.github/probes/\n/tools/android_qa/\n/tools/nextgen/prepare_current_learning_release.py\n/tools/nextgen/public_learning_download.py\n/tools/nextgen/prepare_learning_replay_release.py\n/tools/nextgen/test_prepare_current_learning_release.py\n/tools/nextgen/prepare_2031_learning_replay_release.py\n/config/nextgen-2031-replay.json\n/docs/nextgen/evidence/runtime_cases_2031_20261116/\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 53853486,
+      "workingCopyBytesAfter": 1254446,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    },
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-native-reference-diagnostic",
+      "branch": "qa/lumo-nextgen-native-reference-diagnostic-20261115",
+      "commit": "e4b6f0734e718f781c591f933c534ef971b76b0e",
+      "treeUnchanged": "d5e4e57e7aae21a4b33824d3e0bec3d7887a93bb",
+      "priorSparseSelection": ".github/probes\n.github/workflows\nscripts\ntools/android_qa\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 61794254,
+      "workingCopyBytesAfter": 1041241,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    },
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-native-runtime-cases",
+      "branch": "qa/lumo-2031-native-runtime-cases-20261116",
+      "commit": "09f483b32d2308da9e14b4e53222c1849fff586e",
+      "treeUnchanged": "fb4e0bcbde23eb4c87cdf2fdc442168593ab302d",
+      "priorSparseSelection": "/*\n!/*/\n/.github/\n!/.github/*/\n/tools/\n!/tools/*/\n/.github/probes/\n/scripts/\n/tools/android_qa/\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 62227338,
+      "workingCopyBytesAfter": 1248249,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    },
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-permission-reader",
+      "branch": "qa/lumo-permission-reader-20261116",
+      "commit": "842285f1fb7458f72a8491e34ceed922a96fa77a",
+      "treeUnchanged": "4488c4b41b2fb3cb7d1f50a06f8cea1a9da4cece",
+      "priorSparseSelection": "/*\n!/*/\n/.github/\n!/.github/*/\n/scripts/\n!/scripts/*/\n/tools/\n!/tools/*/\n/.github/probes/\n/scripts/probes/\n/tools/android_qa/\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 53934448,
+      "workingCopyBytesAfter": 1282158,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    },
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/agent-recording-offline-observation",
+      "branch": "qa/lumo-recording-offline-observation-20261116",
+      "commit": "b5e747b3c6952092330ada0f1e9a213935da9781",
+      "treeUnchanged": "3d10b7c3bd8cd17071fbaa3e1eb57308b6b77648",
+      "priorSparseSelection": "/.github/probes/\n/tools/android_qa/\n/scripts/probes/\n/tools/lumo_autosave.py\n/AGENTS.md\n/CLAUDE.md\n/docs/nextgen/evidence/recording_offline_2031_20261116/\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/tools/nextgen/*.py\n",
+      "workingCopyBytesBefore": 54644125,
+      "workingCopyBytesAfter": 1301355,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    }
+  ]
+}

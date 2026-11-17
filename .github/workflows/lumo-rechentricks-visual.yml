@@ -1,0 +1,48 @@
+name: Lumo child-friendly math tricks visual proof
+
+on:
+  pull_request:
+    paths:
+      - lib/features/learning/lumo_rechentricks_poster_screen.dart
+      - test/rechentricks_kindgerechte_werkstatt_test.dart
+      - test/rechentricks_visual_capture_test.dart
+      - .github/workflows/lumo-rechentricks-visual.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kid-friendly-tricks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve dependencies and analyze
+        run: |
+          set -euo pipefail
+          flutter pub get
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Real Flutter screens and interaction tests
+        env:
+          LUMO_TRICKS_CAPTURES: ${{ github.workspace }}/exports/rechentricks
+        run: |
+          set -euo pipefail
+          mkdir -p exports/rechentricks
+          flutter test --no-pub --reporter=expanded \
+            test/rechentricks_kindgerechte_werkstatt_test.dart \
+            test/rechentricks_visual_capture_test.dart
+          test -s exports/rechentricks/rechentricks-phone.png
+          test -s exports/rechentricks/rechentricks-fold-cover.png
+      - name: Preserve real screen renders
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-rechentricks-kinderansicht
+          path: exports/rechentricks/
+          retention-days: 14

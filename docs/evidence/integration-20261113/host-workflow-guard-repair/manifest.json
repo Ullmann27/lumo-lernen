@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-13T15:37:03.218101+00:00",
+  "scope": "Existing Host build and preservation gate, exact test-parser repair and prior Flutter source/evidence reuse",
+  "base_commit": "f80fe6b3d6a3c58c89f8507853dcbfc15a84525e",
+  "base_tree": "bc925bfebb77fa58ae4b82b93204906ae9265172",
+  "changed_source_path": "scripts/tests/test_nextgen_workflow_contract.py",
+  "before_source_blob": "0c8809fe6aa4fcb8d64eb9dd0678e1e796dc066e",
+  "after_source_blob": "8c26f54565af203f1a041e0bda7175a54f7f6a76",
+  "after_source_sha256": "1da6ab1457c372e7c3fad21ada69bf48337a7322b72c152fd4282a0b553373af",
+  "patch_sha256": "692144ffd5de2b5ba9bdfaabc0e522b0966bdf8ac11d297aa9980e732fc46c40",
+  "red_full_gate": {
+    "tests": 409,
+    "subtest_errors": 7,
+    "skipped": 0,
+    "seconds": 97.34
+  },
+  "targeted": {
+    "red_tests": 1,
+    "red_subtest_errors": 7,
+    "green_tests": 1,
+    "green_branch_cases": 11,
+    "original_branch_cases_retained": 7
+  },
+  "green_full_gate": {
+    "tests": 409,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 97.705
+  },
+  "source_hash_count": 1184,
+  "source_stable_during_green_gate": true,
+  "flutter_source_reuse": {
+    "prior_commit": "732056af52826920e4228fc9e68e188cc8f27a82",
+    "prior_passed": 55,
+    "prior_failed": 0,
+    "prior_skipped": 0,
+    "exact_file_count": 12,
+    "prior_evidence_digests_valid": true,
+    "whole_objects_equal": [
+      "lib",
+      "test",
+      "assets",
+      "pubspec.yaml",
+      "pubspec.lock"
+    ],
+    "rerun": false
+  },
+  "identity_files_unchanged": {
+    "config/godot-source.json": {
+      "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2",
+      "matches_original": true
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6",
+      "matches_original": true
+    },
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac",
+      "matches_original": true
+    }
+  },
+  "archive_validation": "Every stored object re-read; gzip objects decompressed and byte-compared with the exact original",
+  "files": [
+    {
+      "path": "red/full-build-contracts.log.gz",
+      "encoding": "gzip",
+      "original_relative_path": "build-contracts.log",
+      "original_bytes": 90153,
+      "original_sha256": "9bc3f3010f7f2f1d7363353208ce946b175d58a7fd735e43eea509a7e507258b",
+      "stored_bytes": 13115,
+      "stored_sha256": "5b8ed37c91ce2c225e665eb5442c7d2c7e4db5dab9ee955e005d5f0803f40f02"
+    },
+    {
+      "path": "red/run-manifest.json",
+      "encoding": "identity",
+      "original_relative_path": "manifest.json",
+      "original_bytes": 2320,
+      "original_sha256": "3d49d8fccb77c76b3ea28c0c11e92d65aebbe7e41d4646bc39fd4ca9e7bf4915",
+      "stored_bytes": 2320,
+      "stored_sha256": "3d49d8fccb77c76b3ea28c0c11e92d65aebbe7e41d4646bc39fd4ca9e7bf4915"
+    },
+    {
+      "path": "red/source-before.json.gz",
+      "encoding": "gzip",
+      "original_relative_path": "source-before.json",
+      "original_bytes": 270627,
+      "original_sha256": "7f30dd46210e1323357aec7626499de331658d6ed1023be831827583754ea4d8",
+      "stored_bytes": 97424,
+      "stored_sha256": "80b7bf1a17c88475b24730351703e4fa906aa22135fe7819dd304359a62138d8"
+    },
+    {
+      "path": "red/source-after.json.gz",
+      "encoding": "gzip",
+      "original_relative_path": "source-after.json",
+      "original_bytes": 270627,
+      "original_sha256": "43a1a2b6af3fdeaf7e3e923e35e829949725336d46482566bb0f3c6e0ae49dac",
+      "stored_bytes": 97424,
+      "stored_sha256": "2a08e513e222e34b9afed5e4c4d0d3cbbe856c58a073659f1061f63d76adaf9b"
+    },
+    {
+      "path": "green/full-build-contracts.log.gz",
+      "encoding": "gzip",
+      "original_relative_path": "workflow-guard-repair/build-contracts-green.log",
+      "original_bytes": 82249,
+      "original_sha256": "19fa23cd97a0b57997f51e42e4312d3262da8cf925c424d7d445146c38f6cd22",
+      "stored_bytes": 12657,
+      "stored_sha256": "4eddf7e9ae04174878ed4c812615c5b5781265a272a33982e653aac879c2267b"
+    },
+    {
+      "path": "green/run-manifest.json",
+      "encoding": "identity",
+      "original_relative_path": "workflow-guard-repair/manifest.json",
+      "original_bytes": 2217,
+      "original_sha256": "3242ed454de294f7d526b5cb1ea4acfebf38f2b3b20be2c1317e20b6b09db020",
+      "stored_bytes": 2217,
+      "stored_sha256": "3242ed454de294f7d526b5cb1ea4acfebf38f2b3b20be2c1317e20b6b09db020"
+    },
+    {
+      "path": "green/source-before.json.gz",
+      "encoding": "gzip",
+      "original_relative_path": "workflow-guard-repair/source-before-green.json",
+      "original_bytes": 272222,
+      "original_sha256": "c7f144bbec8da34b3ec2eac351bc823b37a501f3514dabcc1a4c7aae19e6fb41",
+      "stored_bytes": 98006,
+      "stored_sha256": "4a6d3d841cdcfd5312be4b54f3897e799362577c37530441bd2b2be5b49d5d08"
+    },
+    {
+      "path": "green/source-after.json.gz",
+      "encoding": "gzip",
+      "original_relative_path": "workflow-guard-repair/source-after-green.json",
+      "original_bytes": 272222,
+      "original_sha256": "73b72279de333e7fc42146bdc0045b2bce0d8420ea6567f1d4556f6674e610ff",
+      "stored_bytes": 98004,
+      "stored_sha256": "92a941a664af9cc42dd9ad2d6530f39cb9a2874bdec1248489227c3ccbb9ddb4"
+    },
+    {
+      "path": "targeted/red.log.gz",
+      "encoding": "gzip",
+      "original_relative_path": "workflow-guard-repair/targeted-red.log",
+      "original_bytes": 8430,
+      "original_sha256": "d9c47849ebbfb9045494bf91b58f0a51628c471fd64436ee73d2155c59c7a96e",
+      "stored_bytes": 581,
+      "stored_sha256": "45a8ec7693ee7046c16d6f3aefd8113d40d3112a2bc3f0a340adeaf1c8d589c3"
+    },
+    {
+      "path": "targeted/red.json",
+      "encoding": "identity",
+      "original_relative_path": "workflow-guard-repair/targeted-red.json",
+      "original_bytes": 613,
+      "original_sha256": "1235164232938db17a97bac0b229e231223e40e915e8380ebb0772ca2c87ff12",
+      "stored_bytes": 613,
+      "stored_sha256": "1235164232938db17a97bac0b229e231223e40e915e8380ebb0772ca2c87ff12"
+    },
+    {
+      "path": "targeted/green.log",
+      "encoding": "identity",
+      "original_relative_path": "workflow-guard-repair/targeted-green.log",
+      "original_bytes": 330,
+      "original_sha256": "4b7882991245cb3284f5882c6d9c1cb357a913b382da0f8e332fca4352983c44",
+      "stored_bytes": 330,
+      "stored_sha256": "4b7882991245cb3284f5882c6d9c1cb357a913b382da0f8e332fca4352983c44"
+    },
+    {
+      "path": "targeted/green.json",
+      "encoding": "identity",
+      "original_relative_path": "workflow-guard-repair/targeted-green.json",
+      "original_bytes": 743,
+      "original_sha256": "e82154d29b4d216e8fbd020cf8e789a351da9e4b8753708eeaa501c1fdc69492",
+      "stored_bytes": 743,
+      "stored_sha256": "e82154d29b4d216e8fbd020cf8e789a351da9e4b8753708eeaa501c1fdc69492"
+    },
+    {
+      "path": "source/test_nextgen_workflow_contract.before.py.gz",
+      "encoding": "gzip",
+      "original_relative_path": "workflow-guard-repair/test_nextgen_workflow_contract.red.py",
+      "original_bytes": 12221,
+      "original_sha256": "a70febad7969ed6baba5aec9f62619585232bab86d66a8514fe77b464ac6113e",
+      "stored_bytes": 3600,
+      "stored_sha256": "c96d3c04b0e5267508ed7d60a78a45d8a682a74679b2a157ed14eb4998c221c6"
+    },
+    {
+      "path": "workflow-guard.patch.gz",
+      "encoding": "gzip",
+      "original_relative_path": "workflow-guard-repair/workflow-guard.patch",
+      "original_bytes": 1520,
+      "original_sha256": "692144ffd5de2b5ba9bdfaabc0e522b0966bdf8ac11d297aa9980e732fc46c40",
+      "stored_bytes": 549,
+      "stored_sha256": "c0cf53b9eaded4869886caa271c2ddce8acca97e4cf9cde153128d73e060331e"
+    },
+    {
+      "path": "flutter-source-reuse.json",
+      "encoding": "identity",
+      "original_relative_path": "flutter-source-reuse.json",
+      "original_bytes": 7725,
+      "original_sha256": "4e8d5feb6b21358082959164c2a5c1e4a62d164615f12990eb96fe156afda804",
+      "stored_bytes": 7725,
+      "stored_sha256": "4e8d5feb6b21358082959164c2a5c1e4a62d164615f12990eb96fe156afda804"
+    },
+    {
+      "path": "toolchain.json",
+      "encoding": "identity",
+      "original_relative_path": "toolchain.json",
+      "original_bytes": 2201,
+      "original_sha256": "ad0ceecb1835c14bf9c8ccdb5a1f67491422838eb9408b3b8bf9ef01f7f77000",
+      "stored_bytes": 2201,
+      "stored_sha256": "ad0ceecb1835c14bf9c8ccdb5a1f67491422838eb9408b3b8bf9ef01f7f77000"
+    },
+    {
+      "path": "original-handoff.json",
+      "encoding": "identity",
+      "original_relative_path": "handoff.json",
+      "original_bytes": 2590,
+      "original_sha256": "40f2684a1d6f9aea78995560f0114a40e77982c9cc51c29aeb31aeb2585214d4",
+      "stored_bytes": 2590,
+      "stored_sha256": "40f2684a1d6f9aea78995560f0114a40e77982c9cc51c29aeb31aeb2585214d4"
+    },
+    {
+      "path": "source/test_nextgen_workflow_contract.after.py.gz",
+      "encoding": "gzip",
+      "original_relative_path": "working-tree:scripts/tests/test_nextgen_workflow_contract.py",
+      "original_bytes": 12582,
+      "original_sha256": "1da6ab1457c372e7c3fad21ada69bf48337a7322b72c152fd4282a0b553373af",
+      "stored_bytes": 3646,
+      "stored_sha256": "165d7a0b74b0c7b090c2f05c98633bf54b7d6e6338b0c4acfebc9d5c577c0b90"
+    },
+    {
+      "path": "README.md",
+      "encoding": "identity",
+      "original_relative_path": "pack-generated:README",
+      "original_bytes": 3205,
+      "original_sha256": "c44490b70fbd4289189acb5a72ca85ef65b62322cd2e7a46b2a395a76f390be8",
+      "stored_bytes": 3205,
+      "stored_sha256": "c44490b70fbd4289189acb5a72ca85ef65b62322cd2e7a46b2a395a76f390be8"
+    }
+  ]
+}

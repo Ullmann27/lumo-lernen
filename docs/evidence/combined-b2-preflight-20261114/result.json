@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/909ddb52fe7b/lumo-upstream057-review",
+  "source": "b2f7493bda3bc22c1296f2284888ff7302f18883",
+  "tree": "2bffbaf37f5e5d9a9c4d4a018faa81b7d621ca98",
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "started": 1794672562.0256064,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "scope": "Full original scripts/tests discovery on the combined prepared source. No device or Flutter claim.",
+  "exit_code": 1,
+  "seconds": 453.3835973739624,
+  "log_bytes": 190084,
+  "log_sha256": "b5073f23af710b72e95f747c2c1983c042c0eac0c8bdfa69c298693051deeaaa",
+  "test_summaries": [
+    [
+      "924",
+      "450.241"
+    ]
+  ],
+  "skipped_marker": true,
+  "source_after": "b2f7493bda3bc22c1296f2284888ff7302f18883",
+  "tracked_changes": ""
+}

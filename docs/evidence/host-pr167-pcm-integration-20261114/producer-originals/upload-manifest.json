@@ -1,0 +1,1251 @@
+{
+  "native_base": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "host_base": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "source_freeze_sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 8408740,
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 1162,
+      "sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+      "git_blob": "3b65ce3c2d8e63efe4c2251261b047be37e383a0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/characters/lumo/lumo_facial_pose.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/characters/lumo/lumo_facial_pose.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 6120,
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "git_blob": "91b8a8cd25f21dab84b77f178aa82d06673b54f9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob": "e4b6a6081a922a137f68491de66f51e096528510"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/learning/learning_world.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/learning/learning_world.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 45446,
+      "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "git_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/learning_world_regression.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/tests/learning_world_regression.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 22332,
+      "sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d",
+      "git_blob": "93a903efb43a2bdef97121434fc7e89e60cab6ac"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_facial_capture.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/tests/lumo_facial_capture.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 8675,
+      "sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38",
+      "git_blob": "e272be6f0aed98fdc5b5a1bfca58bb7f0d0edba9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_facial_regression.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/tests/lumo_facial_regression.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 7102,
+      "sha256": "dc98c2521543d5b28238f37ed064b0ccd105378d124e44bbefd668c1b16cc03e",
+      "git_blob": "9834e1c8cbef59f86f8ec1840895357cb429b624"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_rigged_animation_capture.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/tests/lumo_rigged_animation_capture.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 5631,
+      "sha256": "03ce996e765947e20c32cea4b683e70b25ec07e20f8d8c844a0cb0af038df151",
+      "git_blob": "f821f2b7bfa5d15c9dc1a23b0f171caf31264926"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_studio_motion_regression.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/tests/lumo_studio_motion_regression.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 8857,
+      "sha256": "f6451145eec7729f35b3aab70d9fe69ad970e171288c156de3e484213984253e",
+      "git_blob": "2a3e40da3a48e68d587f635658f9db645e70e4e7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_teacher_pose_regression.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/tests/lumo_teacher_pose_regression.gd",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 7298,
+      "sha256": "51b32d1cb3d3684334bb5445626cacc5b20d87471f9e0f8325f07514f23f1a26",
+      "git_blob": "bc534776d2f9295369e5e2de90abb8a2f3a46268"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tools/auto_install/LumoLearningSpeech.kt",
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 8902,
+      "sha256": "13bf313696c626a3453cddacdd8e95fb20b4075d84ddaeb8a5c0054d68e43f8d",
+      "git_blob": "d9adf0665b3a037c090299091340fdae76af9e3a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tools/auto_install/LumoSpeechEnvelope.kt",
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 4697,
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/ATTRIBUTION.md",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "role": "source",
+      "mode": "100644",
+      "bytes": 2626,
+      "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+      "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/.gdignore",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/.gdignore",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/README.md",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/README.md",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 10347,
+      "sha256": "52849d4c95a79bfa179c7c6f4484e2c6ec45ae8cbf5983149ea590985cf74e30",
+      "git_blob": "7d75278ab50ecf099f35c08b06a4c9cb9e693cee"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/source-freeze.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/source-freeze.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 6334,
+      "sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+      "git_blob": "d79f3bd878d865473408ca09c99083e6bfd09e45"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/source-freeze-before-valid-lesson.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/source-freeze-before-valid-lesson.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 5231,
+      "sha256": "fd0582c15962a37b57257c468d6e0128bae892244b0f4aeee5fc71775d4732a4",
+      "git_blob": "cff8f506d835efed1cfffab0545a7a3eeebc7182"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/source-freeze-before-caption-layout.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/source-freeze-before-caption-layout.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 5231,
+      "sha256": "044fcf2ebed03c5511545d6ed147506a92aa7304af8725627557871e8b418fd7",
+      "git_blob": "06d4435c4d186ac41047f23213f9a3db69c78725"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/source-against-803e-86445.patch",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/source-against-803e-86445.patch",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 45740,
+      "sha256": "c2dc18bf2a1622990b6eb1c54a748b21ab327db198f4c73d67bbf11ff044613a",
+      "git_blob": "fa54c4b7d68a8e79b4f388d60c40e9257c8dc862"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/source-binding-initial.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/source-binding-initial.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 3051,
+      "sha256": "63540e2d9f6fb0a511e727f1470ddb23ae005ed22e100ab3e56090ec9faf58f9",
+      "git_blob": "c2cc3036b454a0eefdfb32a3dc403e7acf128c97"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host-source-binding.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host-source-binding.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 797,
+      "sha256": "fb9ac60d1618a21488cbbef2f060965f5868c1e14960fb438a04e2c091bc09ee",
+      "git_blob": "5def84e53b786821f2eaddf7644372bccd01f2f6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/ci-contract.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/ci-contract.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 3211,
+      "sha256": "59502714ae68edf73939295ebbd1bda096dfa6d4cc440d171c04520f155d61b4",
+      "git_blob": "393d3aa4fd6b4ef7b20faa59f43451ffab17d807"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/author_face_geometry.py",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/author_face_geometry.py",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 16114,
+      "sha256": "10ce21b97ab7b333790baf0dccbf9217ec930a88747fc5ff6f18abd5c378805c",
+      "git_blob": "e0f80e5e433050734d9a15c191d57890bc6555e6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/author_face_shapes.py",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/author_face_shapes.py",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 9690,
+      "sha256": "9a06e5cb66f814d9d02b57f3a43258c9b01d8124d214e06365203fa78a7345f8",
+      "git_blob": "6e655cf147e5b4be44c1ff3b68d8e7a35d4ebb93"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/inspect_original_face.py",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/inspect_original_face.py",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 5748,
+      "sha256": "2ba36446c6a9b1669904ea4bfeb8d1bb9d2895bcd149e8dc7803630cb22899f9",
+      "git_blob": "9ff9dc82f190a3b8a7659eb27a20e4168d87bde2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/measure_eye_surface.py",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/measure_eye_surface.py",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 2999,
+      "sha256": "3c6aa591f76aa0c28c4ee1a128ce05f1c8199cc5785bc2dd43059e1e676b56ee",
+      "git_blob": "bdf7f9891bf86e994669878997319d18ebc7813c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/verify_face_asset.py",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/verify_face_asset.py",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 6478,
+      "sha256": "c84daeadc819327750e81ea01352ddd4713ab385a524fb246af2a2e1f5fe9944",
+      "git_blob": "e1a25c76c2e4926142d138d05cf1a95ec43081e1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/prepare_runtime.py",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/prepare_runtime.py",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 3160,
+      "sha256": "82b0e1597efce0823f37f4530f2c0aa136aedb90e5fd39a21bec7deae39bcdfb",
+      "git_blob": "add8eef1545bcbfa1c09e48ba125f0b006fbaa17"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/write_speech_test_platform.py",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/tools/write_speech_test_platform.py",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 4895,
+      "sha256": "0a7b05a7d4b469607784b82a53139c96313471cc488941d23fbdef0288784ef6",
+      "git_blob": "169ddf38eedca18f6acbd588c397778e55f1cce6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/SpeechEnvelopeContract.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/SpeechEnvelopeContract.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/LearningSpeechLifecycleContract.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/LearningSpeechLifecycleContract.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Bridge.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Bridge.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 462,
+      "sha256": "86c558d488458ecb25dec947fd0935114cfbe9c69b35c08b45ce592536c930c6",
+      "git_blob": "3560fa5b3537dcd6b881dc9090ef4f0099b20e50"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Channel.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Channel.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 172,
+      "sha256": "c42bc41b86360bc28f84f59fbec760a633460ffab930439921c344cafc093950",
+      "git_blob": "56fe64be87d4489133e83855df5a612b6225a174"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Context.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Context.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 318,
+      "sha256": "bfadda67fce0bcfd940e6d275f0e4184c2a592febb7ab3c5639a40c1f6ec21ac",
+      "git_blob": "0685bbdf9b4cf3efe20bbb4d0e646e94e647c33c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Handler.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Handler.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 992,
+      "sha256": "2baa97b0f65a6a7cc59a26f5f80e823608d5e18f546236db7850d902c7963dce",
+      "git_blob": "855d09cd8dbc4af5bd91b29fa1db1e52488dbd9e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Json.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Json.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 964,
+      "sha256": "457539a65101608c93b64b1fab0705406814d4fc7c7da64ed0914c94f815d1b9",
+      "git_blob": "8bf77f00b631df5027e17d6eb84dd29f5594f462"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Log.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Log.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 73,
+      "sha256": "d9bef1b203ec4e7cfe515061ee7cae2d333c7bce7fdee8e460e8554c00ec43e6",
+      "git_blob": "c060a6b11c5e44f72ea3b0204b49d69995ec0e04"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Media.kt",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/host/tests/platform-fixture/Media.kt",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1466,
+      "sha256": "26dadd1a5347836a72d034e925f3098221a86055ede2c4e80906fb41893dd962",
+      "git_blob": "6857f886fada7cdba117053b559024ef2c0386bd"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/asset-preservation-v9.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/asset-preservation-v9.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 16341,
+      "sha256": "2f9e7c05177ba089b15d8d9d4d4cce393cf346008c88aff6c7ecc83754de873e",
+      "git_blob": "209d12cb5b7e25f33bf37c24f931372d038b74cb"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/final-visual-review.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/final-visual-review.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 17008,
+      "sha256": "487db3b197dbda4833f8b0c68f3b4bb66a870bbae55b76020ef0b628b707afaf",
+      "git_blob": "338234e3933593c3c46c70669f051a189c021196"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-audio-geometry-summary.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-audio-geometry-summary.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 3181,
+      "sha256": "5071ef9ad0975a81254a34e4b57281fd8fe7225f8ec16ebbf1e87975a38b7618",
+      "git_blob": "0f7f006e639783687279876445fc5b39dba377b4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-verification.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-verification.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 5950,
+      "sha256": "f80d862fbc981e41cc60d26472928c636e30f7b57065a57edb56ef4a8aead86b",
+      "git_blob": "b6f5dfc297015602553c35fb2ac8aba810dfbd69"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-ffprobe.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-ffprobe.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 4655,
+      "sha256": "fca341ff4aaf0787c4aeba1a5ebcf336ea9edc4db9571156db6c1a32c9f2844c",
+      "git_blob": "56f528214d30b6bbf8ef2d3b9cfc1a7906676290"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-encode.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-encode.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 5927,
+      "sha256": "589ca25d1e558bfd4bb856db173be1e3329b40450b4ebb8de862873de4afc467",
+      "git_blob": "beced3d028c96c97aa8e8b79ecc354f75582c8f0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-full-decode.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-full-decode.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/Lumo-Original-Facial-Runtime.mp4",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/Lumo-Original-Facial-Runtime.mp4",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1178091,
+      "sha256": "3bbc2a491e59a4fd971d95479713cf1e9fff0c59b7cc6de63290512bfdd6b1ac",
+      "git_blob": "5370873ff0235602477936fda1ad1b8186e7637c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-source-binding.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-source-binding.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 9998,
+      "sha256": "052e8c13732673d6db50f581eff2ed29ba59bb304c85feae6156ff5ff54a8623",
+      "git_blob": "461ac9c06f813ecb5748958b8c49ad2af09ba579"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/motion-reference-binding.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/motion-reference-binding.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 264,
+      "sha256": "e7514803456c49145bd81fb5da8f40238ac20729d3e630a9f106f82a51de0e2a",
+      "git_blob": "83577ecf865a475ff4e202001862ae2eb79b36db"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 41740,
+      "sha256": "91c8f544ac1e74dee7bc2e49d95c84dea328c153a24fa6351433419da81a20ca",
+      "git_blob": "9a293e9d688fdf5cb8743ca17492317f785b9d59"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9-execution.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9-execution.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 460,
+      "sha256": "2d92875e59deb51817118f79875d3d5962179adf4812d6426edceeec848f5d2e",
+      "git_blob": "44f60110b8810589527ba148207883a5ea046263"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/independent-speech-source-review.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/independent-speech-source-review.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 4074,
+      "sha256": "cd461814c55ea8ac924ba92c2789760a16f2e45a0af68e2dccb23159a150861f",
+      "git_blob": "00e7c39c7f3b66a78c20b9db18c667fad3a8f033"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/envelope-compile.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/envelope-compile.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/envelope-contract.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/envelope-contract.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 75,
+      "sha256": "1d06734c0efa94dffa2ba330706db19690b97e88dc650587c81ef623dc2b1b3d",
+      "git_blob": "68f0af5087b64c0340d24b16d161b93316da26d1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/speech-lifecycle-compile.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/speech-lifecycle-compile.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/speech-lifecycle-contract.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/speech-lifecycle-contract.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 100,
+      "sha256": "4eb1000abbe5dfb68657e9d3a9dfaad03823ba0372c291a7f8b33987b9c9a31e",
+      "git_blob": "7d75bc478c8fd7ea1f56202c2ba7e30510c42474"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/lid-interpolation-v7-rejected.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/lid-interpolation-v7-rejected.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1137,
+      "sha256": "44c3c9321a2e9adbe9f33380e09bb43f19d58b0262e110b88df6c04687ee7019",
+      "git_blob": "3ed2965ec80055242ebc02b10a98b6015f653c1f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/lid-interpolation-v8.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/lid-interpolation-v8.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 11786,
+      "sha256": "7d54ac9249401cf2225430cf2c87439a1de02e2d8630befe76e15249428add2a",
+      "git_blob": "2335fcbadc9708bc82e6f6950da57cfc4642cbad"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/weight-cache-isolation.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/weight-cache-isolation.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 254,
+      "sha256": "fbd9efc74cca687e29bdff5a7d129c9bafca57b8608887f5def0af8802a018ef",
+      "git_blob": "b2b13515f4d3dc84332f7b0ed4323ce81f258bb9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/weight-cache-body_always.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/weight-cache-body_always.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 919,
+      "sha256": "397cb312e237a52fe43e23892f85dffc0576ab7efed4e1507f42beef5c417c70",
+      "git_blob": "9a012b58f87c332b7c51a0a23cc839f24214f5f2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/weight-cache-lid_always.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/weight-cache-lid_always.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 633,
+      "sha256": "9f8af38ec5d1ab8a78683c4d868591dd990709eb4866708b49ed4c43fa94285c",
+      "git_blob": "fb23b559f89f2ca683b979252aff45ddc842c47c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/import-lod-inspection.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/import-lod-inspection.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1306,
+      "sha256": "e959c48db39a662864e839dfdfc9df8755a102e9e60d7bdaedd346d170862077",
+      "git_blob": "50fbf82bd89e201e2e068a2b59a589187bcc5b9d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-import-lid-lod-fixed.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-import-lid-lod-fixed.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 4557,
+      "sha256": "e2d8538796567fb159434592c65820be7d40c54eeaca0eb0ae8ee7f45f6e91eb",
+      "git_blob": "db2c07f7e4c5c520d2c1017d86b4f8b287738362"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-import-lid-lod-fixed.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-import-lid-lod-fixed.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 200,
+      "sha256": "3732a6f02ba86c61393391e7ee7fea90872b307e652b6071c411350fb89b72e5",
+      "git_blob": "004351b20db7377f9ae056c45fd480246d746315"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/capture-before-valid-payload.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/capture-before-valid-payload.gd",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 8319,
+      "sha256": "ff59354a3b484318e14d57432fde9f190f065f70f2ca4aaf4fd257d7c222d2fb",
+      "git_blob": "9b3bb805bebc7df8e196285b6c2ec56613766f87"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/facial-regression-before-valid-payload.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/facial-regression-before-valid-payload.gd",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 6966,
+      "sha256": "e3de4279c2cfd0d8baea602f7cbee8a1c5c7109fc6c3c0273be7e28015af99c4",
+      "git_blob": "0429215e4e6a003ff8d39a5918eda41d2f546035"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/capture-before-inspection-caption.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/capture-before-inspection-caption.gd",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 8614,
+      "sha256": "93c01a283f23327b8b8182fe57e6df8798a3d8de9b373f09b3a77f6d16691a7c",
+      "git_blob": "6088e7f145e4580f79a1b894d4ac2e3f10c8cf02"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/eye-surface/measurement.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/measurement.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 689,
+      "sha256": "cc1a63f523405de72adb08a14a9b3b6b4137d9471cbaf7e9357670c0c5d4920b",
+      "git_blob": "ca35cd4b5739c700de6e197bde368effff170c8b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/eye-surface/measurement-correction.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/measurement-correction.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1355,
+      "sha256": "7da1f5d2095c898a427396d67b6ecfa3b12454b1c2024761906ad4107248d497",
+      "git_blob": "bf4c893c7d9460310254efb337e158cdc002c8cf"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/eye-surface/projected-surface.npz",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/projected-surface.npz",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 3456509,
+      "sha256": "abd3b00a39c0b402722cc7325cd726606d33d9111e1409408eed381facea9b38",
+      "git_blob": "75a022755bdfe610735905e88ba63888e548253b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/eye-surface/sampling-surface.npz",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/sampling-surface.npz",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 3456194,
+      "sha256": "da8d78d6edd191220fa6ebbd90d37c5972eda8172c4c9f47646e7cbb1598a8d3",
+      "git_blob": "e8cef58c0f9242c2472e3670b313f9a94f7001e1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/eye-surface/left-paint-mask.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/left-paint-mask.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1764,
+      "sha256": "88d46ad99fff0c4babce043068b61e4e8baa086c0af7826a35dd155464619388",
+      "git_blob": "a7f24406956c27a914a0656563b0ac353e0b9e28"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/eye-surface/right-paint-mask.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/right-paint-mask.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1914,
+      "sha256": "e80abb5f95cacf63861595ab3047cbd4b7eef378a095f3318b9056b36a2f2eee",
+      "git_blob": "722d65bff5a804e46ab678091268b32a629433f2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/eye-surface/original-textured-surface.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/eye-surface/original-textured-surface.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 256127,
+      "sha256": "d51b7bd672fdeb1556b43b998f1a756382ecc72c787f7771d1a29f7fcb8f7f0f",
+      "git_blob": "e0ee87f54ae4bc4ca5b7cf2fd855791e628e4bae"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/inspection/geometry-inspection.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/inspection/geometry-inspection.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 618161,
+      "sha256": "3c86b149a88e59a88bccf91e78433d7ffe8d0be49b750adbe6582fbd58487bce",
+      "git_blob": "34ec6df1386cde172a6529a62704f08e282b221f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/Lumo-Facial-Authoring.blend",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/Lumo-Facial-Authoring.blend",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 5746571,
+      "sha256": "4209c4d6d76f84aac77c25d2d5ee204b0d5826addd74a122d3909ac34e09afe9",
+      "git_blob": "7e031a8fa118e5b5842dc3bd1118cf815125d752"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/authoring-report.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/authoring-report.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 2553,
+      "sha256": "071a74c9b77e6b200ae6a1141a69090e3cce614233258a8d21b34b67db7d829d",
+      "git_blob": "5dc4cc20a4c91251cae1f4c2b657755f09ba13d6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/neutral.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/neutral.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 653950,
+      "sha256": "793211c449c669f73cfd5c99404b7fafe28b35e448d8879f09791ec8356b0703",
+      "git_blob": "daff12677cf2b00df58f19f2b4693a2ad2efa9f9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/blink_half.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/blink_half.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 655188,
+      "sha256": "d10cca7cadce7ea14170b7f899c1da7e5752994298389352f1964ab326e2cd74",
+      "git_blob": "9466deeebd26ce720fb3f390cc1f07954b9ad283"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/blink.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/blink.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 651687,
+      "sha256": "fedcc56b12f0605e52033854390f1a08fb3ead6c238c4e9bc05285ef1a300a4b",
+      "git_blob": "80b95dd9641f06be7fcdb80b0652a71b868f4067"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/blink_intermediate.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/blink_intermediate.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 653884,
+      "sha256": "eb50a83c3c267132ab2858c74cec0e0c2266804514fa5be82cb32404f6bf1698",
+      "git_blob": "81db5c102c02fa90717dd0de0cdca437eb55ade0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/gaze_right.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/gaze_right.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 654341,
+      "sha256": "c83519f0657ec2b35a87a3c45ba223b24d45552165e1959044555eb705265682",
+      "git_blob": "9cffef4f9316634bbbf2a7cfba331a12d5d431d3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/jaw_articulation.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/jaw_articulation.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 653756,
+      "sha256": "8a916d6f147c8fa251a325ca41ca9c827dc7c9d6c533f13e23f971b8a90a8d46",
+      "git_blob": "18afd58e281dec3eeb0a6b8e040bba20f66ef985"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/blink_three_quarter.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/sculpt-v9/blink_three_quarter.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 644488,
+      "sha256": "f7564cba9a731d590fd5ca214d3288e8beb2e4ad12e75baf230941bb3033e86b",
+      "git_blob": "b11fd96abd08a1ed24eed20e041ac920fcdd264a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/teacher_scene.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/teacher_scene.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "git_blob": "efb39582dec4efb6352c1a2915f60d6f760af5f4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/neutral.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/neutral.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "git_blob": "8645e70de9f6badf6e4c260eaf02957c6e4ad147"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/audio_jaw.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/audio_jaw.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "git_blob": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/blink.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/blink.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "git_blob": "22808f200b3258d7ec2f25d3bac6ad3302742b0e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/blink_intermediate.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/blink_intermediate.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 302531,
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "git_blob": "1f7ca9f42343c3653990403225db5529808207da"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/muted.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/muted.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 303002,
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "git_blob": "87810252dcc1e0e627c267320a43e2cc8346f277"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/gaze_left.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/gaze_left.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 295200,
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "git_blob": "67e626fd8edf3af3bf3c4955fd905047d9897e7c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/stopped.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/stopped.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 299811,
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "git_blob": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture/runtime-frames.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture/runtime-frames.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "git_blob": "471e2e633df635545f99270e1960eb5ba41ced2e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-renderer-final-capture/run.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-final-capture/run.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 546,
+      "sha256": "5e16375eb97dd4070ec2297a781fc7efa875fa6bb1b1e871df2bc43e36b6f03b",
+      "git_blob": "44d76ee59ce86a4bbb782c5142825826726089af"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-renderer-final-capture/godot.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-final-capture/godot.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1680,
+      "sha256": "d7c85b491e08edb4e093a82627d76982868632d6476dc33429bc080fd53ba297",
+      "git_blob": "1fe98f074564bc41150fe992ad199070fc0aeefc"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-renderer-first/godot.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-first/godot.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 2459,
+      "sha256": "503a96f3ec1a2db31dd516329183e3df4bfca172cdb5206356b2e6fc4a326acd",
+      "git_blob": "48fd670329c8c5231105a228992237ee26af3f94"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-renderer-v9/godot.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-v9/godot.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1680,
+      "sha256": "c5cb6c988d2059e8145ec255488a1d085135aa4194fbe76cc325a427e9585aa1",
+      "git_blob": "cd861622c9cb5bf60f1dc7e691715346d5f55093"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-renderer-final/godot.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-renderer-final/godot.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1680,
+      "sha256": "09efdde1c399bc2289ed3ccfc1154b4c5b3f3dbceaaac6592e0d1337e4253f7c",
+      "git_blob": "2057f97dc7d5eb3cca93daf17531715e3e75bd31"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/godot-capture-rejected-payload/teacher_scene.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/godot-capture-rejected-payload/teacher_scene.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 109924,
+      "sha256": "ec8c9c3d06d1e13bf0bf33f98750dd738d588944fc9dbf4e348ac53702c8593b",
+      "git_blob": "02d2c9fed34e272bd5455c6a5855e5ffdd200a7c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/results.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/results.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 2783,
+      "sha256": "42f295faf6101a1f57765ddbbe0575ed8fb3a42dbf3e04fa11988cd68177b868",
+      "git_blob": "777408b0231c08f982ea80e9b819a0bae74ed042"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/lumo_facial_regression.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_facial_regression.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 633,
+      "sha256": "9f8af38ec5d1ab8a78683c4d868591dd990709eb4866708b49ed4c43fa94285c",
+      "git_blob": "fb23b559f89f2ca683b979252aff45ddc842c47c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/lumo_facial_valid_lesson.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_facial_valid_lesson.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 633,
+      "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b",
+      "git_blob": "2374357756a7f9a2320bceb9c0533fa6b58a02b9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/lumo_facial_valid_lesson.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_facial_valid_lesson.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 479,
+      "sha256": "ab4f0dc54fab0dc3353be50bd1964c3dd076576015a8299f22b0c0cd1cecdff6",
+      "git_blob": "9b10e8e4838d766602a9218197862d7a09105374"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/lumo_studio_motion_regression.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_studio_motion_regression.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 603,
+      "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b",
+      "git_blob": "d06b4aa8600722e4474cd7584db3ac81f134d1e4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/lumo_teacher_pose_regression.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_teacher_pose_regression.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 589,
+      "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629",
+      "git_blob": "9afe1fa0218bcaeb55c301046a7a9507c10fd10f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/lumo_rigged_animation_capture.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/lumo_rigged_animation_capture.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 1135,
+      "sha256": "7211cdab9979bcd87148b2c1a8568a8800ab33b3f56d550505ea7a4c1899aaac",
+      "git_blob": "fc8cdcef94ecf38f4a29ba928cbf5d6af87d33b4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/learning_world_regression.log",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/native-final/learning_world_regression.log",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 10599,
+      "sha256": "63d6dfe55ad0fa205abedfcfcceb4068e305f41fab57269daf8b8a0dcaf36838",
+      "git_blob": "5a6d9158290c2d5c7898077b63723f51928dd069"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-000-011.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-000-011.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 223175,
+      "sha256": "dfb907f03028b1cdddd907955b6a7d835885cc76400ca98b52eed0176cb029e7",
+      "git_blob": "bb5b572ca61ec2caba55711f0ee26a15c6b6d482"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-012-023.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-012-023.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 222860,
+      "sha256": "89f6ba21947f99e95fd355d2d6ab5d69442c57a12d88140ecb763c3367bf473d",
+      "git_blob": "ef580abe24d17a8cce7f0efe67e603b63396eb77"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-024-035.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-024-035.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 202981,
+      "sha256": "0e782b7381f8eb8164d933665c987a75dd135e0a4f5abaf5d42cc4a02f5cd8cd",
+      "git_blob": "4f134d89ba1e403cbdd6344d5d1c78eda4451df3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-036-047.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-036-047.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 207539,
+      "sha256": "579b04ca15c71a78934bf22ef8fb71468bd677d5d3e7b3f2b9957fe3d8fe90cf",
+      "git_blob": "ce8a91988ac93567e95e258104362cae0a658f99"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-048-059.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-048-059.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 209129,
+      "sha256": "bd86b7df00f6e3282bc73ffab3a9e0cfafdad9eca2fdb6a27ce2ac2a47c563eb",
+      "git_blob": "4c673d7218d9c71f74f3aaa4a075e780412a4e88"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-060-071.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-060-071.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 209279,
+      "sha256": "3c9381ee3de4f342c1d17a29a86174e4992ad14080d3dccb84968d7cb2a9ce2e",
+      "git_blob": "138f5cbd858c564fbf0188629e08f21c1c3a4b81"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-072-083.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-072-083.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 207722,
+      "sha256": "6424f3d2ea47cb26b2fe946ab895e2a202ef02c205374c08f666ea071058986f",
+      "git_blob": "2263146f87abde331c2f4c87f5f2a1aaa6e31c2b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-084-095.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-084-095.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 207552,
+      "sha256": "4129d565479fac059cf7f2ecad0cd7b421a031dea5e8a7b814b5345cd4501722",
+      "git_blob": "a760ed588d5cede87b828efef448a646b2950e18"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-096-107.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-096-107.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 209509,
+      "sha256": "4687704653be1a556522f420f89efa1e5722c5021c6f5569392813d56d1f29a8",
+      "git_blob": "8307fb1231078e7611d7bcecbbda8795d40a373a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-108-119.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-108-119.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 210383,
+      "sha256": "dee41a4af687af93f63aef6b6e688f14dc9ac9459e108325e5aee2ee45b13c16",
+      "git_blob": "140eb9da54a44709c80e4752cf872ff03a491a2f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-120-131.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-120-131.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 210123,
+      "sha256": "237a4a0dbd2a3f174632d124d8113678865b939de83745fd5d6353fdf768501b",
+      "git_blob": "1e15ae1c2acdc082508306284a01b93bda3ce748"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-132-143.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-132-143.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 208154,
+      "sha256": "02957f8feb1457d2cf3400e8ed1e3d351b3dc13e2c8e41665ed938af6cb8d0a8",
+      "git_blob": "e768fd28ba154aabc18461e565297d3a45e5ad0c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-144-147.jpg",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/frames-144-147.jpg",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 36640,
+      "sha256": "34588c159a366057570330a5670104aa63860ca5e1f17575cab1da3ca2ef50bb",
+      "git_blob": "3e52d302143cf4cc48e22551cf47b759bf2794e5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/full-frame-018.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/full-frame-018.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 276452,
+      "sha256": "6a53b527d7f2d79adc7de61fdb15caac2bfd6e25dfbfd7dd2fe747d57aab6a7c",
+      "git_blob": "1d89309c2da65fb1ee53684abf1ebb0bf2a856cb"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/full-frame-024.png",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/full-frame-024.png",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 275946,
+      "sha256": "36cbd3fbfe0f690f26f8a442223898ccdbf8cb5c87c7f5c5ae709213a06694e3",
+      "git_blob": "768b136dc0f328a284486f0d389fdcc6e198ac6a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/index.json",
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/original-lumo-facial-20261114/evidence/runtime-video-review-pages/index.json",
+      "role": "evidence_or_reproduction",
+      "mode": "100644",
+      "bytes": 5772,
+      "sha256": "49e9a3db066eb18c987bc6f9a2a83b2146b6f3400227f5de30eb30ea33a24568",
+      "git_blob": "de93a5359a7d0095f4b3b1e78691b03d39c30c4c"
+    }
+  ],
+  "summary": {
+    "file_count": 123,
+    "total_bytes": 33679324,
+    "source_count": 14,
+    "documentation_count": 109
+  },
+  "exclusions": [
+    "No active repository mutation",
+    "No .godot/import/shader cache",
+    "No original GLB duplication",
+    "No duplicate raw AVI or rejected large Blender models",
+    "No APK/device/FPS acceptance"
+  ],
+  "installer_ownership": "Root adds only new Kotlin source to prepare_android.py; C4 ownership remains separate."
+}

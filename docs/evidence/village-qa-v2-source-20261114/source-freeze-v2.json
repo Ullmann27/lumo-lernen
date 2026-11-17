@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "status": "FROZEN_PROPOSAL_V2_NOT_EXECUTED",
+  "created_at_utc": "2026-11-14T12:08:06.404447+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "base": {
+    "head": "a118409930ecdf605743382051e88f7e0898b8e9",
+    "tree": "68573f0c40ce641a6443a5648fd664bc44ca6c95"
+  },
+  "producer": {
+    "head": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+    "parent": [
+      "cf2593cb6dec51b66461c8e5984dfbfdd5091c22"
+    ],
+    "original_compare": {
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/cf2593cb6dec51b66461c8e5984dfbfdd5091c22...07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "identity": {
+        "bytes": 560969,
+        "sha256": "2c18a47de83c3bc156f09e79dc56334bb8e261b53e5e50de0cb3b593bd3333dd",
+        "git_blob": "b50b4ef45409a5f148b9043d63813d25c2af66cb"
+      }
+    }
+  },
+  "source_files": [
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "mode": "100644",
+      "before": null,
+      "producer": {
+        "bytes": 11328,
+        "sha256": "941176f413db24b78471bb2e374f7366236615d1599745e35afbf3bd92d3d59d",
+        "git_blob": "97434207488900ac8f9364d5120f163cbc3ff0d5"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 11541,
+        "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+        "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+      },
+      "kind": "bounded_deadline_followup_preserving_producer_original"
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "mode": "100644",
+      "before": null,
+      "producer": {
+        "bytes": 20967,
+        "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+        "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 20967,
+        "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+        "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+      },
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "mode": "100644",
+      "before": null,
+      "producer": {
+        "bytes": 22017,
+        "sha256": "ec6e3f4e507e6e6cb592b38da4324b6dc54b878138137c5be22c465691a5344b",
+        "git_blob": "55053f72145aec5d10a2d1669ff93618c36a7ee3"
+      },
+      "producer_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "after": {
+        "bytes": 24849,
+        "sha256": "fde59828ffd27ac7ccad9d50f0678ddd3f28d34b5ff1e6e31c2e7e20718251d1",
+        "git_blob": "f515e404428edc8003f1191c77df214384f0eac7"
+      },
+      "kind": "bounded_deadline_followup_preserving_producer_original"
+    }
+  ],
+  "source_count": 3,
+  "dependencies": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "identity": {
+        "bytes": 65137,
+        "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+        "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "identity": {
+        "bytes": 25726,
+        "sha256": "6df9b6a7b3cc2253a2be78a7cec93b6f9ac30f14bcab4f127db6b9df065ed9ba",
+        "git_blob": "09ee796b4724644b433ada6257c31e2dd3f2da50"
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "identity": {
+        "bytes": 36130,
+        "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+        "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/native_ocr_tiles.py",
+      "identity": {
+        "bytes": 8243,
+        "sha256": "0365c7f57551c3f2b5efb2c4d5f7d16886cd93638f7e4be7a75c6d0fc6838704",
+        "git_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd"
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "identity": {
+        "bytes": 4401,
+        "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+        "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "identity": {
+        "bytes": 23974,
+        "sha256": "091d4640f277486998dc47fded5820d1986d9036244bc92d2f8c4ccf6afa794f",
+        "git_blob": "701d1dab0a7224803fe2780c6a0674400b081795"
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "identity": {
+        "git_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc",
+        "bytes": 71930
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644",
+      "bytes_in_this_pack": false
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "identity": {
+        "git_blob": "b10d2ba20c93d17f723b9c190652060968505b53",
+        "bytes": 10687
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644",
+      "bytes_in_this_pack": false
+    },
+    {
+      "path": "config/godot-source.json",
+      "identity": {
+        "git_blob": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+        "bytes": 145
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644",
+      "bytes_in_this_pack": false
+    },
+    {
+      "path": "pubspec.yaml",
+      "identity": {
+        "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+        "bytes": 2718
+      },
+      "source": "a118409930ecdf605743382051e88f7e0898b8e9",
+      "mode": "100644",
+      "bytes_in_this_pack": false
+    }
+  ],
+  "tests": {
+    "original_verifier_methods": 31,
+    "new_real_wait_method_synthetic_cases": 3,
+    "total_static_test_methods": 34,
+    "executed": 0
+  },
+  "deadline_patch": {
+    "bytes": 4476,
+    "sha256": "827fba7c58cafc8c689578b1d57edcb165dbafb6cb4dc6047c5e9aec32e05a87",
+    "git_blob": "f5c23c95a6d41c72eb04af4a9cf5422b3f378ab2"
+  },
+  "worktree_git_ci_or_pin_mutations": false,
+  "gate_changes": "References only; no candidate, delivery or workflow endfiles in this pack"
+}

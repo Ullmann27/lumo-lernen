@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "status": "approved",
+  "versionCode": 2018,
+  "native_revision": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+  "native_workflow_run_id": 43399721309,
+  "native_artifact_id": 14026025798,
+  "native_artifact_sha256": "111d90b9a45ed0c9e1d26cdb57aff163acb931901ee0b32874f0ae023424a262",
+  "reviewed_by": "Codex Root: current original images, plus explicitly hash-identical previously reviewed originals",
+  "reviewed_at": "2026-11-13T09:44:20.255615+00:00",
+  "notes": "Native ada5 exact successful source and downloaded ZIP independently verified. Root opened all seven changed selected originals and all four Cards layouts; eleven selected originals retain documented SHA-256-identical prior pixel reviews. Cards capture now uses the real JSON mailbox roundtrip and actual visible-material assertions; readable colored number/action faces confirmed in each of four layouts. This is an original desktop software-renderer visual review, not Android, physical Fold7, audio, thermal or 60 FPS acceptance. A new host APK and all mandatory Android, update-preservation and public-byte gates remain required; the a31 APK is withdrawn.",
+  "images": [
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/01-learning-math-complete-412x915.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-complete-412x915.png",
+      "sha256": "8f0e89d6bafe8bb4aba5a42ea0fad0803972109652ff48f016c91fbcbead1e8e",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: All 13 counters remain individually visible in the portrait lesson; text and action targets do not overlap. Reviewed by Team A and Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/02-learning-syllables-start.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/syllables-start.png",
+      "sha256": "6a337e1646429100ce146ace212ffc4e34dc421683d384117a44807a17da5886",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: Complete raised syllable glyphs remain visible above their 3D blocks. Reviewed by Team A and Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/03-learning-fraction_parts-complete.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/fraction_parts-complete.png",
+      "sha256": "05c03fba06d11e1afadb4ac6c68fd5d29de3fbea4333ee3aac83e5afe7a545c5",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: The assembled fraction and its reactive numeric label agree; source pieces remain above the footer. Reviewed by Team A and Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/04-learning-bridge_hundred-complete.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete.png",
+      "sha256": "1a8d6b1c5fb69637c7c8dc131cb6c46b99ef610f8e2db1f84672eca76f63e67b",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: Hundreds and tens are explicitly labelled and the shown place-value decomposition matches the animated objects. Reviewed by Team A and Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/05-learning-plant_parts-start.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/plant_parts-start.png",
+      "sha256": "e73c623b40b6a3b753c96fba9b24b23973f042b38983e785d6fd3912fde97a3d",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: The initial plant lesson has a neutral Pflanzen entdecken title and a general water/sun/four-parts instruction. Root and Integration QA opened this exact 51fb preview image; no unrelated part is named in the heading."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/06-learning-plant_parts-complete.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/plant_parts-complete.png",
+      "sha256": "ae5bd329ac1e3b1242e5d7c0657607ad2d9c0dfa3a0ece8ef9bdec26bc27858f",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: The final title explicitly names Blüte and agrees with the selected flower explanation. Root and Integration QA opened this exact 51fb preview image; the earlier cc6 Blatt/Blüte mismatch is visibly corrected."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/07-jump-jump_412x915_touch_ascent.png",
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_touch_ascent.png",
+      "sha256": "153e960453b4bab150a4354b01edd0b879c282a86947e74f90bc9e2f5ea1103e",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Root opened the current ada5 original: original Lumo is above the launch platform during ascent; portrait stick, jump button, stage objective and top navigation are complete and separated."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/08-jump-jump_1280x720_landed.png",
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_landed.png",
+      "sha256": "7eee2aab8a88c9d016881009fdd2e1263223d0d85b92be62c529ed6d89e741e7",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root opened the current ada5 original: Lumo stands on the starting path, the route and both movement controls are clear. This settled frame is not a proof of the precise landing-impact frame."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/09-build-02_build_moved.png",
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "sha256": "5a1414d8ea11d3d88d114110c6a6474f6f99b92fe6cf9ca0250bd20fae84fbcd",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root opened the current ada5 original: the selected translucent bridge, separate doorway, 90-degree status and move/undo instruction are visible. Build categories occupy horizontally scrollable strips; the far-right clipped category is not an independently missing control."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/10-build-03_build_walking.png",
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "sha256": "d0bd3bd83df23e545b106c92e1ebf59f1e80d91a03b582c91d6fb6494da7ae8e",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root opened the current ada5 original: Lumo stands beside the doorway in the same editable world, with separate stick, jump, inspect and resume-building controls; no visible body penetration in the inspected frame."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/11-settlement-03_settlement_rival_day.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/03_settlement_rival_day.png",
+      "sha256": "f2315d07b47f6b3732233c2448df390a03e5fd7d3d97058e82b229aff1ba20ca",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root opened the current ada5 original: day 2, resources, two population counters, three rival buildings and separate build/trade/next-day actions are legible. The two settlement islands remain visually separated."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/12-settlement-06_settlement_relocation.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "dimensions": [
+        388,
+        390
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: The complete portrait relocation dialog and both explicit decision actions are inside the viewport. Reviewed by Teams C and D; this image covers the dialog, not a complete portrait city overview."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/13-garage-garage-1280x720.png",
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: The visible workshop wheel and original fox head occupy separated projected regions; vehicle, navigation and actions are readable. Reviewed by Team C."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/14-garage-garage-412x915.png",
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-412x915.png",
+      "sha256": "ffd22294458bf106ef1051cae601a4ad5fb658dc302a75868b705ffaf182331b",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Current ada5 original SHA-256 is byte-identical to the explicitly reviewed 51fb original; prior pixel findings retained: Portrait garage preserves readable controls, selected vehicle and the original character without the earlier head/wheel overlap. Reviewed by Team C."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/15-cards-cards-table-1280x720.png",
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root reopened the current ada5 original, captured after the real JSON mailbox roundtrip and visible material guard. All seven faces show colored artwork, readable numeric or action symbols, and separate page/draw controls. This desktop frame does not establish Android system-bar clearance."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/16-cards-cards-table-412x915.png",
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Root reopened the current ada5 original, captured after the real JSON mailbox roundtrip and visible material guard. Three full colored faces show readable 1, 2 and WILD symbols; page 1/3 and draw are fully visible. Disabled play is intentional. This desktop frame does not establish Android system-bar clearance."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/17-rhythm-01_rhythm_tour_map.png",
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/01_rhythm_tour_map.png",
+      "sha256": "74cc2efe601bb47b9600c826d71394d05dd8ec87a2970bba2944f451fc6a367f",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root opened the current ada5 original: the tour modal clearly states 0/4 stages, 16/40 required notes and stage/mode/start/back actions over the 3D stage. Background labels intentionally sit behind the modal."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/18-rhythm-02_rhythm_slide.png",
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "sha256": "3a8d9f9fa130adca2ebd13430fc92f3ab2fcb1b0cda1b19f21e357da5e3e05bc",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Root opened the current ada5 original: all four lanes and controls, the diagonal slide cue, score and next-lane instruction are distinct against the lit 3D stage."
+    }
+  ]
+}

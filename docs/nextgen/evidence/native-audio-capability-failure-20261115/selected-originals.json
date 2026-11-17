@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "runId": 43770887936,
+  "jobId": 132986319654,
+  "artifactId": 14184408610,
+  "artifactBytes": 20676888,
+  "artifactSha256": "a8aa5ff812dad919721b53b8b51507eaf6291f869e206ac7032af7511f6a736f",
+  "allArtifactMembersVerified": 585,
+  "completeZipCopiedIntoRepository": false,
+  "selectedFiles": [
+    {
+      "originalPath": "artifact-verification.json",
+      "bytes": 111448,
+      "sha256": "495fbbc71e5d82b8258613db8d22900aa97329fc7af5896d60f5b4fbc4b0d02c"
+    },
+    {
+      "originalPath": "failure-review.json",
+      "bytes": 2744,
+      "sha256": "3a1ef8f10c61b81169a39fe3cf265b906a0febc8aeb450842151b7769b02ce1d"
+    },
+    {
+      "originalPath": "primary-source-provenance.json",
+      "bytes": 1964,
+      "sha256": "8ef4cce8dbf24587e0df504d65c8ffd074e477bdde901a6a464c1ed7a39efa90"
+    },
+    {
+      "originalPath": "original/diagnostic-android/0113-banana-native-start-observation.json",
+      "bytes": 37645,
+      "sha256": "a9ac10e648952d7658a359b1992b9c089a9d7023c9182b829a61a211d60de16f"
+    },
+    {
+      "originalPath": "original/diagnostic-android/0114-banana-native-start-observation.json",
+      "bytes": 39173,
+      "sha256": "1cb18da2aefb41142589583f033683b938c28712fff4f6c414509a7a93440114"
+    },
+    {
+      "originalPath": "original/diagnostic-android/0115-banana-native-start-observation.json",
+      "bytes": 39342,
+      "sha256": "82e4ade988eafa15db028c66618a519ea3628102d40640df06674ea03263fc3f"
+    },
+    {
+      "originalPath": "original/diagnostic-android/0308-native-speech.txt",
+      "bytes": 30290,
+      "sha256": "df5d1ad842447d31c41a2ca1a036aef135e29e4510f4ee342e3660794b25f183"
+    },
+    {
+      "originalPath": "original/diagnostic-android/0309-diagnostic-failure-current-screen.png",
+      "bytes": 595854,
+      "sha256": "ead11f7fec6f304960c280be5ed39ec64f96071c09f12554ef914a640d160df1"
+    },
+    {
+      "originalPath": "original/diagnostic-android/diagnostic-android-result.json",
+      "bytes": 9091,
+      "sha256": "c4da328dd6b2df61a35d892b7b00b686f1343074ea7646d3a7b750a6a5df34a5"
+    },
+    {
+      "originalPath": "primary-sources/upstream-godot-4.6.3-godot_plugin_jni.cpp",
+      "bytes": 6225,
+      "sha256": "0b208a80136c9f6071a5a293bc272aba3747d57412f9d8c630cbe5ee3dae0e11"
+    },
+    {
+      "originalPath": "primary-sources/upstream-godot-4.6.3-jni_singleton.h",
+      "bytes": 4775,
+      "sha256": "309a30cdb3ecd6c748e868ffbcbd6ae464315221763e1e9819312b53915a3f9c"
+    },
+    {
+      "originalPath": "primary-sources/upstream-godot-4.6.3-object.cpp",
+      "bytes": 79475,
+      "sha256": "26ed56deaaf5d8f85729387437b80de99c3feb506b61ab934cf8f2a0eabbc719"
+    },
+    {
+      "originalPath": "native-capabilities-delivery.json",
+      "bytes": 1178,
+      "sha256": "844d921ea80e9a768591fe6bf53f1082a7677a55e8f04b15c039ce84b108a0dc"
+    },
+    {
+      "originalPath": "native-capabilities-checkers-final.log",
+      "bytes": 234,
+      "sha256": "8e5393ae50227275aadf5ecfaecb25ec7f8626445d4d98a01c76e993fc865942"
+    },
+    {
+      "originalPath": "native-capabilities-style.log",
+      "bytes": 267,
+      "sha256": "f1dbd9eba3504e524c659124439ac4046a2e4e5804586af6ff087784ce802a86"
+    }
+  ]
+}

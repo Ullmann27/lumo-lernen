@@ -1,0 +1,25 @@
+{
+  "archive": {
+    "bytes": 16935599,
+    "path": "host-studio-integration-evidence.tar.gz",
+    "sha256": "df58f8725f38135f8bdc594850365474033b9fdcd8c338362a8abd807422ec60"
+  },
+  "duplicate_names_or_unsafe_paths": 0,
+  "errors": [],
+  "full_readback": true,
+  "handoff_sha256": "144f4a2c78adb374a25b700f85a6eaabefeb4fdcd721121ce9ce60b296493024",
+  "index_sha256": "554dace1bdf04cdba52c7fd5fa179b9a42c0233781d11460606624fa976fcc63",
+  "logical_path_mappings_verified": 2181,
+  "meaning": "PASS for complete archive byte/mapping verification only; original CI/local failures and pending acceptance remain unchanged.",
+  "original_compact_containers_verified": 4,
+  "original_compact_members_verified": 1791,
+  "original_input_bindings_verified": 415,
+  "outer_regular_files_verified": 313,
+  "package_manifest_sha256": "92c9941c2d7b7eeb355107b233f4b07a25e6dbaab9d7fa5b9c37f8e9974eb84b",
+  "physical_sha256_objects_verified": 299,
+  "schema": 1,
+  "source_or_ci_tests_executed": false,
+  "unindexed_outer_objects": 0,
+  "unique_content_hashes_verified": 1675,
+  "verified_at_utc": "2026-11-14T00:18:35.341990+00:00"
+}

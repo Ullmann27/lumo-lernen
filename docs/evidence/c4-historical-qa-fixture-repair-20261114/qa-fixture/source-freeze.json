@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "base_source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "base_tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+  "producer_source": "26a127bb897c9dd0832512d2ae3b80a6495f7f7e",
+  "producer_tree": "d58fd7f8353f05bb3f327b08ec1fa37e1ccb1264",
+  "files": [
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "mode": "exact published test blob; no production delta",
+      "before": {
+        "bytes": 21760,
+        "sha256": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da",
+        "git_blob": "4716d1f8beb20bc349b3a97b347136cd7d8d6664"
+      },
+      "final": {
+        "bytes": 24110,
+        "sha256": "7bc35982ad31c91a7d96f890e2521e5f775618b31c273175f0005dbb8379e7e5",
+        "git_blob": "90a58f5aab7c2b462bad377bd5fbfd03b218e14d"
+      }
+    }
+  ],
+  "protected_production_files": [
+    {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19885,
+      "sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4",
+      "git_blob": "11749337af0aff31d7541702890459126675fd08"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "bytes": 79294,
+      "sha256": "4eac8342846bf42561e45d132450ebf90648283f75c7f4333d77b6fd43739e28",
+      "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 71930,
+      "sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+      "git_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8"
+    },
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "bdd44f24660ab13cee297c65238238d6181fc60d7fad22ad456f1633955db767",
+      "git_blob": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413"
+    }
+  ],
+  "only_changed_definition": "ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate",
+  "unchanged_direct_definitions": 24,
+  "new_import": "subprocess for the actual disposable Git fixture",
+  "local_scope": "one original case once, then same proposed case once; no wider suite or device run"
+}

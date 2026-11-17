@@ -1,0 +1,19 @@
+test_full_preflight_keeps_qa_run_and_apk_source_separate (scripts.tests._baseline_unchanged_apk_fixture.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate) ... ERROR
+
+======================================================================
+ERROR: test_full_preflight_keeps_qa_run_and_apk_source_separate (scripts.tests._baseline_unchanged_apk_fixture.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/agent/lumo-quality-repair-2708/scripts/tests/_baseline_unchanged_apk_fixture.py", line 349, in test_full_preflight_keeps_qa_run_and_apk_source_separate
+    result = diagnostic.bind(args)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/agent/lumo-quality-repair-2708/scripts/verify_unchanged_apk_diagnostic.py", line 293, in bind
+    require(pin.get('revision') == NATIVE
+  File "/home/agent/lumo-quality-repair-2708/scripts/verify_unchanged_apk_diagnostic.py", line 75, in require
+    raise RuntimeError(message)
+RuntimeError: Source checkout native pin differs
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (errors=1)

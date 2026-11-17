@@ -1,0 +1,75 @@
+{
+  "scope": "Production Flutter AppShell/EmbeddedGameService origin-route return regression with controlled Android MethodChannels; paired with executed production Kotlin store contract",
+  "status": "PASS",
+  "command": "flutter --no-version-check test --no-pub test/lumo_native_origin_return_test.dart test/embedded_game_service_test.dart test/lumo3d_launcher_lifecycle_test.dart --reporter expanded",
+  "flutter_version": "3.44.9",
+  "dart_version": "3.12.2",
+  "test_exit_code": 0,
+  "tests": 31,
+  "new_widget_tests": 10,
+  "existing_regressions": 21,
+  "analyzer_exit_code": 0,
+  "new_test_breakdown": {
+    "same_guided_route_state_task_both_event_orders": 2,
+    "same_cards_route_state_final_controller_clock_hand_and_saved_round_both_orders": 2,
+    "warm_return_independent_reward_and_lost_ack_replay_both_orders": 2,
+    "legacy_kart_learn_and_games_navigation": 2,
+    "cold_host_missing_owner_learn_and_games_fallback": 2
+  },
+  "before_preserved": {
+    "native-origin-return-before.log": "945fd5bb2dd2e4fd39e6581bda935fee7661d415b3167725ef7db011b3d86ea3",
+    "native-origin-return-before-manifest.json": "d6693b531892be013a5ad276bfacd09e1cca1ca177ccace1da27bec9e6cdee0e",
+    "native-origin-return-before-test.dart.txt": "6e33b09d52a40532a3ff2030ab6eb516d9f67c70ed6ea4f31df8a23e74b01c44"
+  },
+  "assertions_preserved": [
+    "Original route remains current, mounted and absent from actual Navigator removal callbacks",
+    "Same GuidedLesson State and taskId, same visible Acht und fünf task",
+    "Same Cards State and final controller-owned turnClock instance, hand IDs and saved roundId",
+    "Actual AppShell-owned EmbeddedGameService continues reading/acknowledging results on resume",
+    "Native recordReturn still contains durable destination and callerReturnSession before completion",
+    "Resume-before-result read masks matching warm navigation without deleting the on-disk fallback",
+    "ActivityResult consumes exactly one matching session return; no generic destination ACK for it",
+    "Legacy and ownerless fallback remain actual AppShell navigation",
+    "Unrelated completed Kart reward persists exactly once across intentionally lost acknowledgement",
+    "Opening and returning the native explanation/table does not create a reward"
+  ],
+  "transport_note": "The old destination-ACK assertion changes to exact-session consumption because the verified Android policy owns that return. The durable input is not omitted. Kotlin GameEventStore executes separately; widget tests model its transport only.",
+  "kotlin_pair": {
+    "result_file": "docs/evidence/native-caller-return-20261113/RESULT.json",
+    "result_sha256": "85f8b5e9b45c6ad56da8ff3105f614a9ee2bb710f59f1264f345f1cd39313d25",
+    "test_log_file": "docs/evidence/native-caller-return-20261113/tests.log",
+    "test_log_sha256": "e1b7c33c3996fa7a35e79363a6362a08181b9823d02baced7fb5ef119db41f75",
+    "compiled_production_store_scenarios": 9,
+    "combined_kotlin_wiring_installer_cards_checks": 21,
+    "marker": "GAME_RETURN_STORE_PASS"
+  },
+  "test_harness_note": "An initial combined run hung in the next ordinary setUp after a widget-clock wallet transaction. Final cleanup moves the singleton reset to a real async zone while pumping the previous fake clock. Assertions and production code were unchanged by that cleanup; final combined 31-test run passes.",
+  "production_ownership": "This Team A task changed only the new Flutter regression test and its evidence. Team B owns the three Android production changes; no Dart production or native scene changed here.",
+  "source_sha256": {
+    "test/lumo_native_origin_return_test.dart": "f9c374d802472408fe6f86f2cf4efa0bc64c1fffc0e8f6b374fdf3cac8d34f09",
+    "test/embedded_game_service_test.dart": "dd3529cbf8823ab642a6ce7669493b86062beff5d62f81e4c9a7eb8bd974fe06",
+    "test/lumo3d_launcher_lifecycle_test.dart": "6247e2439809312f1f06a7455c78b35269f4c44ed87dc23cf3062119a5851a3d",
+    "lib/app/app_shell.dart": "02087dfed14848d84c52877c7bf8d7756bd265a31f06544230cda41b74bb3cbb",
+    "lib/core/embedded_game_service.dart": "1ed92caa82d678cf7b97badfa4f1dab6934449f3c0727d72b2eac00b6f816449",
+    "lib/features/lumo3d/lumo3d_launcher.dart": "09ee8c32d75600c4858eae32bfdab0d0f1c41ae6e04f965653aacb365bd49c64",
+    "lib/features/tutoring/guided_lesson_screen.dart": "b615bc8448841aecb3eee6343ef273a992613bdf63a16d2ddabb04e436629818",
+    "lib/features/games/lumo_cards/lumo_cards_screen.dart": "a4eea82732cf5f09dd87d19302edc9a4f1e703e88d18809c6410fa2d53423945",
+    "lib/features/games/lumo_cards/lumo_cards_game_controller.dart": "e0d590a021309f708a2e645b947fff54bf5eb398aaf8ca2865337b93b43caed0",
+    "lib/features/games/lumo_cards/lumo_cards_table_session.dart": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee",
+    "tools/auto_install/GameEventStore.kt": "8157a28412e82720f52b933ba433058b307ecebbd68dcdbea53b8bdf59b034af",
+    "tools/auto_install/MainActivity.kt": "399e7dd55df52e6515f877982b3a60007a792d293ec51758012024d3235f4a5e",
+    "tools/auto_install/LumoGameActivity.kt": "6e4ac87b1013dc7b82be2c3ca8de9a8f2ba63faf5c9866728db45dbcfbb31eb2",
+    "scripts/tests/test_game_return_contract.py": "6425258d84f8d87011ed2f3017429765ff02cbf138e525f239eb38d021cc944b"
+  },
+  "evidence_sha256": {
+    "native-origin-return-after.log": "d1fa99359e46f237911ee5abd6952cc76fc9d64edbec62032de354f1599c9ec8",
+    "native-origin-return-after-analyze.log": "d3e6b7ae14a5ad9c0d207a18f5d59bd963ce20ca9c1902a4620616cead5d4ae4"
+  },
+  "limits": [
+    "Widget tests do not run Android Activity code or Godot rendering.",
+    "Compiled Kotlin store uses test-only Context/filesystem adapters; complete Android host/APK and live emulator return tour remain required.",
+    "Cards return test intentionally performs no in-native card action; it verifies the existing round/controller lifetime.",
+    "Phone title can be above retained scroll viewport; actual Android probe must scroll before asserting visible task text.",
+    "No device FPS, audible voice quality, APK release or GitHub commit is claimed by this evidence."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_nextgen_2019_review.Nextgen2019ReviewTests.test_exact_combined_archive_keeps_37_and_24_plus_all_independent_touch_evidence",
+    "scripts.tests.test_nextgen_2019_review.Nextgen2019ReviewTests.test_all_32_original_touch_rasters_have_fixed_paths_pixels_and_digests",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 6.195,
+  "sha256": "4e3b1f8cc86ab5fa24abb2f4e824dda692e5ca8e9d4c728c5e5f949aa1051e4a",
+  "rejected_legacy_build_images": 8,
+  "required_build_images": 12,
+  "required_touch_images": 32,
+  "individually_missing_current_goal_cases": 4
+}

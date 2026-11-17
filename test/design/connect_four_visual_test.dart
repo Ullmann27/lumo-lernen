@@ -9,9 +9,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
 
 void main() {
+  const channel = MethodChannel('lumo_lernen/connect_four');
+  setUp(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+            channel,
+            (_) async =>
+                throw MissingPluginException('Flutter fallback fixture'));
+  });
+  tearDown(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
+  });
   setUpAll(() async {
     await (FontLoader('Nunito')
           ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
@@ -34,8 +47,13 @@ void main() {
       LumoVoice.instance.isEnabled = false;
       await tester.binding.setSurfaceSize(size);
       addTearDown(() => tester.binding.setSurfaceSize(null));
-      final app = LumoAppState();
+      final app = LumoAppState(walletRepository: RewardWalletRepository());
+      addTearDown(() async {
+        await tester.pumpWidget(const SizedBox());
+        app.dispose();
+      });
       await app.hydrateFromWallet();
+      LumoVoice.instance.isEnabled = false;
       const key = ValueKey('connect-capture');
       await tester.pumpWidget(MaterialApp(
         theme: LumoAppTheme.light(),
@@ -44,8 +62,7 @@ void main() {
           child: LumoConnectFourScreen(appState: app, seed: 1),
         ),
       ));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 100));
+      await _waitForPlayableBoard(tester);
       await tester.runAsync(() async {
         final context = tester.element(find.byType(LumoConnectFourScreen));
         for (final asset in [
@@ -56,14 +73,44 @@ void main() {
         }
       });
       await tester.pump();
-      // Capture actual gameplay, not an empty concept board.
-      await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
+      // The compact landscape companion panel and narrow column strip are
+      // intentionally scrollable. Reach the real controls before touching them.
+      final twoPlayers = find.byKey(const ValueKey('connect-mode-true'));
+      await tester.ensureVisible(twoPlayers);
       await tester.pump();
-      for (final column in [3, 2, 3, 2, 4, 5]) {
-        await tester.tap(find.byKey(ValueKey('connect-column-$column')));
-        await tester.pump(const Duration(milliseconds: 400));
+      expect(twoPlayers.hitTestable(), findsOneWidget);
+      await tester.tap(twoPlayers);
+      await _waitForPlayableBoard(tester);
+      expect(find.byKey(const ValueKey('connect-level-mittel')), findsNothing);
+
+      // Exercise every actual column once. The alternating bottom row cannot
+      // finish the game, and proves that each visible target maps to its column.
+      for (var column = 0; column < 7; column++) {
+        final control = find.byKey(ValueKey('connect-column-$column'));
+        final targetSize = tester.getSize(control);
+        expect(targetSize.width, greaterThanOrEqualTo(48));
+        expect(targetSize.height, greaterThanOrEqualTo(48));
+        await tester.ensureVisible(control);
         await tester.pump();
+        expect(control.hitTestable(), findsOneWidget);
+        expect(tester.widget<IconButton>(control).onPressed, isNotNull);
+        await tester.tap(control);
+        await _waitForPlayableBoard(tester);
+        final cell = tester
+            .widget<Semantics>(find.byKey(ValueKey('connect-cell-5-$column')));
+        expect(cell.properties.label,
+            endsWith(column.isEven ? ': child' : ': lumo'));
       }
+      var occupiedCells = 0;
+      for (var row = 0; row < 6; row++) {
+        for (var column = 0; column < 7; column++) {
+          final cell = tester.widget<Semantics>(
+              find.byKey(ValueKey('connect-cell-$row-$column')));
+          if (!cell.properties.label!.endsWith(': empty')) occupiedCells++;
+        }
+      }
+      expect(occupiedCells, 7,
+          reason: 'The capture must show all seven real moves.');
       if (size.width > size.height) {
         final fox =
             tester.getRect(find.byKey(const ValueKey('connect-companion-fox')));
@@ -76,10 +123,17 @@ void main() {
       for (var column = 0; column < 7; column++) {
         final cell =
             tester.getRect(find.byKey(ValueKey('connect-cell-5-$column')));
-        final control =
-            tester.getRect(find.byKey(ValueKey('connect-column-$column')));
+        final controlFinder = find.byKey(ValueKey('connect-column-$column'));
+        final control = tester.getRect(controlFinder);
+        final controlSize = tester.getSize(controlFinder);
         expect(control.center.dx, closeTo(cell.center.dx, 1),
-            reason: 'Each drop button must align with its board column.');
+            reason:
+                'Each 48dp target must align with its column, including after scrolling.');
+        expect(controlSize.width, greaterThanOrEqualTo(48));
+        expect(controlSize.height, greaterThanOrEqualTo(48));
+        // Only coordinate roundoff is allowed; a press must not shrink a target.
+        expect(control.width, closeTo(controlSize.width, 1e-9));
+        expect(control.height, closeTo(controlSize.height, 1e-9));
       }
       final folder = Platform.environment['LUMO_CONNECT_CAPTURES'];
       if (folder != null) {
@@ -97,7 +151,19 @@ void main() {
       }
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
-      app.dispose();
     });
   }
+}
+
+Future<void> _waitForPlayableBoard(WidgetTester tester) async {
+  final column = find.byKey(const ValueKey('connect-column-0'));
+  for (var frame = 0; frame < 50; frame++) {
+    await tester.pump(const Duration(milliseconds: 100));
+    if (column.evaluate().isNotEmpty &&
+        tester.widget<IconButton>(column).onPressed != null &&
+        find.byKey(const ValueKey('lumo-pause-panel')).evaluate().isEmpty) {
+      return;
+    }
+  }
+  fail('The real Flutter board did not become playable within five seconds.');
 }

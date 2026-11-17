@@ -1,0 +1,211 @@
+{
+  "host_source": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22",
+  "run_id": 43582160954,
+  "run_attempt": 1,
+  "job_id": 132410003806,
+  "artifact_id": 14109586844,
+  "archive_bytes": 368268066,
+  "archive_sha256": "786e4385cda296c59e54fdce9829bbec09017fa0650d9e58e3bd04aea7e66e1e",
+  "images": [
+    {
+      "name": "home-nextgen/fold-cover.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-nextgen/fold-cover.png",
+      "dimensions": [
+        640,
+        1480
+      ],
+      "bytes": 1256626,
+      "sha256": "48463a8575ec5572355437caa3d3b157fa40e71612f470a9ec426191d1d56579"
+    },
+    {
+      "name": "home-nextgen/fold-open.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-nextgen/fold-open.png",
+      "dimensions": [
+        1680,
+        1920
+      ],
+      "bytes": 2984147,
+      "sha256": "5bc8bb8a5b49d4f859798461f2993fa89b6d274a0dda1978dba870bd999cc1e7"
+    },
+    {
+      "name": "home-nextgen/landscape.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-nextgen/landscape.png",
+      "dimensions": [
+        1680,
+        1120
+      ],
+      "bytes": 1637570,
+      "sha256": "ced9fe4ac198b3839131e7fe193bf498d13feffd7a5faacb5a0d6dc358544813"
+    },
+    {
+      "name": "home-nextgen/large-text.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-nextgen/large-text.png",
+      "dimensions": [
+        786,
+        1704
+      ],
+      "bytes": 1540953,
+      "sha256": "ac46b8bdca852dc73ad0807aab83c2ae3fac31dce4064287e0df400daaec0f80"
+    },
+    {
+      "name": "home-nextgen/phone.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-nextgen/phone.png",
+      "dimensions": [
+        786,
+        1704
+      ],
+      "bytes": 1773463,
+      "sha256": "77f9b8ca372004aa295bf9c331f0f3a19fe01dae2767339b6e8af340aa7088e1"
+    },
+    {
+      "name": "home-nextgen/small-phone.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-nextgen/small-phone.png",
+      "dimensions": [
+        720,
+        1600
+      ],
+      "bytes": 1533837,
+      "sha256": "0f600d335728eab1601da051648d099fd5f7531666feaba329eb34682d72586d"
+    },
+    {
+      "name": "home-premium/fold-cover-learning-cards.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-premium/fold-cover-learning-cards.png",
+      "dimensions": [
+        640,
+        1480
+      ],
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0"
+    },
+    {
+      "name": "home-premium/fold-cover-start.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-premium/fold-cover-start.png",
+      "dimensions": [
+        640,
+        1480
+      ],
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0"
+    },
+    {
+      "name": "home-premium/fold-open-learning-cards.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-premium/fold-open-learning-cards.png",
+      "dimensions": [
+        1680,
+        1920
+      ],
+      "bytes": 2336662,
+      "sha256": "2e21a3c2e9500cee11977ff75dbc41b506ff7cdb9d929bd98638685766da15a2"
+    },
+    {
+      "name": "home-premium/fold-open-start.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-premium/fold-open-start.png",
+      "dimensions": [
+        1680,
+        1920
+      ],
+      "bytes": 3568336,
+      "sha256": "a042b714f65154e417641405dee2cd8512b0d4f4bf926e72464a9af6748f9335"
+    },
+    {
+      "name": "home-premium/large-text-learning-cards.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-premium/large-text-learning-cards.png",
+      "dimensions": [
+        1800,
+        2400
+      ],
+      "bytes": 4718304,
+      "sha256": "99c261555bed6f1e4760beb9643a03f298f62ad32fe4a5881cdf0dee159a7ab7"
+    },
+    {
+      "name": "home-premium/large-text-start.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-premium/large-text-start.png",
+      "dimensions": [
+        1800,
+        2400
+      ],
+      "bytes": 4718245,
+      "sha256": "ce8f8023d916627d90452fec77fac0156a2e18ddae04deb700e6b79ab4dc04e0"
+    },
+    {
+      "name": "home-premium/phone-learning-cards.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-premium/phone-learning-cards.png",
+      "dimensions": [
+        786,
+        1704
+      ],
+      "bytes": 1782974,
+      "sha256": "b52431571238dc314c626b800707eb84d6488ec26f644e59f8543ea6971f9c66"
+    },
+    {
+      "name": "home-premium/phone-start.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/home-premium/phone-start.png",
+      "dimensions": [
+        786,
+        1704
+      ],
+      "bytes": 1782974,
+      "sha256": "b52431571238dc314c626b800707eb84d6488ec26f644e59f8543ea6971f9c66"
+    },
+    {
+      "name": "village/village-fold-cover.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/village/village-fold-cover.png",
+      "dimensions": [
+        344,
+        882
+      ],
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361"
+    },
+    {
+      "name": "village/village-fold-landscape.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/village/village-fold-landscape.png",
+      "dimensions": [
+        1200,
+        900
+      ],
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac"
+    },
+    {
+      "name": "village/village-fold-open-large-text.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/village/village-fold-open-large-text.png",
+      "dimensions": [
+        690,
+        829
+      ],
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18"
+    },
+    {
+      "name": "village/village-fold-open.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/village/village-fold-open.png",
+      "dimensions": [
+        690,
+        829
+      ],
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f"
+    },
+    {
+      "name": "village/village-fold-wide-min.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/village/village-fold-wide-min.png",
+      "dimensions": [
+        640,
+        829
+      ],
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9"
+    },
+    {
+      "name": "village/village-phone.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/full-acceptance/village/village-phone.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7"
+    }
+  ]
+}

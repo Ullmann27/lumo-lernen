@@ -23,6 +23,7 @@ class LumoResultDialog extends StatefulWidget {
     required this.streak,
     required this.onRestart,
     required this.onExit,
+    this.continueLabel = 'Nochmal',
   });
 
   final String winnerName;
@@ -31,6 +32,7 @@ class LumoResultDialog extends StatefulWidget {
   final int streak;
   final VoidCallback onRestart;
   final VoidCallback onExit;
+  final String continueLabel;
 
   @override
   State<LumoResultDialog> createState() => _LumoResultDialogState();
@@ -161,6 +163,38 @@ class _LumoResultDialogState extends State<LumoResultDialog>
             ),
           ],
           const SizedBox(height: 10),
+          Container(
+            key: const ValueKey('cards-round-summary'),
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF6D6),
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: const Color(0xFFE8C45A)),
+            ),
+            child: Column(
+              children: [
+                const Text(
+                  'Rundenzusammenfassung',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF7C2D12),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (var i = 0; i < widget.reward.clamp(1, 8); i++)
+                      const Icon(Icons.star_rounded,
+                          color: Color(0xFFE0A83A), size: 28),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
           Text(
             widget.kindWon
                 ? 'Du bekommst ${widget.reward} Sterne!'
@@ -182,9 +216,9 @@ class _LumoResultDialogState extends State<LumoResultDialog>
               FilledButton.icon(
                 onPressed: widget.onRestart,
                 icon: const Icon(Icons.replay_rounded),
-                label: const Text(
-                  'Nochmal',
-                  style: TextStyle(
+                label: Text(
+                  widget.continueLabel,
+                  style: const TextStyle(
                       fontFamily: 'Nunito', fontWeight: FontWeight.w900),
                 ),
                 style: FilledButton.styleFrom(

@@ -128,7 +128,7 @@ for attempt in 1 2; do
   if (( attempt != 1 || verification_status != 1 ||
         (install_status != 0 && install_status != 1) )) ||
      [[ "${LUMO_NDK_DISPOSABLE_RUNNER:-}" != 1 ]] ||
-     ! grep -Eq 'Error reading Zip content from a SeekableByteChannel|Archive is not a ZIP archive|invalid ZIP archive' "$install_log"; then
+     ! grep -Eq 'Error reading Zip content from a SeekableByteChannel|Archive is not a ZIP archive|invalid ZIP archive|Error on ZipFile unknown archive' "$install_log"; then
     echo "[NDKPreflight] FAIL: install/verification failed (sdkmanager exit $install_status, verification $verification_status); no further attempt" >&2
     exit 1
   fi

@@ -1,0 +1,71 @@
+{
+  "head": "042f4c716c4f19d7ed366d58ea78834e33d0b6aa",
+  "tree": "417f1a06276e92302b49b259ca75c0dc11683b30",
+  "status": "?? docs/evidence/integration-20261113/android-probe-contracts.log\n?? docs/evidence/integration-20261113/puzzle-visual-gate/before-puzzle-gate.log\n?? docs/evidence/integration-20261113/puzzle-visual-gate/recorder-delivery-contracts.log\n?? docs/evidence/integration-20261113/script-contracts.log\n?? docs/evidence/integration-20261113/village-host/fe66-on-studio.patch\n",
+  "owned": [
+    "scripts/verify_studio_delivery.py",
+    "scripts/tests/test_nextgen_2019_review.py",
+    "docs/integration/2026-11-13/nextgen_2019_native_review_handoff.md"
+  ],
+  "protected": [
+    "config/godot-source.json",
+    "scripts/verify_legacy_release_pin.py",
+    "scripts/tests/test_candidate_2011_pin.py",
+    "scripts/record_studio_visual_review.py",
+    "pubspec.yaml",
+    "config/nextgen-2018-visual-review.json",
+    "config/kart-graphics-2019-visual-review.json"
+  ],
+  "files": {
+    "scripts/verify_studio_delivery.py": {
+      "sha256": "074fa561e078b56476f539827db516e27a815104d51b74ea898644a1cb0bba8a",
+      "git_blob": "55f600365a5158e3deca8514a88f952a7608547d",
+      "bytes": 41577
+    },
+    "scripts/tests/test_nextgen_2019_review.py": {
+      "sha256": "77588e83f82bc72b9094002e176f19e41e7edb63b5c39b173114addb0ee5c52a",
+      "git_blob": "8e706bfed7b91e0116f462b7d1215e8e40f58fe8",
+      "bytes": 23214
+    },
+    "docs/integration/2026-11-13/nextgen_2019_native_review_handoff.md": {
+      "sha256": "2880185548e7679a4c281f012c2268276ea9ca8b05804dcd6a51197d08f630a5",
+      "git_blob": "51f2090a541dbe50dc12c79d30ca5c25cd8a07b7",
+      "bytes": 7727
+    },
+    "config/godot-source.json": {
+      "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2",
+      "git_blob": "554db9f8d7837c8c60b6dd09deb99aa3ab5ba071",
+      "bytes": 145
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6",
+      "git_blob": "cb5b14104e261553790178eceb5b0ce1ffe22bc7",
+      "bytes": 10418
+    },
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac",
+      "git_blob": "2ddd27fe6239129aee2551f3ad7a941bfcf87b5a",
+      "bytes": 16678
+    },
+    "scripts/record_studio_visual_review.py": {
+      "sha256": "ebacaa1f58e7b3735bc46bb322a6767347ecae5a36f8fc0ed1ce093cd51acbbd",
+      "git_blob": "f0a46078df315d7ffacf4bd590d18ba6db802298",
+      "bytes": 6840
+    },
+    "pubspec.yaml": {
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "bytes": 2675
+    },
+    "config/nextgen-2018-visual-review.json": {
+      "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3",
+      "git_blob": "1064a8070e78e2911d76fee69f493bf493bdf6c4",
+      "bytes": 12964
+    },
+    "config/kart-graphics-2019-visual-review.json": {
+      "sha256": "effb7249f0844550e41c51b555f9fcf0f803ee990aea75cff03dfd2a5c9b703a",
+      "git_blob": "2cf7448de40d6ff5b6b21db3db463df361599bed",
+      "bytes": 8903
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "kind": "source-preparation-only",
+  "created_utc": "2026-11-14T09:23:06.246832+00:00",
+  "base_source": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "base_tree": "bffa6832adf0e5205a93ff964cc69d19457f7a8e",
+  "producer_source": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+  "producer_tree": "b2db4ba6e06e8345370c6b970c7895315ca8df24",
+  "files": [
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "one published pressedScale line on preserved 491 layout",
+      "producer_commit": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+      "before": {
+        "bytes": 43189,
+        "git_blob": "4d2bb14a89f0988e8d61567225403ee9416cf681",
+        "sha256": "ecf483b9f5d10b58b87487220a34d6e7333f155aa8f4389acf1264ace9555057"
+      },
+      "producer": {
+        "bytes": 43241,
+        "git_blob": "ec30c0e75f2892f24267726e5e09ce3786cbbb12",
+        "sha256": "dff3b59d196e1053b2cc30d3f3040d45e2df9564a7abcb6e11ef44e21a07ef2f"
+      },
+      "final": {
+        "bytes": 43222,
+        "git_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+        "sha256": "c2de19c0f7d628434a9af9f04e391a5df4d234b59659a3e709288ba90ec58d9b"
+      }
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "mode": "published stronger observations with existing ensureVisible preserved",
+      "producer_commit": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+      "before": {
+        "bytes": 4403,
+        "git_blob": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+        "sha256": "13c2a1ad9ce5d83edbcef20055728126b24ac374d7f3fa2d6bfa87bdc6f78b10"
+      },
+      "producer": {
+        "bytes": 6244,
+        "git_blob": "bd02559dc9ea9dc2d6e8a119177e3c850c4e197a",
+        "sha256": "e6d378244a2b449df2a3b1f775107efa9be51f3e6187df0c80358d8ae0c1d2e8"
+      },
+      "final": {
+        "bytes": 6322,
+        "git_blob": "390bcc219e636e63177f1d36613ee78de0a68db2",
+        "sha256": "57063af997b5a27ee35b8c4a7974237224fdb378fbf92c357d7a91d754792b4c"
+      }
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "mode": "exact published test bytes",
+      "producer_commit": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+      "before": {
+        "bytes": 2650,
+        "git_blob": "92956444dee338921853aea037ca32033bcd3b2e",
+        "sha256": "1d2196fd362c11f03df9cec6fbc36a557df542ac90277cd7d13f65010938fcdd"
+      },
+      "producer": {
+        "bytes": 4409,
+        "git_blob": "d5e847507275b67d6d3aa4bdbaf2991f01817bca",
+        "sha256": "c8e25c3561e3d505036d14b49dd1d7b586e601762cc687d7a6eeafb2b54d9ebc"
+      },
+      "final": {
+        "bytes": 4409,
+        "git_blob": "d5e847507275b67d6d3aa4bdbaf2991f01817bca",
+        "sha256": "c8e25c3561e3d505036d14b49dd1d7b586e601762cc687d7a6eeafb2b54d9ebc"
+      }
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "mode": "published bounded async/fallback observations with existing ensureVisible preserved",
+      "producer_commit": "18c12e00d3279ff81db3d7e8a0a3ce3e69009b34",
+      "before": {
+        "bytes": 10554,
+        "git_blob": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+        "sha256": "10d83437c6758e2010ee03a34d4f1618154db8d5f9577a070b4818a434b0c0b5"
+      },
+      "producer": {
+        "bytes": 14905,
+        "git_blob": "5845f77c607015fd49321c36eda6f6f0905c2ac9",
+        "sha256": "478da5a9b8feb0cab0f2c8171d0319948d730762e71150b3f97f678441b124cb"
+      },
+      "final": {
+        "bytes": 14954,
+        "git_blob": "e234c15a45d5ced14b605290e30927baafc0c25d",
+        "sha256": "9d6a283c6e64a80b0d1d25a3e45ae16a3c402ad5a1be4dce6160dbf2850d6797"
+      }
+    }
+  ],
+  "local_tests": "NOT_RUN: no authorization before Root checkpoint; existing SDK package precondition remains unavailable",
+  "preserved": [
+    "491 adaptive horizontal padding",
+    "491 shared board/control horizontal scroll",
+    "491 12.4dp common inset",
+    "all non-C4 production code",
+    "all existing C4 owner/save/round/native bridge logic",
+    "ensureVisible before existing scrollable test taps"
+  ],
+  "excluded": [
+    "producer layout replacement/refactoring",
+    "workflows",
+    "pins",
+    "receipts",
+    "AGENTS files",
+    "Play/signing configuration"
+  ]
+}

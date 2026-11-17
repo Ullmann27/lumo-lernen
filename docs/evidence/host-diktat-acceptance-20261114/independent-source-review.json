@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T14:20:02.977523+00:00",
+  "review_kind": "Independent read-only source and original-byte review; no tests/imports/engine/device run",
+  "outcome": "No concrete source blocker found in the frozen one-file repair",
+  "target_host": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+  "target_tree": "c72bdd5b19cffcd9d05bb5bd4a5507c7a83a1fb1",
+  "source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-79c7-diktat-progress-fixture-repair-20261114/source-freeze.json",
+    "bytes": 1641,
+    "sha256": "ed127ce0e7fe6fbc24d452b39ee007b8bbd249858dae72cfd0898fb844b7fef6",
+    "git_blob": "e33c1a6d6ea02d279d2067631b03c0c00571cd20"
+  },
+  "before": {
+    "path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+    "bytes": 20825,
+    "sha256": "e648cbb6d83d0a386f6dda15128950ad3974881fe439d270383fa18c25300ca1",
+    "git_blob": "c794b4239d1d402b3084a67ba49ea81d28d8d4a3"
+  },
+  "after": {
+    "path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+    "bytes": 21107,
+    "sha256": "e0eced5d27a8e2606816a4cc83d39edc2047f906b035f2d3e9e50c8c8fd45849",
+    "git_blob": "c1123ff353e10308d454449fe9eccf4df5ff1b64"
+  },
+  "patch": {
+    "bytes": 1534,
+    "sha256": "7d8c8d1cfad8e97892118463d80bdf87a5429e8c78daeab80779661e32fd1ef9",
+    "git_blob": "ec8b5dfe408a564c878b78d753f18a4a77dc3b6a"
+  },
+  "independent_checks": {
+    "before_matches_original37ec_and_independently_read79c7_bytes": true,
+    "only_two_imports_and_one_helper_selection_block_changed": true,
+    "complete_other_prefix_suffix_unchanged": true,
+    "all_17_original_visible_test_bodies_unchanged": true,
+    "existing_assertions_and_drag_preserved": true,
+    "adds_screen_count_and_four_row_count_assertions": true,
+    "original_CI_archive_copy_byte_equal": true
+  },
+  "mechanism": {
+    "original_failure": "No matching pan GestureDetector exists for the current Listener-based LumoInkSurface; the old first finder throws before actual writing.",
+    "new_target": "Exactly one actual WortDiktatScreen, exactly four descendant LumoInkSurface widgets; select its first known writing row, ensureVisible and pump, then preserve the original70x20 drag and existing reveal/self-rating workflow.",
+    "source_contract": "The unchanged screen creates exactly four rows; each embeds the unchanged LumoInkSurface with eager pointer ownership and Listener down/move/up/cancel delivery.",
+    "guards": "No direct stroke, answer, reward, preference or progress mutation was added. Existing completed-stroke/Fertig and all17 test assertions remain active."
+  },
+  "read_only_contracts": [
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "bytes": 26157,
+      "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e",
+      "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c"
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "bytes": 2434,
+      "sha256": "659f2e062d7df7ee354d84ec94e0f598de6bddc1137d0042e7a67ea12509ddbd",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420"
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_registry.dart",
+      "bytes": 4664,
+      "sha256": "a8c272577b4ff6d33bfe5c97327243d36ffdc77b1b2cf7d5a5fa5f05b0eec890",
+      "git_blob": "201bd14851ea86c1ac46c8459b586f258024d8a3"
+    },
+    {
+      "path": "lib/widgets/design/lumo_learning_module_frame.dart",
+      "bytes": 36398,
+      "sha256": "d4be5baa82cc4c7982f3ca6d42d3a4a3448bb708b3ba89b350de7663ca824598",
+      "git_blob": "bae52b67c11f9dafcf30516e228384218d7cc60e"
+    },
+    {
+      "path": "test/wort_diktat_gesture_regression_test.dart",
+      "bytes": 12858,
+      "sha256": "0e34bcbdbcd3cfcd2a690c49935753bda9cb7b5c2b283507f2caf722841671e6",
+      "git_blob": "d8507944cb1ac781ab2ccb3eb428152549a0df17"
+    },
+    {
+      "path": "test/lumo_ink_surface_regression_test.dart",
+      "bytes": 2704,
+      "sha256": "c030f7e2ee6e6a1a07da6201691c7c88518e0c87005fccd44aa2a3a671f42a39",
+      "git_blob": "0583484e930700c73460ca8d21d0e109401dd145"
+    }
+  ],
+  "historical_failure_retained": {
+    "run_id": 43601673844,
+    "job_id": 132468566278,
+    "passed": 2605,
+    "failed": 3,
+    "skipped": 0,
+    "machine_done_success": false
+  },
+  "limits": [
+    "This review is not a Flutter PASS; the complete existing17-case test file still requires its separately authorized checkpoint-bound execution.",
+    "Current79c7 C4 CI remains active and unchanged.",
+    "No claim is made about Android handwriting performance or the broader product runtime."
+  ]
+}

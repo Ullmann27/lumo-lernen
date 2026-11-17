@@ -1,0 +1,293 @@
+{
+  "status": "FAIL",
+  "pid": 7013,
+  "previous_ids": [
+    3,
+    11
+  ],
+  "observations": [
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 0.7097402550000425,
+      "speech_log_sha256": "6358be06fe85980ad81c2bb751491517349e4415a0a71219a37b63a8be1eeddd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 1.7176650060000611,
+      "speech_log_sha256": "6358be06fe85980ad81c2bb751491517349e4415a0a71219a37b63a8be1eeddd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 2.1166608519999954,
+      "speech_log_sha256": "6358be06fe85980ad81c2bb751491517349e4415a0a71219a37b63a8be1eeddd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 2.513652939999929,
+      "speech_log_sha256": "6358be06fe85980ad81c2bb751491517349e4415a0a71219a37b63a8be1eeddd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 3.7189874129999225,
+      "speech_log_sha256": "6358be06fe85980ad81c2bb751491517349e4415a0a71219a37b63a8be1eeddd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 4.116701462000037,
+      "speech_log_sha256": "6358be06fe85980ad81c2bb751491517349e4415a0a71219a37b63a8be1eeddd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 4.4826086630000646,
+      "speech_log_sha256": "6358be06fe85980ad81c2bb751491517349e4415a0a71219a37b63a8be1eeddd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 4.893689397999879,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 5.257258928000056,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 5.623325811999848,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 5.988661255999887,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 6.388790005999908,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 6.779073608999852,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 7.158670657999892,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 7.52466081700004,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 7.8993315380000695,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 8.292062070999918,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 8.669678177999913,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 9.025304663000043,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 9.470669661999864,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 9.838672053999971,
+      "speech_log_sha256": "b0443355443e28ef8c28ed34fac9bd7ea4b380712f7b0464bc1d10e2d976f967"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 10.21467695399997,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 10.58565637599986,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 10.960334011999976,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 11.332420804999856,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 11.697691158999987,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 12.054692764000038,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 12.407734313999981,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 12.758681711999998,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 13.112092563000033,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 13.468057401999886,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 13.832252954000069,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 14.192154327000026,
+      "speech_log_sha256": "7def377d6251e0419654aaf7ccfd5dde9239d22f7f25dc14a444d2757c958dfd"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 15.309727438999971,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 15.743243007000046,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 16.103223845000002,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 16.453642300999945,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 16.814197364999927,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 17.17928037699994,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 17.546664361000012,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 17.95869841900003,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 18.320260205000068,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 18.731759857000043,
+      "speech_log_sha256": "fc2fc46d12bf87ba749443dd2d87f49b68c7ea2c1fbc0b78f68fde168244f232"
+    },
+    {
+      "phase": "waiting-for-start",
+      "raw_pid": "7013",
+      "elapsed_seconds": 19.163670037999964,
+      "speech_log_sha256": "72d332cda8726a395d951c56d8620b97ffed8df48ea00274aff0fe63c50e6c14"
+    },
+    {
+      "phase": "fresh-active-check",
+      "raw_pid": "7013",
+      "elapsed_seconds": 19.30224518099999,
+      "speech_log_sha256": "72d332cda8726a395d951c56d8620b97ffed8df48ea00274aff0fe63c50e6c14"
+    }
+  ],
+  "question_menu_opened_during_active_window": false,
+  "stop_event_available_in_host_log": false,
+  "acoustic_stop_verified": false,
+  "mouth_gesture_stop_verified": false,
+  "millisecond_stop_verified": false,
+  "active_before_stop": {
+    "pid": 7013,
+    "utterance_id": 13,
+    "profile": "lumo-free-supertonic-de-v1",
+    "started_observed": true,
+    "completed_observed": false
+  },
+  "error": "Command '('tesseract', 'evidence/android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-8.png', 'evidence/android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-8', '--psm', '6', '-l', 'deu+eng', 'tsv')' timed out after 0.02607989000011912 seconds"
+}

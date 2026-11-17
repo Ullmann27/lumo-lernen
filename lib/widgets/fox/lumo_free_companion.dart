@@ -12,6 +12,11 @@ import 'lumo_character.dart';
 import '../../theme/lumo_visual_tokens.dart';
 export '../../core/lumo_companion_guide.dart';
 
+/// An owner can bind this menu to its exact task route. A null result cancels
+/// the selection; only an absent presenter uses the default modal route.
+typedef LumoCompanionMenuPresenter = Future<LumoCompanionAction?> Function(
+    WidgetBuilder builder);
+
 /// A reserved floor below the content: Lumo walks above his own controls,
 /// never over answers, navigation buttons, keyboards or modal routes.
 class LumoFreeCompanion extends StatefulWidget {
@@ -27,6 +32,7 @@ class LumoFreeCompanion extends StatefulWidget {
       this.floating = false,
       this.offerOnly = false,
       this.guide,
+      this.menuPresenter,
       this.proactive = true});
   final LumoCompanionScene scene;
   final ValueChanged<LumoCompanionAction> onAction;
@@ -42,6 +48,7 @@ class LumoFreeCompanion extends StatefulWidget {
   final bool proactive;
   final bool offerOnly;
   final LumoCompanionGuide? guide;
+  final LumoCompanionMenuPresenter? menuPresenter;
   @override
   State<LumoFreeCompanion> createState() => _LumoFreeCompanionState();
 }
@@ -383,51 +390,56 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     final scene = widget.scene;
     _noteActivity();
     setState(() => _sheetOpen = true);
-    final action = await showModalBottomSheet<LumoCompanionAction>(
-      context: context,
-      isScrollControlled: true,
-      showDragHandle: true,
-      builder: (sheetContext) {
-        _sheetContext = sheetContext;
-        return SafeArea(
-            child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Text('Was möchtest du machen?',
-                style: Theme.of(context).textTheme.titleLarge),
-            if (proposal != null) ...[
-              Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(proposal.text,
-                      style: Theme.of(context).textTheme.bodyLarge)),
-              FilledButton.icon(
-                  onPressed: () => Navigator.pop(sheetContext, proposal.action),
-                  icon: const Icon(Icons.play_arrow_rounded),
-                  label: Text(proposal.acceptLabel)),
-              TextButton(
-                  onPressed: () {
-                    _dismiss();
-                    Navigator.pop(sheetContext);
-                  },
-                  child: const Text('Später – lass mich selbst entdecken')),
-              const Divider(),
-            ],
-            if (widget.scene.hasTask && !widget.scene.schoolwork)
-              _menuItem(sheetContext, Icons.lightbulb_outline,
-                  'Aufgabe erklären', LumoCompanionAction.explainTask),
-            _menuItem(sheetContext, Icons.explore_outlined,
-                'Diese Seite erklären', LumoCompanionAction.explainView),
-            _menuItem(sheetContext, Icons.help_outline,
-                'Die ganze App erklären', LumoCompanionAction.explainApp),
-            if (!widget.scene.schoolwork)
-              _menuItem(sheetContext, Icons.chat_bubble_outline,
-                  'Lumo eine Frage stellen', LumoCompanionAction.askLumo),
-            _menuItem(sheetContext, Icons.spa_outlined,
-                'Ich brauche eine Pause', LumoCompanionAction.takeBreak),
-          ]),
-        ));
-      },
-    );
+    Widget buildMenu(BuildContext sheetContext) {
+      _sheetContext = sheetContext;
+      return SafeArea(
+          child: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          Text('Was möchtest du machen?',
+              style: Theme.of(context).textTheme.titleLarge),
+          if (proposal != null) ...[
+            Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(proposal.text,
+                    style: Theme.of(context).textTheme.bodyLarge)),
+            FilledButton.icon(
+                onPressed: () => Navigator.pop(sheetContext, proposal.action),
+                icon: const Icon(Icons.play_arrow_rounded),
+                label: Text(proposal.acceptLabel)),
+            TextButton(
+                onPressed: () {
+                  _dismiss();
+                  Navigator.pop(sheetContext);
+                },
+                child: const Text('Später – lass mich selbst entdecken')),
+            const Divider(),
+          ],
+          if (widget.scene.hasTask && !widget.scene.schoolwork)
+            _menuItem(sheetContext, Icons.lightbulb_outline, 'Aufgabe erklären',
+                LumoCompanionAction.explainTask),
+          _menuItem(sheetContext, Icons.explore_outlined,
+              'Diese Seite erklären', LumoCompanionAction.explainView),
+          _menuItem(sheetContext, Icons.help_outline, 'Die ganze App erklären',
+              LumoCompanionAction.explainApp),
+          if (!widget.scene.schoolwork)
+            _menuItem(sheetContext, Icons.chat_bubble_outline,
+                'Lumo eine Frage stellen', LumoCompanionAction.askLumo),
+          _menuItem(sheetContext, Icons.spa_outlined, 'Ich brauche eine Pause',
+              LumoCompanionAction.takeBreak),
+        ]),
+      ));
+    }
+
+    final presenter = widget.menuPresenter;
+    final action = presenter == null
+        ? await showModalBottomSheet<LumoCompanionAction>(
+            context: context,
+            isScrollControlled: true,
+            showDragHandle: true,
+            builder: buildMenu,
+          )
+        : await presenter(buildMenu);
     if (!mounted) return;
     _sheetContext = null;
     setState(() => _sheetOpen = false);
