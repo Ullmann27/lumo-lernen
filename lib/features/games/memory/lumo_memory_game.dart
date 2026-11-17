@@ -153,9 +153,9 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
         _speak(controller.restored
             ? 'Deine gespeicherte Runde wartet auf dich.'
             : controller.state.line);
-        if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-          await _openNative();
-        }
+        // The child's playable Flutter board is the safe default.
+        // Never start a second Android Activity automatically during load;
+        // the native 3D table remains available by explicit choice.
       });
     } catch (_) {
       if (_currentProfile) {
@@ -168,7 +168,10 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   }
 
   Future<void> _openNative() async {
-    if (!_canPlay || _nativePreparing || _pendingActions != 0) return;
+    if (!_canPlay || _clock.value || _game.round.paused ||
+        _game.state.complete || _nativePreparing || _pendingActions != 0) {
+      return;
+    }
     final attempt = ++_nativeAttempt;
     _turnScheduler.cancelElapsed();
     setState(() => _nativePreparing = true);
@@ -482,6 +485,12 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
               ),
             ),
           ),
+        ),
+        _RoundIconButton(
+          key: const ValueKey('memory-open-3d'),
+          icon: Icons.view_in_ar_rounded,
+          tooltip: 'Optionalen 3D-Memory-Tisch öffnen',
+          onTap: () => unawaited(_openNative()),
         ),
         _RoundIconButton(
           key: const ValueKey('memory-restart'),

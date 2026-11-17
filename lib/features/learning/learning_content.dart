@@ -33,6 +33,7 @@ import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
 import '../lumo3d/lumo3d_launcher.dart';
+import 'lab/learning_lab_hub.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
 import '../../domain/learning/lumo_learning_feedback_engine.dart';
 import '../../domain/learning/reward_engine.dart';
@@ -1014,6 +1015,21 @@ class _LearningContentState extends State<LearningContent>
         _nativeReturnPending = false;
         _nativeLearningOpen = false;
       }
+      _publishTaskContext();
+    }
+  }
+
+  /// Opens the real learning workshop during a standard lesson without
+  /// replacing the current exercise, grading, child profile, or reward owner.
+  Future<void> _open3DWorkshop() async {
+    if (!mounted || widget.appState.resetting || _nativeLearningOpen) return;
+    final generation = widget.appState.profileGeneration;
+    await Navigator.of(context).push<void>(MaterialPageRoute<void>(
+      builder: (_) => LearningLabHub(appState: widget.appState),
+    ));
+    if (mounted &&
+        !widget.appState.resetting &&
+        widget.appState.profileGeneration == generation) {
       _publishTaskContext();
     }
   }
@@ -2260,6 +2276,20 @@ class _LearningContentState extends State<LearningContent>
                         reduceMotion: st.settings.reduceAnimations ||
                             st.settings.calmMode ||
                             MediaQuery.disableAnimationsOf(context),
+                      ),
+                      const SizedBox(height: 12),
+                      OutlinedButton.icon(
+                        key: const ValueKey('learning-3d-workshop'),
+                        onPressed: _nativeLearningOpen
+                            ? null
+                            : () => unawaited(_open3DWorkshop()),
+                        icon: const Icon(Icons.view_in_ar_rounded),
+                        label: const Text('3D-LUMO-Werkstatt öffnen'),
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size(48, 56),
+                          foregroundColor: LumoVisualTokens.cyanBright,
+                          side: const BorderSide(color: Color(0xFF41DCFB)),
+                        ),
                       ),
                       if (_showHelp && _rechentricks != null) ...[
                         const SizedBox(height: 14),

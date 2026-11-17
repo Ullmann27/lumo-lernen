@@ -189,6 +189,20 @@ class HomeContent extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 12),
+                  FilledButton.icon(
+                    key: const ValueKey('home-3d-workshop'),
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size.fromHeight(56),
+                      backgroundColor: const Color(0xFF144D69),
+                      foregroundColor: LumoVisualTokens.white,
+                      side: const BorderSide(color: LumoVisualTokens.cyan),
+                    ),
+                    onPressed: () =>
+                        _open(context, LearningLabHub(appState: appState)),
+                    icon: const Icon(Icons.view_in_ar_rounded),
+                    label: const Text('3D-Lernwerkstatt mit Lumo'),
+                  ),
+                  const SizedBox(height: 12),
                   SizedBox(
                     height: textScale > 1.2 ? 80 * textScale : 82,
                     child: Row(children: [

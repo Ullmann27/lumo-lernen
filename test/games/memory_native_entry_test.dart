@@ -88,15 +88,17 @@ void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
   tearDown(() => SharedPreferences.setMockInitialValues({}));
 
-  testWidgets('Missing native plugin leaves real Flutter cards usable with no cover or snackbar',
+  testWidgets('Opening Memory keeps real Flutter cards usable without starting native automatically',
       (tester) async {
     final app = await _app();
     final transport = _Unavailable();
     addTearDown(app.dispose);
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await _open(tester, app, transport);
-    await _until(tester, () => transport.closed.isNotEmpty, 'failed native token closed');
-    expect(transport.opens, 1);
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(transport.opens, 0, reason: 'native Memory must be opt-in');
+    expect(transport.closed, isEmpty);
+    expect(find.byKey(const ValueKey('memory-open-3d')), findsOneWidget);
     expect(find.byKey(const ValueKey('memory-native-opening')), findsNothing);
     expect(find.byType(SnackBar), findsNothing);
     expect(find.byKey(const ValueKey('lumo-pause-panel')), findsNothing);
@@ -126,7 +128,10 @@ void main() {
     addTearDown(app.dispose);
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await _open(tester, app, transport);
-    await _until(tester, () => transport.opens == 1, 'actual availability attempt');
+    expect(transport.opens, 0);
+    await tester.tap(find.byKey(const ValueKey('memory-open-3d')));
+    await tester.pump();
+    await _until(tester, () => transport.opens == 1, 'explicit native availability attempt');
     expect(find.byKey(const ValueKey('memory-native-opening')), findsNothing);
     final cards = ((await _round(app))['rules'] as Map)['cards'] as List;
     final other = cards.indexWhere((motif) => motif != cards[0]);
@@ -146,7 +151,7 @@ void main() {
     expect(resolved['faceUp'], everyElement(false));
     gate.complete();
     await _until(tester, () => transport.closed.length >= 2, 'late Open token cleaned again');
-    expect(launches, 0, reason: 'a user turn wins over a delayed automatic launch');
+    expect(launches, 0, reason: 'a Flutter card turn wins over a delayed optional 3D launch');
     expect((await _round(app))['id'], id);
     expect((await _round(app))['paused'], false);
     expect(find.byType(SnackBar), findsNothing);

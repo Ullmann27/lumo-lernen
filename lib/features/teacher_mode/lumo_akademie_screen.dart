@@ -937,6 +937,17 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                     fontSize: 21,
                     fontWeight: FontWeight.w900)),
             ListTile(
+                key: const ValueKey('akademie-learning-lab'),
+                leading: const Icon(Icons.view_in_ar_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                title: const Text('3D-Lernwerkstatt mit Lumo',
+                    style: TextStyle(color: Colors.white)),
+                subtitle: const Text('Mathe, Sprache, Natur und Muster als 3D-Modelle',
+                    style: TextStyle(color: LumoVisualTokens.muted)),
+                onTap: () => Navigator.of(context).push<void>(MaterialPageRoute(
+                    builder: (_) =>
+                        LearningLabHub(appState: widget.appState)))),
+            ListTile(
                 key: const ValueKey('academy-stories'),
                 leading: const Icon(Icons.auto_stories_rounded,
                     color: LumoVisualTokens.cyanBright),
@@ -996,15 +1007,6 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                     subtitle: Text(topic.shortDesc,
                         style: const TextStyle(color: LumoVisualTokens.muted)),
                     onTap: () => _openTopic(topic, subject)),
-            ListTile(
-                key: const ValueKey('akademie-learning-lab'),
-                leading: const Icon(Icons.science_rounded,
-                    color: LumoVisualTokens.cyanBright),
-                title: const Text('Lumos interaktives Lernatelier',
-                    style: TextStyle(color: Colors.white)),
-                onTap: () => Navigator.of(context).push<void>(MaterialPageRoute(
-                    builder: (_) =>
-                        LearningLabHub(appState: widget.appState)))),
             ListTile(
                 key: const ValueKey('akademie-guided-learning'),
                 leading: const Icon(Icons.school_rounded,
