@@ -31,6 +31,14 @@ Zuletzt öffentlich belegte APK laut Repo-Dokumenten: 0.13.19+2031 (16.11.). St�
 6. **Lern-App:** jede Sparte, 1.–4. Klasse Volksschule, jedes Fach, jede Aufgabe ansehen und modernisieren.
 7. **Messlatte:** Eltern sollen 14,99 €/Monat als gerechtfertigt empfinden.
 
+8. **Zielbilder sind verbindlich** („genau diese Gestaltung, genau dieses Layout"): `docs/design_targets/2026-11-17/` in beiden Repos (Kart-Menü hoch/quer, Zieleinlauf Platz 1–3, Profil, Startseite auf dem Fold, dazu Boards für Spielwelt, Jump & Run, Schatzsuche, Bauwelt, Memory, Rhythm Party, Puzzle, Cards). Gewünscht sind in Blender gerenderte Knöpfe, Rahmen und Symbole.
+9. **Umsetzung mit mehreren Agenten parallel.**
+
+Einschränkungen zu den Zielbildern, damit nichts vorgetäuscht wird:
+- Es sind Konzeptbilder. Übernommen werden Aufbau und Aussehen; gezeigt werden nur echte Funktionen und echte Zahlen.
+- Mehrspieler, Münzen mit „+", Saisonpass Premium, tägliche Challenges, Lokal-Koop und Teilen gibt es im Produkt nicht. Sie werden nicht als Attrappe gebaut.
+- Das Cards-Board zeigt UNO-Kartentypen. Wegen Entscheidung 1 wird nur die Tischszene übernommen.
+
 Grenze, offen ausgesprochen: Fotorealismus wie in Konsolen-Großproduktionen ist auf Android mit dieser Engine nicht erreichbar. Ziel ist ein hochwertiger, stilisierter 3D-Look.
 
 ## 3. Navigation und App-Rahmen (Flutter)
@@ -74,6 +82,8 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 - Befund: 112 Karten, 4 Farben, Aussetzen/+2/Richtungswechsel/Farbwahl/+4, 7 Startkarten, „LUMO!"-Ruf bei ≤ 2 Karten. Eigen ist nur die Denkpause-Karte. Nur 2 Spieler.
 - Weiteres Kartenspiel: „Sternenpfad" (`features/games/star_trail/`), kooperativ, eigene Regeln, bleibt.
 - Ziel: Heinz' Punkte 1 und 2. Konzept für 2–3 eigene Spiele steht noch aus und braucht Heinz' Zustimmung, bevor UNO entfernt wird (laufende Partien, Cup-Fortschritt `lumo.cards.cup.v1.*`).
+
+- Zielbild: `board_cards.jpg` (runder Steintisch, Tierfreunde rundherum, eigene Hand unten).
 
 | Punkt | Status |
 |---|---|
