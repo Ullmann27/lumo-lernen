@@ -1,0 +1,1018 @@
+{
+  "schema": "lumo.native-main.original-reader-replay.v1",
+  "performed": true,
+  "passed": true,
+  "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+  "artifact_id": 14114314120,
+  "run_id": 43590864772,
+  "run_attempt": 1,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pillow": "13.0.0",
+  "reader_elapsed_seconds": 1.529860435000046,
+  "command": [
+    "python3",
+    "-B",
+    "/workspace/scratch/2708c7907f28/aab-native-evidence-14114314120/reader-replay.py"
+  ],
+  "approved_helpers": {
+    "verify_studio_2020_rasters.py": {
+      "bytes": 26625,
+      "sha256": "8e8f597f8cd41fe203b9a491f14b5927c85601178e6589afe326a94d7c6f80f3",
+      "git_blob": "b60c3360730f0db73f91324cbaed3a8806fd141e"
+    },
+    "verify_dream_rasters.py": {
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    "verify_village_rasters.py": {
+      "bytes": 3905,
+      "sha256": "23834a1baaaa2f98ffc3df5b0b4e2a4b3bbf23e41f402a7f051adeae9fd230a8",
+      "git_blob": "7c9522903db13f9bd0917ef2768ddbc08e624b1d"
+    },
+    "validate_nextgen.sh": {
+      "bytes": 9791,
+      "sha256": "fbb95e0ab5d3f60a915fdd63ff95b6e01ad3776bb67f6227df1c394b5bd64a7f",
+      "git_blob": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+    }
+  },
+  "host_delivery_reader": {
+    "bytes": 57147,
+    "sha256": "f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a",
+    "git_blob": "18fdff098115570b69fc43ccfe6a3d573605e55b"
+  },
+  "actual_calls": [
+    "checked_native_results(nextgen, exact_committed_validate_nextgen_text)",
+    "checked_native_runner_log(original_nextgen_runner_log)",
+    "verify_studio_2020_rasters.verify(nextgen, write=False)",
+    "verify_dream_rasters.verify(dream, write=False)"
+  ],
+  "core_modes": 52,
+  "mode_log_records": [
+    {
+      "path": "learning_world_regression-headless.log",
+      "marker": "[LearningWorld] PASS",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb"
+    },
+    {
+      "path": "learning_sharing_regression-headless.log",
+      "marker": "[LearningSharing] PASS",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340"
+    },
+    {
+      "path": "learning_studio_regression-headless.log",
+      "marker": "[LearningStudio] PASS",
+      "bytes": 1801,
+      "sha256": "b7423794d3eb97f8034cadb641a9d3437e6908817585c029bcbf713ca7290f3b"
+    },
+    {
+      "path": "learning_host_payload_regression-headless.log",
+      "marker": "[LearningHostPayload] PASS",
+      "bytes": 561,
+      "sha256": "36c68f542c61752654355a9cc359c81d89d9a7c01f1aa3367a0bcf7fa67b33b6"
+    },
+    {
+      "path": "puzzle_rotation_regression-headless.log",
+      "marker": "[PuzzleRotation] PASS",
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9"
+    },
+    {
+      "path": "puzzle_menu_lifecycle_regression-headless.log",
+      "marker": "[PuzzleMenuLifecycle] PASS",
+      "bytes": 3084,
+      "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98"
+    },
+    {
+      "path": "treasure_exploration_regression-headless.log",
+      "marker": "[TreasureExploration] PASS",
+      "bytes": 589,
+      "sha256": "6303eda4f9dfbf0eae58630858cdd5ec5cf1dfd19767d484bf72b3001d713b5e"
+    },
+    {
+      "path": "jump_nextgen_regression-headless.log",
+      "marker": "[JumpNextgen] PASS",
+      "bytes": 1997,
+      "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444"
+    },
+    {
+      "path": "jump_expeditions_regression-headless.log",
+      "marker": "[JumpExpeditions] PASS",
+      "bytes": 2760,
+      "sha256": "f5b49f003ab7a8245417454a5ff22351f71ae3209ea5b1882951805f5ffe92f9"
+    },
+    {
+      "path": "lumo_teacher_pose_regression-headless.log",
+      "marker": "[LumoTeacherPose] PASS",
+      "bytes": 589,
+      "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629"
+    },
+    {
+      "path": "lumo_studio_motion_regression-headless.log",
+      "marker": "[LumoStudioMotion] PASS",
+      "bytes": 603,
+      "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b"
+    },
+    {
+      "path": "lumo_65bone_walk_gait_regression-headless.log",
+      "marker": "[LumoGait] PASS",
+      "bytes": 572,
+      "sha256": "86bc5e72882422903d6ead6054ef38169ec8126efc8cf46c255353e41d08e78e"
+    },
+    {
+      "path": "lumo_original_jump_visual_regression-headless.log",
+      "marker": "[JumpOriginalLumo] PASS",
+      "bytes": 691,
+      "sha256": "73b437ce767d4a0fb73acc9c1db08b351e22b207d4fe68e8c93081948b920f43"
+    },
+    {
+      "path": "bauwelt_identity_2013_regression-headless.log",
+      "marker": "[BauweltIdentity2013] PASS",
+      "bytes": 586,
+      "sha256": "43460fe46162fb0a1f96253f6dd8be84d96f7ba7ed80efc91a16358ee0b7b886"
+    },
+    {
+      "path": "build_frontier_regression-headless.log",
+      "marker": "[BuildFrontier] PASS",
+      "bytes": 617,
+      "sha256": "308eaa91651df8283c82cb991ff6e0421a37a5b0f06e8ed4bf6d3c3deede910b"
+    },
+    {
+      "path": "build_transform_regression-headless.log",
+      "marker": "[BuildTransform] PASS",
+      "bytes": 565,
+      "sha256": "3cab191ff67916f9cc576d136303b98f46ba5079b32c3c4a93fd93c5192ce993"
+    },
+    {
+      "path": "build_nextgen_play_regression-headless.log",
+      "marker": "[BuildNextgen] PASS",
+      "bytes": 687,
+      "sha256": "2c8f4beab40d012483a875b7471f3a4f10c8306575d2e9afc9349d47dd5cc654"
+    },
+    {
+      "path": "build_settlement_regression-headless.log",
+      "marker": "[Settlement] PASS",
+      "bytes": 537,
+      "sha256": "faa89fbcc8f29a9f1ad7e1bfbe13a0f2e12daef573c4502bc6b178c1e8fb5e09"
+    },
+    {
+      "path": "build_settlement_play_regression-headless.log",
+      "marker": "[SettlementPlay] PASS",
+      "bytes": 2069,
+      "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a"
+    },
+    {
+      "path": "build_village_economy_regression-headless.log",
+      "marker": "[VillageEconomy] PASS",
+      "bytes": 628,
+      "sha256": "54d5d0caa2d8d20a57ec8e7e6a3eadddf6331f19c4b7273acf1b5588546c26fb"
+    },
+    {
+      "path": "build_village_art_regression-headless.log",
+      "marker": " checks / 0 failures",
+      "bytes": 507,
+      "sha256": "7cd0e559889ced1ae6133b57d3279d5281d1d0dd086f8415338c9ebfedf528f8"
+    },
+    {
+      "path": "build_village_scene_regression-headless.log",
+      "marker": "[VillageScene] PASS",
+      "bytes": 846,
+      "sha256": "496c7238579af90e13d5dd5180edbd23b0eb0d44380b3c4b2c37adb7881a0d19"
+    },
+    {
+      "path": "creative_nextgen_environment_regression-headless.log",
+      "marker": "[CreativeNextgenEnvironment] PASS",
+      "bytes": 592,
+      "sha256": "c9ef21f1da4f1f5f3fd5b2c07eccc18d17663f4eee091014b88755101711587e"
+    },
+    {
+      "path": "kart_nextgen_garage_regression-headless.log",
+      "marker": "[NextGenGarage] PASS",
+      "bytes": 734,
+      "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab"
+    },
+    {
+      "path": "kart_track_pass_regression-headless.log",
+      "marker": "[KartTrackPass] PASS",
+      "bytes": 1076,
+      "sha256": "338f3ad36a3ea657013ebc496ccf30b0a16e8705c3e5f9bd683de7a171a44955"
+    },
+    {
+      "path": "cards_table_regression-headless.log",
+      "marker": "CARDS_TABLE_RUNTIME_PASS",
+      "bytes": 583,
+      "sha256": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab"
+    },
+    {
+      "path": "cards_safe_area_android_contract-headless.log",
+      "marker": "CARDS_ANDROID_INSETS_PASS",
+      "bytes": 553,
+      "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04"
+    },
+    {
+      "path": "cards_safe_area_regression-headless.log",
+      "marker": "CARDS_SAFE_AREA_PASS",
+      "bytes": 532,
+      "sha256": "19957f04f78da618bffec97d55a52efd1874963a011808c113fbd7cf4a8b9177"
+    },
+    {
+      "path": "mobile_safe_area_regression-headless.log",
+      "marker": "MOBILE_SAFE_AREA_PASS",
+      "bytes": 10230,
+      "sha256": "cac02639da6e99218248cbe3e33257fba70d76cf5d0916e1af90d234ebf98e2e"
+    },
+    {
+      "path": "rhythm_tour_regression-headless.log",
+      "marker": "[RhythmTour] PASS",
+      "bytes": 582,
+      "sha256": "36554a86f4e83f79940b77fb886d4b1c96a9dd2481db9540b8697fdabfa4493b"
+    },
+    {
+      "path": "rhythm_tour_play_regression-headless.log",
+      "marker": "[RhythmTourPlay] PASS",
+      "bytes": 600,
+      "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9"
+    },
+    {
+      "path": "learning_world_capture-rendered.log",
+      "marker": "[LearningCapture] PASS",
+      "bytes": 8466,
+      "sha256": "32694b895929b17dccf58fecd2f84777d072e0e09a4aac58c8ead14b17685be2"
+    },
+    {
+      "path": "learning_sharing_capture-rendered.log",
+      "marker": "[LearningSharingCapture] PASS",
+      "bytes": 3506,
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e"
+    },
+    {
+      "path": "lumo_studio_motion_capture-rendered.log",
+      "marker": "[LumoStudioCapture] PASS",
+      "bytes": 1202,
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669"
+    },
+    {
+      "path": "puzzle_rotation_regression-rendered.log",
+      "marker": "[PuzzleRotation] PASS",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871"
+    },
+    {
+      "path": "puzzle_menu_lifecycle_regression-rendered.log",
+      "marker": "[PuzzleMenuLifecycle] PASS",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c"
+    },
+    {
+      "path": "treasure_exploration_regression-rendered.log",
+      "marker": "[TreasureExploration] PASS",
+      "bytes": 1236,
+      "sha256": "d3ab6703a5a6d829268ef78107f2ae5a7a7c05be21eaf44bceb9c4c04d4adbba"
+    },
+    {
+      "path": "jump_nextgen_capture-rendered.log",
+      "marker": "[JumpNextgenCapture] PASS",
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3"
+    },
+    {
+      "path": "build_nextgen_play_regression-rendered.log",
+      "marker": "[BuildNextgen] PASS",
+      "bytes": 1334,
+      "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6"
+    },
+    {
+      "path": "build_settlement_play_regression-rendered.log",
+      "marker": "[SettlementPlay] PASS",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127"
+    },
+    {
+      "path": "build_village_scene_regression-rendered.log",
+      "marker": "[VillageScene] PASS",
+      "bytes": 1493,
+      "sha256": "9fccdf7b8d2a8fc296e0f7d904654970082a068c1d253a16ef6cab406b11b648"
+    },
+    {
+      "path": "creative_nextgen_environment_regression-rendered.log",
+      "marker": "[CreativeNextgenEnvironment] PASS",
+      "bytes": 1239,
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e"
+    },
+    {
+      "path": "kart_nextgen_garage_regression-rendered.log",
+      "marker": "[NextGenGarage] PASS",
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5"
+    },
+    {
+      "path": "cards_table_capture-rendered.log",
+      "marker": "CARDS_TABLE_RENDER_PASS",
+      "bytes": 1162,
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4"
+    },
+    {
+      "path": "cards_safe_area_regression-rendered.log",
+      "marker": "CARDS_SAFE_AREA_PASS",
+      "bytes": 1179,
+      "sha256": "e4b86d0d3e105c298176539d00c4ec5e53cc78931acfbae24f0bf1eff5f3eefe"
+    },
+    {
+      "path": "mobile_safe_area_regression-rendered.log",
+      "marker": "MOBILE_SAFE_AREA_PASS",
+      "bytes": 11441,
+      "sha256": "0390d1dcfcb3836653970f2b7ad24374781b00898ca103933aba4026784d591b"
+    },
+    {
+      "path": "rhythm_tour_play_regression-rendered.log",
+      "marker": "[RhythmTourPlay] PASS",
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9"
+    },
+    {
+      "path": "kart_player_full_route_regression-rendered.log",
+      "marker": "[PlayerFullRoute] PASS",
+      "bytes": 21732,
+      "sha256": "9c1fb08e859b647292347f5f908f0c80371b62a0de6998dde9a821cbe81f6692"
+    },
+    {
+      "path": "lumo_facial_regression-headless.log",
+      "marker": "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false",
+      "bytes": 633,
+      "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b"
+    },
+    {
+      "path": "lumo_facial_capture-rendered.log",
+      "marker": "LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true",
+      "bytes": 1847,
+      "sha256": "efea116ce324cee459b5ce11c242a0d8ee08530ea883ea41b8107506b63a2515"
+    },
+    {
+      "path": "connect_four_visual_capture-rendered.log",
+      "marker": "CONNECT_FOUR_VISUAL_PASS",
+      "bytes": 1176,
+      "sha256": "1cc3d59bbf0a2f7fa7680ad0d70bdcbfb1c6690cb88edf523b344f9d18afaaae"
+    },
+    {
+      "path": "treasure_title_contrast_regression-rendered.log",
+      "marker": "[TreasureTitleContrast] PASS",
+      "bytes": 3669,
+      "sha256": "e715acf96478f26498f6fef6acbb0a04fb41680ef43b154addcdade4003a04f4"
+    }
+  ],
+  "complete_runner_record": {
+    "bytes": 122431,
+    "sha256": "9b07374dc3d51f951d6c7e4540b5368daaf47cb0db81d4c50e514fa92209623f"
+  },
+  "studio": {
+    "images": 17,
+    "reports": 3,
+    "movies": 1,
+    "fresh_result_equals_original": true
+  },
+  "dream": {
+    "probes": 5,
+    "images": 7,
+    "reports": 2,
+    "fresh_result_equals_original": true,
+    "changed_pairs": [
+      {
+        "world": "treasure",
+        "animation_times": [
+          0.5,
+          1.9
+        ],
+        "changed_pixel_bounds": [
+          0,
+          0,
+          720,
+          1280
+        ]
+      },
+      {
+        "world": "learning",
+        "animation_times": [
+          0.5,
+          1.9
+        ],
+        "changed_pixel_bounds": [
+          43,
+          209,
+          334,
+          521
+        ]
+      }
+    ],
+    "untracked_inventory_counts": [
+      {
+        "generated_uid": 345,
+        "generated_import_metadata": 604,
+        "other_untracked": 0
+      },
+      {
+        "generated_uid": 345,
+        "generated_import_metadata": 604,
+        "other_untracked": 0
+      }
+    ]
+  },
+  "remote_tracked_tree_entries_matched_before_and_after": 3649,
+  "tracked_inventory_and_git_index_unchanged": true,
+  "source_inventory_files_byte_equal": true,
+  "original_records_before_after": {
+    "connect-four-return.log": {
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+      "git_blob": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    "dream-runner.log": {
+      "bytes": 5511,
+      "sha256": "7361129b935aa0bac5fd5dcfdaa9502cd3d56d54047fdfdc45d4a90ea34e9a30",
+      "git_blob": "a07b0c16f8b0c4b86f83ec28d7170dc3909f49b7"
+    },
+    "dream-verifier-original.py": {
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    "dream/capture-root.txt": {
+      "bytes": 66,
+      "sha256": "aa93b3c7464ff425688e15203874000632bf3f50147ea08dedae8e09f886c631",
+      "git_blob": "86b908ec2c699222728a20d3d0e8511ce360ab48"
+    },
+    "dream/captures/garden/learning-dream-1280x720.png": {
+      "bytes": 299659,
+      "sha256": "bdc882966e6b4b2abe62dde32e7ce088bede07d03255c00b81d385d5c7b9d49f",
+      "git_blob": "dfe35bb20d3c79dac3ce21d49630c6ffa4f0cf02"
+    },
+    "dream/captures/garden/learning-dream-2400x1080.png": {
+      "bytes": 726191,
+      "sha256": "3066e337eb4780c5df260acaf13ab1bad397db06d7204b7aed74193746bc0b07",
+      "git_blob": "c8d90c25c0add6a0be5190503b2b220afe2098ff"
+    },
+    "dream/captures/garden/learning-dream-412x915.png": {
+      "bytes": 129176,
+      "sha256": "c990d1733c2a3ec168e5d5aeec6eccb57a14e60ac7c769991c2154ed2035015b",
+      "git_blob": "a5b4022a648d1adcb0ce90e4c46089284418cd79"
+    },
+    "dream/captures/learning/learning.json": {
+      "bytes": 848,
+      "sha256": "e5823289442d615754eaef67c3a8f6fc13e4532c2fa0f7f8a95e9c50719dc639",
+      "git_blob": "1cf6f240d33d12f352bfd0befa9bd9e784dd123d"
+    },
+    "dream/captures/learning/learning_00.png": {
+      "bytes": 263770,
+      "sha256": "29e02a6d2ef2f7c5ecd761b1a2911f3bdc57d8674d064b17a7ca5ca7a629f3e8",
+      "git_blob": "c3699f6b86f80c363e268ac3fea6a1a5ce11610c"
+    },
+    "dream/captures/learning/learning_01.png": {
+      "bytes": 264638,
+      "sha256": "ad515ec034504d495959bf4fb540065bb640c667d15c1dacff2e97e7d1605efb",
+      "git_blob": "64b621d93d064789e6a1f6aec795aa3667ac34e2"
+    },
+    "dream/captures/treasure/treasure.json": {
+      "bytes": 844,
+      "sha256": "98890e629aa52fffbd0de561e61e8ea9e4987b14e2400e3540f4a8f156f8b1fa",
+      "git_blob": "fc11411a2a7d60eeba360e9d9ebbd7e7332b67b7"
+    },
+    "dream/captures/treasure/treasure_00.png": {
+      "bytes": 1138205,
+      "sha256": "152e7a29f5969dd20a65c17a4a497d54df83c104159e8c76008a35a7fb1281a1",
+      "git_blob": "7bd812ea19702902befea94df29518b0a85300b5"
+    },
+    "dream/captures/treasure/treasure_01.png": {
+      "bytes": 1137661,
+      "sha256": "5a0f9a6a5df1f3732024fe8a431c37a5909db6238b0bf6571a3e0927662bd77f",
+      "git_blob": "7a14c7b44f80f9746dcbcb1ce3fd83b5b21e69db"
+    },
+    "dream/dream-images.json": {
+      "bytes": 6414,
+      "sha256": "6985e1af23afc276b94ecb5c30eeac8e91765b0df0c3a43345902259f0674c86",
+      "git_blob": "6ee76382d96a56abc9439d40e7056c8ff717c043"
+    },
+    "dream/dream_garden_capture-rendered.log": {
+      "bytes": 1628,
+      "sha256": "2ccf89b7e8f18f3e02b23a8ef44b95067f529f18b44705f508673f365f714141",
+      "git_blob": "38fd65205f41495233cccb64af14c1a7fae42c9e"
+    },
+    "dream/dream_garden_props_regression-headless.log": {
+      "bytes": 505,
+      "sha256": "bbfcbd97e786dad12bb49ebf8a088d2b7e0c6a1a834e413c018c0c8c52c5013f",
+      "git_blob": "df3496e441a6e21488595c33fc2a66510dba7801"
+    },
+    "dream/engine.txt": {
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    "dream/lumo_dream_ambience_capture-rendered-learning.log": {
+      "bytes": 1284,
+      "sha256": "bb760e4265fbfa978562ad3f11c40e45e935cefd439568c6700b4875d38c11db",
+      "git_blob": "7b262fe5ae406a13e4ee086a38dd046d2860e691"
+    },
+    "dream/lumo_dream_ambience_capture-rendered-treasure.log": {
+      "bytes": 1284,
+      "sha256": "8e1bfaf37e62a9a3f14cad6ad852caa789a93e0067a05278774d44bc73be4c4c",
+      "git_blob": "c28444ee86ac2e1f1d2df8d05bdda6c068fc7e2a"
+    },
+    "dream/lumo_dream_ambience_regression-headless.log": {
+      "bytes": 593,
+      "sha256": "0e06fbe26cc4fab495f303f614749b1164b2ea673a17c70ee7a38f2b18600709",
+      "git_blob": "5a204508af13e9ab0106b3b59931bac4be8b20ed"
+    },
+    "dream/results.tsv": {
+      "bytes": 244,
+      "sha256": "e13332961fe89a044b7b25aff2408199425dbf9935be79ffca222f214442a169",
+      "git_blob": "03d9d027d45a2fc1610e35db1c1186bd8f39c943"
+    },
+    "dream/source-dirty-after.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "dream/source-dirty.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "dream/source-inventory-after.json": {
+      "bytes": 1893541,
+      "sha256": "dceb7f1f40b090503db7cbe929ac82770a0cf0599b4c080b40091b83a926dfe9",
+      "git_blob": "838127808043cd737bfa2490bd89f37a45b76082"
+    },
+    "dream/source-inventory-before.json": {
+      "bytes": 1893541,
+      "sha256": "dceb7f1f40b090503db7cbe929ac82770a0cf0599b4c080b40091b83a926dfe9",
+      "git_blob": "838127808043cd737bfa2490bd89f37a45b76082"
+    },
+    "dream/source-sha-after.txt": {
+      "bytes": 41,
+      "sha256": "f689dbf8f03a0e1f79b127e96dfa3261abe28f8c50918feecfad5aad5d6da38a",
+      "git_blob": "f5010efa40eff1e722991b5118da28b62623e51b"
+    },
+    "dream/source-sha.txt": {
+      "bytes": 41,
+      "sha256": "f689dbf8f03a0e1f79b127e96dfa3261abe28f8c50918feecfad5aad5d6da38a",
+      "git_blob": "f5010efa40eff1e722991b5118da28b62623e51b"
+    },
+    "dream/source-tree-after.txt": {
+      "bytes": 41,
+      "sha256": "75fdfdf7b69c437224b9dceea6a5ac8c57166cc91db807ef63baa8e8d9f340ee",
+      "git_blob": "476ce36a818f8774c5c11a705883ad20f418fbb6"
+    },
+    "dream/source-tree.txt": {
+      "bytes": 41,
+      "sha256": "75fdfdf7b69c437224b9dceea6a5ac8c57166cc91db807ef63baa8e8d9f340ee",
+      "git_blob": "476ce36a818f8774c5c11a705883ad20f418fbb6"
+    },
+    "nextgen-runner.log": {
+      "bytes": 122431,
+      "sha256": "9b07374dc3d51f951d6c7e4540b5368daaf47cb0db81d4c50e514fa92209623f",
+      "git_blob": "0ff7099e25259c7e01ec0c59cfab652225bee791"
+    },
+    "nextgen/bauwelt_identity_2013_regression-headless.log": {
+      "bytes": 586,
+      "sha256": "43460fe46162fb0a1f96253f6dd8be84d96f7ba7ed80efc91a16358ee0b7b886",
+      "git_blob": "de5ae7a33ce27ca13aa7ea5bc2b6a4f0f4b0daf0"
+    },
+    "nextgen/build_frontier_regression-headless.log": {
+      "bytes": 617,
+      "sha256": "308eaa91651df8283c82cb991ff6e0421a37a5b0f06e8ed4bf6d3c3deede910b",
+      "git_blob": "62b304c84cdec71cf36ebe3ff70aa9dd3253a351"
+    },
+    "nextgen/build_nextgen_play_regression-headless.log": {
+      "bytes": 687,
+      "sha256": "2c8f4beab40d012483a875b7471f3a4f10c8306575d2e9afc9349d47dd5cc654",
+      "git_blob": "0c956e3d796ca6dd2810db4de9577c3d4b3c23e6"
+    },
+    "nextgen/build_nextgen_play_regression-rendered.log": {
+      "bytes": 1334,
+      "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6",
+      "git_blob": "ecebcfafeda02f7e6b995601aad401182117e513"
+    },
+    "nextgen/build_settlement_play_regression-headless.log": {
+      "bytes": 2069,
+      "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a",
+      "git_blob": "83fe16fae0f5691b51308a0175fffd0deb966e18"
+    },
+    "nextgen/build_settlement_play_regression-rendered.log": {
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "git_blob": "c66d375adf85f5171807c73c28140d4639d531e1"
+    },
+    "nextgen/build_settlement_regression-headless.log": {
+      "bytes": 537,
+      "sha256": "faa89fbcc8f29a9f1ad7e1bfbe13a0f2e12daef573c4502bc6b178c1e8fb5e09",
+      "git_blob": "f7e7d5d85bdf778f34511d2e3429d9142742fdd7"
+    },
+    "nextgen/build_transform_regression-headless.log": {
+      "bytes": 565,
+      "sha256": "3cab191ff67916f9cc576d136303b98f46ba5079b32c3c4a93fd93c5192ce993",
+      "git_blob": "a809519d49f229db2485e4cb3cecc9c027e3d7de"
+    },
+    "nextgen/build_village_art_regression-headless.log": {
+      "bytes": 507,
+      "sha256": "7cd0e559889ced1ae6133b57d3279d5281d1d0dd086f8415338c9ebfedf528f8",
+      "git_blob": "a5320694e1fce243c76f850b306aa0f20c1b8582"
+    },
+    "nextgen/build_village_economy_regression-headless.log": {
+      "bytes": 628,
+      "sha256": "54d5d0caa2d8d20a57ec8e7e6a3eadddf6331f19c4b7273acf1b5588546c26fb",
+      "git_blob": "58cd37e6ad7286d4ba78574e20c0951a55aac4a9"
+    },
+    "nextgen/build_village_scene_regression-headless.log": {
+      "bytes": 846,
+      "sha256": "496c7238579af90e13d5dd5180edbd23b0eb0d44380b3c4b2c37adb7881a0d19",
+      "git_blob": "4c0f95de22d575b8a035e010e9d81dcc693262d7"
+    },
+    "nextgen/build_village_scene_regression-rendered.log": {
+      "bytes": 1493,
+      "sha256": "9fccdf7b8d2a8fc296e0f7d904654970082a068c1d253a16ef6cab406b11b648",
+      "git_blob": "97f321d361746b5d97885975af2fe3160836ef50"
+    },
+    "nextgen/captures/connect_four_visual_capture/c4-empty-landscape.png": {
+      "bytes": 82085,
+      "sha256": "c6a0cd4e24b2f3038c2833a8e5cfa8f388bfd5637c6e256ce5f88ad8bf46a7a2",
+      "git_blob": "36d6b6e74fac1cd7f3aaeabbaa56c79e251a88d1"
+    },
+    "nextgen/captures/connect_four_visual_capture/c4-paused-small.png": {
+      "bytes": 29411,
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "git_blob": "7806e7f57e122d27342bbd6342325cf96b96ef55"
+    },
+    "nextgen/captures/connect_four_visual_capture/c4-playing-phone.png": {
+      "bytes": 67672,
+      "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "git_blob": "93f1122761f944ff0ec85829d666dea0fc491cc0"
+    },
+    "nextgen/captures/connect_four_visual_capture/c4-win-landscape.png": {
+      "bytes": 83696,
+      "sha256": "38ffd2a8ef0577119558386f793c7d126c65d762afc7876795324d6bcb098038",
+      "git_blob": "0a3338eb7a0a09ca74cf56a8a167c3d60a8c41b2"
+    },
+    "nextgen/captures/connect_four_visual_capture/visual-state.json": {
+      "bytes": 172227,
+      "sha256": "61d630707934242c199f69bbcac17d6d216f4b308c46e234ec6988ba95a58d14",
+      "git_blob": "41f2d3bf64d574c5c7172a297a8a90d068af340b"
+    },
+    "nextgen/captures/lumo_facial_capture/audio_jaw.png": {
+      "bytes": 306763,
+      "sha256": "0e4e25d2a434014a78a58e3168a0a2cea1f1eb4ae354860197649cdbd968e399",
+      "git_blob": "9877228fc74f9d5ef83bbf36482649f357245ee4"
+    },
+    "nextgen/captures/lumo_facial_capture/blink.png": {
+      "bytes": 301645,
+      "sha256": "13cc217a29ae082a33f3fc886b5ff511ca94b9234f084b116e9a3e0b7f49bf64",
+      "git_blob": "e40a554ae5e0b15f65af5c3434f623fdd440c960"
+    },
+    "nextgen/captures/lumo_facial_capture/blink_intermediate.png": {
+      "bytes": 302869,
+      "sha256": "4b77f44d74202d872c3c294c0586917cbb9a430e0c2659565aab3701628f2a05",
+      "git_blob": "dbcc04129cf562688efbc697daa24e2ae05c1c95"
+    },
+    "nextgen/captures/lumo_facial_capture/facial-runtime.avi": {
+      "bytes": 7717126,
+      "sha256": "1f0d5bcf11c5b52154e44b74bc5fd1eda50c5574b156be76daae29d0acf7b7c0",
+      "git_blob": "fb70d1cadf856aa0ceeb0eb9583788e023112030"
+    },
+    "nextgen/captures/lumo_facial_capture/facial-runtime.mp4": {
+      "bytes": 1074432,
+      "sha256": "70a09162be85675161bd488346fb6c946e4a72ac78e2f1895f190ca4fa2eb5c9",
+      "git_blob": "47798d18245acb55f3d5477d1be9ced68dba5d55"
+    },
+    "nextgen/captures/lumo_facial_capture/gaze_left.png": {
+      "bytes": 295648,
+      "sha256": "4dcdfecc01d1d64f8327419b95ee0ace5914a37cc09e8d699dfe22158d7a8d51",
+      "git_blob": "321b4d98cf9d68d8918721ebf1af71dc69733ce6"
+    },
+    "nextgen/captures/lumo_facial_capture/movie-decode.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "nextgen/captures/lumo_facial_capture/movie-encode.log": {
+      "bytes": 6262,
+      "sha256": "0fc819f85fdc2b1bf6da398a46054e25e54cd346fac49a47471f396cd3f97ad7",
+      "git_blob": "4fd80586dc21e8d24bf9238ff6e31c5a49662a97"
+    },
+    "nextgen/captures/lumo_facial_capture/movie-ffprobe-stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "nextgen/captures/lumo_facial_capture/movie-ffprobe.json": {
+      "bytes": 4564,
+      "sha256": "1d8c9c58f4c45e35270b8cd7cfc74fb380a300ce83e78d4e8576fbdb65db3795",
+      "git_blob": "d215319da97e571f66a81b5e5a64cd30c56b8639"
+    },
+    "nextgen/captures/lumo_facial_capture/movie.json": {
+      "bytes": 1201,
+      "sha256": "d35ccbb91c1d636097b52f3652dc8a7487aa85881d13d023c482101a2dee5fb1",
+      "git_blob": "bfc0930a465a6b1f806f123cab111e5b5c2457ac"
+    },
+    "nextgen/captures/lumo_facial_capture/muted.png": {
+      "bytes": 303284,
+      "sha256": "d856e49b331a8b42c0a877d6a5d234acfa7240c0d40427be59250fbb5437d27a",
+      "git_blob": "b55c91954833b2230d546ba5a87f220f9e8a9577"
+    },
+    "nextgen/captures/lumo_facial_capture/neutral.png": {
+      "bytes": 283369,
+      "sha256": "1a567ec18d7e17d136734ada25d49197892ea4300a12b7a4159956db89e7ad8b",
+      "git_blob": "db72ba4c0a959a8d3dd9ad338746a602f3edb899"
+    },
+    "nextgen/captures/lumo_facial_capture/runtime-frames.json": {
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "git_blob": "471e2e633df635545f99270e1960eb5ba41ced2e"
+    },
+    "nextgen/captures/lumo_facial_capture/stopped.png": {
+      "bytes": 299919,
+      "sha256": "f58fa3e0e9ab84c0fd2f69138a429714b7a77933a08ba991657ef12b73b67c3c",
+      "git_blob": "df8b17c2fea2f36ef2782e9033bcca13ba252ae5"
+    },
+    "nextgen/captures/lumo_facial_capture/teacher_scene.png": {
+      "bytes": 116521,
+      "sha256": "734e318635eb6e296984ba48ecc09d2b74ec30533196d9baa2f058bc104a3dac",
+      "git_blob": "96c7ef3672a3dcb7a56ca9b7dc358e9ae8f09e5f"
+    },
+    "nextgen/captures/treasure_title_contrast_regression/treasure-title-compact.png": {
+      "bytes": 324230,
+      "sha256": "692a8eb9f60b648c14d8949423e2a7426c8cd17bdee33bf6aba6de5b4c338c89",
+      "git_blob": "f32d41141068ca9371f02ecc8303178bc7b239b2"
+    },
+    "nextgen/captures/treasure_title_contrast_regression/treasure-title-fold.png": {
+      "bytes": 4227356,
+      "sha256": "32a79882e58d6fd0d4ff296a4889ea1e7f395589565ae5b246fc0b2ebefaa757",
+      "git_blob": "2ccfa7092c03f9e0857216139607b461be17299e"
+    },
+    "nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png": {
+      "bytes": 2623692,
+      "sha256": "e190887e7f86443c671ad1803689232b5547031bc05a3b50b8cdc4c1e639514a",
+      "git_blob": "f66079038cc40becc69dd99ef3379ef1f0a4a8f4"
+    },
+    "nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape.png": {
+      "bytes": 2719948,
+      "sha256": "ac6629cd714c1e04c959d8a3d3bb7a22c7e776b7b35d398a661465ce87ea06f2",
+      "git_blob": "6e9971af5a062b679d4f388aeac0e177e05640c9"
+    },
+    "nextgen/captures/treasure_title_contrast_regression/treasure-title-portrait.png": {
+      "bytes": 2103186,
+      "sha256": "fde669ad1aabacf790e678d203e4470bf10bd926528a843402d43a7b988da268",
+      "git_blob": "2970afcba5d2d5dc7e8bdb3cefac30d19ee429e3"
+    },
+    "nextgen/captures/treasure_title_contrast_regression/treasure-title-report.json": {
+      "bytes": 30551,
+      "sha256": "bb2ff7fd7d5568ef7bba034cbd2fe3d69c4325d03c0506f1625a7d863de852ad",
+      "git_blob": "e11e4b1d0f167ec8f653d67170920fd912f9b02d"
+    },
+    "nextgen/cards_safe_area_android_contract-headless.log": {
+      "bytes": 553,
+      "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04",
+      "git_blob": "32d492b0d1614577e839f90915104bc3823fd816"
+    },
+    "nextgen/cards_safe_area_regression-headless.log": {
+      "bytes": 532,
+      "sha256": "19957f04f78da618bffec97d55a52efd1874963a011808c113fbd7cf4a8b9177",
+      "git_blob": "89ac7c1f16d898f3d2c3d487eba20dbe3b24f768"
+    },
+    "nextgen/cards_safe_area_regression-rendered.log": {
+      "bytes": 1179,
+      "sha256": "e4b86d0d3e105c298176539d00c4ec5e53cc78931acfbae24f0bf1eff5f3eefe",
+      "git_blob": "6817c5af327f85606f855423f6e7c1baec46a3c1"
+    },
+    "nextgen/cards_table_capture-rendered.log": {
+      "bytes": 1162,
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4",
+      "git_blob": "4ab838eb569b625c283fc53dd3bdd8a0e6320d11"
+    },
+    "nextgen/cards_table_regression-headless.log": {
+      "bytes": 583,
+      "sha256": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab",
+      "git_blob": "a67596289c9f6e0e9c13246d5aa9769e5e1051b7"
+    },
+    "nextgen/connect_four_visual_capture-rendered.log": {
+      "bytes": 1176,
+      "sha256": "1cc3d59bbf0a2f7fa7680ad0d70bdcbfb1c6690cb88edf523b344f9d18afaaae",
+      "git_blob": "1038e9423bfa3591b7b8985869bd3193ba027425"
+    },
+    "nextgen/creative_nextgen_environment_regression-headless.log": {
+      "bytes": 592,
+      "sha256": "c9ef21f1da4f1f5f3fd5b2c07eccc18d17663f4eee091014b88755101711587e",
+      "git_blob": "07dca06fcc9fcfad02598082f814dd32dbc277eb"
+    },
+    "nextgen/creative_nextgen_environment_regression-rendered.log": {
+      "bytes": 1239,
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e",
+      "git_blob": "3726d656d46389cd1cb095f14c9ea09abe84494a"
+    },
+    "nextgen/engine.txt": {
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    "nextgen/jump_expeditions_regression-headless.log": {
+      "bytes": 2760,
+      "sha256": "f5b49f003ab7a8245417454a5ff22351f71ae3209ea5b1882951805f5ffe92f9",
+      "git_blob": "93f0f06d6b1b2fc8255fcf8bf76de64dd0407a32"
+    },
+    "nextgen/jump_nextgen_capture-rendered.log": {
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "git_blob": "54af114e9f1b69d66d1625f31c3a7e1658e02653"
+    },
+    "nextgen/jump_nextgen_regression-headless.log": {
+      "bytes": 1997,
+      "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444",
+      "git_blob": "fddee704870eeaca1da6744f2e5eea7fe0cb8612"
+    },
+    "nextgen/kart_nextgen_garage_regression-headless.log": {
+      "bytes": 734,
+      "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab",
+      "git_blob": "bad5c03b84bc7ee62f1a3f895093cbff5f09b12b"
+    },
+    "nextgen/kart_nextgen_garage_regression-rendered.log": {
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "git_blob": "1fe508554dde6409111b9cbfbd239f53f78141e4"
+    },
+    "nextgen/kart_player_full_route_regression-rendered.log": {
+      "bytes": 21732,
+      "sha256": "9c1fb08e859b647292347f5f908f0c80371b62a0de6998dde9a821cbe81f6692",
+      "git_blob": "cf8932428196072586efb94d33ea363efb60af5f"
+    },
+    "nextgen/kart_track_pass_regression-headless.log": {
+      "bytes": 1076,
+      "sha256": "338f3ad36a3ea657013ebc496ccf30b0a16e8705c3e5f9bd683de7a171a44955",
+      "git_blob": "7c880b4a83a1fbbd7c5db626f40d94930509e31c"
+    },
+    "nextgen/learning_host_payload_regression-headless.log": {
+      "bytes": 561,
+      "sha256": "36c68f542c61752654355a9cc359c81d89d9a7c01f1aa3367a0bcf7fa67b33b6",
+      "git_blob": "f383abdb67a69003ff38758e0787f2b953f42ed7"
+    },
+    "nextgen/learning_sharing_capture-rendered.log": {
+      "bytes": 3506,
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+      "git_blob": "ef4578c3a25377b077e884eda72b71b462ed8298"
+    },
+    "nextgen/learning_sharing_regression-headless.log": {
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+    },
+    "nextgen/learning_studio_regression-headless.log": {
+      "bytes": 1801,
+      "sha256": "b7423794d3eb97f8034cadb641a9d3437e6908817585c029bcbf713ca7290f3b",
+      "git_blob": "ad80a607d0ae8218505a4b2bdbecde43dc00d201"
+    },
+    "nextgen/learning_world_capture-rendered.log": {
+      "bytes": 8466,
+      "sha256": "32694b895929b17dccf58fecd2f84777d072e0e09a4aac58c8ead14b17685be2",
+      "git_blob": "0367f6301e08f9facd8e0435d3f39cddd096bd4c"
+    },
+    "nextgen/learning_world_regression-headless.log": {
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+    },
+    "nextgen/lumo_65bone_walk_gait_regression-headless.log": {
+      "bytes": 572,
+      "sha256": "86bc5e72882422903d6ead6054ef38169ec8126efc8cf46c255353e41d08e78e",
+      "git_blob": "b06c80eb963d79653f8afa5eb0586168f7e0f726"
+    },
+    "nextgen/lumo_facial_capture-rendered.log": {
+      "bytes": 1847,
+      "sha256": "efea116ce324cee459b5ce11c242a0d8ee08530ea883ea41b8107506b63a2515",
+      "git_blob": "b9667ee4eff1ba544f3064cc3e596a4e5a3353fa"
+    },
+    "nextgen/lumo_facial_regression-headless.log": {
+      "bytes": 633,
+      "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b",
+      "git_blob": "2374357756a7f9a2320bceb9c0533fa6b58a02b9"
+    },
+    "nextgen/lumo_original_jump_visual_regression-headless.log": {
+      "bytes": 691,
+      "sha256": "73b437ce767d4a0fb73acc9c1db08b351e22b207d4fe68e8c93081948b920f43",
+      "git_blob": "4759604de66df40923c8d65041e1dceea0e74c92"
+    },
+    "nextgen/lumo_studio_motion_capture-rendered.log": {
+      "bytes": 1202,
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "git_blob": "4f08daeda90feb45075b2de588ac04099ab0bc39"
+    },
+    "nextgen/lumo_studio_motion_regression-headless.log": {
+      "bytes": 603,
+      "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b",
+      "git_blob": "d06b4aa8600722e4474cd7584db3ac81f134d1e4"
+    },
+    "nextgen/lumo_teacher_pose_regression-headless.log": {
+      "bytes": 589,
+      "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629",
+      "git_blob": "9afe1fa0218bcaeb55c301046a7a9507c10fd10f"
+    },
+    "nextgen/mobile_safe_area_regression-headless.log": {
+      "bytes": 10230,
+      "sha256": "cac02639da6e99218248cbe3e33257fba70d76cf5d0916e1af90d234ebf98e2e",
+      "git_blob": "c356f335022eadcfde8b076766f5003fa8e249d9"
+    },
+    "nextgen/mobile_safe_area_regression-rendered.log": {
+      "bytes": 11441,
+      "sha256": "0390d1dcfcb3836653970f2b7ad24374781b00898ca103933aba4026784d591b",
+      "git_blob": "280d15a78802573c0401dc0fb6468fd939cf7eff"
+    },
+    "nextgen/puzzle_menu_lifecycle_regression-headless.log": {
+      "bytes": 3084,
+      "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98",
+      "git_blob": "adb5eca8ae5da6228ce71085a84300c26471351c"
+    },
+    "nextgen/puzzle_menu_lifecycle_regression-rendered.log": {
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "git_blob": "f32e4347b8fc9ecc5f2e3555977e628e9223ca13"
+    },
+    "nextgen/puzzle_rotation_regression-headless.log": {
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9",
+      "git_blob": "aea567f1bad4a7577043682889e8c450fa5663d0"
+    },
+    "nextgen/puzzle_rotation_regression-rendered.log": {
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "git_blob": "dc08e72a340d1ac25e166d06eca8e93c5fa0b837"
+    },
+    "nextgen/results.tsv": {
+      "bytes": 2259,
+      "sha256": "e055b2d3ac43199e50b37b824bbcc84c75dc9aa683389478e898637f7c0b16d4",
+      "git_blob": "db0de72ce9ada78bbe039dc96745928e0b5fd30a"
+    },
+    "nextgen/rhythm_tour_play_regression-headless.log": {
+      "bytes": 600,
+      "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9",
+      "git_blob": "f384e4bff800f093fdc9d1506937684edf87c4fc"
+    },
+    "nextgen/rhythm_tour_play_regression-rendered.log": {
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "git_blob": "e0c84933eba2d8ae0c81f0d5a8899c1356fd76c1"
+    },
+    "nextgen/rhythm_tour_regression-headless.log": {
+      "bytes": 582,
+      "sha256": "36554a86f4e83f79940b77fb886d4b1c96a9dd2481db9540b8697fdabfa4493b",
+      "git_blob": "f8758688f3cccde8c297793e95b7e20078e957c1"
+    },
+    "nextgen/source-dirty.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "nextgen/source-sha.txt": {
+      "bytes": 41,
+      "sha256": "f689dbf8f03a0e1f79b127e96dfa3261abe28f8c50918feecfad5aad5d6da38a",
+      "git_blob": "f5010efa40eff1e722991b5118da28b62623e51b"
+    },
+    "nextgen/source-tree.txt": {
+      "bytes": 41,
+      "sha256": "75fdfdf7b69c437224b9dceea6a5ac8c57166cc91db807ef63baa8e8d9f340ee",
+      "git_blob": "476ce36a818f8774c5c11a705883ad20f418fbb6"
+    },
+    "nextgen/studio-2020-images.json": {
+      "bytes": 13986,
+      "sha256": "c008857b03355af795d51a8c2c6f94cb4195cc462eba479bc64bd9f96263a70e",
+      "git_blob": "57aba37d7fe705a724952c7e0cdf4f667df88a5d"
+    },
+    "nextgen/treasure_exploration_regression-headless.log": {
+      "bytes": 589,
+      "sha256": "6303eda4f9dfbf0eae58630858cdd5ec5cf1dfd19767d484bf72b3001d713b5e",
+      "git_blob": "c8146adee3e0045b27b144aa8cf07ca70b795f45"
+    },
+    "nextgen/treasure_exploration_regression-rendered.log": {
+      "bytes": 1236,
+      "sha256": "d3ab6703a5a6d829268ef78107f2ae5a7a7c05be21eaf44bceb9c4c04d4adbba",
+      "git_blob": "f29e0e5a8ff25a35bf41749428de181b3a07d06f"
+    },
+    "nextgen/treasure_title_contrast_regression-rendered.log": {
+      "bytes": 3669,
+      "sha256": "e715acf96478f26498f6fef6acbb0a04fb41680ef43b154addcdade4003a04f4",
+      "git_blob": "831a4bad0e10708fafdb8c278bda8b03ee872df4"
+    },
+    "source-sha.txt": {
+      "bytes": 41,
+      "sha256": "f689dbf8f03a0e1f79b127e96dfa3261abe28f8c50918feecfad5aad5d6da38a",
+      "git_blob": "f5010efa40eff1e722991b5118da28b62623e51b"
+    }
+  },
+  "original_records_checked_unchanged": 116,
+  "helper_and_host_reader_bytes_unchanged": true,
+  "limits": [
+    "Only approved committed reader code was loaded; archived Python is evidence only.",
+    "No engine, renderer, game probe, ffmpeg, ffprobe or application test was run.",
+    "Local Pillow 13.0.0 reader outputs exactly equal original CI manifests; this is not a new capture.",
+    "The C4 raster set contains visual fixtures, separate from the production Dart/runtime result-action proof.",
+    "No physical Android, audible speaker output or device FPS measurement is inferred.",
+    "No full host delivery verification, APK verification or whole-workflow success is claimed here."
+  ]
+}

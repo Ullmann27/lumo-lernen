@@ -1,0 +1,217 @@
+{
+  "scope": "Static read-only source comparison; no tests or application execution",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "identities": {
+        "base": {
+          "bytes": 45539,
+          "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6",
+          "git_blob": "d56118529b7493e819262e61427d627c01ee0753"
+        },
+        "ours": {
+          "bytes": 47633,
+          "sha256": "37a200af022777ab2fc3432186415e1e195084e7f2a8a8389a0ee095ce3ebfbd",
+          "git_blob": "581e072ac61b9073aa49eff75e7abed5bb2c334b"
+        },
+        "theirs": {
+          "bytes": 49103,
+          "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+          "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+        },
+        "merged": {
+          "bytes": 51196,
+          "sha256": "a6af1b508f77d07351c5fb4da933b68ee5076fba40dc53d33e52175eb8628fe4",
+          "git_blob": "79e0aaeaef37bc66f8dcb676bc4b88a74105974b"
+        }
+      },
+      "independent_merge_exit": 0,
+      "independent_merge_byte_equal": true,
+      "stderr": ""
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "identities": {
+        "base": {
+          "bytes": 66711,
+          "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b",
+          "git_blob": "a91e25120489d21fc409930d893f52b31448aea3"
+        },
+        "ours": {
+          "bytes": 67476,
+          "sha256": "a0932224245e13dde39d44a0a67db9620da6da1d6e86a6e68667a6da6319968b",
+          "git_blob": "99b24136fce85e038452a7a815f42bda9b30a280"
+        },
+        "theirs": {
+          "bytes": 86764,
+          "sha256": "baf14a20e411ff725a50a9c058148f8c029273e018c64fec398ea8bbf160e6a0",
+          "git_blob": "12ca0d0ce5298ebe9e07511db9320f012f013687"
+        },
+        "merged": {
+          "bytes": 87528,
+          "sha256": "f328dd40cf1b4cd1fe98ca993bbcbc6d9f98df2e099fe27eb35494119f445e19",
+          "git_blob": "8c193a73c04da2137825585fe775c8ee6e164001"
+        }
+      },
+      "independent_merge_exit": 0,
+      "independent_merge_byte_equal": true,
+      "stderr": "",
+      "source_definition_counts": {
+        "both_identical": 76,
+        "incoming_only": 19,
+        "ours_only": 3
+      },
+      "all_definitions_preserve_exact_three_way_source": true,
+      "test_method_counts": {
+        "base": 56,
+        "ours": 58,
+        "theirs": 71,
+        "merged": 73
+      }
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "identities": {
+        "base": {
+          "bytes": 16787,
+          "sha256": "4e4bcc28bd1ac677178d42c16c240c5f0ee890ad520eb1322c4987814a728647",
+          "git_blob": "aaa033cdf4cc3a453f26382ae2ae94c7eed71cc5"
+        },
+        "ours": {
+          "bytes": 17156,
+          "sha256": "924ae1e02942d15668a59ec713f4264eca6c751b8e026f2c4f898282691d1b23",
+          "git_blob": "c6d15584ae7ab2b2e78381b620e0eed8d2305b09"
+        },
+        "theirs": {
+          "bytes": 21996,
+          "sha256": "5a0f31c2cbfc987639e46e8e2c1103eb94ccee77c065cdb7f5491e21cd7046a3",
+          "git_blob": "f950a85185302b78951908a1a201f61b81c54415"
+        },
+        "merged": {
+          "bytes": 22365,
+          "sha256": "5d82311790aaaebfbce8a06a173e6d64fa985d23d8f639cebb3aaabd200808f1",
+          "git_blob": "8f9c59ebe877023b98dd4a10b3723a2dc777c52c"
+        }
+      },
+      "independent_merge_exit": 0,
+      "independent_merge_byte_equal": true,
+      "stderr": "",
+      "source_definition_counts": {
+        "both_identical": 15,
+        "incoming_only": 8,
+        "ours_only": 2
+      },
+      "all_definitions_preserve_exact_three_way_source": true,
+      "test_method_counts": {
+        "base": 11,
+        "ours": 11,
+        "theirs": 17,
+        "merged": 17
+      }
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "identities": {
+        "base": {
+          "bytes": 56951,
+          "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82",
+          "git_blob": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff"
+        },
+        "ours": {
+          "bytes": 57147,
+          "sha256": "f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a",
+          "git_blob": "18fdff098115570b69fc43ccfe6a3d573605e55b"
+        },
+        "theirs": {
+          "bytes": 67003,
+          "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+          "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+        },
+        "merged": {
+          "bytes": 67199,
+          "sha256": "f03796adaf7d01601c7a26f42d5dc6b9d9fed35d334abea14163e116180728b4",
+          "git_blob": "214e21a6300b361985615c0a90b79d48a43ca2fd"
+        }
+      },
+      "independent_merge_exit": 0,
+      "independent_merge_byte_equal": true,
+      "stderr": "",
+      "source_definition_counts": {
+        "both_identical": 26,
+        "ours_only": 1,
+        "incoming_only": 3
+      },
+      "all_definitions_preserve_exact_three_way_source": true,
+      "test_method_counts": {
+        "base": 0,
+        "ours": 0,
+        "theirs": 0,
+        "merged": 0
+      }
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "identities": {
+        "base": {
+          "bytes": 17671,
+          "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946",
+          "git_blob": "9027d1106287c1c295a94ebcf3828e5dcac35b7b"
+        },
+        "ours": {
+          "bytes": 18408,
+          "sha256": "d9aaa29f9b082dcdd4514a21a2eef17700c24d06b4b7a1950fb1e863311bc53c",
+          "git_blob": "ec28f8863e01302721b993b00793280c148c3541"
+        },
+        "theirs": {
+          "bytes": 18356,
+          "sha256": "5a375bca191a12ae09d7480f6c21ce39d1097e35112dd5ca65ca1043e54433a1",
+          "git_blob": "0d78214087b9f1b7115a1f090aa4c05bdc1a87fe"
+        },
+        "merged": {
+          "bytes": 19093,
+          "sha256": "b1b223b5e39cd4989505f83a9ecef9bd33bc21ee5a17fd377d6e41137fa8a5d7",
+          "git_blob": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b"
+        }
+      },
+      "independent_merge_exit": 0,
+      "independent_merge_byte_equal": true,
+      "stderr": ""
+    }
+  ],
+  "unexpected_definitions": [],
+  "village_guard_dependency": {
+    ".github/probes/lumo_village_android_probe.py": {
+      "bytes": 11541,
+      "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+      "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+    },
+    "tools/android_qa/connect_four_android_evidence.py": {
+      "bytes": 36248,
+      "sha256": "41b421013c1f1d1e3e47480b7ecd20b6775dde84647eb4474aa60469fa9087d3",
+      "git_blob": "9f39b85fb1559a6229f0b381afa5d85a081703bd"
+    }
+  },
+  "schema": "lumo-host-7793-0b7-independent-static-merge-review-v1",
+  "sources": {
+    "base": "3d91bd8355a539c3c2413760959684cd3fee985a",
+    "ours": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+    "theirs": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+  },
+  "reviewer": "/root/lumo_release_lead",
+  "verdict": "No preservation blocker found in the five requested automerged paths",
+  "manual_delta_review": [
+    "Workflow retains both exact allowed same-repository PR branches, the mandatory full52 gate, unique clean Return21 gate, Dream gate, and 150-minute build budget. Incoming Discovery runs afterward with five exact helper hashes and source/tree binding; native upload remains always and precedes APK build.",
+    "Android phase retains the existing complete main tour and C4 tour. Incoming Village runs between them with identical source/native/run/attempt/artifact inputs and increases only that job's incoming timeout to80 minutes.",
+    "Delivery retains current run/PR head-branch equality, all previous job/artifact checks, full52/17 raster and Dream readers. Discovery is additive and requires source/index/helper identity, complete original manifests and fresh read-only native replay. Village raw report is bound before output, copied unchanged, and device/publication approval flags remain false.",
+    "Both test files preserve each exact three-way source definition. Final static test-method counts are73 Delivery and17 Pipeline; this counts source definitions only, not executed passing tests.",
+    "MainActivity retains manifest-authoritative family-only installer operations from ours and the incoming paired livingVillage/settlement checks and associated voice fields in the game handler.",
+    "The new Village probe delegates artifact_binding to the shared C4 evidence helper; the actual merged helper still has the exact two accepted branches. No separate integration-only branch guard was reintroduced there."
+  ],
+  "boundaries": [
+    "No application, test suite, renderer, compiler or Android build was run by this review.",
+    "Root will execute the existing required contracts and workflow syntax checks on the fully resolved source.",
+    "The three Native-pin files and two status headings are outside this five-file review and were intentionally still unresolved when requested.",
+    "Incoming Discovery/Village behavior is preserved statically, not granted a new runtime approval.",
+    "The new final host/native commit identities must be bound separately after integration."
+  ]
+}

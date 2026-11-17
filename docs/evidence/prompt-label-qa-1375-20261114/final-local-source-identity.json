@@ -1,0 +1,24 @@
+{
+  "head": "1375da193af0152af64f91d86577aa9768cd50db",
+  "status": " M lib/widgets/lumo/lumo_prompt_card.dart\n?? .github/workflows/lumo-prompt-label-contrast-qa.yml\n",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-prompt-label-contrast-qa.yml",
+      "bytes": 15102,
+      "sha256": "b78694efe0f737c5bd3002e02bdcf420836ff56a08b042cfed88e1d6beefb03a",
+      "git_blob": "bfd93a088d3181444248e57e0ea5b7599921c242"
+    },
+    {
+      "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+      "bytes": 4255,
+      "sha256": "8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70",
+      "git_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+    }
+  ],
+  "diff_check": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "commits_or_refs_created": false
+}

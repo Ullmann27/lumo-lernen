@@ -1,0 +1,13 @@
+{
+  "recorded_at_utc": "2026-11-14 12:31:59 UTC",
+  "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+  "source_delta_verified": "exactly four additions on direct aab child, no product changes",
+  "root_review": "Read complete runner diff, all nine original fixture results/test methods, original failure JSON and official Godot4.6.3 ResourceUID implementation",
+  "rules": "Only canonical regular UID data beside exact tracked source; all other untracked input rejected; full before/after equality preserved",
+  "original_qa_branch_preserved": true,
+  "new_normal_branch": true,
+  "force_or_reset": false,
+  "local_scope": "Nine metadata fixtures plus Python/Actionlint/five bash syntax blocks; not a game pass",
+  "actual_push_run": 43595002861,
+  "actual_run_first_seen": true
+}

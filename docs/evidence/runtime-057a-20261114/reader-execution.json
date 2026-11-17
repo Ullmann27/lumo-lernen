@@ -1,0 +1,27 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/review-original.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.3578128814697266,
+  "reader_before": {
+    "bytes": 6290,
+    "sha256": "3f8ca40c71afbf27127dca864f150df18c0ec002fc7081496fa1ac5cde0aa4af",
+    "git_blob": "f9c9c568c3f274e33d7fd3e04ef5af03fa2d3f37"
+  },
+  "reader_after": {
+    "bytes": 6290,
+    "sha256": "3f8ca40c71afbf27127dca864f150df18c0ec002fc7081496fa1ac5cde0aa4af",
+    "git_blob": "f9c9c568c3f274e33d7fd3e04ef5af03fa2d3f37"
+  },
+  "reader_bytes_unchanged": true,
+  "original_api_binding_checked": true,
+  "stdout": {
+    "bytes": 855,
+    "sha256": "945a515f67a585fea3a045042241f7b0a891698a5a2dc3ddcae9a35dcd5ab8f7",
+    "git_blob": "d7ae2c3ef991bc59f439ef85ab998db13385100a"
+  },
+  "renderer_or_test_launched": false
+}

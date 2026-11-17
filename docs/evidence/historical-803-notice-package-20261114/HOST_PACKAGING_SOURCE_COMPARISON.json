@@ -1,0 +1,48 @@
+{
+  "historical_host": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "current_host": "1375da193af0152af64f91d86577aa9768cd50db",
+  "sources": [
+    {
+      "path": "scripts/build_unified_apk.sh",
+      "historical_blob": "44f6957c904d074e5a0ce2c604b50ad546c1ecf0",
+      "current_blob": "44f6957c904d074e5a0ce2c604b50ad546c1ecf0",
+      "bytes": 4563,
+      "sha256": "fe3abd93e2b7c24403df25a41897588bedb2fdaf0ab83d9f1785ab83650094b5",
+      "byte_identical": true
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "historical_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+      "current_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+      "bytes": 13367,
+      "sha256": "4d5a55148f440c8b42d4def6bc864505329a073a384112288d67519923d90c2a",
+      "byte_identical": true
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "historical_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "current_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "bytes": 10377,
+      "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+      "byte_identical": true
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "historical_blob": "00915781968bb61f5d1ce1923529fb14a35cce19",
+      "current_blob": "00915781968bb61f5d1ce1923529fb14a35cce19",
+      "bytes": 8567,
+      "sha256": "fcef35e68e8487fa16357161adec6550b9c3c8c0c7bb8f84574ef7963f8a3fcc",
+      "byte_identical": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "historical_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+      "current_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "byte_identical": true
+    }
+  ],
+  "all_five_byte_identical": true,
+  "method": "Actual git-show bytes for each exact commit, with full-byte equality and independently calculated Git blob SHA-1/SHA256."
+}

@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "kind": "root_actual_before_after_prompt_phone_review",
+  "baseline": {
+    "host": "1375da193af0152af64f91d86577aa9768cd50db",
+    "artifact": 14116675111,
+    "path": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original/modernization/schreibcoach_phone.png",
+    "sha256": "0f0797c8bff2b652dfe5bef6fc4a53e30921cb0fc6dc9287c8e44321e9e5693d"
+  },
+  "after": {
+    "qa_host": "21e0368603e38d1dfd063485f5307ec201f0d872",
+    "run": 43603068259,
+    "artifact": 14116624494,
+    "path": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/original/focused/modernization/schreibcoach_phone.png",
+    "sha256": "49130519fa8610bfdb1ba5160137a100340ebf55926dcb1d37686fd47f62c129"
+  },
+  "dimensions": [
+    824,
+    1830
+  ],
+  "pixel_difference": {
+    "mode": "RGB",
+    "bounding_box": [
+      182,
+      219,
+      505,
+      241
+    ],
+    "different_pixels": 2631,
+    "method": "PillowImageChops difference on the two unmodified original PNGs; no generated or edited evidence image"
+  },
+  "root_visual_observation": {
+    "after_original_opened": true,
+    "label": "Mit dem Finger - keine Eile! is fully visible and dark on white, visibly readable in this capture.",
+    "main_prompt": "Schreibe den Buchstaben O., speaker control, writing area and both lower actions are fully visible in the selected frame.",
+    "unchanged_limit": "The existing outline replacement glyph remains at the fox position, and the horizontal mode row continues beyond the right viewport; this patch did not address either behavior."
+  },
+  "scope": [
+    "One selected actual desktop capture; not all42 PNGs or word-coach visual acceptance.",
+    "No measured physical Android display, touch area, FPS or app release approval.",
+    "Source one-line color replacement and calculated9.383400982456404 sRGB ratio are separately documented; pixel difference is not itself an accessibility certification."
+  ]
+}

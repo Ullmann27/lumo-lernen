@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "passed": 36,
+  "failed": [],
+  "skipped": [],
+  "capture_error_files": [],
+  "flutter_exit_code": 0,
+  "runner_completed_successfully": true,
+  "runner_errors": [],
+  "scope": [
+    "test/design/lumo_modernization_capture_test.dart"
+  ],
+  "capture_png_counts": {
+    "LUMO_TUTORING_CAPTURE_DIR": {
+      "directory": "tutoring",
+      "pngs": 0
+    },
+    "LUMO_RIG_STRESS": {
+      "directory": "rig-stress",
+      "pngs": 0
+    },
+    "LUMO_CARDS_OPPONENT_CAPTURE": {
+      "directory": "cards-opponents",
+      "pngs": 0
+    },
+    "LUMO_STREAM_E_CAPTURE": {
+      "directory": "cards-memory",
+      "pngs": 0
+    },
+    "LUMO_NAVIGATION_CAPTURES": {
+      "directory": "navigation",
+      "pngs": 0
+    },
+    "LUMO_GUIDED_CAPTURE_DIR": {
+      "directory": "guided-learning",
+      "pngs": 0
+    },
+    "LUMO_VISUAL_CAPTURE_DIR": {
+      "directory": "reasoning",
+      "pngs": 0
+    },
+    "LUMO_TOUR_DIR": {
+      "directory": "tour",
+      "pngs": 0
+    },
+    "LUMO_FLUTTER_GAMES_CAPTURE": {
+      "directory": "games",
+      "pngs": 0
+    },
+    "LUMO_LEARNING_CAPTURE_DIR": {
+      "directory": "learning-adventure",
+      "pngs": 0
+    },
+    "LUMO_COMPANION_CAPTURE_DIR": {
+      "directory": "companion",
+      "pngs": 0
+    },
+    "LUMO_SPATIAL_CAPTURES": {
+      "directory": "reading",
+      "pngs": 0
+    },
+    "LUMO_CAPTURE_DIR": {
+      "directory": "modernization",
+      "pngs": 42
+    },
+    "LUMO_CARD_FACE_EXPORT_DIR": {
+      "directory": "card-face-exports",
+      "pngs": 0
+    },
+    "LUMO_NEXTGEN_READING_CAPTURES": {
+      "directory": "nextgen-reading",
+      "pngs": 0
+    },
+    "LUMO_READING_CAPTURES": {
+      "directory": "reading-passages",
+      "pngs": 0
+    },
+    "LUMO_ASSISTED_LEARNING_CAPTURES": {
+      "directory": "assisted-learning",
+      "pngs": 0
+    },
+    "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+      "directory": "native-profiles",
+      "pngs": 0
+    }
+  },
+  "capture_file_outputs": {
+    "LUMO_CARDS_CUP_CAPTURE": {
+      "path": "cards-cup/trophy.png",
+      "created": false
+    }
+  },
+  "rendered_png_count": 42
+}

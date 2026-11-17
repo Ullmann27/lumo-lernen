@@ -1,0 +1,311 @@
+{
+  "schema": "lumo.focused-original-visual-review.v1",
+  "review_date_utc": "2026-11-14",
+  "reviewer": "touch_worker",
+  "status": "completed_bounded_visual_review",
+  "subject": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host_commit": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "source_context_origin": "Root/Parent-Auftrag zum aktuellen 057-Lauf; keine zusätzliche CI-/Testausführung dieses Reviewers.",
+    "artifact_id": 14119369270,
+    "archive": {
+      "bytes": 38345151,
+      "sha256": "f33ce27cea68774f8cf706412a2b893b9a947bcd6fae46e781781b7d485f6a9f",
+      "git_blob": "029570137388c1760e569654ba66f2285380234a"
+    },
+    "original_base": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original"
+  },
+  "evidence": {
+    "existing_index": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/archive-index.json",
+    "index_reported_zip_crc_valid": true,
+    "index_reported_canonical_paths": true,
+    "index_file_count": 54,
+    "own_download": false,
+    "own_archive_extraction": false,
+    "own_tests_or_parser_execution": false,
+    "actual_readonly_work": [
+      "Die elf ausdrücklich vorgegebenen Pfade gegen den bereits vorhandenen Originalindex geprüft.",
+      "Alle elf Original-PNGs einzeln visuell geöffnet; keine zusätzlichen Bilder geöffnet.",
+      "Dateigröße, SHA256, Git-Blob-Hash, PNG-Signatur und tatsächliche Rastermaße vor der Sichtprüfung gelesen.",
+      "Alle elf Dateien nach der Sichtprüfung erneut gehasht; Bytes/SHA256/Gitblobs stimmen mit Vorher und Originalindex überein."
+    ],
+    "dimensions_boundary": "Maße sind aus dem PNG-Header gelesene Rasterpixel. Besonders phone/fold-open sind bei Lessons und Atelier 824x1830 beziehungsweise 1680x1800; daraus wird weder eine dp-Größe noch ein Android-Geräteprofil abgeleitet.",
+    "excluded_scope": "Keine Tour-, Spatial-, Premium- oder weiteren schmalen Lesson-/Atelier-Bilder; diese gehörten nicht zu diesem Auftrag."
+  },
+  "images": [
+    {
+      "path": "1978/lessons/phone.png",
+      "bytes": 1222203,
+      "sha256": "4273f8be2ce2bf7c54754ba40d7eaaabbffbe42e07fe567f023e14579258a23d",
+      "git_blob": "9271ce74fb23171edd69591709599789e8e7b08b",
+      "dimensions": [
+        824,
+        1830
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1978/lessons/phone.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Mathe-Abenteuer zeigt 1 + 9 = ?, Aufgabe 1/30, die Apfelhilfe mit einem plus neun Äpfeln sowie vier getrennte Antwortfelder 9, 8, 10 und 0.",
+        "Tipp, Weiter und die untere Navigation sind vollständig im Bild; die wesentlichen Aufgaben- und Hilfetexte sind lesbar.",
+        "Die rechte dekorative Sprechblase läuft am oberen Bildbereich bis über den rechten Bildrand; ihr dargestellter Text bleibt lesbar. Keine Überlagerung der Aufgaben- oder Antwortflächen beobachtet."
+      ],
+      "limitations": [
+        "Keine Betätigung oder Prüfung der dargestellten Antworten und Schaltflächen aus dem Standbild."
+      ]
+    },
+    {
+      "path": "1978/lessons/fold-open.png",
+      "bytes": 2535538,
+      "sha256": "787ced20b88271e6871174bbea449db8c91e3a3061c0f3bc408bd038ed56015c",
+      "git_blob": "eae8c4663557aa9042723ff0c3dd3f928bc8b722",
+      "dimensions": [
+        1680,
+        1800
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1978/lessons/fold-open.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Mathe-Abenteuer/Plus bis 10, Aufgabe 1/30, 4 + 4 = ? und zwei Apfelgruppen zu je vier sind vollständig sichtbar.",
+        "Antwortfelder 9, 8, 6 und 7, Tipp und Weiter sind getrennt und lesbar; die linke Fuchsfigur mit 'Zähle beide Gruppen zusammen.' verdeckt die Aufgabenkarte nicht.",
+        "Die untere Navigation und die Aufgabenkarte liegen vollständig innerhalb des Bildes."
+      ],
+      "limitations": [
+        "Die Aufnahme zeigt einen anderen Aufgabeninhalt als die Telefonaufnahme; dies ist kein pixelgleicher Layoutvergleich oder Nachweis eines ausgeführten Antwortvorgangs."
+      ]
+    },
+    {
+      "path": "1978/connect_four/360x800.png",
+      "bytes": 209250,
+      "sha256": "65063423ace5f5d2b96075453ca8caee55f04a5ba744d7bf884eb08d7fb42924",
+      "git_blob": "7f99cedc77615dafb2870823f99416ac07029bb1",
+      "dimensions": [
+        360,
+        800
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1978/connect_four/360x800.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Sieben Spalten und sechs Reihen des Boards sowie alle sieben Pfeilflächen sind sichtbar; die äußersten Spielzellen sind nicht abgeschnitten.",
+        "Titel, Moduswahl 'Mit Lumo'/'Zu zweit' und 'Du bist dran!' sind lesbar. Die Pfeilflächen bleiben unterhalb des Boards getrennt.",
+        "Die Lumo-Figur und die beiden Steinvorräte sind im unteren Bereich sichtbar."
+      ],
+      "limitations": [
+        "Kein Modal- oder Aktionsnachweis; Spielzüge, Scrollverhalten und effektive Touchflächen sind aus dem Bild nicht geprüft."
+      ]
+    },
+    {
+      "path": "1978/connect_four/640x360.png",
+      "bytes": 150817,
+      "sha256": "185ca1d31749c663f29d41f6cfd9c37230423ab4f6d751bfcd78489a10e8fa93",
+      "git_blob": "7f2f4831a317ebf0beb494e0ad9ea798422f8c48",
+      "dimensions": [
+        640,
+        360
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1978/connect_four/640x360.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Im kleinen Querformat stehen Board und sieben Pfeilflächen links, Moduswahl und Zuganzeige rechts; alle sieben Spalten und sechs Reihen sind sichtbar.",
+        "'Mit Lumo', 'Zu zweit', 'Du bist dran!' und der Regeltext sind lesbar und überdecken weder Zellen noch Pfeilflächen.",
+        "Ein Teil der äußeren dekorativen Brettumrandung endet angeschnitten an der Begrenzung des Brettbereichs; die eigentlichen Spielzellen und Pfeilflächen bleiben sichtbar."
+      ],
+      "limitations": [
+        "Begrenzte kosmetische Beobachtung der Umrandung, kein daraus abgeleiteter Funktionsfehler. Kein Endmodal und keine geprüfte Eingabe."
+      ]
+    },
+    {
+      "path": "1978/connect_four/1280x720.png",
+      "bytes": 635883,
+      "sha256": "d4c9c5bac7f965b4e119ef9abc0170194f2f9406f93d27429812430177dd50c9",
+      "git_blob": "4aced4144e4c1cad3591caa98f7a7dcaec9cd879",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1978/connect_four/1280x720.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Vollständiges 7×6-Board mit sieben getrennten Pfeilflächen links; sämtliche äußeren Spielzellen sind sichtbar.",
+        "Rechte Moduswahl, Zuganzeige, Fuchsfigur, beschriftete Steinvorräte und Regeltext sind lesbar und räumlich vom Board getrennt."
+      ],
+      "limitations": [
+        "Nur sichtbare laufende Spielansicht; keine Modal-, Eingabe- oder Leistungsmessung."
+      ]
+    },
+    {
+      "path": "1978/connect_four/740x840.png",
+      "bytes": 403061,
+      "sha256": "a35529bf064f27025e689ef28d766ec72c16b55bee07cfae2a0eb2621b10ad3a",
+      "git_blob": "5105734c338bc1becc6803ad5e1a98af3bdcf878",
+      "dimensions": [
+        740,
+        840
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1978/connect_four/740x840.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Zentriertes vollständiges 7×6-Board; sieben Pfeilflächen sind unterhalb getrennt sichtbar.",
+        "Moduswahl und Zuganzeige liegen oberhalb des Boards, Fuchs und beide beschrifteten Steinvorräte darunter. Keine beobachtete Überdeckung der Spielzellen oder Pfeilflächen."
+      ],
+      "limitations": [
+        "Keine Interaktion, keine Modalprüfung und keine aus dem Raster abgeleitete dp-Zertifizierung."
+      ]
+    },
+    {
+      "path": "1978/connect_four/1200x896.png",
+      "bytes": 705392,
+      "sha256": "d8b196029b5d707ef5c64288b14018c946607ab94e67ce781178af8a23cde213",
+      "git_blob": "5f06819035ebb37c2ad0268230fe983b3e088da4",
+      "dimensions": [
+        1200,
+        896
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1978/connect_four/1200x896.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Großes vollständiges 7×6-Board links und alle sieben Pfeilflächen darunter sichtbar.",
+        "Moduswahl, Zuganzeige, Fuchs, Steinvorräte und Regeltext liegen rechts ohne beobachtete Überdeckung der Spielfläche; die Texte sind lesbar."
+      ],
+      "limitations": [
+        "Ausschließlich die dargestellte laufende Spielansicht; kein Gewinnmodal, Tap oder Scrollversuch."
+      ]
+    },
+    {
+      "path": "1981/atelier/phone-example.png",
+      "bytes": 236746,
+      "sha256": "da4933688535432376524d8d9c82699292961ba2e6938e0c5c1ab081a107e317",
+      "git_blob": "c7e24c82a2f4190a81b890767c34043271b68a37",
+      "dimensions": [
+        824,
+        1830
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1981/atelier/phone-example.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "'Die Zehnerbrücke', Abschnitt 'Beispiel' und die Erklärung zu 8 + 5 sind vollständig lesbar; der sichtbare Rechenweg 8 + 2 = 10 und 10 + 3 = 13 ist in sich konsistent.",
+        "Fuchsillustration, erklärende Karte sowie die zwei breiten Schaltflächen 'Beispiel vorlesen' und 'Jetzt gemeinsam bauen' sind getrennt und vollständig im Bild.",
+        "Unterhalb der Beispielkarte bleibt freie Fläche; keine abgeschnittene Anweisung oder Schaltfläche beobachtet."
+      ],
+      "limitations": [
+        "Eine dargestellte Vorleseschaltfläche belegt keine Audioausgabe oder erfolgreiche Betätigung."
+      ]
+    },
+    {
+      "path": "1981/atelier/phone-build.png",
+      "bytes": 454578,
+      "sha256": "750c87c3bbedd96df1f94dec9ea56477926edf087157f5c7a83d3c804248f75f",
+      "git_blob": "e95444a7272676a10099b66a5db4fac0373eace8",
+      "dimensions": [
+        824,
+        1830
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1981/atelier/phone-build.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "'Gemeinsam bauen' und die Anweisung zu 7 + 5 sind vollständig lesbar.",
+        "Das Zehnerfeld zeigt sieben gelbe Plättchen und drei leere Plätze; darunter sind fünf blaue Vorratsplättchen sichtbar. Die Gruppen passen zur sichtbaren Aufgabenbeschreibung.",
+        "Zurück, Verschieben und 'Mein Modell prüfen' stehen vollständig und getrennt innerhalb der Karte. Kein beobachtetes Text- oder Bedienflächen-Clipping."
+      ],
+      "limitations": [
+        "Schieben, Antippen und Modellprüfung wurden anhand dieses Standbildes nicht ausgeführt; der sichtbare Startzustand ist kein Eingabenachweis."
+      ]
+    },
+    {
+      "path": "1981/atelier/fold-open-example.png",
+      "bytes": 284359,
+      "sha256": "88bb2f69bdd0aa4a9e10a07296b274c22f0443619e7ed1cf98f286f374196476",
+      "git_blob": "881c9e607bc951452cfe10d865399eb12d75ee86",
+      "dimensions": [
+        1680,
+        1800
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1981/atelier/fold-open-example.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Zentrierter Beispielbereich zur Zehnerbrücke mit vollständiger Fuchsillustration, Beschreibung und Rechnung 8 + 5.",
+        "Die längere Erklärung bricht innerhalb der Karte auf zwei Zeilen um; beide Schaltflächen und sämtliche dargestellten Textteile bleiben sichtbar.",
+        "Keine beobachtete Überdeckung oder am Kartenrand abgeschnittene Beschriftung."
+      ],
+      "limitations": [
+        "Die große freie Fläche darunter ist nur eine Layoutbeobachtung; keine Aussage zu späteren Schritten oder Audio."
+      ]
+    },
+    {
+      "path": "1981/atelier/fold-open-build.png",
+      "bytes": 556813,
+      "sha256": "aa791387cfaa7d014e0b4b767a58dfad0fb8c1a12fdb337cadfdcb543256be6d",
+      "git_blob": "447af9c493204e65c93cd95f12b2b18e4d774901",
+      "dimensions": [
+        1680,
+        1800
+      ],
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original/1981/atelier/fold-open-build.png",
+      "png_signature_valid": true,
+      "personally_viewed": true,
+      "observations": [
+        "Die Anweisung zu 7 + 5 ist vollständig sichtbar und bricht innerhalb der Karte auf zwei Zeilen um.",
+        "Das vollständige Zehnerfeld mit sieben gelben Plättchen und drei freien Feldern sowie fünf blaue Vorratsplättchen sind sichtbar und getrennt.",
+        "Zurück, Verschieben und 'Mein Modell prüfen' liegen vollständig innerhalb des Bildes; keine beobachtete Überdeckung der Modell- oder Bedienflächen."
+      ],
+      "limitations": [
+        "Sichtbarer Bau-Startzustand, kein Nachweis von Drag/Tap, korrekter Modellprüfung oder Übergang zwischen Beispiel und Bauen."
+      ]
+    }
+  ],
+  "conclusion": {
+    "lessons": "In beiden betrachteten Lektionen sind Aufgabe, Apfelhilfe, Antworten sowie Tipp/Weiter lesbar und sichtbar. Telefon und Fold zeigen verschiedene Aufgaben; kein identischer Inhalts- oder Interaktionsvergleich.",
+    "connect_four": "In allen fünf Größen sind sieben Spalten, sechs Reihen und sieben Pfeilflächen sichtbar. Moduswahl und Zuganzeige bleiben getrennt von den eigentlichen Spielflächen.",
+    "atelier": "In den vier Beispiel-/Bauansichten sind Erklärungen, Zehnerfeld, Vorrat und die jeweils dargestellten Schaltflächen vollständig sichtbar. Die sichtbaren Zahlen und Plättchenmengen sind in sich konsistent.",
+    "limited_cosmetic_observations": [
+      {
+        "path": "1978/lessons/phone.png",
+        "observation": "Die obere rechte dekorative Sprechblase reicht über den rechten Bildrand; der sichtbare Text bleibt lesbar und die Aufgabenflächen werden dadurch nicht überlagert."
+      },
+      {
+        "path": "1978/connect_four/640x360.png",
+        "observation": "Ein Teil der äußeren dekorativen Brettumrandung ist am Brettbereichsrand angeschnitten; eigentliche Zellen und Pfeilflächen bleiben sichtbar."
+      }
+    ],
+    "blocking_visual_findings_in_selected_scope": [],
+    "limitations": [
+      "Befund gilt nur für diese elf tatsächlichen Originalbilder, nicht für alle 54 Dateien des Zusatzartefakts oder alle Aufnahmen der App.",
+      "Kein Nachweis von Android-Ausführung, nativen Szenen, tatsächlichen Tap-/Drag-/Scrollaktionen, mindestens 48-dp-Touchflächen, Audio oder FPS.",
+      "Die fünf Vier-gewinnt-Bilder zeigen kein Endmodal und belegen nicht die unteren Gewinnmodalaktionen.",
+      "Die Beispiel-/Bau-Standbilder belegen keinen ausgeführten Übergang, keine Plättchenbewegung und keine erfolgreiche Modellprüfung.",
+      "Keine Produkt-, Workflow-, Commit- oder Refänderung. Nur dieser inerte JSON-Evidenzblob wird gesichert."
+    ]
+  }
+}

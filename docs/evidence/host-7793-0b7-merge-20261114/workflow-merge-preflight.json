@@ -1,0 +1,353 @@
+{
+  "scope": "Merged workflow parse and bash syntax only; no job, engine, APK or Android execution",
+  "workflow_bytes": 51196,
+  "workflow_sha256": "a6af1b508f77d07351c5fb4da933b68ee5076fba40dc53d33e52175eb8628fe4",
+  "bash_checks": [
+    {
+      "job": "connect-four-runtime",
+      "step": 1,
+      "name": "Bind the approved 2020 host and exact native source",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "connect-four-runtime",
+      "step": 4,
+      "name": "Prepare genuine desktop renderer dependencies",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "connect-four-runtime",
+      "step": 5,
+      "name": "Install the actual pinned Godot engine",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "connect-four-runtime",
+      "step": 6,
+      "name": "Import the exact configured native source in its own directory",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "connect-four-runtime",
+      "step": 7,
+      "name": "Retry the acknowledged native exit after a transient Android refusal",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "connect-four-runtime",
+      "step": 8,
+      "name": "Require the additional pinned native Treasure wisp regression",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "connect-four-runtime",
+      "step": 9,
+      "name": "Require the actual production Dart and rendered Godot two-process gate",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "android-host-compile",
+      "step": 4,
+      "name": "Compile actual current Android host before native release pin approval",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "android-host-compile",
+      "step": 5,
+      "name": "Bind actual compiled C4 Activity bridge and Binder bytecode",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 1,
+      "name": "Save source identity and validate exact Godot integration pin",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 4,
+      "name": "Install real system emoji for ABC screenshots and Flutter test suite",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 5,
+      "name": "Resolve immutable Flutter dependencies",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 6,
+      "name": "Audit every exact current-grade learning family on this candidate",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 8,
+      "name": "Flutter static analysis",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 9,
+      "name": "Real widget tests for premium quiz and 3D learning islands",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 11,
+      "name": "Full Flutter regression suite including every capture",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 13,
+      "name": "Capture and verify actual 2001 tutor, transfer and daily-plan routes",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 15,
+      "name": "Capture spatial reading, answer retry and subject cards on phone and Fold",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 16,
+      "name": "Install actual app-script verification dependencies",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 17,
+      "name": "Install verified Gradle for the real build-contract probe",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 18,
+      "name": "Verify all build and preservation contracts",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 20,
+      "name": "Code-level Android probe regression with verified image dependencies",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 21,
+      "name": "Reject unreadable Ahem-font captures before issuing visual proof",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 22,
+      "name": "Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 23,
+      "name": "Render actual premium lessons on phone and Fold",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 24,
+      "name": "Render actual app sections on phone and Fold",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 25,
+      "name": "Render playable Connect Four on five real layout sizes",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 26,
+      "name": "Render genuine offline atelier on phone and Fold",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 28,
+      "name": "Install Godot 4.6.3 for the exact pinned Kart source",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 29,
+      "name": "Require actual gameplay gates on the exact pinned native source",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 30,
+      "name": "Require acknowledged Connect Four return retry",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 31,
+      "name": "Require actual Dream gates on the exact pinned native source",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 32,
+      "name": "Require actual Discovery gates on the exact pinned native source",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 34,
+      "name": "Build unified real Android APK",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-and-build",
+      "step": 35,
+      "name": "Verify APK archive and collect reproducible source hashes",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "android-c4",
+      "step": 2,
+      "name": "Live UI reader",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "android-c4",
+      "step": 3,
+      "name": "Enable accelerated disposable emulator",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "android-c4",
+      "step": 4,
+      "name": "Software display",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "android-c4",
+      "step": 5,
+      "name": "Read current original run jobs and exact upload metadata",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "update-2020-from-2017",
+      "step": 3,
+      "name": "Live UI reader",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "update-2020-from-2017",
+      "step": 4,
+      "name": "Enable accelerated disposable emulator",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "update-2020-from-2017",
+      "step": 5,
+      "name": "Software display",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-c4-candidate",
+      "step": 3,
+      "name": "Install actual signature manifest and raster verification tools",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-c4-candidate",
+      "step": 9,
+      "name": "Bind final original jobs and immutable candidate upload",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "verify-c4-candidate",
+      "step": 10,
+      "name": "Reverify both signed APKs and every mandatory current C4 and update proof",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "prepare-c4-delivery",
+      "step": 4,
+      "name": "Prepare actual APK signature and original raster verification",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "prepare-c4-delivery",
+      "step": 14,
+      "name": "Read exact current original acceptance and release catalog",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "job": "prepare-c4-delivery",
+      "step": 15,
+      "name": "Reverify actual current APKs C4 update PCM and complete native originals",
+      "exit_code": 0,
+      "stderr": ""
+    }
+  ],
+  "jobs": [
+    "connect-four-runtime",
+    "android-host-compile",
+    "verify-and-build",
+    "android-c4",
+    "update-2020-from-2017",
+    "verify-c4-candidate",
+    "prepare-c4-delivery"
+  ],
+  "passed": true
+}

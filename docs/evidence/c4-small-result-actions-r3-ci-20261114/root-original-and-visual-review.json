@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "run_id": 43596764202,
+  "attempt": 1,
+  "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+  "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "root_read_only_original_replay": {
+    "native_checks": 283,
+    "errors": [],
+    "both_processes_exit_zero": true,
+    "native_dart_all_requests_equal": 21,
+    "actions_matched_to_original_dart_events_and_layouts": [
+      {
+        "action": "restart",
+        "ack": [
+          10.0,
+          11.0
+        ],
+        "revision": [
+          18.0,
+          19.0
+        ],
+        "new_round": "d14950fcfa6dea8004ed186de8036654",
+        "two_players_after": true,
+        "target_dp": [
+          588.0,
+          52.0
+        ],
+        "drag_events": 8
+      },
+      {
+        "action": "mode",
+        "ack": [
+          19.0,
+          20.0
+        ],
+        "revision": [
+          33.0,
+          34.0
+        ],
+        "new_round": "9729b63cc7402806d9c46124770f4f5c",
+        "two_players_after": false,
+        "target_dp": [
+          588.0,
+          52.0
+        ],
+        "drag_events": 16
+      }
+    ],
+    "awards": {
+      "unique": 2,
+      "stars": 10,
+      "xp": 80
+    },
+    "same_process_reopen": true,
+    "source_snapshots_byte_identical": true,
+    "source_snapshot_sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d"
+  },
+  "images": [
+    {
+      "path": "small_result_mode_after.png",
+      "bytes": 29157,
+      "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "path": "small_result_mode_before.png",
+      "bytes": 22337,
+      "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "path": "small_result_restart_after.png",
+      "bytes": 29157,
+      "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "path": "small_result_restart_before.png",
+      "bytes": 21030,
+      "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
+      "dimensions": [
+        640,
+        360
+      ]
+    }
+  ],
+  "root_visual_review": {
+    "four_original_pngs_opened": true,
+    "restart_target": "Neue Runde fully visible in its own scrolled viewport; target not clipped",
+    "mode_target": "Gegen Lumo spielen fully visible in its own scrolled viewport; target not clipped",
+    "after_images": "Both show the same empty board and available drop buttons. Byte-identical after-images do not visually distinguish the mode; mode is proved by matching original Dart and layout states.",
+    "adjacent_control": "The preceding control is partly clipped by the scroll viewport; the targeted control is fully visible."
+  },
+  "limitations": [
+    "Actual desktop rendering and two-process local file transport only.",
+    "SharedPreferences test backend with same-process reopen; no Android Binder or disk durability claim.",
+    "No measured FPS or physical Android acceptance.",
+    "No game, renderer, or production tests rerun for this original-file review."
+  ]
+}

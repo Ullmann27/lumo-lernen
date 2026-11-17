@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "kind": "root_selected_current_flutter_original_visual_review",
+  "host": "1375da193af0152af64f91d86577aa9768cd50db",
+  "tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+  "run_id": 43599456596,
+  "run_attempt": 1,
+  "artifact_id": 14116675111,
+  "opened_originals": [
+    "modernization/schreibcoach_phone.png",
+    "modernization/journal_fold-cover.png",
+    "navigation/home-fold.png"
+  ],
+  "observations": [
+    {
+      "path": "modernization/schreibcoach_phone.png",
+      "visible": "Task header, letter O prompt, drawing surface and Loeschen/Lumo zeigt actions are visible. The mode row continues horizontally beyond the viewport.",
+      "finding": "The small hint label is visibly pale against the white prompt card. The emoji bubble displays an outline replacement glyph in this original Linux capture.",
+      "source_check": {
+        "prompt_card_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd",
+        "design_kit_blob": "ce4aeb98bce59d6df706f68a2f39dc75a13cda75",
+        "theme_blob": "fbca41aca3bf0f5e199175fe7285aec5a2e84db9",
+        "label_color": "#C8DDF0",
+        "card_color": "#FFFFFF",
+        "calculated_srgb_luminance_ratio": 1.3947273062300911,
+        "formula": "Relative sRGB luminance via 0.04045/12.92 and exponent 2.4; ratio (Lwhite + 0.05)/(Llabel + 0.05).",
+        "glyph": "Prompt card defaults to fox emoji. This capture set calls the Nunito/Material font loader, not the separate Noto Color Emoji loader. This is a source-supported possible explanation, not observed Android behavior."
+      },
+      "next": "Prepare a separately reviewed narrow shared-card label correction; frozen 1375 source unchanged. Actual Android emoji appearance remains unverified.",
+      "identity": {
+        "path": "modernization/schreibcoach_phone.png",
+        "bytes": 131666,
+        "sha256": "0f0797c8bff2b652dfe5bef6fc4a53e30921cb0fc6dc9287c8e44321e9e5693d",
+        "git_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42"
+      },
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/journal_fold-cover.png",
+      "visible": "Journal title, add control, empty-journal explanation and Jetzt schreiben action are fully visible and readable in the original cover-width capture.",
+      "limit": "Empty state only; no actual editor action or persistence is proved by this still image.",
+      "identity": {
+        "path": "modernization/journal_fold-cover.png",
+        "bytes": 1313410,
+        "sha256": "a71c9c0d2e62e2e3d50f225bb6418fa4e1cf351aa7382e2b2718dad1334ba054",
+        "git_blob": "41cb6de427028cd582339615b2eafac491d6ab6f"
+      },
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "navigation/home-fold.png",
+      "visible": "Main greeting, level panel, Loslernen action and help footer are visible. The left navigation continues below Tests; a star item is partly visible above the fixed profile footer and its class caption is ellipsized.",
+      "source_check": {
+        "path": "lib/widgets/shell/left_navigation.dart",
+        "blob": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086",
+        "navigation_container": "Expanded SingleChildScrollView",
+        "profile_grade": "maxLines 1, TextOverflow.ellipsis"
+      },
+      "limit": "Static view only; source contains a scroll container but no new scrolling or target activation is inferred.",
+      "identity": {
+        "path": "navigation/home-fold.png",
+        "bytes": 1637570,
+        "sha256": "ced9fe4ac198b3839131e7fe193bf498d13feffd7a5faacb5a0d6dc358544813",
+        "git_blob": "d2b991fd46d5488afdaf40e96be0aa1758d649a7"
+      },
+      "width": 1680,
+      "height": 1120
+    }
+  ],
+  "limits": [
+    "Exactly these three original PNGs were opened by Root.",
+    "All 546 PNG members have archive integrity/hash evidence; no all-images visual approval.",
+    "No new render, Flutter test, Android run, voice playback or FPS measurement was performed.",
+    "Visible contrast and replacement-glyph findings are retained rather than called a complete visual PASS."
+  ]
+}

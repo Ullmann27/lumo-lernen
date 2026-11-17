@@ -1,0 +1,63 @@
+{
+  "performed": true,
+  "passed": true,
+  "core_modes": 52,
+  "studio": {
+    "images": 17,
+    "reports": 3,
+    "movies": 1,
+    "fresh_result_equals_original": true
+  },
+  "dream": {
+    "probes": 5,
+    "images": 7,
+    "reports": 2,
+    "fresh_result_equals_original": true,
+    "changed_pairs": [
+      {
+        "world": "treasure",
+        "animation_times": [
+          0.5,
+          1.9
+        ],
+        "changed_pixel_bounds": [
+          0,
+          0,
+          720,
+          1280
+        ]
+      },
+      {
+        "world": "learning",
+        "animation_times": [
+          0.5,
+          1.9
+        ],
+        "changed_pixel_bounds": [
+          43,
+          209,
+          334,
+          521
+        ]
+      }
+    ],
+    "untracked_inventory_counts": [
+      {
+        "generated_uid": 345,
+        "generated_import_metadata": 604,
+        "other_untracked": 0
+      },
+      {
+        "generated_uid": 345,
+        "generated_import_metadata": 604,
+        "other_untracked": 0
+      }
+    ]
+  },
+  "remote_tracked_tree_entries_matched_before_and_after": 3649,
+  "tracked_inventory_and_git_index_unchanged": true,
+  "source_inventory_files_byte_equal": true,
+  "original_records_checked_unchanged": 116,
+  "helper_and_host_reader_bytes_unchanged": true,
+  "reader_elapsed_seconds": 1.529860435000046
+}

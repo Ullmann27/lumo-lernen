@@ -1,0 +1,435 @@
+{
+  "schema": 1,
+  "kind": "root-final-integration-review",
+  "candidate": {
+    "sha": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "parents": [
+      "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+      "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+    ],
+    "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "activated": false
+  },
+  "actual_host_commit_readback": {
+    "sha": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "node_id": "C_kwDOSNzcp9oAKDA1N2E0ZThkMDY3ODcyYzRmMzUxNGIxMjZhYTA0YzM3MDZkMmU1YjU",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T14:49:12Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T14:49:12Z"
+    },
+    "tree": {
+      "sha": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/a2ae17af283a76fb3b99f1a0899a0898e7157230"
+    },
+    "message": "Merge current integration with verified release and notice guards\n\nPreserve all incoming Village, Discovery, camera, profile and Android changes alongside the quality branch. Resolve the actual three-way overlaps and bind Native a69f535 with both original native parents. Keep the original notice packaging and prompt contrast patch unchanged.\n\nIndependent host/native source reviews, exact complete-tree readback and 48 shell syntax checks passed. The existing selected contracts produced 248 distinct passing cases across three preserved invocations; local fixture-path/catalog omissions were corrected without code edits. Fresh full Flutter, native, signed APK, Android and update acceptance remains required on this exact candidate.",
+    "parents": [
+      {
+        "sha": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/77936fae6ce7b7bcbddb93dda19fb0104f696e12"
+      },
+      {
+        "sha": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "whole_host_tree": {
+    "tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "complete": true,
+    "previous_leaf_count": 4527,
+    "expected_leaf_count": 4722,
+    "actual_leaf_count": 4722,
+    "path_updates": 231,
+    "unexpected_or_missing": [],
+    "all_other_ours_entries_unchanged": true,
+    "native_source": "a69f53518b2510873d88f00ff2783d616ab53702"
+  },
+  "tested_sources": {
+    "candidate": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "actual_materialized_records": 1642,
+    "all_records_equal_final_remote_tree": true,
+    "mismatches": [],
+    "scope": "All exact files present during the final local case are Git-blob/size bound to the remote final candidate; excludes unmaterialized docs/assets and two new PNG fixtures. Earlier three invocation limits remain."
+  },
+  "native_tree": {
+    "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "preserved_base_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+    "base_leaf_count": 3689,
+    "merged_leaf_count": 3721,
+    "changed": [],
+    "additions": [
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "085d6f9d84449d670085220ff2c541937cdfbe75",
+        "size": 6253,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/085d6f9d84449d670085220ff2c541937cdfbe75"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/display/attempt.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "befbbd037e0891ed7b7b37baa6bc2df688f6fb9a",
+        "size": 595,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/befbbd037e0891ed7b7b37baa6bc2df688f6fb9a"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/display/capability.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "78fe143d3533b689caae5fda4ed0c091f386b77e",
+        "size": 311,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/78fe143d3533b689caae5fda4ed0c091f386b77e"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/display/xorg-start.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d551e61d9251c43bccc49c9001e9760557117407",
+        "size": 799,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/d551e61d9251c43bccc49c9001e9760557117407"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/display/xorg.conf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "62582a38acc749ec9543ee8115cde480a6119ee3",
+        "size": 739,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/62582a38acc749ec9543ee8115cde480a6119ee3"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/display/xorg.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ead5853ab22f12c6ed0960d2453faa0749cc4595",
+        "size": 955,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/ead5853ab22f12c6ed0960d2453faa0749cc4595"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/green/mobile-safe-area.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ee2b818b2cb2fe1f44f436efd9b02b42d601960c",
+        "size": 55440,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/ee2b818b2cb2fe1f44f436efd9b02b42d601960c"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/green/run.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0d60163a04f79387e3352a3a73591a7dd146711c",
+        "size": 2054,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/0d60163a04f79387e3352a3a73591a7dd146711c"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/green/run.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8c8d0acedfaa337f87250ba3dfe9add54f273538",
+        "size": 10570,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/8c8d0acedfaa337f87250ba3dfe9add54f273538"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/import-run.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8facd02d5a10c357f44690bf8e673a2c7bd24295",
+        "size": 359,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/8facd02d5a10c357f44690bf8e673a2c7bd24295"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/import.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "01f574ec4276b0733538a74b3629ccb1f8f41cf5",
+        "size": 100495,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/01f574ec4276b0733538a74b3629ccb1f8f41cf5"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/independent-review.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fb45674454d43a5365d67f45c9eb83cbaad66fa9",
+        "size": 5339,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/fb45674454d43a5365d67f45c9eb83cbaad66fa9"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/manifest.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6c660fff77fadbb8b8bfccb34e1fff96f4c497ef",
+        "size": 19400,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/6c660fff77fadbb8b8bfccb34e1fff96f4c497ef"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/preflight.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6cbdb223b6b97abf6405001744eca4e2a76acf60",
+        "size": 705,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/6cbdb223b6b97abf6405001744eca4e2a76acf60"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/red/mobile-safe-area.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5b01f0fdf019f09e819bb10020e8168fea3fa6af",
+        "size": 57243,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/5b01f0fdf019f09e819bb10020e8168fea3fa6af"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/red/run.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0c8ee322fdd06057b07b8a8a2be01913ea74aebc",
+        "size": 4146,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/0c8ee322fdd06057b07b8a8a2be01913ea74aebc"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/red/run.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "de2f6da1b5fd5a8b6abe61ace120d611d2520d92",
+        "size": 24393,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/de2f6da1b5fd5a8b6abe61ace120d611d2520d92"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/result-summary.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "59e09a4b41cc07c84c2b1fb57193e357759393ae",
+        "size": 8578,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/59e09a4b41cc07c84c2b1fb57193e357759393ae"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/run_probe.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e2a0ed84f5f29fa002be3f4303ccd3750b74a2bb",
+        "size": 3682,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/e2a0ed84f5f29fa002be3f4303ccd3750b74a2bb"
+      },
+      {
+        "path": "docs/evidence/kart-minimap-safe-area-20261114/source-prepare.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "dae78e6f187731383a9c53e1a94355d4b810f310",
+        "size": 310,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/dae78e6f187731383a9c53e1a94355d4b810f310"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d88bbbecddee7f3269bbaf69080b62ba127219a5",
+        "size": 3187,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/d88bbbecddee7f3269bbaf69080b62ba127219a5"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/dependency-review.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "eb8e1e4d85b805cf04207ee406e41c21c29675ed",
+        "size": 5545,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/eb8e1e4d85b805cf04207ee406e41c21c29675ed"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/import/run.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f470f88e1576cab009f649e4b5190cad113c1652",
+        "size": 9240,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/f470f88e1576cab009f649e4b5190cad113c1652"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/import/run.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f9ef5c42157f7518622330df9e97bc588f3af9b8",
+        "size": 70604,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/f9ef5c42157f7518622330df9e97bc588f3af9b8"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/integration/mobile-safe-area.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "880c0da5fa06fa53cffdb18601c5d0c2ed6830ca",
+        "size": 55440,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/880c0da5fa06fa53cffdb18601c5d0c2ed6830ca"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/integration/run.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "50d1ab378e1399c1b01ab8c86c19b97d27d93ec6",
+        "size": 9438,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/50d1ab378e1399c1b01ab8c86c19b97d27d93ec6"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/integration/run.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "87eef50f2b112ae226f3e99c45741402e9f47f96",
+        "size": 10571,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/87eef50f2b112ae226f3e99c45741402e9f47f96"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/manifest.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d7789985a6ec76881c693ed6541bab0fa432fc9b",
+        "size": 3738,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/d7789985a6ec76881c693ed6541bab0fa432fc9b"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/preflight.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b8e84be38e28d4bfb6ab1eb5ffda72fc15f34e56",
+        "size": 463,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/b8e84be38e28d4bfb6ab1eb5ffda72fc15f34e56"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/run_integration.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8017b4dc13ab21bb71878ce333162cde056c80da",
+        "size": 5795,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/8017b4dc13ab21bb71878ce333162cde056c80da"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/source-prepare.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "35966e7d173c586aac6256fcc84ec4cd7ae0ed74",
+        "size": 1007,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/35966e7d173c586aac6256fcc84ec4cd7ae0ed74"
+      },
+      {
+        "path": "docs/evidence/native-dream-minimap-merge-20261114/source-preservation.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ab379090c441d7834620bf58dfa264f68e141b10",
+        "size": 27776,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/ab379090c441d7834620bf58dfa264f68e141b10"
+      }
+    ],
+    "all_added_paths_are_evidence": true,
+    "scope": "Root actual independent full tree comparison; no execution claim"
+  },
+  "actual_native_commit": {
+    "sha": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "node_id": "C_kwDOSpcSONoAKGE2OWY1MzUxOGIyNTEwODczZDg4ZjAwZmYyNzgzZDYxNmFiNTM3MDI",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/a69f53518b2510873d88f00ff2783d616ab53702",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/commit/a69f53518b2510873d88f00ff2783d616ab53702",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T14:43:19Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T14:43:19Z"
+    },
+    "tree": {
+      "sha": "607643d9e109079925e21dfcf9c991a8250d4a46",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/607643d9e109079925e21dfcf9c991a8250d4a46"
+    },
+    "message": "Merge reviewed Discovery and Village source with preserved minimap history\n\nKeep all baf148b production, gates and notice bytes unchanged. Both common Kart/SafeArea blobs already match e2d15. Preserve the32 additional e2 evidence originals without treating their historic results as acceptance of this merge.\n\nImmutable tree comparison and independent source review completed. No new engine, renderer, Native52, Android or Play execution is claimed. This commit is prepared without updating a ref.",
+    "parents": [
+      {
+        "sha": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+        "html_url": "https://github.com/Ullmann27/lumo-godot/commit/e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+      },
+      {
+        "sha": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+        "html_url": "https://github.com/Ullmann27/lumo-godot/commit/baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "actual_native_checkpoint": {
+    "ref": "refs/heads/checkpoint/lumo-native-merge-20261114-2708",
+    "node_id": "REF_kwDOSpcSONoANXJlZnMvaGVhZHMvY2hlY2twb2ludC9sdW1vLW5hdGl2ZS1tZXJnZS0yMDI2MTExNC0yNzA4",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/checkpoint/lumo-native-merge-20261114-2708",
+    "object": {
+      "sha": "a69f53518b2510873d88f00ff2783d616ab53702",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/a69f53518b2510873d88f00ff2783d616ab53702"
+    }
+  },
+  "source_resolution": {
+    "theirs_only": 221,
+    "both_identical": 3,
+    "overlapping_paths": 10,
+    "git_merge_file_automatic_paths": 5,
+    "native_pin_paths": 3,
+    "documentation_append_conflicts": 2,
+    "no_deleted_parent_information": true
+  },
+  "review_blobs": {
+    "native_parent": "5a4a9cf2452a71ed0c54c8959dfdc4a153fa9e0a",
+    "native_child": "26f655dc0057f5a62707799d570f9085a81111bf",
+    "native_handoff": "eb133d075b13281b1a622c40102323affc50f961",
+    "native_trigger": "a7ecb08e197eb18bb928c7741c459eb27c5f0dec",
+    "host_independent": "0da6a66e1b25ed9429587dda9ca3dfcd7b41aa2e"
+  },
+  "actual_pre_activation_refs": {
+    "host": {
+      "ref": "refs/heads/work/lumo-play-quality-20261114",
+      "node_id": "REF_kwDOSNzcp9oAKnJlZnMvaGVhZHMvd29yay9sdW1vLXBsYXktcXVhbGl0eS0yMDI2MTExNA",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/work/lumo-play-quality-20261114",
+      "object": {
+        "sha": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+        "type": "commit",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/77936fae6ce7b7bcbddb93dda19fb0104f696e12"
+      }
+    },
+    "base": {
+      "ref": "refs/heads/integration/lumo-c4-connections-20261114",
+      "node_id": "REF_kwDOSNzcp9oAM3JlZnMvaGVhZHMvaW50ZWdyYXRpb24vbHVtby1jNC1jb25uZWN0aW9ucy0yMDI2MTExNA",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/integration/lumo-c4-connections-20261114",
+      "object": {
+        "sha": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+        "type": "commit",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+      }
+    }
+  },
+  "root_reads": "Root independently verified the complete host/native tree relationships, actual commit parents and all1642 materialized test-input blob/size bindings. Root read the actual automatic deltas, independent preservation review, pin changes, workflow syntax result and original failure/result reports.",
+  "limits": [
+    "Host ref is not yet activated in this record.",
+    "248 distinct passing cases are across three documented invocations; not a single all-green full run.",
+    "Initial fixture import and missing original catalog setup failures remain preserved; no product/test code changed to address them.",
+    "No current signed APK/AAB, Android, physical device, FPS or Play acceptance is claimed."
+  ]
+}

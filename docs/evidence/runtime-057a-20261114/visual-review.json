@@ -1,0 +1,162 @@
+{
+  "schema": "lumo.runtime-independent-visual-review.v1",
+  "status": "four_current_originals_visually_reviewed_with_limited_scope",
+  "source_context": {
+    "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "run_id": 43607156921,
+    "attempt": 1,
+    "job_id": 132484413080,
+    "job_status": "completed",
+    "job_conclusion": "success",
+    "binding_authority": "Parent supplied these current run/artifact/source bindings and is independently reviewing source manifests/original readers. This visual reviewer did not perform another API or full-artifact source verification."
+  },
+  "artifact": {
+    "id": 14119216097,
+    "bytes": 22155436,
+    "sha256": "6bd4d84880566265dcd392cd41bdcfe4b34a2a760b5634f6623e18fb5c63d604",
+    "parent_reported_files": 399,
+    "local_index": "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/archive-index.json",
+    "index_archive_record": {
+      "bytes": 22155436,
+      "sha256": "6bd4d84880566265dcd392cd41bdcfe4b34a2a760b5634f6623e18fb5c63d604",
+      "git_blob": "db019b53f19ac874716d473ff81931833b7d514e"
+    }
+  },
+  "method": {
+    "original_root": "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/original",
+    "opened_original_count": 4,
+    "image_viewer": "view_image",
+    "new_downloads": 0,
+    "new_renders": 0,
+    "new_test_runs": 0,
+    "source_or_reference_changes": false,
+    "original_bytes_modified": false,
+    "all_four_index_entries_match": true,
+    "all_four_before_after_hashes_match": true
+  },
+  "images": [
+    {
+      "path": "runtime/connect_four_empty.png",
+      "absolute_path": "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/original/runtime/connect_four_empty.png",
+      "dimensions": [
+        960,
+        540
+      ],
+      "bytes": 82537,
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "git_blob": "e2ca2570863ef418c7cf93e443cb176c776b045f",
+      "index_match": true,
+      "opened_original": true,
+      "after_sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8"
+    },
+    {
+      "path": "runtime/connect_four_win.png",
+      "absolute_path": "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/original/runtime/connect_four_win.png",
+      "dimensions": [
+        960,
+        540
+      ],
+      "bytes": 84544,
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "git_blob": "5165b197e9b7deb677975e4bdf0ce6cf0737076f",
+      "index_match": true,
+      "opened_original": true,
+      "after_sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a"
+    },
+    {
+      "path": "runtime/connect_four_phone_portrait.png",
+      "absolute_path": "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/original/runtime/connect_four_phone_portrait.png",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "bytes": 170661,
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "git_blob": "328038c8271f171e9575a021145fd090b83e9307",
+      "index_match": true,
+      "opened_original": true,
+      "after_sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1"
+    },
+    {
+      "path": "runtime/connect_four_small_landscape.png",
+      "absolute_path": "/workspace/scratch/2708c7907f28/runtime-057a-original-14119216097/original/runtime/connect_four_small_landscape.png",
+      "dimensions": [
+        640,
+        360
+      ],
+      "bytes": 22915,
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "git_blob": "ec730039bb8e2ec4fea8ed293c914cff24d81289",
+      "index_match": true,
+      "opened_original": true,
+      "after_sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55"
+    }
+  ],
+  "observations": [
+    {
+      "path": "runtime/connect_four_empty.png",
+      "kind": "empty_board",
+      "visible": [
+        "960×540: Überschrift Vier gewinnt, Zurück und Pause vollständig sichtbar.",
+        "Leeres Brett mit sieben Spalten und sechs Reihen, seitlicher Lumo-Charakter und unterer Status Gespeichert · Cyan ist dran sichtbar.",
+        "Alle sieben beschrifteten Spaltentasten 1–7 mit Pfeil vollständig im Bild; keine erkennbare Textüberlagerung oder abgeschnittene Taste."
+      ],
+      "limits": [
+        "Standbild beweist weder Eingabewirkung noch Speichern, Mindestzielgröße in dp oder Spielmechanik."
+      ]
+    },
+    {
+      "path": "runtime/connect_four_win.png",
+      "kind": "winning_board",
+      "visible": [
+        "960×540: Vier Cyan-Steine in der unteren Reihe links sind hell umrandet; drei gelbe Steine stehen rechts.",
+        "Die sichtbare Statuszeile Cyan gewinnt! stimmt mit dem dargestellten Viererzug überein.",
+        "Brett, Zurück, Menü und alle sieben grau dargestellten Spaltentasten bleiben innerhalb des Bildes; keine erkennbare Überlagerung der Beschriftungen."
+      ],
+      "limits": [
+        "Die graue Darstellung ist nur ein sichtbarer Zustand; tatsächliche Eingabesperre und Zustandsübergang werden durch dieses Bild nicht geprüft."
+      ]
+    },
+    {
+      "path": "runtime/connect_four_phone_portrait.png",
+      "kind": "portrait_result_modal",
+      "visible": [
+        "1080×2400: Geöffnetes Endmodal mit Cyan gewinnt! und Vier in einer Reihe!; alle drei Aktionen Brett ansehen, Neue Runde und Gegen Lumo spielen sind vollständig sichtbar und lesbar.",
+        "Zurück sowie die ausgegraute Menüfläche oben und die sieben ausgegrauten Spaltentasten unten bleiben erkennbar.",
+        "Das große Modal überdeckt und verdunkelt den Brettbereich; sichtbare Leerfläche unter den Aktionen, aber keine erkennbare Überlagerung oder abgeschnittene Aktionsbeschriftung."
+      ],
+      "limits": [
+        "Dies ist eine Endmodal-Ansicht, keine eigenständige Prüfung der aktiven Portrait-Spielansicht.",
+        "Sichtbarkeit beweist keine erfolgreiche Betätigung."
+      ]
+    },
+    {
+      "path": "runtime/connect_four_small_landscape.png",
+      "kind": "small_landscape_result_modal",
+      "visible": [
+        "640×360: Überschrift Vier gewinnt, Zurück, grau dargestelltes Menü und untere Statuszeile Cyan gewinnt! sind lesbar.",
+        "Im schmalen Modal sind Vier in einer Reihe! und Brett ansehen sichtbar; rechts ist eine vertikale Scrollleiste erkennbar.",
+        "Neue Runde und Gegen Lumo spielen sind in diesem Standbild nicht sichtbar. Die sieben grau dargestellten Spaltentasten sind vollständig dargestellt; der eigentliche Brettbereich ist weitgehend verdeckt."
+      ],
+      "limits": [
+        "Die Scrollleiste allein belegt keine Erreichbarkeit oder erfolgreiche Betätigung der beiden nicht sichtbaren Aktionen.",
+        "Der frühere separate R3-Aktionsnachweis wird nicht als neue057-Ausführung übernommen."
+      ]
+    }
+  ],
+  "conclusion": "In the inspected empty, winning and portrait-result captures, labels and shown controls are readable and no obvious visual overlap or clipping of the shown action labels was observed. The small-landscape result capture displays only Brett ansehen within its scroll area; the two lower result actions are not visible. Their reachability remains outside this image review.",
+  "limits": [
+    "Exactly these four files were opened; the remaining images, film, full application and other screens were not visually approved.",
+    "No Android/APK, performance/FPS, audio, accessibility, touch-target dp or successful interaction claim follows from these still images.",
+    "No previous R3/1375 execution is transferred to057. Current source/runtime binding and full original-reader checks belong to the parent's separate report.",
+    "No corrective source changes were made."
+  ],
+  "persistence": {
+    "repository": "Ullmann27/lumo-lernen",
+    "path": "docs/evidence/runtime-057a-20261114/visual-review.json",
+    "kind": "unreferenced_evidence_blob_only"
+  }
+}

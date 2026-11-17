@@ -1,0 +1,66 @@
+{
+  "schema": "lumo-prompt-label-independent-three-pair-visual-review-v1",
+  "reviewer": "/root/lumo_release_lead/learning_ux_lead/touch_worker",
+  "actual_original_images_opened": 6,
+  "new_images_opened": 3,
+  "baseline_images_opened": 3,
+  "qa_commit": "21e0368603e38d1dfd063485f5307ec201f0d872",
+  "baseline_commit": "1375da193af0152af64f91d86577aa9768cd50db",
+  "run_id": 43603068259,
+  "attempt": 1,
+  "artifact_id": 14116624494,
+  "pairs": [
+    {
+      "size": "phone",
+      "dimensions": [
+        824,
+        1830
+      ],
+      "baseline_sha256": "0f0797c8bff2b652dfe5bef6fc4a53e30921cb0fc6dc9287c8e44321e9e5693d",
+      "after_sha256": "49130519fa8610bfdb1ba5160137a100340ebf55926dcb1d37686fd47f62c129",
+      "baseline_path": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original/modernization/schreibcoach_phone.png",
+      "after_path": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/original/focused/modernization/schreibcoach_phone.png"
+    },
+    {
+      "size": "fold-cover",
+      "dimensions": [
+        688,
+        1764
+      ],
+      "baseline_sha256": "d2b56a09428c4d199d5979418858583b6907b4ff1bfada793bdc3c35bc5bbbdb",
+      "after_sha256": "3b9cb685ed110fbfe4f18e234eca203577c5814170952621b49e624b925ab93f",
+      "baseline_path": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original/modernization/schreibcoach_fold-cover.png",
+      "after_path": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/original/focused/modernization/schreibcoach_fold-cover.png"
+    },
+    {
+      "size": "fold-open",
+      "dimensions": [
+        1380,
+        1658
+      ],
+      "baseline_sha256": "5bd9fe0f9d7374a700f7a8b1b1da45d0bd9d93104c85e9e83a3fd1d8fc20b7eb",
+      "after_sha256": "acab4d0f71b0f5ad98cfe9fcef94890b282f21bd9bd3142c928bf9cd5bf895ea",
+      "baseline_path": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original/modernization/schreibcoach_fold-open.png",
+      "after_path": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/original/focused/modernization/schreibcoach_fold-open.png"
+    }
+  ],
+  "integrity": "All six actual file hashes matched their original indexes; all three after PNGs also matched both new archive and CI indexes",
+  "verdict": "No visible blocker for the isolated single-line label-color correction",
+  "observations": [
+    "In every selected after image the complete one-line hint 'Mit dem Finger - keine Eile!' is visibly dark blue on the white card instead of the pale blue baseline.",
+    "No new visible clipping or overlap of the hint.",
+    "No additional visible shift in title wrapping, card, speaker, categories, writing area, or lower buttons compared with the matching original baseline.",
+    "The empty replacement-glyph outline in the round task badge remains in all three sizes; Fold-Open also retains such an outline before Mix.",
+    "Parts of the horizontal category row extend beyond the visible right edge in Phone and Fold-Cover, identically to the matching baseline."
+  ],
+  "limits": [
+    "Exactly three actual desktop after images and their three original baselines, not all42 captures",
+    "The unchanged focus renders the letter-writing coach, not LumoWritingWordCoachScreen",
+    "No Android, physical-display, touch, handwriting-behavior, audio, scroll-reachability, or FPS acceptance",
+    "No numerical rendered-pixel contrast calculation by this reviewer",
+    "No emoji correction claim"
+  ],
+  "tests_or_renderer_executed": false,
+  "downloads_by_reviewer": false,
+  "files_modified_by_reviewer": false
+}

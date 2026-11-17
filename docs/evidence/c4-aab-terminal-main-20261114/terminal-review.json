@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "kind": "actual_current_candidate_terminal_record",
+  "recorded_utc": "2026-11-14T13:15:56.570Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43590864772,
+  "run_attempt": 1,
+  "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "run_status": "completed",
+  "run_conclusion": "cancelled",
+  "main_job": {
+    "id": 132436033818,
+    "started_at": "2026-11-14T11:40:59Z",
+    "completed_at": "2026-11-14T13:11:15Z",
+    "conclusion": "cancelled",
+    "relevant_steps": [
+      {
+        "name": "Full Flutter regression suite including every capture",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T11:42:25Z",
+        "completed_at": "2026-11-14T11:53:10Z"
+      },
+      {
+        "name": "Verify all build and preservation contracts",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20,
+        "started_at": "2026-11-14T11:54:24Z",
+        "completed_at": "2026-11-14T12:00:23Z"
+      },
+      {
+        "name": "Code-level Android probe regression with verified image dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22,
+        "started_at": "2026-11-14T12:00:24Z",
+        "completed_at": "2026-11-14T12:02:31Z"
+      },
+      {
+        "name": "Require actual gameplay gates on the exact pinned native source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-14T12:03:05Z",
+        "completed_at": "2026-11-14T13:07:12Z"
+      },
+      {
+        "name": "Require acknowledged Connect Four return retry",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32,
+        "started_at": "2026-11-14T13:07:12Z",
+        "completed_at": "2026-11-14T13:07:12Z"
+      },
+      {
+        "name": "Require actual Dream gates on the exact pinned native source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33,
+        "started_at": "2026-11-14T13:07:12Z",
+        "completed_at": "2026-11-14T13:08:29Z"
+      },
+      {
+        "name": "Build unified real Android APK",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "number": 35,
+        "started_at": "2026-11-14T13:08:45Z",
+        "completed_at": "2026-11-14T13:11:12Z"
+      },
+      {
+        "name": "Verify APK archive and collect reproducible source hashes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 36,
+        "started_at": "2026-11-14T13:11:12Z",
+        "completed_at": "2026-11-14T13:11:12Z"
+      },
+      {
+        "name": "Upload exact candidate (no release or synthetic screenshots)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 37,
+        "started_at": "2026-11-14T13:11:12Z",
+        "completed_at": "2026-11-14T13:11:12Z"
+      }
+    ]
+  },
+  "job_results": [
+    {
+      "id": 132435073772,
+      "name": "connect-four-runtime",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 132435074028,
+      "name": "android-host-compile",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 132436033818,
+      "name": "verify-and-build",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 132457986535,
+      "name": "update-2020-from-2017",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132457986998,
+      "name": "verify-c4-candidate",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132457987163,
+      "name": "android-c4",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132457987742,
+      "name": "prepare-c4-delivery",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "cancellation_cause": {
+    "finding": "GitHub total job execution limit, explicitly confirmed by the original public job annotation.",
+    "original_annotation": "The job has exceeded the maximum execution time of 1h30m0s",
+    "annotation_observed_by": "/root through CUA on the unchanged public job page, without login or mutation",
+    "primary_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772/job/132436033818",
+    "original_job_log_tail": "2026-11-14T13:11:12.5252497Z ##[error]The operation was canceled.",
+    "limit_was_not_inferred_from_timestamps_alone": true,
+    "original_job_log_scope": "The complete log is preserved. Its final normal output concerns Gradle setup/configuration and tasks; it does not itself spell out the 90-minute limit.",
+    "connector_annotations_boundary": "Generic fetch rejected check_run_url and annotations route as unsupported endpoint HTTP400, not a GitHub permission denial. Root obtained the actual annotation through the exposed read-only UI."
+  },
+  "native_original_archive": {
+    "artifact_id": 14114314120,
+    "bytes": 192077445,
+    "sha256": "d57188fcd09673444f3670c41378b444d6295e9934a4d9a1b760c5945027510c",
+    "official_downloads_by_release_lead": 1,
+    "actual_local_size_and_sha256_match": true,
+    "complete_member_crc_path_and_hash_inventory_checked": true,
+    "original_files": 5035,
+    "uncompressed_bytes": 511840479,
+    "local_root": "/workspace/scratch/2708c7907f28/aab-native-evidence-14114314120",
+    "independent_reader_and_image_review": "Delegated to existing LearningLead/TouchWorker on this same copy; separate handoff will state actual outcomes.",
+    "archive_itself_not_stored_as_git_blob_by_this_handoff": true
+  },
+  "delivery_boundary": {
+    "artifact_count": 9,
+    "candidate_apk_artifact_present": false,
+    "android_c4_executed": false,
+    "update_executed": false,
+    "candidate_verifier_executed": false,
+    "delivery_preparation_executed": false,
+    "new_apk_or_release_acceptance": false
+  },
+  "next_action_scope": "Root authorized preparation and review of only verify-and-build 90→150 minutes plus its existing matching contract assertion. No branch/ref/workflow activation by this reviewer.",
+  "claims": {
+    "native_or_android_reruns_by_reviewer": 0,
+    "product_mutations_by_reviewer": 0,
+    "release_or_ref_mutations_by_reviewer": 0
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "source_before_after_byte_identical": true,
+  "source_before_after_sha256": "798649037b014221bc168aea241b0e77dccae9716cb4aefcc558cd37657313ae",
+  "source_before_after_bytes": 616879,
+  "matched_remote_source_entries": {
+    "host": 447,
+    "native": 1256,
+    "qa": 4
+  },
+  "heads": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "qa": "c082ebe02254e15ff2779b5031b118c330dcdafe"
+  },
+  "trees": {
+    "host": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "native": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "qa": "767d74b03ea977547c83aa412bb0a96da9253b4f"
+  },
+  "generated_uid_entries": 334,
+  "uid_source_blobs_and_reconstructed_uid_bytes_verified": true,
+  "overlays": [
+    {
+      "source": "test/games/connect_four_small_result_actions_qa.dart",
+      "destination": "test/games/connect_four_small_result_actions_qa.dart",
+      "bytes": 9498,
+      "sha256": "427d21556c3597ca363ed16c2799bd9f933a0b3583ddead7b32464ce63c75b4b",
+      "git_blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e"
+    },
+    {
+      "source": "tools/qa/connect_four_small_result_actions_qa.gd",
+      "destination": "scripts/tests/connect_four_small_result_actions_qa.gd",
+      "bytes": 16807,
+      "sha256": "2c0e7d1aedec11140dd6004c4023a63e8671de973c2cd67986f6f6efb5c44469",
+      "git_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f"
+    }
+  ],
+  "archive_member_count": 95,
+  "png_count": 0,
+  "scope": "Read-only artifact/source identity review; no product, engine, gameplay or test execution."
+}

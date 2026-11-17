@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "host_sha": "1375da193af0152af64f91d86577aa9768cd50db",
+  "native_sha": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "run_id": 43599456596,
+  "run_attempt": 1,
+  "kind": "current_prebuild_original_logs_and_metadata",
+  "tree_entries": [
+    {
+      "path": "docs/evidence/c4-1375-prebuild-originals-20261114/original-runtime-job-132460874104.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e0243629f4d21c681e96b61c3cce59f6c702231"
+    },
+    {
+      "path": "docs/evidence/c4-1375-prebuild-originals-20261114/original-runtime-complete-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0e806b64dbc198c48dff405195c55bc3c816779"
+    },
+    {
+      "path": "docs/evidence/c4-1375-prebuild-originals-20261114/original-runtime-complete-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a740a7b28c543480b2976396433c9198512cf2c9"
+    },
+    {
+      "path": "docs/evidence/c4-1375-prebuild-originals-20261114/original-runtime-complete-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4d4c02c35729dd24d917d68e104fe72cf99ea0d"
+    },
+    {
+      "path": "docs/evidence/c4-1375-prebuild-originals-20261114/original-host-compile-job-132460873849.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5e2fb120f666e17a368f33f9691df476806563b"
+    },
+    {
+      "path": "docs/evidence/c4-1375-prebuild-originals-20261114/original-compile-complete-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7987e7fa996bb9a9620a184699fa687234e3500b"
+    },
+    {
+      "path": "docs/evidence/c4-1375-prebuild-originals-20261114/original-compile-complete-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "322051d7a8fc1550006c5f6149c8a5fbebd4a51c"
+    }
+  ]
+}

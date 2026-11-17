@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T15:12:10.628163+00:00",
+  "kind": "root_review_of_two_original_current_runtime_images",
+  "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+  "run_id": 43607156921,
+  "artifact_id": 14119216097,
+  "images_opened_by_root": 2,
+  "images": [
+    {
+      "path": "runtime/connect_four_phone_portrait.png",
+      "bytes": 170661,
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "git_blob": "328038c8271f171e9575a021145fd090b83e9307",
+      "actual_visual_observation": "Original portrait screenshot viewed by Root: all three result actions are fully visible and readable."
+    },
+    {
+      "path": "runtime/connect_four_small_landscape.png",
+      "bytes": 22915,
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "git_blob": "ec730039bb8e2ec4fea8ed293c914cff24d81289",
+      "actual_visual_observation": "Original 640x360 screenshot viewed by Root: first action is visible; vertical scrollbar visible; this still image alone does not prove reaching or activating the lower two actions."
+    }
+  ],
+  "limits": [
+    "Actual desktop captures, not Android device observations.",
+    "No new engine/application/rendering execution.",
+    "No measured physical FPS, full UI accessibility or Play approval.",
+    "The Android won-dialog scroll/action coverage question is being reviewed separately."
+  ]
+}

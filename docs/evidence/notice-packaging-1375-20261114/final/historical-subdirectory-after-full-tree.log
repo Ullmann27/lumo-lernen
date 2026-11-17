@@ -1,0 +1,54 @@
+test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier) ... /workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/verify_unified_apk.py:217: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpw55aogb2/fixture-arm64-v8a.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_changed_working_copy_cannot_replace_committed_expectations (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_changed_working_copy_cannot_replace_committed_expectations) ... /workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/verify_unified_apk.py:217: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmp0shmixuh/fixture-arm64-v8a.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_current_default_requires_the_notice_policy (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_current_default_requires_the_notice_policy) ... ok
+test_environment_cannot_replace_source_bound_version (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_environment_cannot_replace_source_bound_version) ... ok
+test_exact_abi_and_embedded_godot_library_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_abi_and_embedded_godot_library_are_still_required) ... ok
+test_exact_commit_inputs_allow_both_historical_abis (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_commit_inputs_allow_both_historical_abis) ... /workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/verify_unified_apk.py:217: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpvwyjmhmi/fixture-arm64-v8a.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/verify_unified_apk.py:217: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpvwyjmhmi/fixture-x86_64.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_failed_historical_notice_policy_git_read_is_not_absence (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_failed_historical_notice_policy_git_read_is_not_absence) ... ok
+test_fixed_family_certificate_is_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_fixed_family_certificate_is_still_required) ... ok
+test_historical_notice_policy_tree_or_symlink_is_not_absence (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_historical_notice_policy_tree_or_symlink_is_not_absence) ... ok
+test_malformed_historical_notice_policy_is_not_absence (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_malformed_historical_notice_policy_is_not_absence) ... ok
+test_native_page_alignment_and_resource_packaging_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_native_page_alignment_and_resource_packaging_are_still_required) ... ok
+test_old_historical_notice_policy_absence_is_explicitly_unverified (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_old_historical_notice_policy_absence_is_explicitly_unverified) ... /workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/verify_unified_apk.py:217: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmp2x3rr9oz/fixture-arm64-v8a.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_original_default_reproduces_current_version_mismatch (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_original_default_reproduces_current_version_mismatch) ... ok
+test_pck_digest_and_historical_native_revision_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_pck_digest_and_historical_native_revision_are_still_required) ... ok
+test_present_historical_notice_policy_is_enforced (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_present_historical_notice_policy_is_enforced) ... /workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/verify_unified_apk.py:217: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmp3jib22h8/fixture-arm64-v8a.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_private_activity_and_release_manifest_are_still_required (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_private_activity_and_release_manifest_are_still_required) ... ok
+test_repository_and_revision_must_be_supplied_together (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_repository_and_revision_must_be_supplied_together) ... ok
+test_repository_subdirectory_cannot_hide_a_present_notice_policy (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_repository_subdirectory_cannot_hide_a_present_notice_policy) ... /workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/verify_unified_apk.py:217: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpzt52ih2p/fixture-arm64-v8a.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/scratch/2708c7907f28/lumo-notices-1375-2708/scripts/verify_unified_apk.py:217: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpzt52ih2p/fixture-arm64-v8a.apk'>
+  'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_revision_must_be_a_full_immutable_commit (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_revision_must_be_a_full_immutable_commit) ... fatal: ambiguous argument '0000000000000000000000000000000000000000^{commit}': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+ok
+test_voice_weights_clips_and_original_license_are_still_pinned (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_voice_weights_clips_and_original_license_are_still_pinned) ... ok
+test_wrong_package_or_version_is_still_rejected (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_wrong_package_or_version_is_still_rejected) ... ok
+test_only_expectations_are_pinned_while_current_probes_and_guards_remain (test_historical_apk_expectations.HistoricalWorkflowContractTest.test_only_expectations_are_pinned_while_current_probes_and_guards_remain) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.234s
+
+OK

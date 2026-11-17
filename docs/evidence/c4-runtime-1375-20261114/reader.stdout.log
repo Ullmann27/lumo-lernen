@@ -1,0 +1,32 @@
+{
+  "performed": true,
+  "passed": true,
+  "source_bindings": {
+    "host": {
+      "head": "1375da193af0152af64f91d86577aa9768cd50db",
+      "tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+      "file_count": 447,
+      "exact_path_mode_blob_size_match": true
+    },
+    "native": {
+      "head": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+      "file_count": 1256,
+      "exact_path_mode_blob_size_match": true
+    }
+  },
+  "native_checks": 170,
+  "native_errors": [],
+  "frame_count": 250,
+  "validated_png_count": 259,
+  "original_process_exit_codes": {
+    "dart": 0,
+    "godot": 0
+  },
+  "all_original_hashes_unchanged": true,
+  "final_ack": 23.0,
+  "final_revision": 33.0,
+  "recording_format_fps": 24,
+  "measured_device_fps": false,
+  "reader_elapsed_seconds": 2.3689092589997927
+}

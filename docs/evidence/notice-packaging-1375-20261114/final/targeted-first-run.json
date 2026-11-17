@@ -1,0 +1,74 @@
+[
+  {
+    "test_file": "test_export_embedded_game.py",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_export_embedded_game.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 0.3874980680002409,
+    "log": "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/test_export_embedded_game.log"
+  },
+  {
+    "test_file": "test_packaged_notices.py",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_packaged_notices.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 0.1734725719998096,
+    "log": "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/test_packaged_notices.log"
+  },
+  {
+    "test_file": "test_historical_apk_expectations.py",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_historical_apk_expectations.py",
+      "-v"
+    ],
+    "exit_code": 1,
+    "seconds": 1.1898026270000628,
+    "log": "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/test_historical_apk_expectations.log"
+  },
+  {
+    "test_file": "test_verify_play_bundle.py",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_verify_play_bundle.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 3.5382330089996685,
+    "log": "/workspace/scratch/2708c7907f28/notice-checks-1375-2708/test_verify_play_bundle.log"
+  }
+]

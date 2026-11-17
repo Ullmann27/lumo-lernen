@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "source_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "run": 43590864772,
+  "artifact": 14114314120,
+  "root_read_original_source_stamps": true,
+  "root_read_original_return21_marker": true,
+  "root_read_original_nextgen52_and17_markers": true,
+  "root_independently_read_current_artifact_api": true,
+  "root_opened_images": [
+    {
+      "path": "action-stage/action-captures/ramp-1544-speed-70.png",
+      "bytes": 625481,
+      "sha256": "0bae78ab390a43103624addb8afa6c319cb0341167c3377a0e6710fb22a87ee2",
+      "finding": "Minimap fully inside1280x720 frame with visible separation from Speed, header and central jump text."
+    },
+    {
+      "path": "dream/captures/garden/learning-dream-412x915.png",
+      "bytes": 129176,
+      "sha256": "c990d1733c2a3ec168e5d5aeec6eccb57a14e60ac7c769991c2154ed2035015b",
+      "finding": "Task and three action buttons visible and readable. Outer decorative right board frame clipped at image edge; task tiles remain visible."
+    }
+  ],
+  "source_of_full_archive_validation": "ReleaseLead performed one download, full ZIP SHA/CRC/path and5035-member index; Root did not repeat that download.",
+  "independent_seven_image_review_blob": "40696ba26847152a7957f6f470a2b932b7aa59f6",
+  "limitations": [
+    "Only two native PNGs personally opened by Root, seven independently by Child.",
+    "Desktop original captures; no Android interaction, physical FPS, whole-app visual approval or completed APK claim.",
+    "These originals belong to the old aab run, whose APK build was cancelled; no substitution for fresh1375 run artifacts."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "archive": {
+    "bytes": 29035,
+    "sha256": "b5c387703c46c27dc7627b68dae16029758fd49b133a72127a2fe95276d68893",
+    "git_blob": "1d0c72ddcfdebd13a018156e08676995f41bc977"
+  },
+  "zip_crc_valid": true,
+  "canonical_paths": true,
+  "file_count": 1,
+  "members": [
+    {
+      "path": "build-contracts.log",
+      "bytes": 188556,
+      "sha256": "5c633c6a4299c9d56489a2c5c4464cc3f94eea1de6bfba8117a0bd4345761cad",
+      "git_blob": "d8df1f42c4bdc71ab42719826927ee0eb724bce0"
+    }
+  ],
+  "archive_code_executed": false
+}

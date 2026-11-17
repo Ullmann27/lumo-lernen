@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "id": 14113587571,
+      "name": "lumo-c4-small-result-actions-aab092",
+      "size_in_bytes": 146035,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14113587571",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14113587571/zip",
+      "expired": false,
+      "created_at": "2026-11-14T12:20:03Z",
+      "expires_at": "2026-12-14T12:20:03Z",
+      "updated_at": "2026-11-14T12:20:03Z",
+      "digest": "sha256:38bdeb870ce8c681d7663038decbfb4f29ca35986659ed248fde487e32014481",
+      "workflow_run": {
+        "id": 43594135818,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-c4-small-result-actions-20261114-2708",
+        "head_sha": "dc2e1b50ebeadb895aa691d809f2c457e0142633"
+      }
+    }
+  ]
+}

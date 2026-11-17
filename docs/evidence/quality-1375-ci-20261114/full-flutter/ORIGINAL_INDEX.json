@@ -1,0 +1,3301 @@
+{
+  "archive": {
+    "bytes": 332341284,
+    "sha256": "5f5796a883a80423668fe6c9b13a09f08cf70a39d79430213f8c71090eca3bbd",
+    "git_blob": "3dd533b5da84abf1c0422f2a533e54178bdccd73"
+  },
+  "zip_crc_valid": true,
+  "canonical_paths": true,
+  "file_count": 548,
+  "members": [
+    {
+      "path": "acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "d2bf7e3bf34dffc419e7fa58166574b7a654a7d172e7cc31862c30326087a27e",
+      "git_blob": "982802945c4a2ad1040e0bbdd898a3dd580a6b25"
+    },
+    {
+      "path": "assisted-learning/independent-strength.png",
+      "bytes": 78693,
+      "sha256": "22e6ecdf8355bf94268dcadcbc5d02d90f88dc7446666cb2583044a472c7f147",
+      "git_blob": "91983e8e3d1be4e6a3e61430b4f1065c43873890"
+    },
+    {
+      "path": "assisted-learning/independent-review.png",
+      "bytes": 77980,
+      "sha256": "5dd2f063ab2def0f2f6a65f7a1d1793584a0b1eb59e6ab05693d6286406fc10d",
+      "git_blob": "4d0d5f88a8c491c1db6dbe0db631708bbce7cf7d"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_0.png",
+      "bytes": 38894,
+      "sha256": "cd3c68fb3835cd263ea060bcd9a810343f0b5871c294fe32760b6e30291fe786",
+      "git_blob": "4dcb22bea2dfa54b8339c7247595206037c2c079"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_2.png",
+      "bytes": 38820,
+      "sha256": "b4ffa7b70119255991380bd861c4f431541d5f46aee4d9498871bafbb229b931",
+      "git_blob": "0c74ab371ab286fdec2aa2e9a0d4baab4e7f60f5"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_3.png",
+      "bytes": 39403,
+      "sha256": "da2bef82502ecb65bef10734d21cd6773c93951dd76035b46f28c30e5cabfbc8",
+      "git_blob": "dc5c73dda8806907515ab553ed43f603f40d1bc7"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_4.png",
+      "bytes": 38310,
+      "sha256": "abd1c236c7bbe60c47d1595904d74d19bd1ad58d12a50208f91e287f84afb943",
+      "git_blob": "03102735fdf2ec3f0652c858e1f3227a4edbaa8d"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_1.png",
+      "bytes": 37532,
+      "sha256": "b917de2f9273f1a61c25aa09a5f6ccd1af140bf47eb6cf760acfa34fc23d2ad1",
+      "git_blob": "a7135ce6940aad98ba7e17df2d09dd6ee7862cb0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_5.png",
+      "bytes": 39119,
+      "sha256": "1bff5e4e2b3e581941904638766ea1eabd005251b452c67605fbcedbd4cdefa4",
+      "git_blob": "78403ca5a1ff040bb6d35bd78405937eb7392161"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_6.png",
+      "bytes": 39537,
+      "sha256": "f86b415b1fb414b84192f7ae79e1d0216f46e128c95b1bf92eeb7ab183157c0b",
+      "git_blob": "5bd423b90b78b50dd458fa9f931ca11f66326286"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_7.png",
+      "bytes": 38330,
+      "sha256": "3133ccaff6c26a140a5da2ae84b969ab00b4bdbbd4b0585d26fd4969db8415b2",
+      "git_blob": "25dddac11ff09285f46752787b51716fe456d957"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_8.png",
+      "bytes": 39522,
+      "sha256": "50c88f51bc2fe23f3b8a8259e29428ea89fc7dc3780a4049d4f5ea7e09e2e523",
+      "git_blob": "ea5db3cbe546a4e1cc754ba9d35e3fde07fbaa86"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_9.png",
+      "bytes": 39541,
+      "sha256": "4440ee7938b08da7aa0ef127ff2905d4ca34857a3017199d13e1d451565cc8be",
+      "git_blob": "17514218a9a4e4a87469702afb4244ee37224a97"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_draw_two.png",
+      "bytes": 39116,
+      "sha256": "16dcc9c55e9aab1bb7768d51a8b8bcb9b9e7dd1941796b1a5c7bb9e96026c39a",
+      "git_blob": "f79468801a1150f8e2ecd10c202827646199c5ba"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_reverse.png",
+      "bytes": 43627,
+      "sha256": "ce2701d50fa345f5d70b604a63b0472e294f70c499d4d26bdc1b7b0d19ca03e7",
+      "git_blob": "030a17e94eeb874c0c7b0e2c7c719a5815369e23"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_skip.png",
+      "bytes": 40078,
+      "sha256": "2d9060bb0c2cb08615a28f646493ef7bb59bf29a5c41ae589a5a7166cb6723ce",
+      "git_blob": "5a2c56050e46c4ec11eaaf9f2b6206634aa05da9"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_think_pause.png",
+      "bytes": 40547,
+      "sha256": "015eb18a009b307008a3b10ae80c9aca60771f4254a1e96e2b2363ac5f7ab181",
+      "git_blob": "52d1f97d4102da635af6a1d02310fd5db9a90052"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_0.png",
+      "bytes": 35970,
+      "sha256": "59ce645b64d9c41946f84f20b92b73791b46899f67a7bbb856098a894ca1ef01",
+      "git_blob": "965abfac825b0d7dc89eeffe71131b9f80b2e15c"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_1.png",
+      "bytes": 34715,
+      "sha256": "70688a98b70a99ef3a84bebda4bc0d8bfb0b4b2709c8fcf7f8175ba88686e893",
+      "git_blob": "4831f8a59b94bb6a9edc35c0c8f499553a8d03ae"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_2.png",
+      "bytes": 35818,
+      "sha256": "60a57bdbdc9b3caca4ed6d2cdcc322b4b03261eac1a254b52eab28e6f27ce379",
+      "git_blob": "e130ba1c0215c9e3ca44728b15780b734bb65512"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_3.png",
+      "bytes": 36306,
+      "sha256": "af2695c57b43f1f24af720c34131d41493318b5195a9ec26894639b0ea4a37af",
+      "git_blob": "6dd054f27949837d0b0655d99da0c12dd52dc1f8"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_4.png",
+      "bytes": 35244,
+      "sha256": "ca78fe99e2339eca495839dbdc48810ff6fd7fb5a53ac6dd34a1939ded64489d",
+      "git_blob": "60d8eb0e68076ecf65259a0156afd3bb1cbfecf0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_5.png",
+      "bytes": 36083,
+      "sha256": "676b25c7481696c97f20aaceefeb491191ded524c0d9feefd9a67225f9d9dec0",
+      "git_blob": "07e1452d4427f03092bad7430b6c29528fc911bc"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_6.png",
+      "bytes": 36526,
+      "sha256": "4489a5afb62a9cab7df575ef20b6e7a809314b6b4cbfc0841f8a2023f07cc22a",
+      "git_blob": "58426be4d97c1c3246bcb90958842d684ad54a9b"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_7.png",
+      "bytes": 35332,
+      "sha256": "4a0892e9096adfe7e3f5ab6575583093b45649d876a2abd1a80de36df8b8738f",
+      "git_blob": "f24c3ee42d1a741f015eebde8f371b45b66f2806"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_8.png",
+      "bytes": 36503,
+      "sha256": "8afb6fe616a47a4ba74bd2eff2a0799393cc3dd4f0f28326f23200c85d566bba",
+      "git_blob": "cf2a1a3ef8ecbdeb685ac0211e52b3fb253cf92f"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_9.png",
+      "bytes": 36475,
+      "sha256": "2df7820e20c26fccb709a37b065832fd68074db3e19fcd8da5ef12eebf499bac",
+      "git_blob": "2ff4d730362fb77706c37726a666a1826580d758"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_draw_two.png",
+      "bytes": 36647,
+      "sha256": "14cb029fe8c3e5d05a34e77cf9e52982da1533c83bdc81894ff63f3bfb8c6560",
+      "git_blob": "cad170a8ad6ab16560a7387ef93eca3cedc9b311"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_reverse.png",
+      "bytes": 40949,
+      "sha256": "f49d37121e971b45e1e608926cbff1fca34167232121e9cf011de669426f1b38",
+      "git_blob": "bd21b1fc2a59a793ac7a12615aeccdc75a2a6509"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_skip.png",
+      "bytes": 37459,
+      "sha256": "d6765df3cf56e1e8167b82ab5d37a443f58fb8f64c569fc7d91f14cf8c27a007",
+      "git_blob": "7898971c186b0693ecbfe44b69eabc075c000dab"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_think_pause.png",
+      "bytes": 37686,
+      "sha256": "ebd9859fb52059a74041e525ec24dd63707589beb395b62867b4a4b5343f7eed",
+      "git_blob": "1a6855120b60a20a1a40f75148e83faf050f5a22"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_0.png",
+      "bytes": 34036,
+      "sha256": "a5985e3598c2af32c8da2e4beda57c7b293b5026c21bddd03a8ccf76a0c9bb5b",
+      "git_blob": "30b56437f6f2dcee4d6c97f4ae6935a6402d89c8"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_1.png",
+      "bytes": 32487,
+      "sha256": "849b5eef67c048357cc90fe8419d40437d9bc300bf8c539dd0ee6ea3ddffeda3",
+      "git_blob": "c56d6e03db8b9a342d678f3d866744af795d4ad8"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_2.png",
+      "bytes": 33782,
+      "sha256": "b37d727d30b6cb303daceb08522d6a28c5cd1bc0e289be2f7adbf0f9a68b44a1",
+      "git_blob": "3fef24aca844dfa99ab22889aa4f95d986d0e1c7"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_3.png",
+      "bytes": 34445,
+      "sha256": "b94d59b70dd5eec3d0c3ed2432c509217d2a2c6ca1bd6b404b50b273f646ea57",
+      "git_blob": "ab3c4400181b4246a8e587e93d477b4afb0523ae"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_4.png",
+      "bytes": 33285,
+      "sha256": "717697f6746ee9164dce96639019d2d81cf4267933462ba519413e7e31a190e0",
+      "git_blob": "e473e173c090c11aa03d9f308a6b2891c08b86f4"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_5.png",
+      "bytes": 34022,
+      "sha256": "afd13a0999c5f38bb60653f16bb678249ac707206a584614c627fbbe986440f5",
+      "git_blob": "c53f5d493296a19862ffc87cd9edad5290948a9c"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_6.png",
+      "bytes": 34579,
+      "sha256": "61b0da7685ba6c1ff6e75c6c5078f201d50dbaf21815cf2e4bef388ab759607e",
+      "git_blob": "5d5bb3cb37869934ddd94b7192bec05508f6923b"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_draw_two.png",
+      "bytes": 33899,
+      "sha256": "0c3bfa18c30a087e9edcd78a1f6b21dc769670cbcfd84b6541c93d1c95ab3a5f",
+      "git_blob": "a66359b30f6b4ddbfc0467a6eb9043d101e0f3fa"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_7.png",
+      "bytes": 33216,
+      "sha256": "9304d72531ef2b25d5b0338db73ceefcd3b55fda00a82a6e53c033c3e7df2e7f",
+      "git_blob": "e5c1ea4f1aa477c1c0d81df92f2c28419f394d7a"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_8.png",
+      "bytes": 34624,
+      "sha256": "5c90b4a735a2bfce19f5b7b228f3691f18f4e6a8815da4720ac393dafb6ef7af",
+      "git_blob": "120a61681fab2ec3076aa6bf79832b9e0a8cedd8"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_9.png",
+      "bytes": 34627,
+      "sha256": "9dfccc9b7ad984325afaa3f4f26e7bba2b196fd4d2d72faa9f6ca6d43595c2d6",
+      "git_blob": "f4f1d8f34e0f50e2282813da2464213fb6895492"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_reverse.png",
+      "bytes": 38717,
+      "sha256": "bcdbf592927ee7381762ddd80fab31eec6bcca7d8768a657af85b9ab6177cc5b",
+      "git_blob": "f4928626014eada2f15316e159954f8de6891a55"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_skip.png",
+      "bytes": 35357,
+      "sha256": "83ba97cba9e390aec70c4271f27234bcf1827bddf2638c5bca530961d3e5a40e",
+      "git_blob": "403a658724f4b20b62575e8d1c9c1fb03c506f36"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_think_pause.png",
+      "bytes": 35207,
+      "sha256": "c2a0c288007eb1b3e6afd3e4be2a35b257d7445b244051bfe9e4c5b2980dd58e",
+      "git_blob": "1e95e12687f6b78bbbd65c0e35b4d3a46770a4f0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_0.png",
+      "bytes": 37677,
+      "sha256": "4d5b52e25d13cb7b14ea21f01bf403c39de5d1fdecec9acbb9051555e0e279e2",
+      "git_blob": "e2f1866142ca0fe0ef09b71e7dfc41927829fe73"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_1.png",
+      "bytes": 36146,
+      "sha256": "80afb014b4f6e50f00f54d5e4df4eb1bc3a0ade06b4343f984841e7d4d4df79e",
+      "git_blob": "e21f2494b36728ad0916b045619f9d9b04be967e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_2.png",
+      "bytes": 37438,
+      "sha256": "4c7e2cf8e509e56c15de9b271804365fc5b024f6c5cdad90d6ef4c02168e8096",
+      "git_blob": "40405bf8d3fa616cde3fd5902f67b63c7d69faf2"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_3.png",
+      "bytes": 38071,
+      "sha256": "b498e6e85d6418fe96c2f7ab7356b773a7f01facff7a994397d4a28b48fd2b8f",
+      "git_blob": "e72293fa6f70e29ca397366e5895deb8e0ca180e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_4.png",
+      "bytes": 36809,
+      "sha256": "38a3c2862d6410eb82080138552b7d154f31c742ee476592bc4726220962a120",
+      "git_blob": "26a4c193ef9cb976404d6955ce9fe24439d8ae52"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_5.png",
+      "bytes": 37779,
+      "sha256": "f1e101a0ab4243cb49022b53c80824013d6decf9b772e843a3978c05bd8dbdf1",
+      "git_blob": "a3802a4508b5a38c35b59736d091e931c6bb4933"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_6.png",
+      "bytes": 38220,
+      "sha256": "88430ef2467dc1f22024b2fb7eaabc9decc6b04cc6d7fc02cb9754370f2053ee",
+      "git_blob": "4f2c4263e26acbdbdd7d64b7de19f2ca3ba086c9"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_7.png",
+      "bytes": 36888,
+      "sha256": "33f0de47c76e9f7db6e25064c2f97a25c60b6de5cfd262f1fed02af87f66c83f",
+      "git_blob": "c21fbce7bdbe5f8dc8d66e45dc4f4cea5b42fa9d"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_8.png",
+      "bytes": 38238,
+      "sha256": "d7cb28bf4bd570437c933eef97a7ced7cdd51cf5b1eee9de34d22b71f92fa3f6",
+      "git_blob": "dec8c3ab2fe0c08aedefa6e1f30d80a4edadfea7"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_9.png",
+      "bytes": 38205,
+      "sha256": "086125d14dca82b508632fdeac41fc8437c88b5a46080034c79a18cc89abbdb2",
+      "git_blob": "a1b15046c9da4f27381789b522cde6ca26ad9311"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_draw_two.png",
+      "bytes": 38290,
+      "sha256": "587e6ce000c2a0442b611c06e9f0493a8467d9f92388717bfc0c6e5f89bf0bab",
+      "git_blob": "08f5883a10d5b1d12b8e0998c7a290d4e7838ef0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_reverse.png",
+      "bytes": 42791,
+      "sha256": "32ed7ba2019ffe43c04dd10a9c802fbe7444ac18c06c4b46c78602c3e59efeeb",
+      "git_blob": "ac6fc28206bf85f645a1c3f50301a55cc856faa9"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_skip.png",
+      "bytes": 39288,
+      "sha256": "e833e8962fe19258c8a5dd0d38f7e9596ee9d164b15e29621252528c5647a9e0",
+      "git_blob": "5472e39c9dd2224ac2c12d45199a83b8ce33af9a"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_think_pause.png",
+      "bytes": 39963,
+      "sha256": "532a54bd3dc3bbf1730954bfc7efcb29ecde118eb3972850adf2e741d4cdd405",
+      "git_blob": "90900ed7d5f553af000e24ccf36f8fb9637932d7"
+    },
+    {
+      "path": "cards-cup/trophy.png",
+      "bytes": 114224,
+      "sha256": "2980ad5282394c84465073427f2f3f99a64e7adb89f8ce648e6e5bd704ad56c4",
+      "git_blob": "a9b161b831998ac6150d632b77b2eef5adbb7d31"
+    },
+    {
+      "path": "cards-memory/cards_overview_fold.png",
+      "bytes": 757959,
+      "sha256": "ea91732fff08fd4543358eaf813433c127bdbe6a846ad9082616adbba78d7ca3",
+      "git_blob": "03ba56eecda95f3c0dffce1c01012065e5d07fda"
+    },
+    {
+      "path": "cards-memory/cards_overview_landscape.png",
+      "bytes": 545610,
+      "sha256": "ce0f8a8dbc7a229f130d89afff6e7ef1fb86c36c7fc18a7a95c7731246de63d8",
+      "git_blob": "74dff0f1cc548ffdbf230f4461e5b061e83bcec0"
+    },
+    {
+      "path": "cards-memory/cards_overview_phone.png",
+      "bytes": 575163,
+      "sha256": "40782edc901b24c8edd1598901e4c2fe550d1435a4a22b7342c0a48e5b853adb",
+      "git_blob": "d4b3e66a8912d13b208062f0428bfa89da9ba6cd"
+    },
+    {
+      "path": "cards-memory/memory_flipped_phone.png",
+      "bytes": 596968,
+      "sha256": "013e9a8281061dbee3f7e46ff3f2c94eccaa9439beda19377b6c7f6d0e9c16a7",
+      "git_blob": "51293d77ae58d0c1fbf729b5916989bb94b062ea"
+    },
+    {
+      "path": "cards-memory/memory_matched_phone.png",
+      "bytes": 583339,
+      "sha256": "6ef39975aef1e941d54efc45a97efe4a56926d741b16ee896d43e9b509a3ffe0",
+      "git_blob": "8724410f01443264a8c68a76b7a2b61d9e08ac8a"
+    },
+    {
+      "path": "cards-memory/memory_overview_fold.png",
+      "bytes": 704006,
+      "sha256": "47cd9fe20fdbcc0feaac565db3527583b0cfef7f1e45c8f19ae581a671e7f349",
+      "git_blob": "7840d49162ae661d4b84af3caed5851ab3b07b57"
+    },
+    {
+      "path": "cards-memory/memory_overview_leicht.png",
+      "bytes": 571834,
+      "sha256": "4c860d87b761a38e748678ad825701b4c8e6011ff4965184656a825af114662c",
+      "git_blob": "b439133da4bbfb5eabf9507987fbc3f2440c5b8a"
+    },
+    {
+      "path": "cards-memory/memory_overview_phone.png",
+      "bytes": 610082,
+      "sha256": "4ee1e9c8b515e25387fb015dfa0ba58127a7ee5edf5265fe47b08767831d1105",
+      "git_blob": "669e86dd634037c2a69e6be4ea3b267a214b9896"
+    },
+    {
+      "path": "cards-opponents/cards_board_fold.png",
+      "bytes": 757959,
+      "sha256": "ea91732fff08fd4543358eaf813433c127bdbe6a846ad9082616adbba78d7ca3",
+      "git_blob": "03ba56eecda95f3c0dffce1c01012065e5d07fda"
+    },
+    {
+      "path": "cards-opponents/cards_board_phone.png",
+      "bytes": 575163,
+      "sha256": "40782edc901b24c8edd1598901e4c2fe550d1435a4a22b7342c0a48e5b853adb",
+      "git_blob": "d4b3e66a8912d13b208062f0428bfa89da9ba6cd"
+    },
+    {
+      "path": "cards-opponents/cards_opponent_fold.png",
+      "bytes": 167225,
+      "sha256": "4cf9541cfcb02d372889f3cbd4977e47f7f545b253e9f110a597279704b3c771",
+      "git_blob": "5c042d1e9433ceef37080d870bc20bd78b93050f"
+    },
+    {
+      "path": "cards-opponents/cards_opponent_phone.png",
+      "bytes": 147429,
+      "sha256": "c85e74aad3c0ae5c041146e1285157882b0e289e3d0358e7caeaf3ba6f277775",
+      "git_blob": "89f603596fca56aa769a92ed7cba3b1320a1d0a8"
+    },
+    {
+      "path": "companion/fold-target-actual-help.png",
+      "bytes": 785549,
+      "sha256": "6de1b141f7bbe569cbcefc245cc47418e452d84c187525028d2d0ec0de3e4b04",
+      "git_blob": "be2ba383e15f174b18b711691bdbb97b4640479c"
+    },
+    {
+      "path": "companion/fold-target-alternative-help.png",
+      "bytes": 782705,
+      "sha256": "77d98863879d648516b8a0fc341807fa23c3ff6b1493e523bbe432c46e60866f",
+      "git_blob": "5b2ac05b7ab42c192abae119c8de4003f5a65f84"
+    },
+    {
+      "path": "companion/fold-target-task.png",
+      "bytes": 795046,
+      "sha256": "ba88b741ae72adf457080c94726ed03421c1948c348a842aa78b29daf367ea89",
+      "git_blob": "a44060bce75f5dc50cf7057eb97f4e2958ca2a11"
+    },
+    {
+      "path": "companion/phone-360x800-actual-help.png",
+      "bytes": 326096,
+      "sha256": "ad306f20a3974a33a2e7c491aa57487d0a55cddf11e880d10f0d8d5d4f3f1f8d",
+      "git_blob": "b30008ebbaad4f3bbc780f69bf69952143a32775"
+    },
+    {
+      "path": "companion/phone-360x800-alternative-help.png",
+      "bytes": 286188,
+      "sha256": "de1cd337f3eec0891c3d97c39b91ba45a5f8b959e53f1ff938ffbe86688d3dfb",
+      "git_blob": "b6e759379d7b8a9ed07f28b2d8ff75dfdedba358"
+    },
+    {
+      "path": "companion/phone-360x800-task.png",
+      "bytes": 333326,
+      "sha256": "a93c36d99f525c54d82045dba134096fb57e33edf4cd1507f4661483aa0e3165",
+      "git_blob": "86d6b28e566a2b8728b107e9072d48f68d60b195"
+    },
+    {
+      "path": "flutter-machine.jsonl",
+      "bytes": 1746598,
+      "sha256": "64879cdd51ce7aaa5745446bbe66fadea6ba95b483ac82c73ea096248de13bc3",
+      "git_blob": "c417a39e91478c33abb28467ceb62f95e71c6227"
+    },
+    {
+      "path": "games/cards_jump_fold.png",
+      "bytes": 58188,
+      "sha256": "53d8b222063f726c2f3a20f4fe828c9314d8e7cdc6f87f9e41d96e962196d6eb",
+      "git_blob": "b2233a0c57f2cb824cd49a92f141f3502c0d0939"
+    },
+    {
+      "path": "games/cards_jump_phone.png",
+      "bytes": 56243,
+      "sha256": "efc4cf11fb5e85ee82b91e76ab5c660a1c972e040e8bd4d1adb378a715e96121",
+      "git_blob": "486edf82b1e73afdf1327f2b75196a84593dfb4b"
+    },
+    {
+      "path": "games/cards_overview_fold.png",
+      "bytes": 758022,
+      "sha256": "42a90e4560a92e0f6280288b23c1cdc07ecd9f6d88123785a93af69544c552a3",
+      "git_blob": "0db43cd3c651bad68e3560ee402f26f7e7cb8f15"
+    },
+    {
+      "path": "games/cards_overview_phone.png",
+      "bytes": 575301,
+      "sha256": "b5a5b4e47768d654f8f7285c7a5ebf1de96e8fe7f899ac7fe1d8ab746923c5e8",
+      "git_blob": "326ca98de36406ffc528f997da1e4f0a518938bd"
+    },
+    {
+      "path": "games/cards_summary_fold.png",
+      "bytes": 273111,
+      "sha256": "44f57b27d817839a2ea3acd980c6992d7d6aecbc716568086ff49e1bafb7c858",
+      "git_blob": "63a941cd3845a55f98d16e2754e738e23f820061"
+    },
+    {
+      "path": "games/cards_summary_phone.png",
+      "bytes": 223771,
+      "sha256": "1c88902becff9dd3e2fe4342fc72c7abf9ee4058fc03f1ceb0269c1ea3cfeefb",
+      "git_blob": "d1cb1f4a298293128674c36ed81cd3ce1d0a90b7"
+    },
+    {
+      "path": "games/connect_overview_fold.png",
+      "bytes": 319333,
+      "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466",
+      "git_blob": "830eedd4fdca5988e34a1c80d203721f6316688d"
+    },
+    {
+      "path": "games/connect_overview_phone.png",
+      "bytes": 550975,
+      "sha256": "1acbe35fa11eefe64a7a98a1436b81526e2552ee2daa490c6b1264f06aff80ba",
+      "git_blob": "ae7a3808bd66e52e6afa436793312df2edceaf92"
+    },
+    {
+      "path": "games/connect_winglow_fold.png",
+      "bytes": 319333,
+      "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466",
+      "git_blob": "830eedd4fdca5988e34a1c80d203721f6316688d"
+    },
+    {
+      "path": "games/connect_winglow_phone.png",
+      "bytes": 275822,
+      "sha256": "57e3f388827b727d2deae33fd0009bbdb25c3ccb89fa5a79f44cc42d984dce05",
+      "git_blob": "9ea484eca7e3b41894151e40faccc97603c01534"
+    },
+    {
+      "path": "games/memory_combo_fold.png",
+      "bytes": 762130,
+      "sha256": "8e642be238f3b23e6b67d376a162d01b12641e17159b63fd2071eb76ca25defb",
+      "git_blob": "698561880273f552fb4f1b575fc72cd5455d8195"
+    },
+    {
+      "path": "games/memory_combo_phone.png",
+      "bytes": 565894,
+      "sha256": "a455da7b12242522cda09769d9f5411f42588458b5d1cd5629d70db387d68411",
+      "git_blob": "5145e9493bed2e75bc4f3a8778c7d9a35bb73a5e"
+    },
+    {
+      "path": "games/memory_overview_fold.png",
+      "bytes": 704006,
+      "sha256": "47cd9fe20fdbcc0feaac565db3527583b0cfef7f1e45c8f19ae581a671e7f349",
+      "git_blob": "7840d49162ae661d4b84af3caed5851ab3b07b57"
+    },
+    {
+      "path": "games/memory_overview_phone.png",
+      "bytes": 610082,
+      "sha256": "4ee1e9c8b515e25387fb015dfa0ba58127a7ee5edf5265fe47b08767831d1105",
+      "git_blob": "669e86dd634037c2a69e6be4ea3b267a214b9896"
+    },
+    {
+      "path": "games/quiz_overview_fold.png",
+      "bytes": 913490,
+      "sha256": "56a1238543e98e3cd9caf7bf3c2ce1d26986bd4a6396d0bffd0dd1121041e9c3",
+      "git_blob": "56544a5dfe0e3a000704b2876e938851199ac59a"
+    },
+    {
+      "path": "games/quiz_overview_phone.png",
+      "bytes": 715193,
+      "sha256": "09e92ad6b3aa53499ec6759b73f2fd55ed8050a7924d7cee4515f7201d261b32",
+      "git_blob": "1fd235cc3e58a23992452a4863d83fcf91d251b3"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0000.png",
+      "bytes": 680227,
+      "sha256": "3a9a12d3eec25dc6b1ae6c98ecf3af98fc0168eb039063c519c54c93d0bab823",
+      "git_blob": "24312ed9d89cf47d8712fcfa2c01d6f28c257a99"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0001.png",
+      "bytes": 681481,
+      "sha256": "b158acf8268dbc9169f22be6c9fbd17f543c7d1a0051e876fc85661fd296eb3e",
+      "git_blob": "1d88df85316fa54019d1d45c671d95f646058a22"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0002.png",
+      "bytes": 688038,
+      "sha256": "79d7e43e4cd458a7983f487c24d5d83fa824cc003712b2f517d51aa1afdcb178",
+      "git_blob": "3137db74fe9269f0b9938b7ce5933b3b35f5ac56"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0003.png",
+      "bytes": 682196,
+      "sha256": "a7e9bcc1d2b28efaa2768092938ff0ab99268ee39fbd350099884a441c2a2c24",
+      "git_blob": "ef8934936b90b9eece5ea2306cd785b166b6af03"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0004.png",
+      "bytes": 680790,
+      "sha256": "1e4c31b6e556726860e762d5099c688def2d4709ac2f8183d282b3ff687a4994",
+      "git_blob": "c93d627351fc7fa3a47dd21cbb4a9fd8a551f4e4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0005.png",
+      "bytes": 679546,
+      "sha256": "290e2f39ee91e764a8bb3bec773d968248d0baacbdcf52e8b16f4fbca7f69d1c",
+      "git_blob": "1668147d9cf7ad68dd137227b7711f7726ed74fc"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0006.png",
+      "bytes": 679657,
+      "sha256": "e745f991bf38c96c034d4a29d4dec28ec2225a3a36b1c63915800103f69abe60",
+      "git_blob": "6e777b32d2ec3b72eefa80149e0f6f684ac3fad0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0007.png",
+      "bytes": 680010,
+      "sha256": "4162be3e34bc63091760be34ba9784de81cab6dc9e6f4dfec0080c0f9ce0a66e",
+      "git_blob": "40c52d0897c452a74309fa9d0472ba0b063bccb4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0008.png",
+      "bytes": 680108,
+      "sha256": "9e0aa172c715601832762dacd8c2b02bd8b46c55f3b0bdfd4480342bdd4bb12d",
+      "git_blob": "bfb477a851f1bef4037db11cfdb2269631b6d0a8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0009.png",
+      "bytes": 679804,
+      "sha256": "65d30367d2917b358cbc0b36c2e3e5c2c1586b4ad447ed2bc6840c7e1fb7652c",
+      "git_blob": "29447802fef506809570f03167e22c6b6e322e7c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0010.png",
+      "bytes": 680075,
+      "sha256": "ca2657ce2040d5381ea09af180da54744530c389a0d456a2189d4778a45e9e28",
+      "git_blob": "c1a01f5a7940b934d5f67c66d6361050613783c2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0011.png",
+      "bytes": 680627,
+      "sha256": "fdb876ab820f6bc80a3c4261c2fe4f01192bd55a50d73c90ca595dd2a7ced850",
+      "git_blob": "102757b0138412162fdf7051dbfb9fe725bad629"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0012.png",
+      "bytes": 680015,
+      "sha256": "3d296db4bf16aadf58948f7b15b9435163a1a68069d6157fe178161f09bc6ed3",
+      "git_blob": "50fdb2e4ae5b1c2a3b7cf7461bf6661149c8235d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0013.png",
+      "bytes": 680355,
+      "sha256": "e41bf107b1be35ad5a65eec7434cba1a46b3d77c53fdf19fa40786bf14b04d49",
+      "git_blob": "74852be6da98aab67f576e79eb3d355c2f0f495f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0014.png",
+      "bytes": 680255,
+      "sha256": "77b12be145a9de4ecde77a02a572ad324265ab599cf2944232394d8b534d50d8",
+      "git_blob": "0939e703ea07aa627742b0ca1f40439e5fd2e925"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0015.png",
+      "bytes": 679705,
+      "sha256": "450fd8c140e14a7a2469dd040bbcdb24c3e6e8b0d68a32aa408ad7211c6ce57c",
+      "git_blob": "af08ebe97e4d99cf90451a57ec7ca5170b8ce3ef"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0016.png",
+      "bytes": 680273,
+      "sha256": "9723d0afdb111dbd47b1cac0d9509f6a67f0dd45276e30cc5d9526bc94496705",
+      "git_blob": "676e394b868e9c99d1fb433edd35f08affb2874a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0017.png",
+      "bytes": 680279,
+      "sha256": "b3dc3637b2098be829b4fd325e0b591e62b6a45d97c23649e2a02384eb58a31f",
+      "git_blob": "fe9a103c3d4c39f76811ea73148cece29acd58ea"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0018.png",
+      "bytes": 679994,
+      "sha256": "4ede88a75c01b6a69e780ffb338fbd53f99c35329695ab86aa295343e8e22c49",
+      "git_blob": "5115750a0b24555d5aab912bbd9422b992ecc8fe"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0020.png",
+      "bytes": 679884,
+      "sha256": "782ac04bb8919fd74f314b43c15ca1d1f7e3c44be7fcd52e2b193807136ebb3a",
+      "git_blob": "adc79e3d2e50eab7e05db74f44aabe514945a743"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0019.png",
+      "bytes": 679814,
+      "sha256": "a983ad890fa3aa5c468cf2c98f28c1e1878f9809e2d8aec2233503582fb2b600",
+      "git_blob": "9704030949d0ee11f1543ab52465b616f717d508"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0021.png",
+      "bytes": 679648,
+      "sha256": "9d131ec76fb08462edca523839ec7797c266755ff4d5c831392eac4797915caa",
+      "git_blob": "aaf5107bccf7d0f86e14f027698063cd6a478cc7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0022.png",
+      "bytes": 679261,
+      "sha256": "bcabf7ba5a825175afb72a3a9ae5d01568000959ca9540c2dd7a3c1f90421ea4",
+      "git_blob": "73fa140b4293b9c8809bfe3722ba0d35a967cacd"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0023.png",
+      "bytes": 679761,
+      "sha256": "33cf2ad9531fbf1910f3c644ba238551743b67e87a6827510f553486ab9822e2",
+      "git_blob": "2f5bf90dfb9479f081d0758cd88c1c21347f364b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0024.png",
+      "bytes": 679924,
+      "sha256": "c9ccaeae7227802342a7273b97ac178a57bb6741559fa49356d6118f95f1b3c9",
+      "git_blob": "5d973bb86f4aa17ef9ffa2d22b4432888fcd3fbc"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0025.png",
+      "bytes": 679799,
+      "sha256": "ed89211484769ca053aff7feb1e4d045478caf6177231b6c1752dbf414a760ce",
+      "git_blob": "da4830e974ba9e6d081165eed41cdae9c6143543"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0026.png",
+      "bytes": 679779,
+      "sha256": "7221012992dd6f5d230da603b4aee4fa5a23411768bdc7743a7062275d6f8c57",
+      "git_blob": "91044bfdd580ae48ad33dfa8279e386676ca49d6"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0027.png",
+      "bytes": 679609,
+      "sha256": "a36558ccdde54fbb88a1158f3f8b01c3ab7b8206e42e1e41a7162d483bb0d885",
+      "git_blob": "f2df8a8be449dc4a8764c14111314ebc56b42771"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0028.png",
+      "bytes": 679416,
+      "sha256": "41a8a9d7341414f3abae015e40145b64bd561d00bce4ee0a50572a8c52478bd6",
+      "git_blob": "d3c11a89f2c6f0838de45acf00a30d16c90dbf51"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0029.png",
+      "bytes": 679034,
+      "sha256": "c18a67d79884e31c2f0db89ea1ad2b4a6037240fce185d393d2cbd5018de39eb",
+      "git_blob": "851d249f471ead5a8a3be79d24fd9390cce82390"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0030.png",
+      "bytes": 678857,
+      "sha256": "48d1162cd5e9ebd4c6992989c0d0ed6b809b95bb33f2c3b131ebec58c6ea23bf",
+      "git_blob": "33a1e50bf3d1b44f98f4df5bad8088d420d9aa97"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0031.png",
+      "bytes": 678970,
+      "sha256": "03969edfed8ab9c93ca417250865c5f63691f68f14c8e3e17594985e6fdac3e8",
+      "git_blob": "c8b7be049222b3cca97e7fd37c01cfbe7a87079d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0032.png",
+      "bytes": 679181,
+      "sha256": "b0d74e9275ade1400f5297c636524b067744aeb6bec4437356a065118d31f643",
+      "git_blob": "312bcd42796068ef8dec8109f61558b1641c833b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0033.png",
+      "bytes": 679502,
+      "sha256": "f25d413cb999bb02242a25db7a38634afdddefff26e9af9e4470ed63822940c9",
+      "git_blob": "b5abe0b6f5ba60076701026b5ab858606a8905eb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0034.png",
+      "bytes": 679778,
+      "sha256": "f2f07e0a70eca603f9b8a70a884a917f8c6cf49afb384409bbd230051dea5f5d",
+      "git_blob": "14f3e495542c7dbbe1ce8ef63a84fc1492e3ba21"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0035.png",
+      "bytes": 679130,
+      "sha256": "55da43f00dadda62cd2f5aae521c1e4447a74d07e44d91e2c24ad57fa90a3813",
+      "git_blob": "00391693b15b30229782183b584476ecb8de79c0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0036.png",
+      "bytes": 679512,
+      "sha256": "d4fec82a323106692881e25447ed8412f2b205277188c4d71d43d400afd97299",
+      "git_blob": "46c7dae8ad90056f20b000dccf2d5d19096eb3ec"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0037.png",
+      "bytes": 679393,
+      "sha256": "577d6375d6ae3fed236d6f6891e8f4b125982363e6ddfb59c90b24754a77b662",
+      "git_blob": "e8a615111475b075f946f0f3736c8f7a0ba8c4fd"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0038.png",
+      "bytes": 679425,
+      "sha256": "f52006a437a921444cf9e3fe508344942437f0b3172e08b80a09ac8b63960998",
+      "git_blob": "edfdd16c60ba0e9e110f02a0bdb59fa8226a3fb5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0039.png",
+      "bytes": 679653,
+      "sha256": "23ebd3780fb3e18df14daa7d7c53922fe7b6ab65022fac97b55d31af8032a02f",
+      "git_blob": "4e19f1ec81485f7172bb4b2ecd40fbb03a7a916a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0040.png",
+      "bytes": 679493,
+      "sha256": "8a5c4948e2c06f8f7d1cd27f5a88eba927616969256b95a09eb476a55894af91",
+      "git_blob": "b8bf5b21f28e390f08d4c1581f7423d9ea2bcb56"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0041.png",
+      "bytes": 679179,
+      "sha256": "f2aad4a4773d0bc421c9abd55adb7150bde975670bd166bddbf79e5345b16254",
+      "git_blob": "186f5b651b505e029d6a9d9df005174af5c6d496"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0042.png",
+      "bytes": 679199,
+      "sha256": "fc62be9216ab3529dac3257bf19b35a2545cfb000a3f4a2e98b384d9be5f8cc4",
+      "git_blob": "aa4b34d8c42a146c567fbf7893ab3156b91eee2e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0043.png",
+      "bytes": 679002,
+      "sha256": "1d0dd69e7d1acea57210bba0d27b7455630a893003b103cd87e28acc710da61f",
+      "git_blob": "59af241505ca7114149fdd5f12cfb2b07ef5f906"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0044.png",
+      "bytes": 679468,
+      "sha256": "ff368f05ae14e28445e2effc936a8430f62f349bdd7b0591d5c97004d75b9783",
+      "git_blob": "9cdd19f0e1ee4953b9195d31b29b6a6b1644a4e2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0045.png",
+      "bytes": 679057,
+      "sha256": "bc4df788cb6d132798bb90f076d042d5e200d0780f6dae8ce091f335fe289baa",
+      "git_blob": "e379710a9f165e72991506def440061986523c25"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0046.png",
+      "bytes": 679014,
+      "sha256": "aad5914fcb00fbfaf44f20df5daf23166f5e16acbc1228662f77f942eb46c333",
+      "git_blob": "3229155fa0ace9452584cd1aa4274c835b6f20be"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0047.png",
+      "bytes": 679502,
+      "sha256": "02e9c4551c7256b7dcfa30209198eb66a32cc1726c563e12f0c47dea4e47243a",
+      "git_blob": "91c316dc23861f20167ce8c4cc3aeb65159c9a8e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0048.png",
+      "bytes": 679707,
+      "sha256": "3fc48be68d79d3a5f79bf1d7df207be0211c87a68de63364f0992ad7e646b0e0",
+      "git_blob": "c0eaf0742c3e77843236288f8094db53b58a3184"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0049.png",
+      "bytes": 679697,
+      "sha256": "f7925b979b50c259494266caa4687c4b231c26a4f971f98174558332efc83ca6",
+      "git_blob": "d2c4b9b648eefcc20d25ae4ca9127deee7217a2d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0050.png",
+      "bytes": 679483,
+      "sha256": "f41ad71f8e7be009a327584a703ef573021ab505596b8e919595076324714def",
+      "git_blob": "dae9da6d2436cc0afd71982b87d280351266ddbb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0051.png",
+      "bytes": 679679,
+      "sha256": "d6c47dafb2ea531448b432ddf70fa969404381607d8191b90d130241e370fe08",
+      "git_blob": "4c154fd68b9494fd26b4e4abf644585a44cff96e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0052.png",
+      "bytes": 679438,
+      "sha256": "4606e171d5a5b8304c0600800b9de2e8e71542ee34e3b891e5ef197b33d6cca5",
+      "git_blob": "9ad00fedfb5ad17ad5bec4285af7ba21d8ca60a8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0053.png",
+      "bytes": 679339,
+      "sha256": "e61fe11ad64358a8b2a66516ecaeda7ac5f97764234de7c38f22d31e76f34401",
+      "git_blob": "c715dc63fe262cb57af8ab66e4e6f69f86178fae"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0054.png",
+      "bytes": 679655,
+      "sha256": "17fb073f347775d056d8d42e5705decac5c273875e004c4fa2c9b5db7ffcc36f",
+      "git_blob": "16962ba721a54cc85e295700cbfa1532a1fc37e7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0055.png",
+      "bytes": 679226,
+      "sha256": "d02bca7797362d16e6cefb0de747999ad40f0099a72147612ef692833d34ff2f",
+      "git_blob": "782abca711b4f4f1b2f25f4d85e7a6651b3a808d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0056.png",
+      "bytes": 679146,
+      "sha256": "f9b45f8baa6b648fc5a20741c40b019a85b3760cacf5d4af840b8f86a08a3256",
+      "git_blob": "cdb4794a543997407246217141b6884449f5603c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0057.png",
+      "bytes": 679355,
+      "sha256": "92b016caece6aeadad0a85c6eb83ea0a9296acc3d6f5167784e49fd4b86d7f38",
+      "git_blob": "6048fa9ff1a3075fa8e88448cdb510bcf90fd949"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0059.png",
+      "bytes": 681220,
+      "sha256": "b279f209e1d5a38234055822a4e5ca4f4aae4b0ede3dcdcf8c0d637119715a37",
+      "git_blob": "1019eb1bffb0e0293550db327c1b1f68d802c7e9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0058.png",
+      "bytes": 681330,
+      "sha256": "01d82503007c5061bdfd53fe81932b728c7fcc4d6860270fbe62b384f720c3f8",
+      "git_blob": "20aa4cffe6a591be32c14b69666edd07d40347b9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0060.png",
+      "bytes": 681313,
+      "sha256": "1d17339a859d770cb87e996ff3f43c17d0abe8f1b35ee4a762a1a5a1c862cd53",
+      "git_blob": "46aed4fc30021ba657e68a7836617571cc95ddf5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0061.png",
+      "bytes": 681303,
+      "sha256": "79cb2634dff60cca567d3ffeba269ac3f9ca35ace28574c0fdf11625cb70585e",
+      "git_blob": "5a3d1822a0e24490e31ffd3977584256c2784744"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0062.png",
+      "bytes": 681636,
+      "sha256": "edc94bdf59d2f43c858074a858dcda2865752ecec8919d7b356264d869c24b99",
+      "git_blob": "0c66a5125e6acabbe3da7606d86fca30998876ac"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0063.png",
+      "bytes": 681705,
+      "sha256": "880b4d70295de980f60cbe3bd7df0875fcdf7715c40c17f6ca2080ddb2468c82",
+      "git_blob": "b5e52388fb5485be0d25ad90a64f98f6c28bdeda"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0064.png",
+      "bytes": 681455,
+      "sha256": "5a13e915bdfc50557924b72c970c3ddc48c20f292d5879aad1ce4f89af39d1ab",
+      "git_blob": "b6fc7af8a44348b341c9b5f2562c862f979e06a6"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0065.png",
+      "bytes": 682195,
+      "sha256": "1f14fa10067e3a7931e4fb8216516ffdf5b6a1e4c1d030ab43c27c97e8df14b2",
+      "git_blob": "15d11fe9cca509c2ae3c9503f6dff96df7c8a949"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0066.png",
+      "bytes": 681344,
+      "sha256": "8626f59afba02ebc9eade1bf14983b761b66ef8d4500d544f6183d1c92164501",
+      "git_blob": "1eb0c040b1cd15b8beb005d207a5a75377f77389"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0067.png",
+      "bytes": 681003,
+      "sha256": "3bbb0a2571aa91d10340353dc3907c91016a3aeb51c96d43d9426798c73dd9d1",
+      "git_blob": "31583d9bd7580a9373208fa82418c04e7c7fdc1f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0068.png",
+      "bytes": 681536,
+      "sha256": "8bc68c5f01cdcb35c1d28cff5a03dac47922942f3c8e30fc3570d4e362db568c",
+      "git_blob": "6e4227b6674ea73002938cc05bb1ba97354b435e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0069.png",
+      "bytes": 681743,
+      "sha256": "bf1c2889496571a23fe54cf3460496ea3bf9971d8723195f4a57c49801b142ee",
+      "git_blob": "22c0cb53cef907cf81cdfba240e34e60ed9184da"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0070.png",
+      "bytes": 681538,
+      "sha256": "1aee8b3443a76f264dd9aeca70371756ee92d36ccf0c879b49919206b950b882",
+      "git_blob": "f16c011b94c914941281dfe3da12c6a033b1ce61"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0071.png",
+      "bytes": 681546,
+      "sha256": "84f95b6fffda31dfc5b602cc0756e6a980adb0641642336fdc9bdce1f10b92cd",
+      "git_blob": "bfe46d8c08ef1fe45e265047e357c33a516b0318"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0073.png",
+      "bytes": 682417,
+      "sha256": "eaa5704420628608ba9544081f062cc52f14d03db2e4fa863464d6ff2438cf2a",
+      "git_blob": "66e395f57cafbbb13a665e8a007e8eef286be5da"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0072.png",
+      "bytes": 681833,
+      "sha256": "668c7339900a2d2e6c13f88f77c46f972fd9fa708e3de54c30591edb704ddf10",
+      "git_blob": "87d4177a059fc45556474667dd8c28c67b4d0dc9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0074.png",
+      "bytes": 682256,
+      "sha256": "2df9dce6ac171c69d8543308e91dbe06c85a206dc151e99bfe24a9ac49f5392a",
+      "git_blob": "32e08d4a13472c7a788b68c5c139b0d4fef44740"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0075.png",
+      "bytes": 682088,
+      "sha256": "def4c2f5588efad0fe2853dd6ede34109a12a5e7dbc8bca16e4bbcc00c73e24b",
+      "git_blob": "65d8c19822503f9e30755478d3250687a46efab9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0076.png",
+      "bytes": 682199,
+      "sha256": "71cadc514a01e9f2092a96f2681546e02aa41ade4e78ca2c2a12ffd9a15beae5",
+      "git_blob": "156a7fc4602d864b2e4cd44cfdd18ae7a839ca81"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0077.png",
+      "bytes": 681530,
+      "sha256": "457a2485d49ba76d01240db7f57a30b8d4ffba94175b3140362b715984879aae",
+      "git_blob": "502f479c9bc295cc256c70191fa11037be545110"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0078.png",
+      "bytes": 682064,
+      "sha256": "bcd1973506d95f898757e27b864548599e34c94e4a28d37cc300a9805f9ada5b",
+      "git_blob": "eeb190c3df3b8f5e7ac6a4bca33e2c2cd03915b0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0079.png",
+      "bytes": 682190,
+      "sha256": "6254299d2ff417a52312555353dfa5ac49aeabd7643ac1891938d2e455767276",
+      "git_blob": "de73b5b9f92d9ba47c6a6c3a1a88162e82660506"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0081.png",
+      "bytes": 681156,
+      "sha256": "07e02435fd3eb31ff1f2d0a02f7224342d061b15aeb3bb94f05585964ac27b8b",
+      "git_blob": "2a539469f7aee355dcb032900652103b9680c404"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0082.png",
+      "bytes": 681790,
+      "sha256": "b85ea3f72d36bcf34e1c7fa7359211584900a5a520daf5aa018e3b4ad1b2fb50",
+      "git_blob": "4a31dc40e5cf4f5b2e1bd994b4af44de0e2d8071"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0080.png",
+      "bytes": 680583,
+      "sha256": "4297aaa71f5e69b4e002f0b8c4548fa2e984b3e8415c9159269b4ac4c8fc4643",
+      "git_blob": "829608bfb5acfbbb08cc47496c3a7dcc8331e909"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0083.png",
+      "bytes": 681567,
+      "sha256": "fe59ce7090ec931e27e4be4a458ecf00e35708043529aca33e26b472e8b8cd5a",
+      "git_blob": "5a06de47cd0a742b5792f52d4d27af408185e409"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0084.png",
+      "bytes": 681141,
+      "sha256": "a3112e5e04e1771677860dcda34711c8163001415ccd9b95c6a8664ab8e3b61b",
+      "git_blob": "fce34d120084278a6f1422699dc7edc5dedbd74e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0085.png",
+      "bytes": 681367,
+      "sha256": "c5c108bbf307f57b3ed9bca5daa249482f3fc4fc6d664351c4b21827b7432b66",
+      "git_blob": "b830868c8d559d0317110bb78c6958d850bdecb0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0086.png",
+      "bytes": 681797,
+      "sha256": "2f244a7ef5440f49086fd03798a2250a862929892daccade09c9f12d77ca5eda",
+      "git_blob": "3e6f2d2407154f452c46f7f8d2b8d0f8a177b66d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0087.png",
+      "bytes": 681210,
+      "sha256": "a571eba95ac9b9ee6d7a249213d96263a548f3bab3a96be3832fbc067bfce95d",
+      "git_blob": "661bfdc2cfcb4cdd0a16dcce74129d1379044b3a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0088.png",
+      "bytes": 681114,
+      "sha256": "0b14f90fce721a9c30dd7d54d7e6e3f2a251e11a64a604a4634e43a5b14b008d",
+      "git_blob": "0443b54863d9ce66c0f96d9fe8276832f9d75abe"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0089.png",
+      "bytes": 681346,
+      "sha256": "df640ac14e16db19490148da4ae9b73443255d01b9f817abd8d766705511eae1",
+      "git_blob": "53d7c963805b199740d40cf4a49499936aee4b3f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0090.png",
+      "bytes": 681301,
+      "sha256": "8bb00f4ddcd78994bf5bdc6b24dfb2c8ea971fec5b0be8b2e2809064b05b365c",
+      "git_blob": "0e063fd9d804feb510a2c5a404cc629effec407d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0091.png",
+      "bytes": 681502,
+      "sha256": "6ca549b140fb9dfd8b93622dc3e2ad9a19254b0d5fbc968104e1d2ad27e53da1",
+      "git_blob": "d9084bdcf981d93bfd7c10b8770a7fa1b8c41c8a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0092.png",
+      "bytes": 681150,
+      "sha256": "02ce45f31adf48b0c1650c9cae33acdf23962029b2d735fd6cd19025917d5386",
+      "git_blob": "cc20064752cfe4659d1eb37caf544a8ccf63344e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0093.png",
+      "bytes": 680989,
+      "sha256": "4ab213c76a247d93bba3713deea9ab7d14f25de92ff7ce970085e0cf0831021b",
+      "git_blob": "8e41a0217636eaac57d2963eb31023b31e8cf317"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0094.png",
+      "bytes": 681096,
+      "sha256": "4de38870663071c1ec603721a1fc02d4ee2682c7aa77a2bda19c77cc84dfffd4",
+      "git_blob": "e9f6322e53ea934c66b9e708f94e056436415f0a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0095.png",
+      "bytes": 680996,
+      "sha256": "38505bec55875f70cd047b8ab1a038908d5532ee2f2f399a198a2f859bbb986c",
+      "git_blob": "f5503a6f42b3d0a2e3e71058f2346cf0b14f43d4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0096.png",
+      "bytes": 681828,
+      "sha256": "0c35184d11d3c3a5d5d93cd199e856200728824298a36015bb0215cfc621d9ab",
+      "git_blob": "51d59b6bbc81a65813335892837e0c7493a70cca"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0097.png",
+      "bytes": 681975,
+      "sha256": "3d8bb5e6120a2b60d70f95d3dcf24c660599b50c0fb6a9196591645d0fa2b539",
+      "git_blob": "479387dff49d0251faa1311454b84192acc231cd"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0098.png",
+      "bytes": 681748,
+      "sha256": "2f4d31fea635145529a43a902b00664d2cc9b6e0acc2a521851d7163aa20f610",
+      "git_blob": "9ede8eb545b790daeb8f6985d3b06ac49d3f51d4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0099.png",
+      "bytes": 681846,
+      "sha256": "0ba15c66217f1d9cc87356f2d66cb80b3afed57f66ddc168733e31cb38d2a3b7",
+      "git_blob": "a2ac59c09d716fc585373aebbbfdedabe3468503"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0100.png",
+      "bytes": 681886,
+      "sha256": "d1a0e16079e9b6fc8ea58c441ff0161efee889d37c5000eedb4e9fabd2602ba5",
+      "git_blob": "f12c226212b0d2aacb3879ea7d29f9867a01b38f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0101.png",
+      "bytes": 681758,
+      "sha256": "dc3a963ed440475cc76e29653fed5cae20702d96938e4a4d1c82432fafb98e76",
+      "git_blob": "345fa1f7b12601f9c51b0f591f2faa94b9ce0911"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0102.png",
+      "bytes": 681680,
+      "sha256": "bac5cde999cc94ed19e02e2bc30df6673737cbefd7b5032b525ba60745ab832f",
+      "git_blob": "370dd39e4a2e79ec93cd980a362cf2b816758437"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0103.png",
+      "bytes": 681243,
+      "sha256": "b808628401cf350cbea39b38c47b628698a499aa6c52a7f7b98cb202399b77dc",
+      "git_blob": "328ae48c38c79869186b0390b24781abd3e60574"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0104.png",
+      "bytes": 681383,
+      "sha256": "e83f79dcf094ba4cb5f7027f99c8e6cb4ddfa0ba2a97c2630b249b169ab48651",
+      "git_blob": "c2894d390bba3d53c22fc7e2ad0154b722bef47e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0105.png",
+      "bytes": 681282,
+      "sha256": "58b563bc95c9605211dfaa009e9bc4bbabbe5b36a3f1235b6b3d7d729c743aa9",
+      "git_blob": "95e65aa66d863bcc5e1c93e11fcc724573b35a1f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0106.png",
+      "bytes": 681356,
+      "sha256": "0ca7ba8d23d6c619027dc67beb29d2583a88aac5535ed042df53097fa79734b2",
+      "git_blob": "53be0461324d68888e09e7b1ad08df4a78d790a5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0107.png",
+      "bytes": 681222,
+      "sha256": "5089cc944ef46f015d27f0f70345598d8c56bf14fa91a449be3b8022eb323dba",
+      "git_blob": "9f4d823cc99ede7f19e6e954c5682138e704060a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0108.png",
+      "bytes": 681162,
+      "sha256": "45d3b73d1cb45be7af07d8f3a656d067f0dc94c138e0b1f91e11eafec1f8ef09",
+      "git_blob": "64f08c6d9bafe8a0da6539788d790d17f1fcac04"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0109.png",
+      "bytes": 681079,
+      "sha256": "6b94c842178b2d14b3afced7d1bfe5a79001c2a74e00efc18b47fed86a33881a",
+      "git_blob": "9a4de118b173e86e00dea8a73a25f79b41375c18"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0110.png",
+      "bytes": 681556,
+      "sha256": "8a21e5b76b12c4be210676bdbd1deb5d841d763db1f51b365d9c755387ba10e7",
+      "git_blob": "877afd2650dd3175344f63f63ed3d23dbe5f6300"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0111.png",
+      "bytes": 681443,
+      "sha256": "a60f18d9b50566ee802c1a81a005972bfc4a30a7c95482d71fb5e57c0335f0e2",
+      "git_blob": "43f1e7a514b68ba15d1d3317d2f7516fc97313cf"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0112.png",
+      "bytes": 681467,
+      "sha256": "393f60064b5bc17df8e605d61eff2a7f24d4420983d4ebd9daf8a0506f0c1d86",
+      "git_blob": "1022c3314f53f3e59272aefcfc5ee1721c2e176e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0113.png",
+      "bytes": 681127,
+      "sha256": "fa457b105b9e0f97300ab73a868a7a40af4d027a8380b595ea23b4350cde445d",
+      "git_blob": "4aff31898002b1d761249f4ab35aedabe88b8715"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0114.png",
+      "bytes": 681068,
+      "sha256": "b0a55db67a12d8e7516653383a968efc024999a9c262ffe8a06b906b93c30561",
+      "git_blob": "9878bd4d224c531d86f6ce2fd69a0b689b3b2d0f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0115.png",
+      "bytes": 680636,
+      "sha256": "f371e2142463acb33b2ca2231905b2971833fca235f26ce1bceafbbdc01cf140",
+      "git_blob": "c37922befd0f766269676cd8461e757393e3b4a8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0116.png",
+      "bytes": 680976,
+      "sha256": "4abdebcd4c0ac96110a52ec4e7f941b8133b73963523afc1a08bc86fb87f790e",
+      "git_blob": "9b35b1c2b564a44b96053bdf713405e3145fea9c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0117.png",
+      "bytes": 681487,
+      "sha256": "f129a5b5c324fc834ce55e5ac0214ed5fea1557d374722d683dc1168a2433f88",
+      "git_blob": "27b84232c728a6b1924a3d0ac6c54b5c768170f0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0118.png",
+      "bytes": 681432,
+      "sha256": "67062e9ee8aa459a8ff83b8c3bc1122d64431927fd80b06b39cd1519337c6732",
+      "git_blob": "c5d333a4a8e79024e5133d6a41c3af3c8f800244"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0119.png",
+      "bytes": 680549,
+      "sha256": "acb0e7debc7a6b6fe9890f6636e26909e605d219cb420ddcc55ce118d65a82bd",
+      "git_blob": "5eb73c343844c72258e6194eb340d27044b79dd0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0120.png",
+      "bytes": 681133,
+      "sha256": "4b3a36fc1646dc38f0f69add72c5ea859c6e7017ef9a84e9a76602cdf7854d81",
+      "git_blob": "f2b62e58d0e42f5082c16b308a1f3f77f9ea508f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0121.png",
+      "bytes": 681404,
+      "sha256": "b194aa8a10a1d9174fc754d4410654eefa68db4eb2d5545244d3367886254ad2",
+      "git_blob": "91a951e043d6f6b27535583ac8df611b933d28d5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0122.png",
+      "bytes": 681077,
+      "sha256": "eea183cf45ca052d83762ca4a4fe8ece7d16eb91560ed837c48a2ef70098a69a",
+      "git_blob": "ba2bc3dc6061f226f1afa2d5abd3c5692635a324"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0123.png",
+      "bytes": 681416,
+      "sha256": "01cee749e7e5ae37b551a9538568da8b4cd134a67caa381e67e436d4504cf30b",
+      "git_blob": "a7fdd18a7219d5f432de24166c20bf91bac5ee7f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0124.png",
+      "bytes": 681757,
+      "sha256": "97d91b14dcbfe46338cc11997189a0d2202df363d091822f9cfa1ef5a00d44b9",
+      "git_blob": "7bdc48f14d10f307b66636e1c50392df23c3fd71"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0125.png",
+      "bytes": 681833,
+      "sha256": "2b4a3b480286bce7e00fb98961b59638f63a185d1c86796b7100e1cfe22c63d7",
+      "git_blob": "8794dccf6360fa16aad2d168d0f082ab99bf2bb7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0126.png",
+      "bytes": 681536,
+      "sha256": "88920cf8041220a7989aa35d5a80db6706bee1988101fc4727ca8f603e90276d",
+      "git_blob": "244a2a697f6431ea6cd967e74b4266ce9591047d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0127.png",
+      "bytes": 681387,
+      "sha256": "ba8cedfa8c2e674bf0ff76c14f9844968eb82b42e01918e81fb15a1df4b634bb",
+      "git_blob": "d3bec15e48a96cc736f865193358ab1d41adac0e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0128.png",
+      "bytes": 680807,
+      "sha256": "b2881fd43eedb47ec815ee0e92627a698ebaaa80d02dd5279163ccfcf2bdbe59",
+      "git_blob": "835fdd6ec085b00c00621d2dc5369055f47ef05a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0129.png",
+      "bytes": 681071,
+      "sha256": "d20d36d2e31117229e97307130375f17078ed13249e6d1bef4e2b648f923952b",
+      "git_blob": "562c852d8ecda026e2d895d9722874de7ead0335"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0130.png",
+      "bytes": 681340,
+      "sha256": "50b632cf537e770895ef926b0e1ea764205df95ea130fab99f996ff0f623ee71",
+      "git_blob": "f3ac80623fdad85f49348a78ebd9c7726b48dc05"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0131.png",
+      "bytes": 679819,
+      "sha256": "0c97c7b1c0eb908943f7061363d988c73dbe8720199f20340bc4a75424f5420c",
+      "git_blob": "124d1c2751f657a1036d7d946562fcf279f3c0f5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0132.png",
+      "bytes": 681129,
+      "sha256": "6beb426069aa5eae609b5b277b692c04d40c1b194293d216063141b36303f65f",
+      "git_blob": "c5b65b72239941277181f5971f070316f62f24d4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0133.png",
+      "bytes": 680880,
+      "sha256": "ab8beaba325e056adb5191586ede176bd572873ad86dafcd5291a23584e175b2",
+      "git_blob": "f8623a4a4a68bb3edbb6197646189e6240aa24bc"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0134.png",
+      "bytes": 681392,
+      "sha256": "8f587fe816bdfcd5e94b82750865a6682538dd071bf72a3408bd80459be098c1",
+      "git_blob": "d23e800f7928b5f71d0c9898b08eaa3703620d2d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0135.png",
+      "bytes": 681710,
+      "sha256": "3ec6af9da71d6e8cba3ba931ba8bb3c41d0ae6c1c6aa646c2f409e7a296a35b4",
+      "git_blob": "a9ac95b9e06c359c7590444faeba7c1d1369e6fa"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0136.png",
+      "bytes": 681188,
+      "sha256": "37ef61d0e5ecd7db6b3c559ca2782e87b4a4711ff181c52bf12ad0f3ee0b8189",
+      "git_blob": "ca2d5d757688a04a6555412182f34616d040c98a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0137.png",
+      "bytes": 681097,
+      "sha256": "260272ac3592a8d91d4d4c79af0d6853353fda1d871fb91d9009adce0c636ab5",
+      "git_blob": "42b6c7c1d33c0dd190959b5716fa62a760a0a27a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0138.png",
+      "bytes": 681087,
+      "sha256": "c78ed388c491ca006d055ce670dba0661040740da32e6af63dedadb7af6e4e7c",
+      "git_blob": "060013248909e8923b15471011cd31929e5b23f2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0139.png",
+      "bytes": 681638,
+      "sha256": "19427cb9c799ff7afedd51dbd166b42ad24f6dde877b72bd9abf83138c9637b2",
+      "git_blob": "7399f933fe3c6379e51555cc8f4faa21231006b6"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0140.png",
+      "bytes": 681406,
+      "sha256": "27ed4620af8c15fbfce5b08501d56309bf7425538e2431b5ff427526bcde1d56",
+      "git_blob": "e7a1544653b9f63262369e9d38cabdcda9582023"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0141.png",
+      "bytes": 681056,
+      "sha256": "96d301beff69724aed19027d68a60e3d01863ab0de6f59ea9a0f218889894a99",
+      "git_blob": "6fb590e9e9fd6a79725be26d4a4c6b4058abef46"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0143.png",
+      "bytes": 681227,
+      "sha256": "1befd1141766c5fac3837c7d45e533dab1151fcd79e4779458c57dfa40d8b2b1",
+      "git_blob": "6172a3eedff500a33c3462a900f9de796d7cb355"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0142.png",
+      "bytes": 681124,
+      "sha256": "0bca8cd63613ffdc265118dce54e36b39ed3c964e0453b98bcc1cde599b17c0e",
+      "git_blob": "555200862eaa428f73a13daa4c99154c73fd390a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0144.png",
+      "bytes": 681442,
+      "sha256": "b7c678f82a014401bf8a2cb944cbbfa8c22e1326703375cbfedc3309eae454e7",
+      "git_blob": "2ba37774a42803b46a55b7e2584c34b93d252149"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0145.png",
+      "bytes": 681079,
+      "sha256": "8d877e29bde285eca762778303be5eebad45d6657069353c9ec9f4b1ba048018",
+      "git_blob": "5fe64215b283744f809f3eee042f137f8cacbeea"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0146.png",
+      "bytes": 680802,
+      "sha256": "5e9c583580bfa8b5c4bcf385b9a3a6989dc55e29eae43bf2d5774cf0fe6122db",
+      "git_blob": "d5b8d41e659dd96df8d43e7bfff8c62a81e5a7e1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0147.png",
+      "bytes": 681264,
+      "sha256": "b207a7ad67f0fc3fd2ff1e4c3a85b7bc776382406ae6d014b214b607e0672799",
+      "git_blob": "2be7f1130649f71c8b2c3c8ee2d4cc002f9e52f8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0148.png",
+      "bytes": 681256,
+      "sha256": "6a5b19516ff55b267907e70be87487ec7d994afca5e571c52117e537803f435a",
+      "git_blob": "3172307194df0ae2e737daf9fc9764a1364100e5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0149.png",
+      "bytes": 680843,
+      "sha256": "47fbb1eade259e690b8bdd72ce3508ebf5f2b4e656c89ede92f40a77c1c9bf65",
+      "git_blob": "d0f9f1cb0d8d85124a270398830fc320d525b31a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0150.png",
+      "bytes": 680795,
+      "sha256": "9b8694508783621b52c80d81c4da43f6efb73e2d1f0041bc42c47573de019269",
+      "git_blob": "2f075ae201ba9d8fac390aeaaabcda96c9be66b0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0151.png",
+      "bytes": 681038,
+      "sha256": "fe35bde242be45472e4915a14c7a5ad25510f5e49d266d4ab3215d798c231003",
+      "git_blob": "661527eef752b254ba81f686ff0272e844c6ac74"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0152.png",
+      "bytes": 680860,
+      "sha256": "eb95a7b0d154ec3b4ecf0c15dbfb39006562cb837c0ef1ba3e9b69723c6fbde9",
+      "git_blob": "b854aa221863ca55917cbba1c63fd404bf029294"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0153.png",
+      "bytes": 681051,
+      "sha256": "27da2fb810035b88def294788a46ea22e6985bc3c86c82e413ce6c2aa3f93a1f",
+      "git_blob": "00a71945400a76c7e299e89baf52f11c677514e8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0154.png",
+      "bytes": 681572,
+      "sha256": "9f78e076d7a0be8eb062a35d68d9dd70442f872370ac50ace7cf435317484de4",
+      "git_blob": "6013141a5ed48b5a1f0a390e4dbb8e995ef5d605"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0155.png",
+      "bytes": 681159,
+      "sha256": "fb148e3bf90d3378e823dc28c5131f96ef8dc2516ab17541441a7ce30b070f54",
+      "git_blob": "fcb03080b7d83526de92a899e55a275e7f4f8572"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0156.png",
+      "bytes": 681273,
+      "sha256": "57a355f8cb55c5e977366697b67c0df464821750268a7ebc5a743195ee769537",
+      "git_blob": "083a7cfb6ef6abd5a5d78499bd780658bc62e7d4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0157.png",
+      "bytes": 681672,
+      "sha256": "55dc560091ca5dd7cafa6434b8fdb19bc4857372148340520a89a00903b1c9d4",
+      "git_blob": "0e6a06b956228441644575f330fd2ac21780337a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0158.png",
+      "bytes": 681107,
+      "sha256": "a335fe429026d81b462a0ceeed16069c9bf35df3b43d855f6ff76706fe852be2",
+      "git_blob": "ceff1321963407782b2eda8e2724e42fe9e9ca85"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0159.png",
+      "bytes": 681413,
+      "sha256": "61c43d5186edda88748b72428bcc5fadbbb701bba7e661c9d3f2db747598adbb",
+      "git_blob": "01f27b448b70a9454a0806567bc30ff8399e5d95"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0160.png",
+      "bytes": 679801,
+      "sha256": "aa1fde629f9484d4259a8102b7792f57c02092d5f678db9b91e718cf221c6de2",
+      "git_blob": "cc912f3708ad6306d232528a8345365780f9a99a"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-bridge_ten-example.png",
+      "bytes": 707695,
+      "sha256": "d95f26a3c2a12c439bbc1c96d65ec7651d048b88e1668e6ece103f8e86704da8",
+      "git_blob": "022a8422c4605ea1dea84d2ae3ac1e569e6c66fd"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-equal_groups-example.png",
+      "bytes": 678756,
+      "sha256": "e7b6b1a32de3665c76c80b1bda1f43711053dfd62e412665cb2ec0fdeca515fb",
+      "git_blob": "57818d30cb9f271afc3e442c77005103f565a9bb"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-adult-confirmation.png",
+      "bytes": 147016,
+      "sha256": "017d60687dfee16488214ce23a38916fc79694b8b6151421c80e65d413b6c8ba",
+      "git_blob": "99f851bfa8dc913cdd89c4911f30e921d54a118f"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-subtract_ten-example.png",
+      "bytes": 700909,
+      "sha256": "f951c488770092dab4ace2a1830d92ce123149b027704eb7e19d3a74d88b92c7",
+      "git_blob": "0d1e4f1b91947045c1be7e4c2599d86d5aa2d648"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-bridge_ten-example.png",
+      "bytes": 310283,
+      "sha256": "c475f2f87cd2d09cb1c53ed093968a0017d95bbf5e990fb034d0a229bf80752a",
+      "git_blob": "7a7b54fbb42e6cf63f32a3d1f95da541f86971da"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-discovery-hub.png",
+      "bytes": 380691,
+      "sha256": "9edbbe13e149281467a21bdb1e32f8e5d4397abd9415c5bd7c17e29216053536",
+      "git_blob": "66948f28c9b7b5e453fbf5f0621e2d6273ffd705"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-equal_groups-example.png",
+      "bytes": 287602,
+      "sha256": "9630fa5d5b4c13f186fe95cb733c87889c62a8e727070c2768add153e08449f5",
+      "git_blob": "3e05d97e5ee576224e6694d1a1c12f37065c743c"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-parent-permission.png",
+      "bytes": 287086,
+      "sha256": "19368cc5a379293b1d3a75379352d57c3443a52bc14158d95313cb004ae16f7b",
+      "git_blob": "8b456ddc857f744624433e70c5a0f4a820e67c56"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-subtract_ten-example.png",
+      "bytes": 309976,
+      "sha256": "d54d74b4f5893947e1910ee8bad2b3e11855a0a3deb89f90767a8f9caa08b84b",
+      "git_blob": "0c4b4f2aee5bd9427d4bc7ae33401287f2ae483d"
+    },
+    {
+      "path": "learning-adventure/artikel-fold-2176x1812-density-225.png",
+      "bytes": 674697,
+      "sha256": "0900fcb42443ec6aacbc6cd667a0170a55ca49bb77e185310b085077231a2487",
+      "git_blob": "b70cec3d37da67ca69d61f3238d67a42c842d9e8"
+    },
+    {
+      "path": "learning-adventure/artikel-landscape-640x360.png",
+      "bytes": 207048,
+      "sha256": "161d0046fb5d72d1a853b7e1472dc1de659f3b7723fa66fe96854f06c54213d8",
+      "git_blob": "db0b9cdc08971b2598d051dbee3288d926a1763f"
+    },
+    {
+      "path": "learning-adventure/artikel-phone-360x800.png",
+      "bytes": 290850,
+      "sha256": "31b245a592101c2ac2964d7475a79fcf4bd76622925785e9a343604f0a8bbe7a",
+      "git_blob": "7da422ade8f6ecff1ff28540e9dacd9b0cdf0210"
+    },
+    {
+      "path": "learning-adventure/artikel-wide-1280x720.png",
+      "bytes": 772650,
+      "sha256": "0eaf8a3bdb48b68d628cc53d21443526d65984063eb3997de06f01070b1f78f5",
+      "git_blob": "d33848dfe4198de5afb5505986256f089b3803a2"
+    },
+    {
+      "path": "learning-adventure/brueche-fold-2176x1812-density-225.png",
+      "bytes": 689320,
+      "sha256": "6c04e8c2b7495292bb376630f7e69c762a8f2da00ee2d2fabc1de7050dd2b0e9",
+      "git_blob": "f51e819bc69e763284709ef4f1f9a64e2a9908f0"
+    },
+    {
+      "path": "learning-adventure/brueche-landscape-640x360.png",
+      "bytes": 226557,
+      "sha256": "9b912e6882373194c9a29dae139ee999422909da46bbfa5cd322e2c4b598980d",
+      "git_blob": "bb93b57edf8dfb6c3643bce2a7dab3457ef25dc2"
+    },
+    {
+      "path": "learning-adventure/brueche-phone-360x800.png",
+      "bytes": 309766,
+      "sha256": "bf6bd43c3948a2b2cee7aa1d64fa4e6de341c8330b4243da999d94b7f4fdffd8",
+      "git_blob": "8b8d4f45829f5c4f5542780cc5098e4b47406323"
+    },
+    {
+      "path": "learning-adventure/brueche-wide-1280x720.png",
+      "bytes": 792911,
+      "sha256": "d05b89d119c3611a2391bd2bb1e675f2ed08c8c01957216d53a59a9ec405d4ea",
+      "git_blob": "6d0e2505fdbba689245a17e8184326aebc01b07c"
+    },
+    {
+      "path": "learning-adventure/einmaleins-fold-2176x1812-density-225.png",
+      "bytes": 706353,
+      "sha256": "063ecd032a952e8e5d8fc3e151fd0fe9faf3b0781d5fffc9cd8534cb2b90ba3c",
+      "git_blob": "b9f89e5c922ddc7fd29babac72a612c3a0889de6"
+    },
+    {
+      "path": "learning-adventure/einmaleins-landscape-640x360.png",
+      "bytes": 184461,
+      "sha256": "0419371388fb29df67aa98d2876224c4d183b08a176cdfc2515230b970d8b372",
+      "git_blob": "49dae31422871d8e75f4c0ef2a30c532cb982858"
+    },
+    {
+      "path": "learning-adventure/einmaleins-wide-1280x720.png",
+      "bytes": 845044,
+      "sha256": "403950c9e48b97c663a7f1dd68d88fa5e8b739bb36d5eefaa74b6e8aed5f03e5",
+      "git_blob": "ab5bd21dca80657e4c9176c90c9ee9746128824e"
+    },
+    {
+      "path": "learning-adventure/einmaleins-phone-360x800.png",
+      "bytes": 329365,
+      "sha256": "5413e2795637a76d030f7625e4b121eb7d0d004c76c16f557ea1a0fd181be56b",
+      "git_blob": "8b42fe96bb0a7a0e3fa105bf0187a46f132b7422"
+    },
+    {
+      "path": "learning-adventure/farben-fold-2176x1812-density-225.png",
+      "bytes": 690274,
+      "sha256": "d07abb9df83c48bcf6dbeed8d09fecee5374eee125d6a90c794b3c52560d9574",
+      "git_blob": "f84e8da82fb0e0901bbf6c5145d77e8bc2a3544e"
+    },
+    {
+      "path": "learning-adventure/farben-landscape-640x360.png",
+      "bytes": 216132,
+      "sha256": "0c18ed30f80905bf8b6627a36fca27fafd7fe6695230a9de97d7ee4722c63459",
+      "git_blob": "e9c62a8ccd5cc70f2575ba9bb5fb90728c7dc58f"
+    },
+    {
+      "path": "learning-adventure/farben-phone-360x800.png",
+      "bytes": 286777,
+      "sha256": "9e451df7dcd695dc95ff70bee4491c25be723995f79257737b0e18e85e1c4434",
+      "git_blob": "c2381b752f463b69962ac7819dc213dae2d41767"
+    },
+    {
+      "path": "learning-adventure/farben-wide-1280x720.png",
+      "bytes": 788516,
+      "sha256": "38e5409ece2c553917e40cdd849f14160381dcd6bffccd62a41633373968fc94",
+      "git_blob": "aab9a938f6823e644294911ff398c67741db9c56"
+    },
+    {
+      "path": "learning-adventure/formen-fold-2176x1812-density-225.png",
+      "bytes": 682952,
+      "sha256": "f76e557c432783c55e6d220f7d16126b7fcc1153289cfe11ef6580ad08b7b11a",
+      "git_blob": "ad6f3666ac83a6964d02b48d3efa21da5ebe5456"
+    },
+    {
+      "path": "learning-adventure/formen-landscape-640x360.png",
+      "bytes": 242784,
+      "sha256": "f9566385756c30fe9bd8fd4d56e76102f9b33a5b1df91ffc5963e65d54b71636",
+      "git_blob": "0802984862d78362ac0aadece4594f617a531841"
+    },
+    {
+      "path": "learning-adventure/formen-phone-360x800.png",
+      "bytes": 305292,
+      "sha256": "770aa62dd63aaf236f03094bbc346d95ecad4a6d83b1e13f34bff0197cfd8e82",
+      "git_blob": "68cc90f7e9a96ddbcd72ee8ffc3c660be9105337"
+    },
+    {
+      "path": "learning-adventure/formen-wide-1280x720.png",
+      "bytes": 783871,
+      "sha256": "28c0b95968b3e4675b23b7d999f2ac5aca0522dfae418158a15cbcfb1b955b98",
+      "git_blob": "25eaafeeb09e663fd3b121452eaa76569ba18929"
+    },
+    {
+      "path": "learning-adventure/geld-fold-2176x1812-density-225.png",
+      "bytes": 788425,
+      "sha256": "c880e1fc80dc04efc9725eeef83125bb16499704bd50dedbf63ab7ebe32631b8",
+      "git_blob": "d7a8c65419758715193715380f7a9ca392837f5a"
+    },
+    {
+      "path": "learning-adventure/geld-landscape-640x360.png",
+      "bytes": 233046,
+      "sha256": "6fb0c793c9164badf14ae70acacb5f90ecca287b7eeba9d283049a14afa91d86",
+      "git_blob": "36e153c880ce594946799bdca0e83e813504a525"
+    },
+    {
+      "path": "learning-adventure/geld-phone-360x800.png",
+      "bytes": 313922,
+      "sha256": "8b32064bf2d324b8583777dd606e081c3493d98c4b47d11d34bb64a34fc473e7",
+      "git_blob": "6906be7bae5b60f595eda05f17edf4102de833f1"
+    },
+    {
+      "path": "learning-adventure/geld-wide-1280x720.png",
+      "bytes": 865215,
+      "sha256": "c86af4824ef0526af77c92bd798dbe4fa0b35c523ad3a04656a9515684970f69",
+      "git_blob": "054ef474e6a24f35574b0a01de94e8e17c089483"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-fold-2176x1812-density-225.png",
+      "bytes": 771965,
+      "sha256": "785bcf49d700104df6f60880fe9c9bf160221725608d1b25cef72224136ff3d4",
+      "git_blob": "8344881fa89f9bfe9b02345ebb0a3026e1171f80"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-landscape-640x360.png",
+      "bytes": 238914,
+      "sha256": "0795402b92e3d147ba581c12b6ed6c7195bbfdac95d9565f77dc2a13375a9320",
+      "git_blob": "5d9d93e2df30a670c68988a52d6249974d6322ea"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-phone-360x800.png",
+      "bytes": 318073,
+      "sha256": "50bd906708f38ed52d5bf693865f49541653c26cc0aff2eb1c44146b319da342",
+      "git_blob": "b96ec1afb7c1a97454ee3bbf89d99d4561e7fa64"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-wide-1280x720.png",
+      "bytes": 845308,
+      "sha256": "21a168548916cb17f669c160292aff4e73d5d96e80567973e0b2e8a3ad621dda",
+      "git_blob": "1fda23697a8eb7a303ad3ac009387cd60ebaee50"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-fold-2176x1812-density-225.png",
+      "bytes": 700927,
+      "sha256": "55a67cb3fa32f089de94f2d1f01dac8f1ca0d279368895fd6fd9d1a979d3631b",
+      "git_blob": "c4050fae694086a3c77a578c592bb25d9e1a0b59"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-landscape-640x360.png",
+      "bytes": 232148,
+      "sha256": "645d361e565f9f876bee986ad0b69269944f78b287e9f07f31c30b978bd5e558",
+      "git_blob": "53e1c04f3374524e4ee96193cf6b7ae37fa91313"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-phone-360x800.png",
+      "bytes": 320056,
+      "sha256": "00b73945e848dc2bfaea1e4e9b7ed6c6ed63d3426c00ef03822b54a938777e1f",
+      "git_blob": "6c234c0146b33f42731cab8018e7b06e7015a912"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-wide-1280x720.png",
+      "bytes": 805872,
+      "sha256": "bc5ccf9e65f0c54d30f1130bcb2d4e68f94a1558b96aa349e514d9bf361dc9c7",
+      "git_blob": "e2999d503d2f26d847e5492532b295edd5062ddc"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-fold-2176x1812-density-225.png",
+      "bytes": 692150,
+      "sha256": "2f02e5cf4c171fc771bd6cda2a156ecfc79764156f6509d06e549f5540ad1714",
+      "git_blob": "dcab5310ddb9d5eb997f50f9d09c69fce5093345"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-landscape-640x360.png",
+      "bytes": 212973,
+      "sha256": "70e5fc5bef1468dd9dd07407b9b58003da88d0509d526ed3cf3ec1146c3e97cc",
+      "git_blob": "ff61a9c6237ab3393bfa8e9b3db7937b84bad01f"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-phone-360x800.png",
+      "bytes": 302878,
+      "sha256": "62541184707cac3baefdc79ce14ce5733624d9247a694d8f0da2f9cc63f94ad7",
+      "git_blob": "ebd3fd94409e353a492e44a9deca856e627eefe8"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-wide-1280x720.png",
+      "bytes": 782594,
+      "sha256": "e42bc16d2726c4259bad7c611d470113e39ef82a70ac7338f3aa98638cfe5c3a",
+      "git_blob": "1d9c01dd91498221d0c4134dca4b8b1f3835ba0a"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-fold-2176x1812-density-225.png",
+      "bytes": 802865,
+      "sha256": "3a2b35f2c50f1b2155e0ddfc0e6ba6dddc697440896f924b7949eb7179e99946",
+      "git_blob": "08232282b6e32daee938b8242dc5f0e8ac5466db"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-landscape-640x360.png",
+      "bytes": 279524,
+      "sha256": "baa7fc0c33dd7eccd046e7e28f378497f41fc0c5bf8349af739c1935eac79da6",
+      "git_blob": "dece04ebb217245f0bd28b9abd8f9010da4ea003"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-phone-360x800.png",
+      "bytes": 345330,
+      "sha256": "4527159ebeb5613e8a3c645f60ec58dcddb01d869fd44c35413c6ced76a4f776",
+      "git_blob": "f93fac6356365d59accbf438a3aa986cf9edaee2"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-wide-1280x720.png",
+      "bytes": 866210,
+      "sha256": "570f67c777c040e78cd4d21946350f6d17a115c2a1907f7ec289b8006e91d76a",
+      "git_blob": "bb83f9c0e69b179ca76cf827163af84986cb5c08"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-fold-2176x1812-density-225.png",
+      "bytes": 796131,
+      "sha256": "150bc3d7ee621a22e1484c59da68ca3ffccea1fe72ac3754bcfce91c59337fec",
+      "git_blob": "74aed71a075d7e0e8a32dceac7254b8217766c3d"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-landscape-640x360.png",
+      "bytes": 277438,
+      "sha256": "5463ae4873dbac28ac27ad80313a8dcf82f155e9e4942940e90fba98e88d9e51",
+      "git_blob": "0e382f830cd17c5f0f3fde1182ddd92e1a30a41f"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-phone-360x800.png",
+      "bytes": 333607,
+      "sha256": "2fb6c620e492d31f76bcd84ad19072243707fff67812c5f28f55a34686f9c7bd",
+      "git_blob": "bb4757632793a9eae72986565cec68a2313ad390"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-wide-1280x720.png",
+      "bytes": 839869,
+      "sha256": "56e69c94e0ff4de8d3fba2e45c766aa2bcb46ec12647527ab962f37d43b22f3f",
+      "git_blob": "88bed0776456bf642a5436ea5578650a2ada2402"
+    },
+    {
+      "path": "learning-adventure/tiere-fold-2176x1812-density-225.png",
+      "bytes": 676055,
+      "sha256": "a0fd825ea7226027549d509820edada28c0d05b2a24b8933415f393462667bde",
+      "git_blob": "c5db993dfab65fe3aca95920dfa9c166f65cb1c3"
+    },
+    {
+      "path": "learning-adventure/tiere-landscape-640x360.png",
+      "bytes": 224994,
+      "sha256": "20feadf98b4cfb2fcc13cb0ce1f9c0524e3ea18c1342df266d7b500482b3bbdc",
+      "git_blob": "e7c89f4edf69b72230c5cad5a529cf75f145391e"
+    },
+    {
+      "path": "learning-adventure/tiere-phone-360x800.png",
+      "bytes": 317435,
+      "sha256": "c38a9c8ac31d832f79e5398cea312c36da9a1d614f5ff5e9e1b48d4f96764304",
+      "git_blob": "7537dace1ea584fd625580caa06b58626cff0bfd"
+    },
+    {
+      "path": "learning-adventure/tiere-wide-1280x720.png",
+      "bytes": 793934,
+      "sha256": "eeeac6054924cbc9e809ecb2c26d782e95f84bb3c6b46de62e754a30ff362621",
+      "git_blob": "7dac2dea9ec08ebd69d3e15508f487607b7a27c2"
+    },
+    {
+      "path": "learning-adventure/uhr-fold-2176x1812-density-225.png",
+      "bytes": 683294,
+      "sha256": "907ee94c884181ddcc9437f037986c7c02d6181496cc00a38ddafd3a53885ffc",
+      "git_blob": "c9ba95126648287a9966ae385ead374f0cd44803"
+    },
+    {
+      "path": "learning-adventure/uhr-landscape-640x360.png",
+      "bytes": 248112,
+      "sha256": "35aa3e9e894c43ce01ac1f97533fcc0412accbedc174642ec024b58ce6fdc659",
+      "git_blob": "b1063fac99abdb4b33da389fa20478371e06bb36"
+    },
+    {
+      "path": "learning-adventure/uhr-phone-360x800.png",
+      "bytes": 308864,
+      "sha256": "68525109072113c883f15d906299865b716c9fb062075f1fdd2d0e95828e2947",
+      "git_blob": "163cd74b11501a5157843c0856e93205ae60e0f3"
+    },
+    {
+      "path": "learning-adventure/uhr-wide-1280x720.png",
+      "bytes": 789334,
+      "sha256": "77f6814e60ee032602310a44bbdc0b7b0a9b7503224d900f12adf4943cb965ad",
+      "git_blob": "9be41ee9e49f18c4a67e54d2a0c7f32a17661fff"
+    },
+    {
+      "path": "learning-adventure/verkehr-fold-2176x1812-density-225.png",
+      "bytes": 749537,
+      "sha256": "0709341a4fecf5086cec5372d19e8d5c24819230b3a144fef0f41b0a73803351",
+      "git_blob": "c1b774d910786acfe19337155ab0a182ae486812"
+    },
+    {
+      "path": "learning-adventure/verkehr-landscape-640x360.png",
+      "bytes": 229679,
+      "sha256": "a6b6e4bb3b3029dde7e0fabafc35a1d5c14ff40edd17b0f632aa167341baa042",
+      "git_blob": "501b0d06ded2896c29485e0d41565c182b12f62a"
+    },
+    {
+      "path": "learning-adventure/verkehr-phone-360x800.png",
+      "bytes": 315276,
+      "sha256": "623f7c934b9f185b5d7fd9f030f9cdc047852095d9a3a066fc4c690b0159c8ab",
+      "git_blob": "de937739bce0814dbe2bdb9db474ae57287b41b9"
+    },
+    {
+      "path": "learning-adventure/verkehr-wide-1280x720.png",
+      "bytes": 796558,
+      "sha256": "e21fbb039516bd38023de534baf2b7eda705f35c641877bcd626a2dcc24651be",
+      "git_blob": "e5fdc0c9ab82d7d61b84c82f17d408a389b57653"
+    },
+    {
+      "path": "learning-adventure/wetter-fold-2176x1812-density-225.png",
+      "bytes": 719725,
+      "sha256": "365bd090ffc33ae5afba6efccb482c061345b4a121443a26c02ab18ef6b229b7",
+      "git_blob": "b85a82f4a605a2f2395474050c08912f02909697"
+    },
+    {
+      "path": "learning-adventure/wetter-landscape-640x360.png",
+      "bytes": 219116,
+      "sha256": "9557222332e8e33de02461e1396452673520c71f2575fdcc3df44663284eb0f2",
+      "git_blob": "d8fa7c102bbcc140cc7b3bfe706345d923061997"
+    },
+    {
+      "path": "learning-adventure/wetter-phone-360x800.png",
+      "bytes": 308486,
+      "sha256": "588bc47a718549087510918e1340ac3b406d44ebe0350e0ac5c5ccc6810da1cd",
+      "git_blob": "bfd05e42efc9f174b26158a2c6cac4777f779d0b"
+    },
+    {
+      "path": "learning-adventure/wetter-wide-1280x720.png",
+      "bytes": 806349,
+      "sha256": "fd447a8ce43ab468aa6385818a6270e407d4c990ba9c8c259bf0d842c6825bd8",
+      "git_blob": "961b5a0524db36b340af752ab7ab448f92e49c7a"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-fold-2176x1812-density-225.png",
+      "bytes": 611404,
+      "sha256": "2a595b4f9ae0420cfb7d8b45e43e5c22c5468e6675db56c60921fe1401c19801",
+      "git_blob": "66e14e7624aef62eb29bc42a51f19bb879852e69"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-landscape-640x360.png",
+      "bytes": 183965,
+      "sha256": "00f949080de955d3c2d15c23a7d28d4d495dea46626649f71548159c51c9aba0",
+      "git_blob": "200badc34dc735d4cb95537fd4cc522b48772b39"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-phone-360x800.png",
+      "bytes": 204317,
+      "sha256": "1caee9b71556105db36281f5f1493b9f15bd3ae1922bb083fcd6eff45edea83b",
+      "git_blob": "9ac8dc50f2abbd46a59dba113090294ce7ac4d57"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-wide-1280x720.png",
+      "bytes": 713952,
+      "sha256": "b36cfcd4ec5c609c835bfe77991e0060983d96f80e9fc0fa76875cf663a62ba1",
+      "git_blob": "9718121c4b04b3ad53b994dec47c7937c03ed02c"
+    },
+    {
+      "path": "learning-adventure/wortarten-fold-2176x1812-density-225.png",
+      "bytes": 761465,
+      "sha256": "9ff052678bdf20a76f7fc28e6c14532235a3855bab24a6f078b51f0bc8012c13",
+      "git_blob": "2ce4ab762f57e8bbcf712a8b8b069b600c227ee9"
+    },
+    {
+      "path": "learning-adventure/wortarten-landscape-640x360.png",
+      "bytes": 210064,
+      "sha256": "58d83458bddea040074b28b2e3a7f4637897c49b7294cd3ba72df6ab1a35b8a7",
+      "git_blob": "2149ac6f8d7343511ab118f037d21fa5e62ade45"
+    },
+    {
+      "path": "learning-adventure/wortarten-phone-360x800.png",
+      "bytes": 325753,
+      "sha256": "de9c2c71dd28b4cdf61f0a24e1cc91175f0037487b32f936e0112916cf57b71a",
+      "git_blob": "6e2e32da85ffc6316213bc73b206d91676eb6df5"
+    },
+    {
+      "path": "learning-adventure/wortarten-wide-1280x720.png",
+      "bytes": 784665,
+      "sha256": "283cc7a6cdce2deefce58f272b7ca1c9131df12016334351b404f74b57056ec7",
+      "git_blob": "85b0deed9e03e2fbf09d7676c9ea97d7ee0a765f"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-fold-2176x1812-density-225.png",
+      "bytes": 790778,
+      "sha256": "c314b96e01150a017754039075b231256e0c4568ceb831af96bf3255c2f82e01",
+      "git_blob": "8066a7426379a502222d578a695075f0dc3c5def"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-landscape-640x360.png",
+      "bytes": 284855,
+      "sha256": "4754038568dd479233e990fe29eb2b79c91fe531d7d34d7a7f2a89445fd90f88",
+      "git_blob": "1a70b8621f31d212adba90729998df5877126e35"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-phone-360x800.png",
+      "bytes": 324667,
+      "sha256": "36a01b5cf0e878395e3fa2530761bbd081cae501f6da4a332ad4754c1f4d4fb4",
+      "git_blob": "8e78beb5c8edb387fea110d4e4018793a72f0799"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-wide-1280x720.png",
+      "bytes": 870012,
+      "sha256": "72955d46d4a111fcd20f8ccec326d28be5c5a9b2338b363276ee76ba63c005b2",
+      "git_blob": "8ef4fb4ebece2d74fca2ce24c1eb1204b71b7114"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-fold-2176x1812-density-225.png",
+      "bytes": 875104,
+      "sha256": "76317d6b6b4d89de32f434b8e322076020c6d2abe6b7fb60f7166dcec5c58b4d",
+      "git_blob": "28f716f171ce8d3bc42f3943ac2e7297063376b8"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-landscape-640x360.png",
+      "bytes": 270011,
+      "sha256": "e9872d97893fc25d737f5a14709266ee75ae5c794f6007450a61b277da852831",
+      "git_blob": "3f4b3868a38b1733650701ccb0641651257ab98f"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-phone-360x800.png",
+      "bytes": 325173,
+      "sha256": "63cf938527a6216adae94208a0dac7aa23d1dd0a8ef1ee3d4a047e7081ddf30d",
+      "git_blob": "80addaeec49953ff2849dc079c7c5be070561571"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-wide-1280x720.png",
+      "bytes": 959884,
+      "sha256": "569bf553db77a4c6d84cccebe1691547c8d85d92a4d0e15f522df2d3b4d46529",
+      "git_blob": "a66113920df677eda43ec72b39bd4e0870606636"
+    },
+    {
+      "path": "learning-adventure/zeitformen-fold-2176x1812-density-225.png",
+      "bytes": 730074,
+      "sha256": "e32e9463ba29c11d266607c44d0bda20a5dc75123bee92a46bb9db09a240df07",
+      "git_blob": "cca5bc24df791dc85e20dc3be1cbe7cf2b0db134"
+    },
+    {
+      "path": "learning-adventure/zeitformen-landscape-640x360.png",
+      "bytes": 214807,
+      "sha256": "835151df3977c4d42178f4f2d12bb808fb0272e4ac557b3f9b84e250ccf2f8f7",
+      "git_blob": "4b98037779253813917f3f71c424d5fdaf7fc85a"
+    },
+    {
+      "path": "learning-adventure/zeitformen-phone-360x800.png",
+      "bytes": 312436,
+      "sha256": "b45b4d88e01f8143911190c7dba787c6d94695964ce02e34554e50404e6a316c",
+      "git_blob": "25e4474b60bf61ef5d527114d9099ac9140a5860"
+    },
+    {
+      "path": "learning-adventure/zeitformen-wide-1280x720.png",
+      "bytes": 791389,
+      "sha256": "77abd0578a78a9d132e1bf6f300b04b20aca56a1b676401946d3f0f534152c50",
+      "git_blob": "8f853a8ef4b6b5730d48aaa697a0f0be38814a9b"
+    },
+    {
+      "path": "modernization/achievements_fold-cover.png",
+      "bytes": 692042,
+      "sha256": "84c50d3df7c7b057bafa237e673b6a71b07ba34465bb07d18e79f7a9473e2be8",
+      "git_blob": "be61812f018c767526acbbf1cd3e0c95e9d8031f"
+    },
+    {
+      "path": "modernization/achievements_fold-open.png",
+      "bytes": 986908,
+      "sha256": "f463e2c6720b8a3817d4b415dd882cb72f806ec151c82f4071f5dee171b88d43",
+      "git_blob": "ed0a95b63f3ccac7ae7a54ee6234fd6348760601"
+    },
+    {
+      "path": "modernization/achievements_phone.png",
+      "bytes": 822071,
+      "sha256": "b883ab24760c235cad25788ca08dc218f52281266bf2c26854e8605f258d12b1",
+      "git_blob": "b946339d7d96d71a0217f098ea25df36d4cb9e63"
+    },
+    {
+      "path": "modernization/foto_lektion_fold-cover.png",
+      "bytes": 1229380,
+      "sha256": "e229d4ca74b2e1a6437e19307c561cea1920a04400af19aa5dbfcf186deeccbc",
+      "git_blob": "b5d136b8718f72ae8353381f8a467e7a88bea61f"
+    },
+    {
+      "path": "modernization/foto_lektion_fold-open.png",
+      "bytes": 2169731,
+      "sha256": "c8081122a5a6c7000f10352df5e1cf56f124781c74ddf41b0bb9ce8e833a3b2a",
+      "git_blob": "bdc6f4b2fc1234c9c0d3c9bbe70ebdea9864814f"
+    },
+    {
+      "path": "modernization/foto_lektion_phone.png",
+      "bytes": 1506221,
+      "sha256": "b176c65640aa90367b68664063b591015e65c83c0fe715bfc088931abdd8d4f6",
+      "git_blob": "30eff63bbef33c88496c9311034258452b4cd23c"
+    },
+    {
+      "path": "modernization/journal_fold-cover.png",
+      "bytes": 1313410,
+      "sha256": "a71c9c0d2e62e2e3d50f225bb6418fa4e1cf351aa7382e2b2718dad1334ba054",
+      "git_blob": "41cb6de427028cd582339615b2eafac491d6ab6f"
+    },
+    {
+      "path": "modernization/journal_fold-open.png",
+      "bytes": 2348916,
+      "sha256": "21f03e9387a686d1d3b9623d74b23ffca9a42b34c4792fb8f4fbd0b9e32979c3",
+      "git_blob": "dbc3b22fb2851e3739c74dde6f82673f0f460725"
+    },
+    {
+      "path": "modernization/journal_phone.png",
+      "bytes": 1623870,
+      "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d",
+      "git_blob": "b5d1df905e54b40a0926b59ed377409a3f6be397"
+    },
+    {
+      "path": "modernization/lumo_magic_fold-cover.png",
+      "bytes": 1175061,
+      "sha256": "dd7b29746fdaa8ffb00a5cdba227ffd3633bbc5d7c8357fa1eb724974b065c86",
+      "git_blob": "fc27ea6b9e6eeb95224c1562f8cc09b0796e7890"
+    },
+    {
+      "path": "modernization/lumo_magic_fold-open.png",
+      "bytes": 2040460,
+      "sha256": "058e07d76ac1a4b6205d91b0ed1e126e0e018627e102ff77078207351480f87a",
+      "git_blob": "509369cf212287e2ea5e34275ddcf2c5cbb03f48"
+    },
+    {
+      "path": "modernization/lumo_magic_phone.png",
+      "bytes": 1459721,
+      "sha256": "ccbe9114201902ba2bc75f876b4c8fdc42f8a4e959cf48c8a9da26a353731586",
+      "git_blob": "43dc3ec2dc243afe36b2ca5c612ae6a37b689705"
+    },
+    {
+      "path": "modernization/lumo_quest_fold-cover.png",
+      "bytes": 855842,
+      "sha256": "2f6bb64832fcfdd5e81dc8195dc94a59df3aaa9ffcba9685a2604c6a214df986",
+      "git_blob": "9d9134f23b8b7e497643f10e3fe95b961c09b648"
+    },
+    {
+      "path": "modernization/lumo_quest_fold-open.png",
+      "bytes": 1538204,
+      "sha256": "c26ab28647581ae98cf68d1e5849162dc0cf03ad038891669f09558c4fe133e1",
+      "git_blob": "f4eb71ce4b91a9f91adaa0947a1c4aeddb85fb30"
+    },
+    {
+      "path": "modernization/lumo_quest_phone.png",
+      "bytes": 1181846,
+      "sha256": "9fe6e43d0dd9dd58f981d6add36325eadd110fa9a643ff647b72b4f53916fe26",
+      "git_blob": "6451b152bdafd0f62487ac9a8e42c1381647b3ce"
+    },
+    {
+      "path": "modernization/lumo_welt_fold-cover.png",
+      "bytes": 774121,
+      "sha256": "7b0c3e614ebb276a11814d801b2ab548dcb781ed73443ba2cb586793d71f9dc0",
+      "git_blob": "d2406cc3fbc441c12dbf42c56f3d270321263a89"
+    },
+    {
+      "path": "modernization/lumo_welt_fold-open.png",
+      "bytes": 1135928,
+      "sha256": "3230ac08b9d7428611f542c586fbbb94cc78dce59f5c65b1920a1c8fa407a5ca",
+      "git_blob": "8eeddc4f771bb7267c10a3ac7f5be3a4ff833852"
+    },
+    {
+      "path": "modernization/lumo_welt_phone.png",
+      "bytes": 881813,
+      "sha256": "d68921ae22d8285cd1f847f86252f9ee426f18f27628747313ff1ad238cd3441",
+      "git_blob": "ccb0849d7d98c53c5f25580f651ec1237085d190"
+    },
+    {
+      "path": "modernization/reading_buddy_fold-cover.png",
+      "bytes": 700926,
+      "sha256": "222c0352db3b2ec3a25037b42f594837181fad4dcb5747d68e6aa18a0b951737",
+      "git_blob": "0786d4551ffc4489b25e1bfc5aa5e5f810b24382"
+    },
+    {
+      "path": "modernization/reading_buddy_fold-open.png",
+      "bytes": 1056781,
+      "sha256": "8c553d8941f75c3896f18941691a504d6be7e81498f8bc221d9e5be5ee90401d",
+      "git_blob": "04ad2619577aa69992096107fcf792bf73a02f1d"
+    },
+    {
+      "path": "modernization/reading_buddy_phone.png",
+      "bytes": 824343,
+      "sha256": "0bc9f2901eb7bf26cd0ac79f2752b5e9a52e11c15470a8a83389f4bc1fe30f23",
+      "git_blob": "29257f2eb4c2c36bcf5fc9b15a908b9cd0f1ceca"
+    },
+    {
+      "path": "modernization/rechentricks_fold-cover.png",
+      "bytes": 957403,
+      "sha256": "756254a8f333eeca54a546fb05b75a9750a35b77d14882746fef9f458bd25b90",
+      "git_blob": "e83ed3d98b0908fc85123bb7749ae3d280bdcdb0"
+    },
+    {
+      "path": "modernization/rechentricks_fold-open.png",
+      "bytes": 1533696,
+      "sha256": "79639deca82eab8f9924423e4ce6bf485629644fbc00c997e644e44c2fddadb3",
+      "git_blob": "057fa181e195a8566a6c4a00d9395cfeef84d895"
+    },
+    {
+      "path": "modernization/rechentricks_phone.png",
+      "bytes": 1184203,
+      "sha256": "dc9b747301963ffa3e8abe16ddd880c2fcfef06eaec1bd5e650dfd118ce7c66b",
+      "git_blob": "1469480bd1bbe3629c62d11cfaf7989e17a3742c"
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-cover.png",
+      "bytes": 331307,
+      "sha256": "d37e9d9d238bb8edca618d71c8b1aaf3c63fa56f31f50651b26a8374a8f05e19",
+      "git_blob": "f83bc1b0db946d60666565ee0bd91e7d1060e4db"
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-open.png",
+      "bytes": 495048,
+      "sha256": "7fd42c976ac55b61164474cc1ba1ed54f3c177a90032a7f7a1e143efb461d87a",
+      "git_blob": "daf345a411f7c1b24e20d9bcf2d6e8515cb24e5b"
+    },
+    {
+      "path": "modernization/schreibaufgabe_phone.png",
+      "bytes": 372820,
+      "sha256": "160969df1fae5af3bc701b411f5f66d6b7192898be39663fed75735ee28d0a0b",
+      "git_blob": "84fbbc34213a394f68e741df40a166c31aa064c0"
+    },
+    {
+      "path": "modernization/schreibcoach_fold-cover.png",
+      "bytes": 118039,
+      "sha256": "d2b56a09428c4d199d5979418858583b6907b4ff1bfada793bdc3c35bc5bbbdb",
+      "git_blob": "33046b0126ab93adbbf1335bb6c3073b9e683eb2"
+    },
+    {
+      "path": "modernization/schreibcoach_fold-open.png",
+      "bytes": 175408,
+      "sha256": "5bd9fe0f9d7374a700f7a8b1b1da45d0bd9d93104c85e9e83a3fd1d8fc20b7eb",
+      "git_blob": "e1fc0e578b0198b4903a061d4acf0c36b8257bba"
+    },
+    {
+      "path": "modernization/schreibcoach_phone.png",
+      "bytes": 131666,
+      "sha256": "0f0797c8bff2b652dfe5bef6fc4a53e30921cb0fc6dc9287c8e44321e9e5693d",
+      "git_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42"
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_geuebt.png",
+      "bytes": 448685,
+      "sha256": "443107e75ca5dccb62aac20bd1fcf19ae53d2e55e843a053c62ce5b9ab76a6d9",
+      "git_blob": "87e3c54443d88d3564119fb822c4a84113d7cc47"
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_leer.png",
+      "bytes": 384350,
+      "sha256": "061d8e9fcbc45579382126fc671eed3e20e64644b02d2a19ea64b94c172e01dd",
+      "git_blob": "a3fa76b870bbd50a88fa5114dfe7106e757b2d20"
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_geuebt.png",
+      "bytes": 667884,
+      "sha256": "188a30d90e523428c5fb8f69a754307c442dfb4fe263f4bb05d212c41107418f",
+      "git_blob": "00cfd0dd15033397d5a61eaa6b18559fcea85ec8"
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_leer.png",
+      "bytes": 643243,
+      "sha256": "9a78b135d805762bf213c71854fa279793b19dbce2ffc31e3fc33b6337a5367f",
+      "git_blob": "0bf7f70356ba98b9923cad29b2fd7ae5aca1b35c"
+    },
+    {
+      "path": "modernization/trainer_B_phone_geuebt.png",
+      "bytes": 558344,
+      "sha256": "b29974e44e52d0055de6d9dd17bacbab02ecefa546ccfcfe13d5c505b4060fc6",
+      "git_blob": "e1e8075e7c5ba386320f07cafd0fa2d55d7dee11"
+    },
+    {
+      "path": "modernization/trainer_B_phone_leer.png",
+      "bytes": 489085,
+      "sha256": "386f180138813ebb38bdbe6167b1e2f3b7573f2aebc7eea12c69018d4c479387",
+      "git_blob": "87d24b608d61572c29b8c908e123bc75c46d98c8"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_geuebt.png",
+      "bytes": 429285,
+      "sha256": "44dd0054530f0971915838edf4bdf081ed305c8947f5ece34268ea0ed0a96462",
+      "git_blob": "8e6fc1d1a9fc343ea1cab23fb14524c2d35b4f28"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_leer.png",
+      "bytes": 358743,
+      "sha256": "2f4eb9af583a401782f63011d5c80fa0cacabfacbb964cdc6279889b66273206",
+      "git_blob": "d7bd1e6e8c76ca4d2e0d57f0b2486316615a8ea5"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_geuebt.png",
+      "bytes": 635561,
+      "sha256": "fa4a4fd1878ae502b22b8bd85676ec7007d69b82948c710f3c06f7906d42fccc",
+      "git_blob": "2314edc1308230755e51b5667a6bf5825d7aa400"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_leer.png",
+      "bytes": 599242,
+      "sha256": "4784592e8dcaaad29d60b78e85941651a392eccc8a758140b5313eee0fd304f5",
+      "git_blob": "2fdf618090ff7c9aa187aa48f6bd69ccdbc81322"
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_leer.png",
+      "bytes": 457713,
+      "sha256": "79c215c448a5717c48b287fc3c99812d37e91f76f1f75063417ad25bcd36d23d",
+      "git_blob": "33aebc5c85023a756ef2b2ae65aaf4e6d0afeedd"
+    },
+    {
+      "path": "native-profiles/native_profiles_adult_confirmation.png",
+      "bytes": 84459,
+      "sha256": "b0ce2a541659ba0e7e163918dabbdbf0bc41427c67f1bc452f802f60de041319",
+      "git_blob": "3e5a60f93372992173aef67ff7013f98c045d14f"
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_geuebt.png",
+      "bytes": 533225,
+      "sha256": "7dbd13e6b812a74f4c86bdb334a68c6703ff15ed8a5eb9aa4c2bd76be031a68f",
+      "git_blob": "4c821cc56dc96ddfeed9f2848c059098a9e6c78a"
+    },
+    {
+      "path": "native-profiles/native_profiles_fold.png",
+      "bytes": 87637,
+      "sha256": "39501c1f6a594c8c2da4c18c2f308faea947fe80f8fedc5ac08992fe2c420d89",
+      "git_blob": "6d00d0a49b250db95964daf410d3a1c9421a1b89"
+    },
+    {
+      "path": "native-profiles/native_profiles_parent_entry.png",
+      "bytes": 400140,
+      "sha256": "853898e710bb3d76576e5062b4982154c9125a0f25a50d04d597af7959fea81e",
+      "git_blob": "cf88ccc65b098965cab10ae36918e6c6a4690c55"
+    },
+    {
+      "path": "native-profiles/native_profiles_phone.png",
+      "bytes": 89923,
+      "sha256": "cbf1ed4054071c9ed40c71e0a0287aee81e9c80e2e32ebc21bd8a77e9e2708e2",
+      "git_blob": "168bcc31b3c1cc6ef3188baac7c21e49e38f40a2"
+    },
+    {
+      "path": "navigation/english-task-fold.png",
+      "bytes": 1516919,
+      "sha256": "24a15adbdb6fa740c649b2f3d2df3c378f597de5c7b5bff1ae0eb2884fcc8b05",
+      "git_blob": "032c72c1d9067cdf6114d609bf146b118cacb8de"
+    },
+    {
+      "path": "navigation/english-topics-fold.png",
+      "bytes": 1099050,
+      "sha256": "3c376a91dd00979136cff1d38c62d00faf09763e9dcc59f7c2466973d4355b14",
+      "git_blob": "d2f382c31e2693bd42954954b99f724259731151"
+    },
+    {
+      "path": "navigation/english-task-phone.png",
+      "bytes": 1188381,
+      "sha256": "ef1d76d1547e6e447f50ac1a3dd9afaeb177faad96b9c36ca0bcf367b36b2b4d",
+      "git_blob": "250aa9233d35610ae6d919e44102b126a594d6de"
+    },
+    {
+      "path": "navigation/english-topics-phone.png",
+      "bytes": 870470,
+      "sha256": "5c999f4b0975b9dfdb6066f238b9b023b20f0a763e86bfa1e36e0b6c594dea22",
+      "git_blob": "80a020b5e8a58648a6567b44ea90e49e7c66ae19"
+    },
+    {
+      "path": "navigation/games-fold.png",
+      "bytes": 1152828,
+      "sha256": "ece54c828dc40812927041385adb63afa73101705517d9541eab841898aafec7",
+      "git_blob": "99b87fb4db297161f9a2d0f29965c18daec571ee"
+    },
+    {
+      "path": "navigation/games-phone.png",
+      "bytes": 853856,
+      "sha256": "a2508540d748148f024a73354b05019850c2701b3adc3fb05f242f404d71d7c6",
+      "git_blob": "de993408cb128eb4d3823b7fb2e6be8713b8240d"
+    },
+    {
+      "path": "navigation/german-task-fold.png",
+      "bytes": 1521184,
+      "sha256": "764078f7cd9709c8183cd920116a3ec54b4c122f925c968cd5882f7f227475c2",
+      "git_blob": "01798a3a026c7594701b3a2d231830c0bf01a90a"
+    },
+    {
+      "path": "navigation/german-task-phone.png",
+      "bytes": 1186952,
+      "sha256": "ac4ae00c888ffe4a5dbb8118cd643c3426bc92224a9e1c47feea8d3db2c8f120",
+      "git_blob": "f9cfc40f501c97e247272b7a0780f31d72793181"
+    },
+    {
+      "path": "navigation/german-topics-fold.png",
+      "bytes": 1100443,
+      "sha256": "9727044f401f290e3cf73392bcd82bd93506f86cd225bbb024405ca676cfc05d",
+      "git_blob": "bab2db0c4664b67a76ed58dc0ed3fab9527e87eb"
+    },
+    {
+      "path": "navigation/german-topics-phone.png",
+      "bytes": 874057,
+      "sha256": "25c4b6f63b4116d4b17f9f653492880205ca2f79f4df483e77d9ae519572a784",
+      "git_blob": "c5b88c6cd7572e3743320ed1751759ee0b9e5393"
+    },
+    {
+      "path": "navigation/home-phone.png",
+      "bytes": 1533892,
+      "sha256": "832d28b48425c3c612e6fb2b03d600c6e64a161eaa2063b5c07ca0e4f9bfe796",
+      "git_blob": "3ae288a39e681c6ddc8a32cd164f7c8aae36989b"
+    },
+    {
+      "path": "navigation/home-fold.png",
+      "bytes": 1637570,
+      "sha256": "ced9fe4ac198b3839131e7fe193bf498d13feffd7a5faacb5a0d6dc358544813",
+      "git_blob": "d2b991fd46d5488afdaf40e96be0aa1758d649a7"
+    },
+    {
+      "path": "navigation/learning-entry-fold.png",
+      "bytes": 1019130,
+      "sha256": "f3e0413860a9085cd6b634b0de454eeae5f6b18e6051ea168208fde66f1272ba",
+      "git_blob": "d9eb176e4b54fc44015cd33d801044be9c7f7354"
+    },
+    {
+      "path": "navigation/learning-entry-phone.png",
+      "bytes": 937007,
+      "sha256": "7c44de49741646c3236baf5976c8dc2260d1a179ee9964abd40e7d2e03b35dd4",
+      "git_blob": "09df5c444cdf1ce584305fb4edae0380a7ea7204"
+    },
+    {
+      "path": "navigation/math-task-fold.png",
+      "bytes": 1522392,
+      "sha256": "7d5023c0993f1dbafda6b5dde633294bce3407337d62309638a30af594e933b9",
+      "git_blob": "34989cd26ad0caa515c8b30b0d7d93ce03bea7c9"
+    },
+    {
+      "path": "navigation/math-task-phone.png",
+      "bytes": 1205253,
+      "sha256": "b962f0c4cb0bdfc991641bcbfd8335b34d17dd3bbd8058647f1fa09b0e8e08e8",
+      "git_blob": "a475cf613742f2445174068525a742d723da1e64"
+    },
+    {
+      "path": "navigation/math-topics-fold.png",
+      "bytes": 1103503,
+      "sha256": "661bbceef27dbaa622c0f5d4b0d385e1769238a0cd4d404d17c9adcef5ff2848",
+      "git_blob": "83e52663b6aa35ca5ec11a9f350e9335a8f1fe6f"
+    },
+    {
+      "path": "navigation/modern-grade-4-fold.png",
+      "bytes": 1017969,
+      "sha256": "8f4fa6d75c12fd021ee3f796f0503a2b825ce79353706b569c5f016e3c9843d2",
+      "git_blob": "da1d85eb56f9de4077ff73eb39d636b5c1444b0e"
+    },
+    {
+      "path": "navigation/modern-grade-4-phone.png",
+      "bytes": 944831,
+      "sha256": "3332c3a86b021b1d3f6a00e0839a24f2c84a14357d9efcf42433a508f8806742",
+      "git_blob": "c458164b48621787ded7d71c63400774b50216b9"
+    },
+    {
+      "path": "navigation/modern-tools-fold.png",
+      "bytes": 1176159,
+      "sha256": "25b0527bab56e0ea4bd3b354cdbe51a71ae6313ec6ae1f1351e9cc1c9f4fc5c1",
+      "git_blob": "dec0a6f30ddba75ec48af0cd1a9ba1a56bdadc25"
+    },
+    {
+      "path": "navigation/math-topics-phone.png",
+      "bytes": 874073,
+      "sha256": "fa9e4e72d40adcc3c46dac9daf4895ad018c9fc2b5a2aa62630de7ed97bc75e7",
+      "git_blob": "b97b4a0ed914ecdb3ce7b18776534d8e46b6f5f3"
+    },
+    {
+      "path": "navigation/modern-tools-phone.png",
+      "bytes": 1049825,
+      "sha256": "51ec8af1395b1b21eb3b975d7cb0b101ed375ed29172492bc5e79fe41a377c99",
+      "git_blob": "9b7cede43d96727208630c2f5971a8ab3cb24774"
+    },
+    {
+      "path": "navigation/science-task-fold.png",
+      "bytes": 1521648,
+      "sha256": "e7fdc55e819128383e0afb08b1256c56f60749e71807ffeacec26d461dbbe366",
+      "git_blob": "ad3943a86c0f0b6896d882e5f9764c02f0c57619"
+    },
+    {
+      "path": "navigation/science-task-phone.png",
+      "bytes": 1188555,
+      "sha256": "353abd545e0bbbce987f8f8625316b7c0345c708d79ce277253b46d58a549566",
+      "git_blob": "a91f1b83cec764ab82e85cb76a26274fb6507caf"
+    },
+    {
+      "path": "navigation/science-topics-fold.png",
+      "bytes": 1104576,
+      "sha256": "22f30e253b6ff56cf2835e90fa5defd40cc5fa77f639c3b410daf89e8c622a01",
+      "git_blob": "83bd79b4a7b560e5226270cc3875a9a6ea02b6ca"
+    },
+    {
+      "path": "navigation/science-topics-phone.png",
+      "bytes": 872886,
+      "sha256": "f11bfb9a4fb3104c985e6b550a1d0738cb1a78ac93f6e9b25ba0eed53a85ab0e",
+      "git_blob": "d7f315144193e2823263a0c6927d7ac1e9ae686d"
+    },
+    {
+      "path": "nextgen-reading/cover-large-text-explanation.png",
+      "bytes": 269660,
+      "sha256": "aacfe4ae3b85f145e37bd9b5667616f3c64c3216326ee1ade9d2507355b4f0a9",
+      "git_blob": "6e388b726abf4e237b629f34dd0bff72458181d3"
+    },
+    {
+      "path": "nextgen-reading/cover-large-text-question.png",
+      "bytes": 316142,
+      "sha256": "e5eb1832f5c35875a0270657091534f4caa3ff68038fb04d03b7394735c7e32f",
+      "git_blob": "be133f082742f3166db69a813374b73ac44725de"
+    },
+    {
+      "path": "nextgen-reading/fold-open-explanation.png",
+      "bytes": 323541,
+      "sha256": "56bf98fbb43032c8512d54da1a7220be21fb3ea183449a14bfd6d68e71bb76aa",
+      "git_blob": "187cbbd142ad096b32f16ee1886c04a90569792d"
+    },
+    {
+      "path": "nextgen-reading/fold-open-question.png",
+      "bytes": 310020,
+      "sha256": "81bbef022163a4f6a1545707b26893a0c9a95cb20d427518f2c17b8c24edb8d8",
+      "git_blob": "edbda72677453d1858d40be8a83676080997f45e"
+    },
+    {
+      "path": "nextgen-reading/phone-explanation.png",
+      "bytes": 250544,
+      "sha256": "7f1bff6dee7c72f264b125dbed7607704683459dc41402ae74b67ed2de1b79e8",
+      "git_blob": "2cd9aef00f3b94e1f8d5d2025bf336a6b863124d"
+    },
+    {
+      "path": "nextgen-reading/phone-question.png",
+      "bytes": 236105,
+      "sha256": "525116ae1a9b602fc624c9b9ea71e78443f8a3fe2ccde29d1a95cc17b9aa8039",
+      "git_blob": "9cd114a6e19e309ab40804b724c3a0ef0e6a951b"
+    },
+    {
+      "path": "reading/home-fold-cover.png",
+      "bytes": 953812,
+      "sha256": "1388bb8a411b0dbde11d365ccc75b206ae1240575f76bf8803fe35d9acc40fb2",
+      "git_blob": "45e849dae7c0efeffd7564b25d17bb57a0b04723"
+    },
+    {
+      "path": "reading/home-fold-open.png",
+      "bytes": 1775720,
+      "sha256": "6a597cff1e70f4f09df71b938c45ad723d3c75192c5a40c7a028790e60c8e348",
+      "git_blob": "f0236f2fe265b56e6385096fe508c7c60c1b3157"
+    },
+    {
+      "path": "reading/home-phone.png",
+      "bytes": 1134577,
+      "sha256": "45c4450841acb611bd89809d2c6a6a8a0c41d323a31777139a2c0edb7165f512",
+      "git_blob": "a3f338225447dd87a5f3882c45cd46ad06e4ff50"
+    },
+    {
+      "path": "reading/reading-fold-cover.png",
+      "bytes": 895473,
+      "sha256": "57bfd322b76c643c4e52e96721ba31be02872e0329c6672550ad47413385ad64",
+      "git_blob": "9a0784120c8dcd419dbbe69a5fdb5d7dd09729cd"
+    },
+    {
+      "path": "reading/reading-fold-open.png",
+      "bytes": 1483640,
+      "sha256": "2621e447aaba4df9310a364d7d3628541b811d9036f334b78b026add749b27c0",
+      "git_blob": "cded7fb54d1e02dfe9345fe986c02380f7e92361"
+    },
+    {
+      "path": "reading/reading-phone.png",
+      "bytes": 1094115,
+      "sha256": "8106d67ced4499cb135665f261f31800c8859e40213db7360d910686a40af6a0",
+      "git_blob": "9e5921509f9d99d5859a55e96fe3160116cb6e12"
+    },
+    {
+      "path": "reading/retry-fold-cover.png",
+      "bytes": 658882,
+      "sha256": "3d86e91d39ce0a6abdadd3dd013e1cbb68457d1c843846d6d0921e37fd744db0",
+      "git_blob": "84d4f49b5993175ba18162a6b76e5654c43e4c8e"
+    },
+    {
+      "path": "reading/retry-fold-open.png",
+      "bytes": 1058515,
+      "sha256": "aa933b8fc7166911ced91e7d0e5b4bceaa7b0651984e542d6724acb66a6683db",
+      "git_blob": "8f0c37c511a8573d0bb615b662cea297cfd4ea7b"
+    },
+    {
+      "path": "reading/retry-phone.png",
+      "bytes": 798473,
+      "sha256": "ccc2187752e55e1e1a48f94f87dddf4e5373c8534b072ed121145788f457c65f",
+      "git_blob": "b4aff1e77502b847a1177e899aeb498befbc62ac"
+    },
+    {
+      "path": "reading/subjects-fold-open.png",
+      "bytes": 1329043,
+      "sha256": "1ac0815c98f3c2b5a52c62b47723273f5ad14eff05fde2e2891e4d5949f8268d",
+      "git_blob": "f5a87592eb9dd3da634c903eba6dc0cb6e112736"
+    },
+    {
+      "path": "reading/subjects-fold-cover.png",
+      "bytes": 949779,
+      "sha256": "fbe67a226fc860cce7c930f6777920b58b55b81dbefb9051be0823ceba809c29",
+      "git_blob": "42e5b352af2462f743f87dd2dd340571b3c74112"
+    },
+    {
+      "path": "reading/subjects-phone.png",
+      "bytes": 1128320,
+      "sha256": "9e777c6f987d522bbbddb58a55d7922c5ea5559afa8241aeb1c4a9df5d2bf424",
+      "git_blob": "98637aab9abdeda8b074ce5daa234b0fbf51d854"
+    },
+    {
+      "path": "reading-passages/reading-fold.png",
+      "bytes": 570542,
+      "sha256": "97dc448514b84616ec16c2167c27868adb65948d7209709fce7b9a336b3c71ba",
+      "git_blob": "c4d8be5be45ace660b8fc03a6ff43c90f700e7ff"
+    },
+    {
+      "path": "reading-passages/reading-phone.png",
+      "bytes": 289963,
+      "sha256": "80d434d326d1439f42522bd48ceda53a3fef3a283711c00bb52072787243a108",
+      "git_blob": "e73bea5318499c85c6c1258507e46973403185dd"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/denkprofil-01-oeffnen.png",
+      "bytes": 786548,
+      "sha256": "2f685bc3b67b66a25379fe91044601350887c38b4de3bb5b70522cd386dd95b7",
+      "git_blob": "5779dc852f50d9475b60bfd6959d47466ceb393f"
+    },
+    {
+      "path": "reading-passages/reading-landscape.png",
+      "bytes": 244975,
+      "sha256": "074e25137bb3746d63ae6713a9cf72a52973ae03076411b43ffaea2d1d4dfda9",
+      "git_blob": "3e01268706617030fc058658c90a07cc36db48ca"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/denkprofil-02-erste-frage.png",
+      "bytes": 491494,
+      "sha256": "20915c43463a4101b83e46a376cb1ef7c41b4f288ca7169afc5d9a5651d71c73",
+      "git_blob": "8371edbaeb51290d74b43f38596a71828b593ed3"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-01-start.png",
+      "bytes": 767770,
+      "sha256": "cc3cc25eac4e37599884c467993f86e6211340036c240353abf747e62d771717",
+      "git_blob": "29c3c7c23e4bfed281f4a9e5836ba3514978e262"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-02-bereich.png",
+      "bytes": 705987,
+      "sha256": "7a9eaf9212ce041919597968dfb68e6623d088002451c6aec9e8de73f5d7a74a",
+      "git_blob": "2e35905af5ebc26961d085614530ed606210d84f"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-03-raetsel.png",
+      "bytes": 667616,
+      "sha256": "e9ff94bcfe5000fa384e4a5569e47b7bac880322e1b18f295899a75c4fc684a5",
+      "git_blob": "1780083f67767a07e5273d597670848c59ee4a8c"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/denkprofil-01-oeffnen.png",
+      "bytes": 1387610,
+      "sha256": "b932c31b4439763c0f9958a73b8382d919c3fcbca3084791c3284ffefdfe9574",
+      "git_blob": "16a3de2cf19ef964ba51656a259ce0562a733d6d"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/denkprofil-02-erste-frage.png",
+      "bytes": 773429,
+      "sha256": "944976411c67598b275079241c57910fc7631833fcf573999a0042da0f1c416c",
+      "git_blob": "4bbf59bb8d3fbb0d8c593065043fa5e6b39c34bc"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-01-start.png",
+      "bytes": 1373671,
+      "sha256": "d9a8911a22c879253b4522f00455aebfbfe426925fd7bac1a473fd2d033107a5",
+      "git_blob": "88e2323684e25666285a61314ee0becc00513330"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-02-bereich.png",
+      "bytes": 1217783,
+      "sha256": "3ba3f877b0b6aca052ddbd7465933292f40cbb5c5d8481fe14263742f4a4db20",
+      "git_blob": "9ed9119bd6f9514338773d8e0dfee0f6dc213f19"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-03-raetsel.png",
+      "bytes": 1248771,
+      "sha256": "bdb33c50a73c94d0e5a5167f9267feb3ba4c1990fb6e594593730e1222e7b11b",
+      "git_blob": "5d34f8f0484785ea6cfb0d2a27d0e4fa10757a42"
+    },
+    {
+      "path": "reasoning/phone-412x915/denkprofil-01-oeffnen.png",
+      "bytes": 955653,
+      "sha256": "1089b488b12b5e690006dfd1d5a14d50a015cd7f337ddc703a6ca352c000e91f",
+      "git_blob": "6719fdc2192a2b0eddd2075d8f13409d696b583b"
+    },
+    {
+      "path": "reasoning/phone-412x915/denkprofil-02-erste-frage.png",
+      "bytes": 580784,
+      "sha256": "caedfd0ad25778b45a19becd60c28330840050115d6cf9179301524e165c9e11",
+      "git_blob": "d88539ba817a37068228e35f162f80fab083b8c0"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-01-start.png",
+      "bytes": 938448,
+      "sha256": "dc7de967b580c3834711db1d68123520798e40378811da26a7e64d8e8a20549b",
+      "git_blob": "e3e4aaf86edb2309bae6a78ce314f94b6e3ed5c3"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-02-bereich.png",
+      "bytes": 843920,
+      "sha256": "73c0c43660a3a3db72fc0fb12fd4bce7087c742e04f9f4d4a4253f271ff0d832",
+      "git_blob": "63e2bd70217a8c6d172fb5c4a7deb2f87d06f0d8"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-03-raetsel.png",
+      "bytes": 786960,
+      "sha256": "c6d4db4c69870342933726b382aee985b1fe802d858642d6365410e8389733ca",
+      "git_blob": "1056ea57825270b5027d218c04f32b10e505bced"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-rest.png",
+      "bytes": 163873,
+      "sha256": "ebd76e3939a718b73ae0441b7f47943b9d0433795827dfebdb403c6bb0e79db5",
+      "git_blob": "2870f4ce0c0f6495c0dec8d94405294202bce536"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-stress-a.png",
+      "bytes": 165295,
+      "sha256": "4f5f10747f60a71bb08cf1e7acfe97046885c2d371e20d6e2a187e7556bf165a",
+      "git_blob": "574f3b1c81500873b904dc40d663eb2a5fcb7a1c"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-stress-b.png",
+      "bytes": 164402,
+      "sha256": "35c8945d425a07ecaf8bcfa6fb166e2fc50c86664662b9a6d3f0a9395f8d2348",
+      "git_blob": "c654a3b1e6039701b80e5bb1112ef3c66cb95dc4"
+    },
+    {
+      "path": "rig-stress/fox_book_point-rest.png",
+      "bytes": 181287,
+      "sha256": "03c5bd7acf7cb575d33506ee01e5477b6c2f1750ff3483ea3949a347aff50081",
+      "git_blob": "5bc16cc108ba3982fc3ad6ba8b2a5813f9584f87"
+    },
+    {
+      "path": "rig-stress/fox_book_point-stress-a.png",
+      "bytes": 183525,
+      "sha256": "51b52c6ff4ab6bbecf12e2821abadebf7423764fd669860db183878493611ac0",
+      "git_blob": "a931bebfeede75896cf6e2f1487090eb2c510c12"
+    },
+    {
+      "path": "rig-stress/fox_book_point-stress-b.png",
+      "bytes": 181586,
+      "sha256": "84abf646f33932d7cce70c198152995927603eb7f82d17cf86e7f6e11bf8097e",
+      "git_blob": "da665ce920e9941242351251058f1cfaa05d2cfb"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-rest.png",
+      "bytes": 212818,
+      "sha256": "8384ac004268b161cf6818a542a1ad67fc0f6c7e5b78efe0e40a172314425243",
+      "git_blob": "e8987b3c2e533c630ed2f8b42cbb62114840726d"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-stress-a.png",
+      "bytes": 213462,
+      "sha256": "9fc2026c640c65071e59c17b36a0d99449a6ae20929cde0069bb3b716d103c91",
+      "git_blob": "aae71f6f5c409bab0f6e9f42cae53931504eebda"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-stress-b.png",
+      "bytes": 213902,
+      "sha256": "1963bf23b96fad989aa20264cd92e4258d4db34be07056fe41ca3eea1e39f73c",
+      "git_blob": "ade72b6606037718dd37326b4a3ed816d139ce7c"
+    },
+    {
+      "path": "rig-stress/fox_cheer-rest.png",
+      "bytes": 149909,
+      "sha256": "7bb312641318a4bddbb82da1859cbab9b68a36c5748df1e3fb25118b774f3a14",
+      "git_blob": "8a02a1c3016fe210aac063019cc9751ea2fab65f"
+    },
+    {
+      "path": "rig-stress/fox_cheer-stress-a.png",
+      "bytes": 150608,
+      "sha256": "cd2cb386af2af539e0214b31ec82dd50428a331c67d1306a9d143c2b277a0b32",
+      "git_blob": "df745fb998fb02deaa2967304fadb8cb119b75e0"
+    },
+    {
+      "path": "rig-stress/fox_cheer-stress-b.png",
+      "bytes": 150852,
+      "sha256": "65e6c0c6be5077d15df62e97eb3ab8708817022a49bdbd3ae4ea4381a47e9a7e",
+      "git_blob": "214d08bbdd495f146d2bdb403dc87bf1e8f16e61"
+    },
+    {
+      "path": "rig-stress/fox_point_side-stress-a.png",
+      "bytes": 162817,
+      "sha256": "96e0a62e7d0c49efcd96909af3b1c2922a39674746a5e7d3d05f2f5bd0134b90",
+      "git_blob": "f6dd71f3b9f40d89e05b7b8a5988e69914bbaaa0"
+    },
+    {
+      "path": "rig-stress/fox_point_side-rest.png",
+      "bytes": 160699,
+      "sha256": "860b1cb1c06396b2e3c472b8423388f9c0ba01b82eca08a8ae38d40387b83727",
+      "git_blob": "b155ab9e52c733bff6d9b5108f167569acb10032"
+    },
+    {
+      "path": "rig-stress/fox_point_side-stress-b.png",
+      "bytes": 160606,
+      "sha256": "0a82a5df500e0b0b58fa60a853ba13c543d6816f69d57573526be84905ec7857",
+      "git_blob": "8a202cf61c38f27429be9aabddc8d8e364301c01"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-rest.png",
+      "bytes": 156432,
+      "sha256": "9469500d6e74a3072b16d6daefcec29e42791d105220ce7adbf06f81886fb626",
+      "git_blob": "f0e16dd583f83b94925929e7a938225ce7be0fb3"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-stress-a.png",
+      "bytes": 158778,
+      "sha256": "7478080eb0b4184149a650d3af4c12b86880ec0c712861881c4c03afc9453bf9",
+      "git_blob": "ec5859926e63dc64e300b809a2a2ae1f92fa5dee"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-stress-b.png",
+      "bytes": 155706,
+      "sha256": "e3c72c6be690ca56192498aa954fb308f57c52db248ceba12cc4661833554447",
+      "git_blob": "880100893d6b24d6ac3cf5e0efd3b47705c15487"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-rest.png",
+      "bytes": 152875,
+      "sha256": "3966d695524aae98d2d8c27b2663905aab2b04a422a632311252a801ac5ddd5d",
+      "git_blob": "45520c1ca3de0b36847a09a070d98d7d66475e62"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-stress-a.png",
+      "bytes": 153993,
+      "sha256": "c8d055275d60174e856ff14a915d898c723ba68308d8a572946039c01bc25dfc",
+      "git_blob": "324ce1420f27569464de13b4bfec4c666425e5db"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-stress-b.png",
+      "bytes": 153498,
+      "sha256": "68b154a9cd2c9179dd213fdbea99c19c66ea890b625034fe64eb1d7655b2d353",
+      "git_blob": "62b9b1dcaae448600a4b771a70c8518af6cebd7f"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-rest.png",
+      "bytes": 157113,
+      "sha256": "629c26b38e20af87aa9d8e942bdef61808d59d746014c3b808fe05a6b91c433b",
+      "git_blob": "fe33a0f7f275e062d879858c9f736d4209d81205"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-stress-a.png",
+      "bytes": 157377,
+      "sha256": "6e94dbfadf2c3b0e9738d0ff9407da02577f2f6ce0686c520556ec6fd7c5766d",
+      "git_blob": "06a86f8f2fd6e53ee3f21b3f9dba2be67aba72f2"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-stress-b.png",
+      "bytes": 158763,
+      "sha256": "b5e13e37055dc06e78ec2a3960a7e793692079ad336b2760536d55e27685006e",
+      "git_blob": "ea6701b6991087561f48af0a3519922f00ccd378"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-rest.png",
+      "bytes": 170727,
+      "sha256": "a41841850317401be100d222cd8fe5f1d46f2c99c225b67013e8f027f7e78b14",
+      "git_blob": "6dfddb9bcaf6ea3767072d70a2ac10e386dad799"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-stress-a.png",
+      "bytes": 171788,
+      "sha256": "b44fcc1e71865429f5855036b2748901af5af0b3241d1fdfab810daa57040219",
+      "git_blob": "904a7b1c8578e9417347b4d3ae479fce24380d42"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-stress-b.png",
+      "bytes": 172277,
+      "sha256": "0ece90d5b9c1c201068e022578ce446af336fa18d17f6f2018c82fa3e59827cf",
+      "git_blob": "3d7d0a5154c5bce83a30be67560b8b04503fd5e5"
+    },
+    {
+      "path": "tour/fold_01_start.png",
+      "bytes": 1417762,
+      "sha256": "4a4c848df41f1de961e616c9f962ef2bdd7d424d409f883684b73e0787ac26d7",
+      "git_blob": "c2120461a43284df93dbb93646c42c3a43ce9ec3"
+    },
+    {
+      "path": "tour/fold_02_anleitung_matrix.png",
+      "bytes": 1217783,
+      "sha256": "3ba3f877b0b6aca052ddbd7465933292f40cbb5c5d8481fe14263742f4a4db20",
+      "git_blob": "9ed9119bd6f9514338773d8e0dfee0f6dc213f19"
+    },
+    {
+      "path": "tour/fold_02_anleitung_memory.png",
+      "bytes": 1136486,
+      "sha256": "881af1c8c23044297f23d7fe6cd3a4a38107b62523ed5f92e8578085bdbba907",
+      "git_blob": "edf001c3bc2401665cf1876dbdda51d1a8aac829"
+    },
+    {
+      "path": "tour/fold_02_anleitung_numbers.png",
+      "bytes": 1272046,
+      "sha256": "aa9d158508838d84d6ef0d7832951f68268eb760b2dc95b53105f6a43fdea367",
+      "git_blob": "272bcd33e8f1213cb97860d6550b1f7dc8fe8b08"
+    },
+    {
+      "path": "tour/fold_02_anleitung_oddone.png",
+      "bytes": 1261683,
+      "sha256": "662daecd06d5e1cadee6982085749788b9fae4b5c27b3a005cdb8e35d12956db",
+      "git_blob": "cf2c52b8ff92df37db27c905213535280534f9c3"
+    },
+    {
+      "path": "tour/fold_02_anleitung_rotation.png",
+      "bytes": 1237242,
+      "sha256": "f9452faadd44e5c73f5341002b3932b4af8b0b89fd22f774f491befba2c725c1",
+      "git_blob": "d767c3021b9e914eee86893913bc6e31048d1cfa"
+    },
+    {
+      "path": "tour/fold_02_anleitung_series.png",
+      "bytes": 1252078,
+      "sha256": "3eb226ac818384a6e2e004dc0d574a1ee8316165fe982c9ba45bbca34a083524",
+      "git_blob": "951a495a4ee88524a21702937ff0c5571f8db163"
+    },
+    {
+      "path": "tour/fold_03_raetsel_matrix.png",
+      "bytes": 1228404,
+      "sha256": "eddbcd7601443c85fa3592adb6c3cda5661dc2acac9d2e1fece13b2f879c7af0",
+      "git_blob": "b042998e2b799ffb6d12cc8bcae8a662de54d6c3"
+    },
+    {
+      "path": "tour/fold_03_raetsel_memory.png",
+      "bytes": 1231083,
+      "sha256": "4b18cbf442b00606b53bfcb8d715522228ffb51078a07ef9fc9e5c7fac05f04c",
+      "git_blob": "0216dff08b014f4bb3ce0813af16f41a9d5eafef"
+    },
+    {
+      "path": "tour/fold_03_raetsel_memory_zeigen.png",
+      "bytes": 1229542,
+      "sha256": "378483418b213df14ed3be4070e6e20a770e204e74159184a1b550702da8d03a",
+      "git_blob": "298c79407b000cb3fd22241097a47014000b45b7"
+    },
+    {
+      "path": "tour/fold_03_raetsel_numbers.png",
+      "bytes": 1259822,
+      "sha256": "e3abea9e8ce036f6345781bb4f8da1be43f91f4661eae08109a9a79fd362431c",
+      "git_blob": "0b1f70fe2cb943dc18a9acefb69bd2ee1b067db4"
+    },
+    {
+      "path": "tour/fold_03_raetsel_oddone.png",
+      "bytes": 1327305,
+      "sha256": "b2aaeff3a04d654197bb178b437a310466361d66e6af74a6c2e0fbc418a871f6",
+      "git_blob": "5871348e1e1f21bdf88eeb7b55a0d670e22ee1db"
+    },
+    {
+      "path": "tour/fold_03_raetsel_rotation.png",
+      "bytes": 1235090,
+      "sha256": "fffff6c89a227941fe80f5d7a0887580ab1537aba860a156de58e3c132530710",
+      "git_blob": "de5ae23990dcd93e173cf6b30131dab8af268bc4"
+    },
+    {
+      "path": "tour/fold_03_raetsel_series.png",
+      "bytes": 1260651,
+      "sha256": "22517f248870a3ea290df3c137f75be9f91b76de24bea3a2a55d004a0c78ce39",
+      "git_blob": "8869b89582a9c604374cc179a53581f8dc708035"
+    },
+    {
+      "path": "tour/fold_04_ergebnis.png",
+      "bytes": 1102222,
+      "sha256": "8f246ca3ab8ae5fe1c1ea1867fd9cb7f5c6d0f48b1bf0c6f16df61df0b43f8fa",
+      "git_blob": "4a66272c7f1b894f89ec75f22892bdce7607e3de"
+    },
+    {
+      "path": "tour/fold_05_rueckblick.png",
+      "bytes": 1095885,
+      "sha256": "001e65c95aed0978045988ecb9448807f188d93035f4764f958544843c45a329",
+      "git_blob": "ccffe5b162f8cf4bffeecb6d45497677f1eed4f4"
+    },
+    {
+      "path": "tour/fold_05_rueckblick_drehen.png",
+      "bytes": 1042440,
+      "sha256": "5af362945da623e3311a07f86087b03a515d934312d50541ba34e36fb753d239",
+      "git_blob": "064db10d262a421b37eaf8af34b0b5b37b803c33"
+    },
+    {
+      "path": "tour/fold_04_ergebnis_komplett.png",
+      "bytes": 1085922,
+      "sha256": "fc562d9d9b258875abb4f636b1d1938091c17adaaf2c28dab4874fec50499681",
+      "git_blob": "d504e2705068d8dc1ccb2a84bfac22a45713a536"
+    },
+    {
+      "path": "tour/fold_05_rueckblick_loesung.png",
+      "bytes": 1082883,
+      "sha256": "55f026801c2a0a57b2d14e7f769dbc101fef1e881f9fc58e699b22fa717ef7b9",
+      "git_blob": "0ad7b887eaf45654e33c4aad24bc39afa15386a9"
+    },
+    {
+      "path": "tour/fold_06_tests_seite.png",
+      "bytes": 1059453,
+      "sha256": "43980fba0b2e316720cd8bba3e3738c6649519f87558f63df3ca108914c56a40",
+      "git_blob": "ffcda0d66e533e236fc954fbabfd92b152bb7396"
+    },
+    {
+      "path": "tour/fold_games.png",
+      "bytes": 519816,
+      "sha256": "08c1676147a9b75a1c501f9fe9d896ebf54aa9ddc22d9d5c42ee8f5ab7697564",
+      "git_blob": "899c4ca894749b4e6af50189a1b079fdf2dd9cb1"
+    },
+    {
+      "path": "tour/fold_home.png",
+      "bytes": 847138,
+      "sha256": "6428026a3b4e2196b0e3793042ba9b59a30203b7bcfdaac62f750adfa1c93fc9",
+      "git_blob": "44dd00f1018bff29d997e87b29d6c82811b50296"
+    },
+    {
+      "path": "tour/fold_learn.png",
+      "bytes": 463066,
+      "sha256": "ed9710a0733362139c439acf9b2e2056824143ab8a5a3ab6f632508a93969bb2",
+      "git_blob": "c11cb03b951f34a1c80b32f338e91dd1e4f0bee9"
+    },
+    {
+      "path": "tour/fold_profile.png",
+      "bytes": 668928,
+      "sha256": "c73f65878b96973899a74efa121cf16a7eb39b8768a200f05415f85f1223ba34",
+      "git_blob": "fd154ae01370d23003ff3b0f70667cc298c87d97"
+    },
+    {
+      "path": "tour/fold_rewards.png",
+      "bytes": 517157,
+      "sha256": "2a865ebfbf147009d172339b735a6e27e7d47ba1af9856e779897722ad46d44e",
+      "git_blob": "4efce6c0df5cc7f92904972390ec2ed3d27b6fa0"
+    },
+    {
+      "path": "tour/fold_tests.png",
+      "bytes": 633186,
+      "sha256": "35bfa7348611276c827e31eb546749cf1d0e9d60382905b44d21bfd0760e5cac",
+      "git_blob": "387d68e159abfe000f22d6d33dec2ce34d9229bf"
+    },
+    {
+      "path": "tour/phone_01_start.png",
+      "bytes": 962676,
+      "sha256": "d771197db05e71594b2a1ad049da200d0c0e94ed165934b48cc3f9fb9e9b10f6",
+      "git_blob": "aa07196b5b6dd0d21febd4df0e28cf2e656e7c7b"
+    },
+    {
+      "path": "tour/phone_02_anleitung_matrix.png",
+      "bytes": 843920,
+      "sha256": "73c0c43660a3a3db72fc0fb12fd4bce7087c742e04f9f4d4a4253f271ff0d832",
+      "git_blob": "63e2bd70217a8c6d172fb5c4a7deb2f87d06f0d8"
+    },
+    {
+      "path": "tour/phone_02_anleitung_numbers.png",
+      "bytes": 870762,
+      "sha256": "1d15694931653173759b69babbd462d44cbce5cf50a977499316fffad9e4c566",
+      "git_blob": "ccc506ac34409f0df5b7a6eabb4e075019c8282b"
+    },
+    {
+      "path": "tour/phone_02_anleitung_memory.png",
+      "bytes": 771065,
+      "sha256": "64c22d65cb879df634d77b11b352e41d54d3a3699b3fcb3783d4c843eda5f7ef",
+      "git_blob": "9f91f69770329287b4c83bec3cae4fa71dbed131"
+    },
+    {
+      "path": "tour/phone_02_anleitung_oddone.png",
+      "bytes": 856534,
+      "sha256": "54cbf30ab50652f193ba0ad104527e9c0e4325517da07f072bbea1109891b286",
+      "git_blob": "b4077d0db0eaca9daf2f09f777008b60e764fd7e"
+    },
+    {
+      "path": "tour/phone_02_anleitung_rotation.png",
+      "bytes": 839306,
+      "sha256": "e8887224395a54e71952183b5b2afcb6878fa45c87810afbd88094b4c2526caa",
+      "git_blob": "bb80811efdb2b3fc2cb9aa4a20f07bda50271e3b"
+    },
+    {
+      "path": "tour/phone_02_anleitung_series.png",
+      "bytes": 853804,
+      "sha256": "e2b1da18b91e724e087f0b5afe3854fe6e0242aec7f6f4251b107118ae986d62",
+      "git_blob": "3fd0e8a278630e49c5dbd881cbe7fa0a44ea40f9"
+    },
+    {
+      "path": "tour/phone_03_raetsel_matrix.png",
+      "bytes": 776876,
+      "sha256": "6fcb508e184ba82113b904d564c054cfe823d9bb4bb0dc8ccf8e82fc77a027ad",
+      "git_blob": "e4a642f63c96865d01ee269b1e06ec6d9eefa891"
+    },
+    {
+      "path": "tour/phone_03_raetsel_memory.png",
+      "bytes": 805998,
+      "sha256": "debf532c2f715e3890ac31431deeefd4ef468ab51d42adbaadd390831dbf8797",
+      "git_blob": "f6bea9964b69f0970fde6b767f9ce6041b049124"
+    },
+    {
+      "path": "tour/phone_03_raetsel_numbers.png",
+      "bytes": 842666,
+      "sha256": "5af3a1e1eace4e2aeaf27c82d9a3bbb42cc1a98a25518f90098215f67b458be9",
+      "git_blob": "b67758d3d4c6e72857f4cda28a536bb41c9bf851"
+    },
+    {
+      "path": "tour/phone_03_raetsel_oddone.png",
+      "bytes": 890956,
+      "sha256": "0bf48b2369c231d499ea06de7711ef55d1c7e44cf8b7e253766d9d85d76bf8a5",
+      "git_blob": "9cbc9d40d4024370bca01179096cc01fee16e685"
+    },
+    {
+      "path": "tour/phone_03_raetsel_memory_zeigen.png",
+      "bytes": 801173,
+      "sha256": "8c7a97a9972c765182da04f226a9553c4b5bf3d6c4973ee2117aaf0ef0a01fcb",
+      "git_blob": "857d9305c12bfa12c3d158b28434a7a199602a51"
+    },
+    {
+      "path": "tour/phone_03_raetsel_rotation.png",
+      "bytes": 862829,
+      "sha256": "5a5bd7348189c4191ff09c01356be0a8ee9c05d6f507084edac9de29cfae9ace",
+      "git_blob": "573dc525ba50e4b726a4aa4a1df97a969a68e489"
+    },
+    {
+      "path": "tour/phone_03_raetsel_series.png",
+      "bytes": 803309,
+      "sha256": "1f213802a8240c6ef90c1ad28ed665de822b7173f52d303a50fc4a25dd9b1612",
+      "git_blob": "2088bdc5ff481f662af49bb68687b0121a313faa"
+    },
+    {
+      "path": "tour/phone_04_ergebnis.png",
+      "bytes": 813934,
+      "sha256": "812c9e4e42fb69058eea78a6cf2c82f389e7b1be02f4cc72ca5c77a9263b60b2",
+      "git_blob": "8801f58019b8b72469c7ff04f9cb360e22f07e1e"
+    },
+    {
+      "path": "tour/phone_05_rueckblick.png",
+      "bytes": 853307,
+      "sha256": "f961ca813945d3b941185102d48f6dbed3fc0042c1490f4a9b5c39e43920a23b",
+      "git_blob": "2837e2a2988479bdbe0dff3ac9b8d002496d95b1"
+    },
+    {
+      "path": "tour/phone_04_ergebnis_komplett.png",
+      "bytes": 737080,
+      "sha256": "31bcc58800e2ba95988153d7d0b7f1f0c405d89b9aeb55e6018a1d836df60c8f",
+      "git_blob": "9afaf491ef631c43bf69335d9397f382b802ca22"
+    },
+    {
+      "path": "tour/phone_05_rueckblick_drehen.png",
+      "bytes": 798646,
+      "sha256": "fcf441dc45ed98b5d12dab2d4d58e635eb1127dadd16954d33f0a55dea23ba77",
+      "git_blob": "285b8e6e2efc597eb3188477df3fbd02650e26dc"
+    },
+    {
+      "path": "tour/phone_05_rueckblick_loesung.png",
+      "bytes": 821758,
+      "sha256": "1b35b0be4f3f2b8367402749927e948175b532c0800975871433226e0c3fab47",
+      "git_blob": "e811b7cf3ef77694a7d46366a29ca30eedfba59d"
+    },
+    {
+      "path": "tour/phone_06_tests_seite.png",
+      "bytes": 827850,
+      "sha256": "24502b996ee7e18251fbf879c206d40bb4c5bfea2eb7036d2a8e5f3ec1dd7773",
+      "git_blob": "85d7c44639e687c28785eb4d2a99972767fef374"
+    },
+    {
+      "path": "tour/phone_games.png",
+      "bytes": 344456,
+      "sha256": "bfc75faf54364374b9caaaf6083158383bd3e93859a28157664d018a865b9ca2",
+      "git_blob": "6addf9a18eb12c5128dddf70fdfd216c5882998c"
+    },
+    {
+      "path": "tour/phone_home.png",
+      "bytes": 566778,
+      "sha256": "0b6ad8358741b09d864117bfec3d6953305e4e67cf2f91b5e6ec237145a211db",
+      "git_blob": "59743bd38605635eb039132156d4e19998e191e0"
+    },
+    {
+      "path": "tour/phone_learn.png",
+      "bytes": 388358,
+      "sha256": "e2a33abeed005654eed1167c3f3e752d7308e9a1f7b608377b5e4c73d999ab03",
+      "git_blob": "642d4a4f2b24ff119199642854dd89354c1a9fe8"
+    },
+    {
+      "path": "tour/phone_profile.png",
+      "bytes": 488879,
+      "sha256": "7d17c5fef873b87aef94cb896cf17b6d30fa9047ac517561010124365b5d7478",
+      "git_blob": "b6a05852b8dbd0d2c496f10305a1a7256a15fad9"
+    },
+    {
+      "path": "tour/quer_01_start.png",
+      "bytes": 784968,
+      "sha256": "dea7d8c540b4cc4d77216009683f9106641835a0acfa13d5a0693250d52f1be9",
+      "git_blob": "f95cd32ca94a2326de6f2d6bf1e16beac8c9ed12"
+    },
+    {
+      "path": "tour/quer_03_raetsel_matrix.png",
+      "bytes": 687610,
+      "sha256": "23350152e0446f61fe10092245f4e4a2a4877c7d20fbbed23174ba3b8a9ac9b8",
+      "git_blob": "9f02b64bf926aef0c24e1f31d2ca98a8379e1ae8"
+    },
+    {
+      "path": "tour/phone_rewards.png",
+      "bytes": 421569,
+      "sha256": "ba37e63d74e6a8f88f12eaeeb05db89c94cacea37ceabe950f843f5a670840fe",
+      "git_blob": "22fe050b364f29d69210840726a1e319f8c796b2"
+    },
+    {
+      "path": "tour/phone_tests.png",
+      "bytes": 478481,
+      "sha256": "ae97eea3fb13751b25f24d9daf3732b47f239a21271c0767cc5fc902cd03f7e4",
+      "git_blob": "5c1df554ee1d2c00c5302576614f1b0df3ea9f78"
+    },
+    {
+      "path": "tour/quer_03_raetsel_rotation.png",
+      "bytes": 668905,
+      "sha256": "fe3ac79c08afc256d046831dd59e5d822cce7247b354022e74297ba72f945fd1",
+      "git_blob": "2369437752d898109c10d2994531b3a47f38e026"
+    },
+    {
+      "path": "tour/quer_04_ergebnis.png",
+      "bytes": 666482,
+      "sha256": "d528a666ef1b0581673c3c7cf79dffe8cef3315801f6957946cae26de90f37ee",
+      "git_blob": "9347165725a2235baf57f06679501546b993e0d6"
+    },
+    {
+      "path": "tour/reference-phone_games.png",
+      "bytes": 284058,
+      "sha256": "df83dd5719878466ef8ab132326a179fedf2236c7291d9725e6df7e1bbcb30a9",
+      "git_blob": "9840605ef42b31a0d11889e8dcafea26fb906123"
+    },
+    {
+      "path": "tour/reference-phone_learn.png",
+      "bytes": 298656,
+      "sha256": "085d59a2b170b3f3fe3b75c50ebd617a25c29644318b9f8f36aa29183bebab82",
+      "git_blob": "6deb6f0a564d9edfb486f1569047dd96288b327f"
+    },
+    {
+      "path": "tour/reference-phone_home.png",
+      "bytes": 463001,
+      "sha256": "5e7d3004bad44f674f426113c9f3926e30031f2a6cb1247eeb837917999959f1",
+      "git_blob": "1aec9d43b38430794442d3cd439f595ecffc7517"
+    },
+    {
+      "path": "tour/reference-phone_profile.png",
+      "bytes": 381162,
+      "sha256": "08a84e25a8c868f111f8c23acad980058edc3949dc82ef3237708812903823d5",
+      "git_blob": "2558f64baf86ec9afdb497ec236d1ba3326fb760"
+    },
+    {
+      "path": "tour/reference-phone_rewards.png",
+      "bytes": 342499,
+      "sha256": "9d4a170289feb374d62cb80772b5533e3ff055076e4346abf8e9058ba31d4ae3",
+      "git_blob": "b721e12c147ecc0af199ada23607e2cbb781f82d"
+    },
+    {
+      "path": "tour/reference-phone_tests.png",
+      "bytes": 350908,
+      "sha256": "1b1db0b8a50065bbb8b53ad50831208a3aaa8df587728230a8559ce4bd79ece4",
+      "git_blob": "0c5c9c5e74123b801701e471c880d59f7f829603"
+    },
+    {
+      "path": "tutoring/fold-target-actual-opened-course.png",
+      "bytes": 777596,
+      "sha256": "b8636e4a5c29ca099bb554af172dc69e879b92e74414982ab03949cc7f737788",
+      "git_blob": "7a69634d3beb6e1667fa267089c30685b5e471cb"
+    },
+    {
+      "path": "tutoring/fold-target-actual-tutoring-card.png",
+      "bytes": 734968,
+      "sha256": "af72d650e8ec993bc2745595de8e96bda1d06d2590aa86d4655cbb362a75651a",
+      "git_blob": "502e666abc92669826ce4c68b440187908e1f409"
+    },
+    {
+      "path": "tutoring/fold-target-actual-tutoring-reason.png",
+      "bytes": 771806,
+      "sha256": "aebf3a7b058150ba50a18b079cc427bacb208878053ce2120ed630dbf69c1a89",
+      "git_blob": "f62b9de71e44f7953f76abdf6217f9ff0dffa110"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-opened-course.png",
+      "bytes": 313838,
+      "sha256": "af8ce17c393333c7240aa21b34423369885f8428affb385f0c43ac6474e29aef",
+      "git_blob": "af88994bab23b58acec89ea992c24bee6ae28623"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-tutoring-card.png",
+      "bytes": 264129,
+      "sha256": "3e6e13a5103faed74aed3c58e6db1282190a667023d6a91d1c04885d8d199017",
+      "git_blob": "04c43144c33172f4224d47bfbaa842a1620c49a3"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-tutoring-reason.png",
+      "bytes": 373236,
+      "sha256": "58485bf7ce4529b313f36e6c383b06bc2ff801513d7101c058bae82ee86f0858",
+      "git_blob": "8cd3555788e8244ef9f6a1e6b54478d8b7bdb52b"
+    }
+  ],
+  "archive_code_executed": false
+}

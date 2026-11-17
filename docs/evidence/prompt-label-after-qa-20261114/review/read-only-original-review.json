@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "scope": "Read-only original artifact verification and exact pure summary-reader replay; no tests or renderer executed",
+  "host_commit": "21e0368603e38d1dfd063485f5307ec201f0d872",
+  "host_tree": "0a5042254cd27c70597952842fdc8d71b089b417",
+  "sole_parent": "1375da193af0152af64f91d86577aa9768cd50db",
+  "native_pin_unchanged_not_executed_here": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "run_id": 43603068259,
+  "run_attempt": 1,
+  "job_id": 132471773636,
+  "artifact_id": 14116624494,
+  "archive_identity": {
+    "bytes": 37588911,
+    "sha256": "a56100f13efd22974046aa94ec1d2d67549d92a025701b47e47d37e3ff0e6bc7",
+    "git_blob": "ee7bf86a7d27c8eec528ee4b59505eac7c63849b"
+  },
+  "archive_files_verified": 60,
+  "original_index_entries_verified": 59,
+  "complete_tracked_source_entries_verified": 4524,
+  "specific_source_bindings_verified": 16,
+  "source_before_after_identical": true,
+  "source_snapshot_identity": {
+    "bytes": 4081,
+    "sha256": "31df30aa55c397e6a45cb82fd4669ebf94963a57fc3b5b4cc961f3f708d826ce",
+    "git_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a"
+  },
+  "exact_acceptance_reader_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+  "replayed_summary": {
+    "status": "PASS",
+    "passed": 36,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true
+  },
+  "machine_json_events": 83,
+  "machine_non_json_lines": 1,
+  "actual_suite_paths": [
+    "/home/runner/work/lumo-lernen/lumo-lernen/test/design/lumo_modernization_capture_test.dart"
+  ],
+  "actual_flutter_version": "3.44.9",
+  "original_pngs_verified": 42,
+  "all_original_files_unchanged_during_review": true,
+  "visual_review": "Separate independent review limited to three Schreibcoach before/after pairs",
+  "limitations": [
+    "No new tests, dependency install, renderer or Android execution",
+    "No new visual WordCoach acceptance; unchanged focus does not render that screen",
+    "No emoji-helper or emoji-font correction",
+    "No claim that all42 PNGs received visual review",
+    "No change to the frozen main1375/e2 candidate or PR491"
+  ]
+}

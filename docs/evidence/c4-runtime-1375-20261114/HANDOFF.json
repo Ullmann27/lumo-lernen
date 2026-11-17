@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "kind": "current_source_runtime_original_artifact_review",
+  "source": {
+    "host": "1375da193af0152af64f91d86577aa9768cd50db",
+    "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "run_id": 43599456596,
+    "run_attempt": 1,
+    "job_id": 132460874104,
+    "job_conclusion": "success",
+    "job_completed_utc": "2026-11-14T13:25:21Z"
+  },
+  "artifact": {
+    "id": 14115597521,
+    "name": "lumo-connect-four-2020-desktop-runtime",
+    "bytes": 22157468,
+    "sha256": "dec176c035f5183ce2fbd33f78e95cdb55d7b9b58f16841e3ac34bfee80be836",
+    "single_official_download": true,
+    "files": 399,
+    "complete_crc_and_canonical_path_review": true,
+    "archive_code_executed": false
+  },
+  "original_job_log_retained_separately": {
+    "by": "ReleaseLead",
+    "git_blob": "0e0243629f4d21c681e96b61c3cce59f6c702231"
+  },
+  "actual_local_readonly_verification": {
+    "exit_code": 0,
+    "pure_calls": [
+      "validate_native_log",
+      "validate_results"
+    ],
+    "reader_path": "scripts/run_connect_four_runtime.py",
+    "reader_blob": "36d93ed0908705e339346bf5ef451cf047b641b5",
+    "host_file_records": 447,
+    "native_file_records": 1256,
+    "source_snapshots_byte_equal": true,
+    "immutable_tree_binding": true,
+    "fresh_result_equals_original": true,
+    "pngs_decoded_and_hashed": 259,
+    "frames": 250,
+    "native_original_checks": 170,
+    "native_errors": [],
+    "original_process_exit_codes": {
+      "dart": 0,
+      "godot": 0
+    },
+    "all_399_original_files_unchanged": true,
+    "final_ack": 23,
+    "final_revision": 33,
+    "final_exit": true,
+    "stars": 5,
+    "xp": 40,
+    "reopened_same_round_in_test_preferences": true,
+    "no_new_engine_or_test_run": true
+  },
+  "selected_visual_review": {
+    "git_blob": "7e9768a77ff5d224aa94fce0ab77266600f18fb3",
+    "images": 4,
+    "original_image_and_layout_bytes_preserved": true,
+    "small_landscape_boundary": "640×360 result modal at revision29/ACK19: only view-board fully visible in current scroll viewport; restart and mode clipped with zero hit rectangles. Scrolling/activation not newly demonstrated by this standard runtime capture.",
+    "separate_R3_interaction_proof_not_transferred": true
+  },
+  "limits": [
+    "24 FPS is the configured recording format, not measured device performance.",
+    "Desktop local file transport/test SharedPreferences/declared Android-style insets do not prove Android Binder or persistent disk operation.",
+    "Runtime job completed successfully; main workflow completion, APK readiness and Play approval remain separate.",
+    "No product change, ref update or trigger by this reviewer."
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/archive-index.json",
+      "bytes": 96334,
+      "sha256": "f4186de32b263e0be0887cc436fcfebd86ca5106babc47e00a5174d83516baeb",
+      "git_blob": "8f845a89d903ef9bf16428179d107e77c2dca658"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/expected-immutable-sources.json",
+      "bytes": 238569,
+      "sha256": "8edfa73d4561695e31e665246cd0764f2ff649f8546e2efa525d5d3012691f68",
+      "git_blob": "8aaeaf26e46f70a1ae2953ecd645dff603ee0600"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/review-original.py",
+      "bytes": 6274,
+      "sha256": "00271d51824a436eba01e4cd5fef01f15242f596b6a86d4a33c68c9da87688d6",
+      "git_blob": "49495bfda3ced5c1c2545744e4de32a3c61829b0"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original-review.json",
+      "bytes": 4281,
+      "sha256": "090b9a657b7e350e971fa24893fa29e7c47b3f410062a31cfb626ad829c6276e",
+      "git_blob": "b1f21cf230821f66feb3b7fbf1f131a3521a0811"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/fresh-runtime-results.json",
+      "bytes": 50439,
+      "sha256": "de7e906363105087d6e973b924befba4a07f9c84934ab66f2c7694cb4ac54075",
+      "git_blob": "19c9310f0a626f6b67b0218c050a16f6e6cde8c3"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/runtime-gate.json",
+      "bytes": 55426,
+      "sha256": "514fce4195a81302a8b3c1470018da5dc6f6c4c9c5b94ba198e3e1c5a53b950c",
+      "git_blob": "da2d0d57b81751730089d088530c012250e6d561"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/native-result.json",
+      "bytes": 73209,
+      "sha256": "22be109bf62d81148e3b96b9c54932ca5de0b4e2fdf323269436a069b7cef748",
+      "git_blob": "cdaab576435f21ca6dbfc88a614ad61eeef91f62"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/dart-result.json",
+      "bytes": 20386,
+      "sha256": "08cd6bc2d5fec97fb0bd2da92a4be35ea6ff622607fe604a6bda2582659e4477",
+      "git_blob": "ad2512a43f7e5ef2263036619cd8ffde781ac120"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/source-before.json",
+      "bytes": 476939,
+      "sha256": "353356ec89c4a4d13ae12b4ddcaa16779a607c1625f8b838061d6a9a44b9f202",
+      "git_blob": "d1ddbeeba0fbff75bde4bbf71ce380c3b10c3af8"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/source-after.json",
+      "bytes": 476939,
+      "sha256": "353356ec89c4a4d13ae12b4ddcaa16779a607c1625f8b838061d6a9a44b9f202",
+      "git_blob": "d1ddbeeba0fbff75bde4bbf71ce380c3b10c3af8"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/original-godot.log",
+      "bytes": 2551,
+      "sha256": "e107eb01927fd40b21601ef5d8f8bf80392bdc2b5a306300dac5adb48b67fede",
+      "git_blob": "997285528a8faeaa0bbfb5b2633976946eaa5eaf"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/original-dart.log",
+      "bytes": 325,
+      "sha256": "2b15d7e209b97e7c51f1d42bba72e4560b88ba6fd332349cef8b793a4f4f1640",
+      "git_blob": "f7a3abe2e35b8e80d45ff9a3cb35e3b7254cd2fc"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/done.json",
+      "bytes": 17,
+      "sha256": "baf7c3be410aa877bd98a1776555e86da13a23212e363e0e87e2040768f24710",
+      "git_blob": "67f49cd9c460cbcaa519d63e8147a4e1186b0de7"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/session.json",
+      "bytes": 164,
+      "sha256": "93361512b711676ea3c5e9501eb97fc29cb92717556c22dd6a9f70aa12e1fefc",
+      "git_blob": "2417bbac367edf8809d4d5555440e07b604708a0"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/closed.json",
+      "bytes": 44,
+      "sha256": "922b529a830f497aae1e84cb1e1b60f62dea9e64f9d168e45037d94d3ac414b9",
+      "git_blob": "14143da215bd17cf2fc16a3f4393d0e02671d848"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/input.json",
+      "bytes": 221,
+      "sha256": "33ba17b10f9421781eccd302f04a0aa8fec1ed0adfb92c2e1d5181a4e5c11c13",
+      "git_blob": "26c74a64d96372b2aa4cf5b9e59982384a83b49d"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/state.json",
+      "bytes": 594,
+      "sha256": "a6e1fc3334a2040fd88d60ccfa523573b8315eaf0fed348d690e7bfd37b7faee",
+      "git_blob": "3b06f70aa2ca476edd9dc87932561d0edc03b30d"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/return-recovery.log",
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+      "git_blob": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/wisps.log",
+      "bytes": 499,
+      "sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39",
+      "git_blob": "a9af201e589b4813f21814579f5112b87e66b46a"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_empty.png",
+      "bytes": 82537,
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "git_blob": "e2ca2570863ef418c7cf93e443cb176c776b045f"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_empty.layout.json",
+      "bytes": 19574,
+      "sha256": "164520da5a84dfd6488a84d4e4fcd0e1b5418dc7ff08b2dc3856760c014d9e9d",
+      "git_blob": "f44a487c5d32224d5d704667bbc3bed8de77f9c2"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_win.png",
+      "bytes": 84544,
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "git_blob": "5165b197e9b7deb677975e4bdf0ce6cf0737076f"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_win.layout.json",
+      "bytes": 19620,
+      "sha256": "9f605b67fc7906f69e31655ba6d7a6f78146fdf4fe4098181db7c3697b7d87fb",
+      "git_blob": "96ee969384d224ccb0c47c07014202ef75454aad"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_phone_portrait.png",
+      "bytes": 170661,
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "git_blob": "328038c8271f171e9575a021145fd090b83e9307"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_phone_portrait.layout.json",
+      "bytes": 21036,
+      "sha256": "a7f0b62827963bf21b46191f661e2842c04f97c2a93679472149be9ab628248f",
+      "git_blob": "f9f7d21339d99791414c6e38efadb18d776d34ac"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_small_landscape.png",
+      "bytes": 22915,
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "git_blob": "ec730039bb8e2ec4fea8ed293c914cff24d81289"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_small_landscape.layout.json",
+      "bytes": 19743,
+      "sha256": "f1b11ce15442e2e106c51b0854446e59b99db00ff2cb797c6efb7927b007d364",
+      "git_blob": "bc599cfdf7373a06c24432bb802bf2f1371ec5a0"
+    }
+  ],
+  "tree_entries": [
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/archive-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f845a89d903ef9bf16428179d107e77c2dca658"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/expected-immutable-sources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8aaeaf26e46f70a1ae2953ecd645dff603ee0600"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/review-original.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49495bfda3ced5c1c2545744e4de32a3c61829b0"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1f21cf230821f66feb3b7fbf1f131a3521a0811"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/fresh-runtime-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19c9310f0a626f6b67b0218c050a16f6e6cde8c3"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/runtime-gate.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da2d0d57b81751730089d088530c012250e6d561"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/native-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdaab576435f21ca6dbfc88a614ad61eeef91f62"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/dart-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad2512a43f7e5ef2263036619cd8ffde781ac120"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1ddbeeba0fbff75bde4bbf71ce380c3b10c3af8"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1ddbeeba0fbff75bde4bbf71ce380c3b10c3af8"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/original-godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "997285528a8faeaa0bbfb5b2633976946eaa5eaf"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/original-dart.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7a3abe2e35b8e80d45ff9a3cb35e3b7254cd2fc"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/done.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67f49cd9c460cbcaa519d63e8147a4e1186b0de7"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/session.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2417bbac367edf8809d4d5555440e07b604708a0"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/closed.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14143da215bd17cf2fc16a3f4393d0e02671d848"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/input.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26c74a64d96372b2aa4cf5b9e59982384a83b49d"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/state.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b06f70aa2ca476edd9dc87932561d0edc03b30d"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/return-recovery.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/wisps.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9af201e589b4813f21814579f5112b87e66b46a"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_empty.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2ca2570863ef418c7cf93e443cb176c776b045f"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_empty.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f44a487c5d32224d5d704667bbc3bed8de77f9c2"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_win.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5165b197e9b7deb677975e4bdf0ce6cf0737076f"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_win.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96ee969384d224ccb0c47c07014202ef75454aad"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_phone_portrait.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "328038c8271f171e9575a021145fd090b83e9307"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_phone_portrait.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9f7d21339d99791414c6e38efadb18d776d34ac"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_small_landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec730039bb8e2ec4fea8ed293c914cff24d81289"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original/runtime/connect_four_small_landscape.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc599cfdf7373a06c24432bb802bf2f1371ec5a0"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original-run.api.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "291d1901d9abfc67e5f2e4771051f0f90c980bd6"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original-run-artifacts.api.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "295b66594e3fef9bd79a5ad9de3d4432f2825518"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original-run-jobs-at-inspection.api.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4769a03e47374af678602a8e04d569f0f951fa1e"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/original-host-commit.api.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "390af7a5b39cb77603952b22368e697a8ad9fcf8"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/reader-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2a1c9c7c25db58b1b03cc08aeba405da972d90f"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/reader.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f6a916b6a988c67e59c0774bb87c43a7c002e90"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/archive-download-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62d2a61dace08f3e73d9f3a56c03f6ce9f49faf7"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/independent-visual-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e9768a77ff5d224aa94fce0ab77266600f18fb3"
+    },
+    {
+      "path": "docs/evidence/c4-runtime-1375-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9033c149413d6e0b1fbb15f9487041cc0eec5771"
+    }
+  ]
+}

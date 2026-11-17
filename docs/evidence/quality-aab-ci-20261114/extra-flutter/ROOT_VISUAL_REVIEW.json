@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "archive": {
+    "bytes": 38297988,
+    "sha256": "c8842754cd3fe54f2f6fe04a913d98e8646c9cbca9d4902bf6d5fca9b6027c99",
+    "git_blob": "af908446cb5f1cec7715e5805f6ad69159ff5510"
+  },
+  "all_member_crc_and_paths_valid": true,
+  "members": 54,
+  "artifact": {
+    "id": 14113540275,
+    "node_id": "MDg6QXJ0aWZhY3QxNDExMzU0MDI3NQ==",
+    "name": "lumo-1981-real-flutter-captures",
+    "size_in_bytes": 38297988,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14113540275",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14113540275/zip",
+    "expired": false,
+    "digest": "sha256:c8842754cd3fe54f2f6fe04a913d98e8646c9cbca9d4902bf6d5fca9b6027c99",
+    "created_at": "2026-11-14T12:03:04Z",
+    "updated_at": "2026-11-14T12:03:04Z",
+    "expires_at": "2026-12-14T12:03:02Z",
+    "workflow_run": {
+      "id": 43590864772,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "work/lumo-play-quality-20261114",
+      "head_sha": "aab09275ec6b5808de9be539ca4e1a7e70921249"
+    }
+  },
+  "reviewed": [
+    {
+      "path": "1978/lessons/cover-large-text.png",
+      "finding": "The 344x882 logical layout at text scale1.4 shows readable arithmetic instructions and illustration. The lower answer area continues outside the initial scroll viewport. The Tests navigation item is partly clipped at the horizontal primary-rail boundary; the source deliberately implements a swipeable rail with More fixed.",
+      "dimensions": [
+        688,
+        1764
+      ],
+      "bytes": 914330,
+      "sha256": "c637a210fad0c4ba15b87959aac2ee0cb5153301e6e48bc2f4669ed2cf1f0f99",
+      "git_blob": "7c87b665db8e769ce0c1c0a85810b1b7d6a8d612"
+    },
+    {
+      "path": "1981/atelier/fold-cover-large-text-build.png",
+      "finding": "The large-text ten-frame model, reserve, Back/Move and Check my model controls are legible and fully contained in this scrolled capture. This is a rendered widget fixture, not evidence of a child completing the lesson.",
+      "dimensions": [
+        688,
+        1764
+      ],
+      "bytes": 480838,
+      "sha256": "05715ded0dffad86af06a84c533b8e196a01e2c52a2d274c939beca36b73667a",
+      "git_blob": "1381634de911b9596aa22d543f69e2cd49ed2948"
+    },
+    {
+      "path": "cards_hub_landscape_840x400.png",
+      "finding": "Both Solo spielen and Mit Freunden primary actions and Back are fully visible in the landscape capture.",
+      "dimensions": [
+        1260,
+        600
+      ],
+      "bytes": 568845,
+      "sha256": "e23b4917655355deb852b4951fab65bfb1e79d00f2135ffc13dd4df6c523d0a2",
+      "git_blob": "35e79549a3bdff2629af2c43a0be608f4a93838b"
+    },
+    {
+      "path": "1978/tour/phone_home.png",
+      "finding": "Phone home has readable welcome and primary learning/game cards. Start, Lernen, Spielen, Tests, Profil and fixed Mehr navigation labels are fully visible.",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 566778,
+      "sha256": "0b6ad8358741b09d864117bfec3d6953305e4e67cf2f91b5e6ec237145a211db",
+      "git_blob": "59743bd38605635eb039132156d4e19998e191e0"
+    },
+    {
+      "path": "1978/tour/fold_home.png",
+      "finding": "Open Fold home shows both main cards, readable welcome and the full bottom navigation.",
+      "dimensions": [
+        690,
+        829
+      ],
+      "bytes": 847138,
+      "sha256": "6428026a3b4e2196b0e3793042ba9b59a30203b7bcfdaac62f750adfa1c93fc9",
+      "git_blob": "44dd00f1018bff29d997e87b29d6c82811b50296"
+    },
+    {
+      "path": "1988/spatial-reading/reading-fold-cover.png",
+      "finding": "Story text and Weiterlesen action are readable; the title intentionally displays an ellipsis. The illustration is partly below its viewport edge, while the forward control remains visible.",
+      "dimensions": [
+        516,
+        1323
+      ],
+      "bytes": 895473,
+      "sha256": "57bfd322b76c643c4e52e96721ba31be02872e0329c6672550ad47413385ad64",
+      "git_blob": "9a0784120c8dcd419dbbe69a5fdb5d7dd09729cd"
+    }
+  ],
+  "limits": [
+    "Only these six original PNGs were visually opened by Root; the other48 were not visually reviewed.",
+    "All54 archive members passed CRC, canonical path and SHA256 checks. Archive identity matches the current run API.",
+    "These are Flutter widget captures with test preferences; no Android, gesture, real device, child usability, sustained FPS or Play approval claim.",
+    "Original capture path prefixes1978/1981/1988 are historical naming; the artifact API binds the current run to host aab09275ec6b5808de9be539ca4e1a7e70921249.",
+    "The swipeable navigation interpretation is based on current source; this inspection did not execute navigation gestures or rerun any tests.",
+    "Only the six viewed PNGs and the complete54-member index are additionally preserved here. The complete original ZIP is available in the current GitHub artifact, not copied into this checkpoint."
+  ],
+  "source_files": {
+    "lib/widgets/design/lumo_design_system.dart": "79175b2dac6f52c73bd2f8737e9a94f7bddfa16b",
+    "test/design/navigation_large_text_test.dart": "fd72e5e6f0f01c6a27bc70aad9d24e9a2402cb3a",
+    "test/design/lesson_premium_capture_test.dart": "c25be85541affdb4bfc4ff646de75cbb35a8808a",
+    "test/design/learning_lab_visual_capture_test.dart": "8ed91d53f7d83c52a7b95480412d8f73ecdb9e08",
+    ".github/workflows/lumo-connect-four-2020.yml": "a0bf885564ec322b3d830bcc661d0417926fbb2d"
+  },
+  "recorded_at_utc": "2026-11-14T13:08:09.805863+00:00"
+}

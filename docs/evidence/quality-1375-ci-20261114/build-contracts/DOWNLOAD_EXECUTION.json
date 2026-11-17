@@ -1,0 +1,7 @@
+{
+  "chunk_id": "9fb320",
+  "wall_time_seconds": 0.238106883,
+  "exit_code": 0,
+  "original_token_count": 204,
+  "output": "{\n  \"archive\": {\n    \"bytes\": 28103,\n    \"sha256\": \"4c413db8e808135a5e228640abda43ae6d658adcdd78271f5add029cfe8a37d9\",\n    \"git_blob\": \"f373e345171c16d4a0744fe3f6677c2eabd4e5ae\"\n  },\n  \"zip_crc_valid\": true,\n  \"canonical_paths\": true,\n  \"file_count\": 1,\n  \"archive_code_executed\": false\n}\n{\n  \"archive\": {\n    \"bytes\": 28103,\n    \"sha256\": \"4c413db8e808135a5e228640abda43ae6d658adcdd78271f5add029cfe8a37d9\",\n    \"git_blob\": \"f373e345171c16d4a0744fe3f6677c2eabd4e5ae\"\n  },\n  \"zip_crc_valid\": true,\n  \"canonical_paths\": true,\n  \"file_count\": 1,\n  \"members\": [\n    {\n      \"path\": \"build-contracts.log\",\n      \"bytes\": 180240,\n      \"sha256\": \"2d858468ef4b4c9bfa96c1797c76465d73c14c254b6a1f51e72d5a242531e1b8\",\n      \"git_blob\": \"75c403157cb0ae7a0e9876008a7029cc2be6d721\"\n    }\n  ],\n  \"archive_code_executed\": false\n}\n"
+}

@@ -1,0 +1,22 @@
+{
+  "at_utc": "2026-11-14T15:02:59.952323+00:00",
+  "repository": "/workspace/scratch/2708c7907f28/lumo-host-current",
+  "before_head": "1375da193af0152af64f91d86577aa9768cd50db",
+  "actual_after_head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "actual_after_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+  "actual_clean_after": true,
+  "verified_sparse_worktree_files": 1655,
+  "verified_worktree_bytes": 64047744,
+  "both_host_parents_and_previous_head_are_actual_ancestors": true,
+  "original_merge_command_exit_code": 128,
+  "original_merge_command_stdout": "Updating 1375da19..057a4e8d\nFast-forward\n",
+  "original_merge_command_stderr": "warning: lazy fetching disabled; some objects may not be available\nfatal: unable to read 02931fac78b3d95f05d250b2551bb0893cbaefc8\n",
+  "actual_followup": "The command had already advanced HEAD/index/worktree to057a before its later missing out-of-cone blob read failed. Follow-up independently verified HEAD/tree, clean state and every1655 materialized Git blob/mode. No second merge, reset or force was used.",
+  "local_tracking_ref": "refs/remotes/origin/work/lumo-play-quality-20261114",
+  "local_tracking_old": "1375da193af0152af64f91d86577aa9768cd50db",
+  "local_tracking_new": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "autosave_exit_code": 0,
+  "autosave_stdout": "[LUMO-CHECKPOINT] Nothing new to save on work/lumo-play-quality-20261114.\n",
+  "autosave_stderr": "",
+  "source_scope": "Existing sparse-checkout scope preserved; not all excluded assets/docs materialized and no local full Android build claimed."
+}

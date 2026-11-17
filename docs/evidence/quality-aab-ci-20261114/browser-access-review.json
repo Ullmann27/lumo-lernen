@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-14T11:40:32Z",
+  "candidate_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "candidate_run": 43590864772,
+  "scope": "Read-only discovery of an existing signed-in browser route for the already authorized eventual APK publication. No browser action or publication was performed.",
+  "shared_cloud_desktop": {
+    "skill_read": "cloud-environment:cloud-desktop",
+    "exposed_interactive_tools": [],
+    "exposed_environment_status_tool": false,
+    "blocked_interaction": "No shared-browser or desktop state/navigation/input tool is exposed in this session.",
+    "environment_identifier": "Not supplied by an available desktop status tool; no identifier invented."
+  },
+  "alternative_browser_contexts": {
+    "provider": "TinyFish",
+    "connected_accounts_checked": 2,
+    "profiles_returned": 4,
+    "github_sign_in_records_found": 0,
+    "limits": "Saved sign-in metadata is not proof of a current valid session. No profile name is treated as authentication. No unrelated profile identity or signed-in site is included here.",
+    "provider_precondition": "Without a recorded GitHub sign-in, the provider requires user confirmation of an existing login or an accepted sign-in setup before a login-bound run.",
+    "browser_runs_started": 0,
+    "profile_setups_created": 0,
+    "credentials_accessed": false,
+    "paid_operations_started": false
+  },
+  "conclusion": "The available GitHub API connection lacks release upload tools, local gh is unauthenticated, and no confirmed signed-in browser publication route is available. The complete current build/Android verification proceeds. This does not establish that GitHub itself denied this user's release permissions."
+}

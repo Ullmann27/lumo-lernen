@@ -1,0 +1,56 @@
+{
+  "production_base": "1375da193af0152af64f91d86577aa9768cd50db",
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_historical_apk_expectations.HistoricalApkExpectationsTest.test_current_default_requires_the_notice_policy",
+    "test_verify_play_bundle.SyntheticPayloadContracts.test_notice_members_and_current_policy_are_required_by_payload_verifier"
+  ],
+  "exit_code": 1,
+  "sources": [
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "origin": "1375da193af0152af64f91d86577aa9768cd50db",
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382"
+    },
+    {
+      "path": "scripts/verify_play_bundle.py",
+      "origin": "1375da193af0152af64f91d86577aa9768cd50db",
+      "sha256": "b654362e34062ac2aca3ad636f31049db265f3d00838c7704736018073bb19ef"
+    },
+    {
+      "path": "scripts/verify_android_apk.py",
+      "origin": "1375da193af0152af64f91d86577aa9768cd50db",
+      "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc"
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "origin": "1375da193af0152af64f91d86577aa9768cd50db",
+      "sha256": "4d5a55148f440c8b42d4def6bc864505329a073a384112288d67519923d90c2a"
+    },
+    {
+      "path": "scripts/tests/test_unified_apk_voice.py",
+      "origin": "1375da193af0152af64f91d86577aa9768cd50db",
+      "sha256": "c740a1a280901d70fd547b7528a432355154bc60e77c7109e6bd1012b7400dd3"
+    },
+    {
+      "path": "scripts/tests/test_historical_apk_expectations.py",
+      "origin": "exact_final_test_bytes",
+      "sha256": "15c36cbba49327f5f92269d138ea7d764577dac402b89d96a11735e0fe55bbee"
+    },
+    {
+      "path": "scripts/tests/test_verify_play_bundle.py",
+      "origin": "exact_final_test_bytes",
+      "sha256": "e83c0f3d73990424c34b2d931b98a649fcec2e3a35cf7aaebe5ebde50bbf2597"
+    },
+    {
+      "path": "scripts/tests/notice_fixtures.py",
+      "origin": "exact_final_test_bytes",
+      "sha256": "69a63a367e0bbdd2941b0cb12d03fe40a36b08d9f52afb85898b4a6f00f9cd69"
+    }
+  ],
+  "scope": "Actual old verifier execution on explicitly synthetic APK/AAB fixtures; original signature/aapt stubs unchanged"
+}

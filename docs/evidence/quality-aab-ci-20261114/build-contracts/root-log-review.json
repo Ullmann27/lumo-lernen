@@ -1,0 +1,36 @@
+{
+  "host_source": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "run_id": 43590864772,
+  "run_attempt": 1,
+  "artifact_id": 14112728895,
+  "archive_sha256": "ad1bf6dc03024c4bb3e6dd2f92d565861b7438aa6aa8d740dc3018b63a01f668",
+  "original_log_sha256": "847b4ddc6a1a1814efa9976bb9bef6dfbabdc7aea8fefeb1d610d0d7b8a2c337",
+  "unittest_runner_report": {
+    "tests": 911,
+    "seconds": 358.962,
+    "OK_markers": 1,
+    "failure_sections": []
+  },
+  "actual_named_tests_success": [
+    "test_missing_duplicate_or_skipped_dream_step_cannot_hide_in_a_successful_build",
+    "test_2020_rejects_the_source_before_acknowledged_return_retry"
+  ],
+  "scope": "Read of original completed CI unit-test runner summary and identified test records. No local test rerun and no interpreting synthetic voice-fixture logs as Android playback or real cloud-traffic evidence.",
+  "replay_using_actual_candidate_checked_pcm_log": {
+    "tests": 911,
+    "skips": 0,
+    "pcm_assertions": 70,
+    "scope": "Synthetic JVM boundary compiled from current production Kotlin; no Android audio claim",
+    "original_log": {
+      "bytes": 180241,
+      "sha256": "847b4ddc6a1a1814efa9976bb9bef6dfbabdc7aea8fefeb1d610d0d7b8a2c337"
+    },
+    "required_markers": [
+      "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47",
+      "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+      "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    ]
+  },
+  "helper_git_blob": "18fdff098115570b69fc43ccfe6a3d573605e55b",
+  "original_log_unchanged": true
+}

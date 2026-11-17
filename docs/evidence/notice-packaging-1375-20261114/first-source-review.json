@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "kind": "root_first_notice_packaging_source_review",
+  "recorded_at_utc": "2026-11-14 14:15:57 UTC",
+  "base": "1375da193af0152af64f91d86577aa9768cd50db",
+  "handoff_blob": "7cb2c06d6ec711303de57d57aa1c0b67b88397a0",
+  "sources": [
+    {
+      "path": "config/lumo-notices.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+    },
+    {
+      "path": "scripts/package_notices.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "611e4f37a2be163365ef949ca097895a79f95090"
+    },
+    {
+      "path": "scripts/verify_play_bundle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+    }
+  ],
+  "read_all_five_full_sources": true,
+  "read_original_export_apk_and_aab_paths": true,
+  "findings": [
+    "The five exact required source path/size/SHA256/Git-blob rows match the previously inspected original source texts.",
+    "The shared copier validates all bytes before writing generated Android assets; the export hook follows the existing final clean-native check and leaves its cleanup intact.",
+    "The archive reader requires exact file inventory, unique member counts, exact canonical manifest with original raw policy hash/native identity and exact source payload bytes.",
+    "The current APK default path requires the new tracked policy. The explicit historical branch checks a full immutable Git commit and genuine ls-tree absence; a malformed entry, a non-regular entry or a Git error is not accepted as absence.",
+    "The existing AAB base-module adapter preserves member duplicates and routes the same strict archive verification without altering signing, source, ELF, resource, voice or PCK checks."
+  ],
+  "static_blocker_found": false,
+  "pending": [
+    "Actual focused test outcomes and final test/import compatibility delta",
+    "Independent second review of the final patch",
+    "Actual freshly built APK member/hash verification",
+    "Actual Play AAB remains subject to the real upload-key preflight"
+  ],
+  "scope": "First in-progress source snapshot, not final implementation approval, test success, APK/AAB output or legal rights approval. Product quality branch is unchanged."
+}

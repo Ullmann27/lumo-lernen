@@ -1,0 +1,2060 @@
+{
+  "schema": 1,
+  "kind": "native-checkpoint-trigger-source-review",
+  "repository": "Ullmann27/lumo-godot",
+  "commit": "a69f53518b2510873d88f00ff2783d616ab53702",
+  "tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+  "target_branch": "checkpoint/lumo-native-merge-20261114-2708",
+  "review_completed_utc": "2026-11-14 14:47:36 UTC",
+  "method": "Complete nontruncated GitData tree inventory, all67 full workflow blobs fetched by immutable SHA, all on blocks (including quoted on at line129 in fleet-quality) and all9 job-level if blocks inspected. Push allowlists contain literal branch names, none matching the target.",
+  "counts": {
+    "workflows": 67,
+    "push": 55,
+    "push_with_paths": 22,
+    "pull_request": 40,
+    "workflow_dispatch": 56,
+    "create": 0,
+    "workflow_run": 0,
+    "repository_dispatch": 0,
+    "schedule": 0,
+    "matching_push": 0,
+    "job_conditions": 9
+  },
+  "finding": "No workflow in this exact commit is eligible for push or create solely by creation/population of the target checkpoint branch.",
+  "conditions": {
+    "push": "All55 push definitions require a nonmatching positive branch allowlist.",
+    "paths": "22 also have path filters; those do not override the unmet branch requirement.",
+    "create": "No create event exists in the67 definitions.",
+    "pull_request": "40 definitions subscribe to PR events; creating a new branch alone does not create a PR.",
+    "manual": "56 workflow_dispatch definitions require a separately requested dispatch.",
+    "job_if": "9 additional job-level predicates recorded. They cannot enable a workflow whose event/branch trigger does not match.",
+    "other_automatic_events": "No workflow_run, repository_dispatch or schedule subscriptions in these definitions."
+  },
+  "ref_observation": {
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/matching-refs/heads/checkpoint/lumo-native-merge-20261114-2708",
+    "original_response_body": "[]",
+    "meaning": "No matching ref was returned at the actual pre-creation read; this is a point-in-time absence observation."
+  },
+  "scope": {
+    "created_ref": false,
+    "updated_ref": false,
+    "triggered_run": false,
+    "executed_project_tests": false,
+    "changed_workflows": false,
+    "scope": "Source definitions at exacta69; no account/configuration changes or empirical new-branch experiment."
+  },
+  "workflows": [
+    {
+      "path": ".github/workflows/build.yml",
+      "blob": "dc2e1cf0237058761eee295b0a113f417b180a66",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 9,
+          "text": "on:\n  push:\n    branches: [main, codex/lumo-island-cup-2026-10-02, codex/lumo-kart-sunharbor-2026-10-02, chatgpt/sonnenhafen-water-visual-qa-2026-10-15, claude/kart-integration-2026-10-16, chatgpt/kart-android-real-race-gate-1957-2026-10-16]\n  pull_request:\n    branches: [main]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 8,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "main",
+          "codex/lumo-island-cup-2026-10-02",
+          "codex/lumo-kart-sunharbor-2026-10-02",
+          "chatgpt/sonnenhafen-water-visual-qa-2026-10-15",
+          "claude/kart-integration-2026-10-16",
+          "chatgpt/kart-android-real-race-gate-1957-2026-10-16"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/editable-source.yml",
+      "blob": "ccfaec4a9605dc2e2070240fb3fa0000b0f60c00",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 6,
+          "text": "on:\n  push:\n    branches: [chatgpt/lumo-complete-games-2026-10-07]\n    paths: [.github/workflows/editable-source.yml]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 6,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-complete-games-2026-10-07"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/finalize-track-reference-upload-2026-10-05.yml",
+      "blob": "f2c4a085c19affd58de371c2fc74c3e41b7a0d69",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 5,
+          "text": "on:\n  push:\n    branches: [codex/track-reference-import-2026-10-05]\n    paths: [.github/workflows/finalize-track-reference-upload-2026-10-05.yml]"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 12,
+          "text": "    if: github.repository == 'Ullmann27/lumo-godot' && github.ref == 'refs/heads/codex/track-reference-import-2026-10-05' && github.actor == 'Ullmann27'"
+        }
+      ],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "codex/track-reference-import-2026-10-05"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/import-track-references-2026-10-05.yml",
+      "blob": "87a2c9c82eb2bc63df15fe3eca6792a6626e4607",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 9,
+          "text": "on:\n  push:\n    branches: [codex/track-reference-import-2026-10-05]\n    paths:\n      - .github/workflows/import-track-references-2026-10-05.yml\n      - tools/import_track_reference_packs.py\n      - tools/test_track_reference_import.py\n      - docs/track_expansion/2026-10-05/IMPORT_MANIFEST.json"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 16,
+          "text": "    if: github.repository == 'Ullmann27/lumo-godot' && github.ref == 'refs/heads/codex/track-reference-import-2026-10-05' && github.actor == 'Ullmann27'"
+        }
+      ],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "codex/track-reference-import-2026-10-05"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-aaa-safe-layer.yml",
+      "blob": "40b9dfdba8abb86519b86d18b4a0173522fe8e9b",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 5,
+          "text": "on:\n  push:\n    branches: [codex/lumo-aaa-safe-visuals-2026-10-10]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 5,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "codex/lumo-aaa-safe-visuals-2026-10-10"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-developer-packs.yml",
+      "blob": "73243893ce86b267b4ac6ab5f4276f477f062d1a",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 31,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/kart-developer-packs-zip-2026-10-06\n    paths:\n      - \"docs/track_expansion/2026-10-06/**\"\n      - \"scripts/games/**\"\n      - \"scripts/tests/kart_track_pack_48_view_capture.gd\"\n      - \"scripts/tests/kart_track_pack_geometry_export.gd\"\n      - \"scenes/games/track_authoring/**\"\n      - \"assets/shaders/kart_*.gdshader\"\n      - \"tools/validate_track_packs.py\"\n      - \"tools/build_track_developer_packs.py\"\n      - \".github/workflows/kart-developer-packs.yml\"\n  pull_request:\n    branches:\n      - chatgpt/kart-himmelsinseln-stage2-2026-10-05\n    paths:\n      - \"docs/track_expansion/2026-10-06/**\"\n      - \"scripts/games/**\"\n      - \"scripts/tests/kart_track_pack_48_view_capture.gd\"\n      - \"scripts/tests/kart_track_pack_geometry_export.gd\"\n      - \"scenes/games/track_authoring/**\"\n      - \"assets/shaders/kart_*.gdshader\"\n      - \"tools/validate_track_packs.py\"\n      - \"tools/build_track_developer_packs.py\"\n      - \".github/workflows/kart-developer-packs.yml\"\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 30,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/kart-developer-packs-zip-2026-10-06"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-fold-controls.yml",
+      "blob": "d2f052f65d5c9a2ca19b21933a63583c0e15f239",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 5,
+          "text": "on:\n  push:\n    branches: [chatgpt/fold-kart-controls-2026-10-07]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 5,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/fold-kart-controls-2026-10-07"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-menu-safe-quick.yml",
+      "blob": "3abf242e4286d1bf32aec0d0641987e810518b43",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 5,
+          "text": "on:\n  push:\n    branches: [codex/lumo-aaa-safe-visuals-2026-10-10]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 5,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "codex/lumo-aaa-safe-visuals-2026-10-10"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-premium-menu.yml",
+      "blob": "cac713a83120c583175a71d5eb1ac9115ac8e052",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 7,
+          "text": "on:\n  push:\n    branches: [codex/lumo-kart-premium-menu-2026-10-10, codex/lumo-kart-reference-final-2026-10-10]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 6,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "codex/lumo-kart-premium-menu-2026-10-10",
+          "codex/lumo-kart-reference-final-2026-10-10"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-rival-feedback.yml",
+      "blob": "8ced976ee680915d5ea784041da72aa0a2a1c394",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 23,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/kart-rival-feedback-2026-10-07\n    paths:\n      - \"scripts/games/kart_island.gd\"\n      - \"scripts/games/kart_rival_item_fx.gd\"\n      - \"scripts/tests/kart_rival_item_feedback_regression.gd\"\n      - \"scripts/tests/kart_rival_item_showcase.gd\"\n      - \"scripts/tests/kart_physics_regression.gd\"\n      - \".github/workflows/kart-rival-feedback.yml\"\n  pull_request:\n    paths:\n      - \"scripts/games/kart_island.gd\"\n      - \"scripts/games/kart_rival_item_fx.gd\"\n      - \"scripts/tests/kart_rival_item_feedback_regression.gd\"\n      - \"scripts/tests/kart_rival_item_showcase.gd\"\n      - \"scripts/tests/kart_physics_regression.gd\"\n      - \".github/workflows/kart-rival-feedback.yml\"\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 22,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/kart-rival-feedback-2026-10-07"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-stage2-regression.yml",
+      "blob": "f6f4fbe990c05600e7a5e8b12443f7ecb50a3134",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 26,
+          "text": "on:\n  pull_request:\n    paths:\n      - .github/workflows/kart-stage2-regression.yml\n      - assets/shaders/kart_*.gdshader\n      - assets/characters/lumo_animated/**\n      - assets/kart/menu/**\n      - scripts/app/mobile_runtime.gd\n      - scripts/app/app_boot.gd\n      - scripts/app/scene_router.gd\n      - scripts/characters/lumo/**\n      - scripts/games/kart_*.gd\n      - scripts/games/visual/**\n      - scripts/games/authoring/**\n      - scenes/games/track_authoring/**\n      - tools/validate_track_packs.py\n      - scripts/tests/kart_*.gd\n      - scripts/tests/lumo_*animation*.gd\n      - scripts/tests/lumo_kart_production_regression.gd\n      - scripts/tests/lumo_gesture_contact_regression.gd\n      - tools/lumo_animation/**\n      - docs/track_expansion/**\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 25,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-vehicle-regression.yml",
+      "blob": "a98af5784e5f51b70cf291dc0d6e5203c2c5a103",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 35,
+          "text": "on:\n  push:\n    branches:\n      - codex/opus-vehicle-regression-fix\n    paths:\n      - .github/workflows/kart-vehicle-regression.yml\n      - scripts/games/kart_vehicle.gd\n      - scripts/games/kart_fleet.gd\n      - scripts/games/kart_fur_geometry.gd\n      - scripts/games/kart_character_finish.gd\n      - scripts/games/visual/kart_cinema_materials.gd\n      - assets/shaders/kart_lumo_cinema_*.gdshader\n      - scripts/characters/lumo/**\n      - assets/characters/lumo_animated/lumo_studio_clips.gd\n      - scripts/tests/kart_vehicle_regression.gd\n      - tools/run_godot_probe.py\n      - tools/tests/test_kart_vehicle_workflow.py\n  pull_request:\n    paths:\n      - .github/workflows/kart-vehicle-regression.yml\n      - scripts/games/kart_vehicle.gd\n      - scripts/games/kart_fleet.gd\n      - scripts/games/kart_fur_geometry.gd\n      - scripts/games/kart_character_finish.gd\n      - scripts/games/visual/kart_cinema_materials.gd\n      - assets/shaders/kart_lumo_cinema_*.gdshader\n      - scripts/characters/lumo/**\n      - assets/characters/lumo_animated/lumo_studio_clips.gd\n      - scripts/tests/kart_vehicle_regression.gd\n      - tools/run_godot_probe.py\n      - tools/tests/test_kart_vehicle_workflow.py\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 34,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "codex/opus-vehicle-regression-fix"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-video-quality.yml",
+      "blob": "7315ac726a188ffb3be0c2262439ad3d2e0d6784",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 5,
+          "text": "on:\n  push:\n    branches: [chatgpt/kart-video-quality-2026-10-07]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 5,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/kart-video-quality-2026-10-07"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/kart-video-visual-grade.yml",
+      "blob": "1538bd99deadecd93f81ffcff045e5f68f117a4c",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 25,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/kart-video-visual-grade-2026-10-07\n    paths:\n      - \"scripts/games/kart_visual_grade.gd\"\n      - \"scripts/games/kart_island.gd\"\n      - \"scripts/games/kart_world.gd\"\n      - \"scripts/games/kart_sky_islands.gd\"\n      - \"assets/shaders/kart_asphalt.gdshader\"\n      - \"scripts/tests/kart_video_visual_regression.gd\"\n      - \".github/workflows/kart-video-visual-grade.yml\"\n  pull_request:\n    paths:\n      - \"scripts/games/kart_visual_grade.gd\"\n      - \"scripts/games/kart_island.gd\"\n      - \"scripts/games/kart_world.gd\"\n      - \"scripts/games/kart_sky_islands.gd\"\n      - \"assets/shaders/kart_asphalt.gdshader\"\n      - \"scripts/tests/kart_video_visual_regression.gd\"\n      - \".github/workflows/kart-video-visual-grade.yml\"\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 24,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/kart-video-visual-grade-2026-10-07"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-2013-bauwelt-sandbox-baseline.yml",
+      "blob": "5e5938b780c3a9c69d1f3baf9b82927bb9cb6526",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 9,
+          "text": "on:\n  push:\n    branches:\n      - lumo-2013/bauwelt-sandbox-20261110\n    paths:\n      - .github/workflows/lumo-2013-bauwelt-sandbox-baseline.yml"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "lumo-2013/bauwelt-sandbox-20261110"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-2013-bauwelt-sandbox-phase1.yml",
+      "blob": "423b52359b10d4afbb524755985340f259db01c3",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 13,
+          "text": "on:\n  push:\n    branches:\n      - lumo-2013/bauwelt-sandbox-20261110\n    paths:\n      - scripts/creative/build_sandbox_tools.gd\n      - scripts/creative/build_world.gd\n      - scripts/tests/build_sandbox_tools_regression.gd\n      - scripts/tests/build_sandbox_ui_regression.gd\n      - .github/workflows/lumo-2013-bauwelt-sandbox-phase1.yml"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "lumo-2013/bauwelt-sandbox-20261110"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-2013-creative-covers-v2.yml",
+      "blob": "ec82bc2cceb4a0d06339804295ce2a59f9b623b8",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 9,
+          "text": "on:\n  push:\n    branches:\n      - lumo-next/game-identity-2013-20261110\n    paths:\n      - .github/workflows/lumo-2013-creative-covers-v2.yml"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "lumo-next/game-identity-2013-20261110"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-2013-creative-covers-v3.yml",
+      "blob": "8b99935709f0cbefabbcba705d64061dbe891832",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 13,
+          "text": "on:\n  push:\n    branches:\n      - lumo-next/game-identity-2013-20261110\n      - lumo-2013/guard-ci-20261110\n    paths:\n      - .github/workflows/lumo-2013-creative-covers-v3.yml\n      - scripts/app/app_boot.gd\n      - assets/creative/covers/**\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 12,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "lumo-next/game-identity-2013-20261110",
+          "lumo-2013/guard-ci-20261110"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-2013-creative-covers.yml",
+      "blob": "4c65f3bcfe6453c15dffb1ea677db2980b6c152c",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 9,
+          "text": "on:\n  push:\n    branches:\n      - lumo-next/game-identity-2013-20261110\n    paths:\n      - .github/workflows/lumo-2013-creative-covers.yml"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "lumo-next/game-identity-2013-20261110"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-2013-creative-repair.yml",
+      "blob": "5f08db34803e5a18a5733be35383ecf886cd818a",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 12,
+          "text": "on:\n  push:\n    branches:\n      - lumo-2013/creative-repair-20261110\n    paths:\n      - scripts/creative/treasure_island_art.gd\n      - scripts/creative/rhythm_stage_art.gd\n      - scripts/creative/rhythm_world.gd\n      - .github/workflows/lumo-2013-creative-repair.yml"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "lumo-2013/creative-repair-20261110"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-2013-integration-repair.yml",
+      "blob": "2bfc3f2f20e865e1f38fcef041f3ed3b12b3b0e2",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches:\n      - lumo-2013/integration-repair-20261110\n    paths:\n      - scripts/creative/build_world.gd\n      - scripts/creative/build_landmarks.gd\n      - .github/workflows/lumo-2013-integration-repair.yml"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "lumo-2013/integration-repair-20261110"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-2014-acceptance.yml",
+      "blob": "e3df2653b59b2282305006892399d2cc63bfc32e",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 9,
+          "text": "on:\n  push:\n    branches: [lumo-2014/integration-20261110, chatgpt/lumo-action-stage-20261112]\n  pull_request:\n    branches: [lumo-2014/integration-20261110, chatgpt/lumo-2016-gameplay-effects-20261111]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 8,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "lumo-2014/integration-20261110",
+          "chatgpt/lumo-action-stage-20261112"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-65bone-walk-qa.yml",
+      "blob": "34cdb787d27502363c77c559f28874f002a9f4a1",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  pull_request:\n    paths:\n      - 'scripts/characters/lumo/lumo_walk_locomotion.gd'\n      - 'scripts/characters/lumo/lumo_rigged_actor.gd'\n      - 'scripts/games/jump_islands.gd'\n      - 'scripts/tests/lumo_65bone_walk_gait_regression.gd'\n      - 'scripts/tests/lumo_original_jump_visual_regression.gd'\n      - '.github/workflows/lumo-65bone-walk-qa.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 16,
+          "text": "    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository"
+        }
+      ],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-ai3d-factory.yml",
+      "blob": "7fdb9b5fdf2b1b44572a313489f990d779910a9d",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 10,
+          "text": "on:\n  pull_request:\n    paths:\n      - 'tools/ai3d/**'\n      - 'tools/ai3d_factory.py'\n      - 'tools/tests/test_ai3d_factory.py'\n      - 'scripts/tests/kart_ai3d_factory_capture.gd'\n      - '.github/workflows/lumo-ai3d-factory.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 10,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-android-logcat-contract.yml",
+      "blob": "eaaaf8db6e35eae445bc0d36010eac039dbe44f7",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 10,
+          "text": "on:\n  push:\n    branches: [chatgpt/kart-android-adb-resilience-2026-10-16]\n  pull_request:\n    paths:\n      - tools/test_android_startup.sh\n      - tools/tests/test_android_logcat_transport.py\n      - .github/workflows/lumo-android-logcat-contract.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 10,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/kart-android-adb-resilience-2026-10-16"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-argon-coordinate-audit.yml",
+      "blob": "af942cdfeff572dcf573d43b9dd2c225aa9981fc",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 19,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-argon-coordinate-audit-2026-10-17\n      - chatgpt/lumo-multilevel-road-projection-2026-10-17\n      - chatgpt/lumo-milestone-a-drive-guards-2026-10-17\n  pull_request:\n    paths:\n      - scripts/tests/kart_argon_coordinate_audit.gd\n      - scripts/tests/kart_multilevel_projection_regression.gd\n      - scripts/tests/kart_milestone_a_driving_regression.gd\n      - scripts/games/kart_world.gd\n      - scripts/games/kart_physical_loop.gd\n      - scripts/games/kart_tracks.gd\n      - scripts/games/kart_expansion_tracks.gd\n      - .github/workflows/lumo-argon-coordinate-audit.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 18,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-argon-coordinate-audit-2026-10-17",
+          "chatgpt/lumo-multilevel-road-projection-2026-10-17",
+          "chatgpt/lumo-milestone-a-drive-guards-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-argon-review-pdf.yml",
+      "blob": "450c42c19835a0411026514ce0f30c5b6ccbecd7",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 9,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/argon-lumo-review-pdf-2026-10-15\n    paths:\n      - \"tools/argon_review/**\"\n      - \".github/workflows/lumo-argon-review-pdf.yml\"\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 9,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/argon-lumo-review-pdf-2026-10-15"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-asphalt-visual-qa.yml",
+      "blob": "6cabd379e9dda774ec518db11faf8bbfa1ba2198",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 13,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/kart-asphalt-material-polish-2026-10-16\n  pull_request:\n    paths:\n      - assets/shaders/kart_asphalt.gdshader\n      - scripts/games/kart_world.gd\n      - scripts/tests/kart_asphalt_material_regression.gd\n      - tools/qa/compare_asphalt_before_after.py\n      - .github/workflows/lumo-asphalt-visual-qa.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 13,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/kart-asphalt-material-polish-2026-10-16"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-bauwelt-twelve-objects.yml",
+      "blob": "b3aa67915b5deb225473042c8f1bfb30a366f115",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches: [chatgpt/lumo-bauwelt-12-procedural-assets-2026-10-15]\n  pull_request:\n    paths:\n      - \"scripts/creative/build_catalog.gd\"\n      - \"scripts/creative/creative_kit.gd\"\n      - \"scripts/creative/build_premium_props.gd\"\n      - \"scripts/tests/build_premium_props_regression.gd\"\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-bauwelt-12-procedural-assets-2026-10-15"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-cinema-rock.yml",
+      "blob": "4c6062f6639909f7b50a0180f16e41c7da3e3d3d",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 12,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-sonnenhafen-cinema-rock-material-2026-10-18\n  pull_request:\n    paths:\n      - 'assets/shaders/kart_cinema_stylized.gdshader'\n      - 'scripts/games/kart_world.gd'\n      - 'scripts/tests/kart_cinema_rock_material_regression.gd'\n      - '.github/workflows/lumo-cinema-rock.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 12,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-sonnenhafen-cinema-rock-material-2026-10-18"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-creative-games.yml",
+      "blob": "20e9373c43be9bc0be959de2cef4ea760c4d55ed",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 5,
+          "text": "on:\n  push:\n    branches: [chatgpt/lumo-complete-games-2026-10-07]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 5,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-complete-games-2026-10-07"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-darkride-lap-event.yml",
+      "blob": "2a13c4546ab6d80c2e9fc42b1f29b25df0341b5e",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  pull_request:\n    paths:\n      - 'scripts/games/kart_darkride_event_director.gd'\n      - 'scripts/games/kart_island.gd'\n      - 'scripts/tests/kart_darkride_*.gd'\n      - 'scripts/games/kart_darkride_cartoon_burst.gd'\n      - 'assets/shaders/kart_sonnenhafen_darkride.gdshader'\n      - '.github/workflows/lumo-darkride-lap-event.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-discovery-connections.yml",
+      "blob": "a806855cf51ab7f63b14163596488fc1d3746dc1",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 6,
+          "text": "on:\n  push:\n    branches: [integration/lumo-discovery-bd-20261114]"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 16,
+          "text": "    if: >-\n      github.repository == 'Ullmann27/lumo-godot' &&\n      github.event_name == 'push' &&\n      github.ref == 'refs/heads/integration/lumo-discovery-bd-20261114'"
+        }
+      ],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "integration/lumo-discovery-bd-20261114"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-dream-connections.yml",
+      "blob": "321aeff8018435789cc57df3af3e3b5fecc4c910",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 6,
+          "text": "on:\n  push:\n    branches: [integration/lumo-dream-connections-20261114]"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 16,
+          "text": "    if: >-\n      github.repository == 'Ullmann27/lumo-godot' &&\n      github.event_name == 'push' &&\n      github.ref == 'refs/heads/integration/lumo-dream-connections-20261114'"
+        }
+      ],
+      "other_event_words": [],
+      "events": [
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "integration/lumo-dream-connections-20261114"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-dynamic-coastal-foam.yml",
+      "blob": "35e2666c1609a22a101bf12e8764f8880198d96f",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 12,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-b5-true-coastal-foam-2026-10-17\n  pull_request:\n    paths:\n      - assets/shaders/kart_water.gdshader\n      - scripts/games/kart_world.gd\n      - scripts/tests/kart_dynamic_coastal_foam_regression.gd\n      - .github/workflows/lumo-dynamic-coastal-foam.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 12,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-b5-true-coastal-foam-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-face-continuation.yml",
+      "blob": "0505c0efab623b3b468f730a8426aeafa75de209",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches: [codex/lumo-face-continuation-2026-10-10]\n    paths:\n      - scripts/games/kart_*.gd\n      - scripts/tests/kart_fox_cheek_*.gd\n      - .github/workflows/lumo-face-continuation.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 10,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "codex/lumo-face-continuation-2026-10-10"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-fleet-movie-hd.yml",
+      "blob": "33c4b2f810561d940bdb53903f0a15ce78526210",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 8,
+          "text": "on:\n  push:\n    branches: ['codex/lumo-kart-fleet-2026-10-08']\n    paths: ['.github/workflows/lumo-fleet-movie-hd.yml']\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 7,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "codex/lumo-kart-fleet-2026-10-08"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-fleet-quality.yml",
+      "blob": "650f5b8f8c637962e1e7f970c34aee9edc5cdfe9",
+      "on": [
+        {
+          "start_line": 129,
+          "end_line": 146,
+          "text": "'on':\n  push:\n    branches:\n    - codex/lumo-kart-fleet-2026-10-08\n    - codex/lumo-kart-stage2-2026-10-08\n    - codex/lumo-reference-design-2026-10-08\n    paths:\n    - scripts/games/kart_*.gd\n    - scripts/tests/kart_*.gd\n    - tools/run_godot_probe.py\n    - tools/build_web_bundle.sh\n    - export_presets.cfg\n    - assets/kart/**\n    - assets/audio/kart/**\n    - .github/workflows/lumo-fleet-quality.yml\n    - .github/actions/lumo-native-setup/action.yml\n  workflow_dispatch: null"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 145,
+          "text": "  workflow_dispatch: null"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "codex/lumo-kart-fleet-2026-10-08",
+          "codex/lumo-kart-stage2-2026-10-08",
+          "codex/lumo-reference-design-2026-10-08"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-fold-games-1934.yml",
+      "blob": "d8bfb32ccdc92a322a56234d548bcf08d62aaeaa",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 6,
+          "text": "on:\n  push:\n    branches: [sol/lumo-kart-fold-games-2026-10-12]\n    paths: ['scripts/**', 'assets/**', 'tools/**', '.github/workflows/lumo-fold-games-1934.yml']\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 6,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "sol/lumo-kart-fold-games-2026-10-12"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-kart-1937.yml",
+      "blob": "b6c5ece4df3217b533a7c2583e5a4795d926cb78",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 6,
+          "text": "on:\n  push:\n    branches: [sol/lumo-1937-kart-quality-2026-10-12]\n    paths: ['scripts/**', 'assets/**', 'tools/**', '.github/workflows/lumo-kart-1937.yml']\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 6,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "sol/lumo-1937-kart-quality-2026-10-12"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-kart-bauwelt-integration.yml",
+      "blob": "7d25420ba2774cd80ae777053207f051cfcd5786",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 13,
+          "text": "on:\n  push:\n    branches: [chatgpt/lumo-kart-bauwelt-integrated-2026-10-15]\n  pull_request:\n    paths:\n      - \"scripts/games/kart_world.gd\"\n      - \"scripts/games/kart_premium_rail_kit.gd\"\n      - \"scripts/creative/**\"\n      - \"scripts/tests/kart_premium_rail_regression.gd\"\n      - \"scripts/tests/build_premium_props_regression.gd\"\n      - \".github/workflows/lumo-kart-bauwelt-integration.yml\"\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 13,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-kart-bauwelt-integrated-2026-10-15"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-kart-complete-race-1977.yml",
+      "blob": "39b41b5f35c9b0ab8fe4f1630ce3092f1cc99186",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-1977-full-race-resume-precision-2026-10-18\n  pull_request:\n    paths:\n      - 'scripts/tests/kart_complete_flow_regression.gd'\n      - 'tools/run_godot_probe.py'\n      - '.github/workflows/lumo-kart-complete-race-1977.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1977-full-race-resume-precision-2026-10-18"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-kart-experience.yml",
+      "blob": "b59973a9c9437450452fbe1a13dd0c125cba6174",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 23,
+          "text": "on:\n  pull_request:\n    branches: [chatgpt/lumo-nextgen-20261113]\n    paths:\n      - scripts/**\n      - scenes/**\n      - assets/**\n      - project.godot\n      - tools/run_godot_probe.py\n      - .github/workflows/lumo-kart-experience.yml\n  push:\n    branches: [chatgpt/lumo-graphics-expansion-20261113]\n    paths:\n      - scripts/**\n      - scenes/**\n      - assets/**\n      - project.godot\n      - tools/run_godot_probe.py\n      - .github/workflows/lumo-kart-experience.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 22,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-graphics-expansion-20261113"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-kart-quality-profile-regression.yml",
+      "blob": "8838750cd9d916b11c4cee2c63440098901d2fc2",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 8,
+          "text": "on:\n  pull_request:\n    paths:\n      - 'scripts/systems/performance_manager.gd'\n      - 'scripts/tests/kart_quality_persistence_regression.gd'\n      - '.github/workflows/lumo-kart-quality-profile-regression.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 8,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-meshy-gate.yml",
+      "blob": "11da970dffbcbdbd90fcedc771c2a42e72c367aa",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  pull_request:\n    paths:\n      - assets/kart/gates/**\n      - scripts/games/kart_meshy_start_gate.gd\n      - scripts/games/kart_world.gd\n      - scripts/tests/kart_meshy_gate_integration.gd\n      - scripts/tests/kart_meshy_gate_capture.gd\n      - .github/workflows/lumo-meshy-gate.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-native-lifecycle-bauwelt-proof.yml",
+      "blob": "2f299694af716e48553ad769588b7080f06411a7",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 12,
+          "text": "on:\n  pull_request:\n    paths:\n      - 'scripts/creative/**'\n      - 'scenes/creative/build_world.tscn'\n      - 'scripts/games/kart_island.gd'\n      - 'scripts/games/kart_audio.gd'\n      - 'scripts/tests/kart_sonnenhafen_precision_capture.gd'\n      - 'scripts/tests/creative_build_capture.gd'\n      - '.github/workflows/lumo-native-lifecycle-bauwelt-proof.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 17,
+          "text": "    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository"
+        }
+      ],
+      "other_event_words": [
+        {
+          "line": 12,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-2018.yml",
+      "blob": "b08fbbceb4fff3646d22ecc4754afa8053131d9b",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 9,
+          "text": "on:\n  push:\n    branches: [chatgpt/lumo-nextgen-20261113]\n  pull_request:\n    branches: [chatgpt/lumo-action-stage-20261112, chatgpt/lumo-nextgen-20261113]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 268,
+          "text": "    if: >-\n      github.event_name == 'pull_request' &&\n      github.repository == 'Ullmann27/lumo-godot' &&\n      github.event.pull_request.head.repo.full_name == github.repository &&\n      github.event.pull_request.base.ref == 'chatgpt/lumo-nextgen-20261113' &&\n      (github.event.pull_request.head.ref == 'integration/lumo-connections-20261113' ||\n      github.event.pull_request.head.ref == 'integration/lumo-safe-area-20261113') &&\n      needs.learning-preview.result == 'success' &&\n      needs.gameplay.result == 'success' &&\n      needs.new-worlds.result == 'success' &&\n      needs.touch-density.result == 'success' &&\n      needs.bundle-evidence.result == 'success'"
+        }
+      ],
+      "other_event_words": [
+        {
+          "line": 8,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-nextgen-20261113"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-design-smoke.yml",
+      "blob": "d5576a54d1374b0db4efc64adf7e896299bdfdd2",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 17,
+          "text": "on:\n  pull_request:\n    paths:\n      - .github/workflows/lumo-nextgen-design-smoke.yml\n      - scripts/games/game_hub.gd\n      - scripts/games/kart_ui_theme.gd\n      - scripts/games/kart_garage_menu.gd\n      - scripts/games/kart_reference_landing.gd\n      - scripts/tests/kart_reference_landing_visual.gd\n      - scripts/tests/kart_reference_host_visual.gd\n      - scripts/games/kart_island.gd\n      - assets/kart/landing/**\n      - scripts/tests/kart_nextgen_ui_smoke.gd\n      - scripts/tests/kart_nextgen_ui_capture.gd"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [],
+      "events": [
+        "pull_request"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-premium-rail-qa.yml",
+      "blob": "5a863d560f23e60f53674f0eb966a4ed84983701",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 15,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-railkit-first-track-2026-10-15\n  pull_request:\n    paths:\n      - 'scripts/games/kart_premium_rail_kit.gd'\n      - 'scripts/games/kart_world.gd'\n      - 'scripts/games/kart_world_meshes.gd'\n      - 'scripts/tests/kart_premium_rail_regression.gd'\n      - '.github/workflows/lumo-premium-rail-qa.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 14,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-railkit-first-track-2026-10-15"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-resonance-racing.yml",
+      "blob": "ed6c18e6c81ca5e166d4d568d6ea3389be178b30",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 13,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-racing-skill-resonance-gates-2026-10-18\n  pull_request:\n    paths:\n      - 'scripts/games/kart_resonance_system.gd'\n      - 'scripts/games/kart_island.gd'\n      - 'scripts/tests/kart_resonance_gate_regression.gd'\n      - 'scripts/tests/kart_resonance_capture.gd'\n      - '.github/workflows/lumo-resonance-racing.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 13,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-racing-skill-resonance-gates-2026-10-18"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-road-kd-perf.yml",
+      "blob": "a298bf3427546062ef7ffe75e3525108f12def7c",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-b4-road-nearest-kd-2026-10-17\n  pull_request:\n    paths:\n      - scripts/games/kart_world.gd\n      - scripts/tests/kart_road_kd_index_regression.gd\n      - .github/workflows/lumo-road-kd-perf.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-b4-road-nearest-kd-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sol-menu-journey-handoff.yml",
+      "blob": "9246bdc73559fd3dd5328fa784548b7493c3a075",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 8,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-sol-portrait-menu-recovery-20261021\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 7,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-sol-portrait-menu-recovery-20261021"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-2003-aerial-qa.yml",
+      "blob": "992b0240b1ac97b5e9c6b767e4c1c7880a0c8039",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 10,
+          "text": "on:\n  pull_request:\n    paths:\n      - '.github/workflows/lumo-sonnenhafen-2003-aerial-qa.yml'\n      - 'scripts/games/kart_action_course.gd'\n      - 'scripts/games/kart_island.gd'\n      - 'scripts/tests/kart_action_course_regression.gd'\n      - 'scripts/tests/kart_sonnenhafen_aerial_flight_capture.gd'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 10,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-darkride.yml",
+      "blob": "93410ecd49468d4160068b67c8eedde764941a3d",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 25,
+          "text": "on:\n  pull_request:\n    paths:\n      - 'scripts/games/kart_sonnenhafen_darkride.gd'\n      - 'scripts/games/kart_cavern_geology.gd'\n      - 'scripts/games/kart_cavern_mineral_kit.gd'\n      - 'scripts/games/kart_harbor_crane.gd'\n      - 'scripts/games/kart_harbor_visual_finish.gd'\n      - 'scripts/games/kart_vehicle.gd'\n      - 'scripts/games/visual/kart_*cinema*.gd'\n      - 'scripts/tests/kart_cinema_*.gd'\n      - 'scripts/tests/kart_harbor_cinema_regression.gd'\n      - 'scripts/tests/kart_cavern_mineral_kit_regression.gd'\n      - 'tools/art/*kart_mineral_kit*.py'\n      - 'tools/tests/test_kart_mineral_kit.py'\n      - 'scripts/tests/kart_cavern_detail_regression.gd'\n      - 'assets/kart/cavern/**'\n      - 'assets/shaders/kart_cavern_*.gdshader'\n      - 'assets/shaders/kart_lumo_cinema_*.gdshader'\n      - 'scripts/games/kart_world.gd'\n      - 'scripts/tests/kart_sonnenhafen_darkride_*.gd'\n      - 'assets/shaders/kart_sonnenhafen_darkride.gdshader'\n      - '.github/workflows/lumo-sonnenhafen-darkride.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 25,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-grounding-visual.yml",
+      "blob": "9160d6e87f22b69d5ca9fed0b47ba771c9d6ad9d",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 12,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/sonnenhafen-grounding-corrugation-2026-10-17\n  pull_request:\n    paths:\n      - scripts/games/kart_harbor_crane.gd\n      - scripts/games/kart_harbor_visual_finish.gd\n      - scripts/tests/kart_sonnenhafen_visual_finish_regression.gd\n      - .github/workflows/lumo-sonnenhafen-grounding-visual.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 12,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/sonnenhafen-grounding-corrugation-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-hero-coast.yml",
+      "blob": "24b64f0ca9e5abbafd5a8ed513d14f1d81b25c96",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 12,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-b3-long-coast-hero-scenes-2026-10-17\n  pull_request:\n    paths:\n      - scripts/games/kart_sonnenhafen_hero_coast.gd\n      - scripts/games/kart_world.gd\n      - scripts/tests/kart_sonnenhafen_hero_coast_*.gd\n      - .github/workflows/lumo-sonnenhafen-hero-coast.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 12,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-b3-long-coast-hero-scenes-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-hero-flight.yml",
+      "blob": "318d268c1f89c625caed2a52887448372771dfc4",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 10,
+          "text": "on:\n  pull_request:\n    paths:\n      - '.github/workflows/lumo-sonnenhafen-hero-flight.yml'\n      - 'scripts/games/kart_action_course.gd'\n      - 'scripts/games/kart_island.gd'\n      - 'scripts/tests/kart_action_course_regression.gd'\n      - 'scripts/tests/kart_sonnenhafen_hero_flight_capture.gd'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 10,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-hoist.yml",
+      "blob": "40ca4c6d670683fa700eff9252094cc78d1e08ef",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/sonnenhafen-animated-crane-hoist-2026-10-17\n  pull_request:\n    paths:\n      - scripts/games/kart_harbor_crane.gd\n      - scripts/tests/kart_sonnenhafen_crane_regression.gd\n      - .github/workflows/lumo-sonnenhafen-hoist.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/sonnenhafen-animated-crane-hoist-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-long-course.yml",
+      "blob": "35ccd37e053c214ae7394f865b4e928966ddb9a1",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 12,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-b2-sonnenhafen-long-course-2026-10-17\n  pull_request:\n    paths:\n      - scripts/games/kart_sonnenhafen_long_course.gd\n      - scripts/games/kart_tracks.gd\n      - scripts/tests/kart_sonnenhafen_long_course_regression.gd\n      - .github/workflows/lumo-sonnenhafen-long-course.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 12,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-b2-sonnenhafen-long-course-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-lookouts.yml",
+      "blob": "4385538ee4d292901a9561bb22b17f359fff8407",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches: [chatgpt/sonnenhafen-lookout-3d-landmarks-2026-10-16]\n  pull_request:\n    paths:\n      - 'scripts/games/kart_harbor_lookout_towers.gd'\n      - 'scripts/games/kart_world.gd'\n      - 'scripts/tests/kart_sonnenhafen_lookouts_regression.gd'\n      - '.github/workflows/lumo-sonnenhafen-lookouts.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/sonnenhafen-lookout-3d-landmarks-2026-10-16"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-obstruction.yml",
+      "blob": "6da8430d775594ff9f0af3e14bff33a15a766033",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-b6-clear-sonnenhafen-road-2026-10-17\n  pull_request:\n    paths:\n      - scripts/games/kart_world.gd\n      - scripts/tests/kart_sonnenhafen_obstruction_regression.gd\n      - .github/workflows/lumo-sonnenhafen-obstruction.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-b6-clear-sonnenhafen-road-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-road-clear-visual.yml",
+      "blob": "1d279142719c1efb719ec39d538dfcd05e479bd0",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 11,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-b6-clear-sonnenhafen-road-2026-10-17\n  pull_request:\n    paths:\n      - scripts/games/kart_world.gd\n      - scripts/tests/kart_sonnenhafen_obstruction_capture.gd\n      - .github/workflows/lumo-sonnenhafen-road-clear-visual.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 11,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-b6-clear-sonnenhafen-road-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-stunt-integration.yml",
+      "blob": "a6d7ce9d57d6e1f1868781f425ddc7d74f4ecd6d",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 9,
+          "text": "on:\n  pull_request:\n    paths:\n      - 'scripts/games/**'\n      - 'scripts/tests/**'\n      - 'assets/shaders/kart_stunt_loop.gdshader'\n      - '.github/workflows/lumo-sonnenhafen-stunt-integration.yml'\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 9,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": null,
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-viaduct.yml",
+      "blob": "7dd12abf933a29446f8300248189482fcdc44044",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 13,
+          "text": "on:\n  push:\n    branches:\n      - chatgpt/lumo-b-sonnenhafen-viaduct-2026-10-17\n  pull_request:\n    paths:\n      - scripts/games/kart_sonnenhafen_coastal_viaduct.gd\n      - scripts/games/kart_world.gd\n      - scripts/tests/kart_sonnenhafen_viaduct_*.gd\n      - .github/workflows/lumo-sonnenhafen-viaduct.yml\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 12,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-b-sonnenhafen-viaduct-2026-10-17"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-sonnenhafen-water-visual.yml",
+      "blob": "2a0fb9f2b02bc7d9af22d1ad79bda1a47379358a",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 14,
+          "text": "on:\n  push:\n    branches: [chatgpt/sonnenhafen-water-visual-qa-2026-10-15]\n  pull_request:\n    paths:\n      - \"assets/shaders/kart_water.gdshader\"\n      - \"assets/shaders/kart_waterfall.gdshader\"\n      - \"scripts/games/kart_world.gd\"\n      - \"scripts/tests/kart_sonnenhafen_water_regression.gd\"\n      - \"scripts/tests/kart_sonnenhafen_showcase.gd\"\n      - \".github/workflows/lumo-sonnenhafen-water-visual.yml\"\n      - \"tools/qa/sonnenhafen_visual_gate.py\"\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [],
+      "other_event_words": [
+        {
+          "line": 14,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/sonnenhafen-water-visual-qa-2026-10-15"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "blob": "bb0fc667cccf7d05bdbca44bad0bd6194c846f48",
+      "on": [
+        {
+          "start_line": 3,
+          "end_line": 7,
+          "text": "on:\n  push:\n    branches: [chatgpt/lumo-studio-20261113]\n  workflow_dispatch:"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 305,
+          "text": "    if: github.repository == 'Ullmann27/lumo-godot' && github.ref_name == 'chatgpt/lumo-studio-20261113'"
+        }
+      ],
+      "other_event_words": [
+        {
+          "line": 6,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "push": {
+        "branches": [
+          "chatgpt/lumo-studio-20261113"
+        ],
+        "branch_matches": false,
+        "has_paths": false,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    },
+    {
+      "path": ".github/workflows/opus-vehicle-fix.yml",
+      "blob": "5f455458d40c635552e98b11da2e6e82a9807fd0",
+      "on": [
+        {
+          "start_line": 2,
+          "end_line": 6,
+          "text": "on:\n  workflow_dispatch:\n  push:\n    branches: ['codex/opus-vehicle-regression-fix']\n    paths: ['.github/workflows/opus-vehicle-fix.yml', 'scripts/patches/opus-vehicle.patch']"
+        }
+      ],
+      "job_ifs": [
+        {
+          "line": 14,
+          "text": "    if: github.ref == 'refs/heads/codex/opus-vehicle-regression-fix'"
+        }
+      ],
+      "other_event_words": [
+        {
+          "line": 3,
+          "text": "  workflow_dispatch:"
+        }
+      ],
+      "events": [
+        "workflow_dispatch",
+        "push"
+      ],
+      "push": {
+        "branches": [
+          "codex/opus-vehicle-regression-fix"
+        ],
+        "branch_matches": false,
+        "has_paths": true,
+        "path_filter_result": "not needed; branch condition is already false"
+      },
+      "creation_effect": "No matching push; no create event."
+    }
+  ]
+}
