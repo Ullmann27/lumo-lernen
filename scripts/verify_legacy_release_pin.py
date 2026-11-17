@@ -185,6 +185,9 @@ APPROVED = {
     # 2036 preserves the exact native 2035 tree. Only Flutter task-entry
     # guards and regression coverage change; Android verification remains required.
     2036: "bb4788803180544525b6f23540a134016a1399a8",
+    # 2037 retains the verified native neon/learning tree. Flutter adds
+    # safe Memory-first play and visible subject-correct workshop routes.
+    2037: "bb4788803180544525b6f23540a134016a1399a8",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
