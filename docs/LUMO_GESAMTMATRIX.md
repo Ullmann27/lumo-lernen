@@ -38,6 +38,17 @@ Zuletzt öffentlich belegte APK laut Repo-Dokumenten: 0.13.19+2031 (16.11.). St�
 11. **Dorf-/Strategiemodus:** sehr große Karte mit Hügeln und Bergen (dort kann man nicht bauen), Kampagne mit Logik, Freibau, KI-Gegner, die eigene Städte sichtbar auf derselben Karte aufbauen und denen man zusehen kann. Kindgerecht, mit deutlich besserer Grafik. Bestand: `build_settlement_*` (Wirtschaft, Bewohner, sichtbare KI, 22-Tage-Kampagne) auf flachem Gelände.
 12. **Jump & Run als 3D-Lauf von hinten gesehen** (wie Lumo Kart, nur dass Lumo läuft): lange Strecken durch Wald, Dschungel und andere Welten, Tempo, Sprünge, Sammeln. Eigene Figuren, Strecken und Gestaltung; kein Nachbau eines bestehenden Spiels. Bestand: `jump_islands.gd` (12 kleine schwebende Inseln, 3 Kurse, Blick von hinten oben) und ein 2D-Spiel in Flutter.
 
+13. **Freie Hand (17.11.2026, abends):** Heinz erteilt ausdrücklich die Einwilligung für alles, was zum Fertigstellen nötig ist, einschließlich des Vereinfachens der selbst auferlegten Build- und Versions-Sperren. Arbeitsweise: autonom, erst die Spiele, dann die Lern-App auf demselben Niveau; jede Lösung zweimal durchdenken.
+
+Daraus von Claude entschieden (kein weiteres Nachfragen):
+- **Kart-Items:** Das Katalog-System des Streams `lumo-kart/gameplay-items` (Rakete, Falle, Schild, Glück nach Platz) wird das einzige Item-System; die Resonanz-Ringe werden darin aufgehen.
+- **Memory:** Der Flutter-Look ist die Untergrenze; der Optik-Commit `5a79c14c` bleibt draußen.
+- **Kartenspiele:** UNO entfällt. Drei eigene Spiele am 3D-Tisch mit traditionellen, gemeinfreien Grundregeln und eigener Lumo-Gestaltung: ein Stichspiel („Sternenstich"), ein Anlegespiel („Sternenleiter") und ein Sammel-Fragespiel („Lumo-Quartett").
+- **Profil-Regal:** zeigt die durch Lernen freigeschalteten Karts.
+- **Test-APK:** Die Pin-Sperre verlangt keinen handgeschriebenen Eintrag je Buildnummer mehr; Version 0.13.26+2038, Godot-Pin `d9ab8db`; Bau über `.github/workflows/lumo-test-apk.yml`, ausgelöst durch `config/test-apk-request.json`.
+
+Bewusst beibehalten, weil es Kinder schützt und nichts blockiert: Kamera, Mikrofon und Datenweitergabe bleiben standardmäßig aus und hinter der Elternfreigabe; keine Käufe, keine fremde Kommunikation.
+
 Einschränkungen zu den Zielbildern, damit nichts vorgetäuscht wird:
 - Es sind Konzeptbilder. Übernommen werden Aufbau und Aussehen; gezeigt werden nur echte Funktionen und echte Zahlen.
 - Mehrspieler, Münzen mit „+", Saisonpass Premium, tägliche Challenges, Lokal-Koop und Teilen gibt es im Produkt nicht. Sie werden nicht als Attrappe gebaut.
@@ -221,7 +232,7 @@ Grundlage ist Groks Inventur `docs/handover/BRANCH-INVENTUR-20261117.md` (784 Br
 | App `lumo-2040/memory` @ `e5dbe5ca` | teilweise übernommen: nur Fix `b93aef5b`, Optik-Commit `5a79c14c` nicht | Cherry-Pick auf dem Arbeitsbranch |
 | App `lumo-2040/tutor` @ `58549eae` | WIP, Einstieg verborgen | offen |
 | App `delivery/lumo-2037-memory-werkstatt` @ `e2a8e9fe` | 11 Commits nicht im Nullpunkt | offen, prüfen |
-| Godot-Pin in `config/godot-source.json` | zeigt noch auf `bb478880` | erst nach grüner Godot-Prüfung umstellen |
+| Godot-Pin in `config/godot-source.json` | umgestellt auf `d9ab8db` (Godot-CI auf `2e1aed6` vollständig grün) | Commit `d83d2199` |
 
 Die unveränderten Testberichte der Streams liegen im Godot-Repo unter `docs/integration-2/`.
 
@@ -233,7 +244,7 @@ Die unveränderten Testberichte der Streams liegen im Godot-Repo unter `docs/int
 | Vollständige Godot-Testsuite (ca. 350 Skripte) | NOT_RUN |
 | `flutter analyze` | PASS (lokal), 0 Fehler |
 | `flutter test` vollständig | NOT_RUN |
-| Gemeinsame APK (Flutter + Godot) | NOT_RUN in dieser Sitzung (kein Android-SDK lokal, nur über CI) |
+| Gemeinsame APK (Flutter + Godot) | IN ARBEIT: erster Bau von 0.13.26+2038 über `lumo-test-apk.yml` (Lauf 44160451537), Ergebnis offen |
 | Android-Emulator, echtes Gerät, Fold | NOT_RUN |
 | Framezeiten, Speicher, Akku | NOT_RUN |
 
