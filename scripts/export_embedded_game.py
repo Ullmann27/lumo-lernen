@@ -158,11 +158,17 @@ def export(repo: Path, binary: str):
         raise RuntimeError(f'Godot {source["engine"]} required, found {version}')
     before = git_paths(repo, 'ls-files', '--others', '--exclude-standard')
     try:
-        run(binary, '--headless', '--path', str(repo), '--editor', '--import', '--quit')
+        # Godot 4.6.3 importer sometimes dispatches scene notifications from
+        # worker groups and crashes (SIGSEGV) on busy CI runners. Force only
+        # the headless importer/editor into main-thread scene dispatch; the
+        # exported Android game's runtime threading remains unchanged.
+        run(binary, '--headless', '--single-threaded-scene', '--path',
+            str(repo), '--editor', '--import', '--quit')
         assets = ROOT / 'android/app/src/main/assets'
         assets.mkdir(parents=True, exist_ok=True)
         pack = assets / 'lumo_game.pck'
-        run(binary, '--headless', '--path', str(repo), '--export-pack', 'Android', str(pack))
+        run(binary, '--headless', '--single-threaded-scene', '--path',
+            str(repo), '--export-pack', 'Android', str(pack))
         header = pack.read_bytes()[:20]
         magic, _, major, minor, patch = struct.unpack('<4s4I', header)
         if magic != b'GDPC' or (major, minor, patch) != (4, 6, 3):
