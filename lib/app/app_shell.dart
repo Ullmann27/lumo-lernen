@@ -607,6 +607,9 @@ class _AppShellState extends State<AppShell>
           xp: _appState.state.xp,
           level: _appState.state.level,
           drawBackground: !fullBleed,
+          // Zielbild 17.11.: Auf dem Handy trägt das Profil den Schriftzug
+          // selbst; Level, Sterne und XP stehen dort in der Profilkarte.
+          showWordmark: fullBleed,
         );
       case LumoSection.settings:
         return SettingsContent(appState: _appState);
@@ -689,7 +692,8 @@ class _AppShellState extends State<AppShell>
                               ),
                             );
                             return Column(children: [
-                              if (section != LumoSection.games)
+                              if (section != LumoSection.games &&
+                                  section != LumoSection.profile)
                                 _MobileLumoHeader(
                                     appState: _appState,
                                     onFoxTap: _openConversation),
