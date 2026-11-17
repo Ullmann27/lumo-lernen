@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "original.zip",
+      "bytes": 1023673,
+      "sha256": "73bc1059060c7fbaf0bd4ee8d51afcd32ea12a09dd270af1a67da07ed2d5ee84",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/original.zip"
+    },
+    {
+      "path": "run.original.json",
+      "bytes": 12824,
+      "sha256": "103880081c54ff4d415f3f2ef0922c002ca30e6754dd36cf4fb2ea0221359d34",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/run.original.json"
+    },
+    {
+      "path": "artifacts.original.json",
+      "bytes": 819,
+      "sha256": "607a4f87f5b97d5b751bd64aa544763ebecd67bfcdc174e7af95c531d189a3dd",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/artifacts.original.json"
+    },
+    {
+      "path": "jobs.original.json",
+      "bytes": 3367,
+      "sha256": "651b616b8c264a2e7afe05f63b634432ee7ff01fe503da6b44bdef4307319209",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/jobs.original.json"
+    },
+    {
+      "path": "job-132436420801.original.log",
+      "bytes": 72150,
+      "sha256": "f00da52ecee3b16bd6f6127754fea3b3f3acf89e7c9d34dc7177cc62fbc0999c",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/job-132436420801.original.log"
+    },
+    {
+      "path": "zip-original-index.json",
+      "bytes": 3037,
+      "sha256": "a04ef95dfbfc58b181ff4a3f42ddbf741e74f3769100d08ecb64816f64dd14ad",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/zip-original-index.json"
+    },
+    {
+      "path": "expected-source-tree.json",
+      "bytes": 1161731,
+      "sha256": "4e533b23ef7d88656d71991df016707b431a4960e516de5366264a95df851be1",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/expected-source-tree.json"
+    },
+    {
+      "path": "verify_originals.py",
+      "bytes": 4956,
+      "sha256": "14ad0e2bdd51e5f57c5fe79fd9bbd020da5ec37009d67aeec6ef05fc896a2078",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/verify_originals.py"
+    },
+    {
+      "path": "independent-replay.json",
+      "bytes": 760,
+      "sha256": "6d5044acaf4e03ea054716d542e596b6303f481897eef9127f70fc7f91f7fff2",
+      "source": "/tmp/host-feature-7136-ci-evidence-20261114/independent-replay.json"
+    },
+    {
+      "path": "bound-summary-reader-original.py",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "source": "/tmp/lumo-root-recovery-1105/host-c4/scripts/run_full_flutter_acceptance.py"
+    }
+  ]
+}
