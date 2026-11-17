@@ -1053,6 +1053,16 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
     return Scaffold(
         backgroundColor:
             widget.drawBackground ? LumoVisualTokens.night : Colors.transparent,
+        floatingActionButton: FloatingActionButton.extended(
+          key: const ValueKey('academy-3d-workshop'),
+          onPressed: () => Navigator.of(context).push<void>(MaterialPageRoute<void>(
+            builder: (_) => LearningLabHub(appState: widget.appState),
+          )),
+          icon: const Icon(Icons.view_in_ar_rounded),
+          label: const Text('3D-LUMO-Werkstatt'),
+          backgroundColor: const Color(0xFF0D7094),
+          foregroundColor: Colors.white,
+        ),
         body: widget.drawBackground
             ? LumoSceneBackground(
                 scene: LumoScene.learning,

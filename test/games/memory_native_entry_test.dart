@@ -61,12 +61,13 @@ Future<LumoAppState> _app() async {
 }
 
 Future<void> _open(WidgetTester tester, LumoAppState app, _Unavailable transport,
-    {int Function()? turnMilliseconds}) async {
+    {int Function()? turnMilliseconds, bool autoLaunchNative = true}) async {
   await tester.binding.setSurfaceSize(const Size(412, 915));
   await tester.pumpWidget(MaterialApp(
     home: LumoMemoryScreen(key: UniqueKey(), appState: app, seed: 4,
         difficulty: MemoryDifficulty.leicht, nativeTransport: transport,
-        turnMilliseconds: turnMilliseconds),
+        turnMilliseconds: turnMilliseconds,
+        autoLaunchNative: autoLaunchNative),
   ));
   await _until(tester, () => find.byKey(const ValueKey('memory-card-7')).evaluate().length == 1,
       'actual loaded Memory board');
@@ -87,6 +88,28 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
   tearDown(() => SharedPreferences.setMockInitialValues({}));
+
+  testWidgets('Child-facing Memory remains playable until native 3D is explicitly requested',
+      (tester) async {
+    final app = await _app();
+    final transport = _Unavailable();
+    addTearDown(app.dispose);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await _open(tester, app, transport, autoLaunchNative: false);
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(transport.opens, 0, reason: 'Never auto-launch another Activity');
+    expect(find.byKey(const ValueKey('memory-card-0')).hitTestable(), findsOneWidget);
+    await _tapAndSave(tester, app, 0);
+    expect(transport.opens, 0);
+    await tester.tap(find.byKey(const ValueKey('memory-open-3d')));
+    await _until(tester, () => transport.closed.isNotEmpty,
+        'Explicit native failure closes the attempt and returns to Flutter');
+    expect(transport.opens, 1);
+    expect(find.byKey(const ValueKey('memory-card-0')), findsOneWidget);
+    expect(find.byKey(const ValueKey('memory-native-opening')), findsNothing);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 
   testWidgets('Missing native plugin leaves real Flutter cards usable with no cover or snackbar',
       (tester) async {
