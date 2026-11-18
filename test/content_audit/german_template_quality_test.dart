@@ -26,8 +26,8 @@ void main() {
         expect(task.choices.map((choice) => choice.toLowerCase()).toSet(),
             hasLength(task.choices.length),
             reason: reason);
-        expect(task.choices.where((choice) => choice == task.answer),
-            hasLength(1),
+        expect(
+            task.choices.where((choice) => choice == task.answer), hasLength(1),
             reason: reason);
       }
     }
@@ -38,8 +38,8 @@ void main() {
     final all = tasks('g2_diminutive').toList();
     expect(all.length, greaterThanOrEqualTo(20));
     for (final task in all) {
-      final diminutiveLooking = task.choices
-          .where((choice) => choice.endsWith('chen') || choice.endsWith('lein'));
+      final diminutiveLooking = task.choices.where(
+          (choice) => choice.endsWith('chen') || choice.endsWith('lein'));
       expect(diminutiveLooking.length, greaterThanOrEqualTo(3),
           reason: '${task.prompt} ${task.choices}');
       expect(task.choices.any((choice) => choice.endsWith('ung')), isFalse,
@@ -83,10 +83,8 @@ void main() {
     expect(all.length, greaterThanOrEqualTo(20));
     for (final task in all) {
       final sentence = RegExp('„(.+)“').firstMatch(task.prompt)!.group(1)!;
-      final words = sentence
-          .replaceAll(RegExp('[.,!?]'), '')
-          .split(' ')
-          .toSet();
+      final words =
+          sentence.replaceAll(RegExp('[.,!?]'), '').split(' ').toSet();
       for (final choice in task.choices) {
         expect(words, contains(choice),
             reason: '„$choice“ steht nicht in: $sentence');
@@ -133,6 +131,30 @@ void main() {
   test('Synonyme: fröhlich wird nicht mit lustig gleichgesetzt', () {
     for (final task in tasks('g3_synonyms')) {
       if (task.prompt.contains('„fröhlich“')) expect(task.answer, 'heiter');
+    }
+  });
+
+  test('Wortarten Klasse 3: Wörter im Satz, mit Begleiter und Fürwort (D-M17)',
+      () {
+    final all = tasks('g3_word_types', seeds: 2000).toList();
+    expect(all.length, greaterThanOrEqualTo(40));
+    final asked = <String>{};
+    for (final task in all) {
+      final sentence = RegExp(r'„([^“]+)“').firstMatch(task.prompt)!.group(1)!;
+      final words = sentence.replaceAll('.', '').split(' ').toSet();
+      for (final choice in task.choices) {
+        expect(words, contains(choice), reason: task.prompt);
+      }
+      asked.add(task.prompt.split('\n').last);
+    }
+    expect(asked.any((q) => q.contains('Fürwort')), isTrue);
+    expect(asked.any((q) => q.contains('Begleiter')), isTrue);
+    final grade2Prompts = <String>{
+      for (final id in ['g2_nouns', 'g2_verbs', 'g2_adjectives'])
+        ...tasks(id).map((task) => task.prompt),
+    };
+    for (final task in all) {
+      expect(grade2Prompts, isNot(contains(task.prompt)));
     }
   });
 }

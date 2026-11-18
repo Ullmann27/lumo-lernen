@@ -469,6 +469,30 @@ class GermanTaskTemplate {
             'Synonyme haben eine ähnliche Bedeutung.',
             'synonym');
       case GermanTemplateKind.wordTypes:
+        if (promptPattern == 'wortarten-unterscheiden') {
+          // Klasse 3 (Fachprüfung D-M17): Wörter im Satz bestimmen, dazu
+          // Begleiter und Fürwörter – nicht dieselbe Aufgabe wie Klasse 2.
+          final item =
+              _wordTypeSentences[_positive(seed, _wordTypeSentences.length)];
+          final types = _WordTypeSentence.typeNames;
+          final asked =
+              types[_positive(seed ~/ _wordTypeSentences.length, types.length)];
+          final answer = item.wordFor(asked);
+          final others = types.where((type) => type != asked).toList();
+          final shift = _positive(seed ~/ 7, others.length);
+          final distractors = <String>[
+            for (var i = 0; i < 3; i++)
+              item.wordFor(others[(shift + i) % others.length]),
+          ];
+          return _choice(
+              'Lies den Satz: „${item.sentence}“\n'
+                  'Welches Wort ist ${_WordTypeSentence.articleFor(asked)}?',
+              answer,
+              <String>[answer, ...distractors],
+              '${_WordTypeSentence.ruleFor(asked)} '
+                  'Im Satz ist „$answer“ ${_WordTypeSentence.articleFor(asked)}.',
+              'word_type');
+        }
         final selector = promptPattern.contains('nomen')
             ? 0
             : promptPattern.contains('verb')
@@ -758,6 +782,80 @@ class _LetterSound {
   final String letter;
   final List<String> choices;
 }
+
+class _WordTypeSentence {
+  const _WordTypeSentence(this.sentence, this.pronoun, this.verb, this.article,
+      this.adjective, this.noun);
+  final String sentence;
+  final String pronoun;
+  final String verb;
+  final String article;
+  final String adjective;
+  final String noun;
+
+  static const typeNames = <String>[
+    'Fürwort',
+    'Tunwort',
+    'Begleiter',
+    'Wiewort',
+    'Namenwort',
+  ];
+
+  String wordFor(String type) => switch (type) {
+        'Fürwort' => pronoun,
+        'Tunwort' => verb,
+        'Begleiter' => article,
+        'Wiewort' => adjective,
+        _ => noun,
+      };
+
+  static String articleFor(String type) => switch (type) {
+        'Fürwort' => 'ein Fürwort',
+        'Tunwort' => 'ein Tunwort',
+        'Begleiter' => 'ein Begleiter (Artikel)',
+        'Wiewort' => 'ein Wiewort',
+        _ => 'ein Namenwort',
+      };
+
+  static String ruleFor(String type) => switch (type) {
+        'Fürwort' =>
+          'Ein Fürwort steht für ein Namenwort: ich, du, er, sie, es, wir, ihr.',
+        'Tunwort' => 'Ein Tunwort sagt, was jemand tut.',
+        'Begleiter' =>
+          'Ein Begleiter steht vor einem Namenwort: der, die, das, ein, eine.',
+        'Wiewort' => 'Ein Wiewort sagt, wie etwas ist.',
+        _ => 'Ein Namenwort bezeichnet einen Menschen, ein Tier, eine Pflanze '
+            'oder ein Ding. Du schreibst es groß.',
+      };
+}
+
+/// Klasse-3-Sätze: in jedem Satz genau ein Wort je Wortart.
+const _wordTypeSentences = <_WordTypeSentence>[
+  _WordTypeSentence('Sie liest das spannende Buch.', 'Sie', 'liest', 'das',
+      'spannende', 'Buch'),
+  _WordTypeSentence(
+      'Er trinkt den warmen Kakao.', 'Er', 'trinkt', 'den', 'warmen', 'Kakao'),
+  _WordTypeSentence('Wir bauen eine hohe Sandburg.', 'Wir', 'bauen', 'eine',
+      'hohe', 'Sandburg'),
+  _WordTypeSentence('Ich male einen bunten Drachen.', 'Ich', 'male', 'einen',
+      'bunten', 'Drachen'),
+  _WordTypeSentence('Du findest die kleine Muschel.', 'Du', 'findest', 'die',
+      'kleine', 'Muschel'),
+  _WordTypeSentence('Ihr singt ein fröhliches Lied.', 'Ihr', 'singt', 'ein',
+      'fröhliches', 'Lied'),
+  _WordTypeSentence('Sie füttern die hungrige Katze.', 'Sie', 'füttern', 'die',
+      'hungrige', 'Katze'),
+  _WordTypeSentence(
+      'Er trägt den roten Schal.', 'Er', 'trägt', 'den', 'roten', 'Schal'),
+  _WordTypeSentence(
+      'Wir besuchen die alte Burg.', 'Wir', 'besuchen', 'die', 'alte', 'Burg'),
+  _WordTypeSentence('Ich esse eine saftige Birne.', 'Ich', 'esse', 'eine',
+      'saftige', 'Birne'),
+  _WordTypeSentence('Du gießt die durstige Blume.', 'Du', 'gießt', 'die',
+      'durstige', 'Blume'),
+  _WordTypeSentence('Ihr streichelt das weiche Kaninchen.', 'Ihr', 'streichelt',
+      'das', 'weiche', 'Kaninchen'),
+];
 
 class _PairItem {
   const _PairItem(this.left, this.right, this.distractors);
@@ -1266,8 +1364,8 @@ const List<_SentenceMcItem> _adverbItems = <_SentenceMcItem>[
 ];
 
 const List<_VerbFormMcItem> _plusquamItems = <_VerbFormMcItem>[
-  _VerbFormMcItem('lesen', 'hatte gelesen',
-      <String>['war gelesen', 'hatte gelest', 'las']),
+  _VerbFormMcItem(
+      'lesen', 'hatte gelesen', <String>['war gelesen', 'hatte gelest', 'las']),
   _VerbFormMcItem('gehen', 'war gegangen',
       <String>['hatte gegangen', 'war gegeht', 'ging']),
   _VerbFormMcItem('schreiben', 'hatte geschrieben',
