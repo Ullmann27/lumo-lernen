@@ -13,9 +13,6 @@ import 'package:lumo_lernen/core/lumo_sound.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/domain/games/memory_board.dart';
 import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_jump_celebration.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_result_dialog.dart';
 import 'package:lumo_lernen/features/games/memory/lumo_memory_game.dart';
 import 'package:lumo_lernen/features/quiz/quiz_show_content.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -56,26 +53,6 @@ void main() {
         tester,
         _boundary,
         '$_directory/memory_overview_$name.png',
-        pixelRatio: 1.5,
-      );
-      expect(tester.takeException(), isNull);
-      await _close(tester);
-    }, skip: _directory == null);
-
-    testWidgets('Cards overview $name', (tester) async {
-      await _open(
-        tester,
-        size,
-        LumoCardsScreen(
-          appState: _app(),
-          seed: 10,
-          skipIntro: true,
-        ),
-      );
-      await captureLumoBoundary(
-        tester,
-        _boundary,
-        '$_directory/cards_overview_$name.png',
         pixelRatio: 1.5,
       );
       expect(tester.takeException(), isNull);
@@ -181,66 +158,6 @@ void main() {
       await _close(tester);
     }, skip: _directory == null);
 
-    testWidgets('Cards Lumo-Sprung $name', (tester) async {
-      await tester.binding.setSurfaceSize(size);
-      addTearDown(() => tester.binding.setSurfaceSize(null));
-      await tester.pumpWidget(MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: LumoAppTheme.light(),
-        home: const RepaintBoundary(
-          key: _boundary,
-          child: Scaffold(
-            backgroundColor: Color(0xFF12355C),
-            body: Center(child: LumoJumpCelebration()),
-          ),
-        ),
-      ));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 280));
-      await captureLumoBoundary(
-        tester,
-        _boundary,
-        '$_directory/cards_jump_$name.png',
-        pixelRatio: 1.5,
-      );
-      expect(tester.takeException(), isNull);
-      await tester.pumpWidget(const SizedBox.shrink());
-    }, skip: _directory == null);
-
-    testWidgets('Cards round summary $name', (tester) async {
-      await tester.binding.setSurfaceSize(size);
-      addTearDown(() => tester.binding.setSurfaceSize(null));
-      await tester.pumpWidget(MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: LumoAppTheme.light(),
-        home: RepaintBoundary(
-          key: _boundary,
-          child: Scaffold(
-            body: Stack(
-              children: [
-                LumoResultDialog(
-                  winnerName: 'Du',
-                  kindWon: true,
-                  reward: 5,
-                  streak: 2,
-                  onRestart: () {},
-                  onExit: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
-      ));
-      await tester.pump();
-      await captureLumoBoundary(
-        tester,
-        _boundary,
-        '$_directory/cards_summary_$name.png',
-        pixelRatio: 1.5,
-      );
-      expect(tester.takeException(), isNull);
-      await tester.pumpWidget(const SizedBox.shrink());
-    }, skip: _directory == null);
   }
 }
 
@@ -258,8 +175,6 @@ Future<void> _open(WidgetTester tester, Size size, Widget home) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
   if (home is LumoMemoryScreen) {
-    addTearDown(home.appState.dispose);
-  } else if (home is LumoCardsScreen) {
     addTearDown(home.appState.dispose);
   } else if (home is LumoConnectFourScreen) {
     addTearDown(home.appState.dispose);

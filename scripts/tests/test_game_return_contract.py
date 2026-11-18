@@ -240,13 +240,18 @@ class GameReturnStoreTest(unittest.TestCase):
 
 
 class GameReturnWiringTest(unittest.TestCase):
-    def test_validated_private_launch_owns_learning_cards_and_separate_connect_four(self):
+    def test_validated_private_launch_owns_learning_and_separate_table_games(self):
         text = (ROOT / 'tools/auto_install/MainActivity.kt').read_text()
         launch = text.split('"launch3D" -> {', 1)[1].split('override fun onActivityResult', 1)[0]
-        self.assertIn('.takeIf { game in setOf("learning", "cards", "connect_four", "memory", "quiz") }', launch)
+        # The card table (Sternenstich, Sternenleiter, Lumo-Quartett) keeps its
+        # own rules and save in the game. It is opened like Kart and Lumo Lauf:
+        # no round token from the app and a normal return to the games section.
+        self.assertIn('.takeIf { game in setOf("learning", "connect_four", "memory", "quiz") }', launch)
+        self.assertNotIn('"invalid_cards"', launch)
+        self.assertNotIn('cardsToken', launch)
+        self.assertIn('"kart", "jump", "run", "puzzle"', launch)
         self.assertLess(launch.index('"invalid_connect_four"'), launch.index('GameEventStore.beginCallerReturn'))
         self.assertLess(launch.index('"invalid_table_game"'), launch.index('GameEventStore.beginCallerReturn'))
-        self.assertLess(launch.index('"invalid_cards"'), launch.index('GameEventStore.beginCallerReturn'))
         self.assertLess(launch.index('GameEventStore.beginCallerReturn'), launch.index('pendingGame = result'))
         self.assertLess(launch.index('pendingCallerReturnSession = callerSession'), launch.index('startActivityForResult'))
         self.assertIn('pendingCallerReturnSession.takeIf { pendingGame != null }', text)

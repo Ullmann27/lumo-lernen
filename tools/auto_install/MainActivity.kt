@@ -210,7 +210,7 @@ class MainActivity : FlutterActivity() {
                             result.error("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.", null)
                             return@setMethodCallHandler
                         }
-                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four", "games", "memory", "quiz")) requested!! else "kart"
+                        val game = if (requested in setOf("kart", "jump", "run", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four", "games", "memory", "quiz")) requested!! else "kart"
                         val options = JSONObject()
                             .put("game", game)
                             .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
@@ -251,14 +251,9 @@ class MainActivity : FlutterActivity() {
                             // isolated lesson or village owns the same original voice.
                             offlineSpeech?.release()
                         }
-                        if (game == "cards") {
-                            val token = call.argument<String>("cardsToken")
-                            if (token == null || !token.matches(Regex("[a-f0-9]{32}"))) {
-                                result.error("invalid_cards", "Der Kartentisch konnte nicht geöffnet werden.", null)
-                                return@setMethodCallHandler
-                            }
-                            options.put("cardsToken", token)
-                        }
+                        // Der Kartentisch führt Regeln, Mitspieler und Spielstand selbst
+                        // (Sternenstich, Sternenleiter, Lumo-Quartett). Er braucht keine
+                        // Partie aus der App und deshalb kein Token.
                         if (game == "connect_four") {
                             val token = call.argument<String>("connectFourToken")
                             if (token == null || !ConnectFourBridge.hasAuthority(token)) {
@@ -277,7 +272,8 @@ class MainActivity : FlutterActivity() {
                         }
                         options.put("reduceAnimations", call.argument<Boolean>("reduceAnimations") ?: false)
                         val callerSession = options.getString("sessionId")
-                            .takeIf { game in setOf("learning", "cards", "connect_four", "memory", "quiz") }
+                            // Der Kartentisch kehrt wie Kart und Lumo Lauf in die Spieleauswahl zurück.
+                            .takeIf { game in setOf("learning", "connect_four", "memory", "quiz") }
                         val activity = when (game) {
                             "connect_four" -> ConnectFourGameActivity::class.java
                             "memory", "quiz" -> TableGameActivity::class.java

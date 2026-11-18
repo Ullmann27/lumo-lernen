@@ -79,8 +79,16 @@ class EmbeddedGameService with WidgetsBindingObserver {
         }
         if (event is! Map ||
             event['status'] != 'completed' ||
-            !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
-                .contains(event['game'])) {
+            !const [
+              'kart',
+              'jump',
+              'run',
+              'cards',
+              'puzzle',
+              'build',
+              'rhythm',
+              'treasure'
+            ].contains(event['game'])) {
           continue;
         }
         final id = event['resultId'];

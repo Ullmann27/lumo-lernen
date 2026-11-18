@@ -17,7 +17,8 @@ class LumoGameEntryArt {
         'treasure' => 'Lumo Schatzsuche',
         'jump' => 'Lumo Abenteuer',
         'learning' => 'Lumo Lernwerkstatt',
-        'cards' => 'Lumo Cards',
+        'cards' => 'Lumo Karten',
+        'run' => 'Lumo Lauf',
         _ => 'Lumo Spielewelt',
       };
 
@@ -42,6 +43,8 @@ class LumoGameEntryArt {
         'treasure' => 'ENTDECKUNGSREISE',
         'learning' => 'MIT LUMO AUSPROBIEREN',
         'cards' => 'GEMEINSAM AM SPIELTISCH',
+        'run' => '3D-LAUFABENTEUER',
+        'jump' => 'WOLKENINSELN',
         _ => 'SPIELWELT',
       };
 }

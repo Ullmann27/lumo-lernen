@@ -34,8 +34,6 @@ void main() {
     'lib/core/lumo_quest_library.dart',
     // Zweite Runde: Spiele, Schreibvorlagen, Erfolge, Lumo-Welt.
     'lib/domain/games/game_level_catalog.dart',
-    'lib/features/games/lumo_cards/lumo_cards_rules.dart',
-    'lib/features/games/lumo_cards/lumo_cards_game_controller.dart',
     'lib/features/lumo_welt/lumo_welt_screen.dart',
     'lib/features/story/lumo_story_library_screen.dart',
     'lib/features/story/lumo_quest_hub_screen.dart',

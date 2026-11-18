@@ -16,10 +16,6 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/user_profile.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_session.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_player_hand.dart';
-import 'package:lumo_lernen/features/games/shared/lumo_game_pause_scope.dart';
 import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 import 'package:lumo_lernen/features/tutoring/guided_learning_hub.dart';
@@ -27,7 +23,6 @@ import 'package:lumo_lernen/features/tutoring/guided_lesson_screen.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 const _bridge = MethodChannel('lumo_lernen/bridge');
-const _cards = MethodChannel('lumo_lernen/cards_table');
 
 class _Routes extends NavigatorObserver {
   final removed = <Route<dynamic>>[];
@@ -103,9 +98,7 @@ class _AndroidReturn {
         launch = Map<String, dynamic>.from(call.arguments as Map);
         pendingGame = true;
         liveCallerSession =
-            const ['learning', 'cards'].contains(launch!['scene'])
-                ? _session
-                : null;
+            launch!['scene'] == 'learning' ? _session : null;
         if (liveCallerSession != null) {
           events.remove('destination');
           events.remove('callerReturnSession');
@@ -149,21 +142,6 @@ class _AndroidReturn {
       default:
         return null;
     }
-  }
-}
-
-class _CardsMailbox {
-  Map<String, dynamic>? opened;
-  int closes = 0;
-
-  Future<Object?> handle(MethodCall call) async {
-    if (call.method == 'open') {
-      final args = Map<String, dynamic>.from(call.arguments as Map);
-      opened = jsonDecode(args['state'] as String) as Map<String, dynamic>;
-    }
-    if (call.method == 'poll') return '{}';
-    if (call.method == 'close') closes++;
-    return true;
   }
 }
 
@@ -287,11 +265,9 @@ Future<void> _nativeReturn(WidgetTester tester, _AndroidReturn android,
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late _AndroidReturn android;
-  late _CardsMailbox cards;
 
   setUp(() async {
     android = _AndroidReturn();
-    cards = _CardsMailbox();
     SharedPreferences.setMockInitialValues({
       'lumo_3d_save_salt_v1': 'native-return-synthetic-salt',
       'lumo_music_muted': true,
@@ -310,69 +286,33 @@ void main() {
     await RewardWalletRepository.instance.reset();
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(_bridge, android.handle);
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(_cards, cards.handle);
   });
 
   tearDown(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(_bridge, null);
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(_cards, null);
   });
 
   for (final resultBeforeResume in [true, false]) {
-    for (final scene in ['learning', 'cards']) {
+    // The card table now returns like Kart (to the games section); only a
+    // lesson illustration keeps its originating route.
+    for (final scene in ['learning']) {
       testWidgets(
           '$scene native return retains actual origin route; result before resume=$resultBeforeResume',
           (tester) async {
         debugDefaultTargetPlatformOverride = TargetPlatform.android;
         final observer = _Routes();
         try {
-          final app = await _shell(tester, observer);
+          await _shell(tester, observer);
           late State originState;
           late Route originRoute;
           String? taskId;
-          LumoGameTurnClock? cardsClock;
-          List<String>? cardsHand;
-          if (scene == 'learning') {
-            await _guidedExample(tester);
-            originState = tester.state(find.byType(GuidedLessonScreen));
-            originRoute =
-                ModalRoute.of(tester.element(find.byType(GuidedLessonScreen)))!;
-            taskId = LumoCompanionRequests.instance.taskContext.value!.taskId;
-            await _tap(tester, find.byKey(const ValueKey('guided-open-3d')));
-          } else {
-            // A real Navigator push keeps the same production shell and its
-            // service below the actual Cards controller/persistence screen.
-            app.setSection(LumoSection.games);
-            await _frames(tester);
-            unawaited(Navigator.of(tester.element(find.byType(AppShell)))
-                .push<void>(MaterialPageRoute(
-                    builder: (_) => LumoCardsScreen(
-                        appState: app, seed: 20, skipIntro: true))));
-            await _frames(tester, 50);
-            expect(find.byType(LumoCardsScreen), findsOneWidget);
-            originState = tester.state(find.byType(LumoCardsScreen));
-            originRoute =
-                ModalRoute.of(tester.element(find.byType(LumoCardsScreen)))!;
-            // _controller and its turnClock are final. Observing that exact
-            // public clock instance proves the production controller was not
-            // disposed/recreated without exposing private fields in the app.
-            cardsClock = tester
-                .widget<LumoGamePauseScope>(find.byType(LumoGamePauseScope))
-                .clock;
-            cardsHand = tester
-                .widget<LumoPlayerHand>(find.byType(LumoPlayerHand))
-                .cards
-                .map((card) => card.id)
-                .toList();
-            await _tap(
-                tester, find.byKey(const ValueKey('cards-native-table')));
-            expect(cards.opened?['roundId'], isA<String>());
-            expect((cards.opened!['hand'] as List).map((card) => card['id']),
-                cardsHand);
-          }
+          await _guidedExample(tester);
+          originState = tester.state(find.byType(GuidedLessonScreen));
+          originRoute =
+              ModalRoute.of(tester.element(find.byType(GuidedLessonScreen)))!;
+          taskId = LumoCompanionRequests.instance.taskContext.value!.taskId;
+          await _tap(tester, find.byKey(const ValueKey('guided-open-3d')));
           expect(android.launch?['scene'], scene);
           expect(originRoute.isCurrent, isTrue);
           final walletBefore =
@@ -391,37 +331,11 @@ void main() {
                   'Native illustration/table return must preserve its originating route.');
           expect(originState.mounted, isTrue);
           expect(observer.removed, isNot(contains(originRoute)));
-          if (scene == 'learning') {
-            expect(find.text('Acht und fünf'), findsOneWidget);
-            expect(tester.state(find.byType(GuidedLessonScreen)),
-                same(originState));
-            expect(LumoCompanionRequests.instance.taskContext.value!.taskId,
-                taskId);
-          } else {
-            expect(
-                tester.state(find.byType(LumoCardsScreen)), same(originState));
-            expect(
-                tester
-                    .widget<LumoGamePauseScope>(find.byType(LumoGamePauseScope))
-                    .clock,
-                same(cardsClock));
-            expect(
-                tester
-                    .widget<LumoPlayerHand>(find.byType(LumoPlayerHand))
-                    .cards
-                    .map((card) => card.id),
-                cardsHand);
-            final owner = await app.captureLearningProfile();
-            final persisted = await LumoCardsSessionRepository(
-                    studentId: owner.studentId,
-                    grade: app.state.grade,
-                    vsBot: true)
-                .load(player1Name: 'Du', player2Name: 'Lumo');
-            expect(persisted?.id, cards.opened!['roundId']);
-            expect(persisted?.state.players[0].hand.map((card) => card.id),
-                cardsHand);
-            expect(cards.closes, 1);
-          }
+          expect(find.text('Acht und fünf'), findsOneWidget);
+          expect(tester.state(find.byType(GuidedLessonScreen)),
+              same(originState));
+          expect(LumoCompanionRequests.instance.taskContext.value!.taskId,
+              taskId);
           expect(
               RewardWalletRepository.instance.snapshot.toJson(), walletBefore,
               reason: 'Opening and returning must not invent a reward.');

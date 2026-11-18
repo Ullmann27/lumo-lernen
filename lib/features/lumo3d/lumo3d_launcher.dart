@@ -25,7 +25,6 @@ Future<bool> launchLumo3D(
   String? subject,
   LumoAppState? appState,
   NativeLearningActivity? learning,
-  String? cardsToken,
   String? connectFourToken,
   String? tableToken,
   String? legacyGameKey,
@@ -42,10 +41,6 @@ Future<bool> launchLumo3D(
       (appState == null ||
           !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
               .contains(scene))) {
-    return false;
-  }
-  if (scene == 'cards' &&
-      (cardsToken == null || !RegExp(r'^[a-f0-9]{32}$').hasMatch(cardsToken))) {
     return false;
   }
   if ((scene == 'connect_four') != (connectFourToken != null) ||
@@ -217,7 +212,6 @@ Future<bool> launchLumo3D(
             ((appState?.state.settings.voiceRate ?? 0.35) / 0.35)
                 .clamp(0.70, 1.60),
       },
-      if (scene == 'cards') 'cardsToken': cardsToken,
       if (scene == 'connect_four') 'connectFourToken': connectFourToken,
       if (tableGame) 'tableToken': tableToken,
     });

@@ -36,11 +36,11 @@ jobs:
           set -euo pipefail
           dart analyze test/design/parent_games_polish_test.dart
           python3 -m py_compile .github/probes/modernization_android_tour.py
-      - name: Verify real showcase to solo to return navigation
+      - name: Verify the card portal opens the 3D card table exactly once
         run: |
           flutter test --no-pub --reporter=expanded --timeout=120s \
             test/design/parent_games_polish_test.dart \
-            --plain-name 'Cards rapid double activation opens one route and permits returning'
+            --plain-name 'cards Spielwelt portal launches actual Godot 3D scene once'
       - name: Preserve proven failure expectations
         run: |
           python3 - <<'PY'
