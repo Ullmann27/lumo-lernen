@@ -2079,55 +2079,50 @@ class StoryStageVisual extends StatelessWidget {
     );
   }
 
-  /// Erkennt das Story-Thema aus Schluesselwoertern im Prompt und liefert
-  /// das passende Emoji. Default: Buch-Emoji.
-  String _themeEmoji(String prompt) {
-    final p = prompt.toLowerCase();
-    // Reihenfolge: spezifischer zuerst.
-    if (p.contains('apfel') || p.contains('aepfel') || p.contains('äpfel')) {
-      return '🍎';
-    }
-    if (p.contains('baecker') ||
-        p.contains('bäcker') ||
-        p.contains('brot') ||
-        p.contains('kuchen') ||
-        p.contains('semmel')) {
-      return '🥨';
-    }
-    if (p.contains('schwimm') || p.contains('schwimmbad')) return '🏊';
-    if (p.contains('schule') ||
-        p.contains('klasse') ||
-        p.contains('schüler') ||
-        p.contains('schueler')) {
-      return '🏫';
-    }
-    if (p.contains('blume') || p.contains('garten') || p.contains('baum')) {
-      return '🌳';
-    }
-    if (p.contains('tier') ||
-        p.contains('hund') ||
-        p.contains('katze') ||
-        p.contains('hase')) {
-      return '🐶';
-    }
-    if (p.contains('vogel') || p.contains('biene')) return '🐦';
-    if (p.contains('euro') ||
-        p.contains('geld') ||
-        p.contains('cent') ||
-        p.contains('€')) {
-      return '💶';
-    }
-    if (p.contains('zug') || p.contains('bahn')) return '🚆';
-    if (p.contains('auto') || p.contains('rad')) return '🚗';
-    if (p.contains('uhr') || p.contains('stunde') || p.contains('minute')) {
-      return '⏰';
-    }
-    if (p.contains('eis') || p.contains('schoko')) return '🍦';
-    if (p.contains('ball') || p.contains('spiel')) return '⚽';
-    if (p.contains('kerze') || p.contains('geburtstag')) return '🎂';
-    if (p.contains('regen') || p.contains('wolke') || p.contains('sonne')) {
-      return '🌤️';
-    }
-    return '📖';
+  String _themeEmoji(String prompt) => storyThemeEmoji(prompt);
+}
+
+/// Erkennt das Thema einer Sachaufgabe an ganzen Wörtern und liefert das
+/// passende Bild. Befund L3: Früher wurden Wortteile gesucht, so wurde aus
+/// „Paradeiser“ (enthält „rad“) ein Auto und aus „Preis“ (enthält „eis“)
+/// ein Eis. Ein Schlüssel passt nur auf den Anfang eines Wortes, lange
+/// Schlüssel auch auf das Ende eines zusammengesetzten Wortes
+/// („Fahrrad“ hat aber eine eigene Form).
+@visibleForTesting
+String storyThemeEmoji(String prompt) {
+  final words = RegExp(r'[a-zäöüß]+')
+      .allMatches(prompt.toLowerCase())
+      .map((m) => m.group(0)!)
+      .toList();
+  bool has(List<String> keys, {Set<String> exact = const <String>{}}) =>
+      words.any((word) =>
+          exact.contains(word) ||
+          keys.any((key) =>
+              word.startsWith(key) || (key.length >= 5 && word.endsWith(key))));
+
+  // Reihenfolge: spezifischer zuerst.
+  if (has(['apfel', 'äpfel'])) return '🍎';
+  if (has(['bäcker', 'brot', 'kuchen', 'semmel'])) return '🥨';
+  // Goldfische schwimmen auch, sind aber keine Schwimmer.
+  if (has(['fisch', 'goldfisch', 'aquarium'])) return '🐟';
+  if (has(['schwimm'])) return '🏊';
+  if (has(['schule', 'schüler', 'klasse'])) return '🏫';
+  if (has(['blume', 'garten', 'baum', 'bäume'])) return '🌳';
+  if (has(['tier', 'haustier', 'hund', 'katze', 'hase'])) return '🐶';
+  if (has(['vogel', 'vögel', 'biene'])) return '🐦';
+  if (prompt.contains('€') || has(['euro', 'geld', 'cent'])) return '💶';
+  if (has(['bahn'], exact: {'zug', 'züge', 'zuges'})) return '🚆';
+  if (has(['auto'],
+      exact: {'rad', 'räder', 'fahrrad', 'fahrräder', 'fahrrads'})) {
+    return '🚗';
   }
+  if (has(['stunde', 'minute'], exact: {'uhr', 'uhren'})) return '⏰';
+  if (has(['schoko', 'eiskugel', 'eiscreme'],
+      exact: {'eis', 'speiseeis', 'eistüte'})) {
+    return '🍦';
+  }
+  if (has(['ball', 'spiel'])) return '⚽';
+  if (has(['kerze', 'geburtstag'])) return '🎂';
+  if (has(['regen', 'wolke', 'sonne'])) return '🌤️';
+  return '📖';
 }
