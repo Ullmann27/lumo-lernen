@@ -609,7 +609,7 @@ class TopicCurriculum {
     'm4_bruch': TopicContext(
       grade: 4,
       subject: 'Mathematik',
-      title: 'Bruchrechnen',
+      title: 'Brüche erkennen',
       detailedScope:
           'Brueche: 1/2 (eine Haelfte), 1/3 (ein Drittel), 1/4 (ein Viertel), 1/8. '
           'Zaehler oben, Nenner unten. Brueche aus Bildern ablesen (z.B. Pizza in 4 Teile, 1 weg). '

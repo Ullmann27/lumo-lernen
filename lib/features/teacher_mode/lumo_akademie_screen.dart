@@ -654,7 +654,7 @@ class LumoCurriculum {
                 ),
                 LearningTopic(
                   id: 'm4_bruch',
-                  title: 'Bruchrechnen',
+                  title: 'Brüche erkennen',
                   icon: Icons.pie_chart_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
                   shortDesc: '1/2, 1/4, 1/3',
