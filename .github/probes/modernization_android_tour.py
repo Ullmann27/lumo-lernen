@@ -939,6 +939,12 @@ class RaceSession:
 PREVIEW_SKIPS: list[dict] = []
 
 
+PREVIEW_BLIND_TAP_FROM = 5
+# After a skipped fly-over the software-rendered emulator still needs its time for
+# the 3.5 s countdown (about a minute at its frame rate): one extension of the wait.
+PREVIEW_WAIT_EXTENSION_S = 120.0
+
+
 def _skip_course_preview(out: Path, attempt: int) -> None:
     """Tap the race picture while the course fly-over is shown.
 
@@ -952,7 +958,11 @@ def _skip_course_preview(out: Path, attempt: int) -> None:
     screen = _screencap()
     (out / f'21_race_preview_{attempt}.png').write_bytes(screen)
     header = _read_garage_footer(screen, 'Pause', min_y=0.0, max_y=.3)
-    if header is None:
+    # Run 44299533921: the header was on screen from the first picture, but the
+    # text reader only found it at attempt 25 - too late for the countdown.
+    # From the second look on, the saved race with a standing clock is proof
+    # enough that the fly-over is running.
+    if header is None and attempt < PREVIEW_BLIND_TAP_FROM:
         return
     image = Image.open(io.BytesIO(screen))
     tap = (round(image.width * .40), round(image.height * .55))
@@ -991,10 +1001,13 @@ def wait_race_running(session: RaceSession, timeout: float = 150, *,
             # The saved clock has not moved: the course fly-over is still running.
             if (float(state['elapsed']) == 0.0 and float(state['distance']) == 0.0
                     and attempt % 4 == 1 and len(PREVIEW_SKIPS) < 3):
+                taps_before = len(PREVIEW_SKIPS)
                 try:
                     _skip_course_preview(session.out, attempt)
                 except Exception as error:  # a missed tap must not hide the real result
                     last = {**last, 'preview_skip_error': str(error)[:120]}
+                if taps_before == 0 and PREVIEW_SKIPS:
+                    deadline += PREVIEW_WAIT_EXTENSION_S
         attempt += 1
         time.sleep(2)
     raise RuntimeError(
