@@ -386,7 +386,8 @@ class MathTaskTemplate {
           ),
         ];
         final fact = facts[_positive(_mixSeed(seed), facts.length)];
-        return _choice(seed, fact.$1, fact.$2, fact.$3, fact.$4, 'clock');
+        // Kein Uhr-Feld: Zu diesen Fragen gibt es keine Uhrzeit zu zeigen.
+        return _choice(seed, fact.$1, fact.$2, fact.$3, fact.$4, 'time_fact');
       case MathTemplateKind.symmetry:
         if (unit == 'Symmetrieachsen') {
           const examples = <(String, int)>[
@@ -449,12 +450,34 @@ class MathTaskTemplate {
             'Zähle in $denomination-er-Schritten bis $euro: $count × $denomination € = $euro €.', 'money_change',
             keepOrder: true);
       case MathTemplateKind.clockTime:
+        // Die Uhrzeit steht nur auf der Uhr im Bild, nicht in der Frage.
+        // Früher hieß die Frage „Stunde 7 und Minute 30?“ – die Lösung
+        // 7:30 Uhr musste nur abgeschrieben werden.
         final minutes = <int>[0, 15, 30, 45][b];
         String clock(int hour, int minute) => '${(hour - 1) % 12 + 1}:${minute.toString().padLeft(2, '0')} Uhr';
         final answer = clock(a, minutes);
-        return _choice(seed, 'Welche Uhrzeit ist gemeint: Stunde $a und Minute $minutes?', answer,
-            <String>[answer, clock(a + 1, minutes), clock(a, (minutes + 15) % 60), clock(a, (minutes + 30) % 60)],
-            'Die Zahl vor dem Doppelpunkt nennt die Stunde. Danach stehen die Minuten; 00 heißt eine volle Stunde.', 'clock');
+        final hand = minutes == 0 ? 12 : minutes ~/ 5;
+        // Typische Lesefehler: die nächste Stunde genommen (der kurze Zeiger
+        // steht schon nahe an der nächsten Zahl), die Zeiger vertauscht, die
+        // Zahl beim langen Zeiger als Minuten gelesen, falsche Viertelstunde.
+        final wrong = <String>[
+          clock(a + 1, minutes),
+          clock(hand, (a % 12) * 5),
+          if (minutes > 0) clock(a, hand),
+          clock(a, (minutes + 30) % 60),
+          clock(a, (minutes + 15) % 60),
+        ].where((time) => time != answer).toSet().toList();
+        final first = wrong.removeAt(0);
+        _SeedDice(seed + 61).shuffle(wrong);
+        final spoken = switch (minutes) {
+          0 => 'Der lange Zeiger steht auf der 12: Es ist eine volle Stunde.',
+          15 => 'Der lange Zeiger steht auf der 3: Es ist 15 Minuten nach $a, also Viertel nach $a. Im Osten Österreichs sagt man auch „viertel ${a % 12 + 1}“.',
+          30 => 'Der lange Zeiger steht auf der 6: Es ist 30 Minuten nach $a, also halb ${a % 12 + 1}.',
+          _ => 'Der lange Zeiger steht auf der 9: Es ist 45 Minuten nach $a, also Viertel vor ${a % 12 + 1}. Im Osten Österreichs sagt man auch „dreiviertel ${a % 12 + 1}“.',
+        };
+        return _choice(seed, 'Wie spät ist es?', answer,
+            <String>[answer, first, ...wrong],
+            'Der kurze Zeiger zeigt die Stunde: ${minutes == 0 ? 'Er zeigt genau auf die $a.' : 'Er steht zwischen der $a und der ${a % 12 + 1}. Es gilt die Zahl, an der er schon vorbei ist: die $a.'} $spoken Auf der Uhr steht $answer.', 'clock');
       case MathTemplateKind.lengthConversion:
         final extra = b * 10;
         final answer = a * 100 + extra;
@@ -673,7 +696,7 @@ class MathTaskTemplate {
         final hoursText = '$hours ${hours == 1 ? 'Stunde' : 'Stunden'}';
         final amount = extra == 0 ? hoursText : '$hoursText und $extra Minuten';
         return _numberTask(seed, 'Wie viele Minuten sind $amount?', answer,
-            '1 Stunde hat 60 Minuten. Rechne $hours × 60 und zähle $extra Minuten dazu.', 'clock',
+            '1 Stunde hat 60 Minuten. Rechne $hours × 60 und zähle $extra Minuten dazu.', 'time_fact',
             // Typisch: mit 100 statt 60 gerechnet, Rest vergessen, eine Stunde zu viel oder zu wenig.
             typical: <int>[hours * 100 + extra, hours * 60, answer + 60, answer - 60, hours * 10 + extra, hours + extra]);
       case MathTemplateKind.fractionExpand:

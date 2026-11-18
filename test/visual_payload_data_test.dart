@@ -126,6 +126,64 @@ void main() {
     });
   });
 
+  // Fachprüfung Mathematik M4/L4: Die Uhr im Bild zeigt die Uhrzeit der
+  // Aufgabe, obwohl die Frage sie nicht mehr nennt. Fragen ohne Uhrzeit
+  // („Was bedeutet gestern?“) bekommen kein Uhr-Feld.
+  group('Uhr im Bild', () {
+    test('„Wie spät ist es?“ stellt die Uhr auf die gesuchte Zeit', () {
+      final template = MathTaskTemplates.templates
+          .singleWhere((item) => item.id == 'g2_clock');
+      for (var seed = 0; seed < 100; seed++) {
+        final task = template.concretize(seed * 37 + 5);
+        final time = RegExp(r'^(\d+):(\d+) Uhr$').firstMatch(task.answer)!;
+        final lumoTask = LumoTask(
+          id: 'clock',
+          grade: 2,
+          subject: 'Mathematik',
+          unit: task.unit,
+          prompt: task.prompt,
+          choices: task.choices,
+          answer: task.answer,
+          explanation: task.explanation,
+          visual: task.visual,
+        );
+        final instance = adapter.toTaskInstance(
+            task: lumoTask, childId: 'child', difficulty: 2);
+        expect(instance.visualPayload.type, VisualType.clock);
+        expect(instance.visualPayload.data['hour'], int.parse(time[1]!));
+        expect(instance.visualPayload.data['minute'], int.parse(time[2]!));
+      }
+    });
+
+    test('Wissensfragen zur Zeit und Minuten-Umrechnung haben kein Uhr-Feld',
+        () {
+      for (final id in ['g1_day_hours', 'g4_time_minutes']) {
+        final template =
+            MathTaskTemplates.templates.singleWhere((item) => item.id == id);
+        for (var seed = 0; seed < 40; seed++) {
+          final task = template.concretize(seed * 37 + 5);
+          final instance = adapter.toTaskInstance(
+            task: LumoTask(
+              id: 'time',
+              grade: 4,
+              subject: 'Mathematik',
+              unit: task.unit,
+              prompt: task.prompt,
+              choices: task.choices,
+              answer: task.answer,
+              explanation: task.explanation,
+              visual: task.visual,
+            ),
+            childId: 'child',
+            difficulty: 1,
+          );
+          expect(instance.visualPayload.type, isNot(VisualType.clock),
+              reason: task.prompt);
+        }
+      }
+    });
+  });
+
   group('clock parser', () {
     test('extrahiert hour und minute aus "Stunde 7 und Minute 30"', () {
       final data = dataFor(

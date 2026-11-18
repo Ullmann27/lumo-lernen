@@ -29,17 +29,30 @@ void main() {
   });
 
   test('clocks have exactly one correct time, including whole hours', () {
-    for (var seed = 0; seed < 300; seed++) {
+    final seenTimes = <String>{};
+    for (var seed = 0; seed < 600; seed++) {
       final task = template('g2_clock').concretize(seed);
       final values = task.choices.map((choice) {
         final parts = numbers(choice);
         return parts[0] * 60 + (parts.length == 1 ? 0 : parts[1]);
       }).toList();
       expect(values.toSet().length, values.length, reason: task.prompt);
-      final asked = numbers(task.prompt);
+      // Fachprüfung Mathematik M4: Die Frage nannte früher Stunde und
+      // Minute („Stunde 7 und Minute 30“) und damit die Lösung. Jetzt steht
+      // die Uhrzeit nur auf der Uhr im Bild; die Frage enthält keine Zahl.
+      expect(task.prompt, 'Wie spät ist es?');
+      expect(numbers(task.prompt), isEmpty);
+      expect(task.choices, hasLength(4), reason: '${task.choices}');
+      expect(task.choices.where((choice) => choice == task.answer),
+          hasLength(1));
       final answer = numbers(task.answer);
-      expect(answer[0] * 60 + answer[1], asked[0] * 60 + asked[1]);
+      expect(answer[0], inInclusiveRange(1, 12));
+      expect(const [0, 15, 30, 45], contains(answer[1]));
+      expect(task.explanation, endsWith('Auf der Uhr steht ${task.answer}.'));
+      seenTimes.add(task.answer);
     }
+    // Alle 48 Uhrzeiten (12 Stunden mal 4 Viertelstunden) kommen vor.
+    expect(seenTimes, hasLength(48));
   });
 
   test('grade one number lines never extend beyond 20', () {

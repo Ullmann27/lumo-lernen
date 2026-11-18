@@ -47,7 +47,7 @@ class TaskHintService {
         return 'Beim Flächeninhalt zählst du die Kästchen im Inneren. Multipliziere beim Rechteck die Länge mit der Breite.';
       }
       if (unit.contains('uhrzeit')) {
-        return 'Bei einer Uhrzeit steht zuerst die Stunde und nach dem Doppelpunkt die Minute. Eine volle Stunde hat dort 00 Minuten.';
+        return 'Schau auf die Uhr: Der kurze Zeiger zeigt die Stunde, der lange Zeiger die Minuten. Steht der lange Zeiger auf der 12, ist es eine volle Stunde.';
       }
       if (RegExp(r'^wie viele minuten sind ').hasMatch(prompt)) {
         return 'Eine Stunde besteht aus 60 Minuten. Wandle zuerst die ganzen Stunden um und zähle übrige Minuten dazu.';
