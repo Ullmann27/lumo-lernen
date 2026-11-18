@@ -113,6 +113,7 @@ Future<LumoAppState> _open(
   LumoVoice? voice,
   int stars = 0,
   Size size = const Size(1000, 1400),
+  int? taskSeed,
 }) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -137,7 +138,9 @@ Future<LumoAppState> _open(
     ));
   });
   await tester.pumpWidget(MaterialApp(
-      home: Scaffold(body: LearningContent(appState: app, voice: voice))));
+      home: Scaffold(
+          body: LearningContent(
+              appState: app, voice: voice, taskSeed: taskSeed))));
   await _settle(tester);
   addTearDown(() async {
     await _drain(tester, app);
@@ -216,6 +219,9 @@ Future<SkillRecord> _stored(
 String _header(WidgetTester tester) => tester
     .widget<Text>(find.byKey(const ValueKey('lesson-progress-label')))
     .data!;
+
+/// Opens the mixed second-grade session with a task that has answer options.
+const int _optionsSeed = 1;
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -444,8 +450,15 @@ void main() {
   group('3 · mistakes come back as a similar task', () {
     testWidgets('the twin returns two tasks later, past the no-repeat guard',
         (tester) async {
-      final app = await _open(tester, grade: 2, unit: 'Alle');
+      // Fixed task choice: the mixed unit can also open a tracing task
+      // ("Zeichne ein Dreieck nach") that has no answer buttons to tap
+      // wrongly. This seed opens a task with answer options.
+      final app =
+          await _open(tester, grade: 2, unit: 'Alle', taskSeed: _optionsSeed);
       final source = _renderer(tester).task;
+      expect(_wrongOptions(source), isNotEmpty,
+          reason: 'Seed $_optionsSeed must open a task with answer options; '
+              'it opened "${source.prompt}".');
       final sourceUnit = source.parameters['unit'];
       await _failThenSolveTogether(tester);
       expect(find.textContaining('Eine ähnliche'), findsNothing);
