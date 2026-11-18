@@ -1038,7 +1038,9 @@ class MathTaskTemplate {
         final newDenom = denom * factor;
         final answer = '$newNumerator/$newDenom';
         return _choice(seed, 
-          'Erweitere den Bruch $numerator/$denom mit $factor. Wie heißt der neue Bruch?',
+          // Befund M11: formales Erweitern geht über den Volksschulstoff
+          // hinaus und ist deshalb als Knobelaufgabe gekennzeichnet.
+          'Knobelaufgabe: Erweitere den Bruch $numerator/$denom mit $factor. Wie heißt der neue Bruch?',
           answer,
           _fractionChoices(newNumerator, newDenom, seed, lower: <(int, int)>[
             // Typisch: nur den Nenner malgenommen, sich beim Zähler verrechnet.

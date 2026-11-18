@@ -459,7 +459,7 @@ class TaskHintService {
     if (task.subject != 'Mathematik') return null;
     final prompt = task.prompt.trim();
     final expansion = RegExp(
-      r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\. Wie heißt der neue Bruch\?$',
+      r'^(?:Knobelaufgabe: )?Erweitere den Bruch (\d+)/(\d+) mit (\d+)\. Wie heißt der neue Bruch\?$',
     ).firstMatch(prompt);
     if (expansion != null) {
       final numerator = int.tryParse(expansion[1]!);

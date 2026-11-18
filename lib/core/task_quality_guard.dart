@@ -257,7 +257,7 @@ class TaskQualityGuard {
       return const <String>['zero_fraction_denominator'];
     }
     final fractionExpansion = RegExp(
-        r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\. Wie heißt der neue Bruch\?$')
+        r'^(?:Knobelaufgabe: )?Erweitere den Bruch (\d+)/(\d+) mit (\d+)\. Wie heißt der neue Bruch\?$')
         .firstMatch(prompt);
     if (fractionExpansion != null) {
       final numerator = int.parse(fractionExpansion[1]!);

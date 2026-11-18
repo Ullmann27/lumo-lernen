@@ -501,7 +501,7 @@ class FractionPizzaVisual extends StatelessWidget {
   /// Bilddaten oder aus „Erweitere den Bruch 3/6 mit 2.“.
   (int, int, int)? _expansion() {
     final data = task.visualPayload.data;
-    final prompt = RegExp(r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
+    final prompt = RegExp(r'^(?:Knobelaufgabe: )?Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
         .firstMatch(task.prompt.trim());
     final numerator =
         _readInt(data['factor'] == null ? prompt?.group(1) : data['numerator']);

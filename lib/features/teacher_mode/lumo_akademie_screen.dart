@@ -692,7 +692,7 @@ class LumoCurriculum {
                   title: 'Brüche erweitern',
                   icon: Icons.pie_chart_rounded,
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Gleichwertige Brüche erkennen',
+                  shortDesc: 'Knobeln: gleichwertige Brüche',
                 ),
                 LearningTopic(
                   id: 'm4_diagramme',

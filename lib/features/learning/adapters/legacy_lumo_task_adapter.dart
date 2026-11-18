@@ -836,7 +836,7 @@ class LegacyLumoTaskAdapter {
     // Daten zeichnete das Bild immer 1 von n Stücken.
     if (task.visual == 'fraction_expand') {
       final expansion =
-          RegExp(r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
+          RegExp(r'^(?:Knobelaufgabe: )?Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
               .firstMatch(task.prompt.trim());
       if (expansion == null) return const <String, Object?>{};
       return <String, Object?>{
