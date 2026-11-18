@@ -277,9 +277,13 @@ void main() {
     for (final id in ['g4_compare', 'g4_compare_1mio']) {
       final answers = <String, int>{};
       var sameLengthSameLead = 0;
-      const count = 400;
-      for (var i = 0; i < count; i++) {
+      var count = 0;
+      for (var i = 0; i < 400; i++) {
         final task = byId(id).concretize(i * 7919 + 13);
+        // Die Million hat auch Stellenwert- und Rundungsaufgaben
+        // (test/math_million_formats_test.dart).
+        if (!task.prompt.startsWith('Welches Zeichen')) continue;
+        count++;
         final match = comparePromptPattern.firstMatch(task.prompt);
         expect(match, isNotNull, reason: task.prompt);
         // Das Fragezeichen der Frage steht nicht mehr neben einem zweiten.

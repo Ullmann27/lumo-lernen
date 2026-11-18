@@ -962,6 +962,14 @@ class MathTaskTemplate {
             'Zähle alle vier Balken zusammen: ${values.join(' + ')} = $sum.', 'chart',
             typical: <int>[sum - 10, sum + 10, sum - values.last, sorted.last, sum - 100, sum + 100]);
       case MathTemplateKind.compare:
+        // Befund M7: Im Zahlenraum bis zur Million gab es nur Vergleiche.
+        // Jede vierte Aufgabe fragt nach dem Stellenwert einer Ziffer,
+        // jede vierte nach dem Runden auf Tausender.
+        if (a >= 10000) {
+          final format = _positive(_mixSeed(seed + 97), 4);
+          if (format == 1) return _placeValueMillion(seed, a);
+          if (format == 2) return _roundThousand(seed, a);
+        }
         // Paare, bei denen man genau hinschauen muss: gleiche Stellenzahl
         // und gleiche erste Ziffer, Zahlendreher, manchmal gleiche Zahlen.
         // Früher waren es zwei Zufallszahlen: Meist entschied der erste
@@ -1111,6 +1119,63 @@ class MathTaskTemplate {
   /// Zahlenaufgabe mit vier Karten. [typical] sind die typischen falschen
   /// Ergebnisse dieser Aufgabenart, siehe [_numericChoices]. [suffix] hängt
   /// eine Einheit an jede Karte, z. B. „ cm“.
+  /// „Welchen Wert hat die Ziffer 7 in 375 412?“ → 70 000. Die gefragte
+  /// Ziffer kommt in der Zahl genau einmal vor und ist nicht 0.
+  MathConcreteTask _placeValueMillion(int seed, int number) {
+    final digits = '$number'.split('');
+    final unique = <int>[
+      for (var i = 0; i < digits.length; i++)
+        if (digits[i] != '0' && digits.where((d) => d == digits[i]).length == 1) i,
+    ];
+    // Ohne passende Ziffer: eine Stelle so ändern, dass sie eindeutig ist.
+    if (unique.isEmpty) {
+      digits[1] = '123456789'.split('').firstWhere((d) => !digits.contains(d));
+      unique.add(1);
+    }
+    final index = unique[_positive(_mixSeed(seed + 101), unique.length)];
+    final value = int.parse(digits.join());
+    final digit = int.parse(digits[index]);
+    var place = 1;
+    for (var k = index + 1; k < digits.length; k++) {
+      place *= 10;
+    }
+    final answer = digit * place;
+    const names = <int, String>{
+      1: 'Einer', 10: 'Zehner', 100: 'Hunderter', 1000: 'Tausender',
+      10000: 'Zehntausender', 100000: 'Hunderttausender',
+    };
+    final wrong = <int>[
+      if (place >= 10) digit * place ~/ 10,
+      digit * place * 10,
+      if (place >= 100) digit * place ~/ 100,
+      if (place <= 10000) digit * place * 100,
+      digit,
+    ].where((v) => v != answer).toList();
+    return _choice(seed, 'Welchen Wert hat die Ziffer $digit in ${groupedNumber(value)}?', groupedNumber(answer),
+      <String>[for (final v in wrong) groupedNumber(v)],
+      'Die Ziffer $digit steht an der Stelle der ${names[place]}. Sie bedeutet $digit · ${groupedNumber(place)} = ${groupedNumber(answer)}.',
+      'none');
+  }
+
+  /// „Runde 375 412 auf Tausender.“ → 375 000. Ab der Hunderterziffer 5
+  /// wird aufgerundet.
+  MathConcreteTask _roundThousand(int seed, int number) {
+    final down = number - number % 1000;
+    final up = down + 1000;
+    final hundreds = number % 1000 ~/ 100;
+    final answer = hundreds >= 5 ? up : down;
+    final wrong = <int>[
+      hundreds >= 5 ? down : up, // falsche Richtung
+      number - number % 100, // auf Hunderter gerundet
+      (number + 5000) ~/ 10000 * 10000, // auf Zehntausender gerundet
+      answer + 10000,
+    ].where((v) => v != answer).toList();
+    return _choice(seed, 'Runde ${groupedNumber(number)} auf Tausender.', groupedNumber(answer),
+      <String>[for (final v in wrong) groupedNumber(v)],
+      'Schau auf die Hunderterziffer: Sie ist $hundreds. ${hundreds >= 5 ? 'Ab 5 rundest du auf' : 'Unter 5 rundest du ab'}: ${groupedNumber(number)} wird ${groupedNumber(answer)}.',
+      'none');
+  }
+
   MathConcreteTask _numberTask(int seed, String prompt, int answer, String explanation, String visual, {
     List<int> typical = const <int>[],
     int? max,

@@ -96,6 +96,30 @@ class TaskQualityGuard {
       final expected = left < right ? '<' : left > right ? '>' : '=';
       return answer == expected ? const [] : const ['comparison_answer_wrong'];
     }
+    // Zahlenraum bis zur Million: Stellenwert und Runden (Befund M7).
+    final placeValue = RegExp(r'^Welchen Wert hat die Ziffer (\d) in ([\d\u00A0 ]+)\?$')
+        .firstMatch(prompt);
+    if (placeValue != null) {
+      final digit = placeValue[1]!;
+      final digits = '${parseGroupedNumber(placeValue[2]!) ?? ''}';
+      if (digit == '0' || digit.allMatches(digits).length != 1) {
+        return const ['place_value_digit_ambiguous'];
+      }
+      final place = digits.length - 1 - digits.indexOf(digit);
+      final expected = int.parse(digit) * _power10(place);
+      return parseGroupedNumber(answer) == expected
+          ? const []
+          : const ['place_value_answer_wrong'];
+    }
+    final rounding = RegExp(r'^Runde ([\d\u00A0 ]+) auf Tausender\.$').firstMatch(prompt);
+    if (rounding != null) {
+      final number = parseGroupedNumber(rounding[1]!);
+      if (number == null) return const ['rounding_unproved'];
+      final expected = (number + 500) ~/ 1000 * 1000;
+      return parseGroupedNumber(answer) == expected
+          ? const []
+          : const ['rounding_answer_wrong'];
+    }
     final parity = RegExp(r'^Ist (\d+) gerade oder ungerade\?$').firstMatch(prompt);
     if (parity != null) {
       final expected = int.parse(parity[1]!).isEven ? 'gerade' : 'ungerade';
@@ -686,4 +710,12 @@ class _MathValue {
       numerator * other.numerator, denominator * other.denominator);
   _MathValue divide(_MathValue other) => _MathValue(
       numerator * other.denominator, denominator * other.numerator);
+}
+
+int _power10(int exponent) {
+  var value = 1;
+  for (var i = 0; i < exponent; i++) {
+    value *= 10;
+  }
+  return value;
 }

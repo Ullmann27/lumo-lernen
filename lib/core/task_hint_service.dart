@@ -86,6 +86,8 @@ class TaskHintService {
       if (unit.contains('mengen')) {
         return 'Zähle zuerst die linke Seite, dann die rechte Seite. Wo hast du weiter gezählt? Dort sind mehr.';
       }
+      final million = _millionHint(task.prompt, 1);
+      if (million != null) return million;
       if (unit.contains('vergleich') || unit.contains('zahlenraum')) {
         return 'Zähle zuerst die Stellen: Die Zahl mit mehr Stellen ist größer. Bei gleich vielen Stellen vergleichst du von links, Stelle für Stelle. Die offene Seite des Zeichens zeigt zur größeren Zahl.';
       }
@@ -583,9 +585,30 @@ class TaskHintService {
             'Zehnerstangen. Probiere danach $check: Wie viele Zehnerstangen brauchst du?';
   }
 
+  /// Stellenwert und Runden im Zahlenraum bis zur Million (Befund M7).
+  String? _millionHint(String prompt, int level) {
+    if (prompt.startsWith('Welchen Wert hat die Ziffer')) {
+      return switch (level) {
+        1 => 'Schreib die Zahl in eine Stellenwerttafel: HT, ZT, T, H, Z, E. In welcher Spalte steht die Ziffer?',
+        2 => 'Zähle von rechts: Einer, Zehner, Hunderter, Tausender, Zehntausender, Hunderttausender.',
+        _ => 'Schreib die Ziffer hin und hänge für jede Stelle rechts von ihr eine Null an.',
+      };
+    }
+    if (prompt.startsWith('Runde ') && prompt.endsWith('auf Tausender.')) {
+      return switch (level) {
+        1 => 'Beim Runden auf Tausender entscheidet die Hunderterziffer.',
+        2 => 'Ist die Hunderterziffer 0 bis 4, rundest du ab. Ist sie 5 bis 9, rundest du auf.',
+        _ => 'Suche die zwei Nachbartausender der Zahl. Zu welchem gehört sie nach der Hunderterziffer?',
+      };
+    }
+    return null;
+  }
+
   String _guidedHint(LumoTask task, int level) {
     final unit = task.unit.toLowerCase();
     if (task.subject == 'Mathematik') {
+      final million = _millionHint(task.prompt, level);
+      if (million != null) return million;
       final missing = _MissingNumber.parse(task.prompt);
       if (missing != null) return missing.hint(level);
       final expression = RegExp(
