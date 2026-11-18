@@ -55,6 +55,10 @@ void main() {
     await frames(tester);
     final unit = find.byKey(
         const ValueKey('learning-unit-Mathematik-Zahlenraum bis 1 Million'));
+    // The unit list builds lazily. With the workshop button lane reserved at
+    // the bottom, this late unit must be scrolled to like a child would.
+    await tester.scrollUntilVisible(unit, 180,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 40);
     await tester.ensureVisible(unit);
     await frames(tester);
     expect(unit.hitTestable(), findsOneWidget);

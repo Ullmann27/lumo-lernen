@@ -144,7 +144,29 @@ class QuizQuestionBank {
       throw StateError(
           'Quizgenerator muss exakt 20 verschiedene geprüfte Fragen liefern');
     }
-    return List<QuizQuestion>.unmodifiable(questions);
+    // Befund M31: In der Fragenliste steht die richtige Antwort meist an
+    // Platz 2 oder 3, nie an Platz 1 oder 4. Beim Ausgeben werden die
+    // Antworten deshalb gemischt; der Index wandert mit.
+    return List<QuizQuestion>.unmodifiable(
+        questions.map((question) => shuffledOptions(question, rng)));
+  }
+
+  /// Mischt die Antworten einer Frage und führt den Index der richtigen
+  /// Antwort mit.
+  static QuizQuestion shuffledOptions(QuizQuestion question, math.Random rng) {
+    final order = List<int>.generate(question.options.length, (i) => i)
+      ..shuffle(rng);
+    return QuizQuestion(
+      id: question.id,
+      prompt: question.prompt,
+      options: List<String>.unmodifiable(
+          order.map((index) => question.options[index])),
+      correctIndex: order.indexOf(question.correctIndex),
+      difficulty: question.difficulty,
+      subject: question.subject,
+      explanation: question.explanation,
+      hint: question.hint,
+    );
   }
 
   /// Runtime gate for a question before it is presented or attached to LUMO.
@@ -490,8 +512,8 @@ class QuizQuestionBank {
           id: 'e_de_word_4',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.easy,
-          prompt: 'Welche Jacke schützt dich vor Regen?',
-          options: ['Hut', 'Regenjacke', 'Schwimmreifen', 'Sandalen'],
+          prompt: 'Was ziehst du bei Regen an?',
+          options: ['Badehose', 'Regenjacke', 'Schwimmreifen', 'Sandalen'],
           correctIndex: 1),
 
       // ── EASY SACHKUNDE (10): Tiere, Farben, Wetter, Koerper ────────
@@ -535,7 +557,7 @@ class QuizQuestionBank {
           id: 'e_sk_weather_1',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.easy,
-          prompt: 'Was fällt vom Himmel wenn es regnet?',
+          prompt: 'Was fällt vom Himmel, wenn es regnet?',
           options: ['Schnee', 'Wassertropfen', 'Blätter', 'Steine'],
           correctIndex: 1),
       const QuizQuestion(
@@ -904,7 +926,7 @@ class QuizQuestionBank {
           subject: 'Deutsch',
           difficulty: QuizDifficulty.hard,
           prompt: 'Was ist ein "Verb"?',
-          options: ['Ein Tier', 'Ein Tu-Wort', 'Eine Farbe', 'Ein Name'],
+          options: ['Ein Tier', 'Ein Tunwort', 'Eine Farbe', 'Ein Name'],
           correctIndex: 1),
       const QuizQuestion(
           id: 'h_de_wort_2',
@@ -912,8 +934,8 @@ class QuizQuestionBank {
           difficulty: QuizDifficulty.hard,
           prompt: 'Was ist ein "Nomen"?',
           options: [
-            'Ein Tu-Wort',
-            'Ein Name-Wort',
+            'Ein Tunwort',
+            'Ein Namenwort',
             'Eine Farbe',
             'Ein Zeichen'
           ],
@@ -929,15 +951,15 @@ class QuizQuestionBank {
           id: 'h_de_wort_4',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.hard,
-          prompt: 'Welches Wort ist ein Adjektiv (Wie-Wort)?',
-          options: ['Laufen', 'Hund', 'Schnell', 'Tisch'],
+          prompt: 'Welches Wort ist ein Adjektiv (Wiewort)?',
+          options: ['laufen', 'Hund', 'schnell', 'Tisch'],
           correctIndex: 2),
       const QuizQuestion(
           id: 'h_de_spell_1',
           subject: 'Deutsch',
           difficulty: QuizDifficulty.hard,
-          prompt: 'Welcher Fischname ist richtig geschrieben?',
-          options: ['Schtohr', 'Stohr', 'Stoa', 'Stör'],
+          prompt: 'Welches Wort für ⭐ ist richtig geschrieben?',
+          options: ['Schtern', 'Sternn', 'Stärn', 'Stern'],
           correctIndex: 3),
       const QuizQuestion(
           id: 'h_de_spell_2',
@@ -951,7 +973,7 @@ class QuizQuestionBank {
           subject: 'Deutsch',
           difficulty: QuizDifficulty.hard,
           prompt: 'Wie schreibt man die Zahl 12?',
-          options: ['Zwölf', 'Zwoolf', 'Zwelf', 'Zwlf'],
+          options: ['zwölf', 'zwoolf', 'zwelf', 'zwlf'],
           correctIndex: 0),
       const QuizQuestion(
           id: 'h_de_sentence_1',
@@ -1056,7 +1078,7 @@ class QuizQuestionBank {
           id: 'h_sk_nature_1',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.hard,
-          prompt: 'Wie heißt der längste Fluss in Österreich?',
+          prompt: 'Welcher große Fluss fließt durch Wien?',
           options: ['Donau', 'Inn', 'Mur', 'Drau'],
           correctIndex: 0),
     ];

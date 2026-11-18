@@ -647,7 +647,7 @@ class LumoStoryGenerator {
   String _locationAtmosphere(String location) {
     const map = <String, String>{
       'Zauberwald':
-          'Die Baeume flüsterten leise und die Blätter glitzerten im Sonnenlicht',
+          'Die Bäume flüsterten leise und die Blätter glitzerten im Sonnenlicht',
       'Schloss': 'Die hohen Türme reichten fast bis zu den Wolken',
       'Weltraum': 'Tausende Sterne funkelten überall in der weiten Dunkelheit',
       'Unterwasser-Stadt':

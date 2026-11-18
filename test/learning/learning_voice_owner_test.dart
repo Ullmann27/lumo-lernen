@@ -148,7 +148,9 @@ void main() {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: page == 'adaptive'
-            ? LearningContent(appState: app, voice: voice)
+            // Fixed task: a sum with two real addends has a 3D picture and
+            // therefore the "adaptive-open-3d" action ("5 + 0" has none).
+            ? LearningContent(appState: app, voice: voice, taskSeed: 1)
             : GuidedLessonScreen(
                 appState: app, lesson: lesson, discovery: false, voice: voice),
       ),

@@ -77,12 +77,14 @@ class SpielweltRoutes {
     SpielweltRoute(
       identity: 'cards',
       title: 'Cards',
-      semanticTitle: 'Lumo Cards',
+      semanticTitle: 'Lumo Karten',
       tagline: 'Sammeln. Spielen. Staunen!',
       coverAsset: 'assets/lumo_design/spielwelt/cover_cards.jpg',
-      kind: SpielweltTargetKind.flutterScreen,
-      target: 'LumoCardsShowcaseScreen',
-      targetDescription: 'Flutter Lumo Cards (nie Sternenpfad)',
+      kind: SpielweltTargetKind.nativeScene,
+      target: 'cards',
+      targetDescription:
+          'Godot Kartentisch: Sternenstich, Sternenleiter, Lumo-Quartett '
+          '(launch3D scene=cards)',
       gameId: GameId.cards,
     ),
     SpielweltRoute(
@@ -99,12 +101,12 @@ class SpielweltRoutes {
     SpielweltRoute(
       identity: 'jumpRun',
       title: 'Jump & Run',
-      semanticTitle: 'Jump & Run',
+      semanticTitle: 'Lumo Lauf',
       tagline: 'Spring. Laufe. Sei mutig!',
       coverAsset: 'assets/lumo_design/spielwelt/cover_jump.jpg',
       kind: SpielweltTargetKind.nativeScene,
-      target: 'jump',
-      targetDescription: 'Godot Wolkeninseln (launch3D scene=jump)',
+      target: 'run',
+      targetDescription: 'Godot Lumo Lauf (launch3D scene=run)',
       gameId: GameId.jumpRun,
     ),
     SpielweltRoute(
@@ -151,6 +153,16 @@ class SpielweltRoutes {
       targetDescription: 'Godot living village economy (launch3D scene=settlement)',
     ),
     SpielweltRoute(
+      identity: 'chess',
+      title: 'Schach',
+      semanticTitle: 'Lumo Schach',
+      tagline: 'Schach lernen mit Lumo – oder gegen ihn spielen',
+      coverAsset: 'assets/lumo_design/spielwelt/cover_chess.jpg',
+      kind: SpielweltTargetKind.nativeScene,
+      target: 'chess',
+      targetDescription: 'Godot Lumo Schach (launch3D scene=chess)',
+    ),
+    SpielweltRoute(
       identity: 'kart',
       title: 'Lumo Kart',
       semanticTitle: 'Lumo Kart',
@@ -192,6 +204,7 @@ class SpielweltRoutes {
     'treasure',
     'build',
     'village',
+    'chess',
     'kart',
     'connectFour',
     'quizShow',

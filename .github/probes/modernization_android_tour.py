@@ -257,8 +257,15 @@ def verify_apk_identity(apk: Path, provenance_path: Path, sums_path: Path) -> di
     return report
 
 
-def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
+def _read_garage_footer(png: bytes, expected: str, *, min_y: float = .6,
+                        max_y: float = 1.0) -> tuple[int, int] | None:
     """Read the native Godot footer from actual Android screenshots, not fixed coordinates.
+
+    ``min_y``/``max_y`` bound the search area as fractions of the screen
+    height. The classic footers sit in the lower 40 %; the Kart hub of
+    17.11.2026 places its mode tiles ("Rennen", "Turniere", ...) around the
+    middle and repeats "Rennen" in the dock at the bottom, so those callers
+    pass their own band.
 
     Crop fallback is essential: on 2400x1080 Flutter-hosted Godot screens,
     Tesseract skips the golden 'Weiter' button when scanning the full scene.
@@ -303,7 +310,7 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
                     y1 = max(int(w['top']) + int(w['height']) for w in span)
                     x = (x0 + x1) // (2 * scale) + offset_x
                     y = (y0 + y1) // (2 * scale) + offset_y
-                    if y >= image.height * .6:
+                    if image.height * min_y <= y <= image.height * max_y:
                         return x, y
     # Targeted OCR only after the whole-screen scans fail. A moving 3D
     # background can hide the navy word inside the bright gold action pill
@@ -758,6 +765,7 @@ def _start_actual_embedded_race(out: Path) -> dict:
     # Recognise its text from an actual screenshot; do not inject an
     # unverified coordinate or claim a race merely because the game is alive.
     premium_start = None
+    hub_start = None
     for attempt in range(8):
         screen = _screencap()
         (out / '21_kart_premium_start.png').write_bytes(screen)
@@ -770,6 +778,51 @@ def _start_actual_embedded_race(out: Path) -> dict:
                 'step': 'premium-start', 'button': 'START', 'tap': premium_start,
             })
             time.sleep(2)
+            break
+        # Kart hub of 17.11.2026: four mode tiles in one row - Rennen,
+        # Turniere, Saison, Event. Tapping "Rennen" starts the quick race
+        # directly (kart_neon_home_regression: "Rennen startet sofort ein
+        # echtes Rennen"). The tile is located from the actual screenshot:
+        # by its own caption, or - the white italic caption on the amber
+        # tile is often misread - one tile pitch left of "Turniere", with
+        # the pitch measured between the recognised captions of that row.
+        hub_race = _read_garage_footer(screen, 'Rennen', min_y=.3, max_y=.72)
+        if hub_race is None:
+            cup = _read_garage_footer(screen, 'Turniere', min_y=.3, max_y=.72)
+            event = _read_garage_footer(screen, 'Event', min_y=.3, max_y=.72)
+            season = _read_garage_footer(screen, 'Saison', min_y=.3, max_y=.72)
+            pitch = None
+            if cup is not None and event is not None and event[0] > cup[0]:
+                pitch = (event[0] - cup[0]) / 2
+            elif cup is not None and season is not None and season[0] > cup[0]:
+                pitch = float(season[0] - cup[0])
+            if cup is not None and pitch is not None and cup[0] - pitch > 0:
+                hub_race = (round(cup[0] - pitch), cup[1])
+        if hub_race is not None:
+            garage_fifth = screen
+            base.adb('shell', 'input', 'tap', str(hub_race[0]), str(hub_race[1]))
+            evidence_taps.append({'step': 'hub-race', 'button': 'Rennen', 'tap': hub_race})
+            time.sleep(2)
+            # The dock's "Rennen" opens the "Rennarten" overlay instead; its
+            # golden START then begins the same quick race.
+            for overlay_attempt in range(3):
+                overlay = _screencap()
+                (out / '21_kart_hub_after_race_tap.png').write_bytes(overlay)
+                overlay_start = _read_garage_footer(overlay, 'START', min_y=.15)
+                if overlay_start is not None:
+                    garage_fifth = overlay
+                    base.adb('shell', 'input', 'tap',
+                             str(overlay_start[0]), str(overlay_start[1]))
+                    evidence_taps.append({
+                        'step': 'hub-start', 'button': 'START', 'tap': overlay_start,
+                    })
+                    time.sleep(2)
+                    break
+                time.sleep(1)
+            # Whether the race really started is decided below by the game's
+            # own race_world_ready marker and the rendered race frame.
+            hub_start = hub_race
+            premium_start = hub_race
             break
         time.sleep(1)
     if premium_start is None:
@@ -805,7 +858,8 @@ def _start_actual_embedded_race(out: Path) -> dict:
     # The production premium landing defaults to Grand Prix (cup); the
     # compatibility wizard defaults to a single race. Bind every later gate
     # to this actual UI path, never accept an arbitrary saved mode.
-    expected_mode = 'cup' if premium_start is not None else 'race'
+    # The hub's START begins the quick race (mode "race").
+    expected_mode = 'cup' if premium_start is not None and hub_start is None else 'race'
     expected_track = 'sonnenhafen'
     deadline = time.monotonic() + 55
     last_error = 'race_world_ready marker not observed'
@@ -882,6 +936,40 @@ class RaceSession:
         return state
 
 
+PREVIEW_SKIPS: list[dict] = []
+
+
+PREVIEW_BLIND_TAP_FROM = 5
+# After a skipped fly-over the software-rendered emulator still needs its time for
+# the 3.5 s countdown (about a minute at its frame rate): one extension of the wait.
+PREVIEW_WAIT_EXTENSION_S = 120.0
+
+
+def _skip_course_preview(out: Path, attempt: int) -> None:
+    """Tap the race picture while the course fly-over is shown.
+
+    Every race opens with a fly-over ("Tippen zum Überspringen"); the countdown and
+    the race clock only start afterwards. On the software-rendered emulator the
+    fly-over outlasted the whole wait (run 44272904194: the race scene was on
+    screen, the saved clock stayed at countdown 3.5). The tap is only sent when the
+    current screenshot shows the race header ("Pause"), and it goes to the road
+    in the picture, clear of the stick, the buttons and the mini map.
+    """
+    screen = _screencap()
+    (out / f'21_race_preview_{attempt}.png').write_bytes(screen)
+    header = _read_garage_footer(screen, 'Pause', min_y=0.0, max_y=.3)
+    # Run 44299533921: the header was on screen from the first picture, but the
+    # text reader only found it at attempt 25 - too late for the countdown.
+    # From the second look on, the saved race with a standing clock is proof
+    # enough that the fly-over is running.
+    if header is None and attempt < PREVIEW_BLIND_TAP_FROM:
+        return
+    image = Image.open(io.BytesIO(screen))
+    tap = (round(image.width * .40), round(image.height * .55))
+    base.adb('shell', 'input', 'tap', str(tap[0]), str(tap[1]), check=False)
+    PREVIEW_SKIPS.append({'attempt': attempt, 'header': header, 'tap': tap})
+
+
 def wait_race_running(session: RaceSession, timeout: float = 150, *,
                       selected_kart: str | None = None, previous_id: str | None = None) -> dict:
     """The countdown is over and the saved race clock has run for a second."""
@@ -910,9 +998,20 @@ def wait_race_running(session: RaceSession, timeout: float = 150, *,
             if ready:
                 return state
             last = {key: state[key] for key in ('countdown', 'elapsed', 'distance')}
+            # The saved clock has not moved: the course fly-over is still running.
+            if (float(state['elapsed']) == 0.0 and float(state['distance']) == 0.0
+                    and attempt % 4 == 1 and len(PREVIEW_SKIPS) < 3):
+                taps_before = len(PREVIEW_SKIPS)
+                try:
+                    _skip_course_preview(session.out, attempt)
+                except Exception as error:  # a missed tap must not hide the real result
+                    last = {**last, 'preview_skip_error': str(error)[:120]}
+                if taps_before == 0 and PREVIEW_SKIPS:
+                    deadline += PREVIEW_WAIT_EXTENSION_S
         attempt += 1
         time.sleep(2)
-    raise RuntimeError(f'Saved race never showed a running race clock: {last}')
+    raise RuntimeError(
+        f'Saved race never showed a running race clock: {last}; preview taps: {PREVIEW_SKIPS}')
 
 
 def _pause_actual_race(out: Path, session: RaceSession, identity: str) -> dict:
@@ -1395,6 +1494,17 @@ def main() -> int:
             log_images(out)
         except Exception as error:
             print('[TourImage] logging failed:', error, flush=True)
+        # Eigenständige Diagnose „native-starts“: läuft nach allen Schritten,
+        # schreibt nur native-starts.json und native-starts/, nie tour-result.json.
+        if os.environ.get('LUMO_NATIVE_START_DIAGNOSTICS') == '1':
+            try:
+                import native_start_diagnostics
+                native_start_diagnostics.run(
+                    out, base=base, live=live, probe=probe, package=PACKAGE,
+                    wait_seconds=int(os.environ.get('LUMO_NATIVE_START_WAIT', '50')),
+                    budget_seconds=int(os.environ.get('LUMO_NATIVE_START_BUDGET', '1200')))
+            except BaseException as error:  # Diagnose darf den Rundgang nie ändern.
+                print('[NativeStart] Abschnitt abgebrochen:', type(error).__name__, error, flush=True)
     return 0 if result['status'] == 'PASS' else 1
 
 

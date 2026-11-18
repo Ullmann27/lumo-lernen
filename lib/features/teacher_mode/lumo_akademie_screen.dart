@@ -416,7 +416,7 @@ class LumoCurriculum {
                 ),
                 LearningTopic(
                   id: 'm3_einmaleins_voll',
-                  title: 'Großes 1×1',
+                  title: '1×1 – alle Reihen',
                   icon: Icons.close_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
                   shortDesc: 'Alle Reihen bis 10',
@@ -654,7 +654,7 @@ class LumoCurriculum {
                 ),
                 LearningTopic(
                   id: 'm4_bruch',
-                  title: 'Bruchrechnen',
+                  title: 'Brüche erkennen',
                   icon: Icons.pie_chart_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
                   shortDesc: '1/2, 1/4, 1/3',
@@ -692,7 +692,7 @@ class LumoCurriculum {
                   title: 'Brüche erweitern',
                   icon: Icons.pie_chart_rounded,
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Gleichwertige Brüche erkennen',
+                  shortDesc: 'Knobeln: gleichwertige Brüche',
                 ),
                 LearningTopic(
                   id: 'm4_diagramme',
@@ -1025,6 +1025,9 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                         appState: widget.appState, discovery: true)))),
           ])));
 
+  /// Extended FAB height (56) plus its default 16 dp margin on both sides.
+  static const double _workshopButtonLane = 88;
+
   @override
   Widget build(BuildContext context) {
     final hub = Semantics(
@@ -1050,6 +1053,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                                 grade: _selectedGrade, subject: subject))),
                     onAdvanced: () => setState(() => _showTools = !_showTools),
                     tools: _showTools ? _tools() : null))));
+    // The extended workshop button floats over the bottom edge. Reserve its
+    // lane so the last subject tile and the back button stay tappable on
+    // compact phones instead of disappearing underneath it.
+    final lane = Padding(
+        padding: EdgeInsets.only(
+            bottom: _workshopButtonLane + MediaQuery.paddingOf(context).bottom),
+        child: hub);
     return Scaffold(
         backgroundColor:
             widget.drawBackground ? LumoVisualTokens.night : Colors.transparent,
@@ -1068,8 +1078,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                 scene: LumoScene.learning,
                 showPlaceholderLabel: false,
                 dimmed: true,
-                child: hub)
-            : hub);
+                child: lane)
+            : lane);
   }
 
   void _openStories() {

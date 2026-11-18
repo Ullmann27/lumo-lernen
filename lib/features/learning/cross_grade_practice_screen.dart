@@ -34,7 +34,11 @@ class CrossGradePracticeScreen extends StatefulWidget {
     required this.subject,
     required this.unit,
     this.appState,
+    this.taskSeed,
   });
+
+  /// Fester Startwert der Aufgabenauswahl für Prüfungen; im Betrieb leer.
+  final int? taskSeed;
 
   final String profileName;
   final int enrolledGrade;
@@ -121,7 +125,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
     WidgetsBinding.instance.addObserver(this);
     _foreground = WidgetsBinding.instance.lifecycleState == null ||
         WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
-    _factory = ExerciseFactory();
+    _factory = ExerciseFactory(seed: widget.taskSeed);
     _profileGeneration = widget.appState?.profileGeneration;
     widget.appState?.addListener(_checkProfile);
     LumoCompanionRequests.instance.helpRequested.addListener(_companionHelp);

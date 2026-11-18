@@ -1,124 +1,126 @@
-/// Authored properties and transfer examples, not randomized colour variants.
-/// Each offered set has one matching answer (circle and oval both lack corners).
+/// Formenfragen für die 1. Klasse: kurze Sätze, Alltagsdinge, keine
+/// Fachwörter wie „rechter Winkel“ oder „Mittelpunkt“. Jede Kartenauswahl
+/// hat genau eine passende Antwort (Kreis und Oval haben beide keine Ecke
+/// und stehen deshalb bei solchen Fragen nie gemeinsam zur Wahl).
 const shapeQuestions = <(String, String, List<String>, String)>[
   (
-    'Welche Form hat genau drei Ecken?',
+    'Welche Form hat genau 3 Ecken?',
     'Dreieck',
     ['Dreieck', 'Quadrat', 'Kreis'],
-    'Drei gerade Seiten treffen sich an drei Ecken.'
+    'Ein Dreieck hat 3 Ecken und 3 Seiten.'
   ),
   (
-    'Welche Form hat genau drei gerade Seiten?',
+    'Welche Form hat genau 3 gerade Seiten?',
     'Dreieck',
     ['Rechteck', 'Dreieck', 'Oval'],
-    'Ein Dreieck hat drei Seiten und drei Ecken.'
+    'Ein Dreieck hat 3 Seiten und 3 Ecken.'
   ),
   (
-    'Welche Form passt zu einem Verkehrsschild mit drei Ecken?',
+    'Ein Verkehrsschild hat 3 Ecken. Welche Form hat es?',
     'Dreieck',
     ['Dreieck', 'Kreis', 'Quadrat'],
-    'Achte auf die drei Ecken des Schildes, nicht auf seine Farbe.'
+    'Zähle die Ecken des Schildes. Es sind 3: ein Dreieck.'
   ),
   (
-    'Du verbindest drei Punkte, die nicht auf einer Geraden liegen, zu einer geschlossenen Form mit drei geraden Seiten. Welche Form entsteht?',
+    'Du zeichnest 3 gerade Striche. Sie treffen sich an 3 Ecken. Welche Form entsteht?',
     'Dreieck',
     ['Dreieck', 'Oval', 'Rechteck'],
-    'Die drei Punkte müssen außerhalb einer gemeinsamen geraden Linie liegen. Dann bilden sie ein Dreieck.'
+    '3 Striche und 3 Ecken ergeben ein Dreieck.'
   ),
   (
     'Welche dieser Formen hat keine Ecke?',
     'Kreis',
     ['Dreieck', 'Kreis', 'Quadrat'],
-    'Unter diesen drei Formen hat nur der Kreis keine Ecke. Auch ein Oval hätte keine Ecke.'
+    'Der Kreis ist rund. Er hat keine Ecke.'
   ),
   (
-    'Welche Form passt zur kreisrunden Fläche einer Münze?',
+    'Du schaust von oben auf eine Münze. Welche Form siehst du?',
     'Kreis',
-    ['Kreis', 'Dreieck', 'Oval'],
-    'Die runde Münzfläche ist ein Kreis; der ganze Gegenstand ist ein Körper.'
+    ['Kreis', 'Dreieck', 'Quadrat'],
+    'Eine Münze ist rund wie ein Kreis.'
   ),
   (
-    'Welche Form ist rund und in jede Richtung gleich breit?',
+    'Welche Form ist rund und überall gleich breit?',
     'Kreis',
     ['Kreis', 'Oval', 'Rechteck'],
-    'Ein Kreis ist durch seinen Mittelpunkt in jede Richtung gleich breit. Ein längliches Oval nicht.'
+    'Ein Kreis ist überall gleich breit. Ein Oval ist länglich.'
   ),
   (
-    'Welche Form passt zu einem Zifferblatt, dessen Rand überall gleich weit vom Mittelpunkt entfernt ist?',
+    'Welche Form hat das Zifferblatt einer runden Uhr?',
     'Kreis',
-    ['Kreis', 'Quadrat', 'Oval'],
-    'Beim Kreis liegen alle Randpunkte gleich weit vom Mittelpunkt entfernt.'
+    ['Kreis', 'Quadrat', 'Dreieck'],
+    'Eine runde Uhr hat die Form eines Kreises.'
   ),
   (
-    'Welche Form hat vier gleich lange Seiten und vier Ecken wie die Ecke eines Heftes?',
+    'Welche Form hat 4 Ecken und 4 gleich lange Seiten?',
     'Quadrat',
     ['Quadrat', 'Kreis', 'Dreieck'],
-    'Ein Quadrat hat vier gleich lange Seiten und vier rechte Winkel.'
+    'Ein Quadrat hat 4 Ecken. Alle 4 Seiten sind gleich lang.'
   ),
   (
-    'Eine quadratische Fliese ist 10 cm breit und 10 cm hoch. Welche Form hat ihre Fläche?',
+    'Eine Fliese hat 4 Ecken. Sie ist genauso breit wie hoch. Welche Form hat sie?',
     'Quadrat',
     ['Quadrat', 'Oval', 'Dreieck'],
-    'Die vier Seiten der quadratischen Fliese sind gleich lang.'
+    'Gleich breit und gleich hoch mit 4 Ecken: Das ist ein Quadrat.'
   ),
   (
-    'Welche Form passt zu einem vierseitigen Spielbrett, bei dem alle Seiten gleich lang und alle Winkel recht sind?',
+    'Ein Spielbrett hat 4 Ecken. Alle 4 Seiten sind gleich lang. Welche Form hat es?',
     'Quadrat',
     ['Quadrat', 'Kreis', 'Dreieck'],
-    'Rechte Winkel und vier gleich lange Seiten kennzeichnen ein Quadrat.'
+    '4 Ecken und 4 gleich lange Seiten: Das ist ein Quadrat.'
   ),
   (
-    'Du drehst eine Form mit vier gleich langen Seiten und vier rechten Winkeln auf eine Spitze. Wie heißt sie weiterhin?',
+    'Du drehst ein Quadrat auf eine Spitze. Welche Form ist es jetzt?',
     'Quadrat',
     ['Dreieck', 'Quadrat', 'Oval'],
-    'Durch Drehen ändern sich Seitenlängen und Winkel nicht. Ein gedrehtes Quadrat bleibt ein Quadrat.'
+    'Beim Drehen bleibt die Form gleich. Es ist immer noch ein Quadrat.'
   ),
   (
-    'Welche Form hat vier rechte Winkel, zwei lange und zwei kurze Seiten?',
+    'Welche Form hat 4 Ecken, 2 lange Seiten und 2 kurze Seiten?',
     'Rechteck',
     ['Rechteck', 'Quadrat', 'Dreieck'],
-    'Bei diesem Rechteck sind gegenüberliegende Seiten gleich lang; die benachbarten Seiten sind verschieden lang.'
+    'Ein Rechteck hat 4 Ecken. Gegenüberliegende Seiten sind gleich lang.'
   ),
   (
-    'Welche Form passt zu einem Heftblatt, das deutlich höher als breit ist und vier rechte Winkel hat?',
+    'Ein Heftblatt hat 4 Ecken. Es ist höher als breit. Welche Form hat es?',
     'Rechteck',
     ['Rechteck', 'Quadrat', 'Oval'],
-    'Das Heftblatt hat zwei längere und zwei kürzere Seiten.'
+    'Das Heftblatt hat 2 lange und 2 kurze Seiten: ein Rechteck.'
   ),
   (
-    'Welche Form hat die Vorderfläche einer Tür mit vier rechten Winkeln, die viel höher als breit ist?',
+    'Eine Tür hat 4 Ecken. Sie ist viel höher als breit. Welche Form hat sie?',
     'Rechteck',
     ['Dreieck', 'Rechteck', 'Kreis'],
-    'Die Vorderfläche ist ein Rechteck. Die ganze Tür hat auch eine Dicke.'
+    'Die Tür hat 2 lange und 2 kurze Seiten: ein Rechteck.'
   ),
   (
-    'Eine geschlossene Form hat vier rechte Winkel. Zwei Seiten sind 8 cm, zwei Seiten 4 cm lang. Welche Form ist es?',
+    'Eine Tafel Schokolade hat 4 Ecken. Sie ist länger als breit. Welche Form hat sie?',
     'Rechteck',
     ['Rechteck', 'Quadrat', 'Kreis'],
-    'Gegenüberliegende Seiten sind gleich lang. Weil 8 cm und 4 cm verschieden sind, ist es kein Quadrat.'
+    '4 Ecken, 2 lange und 2 kurze Seiten: Das ist ein Rechteck.'
   ),
   (
-    'Welche Form ist länglich und rund, ohne gerade Seiten?',
+    'Welche Form ist rund und länglich?',
     'Oval',
     ['Oval', 'Kreis', 'Rechteck'],
-    'Ein längliches Oval hat keine Ecken, ist aber nicht in jede Richtung gleich breit.'
+    'Ein Oval ist rund, aber länglich. Es hat keine Ecke.'
   ),
   (
-    'Welche Form sieht ungefähr aus wie der Umriss eines Eies?',
+    'Welche Form sieht aus wie ein Ei?',
     'Oval',
     ['Oval', 'Dreieck', 'Quadrat'],
-    'Ein Ei ist ein Körper. Sein länglicher runder Umriss ähnelt einem Oval.'
+    'Ein Ei ist rund und länglich wie ein Oval.'
   ),
   (
-    'Welche Form passt zu einem geschlossenen Rand, der rund und deutlich breiter als hoch ist?',
+    'Eine Form ist rund und breiter als hoch. Welche Form ist es?',
     'Oval',
     ['Oval', 'Kreis', 'Rechteck'],
-    'Ein Oval kann länglich sein. Der Kreis wäre durch seinen Mittelpunkt in jede Richtung gleich breit.'
+    'Ein Kreis ist überall gleich breit. Diese Form ist länglich: ein Oval.'
   ),
   (
-    'Welche Form entsteht, wenn du einen Kreis in die Breite ziehst, ohne Ecken hineinzumachen?',
+    'Du ziehst einen Kreis in die Länge. Welche Form entsteht?',
     'Oval',
     ['Kreis', 'Oval', 'Dreieck'],
-    'Aus dem gleichmäßig runden Kreis wird ein längliches Oval.'
+    'Aus dem Kreis wird eine längliche runde Form: ein Oval.'
   ),
 ];

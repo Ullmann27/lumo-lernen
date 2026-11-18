@@ -96,6 +96,8 @@ class SchoolbookTaskCard extends StatelessWidget {
   }
 }
 
+/// Zwanzigerfeld zum Wegnehmen. Die Rechnung darunter endet mit „= ?“:
+/// Das Ergebnis zählt das Kind am Feld ab, es steht nicht als Zahl da.
 class TwentyFrameVisual extends StatelessWidget {
   const TwentyFrameVisual({
     super.key,
@@ -110,20 +112,18 @@ class TwentyFrameVisual extends StatelessWidget {
 
   int get _firstStep => start > 10 ? start - 10 : takeAway;
   int get _secondStep => (takeAway - _firstStep).clamp(0, 20).toInt();
-  int get _result => (start - takeAway).clamp(0, 20).toInt();
-  bool get _bridgesTen => start > 10 && takeAway > start - 10;
+  bool get _bridgesTen =>
+      start > 10 && start <= 20 && takeAway > start - 10 && takeAway <= start;
 
   @override
   Widget build(BuildContext context) {
-    final firstStep = _bridgesTen ? _firstStep : takeAway;
-    final secondStep = _bridgesTen ? _secondStep : 0;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       _TwentyDots(start: start, crossed: takeAway),
       const SizedBox(height: 12),
       Wrap(spacing: 8, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
-        _MathChip('$start - $takeAway = $_result'),
+        _MathChip('$start − $takeAway = ?'),
         if (showBridge && _bridgesTen) ...[
-          _MathChip('$start - $firstStep - $secondStep = $_result', soft: true),
+          _MathChip('$start − $_firstStep − $_secondStep = ?', soft: true),
           _TenShield(),
         ],
       ]),
@@ -138,6 +138,13 @@ class TwentyFrameVisual extends StatelessWidget {
   }
 }
 
+/// Zahlenstrahl von 0 bis 20 mit dem Sprung zurück.
+///
+/// Das Bild hilft beim Rechnen, nennt aber das Ergebnis nicht: Die Rechnung
+/// endet mit „= ?“, beschriftet sind nur die Fünferzahlen und die Startzahl.
+/// Wo der Sprung landet, liest das Kind selbst ab. Für Zahlen über 20 gibt
+/// es keinen Zahlenstrahl, nur die Rechnung. Früher stand hier das Ergebnis
+/// („9 - 4 = 5“) und über 20 sogar eine falsche Gleichung („62 - 24 = 20“).
 class NumberLineJumpVisual extends StatelessWidget {
   const NumberLineJumpVisual({
     super.key,
@@ -148,28 +155,42 @@ class NumberLineJumpVisual extends StatelessWidget {
   final int start;
   final int takeAway;
 
+  /// Nur Aufgaben, die ganz auf den Zahlenstrahl 0–20 passen.
+  bool get _fitsLine =>
+      start >= 1 && start <= 20 && takeAway >= 1 && takeAway <= start;
+
+  bool get _bridgesTen => _fitsLine && start > 10 && takeAway > start - 10;
+
+  /// Beschriftete Striche: Fünferzahlen und die Startzahl, nie eigens das
+  /// Ergebnis.
+  @visibleForTesting
+  static Set<int> labelledTicks(int start) => <int>{0, 5, 10, 15, 20, start};
+
   @override
   Widget build(BuildContext context) {
-    final first = start > 10 ? start - 10 : takeAway;
-    final second = (takeAway - first).clamp(0, 20).toInt();
-    final result = (start - takeAway).clamp(0, 20).toInt();
+    final first = _bridgesTen ? start - 10 : takeAway;
+    final second = _bridgesTen ? takeAway - first : 0;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SizedBox(
-        height: 96,
-        child: CustomPaint(
-          painter: _NumberLineJumpPainter(
-            start: start.clamp(0, 20).toInt(),
-            via: second > 0 ? 10 : result,
-            result: result,
-            firstJump: first,
-            secondJump: second,
+      if (_fitsLine) ...[
+        SizedBox(
+          height: 96,
+          child: CustomPaint(
+            key: const ValueKey('number-line-jump'),
+            painter: _NumberLineJumpPainter(
+              start: start,
+              via: start - first,
+              result: start - takeAway,
+              firstJump: first,
+              secondJump: second,
+              labelled: labelledTicks(start),
+            ),
+            child: const SizedBox.expand(),
           ),
-          child: const SizedBox.expand(),
         ),
-      ),
-      const SizedBox(height: 8),
+        const SizedBox(height: 8),
+      ],
       Text(
-        second > 0 ? '$start - $first - $second = $result' : '$start - $takeAway = $result',
+        second > 0 ? '$start − $first − $second = ?' : '$start − $takeAway = ?',
         style: const TextStyle(
           fontFamily: 'Nunito',
           fontSize: 18,
@@ -738,6 +759,7 @@ class _NumberLineJumpPainter extends CustomPainter {
     required this.result,
     required this.firstJump,
     required this.secondJump,
+    required this.labelled,
   });
 
   final int start;
@@ -745,6 +767,7 @@ class _NumberLineJumpPainter extends CustomPainter {
   final int result;
   final int firstJump;
   final int secondJump;
+  final Set<int> labelled;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -769,7 +792,7 @@ class _NumberLineJumpPainter extends CustomPainter {
       final x = left + i * step;
       final tickHeight = i % 5 == 0 ? 13.0 : 8.0;
       canvas.drawLine(Offset(x, baseY - tickHeight / 2), Offset(x, baseY + tickHeight / 2), tickPaint);
-      if (i % 2 == 0 || i == start || i == result || i == via) {
+      if (labelled.contains(i)) {
         final textPainter = TextPainter(
           text: TextSpan(
             text: '$i',
@@ -793,8 +816,8 @@ class _NumberLineJumpPainter extends CustomPainter {
       painter.paint(canvas, Offset((fromX + toX) / 2 - painter.width / 2, baseY - height - 2));
     }
 
-    arc(start, via, '-$firstJump', 34);
-    if (secondJump > 0) arc(via, result, '-$secondJump', 24);
+    arc(start, via, '−$firstJump', 34);
+    if (secondJump > 0) arc(via, result, '−$secondJump', 24);
   }
 
   @override

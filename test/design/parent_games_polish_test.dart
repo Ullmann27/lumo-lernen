@@ -17,8 +17,6 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_shop_repository.dart';
 import 'package:lumo_lernen/core/settings_repository.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
 import 'package:lumo_lernen/features/games/star_trail/star_trail_screen.dart';
 import 'package:lumo_lernen/features/settings/settings_content.dart';
 import 'package:lumo_lernen/features/settings/writing_report_card.dart';
@@ -284,126 +282,14 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
+  // Jump & Run opens Lumo Lauf, Karten opens the 3D card table (Sternenstich,
+  // Sternenleiter, Lumo-Quartett). Neither opens a Flutter card screen.
+  for (final portal in <(String, String)>[
+    ('jumpRun', 'run'),
+    ('cards', 'cards'),
+  ])
   testWidgets(
-      'Cards rapid double activation opens one route and permits returning',
-      (tester) async {
-    final app = await stateFor(tester);
-    final observer = _PushObserver();
-    await tester.pumpWidget(MaterialApp(
-      navigatorObservers: [observer],
-      theme: ThemeData.light(),
-      home: Scaffold(body: GamesContent(appState: app)),
-    ));
-    await settleData(tester);
-    final before = observer.count;
-    final card = find.byKey(const ValueKey('spielwelt-portal-cards'));
-    expect(card, findsOneWidget);
-    final detector = find.descendant(
-      of: card, matching: find.byType(GestureDetector)).first;
-    final tap = tester.widget<GestureDetector>(detector).onTap!;
-    tap();
-    tap();
-    await tester.pump();
-    await tester.pump(const Duration(seconds: 1));
-    expect(observer.count - before, 1);
-    // Main Cards portal must open Lumo Cards, never Sternenpfad.
-    expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
-    expect(find.text('LUMO CARDS'), findsOneWidget);
-    expect(find.text('DEIN MAGISCHES KARTENABENTEUER'), findsOneWidget);
-    expect(find.byType(LumoStarTrailScreen), findsNothing);
-    Navigator.of(tester.element(find.byType(LumoCardsShowcaseScreen))).pop();
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 550));
-    await settleData(tester);
-    expect(find.byType(LumoCardsShowcaseScreen), findsNothing);
-    expect(tester.takeException(), isNull);
-    await tester.pumpWidget(const SizedBox());
-  });
-
-  for (final mode in <(String, bool)>[
-    ('solo', true),
-    ('local', false),
-  ]) {
-    testWidgets(
-        'classic Cards ${mode.$1} remains reachable beside Star Trail and returns safely',
-        (tester) async {
-      final app = await stateFor(tester);
-      final starsBefore = app.state.stars;
-      final gradeBefore = app.state.grade;
-      await mount(tester, GamesContent(appState: app));
-      final gamesScroll = find.descendant(
-        of: find.byType(GamesContent),
-        matching: find.byType(Scrollable),
-      ).first;
-      final extraModes =
-          find.byKey(const PageStorageKey('games-extra-modes'));
-      await tester.scrollUntilVisible(
-        extraModes,
-        280,
-        scrollable: gamesScroll,
-      );
-      await tester.tap(find.text('Zusätzliche Spielmodi'));
-      // First start the ExpansionTile animation, then advance to its end.
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 450));
-
-      final classic = find.byKey(const ValueKey('games-classic-cards'));
-      // Reproduce user scrolls: ensureVisible alone can leave the animated
-      // sliver's button outside the hit-testable viewport.
-      for (var attempt = 0;
-          attempt < 8 && classic.hitTestable().evaluate().isEmpty;
-          attempt++) {
-        await tester.drag(
-            find.byType(CustomScrollView), const Offset(0, -150));
-        await tester.pump();
-      }
-      expect(classic.hitTestable(), findsOneWidget);
-      final tileSize = tester.getSize(classic);
-      expect(tileSize.width, greaterThanOrEqualTo(48));
-      expect(tileSize.height, greaterThanOrEqualTo(48));
-      await tester.tap(classic);
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 550));
-
-      expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
-      expect(find.byType(LumoStarTrailScreen), findsNothing);
-      await tester.tap(find.byKey(ValueKey('cards-hub-${mode.$1}')));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 550));
-      await settleData(tester);
-
-      final gameFinder = find.byType(LumoCardsScreen);
-      expect(gameFinder, findsOneWidget);
-      final game = tester.widget<LumoCardsScreen>(gameFinder);
-      expect(game.vsBot, mode.$2);
-      expect(game.appState, same(app));
-      expect(game.skipIntro, isTrue);
-      expect(app.state.grade, gradeBefore);
-      expect(tester.takeException(), isNull);
-
-      await tester.tap(find.byTooltip('Pausieren / Zurück'));
-      await tester.pump();
-      expect(find.text('Spiel pausiert'), findsOneWidget);
-      await tester.tap(find.text('Zur Spieleauswahl'));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 550));
-      expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
-      await tester.tap(find.byKey(const ValueKey('cards-hub-back')));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 550));
-      await settleData(tester);
-      expect(find.byType(LumoCardsScreen), findsNothing);
-      expect(find.byType(LumoCardsShowcaseScreen), findsNothing);
-      expect(find.byType(GamesContent), findsOneWidget);
-      expect(app.state.stars, starsBefore);
-      expect(app.state.childName, 'Probe');
-      expect(app.state.grade, gradeBefore);
-      expect(tester.takeException(), isNull);
-      await tester.pumpWidget(const SizedBox.shrink());
-    });
-  }
-
-  testWidgets('Jump & Run Spielwelt portal launches actual Godot 3D scene once',
+      '${portal.$1} Spielwelt portal launches actual Godot 3D scene once',
       (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     try {
@@ -416,7 +302,7 @@ void main() {
         return returned.future;
       });
       await mount(tester, GamesContent(appState: app));
-      final card = find.byKey(const ValueKey('spielwelt-portal-jumpRun'));
+      final card = find.byKey(ValueKey('spielwelt-portal-${portal.$1}'));
       expect(card, findsOneWidget);
       final detector = find.descendant(
           of: card, matching: find.byType(GestureDetector)).first;
@@ -427,7 +313,9 @@ void main() {
       expect(calls, hasLength(1),
           reason: 'Only one native game may start per double tap');
       expect(calls.single.method, 'launch3D');
-      expect((calls.single.arguments as Map)['scene'], 'jump');
+      expect((calls.single.arguments as Map)['scene'], portal.$2);
+      expect((calls.single.arguments as Map).containsKey('cardsToken'), isFalse);
+      expect(find.byType(LumoStarTrailScreen), findsNothing);
       returned.complete({'destination': 'games'});
       await settleData(tester);
       expect(tester.takeException(), isNull);
@@ -469,13 +357,4 @@ void main() {
     }
   });
 
-}
-
-class _PushObserver extends NavigatorObserver {
-  int count = 0;
-  @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    count++;
-    super.didPush(route, previousRoute);
-  }
 }

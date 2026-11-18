@@ -193,4 +193,64 @@ void main() {
     service.dispose(); state.dispose();
   });
 
+  test('card table and Lumo Lauf results are booked exactly once', () async {
+    final wallet = RewardWalletRepository();
+    final state = LumoAppState(walletRepository: wallet);
+    final service = EmbeddedGameService(
+        appState: state, wallet: wallet, onDestination: (_) {});
+    // Payload shapes as the game sends them: the card table carries explicit
+    // XP, the run reports its solved learning stops (ten XP each).
+    pending['results'] = [
+      {
+        'game': 'cards',
+        'resultId': 'cards-sternenstich-1',
+        'status': 'completed',
+        'variant': 'sternenstich',
+        'stars': 4,
+        'xp': 40,
+        'place': 1,
+        'players': 4,
+        'difficulty': 'mittel',
+        'rounds': 3,
+        'points': 17,
+      },
+      {
+        'game': 'run',
+        'resultId': 'run-dschungelherz-1',
+        'status': 'completed',
+        'stars': 15,
+        'solved': 3,
+        'course': 'dschungelherz',
+        'rating': 3,
+        'timeMs': 181000,
+      },
+      {
+        'game': 'uno',
+        'resultId': 'unknown-game',
+        'status': 'completed',
+        'stars': 5,
+        'xp': 10,
+      },
+    ];
+    await service.synchronize();
+    expect(state.state.stars, 19);
+    expect(state.state.xp, 70);
+    expect(acknowledged, ['cards-sternenstich-1', 'run-dschungelherz-1']);
+    // A replayed delivery of the same results must not pay twice.
+    pending['results'] = [
+      {
+        'game': 'cards',
+        'resultId': 'cards-sternenstich-1',
+        'status': 'completed',
+        'stars': 4,
+        'xp': 40,
+      },
+    ];
+    await service.synchronize();
+    expect(state.state.stars, 19);
+    expect(state.state.xp, 70);
+    service.dispose();
+    state.dispose();
+  });
+
 }

@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
 
 /// Spielewelt nach Bild 06: nur echte Spiele, Android-Prüftexte bleiben.
 void main() {
@@ -54,7 +53,7 @@ void main() {
     handle.dispose();
   });
 
-  testWidgets('Fold landscape uses the tile hub and Cards opens Cards', (tester) async {
+  testWidgets('Fold landscape uses the tile hub with every game portal', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1200, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = LumoAppState();
@@ -84,14 +83,8 @@ void main() {
       expect(find.byKey(ValueKey('spielwelt-portal-$identity')), findsOneWidget,
           reason: identity);
     }
-    final cards = find.byKey(const ValueKey('spielwelt-portal-cards'));
-    await tester.ensureVisible(cards);
-    await tester.tap(cards);
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 800));
-    expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget,
-        reason: 'Main Cards portal must never open Sternenpfad');
-    expect(find.text('LUMO CARDS'), findsOneWidget);
+    // The card portal's native launch is covered by spielwelt_routing_test
+    // and parent_games_polish_test (scene 'cards', exactly one launch).
     expect(tester.takeException(), isNull);
   });
 

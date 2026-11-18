@@ -72,6 +72,11 @@ void main() {
         app.learningSkills()[SkillRecord.makeId('Deutsch', 'Lückensätze')];
     expect(skill?.correct, 5);
     expect(skill?.wrong, 1);
+    // Allein gelöst zählt nur der erste Versuch: Der Satz, der erst nach
+    // einem falschen Wort gelang, ist kein selbstständiger Beleg.
+    expect(skill?.assessed.correct, 4);
+    expect(skill?.assessed.wrong, 1);
+    expect(skill?.hintCount, 1);
     await tester.runAsync(app.flushRewards);
     await tester.pumpWidget(const SizedBox.shrink());
   });

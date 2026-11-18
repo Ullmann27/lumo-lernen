@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
 import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
@@ -57,11 +58,11 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _PluralWort('Blume', 'Blumen', ['Blumes', 'Blume\'s', 'Blumern']),
     _PluralWort('Fenster', 'Fenster', ['Fensters', 'Fenstern', 'Fensteren']),
     _PluralWort('Lampe', 'Lampen', ['Lampes', 'Lampe\'s', 'Lamper']),
-    _PluralWort('Vogel', 'Vögel', ['Vogels', 'Vogeln', 'Voegels']),
+    _PluralWort('Vogel', 'Vögel', ['Vogels', 'Vogeln', 'Vögels']),
     _PluralWort('Katze', 'Katzen', ['Katzes', 'Katze\'s', 'Katzer']),
     _PluralWort('Tasche', 'Taschen', ['Tasches', 'Tasche\'s', 'Tascher']),
     _PluralWort('Frau', 'Frauen', ['Fraus', 'Frauer', 'Frauenes']),
-    _PluralWort('Mann', 'Männer', ['Mannes', 'Mannen', 'Maenner']),
+    _PluralWort('Mann', 'Männer', ['Mannes', 'Manns', 'Männe']),
     _PluralWort('Hand', 'Hände', ['Handen', 'Hands', 'Händer']),
     _PluralWort('Hut', 'Hüte', ['Huten', 'Huts', 'Hüter']),
     _PluralWort('Tür', 'Türen', ['Türs', 'Türe', 'Türer']),
@@ -78,6 +79,8 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
 
   final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -111,6 +114,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -176,11 +180,31 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -285,6 +309,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
         icon: Icons.auto_stories_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,

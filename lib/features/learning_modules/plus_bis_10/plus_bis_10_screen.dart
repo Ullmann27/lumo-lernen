@@ -39,14 +39,20 @@ import '../../../widgets/design/lumo_lesson_progress.dart';
 import '../../../widgets/design/lumo_learning_module_frame.dart';
 import '../../../widgets/fox/lumo_companion_requests.dart';
 import '../lumo_phrases.dart';
+import '../learning_module_rounds.dart';
+import '../../../domain/learning/practice_session_plan.dart';
 
 class PlusBis10Screen extends StatefulWidget {
   const PlusBis10Screen({
     super.key,
     required this.appState,
+    this.taskRandom,
   });
 
   final LumoAppState appState;
+
+  /// Feste Zufallsquelle für Prüfungen; im Betrieb bleibt sie leer.
+  final math.Random? taskRandom;
 
   @override
   State<PlusBis10Screen> createState() => _PlusBis10ScreenState();
@@ -64,7 +70,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
-  final _rng = math.Random();
+  late final math.Random _rng = widget.taskRandom ?? math.Random();
   late final List<(int, int)> _round;
 
   /// Lumo freut sich bei richtigen Antworten und tröstet bei falschen.
@@ -166,11 +172,14 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       vsync: this,
       duration: const Duration(milliseconds: 350),
     );
+    // Alle Plusaufgaben bis 10 mit zwei Mengen. Früher war der erste
+    // Summand höchstens 5: 7 + 2, 8 + 1 oder 9 + 1 kamen nie vor.
     _round = [
-      for (var a = 1; a <= 5; a++)
+      for (var a = 1; a <= 9; a++)
         for (var b = 1; b <= 10 - a; b++) (a, b),
     ]..shuffle(_rng);
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _speakTask();
@@ -660,7 +669,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       _selectedAnswer = answer;
       _pendingAnswer = answer;
       _submittedAttempts++;
-      _pendingHintUsed = _showHint || _helpLevel > 0;
+      // Solved alone means: first try and no help. A right answer after a
+      // wrong one is recorded as solved together.
+      _pendingHintUsed = _showHint || _helpLevel > 0 || _wrongAttempts > 0;
       _saving = true;
       _answered = answer == _correct;
       if (!_answered) _wrongAttempts++;
@@ -836,11 +847,43 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             }));
   }
 
-  void _nextTask() {
+  late final LearningModuleRounds _rounds = LearningModuleRounds.forUnit(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      totalTasks: _totalTasks);
+
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null ||
+        !mounted ||
+        _taskIdx != 0 ||
+        _answered ||
+        _submittedAttempts > 0) {
+      return;
+    }
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -1295,6 +1338,15 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             spacing: 8,
             runSpacing: 6,
             children: [
+              Text(
+                  'Runde ${SessionRounds.roundOf(_taskIdx + 1, _totalTasks)} '
+                  'von ${SessionRounds.count(_totalTasks)}',
+                  key: const ValueKey('plus10-round-label'),
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.gold,
+                      fontSize: 13)),
               Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
                   style: const TextStyle(
                       fontFamily: 'Nunito',
@@ -1444,9 +1496,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                     fontWeight: FontWeight.w700)),
             const SizedBox(height: 12),
             Row(children: [
-              Expanded(child: _appleBox(_a, size: 26)),
+              Expanded(child: _fittedAppleBox(_a, size: 26, maxRows: 2)),
               _operator('+'),
-              Expanded(child: _appleBox(_b, size: 26)),
+              Expanded(child: _fittedAppleBox(_b, size: 26, maxRows: 2)),
               _operator('='),
               _questionBox(),
             ]),
@@ -1488,9 +1540,18 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       // when a larger amount wraps inside either of the two apple groups.
       final groupWidth =
           math.max(18.0, (available.maxWidth * .64 - 40 - 56 * scale) / 2 - 8);
-      final columns = math.max(1, ((groupWidth + 1) / 19).floor());
-      final rows = (math.max(_a, _b) + columns - 1) ~/ columns;
-      final quantityHeight = math.max(46, rows * 19 - 1 + 8);
+      // Höchstens drei Reihen je Gruppe: Bei 8 oder 9 Äpfeln werden die Äpfel
+      // etwas kleiner, statt das Feld höher zu machen – sonst rutschen auf
+      // schmalen Handys die Antworten unter die Navigation.
+      final largest = math.max(_a, _b);
+      final wantedColumns = (largest + 2) ~/ 3;
+      final appleSize = ((groupWidth + 1) / wantedColumns - 1)
+          .floorToDouble()
+          .clamp(12.0, 18.0);
+      final columns =
+          math.max(1, ((groupWidth + 1) / (appleSize + 1)).floor());
+      final rows = (largest + columns - 1) ~/ columns;
+      final quantityHeight = math.max(46.0, rows * (appleSize + 1) - 1 + 8);
       final helpHeight = math.max(116, quantityHeight + 62) * scale;
       return Container(
         height: helpHeight,
@@ -1550,9 +1611,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                   ]),
                   const Spacer(),
                   Row(children: [
-                    Expanded(child: _appleBox(_a)),
+                    Expanded(child: _appleBox(_a, size: appleSize)),
                     _operator('+'),
-                    Expanded(child: _appleBox(_b)),
+                    Expanded(child: _appleBox(_b, size: appleSize)),
                     _operator('='),
                     _questionBox(),
                   ]),
@@ -1597,6 +1658,19 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
           ]);
         }),
       );
+    });
+  }
+
+  /// Äpfel in höchstens [maxRows] Reihen: Reicht die Breite bei 8 oder 9
+  /// Äpfeln nicht, werden sie etwas kleiner. Das Feld wird nie höher, damit
+  /// auf schmalen Handys keine Antwort unter die Navigation rutscht.
+  Widget _fittedAppleBox(int count,
+      {required double size, required int maxRows}) {
+    return LayoutBuilder(builder: (context, box) {
+      final columns = (count + maxRows - 1) ~/ maxRows;
+      // 4 dp Innenabstand und 1 dp Rahmen je Seite, 1 dp Abstand je Apfel.
+      final fit = ((box.maxWidth - 10 + 1) / columns - 1).floorToDouble();
+      return _appleBox(count, size: math.min(size, math.max(12.0, fit)));
     });
   }
 

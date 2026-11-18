@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
 import 'package:lumo_lernen/features/games/memory/lumo_memory_game.dart';
 import 'package:lumo_lernen/features/games/spielwelt/spielwelt_routes.dart';
 import 'package:lumo_lernen/features/games/star_trail/star_trail_screen.dart';
@@ -30,17 +29,23 @@ void main() {
 
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  test('routing table lists eleven unique portals and unique covers', () {
+  test('routing table lists twelve unique portals and unique covers', () {
     expect(SpielweltRoutes.all.map((r) => r.identity), SpielweltRoutes.identities);
-    expect(SpielweltRoutes.all, hasLength(11));
+    expect(SpielweltRoutes.all, hasLength(12));
+    expect(SpielweltRoutes.byIdentity('chess').target, 'chess');
     final covers = [
       for (final route in SpielweltRoutes.all)
         if (route.coverAsset.isNotEmpty) route.coverAsset
     ];
     expect(covers.toSet(), hasLength(covers.length));
     expect(covers.any((cover) => cover.contains('cards/game_kart')), isFalse);
-    expect(SpielweltRoutes.byIdentity('cards').target, 'LumoCardsShowcaseScreen');
-    expect(SpielweltRoutes.byIdentity('cards').targetDescription, contains('nie Sternenpfad'));
+    // The card portal opens the 3D card table with its three own games.
+    expect(SpielweltRoutes.byIdentity('cards').isNative, isTrue);
+    expect(SpielweltRoutes.byIdentity('cards').target, 'cards');
+    expect(SpielweltRoutes.byIdentity('cards').targetDescription,
+        allOf(contains('Sternenstich'), contains('Lumo-Quartett')));
+    // Jump & Run is the long 3D run, not the short cloud-island course.
+    expect(SpielweltRoutes.byIdentity('jumpRun').target, 'run');
     expect(SpielweltRoutes.byIdentity('quizShow').title, 'Quizshow');
     expect(SpielweltRoutes.byIdentity('quizShow').semanticTitle, 'Wer wird Lumo-Meister?');
     expect(SpielweltRoutes.byIdentity('rhythm').title, 'Rhythm');
@@ -100,7 +105,6 @@ void main() {
       } else {
         final found = switch (route.target) {
           'LumoMemoryScreen' => find.byType(LumoMemoryScreen),
-          'LumoCardsShowcaseScreen' => find.byType(LumoCardsShowcaseScreen),
           'LumoConnectFourScreen' => find.byType(LumoConnectFourScreen),
           'QuizShowContent' => find.byType(QuizShowContent),
           _ => find.byType(SizedBox),

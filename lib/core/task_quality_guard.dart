@@ -1,6 +1,7 @@
 import 'primary_school_word_data.dart';
 import 'school_exercise_generator.dart';
 import 'checked_task_patterns.dart';
+import 'math_task_templates.dart';
 
 /// Deterministic quality gate for generated school tasks.
 /// It blocks tasks with unclear answer logic before they reach the UI.
@@ -86,25 +87,53 @@ class TaskQualityGuard {
     if (task.subject != 'Mathematik') return const [];
     final prompt = task.prompt.trim();
     final answer = task.answer.trim();
-    final compare = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
-        .firstMatch(prompt);
-    if (compare != null) {
-      final left = int.parse(compare[1]!);
-      final right = int.parse(compare[2]!);
+    final compare = comparePromptPattern.firstMatch(prompt);
+    final compareLeft = compare == null ? null : parseGroupedNumber(compare[1]!);
+    final compareRight = compare == null ? null : parseGroupedNumber(compare[2]!);
+    if (compareLeft != null && compareRight != null) {
+      final left = compareLeft;
+      final right = compareRight;
       final expected = left < right ? '<' : left > right ? '>' : '=';
       return answer == expected ? const [] : const ['comparison_answer_wrong'];
+    }
+    // Zahlenraum bis zur Million: Stellenwert und Runden (Befund M7).
+    final placeValue = RegExp(r'^Welchen Wert hat die Ziffer (\d) in ([\d\u00A0 ]+)\?$')
+        .firstMatch(prompt);
+    if (placeValue != null) {
+      final digit = placeValue[1]!;
+      final digits = '${parseGroupedNumber(placeValue[2]!) ?? ''}';
+      if (digit == '0' || digit.allMatches(digits).length != 1) {
+        return const ['place_value_digit_ambiguous'];
+      }
+      final place = digits.length - 1 - digits.indexOf(digit);
+      final expected = int.parse(digit) * _power10(place);
+      return parseGroupedNumber(answer) == expected
+          ? const []
+          : const ['place_value_answer_wrong'];
+    }
+    final rounding = RegExp(r'^Runde ([\d\u00A0 ]+) auf Tausender\.$').firstMatch(prompt);
+    if (rounding != null) {
+      final number = parseGroupedNumber(rounding[1]!);
+      if (number == null) return const ['rounding_unproved'];
+      final expected = (number + 500) ~/ 1000 * 1000;
+      return parseGroupedNumber(answer) == expected
+          ? const []
+          : const ['rounding_answer_wrong'];
     }
     final parity = RegExp(r'^Ist (\d+) gerade oder ungerade\?$').firstMatch(prompt);
     if (parity != null) {
       final expected = int.parse(parity[1]!).isEven ? 'gerade' : 'ungerade';
       return answer == expected ? const [] : const ['parity_answer_wrong'];
     }
-    final quantities = RegExp(r'^(🍎+) oder (🍎+) – wo ist mehr\?$', unicode: true)
+    final quantities = RegExp(
+            r'^(🍎+) oder (🍎+) – wo (ist mehr|sind mehr Äpfel)\?$',
+            unicode: true)
         .firstMatch(prompt);
     if (quantities != null) {
       final left = '🍎'.allMatches(quantities[1]!).length;
       final right = '🍎'.allMatches(quantities[2]!).length;
-      final expected = left == right ? 'gleich' : left > right ? 'links' : 'rechts';
+      final equal = quantities[3] == 'ist mehr' ? 'gleich' : 'gleich viele';
+      final expected = left == right ? equal : left > right ? 'links' : 'rechts';
       return answer == expected ? const [] : const ['quantity_answer_wrong'];
     }
     final clock = RegExp(
@@ -129,6 +158,55 @@ class TaskQualityGuard {
       final expected = left == right ? 'gleich viel' : '${left > right ? left : right} €';
       return answer == expected ? const [] : const ['money_comparison_wrong'];
     }
+    final priced = RegExp(
+            r'^(Der|Die|Das) (\S+) kostet (\d+) €, (der|die|das) (\S+) kostet (\d+) €\. Was kostet mehr\?$')
+        .firstMatch(prompt);
+    if (priced != null) {
+      final left = int.parse(priced[3]!);
+      final right = int.parse(priced[6]!);
+      final expected = left == right
+          ? 'gleich viel'
+          : left > right
+              ? '${priced[1]!.toLowerCase()} ${priced[2]}'
+              : '${priced[4]} ${priced[5]}';
+      return answer == expected ? const [] : const ['money_comparison_wrong'];
+    }
+    // Diagramm mit Wochentagen: meiste, wenigste, Unterschied, Summe.
+    if (prompt.startsWith('Diagramm: ')) {
+      final entries = <String, int>{
+        for (final entry in RegExp(
+                r'(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag) (\d+)')
+            .allMatches(prompt.substring(0, prompt.indexOf('.') + 1)))
+          entry[1]!: int.parse(entry[2]!),
+      };
+      if (entries.length >= 2) {
+        final sorted = entries.values.toList()..sort();
+        String? expected;
+        if (prompt.contains('die meisten Kinder') ||
+            prompt.contains('die wenigsten Kinder')) {
+          final wanted =
+              prompt.contains('meisten') ? sorted.last : sorted.first;
+          final days = entries.keys
+              .where((day) => entries[day] == wanted)
+              .toList(growable: false);
+          if (days.length != 1) return const ['chart_answer_not_unique'];
+          expected = days.single;
+        } else if (prompt.contains('zusammen?')) {
+          expected = '${sorted.reduce((a, b) => a + b)}';
+        } else {
+          final more = RegExp(r'am (\S+) mehr da als am (\S+)\?$')
+              .firstMatch(prompt);
+          if (more != null &&
+              entries.containsKey(more[1]) &&
+              entries.containsKey(more[2])) {
+            expected = '${entries[more[1]]! - entries[more[2]]!}';
+          }
+        }
+        if (expected != null) {
+          return answer == expected ? const [] : const ['chart_answer_wrong'];
+        }
+      }
+    }
     final change = RegExp(r'^Wie viele (\d+)-€-(Münzen|Scheine) ergeben (\d+) €\?$')
         .firstMatch(prompt);
     if (change != null) {
@@ -141,15 +219,9 @@ class TaskQualityGuard {
       return count != null && int.parse(count[1]!) == total ~/ denomination
           ? const [] : const ['money_change_wrong_count'];
     }
-    final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
-        .firstMatch(prompt);
-    if (line != null) {
-      final first = int.parse(line[1]!);
-      final second = int.parse(line[2]!);
-      final last = int.parse(line[3]!);
-      if (last != second + 2 * (second - first)) {
-        return const ['number_line_rule_unproved'];
-      }
+    final line = _MissingInLine.parse(prompt);
+    if (line != null && line.missing == null) {
+      return const ['number_line_rule_unproved'];
     }
     return const [];
   }
@@ -179,14 +251,18 @@ class TaskQualityGuard {
     }
     if (task.unit == 'Regeln kombinieren') {
       final rule = RegExp(
-        r'größer als (\d+), kleiner als (\d+) und gerade\?',
+        r'größer als (\d+), kleiner als (\d+) und (gerade|ungerade|in der [345]er-Reihe)\?',
       ).firstMatch(task.prompt);
       if (rule == null) return const ['combined_rule_unproved'];
       final lower = int.parse(rule[1]!);
       final upper = int.parse(rule[2]!);
+      final property = rule[3]!;
       final matching = choices.where((choice) {
         final value = int.tryParse(choice);
-        return value != null && value > lower && value < upper && value.isEven;
+        return value != null &&
+            value > lower &&
+            value < upper &&
+            combinedRuleProperty(property, value);
       }).toList(growable: false);
       return [
         if (matching.length != 1) 'combined_rule_not_exactly_one_choice',
@@ -205,7 +281,7 @@ class TaskQualityGuard {
       return const <String>['zero_fraction_denominator'];
     }
     final fractionExpansion = RegExp(
-        r'^Erweitere den Bruch (\d+)/(\d+) mit (\d+)\. Wie heißt der neue Bruch\?$')
+        r'^(?:Knobelaufgabe: )?Erweitere den Bruch (\d+)/(\d+) mit (\d+)\. Wie heißt der neue Bruch\?$')
         .firstMatch(prompt);
     if (fractionExpansion != null) {
       final numerator = int.parse(fractionExpansion[1]!);
@@ -221,8 +297,39 @@ class TaskQualityGuard {
           ? const []
           : const ['fraction_expansion_wrong_representation'];
     }
+    // Division mit Rest: „499 : 4“ hat die Lösung „124 Rest 3“. Der Rest
+    // muss kleiner als der Divisor sein und die Probe muss aufgehen.
+    final division = RegExp(
+        r'^(?:Schriftlich:\s*)?(\d+)\s*[:÷]\s*(\d+)\s*=\s*\?$')
+        .firstMatch(prompt);
+    final withRest = RegExp(r'^(\d+) Rest (\d+)$').firstMatch(answer);
+    if (division != null && withRest != null) {
+      final dividend = int.parse(division[1]!);
+      final divisor = int.parse(division[2]!);
+      final quotient = int.parse(withRest[1]!);
+      final rest = int.parse(withRest[2]!);
+      return rest > 0 && rest < divisor && quotient * divisor + rest == dividend
+          ? const <String>[]
+          : const <String>['division_remainder_wrong'];
+    }
     final expected = _expectedValue(prompt);
     if (expected == null) return const <String>[];
+    // Umfang und Flächeninhalt tragen ihre Einheit auf der Karte: „22 cm“,
+    // „88 cm²“. Die Einheit muss zur Frage passen.
+    final measured = RegExp(r'^(\d+) (cm²?)$').firstMatch(answer);
+    if (measured != null) {
+      final asksArea = prompt.contains('Flächeninhalt');
+      final asksPerimeter = prompt.contains('Umfang');
+      if (!asksArea && !asksPerimeter) {
+        return const <String>['numeric_answer_not_parseable'];
+      }
+      if ((measured[2] == 'cm²') != asksArea) {
+        return const <String>['measurement_unit_wrong'];
+      }
+      return _MathValue.parse(measured[1]!)!.key == expected.key
+          ? const <String>[]
+          : const <String>['numeric_answer_wrong_result'];
+    }
     final actual = _MathValue.parse(answer);
     if (actual == null) return const <String>['numeric_answer_not_parseable'];
     return actual.key == expected.key
@@ -261,6 +368,12 @@ class TaskQualityGuard {
     if (letterEnd != null) {
       final word = _word(letterEnd.group(1) ?? '');
       final expected = _word(PrimarySchoolWordData.finalSoundFor(word) ?? '');
+      // Auslautverhärtung: Hund klingt am Ende wie t, wird aber mit d
+      // geschrieben. Eine Lautfrage zum geschriebenen Wort ist dann für Kinder
+      // nicht eindeutig; diese Wörter gehören in die Einheit "Wortende".
+      if (expected.isEmpty && RegExp(r'[bdg]$').hasMatch(word)) {
+        issues.add('final_sound_conflicts_with_spelling');
+      }
       if (expected.isEmpty) return issues;
       if (_word(answer) != expected) issues.add('answer_wrong_final_sound');
       if (choices.where((c) => _word(c) == expected).length != 1) issues.add('final_sound_not_exactly_one_choice');
@@ -385,6 +498,11 @@ class TaskQualityGuard {
 
     final half = RegExp(r'^Was ist die Hälfte von (\d+)\?$').firstMatch(prompt);
     if (half != null) return _MathValue(int.parse(half[1]!), 2);
+    final part = RegExp(r'^Was ist ein (Viertel|Achtel) von (\d+)\?$')
+        .firstMatch(prompt);
+    if (part != null) {
+      return _MathValue(int.parse(part[2]!), part[1] == 'Viertel' ? 4 : 8);
+    }
     final twice = RegExp(r'^Was ist das Doppelte von (\d+)\?$').firstMatch(prompt);
     if (twice != null) return _MathValue(int.parse(twice[1]!) * 2, 1);
     final places = RegExp(r'^Wie viele (Zehner|Einer) hat (\d{2})\?$').firstMatch(prompt);
@@ -401,8 +519,15 @@ class TaskQualityGuard {
       return _MathValue(rectangle[3] == 'Umfang'
           ? 2 * (length + width) : length * width, 1);
     }
+    final square = RegExp(
+        r'^Ein Quadrat hat die Seitenlänge (\d+) cm\. Wie groß ist der (Umfang|Flächeninhalt)\?$')
+        .firstMatch(prompt);
+    if (square != null) {
+      final side = int.parse(square[1]!);
+      return _MathValue(square[2] == 'Umfang' ? 4 * side : side * side, 1);
+    }
     final average = RegExp(
-        r'^Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\. Wie viele Sterne im Mittelwert\?$')
+        r'^(?:Knobelaufgabe: )?Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\. (?:Wie viele Sterne im Mittelwert\?|Sie teilen alle Sterne gerecht auf\. Wie viele Sterne bekommt jedes Kind\?)$')
         .firstMatch(prompt);
     if (average != null) {
       return _MathValue(int.parse(average[1]!) + int.parse(average[2]!) +
@@ -414,19 +539,13 @@ class TaskQualityGuard {
     if (chart != null) {
       return _MathValue(int.parse(chart[1]!) + int.parse(chart[2]!), 1);
     }
-    final times = RegExp(r'^Wie oft (\d+) ist (\d+)\?$').firstMatch(prompt);
+    final times = RegExp(r'^Wie oft (?:passt )?(\d+) (?:ist|in) (\d+)\?$')
+        .firstMatch(prompt);
     if (times != null && int.parse(times[1]!) > 0) {
       return _MathValue(int.parse(times[2]!), int.parse(times[1]!));
     }
-    final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
-        .firstMatch(prompt);
-    if (line != null) {
-      final first = int.parse(line[1]!);
-      final second = int.parse(line[2]!);
-      final last = int.parse(line[3]!);
-      final step = second - first;
-      if (last == second + 2 * step) return _MathValue(second + step, 1);
-    }
+    final missing = _MissingInLine.parse(prompt)?.missing;
+    if (missing != null) return _MathValue(missing, 1);
     const conversions = [
       (r'^Wie viele Zentimeter sind (\d+) Meter(?: und (\d+) Zentimeter)?\?$', 100),
       (r'^Wie viele Gramm sind (\d+) kg(?: und (\d+) g)?\?$', 1000),
@@ -526,6 +645,42 @@ class TaskQualityGuard {
 }
 
 
+/// „Welche Zahl fehlt? 5, _, 15, 20“: vier Stellen, genau eine Lücke. Die
+/// sichtbaren Zahlen müssen denselben Schritt haben, sonst ist die Regel
+/// nicht belegt und [missing] bleibt null.
+class _MissingInLine {
+  const _MissingInLine(this.missing);
+  final int? missing;
+
+  static _MissingInLine? parse(String prompt) {
+    final match = RegExp(r'^Welche Zahl fehlt\? ((?:\d+|_)(?:, (?:\d+|_)){3})$')
+        .firstMatch(prompt);
+    if (match == null) return null;
+    final items = match[1]!.split(', ');
+    final gap = items.indexOf('_');
+    if (gap < 0 || items.where((item) => item == '_').length != 1) {
+      return const _MissingInLine(null);
+    }
+    final known = <int>[
+      for (var i = 0; i < items.length; i++)
+        if (i != gap) i,
+    ];
+    final first = known[0], second = known[1];
+    final distance = int.parse(items[second]) - int.parse(items[first]);
+    if (distance <= 0 || distance % (second - first) != 0) {
+      return const _MissingInLine(null);
+    }
+    final step = distance ~/ (second - first);
+    for (final index in known) {
+      if (int.parse(items[index]) !=
+          int.parse(items[first]) + step * (index - first)) {
+        return const _MissingInLine(null);
+      }
+    }
+    return _MissingInLine(int.parse(items[first]) + step * (gap - first));
+  }
+}
+
 /// Exact arithmetic for integer, decimal and fraction answer cards.
 class _MathValue {
   const _MathValue(this.numerator, this.denominator);
@@ -561,4 +716,12 @@ class _MathValue {
       numerator * other.numerator, denominator * other.denominator);
   _MathValue divide(_MathValue other) => _MathValue(
       numerator * other.denominator, denominator * other.numerator);
+}
+
+int _power10(int exponent) {
+  var value = 1;
+  for (var i = 0; i < exponent; i++) {
+    value *= 10;
+  }
+  return value;
 }

@@ -14,8 +14,8 @@ import 'core/lumo_voice.dart';
 import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
 import 'features/companion/lumo_lottie.dart';
-import 'features/games/lumo_cards/learning_question_repository.dart';
 import 'features/onboarding/lumo_onboarding_holo_screen.dart';
+import 'widgets/fox/stage/lumo_actor_library.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,10 +48,9 @@ Future<void> main() async {
   // persistierten Mute-Status. Spielt von sich aus noch nichts ab -
   // das macht der jeweilige Screen ueber play() im initState.
   await LumoMusic.instance.init();
-  // PR F 2026-05-23: 200 Lernfragen aus 4 JSON-Bundles laden. Wenn
-  // Bundles fehlen / kaputt sind, faellt das Repository auf die
-  // hardcoded Standard-Frage zurueck. Kein App-Block bei Fehler.
-  await LearningQuestionRepository.instance.init();
+  // Lumos Bewegungsbilder für die Lernbühne. Fehlt der Satz, bleibt die Bühne
+  // aus und der bisherige Lumo-Knopf bleibt sichtbar.
+  LumoActorLibrary.preload().ignore();
   runApp(const LumoApp());
 }
 
@@ -193,7 +192,6 @@ class _LumoAppState extends State<LumoApp> with WidgetsBindingObserver {
     // Diese Assets werden in fast jedem Screen geladen - Vorab-Dekodieren
     // verhindert sichtbare Lade-Sprünge beim ersten Anzeigen.
     const hotPaths = <String>[
-      'assets/lumo_cards/cards/back/card_back_default.png',
       'assets/lumo_cards/avatars/avatar_player_blue_boy.png',
       'assets/lumo_cards/avatars/avatar_player_red_girl.png',
       'assets/lumo_cards/avatars/avatar_player_green_boy_glasses.png',

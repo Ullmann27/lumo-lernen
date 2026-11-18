@@ -33,6 +33,7 @@ class LumoFreeCompanion extends StatefulWidget {
       this.offerOnly = false,
       this.guide,
       this.menuPresenter,
+      this.headless = false,
       this.proactive = true});
   final LumoCompanionScene scene;
   final ValueChanged<LumoCompanionAction> onAction;
@@ -49,6 +50,10 @@ class LumoFreeCompanion extends StatefulWidget {
   final bool offerOnly;
   final LumoCompanionGuide? guide;
   final LumoCompanionMenuPresenter? menuPresenter;
+
+  /// Unsichtbar: Lumo steht als ganze Figur auf der Lernbühne. Menü, Ideen
+  /// und App-Erklärung bleiben erreichbar, wenn er dort angetippt wird.
+  final bool headless;
   @override
   State<LumoFreeCompanion> createState() => _LumoFreeCompanionState();
 }
@@ -93,6 +98,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     LumoCompanionRequests.instance.moveTarget.addListener(_noteActivity);
     LumoCompanionRequests.instance.appExplanationRequested
         .addListener(_explainAppRequested);
+    LumoCompanionRequests.instance.companionMenuRequested
+        .addListener(_menuRequested);
     _initiative =
         Timer.periodic(const Duration(seconds: 2), (_) => _considerIdea());
   }
@@ -341,6 +348,12 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     _noteActivity();
   }
 
+  void _menuRequested() {
+    if (mounted && widget.headless && _visible) {
+      unawaited(_showMenu(proposal: _proposal ?? _guide.choose(widget.scene)));
+    }
+  }
+
   void _explainAppRequested() {
     if (mounted && _visible) _perform(LumoCompanionAction.explainApp);
   }
@@ -462,6 +475,8 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
     LumoCompanionRequests.instance.moveTarget.removeListener(_noteActivity);
     LumoCompanionRequests.instance.appExplanationRequested
         .removeListener(_explainAppRequested);
+    LumoCompanionRequests.instance.companionMenuRequested
+        .removeListener(_menuRequested);
     _initiative?.cancel();
     _turnTimer?.cancel();
     _reactionTimer?.cancel();
@@ -504,6 +519,9 @@ class _LumoFreeCompanionState extends State<LumoFreeCompanion>
           ]),
         ]),
       );
+    }
+    if (widget.headless) {
+      return const SizedBox.shrink(key: ValueKey('lumo-companion-headless'));
     }
     if (widget.floating) return _buildFloating();
     final foxSize = widget.compact ? 52.0 : 72.0;

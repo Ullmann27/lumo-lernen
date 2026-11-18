@@ -40,7 +40,8 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 172;
-      final footerScale = MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6);
+      final footerScale =
+          MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6);
       final artworkSize = compact ? 51.0 : 76.0;
       final radius = BorderRadius.circular(24);
       final progress = (completed / 10).clamp(0.0, 1.0);
@@ -66,7 +67,8 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: radius,
                   border: Border.all(
-                    color: accent.withValues(alpha: .74), width: 1.7,
+                    color: accent.withValues(alpha: .74),
+                    width: 1.7,
                   ),
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -147,16 +149,20 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                           Expanded(
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(
-                                compact ? 10 : 14, compact ? 14 : 17,
-                                compact ? 6 : 10, 7,
+                                compact ? 10 : 14,
+                                compact ? 14 : 17,
+                                compact ? 6 : 10,
+                                7,
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           shortName,
@@ -196,16 +202,19 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                                         shape: BoxShape.circle,
                                         gradient: RadialGradient(colors: [
                                           Colors.white,
-                                          Color.lerp(accent, Colors.white, .47)!,
+                                          Color.lerp(
+                                              accent, Colors.white, .47)!,
                                           accent.withValues(alpha: .53),
                                         ]),
                                         border: Border.all(
-                                          color: Colors.white.withValues(alpha: .95),
+                                          color: Colors.white
+                                              .withValues(alpha: .95),
                                           width: 2.5,
                                         ),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: accent.withValues(alpha: .52),
+                                            color:
+                                                accent.withValues(alpha: .52),
                                             blurRadius: 15,
                                             offset: const Offset(0, 7),
                                           ),
@@ -223,7 +232,8 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                                                 errorBuilder: (_, __, ___) =>
                                                     Icon(icon,
                                                         size: compact ? 28 : 40,
-                                                        color: const Color(0xFF153B68)),
+                                                        color: const Color(
+                                                            0xFF153B68)),
                                               ),
                                             ),
                                     ),
@@ -237,7 +247,10 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                             // never hide overflowing progress or reward labels.
                             height: 65 * footerScale,
                             padding: EdgeInsets.fromLTRB(
-                              compact ? 10 : 13, 7, compact ? 10 : 13, 7,
+                              compact ? 10 : 13,
+                              7,
+                              compact ? 10 : 13,
+                              7,
                             ),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
@@ -250,7 +263,8 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                               ),
                               border: Border(
                                 top: BorderSide(
-                                  color: accent.withValues(alpha: .9), width: 1.4,
+                                  color: accent.withValues(alpha: .9),
+                                  width: 1.4,
                                 ),
                               ),
                             ),
@@ -343,21 +357,24 @@ class _LumoSubjectStarlightPainter extends CustomPainter {
       ..strokeWidth = .8
       ..strokeCap = StrokeCap.round;
     const locations = <(double, double, double)>[
-      (.12, .19, 4.5), (.83, .12, 3.8), (.56, .42, 2.8),
-      (.23, .59, 3.1), (.88, .55, 2.4),
+      (.12, .19, 4.5),
+      (.83, .12, 3.8),
+      (.56, .42, 2.8),
+      (.23, .59, 3.1),
+      (.88, .55, 2.4),
     ];
     for (final (x, y, radius) in locations) {
       final center = Offset(size.width * x, size.height * y * .64);
       final path = Path()
         ..moveTo(center.dx, center.dy - radius * 1.8)
-        ..quadraticBezierTo(center.dx + radius * .27,
-            center.dy - radius * .27, center.dx + radius, center.dy)
-        ..quadraticBezierTo(center.dx + radius * .27,
-            center.dy + radius * .27, center.dx, center.dy + radius * 1.8)
-        ..quadraticBezierTo(center.dx - radius * .27,
-            center.dy + radius * .27, center.dx - radius, center.dy)
-        ..quadraticBezierTo(center.dx - radius * .27,
-            center.dy - radius * .27, center.dx, center.dy - radius * 1.8)
+        ..quadraticBezierTo(center.dx + radius * .27, center.dy - radius * .27,
+            center.dx + radius, center.dy)
+        ..quadraticBezierTo(center.dx + radius * .27, center.dy + radius * .27,
+            center.dx, center.dy + radius * 1.8)
+        ..quadraticBezierTo(center.dx - radius * .27, center.dy + radius * .27,
+            center.dx - radius, center.dy)
+        ..quadraticBezierTo(center.dx - radius * .27, center.dy - radius * .27,
+            center.dx, center.dy - radius * 1.8)
         ..close();
       canvas.drawPath(path, highlight);
       canvas.drawLine(

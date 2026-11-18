@@ -13,6 +13,7 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_registry.dart';
 import 'package:lumo_lernen/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart';
+import 'package:lumo_lernen/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
@@ -45,6 +46,7 @@ Future<LumoAppState> _open(
   RewardWalletRepository? wallet,
   int? minusSeed,
   int? numberSeed,
+  int? plusSeed,
 }) async {
   final app = await nativeStorageFixture(
       tester, () => LumoAppState(walletRepository: wallet));
@@ -60,7 +62,9 @@ Future<LumoAppState> _open(
           .copyWith(textScaler: TextScaler.linear(textScale)),
       child: child!,
     ),
-    home: topic == 'm1_minus10' && minusSeed != null
+    home: topic == 'm1_plus10' && plusSeed != null
+        ? PlusBis10Screen(appState: app, taskRandom: math.Random(plusSeed))
+        : topic == 'm1_minus10' && minusSeed != null
         ? MinusBis10Screen(appState: app, taskRandom: math.Random(minusSeed))
         : topic == 'm1_zahlen10' && numberSeed != null
             ? ZahlenBis10Screen(
@@ -274,6 +278,45 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     });
   }
+
+  testWidgets(
+      'Plus with eight or nine apples keeps every answer above the navigation',
+      (tester) async {
+    // Since all sums up to 10 are practised, the first group can hold 8 or 9
+    // apples. On a 360dp phone with system bars the taller apple field used
+    // to push the answers under the bottom navigation (731.6 > 710).
+    final large = <String>{};
+    for (var seed = 0; seed < 60 && large.length < 4; seed++) {
+      await _viewport(tester, const Size(360, 800), systemBars: true);
+      await _open(tester, 'm1_plus10', plusSeed: seed);
+      final task = tester
+          .widgetList<Text>(find.byType(Text))
+          .map((text) => text.data ?? '')
+          .firstWhere((text) => RegExp(r'^\d+ \+ \d+ = \?$').hasMatch(text));
+      final numbers = RegExp(r'\d+')
+          .allMatches(task)
+          .map((match) => int.parse(match[0]!))
+          .toList();
+      if (math.max(numbers[0], numbers[1]) >= 8) {
+        large.add(task);
+        final navigation = tester.getRect(find.byType(LumoBottomNavigation));
+        final choices = _answers('m1_plus10');
+        expect(choices, findsNWidgets(_choiceCount('m1_plus10')));
+        for (final choice in choices.evaluate()) {
+          final rect = tester.getRect(find.byWidget(choice.widget));
+          expect(rect.bottom, lessThanOrEqualTo(navigation.top),
+              reason: '$task: an answer is covered by the navigation');
+        }
+        expect(find.byType(LumoQuantityArt),
+            findsNWidgets(numbers[0] + numbers[1]),
+            reason: '$task: every apple stays visible');
+      }
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    }
+    expect(large.length, greaterThanOrEqualTo(3),
+        reason: 'The seeds must cover several tasks with 8 or 9 apples');
+  });
 
   testWidgets('visible Plus quantities equal the actual sum, without emoji',
       (tester) async {

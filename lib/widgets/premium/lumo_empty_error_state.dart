@@ -24,7 +24,7 @@ class LumoEmptyErrorState extends StatelessWidget {
     super.key,
     this.title = 'Cloud gerade nicht erreichbar',
     this.message =
-        'Mein Online-Lehrer ist gerade weg. Wir koennen aber offline weiter ueben!',
+        'Mein Online-Lehrer ist gerade weg. Wir können aber offline weiter üben!',
     this.icon = Icons.cloud_off_rounded,
     this.iconColor,
     this.actionLabel = 'Nochmal versuchen',
@@ -35,7 +35,7 @@ class LumoEmptyErrorState extends StatelessWidget {
   const LumoEmptyErrorState.empty({
     super.key,
     this.title = 'Hier ist noch nichts',
-    this.message = 'Sobald du loslegst, fuelle ich diesen Bereich!',
+    this.message = 'Sobald du loslegst, fülle ich diesen Bereich!',
     this.icon = Icons.auto_awesome_rounded,
     this.iconColor,
     this.actionLabel,

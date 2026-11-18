@@ -253,8 +253,8 @@ class _FooterTip extends StatelessWidget {
           SizedBox(width: 10),
           Expanded(
             child: Text(
-              'Jede richtige Antwort laesst deine Inseln wachsen. '
-              'Loese 60 Aufgaben pro Fach, dann blueht es richtig!',
+              'Jede richtige Antwort lässt deine Inseln wachsen. '
+              'Löse 60 Aufgaben pro Fach, dann blüht es richtig!',
               style: TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 12.5,
@@ -465,9 +465,9 @@ class _IslandCard extends StatelessWidget {
   String _hintFor(_IslandData d) {
     switch (d.growthStage) {
       case 2:
-        return 'Deine Insel blueht! Lumo schaut zufrieden aus.';
+        return 'Deine Insel blüht! Lumo schaut zufrieden aus.';
       case 1:
-        return 'Noch ${d.nextMilestone - d.total} Antworten zur naechsten Stufe.';
+        return 'Noch ${d.nextMilestone - d.total} Antworten zur nächsten Stufe.';
       default:
         return 'Beantworte ${d.nextMilestone - d.total} Aufgaben um Pflanzen wachsen zu lassen!';
     }

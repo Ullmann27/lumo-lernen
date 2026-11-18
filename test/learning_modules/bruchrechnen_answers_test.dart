@@ -169,10 +169,15 @@ void main() {
     await tester.tap(topic);
     await _frames(tester);
     expect(find.byType(BruchrechnenScreen), findsOneWidget);
+    // Geübt wird das Benennen von Brüchen, nicht das Rechnen.
+    expect(find.text('Brüche erkennen'), findsWidgets);
 
     for (var task = 0; task < 8; task++) {
       expect(find.text('Bruch ${task + 1} / 8'), findsOneWidget);
       final expected = _pizzaFraction(tester);
+      // Befund L9: Die ersten beiden Aufgaben waren immer 1/2.
+      if (task == 0) expect(expected, '1/2');
+      if (task == 1) expect(expected, anyOf('1/4', '3/4'));
       final options = _options(tester);
       expect(options, hasLength(4));
       expect(options.where((option) => _sameValue(option, expected)),

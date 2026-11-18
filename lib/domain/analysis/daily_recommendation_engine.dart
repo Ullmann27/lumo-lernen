@@ -1,6 +1,9 @@
 import '../../core/progress_repository.dart';
 import 'lumo_analysis_domain.dart';
 
+int _byIndependentEvidence(SkillRecord a, SkillRecord b) =>
+    b.assessed.correct.compareTo(a.assessed.correct);
+
 class DailyRecommendationEngine {
   const DailyRecommendationEngine();
 
@@ -12,8 +15,10 @@ class DailyRecommendationEngine {
   }) {
     final weakSkills = skills.values.toList(growable: false)
       ..sort((a, b) => b.weaknessScore.compareTo(a.weaknessScore));
-    final strongSkills = skills.values.where((skill) => skill.mastery >= 70 && skill.attempts >= 3).toList(growable: false)
-      ..sort((a, b) => b.mastery.compareTo(a.mastery));
+    // A strength needs evidence: enough tasks solved alone on at least two
+    // different days (see SkillEvidence), not one lucky answer.
+    final strongSkills = skills.values.where((skill) => skill.evidence.isSecure).toList(growable: false)
+      ..sort(_byIndependentEvidence);
     final latestReading = readingSummaries.isEmpty ? null : readingSummaries.first;
     final blocks = <DailyRecommendationBlock>[];
 
@@ -21,7 +26,7 @@ class DailyRecommendationEngine {
       final weak = weakSkills.first;
       blocks.add(DailyRecommendationBlock(
         title: 'Foerderblock: ${weak.unit}',
-        description: 'Kurz und ruhig üben. Lumo nimmt zuerst einen leichteren Schritt.',
+        description: 'Kurz und ruhig üben. Lumo hilft Schritt für Schritt.',
         subject: weak.subject,
         unit: weak.unit,
         minutes: 6,
@@ -177,6 +182,11 @@ class ParentReportEngine {
     );
   }
 
+  /// The counted facts instead of a percentage, e.g.
+  /// "Plus bis 10 (8 Aufgaben allein gelöst an 3 Tagen)".
+  static String _strengthLabel(SkillRecord skill) =>
+      '${skill.unit} (${skill.evidence.facts})';
+
   SubjectAnalysisBlock _subjectBlock(String subject, Map<String, SkillRecord> skills) {
     final records = skills.values.where((skill) => skill.subject == subject).toList(growable: false);
     if (records.isEmpty) {
@@ -191,11 +201,11 @@ class ParentReportEngine {
     }
     final weak = records.where((skill) => skill.weaknessScore > .25).toList(growable: false)
       ..sort((a, b) => b.weaknessScore.compareTo(a.weaknessScore));
-    final strong = records.where((skill) => skill.mastery >= 70).toList(growable: false)
-      ..sort((a, b) => b.mastery.compareTo(a.mastery));
+    final strong = records.where((skill) => skill.evidence.isSecure).toList(growable: false)
+      ..sort(_byIndependentEvidence);
     return SubjectAnalysisBlock(
       subject: subject,
-      strengths: strong.take(3).map((skill) => '${skill.unit} (${skill.mastery}%)').toList(growable: false),
+      strengths: strong.take(3).map(_strengthLabel).toList(growable: false),
       weaknesses: weak.take(3).map((skill) => '${skill.unit}: ${skill.wrong} Fehler').toList(growable: false),
       errorPatterns: weak.take(3).map((skill) => skill.unit).toList(growable: false),
       recommendedAction: weak.isEmpty ? '$subject mit Erfolgsblock festigen.' : '${weak.first.unit} in kleinen Schritten wiederholen.',
@@ -208,7 +218,7 @@ class ParentReportEngine {
     final latestReading = summaries.isEmpty ? null : summaries.first;
     final weak = deutsch.where((skill) => skill.weaknessScore > .25).toList(growable: false)
       ..sort((a, b) => b.weaknessScore.compareTo(a.weaknessScore));
-    final strengths = deutsch.where((skill) => skill.mastery >= 70).take(3).map((skill) => '${skill.unit} (${skill.mastery}%)').toList(growable: true);
+    final strengths = deutsch.where((skill) => skill.evidence.isSecure).take(3).map(_strengthLabel).toList(growable: true);
     if (latestReading != null && latestReading.averageAlignmentScore >= .82) strengths.add('Lesesicherheit ${(latestReading.averageAlignmentScore * 100).round()}%');
     final weaknesses = weak.take(3).map((skill) => '${skill.unit}: ${skill.wrong} Fehler').toList(growable: true);
     if (latestReading != null && latestReading.problemWords.isNotEmpty) weaknesses.add('Problemwoerter: ${latestReading.problemWords.take(3).join(', ')}');

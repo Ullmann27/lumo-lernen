@@ -318,7 +318,14 @@ class LearningConversationContractTest(unittest.TestCase):
         jdk = Path(os.environ.get('JAVA_HOME', '/nonexistent')) / 'bin'
         java = str(jdk / 'java') if (jdk / 'java').is_file() else shutil.which('java')
         javac = str(jdk / 'javac') if (jdk / 'javac').is_file() else shutil.which('javac')
-        libraries = Path(os.environ.get('LUMO_KOTLIN_LIB_DIR', '/nonexistent'))
+        # Same lookup order as the other native contract tests: explicit
+        # variable, then the Gradle installation that is already present.
+        candidates = [Path(os.environ.get('LUMO_KOTLIN_LIB_DIR', '/nonexistent')),
+                      Path(os.environ.get('GRADLE_HOME', '/nonexistent')) / 'lib']
+        if shutil.which('gradle'):
+            candidates.append(Path(shutil.which('gradle')).resolve().parents[1] / 'lib')
+        libraries = next((path for path in candidates
+                          if list(path.glob('kotlin-compiler-embeddable-*.jar'))), candidates[0])
         json_jar = Path(os.environ.get('LUMO_JSON_JAR', '/nonexistent'))
         self.assertTrue(java and javac, 'Existing JDK required; no download fallback')
         self.assertTrue(list(libraries.glob('kotlin-compiler-embeddable-*.jar')), 'Set LUMO_KOTLIN_LIB_DIR')

@@ -7,9 +7,6 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/lumo_sound.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_game_controller.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_models.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_rules.dart';
 import 'package:lumo_lernen/domain/games/memory_board.dart';
 import 'package:lumo_lernen/features/games/memory/lumo_memory_game.dart';
 
@@ -17,150 +14,11 @@ Finder _memoryBacks() => find.byWidgetPredicate((w) =>
     w.key is ValueKey<String> &&
     (w.key! as ValueKey<String>).value.startsWith('memory-back-'));
 
-List<LumoCard> _allCards(LumoCardsGameState state) => [
-      ...state.players.expand((p) => p.hand),
-      ...state.drawPile,
-      ...state.discardPile,
-    ];
-
-void _checkDeck(LumoCardsGameState state, Set<String> expected) {
-  final cards = _allCards(state);
-  expect(cards.map((c) => c.id).toSet(), expected);
-  expect(cards.length, expected.length, reason: 'No card may exist twice');
-}
-
-LumoCard _number(String id, int n) => LumoCard(
-      id: id,
-      color: LumoCardColor.orange,
-      type: LumoCardType.number,
-      number: n,
-    );
-
 void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({});
     LumoVoice.instance.isEnabled = false;
     LumoSound.instance.muted = true;
-  });
-
-  test('Recycling keeps exactly one copy and the newly played penalty on top',
-      () {
-    final older = _number('older', 3);
-    final top = _number('top', 5);
-    final penalty = LumoCard(
-        id: 'rain', color: LumoCardColor.orange, type: LumoCardType.starRain);
-    final state = LumoCardsGameState(
-      players: [
-        LumoPlayer(id: 'a', name: 'A', hand: [penalty, _number('held', 6)]),
-        LumoPlayer(id: 'b', name: 'B', hand: [_number('opponent', 8)]),
-      ],
-      currentPlayerIndex: 0,
-      drawPile: [],
-      discardPile: [older, top],
-      selectedColor: top.color,
-      phase: GamePhase.playing,
-    );
-    final next =
-        LumoCardsRules.applyPlay(state: state, card: penalty, rng: Random(4));
-    _checkDeck(next, _allCards(state).map((c) => c.id).toSet());
-    expect(next.topCard, penalty);
-    expect(next.discardPile, [penalty]);
-    expect(next.players[1].hand.length, 3);
-    // An old callback or a fabricated card must not get into the game.
-    expect(LumoCardsRules.applyPlay(state: state, card: _number('foreign', 2)),
-        same(state));
-    final drawn = LumoCardsRules.applyDraw(state: state, rng: Random(5));
-    _checkDeck(drawn, _allCards(state).map((c) => c.id).toSet());
-    expect(drawn.topCard, top);
-    expect(drawn.discardPile, [top]);
-  });
-
-  testWidgets(
-      '16 complete solo Cards rounds handle bot color and learning phases',
-      (tester) async {
-    final botPhases = <GamePhase>{};
-    for (var seed = 0; seed < 16; seed++) {
-      final controller = LumoCardsGameController(
-        player1Name: 'Du',
-        player2Name: 'Lumo',
-        seed: seed,
-        grade: seed % 4 + 1,
-        enableVoice: false,
-      );
-      final expected = _allCards(controller.state).map((c) => c.id).toSet();
-      controller.addListener(() {
-        if (controller.state.currentPlayerIndex == 1) {
-          botPhases.add(controller.state.phase);
-        }
-      });
-      var moves = 0;
-      while (controller.state.phase != GamePhase.gameOver && moves < 3000) {
-        _checkDeck(controller.state, expected);
-        final s = controller.state;
-        if (s.currentPlayerIndex == 1) {
-          await tester.pump(const Duration(milliseconds: 1700));
-        } else {
-          switch (s.phase) {
-            case GamePhase.playing:
-              final playable = s.currentPlayer.hand.where((c) =>
-                  LumoCardsRules.isPlayable(
-                      card: c,
-                      topCard: s.topCard!,
-                      selectedColor: s.selectedColor));
-              if (playable.isEmpty) {
-                controller.drawCard();
-              } else {
-                controller.playCard(playable.first);
-              }
-            case GamePhase.chooseColor:
-              controller.selectColor(LumoCardColor.orange);
-            case GamePhase.learningQuestion:
-              final unchanged = controller.state;
-              controller.answerLearningQuestion(-1);
-              expect(controller.state, same(unchanged));
-              controller.answerLearningQuestion(
-                  s.pendingLearningQuestion!.correctIndex);
-            case GamePhase.passDevice:
-              controller.confirmHandover();
-            case GamePhase.gameOver:
-              break;
-          }
-        }
-        moves++;
-      }
-      expect(controller.state.phase, GamePhase.gameOver,
-          reason: 'Seed $seed must reach a result rather than hang');
-      _checkDeck(controller.state, expected);
-      expect(controller.state.players[controller.state.winnerIndex!].hand,
-          isEmpty);
-      controller.restart();
-      expect(controller.state.phase, GamePhase.playing);
-      expect(controller.state.players[0].hand.length, 7);
-      expect(controller.state.players[1].hand.length, 7);
-      controller.dispose();
-    }
-    expect(botPhases,
-        containsAll([GamePhase.chooseColor, GamePhase.learningQuestion]));
-  });
-
-  testWidgets('Cards bot waits on pause; restart cancels the pending old turn',
-      (tester) async {
-    final controller = LumoCardsGameController(
-        player1Name: 'Du', player2Name: 'Lumo', seed: 20, enableVoice: false);
-    controller.drawCard(); // pass to Lumo, timer is now armed
-    expect(controller.state.currentPlayerIndex, 1);
-    controller.turnClock.pause();
-    final paused = controller.state;
-    await tester.pump(const Duration(seconds: 8));
-    expect(controller.state, same(paused));
-    controller.turnClock.resume();
-    await tester.pump(const Duration(milliseconds: 1700));
-    expect(controller.state, isNot(same(paused)));
-    controller.restart();
-    final restarted = controller.state;
-    await tester.pump(const Duration(seconds: 8));
-    expect(controller.state, same(restarted));
-    controller.dispose();
   });
 
   testWidgets(

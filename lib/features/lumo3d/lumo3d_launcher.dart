@@ -25,7 +25,6 @@ Future<bool> launchLumo3D(
   String? subject,
   LumoAppState? appState,
   NativeLearningActivity? learning,
-  String? cardsToken,
   String? connectFourToken,
   String? tableToken,
   String? legacyGameKey,
@@ -42,10 +41,6 @@ Future<bool> launchLumo3D(
       (appState == null ||
           !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
               .contains(scene))) {
-    return false;
-  }
-  if (scene == 'cards' &&
-      (cardsToken == null || !RegExp(r'^[a-f0-9]{32}$').hasMatch(cardsToken))) {
     return false;
   }
   if ((scene == 'connect_four') != (connectFourToken != null) ||
@@ -217,7 +212,6 @@ Future<bool> launchLumo3D(
             ((appState?.state.settings.voiceRate ?? 0.35) / 0.35)
                 .clamp(0.70, 1.60),
       },
-      if (scene == 'cards') 'cardsToken': cardsToken,
       if (scene == 'connect_four') 'connectFourToken': connectFourToken,
       if (tableGame) 'tableToken': tableToken,
     });
@@ -229,7 +223,8 @@ Future<bool> launchLumo3D(
         _showLaunchMessage(
           context,
           'Die Rückkehr aus dem Spiel wurde nicht bestätigt. '
-          'Bitte versuche es erneut.',
+          'Bitte versuche es erneut.'
+          '$gameStartLogHint',
         );
       }
       return false;
@@ -259,10 +254,11 @@ Future<bool> launchLumo3D(
     if (context.mounted) {
       _showLaunchMessage(
         context,
-        error.code == 'game_running'
-            ? 'Ein Spiel ist bereits geöffnet oder wird gerade beendet. '
-                'Bitte versuche es nach der Rückkehr erneut.'
-            : 'Das Spiel konnte nicht starten. Bitte versuche es erneut.',
+        (error.code == 'game_running'
+                ? 'Ein Spiel ist bereits geöffnet oder wird gerade beendet. '
+                    'Bitte versuche es nach der Rückkehr erneut.'
+                : 'Das Spiel konnte nicht starten. Bitte versuche es erneut.') +
+            gameStartLogHint,
       );
     }
     return false;
@@ -279,7 +275,8 @@ Future<bool> launchLumo3D(
     if (context.mounted) {
       _showLaunchMessage(
         context,
-        'Das Spiel konnte nicht starten. Bitte versuche es erneut.',
+        'Das Spiel konnte nicht starten. Bitte versuche es erneut.'
+        '$gameStartLogHint',
       );
     }
     return false;
@@ -313,6 +310,9 @@ Future<String> _childSaveKey({
     isCurrent: isCurrent,
   );
 }
+
+/// Hinweis in jeder Fehlermeldung eines gescheiterten nativen Spielstarts.
+const gameStartLogHint = '\nDetails im Elternbereich → Spiel-Startprotokoll.';
 
 void _showLaunchMessage(BuildContext context, String message) {
   if (!context.mounted) return;

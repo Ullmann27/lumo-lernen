@@ -38,8 +38,8 @@ jobs:
         run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/games_screen_flow_test.dart
       - name: Kontrollgang 08 · Vier Gewinnt – Fold/Touchtasten
         run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/connect_four_fold_controls_test.dart
-      - name: Kontrollgang 09 · Lumo Cards – spielbarer Tisch
-        run: flutter test --no-pub --reporter=expanded --timeout=60s test/lumo_cards_session_ui_test.dart
+      - name: Kontrollgang 09 · Kartentisch und Lumo Lauf – Start und Belohnung
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/embedded_game_service_test.dart test/design/parent_games_polish_test.dart
       - name: Kontrollgang 10 · Memory – Profil und Speicher
         run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/memory_profile_storage_test.dart
   learning-data-controls:

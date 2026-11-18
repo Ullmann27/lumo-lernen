@@ -27,10 +27,7 @@ import '../shared/widgets/lumo_mission_journey.dart';
 import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
-import 'lumo_cards/lumo_cards_screen.dart';
-import 'lumo_cards/lumo_cards_cup_screen.dart';
 import 'star_trail/star_trail_screen.dart';
-import 'lumo_cards/lumo_cards_showcase_screen.dart';
 import 'memory/lumo_memory_game.dart';
 import 'mini_games/color_boxes_game.dart';
 import 'mini_games/letter_fill_game.dart';
@@ -253,50 +250,6 @@ class _GamesContentState extends State<GamesContent> {
     }
   }
 
-  Future<void> _launchLumoCards() async {
-    if (!await _allowLaunch() || !mounted) return;
-    if (_launchingGame) return;
-    setState(() => _launchingGame = true);
-    HapticFeedback.mediumImpact();
-    try {
-      // One tap opens the actual branded world; both buttons enter the
-      // existing, tested live card engine (solo or local pass-and-play).
-      await Navigator.of(context).push<void>(
-        MaterialPageRoute<void>(
-          builder: (hubContext) => LumoCardsShowcaseScreen(
-            onCup: () => Navigator.of(hubContext).push<void>(MaterialPageRoute<void>(
-              builder: (_) => LumoCardsCupScreen(appState: widget.appState))),
-            onSolo: () => Navigator.of(hubContext).push<void>(
-              MaterialPageRoute<void>(
-                builder: (_) => LumoCardsScreen(
-                  appState: widget.appState,
-                  player1Name: 'Du',
-                  player2Name: 'Lumo',
-                  vsBot: true,
-                  skipIntro: true,
-                ),
-              ),
-            ),
-            onLocal: () => Navigator.of(hubContext).push<void>(
-              MaterialPageRoute<void>(
-                builder: (_) => LumoCardsScreen(
-                  appState: widget.appState,
-                  player1Name: 'Spieler 1',
-                  player2Name: 'Spieler 2',
-                  vsBot: false,
-                  skipIntro: true,
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-      if (mounted) await _load();
-    } finally {
-      if (mounted) setState(() => _launchingGame = false);
-    }
-  }
-
   Future<void> _launchLumoMeister() async {
     if (!await _allowLaunch() || !mounted) return;
     if (_launchingGame) return;
@@ -430,8 +383,6 @@ class _GamesContentState extends State<GamesContent> {
     }
     return switch (route.identity) {
       'memory' => _launchMemory,
-      // Main Cards portal must open Lumo Cards itself, never Sternenpfad.
-      'cards' => _launchLumoCards,
       'connectFour' => _launchConnectFour,
       'quizShow' => _launchLumoMeister,
       _ => () {},
@@ -445,6 +396,8 @@ class _GamesContentState extends State<GamesContent> {
           SpielweltPortal.village(
             onOpen: () => _launch3D('settlement', livingVillage: true),
           )
+        else if (route.identity == 'chess')
+          SpielweltPortal.chess(onOpen: () => _launch3D('chess'))
         else if (route.identity == 'connectFour')
           SpielweltPortal.connectFour(onOpen: _launchConnectFour)
         else if (route.identity == 'quizShow')
@@ -505,7 +458,7 @@ class _GamesContentState extends State<GamesContent> {
                       reduceMotion: _reduceMotion,
                       onAdventure: () => _openGame(
                         GameId.jumpRun,
-                        () => _launch3D('jump'),
+                        () => _launch3D('run'),
                       ),
                       onEnterNative3D: () async {
                         if (!await _allowLaunch() || !mounted) return;
@@ -537,15 +490,13 @@ class _GamesContentState extends State<GamesContent> {
                             color: LumoVisualTokens.cyanBright),
                         title: const Text('Zusätzliche Spielmodi'),
                         subtitle: const Text(
-                            'Sternenpfad, Cards lokal, Würfel und Abenteuer'),
+                            'Sternenpfad, Würfel, Vier gewinnt und Abenteuer'),
                         children: [
                           // Preserve the existing Flame adventure-first order.
                           _AdventureCard(onPlay: _launchAdventure),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                             child: _GameGrid(
-                              onClassicCards: () =>
-                                  _openGame(GameId.cards, _launchLumoCards),
                               onConnectFour: _launchConnectFour,
                               onDiceRace: _launchDiceRace,
                             ),
@@ -735,29 +686,16 @@ class _ComingSoonSheet extends StatelessWidget {
 
 class _GameGrid extends StatelessWidget {
   const _GameGrid({
-    required this.onClassicCards,
     required this.onConnectFour,
     required this.onDiceRace,
   });
 
-  final VoidCallback onClassicCards;
   final VoidCallback onConnectFour;
   final VoidCallback onDiceRace;
 
   @override
   Widget build(BuildContext context) {
     final tiles = [
-      _GameTile(
-        key: const ValueKey('games-classic-cards'),
-        title: 'Lumo Cards · Klassik',
-        subtitle: 'Solo oder mit Freunden · mit Denkpausen',
-        art: Image.asset(
-          LumoCardsShowcaseScreen.referenceArt,
-          fit: BoxFit.cover,
-          excludeFromSemantics: true,
-        ),
-        onPlay: onClassicCards,
-      ),
       _GameTile(
         title: 'Vier gewinnt',
         subtitle: 'Baue zuerst eine Reihe aus 4!',
@@ -786,7 +724,6 @@ class _GameGrid extends StatelessWidget {
 
 class _GameTile extends StatelessWidget {
   const _GameTile({
-    super.key,
     required this.title,
     required this.subtitle,
     required this.art,

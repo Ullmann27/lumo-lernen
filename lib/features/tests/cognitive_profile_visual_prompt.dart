@@ -23,7 +23,7 @@ class CognitiveProfileVisualPrompt extends StatelessWidget {
         question.domain == CognitiveDomain.patternReasoning &&
             prompt.startsWith('Setze das Muster fort:');
     final isRotation = question.domain == CognitiveDomain.spatialReasoning &&
-        prompt.contains('gedreht');
+        (prompt.contains('gedreht') || prompt.contains('rehung'));
 
     if (!isNumberPattern && !isShapePattern && !isRotation) {
       return const SizedBox.shrink();
@@ -31,12 +31,20 @@ class CognitiveProfileVisualPrompt extends StatelessWidget {
 
     if (isRotation) {
       final arrow = RegExp(r'[↑→↓←]').firstMatch(prompt)?.group(0);
-      final angle = RegExp(r'\d+°').firstMatch(prompt)?.group(0);
+      // Klasse 4 nennt Grad, die Klassen davor Vierteldrehungen.
+      final angle = RegExp(r'\d+°').firstMatch(prompt)?.group(0) ??
+          (prompt.contains('Dreivierteldrehung')
+              ? '¾ Drehung'
+              : prompt.contains('Vierteldrehung')
+                  ? '¼ Drehung'
+                  : prompt.contains('halbe Drehung')
+                      ? '½ Drehung'
+                      : null);
       if (arrow == null || angle == null) return const SizedBox.shrink();
-      final left = prompt.contains('nach links');
+      final left = prompt.contains('gegen den Uhrzeigersinn');
       return Semantics(
         label:
-            'Gezeigter Ausgangspfeil $arrow, Drehung um $angle nach ${left ? 'links' : 'rechts'}',
+            'Gezeigter Ausgangspfeil $arrow, $angle ${left ? 'gegen den' : 'im'} Uhrzeigersinn',
         child: IqTile(
           radius: 22,
           padding: const EdgeInsets.all(14),

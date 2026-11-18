@@ -806,7 +806,7 @@ class _EntryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(99),
                 ),
                 child: Text(
-                  '${entry.wordCount} Woerter',
+                  '${entry.wordCount} Wörter',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 11,
@@ -895,7 +895,7 @@ class _LumoCritic {
       return const _PraiseResult(
         title: 'Schreib noch ein bisschen mehr',
         message:
-            'Das ist erst der Anfang. Schreib mindestens 5 Woerter dann lese ich richtig durch.',
+            'Das ist erst der Anfang. Schreib mindestens 5 Wörter, dann lese ich alles genau durch.',
         tips: [],
         canSave: false,
         cheer: false,
@@ -911,14 +911,14 @@ class _LumoCritic {
     final tips = <String>[];
     if (!hasCapital) {
       tips.add(
-          'Tipp: Namenswoerter (Tisch, Mama, Hund) schreibst du gross.');
+          'Tipp: Namenwörter (Tisch, Mama, Hund) schreibst du groß.');
     }
     if (!hasPunctuation) {
       tips.add('Tipp: Setze einen Punkt am Ende von jedem Satz.');
     }
     if (sentenceCount < 2 && wordCount > 30) {
       tips.add(
-          'Tipp: Lange Texte in mehrere Saetze teilen, das liest sich leichter.');
+          'Tipp: Teile lange Texte in mehrere Sätze. Das liest sich leichter.');
     }
 
     String title;
@@ -927,27 +927,27 @@ class _LumoCritic {
     if (wordCount >= 100) {
       title = '🌟 Spitzen-Geschichte!';
       message =
-          'Wow $wordCount Woerter! Das war richtig viel zu lesen. Du hast einen tollen Schreib-Fluss!';
+          'Wow, $wordCount Wörter! Das war richtig viel zu lesen. Du schreibst schon sehr flüssig!';
       cheer = true;
     } else if (wordCount >= 50) {
       title = '🦊 Schön gemacht!';
       message =
-          'Ich habe deine $wordCount Woerter gelesen. Eine richtig schoene Geschichte!';
+          'Ich habe deine $wordCount Wörter gelesen. Eine richtig schöne Geschichte!';
       cheer = true;
     } else if (wordCount >= 20) {
       title = '✨ Gut!';
       message =
-          'Du hast $wordCount Woerter geschrieben. Probier beim naechsten Mal noch ein paar Saetze dazu - dann wird die Geschichte noch reicher.';
+          'Du hast $wordCount Wörter geschrieben. Schreib beim nächsten Mal noch ein paar Sätze dazu – dann wird die Geschichte noch reicher.';
       cheer = false;
     } else {
       title = 'Toller Anfang!';
       message =
-          'Du hast $wordCount Woerter geschrieben. Schreib doch weiter, was als naechstes passiert?';
+          'Du hast $wordCount Wörter geschrieben. Schreib doch weiter: Was passiert als Nächstes?';
       cheer = false;
     }
 
     if (goodWords >= 3) {
-      message = '$message Du verwendest auch tolle Woerter wie '
+      message = '$message Du verwendest auch tolle Wörter wie '
           'gut beschreibende Adjektive!';
     }
 

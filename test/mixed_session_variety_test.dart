@@ -11,7 +11,16 @@ void main() {
       final tasks = factory.buildSession(grade: grade, count: 20);
       expect(tasks, hasLength(20));
       expect(tasks.map(signature).toSet().length, 20);
-      expect(tasks.every((t) => t.choices.contains(t.answer)), isTrue);
+      // Wie im Volksschul-Vertragstest: Zeichen- und Spuraufgaben haben
+      // keine Antwortknöpfe; alle anderen enthalten die Lösung.
+      for (final t in tasks) {
+        if (t.choices.isEmpty) {
+          expect(t.handwriting || t.visual == 'shape_trace', isTrue,
+              reason: t.prompt);
+        } else {
+          expect(t.choices, contains(t.answer), reason: t.prompt);
+        }
+      }
     });
 
     test('balanced grade-$grade homework avoids duplicate questions', () {

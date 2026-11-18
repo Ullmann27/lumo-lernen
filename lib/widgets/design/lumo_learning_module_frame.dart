@@ -1,3 +1,4 @@
+import '../../domain/learning/practice_session_plan.dart';
 import 'package:flutter/material.dart';
 import 'package:clock/clock.dart';
 
@@ -40,6 +41,7 @@ class LumoLearningModuleFrame extends StatefulWidget {
     this.companionUnit,
     this.companionGuide,
     this.immersive = false,
+    this.inRounds = false,
   });
 
   final LumoAppState appState;
@@ -65,6 +67,9 @@ class LumoLearningModuleFrame extends StatefulWidget {
 
   /// The task owns its character stage; retain the same navigation and progress.
   final bool immersive;
+
+  /// The module pauses after every ten tasks; the header names the round.
+  final bool inRounds;
   final bool Function() canLeave;
   final Widget child;
 
@@ -407,6 +412,13 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
 
   Widget _progress() {
     final index = widget.taskIndex.clamp(0, widget.totalTasks - 1);
+    // Long modules run in rounds of ten. The task count keeps its familiar
+    // "Aufgabe N / M" form; the round is named next to it.
+    final roundText = widget.inRounds &&
+            SessionRounds.applies(widget.totalTasks)
+        ? 'Runde ${SessionRounds.roundOf(index + 1, widget.totalTasks)} '
+            'von ${SessionRounds.count(widget.totalTasks)}'
+        : null;
     final complete = widget.progressComplete ? 1.0 : index / widget.totalTasks;
     final quiet = _reduced;
     if (MediaQuery.sizeOf(context).height -
@@ -427,6 +439,13 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
               spacing: 8,
               runSpacing: 2,
               children: [
+                if (roundText != null)
+                  Text(roundText,
+                      key: const ValueKey('learning-module-round'),
+                      style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                          color: LumoVisualTokens.gold)),
                 Text(
                     '${widget.progressLabel} ${index + 1} / ${widget.totalTasks}',
                     style: const TextStyle(
@@ -453,7 +472,8 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
     }
     return Semantics(
       label: '${widget.progressLabel} ${index + 1} von ${widget.totalTasks}, '
-          '${widget.correctAnswers} ${widget.correctCaption}',
+          '${widget.correctAnswers} ${widget.correctCaption}'
+          '${roundText == null ? '' : ', $roundText'}',
       excludeSemantics: true,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -480,6 +500,17 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
               alignment: WrapAlignment.spaceBetween,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
+                if (roundText != null)
+                  Text(
+                    roundText,
+                    key: const ValueKey('learning-module-round'),
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 13,
+                      fontWeight: FontWeight.w800,
+                      color: LumoVisualTokens.gold,
+                    ),
+                  ),
                 Text(
                   '${widget.progressLabel} ${index + 1} / ${widget.totalTasks}',
                   style: const TextStyle(
@@ -902,13 +933,13 @@ class _ModuleMethod {
             'Schreibe jeden Geldwert auf und addiere ihn genau einmal. Vergleiche danach gleiche Einheiten.',
           ]),
         'Einmaleins 2/5/10' ||
-        'Großes 1×1' =>
+        '1×1 – alle Reihen' =>
           const _ModuleMethod('Gleich große Gruppen zusammenfassen.', [
             'Zähle die Gruppen und dann die Dinge in einer Gruppe.',
             'Addiere dieselbe Gruppengröße so oft, wie es Gruppen gibt.',
             'Zeichne für jede Gruppe gleich viele Punkte. Vergleiche die Gesamtzahl mit deiner Rechnung.',
           ]),
-        'Bruchrechnen' =>
+        'Brüche erkennen' =>
           const _ModuleMethod('Gleich große Teile eines Ganzen beschreiben.', [
             'Prüfe zuerst, in wie viele gleich große Teile das Ganze geteilt ist.',
             'Die Zahl unten beschreibt alle gleich großen Teile. Die Zahl oben beschreibt die ausgewählten Teile.',

@@ -3,137 +3,290 @@ import '../domain/cognitive/cognitive_profile.dart';
 class CognitiveProfileGenerator {
   const CognitiveProfileGenerator._();
 
-  static const testVersion = 'lumo-cog-v1-2026-10-06';
+  // v2: Fragen nach der Fachprüfung vom 17.11.2026 sprachlich überarbeitet.
+  static const testVersion = 'lumo-cog-v2-2026-11-18';
   static const questionsPerDomain = 10;
   static const totalQuestions = questionsPerDomain * 5;
 
+  // Je Eintrag: gegebenes Wort, Lösung, Frage, zwei Ablenker aus demselben
+  // Sachfeld. Früher kamen zwei Ablenker aus den Nachbarfragen und passten
+  // nie („Nacht ist meist …“ → Gemüse, Kätzchen). Fachwörter wie These,
+  // Hypothese, Konsum oder Synonym sind durch Alltagswörter ersetzt.
   static final _verbalBanks = <int, List<List<String>>>{
     1: <List<String>>[
-      ['Welpe', 'Kätzchen', 'Hund verhält sich zu Welpe wie Katze zu …'],
-      ['hell', 'dunkel', 'Tag ist meist hell. Nacht ist meist …'],
-      ['Obst', 'Gemüse', 'Apfel gehört zu Obst. Karotte gehört zu …'],
-      ['fliegt', 'schwimmt', 'Vogel fliegt. Fisch …'],
-      ['Fuß', 'Hand', 'Schuh gehört zum Fuß. Handschuh gehört zur …'],
+      [
+        'Welpe',
+        'Kätzchen',
+        'Ein junger Hund heißt Welpe. Eine junge Katze heißt …',
+        'Fohlen',
+        'Küken'
+      ],
+      [
+        'hell',
+        'dunkel',
+        'Tag ist meist hell. Nacht ist meist …',
+        'laut',
+        'bunt'
+      ],
+      [
+        'Obst',
+        'Gemüse',
+        'Apfel gehört zu Obst. Karotte gehört zu …',
+        'Süßigkeiten',
+        'Getränken'
+      ],
+      ['fliegt', 'schwimmt', 'Vogel fliegt. Fisch …', 'hüpft', 'klettert'],
+      [
+        'Fuß',
+        'Hand',
+        'Schuh gehört zum Fuß. Handschuh gehört zur …',
+        'Nase',
+        'Brust'
+      ],
       [
         'kalt',
         'klein',
-        'Gegenteil von warm ist kalt. Gegenteil von groß ist …'
+        'Gegenteil von warm ist kalt. Gegenteil von groß ist …',
+        'lang',
+        'schwer'
       ],
       [
         'Mittwoch',
         'Donnerstag',
-        'Montag, Dienstag, Mittwoch – welcher Tag folgt?'
+        'Montag, Dienstag, Mittwoch – welcher Tag folgt?',
+        'Freitag',
+        'Sonntag'
       ],
-      ['Farbe', 'Form', 'Rot ist eine Farbe. Kreis ist eine …'],
+      [
+        'Farbe',
+        'Form',
+        'Rot ist eine Farbe. Kreis ist eine …',
+        'Zahl',
+        'Größe'
+      ],
       [
         'essen',
         'trinken',
-        'Bei Hunger können wir essen. Bei Durst können wir …'
+        'Bei Hunger können wir essen. Bei Durst können wir …',
+        'schlafen',
+        'spielen'
       ],
-      ['lesen', 'hören', 'Ein Buch kann man lesen. Ein Lied kann man …'],
+      [
+        'lesen',
+        'hören',
+        'Ein Buch kann man lesen. Ein Lied kann man …',
+        'malen',
+        'essen'
+      ],
     ],
     2: <List<String>>[
-      ['Honig', 'Milch', 'Biene passt zu Honig. Kuh passt zu …'],
-      ['Herbst', 'Winter', 'Frühling, Sommer, Herbst – was folgt?'],
-      ['Straße', 'Wasser', 'Auto fährt auf der Straße. Schiff fährt auf …'],
+      [
+        'Honig',
+        'Milch',
+        'Biene passt zu Honig. Kuh passt zu …',
+        'Eiern',
+        'Wolle'
+      ],
+      [
+        'Herbst',
+        'Winter',
+        'Frühling, Sommer, Herbst – was folgt?',
+        'Frühling',
+        'Sommer'
+      ],
+      [
+        'Straße',
+        'Wasser',
+        'Auto fährt auf der Straße. Schiff fährt auf dem …',
+        'Gleis',
+        'Weg'
+      ],
       [
         'laut',
         'schnell',
-        'Leise ist das Gegenteil von laut. Langsam ist das Gegenteil von …'
+        'Leise ist das Gegenteil von laut. Langsam ist das Gegenteil von …',
+        'groß',
+        'leicht'
       ],
-      ['Brot', 'Möbel', 'Bäcker macht Brot. Tischler macht …'],
+      [
+        'Brot',
+        'Möbel',
+        'Bäcker macht Brot. Tischler macht …',
+        'Kuchen',
+        'Kleider'
+      ],
       [
         'Wald',
         'Stadt',
-        'Viele Bäume bilden einen Wald. Viele Häuser bilden eine …'
+        'Viele Bäume bilden einen Wald. Viele Häuser bilden eine …',
+        'Wiese',
+        'Insel'
       ],
       [
-        'Praxis',
+        'Ordination',
         'Schule',
-        'Arzt arbeitet in einer Praxis. Lehrer arbeitet in einer …'
+        'Die Ärztin arbeitet in der Ordination. Die Lehrerin arbeitet in der …',
+        'Küche',
+        'Werkstatt'
       ],
-      ['sehen', 'hören', 'Mit dem Auge sehen wir. Mit dem Ohr …'],
-      ['Zeit', 'Länge', 'Minute misst Zeit. Meter misst …'],
       [
-        'Antwort',
-        'Lösung',
-        'Auf eine Frage folgt eine Antwort. Zu einem Problem suchen wir eine …'
+        'sehen',
+        'hören',
+        'Mit dem Auge sehen wir. Mit dem Ohr …',
+        'riechen',
+        'schmecken'
+      ],
+      ['Zeit', 'Länge', 'Minute misst Zeit. Meter misst …', 'Gewicht', 'Wärme'],
+      [
+        'schwimmen',
+        'fliegen',
+        'Ein Fisch kann schwimmen. Ein Vogel kann …',
+        'bellen',
+        'kriechen'
       ],
     ],
     3: <List<String>>[
-      ['Buch', 'Film', 'Kapitel gehört zum Buch. Szene gehört zum …'],
-      ['Temperatur', 'Gewicht', 'Thermometer misst Temperatur. Waage misst …'],
-      ['Folge', 'Antwort', 'Ursache führt zu Folge. Frage führt zu …'],
-      ['Richtung', 'Zeit', 'Kompass zeigt Richtung. Uhr zeigt …'],
-      ['blühen', 'sprechen', 'Pflanzen können blühen. Menschen können …'],
       [
-        'ähnlich',
-        'entgegengesetzt',
-        'Synonyme bedeuten ähnlich. Gegenteile bedeuten …'
+        'Buch',
+        'Film',
+        'Kapitel gehört zum Buch. Szene gehört zum …',
+        'Bild',
+        'Lied'
+      ],
+      [
+        'Temperatur',
+        'Gewicht',
+        'Thermometer misst Temperatur. Waage misst …',
+        'Länge',
+        'Größe'
+      ],
+      [
+        'Folge',
+        'Antwort',
+        'Ursache führt zu Folge. Frage führt zu …',
+        'Aufgabe',
+        'Fehler'
+      ],
+      [
+        'Richtung',
+        'Zeit',
+        'Kompass zeigt Richtung. Uhr zeigt …',
+        'Wetter',
+        'Weg'
+      ],
+      [
+        'sehen',
+        'riechen',
+        'Mit dem Auge kann man sehen. Mit der Nase kann man …',
+        'hören',
+        'tasten'
+      ],
+      [
+        'Löffel',
+        'Gabel',
+        'Suppe isst man mit dem Löffel. Spaghetti isst man mit der …',
+        'Schüssel',
+        'Tasse'
       ],
       [
         'Buch',
         'Musikstück',
-        'Autor schreibt ein Buch. Komponist schafft ein …'
+        'Autor schreibt ein Buch. Komponist schreibt ein …',
+        'Bild',
+        'Gedicht'
       ],
-      ['Raum', 'Zeit', 'Landkarte ordnet Raum. Zeitstrahl ordnet …'],
       [
-        'Begründung',
-        'Beleg',
-        'Ein Argument braucht Begründung. Eine Behauptung braucht einen …'
+        'Bahnhof',
+        'Flughafen',
+        'Ein Zug hält am Bahnhof. Ein Flugzeug landet am …',
+        'Hafen',
+        'Parkplatz'
+      ],
+      [
+        'Bäckerei',
+        'Apotheke',
+        'Brot kauft man in der Bäckerei. Medikamente kauft man in der …',
+        'Fleischerei',
+        'Trafik'
       ],
       [
         'Beobachtung',
         'Ergebnis',
-        'Experiment liefert Beobachtung. Rechnung liefert …'
+        'Ein Versuch liefert eine Beobachtung. Eine Rechnung liefert ein …',
+        'Aufgabe',
+        'Rätsel'
       ],
     ],
     4: <List<String>>[
       [
-        'Abstimmung',
+        'Wahl',
         'Experiment',
-        'Demokratie nutzt Abstimmungen. Wissenschaft nutzt …'
+        'Wer abstimmen will, macht eine Wahl. Wer etwas erforschen will, macht ein …',
+        'Fest',
+        'Gesetz'
       ],
       [
-        'Herstellung',
-        'Verbrauch',
-        'Produktion bedeutet Herstellung. Konsum bedeutet …'
+        'Holz',
+        'Glas',
+        'Ein Tisch ist oft aus Holz. Ein Fenster ist meist aus …',
+        'Papier',
+        'Wolle'
       ],
       [
-        'Begründung',
-        'Untersuchung',
-        'Eine These braucht Begründung. Eine Frage braucht oft eine …'
+        'Woche',
+        'Jahr',
+        'Sieben Tage sind eine Woche. Zwölf Monate sind ein …',
+        'Monat',
+        'Tag'
       ],
       [
-        'Umwandlung',
-        'Kreislauf',
-        'Energie kann umgewandelt werden. Wasser bewegt sich im …'
+        'Schmetterling',
+        'Frosch',
+        'Aus einer Raupe wird ein Schmetterling. Aus einer Kaulquappe wird ein …',
+        'Fisch',
+        'Käfer'
       ],
       [
-        'Karte',
-        'Geschichte',
-        'Maßstab hilft bei Karten. Zeitachse hilft bei …'
+        'Kilogramm',
+        'Tonnen',
+        'Ein Sack Kartoffeln wiegt einige Kilogramm. Ein Lastwagen wiegt einige …',
+        'Gramm',
+        'Liter'
       ],
       [
         'Absatz',
         'Buch',
-        'Mehrere Sätze bilden einen Absatz. Mehrere Kapitel bilden ein …'
-      ],
-      ['Ursache', 'Wirkung', 'Regen ist die Ursache. Nasse Straßen sind die …'],
-      [
-        'nutzen',
-        'schützen',
-        'Ressourcen soll man bewusst nutzen. Umwelt soll man …'
+        'Mehrere Sätze bilden einen Absatz. Mehrere Kapitel bilden ein …',
+        'Satz',
+        'Wort'
       ],
       [
-        'Hypothese',
-        'Ergebnis',
-        'Aus Beobachtungen entsteht eine Hypothese. Durch Prüfung entsteht ein …'
+        'Ursache',
+        'Wirkung',
+        'Regen ist die Ursache. Nasse Straßen sind die …',
+        'Regel',
+        'Lösung'
       ],
       [
-        'Zufall',
-        'Standpunkt',
-        'Perspektive bedeutet Blickwinkel. Ein Argument unterstützt einen …'
+        'pumpen',
+        'atmen',
+        'Mit dem Herz kann man Blut pumpen. Mit der Lunge kann man …',
+        'sehen',
+        'denken'
+      ],
+      [
+        'Kapitän',
+        'Pilot',
+        'Ein Schiff steuert der Kapitän. Ein Flugzeug steuert der …',
+        'Schaffner',
+        'Gärtner'
+      ],
+      [
+        'Eis',
+        'Sand',
+        'Am Nordpol gibt es viel Eis. In der Wüste gibt es viel …',
+        'Schnee',
+        'Wasser'
       ],
     ],
   };
@@ -207,7 +360,7 @@ class CognitiveProfileGenerator {
           r'^Lumo hat (\d+) Sterne und bekommt (\d+) dazu\. Wie viele hat er\?$',
           r'^(\d+) gleiche Gruppen haben je (\d+) Punkte\. Wie viele Punkte sind es\?$',
           r'^Rechne im Kopf: \((\d+) \+ (\d+)\) × 2 = \?$',
-          r'^(\d+) gleiche Dinge kosten je (\d+) Euro\. Bezahlt werden (\d+) Euro\. Wie viel Wechselgeld bleibt\?$',
+          r'^(\d+) gleiche Dinge kosten je (\d+) Euro\. Bezahlt werden (\d+) Euro\. Wie viel Geld bekommt man zurück\?$',
         ];
         if (q.grade >= 1 && q.grade <= 4) {
           final match = RegExp(patterns[q.grade - 1]).firstMatch(q.prompt);
@@ -228,13 +381,23 @@ class CognitiveProfileGenerator {
         if (matching.length == 1) expected = matching.single[1];
       case CognitiveDomain.spatialReasoning:
         const arrows = ['↑', '→', '↓', '←'];
-        final match = RegExp(
-                r'^Der Pfeil ([↑→↓←]) wird um (90|180|270)° nach (rechts|links) gedreht\. Wohin zeigt er danach\?$')
+        final degrees = RegExp(
+                r'^Der Pfeil ([↑→↓←]) wird um (90|180|270)° (im|gegen den) Uhrzeigersinn gedreht\. Wohin zeigt er danach\?$')
             .firstMatch(q.prompt);
+        final turn = RegExp(
+                r'^Der Pfeil ([↑→↓←]) macht (eine Vierteldrehung|eine halbe Drehung|eine Dreivierteldrehung) (im|gegen den) Uhrzeigersinn\. ')
+            .firstMatch(q.prompt);
+        final match = degrees ?? turn;
         if (match != null) {
-          final steps = int.parse(match[2]!) ~/ 90;
+          final steps = degrees != null
+              ? int.parse(match[2]!) ~/ 90
+              : const <String, int>{
+                  'eine Vierteldrehung': 1,
+                  'eine halbe Drehung': 2,
+                  'eine Dreivierteldrehung': 3,
+                }[match[2]]!;
           expected = arrows[(arrows.indexOf(match[1]!) +
-                  (match[3] == 'rechts' ? steps : -steps)) %
+                  (match[3] == 'im' ? steps : -steps)) %
               arrows.length];
         }
       case CognitiveDomain.workingMemory:
@@ -246,7 +409,7 @@ class CognitiveProfileGenerator {
           break;
         }
         final digits = stimulus.trim().split(RegExp(r'\s+'));
-        final position = RegExp(r'^Welche Zahl stand an Position (\d+)\?$')
+        final position = RegExp(r'^Welche Zahl stand an (\d+)\. Stelle\?$')
             .firstMatch(q.prompt);
         if (position != null) {
           final index = int.parse(position[1]!) - 1;
@@ -289,25 +452,34 @@ class CognitiveProfileGenerator {
       );
     }
     const shapes = <String>['●', '▲', '■', '◆'];
-    final offset = (g + i) % shapes.length;
-    final first = shapes[offset];
-    final second = shapes[(offset + 1) % shapes.length];
-    final third = shapes[(offset + 2) % shapes.length];
-    final useThree = g >= 3 || i >= 7;
-    final sequence = useThree
-        ? '$first $second $third $first $second $third ?'
-        : '$first $second $first $second $first ?';
-    final answer = useThree ? first : second;
+    // Mehrere Musterarten und wechselnde Abbruchstellen, damit die Lösung
+    // nicht immer die erste Form ist und keine Frage doppelt vorkommt.
+    final k = i ~/ 2;
+    final units = g <= 2
+        ? const <String>['AB', 'AB', 'AAB', 'ABC', 'ABB']
+        : const <String>['ABC', 'AAB', 'ABB', 'ABCD', 'AABB'];
+    final unit = units[k];
+    final offset = (g + k) % shapes.length;
+    final symbols = <String>[
+      for (final letter in unit.split(''))
+        shapes[(offset + 'ABCD'.indexOf(letter)) % shapes.length],
+    ];
+    final period = symbols.length;
+    // Mindestens zwei ganze Durchgänge, danach bricht die Reihe ab.
+    final shownLength = period * 2 + (g + k) % period;
+    final shown = <String>[
+      for (var n = 0; n < shownLength; n++) symbols[n % period],
+    ];
+    final answer = symbols[shownLength % period];
     return _choice(
       id: 'g${g}_pattern_$i',
       grade: g,
       domain: CognitiveDomain.patternReasoning,
-      prompt: 'Setze das Muster fort:  $sequence',
+      prompt: 'Setze das Muster fort:  ${shown.join(' ')} ?',
       answer: answer,
       rawChoices: shapes,
-      explanation: useThree
-          ? 'Drei Formen wiederholen sich.'
-          : 'Zwei Formen wechseln sich ab.',
+      explanation:
+          'Diese Formen wiederholen sich immer gleich: ${symbols.join(' ')}.',
       difficulty: 1 + i ~/ 2,
       rotate: i,
     );
@@ -393,7 +565,7 @@ class CognitiveProfileGenerator {
       grade: g,
       domain: CognitiveDomain.quantitativeReasoning,
       prompt:
-          '$count gleiche Dinge kosten je $price Euro. Bezahlt werden $paid Euro. Wie viel Wechselgeld bleibt?',
+          '$count gleiche Dinge kosten je $price Euro. Bezahlt werden $paid Euro. Wie viel Geld bekommt man zurück?',
       answer: '$answer',
       // Typische Fehler: Gesamtpreis statt Wechselgeld, um eins verrechnet.
       rawChoices: <String>[
@@ -415,8 +587,8 @@ class CognitiveProfileGenerator {
     final item = banks[g]![i];
     final answer = item[1];
     final distractorA = item[0];
-    final distractorB = i > 0 ? banks[g]![i - 1][1] : banks[g]![9][1];
-    final distractorC = i < 9 ? banks[g]![i + 1][1] : banks[g]![0][1];
+    final distractorB = item[3];
+    final distractorC = item[4];
     return _choice(
       id: 'g${g}_verbal_$i',
       grade: g,
@@ -440,9 +612,14 @@ class CognitiveProfileGenerator {
 
   static CognitiveQuestion _spatial(int g, int i) {
     const arrows = <String>['↑', '→', '↓', '←'];
-    final startIndex = (i + g) % 4;
-    final quarterTurns = 1 + (i % (g >= 3 ? 3 : 2));
-    final clockwise = i.isEven;
+    // Jede Frage eines Tests ist eine eigene Kombination aus Startpfeil,
+    // Drehweite und Richtung (früher kam dieselbe Frage bis zu dreimal vor).
+    // Schritt 5 ist teilerfremd zu 16 und 24, so entstehen 10 verschiedene.
+    final turnsAvailable = g >= 3 ? 3 : 2;
+    final combo = (g * 3 + i * 5) % (4 * 2 * turnsAvailable);
+    final startIndex = combo % 4;
+    final clockwise = (combo ~/ 4).isEven;
+    final quarterTurns = 1 + combo ~/ 8;
     final delta = clockwise ? quarterTurns : -quarterTurns;
     final answerIndex = (startIndex + delta) % 4;
     final normalized = answerIndex < 0 ? answerIndex + 4 : answerIndex;
@@ -453,8 +630,16 @@ class CognitiveProfileGenerator {
       id: 'g${g}_spatial_$i',
       grade: g,
       domain: CognitiveDomain.spatialReasoning,
-      prompt:
-          'Der Pfeil $start wird um $degrees° ${clockwise ? 'nach rechts' : 'nach links'} gedreht. Wohin zeigt er danach?',
+      // „um 90° nach rechts gedreht“ lasen Kinder als „zeigt dann nach
+      // rechts“. Jetzt heißt es „Vierteldrehung im Uhrzeigersinn“; Grad
+      // kommen erst in Klasse 4 vor.
+      prompt: g >= 4
+          ? 'Der Pfeil $start wird um $degrees° ${clockwise ? 'im' : 'gegen den'} Uhrzeigersinn gedreht. Wohin zeigt er danach?'
+          : 'Der Pfeil $start macht ${const <String>[
+              'eine Vierteldrehung',
+              'eine halbe Drehung',
+              'eine Dreivierteldrehung'
+            ][quarterTurns - 1]} ${clockwise ? 'im' : 'gegen den'} Uhrzeigersinn. Im Uhrzeigersinn heißt: so wie sich die Zeiger einer Uhr drehen. Wohin zeigt der Pfeil danach?',
       answer: answer,
       rawChoices: arrows,
       explanation:
@@ -465,10 +650,16 @@ class CognitiveProfileGenerator {
   }
 
   static CognitiveQuestion _memory(int g, int i) {
-    final length = 3 + g + (i ~/ 4);
+    // Altersgemäße Längen: Klasse 1 zwei bis vier Ziffern, Klasse 4 vier
+    // bis sechs (früher bis zu neun). Rückwärts eine Ziffer kürzer.
+    const shortest = <int, int>{1: 2, 2: 3, 3: 3, 4: 4};
+    final forward = shortest[g]! + (i ~/ 4);
+    final length = i.isEven ? forward : (forward - 1).clamp(3, 9);
     final digits = <int>[];
     for (var k = 0; k < length; k++) {
-      digits.add(1 + ((g * 7 + i * 3 + k * 5) % 9));
+      // Schritt 4 je Frage: neun verschiedene Startziffern, keine Folge
+      // doppelt (früher wiederholte sie sich alle drei Fragen).
+      digits.add(1 + ((g * 7 + i * 4 + k * 5) % 9));
     }
     final stimulus = digits.join('  ');
     if (i.isEven) {
@@ -484,28 +675,43 @@ class CognitiveProfileGenerator {
         id: 'g${g}_memory_$i',
         grade: g,
         domain: CognitiveDomain.workingMemory,
-        prompt: 'Welche Zahl stand an Position $position?',
+        prompt: 'Welche Zahl stand an $position. Stelle?',
         answer: answer,
         rawChoices: <String>[
           ...options,
           // Eine Merkaufgabe braucht vier verschiedene echte Ziffern.
           for (var digit = 1; digit <= 9; digit++) '$digit',
         ],
-        explanation: 'Die Merkfolge wurde nur kurz gezeigt.',
+        explanation:
+            'Die Folge war ${digits.join(' – ')}. An $position. Stelle stand $answer.',
         difficulty: 1 + i ~/ 2,
         rotate: i,
         stimulus: stimulus,
         stimulusVisibleMs: 3500 + g * 350,
       );
     }
-    final reversed = digits.reversed.join(' – ');
-    final shifted = <int>[...digits];
-    final first = shifted.removeAt(0);
-    shifted.add(first);
+    final backwards = digits.reversed.toList();
+    final reversed = backwards.join(' – ');
+    // Ablenker beginnen mit derselben Ziffer wie die Lösung und enden gleich;
+    // nur in der Mitte ist etwas vertauscht oder falsch. Früher begann nur
+    // die richtige Karte mit der zuletzt gezeigten Ziffer.
+    List<int> swapped(int a, int b) {
+      final copy = <int>[...backwards];
+      final t = copy[a];
+      copy[a] = copy[b];
+      copy[b] = t;
+      return copy;
+    }
+
+    final middle = backwards.length ~/ 2;
+    final changed = <int>[...backwards]..[middle] =
+        1 + (backwards[middle] + 3) % 9;
     final raw = <String>[
       reversed,
-      shifted.reversed.join(' – '),
-      shifted.join(' – '),
+      if (backwards.length >= 4) swapped(1, 2).join(' – '),
+      changed.join(' – '),
+      swapped(0, 1).join(' – '),
+      swapped(backwards.length - 2, backwards.length - 1).join(' – '),
       digits.join(' – '),
     ];
     return _choice(

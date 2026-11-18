@@ -86,9 +86,10 @@ void main() {
         (tester) async {
       final state = _state(subject: 'Lesen', unit: label);
       await _open(tester, state);
-      // Grade one has five word cards. Eight displayed questions necessarily
-      // reach the repeat fallback, where the old code switched to German.
-      for (var question = 0; question < 8; question++) {
+      // Grade one has five word cards. Six displayed questions (the whole
+      // grade-one quick practice) necessarily reach the repeat fallback,
+      // where the old code switched to German.
+      for (var question = 0; question < 6; question++) {
         final renderer = _renderer(tester);
         expect(renderer.task.templateId, 'legacy.Lesen.Woerter lesen');
         expect(renderer.task.parameters['unit'], 'Woerter lesen');
@@ -99,7 +100,7 @@ void main() {
             LumoCompanionRequests.instance.taskContext.value?.subject, 'Lesen');
         expect(LumoCompanionRequests.instance.taskContext.value?.unit,
             'Woerter lesen');
-        if (question < 7) {
+        if (question < 5) {
           renderer.onAnswered!(AdaptiveTaskAnswer(
             task: renderer.task,
             answer: renderer.task.correctAnswer,

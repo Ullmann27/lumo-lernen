@@ -28,8 +28,9 @@ class TutorReleasePolicyTest(unittest.TestCase):
         # The next version has its own exact, explicit, reviewed native source.
         candidate['revision'] = policy.APPROVED[2005]
         self.assertEqual(policy.verify('version: 0.12.93+2005\n', json.dumps(candidate))[0], 2005)
+        # An unrecorded build older than the newest recorded one stays closed.
         with self.assertRaisesRegex(ValueError, 'no reviewed native pin'):
-            policy.verify('version: 0.12.93+2999\n', json.dumps(candidate))
+            policy.verify('version: 0.12.93+1900\n', json.dumps(candidate))
         broken = json.loads(config)
         broken['revision'] = policy.APPROVED[1999]
         with self.assertRaisesRegex(ValueError, 'revision mismatch'):

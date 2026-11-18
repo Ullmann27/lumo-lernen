@@ -1,0 +1,169 @@
+name: "Lumo Test-APK (Flutter + Godot)"
+# Baut eine installierbare, signierte Test-APK aus genau diesem Stand.
+# Ausgelöst nur durch eine Änderung an config/test-apk-request.json, damit nicht
+# jeder Push einen einstündigen Bau startet. Kein Merge, kein Store-Release:
+# das Ergebnis ist eine Vorabversion zum Testen auf dem Handy.
+on:
+  push:
+    branches: [ccr-54af69f2-4uged4]
+    paths:
+      - config/test-apk-request.json
+      - .github/workflows/lumo-test-apk.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lumo-test-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    name: Signierte Test-APK bauen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      # Eine APK je Prozessorart: Handys brauchen nur ARM64. Das halbiert die
+      # nativen Bibliotheken gegenüber einer Universal-APK.
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Quellstand und Godot-Pin festhalten
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python3 scripts/verify_legacy_release_pin.py
+          mkdir -p build-proof
+          git rev-parse HEAD > build-proof/FLUTTER-COMMIT.txt
+          cp config/godot-source.json build-proof/GODOT-SOURCE.json
+          cp config/test-apk-request.json build-proof/TEST-APK-REQUEST.json
+      - name: Android- und Godot-Werkzeuge einrichten
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh build-proof/ndk
+          bash scripts/install_godot_for_build.sh
+      - name: Flutter – Analyse und Kernprüfungen
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings
+          flutter test --no-pub --reporter expanded \
+            test/games/memory_native_entry_test.dart \
+            test/games/memory_screen_test.dart \
+            test/games/memory_result_frame_test.dart \
+            test/home_3d_workshop_entry_test.dart \
+            test/learning/lab_native_entry_test.dart \
+            test/learning/remaining_native_entry_test.dart \
+            test/tutoring/native_english_activity_test.dart \
+            test/learning/lab_native_model_contract_test.dart \
+            test/profile_target_layout_test.dart \
+            test/smoke_main_screens_test.dart
+      - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
+          git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          python3 scripts/verify_kart_fleet_mirror.py build/lumo-godot-qa
+          # Der Erstimport stürzt in Godot 4.6.3 auf vollen CI-Rechnern ab, wenn
+          # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
+          # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
+          # wird der idempotente Import genau einmal wiederholt.
+          godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
+            || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
+          for probe in kart_neon_home_regression kart_race_kinds_regression \
+            kart_result_reachability_regression native_table_boot_regression \
+            learning_android_host_capability_regression; do
+            echo "::group::$probe"
+            timeout 600 godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/$probe.gd"
+            echo "::endgroup::"
+          done
+      - name: Eine signierte Flutter-Godot-APK bauen
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          test -s dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
+          NAME="Lumo-Lernen-Test-${VERSION/+/-}.apk"
+          mkdir -p release
+          cp dist/Lumo-Lernen-Neu.apk "release/$NAME"
+          cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
+          cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
+          (cd release && sha256sum "$NAME" > SHA256SUMS.txt)
+          echo "LUMO_APK_NAME=$NAME" >> "$GITHUB_ENV"
+          echo "LUMO_APK_VERSION=$VERSION" >> "$GITHUB_ENV"
+      - name: Test-APK als Vorabversion zum Herunterladen bereitstellen
+        shell: bash
+        run: |
+          set -euo pipefail
+          GODOT="$(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')"
+          cat > release/LIESMICH.txt <<EOF
+          Lumo Lernen – Test-APK $LUMO_APK_VERSION
+          App-Quellstand:   $GITHUB_SHA
+          Spiel-Quellstand: $GODOT (Godot 4.6.3)
+          Zweck: Testen auf dem Handy. Kein Store-Release, kein Merge nach main.
+          Geprüft in diesem Lauf: Flutter-Analyse und Kernprüfungen, Start und
+          Kernprüfungen des gepinnten Spielstands, APK-Aufbau und Signatur.
+          Nicht geprüft: Bedienung auf einem echten Gerät, Fold, Bildrate, Ton.
+          EOF
+          TAG="lumo-test-${LUMO_APK_VERSION/+/-}-$GITHUB_RUN_ID"
+          FILES=("release/$LUMO_APK_NAME" release/SHA256SUMS.txt release/APK-VERIFICATION.json
+            release/BUILD-PROVENANCE.json release/LIESMICH.txt)
+          NOTES="Test-APK zum Ausprobieren auf dem Handy. Kein Store-Release. Details in LIESMICH.txt."
+          # Eine Vorabversion legt ein Tag auf diesem Commit an. Verweigert GitHub
+          # das dem Lauf-Token, bleibt der Entwurf: Er braucht kein Tag und ist
+          # für die Eigentümer des Repos sichtbar und herunterladbar.
+          if gh release create "$TAG" "${FILES[@]}" \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "Lumo Test-APK $LUMO_APK_VERSION" --notes "$NOTES" \
+            --prerelease --latest=false; then
+            URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"
+            echo "Test-APK: $URL" >> "$GITHUB_STEP_SUMMARY"
+          elif URL="$(gh release create "$TAG" "${FILES[@]}" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Lumo Test-APK $LUMO_APK_VERSION (Entwurf)" --notes "$NOTES" \
+            --draft --prerelease)"; then
+            echo "Test-APK (Entwurf, nur für Eigentümer sichtbar): $URL" >> "$GITHUB_STEP_SUMMARY"
+            echo "Entwurf angelegt: $URL"
+          else
+            echo "::warning::Die Vorabversion konnte nicht angelegt werden; die APK liegt im Actions-Artefakt dieses Laufs." >&2
+            echo "Test-APK im Artefakt: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: APK und Belege als Artefakt sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-TEST-APK-${{ github.run_id }}
+          # Nur die APK und die kleinen Belege; die APK ist bereits komprimiert.
+          path: |
+            release/
+            build-proof/*.txt
+            build-proof/*.json
+          if-no-files-found: warn
+          compression-level: 0

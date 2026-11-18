@@ -72,6 +72,19 @@ class HomeContent extends StatelessWidget {
     onSection(LumoSection.exercises);
   }
 
+  /// Nachhilfestunde zum Thema, das der Tagesplan aus echten Ergebnissen wählt.
+  void _startTutoringHour(LumoDailyTutorStep step) {
+    appState.update(appState.state.copyWith(
+      subject: step.subject,
+      unit: step.unit,
+      mood: LumoMood.point,
+      lumoMessage: 'Nachhilfe: Wir wärmen uns auf, dann erkläre ich dir '
+          '${step.unit} und wir üben zusammen.',
+      sessionKind: LumoSessionKind.tutoring,
+    ));
+    onSection(LumoSection.exercises);
+  }
+
   void _browseSubject(String subject) {
     if (onBrowseSubject != null) {
       onBrowseSubject!(subject);
@@ -115,7 +128,8 @@ class HomeContent extends StatelessWidget {
           final recommendation = appState.topLearningRecommendation();
           final personalSteps = appState.learningProfileLoaded
               ? const LumoPersonalDailyTutorPlanner().buildEvidencePlan(
-                  appState.learningSkills(), appState.learningJourney(),
+                  appState.learningSkills(),
+                  appState.learningJourney(),
                   grade: state.grade,
                   isEligible: (record) => Curriculum.unitsForGrade(
                     record.subject,
@@ -271,6 +285,7 @@ class HomeContent extends StatelessWidget {
                       steps: personalSteps,
                       onStart: (step) =>
                           _startPractice(step.subject, unit: step.unit),
+                      onStartTutoring: _startTutoringHour,
                     ),
                   ],
                   const SizedBox(height: 10),
@@ -354,7 +369,7 @@ class HomeContent extends StatelessWidget {
                                     ),
                                     _SubjectCard(
                                       subject: 'Englisch',
-                                      subtitle: 'Hello! Let us learn',
+                                      subtitle: "Hello! Let's learn",
                                       icon: Icons.translate_rounded,
                                       color: const Color(0xFF83D5FF),
                                       completed: _correctFor('Englisch'),
@@ -379,7 +394,8 @@ class HomeContent extends StatelessWidget {
                                           context,
                                           CurriculumActivitiesScreen(
                                               appState: appState,
-                                              grade: grade, subject: 'Musik')),
+                                              grade: grade,
+                                              subject: 'Musik')),
                                     ),
                                     _SubjectCard(
                                       subject: 'Kunst und Gestaltung',
@@ -400,7 +416,8 @@ class HomeContent extends StatelessWidget {
                                       subtitle: 'Bewegen und fair spielen',
                                       icon: Icons.sports_gymnastics_rounded,
                                       color: const Color(0xFF61E69A),
-                                      completed: _correctFor('Bewegung und Sport'),
+                                      completed:
+                                          _correctFor('Bewegung und Sport'),
                                       onTap: () => _open(
                                           context,
                                           CurriculumActivitiesScreen(
@@ -409,17 +426,20 @@ class HomeContent extends StatelessWidget {
                                               subject: 'Bewegung und Sport')),
                                     ),
                                     _SubjectCard(
-                                      subject: 'Verkehrs- und Mobilitätsbildung',
+                                      subject:
+                                          'Verkehrs- und Mobilitätsbildung',
                                       subtitle: 'Sicher unterwegs sein',
                                       icon: Icons.directions_walk_rounded,
                                       color: const Color(0xFFFFC65C),
-                                      completed: _correctFor('Verkehrs- und Mobilitätsbildung'),
+                                      completed: _correctFor(
+                                          'Verkehrs- und Mobilitätsbildung'),
                                       onTap: () => _open(
                                           context,
                                           CurriculumActivitiesScreen(
                                               appState: appState,
                                               grade: grade,
-                                              subject: 'Verkehrs- und Mobilitätsbildung')),
+                                              subject:
+                                                  'Verkehrs- und Mobilitätsbildung')),
                                     ),
                                     _SubjectCard(
                                       subject: 'Technik und Design',

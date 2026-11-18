@@ -8,6 +8,7 @@ import '../widgets/shell/left_navigation.dart';
 import 'lumo_companion_host.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
 import '../widgets/fox/lumo_free_companion.dart';
+import '../widgets/fox/stage/lumo_actor_library.dart';
 import '../core/lumo_asset_paths.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
@@ -607,6 +608,9 @@ class _AppShellState extends State<AppShell>
           xp: _appState.state.xp,
           level: _appState.state.level,
           drawBackground: !fullBleed,
+          // Zielbild 17.11.: Auf dem Handy trägt das Profil den Schriftzug
+          // selbst; Level, Sterne und XP stehen dort in der Profilkarte.
+          showWordmark: fullBleed,
         );
       case LumoSection.settings:
         return SettingsContent(appState: _appState);
@@ -689,7 +693,8 @@ class _AppShellState extends State<AppShell>
                               ),
                             );
                             return Column(children: [
-                              if (section != LumoSection.games)
+                              if (section != LumoSection.games &&
+                                  section != LumoSection.profile)
                                 _MobileLumoHeader(
                                     appState: _appState,
                                     onFoxTap: _openConversation),
@@ -709,13 +714,15 @@ class _AppShellState extends State<AppShell>
                                     appState: _appState,
                                     onSection: _navigateTo,
                                     onAskLumo: _openConversation,
-                                    menuPresenter: coreMenuPresenter),
+                                    menuPresenter: coreMenuPresenter,
+                                    stageAware: coreMenuPresenter != null),
                               if (!fullBleed)
                                 LumoCompanionHost(
                                     appState: _appState,
                                     onSection: _navigateTo,
                                     onAskLumo: _openConversation,
                                     menuPresenter: coreMenuPresenter,
+                                    stageAware: coreMenuPresenter != null,
                                     compact: constraints.maxHeight < 650),
                               LumoBottomNavigation(
                                   active: _appState.state.section,
@@ -779,6 +786,8 @@ class _AppShellState extends State<AppShell>
                                               onSection: _navigateTo,
                                               onAskLumo: _openConversation,
                                               menuPresenter: coreMenuPresenter,
+                                              stageAware:
+                                                  coreMenuPresenter != null,
                                               compact:
                                                   constraints.maxHeight < 600),
                                       ]),
@@ -816,14 +825,33 @@ class _LumoHelpDock extends StatelessWidget {
     required this.onSection,
     required this.onAskLumo,
     this.menuPresenter,
+    this.stageAware = false,
   });
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
   final VoidCallback onAskLumo;
   final LumoCompanionMenuPresenter? menuPresenter;
 
+  /// Im Aufgabenbildschirm ersetzt Lumos Bühne den runden Fuchs-Knopf.
+  final bool stageAware;
+
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) {
+    if (!stageAware) return _dock();
+    return ValueListenableBuilder<LumoActorLibrary?>(
+      valueListenable: LumoActorLibrary.shared,
+      builder: (context, actors, _) => actors == null
+          ? _dock()
+          : LumoCompanionHost(
+              appState: appState,
+              onSection: onSection,
+              onAskLumo: onAskLumo,
+              menuPresenter: menuPresenter,
+              stageAware: true),
+    );
+  }
+
+  Widget _dock() => Container(
         key: const ValueKey('lumo-help-dock'),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
         decoration: BoxDecoration(

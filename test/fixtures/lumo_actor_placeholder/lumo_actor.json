@@ -1,0 +1,78 @@
+{
+ "version": 1,
+ "frame": [
+  192,
+  192
+ ],
+ "anchor": [
+  96,
+  174
+ ],
+ "clips": {
+  "idle": {
+   "file": "clip_idle.webp",
+   "frames": 16,
+   "columns": 8,
+   "fps": 12,
+   "loop": true
+  },
+  "run": {
+   "file": "clip_run.webp",
+   "frames": 12,
+   "columns": 8,
+   "fps": 18,
+   "loop": true,
+   "stride_px": 120
+  },
+  "point": {
+   "file": "clip_point.webp",
+   "frames": 7,
+   "columns": 7,
+   "fps": 18,
+   "loop": false
+  },
+  "talk": {
+   "file": "clip_talk.webp",
+   "frames": 12,
+   "columns": 8,
+   "fps": 14,
+   "loop": true
+  },
+  "listen": {
+   "file": "clip_listen.webp",
+   "frames": 12,
+   "columns": 8,
+   "fps": 12,
+   "loop": true
+  },
+  "think": {
+   "file": "clip_think.webp",
+   "frames": 12,
+   "columns": 8,
+   "fps": 12,
+   "loop": true
+  },
+  "cheer": {
+   "file": "clip_cheer.webp",
+   "frames": 14,
+   "columns": 8,
+   "fps": 18,
+   "loop": false
+  },
+  "comfort": {
+   "file": "clip_comfort.webp",
+   "frames": 12,
+   "columns": 8,
+   "fps": 14,
+   "loop": false
+  },
+  "wave": {
+   "file": "clip_wave.webp",
+   "frames": 12,
+   "columns": 8,
+   "fps": 14,
+   "loop": false
+  }
+ },
+ "placeholder": true
+}

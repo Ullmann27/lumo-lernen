@@ -17,7 +17,9 @@ class LumoGameEntryArt {
         'treasure' => 'Lumo Schatzsuche',
         'jump' => 'Lumo Abenteuer',
         'learning' => 'Lumo Lernwerkstatt',
-        'cards' => 'Lumo Cards',
+        'cards' => 'Lumo Karten',
+        'run' => 'Lumo Lauf',
+        'chess' => 'Lumo Schach',
         _ => 'Lumo Spielewelt',
       };
 
@@ -25,6 +27,7 @@ class LumoGameEntryArt {
         'kart' => 'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
         'build' => 'assets/lumo_design/gameplay/build.png',
         'settlement' => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
+        'chess' => 'assets/lumo_design/spielwelt/cover_chess.jpg',
         'puzzle' => 'assets/lumo_design/gameplay/puzzle.png',
         'rhythm' => 'assets/lumo_design/gameplay/rhythm.png',
         'treasure' => 'assets/lumo_design/gameplay/treasure.png',
@@ -42,6 +45,9 @@ class LumoGameEntryArt {
         'treasure' => 'ENTDECKUNGSREISE',
         'learning' => 'MIT LUMO AUSPROBIEREN',
         'cards' => 'GEMEINSAM AM SPIELTISCH',
+        'run' => '3D-LAUFABENTEUER',
+        'chess' => 'SCHACH LERNEN UND SPIELEN',
+        'jump' => 'WOLKENINSELN',
         _ => 'SPIELWELT',
       };
 }

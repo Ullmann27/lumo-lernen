@@ -273,11 +273,11 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
             0 =>
               'Der lange Zeiger steht auf 12: Es ist eine volle Stunde. Lies jetzt die Zahl am kurzen Zeiger.',
             15 =>
-              'Eine Viertelstunde ist vergangen. Wir sagen „Viertel nach“ der zuletzt erreichten vollen Stunde.',
+              'Eine Viertelstunde ist vergangen. Wir sagen „Viertel nach“ der zuletzt erreichten vollen Stunde. ${uhrViertelSprechweise(_hour, _minute)}',
             30 =>
               'Eine halbe Stunde ist vergangen. „Halb“ nennt die kommende volle Stunde, auf die sich der kurze Zeiger zubewegt.',
             _ =>
-              'Es fehlen fünfzehn Minuten zur nächsten vollen Stunde. Wir sagen „Viertel vor“ dieser kommenden Stunde.',
+              'Es fehlen fünfzehn Minuten zur nächsten vollen Stunde. Wir sagen „Viertel vor“ dieser kommenden Stunde. ${uhrViertelSprechweise(_hour, _minute)}',
           },
         ],
         answering: !_answered,
@@ -528,4 +528,14 @@ class _ClockPainter extends CustomPainter {
   @override
   bool shouldRepaint(_ClockPainter old) =>
       old.hour != hour || old.minute != minute || old.color != color;
+}
+
+/// Befund L11: In Ostösterreich sagt man auch „viertel 4“ (3:15) und
+/// „dreiviertel 4“ (3:45). Die Hilfe nennt beide Sprechweisen.
+@visibleForTesting
+String uhrViertelSprechweise(int hour, int minute) {
+  final next = hour % 12 + 1;
+  if (minute == 15) return 'Manche sagen auch „viertel $next“.';
+  if (minute == 45) return 'Manche sagen auch „dreiviertel $next“.';
+  return '';
 }

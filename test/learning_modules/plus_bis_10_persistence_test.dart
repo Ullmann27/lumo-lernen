@@ -211,8 +211,11 @@ void main() {
     expect(find.byType(LumoAkademieScreen), findsOneWidget);
     expect(find.byKey(const ValueKey('learning-unit-Mathematik-Plus bis 10')),
         findsOneWidget);
+    // Independent means first try without help: the second wrong answer
+    // and the right answer after it are both accompanied attempts (before,
+    // only the answer after the tip counted as helped).
     await _assertStored(tester,
-        correct: 1, wrong: 2, hints: 1, stars: 1, xp: 5);
+        correct: 1, wrong: 2, hints: 2, stars: 1, xp: 5);
     await _dispose(tester, app);
   });
 
@@ -328,7 +331,9 @@ void main() {
     repository.gate!.complete();
     await _frames(tester);
     await _tap(tester, correct);
-    await _assertStored(tester, correct: 1, wrong: 1, stars: 1, xp: 5);
+    // Right after a wrong answer is solved together, not alone.
+    await _assertStored(tester,
+        correct: 1, wrong: 1, hints: 1, stars: 1, xp: 5);
     await _dispose(tester, app);
   });
 
@@ -392,7 +397,16 @@ void main() {
     await _open(tester, app);
     for (var task = 1; task <= 30; task++) {
       expect(find.text('Aufgabe $task / 30'), findsOneWidget);
+      expect(find.text('Runde ${(task - 1) ~/ 10 + 1} von 3'), findsOneWidget);
       await _tap(tester, _answer(tester));
+      // The thirty tasks now run in three rounds of ten, each with a
+      // stopping point. This run continues through both breaks.
+      if (task == 10 || task == 20) {
+        expect(find.text('Runde ${task ~/ 10} von 3 geschafft!'),
+            findsOneWidget);
+        await tester.tap(find.byKey(const ValueKey('module-round-continue')));
+        await _frames(tester);
+      }
     }
     expect(find.text('Du hast 30 von 30 Aufgaben richtig!'), findsOneWidget);
     expect(

@@ -121,6 +121,38 @@ void main() {
     });
   });
 
+  // Fachprüfung Mathematik M17: „Wie viele 2-€-Münzen ergeben 20 €?“ zeigte
+  // einen 20-€-Schein, also das Gegenteil der gefragten Stückelung.
+  group('MoneyCoinsVisual beim Wechseln', () {
+    testWidgets('zeigt nur den Zielbetrag', (tester) async {
+      await tester.pumpWidget(wrap(MoneyCoinsVisual(
+        task: buildTask(
+          type: VisualType.money,
+          prompt: 'Wie viele 2-€-Münzen ergeben 20 €?',
+          data: {'cents': 2000, 'pieces': false},
+        ),
+      )));
+      expect(find.text('Zielbetrag'), findsOneWidget);
+      expect(find.text('20 €'), findsOneWidget);
+      expect(find.byKey(const ValueKey('money-piece-0')), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('ohne diese Angabe bleiben Münzen und Scheine sichtbar',
+        (tester) async {
+      await tester.pumpWidget(wrap(MoneyCoinsVisual(
+        task: buildTask(
+          type: VisualType.money,
+          prompt: 'Lege 7 €.',
+          data: {'cents': 700},
+        ),
+      )));
+      expect(find.text('Geldbetrag'), findsOneWidget);
+      expect(find.byKey(const ValueKey('money-piece-0')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  });
+
   group('FractionPizzaVisual', () {
     testWidgets('rendert bei leerem Payload (Fallback 1/2)', (tester) async {
       await tester.pumpWidget(wrap(FractionPizzaVisual(
@@ -139,6 +171,53 @@ void main() {
       expect(find.byType(FractionPizzaVisual), findsOneWidget);
     });
 
+    // Fachprüfung Mathematik S6: „Erweitere den Bruch 3/6 mit 2.“ zeigte
+    // eine Pizza mit 1 von 6 Stücken, weil keine Bilddaten ankamen und der
+    // Zähler dann auf 1 gesetzt wurde.
+    testWidgets('Erweitern zeigt den Bruch der Aufgabe, nicht 1/n',
+        (tester) async {
+      await tester.pumpWidget(wrap(FractionPizzaVisual(
+        task: buildTask(
+          type: VisualType.fractionPizza,
+          prompt: 'Erweitere den Bruch 3/6 mit 2. Wie heißt der neue Bruch?',
+          answer: '6/12',
+        ),
+      )));
+      expect(find.byKey(const ValueKey('fraction-pizza-3-6')), findsOneWidget);
+      expect(find.byKey(const ValueKey('fraction-pizza-1-6')), findsNothing);
+      // Die feiner geteilte Pizza ist noch ungefärbt: Der neue Zähler ist
+      // die Lösung und wird nicht gezeigt.
+      expect(find.byKey(const ValueKey('fraction-pizza-0-12')), findsOneWidget);
+      expect(find.byKey(const ValueKey('fraction-pizza-6-12')), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Erweitern mit Bilddaten: 5/6 mit 3', (tester) async {
+      await tester.pumpWidget(wrap(FractionPizzaVisual(
+        task: buildTask(
+          type: VisualType.fractionPizza,
+          prompt: 'Erweitere den Bruch 5/6 mit 3. Wie heißt der neue Bruch?',
+          answer: '15/18',
+          data: {'numerator': 5, 'denominator': 6, 'factor': 3},
+        ),
+      )));
+      expect(find.byKey(const ValueKey('fraction-pizza-5-6')), findsOneWidget);
+      expect(find.byKey(const ValueKey('fraction-pizza-0-18')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('ein einzelner Bruch im Text bestimmt Zähler und Nenner',
+        (tester) async {
+      await tester.pumpWidget(wrap(FractionPizzaVisual(
+        task: buildTask(
+          type: VisualType.fractionPizza,
+          prompt: 'Welcher Teil der Pizza ist 3/4?',
+        ),
+      )));
+      expect(find.byKey(const ValueKey('fraction-pizza-3-4')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
     testWidgets('clampt extrem grosse Nenner auf 12', (tester) async {
       // Painter clamped intern, das soll auch bei n > 12 nicht crashen.
       await tester.pumpWidget(wrap(FractionPizzaVisual(
@@ -148,6 +227,76 @@ void main() {
         ),
       )));
       expect(find.byType(FractionPizzaVisual), findsOneWidget);
+    });
+  });
+
+  // Fachprüfung Mathematik S3: Die Bilder zu kg/g, l/ml und m/cm nannten
+  // die umgerechnete Zahl („6 kg = 6000 g“, „0 cm … 700 cm“) und damit die
+  // Lösung. Sie zeigen jetzt nur das Gegebene und die Grundbeziehung.
+  group('Umrechnungsbilder nennen die Lösung nicht', () {
+    List<String> shownTexts(WidgetTester tester) => tester
+        .widgetList<Text>(find.byType(Text))
+        .map((text) => text.data ?? '')
+        .toList();
+
+    testWidgets('Masse: 6 kg zeigt „1 kg = 1000 g“, aber nicht 6000',
+        (tester) async {
+      await tester.pumpWidget(wrap(ScaleMeasureVisual(
+        task: buildTask(
+            type: VisualType.scaleMeasure,
+            prompt: 'Wie viele Gramm sind 6 kg?',
+            answer: 6000),
+      )));
+      expect(find.text('1 kg = 1000 g'), findsOneWidget);
+      expect(find.byKey(const ValueKey('scale-unknown')), findsOneWidget);
+      expect(find.text('?'), findsOneWidget);
+      expect(shownTexts(tester).any((text) => text.contains('6000')), isFalse);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Masse mit Rest: 8 kg und 100 g zeigt beide Angaben',
+        (tester) async {
+      await tester.pumpWidget(wrap(ScaleMeasureVisual(
+        task: buildTask(
+            type: VisualType.scaleMeasure,
+            prompt: 'Wie viele Gramm sind 8 kg und 100 g?',
+            answer: 8100),
+      )));
+      expect(find.text('8'), findsOneWidget);
+      expect(find.text('100'), findsOneWidget);
+      final texts = shownTexts(tester);
+      expect(texts.any((text) => text.contains('8000')), isFalse);
+      expect(texts.any((text) => text.contains('8100')), isFalse);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Hohlmaß: 8 Liter zeigt „1 Liter = 1000 ml“, aber nicht 8000',
+        (tester) async {
+      await tester.pumpWidget(wrap(ScaleMeasureVisual(
+        task: buildTask(
+            type: VisualType.scaleMeasure,
+            prompt: 'Wie viele Milliliter sind 8 Liter und 100 Milliliter?',
+            answer: 8100),
+      )));
+      expect(find.text('1 Liter = 1000 ml'), findsOneWidget);
+      final texts = shownTexts(tester);
+      expect(texts.any((text) => text.contains('8000')), isFalse);
+      expect(texts.any((text) => text.contains('8100')), isFalse);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Länge: 7 Meter zeigt „1 m = 100 cm“, aber nicht 700',
+        (tester) async {
+      await tester.pumpWidget(wrap(RulerCompareVisual(
+        task: buildTask(
+            type: VisualType.rulerCompare,
+            prompt: 'Wie viele Zentimeter sind 7 Meter?',
+            answer: 700),
+      )));
+      expect(find.text('1 m = 100 cm'), findsOneWidget);
+      expect(find.text('7 m'), findsOneWidget);
+      expect(shownTexts(tester).any((text) => text.contains('700')), isFalse);
+      expect(tester.takeException(), isNull);
     });
   });
 
@@ -169,6 +318,52 @@ void main() {
         ),
       )));
       expect(find.byType(BarChartMiniVisual), findsOneWidget);
+    });
+  });
+
+  // Fachprüfung Mathematik S12: Beim Mittelwert aus drei Kindern zeigte das
+  // Diagramm nur zwei Balken „Mo“ und „Di“, der dritte Wert fehlte.
+  group('SimpleBarChartVisual', () {
+    testWidgets('zeigt alle drei Werte mit den Beschriftungen der Bilddaten',
+        (tester) async {
+      await tester.pumpWidget(wrap(SimpleBarChartVisual(
+        task: buildTask(
+          type: VisualType.simpleBarChart,
+          prompt: 'Drei Kinder sammeln Sterne: 42, 49 und 53.',
+          answer: 48,
+          data: {
+            'bars': [42, 49, 53],
+            'labels': ['Kind 1', 'Kind 2', 'Kind 3'],
+          },
+        ),
+      )));
+      for (final value in ['42', '49', '53']) {
+        expect(find.text(value), findsOneWidget);
+      }
+      for (final label in ['Kind 1', 'Kind 2', 'Kind 3']) {
+        expect(find.text(label), findsOneWidget);
+      }
+      expect(find.text('Mo'), findsNothing);
+      expect(find.text('Di'), findsNothing);
+      // Der Mittelwert selbst steht nicht im Bild.
+      expect(find.text('48'), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('ohne Bilddaten: alle Zahlen der Aufgabe, keine erfundenen Tage',
+        (tester) async {
+      await tester.pumpWidget(wrap(SimpleBarChartVisual(
+        task: buildTask(
+          type: VisualType.simpleBarChart,
+          prompt: 'Drei Kinder sammeln Sterne: 12, 18 und 21.',
+        ),
+      )));
+      for (var index = 0; index < 3; index++) {
+        expect(find.byKey(ValueKey('chart-bar-$index')), findsOneWidget);
+      }
+      expect(find.byKey(const ValueKey('chart-bar-3')), findsNothing);
+      expect(find.text('Mo'), findsNothing);
+      expect(tester.takeException(), isNull);
     });
   });
 

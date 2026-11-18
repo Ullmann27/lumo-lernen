@@ -15,7 +15,7 @@ jobs:
   full-app-script-regression:
     if: github.event_name != 'pull_request' || github.head_ref != 'integration/lumo-c4-connections-20261114'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,6 +23,50 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      # The native contract tests compile the production Kotlin sources against
+      # the real Android 36 and Flutter APIs. They download nothing themselves,
+      # so the same pinned toolchain as the learning APK workflow is prepared.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Prepare the exact native contract test dependencies
+        run: |
+          set -euo pipefail
+          flutter precache --android
+          mkdir -p "$RUNNER_TEMP/lumo-script-test-tools"
+          curl --fail --location --retry 3 \
+            https://maven-central.storage-download.googleapis.com/maven2/org/json/json/20240303/json-20240303.jar \
+            --output "$RUNNER_TEMP/lumo-script-test-tools/json-20240303.jar"
+          python3 - <<'PY'
+          import hashlib, os, shutil
+          from pathlib import Path
+          libraries = Path(shutil.which('gradle')).resolve().parents[1] / 'lib'
+          assert list(libraries.glob('kotlin-compiler-embeddable-*.jar')), libraries
+          dependency = Path(os.environ['RUNNER_TEMP']) / 'lumo-script-test-tools/json-20240303.jar'
+          digest = hashlib.sha256(dependency.read_bytes()).hexdigest()
+          assert digest == '3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed'
+          sdk = Path(os.environ.get('ANDROID_SDK_ROOT') or os.environ['ANDROID_HOME'])
+          flutter = Path(shutil.which('flutter')).resolve().parents[1]
+          assert (sdk / 'platforms/android-36/android.jar').is_file()
+          assert (flutter / 'bin/cache/artifacts/engine/android-x64/flutter.jar').is_file()
+          values = {'LUMO_KOTLIN_LIB_DIR': str(libraries), 'LUMO_JSON_JAR': str(dependency),
+                    'LUMO_TEST_JSON_JAR': str(dependency), 'FLUTTER_ROOT': str(flutter)}
+          with open(os.environ['GITHUB_ENV'], 'a') as stream:
+              for key, value in values.items():
+                  stream.write(f'{key}={value}\n')
+          PY
       - name: Install the real prerequisites used by the app-script suite
         run: |
           set -euo pipefail

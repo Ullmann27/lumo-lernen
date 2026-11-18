@@ -47,7 +47,7 @@ class RecommendationEngine {
         unit: w.unit,
         suggestedDifficulty: 1, // bewusst leicht starten
         message: _weaknessMessage(w),
-        cta: 'Komm, drei leichte Aufgaben',
+        cta: 'Komm, wir üben das gemeinsam',
       ));
     }
 
@@ -115,7 +115,7 @@ class RecommendationEngine {
     // Mehrere Varianten, damit Lumo nicht immer dasselbe sagt
     final variants = <String>[
       'Ich habe gesehen, dass ${r.unit} gerade noch schwer ist. '
-          'Lass uns drei leichte Aufgaben zusammen machen.',
+          'Lass uns ein paar Aufgaben dazu gemeinsam üben.',
       'Bei ${r.unit} bist du noch am Lernen — das ist völlig okay. '
           'Wir gehen es Schritt für Schritt an.',
       'Komm, wir schauen uns ${r.unit} nochmal in Ruhe an. '

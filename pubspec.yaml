@@ -1,7 +1,7 @@
 name: lumo_lernen
 description: Lumo Lernen - Lern-App mit integrierten Spielen fuer die 1. bis 4. Klasse Volksschule in Oesterreich
 publish_to: none
-version: 0.13.25+2037
+version: 0.13.38+2050
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -32,6 +32,7 @@ flutter:
     - assets/videos/
     - assets/images/
     - assets/lumo_design/fox/
+    - assets/lumo_actor/
     - assets/lumo_design/bg/
     - assets/lumo_design/learning_world/
     - assets/lumo_design/logo/
@@ -42,6 +43,7 @@ flutter:
     - assets/lumo_design/icons/
     - assets/lumo_design/task_objects/
     - assets/lumo_design/badges/
+    - assets/lumo_design/karts/
     - assets/lumo_design/onboarding/
     - assets/lumo_design/spielwelt/
     - assets/lumo_design/memory/
@@ -64,15 +66,10 @@ flutter:
     - assets/lumo_jump/fox/roll/
     - assets/lumo_sprite_pack/
     - assets/lumo_sprite_pack/cheer/
-    - assets/lumo_cards/
-    - assets/lumo_cards/cards/red/
-    - assets/lumo_cards/cards/yellow/
-    - assets/lumo_cards/cards/green/
-    - assets/lumo_cards/cards/blue/
-    - assets/lumo_cards/cards/special/
-    - assets/lumo_cards/cards/back/
+    # Spieler-Avatare (Rechentricks). Die Kartenbilder des früheren
+    # Flutter-Kartenspiels werden nicht mehr mitgeliefert: Die Kartenspiele
+    # laufen am 3D-Tisch im Spiele-Teil.
     - assets/lumo_cards/avatars/
-    - docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp
     - assets/rivals/
     - assets/audio/sfx/
     - assets/audio/music/

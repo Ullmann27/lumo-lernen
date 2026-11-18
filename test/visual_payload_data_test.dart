@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/core/math_task_templates.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/task_quality_guard.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
@@ -46,6 +47,196 @@ void main() {
     );
     return instance.visualPayload.data;
   }
+
+  // Fachprüfung Mathematik S6: Für „Brüche erweitern“ kamen keine Bilddaten
+  // an, die Pizza zeigte deshalb immer 1 von n Stücken.
+  group('fraction_expand parser', () {
+    test('uebergibt Zaehler, Nenner und Erweiterungszahl aus der Aufgabe', () {
+      final data = dataFor(
+        visual: 'fraction_expand',
+        prompt: 'Erweitere den Bruch 3/6 mit 2. Wie heißt der neue Bruch?',
+        answer: '6/12',
+        choices: const ['6/12', '3/12', '6/6', '5/8'],
+        requireValidTask: true,
+      );
+      expect(data['numerator'], 3);
+      expect(data['denominator'], 6);
+      expect(data['factor'], 2);
+    });
+
+    test('alle erzeugten Erweitern-Aufgaben bekommen ihre eigenen Bilddaten',
+        () {
+      final template = MathTaskTemplates.templates
+          .singleWhere((item) => item.id == 'g4_fraction_expand');
+      for (var seed = 0; seed < 120; seed++) {
+        final task = template.concretize(seed * 131 + 7);
+        final parts = RegExp(r'\d+')
+            .allMatches(task.prompt)
+            .map((match) => int.parse(match.group(0)!))
+            .toList();
+        final data = dataFor(
+          visual: task.visual,
+          prompt: task.prompt,
+          answer: task.answer,
+          choices: task.choices,
+          requireValidTask: true,
+        );
+        expect(data['numerator'], parts[0], reason: task.prompt);
+        expect(data['denominator'], parts[1], reason: task.prompt);
+        expect(data['factor'], parts[2], reason: task.prompt);
+      }
+    });
+  });
+
+  // Fachprüfung Mathematik S12: Das Diagramm zum Mittelwert braucht alle
+  // drei Werte und die Beschriftung „Kind 1/2/3“ statt „Mo“/„Di“.
+  group('chart parser', () {
+    test('Mittelwert: drei Balken fuer drei Kinder', () {
+      final template = MathTaskTemplates.templates
+          .singleWhere((item) => item.id == 'g4_average');
+      for (var seed = 0; seed < 60; seed++) {
+        final task = template.concretize(seed * 53 + 3);
+        final values = RegExp(r'\d+')
+            .allMatches(task.prompt)
+            .map((match) => int.parse(match.group(0)!))
+            .toList();
+        final data = dataFor(
+          visual: task.visual,
+          prompt: task.prompt,
+          answer: task.answer,
+          choices: task.choices,
+          requireValidTask: true,
+        );
+        expect(data['bars'], values.take(3).toList(), reason: task.prompt);
+        expect(data['labels'], ['Kind 1', 'Kind 2', 'Kind 3']);
+      }
+    });
+
+    test('Diagramm mit Wochentagen: Balken und Kurzformen der Tage', () {
+      final data = dataFor(
+        visual: 'chart',
+        prompt:
+            'Diagramm: Montag 12 Kinder, Dienstag 11 Kinder. Wie viele zusammen?',
+        answer: '23',
+        choices: const ['23', '13', '33', '1'],
+        requireValidTask: true,
+      );
+      expect(data['bars'], [12, 11]);
+      expect(data['labels'], ['Mo', 'Di']);
+    });
+  });
+
+  // Fachprüfung Mathematik M4/L4: Die Uhr im Bild zeigt die Uhrzeit der
+  // Aufgabe, obwohl die Frage sie nicht mehr nennt. Fragen ohne Uhrzeit
+  // („Was bedeutet gestern?“) bekommen kein Uhr-Feld.
+  group('Uhr im Bild', () {
+    test('„Wie spät ist es?“ stellt die Uhr auf die gesuchte Zeit', () {
+      final template = MathTaskTemplates.templates
+          .singleWhere((item) => item.id == 'g2_clock');
+      for (var seed = 0; seed < 100; seed++) {
+        final task = template.concretize(seed * 37 + 5);
+        final time = RegExp(r'^(\d+):(\d+) Uhr$').firstMatch(task.answer)!;
+        final lumoTask = LumoTask(
+          id: 'clock',
+          grade: 2,
+          subject: 'Mathematik',
+          unit: task.unit,
+          prompt: task.prompt,
+          choices: task.choices,
+          answer: task.answer,
+          explanation: task.explanation,
+          visual: task.visual,
+        );
+        final instance = adapter.toTaskInstance(
+            task: lumoTask, childId: 'child', difficulty: 2);
+        expect(instance.visualPayload.type, VisualType.clock);
+        expect(instance.visualPayload.data['hour'], int.parse(time[1]!));
+        expect(instance.visualPayload.data['minute'], int.parse(time[2]!));
+      }
+    });
+
+    test('Wissensfragen zur Zeit und Minuten-Umrechnung haben kein Uhr-Feld',
+        () {
+      for (final id in ['g1_day_hours', 'g4_time_minutes']) {
+        final template =
+            MathTaskTemplates.templates.singleWhere((item) => item.id == id);
+        for (var seed = 0; seed < 40; seed++) {
+          final task = template.concretize(seed * 37 + 5);
+          final instance = adapter.toTaskInstance(
+            task: LumoTask(
+              id: 'time',
+              grade: 4,
+              subject: 'Mathematik',
+              unit: task.unit,
+              prompt: task.prompt,
+              choices: task.choices,
+              answer: task.answer,
+              explanation: task.explanation,
+              visual: task.visual,
+            ),
+            childId: 'child',
+            difficulty: 1,
+          );
+          expect(instance.visualPayload.type, isNot(VisualType.clock),
+              reason: task.prompt);
+        }
+      }
+    });
+  });
+
+  // Fachprüfung Mathematik M16/M17: Das Geld-Bild legte nur den ersten
+  // Betrag und beim Wechseln eine andere Stückelung als gefragt.
+  group('Geld-Bilder', () {
+    test('Preisvergleich legt beide Beträge', () {
+      final data = dataFor(
+        visual: 'money_compare',
+        prompt: 'Der Ball kostet 6 €, das Buch kostet 8 €. Was kostet mehr?',
+        answer: 'das Buch',
+        choices: const ['der Ball', 'das Buch', 'gleich viel'],
+        requireValidTask: true,
+      );
+      expect(data['left'], 6);
+      expect(data['right'], 8);
+    });
+
+    test('Wechseln zeigt nur den Zielbetrag, keine andere Stückelung', () {
+      final data = dataFor(
+        visual: 'money_change',
+        prompt: 'Wie viele 2-€-Münzen ergeben 20 €?',
+        answer: '10 Münzen',
+        choices: const ['10 Münzen', '20 Münzen', '2 Münzen', '9 Münzen'],
+        requireValidTask: true,
+      );
+      expect(data['cents'], 2000);
+      expect(data['pieces'], isFalse);
+    });
+  });
+
+  // Fachprüfung Mathematik M18: Symmetrie-Aufgaben zeigten eine leere
+  // „Formenhilfe“, weil ihre Karten „ja/nein“ oder Zahlen sind.
+  test('Symmetrie-Aufgaben bekommen keine leere Formenhilfe', () {
+    for (final id in ['g1_symmetry', 'g4_symmetry_lines']) {
+      final template =
+          MathTaskTemplates.templates.singleWhere((item) => item.id == id);
+      final task = template.concretize(11);
+      final instance = adapter.toTaskInstance(
+        task: LumoTask(
+          id: 'symmetry',
+          grade: 4,
+          subject: 'Mathematik',
+          unit: task.unit,
+          prompt: task.prompt,
+          choices: task.choices,
+          answer: task.answer,
+          explanation: task.explanation,
+          visual: task.visual,
+        ),
+        childId: 'child',
+        difficulty: 1,
+      );
+      expect(instance.visualPayload.type, isNot(VisualType.shape));
+    }
+  });
 
   group('clock parser', () {
     test('extrahiert hour und minute aus "Stunde 7 und Minute 30"', () {
@@ -109,6 +300,10 @@ void main() {
       final data = dataFor(
         visual: 'fraction_pizza',
         prompt: 'Was ist ein Viertel von 12?',
+        // Die Qualitätsprüfung rechnet Viertel jetzt nach; die frühere
+        // Platzhalter-Antwort „5“ wäre falsch.
+        answer: '3',
+        choices: const ['3', '4', '6'],
       );
       expect(data['numerator'], equals(1));
       expect(data['denominator'], equals(4));
