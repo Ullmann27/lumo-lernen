@@ -497,44 +497,67 @@ class ExerciseFactory {
     if (unit == 'Muster') {
       final symbols = <String>['Kreis', 'Dreieck', 'Stern', 'Quadrat']
         ..shuffle(_random);
-      final length = grade == 1 ? 2 : 3;
-      final pattern = symbols.take(length).toList();
-      final shown = <String>[...pattern, ...pattern];
+      // Musterarten je Klasse: Klasse 1 A-B, Klasse 2 dazu A-A-B und A-B-C,
+      // ab Klasse 3 auch A-B-B und A-B-C-D. Die Reihe bricht an wechselnder
+      // Stelle ab, damit die Lösung nicht immer die erste Form ist.
+      final shapes = <List<int>>[
+        const <int>[0, 1],
+        if (grade >= 2) ...const <List<int>>[
+          <int>[0, 0, 1],
+          <int>[0, 1, 2],
+        ],
+        if (grade >= 3) ...const <List<int>>[
+          <int>[0, 1, 1],
+          <int>[0, 1, 2, 3],
+        ],
+      ];
+      final pattern = <String>[
+        for (final index in shapes[_random.nextInt(shapes.length)])
+          symbols[index],
+      ];
+      final extra = _random.nextInt(pattern.length);
+      final shown = <String>[...pattern, ...pattern, ...pattern.take(extra)];
+      final answer = pattern[extra];
       return _choiceTask(
           'logik-muster',
           grade,
           'Logik',
           unit,
           'Das Muster wiederholt sich immer gleich: ${shown.join(' – ')} – ? Welche Form folgt?',
-          pattern.first,
-          'Die Gruppe ${pattern.join(' – ')} wiederholt sich. Nach ${pattern.last} kommt wieder ${pattern.first}.',
+          answer,
+          'Die Gruppe ${pattern.join(' – ')} wiederholt sich. Nach ${shown.last} kommt hier $answer.',
           visual: 'pattern',
           customChoices: symbols);
     }
     if (unit == 'Zahlenmuster') {
-      final step = 1 + _random.nextInt(grade * 2);
-      final start = _random.nextInt(grade == 2 ? 50 : 200);
-      final shown = List.generate(4, (i) => start + i * step);
-      final answer = start + 4 * step;
+      // Schritt mindestens 2 (ein Schritt von 1 ist nur Weiterzählen), ein
+      // Drittel der Reihen geht zurück.
+      final step = 2 + _random.nextInt(grade * 2);
+      final backwards = _random.nextInt(3) == 0;
+      final low = _random.nextInt(grade == 2 ? 50 : 200);
+      final start = backwards ? low + 4 * step : low;
+      final signed = backwards ? -step : step;
+      final shown = List.generate(4, (i) => start + i * signed);
+      final answer = start + 4 * signed;
       return _choiceTask(
           'logik-zahlenmuster',
           grade,
           'Logik',
           unit,
-          'Gehe jedes Mal gleich viele Schritte weiter: ${shown.join(' – ')} – ? Welche Zahl folgt?',
+          'Gehe jedes Mal gleich viele Schritte ${backwards ? 'zurück' : 'weiter'}: ${shown.join(' – ')} – ? Welche Zahl folgt?',
           '$answer',
-          'Der Abstand ist immer $step. Nach ${shown.last} kommt ${shown.last} + $step = $answer.',
+          'Der Abstand ist immer $step. Nach ${shown.last} kommt ${shown.last} ${backwards ? '−' : '+'} $step = $answer.',
           // Die Lösung darf der Größe nach an jeder Stelle liegen. Typische
           // Fehler: einen Schritt zu viel, nur um 1 weitergezählt, verzählt.
           customChoices: MathTaskTemplates.numberChoices(
             answer,
             _random.nextInt(1 << 30),
             typical: <int>[
-              answer + step,
-              shown.last + 1,
+              answer + signed,
+              shown.last + (backwards ? -1 : 1),
               answer - 1,
               answer + 1,
-              answer + 2 * step,
+              answer + 2 * signed,
             ],
             blocked: shown.toSet(),
           ));
@@ -578,9 +601,25 @@ class ExerciseFactory {
     final asked =
         <String>['ganz links', 'in der Mitte', 'ganz rechts'][askedIndex];
     final answer = <String>[first, middle, last][askedIndex];
-    final prompt = unit == 'Schlussfolgern'
-        ? 'Drei Figuren stehen nebeneinander. $first steht links von $middle. $middle steht links von $last. Wer steht $asked?'
-        : 'Von links nach rechts stehen $first, $middle und $last. Wer steht $asked?';
+    var prompt =
+        'Von links nach rechts stehen $first, $middle und $last. Wer steht $asked?';
+    if (unit == 'Schlussfolgern') {
+      // Die zwei Angaben stehen in wechselnder Reihenfolge und Richtung.
+      // Früher wurden die Namen immer von links nach rechts genannt, die
+      // Lösung war ohne Schluss abzulesen.
+      final clues = <String>[
+        _random.nextBool()
+            ? '$first steht links von $middle.'
+            : '$middle steht rechts von $first.',
+        _random.nextBool()
+            ? '$middle steht links von $last.'
+            : '$last steht rechts von $middle.',
+      ]..shuffle(_random);
+      prompt =
+          'Drei Freunde stehen nebeneinander. ${clues.join(' ')} Wer steht $asked?';
+    }
+    // Die Karten in fester, vom Rätsel unabhängiger Reihenfolge.
+    final cards = <String>[first, middle, last]..sort();
     return _choiceTask(
         'logik-reihenfolge',
         grade,
@@ -589,7 +628,7 @@ class ExerciseFactory {
         prompt,
         answer,
         'Von links nach rechts ist die Reihenfolge $first – $middle – $last. $answer steht $asked.',
-        customChoices: <String>[first, middle, last]);
+        customChoices: cards);
   }
 
   /// Lumos Abenteuer-Aufgaben, auf Wunsch mit dem Namen des Kindes.
