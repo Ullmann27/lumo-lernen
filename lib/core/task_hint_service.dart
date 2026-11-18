@@ -371,7 +371,7 @@ class TaskHintService {
         check,
       ];
     }
-    if (prompt.contains('schenkt')) {
+    if (prompt.contains('schenkt') || prompt.contains('fehlen noch')) {
       return [
         'Hier geht etwas weg. Das ist eine Minusaufgabe.',
         if (values.length >= 2)
@@ -381,7 +381,9 @@ class TaskHintService {
         check,
       ];
     }
-    if (prompt.contains('zusammen') || prompt.contains('findet')) {
+    if (prompt.contains('zusammen') ||
+        prompt.contains('findet') ||
+        prompt.contains('dazu')) {
       return [
         'Hier kommt etwas dazu oder zwei Mengen werden zusammengezählt. Das ist eine Plusaufgabe.',
         if (values.length >= 2)

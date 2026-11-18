@@ -135,15 +135,18 @@ class LumoAdventureTasks {
         _ => 10000,
       };
 
-  List<String> _numberChoices(int answer, {int spread = 0}) {
+  /// [max] begrenzt die falschen Karten, z. B. auf den Zahlenraum 20 der
+  /// 1. Klasse: Eine Karte „25“ wäre dort ohne Rechnen auszuschließen.
+  List<String> _numberChoices(int answer, {int spread = 0, int? max}) {
     final step = spread > 0 ? spread : (answer > 200 ? 10 : 1);
     final options = <int>{answer};
     final candidates = <int>[
       answer + step, answer - step, answer + 2 * step, answer - 2 * step,
       answer + 10, answer - 10, answer + 1, answer - 1,
+      answer + 2, answer - 2, answer + 3, answer - 3,
     ]..shuffle(_random);
     for (final c in candidates) {
-      if (c >= 0) options.add(c);
+      if (c >= 0 && (max == null || c <= max)) options.add(c);
       if (options.length == 4) break;
     }
     return _shuffle(options.map((n) => '$n').toList());
@@ -169,15 +172,15 @@ class LumoAdventureTasks {
   }
 
   AdventureTask _math(String unit, String prompt, int answer, String why,
-          {int spread = 0, String suffix = ''}) =>
+          {int spread = 0, String suffix = '', int? max}) =>
       AdventureTask(
         subject: 'Mathematik',
         unit: unit,
         prompt: prompt,
         answer: '$answer$suffix',
         choices: suffix.isEmpty
-            ? _numberChoices(answer, spread: spread)
-            : _numberChoices(answer, spread: spread)
+            ? _numberChoices(answer, spread: spread, max: max)
+            : _numberChoices(answer, spread: spread, max: max)
                 .map((c) => '$c$suffix')
                 .toList(),
         explanation: why,
@@ -193,6 +196,9 @@ class LumoAdventureTasks {
     final place = _pick(adventurePlaces);
     final max = maxNumber(g);
     final kind = _random.nextInt(g == 1 ? 4 : g == 2 ? 6 : 7);
+    // Klasse 1: Karten bleiben im Zahlenraum 20.
+    final cap = g == 1 ? 20 : null;
+    if (g >= 3 && kind <= 3) return _bigStory(g, kind, hero, friend);
     switch (kind) {
       case 0:
         final a = _between(2, max ~/ 2);
@@ -202,7 +208,8 @@ class LumoAdventureTasks {
             '$hero sammelt $place $a $pl. Dann findet $hero noch $b $pl. '
                 'Wie viele $pl hat $hero jetzt?',
             a + b,
-            '$a $pl und noch $b dazu: $a + $b = ${a + b}. Super gesammelt!');
+            '$a $pl und noch $b dazu: $a + $b = ${a + b}. Super gesammelt!',
+            max: cap);
       case 1:
         final a = _between(4, max);
         final b = _between(2, a - 1);
@@ -211,25 +218,28 @@ class LumoAdventureTasks {
             '$hero hat $a $pl. $hero schenkt $friend $b davon. '
                 'Wie viele $pl hat $hero noch?',
             a - b,
-            'Verschenken heißt wegnehmen: $a − $b = ${a - b}. Wie lieb von $hero!');
+            'Verschenken heißt wegnehmen: $a − $b = ${a - b}. Wie lieb von $hero!',
+            max: cap);
       case 2:
         final a = _between(4, max);
-        final b = _between(1, a - 2);
+        final b = _between(2, a - 2);
         return _math(
             'Rechengeschichten',
             '$hero hat $a $pl, $friend hat $b $pl. '
                 'Wie viele $pl hat $hero mehr als $friend?',
             a - b,
-            'Den Unterschied findest du mit Minus: $a − $b = ${a - b}.');
+            'Den Unterschied findest du mit Minus: $a − $b = ${a - b}.',
+            max: cap);
       case 3:
-        final a = _between(1, max ~/ 2);
-        final b = _between(1, max ~/ 2);
+        final a = _between(2, max ~/ 2);
+        final b = _between(2, max ~/ 2);
         return _math(
             'Rechengeschichten',
             'Bei Lumos Kart-Rennen fährt $hero $a Runden und $friend $b Runden. '
                 'Wie viele Runden fahren beide zusammen?',
             a + b,
-            'Zusammen heißt plus: $a + $b = ${a + b}. Brumm, brumm!');
+            'Zusammen heißt plus: $a + $b = ${a + b}. Brumm, brumm!',
+            max: cap);
       case 4:
         final container = _pick(adventureContainers);
         final n = _between(2, g == 2 ? 10 : 10);
@@ -259,8 +269,9 @@ class LumoAdventureTasks {
           final c = _between(5, n * k);
           return _math(
               'Rechengeschichten',
-              '$hero kauft $n Packungen mit je $k $pl und bekommt noch $b geschenkt. '
-                  'Davon verschenkt $hero $c. Wie viele $pl hat $hero am Ende?',
+              '$hero kauft $n Packungen. In jeder Packung sind $k $pl. '
+                  '$hero bekommt noch $b $pl dazu. Von allen $pl verschenkt '
+                  '$hero $c. Wie viele $pl hat $hero am Ende?',
               n * k + b - c,
               'Erst $n · $k = ${n * k}, dann + $b = ${n * k + b}, '
                   'dann − $c = ${n * k + b - c}.',
@@ -279,6 +290,55 @@ class LumoAdventureTasks {
     }
   }
 
+  /// Rechengeschichten mit großen Zahlen (ab Klasse 3). Gezählt wird, was
+  /// es in solchen Mengen wirklich gibt: Punkte, Meter, Zuschauer, Schritte.
+  /// Früher hieß es „Hoppel hat 902 Erdbeeren“ oder „fährt 471 Runden“.
+  AdventureTask _bigStory(int g, int kind, String hero, String friend) {
+    final max = maxNumber(g);
+    switch (kind) {
+      case 0:
+        final a = _between(max ~/ 20, max ~/ 2);
+        final b = _between(max ~/ 20, max - a);
+        return _math(
+            'Rechengeschichten',
+            '$hero sammelt bei Lumos Kart-Spiel $a Punkte. In der zweiten '
+                'Runde kommen $b Punkte dazu. Wie viele Punkte hat $hero jetzt?',
+            a + b,
+            'Es kommt etwas dazu: $a + $b = ${a + b}.',
+            spread: 10);
+      case 1:
+        final a = _between(max ~/ 4, max);
+        final b = _between(max ~/ 20, a - 1);
+        return _math(
+            'Rechengeschichten',
+            'Der Wanderweg auf die Alm ist $a Meter lang. $hero ist schon '
+                '$b Meter gegangen. Wie viele Meter fehlen noch?',
+            a - b,
+            'Was schon geschafft ist, ziehst du ab: $a − $b = ${a - b}.',
+            spread: 10);
+      case 2:
+        final a = _between(max ~/ 4, max);
+        final b = _between(max ~/ 20, a - 2);
+        return _math(
+            'Rechengeschichten',
+            'Beim Schulfest sind $a Zuschauer, beim Kart-Rennen $b Zuschauer. '
+                'Wie viele Zuschauer sind beim Schulfest mehr als beim Kart-Rennen?',
+            a - b,
+            'Den Unterschied findest du mit Minus: $a − $b = ${a - b}.',
+            spread: 10);
+      default:
+        final a = _between(max ~/ 20, max ~/ 2);
+        final b = _between(max ~/ 20, max ~/ 2);
+        return _math(
+            'Rechengeschichten',
+            '$hero geht am Vormittag $a Schritte und am Nachmittag $b Schritte. '
+                'Wie viele Schritte sind das zusammen?',
+            a + b,
+            'Zusammen heißt plus: $a + $b = ${a + b}.',
+            spread: 10);
+    }
+  }
+
   AdventureTask _wall(int g) {
     final top = maxNumber(g);
     final limit = g == 1 ? 5 : top ~/ 4;
@@ -290,19 +350,20 @@ class LumoAdventureTasks {
     if (g >= 2 && _random.nextBool()) {
       return _math(
           'Zahlenmauer',
-          '$friend baut eine Zahlenmauer. Jeder Stein ist die Summe der zwei '
-              'Steine darunter. Unten liegen $a, $b und $c, oben steht $peak. '
-              'Welche Zahl steht in der Mitte links?',
+          '$friend baut eine Zahlenmauer. Zwei Steine nebeneinander ergeben '
+              'zusammen den Stein darüber. Unten liegen $a, $b und $c, oben '
+              'steht $peak. Welche Zahl steht in der Mitte links?',
           left,
           'Links in der Mitte: $a + $b = $left. Probe: $left + $right = $peak.');
     }
     return _math(
         'Zahlenmauer',
-        '$friend baut eine Zahlenmauer aus drei Reihen. Jeder Stein ist die '
-            'Summe der zwei Steine darunter. Unten liegen $a, $b und $c. '
-            'Welche Zahl steht ganz oben?',
+        '$friend baut eine Zahlenmauer aus drei Reihen. Zwei Steine '
+            'nebeneinander ergeben zusammen den Stein darüber. Unten liegen '
+            '$a, $b und $c. Welche Zahl steht ganz oben?',
         peak,
-        'Mitte: $a + $b = $left und $b + $c = $right. Oben: $left + $right = $peak.');
+        'Mitte: $a + $b = $left und $b + $c = $right. Oben: $left + $right = $peak.',
+        max: g == 1 ? 20 : null);
   }
 
   AdventureTask _numberRiddle(int g) {
@@ -363,20 +424,32 @@ class LumoAdventureTasks {
       final total = _between(2, 10);
       final a = _between(1, total - 1);
       final b = total - a;
+      // Wechselnde Waren statt immer „Ball und Buch“.
+      const things = <String>[
+        'einen Ball', 'ein Buch', 'ein Malheft', 'einen Kreisel',
+        'eine Kappe', 'ein Springseil', 'einen Drachen', 'ein Puzzle',
+      ];
+      final first = _pick(things);
+      final second = _pick(things.where((thing) => thing != first).toList());
       return _math(
           'Marktstand',
-          '$hero kauft am Markt einen Ball um $a € und ein Buch um $b €. '
+          '$hero kauft am Markt $first um $a € und $second um $b €. '
               'Wie viel kostet das zusammen?',
           a + b,
           '$a € + $b € = ${a + b} €.',
-          suffix: ' €');
+          suffix: ' €',
+          max: 20);
     }
     if (g == 2) {
       final price = _between(11, 89);
       final paid = price <= 50 ? 50 : 100;
+      final thing = _pick(const <String>[
+        'eine Spielzeug-Rakete', 'einen Rucksack', 'ein Kartenspiel',
+        'einen Fußball', 'eine Taschenlampe', 'ein Federpennal',
+      ]);
       return _math(
           'Marktstand',
-          '$hero kauft eine Spielzeug-Rakete um $price € und zahlt mit $paid €. '
+          '$hero kauft $thing um $price € und zahlt mit $paid €. '
               'Wie viel Wechselgeld bekommt $hero zurück?',
           paid - price,
           'Wechselgeld: $paid € − $price € = ${paid - price} €.',
@@ -460,8 +533,10 @@ class LumoAdventureTasks {
       prompt: 'Welches Zeichen gehört in die Lücke? $a + $b ⬜ $other',
       answer: answer,
       choices: _shuffle(['<', '>', '=']),
-      explanation: '$a + $b = $sum. $sum $answer $other – '
-          'das Krokodil-Maul frisst immer die größere Zahl.',
+      explanation: answer == '='
+          ? '$a + $b = $sum. $sum = $other: Beide Seiten sind gleich groß.'
+          : '$a + $b = $sum. $sum $answer $other – '
+              'das Krokodil-Maul frisst immer die größere Zahl.',
     );
   }
 
@@ -483,7 +558,9 @@ class LumoAdventureTasks {
           '${start + hours + 2} Uhr',
           '$start Uhr',
         ]),
-        explanation: '$start Uhr + $hours = $end Uhr.',
+        explanation: 'Von $start Uhr $hours '
+            '${hours == 1 ? 'Stunde' : 'Stunden'} weiter: '
+            '${[for (var h = start + 1; h <= end; h++) '$h Uhr'].join(', ')}.',
       );
     }
     final startH = _between(8, 16);
@@ -840,10 +917,27 @@ class LumoAdventureTasks {
           '${_shuffle([...three, odd]).join(', ')}',
       answer: odd,
       choices: _shuffle([...three, odd]),
-      explanation: '${three.join(', ')} gehören zu ${main[0]}. '
-          '$odd gehört zu ${other[0]}.',
+      explanation: '${three.join(', ')} gehören ${_toGroup(main[0])}. '
+          '$odd gehört ${_toGroup(other[0])}.',
     );
   }
+
+  /// Gruppenname im Wem-Fall mit Begleiter: „gehören zum Obst“, „gehört zu
+  /// den Möbelstücken“ statt „gehört zu Möbelstücke“.
+  static String _toGroup(String name) =>
+      const <String, String>{
+        'Obst': 'zum Obst',
+        'Gemüse': 'zum Gemüse',
+        'Wetter': 'zum Wetter',
+        'Tiere im Wald': 'zu den Tieren im Wald',
+        'Fahrzeuge': 'zu den Fahrzeugen',
+        'Musikinstrumente': 'zu den Musikinstrumenten',
+        'Kleidungsstücke': 'zu den Kleidungsstücken',
+        'Möbelstücke': 'zu den Möbelstücken',
+        'Farben': 'zu den Farben',
+        'Schulsachen': 'zu den Schulsachen',
+      }[name] ??
+      'zur Gruppe „$name“';
 
   AdventureTask _secretCode(int g) {
     final word = _pick(adventureCodeWords);
