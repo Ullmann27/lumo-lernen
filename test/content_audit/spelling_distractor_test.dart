@@ -130,6 +130,30 @@ void main() {
     }
   });
 
+  test('Häufige Wörter Klasse 4: echte Klasse-4-Wörter, auch ohne Satz', () {
+    final own = spellingContexts
+        .where((context) =>
+            context.unit == 'Haeufige Woerter' && context.grade == 4)
+        .map((context) => context.answer)
+        .toSet();
+    expect(own.length, greaterThanOrEqualTo(24));
+    final lowerGrades = spellingContexts
+        .where((context) =>
+            context.unit == 'Haeufige Woerter' && context.grade <= 2)
+        .map((context) => context.answer)
+        .toSet()
+      ..addAll(<String>['Fahrrad', 'Haus', 'Ball', 'Sonne', 'Katze']);
+    final factory = ExerciseFactory(seed: 404);
+    final answers = <String>{};
+    for (var i = 0; i < 600; i++) {
+      final task = factory.next(
+          grade: 4, subject: 'Rechtschreibung', unit: 'Haeufige Woerter');
+      answers.add(task.answer);
+      expect(lowerGrades, isNot(contains(task.answer)), reason: task.prompt);
+    }
+    expect(answers.length, greaterThanOrEqualTo(26));
+  });
+
   test('Wortende: der Verwechslungspartner steht immer zur Wahl (D-M8)', () {
     const partners = <String, String>{
       'd': 't', 't': 'd', 'g': 'k', 'k': 'g', 'b': 'p', 'p': 'b',

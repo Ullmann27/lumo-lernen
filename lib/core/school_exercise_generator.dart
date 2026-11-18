@@ -968,7 +968,7 @@ class ExerciseFactory {
         ['Brücke', 'Brüke', 'Brüccke'],
       ],
       4: [
-        ['Fahrrad', 'Farad', 'Fahrrat'],
+        ['Abenteuer', 'Abendteuer', 'Abenteur'],
         ['Werkzeug', 'Werkzeuk', 'Werkzeugg'],
         ['Feuerwehr', 'Feuerwer', 'Feurwehr'],
         ['Bibliothek', 'Bibliotek', 'Bibliothekk'],
