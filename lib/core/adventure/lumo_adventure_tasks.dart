@@ -1002,22 +1002,43 @@ class LumoAdventureTasks {
       }[name] ??
       'zur Gruppe „$name“';
 
+  /// Weitere kurze Wörter ohne Umlaute, damit es Ablenker mit gleichem
+  /// Anfangsbuchstaben gibt (Befund M26: meist genügte der erste Buchstabe).
+  static const _extraCodeWords = <String>[
+    'HAUS', 'HAND', 'HUT', 'BANK', 'BOOT', 'MAUS', 'MOOS', 'SAND', 'SALZ',
+    'KANU', 'KUH', 'WAL', 'WOLF', 'ROSE', 'RABE', 'FISCH', 'FROSCH', 'ZUG',
+    'ZELT', 'IGEL', 'ESEL', 'AFFE', 'SEE', 'BERG',
+  ];
+
   AdventureTask _secretCode(int g) {
     final word = _pick(adventureCodeWords);
-    String encode(String w) =>
-        w.split('').map((c) => '${c.codeUnitAt(0) - 64}').join('-');
-    final others = adventureCodeWords
-        .where((w) => w != word && (w.length - word.length).abs() <= 1)
+    // Klasse 4: manchmal beginnt der Code bei A = 2 (verschobenes Alphabet).
+    final shift = g >= 4 && _random.nextBool() ? 1 : 0;
+    int code(String c) => c.codeUnitAt(0) - 64 + shift;
+    String encode(String w) => w.split('').map((c) => '${code(c)}').join('-');
+    final pool = <String>{...adventureCodeWords, ..._extraCodeWords}
+      ..remove(word);
+    final sameStart = pool.where((w) => w[0] == word[0]).toList()
+      ..shuffle(_random);
+    final similarLength = pool
+        .where((w) => w[0] != word[0] && (w.length - word.length).abs() <= 1)
         .toList()
       ..shuffle(_random);
+    // Ab Klasse 2 zuerst Wörter mit demselben Anfang: dann muss man
+    // weiterlesen. In Klasse 1 genügen Wörter ähnlicher Länge.
+    final others = g >= 2
+        ? <String>[...sameStart, ...similarLength]
+        : <String>[...similarLength, ...sameStart];
+    final rule = shift == 0
+        ? 'Im Code ist A = 1, B = 2, C = 3 und so weiter bis Z = 26.'
+        : 'Lumo hat den Code verschoben: Jetzt ist A = 2, B = 3, C = 4 und so weiter bis Z = 27.';
     return AdventureTask(
       subject: 'Logik',
       unit: 'Geheimcode',
-      prompt: 'Geheimbotschaft von Lumo! Im Code ist A = 1, B = 2, C = 3 und so '
-          'weiter bis Z = 26. Welches Wort heißt ${encode(word)}?',
+      prompt: 'Geheimbotschaft von Lumo! $rule Welches Wort heißt ${encode(word)}?',
       answer: word,
-      choices: _choicesWith(word, others.isEmpty ? adventureCodeWords : others),
-      explanation: '${word.split('').map((c) => '$c = ${c.codeUnitAt(0) - 64}').join(', ')}.',
+      choices: _choicesWith(word, others),
+      explanation: '${word.split('').map((c) => '$c = ${code(c)}').join(', ')}.',
     );
   }
 }

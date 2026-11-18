@@ -256,5 +256,35 @@ void main() {
       }
       expect(big, greaterThan(60));
     });
+
+    test('M26: Geheimcode mit Ablenkern gleichen Anfangs, Klasse 4 verschoben',
+        () {
+      for (final grade in [2, 3, 4]) {
+        final generator = LumoAdventureTasks(Random(grade));
+        var sameStart = 0, shifted = 0;
+        for (var i = 0; i < 200; i++) {
+          final task = next(generator, 'Geheimcode', grade, subject: 'Logik');
+          final start = RegExp(r'A = (\d+)').firstMatch(task.prompt)!;
+          final offset = int.parse(start[1]!) - 1;
+          if (offset == 1) shifted++;
+          final codes = RegExp(r'heißt ([\d-]+)\?')
+              .firstMatch(task.prompt)![1]!
+              .split('-')
+              .map(int.parse);
+          final decoded = String.fromCharCodes(codes.map((n) => n - offset + 64));
+          expect(decoded, task.answer, reason: task.prompt);
+          expect(task.choices, hasLength(4), reason: task.prompt);
+          if (task.choices.where((c) => c[0] == task.answer[0]).length >= 2) {
+            sameStart++;
+          }
+        }
+        expect(sameStart, greaterThan(120), reason: 'Klasse $grade');
+        if (grade < 4) {
+          expect(shifted, 0);
+        } else {
+          expect(shifted, inInclusiveRange(60, 140));
+        }
+      }
+    });
   });
 }

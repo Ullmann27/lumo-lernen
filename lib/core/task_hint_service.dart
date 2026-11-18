@@ -201,7 +201,7 @@ class TaskHintService {
             'Gib der Gruppe einen Namen. Prüfe jedes Ding: Passt der Name? Das eine Ding, das nicht passt, ist gesucht.',
           ]),
         'Geheimcode' => pick(const [
-            'Zähle im Alphabet: A ist 1, B ist 2, C ist 3 und so weiter. Beginne mit der ersten Zahl.',
+            'Lies genau, welche Zahl zu A gehört. Zähle von dort im Alphabet weiter. Beginne mit der ersten Zahl.',
             'Schreibe das Alphabet auf und nummeriere die Buchstaben. Übersetze die erste und die letzte Zahl. Welche Wörter passen dazu?',
             'Übersetze Zahl für Zahl und vergleiche mit den Wörtern auf den Karten. Auch die Anzahl der Buchstaben muss stimmen.',
           ]),
