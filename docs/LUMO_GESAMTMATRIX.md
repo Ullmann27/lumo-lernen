@@ -45,7 +45,7 @@ Daraus von Claude entschieden (kein weiteres Nachfragen):
 - **Memory:** Der Flutter-Look ist die Untergrenze; der Optik-Commit `5a79c14c` bleibt draußen.
 - **Kartenspiele:** UNO entfällt. Drei eigene Spiele am 3D-Tisch mit traditionellen, gemeinfreien Grundregeln und eigener Lumo-Gestaltung: ein Stichspiel („Sternenstich"), ein Anlegespiel („Sternenleiter") und ein Sammel-Fragespiel („Lumo-Quartett").
 - **Profil-Regal:** zeigt die durch Lernen freigeschalteten Karts.
-- **Test-APK:** Die Pin-Sperre verlangt keinen handgeschriebenen Eintrag je Buildnummer mehr; Version 0.13.26+2038, Godot-Pin `a363de2`; Bau über `.github/workflows/lumo-test-apk.yml`, ausgelöst durch `config/test-apk-request.json`.
+- **Test-APK:** Die Pin-Sperre verlangt keinen handgeschriebenen Eintrag je Buildnummer mehr; Version 0.13.27+2039, Godot-Pin `2b1fd30`; Bau über `.github/workflows/lumo-test-apk.yml`, ausgelöst durch `config/test-apk-request.json`.
 
 Bewusst beibehalten, weil es Kinder schützt und nichts blockiert: Kamera, Mikrofon und Datenweitergabe bleiben standardmäßig aus und hinter der Elternfreigabe; keine Käufe, keine fremde Kommunikation.
 
@@ -245,7 +245,7 @@ Die unveränderten Testberichte der Streams liegen im Godot-Repo unter `docs/int
 | Vollständige Godot-Testsuite (ca. 350 Skripte) | NOT_RUN |
 | `flutter analyze` | PASS (lokal), 0 Fehler |
 | `flutter test` vollständig | NOT_RUN |
-| Gemeinsame APK (Flutter + Godot) | IN ARBEIT: Läufe 1 und 2 von 0.13.26+2038 scheiterten am Godot-Importabsturz (SIGSEGV). Ursache gefunden und behoben (Godot `a363de2`: eine Bildliste wurde als CSV-Übersetzung importiert und meldete aus einem Arbeits-Thread an den Szenenbaum). Lauf 3 gestartet, Ergebnis offen |
+| Gemeinsame APK (Flutter + Godot) | GEBAUT und signiert (CI, nicht auf einem Gerät geprüft): Lauf 4 von `lumo-test-apk.yml` (44207725478) auf `287bc29c`, Version 0.13.27+2039, Godot `2b1fd30`, nur ARM64, rund 539 MB. Download als Entwurf-Release „Lumo Test-APK 0.13.27+2039 (Entwurf)“ (GitHub verweigert dem Lauf-Token eine öffentliche Vorabversion, HTTP 403) oder als Actions-Artefakt `LUMO-TEST-APK-44207725478`. Vorher: Läufe 1–2 Godot-Importabsturz (Ursache behoben in Godot `a363de2`), Lauf 3 gebaut (0.13.26+2038, 588 MB Universal). Offen: Größe (Spielpaket allein 282 MB), Installation und Bedienung auf dem Gerät |
 | App-Skripttests (`scripts/tests`, 1006 Tests) | PASS in CI auf `0315c801` (`full-app-script-regression`); lokal 1005 PASS, 1 nur mit Android-SDK lauffähig |
 | Android-Emulator, echtes Gerät, Fold | NOT_RUN |
 | Framezeiten, Speicher, Akku | NOT_RUN |
