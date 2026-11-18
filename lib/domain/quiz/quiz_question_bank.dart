@@ -144,7 +144,29 @@ class QuizQuestionBank {
       throw StateError(
           'Quizgenerator muss exakt 20 verschiedene geprüfte Fragen liefern');
     }
-    return List<QuizQuestion>.unmodifiable(questions);
+    // Befund M31: In der Fragenliste steht die richtige Antwort meist an
+    // Platz 2 oder 3, nie an Platz 1 oder 4. Beim Ausgeben werden die
+    // Antworten deshalb gemischt; der Index wandert mit.
+    return List<QuizQuestion>.unmodifiable(
+        questions.map((question) => shuffledOptions(question, rng)));
+  }
+
+  /// Mischt die Antworten einer Frage und führt den Index der richtigen
+  /// Antwort mit.
+  static QuizQuestion shuffledOptions(QuizQuestion question, math.Random rng) {
+    final order = List<int>.generate(question.options.length, (i) => i)
+      ..shuffle(rng);
+    return QuizQuestion(
+      id: question.id,
+      prompt: question.prompt,
+      options: List<String>.unmodifiable(
+          order.map((index) => question.options[index])),
+      correctIndex: order.indexOf(question.correctIndex),
+      difficulty: question.difficulty,
+      subject: question.subject,
+      explanation: question.explanation,
+      hint: question.hint,
+    );
   }
 
   /// Runtime gate for a question before it is presented or attached to LUMO.
