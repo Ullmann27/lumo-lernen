@@ -154,6 +154,30 @@ void main() {
     expect(answers.length, greaterThanOrEqualTo(26));
   });
 
+  test('Doppelmitlaut und Dehnungen: Klasse 3 und 4 üben eigene Wörter (D-M9)',
+      () {
+    for (final unit in <String>['Doppelmitlaut', 'Dehnungen']) {
+      for (var grade = 3; grade <= 4; grade++) {
+        final own = spellingContexts
+            .where((c) => c.unit == unit && c.grade == grade)
+            .map((c) => c.answer)
+            .toSet();
+        expect(own.length, greaterThanOrEqualTo(12), reason: '$unit $grade');
+        final factory = ExerciseFactory(seed: 500 + grade);
+        for (var i = 0; i < 200; i++) {
+          final task = factory.next(
+              grade: grade, subject: 'Rechtschreibung', unit: unit);
+          // Kontextsätze stammen aus der eigenen Klasse; die feste Wortliste
+          // (ein Viertel der Aufgaben) bleibt Wiederholung.
+          if (!task.prompt.endsWith('Welche Schreibweise passt in die Lücke?')) {
+            continue;
+          }
+          expect(own, contains(task.answer), reason: '$unit $grade');
+        }
+      }
+    }
+  });
+
   test('Wortende: der Verwechslungspartner steht immer zur Wahl (D-M8)', () {
     const partners = <String, String>{
       'd': 't', 't': 'd', 'g': 'k', 'k': 'g', 'b': 'p', 'p': 'b',
