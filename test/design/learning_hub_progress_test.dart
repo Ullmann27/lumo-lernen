@@ -81,8 +81,13 @@ void main() {
     String unitStatus(String unit) => tester
         .widget<Text>(find.byKey(ValueKey('learning-unit-progress-Mathematik-$unit')))
         .data!;
-    expect(unitStatus(math2[0]), '3 richtig · ${records[0].mastery} % sicher');
-    expect(unitStatus(math2[1]), '1 richtig · ${records[1].mastery} % sicher');
+    // No "% sicher" after a handful of answers: below five recorded answers
+    // the tile says "Am Anfang" with the counted facts.
+    expect(unitStatus(math2[0]),
+        'Am Anfang (4 von 5) · 3 Aufgaben allein gelöst');
+    expect(
+        unitStatus(math2[1]), 'Am Anfang (1 von 5) · 1 Aufgabe allein gelöst');
+    expect(find.textContaining('% sicher'), findsNothing);
     if (math2.length > 2) expect(unitStatus(math2[2]), 'Noch nicht geübt');
     expect(find.byType(LinearProgressIndicator), findsNWidgets(2));
     final unitSemantics = tester.getSemantics(
