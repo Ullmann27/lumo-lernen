@@ -147,7 +147,9 @@ void main() {
       }
       final first =
           RegExp(r'^Mit welchem Laut beginnt (.+)\?$').firstMatch(prompt);
-      final sound = RegExp(r'^Welche Buchstaben passen zum Laut „([^“]+)“\?$')
+      // Einzelne Buchstaben werden in der Einzahl gefragt (Fachprüfung D-L1).
+      final sound = RegExp(
+              r'^Welche(?:r Buchstabe passt| Buchstaben passen) zum Laut „([^“]+)“\?$')
           .firstMatch(prompt);
       if (sound != null) {
         final value = sound[1]!;

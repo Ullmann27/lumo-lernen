@@ -314,7 +314,9 @@ class GermanTaskTemplate {
       case GermanTemplateKind.letterSound:
         final entry = _letterSounds[_positive(seed, _letterSounds.length)];
         return _choice(
-            'Welche Buchstaben passen zum Laut „${entry.sound}“?',
+            entry.letter.length == 1
+                ? 'Welcher Buchstabe passt zum Laut „${entry.sound}“?'
+                : 'Welche Buchstaben passen zum Laut „${entry.sound}“?',
             entry.letter,
             entry.choices,
             'Sprich den Laut langsam und suche den passenden Buchstaben.',
@@ -429,7 +431,7 @@ class GermanTaskTemplate {
       case GermanTemplateKind.plural:
         final item = _plurals[_positive(seed, _plurals.length)];
         return _choice(
-            'Welche Mehrzahl ist richtig: ${item.singular}?',
+            'Wie heißt die Mehrzahl von „${item.singular}“?',
             item.plural,
             <String>[item.plural, ...item.distractors],
             'Die Mehrzahl sagt: mehr als eines.',
@@ -440,7 +442,7 @@ class GermanTaskTemplate {
             'Was ist die Verkleinerungsform von ${item.base}?',
             item.answer,
             <String>[item.answer, ...item.distractors],
-            'Verkleinerungen enden oft auf -chen oder -lein.',
+            'Verkleinerungen enden auf -chen oder -lein. Aus a, o, u wird dabei oft ä, ö, ü.',
             'diminutive');
       case GermanTemplateKind.opposites:
         final item = _opposites[_positive(seed, _opposites.length)];
@@ -514,7 +516,7 @@ class GermanTaskTemplate {
       case GermanTemplateKind.pastTense:
         final item = _pastTenses[_positive(seed, _pastTenses.length)];
         return _choice(
-            'Wie heißt „${item.left}“ in der Mitvergangenheit (Präteritum)?',
+            'Wie heißt „${item.left}“ in der Mitvergangenheit (Präteritum)? Er …',
             item.right,
             <String>[item.right, ...item.distractors],
             'Die Mitvergangenheit (Präteritum) erzählt von früher: Er ging, er lief, er sah.',
@@ -610,7 +612,9 @@ class GermanTaskTemplate {
           'Welches Wort passt? „${item.sentence}“',
           item.answer,
           <String>[item.answer, ...item.distractors],
-          '„Das“ kannst du hier durch „dieses“ oder „welches“ ersetzen. „Dass“ verbindet Sätze, zum Beispiel: Ich hoffe, dass du kommst.',
+          item.answer.toLowerCase().contains('dass')
+              ? 'Hier passt weder „dieses“ noch „welches“. „Dass“ mit zwei s verbindet zwei Sätze, zum Beispiel: Ich hoffe, dass du kommst.'
+              : 'Probe: „dieses“ oder „welches“ passt hier. Darum schreibst du „das“ mit einem s.',
           'dass_das',
         );
       case GermanTemplateKind.adverbs:
@@ -869,6 +873,13 @@ const List<_LetterSound> _letterSounds = <_LetterSound>[
   _LetterSound('ffff', 'F', <String>['F', 'W', 'M', 'S']),
   _LetterSound('rrrr', 'R', <String>['R', 'L', 'N', 'M']),
   _LetterSound('aaaa', 'A', <String>['A', 'O', 'E', 'U']),
+  _LetterSound('llll', 'L', <String>['L', 'R', 'N', 'M']),
+  _LetterSound('nnnn', 'N', <String>['N', 'M', 'L', 'R']),
+  _LetterSound('wwww', 'W', <String>['W', 'F', 'B', 'M']),
+  _LetterSound('eeee', 'E', <String>['E', 'I', 'A', 'O']),
+  _LetterSound('iiii', 'I', <String>['I', 'E', 'A', 'U']),
+  _LetterSound('oooo', 'O', <String>['O', 'A', 'U', 'E']),
+  _LetterSound('uuuu', 'U', <String>['U', 'O', 'A', 'I']),
 ];
 
 const List<_FamilyItem> _families = <_FamilyItem>[
@@ -916,12 +927,16 @@ const List<_PluralItem> _plurals = <_PluralItem>[
 ];
 
 const List<_DiminutiveItem> _diminutives = <_DiminutiveItem>[
-  _DiminutiveItem('Buch', 'Büchlein', <String>['Bucher', 'Buchig', 'Buchung']),
-  _DiminutiveItem('Haus', 'Häuschen', <String>['Hauser', 'Hauslein', 'Häuser']),
-  _DiminutiveItem('Maus', 'Mäuschen', <String>['Mäuser', 'Mausen', 'Mauslein']),
   _DiminutiveItem(
-      'Katze', 'Kätzchen', <String>['Katzen', 'Katzlein', 'Katzung']),
-  _DiminutiveItem('Hund', 'Hündchen', <String>['Hunde', 'Hundchen', 'Hundung']),
+      'Buch', 'Büchlein', <String>['Buchlein', 'Buchchen', 'Bücher']),
+  _DiminutiveItem(
+      'Haus', 'Häuschen', <String>['Hauschen', 'Hauslein', 'Häuser']),
+  _DiminutiveItem(
+      'Maus', 'Mäuschen', <String>['Mauschen', 'Mauslein', 'Mäuse']),
+  _DiminutiveItem(
+      'Katze', 'Kätzchen', <String>['Katzchen', 'Katzelein', 'Katzen']),
+  _DiminutiveItem(
+      'Hund', 'Hündchen', <String>['Hundchen', 'Hundlein', 'Hunde']),
   ..._diminutivesExtension,
 ];
 
@@ -957,7 +972,7 @@ const List<_PairItem> _synonyms = <_PairItem>[
   _PairItem('sprechen', 'reden', <String>['laufen', 'essen', 'schlafen']),
   _PairItem('beginnen', 'anfangen', <String>['enden', 'verlieren', 'fallen']),
   _PairItem('klug', 'gescheit', <String>['müde', 'nass', 'leer']),
-  _PairItem('fröhlich', 'lustig', <String>['wütend', 'hart', 'gerade']),
+  _PairItem('fröhlich', 'heiter', <String>['wütend', 'hart', 'gerade']),
   ..._synonymsExtension,
 ];
 
@@ -1166,7 +1181,7 @@ const List<_CaseItem> _caseNomAkkItems = <_CaseItem>[
       <String>['Wer-Fall', 'Wem-Fall']),
   _CaseItem('Die Sonne scheint heute warm.', 'Die Sonne', 'Wer-Fall',
       <String>['Wen-Fall', 'Wem-Fall']),
-  _CaseItem('Mama bäckt einen Kuchen.', 'einen Kuchen', 'Wen-Fall',
+  _CaseItem('Mama backt einen Kuchen.', 'einen Kuchen', 'Wen-Fall',
       <String>['Wer-Fall', 'Wem-Fall']),
   ..._caseNomAkkItemsExtension,
 ];
@@ -1177,13 +1192,13 @@ const List<_SentenceMcItem> _capitalizationItems = <_SentenceMcItem>[
   _SentenceMcItem(
       'Mein Bruder liest ein buch.', 'Buch', <String>['liest', 'ein', 'Mein']),
   _SentenceMcItem('Wir gehen heute in die schule.', 'Schule',
-      <String>['gehen', 'heute', 'in']),
+      <String>['gehen', 'heute', 'Wir']),
   _SentenceMcItem('Papa kocht die suppe für uns.', 'Suppe',
-      <String>['kocht', 'für', 'uns']),
+      <String>['kocht', 'für', 'Papa']),
   _SentenceMcItem(
       'Der hund jagt eine Katze.', 'Hund', <String>['jagt', 'eine', 'Der']),
   _SentenceMcItem('Ich male einen schönen baum.', 'Baum',
-      <String>['male', 'einen', 'schönen']),
+      <String>['male', 'schönen', 'Ich']),
   ..._capitalizationItemsExtension,
 ];
 
@@ -1251,17 +1266,17 @@ const List<_SentenceMcItem> _adverbItems = <_SentenceMcItem>[
 ];
 
 const List<_VerbFormMcItem> _plusquamItems = <_VerbFormMcItem>[
-  _VerbFormMcItem(
-      'lesen', 'hatte gelesen', <String>['liest', 'las', 'wird lesen']),
-  _VerbFormMcItem(
-      'gehen', 'war gegangen', <String>['geht', 'ging', 'wird gehen']),
+  _VerbFormMcItem('lesen', 'hatte gelesen',
+      <String>['war gelesen', 'hatte gelest', 'las']),
+  _VerbFormMcItem('gehen', 'war gegangen',
+      <String>['hatte gegangen', 'war gegeht', 'ging']),
   _VerbFormMcItem('schreiben', 'hatte geschrieben',
-      <String>['schreibt', 'schrieb', 'wird schreiben']),
-  _VerbFormMcItem(
-      'kommen', 'war gekommen', <String>['kommt', 'kam', 'wird kommen']),
+      <String>['war geschrieben', 'hatte geschreibt', 'schrieb']),
+  _VerbFormMcItem('kommen', 'war gekommen',
+      <String>['hatte gekommen', 'war gekommt', 'kam']),
   _VerbFormMcItem('spielen', 'hatte gespielt',
-      <String>['spielt', 'spielte', 'wird spielen']),
-  _VerbFormMcItem(
-      'singen', 'hatte gesungen', <String>['singt', 'sang', 'wird singen']),
+      <String>['war gespielt', 'hatte gespielen', 'spielte']),
+  _VerbFormMcItem('singen', 'hatte gesungen',
+      <String>['war gesungen', 'hatte gesingt', 'sang']),
   ..._plusquamItemsExtension,
 ];

@@ -107,24 +107,36 @@ const List<_PluralItem> _pluralsExtension = <_PluralItem>[
 ];
 
 const List<_DiminutiveItem> _diminutivesExtension = <_DiminutiveItem>[
-  _DiminutiveItem("Baum", "Bäumchen", <String>["Baumen", "Baumung", "Bäume"]),
-  _DiminutiveItem("Blume", "Blümchen", <String>["Blumen", "Blumung", "Blumer"]),
   _DiminutiveItem(
-      "Vogel", "Vögelchen", <String>["Vogelung", "Vogeler", "Vögel"]),
-  _DiminutiveItem("Brot", "Brötchen", <String>["Brote", "Brotung", "Broter"]),
-  _DiminutiveItem("Ball", "Bällchen", <String>["Balle", "Ballung", "Bälle"]),
-  _DiminutiveItem("Topf", "Töpfchen", <String>["Töpfe", "Topfung", "Topfer"]),
-  _DiminutiveItem("Glas", "Gläschen", <String>["Gläser", "Glasung", "Glaser"]),
-  _DiminutiveItem("Sack", "Säckchen", <String>["Säcke", "Sackung", "Sacken"]),
-  _DiminutiveItem("Rose", "Röschen", <String>["Rosen", "Rosung", "Rosener"]),
-  _DiminutiveItem("Kind", "Kindchen", <String>["Kinder", "Kindung", "Kindig"]),
+      "Baum", "Bäumchen", <String>["Baumchen", "Baumlein", "Bäume"]),
   _DiminutiveItem(
-      "Tisch", "Tischchen", <String>["Tische", "Tischung", "Tischig"]),
-  _DiminutiveItem("Lamm", "Lämmchen", <String>["Lämmer", "Lammung", "Lammen"]),
-  _DiminutiveItem("Ente", "Entchen", <String>["Enten", "Entung", "Entig"]),
-  _DiminutiveItem("Tasse", "Tässchen", <String>["Tassen", "Tassung", "Tassig"]),
+      "Blume", "Blümchen", <String>["Blumchen", "Blumelein", "Blumen"]),
   _DiminutiveItem(
-      "Stern", "Sternchen", <String>["Sterne", "Sternung", "Sternig"]),
+      "Vogel", "Vögelchen", <String>["Vogelchen", "Vogellein", "Vögel"]),
+  _DiminutiveItem(
+      "Brot", "Brötchen", <String>["Brotchen", "Brotlein", "Brote"]),
+  _DiminutiveItem(
+      "Ball", "Bällchen", <String>["Ballchen", "Ballein", "Bälle"]),
+  _DiminutiveItem(
+      "Topf", "Töpfchen", <String>["Topfchen", "Topflein", "Töpfe"]),
+  _DiminutiveItem(
+      "Glas", "Gläschen", <String>["Glaschen", "Glaslein", "Gläser"]),
+  _DiminutiveItem(
+      "Sack", "Säckchen", <String>["Sackchen", "Sacklein", "Säcke"]),
+  _DiminutiveItem(
+      "Rose", "Röschen", <String>["Roschen", "Roselein", "Rosen"]),
+  _DiminutiveItem(
+      "Kind", "Kindchen", <String>["Kindechen", "Kindlchen", "Kinder"]),
+  _DiminutiveItem(
+      "Tisch", "Tischchen", <String>["Tischechen", "Tischlchen", "Tische"]),
+  _DiminutiveItem(
+      "Lamm", "Lämmchen", <String>["Lammchen", "Lammlein", "Lämmer"]),
+  _DiminutiveItem(
+      "Ente", "Entchen", <String>["Entechen", "Entelein", "Enten"]),
+  _DiminutiveItem(
+      "Tasse", "Tässchen", <String>["Tasschen", "Tasselein", "Tassen"]),
+  _DiminutiveItem(
+      "Stern", "Sternchen", <String>["Sternechen", "Sternlchen", "Sterne"]),
 ];
 
 const List<_PairItem> _oppositesExtension = <_PairItem>[
@@ -545,7 +557,7 @@ const List<_SentenceMcItem> _adverbItemsExtension = <_SentenceMcItem>[
   _SentenceMcItem("Opa kommt jetzt.", "jetzt", <String>["Opa", "kommt"]),
   _SentenceMcItem("Gestern regnete es.", "Gestern", <String>["regnete", "es"]),
   _SentenceMcItem("Bereits im Frühling blüht diese Blume.", "Bereits",
-      <String>["wächst", "eine", "Blume"]),
+      <String>["Frühling", "blüht", "Blume"]),
   _SentenceMcItem(
       "Die Katze sitzt oben.", "oben", <String>["Die", "Katze", "sitzt"]),
   _SentenceMcItem(
@@ -553,9 +565,10 @@ const List<_SentenceMcItem> _adverbItemsExtension = <_SentenceMcItem>[
   _SentenceMcItem("Paul besucht uns manchmal.", "manchmal",
       <String>["Paul", "besucht", "uns"]),
   _SentenceMcItem("Mia kommt immer.", "immer", <String>["Mia", "kommt"]),
-  _SentenceMcItem("Wir vergessen dich nie.", "nie", <String>["Wir", "üben"]),
+  _SentenceMcItem("Wir vergessen dich nie.", "nie",
+      <String>["Wir", "vergessen", "dich"]),
   _SentenceMcItem("Im Garten wachsen überall Blumen.", "überall",
-      <String>["Das", "Team", "trainiert"]),
+      <String>["Garten", "wachsen", "Blumen"]),
   _SentenceMcItem("Die Familie ist unterwegs.", "unterwegs",
       <String>["Die", "Familie", "ist"]),
   _SentenceMcItem(
@@ -564,33 +577,33 @@ const List<_SentenceMcItem> _adverbItemsExtension = <_SentenceMcItem>[
 
 const List<_VerbFormMcItem> _plusquamItemsExtension = <_VerbFormMcItem>[
   _VerbFormMcItem("trinken", "hatte getrunken",
-      <String>["trinkt", "trank", "wird trinken"]),
-  _VerbFormMcItem(
-      "finden", "hatte gefunden", <String>["findet", "fand", "wird finden"]),
-  _VerbFormMcItem(
-      "geben", "hatte gegeben", <String>["gibt", "gab", "wird geben"]),
-  _VerbFormMcItem(
-      "nehmen", "hatte genommen", <String>["nimmt", "nahm", "wird nehmen"]),
+      <String>["war getrunken", "hatte getrinkt", "trank"]),
+  _VerbFormMcItem("finden", "hatte gefunden",
+      <String>["war gefunden", "hatte gefindet", "fand"]),
+  _VerbFormMcItem("geben", "hatte gegeben",
+      <String>["war gegeben", "hatte gegebt", "gab"]),
+  _VerbFormMcItem("nehmen", "hatte genommen",
+      <String>["war genommen", "hatte genehmt", "nahm"]),
   _VerbFormMcItem("sprechen", "hatte gesprochen",
-      <String>["spricht", "sprach", "wird sprechen"]),
-  _VerbFormMcItem(
-      "essen", "hatte gegessen", <String>["isst", "aß", "wird essen"]),
-  _VerbFormMcItem(
-      "sehen", "hatte gesehen", <String>["sieht", "sah", "wird sehen"]),
-  _VerbFormMcItem(
-      "fahren", "war gefahren", <String>["fährt", "fuhr", "wird fahren"]),
-  _VerbFormMcItem(
-      "laufen", "war gelaufen", <String>["läuft", "lief", "wird laufen"]),
-  _VerbFormMcItem(
-      "bleiben", "war geblieben", <String>["bleibt", "blieb", "wird bleiben"]),
-  _VerbFormMcItem(
-      "malen", "hatte gemalt", <String>["malt", "malte", "wird malen"]),
-  _VerbFormMcItem(
-      "lernen", "hatte gelernt", <String>["lernt", "lernte", "wird lernen"]),
-  _VerbFormMcItem(
-      "fragen", "hatte gefragt", <String>["fragt", "fragte", "wird fragen"]),
-  _VerbFormMcItem(
-      "bauen", "hatte gebaut", <String>["baut", "baute", "wird bauen"]),
+      <String>["war gesprochen", "hatte gesprecht", "sprach"]),
+  _VerbFormMcItem("essen", "hatte gegessen",
+      <String>["war gegessen", "hatte geesst", "aß"]),
+  _VerbFormMcItem("sehen", "hatte gesehen",
+      <String>["war gesehen", "hatte geseht", "sah"]),
+  _VerbFormMcItem("fahren", "war gefahren",
+      <String>["war gefahrt", "war fahren", "fuhr"]),
+  _VerbFormMcItem("laufen", "war gelaufen",
+      <String>["war gelauft", "war laufen", "lief"]),
+  _VerbFormMcItem("bleiben", "war geblieben",
+      <String>["hatte geblieben", "war gebleibt", "blieb"]),
+  _VerbFormMcItem("malen", "hatte gemalt",
+      <String>["war gemalt", "hatte gemalen", "malte"]),
+  _VerbFormMcItem("lernen", "hatte gelernt",
+      <String>["war gelernt", "hatte gelernen", "lernte"]),
+  _VerbFormMcItem("fragen", "hatte gefragt",
+      <String>["war gefragt", "hatte gefragen", "fragte"]),
+  _VerbFormMcItem("bauen", "hatte gebaut",
+      <String>["war gebaut", "hatte gebauen", "baute"]),
 ];
 
 const List<_DirectSpeechItem> _directSpeechExtension = <_DirectSpeechItem>[
