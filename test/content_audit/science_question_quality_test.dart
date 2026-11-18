@@ -47,7 +47,12 @@ void main() {
   final banks = <int, List<_Seen>>{
     for (var grade = 1; grade <= 4; grade++) grade: _bank(grade),
   };
-  final all = banks.values.expand((bank) => bank).toList();
+  // Höhere Klassen wiederholen manchmal Fragen früherer Klassen; jede Frage
+  // zählt hier nur einmal.
+  final all = <String, _Seen>{
+    for (final question in banks.values.expand((bank) => bank))
+      '${question.prompt}|${question.answer}': question,
+  }.values.toList();
 
   test('jede Sachfrage hat vier verschiedene Antworten, genau eine richtig',
       () {
@@ -177,5 +182,43 @@ void main() {
       expect(text.contains('Betreuungsperson'), isFalse, reason: text);
       expect(text.contains('Antarktika'), isFalse, reason: text);
     }
+  });
+
+  test('Klasse 2: jede Einheit hat mindestens 12 eigene Fragen (S-M15)', () {
+    final own = <String, int>{};
+    for (final question in banks[2]!.where((q) => q.grade == 2)) {
+      own[question.unit] = (own[question.unit] ?? 0) + 1;
+    }
+    expect(own.keys.toSet(), <String>{
+      'Zeit und Kalender',
+      'Verkehr',
+      'Berufe',
+      'Körper',
+      'Familie und Gemeinschaft',
+      'Wetter',
+      'Pflanzen',
+      'Tiere',
+      'Jahreszeiten',
+    });
+    own.forEach((unit, count) {
+      expect(count, greaterThanOrEqualTo(12), reason: unit);
+    });
+    // Eine Klasse-2-Einheit wird nicht mehr mit Klasse-1-Fragen aufgefüllt.
+    for (final unit in own.keys) {
+      final factory = ExerciseFactory(seed: 5);
+      for (var i = 0; i < 60; i++) {
+        final task =
+            factory.next(grade: 2, subject: 'Sachunterricht', unit: unit);
+        expect(task.difficulty, 2, reason: '$unit: ${task.prompt}');
+      }
+    }
+  });
+
+  test('Notrufnummern: Feuerwehr 122, Polizei 133, Rettung 144', () {
+    String answerTo(String part) =>
+        all.firstWhere((question) => question.prompt.contains(part)).answer;
+    expect(answerTo('Nummer hat die Feuerwehr'), '122');
+    expect(answerTo('die Polizei brauchst'), '133');
+    expect(answerTo('die Rettung braucht'), '144');
   });
 }
