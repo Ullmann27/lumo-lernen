@@ -137,7 +137,33 @@ void main() {
       await tester.tap(find.text('5').last);
       await tester.pump();
       expect(events.map((e) => e.correct).toList(), [false, false, true]);
-      expect(events.last.hintUsed, true);
+      // Seit „Ehrlich üben“ entscheidet der Lernablauf anhand der Versuche, ob
+      // eine Aufgabe allein gelöst ist. Der Renderer meldet Hilfe nur, wenn
+      // wirklich Hilfe gezeigt wurde.
+      expect(events.last.hintUsed, false);
+
+      // Nach dem zweiten Fehler führt der Lernablauf durch den Lösungsweg
+      // (guided). Die Antwort darauf zählt als mit Hilfe gelöst.
+      events.clear();
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: AdaptiveTaskRenderer(
+                key: const ValueKey('guided'),
+                task: task,
+                guided: true,
+                onAnswered: events.add,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+      await tester.tap(find.text('5').last);
+      await tester.pump();
+      expect(events.single.correct, true);
+      expect(events.single.hintUsed, true);
       expect(tester.takeException(), isNull);
     },
   );

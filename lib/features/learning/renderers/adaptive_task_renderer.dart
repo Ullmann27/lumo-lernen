@@ -45,6 +45,8 @@ class AdaptiveTaskRenderer extends StatefulWidget {
     this.activeObjectId,
     this.slow = false,
     this.replaySerial = 0,
+    this.guided = false,
+    this.feedback,
   });
 
   final TaskInstance task;
@@ -62,6 +64,15 @@ class AdaptiveTaskRenderer extends StatefulWidget {
   final bool slow;
   final int replaySerial;
 
+  /// The solution has been worked through together. Every answer can be
+  /// tapped again, so the child picks the explained answer among all of them
+  /// instead of tapping the last one left.
+  final bool guided;
+
+  /// Help that belongs to the child's last answer; shown directly above the
+  /// answers, where the child is looking.
+  final Widget? feedback;
+
   @override
   State<AdaptiveTaskRenderer> createState() => _AdaptiveTaskRendererState();
 }
@@ -78,10 +89,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
 
   int get _helpLevel => math.max(
         widget.requestedHelpLevel,
-        math.max(
-          _localHelpLevel,
-          widget.allowRetry && _wrongAnswers.length >= 2 ? 1 : 0,
-        ),
+        math.max(_localHelpLevel, widget.guided ? 3 : 0),
       );
 
   @override
@@ -97,6 +105,9 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       _workspaceExplanation = null;
       _workspaceKind = null;
       _workspaceState = const {};
+    } else if (widget.guided && !oldWidget.guided) {
+      // The worked solution starts with all answers available again.
+      _wrongAnswers.clear();
     }
   }
 
@@ -128,6 +139,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         children: [
           _goal(task),
           const SizedBox(height: 12),
+          if (widget.feedback != null) ...[
+            widget.feedback!,
+            const SizedBox(height: 12),
+          ],
           WritingTaskRenderer(
             task: task,
             onSubmitted: widget.onWritingSubmitted,
@@ -146,6 +161,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         children: [
           _goal(task),
           const SizedBox(height: 12),
+          if (widget.feedback != null) ...[
+            widget.feedback!,
+            const SizedBox(height: 12),
+          ],
           ShapeTraceTaskRenderer(
             task: task,
             onSubmitted: widget.onShapeTraced,
@@ -345,17 +364,22 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     final answerPanel = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          _wrongAnswers.length >= 2 && !_solved
-              ? 'Versuch es nochmal mit Lumos Hilfe:'
-              : 'Wähle die richtige Antwort:',
-          style: LumoTextStyles.label.copyWith(
-            color: Colors.white,
-            fontSize: 14,
-            shadows: const [Shadow(color: Color(0xAA000000), blurRadius: 6)],
+        if (widget.feedback != null) ...[
+          widget.feedback!,
+          const SizedBox(height: 14),
+        ],
+        // The worked solution directly above already says what to do.
+        if (!(widget.guided && !_solved)) ...[
+          Text(
+            'Wähle die richtige Antwort:',
+            style: LumoTextStyles.label.copyWith(
+              color: Colors.white,
+              fontSize: 14,
+              shadows: const [Shadow(color: Color(0xAA000000), blurRadius: 6)],
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
+          const SizedBox(height: 12),
+        ],
         _OptionGrid(
           task: task,
           picked: _picked,
@@ -366,7 +390,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           reduceMotion: widget.reduceMotion,
           onPick: _pick,
         ),
-        if (widget.allowRetry && !_solved)
+        if (widget.allowRetry && !_solved && !widget.guided)
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
@@ -414,7 +438,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
               ),
             ),
           ),
-        if (widget.allowRetry && _helpLevel > 0 && !_solved)
+        if (widget.allowRetry && _helpLevel > 0 && !_solved && !widget.guided)
           Padding(
             padding: const EdgeInsets.only(top: 12),
             child: _LocalHelpBanner(
@@ -498,7 +522,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     setState(() {
       if (correct) {
         _picked = answer;
-      } else {
+      } else if (!widget.guided) {
         _wrongAnswers.add(answerKey);
       }
     });
@@ -508,10 +532,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         task: widget.task,
         answer: answer,
         correct: correct,
-        hintUsed: _showGentleHint ||
-            _workspaceHelpUsed ||
-            _helpLevel > 0 ||
-            (widget.allowRetry && _wrongAnswers.length >= 2),
+        hintUsed: _showGentleHint || _workspaceHelpUsed || _helpLevel > 0,
       ),
     );
   }
@@ -629,9 +650,7 @@ class _LocalHelpBanner extends StatelessWidget {
                   child: Text(
                     wrongCount == 0
                         ? '💡 Ein Tipp von Lumo'
-                        : wrongCount == 2
-                            ? '💡 Lumo hilft Schritt für Schritt'
-                            : '💡 Noch ein Tipp von Lumo',
+                        : '💡 Noch ein Tipp von Lumo',
                     style: const TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 12,

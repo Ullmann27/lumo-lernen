@@ -191,11 +191,24 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep ffmpeg
+          command -v ffmpeg
+          command -v ffprobe
           python3 -m venv .ci-python
-          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0 PyYAML==6.0.2
           command -v rg
           .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
+      - name: Provide the pinned JSON library for the native contract tests
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/lumo-contract-tools"
+          curl --fail --location --retry 3 \
+            https://maven-central.storage-download.googleapis.com/maven2/org/json/json/20240303/json-20240303.jar \
+            --output "$RUNNER_TEMP/lumo-contract-tools/json-20240303.jar"
+          printf '%s  %s\n' 3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed \
+            "$RUNNER_TEMP/lumo-contract-tools/json-20240303.jar" | sha256sum -c -
+          echo "LUMO_JSON_JAR=$RUNNER_TEMP/lumo-contract-tools/json-20240303.jar" >> "$GITHUB_ENV"
+          echo "LUMO_TEST_JSON_JAR=$RUNNER_TEMP/lumo-contract-tools/json-20240303.jar" >> "$GITHUB_ENV"
       - name: Install verified Gradle for the real build-contract probe
         if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111' || github.head_ref == 'chatgpt/lumo-2016-host-integration-20261111' || github.ref_name == 'chatgpt/lumo-2016-host-integration-20261111' || github.head_ref == 'chatgpt/lumo-spielewelt-stage-20261112' || github.ref_name == 'chatgpt/lumo-spielewelt-stage-20261112')
         run: |

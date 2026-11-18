@@ -45,7 +45,7 @@ Daraus von Claude entschieden (kein weiteres Nachfragen):
 - **Memory:** Der Flutter-Look ist die Untergrenze; der Optik-Commit `5a79c14c` bleibt draußen.
 - **Kartenspiele:** UNO entfällt. Drei eigene Spiele am 3D-Tisch mit traditionellen, gemeinfreien Grundregeln und eigener Lumo-Gestaltung: ein Stichspiel („Sternenstich"), ein Anlegespiel („Sternenleiter") und ein Sammel-Fragespiel („Lumo-Quartett").
 - **Profil-Regal:** zeigt die durch Lernen freigeschalteten Karts.
-- **Test-APK:** Die Pin-Sperre verlangt keinen handgeschriebenen Eintrag je Buildnummer mehr; Version 0.13.26+2038, Godot-Pin `d9ab8db`; Bau über `.github/workflows/lumo-test-apk.yml`, ausgelöst durch `config/test-apk-request.json`.
+- **Test-APK:** Die Pin-Sperre verlangt keinen handgeschriebenen Eintrag je Buildnummer mehr; Version 0.13.27+2039, Godot-Pin `2b1fd30`; Bau über `.github/workflows/lumo-test-apk.yml`, ausgelöst durch `config/test-apk-request.json`.
 
 Bewusst beibehalten, weil es Kinder schützt und nichts blockiert: Kamera, Mikrofon und Datenweitergabe bleiben standardmäßig aus und hinter der Elternfreigabe; keine Käufe, keine fremde Kommunikation.
 
@@ -100,7 +100,7 @@ Schatzsuche, Rhythmus, Puzzle, Cards-Tisch, 4 Gewinnt, Quiz, Lernszenen: nicht a
 | Start / Onboarding | `lib/main.dart`, `features/onboarding/lumo_onboarding_holo_screen.dart`, `features/home/home_content.dart` | vorhanden | 12 Funktionen stecken in einer eingeklappten Kachel „Mehr mit Lumo entdecken" | OFFEN |
 | Shell, 14 Sektionen | `app/app_shell.dart`, `widgets/shell/left_navigation.dart` | vorhanden | Telefonleiste zeigt 5, Rest unter „Mehr" | OFFEN |
 | Profil / Belohnungen | `widgets/profile_screen.dart`, `features/rewards/` | vorhanden | Wallet ist ein globaler Schlüssel, nicht je Profil (siehe 5.3) | OFFEN |
-| Einstellungen / Elternbereich | `features/settings/settings_content.dart` | vorhanden | **keine PIN, kein Schutz**; Datenschutz nur als Infokarte | OFFEN |
+| Einstellungen / Elternbereich | `features/settings/settings_content.dart` | vorhanden | Ohne PIN und ohne Rechenfrage direkt erreichbar – ausdrückliche Entscheidung von Heinz vom 3.10.2026 (`docs/PIN_FREI_2026-10-03.md`), kein Mangel. Kamera, Mikrofon und Online-KI sind in frischen Einstellungen aus. Datenschutz nur als Infokarte | ENTSCHIEDEN (PIN-frei); Datenschutzdarstellung OFFEN |
 | Lehrerbereich | `features/teacher/*` | vorhanden | ungeprüft | NOT_RUN |
 
 `flutter analyze` auf `d7930240`: 0 Fehler, 278 Hinweise (17.11., selbst ausgeführt). Volle `flutter test`-Suite: NOT_RUN.
@@ -196,7 +196,8 @@ Katalog in `core/school_exercise_generator.dart` mit Vorlagen in `math_task_temp
 | Logik | 2 | 1 | 1 | 1 |
 
 - Dünn: Logik ab Kl. 2, Englisch Kl. 2–4, Sachunterricht Kl. 4. Musik, Kunst, Technik, Sport haben keine Aufgaben.
-- Fachliche Durchsicht jeder Aufgabe (Heinz' Punkt 6): **NOT_RUN**. Es wird keine Lehrplanabdeckung behauptet.
+- Fachliche Durchsicht (Heinz' Punkt 6): **durchgeführt am 17.11. am Code, nicht am Gerät**; Berichte in `docs/fachpruefung/`. Mathematik/Logik: 49 800 erzeugte Aufgaben, 43 800 unabhängig nachgerechnet, 0 falsche Lösungen; 65 Befunde im Umfeld der Aufgaben (12 schwer: u. a. richtige Antwort immer an zweitkleinster Stelle, Bilder verraten die Lösung, falsche Rechentricks bei Brüchen/Dezimalzahlen). Deutsch/Sachunterricht/Englisch: 84 Befunde (6 schwer: u. a. Reim-Ablenker, die selbst reimen; Endlaut „Hund → T“; Geschichten ohne Umlaute). Korrektur läuft (Pakete L4a Mathematik, L4b Deutsch/Sach/Englisch). Kein Abgleich mit dem amtlichen Lehrplantext; es wird keine Lehrplanabdeckung behauptet.
+- Lücken laut Prüfung: Sachunterricht Kl. 2 (fünf Einheiten mit nur 1–5 eigenen Fragen), Englisch nur „Wort lesen → Bedeutung antippen“, Musik/Kunst/Technik/Sport ohne überprüfbare Aufgaben (je 8 offene Aktivitätskarten).
 - 3D-Lernszene: Godot `scripts/learning/learning_world.gd`. Nachhilfe-Szene (Stream `lumo-2040/tutor-godot`, WIP ohne Test): Quelltext integriert (Merge `55c0135`), nur über einen Lern-Aufruf mit `kind: tutor` erreichbar; der Einstieg in der App bleibt verborgen. Status: NOT_RUN.
 
 ### 5.2 Lumo als Tutor, Sprache, Kamera
@@ -232,7 +233,7 @@ Grundlage ist Groks Inventur `docs/handover/BRANCH-INVENTUR-20261117.md` (784 Br
 | App `lumo-2040/memory` @ `e5dbe5ca` | teilweise übernommen: nur Fix `b93aef5b`, Optik-Commit `5a79c14c` nicht | Cherry-Pick auf dem Arbeitsbranch |
 | App `lumo-2040/tutor` @ `58549eae` | WIP, Einstieg verborgen | offen |
 | App `delivery/lumo-2037-memory-werkstatt` @ `e2a8e9fe` | 11 Commits nicht im Nullpunkt | offen, prüfen |
-| Godot-Pin in `config/godot-source.json` | umgestellt auf `d9ab8db` (Godot-CI auf `2e1aed6` vollständig grün) | Commit `d83d2199` |
+| Godot-Pin in `config/godot-source.json` | umgestellt auf `a363de2` (Importabsturz behoben; Godot-CI auf `2e1aed6` vollständig grün, auf `a363de2` noch offen) | Commit `b39d8ec9` |
 
 Die unveränderten Testberichte der Streams liegen im Godot-Repo unter `docs/integration-2/`.
 
@@ -244,7 +245,8 @@ Die unveränderten Testberichte der Streams liegen im Godot-Repo unter `docs/int
 | Vollständige Godot-Testsuite (ca. 350 Skripte) | NOT_RUN |
 | `flutter analyze` | PASS (lokal), 0 Fehler |
 | `flutter test` vollständig | NOT_RUN |
-| Gemeinsame APK (Flutter + Godot) | IN ARBEIT: erster Bau von 0.13.26+2038 über `lumo-test-apk.yml` (Lauf 44160451537), Ergebnis offen |
+| Gemeinsame APK (Flutter + Godot) | GEBAUT und signiert (CI, nicht auf einem Gerät geprüft): Lauf 4 von `lumo-test-apk.yml` (44207725478) auf `287bc29c`, Version 0.13.27+2039, Godot `2b1fd30`, nur ARM64, rund 539 MB. Download als Entwurf-Release „Lumo Test-APK 0.13.27+2039 (Entwurf)“ (GitHub verweigert dem Lauf-Token eine öffentliche Vorabversion, HTTP 403) oder als Actions-Artefakt `LUMO-TEST-APK-44207725478`. Vorher: Läufe 1–2 Godot-Importabsturz (Ursache behoben in Godot `a363de2`), Lauf 3 gebaut (0.13.26+2038, 588 MB Universal). Offen: Größe (Spielpaket allein 282 MB), Installation und Bedienung auf dem Gerät |
+| App-Skripttests (`scripts/tests`, 1006 Tests) | PASS in CI auf `0315c801` (`full-app-script-regression`); lokal 1005 PASS, 1 nur mit Android-SDK lauffähig |
 | Android-Emulator, echtes Gerät, Fold | NOT_RUN |
 | Framezeiten, Speicher, Akku | NOT_RUN |
 

@@ -25,7 +25,9 @@ jobs:
     env:
       CI: 'true'
       FLUTTER_SUPPRESS_ANALYTICS: 'true'
-      LUMO_SPLIT_PER_ABI: '0'
+      # Eine APK je Prozessorart: Handys brauchen nur ARM64. Das halbiert die
+      # nativen Bibliotheken gegenüber einer Universal-APK.
+      LUMO_SPLIT_PER_ABI: '1'
       LUMO_NDK_DISPOSABLE_RUNNER: '1'
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -105,7 +107,7 @@ jobs:
           set -euo pipefail
           bash scripts/build_unified_apk.sh
           test -s dist/Lumo-Lernen-Neu.apk
-          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/APK-VERIFICATION.json
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
           NAME="Lumo-Lernen-Test-${VERSION/+/-}.apk"
@@ -131,18 +133,24 @@ jobs:
           Nicht geprüft: Bedienung auf einem echten Gerät, Fold, Bildrate, Ton.
           EOF
           TAG="lumo-test-${LUMO_APK_VERSION/+/-}-$GITHUB_RUN_ID"
-          if gh release create "$TAG" \
-            "release/$LUMO_APK_NAME" \
-            release/SHA256SUMS.txt \
-            release/APK-VERIFICATION.json \
-            release/BUILD-PROVENANCE.json \
-            release/LIESMICH.txt \
+          FILES=("release/$LUMO_APK_NAME" release/SHA256SUMS.txt release/APK-VERIFICATION.json
+            release/BUILD-PROVENANCE.json release/LIESMICH.txt)
+          NOTES="Test-APK zum Ausprobieren auf dem Handy. Kein Store-Release. Details in LIESMICH.txt."
+          # Eine Vorabversion legt ein Tag auf diesem Commit an. Verweigert GitHub
+          # das dem Lauf-Token, bleibt der Entwurf: Er braucht kein Tag und ist
+          # für die Eigentümer des Repos sichtbar und herunterladbar.
+          if gh release create "$TAG" "${FILES[@]}" \
             --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
-            --title "Lumo Test-APK $LUMO_APK_VERSION" \
-            --notes "Test-APK zum Ausprobieren auf dem Handy. Kein Store-Release. Details in LIESMICH.txt." \
+            --title "Lumo Test-APK $LUMO_APK_VERSION" --notes "$NOTES" \
             --prerelease --latest=false; then
             URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"
             echo "Test-APK: $URL" >> "$GITHUB_STEP_SUMMARY"
+          elif URL="$(gh release create "$TAG" "${FILES[@]}" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Lumo Test-APK $LUMO_APK_VERSION (Entwurf)" --notes "$NOTES" \
+            --draft --prerelease)"; then
+            echo "Test-APK (Entwurf, nur für Eigentümer sichtbar): $URL" >> "$GITHUB_STEP_SUMMARY"
+            echo "Entwurf angelegt: $URL"
           else
             echo "::warning::Die Vorabversion konnte nicht angelegt werden; die APK liegt im Actions-Artefakt dieses Laufs." >&2
             echo "Test-APK im Artefakt: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"
@@ -152,7 +160,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: LUMO-TEST-APK-${{ github.run_id }}
+          # Nur die APK und die kleinen Belege; die APK ist bereits komprimiert.
           path: |
             release/
-            build-proof/
+            build-proof/*.txt
+            build-proof/*.json
           if-no-files-found: warn
+          compression-level: 0

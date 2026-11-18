@@ -174,9 +174,12 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(1000, 1400));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final state = LumoAppState(walletRepository: RewardWalletRepository());
+    // Quick practice has ten tasks from grade 3 on (six in grade 1, eight
+    // in grade 2).
     state.update(state.state.copyWith(
+        grade: 3,
         subject: 'Mathematik',
-        unit: 'Plus bis 10',
+        unit: 'Plus bis 1000',
         settings: const AppSettings(voiceEnabled: false)));
     await tester.pumpWidget(
         MaterialApp(home: Scaffold(body: LearningContent(appState: state))));

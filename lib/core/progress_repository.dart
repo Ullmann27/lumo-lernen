@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'discovery_progress.dart';
 import 'learning_journey.dart';
 import 'legacy_learning_data.dart';
+import 'session_round_resume.dart';
 import '../domain/learning_intelligence/scene_memory.dart';
 import '../domain/learning/independent_evidence.dart';
+import '../domain/learning/skill_evidence.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
 /// Offline-first. Keine Cloud. Kein Tracking.
@@ -21,6 +23,11 @@ class ProgressRepository {
   static const _discoveryKey = 'lumo_progress_discovery_v1';
   static const _journeyKey = 'lumo_progress_journey_v1';
   static const _tutorResetKey = 'lumo_tutor_reset_pending_v1';
+
+  /// Calendar days on which a topic was solved alone. A separate, additive
+  /// key: the saved skill records keep their exact format, and an older app
+  /// version simply ignores this entry.
+  static const _independentDaysKey = 'lumo_progress_independent_days_v1';
   Future<void> _tutorTail = Future<void>.value();
 
   // Keep a confirmed deletion durable across a failed write or process exit.
@@ -159,19 +166,55 @@ class ProgressRepository {
       }
       out[record.skillId] = record;
     }
+    final days = await _loadIndependentDays();
+    for (final entry in days.entries) {
+      out[entry.key]?.independentDays = entry.value;
+    }
     // A failed normalization write is not corrupt input. Preserve the
     // existing saved profile and report storage failure so Retry can work.
     await saveSkills(out);
     return out;
   }
 
+  /// Auxiliary evidence only. Unreadable or newer content counts as "no day
+  /// known yet" and never blocks the child's saved answers.
+  Future<Map<String, List<String>>> _loadIndependentDays() async {
+    final raw = await _namespace.read(_independentDaysKey);
+    if (raw == null || raw.trim().isEmpty) return const {};
+    try {
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map || decoded['version'] != 1) return const {};
+      final days = decoded['days'];
+      if (days is! Map) return const {};
+      final out = <String, List<String>>{};
+      for (final entry in days.entries) {
+        final value = entry.value;
+        if (entry.key is! String || value is! List) continue;
+        out[entry.key as String] = SkillRecord.cleanDays(value);
+      }
+      return out;
+    } on FormatException {
+      return const {};
+    }
+  }
+
   Future<void> saveSkills(Map<String, SkillRecord> skills) async {
     final data = <String, Map<String, dynamic>>{};
+    final days = <String, List<String>>{};
     for (final entry in skills.entries) {
       final record = entry.value.normalized();
       data[record.skillId] = record.toJson();
+      if (record.independentDays.isNotEmpty) {
+        days[record.skillId] = record.independentDays;
+      }
     }
     await _namespace.write(_skillsKey, jsonEncode(data));
+    // Written only once a topic was actually solved alone, so profiles
+    // without such evidence keep exactly their previous stored entries.
+    if (days.isNotEmpty) {
+      await _namespace.write(
+          _independentDaysKey, jsonEncode({'version': 1, 'days': days}));
+    }
   }
 
   Future<Map<String, int>> loadDaily() async {
@@ -238,6 +281,10 @@ class ProgressRepository {
     await _namespace.write(_skillsKey, '{}');
     await _namespace.write(_dailyKey, '{}');
     await _namespace.write(_lastKey, '{}');
+    await _namespace.write(_independentDaysKey,
+        jsonEncode({'version': 1, 'days': <String, Object?>{}}));
+    await _namespace.write(SessionRoundResumeStore.storageKey,
+        SessionRoundResumeStore.emptyValue);
     await saveDiscovery(DiscoveryProgress());
     await saveJourney(LearningJourney());
     await saveSceneMemory(SceneMemory());
@@ -261,8 +308,10 @@ class SkillRecord {
     this.currentMisses = 0,
     this.difficulty = 1,
     this.independentEvidence,
+    List<String> independentDays = const <String>[],
     DateTime? lastSeen,
-  }) : lastSeen = lastSeen ?? DateTime.now();
+  })  : lastSeen = lastSeen ?? DateTime.now(),
+        independentDays = cleanDays(independentDays);
 
   final String skillId;
   final String subject;
@@ -275,6 +324,46 @@ class SkillRecord {
   int difficulty;
   DateTime lastSeen;
   IndependentEvidence? independentEvidence;
+
+  /// The most recent calendar days (yyyy-MM-dd) on which this topic was
+  /// solved alone. Stored beside the skill records, never inside them.
+  List<String> independentDays;
+
+  static const int maxIndependentDays = 7;
+  static final RegExp _dayPattern = RegExp(r'^\d{4}-\d{2}-\d{2}$');
+
+  static List<String> cleanDays(Iterable<Object?> raw) {
+    final days = <String>{
+      for (final day in raw)
+        if (day is String && _dayPattern.hasMatch(day)) day,
+    }.toList()
+      ..sort();
+    return days.length <= maxIndependentDays
+        ? days
+        : days.sublist(days.length - maxIndependentDays);
+  }
+
+  /// Remembers that a task of this topic was solved alone on [day].
+  void noteIndependentDay(String day) {
+    if (independentDays.contains(day)) return;
+    independentDays = cleanDays([...independentDays, day]);
+  }
+
+  /// Days with a task solved alone. Records saved before days were kept
+  /// count their existing independent successes as one day: honest, because
+  /// at least one such day happened, and one more day confirms "sicher".
+  int get independentDayCount => independentDays.isNotEmpty
+      ? independentDays.length
+      : assessed.correct > 0
+          ? 1
+          : 0;
+
+  /// Evidence-based stage instead of a percentage (see [SkillEvidence]).
+  SkillEvidence get evidence => SkillEvidence.from(
+        answers: attempts,
+        independent: assessed,
+        independentDays: independentDayCount,
+      );
 
   IndependentEvidence get assessed =>
       independentEvidence ??
@@ -325,6 +414,7 @@ class SkillRecord {
       difficulty: difficulty.clamp(1, 5).toInt(),
       lastSeen: lastSeen,
       independentEvidence: assessed,
+      independentDays: independentDays,
     );
   }
 

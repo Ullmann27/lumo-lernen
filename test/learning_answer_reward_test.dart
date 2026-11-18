@@ -23,7 +23,7 @@ void main() {
     (LumoSessionKind.quickPractice, 2.0),
   ]) {
     testWidgets(
-      'incorrect $kind at text scale $scale updates the wallet without earning XP',
+      'incorrect $kind at text scale $scale keeps stars and XP unchanged',
       (tester) async {
         await tester.binding.setSurfaceSize(const Size(1000, 1400));
         addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -83,12 +83,23 @@ void main() {
               .last,
         );
         await tester.pump();
-        final expectedStars = kind == LumoSessionKind.schoolwork ? 3 : 5;
+        // A wrong answer never costs stars. Schoolwork used to deduct two;
+        // rewards now only reflect what succeeded.
+        const expectedStars = 5;
         expect(state.state.stars, expectedStars);
         expect(state.state.xp, 40);
         if (kind == LumoSessionKind.schoolwork) {
-          expect(find.text('-2 Sterne'), findsOneWidget);
+          expect(find.textContaining('-2'), findsNothing);
+          expect(find.text('Kein Stern geht verloren'), findsOneWidget);
+          // One try only, but the card explains why the answer is right.
+          expect(find.byKey(const ValueKey('solution-why-box')), findsOneWidget);
+          expect(find.text('So kommst du darauf:'), findsOneWidget);
+          expect(find.textContaining('Richtige Antwort:'), findsOneWidget);
           expect(find.text('Lumo erklärt'), findsNothing);
+        } else {
+          // Practice: a second try with feedback instead of a result card.
+          expect(
+              find.byKey(const ValueKey('mistake-feedback-card')), findsOneWidget);
         }
         await state.flushRewards();
         await tester.pumpWidget(const SizedBox.shrink());
