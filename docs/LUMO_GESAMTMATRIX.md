@@ -84,7 +84,7 @@ nicht gespielt und nicht auf einem Gerät gemessen habe.
 
 | Bereich | Punkt 5 heute | Begründung |
 |---|---|---|
-| Lumo Kart, Rennen | 2–3 | Echtes 3D, brauchbare Karts und Fahrer. Fahrbahn kahl und grau, Licht flach (Vulkan fast schwarz), Streckenrand dünn, kaum Effekte, eine Tastatur-Hilfezeile im Bild |
+| Lumo Kart, Rennen (Stand 18.11.: 3–4 für Kart, Figuren und Beläge; Streckenkulisse weiter 2–3) | 2–3 | Echtes 3D, brauchbare Karts und Fahrer. Fahrbahn kahl und grau, Licht flach (Vulkan fast schwarz), Streckenrand dünn, kaum Effekte, eine Tastatur-Hilfezeile im Bild |
 | Lumo Kart, Hauptmenü | 3 | Aufbau nach Zielbild, lebender Lumo im Kart; Kacheln noch flach gezeichnet (Blender-Kit wird gerade eingebaut) |
 | Memory, 3D-Tisch | 2 | Flaches Brett von oben, Lumo klein am Rand; das Flutter-Memory wirkt moderner |
 | Jump & Run (Inseln) | 2 | Kleine schwebende Inseln, einfache Bäume, viel Text im Bild; kein langer Lauf |
@@ -125,7 +125,14 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 | Items (Stream `lumo-kart/gameplay-items` @ `17b63b4`) | OFFEN – **Designkonflikt** | Stand hat bereits Resonanz-Ringe (Items nur durch Fahrkönnen, nie nach Platz). Der Stream bringt ein zweites System (9 Items, Rakete, Falle, Glück nach Platz) auf einmonatsaltem `main`: 24 Konfliktblöcke in 5 Dateien. Zusammenführen als eigenes Paket, mit einem Item-System als alleiniger Quelle. Vorschlag: Katalog des Streams wird führend (entspricht Heinz' Auftrag Abschnitt 9), Resonanz bleibt als Zusatzregel |
 | Menü/Strecken-Dramaturgie (Stream `lumo-kart/menu-strecken`) | PASS (lokal) | Merge `9f5e30b`; `kart_neon_home_regression` (38), `kart_neon_readability_regression` (1180), `kart_adventure_drama_regression` (874 Prüfungen) grün |
 | Streckenbauteile (Stream `lumo-2040/kart`) | PASS (lokal) | Merge `a1587ff`; `kart_track_pieces_regression`, `kart_loop_seam_regression` grün |
-| Grafikqualität aus Rennkamera, alle 13 Strecken | NOT_RUN | keine Bilder in dieser Sitzung |
+| Karts und Sitzposition | PASS (lokal), 18.11. | Die drei Produktions-Karts in Blender neu gebaut (Sitzwanne, Frontverkleidung mit leuchtendem L, Frontflügel und Seitenkästen mit Leuchtbändern, Motorheck); Lumo – unverändertes Modell – sitzt im Kart statt auf der Haube, Hände am echten Lenkrad, Schweif hinter der Lehne. Radpunkte unverändert. Godot `ed7978f`: Reifen/Karosserie ohne Berührung bei vollem Lenkeinschlag (BVH), Exportprüfung 9/9, Sitz 225, Schweif 148, Fahrzeug 492 Prüfungen. **Offen:** die übrigen 11 Karts der Flotte nutzen noch die alte, im Code gebaute Karosserie mit hohem Sitz |
+| Gegner | PASS (lokal), 18.11. | Eine veraltete Pfadregel wies alle fünf fertigen 3D-Figuren (Löwe, Eule, Hase, Eichhörnchen, Schildkröte) ab; Rennen zeigten Ersatzfiguren. Behoben in `ed7978f`; Figuren sitzen im Kart |
+| Fahr-Animation Lumo | PASS (lokal), 18.11. | Kurvenlage (stärker im Drift), Blick in die Kurve, Ducken bei Tempo, Boost-Druck; Handkontakt-Tests grün (`2e36949`) |
+| Zieleinlauf nach Zielbild | PASS (lokal), 18.11. | Platz-Abzeichen, Wertzeilen, Ergebniskamera, Jubel (`301ea2b`, Korrekturen `064eba9`); 11 Displaygrößen |
+| Hauptmenü aus dem 3D-Kit | PASS (lokal), 17.11. | Merge `2b1fd30`; Draw-Calls je nach Fläche 333–371 (vorher 362–395) |
+| Fahrbahn je Strecke | PASS (lokal), 17.11. | Sieben eigene Beläge (Waldweg, Steinplatten, Sand, Schnee/Eis, Basalt mit Lavarissen, Sternenglas, Laborfliesen), `5dfc8e9`; 114 Prüfungen |
+| Dschungel-Licht, Zauberwald-Bäume | PASS (lokal), 17./18.11. | eigenes Tageslicht (`7b4a374`), Baumreihe an der Strecke (`4cf3032`) |
+| Grafikqualität aus Rennkamera, alle 13 Strecken | TEILWEISE | 39 Bilder (13 Strecken × 3 Stellen) angesehen; Beläge und zwei Kulissen verbessert. Offen: Streckenrand der übrigen Welten, Licht Vulkan/Bergwelt, Effekte; auf dem Gerät nicht gemessen |
 | Framezeiten auf Zielgerät | NOT_RUN | kein Gerät |
 
 ### 4.2 Kartenspiele
@@ -182,6 +189,8 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 | Sterne sammeln | Godot `star_collect_game.gd` | NOT_RUN |
 
 ## 5. Lernen, Tutor, Daten
+
+**Stand 18.11.:** Lernpaket L1 „Ehrlich üben“ ist zusammengeführt (`69775b5e`): Rückmeldung passend zum Fehler, nach dem zweiten Fehler gemeinsamer Lösungsweg in Schritten, danach eine ähnliche Aufgabe zum Allein-Lösen, „allein gelöst“ nur beim ersten Versuch ohne Hilfe, Können nur mit Beleg („Am Anfang“, „In Übung“, „Sicher“ erst nach genug allein gelösten Aufgaben an zwei Tagen), kein Sternabzug, lange Module in Runden mit Wiedereinstieg. Geprüft: Analyse 0 Fehler, ganze Suite auf dem L1-Zweig (zwei Alt-Tests an den neuen Vertrag angepasst), 352 Lern-Tests nach dem Zusammenführen. Nicht geprüft: mit echten Kindern, auf dem Gerät. Fachkorrekturen Mathematik und Deutsch/Sachunterricht/Englisch laufen.
 
 ### 5.1 Lerninhalte (Flutter)
 
@@ -246,6 +255,7 @@ Die unveränderten Testberichte der Streams liegen im Godot-Repo unter `docs/int
 | `flutter analyze` | PASS (lokal), 0 Fehler |
 | `flutter test` vollständig | NOT_RUN |
 | Gemeinsame APK (Flutter + Godot) | GEBAUT und signiert (CI, nicht auf einem Gerät geprüft): Lauf 4 von `lumo-test-apk.yml` (44207725478) auf `287bc29c`, Version 0.13.27+2039, Godot `2b1fd30`, nur ARM64, rund 539 MB. Download als Entwurf-Release „Lumo Test-APK 0.13.27+2039 (Entwurf)“ (GitHub verweigert dem Lauf-Token eine öffentliche Vorabversion, HTTP 403) oder als Actions-Artefakt `LUMO-TEST-APK-44207725478`. Vorher: Läufe 1–2 Godot-Importabsturz (Ursache behoben in Godot `a363de2`), Lauf 3 gebaut (0.13.26+2038, 588 MB Universal). Offen: Größe (Spielpaket allein 282 MB), Installation und Bedienung auf dem Gerät |
+| Größe des Spielpakets | 281,8 MB → 117,9 MB (Godot `a73fa33`): Tunnel-Texturen lagen je Strecke bis zu 14-fach eingebettet und unkomprimiert im Paket; jetzt je Strecke einmal. Gleichheit belegt (Fingerabdruck aller 385 Bauteile identisch, Tunnelbilder praktisch pixelgleich). Wirkt ab der nächsten APK |
 | App-Skripttests (`scripts/tests`, 1006 Tests) | PASS in CI auf `0315c801` (`full-app-script-regression`); lokal 1005 PASS, 1 nur mit Android-SDK lauffähig |
 | Android-Emulator, echtes Gerät, Fold | NOT_RUN |
 | Framezeiten, Speicher, Akku | NOT_RUN |
