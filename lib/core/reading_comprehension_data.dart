@@ -319,11 +319,10 @@ const readingPassages = <int, List<ReadingPassage>>{
     ReadingPassage(
         'Lumo liest in zwei Büchern etwas Verschiedenes über Igel. Darum schaut er in ein neues Tierlexikon. Dort steht, was Forscher beobachtet haben. Nur eines der beiden Bücher hat recht.',
         [
-          ReadingCheck('Wie findet Lumo heraus, welches Buch recht hat?',
-              'Er schaut in einem dritten Buch nach.', [
-            'Er glaubt einfach dem ersten Buch.',
-            'Er würfelt die Lösung.'
-          ]),
+          ReadingCheck(
+              'Wie findet Lumo heraus, welches Buch recht hat?',
+              'Er schaut in einem dritten Buch nach.',
+              ['Er glaubt einfach dem ersten Buch.', 'Er würfelt die Lösung.']),
           ReadingCheck(
               'Was steht im Tierlexikon?',
               'was Forscher beobachtet haben',
@@ -398,13 +397,12 @@ const readingPassages = <int, List<ReadingPassage>>{
     ReadingPassage(
         'Nach starkem Regen schreibt die Zeitung über ein Hochwasser. Eine Frau erzählt: „In meiner Straße stand das Wasser.“ Wie es in den anderen Straßen aussah, hat sie nicht gesehen.',
         [
-          ReadingCheck('Was wissen wir sicher?',
-              'Eine Straße stand unter Wasser.', [
+          ReadingCheck(
+              'Was wissen wir sicher?', 'Eine Straße stand unter Wasser.', [
             'Alle Straßen standen unter Wasser.',
             'Im ganzen Land war Hochwasser.'
           ]),
-          ReadingCheck(
-              'Warum wissen wir nichts über die anderen Straßen?',
+          ReadingCheck('Warum wissen wir nichts über die anderen Straßen?',
               'Die Frau hat nur ihre Straße gesehen.', [
             'Die Frau erzählt vom Regen.',
             'Straßen können nicht nass werden.'
@@ -494,3 +492,394 @@ const readingSequences = <List<String>>[
     'Die Klasse gestaltet ein Plakat.'
   ],
 ];
+
+/// „Lesesinn“: Die Antwort steht nicht wörtlich im Text, das Kind muss aus
+/// dem Gelesenen schließen (Fachprüfung 2026-11, D-M12).
+const readingInferences = <int, List<ReadingPassage>>{
+  1: [
+    ReadingPassage('Ben gähnt. Seine Augen fallen zu.', [
+      ReadingCheck('Wie fühlt sich Ben?', 'müde', ['wütend', 'lustig']),
+      ReadingCheck('Was sollte Ben jetzt tun?', 'schlafen gehen',
+          ['Fußball spielen', 'laut singen']),
+    ]),
+    ReadingPassage('Lea zieht die Haube und die Handschuhe an.', [
+      ReadingCheck('Wie ist es draußen?', 'kalt', ['heiß', 'sonnig und warm']),
+      ReadingCheck(
+          'Was will Lea wohl tun?', 'hinausgehen', ['schlafen gehen', 'baden']),
+    ]),
+    ReadingPassage(
+        'Lumo hat ein Geschenk. Auf dem Tisch steht eine Torte mit Kerzen.', [
+      ReadingCheck(
+          'Was feiert Lumo?', 'seinen Geburtstag', ['Ostern', 'den Muttertag']),
+      ReadingCheck('Was macht Lumo wohl gleich?', 'die Kerzen ausblasen',
+          ['in die Schule gehen', 'schlafen gehen']),
+    ]),
+    ReadingPassage('Der Hund bellt. Es läutet an der Tür.', [
+      ReadingCheck('Was ist wohl los?', 'Jemand kommt zu Besuch.',
+          ['Der Hund schläft.', 'Alle sind weggefahren.']),
+      ReadingCheck('Warum bellt der Hund?', 'Er hört die Klingel.',
+          ['Er schläft tief.', 'Er frisst gerade.']),
+    ]),
+    ReadingPassage('Ali isst schnell seine Jause. Dann holt er den Ball.', [
+      ReadingCheck('Was will Ali jetzt tun?', 'spielen', ['schlafen', 'lesen']),
+      ReadingCheck('Wann holt Ali den Ball?', 'nach der Jause',
+          ['vor der Jause', 'in der Nacht']),
+    ]),
+    ReadingPassage('Oma hat nasse Schuhe und einen nassen Mantel.', [
+      ReadingCheck('Wie war das Wetter draußen?', 'Es hat geregnet.',
+          ['Es war heiß.', 'Es war trocken.']),
+      ReadingCheck('Was hätte Oma gebraucht?', 'einen Regenschirm',
+          ['eine Sonnenbrille', 'einen Schlitten']),
+    ]),
+    ReadingPassage('Mia weint. Ihr Eis liegt auf dem Boden.', [
+      ReadingCheck('Wie fühlt sich Mia?', 'traurig', ['fröhlich', 'stolz']),
+      ReadingCheck('Was ist passiert?', 'Das Eis ist hinuntergefallen.',
+          ['Mia hat das Eis aufgegessen.', 'Mia hat ein neues Eis bekommen.']),
+    ]),
+    ReadingPassage(
+        'Lumo trägt seine Schultasche. Er hat eine Jause und Hefte dabei.', [
+      ReadingCheck(
+          'Wohin geht Lumo?', 'in die Schule', ['ins Freibad', 'ins Bett']),
+      ReadingCheck('Wann ist das wohl?', 'am Morgen',
+          ['in der Nacht', 'am späten Abend']),
+    ]),
+    ReadingPassage('Der Teller ist leer. Ben reibt sich den Bauch und lacht.', [
+      ReadingCheck(
+          'Wie hat Ben das Essen gefunden?', 'gut', ['grauslich', 'zu scharf']),
+      ReadingCheck('Ist Ben noch hungrig?', 'Nein, er ist satt.',
+          ['Ja, sehr hungrig.', 'Er hat nichts gegessen.']),
+    ]),
+    ReadingPassage('Die Katze sitzt vor der leeren Schüssel und miaut.', [
+      ReadingCheck('Was will die Katze?', 'Futter', ['einen Ball', 'schlafen']),
+      ReadingCheck('Wie fühlt sich die Katze?', 'hungrig', ['satt', 'müde']),
+    ]),
+    ReadingPassage('Papa holt den Schlitten und die dicke Jacke.', [
+      ReadingCheck('Wie ist es draußen?', 'Es liegt Schnee.',
+          ['Es ist heiß.', 'Es ist Sommer.']),
+      ReadingCheck(
+          'Was will Papa machen?', 'rodeln', ['schwimmen', 'Rad fahren']),
+    ]),
+    ReadingPassage('Lea hat Farbe an den Händen. Neben ihr liegt ein Pinsel.', [
+      ReadingCheck('Was hat Lea gemacht?', 'gemalt', ['gekocht', 'geschlafen']),
+      ReadingCheck('Was braucht Lea jetzt?', 'Wasser und Seife',
+          ['einen Ball', 'eine Haube']),
+    ]),
+  ],
+  2: [
+    ReadingPassage(
+        'Es ist heiß. Die Kinder haben Ferien und gehen ins Freibad.', [
+      ReadingCheck('Welche Jahreszeit ist es?', 'Sommer', ['Winter', 'Herbst']),
+      ReadingCheck('Was nehmen die Kinder wohl mit?', 'eine Badehose',
+          ['einen Schlitten', 'eine Haube']),
+    ]),
+    ReadingPassage(
+        'Mia kommt aus der Schule. Sie riecht Palatschinken und läuft schnell in die Küche.',
+        [
+          ReadingCheck('Warum läuft Mia in die Küche?', 'Sie hat Hunger.',
+              ['Sie ist müde.', 'Sie sucht ihre Schultasche.']),
+          ReadingCheck('Woran merkt Mia, dass es Essen gibt?', 'am Geruch',
+              ['an einem Brief', 'am Fernseher']),
+        ]),
+    ReadingPassage(
+        'Ben sucht unter dem Bett und im Kasten. Endlich findet er seinen Schlüssel.',
+        [
+          ReadingCheck(
+              'Wie fühlt sich Ben am Ende?', 'froh', ['traurig', 'wütend']),
+          ReadingCheck('Wie hat sich Ben vorher gefühlt?', 'Er war besorgt.',
+              ['Er war fröhlich.', 'Er war satt.']),
+        ]),
+    ReadingPassage(
+        'Die Blätter sind gelb und braun. Sie fallen von den Bäumen.', [
+      ReadingCheck(
+          'Welche Jahreszeit ist es?', 'Herbst', ['Frühling', 'Sommer']),
+      ReadingCheck('Was braucht man bald im Garten?', 'einen Rechen',
+          ['eine Badehose', 'einen Sonnenschirm']),
+    ]),
+    ReadingPassage(
+        'Lea hält sich die Ohren zu. Draußen fährt ein Feuerwehrauto mit Sirene vorbei.',
+        [
+          ReadingCheck('Warum hält Lea sich die Ohren zu?',
+              'Die Sirene ist laut.', ['Sie hört Musik.', 'Sie hat Hunger.']),
+          ReadingCheck('Wohin fährt das Feuerwehrauto wohl?',
+              'zu einem Einsatz', ['in die Waschanlage', 'zum Einkaufen']),
+        ]),
+    ReadingPassage('Lumo gießt die Blumen jeden Tag. Jetzt blühen sie bunt.', [
+      ReadingCheck('Warum blühen die Blumen so schön?', 'Lumo pflegt sie gut.',
+          ['Lumo hat sie vergessen.', 'Es war immer dunkel.']),
+      ReadingCheck('Was gibt Lumo den Blumen?', 'Wasser', ['Saft', 'Sand']),
+    ]),
+    ReadingPassage(
+        'Die Kinder ziehen Gummistiefel an. Sie springen in jede Lacke.', [
+      ReadingCheck('Wie war das Wetter vorher?', 'Es hat geregnet.', [
+        'Es war lange heiß und trocken.',
+        'Die Sonne hat die ganze Woche geschienen.'
+      ]),
+      ReadingCheck(
+          'Wie fühlen sich die Kinder?', 'fröhlich', ['traurig', 'ängstlich']),
+    ]),
+    ReadingPassage(
+        'Ali legt ein Buch, einen Teddy und seine Zahnbürste in den Rucksack. Heute schläft er bei Oma.',
+        [
+          ReadingCheck('Wie lange bleibt Ali bei Oma?', 'bis morgen',
+              ['nur fünf Minuten', 'ein ganzes Jahr']),
+          ReadingCheck(
+              'Warum nimmt Ali die Zahnbürste mit?',
+              'Er putzt bei Oma die Zähne.',
+              ['Er will damit malen.', 'Er braucht sie zum Lesen.']),
+        ]),
+    ReadingPassage(
+        'Lumo schaut aus dem Fenster. Die Straßenlampen leuchten, und am Himmel sind Sterne.',
+        [
+          ReadingCheck(
+              'Wann ist das?', 'in der Nacht', ['am Mittag', 'am Vormittag']),
+          ReadingCheck('Was macht Lumo wohl bald?', 'schlafen gehen',
+              ['in die Schule gehen', 'frühstücken']),
+        ]),
+    ReadingPassage('Emma hat einen Gips am Arm. Sie kann heute nicht turnen.', [
+      ReadingCheck('Was ist mit Emmas Arm?', 'Er ist verletzt.',
+          ['Er ist schmutzig.', 'Er ist ganz gesund.']),
+      ReadingCheck('Was kann Emma in der Turnstunde tun?', 'zuschauen',
+          ['am Reck turnen', 'einen Handstand machen']),
+    ]),
+    ReadingPassage(
+        'Am Tisch sitzen viele Gäste. Auf der Torte steht „90“. Uroma lacht.', [
+      ReadingCheck('Was wird gefeiert?', 'Uromas Geburtstag',
+          ['Lumos erster Schultag', 'Weihnachten']),
+      ReadingCheck('Wie alt wird Uroma?', '90 Jahre', ['9 Jahre', '19 Jahre']),
+    ]),
+    ReadingPassage(
+        'Ben und Mama stehen an der Kreuzung. Die Fußgängerampel ist rot.', [
+      ReadingCheck('Was müssen die beiden jetzt tun?', 'warten',
+          ['schnell laufen', 'über die Straße rennen']),
+      ReadingCheck('Wann dürfen sie gehen?', 'wenn die Ampel grün ist',
+          ['sofort', 'wenn ein Auto kommt']),
+    ]),
+  ],
+  3: [
+    ReadingPassage(
+        'Ali steht an der Haltestelle und schaut auf die Uhr. Er tritt von einem Fuß auf den anderen. Der Bus kommt nicht.',
+        [
+          ReadingCheck(
+              'Wie fühlt sich Ali?', 'ungeduldig', ['fröhlich', 'stolz']),
+          ReadingCheck('Worauf wartet Ali?', 'auf den Bus',
+              ['auf den Postler', 'auf das Mittagessen']),
+        ]),
+    ReadingPassage(
+        'Mia hat ein Pflaster am Knie. Ihr Rad steht mit einem verbogenen Lenker im Hof.',
+        [
+          ReadingCheck(
+              'Was ist Mia wohl passiert?',
+              'Sie ist mit dem Rad gestürzt.',
+              ['Sie hat ein Rad gewonnen.', 'Sie hat ein Bild gemalt.']),
+          ReadingCheck(
+              'Was muss mit dem Rad geschehen?',
+              'Es muss repariert werden.',
+              ['Es muss gewaschen werden.', 'Es braucht eine Klingel.']),
+        ]),
+    ReadingPassage(
+        'Der Himmel wird dunkelgrau. Der Wind wird stärker. Lumo holt schnell die Wäsche herein.',
+        [
+          ReadingCheck(
+              'Was erwartet Lumo?', 'Regen', ['Sonnenschein', 'große Hitze']),
+          ReadingCheck(
+              'Warum holt Lumo die Wäsche herein?',
+              'Sie soll nicht nass werden.',
+              ['Sie ist schmutzig.', 'Er will sie verschenken.']),
+        ]),
+    ReadingPassage(
+        'Ben hat eine Woche nicht Flöte geübt. Beim Vorspielen macht er viele Fehler.',
+        [
+          ReadingCheck('Warum macht Ben Fehler?', 'Er hat zu wenig geübt.',
+              ['Er hat zu viel geübt.', 'Er spielt schon sehr lange Flöte.']),
+          ReadingCheck(
+              'Was sollte Ben beim nächsten Mal tun?',
+              'jeden Tag ein bisschen üben',
+              ['gar nicht mehr üben', 'die Flöte verstecken']),
+        ]),
+    ReadingPassage(
+        'Oma stellt einen Kübel auf den Dachboden. Bei jedem Regen tropft Wasser hinein.',
+        [
+          ReadingCheck('Was ist mit dem Dach los?', 'Es hat ein Loch.',
+              ['Es ist ganz neu.', 'Es ist aus Glas.']),
+          ReadingCheck('Wozu dient der Kübel?', 'Er fängt die Tropfen auf.',
+              ['Er ist ein Blumentopf.', 'Darin liegt Spielzeug.']),
+        ]),
+    ReadingPassage(
+        'Im Klassenzimmer ist es ganz still. Alle Kinder schreiben. Die Lehrerin geht leise durch die Reihen.',
+        [
+          ReadingCheck(
+              'Was machen die Kinder wohl gerade?',
+              'Sie schreiben einen Test.',
+              ['Sie haben Turnen.', 'Sie haben große Pause.']),
+          ReadingCheck(
+              'Warum geht die Lehrerin leise?',
+              'Sie will die Kinder nicht stören.',
+              ['Sie will die Kinder aufwecken.', 'Sie spielt Fangen.']),
+        ]),
+    ReadingPassage(
+        'Felix steht vor dem Klettergerüst. Seine Hände zittern. Er schaut nach oben und atmet tief durch.',
+        [
+          ReadingCheck('Wie fühlt sich Felix?', 'Er hat ein bisschen Angst.',
+              ['Er ist sehr müde.', 'Er ist wütend.']),
+          ReadingCheck('Was hat Felix wohl vor?', 'Er will hinaufklettern.',
+              ['Er will nach Hause gehen.', 'Er will schlafen.']),
+        ]),
+    ReadingPassage(
+        'Am Abend gehen viele Kinder mit leuchtenden Laternen durch den Park. Sie singen „Ich geh mit meiner Laterne“.',
+        [
+          ReadingCheck('Welches Fest feiern sie wohl?', 'das Martinsfest',
+              ['Ostern', 'Fasching']),
+          ReadingCheck('Warum brauchen sie Laternen?', 'Es ist schon dunkel.',
+              ['Es ist heiß.', 'Es regnet stark.']),
+        ]),
+    ReadingPassage(
+        'Der Hase im Hof versteckt sich unter einem Busch. Über ihm kreist ein großer Vogel.',
+        [
+          ReadingCheck(
+              'Warum versteckt sich der Hase?',
+              'Er hat Angst vor dem Vogel.',
+              ['Er will mit dem Vogel spielen.', 'Ihm ist zu heiß.']),
+          ReadingCheck('Was für ein Vogel ist das wohl?', 'ein Greifvogel',
+              ['ein Huhn', 'ein Spatz']),
+        ]),
+    ReadingPassage(
+        'Lukas schaut in sein Sparschwein. Es ist fast voll. Bald hat er genug Geld für ein neues Buch.',
+        [
+          ReadingCheck('Was hat Lukas gemacht?', 'Er hat lange gespart.',
+              ['Er hat alles ausgegeben.', 'Er hat das Sparschwein verloren.']),
+          ReadingCheck('Was will Lukas bald tun?', 'ein Buch kaufen',
+              ['ins Kino gehen', 'ein Fahrrad kaufen']),
+        ]),
+    ReadingPassage(
+        'In der Früh ist die Windschutzscheibe weiß. Papa kratzt sie frei.', [
+      ReadingCheck('Wie kalt war es in der Nacht?', 'unter 0 Grad',
+          ['sehr heiß', 'genau 20 Grad']),
+      ReadingCheck('Was ist auf der Scheibe?', 'Eis', ['Regenwasser', 'Staub']),
+    ]),
+    ReadingPassage(
+        'Nina hört ein leises Piepsen im Gebüsch. Unter einem Blatt sitzt ein kleiner Vogel ohne Federn.',
+        [
+          ReadingCheck('Was hat Nina gefunden?', 'einen jungen Vogel',
+              ['einen alten Vogel', 'eine Maus']),
+          ReadingCheck('Was sollte Nina tun?', 'einen Erwachsenen holen', [
+            'den Vogel mit nach Hause nehmen',
+            'den Vogel in den Teich setzen'
+          ]),
+        ]),
+  ],
+  4: [
+    ReadingPassage(
+        'Lena packt Sonnencreme, Badetuch und Taucherbrille ein. Sie freut sich schon auf das Wasser.',
+        [
+          ReadingCheck('Wohin fährt Lena wohl?', 'an einen See',
+              ['in die Bücherei', 'auf eine Skipiste']),
+          ReadingCheck('Wie ist das Wetter wohl?', 'sonnig und warm',
+              ['kalt und verschneit', 'stürmisch und eisig']),
+        ]),
+    ReadingPassage(
+        'Jonas hat die Hausübung vergessen. Als die Lehrerin fragt, schaut er auf den Boden.',
+        [
+          ReadingCheck('Wie fühlt sich Jonas?', 'Er schämt sich.',
+              ['Er ist stolz.', 'Er ist begeistert.']),
+          ReadingCheck('Was sollte Jonas tun?', 'es ehrlich sagen',
+              ['die Hausübung verstecken', 'einfach weglaufen']),
+        ]),
+    ReadingPassage(
+        'Im frischen Schnee sind kleine Spuren. Sie führen direkt zum Futterhaus.',
+        [
+          ReadingCheck(
+              'Was zeigen die Spuren?',
+              'Ein Tier war beim Futterhaus.',
+              ['Der Schnee ist schon geschmolzen.', 'Niemand war dort.']),
+          ReadingCheck('Warum kommt das Tier wohl zum Futterhaus?',
+              'Es sucht Futter.', ['Es will sich sonnen.', 'Es will baden.']),
+        ]),
+    ReadingPassage(
+        'Die Klasse sammelt Geld für das Tierheim. Am Ende ist die Dose so schwer, dass Emma sie mit beiden Händen trägt.',
+        [
+          ReadingCheck(
+              'Was kann man daraus schließen?',
+              'Es wurde viel gesammelt.',
+              ['Die Dose ist leer.', 'Niemand hat etwas gegeben.']),
+          ReadingCheck('Wem hilft das Geld?', 'den Tieren im Tierheim',
+              ['der Lehrerin', 'einem Fußballverein']),
+        ]),
+    ReadingPassage(
+        'Paul öffnet den Kühlschrank. Milch, Butter und Käse fehlen. Daneben liegt ein Einkaufszettel.',
+        [
+          ReadingCheck('Was muss die Familie bald tun?', 'einkaufen gehen',
+              ['den Kühlschrank verkaufen', 'auf Urlaub fahren']),
+          ReadingCheck(
+              'Wozu ist der Einkaufszettel da?',
+              'Darauf steht, was fehlt.',
+              ['Darauf steht ein Witz.', 'Er ist ein Geburtstagsbrief.']),
+        ]),
+    ReadingPassage(
+        'Am Morgen sind die Grashalme voller kleiner Tropfen. In der Nacht hat es nicht geregnet, und niemand hat gegossen.',
+        [
+          ReadingCheck('Woher kommen die Tropfen?', 'vom Tau',
+              ['vom Regen in der Nacht', 'von der Gießkanne']),
+          ReadingCheck('Wann sieht man Tau oft?', 'am frühen Morgen',
+              ['zu Mittag', 'am Nachmittag']),
+        ]),
+    ReadingPassage(
+        'Die Klasse 4b hat das Fußballturnier gewonnen. Alle jubeln, nur Tim sitzt still auf der Bank. Er war krank und durfte nicht mitspielen.',
+        [
+          ReadingCheck('Wie fühlt sich Tim wohl?', 'ein bisschen enttäuscht',
+              ['sehr stolz auf sein Tor', 'wütend auf die Lehrerin']),
+          ReadingCheck(
+              'Was kann Tim beim nächsten Turnier tun?',
+              'wieder mitspielen, wenn er gesund ist',
+              ['nie mehr Fußball spielen', 'die anderen auslachen']),
+        ]),
+    ReadingPassage(
+        'Opa sucht seine Brille überall. Lisa lacht und zeigt auf seinen Kopf.',
+        [
+          ReadingCheck('Wo ist die Brille?', 'auf Opas Kopf',
+              ['in der Küche', 'unter dem Sofa']),
+          ReadingCheck(
+              'Warum lacht Lisa?',
+              'Opa sucht etwas, das er schon trägt.',
+              ['Opa erzählt einen Witz.', 'Lisa hat Geburtstag.']),
+        ]),
+    ReadingPassage(
+        'Im Wald steht ein Baumstumpf mit vielen Ringen. Jonas zählt mehr als hundert.',
+        [
+          ReadingCheck('Was erfährt Jonas über den Baum?', 'Er war sehr alt.',
+              ['Er war erst ein Jahr alt.', 'Er ist gestern gewachsen.']),
+          ReadingCheck('Wofür steht ein Ring?', 'für ein Jahr',
+              ['für einen Tag', 'für einen Monat']),
+        ]),
+    ReadingPassage(
+        'Mara übt jeden Tag Kopfrechnen. Bei der Wiederholung hat sie alles richtig.',
+        [
+          ReadingCheck(
+              'Warum hat Mara alles richtig?',
+              'Sie hat regelmäßig geübt.',
+              ['Sie hat nie geübt.', 'Sie hat die Wiederholung verpasst.']),
+          ReadingCheck('Wie fühlt sich Mara wohl?', 'stolz',
+              ['enttäuscht', 'verärgert']),
+        ]),
+    ReadingPassage(
+        'Am Bahnsteig schauen alle auf die Anzeigetafel. Dort steht: „Zug 15 Minuten später“. Einige Leute seufzen.',
+        [
+          ReadingCheck('Was ist los?', 'Der Zug hat Verspätung.',
+              ['Der Zug ist schon abgefahren.', 'Der Zug kommt zu früh.']),
+          ReadingCheck('Warum seufzen die Leute?', 'Sie müssen länger warten.',
+              ['Sie haben etwas gewonnen.', 'Sie sind schon angekommen.']),
+        ]),
+    ReadingPassage(
+        'Lisa hat ihre Pflanze eine Woche lang in den dunklen Kasten gestellt. Jetzt sind die Blätter gelb und schlapp.',
+        [
+          ReadingCheck(
+              'Warum sind die Blätter gelb?', 'Die Pflanze hatte kein Licht.', [
+            'Die Pflanze hatte zu viel Sonne.',
+            'Die Pflanze ist ganz neu.'
+          ]),
+          ReadingCheck(
+              'Was sollte Lisa jetzt tun?',
+              'die Pflanze ans Fenster stellen',
+              ['die Pflanze in den Keller stellen', 'die Blätter bemalen']),
+        ]),
+  ],
+};

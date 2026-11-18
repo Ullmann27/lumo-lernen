@@ -1119,15 +1119,31 @@ class ExerciseFactory {
           ]);
     }
     if (unit == 'Woerter lesen') {
-      const items = <List<String>>[
-        ['Dieses Tier bellt.', 'Hund', 'Katze', 'Maus'],
-        ['Du liest darin.', 'Buch', 'Ball', 'Bett'],
-        ['Er hat einen Stamm und Blätter.', 'Baum', 'Bach', 'Bauch'],
-        ['Sie scheint am Tag am Himmel.', 'Sonne', 'Tonne', 'Wanne'],
-        ['Du schreibst damit.', 'Stift', 'Stuhl', 'Stein'],
-        ['Es hat zwei Räder und Pedale.', 'Fahrrad', 'Fahrbahn', 'Fahrplan'],
+      // Erste Zahl: ab welcher Klasse. Ablenker sehen ähnlich aus, damit
+      // genau gelesen wird (Fachprüfung D-M12).
+      const allItems = <(int, List<String>)>[
+        (1, ['Dieses Tier bellt.', 'Hund', 'Katze', 'Maus']),
+        (1, ['Du liest darin.', 'Buch', 'Ball', 'Bett']),
+        (1, ['Er hat einen Stamm und Blätter.', 'Baum', 'Bach', 'Bauch']),
+        (1, ['Sie scheint am Tag am Himmel.', 'Sonne', 'Tonne', 'Wanne']),
+        (1, ['Du schreibst damit.', 'Stift', 'Stuhl', 'Stein']),
+        (1, ['Damit isst du Suppe.', 'Löffel', 'Löwe', 'Lupe']),
+        (1, ['Er lebt im Wasser und hat Flossen.', 'Fisch', 'Tisch', 'Fleisch']),
+        (1, ['Darin schläfst du.', 'Bett', 'Brett', 'Bart']),
+        (1, ['Es ist grün und wächst am Ast.', 'Blatt', 'Bild', 'Platz']),
+        (2, ['Es hat zwei Räder und Pedale.', 'Fahrrad', 'Fahrbahn', 'Fahrplan']),
+        (2, ['Damit sperrst du die Tür auf.', 'Schlüssel', 'Schüssel', 'Schaufel']),
+        (2, ['Damit putzt du deine Zähne.', 'Zahnbürste', 'Zahnlücke', 'Haarbürste']),
+        (2, ['Dort leihst du Bücher aus.', 'Bücherei', 'Bäckerei', 'Brücke']),
+        (2, ['Er bringt Briefe und Pakete.', 'Postler', 'Polster', 'Poster']),
+        (3, ['Hier starten und landen Flugzeuge.', 'Flughafen', 'Flussufer', 'Fahrplan']),
+        (3, ['Es zeigt dir, wie warm es ist.', 'Thermometer', 'Tachometer', 'Taschenrechner']),
       ];
-      final item = items[_random.nextInt(grade == 1 ? 5 : items.length)];
+      final items = <List<String>>[
+        for (final entry in allItems)
+          if (entry.$1 <= grade) entry.$2,
+      ];
+      final item = items[_random.nextInt(items.length)];
       return _choiceTask(
           'lese-wort',
           grade,
@@ -1144,17 +1160,26 @@ class ExerciseFactory {
       final position = _random.nextInt(3);
       final asked = ['zuerst', 'als Zweites', 'zuletzt'][position];
       final answer = sequence[position];
+      // Die Sätze stehen durcheinander, sonst wäre die Antwort immer die
+      // Position im Text (Fachprüfung D-M12).
+      final shuffled = List<String>.of(sequence);
+      while (_sameOrder(shuffled, sequence)) {
+        shuffled.shuffle(_random);
+      }
       return _choiceTask(
           'lese-reihenfolge',
           grade,
           'Lesen',
           unit,
-          '${sequence.join(' ')}\nWas passiert $asked?',
+          'Die Sätze sind durcheinander: ${shuffled.join(' ')}\n'
+              'Was passiert $asked?',
           answer,
-          'Lies die Schritte von Anfang bis Ende. $asked passiert: $answer',
+          'Richtige Reihenfolge: ${sequence.join(' → ')}',
           customChoices: sequence);
     }
-    final passages = readingPassages[grade.clamp(1, 4)]!;
+    final passages = (unit == 'Lesesinn'
+        ? readingInferences
+        : readingPassages)[grade.clamp(1, 4)]!;
     final passage = passages[_random.nextInt(passages.length)];
     final check = passage.checks[_random.nextInt(passage.checks.length)];
     return _choiceTask(
@@ -1167,6 +1192,13 @@ class ExerciseFactory {
         'Lies die passende Stelle noch einmal: ${passage.text} '
             'Daraus ergibt sich: ${check.answer}',
         customChoices: [check.answer, ...check.wrong]);
+  }
+
+  static bool _sameOrder(List<String> a, List<String> b) {
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
   }
 
   LumoTask _english(int grade, String unit) {
