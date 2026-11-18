@@ -1,6 +1,7 @@
 // Fachprüfung 2026-11: Gegenteil-Geschichten ohne kränkende Sätze (D-M15),
 // vertauschte Zusammensetzung nicht als falsch (D-M16), keine strittigen
 // Grenzmonate (S-M13), „Was bin ich?“ bei Dingen (S-L8).
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -88,5 +89,13 @@ void main() {
           reason: task.prompt);
       expect(task.explanation.contains('Gut geraten'), isFalse);
     }
+  });
+
+  test('Abenteuer-Wörter in österreichischer Schreibung (D-L6)', () {
+    final source =
+        File('lib/core/adventure/adventure_word_data.dart').readAsStringSync();
+    expect(source, isNot(contains("'Kartoffel'")));
+    expect(source, isNot(contains('Pflaume')));
+    expect(source, contains("AdventureNoun('der', 'Erdapfel', 'Erd-ap-fel', 2)"));
   });
 }

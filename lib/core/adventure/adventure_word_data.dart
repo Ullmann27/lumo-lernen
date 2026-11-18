@@ -86,7 +86,7 @@ const adventureNouns = <AdventureNoun>[
   AdventureNoun('die', 'Ananas', 'A-na-nas', 2),
   AdventureNoun('der', 'Elefant', 'E-le-fant', 2),
   AdventureNoun('das', 'Eichhörnchen', 'Eich-hörn-chen', 2),
-  AdventureNoun('die', 'Kartoffel', 'Kar-tof-fel', 2),
+  AdventureNoun('der', 'Erdapfel', 'Erd-ap-fel', 2),
   AdventureNoun('der', 'Regenbogen', 'Re-gen-bo-gen', 2),
   AdventureNoun('das', 'Klavier', 'Kla-vier', 2),
   AdventureNoun('die', 'Lokomotive', 'Lo-ko-mo-ti-ve', 3),
@@ -289,7 +289,7 @@ const austriaFacts = <List<String>>[
 
 /// Kategorien für „Was passt nicht?“: Name im Satz, Mitglieder.
 const adventureCategories = <List<String>>[
-  ['Obst', 'Apfel|Birne|Kirsche|Banane|Pflaume|Marille'],
+  ['Obst', 'Apfel|Birne|Kirsche|Banane|Zwetschke|Marille'],
   ['Gemüse', 'Karotte|Gurke|Paprika|Zwiebel|Erbse|Kohlrabi'],
   ['Tiere im Wald', 'Fuchs|Reh|Dachs|Specht|Wildschwein|Eichhörnchen'],
   ['Fahrzeuge', 'Auto|Bus|Zug|Fahrrad|Traktor|Roller'],
