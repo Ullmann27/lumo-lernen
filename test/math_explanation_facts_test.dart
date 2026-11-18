@@ -216,6 +216,9 @@ void main() {
       for (var seed = 0; seed < 50; seed++) {
         final task = byId(id).concretize(seed * 41 + 3);
         expect(task.explanation, isNot(contains('Vergleiche von links nach rechts.')));
+        // Stellenwert- und Rundungsaufgaben der Million haben eigene
+        // Erklärungen (Befund M7).
+        if (!task.prompt.startsWith('Welches Zeichen')) continue;
         if (task.answer == '=') {
           expect(task.explanation, contains('gleich groß'));
           continue;
