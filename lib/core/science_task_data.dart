@@ -136,9 +136,9 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       1,
       'Familie und Gemeinschaft',
       'Du findest eine fremde Jausenbox. Was machst du?',
-      'Ich gebe sie einer Betreuungsperson.',
+      'Ich gebe sie einer Lehrerin oder einem Lehrer.',
       ['Ich verstecke sie.', 'Ich werfe sie weg.', 'Ich esse sofort alles.'],
-      'Eine Betreuungsperson kann helfen, die Jausenbox zurückzugeben.'),
+      'Eine Lehrerin oder ein Lehrer kann helfen, die Jausenbox zurückzugeben.'),
   ScienceQuestion.item(
       1,
       'Familie und Gemeinschaft',
@@ -393,7 +393,7 @@ const scienceExtensionQuestions = <ScienceQuestion>[
   ScienceQuestion.item(
       1,
       'Wetter',
-      'Was hilft beim Regen trocken zu bleiben?',
+      'Was hilft dir, bei Regen trocken zu bleiben?',
       'eine Regenjacke',
       ['eine Badehose allein', 'ein Papierhut', 'offene Sandalen allein'],
       'Eine Regenjacke hält viele Regentropfen von der Kleidung ab.'),
@@ -424,9 +424,9 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Wie behandeln wir ein kleines Tier beim Beobachten?',
       'vorsichtig, ohne es zu verletzen',
       [
-        'wir reißen ihm Beine aus',
-        'wir legen es in die pralle Sonne',
-        'wir treten darauf'
+        'wir nehmen es mit nach Hause',
+        'wir schütteln das Glas',
+        'wir lassen es lange in der Sonne stehen'
       ],
       'Lebewesen brauchen Schutz. Beobachte vorsichtig und lass das Tier in seinem Lebensraum.'),
   ScienceQuestion.item(2, 'Zeit und Kalender', 'Wie viele Monate hat ein Jahr?',
@@ -458,7 +458,7 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Du fährst mit dem Rad und willst abbiegen. Was hilft anderen?',
       'ein deutliches Handzeichen',
       ['geschlossene Augen', 'die Klingel ausbauen', 'das Licht verdecken'],
-      'Ein Handzeichen zeigt deine Absicht. Prüfe vorher den Verkehr und halte das Rad sicher.'),
+      'Ein Handzeichen zeigt, wohin du fahren willst. Unter 12 Jahren fährst du auf der Straße nur mit einer Begleitperson – außer du hast schon den Radfahrausweis.'),
   ScienceQuestion.item(
       2,
       'Verkehr',
@@ -475,14 +475,18 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Berufe',
       'Wer hilft, einen Brand zu löschen?',
       'die Feuerwehr',
-      ['die Büchereimitarbeiterin', 'der Bäcker', 'die Gärtnerin'],
+      ['die Rettung', 'die Polizei', 'die Müllabfuhr'],
       'Die Feuerwehr löscht Brände und hilft bei vielen Notfällen.'),
   ScienceQuestion.item(
       2,
       'Berufe',
       'Wer repariert eine undichte Wasserleitung?',
-      'ein Installateur',
-      ['ein Busfahrer', 'eine Lehrerin', 'ein Briefträger'],
+      'eine Installateurin oder ein Installateur',
+      [
+        'eine Busfahrerin oder ein Busfahrer',
+        'eine Lehrerin oder ein Lehrer',
+        'eine Briefträgerin oder ein Briefträger'
+      ],
       'Installateurinnen und Installateure arbeiten unter anderem an Wasserleitungen.'),
   ScienceQuestion.item(
       2,
@@ -499,13 +503,13 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       2,
       'Körper',
       'Was machst du bei einer Verletzung in der Schule?',
-      'einer Betreuungsperson Bescheid sagen',
+      'einer Lehrerin oder einem Lehrer Bescheid sagen',
       [
         'sie immer verstecken',
         'Schmutz in die Wunde reiben',
         'unbekannte Medikamente nehmen'
       ],
-      'Eine Betreuungsperson kann die Verletzung versorgen und weitere Hilfe holen.'),
+      'Eine Lehrerin oder ein Lehrer kann die Verletzung versorgen und weitere Hilfe holen.'),
   ScienceQuestion.item(
       2,
       'Familie und Gemeinschaft',
@@ -531,11 +535,11 @@ const scienceExtensionQuestions = <ScienceQuestion>[
   ScienceQuestion.item(
       2,
       'Wetter',
-      'Wasser liegt bei Frost draußen. Was kann passieren?',
+      'Ein Kübel Wasser steht bei Frost draußen. Was kann passieren?',
       'Es kann zu Eis gefrieren.',
       [
         'Es wird zu Sand.',
-        'Es verliert sein Gewicht vollständig.',
+        'Es wird zu Dampf.',
         'Es wird zu Holz.'
       ],
       'Bei ausreichend niedriger Temperatur gefriert Wasser zu Eis.'),
@@ -558,7 +562,7 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       [
         'Es wird zu Stein.',
         'Es wird zu Salz.',
-        'Es verschwindet ohne Stoffänderung aus der Welt.'
+        'Es verschwindet für immer.'
       ],
       'Beim Verdunsten wird flüssiges Wasser gasförmig. Es bleibt als Wasserdampf vorhanden.'),
   ScienceQuestion.item(
@@ -636,7 +640,7 @@ const scienceExtensionQuestions = <ScienceQuestion>[
   ScienceQuestion.item(
       3,
       'Zeit und Kalender',
-      'Warum dauert ein Schaltjahr einen Tag länger?',
+      'Was ist in einem Schaltjahr anders?',
       'Der Februar hat dann 29 Tage.',
       [
         'Jeder Monat hat einen zusätzlichen Tag.',
@@ -780,7 +784,7 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Kontinente und Ozeane',
       'Auf welchem Kontinent liegt Österreich?',
       'Europa',
-      ['Australien', 'Antarktika', 'Südamerika'],
+      ['Australien', 'Antarktis', 'Südamerika'],
       'Österreich liegt in Europa.'),
   ScienceQuestion.item(
       4,

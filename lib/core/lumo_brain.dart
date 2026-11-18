@@ -939,7 +939,7 @@ class LumoBrain {
       'Wie heisst die Hauptstadt von Oesterreich?',
       'Welches Land liegt im Sueden von Oesterreich?',
       'Wie heisst die Hauptstadt von Italien?',
-      'Was ist der laengste Fluss in Oesterreich?',
+      'Welcher große Fluss fließt durch Wien?',
     ];
     return 'Geografie: ${fragen[_rng.nextInt(fragen.length)]}';
   }

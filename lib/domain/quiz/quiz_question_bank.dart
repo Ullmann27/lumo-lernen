@@ -1056,7 +1056,7 @@ class QuizQuestionBank {
           id: 'h_sk_nature_1',
           subject: 'Sachunterricht',
           difficulty: QuizDifficulty.hard,
-          prompt: 'Wie heißt der längste Fluss in Österreich?',
+          prompt: 'Welcher große Fluss fließt durch Wien?',
           options: ['Donau', 'Inn', 'Mur', 'Drau'],
           correctIndex: 0),
     ];

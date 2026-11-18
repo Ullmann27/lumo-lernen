@@ -563,7 +563,7 @@ class ChoiceQuestionQuality {
       'Herz',
       {'Lunge', 'Magen', 'Herz', 'Leber'}
     ),
-    'Wie heißt der längste Fluss in Österreich?': (
+    'Welcher große Fluss fließt durch Wien?': (
       'Donau',
       {'Donau', 'Inn', 'Mur', 'Drau'}
     ),
