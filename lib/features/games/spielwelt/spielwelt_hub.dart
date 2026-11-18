@@ -148,6 +148,7 @@ class _SpielweltHubState extends State<SpielweltHub> {
     'puzzle',
     'memory',
     'jumpRun',
+    'chess',
   ];
 
   @override

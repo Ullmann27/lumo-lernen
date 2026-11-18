@@ -69,6 +69,8 @@ jobs:
           set -euo pipefail
           flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings
           flutter test --no-pub --reporter expanded \
+            test/games/spielwelt_hub_capture_test.dart \
+            test/games/spielwelt_semantics_action_test.dart \
             test/games/spielwelt_routing_test.dart \
             test/embedded_game_service_test.dart \
             test/games/memory_native_entry_test.dart \
