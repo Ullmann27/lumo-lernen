@@ -141,6 +141,20 @@ void main() {
     expect(run.frameAt(run.duration), 0);
   });
 
+  test('ausgelieferter Satz: echter Lumo mit idle, run und point', () async {
+    final shipped = await loadShippedActors();
+    expect(shipped.field, const Size(384, 384));
+    expect(shipped.clips.keys, containsAll(LumoActorLibrary.required));
+    expect(shipped.clipFor(LumoActorMotion.run).stridePx, greaterThan(0));
+    expect(shipped.clipFor(LumoActorMotion.point).loop, isFalse);
+    expect(shipped.shadow, isNotNull);
+    for (final clip in shipped.clips.values) {
+      final rows = (clip.frames / clip.columns).ceil();
+      expect(clip.image.width, clip.columns * 384);
+      expect(clip.image.height, rows * 384);
+    }
+  });
+
   test('Vertrag: fehlender Laufstreifen schaltet die Bühne aus', () {
     expect(
         () => LumoActorLibrary.parse({

@@ -20,3 +20,7 @@ const _fixture = 'test/fixtures/lumo_actor_placeholder';
 
 Future<LumoActorLibrary> loadPlaceholderActors() =>
     LumoActorLibrary.load(_FixtureBundle(_fixture), basePath: 'fixture');
+
+/// Der ausgelieferte Bildsatz aus `assets/lumo_actor/` (echter 3D-Lumo).
+Future<LumoActorLibrary> loadShippedActors() =>
+    LumoActorLibrary.load(rootBundle, basePath: LumoActorLibrary.assetBase);

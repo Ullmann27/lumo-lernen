@@ -117,7 +117,7 @@ void main() {
 
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-    actors = await loadPlaceholderActors();
+    actors = await loadShippedActors();
   });
 
   setUp(() => LumoActorLibrary.shared.value = actors);
