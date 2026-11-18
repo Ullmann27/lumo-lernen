@@ -40,7 +40,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
   static const List<List<String>> _vocabulary = [
     // DER (maskulin)
     ['der', 'Hund', '🐕'], ['der', 'Apfel', '🍎'], ['der', 'Ball', '⚽'],
-    ['der', 'Baum', '🌳'], ['der', 'Tisch', '🪑'], ['der', 'Vogel', '🐦'],
+    ['der', 'Baum', '🌳'], ['der', 'Sessel', '🪑'], ['der', 'Vogel', '🐦'],
     ['der', 'Schuh', '👟'], ['der', 'Bus', '🚌'], ['der', 'Mond', '🌙'],
     // DIE (feminin)
     ['die', 'Katze', '🐈'], ['die', 'Blume', '🌸'], ['die', 'Sonne', '☀️'],

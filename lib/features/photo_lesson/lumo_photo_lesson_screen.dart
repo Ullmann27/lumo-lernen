@@ -345,7 +345,7 @@ class _IntroPanel extends StatelessWidget {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      'Foto vom Heft → Lumo erkennt Fach + Thema → 5 Uebungen!',
+                      'Foto vom Heft → Lumo erkennt Fach + Thema → 5 Übungen!',
                       style: TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 13,
@@ -373,7 +373,7 @@ class _IntroPanel extends StatelessWidget {
         const SizedBox(height: 10),
         _StepRow(
             num: '3',
-            text: 'Du bekommst 5 aehnliche Uebungen zum Trainieren.',
+            text: 'Du bekommst 5 ähnliche Übungen zum Trainieren.',
             color: const Color(0xFF22C55E)),
         const SizedBox(height: 26),
         GestureDetector(

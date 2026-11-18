@@ -416,7 +416,7 @@ class _Hero extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  'Lies einen Text laut vor — Lumo hoert dir zu.\n'
+                  'Lies einen Text laut vor — Lumo hört dir zu.\n'
                   'Wort für Wort wird grün markiert.',
                   style: TextStyle(
                     fontFamily: 'Nunito',
@@ -481,7 +481,7 @@ class _TextCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${text.words.length} Woerter · ${text.lines.length} Saetze',
+                      '${text.words.length} Wörter · ${text.lines.length} Sätze',
                       style: const TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 12,
@@ -615,7 +615,7 @@ class _ReadingArena extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(
                   isListening
-                      ? 'Ich hoere dir zu... Lies langsam vor.'
+                      ? 'Ich höre dir zu … Lies langsam vor.'
                       : 'Tipp das Mikro an und lies den Text vor.',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
@@ -697,7 +697,7 @@ class _ReadingHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isListening ? 'Lumo hoert zu …' : 'Bereit zum Lesen?',
+                  isListening ? 'Lumo hört zu …' : 'Bereit zum Lesen?',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 14,
