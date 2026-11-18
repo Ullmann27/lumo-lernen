@@ -227,14 +227,18 @@ class TaskQualityGuard {
     }
     if (task.unit == 'Regeln kombinieren') {
       final rule = RegExp(
-        r'größer als (\d+), kleiner als (\d+) und gerade\?',
+        r'größer als (\d+), kleiner als (\d+) und (gerade|ungerade|in der [345]er-Reihe)\?',
       ).firstMatch(task.prompt);
       if (rule == null) return const ['combined_rule_unproved'];
       final lower = int.parse(rule[1]!);
       final upper = int.parse(rule[2]!);
+      final property = rule[3]!;
       final matching = choices.where((choice) {
         final value = int.tryParse(choice);
-        return value != null && value > lower && value < upper && value.isEven;
+        return value != null &&
+            value > lower &&
+            value < upper &&
+            combinedRuleProperty(property, value);
       }).toList(growable: false);
       return [
         if (matching.length != 1) 'combined_rule_not_exactly_one_choice',

@@ -215,21 +215,29 @@ void main() {
     test('Regeln kombinieren: genau eine Karte erfüllt alle Regeln', () {
       final factory = ExerciseFactory(seed: 4);
       final answers = <int>{};
+      final properties = <String>{};
       for (var i = 0; i < samples; i++) {
         final task = factory.nextExact(
             grade: 4, subject: 'Logik', unit: 'Regeln kombinieren');
-        final bounds = RegExp(r'größer als (\d+), kleiner als (\d+)')
+        final bounds = RegExp(
+                r'größer als (\d+), kleiner als (\d+) und (gerade|ungerade|in der [345]er-Reihe)\?')
             .firstMatch(task.prompt)!;
         final lower = int.parse(bounds[1]!), upper = int.parse(bounds[2]!);
+        final property = bounds[3]!;
+        properties.add(property);
         final fitting = task.choices.where((choice) {
           final value = int.parse(choice);
-          return value > lower && value < upper && value.isEven;
+          return value > lower &&
+              value < upper &&
+              combinedRuleProperty(property, value);
         }).toList();
         expect(fitting, [task.answer], reason: '${task.prompt} ${task.choices}');
         answers.add(int.parse(task.answer) - lower);
       }
-      // Früher war die Lösung immer genau die Mitte (untere Grenze + 4).
-      expect(answers, {2, 4, 6});
+      // Früher war die Lösung immer genau die Mitte (untere Grenze + 4) und
+      // die dritte Regel immer „gerade“ (Befund M25).
+      expect(answers.length, greaterThan(5));
+      expect(properties, hasLength(5));
     });
 
     test('Rechenpfad und Rechenhaus: Lösung an jeder Größenstelle', () {

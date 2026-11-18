@@ -118,4 +118,28 @@ void main() {
       expect(firstMentioned, lessThan(tasks.length * .6));
     }
   });
+
+  test('M25: Regeln kombinieren mit wechselnder dritter Regel, Prüfung rechnet nach',
+      () {
+    final kinds = <String>{};
+    for (final task in generate('Regeln kombinieren', 4)) {
+      expect(guard.problems(task), isEmpty, reason: task.prompt);
+      kinds.add(RegExp(r'und (.+)\?$').firstMatch(task.prompt)![1]!);
+    }
+    expect(kinds, containsAll(<String>['gerade', 'ungerade', 'in der 3er-Reihe',
+        'in der 4er-Reihe', 'in der 5er-Reihe']));
+    // Eine Karte, die die dritte Regel verletzt, wird abgelehnt.
+    const wrong = LumoTask(
+      id: 'x',
+      grade: 4,
+      subject: 'Logik',
+      unit: 'Regeln kombinieren',
+      prompt:
+          'Welche Zahl erfüllt alle drei Regeln: größer als 20, kleiner als 31 und in der 4er-Reihe?',
+      choices: <String>['22', '20', '31', '19'],
+      answer: '22',
+      explanation: '-',
+    );
+    expect(guard.problems(wrong), isNotEmpty);
+  });
 }

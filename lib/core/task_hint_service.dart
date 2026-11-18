@@ -669,7 +669,11 @@ class TaskHintService {
       if (unit.contains('regeln')) {
         return level == 2
             ? 'Prüfe zuerst die beiden Grenzen: Welche Karten liegen dazwischen? Die Grenzen selbst gehören nicht dazu.'
-            : 'Prüfe jede übrige Karte gegen die letzte Regel. Bei geraden Zahlen bleibt beim Bilden von Paaren nichts übrig.';
+            : task.prompt.contains('er-Reihe')
+                ? 'Prüfe jede übrige Karte gegen die letzte Regel. Kommt die Zahl vor, wenn du in dieser Reihe weiterzählst?'
+                : task.prompt.contains('ungerade')
+                    ? 'Prüfe jede übrige Karte gegen die letzte Regel. Bei ungeraden Zahlen bleibt beim Bilden von Paaren eins übrig.'
+                    : 'Prüfe jede übrige Karte gegen die letzte Regel. Bei geraden Zahlen bleibt beim Bilden von Paaren nichts übrig.';
       }
       return level == 2
           ? 'Lege für jedes Kind eine Karte. Verschiebe die Karten so, dass jede Angabe stimmt.'

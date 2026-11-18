@@ -563,33 +563,59 @@ class ExerciseFactory {
           ));
     }
     if (unit == 'Regeln kombinieren') {
-      final lower = 10 + _random.nextInt(90) * 2;
-      // Drei Zahlen erfüllen alle Regeln. Nur eine davon wird zur Karte,
-      // sonst wäre die Lösung immer genau die Mitte.
-      final matching = <int>[lower + 2, lower + 4, lower + 6];
+      // Befund M25: Früher gab es nur „… und gerade“. Jetzt wechselt die
+      // dritte Regel: gerade, ungerade oder eine Zahl aus einer Reihe des
+      // Einmaleins. Mehrere Zahlen erfüllen alle Regeln, nur eine davon
+      // wird zur Karte.
+      const properties = <String>[
+        'gerade',
+        'ungerade',
+        'in der 3er-Reihe',
+        'in der 4er-Reihe',
+        'in der 5er-Reihe',
+      ];
+      final property = properties[_random.nextInt(properties.length)];
+      bool fits(int value) => combinedRuleProperty(property, value);
+      final step = switch (property) {
+        'in der 3er-Reihe' => 3,
+        'in der 4er-Reihe' => 4,
+        'in der 5er-Reihe' => 5,
+        _ => 2,
+      };
+      final lower = 10 + _random.nextInt(80);
+      final upper = lower + 3 * step + 2;
+      final matching = <int>[
+        for (var v = lower + 1; v < upper; v++)
+          if (fits(v)) v,
+      ];
       final answer = matching[_random.nextInt(matching.length)];
+      final reason = switch (property) {
+        'gerade' => 'Die Zahl ist gerade, man kann sie ohne Rest in Paare teilen.',
+        'ungerade' => 'Die Zahl ist ungerade, beim Paarebilden bleibt eins übrig.',
+        _ => '$answer = ${answer ~/ step} · $step, die Zahl steht also $property.',
+      };
       return _choiceTask(
           'logik-regeln',
           grade,
           'Logik',
           unit,
-          'Welche Zahl erfüllt alle drei Regeln: größer als $lower, kleiner als ${lower + 8} und gerade?',
+          'Welche Zahl erfüllt alle drei Regeln: größer als $lower, kleiner als $upper und $property?',
           '$answer',
-          '$answer liegt zwischen $lower und ${lower + 8}. Die Zahl ist gerade, weil man sie ohne Rest in Paare teilen kann. Nur diese Antwort erfüllt alle drei Regeln.',
+          '$answer liegt zwischen $lower und $upper. $reason Nur diese Antwort erfüllt alle drei Regeln.',
           // Falsche Karten verletzen je eine Regel: die Grenzen selbst,
-          // ungerade Zahlen dazwischen, gerade Zahlen außerhalb.
+          // Zahlen dazwischen ohne die Eigenschaft, passende Zahlen außerhalb.
           customChoices: MathTaskTemplates.numberChoices(
             answer,
             _random.nextInt(1 << 30),
             typical: <int>[
-              lower,
-              lower + 8,
-              lower + 1,
-              lower + 3,
-              lower + 5,
-              lower + 7,
-              lower - 2,
-              lower + 10,
+              for (var v = lower + 1; v < upper; v++)
+                if (!fits(v)) v,
+              if (!fits(lower)) lower,
+              if (!fits(upper)) upper,
+              for (var v = lower; v > lower - 3 * step && v > 0; v--)
+                if (fits(v)) v,
+              for (var v = upper; v < upper + 3 * step; v++)
+                if (fits(v)) v,
             ],
             blocked: matching.toSet(),
           ));
@@ -1554,3 +1580,14 @@ const List<ScienceQuestion> _scienceQuestions = <ScienceQuestion>[
   ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was schützt ein Wald?', answer: 'Boden, Tiere und Klima', choices: <String>['Boden, Tiere und Klima', 'nur Autos', 'nur Computer', 'nur Ampeln'], explanation: 'Wälder sind wichtige Lebensräume.'),
   ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was macht ein Schalter?', answer: 'er öffnet oder schließt den Stromkreis', choices: <String>['er öffnet oder schließt den Stromkreis', 'er kocht Suppe', 'er misst Zeit', 'er schreibt Wörter'], explanation: 'Schalter steuern, ob Strom fließt.'),
 ];
+
+/// Dritte Regel der Logik-Einheit „Regeln kombinieren“. Wird auch von der
+/// Qualitätsprüfung verwendet.
+bool combinedRuleProperty(String property, int value) => switch (property) {
+      'gerade' => value.isEven,
+      'ungerade' => value.isOdd,
+      'in der 3er-Reihe' => value % 3 == 0,
+      'in der 4er-Reihe' => value % 4 == 0,
+      'in der 5er-Reihe' => value % 5 == 0,
+      _ => false,
+    };
