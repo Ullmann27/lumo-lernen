@@ -184,6 +184,34 @@ const spellingContexts = <SpellingContext>[
       'Zähne',
       ['Zäne', 'Zehne'],
       'Zähne kommt von Zahn: mit ä und Dehnungs-h.'),
+  SpellingContext(
+      'Haeufige Woerter',
+      2,
+      'Nach der Schule mache ich meine ___.',
+      'Aufgabe',
+      ['Aufgahbe', 'Aufgabbe'],
+      'Aufgabe: auf + Gabe, mit einem b.'),
+  SpellingContext(
+      'Haeufige Woerter',
+      2,
+      'Im Winter trage ich eine warme ___.',
+      'Jacke',
+      ['Jake', 'Jakke'],
+      'Nach dem kurzen a steht ck.'),
+  SpellingContext(
+      'Haeufige Woerter',
+      2,
+      'Meine ___ ist älter als ich.',
+      'Schwester',
+      ['Schwesta', 'Schwesster'],
+      'Schwester: ein s vor dem t, am Ende -er.'),
+  SpellingContext(
+      'Haeufige Woerter',
+      2,
+      'Zum ___ gibt es Suppe.',
+      'Mittagessen',
+      ['Mitagessen', 'Mittagesen'],
+      'Mittag mit tt, essen mit ss.'),
   // Fachprüfung 2026-11 (D-M9): eigene häufige Wörter für Klasse 3.
   SpellingContext(
       'Haeufige Woerter',
@@ -262,6 +290,34 @@ const spellingContexts = <SpellingContext>[
       'Plötzlich',
       ['Plözlich', 'Plötzlig'],
       'plötzlich: mit tz und am Ende -lich.'),
+  SpellingContext(
+      'Haeufige Woerter',
+      3,
+      'Wir machen einen ___ in den Wald.',
+      'Ausflug',
+      ['Ausfluk', 'Ausfluhg'],
+      'Ausflug endet mit g, wie bei Ausflüge.'),
+  SpellingContext(
+      'Haeufige Woerter',
+      3,
+      'Der ___ zeigt nach Norden.',
+      'Kompass',
+      ['Kompas', 'Kompaß'],
+      'Kompass: nach dem kurzen a steht ss.'),
+  SpellingContext(
+      'Haeufige Woerter',
+      3,
+      'Im ___ lernen wir schwimmen.',
+      'Schwimmbad',
+      ['Schwimbad', 'Schwimmbat'],
+      'schwimmen mit mm; Bad mit d, wie bei Bäder.'),
+  SpellingContext(
+      'Haeufige Woerter',
+      3,
+      'Mein Bruder ist ___ als ich.',
+      'größer',
+      ['gröser', 'größa'],
+      'größer kommt von groß: mit ß.'),
   // Fachprüfung 2026-11 (D-M9): eigene häufige Wörter für Klasse 4.
   SpellingContext(
       'Haeufige Woerter',
