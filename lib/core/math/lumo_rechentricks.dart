@@ -144,12 +144,43 @@ class RechentricksExplanation {
     required this.taskText,
     required this.steps,
     required this.resultText,
+    this.resultHidden = false,
   });
 
   final RechentricksMentor mentor;
   final String taskText;
   final List<String> steps;
   final String resultText;
+
+  /// True while the child still has to find the result alone.
+  final bool resultHidden;
+
+  /// The same strategy, stopping before the final number: wherever the
+  /// result would appear, a "?" stays for the child to work out.
+  RechentricksExplanation withoutResult({
+    required int answer,
+    required Set<int> operands,
+  }) {
+    final token = RegExp('(?<![0-9])$answer(?![0-9])');
+    // A result that also is one of the given numbers (5 + 0) stays visible
+    // as a given; only its place after the equals sign is left open.
+    final asResult = RegExp('=\\s*$answer(?![0-9])');
+    String mask(String step) => operands.contains(answer)
+        ? step.replaceAll(asResult, '= ?')
+        : step.replaceAll(token, '?');
+    final open = <String>[
+      for (final step in steps.map(mask))
+        // "? + 0 = ?" explains nothing; a checked equation keeps no tick.
+        if ('?'.allMatches(step).length < 2) step.replaceAll(' ✓', ''),
+    ];
+    return RechentricksExplanation(
+      mentor: mentor,
+      taskText: taskText,
+      steps: open,
+      resultText: 'Den letzten Schritt schaffst du selbst.',
+      resultHidden: true,
+    );
+  }
 }
 
 /// Kernlogik: parst den Aufgaben-Prompt, waehlt den passenden Mentor
@@ -159,10 +190,14 @@ class LumoRechentricks {
 
   /// Liefert eine Rechentricks-Erklärung zur Aufgabe oder null,
   /// wenn die Aufgabe kein Rechentrick-Fall ist (z.B. Buchstabe, Form).
+  ///
+  /// With [revealResult] false the strategy is shown but the final number is
+  /// left open: that is the form for a child who is still solving the task.
   RechentricksExplanation? explain({
     required String prompt,
     required String correctAnswer,
     required int grade,
+    bool revealResult = true,
   }) {
     final parsed = _parseTask(prompt);
     if (parsed == null) return null;
@@ -172,15 +207,18 @@ class LumoRechentricks {
     final answer = int.tryParse(correctAnswer.replaceAll(RegExp(r'[^0-9-]'), ''));
     if (answer == null) return null;
 
+    final RechentricksExplanation? worked;
     // 2026-06-05 Iter 24: Multiplikations-Tricks fuer K3 Einmaleins.
     if (op == '×' || op == '*' || op == '·') {
-      return _multiplicationTrick(a, b, answer);
+      worked = _multiplicationTrick(a, b, answer);
+    } else if (grade >= 3 && (a >= 100 || b >= 100)) {
+      // K3+ Profi-Tricks fuer dreistellige Zahlen.
+      worked = _gradeThreeTrick(op, a, b, answer);
+    } else {
+      worked = _gradeOneTrick(op, a, b, answer);
     }
-    // K3+ Profi-Tricks fuer dreistellige Zahlen.
-    if (grade >= 3 && (a >= 100 || b >= 100)) {
-      return _gradeThreeTrick(op, a, b, answer);
-    }
-    return _gradeOneTrick(op, a, b, answer);
+    if (worked == null || revealResult) return worked;
+    return worked.withoutResult(answer: answer, operands: {a, b});
   }
 
   /// 2026-06-05 Iter 24: Multiplikations-Tricks fuer K3 (Einmaleins).
@@ -269,7 +307,7 @@ class LumoRechentricks {
           taskText: '$a + $b = ?',
           steps: <String>[
             'Vertausche: $b + $a = $answer',
-            'So muss ich nur $a Schritte weiterzaehlen.',
+            'So muss ich nur $a Schritte weiterzählen.',
           ],
           resultText: 'Antwort: $answer',
         );

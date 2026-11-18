@@ -371,6 +371,8 @@ class LearningProfileEngine {
     existing.currentStreak = existing.assessed.correctStreak;
     existing.currentMisses = existing.assessed.wrongStreak;
     existing.lastSeen = DateTime.now();
+    // "Sicher" needs tasks solved alone on at least two different days.
+    if (isCorrect && !hintUsed) existing.noteIndependentDay(_todayKey());
     if (!hintUsed) {
       existing.difficulty = _detector.suggestDifficulty(existing);
     }

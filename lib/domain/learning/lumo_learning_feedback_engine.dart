@@ -127,11 +127,11 @@ class LumoLearningFeedbackEngine {
       LumoFeedbackTone.streak => <String>[
         'Das ist schon die $_correctStreak. richtige Antwort in Folge. Du bleibst richtig konzentriert.',
         'Starke Serie! Du löst nicht nur, du erkennst das Muster immer schneller.',
-        'Lumo merkt sich: $unit klappt gerade richtig gut. Wir dürfen bald etwas schwerer werden.',
+        'Bei $unit hast du jetzt mehrere Aufgaben hintereinander allein gelöst.',
       ],
       LumoFeedbackTone.improvement => <String>[
-        'Sehr gut. Bei $unit bist du gerade ein Stück sicherer geworden.',
-        'Das war nicht nur richtig, das war Fortschritt. Lumo merkt: Dieser Lernweg hilft dir.',
+        'Sehr gut. Diese Aufgabe aus $unit hast du allein gelöst.',
+        'Richtig – und ganz ohne Hilfe. Das zählt.',
         'Genau so wächst Können: kleiner Schritt, richtige Entscheidung, besseres Muster.',
       ],
       LumoFeedbackTone.fastFocus => <String>[

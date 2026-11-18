@@ -140,7 +140,8 @@ class RechentricksMentorCard extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              Container(
+              Flexible(
+                  child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                 decoration: BoxDecoration(
@@ -157,21 +158,27 @@ class RechentricksMentorCard extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.check_circle_rounded,
-                        size: 18, color: Colors.white),
+                    Icon(
+                        explanation.resultHidden
+                            ? Icons.edit_rounded
+                            : Icons.check_circle_rounded,
+                        size: 18,
+                        color: Colors.white),
                     const SizedBox(width: 6),
-                    Text(
-                      explanation.resultText,
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
+                    Flexible(
+                      child: Text(
+                        explanation.resultText,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
+              )),
             ],
           ),
         ],

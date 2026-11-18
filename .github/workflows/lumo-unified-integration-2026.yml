@@ -191,9 +191,11 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep ffmpeg
+          command -v ffmpeg
+          command -v ffprobe
           python3 -m venv .ci-python
-          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0 PyYAML==6.0.2
           command -v rg
           .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
       - name: Provide the pinned JSON library for the native contract tests

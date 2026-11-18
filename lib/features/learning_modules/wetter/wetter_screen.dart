@@ -19,6 +19,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
 import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
@@ -126,6 +127,8 @@ class _WetterScreenState extends State<WetterScreen>
 
   final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -179,6 +182,7 @@ class _WetterScreenState extends State<WetterScreen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -272,11 +276,31 @@ class _WetterScreenState extends State<WetterScreen>
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -415,6 +439,7 @@ class _WetterScreenState extends State<WetterScreen>
         icon: Icons.cloud_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,

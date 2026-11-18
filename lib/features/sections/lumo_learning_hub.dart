@@ -1,3 +1,4 @@
+import '../../domain/learning/skill_evidence.dart';
 import 'package:flutter/material.dart';
 import '../learning/learning_navigation.dart';
 
@@ -379,6 +380,9 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
     );
   }
 
+  static String _capitalized(String text) =>
+      text.isEmpty ? text : '${text[0].toUpperCase()}${text.substring(1)}';
+
   /// The child's saved record for one topic, or null if never answered.
   SkillRecord? _skillFor(String subject, String unit) {
     for (final skill in widget.skills.values) {
@@ -392,11 +396,20 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
         _cardColors[subject.name] ?? (subject.accent, const Color(0xFF142E4F));
     final record = _skillFor(subject.name, unit);
     final practiced = record != null && record.attempts > 0;
-    final mastery = record?.mastery ?? 0;
     final title = Curriculum.prettifyUnit(unit);
+    // No percentage: a stage that is backed by counted answers. "Sicher"
+    // needs enough tasks solved alone on at least two different days.
+    final evidence = record?.evidence;
     final status = practiced
-        ? '${record.correct} richtig · $mastery % sicher'
+        ? '${_capitalized(evidence!.label)} · ${evidence.facts}'
         : 'Noch nicht geübt';
+    final evidenceShare = evidence == null
+        ? 0.0
+        : evidence.isSecure
+            ? 1.0
+            : (evidence.independentCorrect /
+                    (SkillEvidence.secureIndependentCorrect + 1))
+                .clamp(0.0, .86);
     return Semantics(
       label: '$title\n$status',
       button: true,
@@ -459,7 +472,9 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(4),
                       child: LinearProgressIndicator(
-                        value: mastery / 100,
+                        // Tasks solved alone on the way to "sicher"; the
+                        // bar is only full once that stage is reached.
+                        value: evidenceShare,
                         minHeight: 6,
                         backgroundColor: Colors.white.withOpacity(.14),
                         valueColor: AlwaysStoppedAnimation(bright),

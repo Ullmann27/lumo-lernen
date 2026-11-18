@@ -89,6 +89,10 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   WritingFeedback? _lastFeedback;
   bool _showDemo = false;
 
+  /// A failed try or a replayed demonstration on the current letter: the
+  /// next success is then recorded as accompanied, not as written alone.
+  bool _letterAssisted = false;
+
   /// Heinz-Erweiterung: vier Modi (Gross/Klein/Zahlen/Gemischt).
   WritingMode _mode = WritingMode.uppercase;
 
@@ -152,6 +156,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
         _currentPoints = [];
         _lastFeedback = null;
         _showDemo = false;
+        _letterAssisted = false;
         return;
       }
     }
@@ -176,6 +181,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
     _currentPoints = [];
     _lastFeedback = null;
     _showDemo = false;
+    _letterAssisted = false;
   }
 
   /// Pool basierend auf aktuellem Modus + Lehrplan-Reihenfolge.
@@ -275,8 +281,10 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
         subject: 'Schreiben',
         unit: 'Buchstaben schreiben',
         correct: feedback.matched,
+        hintUsed: _letterAssisted,
         prompt: 'Buchstabe $_currentLetter schreiben',
       ));
+      if (!feedback.matched) _letterAssisted = true;
       setState(() {
         _lastFeedback = feedback;
         _showDemo = feedback.showDemo;
@@ -328,6 +336,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   }
 
   void _replayDemo() {
+    _letterAssisted = true;
     setState(() => _showDemo = true);
     _demoCtrl.forward(from: 0);
     try {
