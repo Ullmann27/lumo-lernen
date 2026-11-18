@@ -31,7 +31,7 @@ void main() {
     await tester.ensureVisible(next);
     await tester.tap(next);
     await tester.pump(const Duration(milliseconds: 350));
-    expect(find.textContaining('Schritte weiterzaehlen'), findsOneWidget);
+    expect(find.textContaining('Schritte weiterzählen'), findsOneWidget);
     expect(find.byKey(const ValueKey('tricks-result')), findsNothing);
 
     await tester.tap(next);
