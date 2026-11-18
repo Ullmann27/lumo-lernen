@@ -8,8 +8,9 @@ class MathTaskTemplates {
   const MathTaskTemplates._();
 
   static const List<MathTaskTemplate> templates = <MathTaskTemplate>[
-    MathTaskTemplate(id: 'g1_word_problem', grade: 1, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[1, 7], validRangeB: <int>[1, 5], promptPattern: 'sachaufgabe-ein-schritt'),
-    MathTaskTemplate(id: 'g2_sub_story', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[5, 20], validRangeB: <int>[1, 5], promptPattern: 'sachaufgabe-wegnehmen'),
+    // Kleinste Zahl in Geschichten ist 2: „Tom hat 1 Kekse“ wäre falsches Deutsch.
+    MathTaskTemplate(id: 'g1_word_problem', grade: 1, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[2, 9], validRangeB: <int>[2, 6], promptPattern: 'sachaufgabe-ein-schritt'),
+    MathTaskTemplate(id: 'g2_sub_story', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[5, 20], validRangeB: <int>[2, 6], promptPattern: 'sachaufgabe-wegnehmen'),
     MathTaskTemplate(id: 'g1_add_10', grade: 1, unit: 'Plus bis 10', kind: MathTemplateKind.addition, validRangeA: <int>[0, 10], validRangeB: <int>[0, 10], promptPattern: 'plus-bis-10',
     ),
     MathTaskTemplate(id: 'g1_sub_10', grade: 1, unit: 'Minus bis 10', kind: MathTemplateKind.subtraction, validRangeA: <int>[3, 10], validRangeB: <int>[1, 7], promptPattern: 'minus-bis-10',
@@ -512,12 +513,13 @@ class MathTaskTemplate {
           typical: <int>[even * 2, even - 2, answer - 1, answer + 1, answer + 10],
         );
       case MathTemplateKind.wordProblemTwoStep:
-        final answer = a + b - 3;
-        final s2 = _positive(seed, _twoStepStories.length);
-        final story = _twoStepStories[s2];
-        return _numberTask(seed, story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story_two',
-          // Typisch: nach dem ersten Schritt aufgehört oder dazugezählt statt weggenommen.
-          typical: <int>[a + b, a + b + 3, a - 3, answer - 10, answer + 10],
+        // Dritte Zahl 2 bis 9, nie größer als die erste: So bleibt jedes
+        // Zwischenergebnis positiv.
+        final third = 2 + _positive(_mixSeed(seed + 19), 8);
+        final story = _twoStepStories[_positive(seed, _twoStepStories.length)](
+            a, b, third > a ? a : third);
+        return _numberTask(seed, story.prompt, story.answer, story.explanation, 'story_two',
+          typical: story.typical,
         );
       case MathTemplateKind.perimeter:
         final answer = 2 * (a + b);
@@ -600,12 +602,13 @@ class MathTaskTemplate {
           keepOrder: true,
         );
       case MathTemplateKind.wordProblemThreeStep:
-        final answer = (a + b) * 2 - 4;
-        final s3 = _positive(seed, _threeStepStories.length);
-        final story = _threeStepStories[s3];
-        return _numberTask(seed, story.prompt(a, b, answer), answer, story.explain(a, b, answer), 'story_three',
-          // Typisch: einen Schritt ausgelassen oder zuletzt dazugezählt statt weggenommen.
-          typical: <int>[(a + b) * 2, a + b - 4, (a + b) * 2 + 4, a + b, a * 2 + b - 4],
+        // Dritte Zahl 2 bis 9, nie größer als die erste: So bleibt jedes
+        // Zwischenergebnis positiv.
+        final third = 2 + _positive(_mixSeed(seed + 19), 8);
+        final story = _threeStepStories[_positive(seed, _threeStepStories.length)](
+            a, b, third > a ? a : third);
+        return _numberTask(seed, story.prompt, story.answer, story.explanation, 'story_three',
+          typical: story.typical,
         );
       case MathTemplateKind.chartRead:
         final answer = a + b;
@@ -1289,63 +1292,226 @@ String _pMinusBuecher(int a, int b, int s) => 'Im Regal stehen $a Bücher. $b we
 String _pMinusBus(int a, int b, int s) => 'Im Bus sitzen $a Kinder. An der Haltestelle steigen $b aus. Wie viele Kinder sitzen noch im Bus?';
 String _eMinus(int a, int b, int s) => 'Wegnehmen: $a − $b = $s. Starte mit $a und streiche $b weg.';
 
-String _p1Apfel(int a, int b, int s) => 'Lisa hat $a Aepfel und bekommt $b dazu. Wie viele Aepfel hat sie?';
-String _p1Kekse(int a, int b, int s) => 'Tom hat $a Kekse gebacken. Oma bringt $b weitere. Wie viele Kekse sind es?';
-String _p1Bus(int a, int b, int s) => 'Im Bus sitzen $a Kinder. An der naechsten Station steigen $b zu. Wie viele Kinder sind jetzt im Bus?';
+String _p1Apfel(int a, int b, int s) => 'Lisa hat $a Äpfel und bekommt $b dazu. Wie viele Äpfel hat sie jetzt?';
+String _p1Kekse(int a, int b, int s) => 'Tom hat $a Kekse gebacken. Oma bringt $b weitere. Wie viele Kekse sind es zusammen?';
+String _p1Bus(int a, int b, int s) => 'Im Bus sitzen $a Kinder. An der nächsten Haltestelle steigen $b zu. Wie viele Kinder sind jetzt im Bus?';
 String _p1Buntstifte(int a, int b, int s) => 'Mia hat $a rote Buntstifte und $b blaue. Wie viele Buntstifte hat sie zusammen?';
-String _p1Schulhof(int a, int b, int s) => 'Am Schulhof spielen $a Kinder Fangen und $b Hupfkaestchen. Wie viele Kinder spielen?';
-String _p1Sticker(int a, int b, int s) => 'Jonas sammelt Sticker. Er hat $a und bekommt $b neue geschenkt. Wie viele hat er?';
-String _p1Garten(int a, int b, int s) => 'In Omas Garten bluehen $a Tulpen. $b Rosen kommen dazu. Wie viele Blumen sind das?';
-String _p1Sport(int a, int b, int s) => 'Beim Schulfest gibt es $a Wuerstel und $b Brote. Wie viele Snacks sind das?';
+String _p1Schulhof(int a, int b, int s) => 'Am Schulhof spielen $a Kinder Fangen und $b Kinder Tempelhüpfen. Wie viele Kinder spielen zusammen?';
+String _p1Sticker(int a, int b, int s) => 'Jonas sammelt Sticker. Er hat $a und bekommt $b neue geschenkt. Wie viele Sticker hat er jetzt?';
+String _p1Garten(int a, int b, int s) => 'In Omas Garten blühen $a Tulpen und $b Rosen. Wie viele Blumen blühen zusammen?';
+String _p1Sport(int a, int b, int s) => 'Beim Schulfest liegen $a Würstelsemmeln und $b Käsesemmeln bereit. Wie viele Semmeln sind das zusammen?';
 
-String _e1Sum(int a, int b, int s) => 'Plusgeschichte: $a + $b = $s. Zaehle erst die erste, dann die zweite Gruppe zusammen.';
+String _e1Sum(int a, int b, int s) => 'Plusgeschichte: $a + $b = $s. Zähle erst die erste Gruppe, dann die zweite dazu.';
 
-// 2-Schritt (Klasse 2-3): a + b - 3, mehrstufige Logik.
-const List<_WordStory> _twoStepStories = <_WordStory>[
-  _WordStory(_p2Tulpen, _e2),
-  _WordStory(_p2Pausenbrot, _e2),
-  _WordStory(_p2Markt, _e2),
-  _WordStory(_p2Klassenfahrt, _e2),
-  _WordStory(_p2Spielzeug, _e2),
-  _WordStory(_p2Aquarium, _e2),
-  _WordStory(_p2Schwimmbad, _e2),
-  _WordStory(_p2Werkstatt, _e2),
-  _WordStory(_p2Buecherei, _e2),
+/// Eine fertige Sachaufgabe mit mehreren Schritten.
+class _StepStory {
+  const _StepStory(this.prompt, this.answer, this.explanation, this.typical);
+  final String prompt;
+  final int answer;
+  final String explanation;
+
+  /// Typische falsche Ergebnisse: nach dem ersten Schritt aufgehört oder
+  /// im zweiten Schritt die falsche Rechenart genommen.
+  final List<int> typical;
+}
+
+/// Baut aus den zwei Zahlen der Vorlage und einer dritten Zahl (2 bis 9)
+/// eine Geschichte.
+typedef _StoryBuilder = _StepStory Function(int a, int b, int c);
+
+// Zwei Schritte (Klasse 3). Früher rechnete jede Geschichte „a + b − 3“.
+// Jetzt wechseln die Rechenwege: dazu und weg, zweimal weg, drei Mengen,
+// mal und plus, mal und minus, „mehr als“.
+const List<_StoryBuilder> _twoStepStories = <_StoryBuilder>[
+  _s2Tulpen,
+  _s2Buecherei,
+  _s2Schwimmbad,
+  _s2Aquarium,
+  _s2Markt,
+  _s2Bus,
+  _s2Papier,
+  _s2Lesen,
+  _s2Gebaeck,
+  _s2Sessel,
+  _s2Sticker,
+  _s2Garderobe,
 ];
 
-String _p2Werkstatt(int a, int b, int s) => 'Für die Bastelwerkstatt gibt es $a rote und $b blaue Papierbögen. 3 Bögen werden verbraucht. Wie viele Bögen bleiben?';
-String _p2Buecherei(int a, int b, int s) => 'Die Bücherei hat $a Bilderbücher. $b kommen dazu. 3 Bücher werden ausgeliehen. Wie viele bleiben in der Bücherei?';
+_StepStory _plusMinus(String prompt, int a, int b, int c) => _StepStory(
+      prompt,
+      a + b - c,
+      'Zwei Schritte: $a + $b = ${a + b}, dann ${a + b} − $c = ${a + b - c}.',
+      <int>[a + b, a + b + c, a - c, b - c],
+    );
 
-String _p2Tulpen(int a, int b, int s) => 'Im Garten wachsen $a Tulpen. $b kommen dazu, 3 werden gepflueckt. Wie viele bleiben?';
-String _p2Pausenbrot(int a, int b, int s) => 'In der Schultasche sind $a Aepfel und $b Birnen. Lisa isst 3 Stueck. Wie viele bleiben uebrig?';
-String _p2Markt(int a, int b, int s) => 'Am Markt gibt es $a Karotten und $b Paradeiser. 3 werden verkauft. Wie viele Gemueseteile sind noch da?';
-String _p2Klassenfahrt(int a, int b, int s) => 'Bei der Klassenfahrt fahren $a Kinder und $b Erwachsene mit. 3 muessen krank zurueckbleiben. Wie viele Personen fahren wirklich mit?';
-String _p2Spielzeug(int a, int b, int s) => 'Im Spielzimmer liegen $a Autos und $b Bauklotz-Stuecke. 3 Stuecke werden weggeraeumt. Wie viele Spielsachen liegen noch herum?';
-String _p2Aquarium(int a, int b, int s) => 'Im Aquarium schwimmen $a Goldfische und $b Neonfische. 3 schwimmen hinter Pflanzen und sind versteckt. Wie viele sieht man?';
-String _p2Schwimmbad(int a, int b, int s) => 'Im Schwimmbad sind $a Kinder im grossen und $b im kleinen Becken. 3 gehen in die Sauna. Wie viele schwimmen noch?';
+_StepStory _s2Tulpen(int a, int b, int c) => _plusMinus(
+    'Im Garten blühen $a Tulpen. $b gehen neu auf, $c werden gepflückt. Wie viele Tulpen blühen jetzt?', a, b, c);
+_StepStory _s2Buecherei(int a, int b, int c) => _plusMinus(
+    'In der Bücherei stehen $a Bilderbücher. $b kommen neu dazu, $c werden ausgeliehen. Wie viele Bilderbücher stehen jetzt in der Bücherei?', a, b, c);
+_StepStory _s2Schwimmbad(int a, int b, int c) => _plusMinus(
+    'Im Schwimmbad sind $a Kinder im großen Becken und $b im kleinen Becken. $c Kinder gehen zur Rutsche. Wie viele Kinder sind noch in den Becken?', a, b, c);
+_StepStory _s2Aquarium(int a, int b, int c) => _plusMinus(
+    'Im Aquarium schwimmen $a Goldfische und $b Neonfische. $c Fische verstecken sich hinter den Pflanzen. Wie viele Fische sieht man?', a, b, c);
 
-String _e2(int a, int b, int s) => 'Zwei Schritte: zuerst zusammen $a + $b, dann minus 3 = $s.';
+_StepStory _minusMinus(String prompt, int start, int b, int c) => _StepStory(
+      prompt,
+      start - b - c,
+      'Zwei Schritte: $start − $b = ${start - b}, dann ${start - b} − $c = ${start - b - c}.',
+      <int>[start - b, start - c, start - b + c, b + c],
+    );
 
-// 3-Schritt (Klasse 3-4): (a + b) * 2 - 4, komplexere Verkettung.
-const List<_WordStory> _threeStepStories = <_WordStory>[
-  _WordStory(_p3Semmeln, _e3),
-  _WordStory(_p3Buecher, _e3),
-  _WordStory(_p3Sammelkarten, _e3),
-  _WordStory(_p3Schultheater, _e3),
-  _WordStory(_p3Sportfest, _e3),
-  _WordStory(_p3Schulfest, _e3),
-  _WordStory(_p3Bastelstern, _e3),
-  _WordStory(_p3Obstkiste, _e3),
+_StepStory _s2Markt(int a, int b, int c) => _minusMinus(
+    'Am Markt liegen ${a + 20} Paradeiser. Am Vormittag werden $b verkauft, am Nachmittag $c. Wie viele Paradeiser sind noch da?', a + 20, b, c);
+_StepStory _s2Bus(int a, int b, int c) => _minusMinus(
+    'Im Bus sitzen ${a + 20} Kinder. An der ersten Haltestelle steigen $b aus, an der zweiten $c. Wie viele Kinder sitzen noch im Bus?', a + 20, b, c);
+
+_StepStory _plusPlus(String prompt, int a, int b, int c) => _StepStory(
+      prompt,
+      a + b + c,
+      'Zwei Schritte: $a + $b = ${a + b}, dann ${a + b} + $c = ${a + b + c}.',
+      <int>[a + b, a + c, a + b - c, b + c],
+    );
+
+_StepStory _s2Papier(int a, int b, int c) => _plusPlus(
+    'Für die Bastelstunde gibt es $a rote, $b blaue und $c gelbe Papierbögen. Wie viele Papierbögen sind das zusammen?', a, b, c);
+_StepStory _s2Lesen(int a, int b, int c) => _plusPlus(
+    'Lena liest am Montag $a Seiten, am Dienstag $b Seiten und am Mittwoch $c Seiten. Wie viele Seiten hat sie gelesen?', a, b, c);
+
+_StepStory _s2Gebaeck(int a, int b, int c) {
+  final packs = 2 + a % 4;
+  return _StepStory(
+    'Mama kauft $packs Packungen mit je $c Semmeln und $b einzelne Kipferl. Wie viele Stück Gebäck sind das?',
+    packs * c + b,
+    'Zwei Schritte: $packs · $c = ${packs * c}, dann ${packs * c} + $b = ${packs * c + b}.',
+    <int>[packs * c, packs + c + b, c + b, packs * (c + b)],
+  );
+}
+
+_StepStory _s2Sessel(int a, int b, int c) {
+  final tables = 3 + a % 4;
+  final all = tables * c;
+  final carried = 2 + b % (all - 2);
+  return _StepStory(
+    'In der Klasse stehen $tables Tische mit je $c Sesseln. $carried Sessel werden in den Turnsaal getragen. Wie viele Sessel bleiben in der Klasse?',
+    all - carried,
+    'Zwei Schritte: $tables · $c = $all, dann $all − $carried = ${all - carried}.',
+    <int>[all, all + carried, tables + c - carried],
+  );
+}
+
+_StepStory _s2Sticker(int a, int b, int c) => _StepStory(
+      'Anna hat $a Sticker. Ben hat $b Sticker mehr als Anna. Wie viele Sticker haben beide zusammen?',
+      a + a + b,
+      'Zwei Schritte: Ben hat $a + $b = ${a + b} Sticker. Zusammen: $a + ${a + b} = ${a + a + b}.',
+      <int>[a + b, a + a, a + a - b],
+    );
+
+_StepStory _s2Garderobe(int a, int b, int c) => _StepStory(
+      'In der Garderobe hängen ${a + 5} Jacken. $c Kinder holen ihre Jacke, danach hängen $b Kinder ihre Jacke auf. Wie viele Jacken hängen jetzt dort?',
+      a + 5 - c + b,
+      'Zwei Schritte: ${a + 5} − $c = ${a + 5 - c}, dann ${a + 5 - c} + $b = ${a + 5 - c + b}.',
+      <int>[a + 5 - c, a + 5 - c - b, a + 5 + b + c],
+    );
+
+// Drei Schritte (Klasse 4). Früher rechnete jede Geschichte „(a + b) · 2 − 4“.
+const List<_StoryBuilder> _threeStepStories = <_StoryBuilder>[
+  _s3Obstkiste,
+  _s3Sterne,
+  _s3Flaschen,
+  _s3Buecherei,
+  _s3Sportfest,
+  _s3Einkauf,
+  _s3Karten,
+  _s3Zug,
 ];
 
-String _p3Bastelstern(int a, int b, int s) => 'Die Klasse bastelt $a gelbe und $b blaue Sterne. Am nächsten Tag bastelt sie noch einmal dieselbe Anzahl Sterne. 4 Sterne werden verschenkt. Wie viele Sterne bleiben?';
-String _p3Obstkiste(int a, int b, int s) => 'In einer Kiste liegen $a Äpfel und $b Birnen. Eine zweite Kiste enthält genau gleich viele Früchte. 4 Früchte werden gegessen. Wie viele bleiben insgesamt?';
+_StepStory _s3Obstkiste(int a, int b, int c) => _StepStory(
+      'In einer Kiste liegen $a Äpfel und $b Birnen. Eine zweite Kiste ist genau gleich gefüllt. $c Früchte werden gegessen. Wie viele Früchte bleiben?',
+      (a + b) * 2 - c,
+      'Drei Schritte: $a + $b = ${a + b}, dann ${a + b} · 2 = ${(a + b) * 2}, dann ${(a + b) * 2} − $c = ${(a + b) * 2 - c}.',
+      <int>[(a + b) * 2, a + b - c, (a + b) * 2 + c, a + b],
+    );
 
-String _p3Semmeln(int a, int b, int s) => 'Fuer ein Fest werden $a Semmeln und $b Weckerl gekauft. Danach wird noch einmal dieselbe Anzahl Gebaeckstuecke gekauft. 4 bleiben uebrig. Wie viele wurden gegessen?';
-String _p3Buecher(int a, int b, int s) => 'Im Regal stehen $a Kinderbuecher und $b Sachbuecher. Es kommt noch einmal dieselbe Anzahl Buecher dazu. 4 werden ausgeliehen. Wie viele Buecher stehen jetzt im Regal?';
-String _p3Sammelkarten(int a, int b, int s) => 'Tim hat $a Fussball-Karten und $b Tier-Karten. Er bekommt noch einmal dieselbe Anzahl Karten geschenkt. 4 verschenkt er weiter. Wie viele Karten hat er jetzt?';
-String _p3Schultheater(int a, int b, int s) => 'Fuer das Schultheater werden $a Stuehle aus 2A und $b aus 2B geholt. Danach kommt noch einmal dieselbe Anzahl Stuehle dazu. 4 werden weggeraeumt. Wie viele Stuehle stehen bereit?';
-String _p3Sportfest(int a, int b, int s) => 'Beim Sportfest starten $a Buben und $b Maedchen. Danach startet noch einmal dieselbe Anzahl Kinder. 4 Kinder brechen ab. Wie viele Kinder kommen ins Ziel?';
-String _p3Schulfest(int a, int b, int s) => 'Beim Schulfest stehen $a Limonadenflaschen und $b Saftflaschen bereit. Es kommt noch einmal dieselbe Anzahl Flaschen dazu. 4 zerbrechen. Wie viele Flaschen bleiben heil?';
+_StepStory _s3Sterne(int a, int b, int c) {
+  final days = 3 + c % 3;
+  final all = (a + b) * days;
+  return _StepStory(
+    'Die Klasse bastelt an $days Tagen jeden Tag $a gelbe und $b blaue Sterne. $c Sterne werden verschenkt. Wie viele Sterne bleiben?',
+    all - c,
+    'Drei Schritte: $a + $b = ${a + b}, dann ${a + b} · $days = $all, dann $all − $c = ${all - c}.',
+    <int>[all, a + b - c, all + c, a * days + b - c],
+  );
+}
 
-String _e3(int a, int b, int s) => 'Drei Schritte: addieren ($a + $b = ${a + b}), verdoppeln (${(a + b) * 2}), 4 abziehen = $s.';
+_StepStory _s3Flaschen(int a, int b, int c) {
+  final juiceCrates = 2 + a % 4;
+  final waterCrates = 2 + b % 4;
+  final juice = juiceCrates * 6;
+  final water = waterCrates * 12;
+  return _StepStory(
+    'Für das Schulfest gibt es $juiceCrates Kisten mit je 6 Flaschen Saft und $waterCrates Kisten mit je 12 Flaschen Wasser. $c Flaschen bleiben übrig. Wie viele Flaschen wurden getrunken?',
+    juice + water - c,
+    'Drei Schritte: $juiceCrates · 6 = $juice und $waterCrates · 12 = $water. Zusammen: $juice + $water = ${juice + water}. Dann ${juice + water} − $c = ${juice + water - c}.',
+    <int>[juice + water, juice + water + c, juice - c, water - c],
+  );
+}
+
+_StepStory _s3Buecherei(int a, int b, int c) {
+  final start = 200 + a * 5;
+  return _StepStory(
+    'In der Bücherei stehen $start Bücher. Am Montag werden $a ausgeliehen, am Dienstag $b. Am Mittwoch kommen $c zurück. Wie viele Bücher stehen jetzt in der Bücherei?',
+    start - a - b + c,
+    'Drei Schritte: $start − $a = ${start - a}, dann ${start - a} − $b = ${start - a - b}, dann ${start - a - b} + $c = ${start - a - b + c}.',
+    <int>[start - a - b, start - a - b - c, start - a + c, start + c],
+  );
+}
+
+_StepStory _s3Sportfest(int a, int b, int c) {
+  final groups = 2 + c % 5;
+  final started = groups * a;
+  return _StepStory(
+    'Beim Sportfest starten $groups Gruppen mit je $a Kindern. $b Kinder kommen später dazu, $c Kinder hören früher auf. Wie viele Kinder kommen ins Ziel?',
+    started + b - c,
+    'Drei Schritte: $groups · $a = $started, dann $started + $b = ${started + b}, dann ${started + b} − $c = ${started + b - c}.',
+    <int>[started + b, started - c, started + b + c, groups + a + b - c],
+  );
+}
+
+_StepStory _s3Einkauf(int a, int b, int c) {
+  final booklets = 2 + c % 4;
+  final price = 2 + a % 4;
+  final book = 8 + b;
+  final total = booklets * price + book;
+  final paid = total < 50 ? 50 : 100;
+  return _StepStory(
+    'Tim kauft $booklets Hefte um je $price € und ein Buch um $book €. Er zahlt mit einem $paid-€-Schein. Wie viele Euro bekommt er zurück?',
+    paid - total,
+    'Drei Schritte: $booklets · $price = ${booklets * price}, dann ${booklets * price} + $book = $total, dann $paid − $total = ${paid - total}.',
+    <int>[total, paid - booklets * price, paid - book, paid - price - book],
+  );
+}
+
+_StepStory _s3Karten(int a, int b, int c) {
+  final children = 2 + a % 5;
+  final each = 10 + b;
+  final given = c < each ? c : each - 1;
+  final got = 3 + b % 6;
+  return _StepStory(
+    '${children * each} Sammelkarten werden gerecht an $children Kinder verteilt. Jedes Kind verschenkt $given Karten und bekommt später $got dazu. Wie viele Karten hat jedes Kind dann?',
+    each - given + got,
+    'Drei Schritte: ${children * each} : $children = $each, dann $each − $given = ${each - given}, dann ${each - given} + $got = ${each - given + got}.',
+    <int>[each, each - given, each + given + got, each - given - got],
+  );
+}
+
+_StepStory _s3Zug(int a, int b, int c) {
+  final wagons = 3 + c % 4;
+  final entering = 2 + (a + b) % 9;
+  return _StepStory(
+    // Die Anzahl der Waggons wird zum Rechnen nicht gebraucht.
+    'In einem Zug mit $wagons Waggons sitzen $a Erwachsene und $b Kinder. Am Bahnhof steigen $c Personen aus und $entering ein. Wie viele Personen sitzen jetzt im Zug?',
+    a + b - c + entering,
+    'Die Zahl der Waggons brauchst du nicht. Drei Schritte: $a + $b = ${a + b}, dann ${a + b} − $c = ${a + b - c}, dann ${a + b - c} + $entering = ${a + b - c + entering}.',
+    <int>[a + b - c, a + b + entering, a + b - c - entering, a + b + wagons - c + entering],
+  );
+}
