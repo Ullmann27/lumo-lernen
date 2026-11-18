@@ -329,10 +329,26 @@ class MathTaskTemplate {
         final entry = shapeQuestions[_positive(seed, shapeQuestions.length)];
         return _choice(seed, entry.$1, entry.$2, entry.$3, entry.$4, 'shape');
       case MathTemplateKind.moneyCompare:
+        // Zwei Dinge mit Preis. Früher hieß es „Was kostet mehr: 6 € oder
+        // 6 €?“ mit nur zwei Karten, wenn beide Preise gleich waren.
+        const things = <(String, String)>[
+          ('Der Ball', 'der Ball'), ('Das Buch', 'das Buch'),
+          ('Die Puppe', 'die Puppe'), ('Das Auto', 'das Auto'),
+          ('Der Teddy', 'der Teddy'), ('Die Kappe', 'die Kappe'),
+          ('Das Puzzle', 'das Puzzle'), ('Der Malblock', 'der Malblock'),
+        ];
+        final firstIndex = _positive(_mixSeed(seed + 29), things.length);
+        final first = things[firstIndex];
+        final second = things[(firstIndex + 1 + _positive(_mixSeed(seed + 43), things.length - 1)) % things.length];
         final left = a;
         final right = b;
-        final answer = left == right ? 'gleich viel' : left > right ? '$left €' : '$right €';
-        return _choice(seed, 'Was kostet mehr: $left € oder $right €?', answer, <String>['$left €', '$right €', 'gleich viel'], 'Mehr Euro bedeutet höherer Preis.', 'money',
+        final answer = left == right ? 'gleich viel' : left > right ? first.$2 : second.$2;
+        return _choice(seed, '${first.$1} kostet $left €, ${second.$2} kostet $right €. Was kostet mehr?', answer, <String>[first.$2, second.$2, 'gleich viel'],
+          left == right
+              ? 'Beide kosten $left €. Sie kosten gleich viel.'
+              : '${left > right ? left : right} € ist mehr als ${left > right ? right : left} €. Mehr kostet ${left > right ? first.$2 : second.$2}.',
+          'money_compare',
+          keepOrder: true,
         );
       case MathTemplateKind.dayHours:
         const facts = <(String, String, List<String>, String)>[

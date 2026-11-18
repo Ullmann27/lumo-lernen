@@ -49,4 +49,26 @@ void main() {
     expect(ascending, lessThan(count * .4));
     expect(meanIsValue, lessThan(count * .4));
   });
+
+  test('M16: Geld vergleicht zwei Dinge mit Preis, immer drei Karten', () {
+    final answers = <String>{};
+    for (var i = 0; i < 400; i++) {
+      final task = byId('g1_money_more').concretize(i * 7919 + 13);
+      final match = RegExp(
+              r'^(Der|Die|Das) (\S+) kostet (\d+) €, (der|die|das) (\S+) kostet (\d+) €\. Was kostet mehr\?$')
+          .firstMatch(task.prompt);
+      expect(match, isNotNull, reason: task.prompt);
+      final first = '${match![1]!.toLowerCase()} ${match[2]}';
+      final second = '${match[4]} ${match[5]}';
+      expect(first, isNot(second), reason: task.prompt);
+      final left = int.parse(match[3]!), right = int.parse(match[6]!);
+      // Früher blieben bei gleichen Preisen nur zwei Karten übrig.
+      expect(task.choices, [first, second, 'gleich viel']);
+      expect(task.answer,
+          left == right ? 'gleich viel' : left > right ? first : second);
+      expect(guard.problems(asLumoTask(task, 1)), isEmpty, reason: task.prompt);
+      answers.add(left == right ? '=' : left > right ? '>' : '<');
+    }
+    expect(answers, {'=', '>', '<'});
+  });
 }

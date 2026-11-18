@@ -303,15 +303,19 @@ class MoneyCoinsVisual extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
       );
     }
-    final pieces = _splitMoney(amountCents);
+    // Beim Wechseln ist die Stückelung gefragt. Dann zeigt das Bild nur den
+    // Zielbetrag als Preisschild, keine andere Stückelung.
+    final showPieces = data['pieces'] != false;
+    final pieces = showPieces ? _splitMoney(amountCents) : const <(int, int)>[];
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: _stageDecoration(LumoColors.gold),
       child: Column(
         children: [
-          const Text('Geldbetrag',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
+          Text(showPieces ? 'Geldbetrag' : 'Zielbetrag',
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
           const SizedBox(height: 8),
+          if (showPieces)
           Wrap(
             alignment: WrapAlignment.center,
             spacing: 8,

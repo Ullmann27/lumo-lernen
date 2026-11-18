@@ -184,6 +184,34 @@ void main() {
     });
   });
 
+  // Fachprüfung Mathematik M16/M17: Das Geld-Bild legte nur den ersten
+  // Betrag und beim Wechseln eine andere Stückelung als gefragt.
+  group('Geld-Bilder', () {
+    test('Preisvergleich legt beide Beträge', () {
+      final data = dataFor(
+        visual: 'money_compare',
+        prompt: 'Der Ball kostet 6 €, das Buch kostet 8 €. Was kostet mehr?',
+        answer: 'das Buch',
+        choices: const ['der Ball', 'das Buch', 'gleich viel'],
+        requireValidTask: true,
+      );
+      expect(data['left'], 6);
+      expect(data['right'], 8);
+    });
+
+    test('Wechseln zeigt nur den Zielbetrag, keine andere Stückelung', () {
+      final data = dataFor(
+        visual: 'money_change',
+        prompt: 'Wie viele 2-€-Münzen ergeben 20 €?',
+        answer: '10 Münzen',
+        choices: const ['10 Münzen', '20 Münzen', '2 Münzen', '9 Münzen'],
+        requireValidTask: true,
+      );
+      expect(data['cents'], 2000);
+      expect(data['pieces'], isFalse);
+    });
+  });
+
   group('clock parser', () {
     test('extrahiert hour und minute aus "Stunde 7 und Minute 30"', () {
       final data = dataFor(

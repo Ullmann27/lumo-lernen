@@ -121,6 +121,38 @@ void main() {
     });
   });
 
+  // Fachprüfung Mathematik M17: „Wie viele 2-€-Münzen ergeben 20 €?“ zeigte
+  // einen 20-€-Schein, also das Gegenteil der gefragten Stückelung.
+  group('MoneyCoinsVisual beim Wechseln', () {
+    testWidgets('zeigt nur den Zielbetrag', (tester) async {
+      await tester.pumpWidget(wrap(MoneyCoinsVisual(
+        task: buildTask(
+          type: VisualType.money,
+          prompt: 'Wie viele 2-€-Münzen ergeben 20 €?',
+          data: {'cents': 2000, 'pieces': false},
+        ),
+      )));
+      expect(find.text('Zielbetrag'), findsOneWidget);
+      expect(find.text('20 €'), findsOneWidget);
+      expect(find.byKey(const ValueKey('money-piece-0')), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('ohne diese Angabe bleiben Münzen und Scheine sichtbar',
+        (tester) async {
+      await tester.pumpWidget(wrap(MoneyCoinsVisual(
+        task: buildTask(
+          type: VisualType.money,
+          prompt: 'Lege 7 €.',
+          data: {'cents': 700},
+        ),
+      )));
+      expect(find.text('Geldbetrag'), findsOneWidget);
+      expect(find.byKey(const ValueKey('money-piece-0')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  });
+
   group('FractionPizzaVisual', () {
     testWidgets('rendert bei leerem Payload (Fallback 1/2)', (tester) async {
       await tester.pumpWidget(wrap(FractionPizzaVisual(

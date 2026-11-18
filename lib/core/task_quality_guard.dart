@@ -132,6 +132,19 @@ class TaskQualityGuard {
       final expected = left == right ? 'gleich viel' : '${left > right ? left : right} €';
       return answer == expected ? const [] : const ['money_comparison_wrong'];
     }
+    final priced = RegExp(
+            r'^(Der|Die|Das) (\S+) kostet (\d+) €, (der|die|das) (\S+) kostet (\d+) €\. Was kostet mehr\?$')
+        .firstMatch(prompt);
+    if (priced != null) {
+      final left = int.parse(priced[3]!);
+      final right = int.parse(priced[6]!);
+      final expected = left == right
+          ? 'gleich viel'
+          : left > right
+              ? '${priced[1]!.toLowerCase()} ${priced[2]}'
+              : '${priced[4]} ${priced[5]}';
+      return answer == expected ? const [] : const ['money_comparison_wrong'];
+    }
     final change = RegExp(r'^Wie viele (\d+)-€-(Münzen|Scheine) ergeben (\d+) €\?$')
         .firstMatch(prompt);
     if (change != null) {

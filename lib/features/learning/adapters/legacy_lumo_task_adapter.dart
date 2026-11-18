@@ -671,6 +671,8 @@ class LegacyLumoTaskAdapter {
       // nutzen (vorher fielen viele auf VisualType.none zurueck).
       'money' => VisualType.money,
       'money_change' => VisualType.money,
+      // Preisvergleich: beide Beträge nebeneinander als 1-€-Münzen.
+      'money_compare' => VisualType.quantityCompare,
       'fraction_half' => VisualType.fractionPizza,
       'fraction_add' => VisualType.fractionPizza,
       'fraction_expand' => VisualType.fractionPizza,
@@ -952,6 +954,20 @@ class LegacyLumoTaskAdapter {
       return const <String, Object?>{};
     }
 
+    // Preisvergleich: Das Bild legt beide Beträge, nicht nur den ersten.
+    if (task.visual == 'money_compare') {
+      final prices = RegExp(r'kostet (\d+) €')
+          .allMatches(task.prompt)
+          .map((match) => int.parse(match[1]!))
+          .toList(growable: false);
+      if (prices.length != 2) return const <String, Object?>{};
+      return <String, Object?>{
+        'left': prices[0],
+        'right': prices[1],
+        'emoji': '🪙',
+      };
+    }
+
     if (task.visual == 'money_coins' || task.visual == 'money' || task.visual == 'money_change') {
       // Euro-Betrag im Prompt - akzeptiert '1,50€', '1,50 Euro', '1.50 EUR'
       final euro = RegExp(
@@ -963,7 +979,13 @@ class LegacyLumoTaskAdapter {
         final fraction = euro.group(2) ?? '';
         final c = int.tryParse(fraction.padRight(2, '0'));
         if (e == null || c == null || e > 1000000) return const {};
-        return <String, Object?>{'cents': e * 100 + c, 'amount': e * 100 + c};
+        return <String, Object?>{
+          'cents': e * 100 + c,
+          'amount': e * 100 + c,
+          // „Wie viele 2-€-Münzen ergeben 20 €?“: Nur der Zielbetrag wird
+          // gezeigt. Ein 20-€-Schein im Bild wäre das Gegenteil der Frage.
+          if (task.visual == 'money_change') 'pieces': false,
+        };
       }
       return const <String, Object?>{};
     }
