@@ -221,4 +221,29 @@ void main() {
     expect(answerTo('die Polizei brauchst'), '133');
     expect(answerTo('die Rettung braucht'), '144');
   });
+
+  test('Diagramme lesen: das Diagramm steht in der Aufgabe (S-M14)', () {
+    final factory = ExerciseFactory(seed: 14);
+    final drawn = <String>{};
+    for (var i = 0; i < 400; i++) {
+      final task = factory.next(
+          grade: 4, subject: 'Sachunterricht', unit: 'Diagramme lesen');
+      if (task.unit != 'Diagramme lesen') continue;
+      expect(task.prompt, isNot(contains('Ein Diagramm zeigt 8')));
+      if (task.prompt.startsWith('Lies das Diagramm.')) {
+        // Mindestens zwei Reihen aus Kästchen, die Werte selbst stehen
+        // nicht als Zahl im Text.
+        final rows = task.prompt
+            .split('\n')
+            .where((line) => line.contains(': 🟦'))
+            .toList();
+        expect(rows.length, greaterThanOrEqualTo(2), reason: task.prompt);
+        for (final row in rows) {
+          expect(row, isNot(matches(RegExp(r'\d+$'))), reason: row);
+        }
+        drawn.add(task.prompt);
+      }
+    }
+    expect(drawn.length, greaterThanOrEqualTo(4));
+  });
 }

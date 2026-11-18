@@ -41,10 +41,10 @@ const List<ScienceQuestion> scienceQualityExtensionQuestions = [
   ScienceQuestion.item(3, 'Pflanzen', 'Was kann einem Samen helfen zu keimen?', 'Wasser und eine passende Temperatur', ['nur ein Stein', 'nur trockene Luft', 'völlig gefrorener Boden'], 'Viele Samen keimen bei genügend Wasser, Sauerstoff und geeigneter Wärme.'),
 
   // Grade 4: interpret data, not memorized fixed prompts
-  ScienceQuestion.item(4, 'Diagramme lesen', 'Ein Diagramm zeigt 8 Regentage im April und 5 im Mai. Wie viele mehr hat April?', '3 Regentage', ['5 Regentage', '8 Regentage', '13 Regentage'], '8 minus 5 ergibt 3 Regentage Unterschied.'),
-  ScienceQuestion.item(4, 'Diagramme lesen', 'Im Balkendiagramm haben drei Klassen 12, 15 und 10 Bücher gelesen. Welche Klasse las am meisten?', 'die Klasse mit 15 Büchern', ['die Klasse mit 10 Büchern', 'die Klasse mit 12 Büchern', 'alle gleich viel'], 'Vergleiche die drei Balkenhöhen. 15 ist die größte Anzahl.'),
-  ScienceQuestion.item(4, 'Diagramme lesen', 'Im Diagramm stehen 6 Radfahrende und 9 zu Fuß Gehende. Wie viele sind es zusammen?', '15 Kinder', ['3 Kinder', '9 Kinder', '54 Kinder'], 'Die Gruppen umfassen zusammen 6 plus 9 gleich 15 Kinder.'),
-  ScienceQuestion.item(4, 'Diagramme lesen', 'In einer Tabelle stehen 20 Besucher am Montag und 25 am Dienstag. Um wie viele stieg die Zahl?', 'um 5', ['um 20', 'um 25', 'um 45'], '25 minus 20 ergibt eine Zunahme um 5 Personen.'),
+  ScienceQuestion.item(4, 'Diagramme lesen', 'Lies das Diagramm. Ein 🟦 ist ein Regentag.\nApril: 🟦🟦🟦🟦🟦🟦🟦🟦\nMai: 🟦🟦🟦🟦🟦\nWie viele Regentage hatte der April mehr als der Mai?', '3 Regentage', ['5 Regentage', '8 Regentage', '13 Regentage'], 'Zähle die Kästchen: April 8, Mai 5. 8 minus 5 ergibt 3.'),
+  ScienceQuestion.item(4, 'Diagramme lesen', 'Lies das Diagramm. Ein 🟦 ist ein Buch.\n4a: 🟦🟦🟦🟦🟦🟦\n4b: 🟦🟦🟦🟦🟦🟦🟦🟦🟦\n4c: 🟦🟦🟦🟦\nWelche Klasse hat die meisten Bücher gelesen?', 'die 4b', ['die 4a', 'die 4c', 'alle gleich viel'], 'Die längste Reihe gehört zur 4b: 9 Bücher.'),
+  ScienceQuestion.item(4, 'Diagramme lesen', 'Lies das Diagramm. Ein 🟦 ist ein Kind.\nmit dem Rad: 🟦🟦🟦🟦🟦🟦\nzu Fuß: 🟦🟦🟦🟦🟦🟦🟦🟦🟦\nWie viele Kinder sind es zusammen?', '15 Kinder', ['3 Kinder', '9 Kinder', '6 Kinder'], 'Zähle beide Reihen: 6 plus 9 ergibt 15 Kinder.'),
+  ScienceQuestion.item(4, 'Diagramme lesen', 'Lies das Diagramm. Ein 🟦 sind 5 Besucher.\nMontag: 🟦🟦🟦🟦\nDienstag: 🟦🟦🟦🟦🟦\nWie viele Besucher kamen am Dienstag?', '25 Besucher', ['5 Besucher', '20 Besucher', '9 Besucher'], 'Am Dienstag sind es 5 Kästchen. 5 mal 5 ergibt 25 Besucher.'),
   // Klasse 2 (Fachprüfung 2026-11, S-M15): eigene Fragen je Einheit, damit
   // Klasse 2 nicht mit Klasse-1-Fragen aufgefüllt wird.
   ScienceQuestion.item(2, 'Familie und Gemeinschaft', 'Wer sind die Eltern deiner Mutter?', 'deine Großeltern', ['deine Geschwister', 'deine Tanten', 'deine Cousinen'], 'Die Eltern deiner Eltern sind deine Großeltern: Oma und Opa.'),
