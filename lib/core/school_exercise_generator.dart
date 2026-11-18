@@ -705,9 +705,13 @@ class ExerciseFactory {
       return _choiceTask('rs-verlaengern', grade, 'Rechtschreibung', unit,
           'Verlängere das Wort: ${q.$3}. Welcher Buchstabe fehlt in „${q.$1}_“?', q.$2,
           'In ${q.$3} kannst du den Buchstaben hören. Das kurze Wort schreibt man ${q.$1}${q.$2}.',
-          customChoices: [q.$2, ...['d','t','b','p','g','k'].where((v) => v != q.$2).take(3)]);
+          customChoices: _wordEndingChoices(q.$2));
     }
-    final contexts = spellingContexts.where((q) => q.unit == unit && q.grade <= grade).toList();
+    // Ab 12 eigenen Sätzen übt eine Klasse nur ihre eigenen Wörter; sonst
+    // werden Sätze früherer Klassen zur Festigung dazugenommen.
+    final upToGrade = spellingContexts.where((q) => q.unit == unit && q.grade <= grade).toList();
+    final ownGrade = upToGrade.where((q) => q.grade == grade).toList();
+    final contexts = ownGrade.length >= 12 ? ownGrade : upToGrade;
     if (contexts.isNotEmpty && _random.nextInt(4) != 0) {
       final q = contexts[_random.nextInt(contexts.length)];
       final sentenceType = q.answer == '.' ? 'Aussagesatz' : q.answer == '?' ? 'Fragesatz' : 'Ausruf';
@@ -719,24 +723,33 @@ class ExerciseFactory {
     }
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Rechtschreibung');
     if (unit == 'Gross und klein') {
-      final noun = PrimarySchoolWordData.nounForGrade(
-          grade, _serial + _random.nextInt(9999));
+      // Das Kind sucht das Namenwort im Satz, statt immer dieselbe Antwort
+      // "großer Anfang" zu wählen. Eigennamen und Gefühle passen nicht in
+      // die Satzmuster und bleiben außen vor.
+      final nouns = PrimarySchoolWordData.nounsForGrade(grade)
+          .where((word) => !const <String>{'Österreich', 'Gefühle'}
+              .contains(PrimarySchoolWordData.categoryFor(word)))
+          .toList(growable: false);
+      final noun = nouns[_random.nextInt(nouns.length)];
       final lower = noun.toLowerCase();
-      // Labels preserve the contrast through case-insensitive answer adapters.
-      final answer = 'Großer Anfang: $noun';
+      final article = PrimarySchoolWordData.articleFor(noun)!;
+      // Nur Sätze im Wer-Fall: so stimmt die Form bei jedem Namenwort
+      // (kein "den Elefant"). Das Namenwort steht an wechselnder Stelle.
+      final patterns = <(String, List<String>)>[
+        ('${article[0].toUpperCase()}${article.substring(1)} $lower ist da.', <String>['ist', 'da']),
+        ('Dort ist $article $lower zu sehen.', <String>['ist', 'sehen']),
+        ('Ist $article $lower schon da?', <String>['schon', 'da']),
+      ];
+      final pattern = patterns[_random.nextInt(patterns.length)];
       return _choiceTask(
           'gross',
           grade,
           'Rechtschreibung',
           unit,
-          'Wie schreibt man das Namenwort „$lower“ normalerweise im Satz?',
-          answer,
+          'Welches Wort muss groß geschrieben werden?\n„${pattern.$1}“',
+          lower,
           'Namenwörter beginnen mit einem großen Buchstaben: $noun.',
-          customChoices: <String>[
-            answer,
-            'Alles klein: $lower',
-            'Alles groß: ${noun.toUpperCase()}'
-          ]);
+          customChoices: <String>[lower, ...pattern.$2]);
     }
     if (unit == 'Satzzeichen') {
       // 2026-06-03: vorher EIN fester Satz. Jetzt Pool nach Satz-Typ
@@ -976,28 +989,52 @@ class ExerciseFactory {
         customChoices: item);
   }
 
+  /// Wortende: Der Verwechslungspartner (d/t, g/k, b/p) steht immer zur Wahl.
+  List<String> _wordEndingChoices(String answer) {
+    const partners = <String, String>{
+      'd': 't', 't': 'd', 'g': 'k', 'k': 'g', 'b': 'p', 'p': 'b',
+    };
+    final partner = partners[answer]!;
+    return <String>[
+      answer,
+      partner,
+      ...const <String>['d', 't', 'g', 'k', 'b', 'p']
+          .where((letter) => letter != answer && letter != partner)
+          .take(2),
+    ];
+  }
+
   LumoTask _stOrSp(int grade, String subject) {
     // 2026-06-03: vorher 8 Woerter. Jetzt 20 Woerter, ausgewogen St/Sp/Sch
     // (Sch als Distraktor war vorher nie als Antwort).
-    const data = <String, String>{
+    // Fachprüfung 2026-11 (D-M11): Früher stand das ganze Wort in der Frage
+    // ("Welche Buchstaben stehen am Anfang von Stuhl?"). Jetzt zeigt ein Bild
+    // das Wort, und der Wortanfang fehlt. Nur Wörter mit eindeutigem Bild.
+    const data = <(String, String, String)>[
       // St-Wörter
-      'Stern': 'St', 'Storch': 'St', 'Stift': 'St', 'Stein': 'St',
-      'Stube': 'St', 'Stange': 'St', 'Straße': 'St', 'Stuhl': 'St',
+      ('Stern', 'St', '⭐'), ('Stuhl', 'St', '🪑'), ('Stift', 'St', '✏️'),
+      ('Straße', 'St', '🛣️'), ('Stiefel', 'St', '👢'), ('Strand', 'St', '🏖️'),
       // Sp-Wörter
-      'Spiegel': 'Sp', 'Spinne': 'Sp', 'Sport': 'Sp', 'Spaten': 'Sp',
-      'Spatz': 'Sp', 'Sprache': 'Sp', 'Spielzeug': 'Sp', 'Specht': 'Sp',
-      // Sch-Wörter (vorher nie als Antwort erreichbar)
-      'Schule': 'Sch', 'Schaf': 'Sch', 'Schiff': 'Sch', 'Schnee': 'Sch',
-    };
-    final entry = data.entries.elementAt(_random.nextInt(data.length));
+      ('Spinne', 'Sp', '🕷️'), ('Spielzeug', 'Sp', '🧸'),
+      ('Spaghetti', 'Sp', '🍝'), ('Spiel', 'Sp', '🎲'), ('Spritze', 'Sp', '💉'),
+      // Sch-Wörter
+      ('Schule', 'Sch', '🏫'), ('Schaf', 'Sch', '🐑'), ('Schiff', 'Sch', '🚢'),
+      ('Schnee', 'Sch', '❄️'), ('Schere', 'Sch', '✂️'), ('Schuh', 'Sch', '👟'),
+      ('Schlange', 'Sch', '🐍'),
+    ];
+    final entry = data[_random.nextInt(data.length)];
+    final rest = entry.$1.substring(entry.$2.length);
+    final rule = entry.$2 == 'Sch'
+        ? 'Hier hörst und schreibst du Sch.'
+        : 'Am Wortanfang hörst du „Sch${entry.$2[1].toLowerCase()}“, schreibst aber ${entry.$2}.';
     return _choiceTask(
         'stsp',
         grade,
         subject,
         'St oder Sp',
-        'Welche Buchstaben stehen am Anfang von ${entry.key}?',
-        entry.value,
-        '${entry.key} beginnt mit den Buchstaben ${entry.value}.',
+        'Schau das Bild an: ${entry.$3}\nWas fehlt am Wortanfang? __$rest',
+        entry.$2,
+        'Das Wort heißt ${entry.$1}. $rule',
         customChoices: const <String>['St', 'Sp', 'Sch']);
   }
 
@@ -1076,7 +1113,9 @@ class ExerciseFactory {
           'Das Bild zeigt: ${picture.value}. Lies das passende Wort.',
           customChoices: <String>[
             picture.value,
-            ...pictures.values.where((word) => word != picture.value).take(3)
+            ...(pictures.values.where((word) => word != picture.value).toList()
+                  ..shuffle(_random))
+                .take(3)
           ]);
     }
     if (unit == 'Woerter lesen') {

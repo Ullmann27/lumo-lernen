@@ -163,18 +163,33 @@ void main() {
     }
   });
 
+  // Fachprüfung 2026-11 (D-M10): Früher war die Lösung immer „Großer
+  // Anfang: …“. Jetzt sucht das Kind das Namenwort in einem Satz.
   test(
-      'capitalization has a meaningful choice contrast without generic fillers',
+      'capitalization asks for the noun inside a sentence, without fillers',
       () {
-    final task = ExerciseFactory(seed: 11)
-        .next(grade: 1, subject: 'Rechtschreibung', unit: 'Gross und klein');
-    expect(task.answer, startsWith('Großer Anfang:'));
-    expect(task.choices.any((choice) => choice.startsWith('Alles klein:')),
-        isTrue);
-    expect(
-        task.choices.any((choice) => choice.startsWith('Alles groß:')), isTrue);
-    expect(task.choices.any(['ja', 'nein', 'vielleicht', 'anderes'].contains),
-        isFalse);
+    final factory = ExerciseFactory(seed: 11);
+    final positions = <int>{};
+    for (var i = 0; i < 200; i++) {
+      final task = factory.next(
+          grade: 1, subject: 'Rechtschreibung', unit: 'Gross und klein');
+      if (!task.prompt.startsWith('Welches Wort muss groß')) continue;
+      final sentence = RegExp('„(.+)“').firstMatch(task.prompt)!.group(1)!;
+      final words = sentence.replaceAll(RegExp('[.?]'), '').split(' ');
+      expect(task.choices, hasLength(3), reason: task.prompt);
+      for (final choice in task.choices) {
+        expect(words, contains(choice), reason: '$choice / $sentence');
+      }
+      expect(task.answer, task.answer.toLowerCase());
+      expect(task.explanation,
+          contains('${task.answer[0].toUpperCase()}${task.answer.substring(1)}'));
+      positions.add(words.indexOf(task.answer));
+      expect(
+          task.choices.any(['ja', 'nein', 'vielleicht', 'anderes'].contains),
+          isFalse);
+    }
+    expect(positions.length, greaterThanOrEqualTo(3),
+        reason: 'Das Namenwort soll nicht immer an derselben Stelle stehen.');
   });
 
   test('Dehnungen and Wortende teach their named spelling pattern', () {

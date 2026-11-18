@@ -7,6 +7,7 @@ import 'package:lumo_lernen/core/adventure/adventure_word_data.dart';
 import 'package:lumo_lernen/core/german_task_templates.dart';
 import 'package:lumo_lernen/core/primary_school_word_data.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
+import 'package:lumo_lernen/core/spelling_context_data.dart';
 
 /// Prüfliste: echte deutsche Wörter (auch Namen), die einer Falschschreibung
 /// zum Verwechseln ähnlich sehen. Wird bei neuen Wortlisten ergänzt.
@@ -92,5 +93,75 @@ void main() {
       }
     }
     expect(checked, greaterThan(100));
+  });
+
+  test('Kontextsätze: falsche Schreibungen sind keine echten Wörter', () {
+    for (final context in spellingContexts) {
+      if (context.unit == 'Satzzeichen') continue;
+      expect(context.sentence, contains('___'), reason: context.sentence);
+      expectOnlyMisspellings(
+          context.answer, context.wrong, 'Satz „${context.sentence}“');
+    }
+  });
+
+  test('Häufige Wörter: jede Klasse übt eigene Wörter (D-M9)', () {
+    for (var grade = 2; grade <= 4; grade++) {
+      final own = spellingContexts
+          .where((context) =>
+              context.unit == 'Haeufige Woerter' && context.grade == grade)
+          .map((context) => context.answer)
+          .toSet();
+      expect(own.length, greaterThanOrEqualTo(12), reason: 'Klasse $grade');
+      final earlier = spellingContexts
+          .where((context) =>
+              context.unit == 'Haeufige Woerter' && context.grade < grade)
+          .map((context) => context.answer)
+          .toSet();
+      final factory = ExerciseFactory(seed: 300 + grade);
+      for (var i = 0; i < 300; i++) {
+        final task = factory.next(
+            grade: grade, subject: 'Rechtschreibung', unit: 'Haeufige Woerter');
+        if (!task.prompt.contains('___')) continue;
+        expect(earlier, isNot(contains(task.answer)),
+            reason: 'Klasse $grade bekommt das Wort einer früheren Klasse: '
+                '${task.answer}');
+        expect(own, contains(task.answer));
+      }
+    }
+  });
+
+  test('Wortende: der Verwechslungspartner steht immer zur Wahl (D-M8)', () {
+    const partners = <String, String>{
+      'd': 't', 't': 'd', 'g': 'k', 'k': 'g', 'b': 'p', 'p': 'b',
+    };
+    final factory = ExerciseFactory(seed: 77);
+    final answers = <String>{};
+    for (var i = 0; i < 400; i++) {
+      final task =
+          factory.next(grade: 2, subject: 'Rechtschreibung', unit: 'Wortende');
+      answers.add(task.answer);
+      expect(task.choices, contains(partners[task.answer]),
+          reason: '${task.prompt} ${task.choices}');
+      expect(task.choices, hasLength(4));
+      expect(task.prompt.contains('Stad_'), isFalse);
+    }
+    expect(answers, containsAll(<String>['d', 't', 'g', 'k', 'b']));
+  });
+
+  test('St oder Sp: das Wort steht nicht mehr in der Frage (D-M11)', () {
+    final factory = ExerciseFactory(seed: 78);
+    final answers = <String>{};
+    for (var i = 0; i < 300; i++) {
+      final task = factory.next(
+          grade: 2, subject: 'Rechtschreibung', unit: 'St oder Sp');
+      if (!task.prompt.contains('Wortanfang')) continue;
+      answers.add(task.answer);
+      final rest = RegExp(r'__(\S+)$').firstMatch(task.prompt)!.group(1)!;
+      final word = '${task.answer}$rest';
+      expect(task.prompt.contains(word), isFalse, reason: task.prompt);
+      expect(task.explanation, contains(word));
+      expect(task.choices.toSet(), <String>{'St', 'Sp', 'Sch'});
+    }
+    expect(answers, <String>{'St', 'Sp', 'Sch'});
   });
 }
