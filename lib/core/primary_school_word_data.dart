@@ -64,7 +64,7 @@ class PrimarySchoolWordData {
     <String>['Fisch', 'Tisch'],
     <String>['Kuh', 'Schuh'],
     <String>['Tor', 'Ohr'],
-    <String>['Bär', 'Meer'],
+    <String>['Meer', 'Speer'],
     <String>['Schwein', 'Bein'],
     <String>['Katze', 'Tatze'],
     <String>['Wiese', 'Riese'],
@@ -113,7 +113,40 @@ class PrimarySchoolWordData {
     <String>['Sterne', 'Ferne'],
     <String>['Rind', 'Kind'],
     <String>['Lamm', 'Kamm'],
+    // Zweite Reimwörter aus dem Nomenpool: als Paar hinterlegt, damit sie nie
+    // als "falsche" Antwort neben dem ersten Reimwort stehen.
+    <String>['Rose', 'Hose'],
+    <String>['See', 'Schnee'],
+    <String>['Fluss', 'Bus'],
+    <String>['Brille', 'Marille'],
   ];
+
+  /// Wörter, die auf ein Reimwort (fast) reimen, aber nicht als Reimaufgabe
+  /// gefragt werden: zu lang, Lautung nicht ganz rein oder in Österreich
+  /// gleich gesprochen (Hase – Straße). Sie dürfen nie als Ablenker neben
+  /// einem Wort ihrer Gruppe stehen.
+  static const List<List<String>> rhymeNeighbours = <List<String>>[
+    <String>['Wand', 'Hand', 'Bundesland', 'Elefant'],
+    <String>['Ring', 'Ding', 'Schmetterling'],
+    <String>['Kreis', 'Eis', 'Stromkreis'],
+    <String>['Hahn', 'Zahn', 'Ozean'],
+    <String>['Hase', 'Nase', 'Straße'],
+  ];
+
+  /// Alle Wörter, die neben [word] nicht als falsche Antwort stehen dürfen:
+  /// hinterlegte Reimpartner und Beinahe-Reime.
+  static Set<String> rhymeBlockedFor(String word) {
+    final blocked = <String>{...rhymePartnersFor(word)};
+    final lower = word.toLowerCase();
+    final family = <String>{lower, ...blocked};
+    for (final group in rhymeNeighbours) {
+      if (group.any((item) => family.contains(item.toLowerCase()))) {
+        blocked.addAll(group.map((item) => item.toLowerCase()));
+      }
+    }
+    blocked.remove(lower);
+    return blocked;
+  }
 
   /// Alle in den Daten bekannten Reimpartner, einschließlich Reimgruppen.
   static Set<String> rhymePartnersFor(String word) {
@@ -134,8 +167,15 @@ class PrimarySchoolWordData {
   }
 
   // Hier stehen Lautzeichen in der für Kinder üblichen Buchstabenschreibweise.
-  // Mehrere Buchstaben können einen Laut darstellen; am Wortende gibt es z. B.
-  // Auslautverhärtung (Hund -> T). Unbekannte Wörter bleiben bewusst ohne Wert.
+  // Mehrere Buchstaben können einen Laut darstellen (Sch, Ch, Au).
+  //
+  // Bewusst NICHT enthalten sind Wörter, bei denen Laut und Schreibung
+  // auseinandergehen: Auslautverhärtung (Hund, Hand, Kind, Mond, Pferd, Rad,
+  // Wind klingen am Ende wie t, werden aber mit d geschrieben) sowie Stift
+  // (klingt wie Scht) und Vogel (klingt wie F). Das Wort steht geschrieben in
+  // der Frage; eine Lautantwort "T" würde die Schreibung "Hunt" einüben.
+  // Die d/t-Frage gehört in die Rechtschreib-Einheit "Wortende" (Verlängern:
+  // Hund – Hunde). Unbekannte Wörter bleiben bewusst ohne Wert.
   static const Map<String, String> _initialSounds = <String, String>{
     'Apfel': 'A',
     'Ameise': 'A',
@@ -158,6 +198,7 @@ class PrimarySchoolWordData {
     'Lampe': 'L',
     'Mama': 'M',
     'Maus': 'M',
+    'Mond': 'M',
     'Oma': 'O',
     'Opa': 'O',
     'Papa': 'P',
@@ -166,37 +207,34 @@ class PrimarySchoolWordData {
     'Schule': 'Sch',
     'Schaf': 'Sch',
     'Schwein': 'Sch',
-    'Stift': 'Sch',
+    'Sonne': 'S',
     'Tafel': 'T',
     'Tasche': 'T',
-    'Vogel': 'F',
+    'Tisch': 'T',
     'Wasser': 'W',
     'Wolke': 'W',
   };
   static const Map<String, String> _finalSounds = <String, String>{
+    'Apfel': 'L',
     'Ball': 'L',
     'Baum': 'M',
+    'Bett': 'T',
     'Buch': 'Ch',
     'Bus': 'S',
     'Fuchs': 'S',
     'Fuß': 'S',
     'Gras': 'S',
-    'Hand': 'T',
     'Haus': 'S',
     'Heft': 'T',
-    'Hund': 'T',
     'Igel': 'L',
-    'Kind': 'T',
     'Maus': 'S',
-    'Mond': 'T',
-    'Pferd': 'T',
-    'Rad': 'T',
+    'Regen': 'N',
     'Schaf': 'F',
     'Schuh': 'U',
     'Schwein': 'N',
     'Stift': 'T',
     'Tisch': 'Sch',
-    'Wind': 'T',
+    'Vogel': 'L',
   };
 
   static String? initialSoundFor(String word) =>
@@ -353,7 +391,7 @@ class PrimarySchoolWordData {
     'Ma-ril-le',
     'Bir-ne',
     'Ka-rot-te',
-    'Erd-äp-fel',
+    'Erd-ap-fel',
     'Ma-ma',
     'Pa-pa',
     'O-ma',
@@ -419,7 +457,7 @@ class PrimarySchoolWordData {
     'Stra-ße',
     'Schmet-ter-ling',
     'Schild-krö-te',
-    'Bi-blio-thek',
+    'Bi-bli-o-thek',
     'Re-gen-bo-gen',
     'Do-nau',
     'Wien',
@@ -676,7 +714,7 @@ class PrimarySchoolWordData {
     _NounSeed('Marille', 'die', 'Obst', 'österreichisch', 'essen', 1),
     _NounSeed('Birne', 'die', 'Obst', 'grün', 'essen', 1),
     _NounSeed('Karotte', 'die', 'Gemüse', 'orange', 'essen', 1),
-    _NounSeed('Erdäpfel', 'die', 'Gemüse', 'österreichisch', 'kochen', 1),
+    _NounSeed('Erdapfel', 'der', 'Gemüse', 'österreichisch', 'kochen', 1),
     _NounSeed('Mama', 'die', 'Familie', 'Person', 'helfen', 1),
     _NounSeed('Papa', 'der', 'Familie', 'Person', 'helfen', 1),
     _NounSeed('Oma', 'die', 'Familie', 'Person', 'erzählen', 1),

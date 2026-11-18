@@ -284,7 +284,7 @@ class ChoiceQuestionQuality {
         : _answer(reviewed.$1,
             allowed: reviewed.$2,
             caseSensitive:
-                prompt == 'Welcher Fischname ist richtig geschrieben?');
+                prompt == 'Welches Wort für ⭐ ist richtig geschrieben?');
   }
 
   static const _syllables = {
@@ -350,12 +350,49 @@ class ChoiceQuestionQuality {
     'Rose',
     'Tasse',
     'Tatze',
+    // Fachprüfung 2026-11 (D-M19): wechselnde Ablenker mit gleichem Anlaut.
+    // Keines dieser Wörter reimt auf ein Reimwort oben.
+    'Tisch', 'Bild', 'Bett', 'Suppe', 'Salz', 'Heft', 'Hut', 'Bach', 'Brot',
+    'Kamm', 'Korb', 'Kuh', 'Schere', 'Schaf', 'Schuh', 'Bein', 'Bus', 'Berg',
+    'Lampe', 'Luft', 'Löffel',
   };
 
   // Closed catalogue: every offered distractor was reviewed along with its
   // exact question. This is not a general-purpose fact inference engine.
   // Sources for changed science claims: QUESTION_BANK_COVERAGE.md.
   static const _reviewed = <String, (String, Set<String>)>{
+    // Fachprüfung 2026-11 (D-M19): ersetzen die Dubletten der Kartenspiel-Fragen.
+    'Welcher Begleiter passt zu „Sonne“?': ('die', {'die', 'der', 'das', 'den'}),
+    'Was ist das Gegenteil von „groß“?': (
+      'klein',
+      {'klein', 'lang', 'dick', 'schwer'}
+    ),
+    'Wie viele Silben hat „Banane“?': ('3', {'3', '2', '4', '1'}),
+    'Welches Wort ist ein Tier?': ('Hase', {'Hase', 'Hose', 'Haus', 'Hut'}),
+    'Was ist das Gegenteil von „kalt“?': (
+      'warm',
+      {'warm', 'nass', 'weich', 'leise'}
+    ),
+    'Wie heißt die Mehrzahl von „Baum“?': (
+      'Bäume',
+      {'Bäume', 'Baums', 'Baumen', 'Bäumer'}
+    ),
+    'Welches Wort ist ein Tunwort?': (
+      'laufen',
+      {'laufen', 'Schule', 'schnell', 'Tisch'}
+    ),
+    'Was ist das Gegenteil von „hell“?': (
+      'dunkel',
+      {'dunkel', 'laut', 'weich', 'rund'}
+    ),
+    'Welcher Begleiter passt zu „Fenster“?': (
+      'das',
+      {'das', 'der', 'die', 'den'}
+    ),
+    'Welches Wort ist ein Wiewort?': (
+      'fröhlich',
+      {'fröhlich', 'Freude', 'freuen', 'Freund'}
+    ),
     'Was hat 3 Ecken?': ('Dreieck', {'Dreieck', 'Kreis', 'Ball', 'Sonne'}),
     'Was ist rund?': ('Kreis', {'Kreis', 'Quadrat', 'Buch', 'Haus'}),
     'Was hat 4 gleiche Seiten?': (
@@ -406,9 +443,9 @@ class ChoiceQuestionQuality {
       {'Hund', 'Rot', 'Tisch', 'Buch'}
     ),
     'Was isst man zum Frühstück?': ('Brot', {'Auto', 'Brot', 'Stein', 'Stuhl'}),
-    'Welche Jacke schützt dich vor Regen?': (
+    'Was ziehst du bei Regen an?': (
       'Regenjacke',
-      {'Hut', 'Regenjacke', 'Schwimmreifen', 'Sandalen'}
+      {'Badehose', 'Regenjacke', 'Schwimmreifen', 'Sandalen'}
     ),
     'Welches Tier sagt "Wuff"?': ('Hund', {'Katze', 'Hund', 'Vogel', 'Fisch'}),
     'Welches Tier sagt "Miau"?': ('Katze', {'Katze', 'Hund', 'Kuh', 'Schwein'}),
@@ -424,7 +461,7 @@ class ChoiceQuestionQuality {
       'Gelb',
       {'Rot', 'Blau', 'Gelb', 'Grün'}
     ),
-    'Was fällt vom Himmel wenn es regnet?': (
+    'Was fällt vom Himmel, wenn es regnet?': (
       'Wassertropfen',
       {'Schnee', 'Wassertropfen', 'Blätter', 'Steine'}
     ),
@@ -494,32 +531,32 @@ class ChoiceQuestionQuality {
       {'Rot', 'Gelb', 'Grün', 'Blau'}
     ),
     'Was ist ein "Verb"?': (
-      'Ein Tu-Wort',
-      {'Ein Tier', 'Ein Tu-Wort', 'Eine Farbe', 'Ein Name'}
+      'Ein Tunwort',
+      {'Ein Tier', 'Ein Tunwort', 'Eine Farbe', 'Ein Name'}
     ),
     'Was ist ein "Nomen"?': (
-      'Ein Name-Wort',
-      {'Ein Tu-Wort', 'Ein Name-Wort', 'Eine Farbe', 'Ein Zeichen'}
+      'Ein Namenwort',
+      {'Ein Tunwort', 'Ein Namenwort', 'Eine Farbe', 'Ein Zeichen'}
     ),
     'Welches Wort ist ein Verb?': (
       'laufen',
       {'Haus', 'laufen', 'schön', 'schnell'}
     ),
-    'Welches Wort ist ein Adjektiv (Wie-Wort)?': (
-      'Schnell',
-      {'Laufen', 'Hund', 'Schnell', 'Tisch'}
+    'Welches Wort ist ein Adjektiv (Wiewort)?': (
+      'schnell',
+      {'laufen', 'Hund', 'schnell', 'Tisch'}
     ),
-    'Welcher Fischname ist richtig geschrieben?': (
-      'Stör',
-      {'Schtohr', 'Stohr', 'Stoa', 'Stör'}
+    'Welches Wort für ⭐ ist richtig geschrieben?': (
+      'Stern',
+      {'Schtern', 'Sternn', 'Stärn', 'Stern'}
     ),
     'Welches Wort hat ein "ie"?': (
       'Liebe',
       {'Hund', 'Liebe', 'Tasse', 'Stuhl'}
     ),
     'Wie schreibt man die Zahl 12?': (
-      'Zwölf',
-      {'Zwölf', 'Zwoolf', 'Zwelf', 'Zwlf'}
+      'zwölf',
+      {'zwölf', 'zwoolf', 'zwelf', 'zwlf'}
     ),
     'Mit welchem Satzzeichen endet ein Aussagesatz?': (
       'Punkt',
@@ -570,7 +607,7 @@ class ChoiceQuestionQuality {
       'Herz',
       {'Lunge', 'Magen', 'Herz', 'Leber'}
     ),
-    'Wie heißt der längste Fluss in Österreich?': (
+    'Welcher große Fluss fließt durch Wien?': (
       'Donau',
       {'Donau', 'Inn', 'Mur', 'Drau'}
     ),

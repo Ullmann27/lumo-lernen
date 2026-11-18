@@ -354,7 +354,7 @@ class HomeContent extends StatelessWidget {
                                     ),
                                     _SubjectCard(
                                       subject: 'Englisch',
-                                      subtitle: 'Hello! Let us learn',
+                                      subtitle: "Hello! Let's learn",
                                       icon: Icons.translate_rounded,
                                       color: const Color(0xFF83D5FF),
                                       completed: _correctFor('Englisch'),

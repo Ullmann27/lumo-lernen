@@ -174,7 +174,7 @@ class LumoQuestHubScreen extends StatelessWidget {
         border: Border.all(color: LumoColors.orange.withOpacity(0.30)),
       ),
       child: const Text(
-        'Fuer deine Klasse gibt es noch keine Quests.\nFrag Lumo nochmal in ein paar Wochen!',
+        'Für deine Klasse gibt es noch keine Quests.\nFrag Lumo nochmal in ein paar Wochen!',
         style: TextStyle(
           fontFamily: 'Nunito',
           fontSize: 14,

@@ -17,6 +17,13 @@ class LumoTagestippCard extends StatelessWidget {
 
   final VoidCallback? onTap;
 
+  /// Alle Tipp-Texte (Überschrift und Tipp), damit Tests Rechtschreibung
+  /// und Grammatik der kindersichtbaren Texte prüfen können.
+  @visibleForTesting
+  static List<String> get allTipTexts => <String>[
+        for (final tip in _tips) ...<String>[tip.label, tip.text],
+      ];
+
   @override
   Widget build(BuildContext context) {
     final tip = _pickTipForToday();
@@ -167,7 +174,7 @@ const List<_Tip> _tips = <_Tip>[
   ),
   // Max: Nachbar
   _Tip(
-    'MAX RAET',
+    'MAX RÄT',
     Color(0xFF60A5FA),
     '5 + 4? Du kennst sicher 4 + 4 = 8. Dann nur +1 → 9.',
   ),
@@ -175,7 +182,7 @@ const List<_Tip> _tips = <_Tip>[
   _Tip(
     'HANNAS TRICK',
     Color(0xFFF59E0B),
-    'Nach 9 - 4 = 5 schnell pruefen: 5 + 4 = 9. Stimmt!',
+    'Nach 9 - 4 = 5 schnell prüfen: 5 + 4 = 9. Stimmt!',
   ),
   // Tim: Aufgabe zerlegen
   _Tip(
@@ -187,25 +194,25 @@ const List<_Tip> _tips = <_Tip>[
   _Tip(
     'LESE-TIPP',
     Color(0xFF6366F1),
-    'Sprich jeden Buchstaben langsam. Auch Silben helfen dir lange Woerter zu lesen.',
+    'Sprich jeden Laut langsam. Auch Silben helfen dir, lange Wörter zu lesen.',
   ),
   // Schreib-Tipp
   _Tip(
     'SCHREIB-TIPP',
     Color(0xFF06B6D4),
-    'Namenswoerter (Tisch, Hund, Mama) schreibst du immer GROSS.',
+    'Namenwörter (Tisch, Hund, Mama) schreibst du immer groß.',
   ),
   // Sachkunde
   _Tip(
     'SACHKUNDE',
     Color(0xFF059669),
-    'Ein Frosch fuehlt sich kalt an. Er ist ein Wechselwarmer Tier.',
+    'Ein Frosch fühlt sich kalt an. Er ist ein wechselwarmes Tier.',
   ),
   // Lerntipp
   _Tip(
     'LERN-TIPP',
     Color(0xFFFB923C),
-    'Mache lieber 10 Minuten konzentriert als 30 Minuten halb. Pausen helfen!',
+    'Lerne lieber 10 Minuten konzentriert als 30 Minuten nebenbei. Pausen helfen!',
   ),
   // Motivation
   _Tip(
@@ -217,24 +224,24 @@ const List<_Tip> _tips = <_Tip>[
   _Tip(
     'GEOMETRIE',
     Color(0xFFEA580C),
-    'Ein Quadrat hat 4 gleich lange Seiten. Ein Rechteck hat 4 Ecken aber unterschiedliche Seiten.',
+    'Ein Quadrat hat 4 gleich lange Seiten. Beim Rechteck sind immer die zwei gegenüberliegenden Seiten gleich lang.',
   ),
   // Bruechte
   _Tip(
-    'BRUECHE',
+    'BRÜCHE',
     Color(0xFFDB2777),
-    '1/2 ist die Haelfte. 1/4 ist ein Viertel. Schau dir Pizza-Stuecke vor!',
+    '1/2 ist die Hälfte. 1/4 ist ein Viertel. Stell dir Pizzastücke vor!',
   ),
   // Times-Tabelle
   _Tip(
     'EINMALEINS',
     Color(0xFF8B5CF6),
-    'Mal-Reihen werden leichter wenn du sie tauschst: 7 × 3 = 3 × 7.',
+    'Malaufgaben werden leichter, wenn du die Zahlen tauschst: 7 × 3 = 3 × 7.',
   ),
   // Uhr
   _Tip(
     'UHRZEIT',
     Color(0xFF0EA5E9),
-    'Die kleine Zeiger zeigt die Stunde, die grosse die Minute.',
+    'Der kleine Zeiger zeigt die Stunde, der große die Minute.',
   ),
 ];

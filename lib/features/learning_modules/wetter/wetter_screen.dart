@@ -76,7 +76,9 @@ class _WetterScreenState extends State<WetterScreen>
       icon: '☁️',
       color: Color(0xFF94A3B8),
       imagePrompt: 'wolke',
-      kleidung: 'Pullover',
+      // Zu Wolken allein gibt es keine eindeutig richtige Kleidung: keine
+      // Kleidungsfrage (Fachprüfung 2026-11, S-M16).
+      kleidung: '',
     ),
     _Wetter(
       name: 'Schnee',
@@ -111,7 +113,8 @@ class _WetterScreenState extends State<WetterScreen>
     MapEntry('Ein Schneemann steht im Garten', 'Schnee'),
     MapEntry('Die Sonne scheint stark', 'Sonne'),
     MapEntry('Man braucht einen Regenschirm', 'Regen'),
-    MapEntry('Es ist laut wegen dem Donner', 'Gewitter'),
+    MapEntry('Der Donner ist sehr laut', 'Gewitter'),
+    MapEntry('Der Himmel ist grau, aber es bleibt trocken', 'Wolken'),
     MapEntry('Ein Regenguss macht die Straße nass', 'Regen'),
     MapEntry('Schnee fällt in großen Flocken vom Himmel', 'Schnee'),
     MapEntry('Blitze zucken am dunklen Himmel', 'Gewitter'),
@@ -152,11 +155,12 @@ class _WetterScreenState extends State<WetterScreen>
     _round = [
       for (var weather = 0; weather < _wetterArten.length; weather++) ...[
         (kind: _WetterFrageTyp.bildErraten.index, weather: weather, hint: -1),
-        (
-          kind: _WetterFrageTyp.kleidungWaehlen.index,
-          weather: weather,
-          hint: -1
-        ),
+        if (_wetterArten[weather].kleidung.isNotEmpty)
+          (
+            kind: _WetterFrageTyp.kleidungWaehlen.index,
+            weather: weather,
+            hint: -1
+          ),
       ],
       for (var i = 0; i < _hinweise.length; i++)
         (
@@ -207,7 +211,7 @@ class _WetterScreenState extends State<WetterScreen>
       final wrong = _wetterArten
           .map((w) => w.kleidung)
           .toSet()
-          .where((k) => k != richtigeKleidung)
+          .where((k) => k.isNotEmpty && k != richtigeKleidung)
           .toList()
         ..shuffle(_rng);
       _kleidungOptions = [richtigeKleidung, ...wrong.take(3)]..shuffle(_rng);

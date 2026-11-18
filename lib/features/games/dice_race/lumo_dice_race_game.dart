@@ -134,7 +134,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
       String? extra;
       if (_lumoPos == _kindPos && _lumoPos != _goal && _kindPos != 0) {
         _kindPos = 0;
-        extra = 'Oh nein - Lumo schlaegt dich zurueck zum Start!';
+        extra = 'Oh nein - Lumo schlägt dich zurück zum Start!';
       }
       _hint = extra ?? 'Lumo würfelt $roll.';
       setState(() {});

@@ -104,7 +104,7 @@ class LetterTemplates {
         [Offset(50, 10), Offset(80, 90)],
         [Offset(30, 60), Offset(70, 60)],
       ],
-      description: 'A wie Apfel - zwei schraege Striche und ein Querstrich!',
+      description: 'A wie Apfel - zwei schräge Striche und ein Querstrich!',
     ),
     'E': LetterTemplate(
       letter: 'E',
@@ -216,7 +216,7 @@ class LetterTemplates {
       demoStrokes: [
         [Offset(25, 10), Offset(25, 90), Offset(80, 90)],
       ],
-      description: 'L wie Loewe - ein Strich runter und einer nach rechts!',
+      description: 'L wie Löwe - ein Strich runter und einer nach rechts!',
     ),
     'S': LetterTemplate(
       letter: 'S',
@@ -260,7 +260,7 @@ class LetterTemplates {
           Offset(80, 10),
         ],
       ],
-      description: 'N wie Nase - rauf, schraeg runter, wieder rauf!',
+      description: 'N wie Nase - rauf, schräg runter, wieder rauf!',
     ),
     'H': LetterTemplate(
       letter: 'H',
@@ -279,7 +279,7 @@ class LetterTemplates {
         [Offset(80, 10), Offset(80, 90)],
         [Offset(20, 50), Offset(80, 50)],
       ],
-      description: 'H wie Haus - zwei Striche und eine Bruecke!',
+      description: 'H wie Haus - zwei Striche und eine Brücke!',
     ),
     'B': LetterTemplate(
       letter: 'B',
@@ -295,7 +295,7 @@ class LetterTemplates {
         [Offset(20, 10), Offset(65, 25), Offset(65, 45), Offset(20, 50)],
         [Offset(20, 50), Offset(70, 65), Offset(70, 85), Offset(20, 90)],
       ],
-      description: 'B wie Ball - Strich runter, dann zwei Baeuche!',
+      description: 'B wie Ball - Strich runter, dann zwei Bäuche!',
     ),
     'C': LetterTemplate(
       letter: 'C',
@@ -327,7 +327,7 @@ class LetterTemplates {
         [Offset(20, 10), Offset(20, 90)],
         [Offset(20, 10), Offset(70, 30), Offset(75, 60), Offset(20, 90)],
       ],
-      description: 'D wie Dackel - Strich runter, dann ein grosser Bauch!',
+      description: 'D wie Dackel - Strich runter, dann ein großer Bauch!',
     ),
     'F': LetterTemplate(
       letter: 'F',
@@ -377,7 +377,7 @@ class LetterTemplates {
       demoStrokes: [
         [Offset(60, 10), Offset(60, 75), Offset(40, 90), Offset(20, 82)],
       ],
-      description: 'J wie Junge - Strich runter und unten ein Haekchen!',
+      description: 'J wie Junge - Strich runter und unten ein Häkchen!',
     ),
     'K': LetterTemplate(
       letter: 'K',
@@ -393,7 +393,7 @@ class LetterTemplates {
         [Offset(20, 50), Offset(75, 10)],
         [Offset(20, 50), Offset(75, 90)],
       ],
-      description: 'K wie Katze - Strich runter und zwei schraege Striche!',
+      description: 'K wie Katze - Strich runter und zwei schräge Striche!',
     ),
     'P': LetterTemplate(
       letter: 'P',
@@ -429,7 +429,7 @@ class LetterTemplates {
         ],
         [Offset(65, 70), Offset(90, 95)],
       ],
-      description: 'Q wie Quark - ein Kreis mit einem Schwaenzchen!',
+      description: 'Q wie Quark - ein Kreis mit einem Schwänzchen!',
     ),
     'R': LetterTemplate(
       letter: 'R',
@@ -473,7 +473,7 @@ class LetterTemplates {
       demoStrokes: [
         [Offset(15, 10), Offset(50, 90), Offset(85, 10)],
       ],
-      description: 'V wie Vogel - schraeg runter und schraeg wieder hoch!',
+      description: 'V wie Vogel - schräg runter und schräg wieder hoch!',
     ),
     'W': LetterTemplate(
       letter: 'W',
@@ -508,7 +508,7 @@ class LetterTemplates {
         [Offset(15, 10), Offset(85, 90)],
         [Offset(85, 10), Offset(15, 90)],
       ],
-      description: 'X wie Xylophon - ein Kreuz aus zwei schraegen Strichen!',
+      description: 'X wie Xylophon - ein Kreuz aus zwei schrägen Strichen!',
     ),
     'Y': LetterTemplate(
       letter: 'Y',
@@ -540,7 +540,7 @@ class LetterTemplates {
       demoStrokes: [
         [Offset(15, 10), Offset(85, 10), Offset(15, 90), Offset(85, 90)],
       ],
-      description: 'Z wie Zebra - oben quer, schraeg runter, unten quer!',
+      description: 'Z wie Zebra - oben quer, schräg runter, unten quer!',
     ),
 
     // ────────────────────────────────────────────────────────────────
@@ -575,7 +575,7 @@ class LetterTemplates {
       demoStrokes: [
         [Offset(30, 25), Offset(50, 10), Offset(50, 90)],
       ],
-      description: 'Eins - ein kleiner Schraegstrich oben, dann gerade runter!',
+      description: 'Eins - ein kleiner Schrägstrich oben, dann gerade runter!',
     ),
     '2': LetterTemplate(
       letter: '2',
@@ -596,7 +596,7 @@ class LetterTemplates {
           Offset(80, 90)
         ],
       ],
-      description: 'Zwei - oben einen Bogen, dann schraeg runter, unten quer!',
+      description: 'Zwei - oben einen Bogen, dann schräg runter, unten quer!',
     ),
     '3': LetterTemplate(
       letter: '3',
@@ -618,7 +618,7 @@ class LetterTemplates {
           Offset(25, 75)
         ],
       ],
-      description: 'Drei - zwei Boegen rechts!',
+      description: 'Drei - zwei Bögen rechts!',
     ),
     '4': LetterTemplate(
       letter: '4',
@@ -633,7 +633,7 @@ class LetterTemplates {
         [Offset(25, 10), Offset(25, 60), Offset(80, 60)],
         [Offset(60, 10), Offset(60, 90)],
       ],
-      description: 'Vier - schraeg runter, quer, dann gerade runter!',
+      description: 'Vier - schräg runter, quer, dann gerade runter!',
     ),
     '5': LetterTemplate(
       letter: '5',
@@ -657,7 +657,7 @@ class LetterTemplates {
           Offset(25, 85)
         ],
       ],
-      description: 'Fuenf - oben quer, runter, dann ein Bogen!',
+      description: 'Fünf - oben quer, runter, dann ein Bogen!',
     ),
     '6': LetterTemplate(
       letter: '6',
@@ -680,7 +680,7 @@ class LetterTemplates {
           Offset(30, 60)
         ],
       ],
-      description: 'Sechs - schraeg runter, dann ein Kreis unten!',
+      description: 'Sechs - schräg runter, dann ein Kreis unten!',
     ),
     '7': LetterTemplate(
       letter: '7',
@@ -694,7 +694,7 @@ class LetterTemplates {
       demoStrokes: [
         [Offset(20, 15), Offset(80, 15), Offset(35, 90)],
       ],
-      description: 'Sieben - oben quer, dann schraeg runter!',
+      description: 'Sieben - oben quer, dann schräg runter!',
     ),
     '8': LetterTemplate(
       letter: '8',
@@ -722,7 +722,7 @@ class LetterTemplates {
           Offset(50, 10)
         ],
       ],
-      description: 'Acht - zwei Kreise uebereinander!',
+      description: 'Acht - zwei Kreise übereinander!',
     ),
     '9': LetterTemplate(
       letter: '9',
@@ -745,7 +745,7 @@ class LetterTemplates {
         ],
         [Offset(70, 50), Offset(60, 90)],
       ],
-      description: 'Neun - ein Kreis oben, dann schraeg runter!',
+      description: 'Neun - ein Kreis oben, dann schräg runter!',
     ),
 
     // ────────────────────────────────────────────────────────────────
@@ -1243,7 +1243,7 @@ class LetterTemplates {
       demoStrokes: [
         [Offset(25, 45), Offset(50, 90), Offset(75, 45)],
       ],
-      description: 'v - zwei schraege Striche die unten zusammentreffen!',
+      description: 'v - zwei schräge Striche, die unten zusammentreffen!',
     ),
     'w': LetterTemplate(
       letter: 'w',
@@ -1264,7 +1264,7 @@ class LetterTemplates {
           Offset(85, 45)
         ],
       ],
-      description: 'w wie Wal - vier schraege Striche, zwei v!',
+      description: 'w wie Wal - vier schräge Striche, zwei v!',
     ),
     'x': LetterTemplate(
       letter: 'x',
@@ -1278,7 +1278,7 @@ class LetterTemplates {
         [Offset(25, 45), Offset(75, 90)],
         [Offset(75, 45), Offset(25, 90)],
       ],
-      description: 'x - zwei schraege Striche, kreuzen sich!',
+      description: 'x - zwei schräge Striche, kreuzen sich!',
     ),
     'y': LetterTemplate(
       letter: 'y',
@@ -1308,7 +1308,7 @@ class LetterTemplates {
       demoStrokes: [
         [Offset(25, 45), Offset(75, 45), Offset(25, 90), Offset(75, 90)],
       ],
-      description: 'z wie Zebra - oben quer, schraeg runter, unten quer!',
+      description: 'z wie Zebra - oben quer, schräg runter, unten quer!',
     ),
   };
 
@@ -1870,7 +1870,7 @@ class WritingFeedbackEngine {
         msg = 'Versuch es runder zu zeichnen! ${template.description}';
         break;
       case WritingAnalysisIssue.diagonaleFehlt:
-        msg = 'Da fehlt ein schraeger Strich. ${template.description}';
+        msg = 'Da fehlt ein schräger Strich. ${template.description}';
         break;
       case WritingAnalysisIssue.zuVieleStrokes:
         msg = 'Das sind zu viele Striche. ${template.description}';

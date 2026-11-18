@@ -84,9 +84,13 @@ void main() {
     expect(guard.validate(task), isTrue);
   });
 
-  test('accepts spoken final t in Hund despite written final d', () {
-    const task = LumoTask(
-      id: 'good_end_sound_hund',
+  // Fachprüfung 2026-11 (D-S2): Dieser Test verlangte früher, dass „Hund“
+  // als Wort mit Endlaut t gilt. Das Wort steht geschrieben da und wird mit d
+  // geschrieben; die Aufgabe übte „Hunt“ ein. Solche Aufgaben werden jetzt
+  // abgewiesen, Wörter ohne Auslautverhärtung bleiben gültig.
+  test('rejects Hund as a word ending in t, accepts Heft', () {
+    const hund = LumoTask(
+      id: 'bad_end_sound_hund',
       grade: 1,
       subject: 'Deutsch',
       unit: 'Endlaute',
@@ -95,8 +99,20 @@ void main() {
       answer: 'Hund',
       explanation: 'Sprich jedes Wort langsam.',
     );
+    expect(guard.validate(hund), isFalse);
+    expect(guard.problems(hund), contains('answer_wrong_ending'));
 
-    expect(guard.validate(task), isTrue);
+    const heft = LumoTask(
+      id: 'good_end_sound_heft',
+      grade: 1,
+      subject: 'Deutsch',
+      unit: 'Endlaute',
+      prompt: 'Welches Wort endet mit t?',
+      choices: <String>['Hase', 'Mama', 'Heft'],
+      answer: 'Heft',
+      explanation: 'Sprich jedes Wort langsam.',
+    );
+    expect(guard.validate(heft), isTrue);
   });
 
   test('accepts generated final-sound letter question', () {

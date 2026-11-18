@@ -53,7 +53,7 @@ class WritingWordBank {
       id: 'w1_mama',
       word: 'Mama',
       spokenPrompt: 'Schreib das Wort Mama!',
-      hint: 'Mama beginnt mit M wie M wie Mond.',
+      hint: 'Mama beginnt mit M wie Mond.',
     ),
     WritingWordTask(
       id: 'w1_papa',
@@ -77,7 +77,7 @@ class WritingWordBank {
       id: 'w1_haus',
       word: 'Haus',
       spokenPrompt: 'Schreib das Wort Haus!',
-      hint: 'Haus beginnt mit H - zwei Striche und eine Bruecke.',
+      hint: 'Haus beginnt mit H - zwei Striche und eine Brücke.',
     ),
     WritingWordTask(
       id: 'w1_hase',

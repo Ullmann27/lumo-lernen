@@ -465,8 +465,8 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Heft loeschen?'),
-        content: Text('"${s.story.title}" wirklich loeschen?'),
+        title: const Text('Heft löschen?'),
+        content: Text('"${s.story.title}" wirklich löschen?'),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(ctx),

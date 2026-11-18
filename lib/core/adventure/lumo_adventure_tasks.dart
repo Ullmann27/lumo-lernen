@@ -727,17 +727,16 @@ class LumoAdventureTasks {
     final flip = _random.nextBool();
     final shown = flip ? pair[1] : pair[0];
     final answer = flip ? pair[0] : pair[1];
-    final hero = _hero();
+    final sentence = flip ? pair[2] : pair[3];
     final others = adventureOpposites
-        .expand((p) => p)
+        .expand((p) => p.take(2))
         .where((w) => w != answer && w != shown)
         .toList()
       ..shuffle(_random);
     return AdventureTask(
       subject: 'Deutsch',
       unit: 'Gegenteil-Geschichten',
-      prompt: 'Verkehrte Welt! $hero ist heute gar nicht $shown – '
-          '$hero ist genau das Gegenteil. Was ist $hero?',
+      prompt: '$sentence\nWelches Wort ist das Gegenteil von „$shown“?',
       answer: answer,
       choices: _choicesWith(answer, others),
       explanation: 'Das Gegenteil von $shown ist $answer.',
@@ -765,7 +764,6 @@ class LumoAdventureTasks {
     final wrong = [
       for (final other in adventureCompounds)
         if (other != item) '${other[0]} + ${base.split(' ').last}',
-      '${base.split(' ').last} + ${item[0]}',
     ]..shuffle(_random);
     return AdventureTask(
       subject: 'Deutsch',
@@ -858,13 +856,18 @@ class LumoAdventureTasks {
     return AdventureTask(
       subject: 'Sachunterricht',
       unit: 'Wer bin ich?',
-      prompt: 'Wer bin ich? ${riddle[1]} ${riddle[2]} ${riddle[3]}',
+      prompt: '${_riddleQuestion(riddle[5])} ${riddle[1]} ${riddle[2]} ${riddle[3]}',
       answer: riddle[0],
       choices: _choicesWith(riddle[0], others),
-      explanation: 'Gut geraten: Das ist ${riddle[0]}! ${riddle[3]}',
+      explanation: 'Das ist ${riddle[0]}! ${riddle[3]}',
       visual: 'science',
     );
   }
+
+  /// Menschen und Tiere fragen „Wer bin ich?“, Dinge, Naturerscheinungen und
+  /// Körperteile „Was bin ich?“.
+  String _riddleQuestion(String group) =>
+      group == 'Tier' || group == 'Beruf' ? 'Wer bin ich?' : 'Was bin ich?';
 
   AdventureTask _calendar(int g) {
     final kind = _random.nextInt(g == 1 ? 2 : 4);
@@ -915,17 +918,20 @@ class LumoAdventureTasks {
       );
     }
     const seasons = ['Winter', 'Frühling', 'Sommer', 'Herbst'];
-    // Jänner/Februar Winter, März–Mai Frühling, Juni–August Sommer,
-    // September–November Herbst, Dezember Winter (meteorologisch).
-    final season = seasons[((month + 1) % 12) ~/ 3];
+    // Jänner/Februar Winter, April/Mai Frühling, Juli/August Sommer,
+    // Oktober/November Herbst. März, Juni, September und Dezember werden
+    // nicht gefragt: Dort wechselt die Jahreszeit nach dem Kalender erst um
+    // den 21., die Antwort wäre je nach Zählweise strittig.
+    final asked = month % 3 == 2 ? (month + 1) % 12 : month;
+    final season = seasons[((asked + 1) % 12) ~/ 3];
     return AdventureTask(
       subject: 'Sachunterricht',
       unit: 'Monate und Wochentage',
-      prompt: 'In welcher Jahreszeit liegt der ${adventureMonths[month]} bei uns '
-          'in Österreich meistens?',
+      prompt: 'In welcher Jahreszeit liegt der ${adventureMonths[asked]} bei uns '
+          'in Österreich?',
       answer: season,
       choices: _shuffle([...seasons]),
-      explanation: 'Der ${adventureMonths[month]} gehört meistens zum $season.',
+      explanation: 'Der ${adventureMonths[asked]} gehört zum $season.',
       visual: 'science',
     );
   }

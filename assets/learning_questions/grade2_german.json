@@ -278,9 +278,9 @@
     "prompt": "Was reimt sich auf Haus?",
     "options": [
       "Maus",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Hund",
+      "Buch",
+      "Tisch"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -289,9 +289,9 @@
     "prompt": "Was reimt sich auf Ball?",
     "options": [
       "Fall",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Baum",
+      "Bild",
+      "Bett"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -300,9 +300,9 @@
     "prompt": "Was reimt sich auf Sonne?",
     "options": [
       "Tonne",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Sand",
+      "Suppe",
+      "Salz"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -311,9 +311,9 @@
     "prompt": "Was reimt sich auf Hase?",
     "options": [
       "Nase",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Hund",
+      "Heft",
+      "Hut"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -322,9 +322,9 @@
     "prompt": "Was reimt sich auf Buch?",
     "options": [
       "Tuch",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Bach",
+      "Baum",
+      "Brot"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -333,9 +333,9 @@
     "prompt": "Was reimt sich auf Kind?",
     "options": [
       "Wind",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Kamm",
+      "Korb",
+      "Kuh"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -344,9 +344,9 @@
     "prompt": "Was reimt sich auf Schule?",
     "options": [
       "Kuhle",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Schere",
+      "Schaf",
+      "Schuh"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -355,9 +355,9 @@
     "prompt": "Was reimt sich auf Baum?",
     "options": [
       "Raum",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Bein",
+      "Bus",
+      "Berg"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -366,9 +366,9 @@
     "prompt": "Was reimt sich auf Licht?",
     "options": [
       "Gesicht",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Lampe",
+      "Luft",
+      "Löffel"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -377,9 +377,9 @@
     "prompt": "Was reimt sich auf Hand?",
     "options": [
       "Sand",
-      "Katze",
-      "Auto",
-      "Blume"
+      "Hund",
+      "Haus",
+      "Heft"
     ],
     "correctIndex": 0,
     "hint": "Reime klingen am Ende gleich."
@@ -495,58 +495,58 @@
     "hint": "Sie tickt."
   },
   {
-    "prompt": "Was reimt sich auf Haus?",
+    "prompt": "Wie heißt die Mehrzahl von „Baum“?",
     "options": [
-      "Maus",
-      "Hund",
-      "Ball",
-      "Stern"
+      "Bäume",
+      "Baums",
+      "Baumen",
+      "Bäumer"
     ],
     "correctIndex": 0,
-    "hint": "Hör auf das Ende."
+    "hint": "Ein Baum, viele …"
   },
   {
-    "prompt": "Was reimt sich auf Haus?",
+    "prompt": "Welches Wort ist ein Tunwort?",
     "options": [
-      "Maus",
-      "Hund",
-      "Ball",
-      "Stern"
+      "laufen",
+      "Schule",
+      "schnell",
+      "Tisch"
     ],
     "correctIndex": 0,
-    "hint": "Hör auf das Ende."
+    "hint": "Tunwörter sagen, was jemand macht."
   },
   {
-    "prompt": "Was reimt sich auf Haus?",
+    "prompt": "Was ist das Gegenteil von „hell“?",
     "options": [
-      "Maus",
-      "Hund",
-      "Ball",
-      "Stern"
+      "dunkel",
+      "laut",
+      "weich",
+      "rund"
     ],
     "correctIndex": 0,
-    "hint": "Hör auf das Ende."
+    "hint": "In der Nacht ist es nicht hell."
   },
   {
-    "prompt": "Was reimt sich auf Haus?",
+    "prompt": "Welcher Begleiter passt zu „Fenster“?",
     "options": [
-      "Maus",
-      "Hund",
-      "Ball",
-      "Stern"
+      "das",
+      "der",
+      "die",
+      "den"
     ],
     "correctIndex": 0,
-    "hint": "Hör auf das Ende."
+    "hint": "Sprich Begleiter und Wort zusammen."
   },
   {
-    "prompt": "Was reimt sich auf Haus?",
+    "prompt": "Welches Wort ist ein Wiewort?",
     "options": [
-      "Maus",
-      "Hund",
-      "Ball",
-      "Stern"
+      "fröhlich",
+      "Freude",
+      "freuen",
+      "Freund"
     ],
     "correctIndex": 0,
-    "hint": "Hör auf das Ende."
+    "hint": "Wiewörter sagen, wie etwas ist."
   }
 ]

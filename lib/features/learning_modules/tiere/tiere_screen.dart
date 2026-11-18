@@ -35,10 +35,16 @@ class _Tier {
     required this.laut,
     required this.lebensraum,
     required this.emoji,
+    this.auchZuSehen = const <String>[],
   });
   final String name;
   final String laut;
   final String lebensraum;
+
+  /// Orte, an denen man das Tier ebenfalls oft sieht. Sie werden bei der
+  /// Ortsfrage nicht angeboten, damit nur eine Antwort richtig ist
+  /// (Enten, Hunde und Katzen leben auch am Bauernhof).
+  final List<String> auchZuSehen;
 
   /// Sichtbares Emoji als Fallback wenn Pollinations-Bild nicht laedt.
   /// Heinz' Wunsch: keine generischen Pfoten mehr, sondern echte Tier-Emojis.
@@ -64,13 +70,28 @@ class _TiereScreenState extends State<TiereScreen>
   // 12 Tiere fuer Quiz - alle in der Allowlist - mit echten Tier-Emojis
   static const List<_Tier> _tiere = [
     _Tier(name: 'Kuh', laut: 'Muh', lebensraum: 'Bauernhof', emoji: '🐄'),
-    _Tier(name: 'Hund', laut: 'Wau Wau', lebensraum: 'Zuhause', emoji: '🐶'),
-    _Tier(name: 'Katze', laut: 'Miau', lebensraum: 'Zuhause', emoji: '🐱'),
+    _Tier(
+        name: 'Hund',
+        laut: 'Wau Wau',
+        lebensraum: 'Zuhause',
+        emoji: '🐶',
+        auchZuSehen: ['Bauernhof']),
+    _Tier(
+        name: 'Katze',
+        laut: 'Miau',
+        lebensraum: 'Zuhause',
+        emoji: '🐱',
+        auchZuSehen: ['Bauernhof']),
     _Tier(name: 'Schaf', laut: 'Mäh', lebensraum: 'Bauernhof', emoji: '🐑'),
     _Tier(name: 'Pferd', laut: 'Wieher', lebensraum: 'Bauernhof', emoji: '🐴'),
     _Tier(
         name: 'Huhn', laut: 'Gack Gack', lebensraum: 'Bauernhof', emoji: '🐔'),
-    _Tier(name: 'Ente', laut: 'Quak', lebensraum: 'See', emoji: '🦆'),
+    _Tier(
+        name: 'Ente',
+        laut: 'Quak',
+        lebensraum: 'See',
+        emoji: '🦆',
+        auchZuSehen: ['Bauernhof']),
     _Tier(name: 'Frosch', laut: 'Quak Quak', lebensraum: 'See', emoji: '🐸'),
     _Tier(name: 'Löwe', laut: 'Brüll', lebensraum: 'Zoo', emoji: '🦁'),
     _Tier(name: 'Elefant', laut: 'Tröt', lebensraum: 'Zoo', emoji: '🐘'),
@@ -408,7 +429,8 @@ class _TiereScreenState extends State<TiereScreen>
         text = 'Welches Tier macht "${_correctTier.laut}"?';
         break;
       case _TierFrageTyp.lebensraum:
-        text = 'Wo lebt ein ${_correctTier.name}?';
+        text =
+            'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?';
         break;
     }
     return AnimatedBuilder(
@@ -524,8 +546,10 @@ class _TiereScreenState extends State<TiereScreen>
   }
 
   List<String> _buildLebensraumOptions() {
-    final all = ['Bauernhof', 'Zoo', 'See', 'Zuhause'];
-    return all;
+    const all = ['Bauernhof', 'Zoo', 'See', 'Zuhause'];
+    return all
+        .where((place) => !_correctTier.auchZuSehen.contains(place))
+        .toList();
   }
 
   Widget _buildAnswerButton(String text) {
