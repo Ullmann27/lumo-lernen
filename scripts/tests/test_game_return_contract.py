@@ -161,6 +161,68 @@ object ReturnRegression {
                     check(rejected && file.readBytes().contentEquals(original), "invalid session mutated event store")
                 }
             }
+            "start-journal" -> {
+                reward("kept-reward")
+                val utc = java.util.TimeZone.getTimeZone("UTC")
+                val start = 1_795_000_000_000L
+                fun stamp(offset: Long): String = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+                    .apply { timeZone = utc }.format(java.util.Date(start + offset))
+                check(GameStartJournal.lineTime(stamp(1234) + "  4711  4712 I godot   : x", 2026, utc) == start + 1234, "year line time")
+                check(GameStartJournal.lineTime(stamp(50).substring(5) + "  4711  4712 I godot   : x", 2026, utc) == start + 50, "threadtime line time")
+                check(GameStartJournal.lineTime("1795000000.250  4711  4712 I godot   : x", 2026, utc) == start + 250, "epoch line time")
+                val log = listOf(stamp(-60_000) + " 1 2 I godot   : [Router] loaded:run ",
+                    stamp(2_000) + " 1 2 I godot   : [Router] loaded:loading ",
+                    stamp(10_400) + " 1 2 I godot   : [Router] loaded:run ").joinToString("\n")
+                check(GameStartJournal.loadedAfterMs(log, "run", start, start + 60_000, 2026, utc) == Pair(10_400L, "run"), "exact scene load")
+                check(GameStartJournal.loadedAfterMs(log, "kart", start, start + 60_000, 2026, utc) == Pair(2_000L, "loading"), "fallback load")
+                check(GameStartJournal.loadedAfterMs(log, "run", start + 20_000, start + 60_000, 2026, utc) == null, "old load counted")
+                val first = GameStartJournal.begin(context, "run", start)
+                GameStartJournal.finish(context, first, start + 30_000, "process_ended", "resultCode=0")
+                GameStartJournal.finish(context, first, start + 40_000, "returned")
+                var entries = org.json.JSONArray(GameStartJournal.entries(context))
+                check(entries.getJSONObject(0).getString("outcome") == "process_ended", "finished twice")
+                val open = GameStartJournal.begin(context, "jump", start + 50_000, "Rest beendet")
+                GameStartJournal.begin(context, "kart", start + 60_000)
+                entries = org.json.JSONArray(GameStartJournal.entries(context))
+                check(entries.getJSONObject(1).getString("outcome") == "host_closed" &&
+                    entries.getJSONObject(1).getString("id") == open && entries.getJSONObject(1).getString("note") == "Rest beendet", "older open start")
+                for (index in 0 until 30) GameStartJournal.refused(context, "quiz", start + 70_000 + index, "game_running", "x".repeat(400))
+                entries = org.json.JSONArray(GameStartJournal.entries(context))
+                check(entries.length() == GameStartJournal.LIMIT, "journal not limited")
+                check(entries.getJSONObject(19).getString("detail").length == 200, "detail not bounded")
+                File(directory, "lumo_game_starts.json").writeText("kaputt")
+                check(org.json.JSONArray(GameStartJournal.entries(context)).length() == 0, "broken journal not dropped")
+                val run = GameStartJournal.begin(context, "run", start)
+                GameStartJournal.applyLoadTimes(context, log, start + 60_000, 2026)
+                val zoneLog = log.lineSequence().map { line ->
+                    val time = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").apply { timeZone = utc }.parse(line.substring(0, 23)).time
+                    java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(java.util.Date(time)) + line.substring(23)
+                }.joinToString("\n")
+                GameStartJournal.applyLoadTimes(context, zoneLog, start + 60_000, 2026)
+                val loaded = org.json.JSONArray(GameStartJournal.entries(context)).getJSONObject(0)
+                check(loaded.getString("id") == run && loaded.getLong("loadedAfterMs") == 10_400L && loaded.getString("loadedScene") == "run", "load time not applied")
+                check(count() == 1, "start journal touched rewards")
+            }
+            "free-writer-lock" -> {
+                reward("before-cleanup")
+                check(GameEventStore.whileNoWriter(context, 300) { "ran" } == "ran", "free lock did not run cleanup")
+                reward("after-cleanup")
+                check(count() == 2, "cleanup lock lost or blocked a reward")
+            }
+            "hold-writer-lock" -> {
+                GameEventStore.whileNoWriter(context, 1000) {
+                    println("WRITER_LOCK_HELD")
+                    System.out.flush()
+                    Thread.sleep(2500)
+                }
+            }
+            "busy-writer-lock" -> {
+                var ran = false
+                val started = System.nanoTime()
+                check(GameEventStore.whileNoWriter(context, 300) { ran = true } == null, "busy writer lock was not reported")
+                check(!ran, "leftover cleanup ran during another process's write")
+                check(System.nanoTime() - started < 2_000_000_000L, "busy lock wait exceeded its limit")
+            }
             else -> throw AssertionError("unknown scenario")
         }
         println("GAME_RETURN_STORE_PASS " + args[0])
@@ -223,8 +285,11 @@ class GameReturnStoreTest(unittest.TestCase):
         return result
 
     def scenario(self, name):
+        self.scenario_in(name, self.work / name)
+
+    def scenario_in(self, name, folder):
         result = self.run_checked([self.java, '-cp', self.classpath, 'dev.ullmann.lumo.ReturnRegression',
-                                   name, str(self.work / name)])
+                                   name, str(folder)])
         self.assertIn('GAME_RETURN_STORE_PASS ' + name, result.stdout)
         print(result.stdout.strip())
 
@@ -237,6 +302,19 @@ class GameReturnStoreTest(unittest.TestCase):
     def test_new_launch_supersedes_only_stale_navigation(self): self.scenario('new-launch-stale-navigation')
     def test_failed_commit_retains_fallback_and_explicit_reset_still_works(self): self.scenario('storage-failure-and-reset')
     def test_invalid_session_never_writes(self): self.scenario('invalid-session')
+    def test_leftover_cleanup_lock_runs_when_no_writer(self): self.scenario('free-writer-lock')
+    def test_start_journal_keeps_twenty_bounded_entries_and_derives_load_time(self): self.scenario('start-journal')
+
+    def test_leftover_cleanup_never_kills_during_another_process_write(self):
+        folder = self.work / 'shared-writer-lock'
+        holder = subprocess.Popen([self.java, '-cp', self.classpath, 'dev.ullmann.lumo.ReturnRegression',
+                                   'hold-writer-lock', str(folder)], stdout=subprocess.PIPE, text=True)
+        try:
+            self.assertEqual(holder.stdout.readline().strip(), 'WRITER_LOCK_HELD')
+            self.scenario_in('busy-writer-lock', folder)
+        finally:
+            holder.wait(timeout=30)
+            holder.stdout.close()
 
 
 class GameReturnWiringTest(unittest.TestCase):
@@ -276,6 +354,56 @@ class GameReturnWiringTest(unittest.TestCase):
         self.assertIn('postDelayed({ completeWhenStopped(attempt) }, 1000)', returned)
         destroyed = text.split('override fun onDestroy()', 1)[1]
         self.assertLess(destroyed.index('pendingGame = null'), destroyed.index('super.onDestroy()'))
+
+    def test_leftover_engine_is_ended_off_the_main_thread_before_a_fresh_start(self):
+        text = (ROOT / 'tools/auto_install/MainActivity.kt').read_text()
+        handler = text.split('"launch3D" -> {', 1)[1].split('private fun clearLeftoverEngine', 1)[0]
+        # Never start into a live engine; pending starts and running cleanups still refuse.
+        self.assertLess(handler.index('if (pendingGame != null || engineCleanupActive)'),
+                        handler.index('if (!engineProcessRunning())'))
+        self.assertLess(handler.index('if (!hostForeground)'), handler.index('clearLeftoverEngine {'))
+        self.assertIn('cleared && !isDestroyed && pendingGame == null && !engineProcessRunning()', handler)
+        self.assertEqual(handler.count('result.error("game_running"'), 3)
+        self.assertEqual(handler.count('GameStartJournal.refused(this, scene, System.currentTimeMillis(), "game_running"'), 3)
+        cleanup = text.split('private fun clearLeftoverEngine', 1)[1].split('private fun launchGame', 1)[0]
+        self.assertIn('Thread({', cleanup)
+        self.assertLess(cleanup.index('GameEventStore.whileNoWriter(context, 1000)'),
+                        cleanup.index('android.os.Process.killProcess(it.pid)'))
+        self.assertLess(cleanup.index('IMPORTANCE_VISIBLE'), cleanup.index('killProcess'))
+        self.assertIn('waited < 3000', cleanup)
+        self.assertIn('main.post { done(cleared) }', cleanup)
+        self.assertNotIn('myPid', cleanup)
+        self.assertIn('hostForeground = true', text.split('override fun onResume()', 1)[1].split('override fun onPause()', 1)[0])
+        self.assertIn('hostForeground = false', text.split('override fun onPause()', 1)[1].split('override fun onRequestPermissionsResult', 1)[0])
+        self.assertIn('Engine globals need a fresh process', text.split('override fun onActivityResult', 1)[1])
+
+    def test_start_protocol_is_local_bounded_and_never_on_the_main_thread(self):
+        text = (ROOT / 'tools/auto_install/MainActivity.kt').read_text()
+        log_call = text.split('"gameStartLog" -> {', 1)[1].split('else -> result.notImplemented()', 1)[0]
+        self.assertLess(log_call.index('Thread({'), log_call.index('readOwnLog()'))
+        self.assertIn('main.post {', log_call)
+        self.assertIn('takeLast(400)', log_call)
+        reader = text.split('private fun readOwnLog', 1)[1].split('private fun refreshLoadTimes', 1)[0]
+        self.assertIn('"logcat", "-d"', reader)
+        self.assertIn('reader.join(5000)', reader)
+        self.assertIn('process.destroy()', reader)
+        # minSdk 24: Process.waitFor(timeout)/isAlive brauchen API 26.
+        self.assertNotIn('process.waitFor(', reader)
+        self.assertNotIn('process.isAlive', reader)
+        self.assertIn('listOf("godot", "Godot", "LumoHost", "AndroidRuntime", "DEBUG", "libc")', text)
+        device = text.split('private fun startProtocolDevice', 1)[1].split('override fun configureFlutterEngine', 1)[0]
+        for field in ('Build.MODEL', 'Build.VERSION.RELEASE', 'versionName', 'lumo_game_source.json', 'availMem'):
+            self.assertIn(field, device)
+        launch = text.split('private fun launchGame', 1)[1].split('override fun onActivityResult', 1)[0]
+        self.assertLess(launch.index('GameStartJournal.begin(this, game'), launch.index('startActivityForResult'))
+        self.assertIn('"exception", detail', launch)
+        self.assertEqual(launch.count('refuse("invalid_'), 4)
+        returned = text.split('override fun onActivityResult', 1)[1].split('override fun onResume', 1)[0]
+        self.assertLess(returned.index('GameStartJournal.finish'), returned.index('completeWhenStopped(0)'))
+        self.assertIn('Thread({ try { refreshLoadTimes(readOwnLog()) }', returned)
+        # Nur eigenes Log lesen: keine neue Berechtigung, kein Netzwerk.
+        for name in ('READ_LOGS', 'HttpURLConnection', 'Socket('):
+            self.assertNotIn(name, text)
 
 
 if __name__ == '__main__':

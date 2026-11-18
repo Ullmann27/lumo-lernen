@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../lumo3d/native_game_saves_screen.dart';
+import '../lumo3d/native_game_start_log_screen.dart';
 
 /// This optional entry belongs only to the existing adult settings area.
 class NativeGameSavesCard extends StatelessWidget {
@@ -45,6 +46,18 @@ class NativeGameSavesCard extends StatelessWidget {
                 ),
                 icon: const Icon(Icons.save_outlined),
                 label: const Text('Spielstände verwalten'),
+              ),
+              const SizedBox(height: 10),
+              OutlinedButton.icon(
+                key: const ValueKey('native-game-start-log-open'),
+                style: OutlinedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(48)),
+                onPressed: () => Navigator.of(context).push<void>(
+                  MaterialPageRoute<void>(
+                      builder: (_) => const NativeGameStartLogScreen()),
+                ),
+                icon: const Icon(Icons.receipt_long_outlined),
+                label: const Text('Spiel-Startprotokoll'),
               ),
             ],
           ),

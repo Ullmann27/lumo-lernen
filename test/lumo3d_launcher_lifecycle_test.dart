@@ -346,7 +346,26 @@ void main() {
         .map((text) => text.data ?? '')
         .join(' ');
     expect(notices, contains('bereits'));
+    expect(notices, contains('Details im Elternbereich → Spiel-Startprotokoll'));
     expect(notices, isNot(contains('schließe Lumo')));
+  });
+
+  launcherTestWidgets('failed native start points to the start protocol', (
+    tester,
+  ) async {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(_bridge, (_) async {
+          throw PlatformException(code: 'game_unavailable');
+        });
+    final context = await _mount(tester);
+    expect(await launchLumo3D(context), isFalse);
+    await tester.pump();
+    final notices = tester
+        .widgetList<Text>(find.byType(Text))
+        .map((text) => text.data ?? '')
+        .join(' ');
+    expect(notices, contains('Das Spiel konnte nicht starten.'));
+    expect(notices, contains('Details im Elternbereich → Spiel-Startprotokoll'));
   });
 
   launcherTestWidgets('native failure releases lock for a later retry', (

@@ -45,7 +45,8 @@ class StudioLearningHostTest(unittest.TestCase):
             accepted_kinds = set(re.findall(r'"([^"]+)"', admission[1]))
             self.assertTrue(descriptor_kinds.issubset(accepted_kinds),
                             f"Android rejects actual Flutter descriptors: {descriptor_kinds - accepted_kinds}")
-            self.assertIn('result.error("invalid_learning"', prepared)
+            self.assertIn('refuse("invalid_learning"', prepared)
+            self.assertIn('result.error(code, message, null)', prepared)
             self.assertIn('val descriptor = JSONObject(learning)', prepared)
             self.assertIn('descriptor.put("scope", scope)', prepared)
             self.assertIn('options.put("learning", descriptor)', prepared)
