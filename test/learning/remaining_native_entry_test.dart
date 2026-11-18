@@ -115,6 +115,8 @@ Future<LumoAppState> _mount(WidgetTester tester, String kind) async {
           lessonGrade: 1,
           subject: 'Mathematik',
           unit: 'Plus bis 10',
+          // Fixed task with two real addends: "5 + 0" has no 3D picture.
+          taskSeed: 1,
           appState: app);
     } else if (kind == 'story') {
       child = LumoStoryReaderScreen(story: _story, appState: app);

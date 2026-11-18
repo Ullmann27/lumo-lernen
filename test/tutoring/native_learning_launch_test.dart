@@ -65,6 +65,9 @@ Future<void> _frames(WidgetTester tester, [int count = 20]) async {
   }
 }
 
+/// Opens a "Plus bis 10" task whose two addends are both at least 1.
+const int _illustratedTaskSeed = 1;
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final calls = <MethodCall>[];
@@ -420,6 +423,53 @@ void main() {
     }
   });
 
+  testWidgets('a sum with zero offers no 3D picture and stays usable',
+      (tester) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    LumoAppState? app;
+    try {
+      await tester.binding.setSurfaceSize(const Size(690, 1000));
+      await tester.runAsync(() async {
+        app = LumoAppState(walletRepository: RewardWalletRepository());
+        app!.update(app!.state.copyWith(
+            grade: 1,
+            subject: 'Mathematik',
+            unit: 'Plus bis 10',
+            sessionKind: LumoSessionKind.quickPractice,
+            section: LumoSection.learn));
+        await app!.school.setActiveStudent('native-zero-child');
+        await app!.hydrateFromWallet();
+        await app!.loadLearningProfile();
+        app!.updateSettings(const AppSettings(
+            voiceEnabled: false, autoReadEnabled: false, reduceAnimations: true));
+      });
+      // Seed 0 opens "5 + 0 = ?": the 3D activity lets the child place the
+      // second addend, and there is nothing to place for zero.
+      await tester.pumpWidget(MaterialApp(
+          home: Scaffold(
+              body: LearningContent(appState: app!, taskSeed: 0))));
+      await _frames(tester, 40);
+      final task = tester
+          .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))
+          .task;
+      expect(task.prompt, matches(RegExp(r'\+ 0\b')),
+          reason: 'Seed 0 must open a sum with zero; it opened '
+              '"${task.prompt}".');
+      expect(NativeLearningActivity.fromTask(task), isNull);
+      expect(find.byKey(const ValueKey('adaptive-open-3d')), findsNothing,
+          reason: 'No 3D action is offered when there is no 3D picture.');
+      expect(task.options, isNotEmpty,
+          reason: 'The task itself stays answerable.');
+      expect(tester.takeException(), isNull);
+    } finally {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      app?.dispose();
+      await tester.binding.setSurfaceSize(null);
+      debugDefaultTargetPlatformOverride = null;
+    }
+  });
+
   for (final kind in [
     LumoSessionKind.quickPractice,
     LumoSessionKind.schoolwork
@@ -446,14 +496,21 @@ void main() {
               autoReadEnabled: false,
               reduceAnimations: true));
         });
-        await tester.pumpWidget(
-            MaterialApp(home: Scaffold(body: LearningContent(appState: app!))));
+        // Fixed task choice: since "Plus bis 10" also practises sums with
+        // zero (5 + 0), not every task has a 3D picture - nothing can be
+        // placed for "+ 0". This seed opens a task with two real addends.
+        await tester.pumpWidget(MaterialApp(
+            home: Scaffold(
+                body: LearningContent(
+                    appState: app!, taskSeed: _illustratedTaskSeed))));
         await _frames(tester, 40);
         final task = tester
             .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))
             .task;
         final descriptor = NativeLearningActivity.fromTask(task);
-        expect(descriptor, isNotNull);
+        expect(descriptor, isNotNull,
+            reason: 'Seed $_illustratedTaskSeed must open a task with a 3D '
+                'picture; it opened "${task.prompt}".');
         final action = find.byKey(const ValueKey('adaptive-open-3d'));
         if (kind == LumoSessionKind.schoolwork) {
           expect(action, findsNothing,

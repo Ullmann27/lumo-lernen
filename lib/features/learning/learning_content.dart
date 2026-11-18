@@ -102,11 +102,15 @@ class LearningContent extends StatefulWidget {
     this.aiProxy = const LumoAiProxyClient(),
     this.voice,
     this.conversationEntry,
+    this.taskSeed,
   });
   final LumoAppState appState;
   final LumoAiProxyClient aiProxy;
   final LumoVoice? voice;
   final LearningConversationEntry? conversationEntry;
+
+  /// Fester Startwert der Aufgabenauswahl für Prüfungen; im Betrieb leer.
+  final int? taskSeed;
 
   @override
   State<LearningContent> createState() => _LearningContentState();
@@ -114,7 +118,7 @@ class LearningContent extends StatefulWidget {
 
 class _LearningContentState extends State<LearningContent>
     with WidgetsBindingObserver {
-  final _factory = ExerciseFactory();
+  late final _factory = ExerciseFactory(seed: widget.taskSeed);
   final _adapter = const LegacyLumoTaskAdapter();
   final _resultHandler = const SkillStateUpdater();
   final _rewardEngine = const RewardEngine();
