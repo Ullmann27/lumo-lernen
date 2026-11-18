@@ -405,53 +405,56 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           ),
         ),
         if (widget.allowRetry && !_solved && !widget.guided)
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: OutlinedButton.icon(
-                key: const ValueKey('lesson-hint-button'),
-                icon: const Icon(Icons.lightbulb_rounded),
-                label: Text(
-                  _showGentleHint ? 'Anders erklären' : 'Tipp von Lumo',
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: const Color(0xFFFFD36A),
-                  minimumSize: const Size(48, 48),
-                  side: const BorderSide(color: Color(0xB3FFDA7B)),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 13,
-                  ),
-                ),
-                onPressed: () {
-                  setState(() {
-                    _showGentleHint = true;
-                    _localHelpLevel = (_localHelpLevel + 1).clamp(1, 3);
-                  });
-                  widget.onInteraction?.call(
-                    TaskWorkspaceInteraction(
-                      taskId: task.taskInstanceId,
-                      objectId: 'task-workspace',
-                      action: 'requestHelp',
-                      visibleState: {
-                        ..._workspaceState,
-                        'helpLevel': _helpLevel,
-                      },
-                      explanation: _workspaceExplanation ??
-                          InteractiveTaskWorkspace.goalFor(task),
-                      isHelp: true,
+          LumoStageTarget(
+              id: 'lesson-hint',
+              kind: LumoStageRegionKind.control,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: OutlinedButton.icon(
+                    key: const ValueKey('lesson-hint-button'),
+                    icon: const Icon(Icons.lightbulb_rounded),
+                    label: Text(
+                      _showGentleHint ? 'Anders erklären' : 'Tipp von Lumo',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
-                  );
-                },
-              ),
-            ),
-          ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: const Color(0xFFFFD36A),
+                      minimumSize: const Size(48, 48),
+                      side: const BorderSide(color: Color(0xB3FFDA7B)),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 13,
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _showGentleHint = true;
+                        _localHelpLevel = (_localHelpLevel + 1).clamp(1, 3);
+                      });
+                      widget.onInteraction?.call(
+                        TaskWorkspaceInteraction(
+                          taskId: task.taskInstanceId,
+                          objectId: 'task-workspace',
+                          action: 'requestHelp',
+                          visibleState: {
+                            ..._workspaceState,
+                            'helpLevel': _helpLevel,
+                          },
+                          explanation: _workspaceExplanation ??
+                              InteractiveTaskWorkspace.goalFor(task),
+                          isHelp: true,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              )),
         if (widget.allowRetry && _helpLevel > 0 && !_solved && !widget.guided)
           Padding(
             padding: const EdgeInsets.only(top: 12),

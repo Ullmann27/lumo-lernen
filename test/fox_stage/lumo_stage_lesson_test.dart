@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/core/lumo_speech_listener.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/learning/learning_content.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
@@ -19,8 +20,42 @@ import 'placeholder_actors.dart';
 /// Bilder nur, wenn ein Zielordner gesetzt ist (z. B. für die Sichtprüfung).
 final _captureDir = Platform.environment['LUMO_STAGE_CAPTURE_DIR'];
 
+/// Ersatz für die Spracherkennung auf dem Gerät.
+class _FakeSpeech extends LumoSpeechListener {
+  _FakeSpeech() : super(isAndroid: false, stopPlayback: () async {});
+  ValueChanged<String>? _final;
+  bool active = false;
+  int starts = 0;
+  @override
+  bool get listening => active;
+  @override
+  bool get available => true;
+  @override
+  Future<bool> initialize() async => true;
+  @override
+  Future<void> startListening(
+      {ValueChanged<String>? onResult,
+      ValueChanged<String>? onFinalResult,
+      VoidCallback? onNoMatch}) async {
+    starts++;
+    active = true;
+    _final = onFinalResult;
+    notifyListeners();
+  }
+
+  void say(String text) {
+    active = false;
+    _final?.call(text);
+  }
+
+  @override
+  Future<void> cancel() async => active = false;
+}
+
 Future<LumoAppState> _mount(WidgetTester tester, Size size,
-    {bool reduceAnimations = false}) async {
+    {bool reduceAnimations = false,
+    bool microphone = false,
+    LumoSpeechListener? speech}) async {
   SharedPreferences.setMockInitialValues({});
   LumoVoice.instance.isEnabled = false;
   final bus = LumoCompanionRequests.instance;
@@ -29,9 +64,11 @@ Future<LumoAppState> _mount(WidgetTester tester, Size size,
   final app = LumoAppState();
   await app.school.setActiveStudent('stage-child');
   await app.loadLearningProfile();
+  await app.ensureSettingsLoaded();
   app.updateSettings(AppSettings(
       voiceEnabled: false,
       autoReadEnabled: false,
+      microphoneEnabled: microphone,
       reduceAnimations: reduceAnimations));
   app.update(app.state.copyWith(
       subject: 'Mathematik',
@@ -46,7 +83,8 @@ Future<LumoAppState> _mount(WidgetTester tester, Size size,
         key: const ValueKey('capture'),
         child: AnimatedBuilder(
           animation: app,
-          builder: (_, __) => LearningContent(appState: app, taskSeed: 7),
+          builder: (_, __) => LearningContent(
+              appState: app, taskSeed: 7, speechListener: speech),
         ),
       ),
     ),
@@ -197,5 +235,70 @@ void main() {
     LumoActorLibrary.debugReset();
     await _mount(tester, const Size(412, 915));
     expect(find.byKey(const ValueKey('lumo-actor-stage')), findsNothing);
+  });
+
+  testWidgets('Zuhören nur mit Freigabe: ohne Mikrofon kein „Frag Lumo“',
+      (tester) async {
+    final speech = _FakeSpeech();
+    await _mount(tester, const Size(412, 915), speech: speech);
+    await _pumpFor(tester, const Duration(milliseconds: 300));
+    expect(find.byKey(const ValueKey('learning-ask-lumo')), findsNothing);
+    expect(find.widgetWithText(OutlinedButton, 'Hilf mir'), findsOneWidget);
+    expect(speech.starts, 0);
+  });
+
+  testWidgets('„Frag Lumo“: Lumo hört zu und läuft bei „Hilf mir“ hin',
+      (tester) async {
+    final speech = _FakeSpeech();
+    await _mount(tester, const Size(412, 915),
+        microphone: true, speech: speech);
+    await _pumpFor(tester, const Duration(milliseconds: 300));
+    final ask = find.byKey(const ValueKey('learning-ask-lumo'));
+    await tester.ensureVisible(ask);
+    await tester.pump();
+    await tester.tap(ask);
+    await _pumpFor(tester, const Duration(milliseconds: 200));
+    expect(speech.starts, 1);
+    expect(find.byKey(const ValueKey('learning-listening')), findsOneWidget);
+    final stage = _stage(tester);
+    expect(stage.motion, LumoActorMotion.listen);
+    // Steht Lumo frei, sagt die Blase es; sonst zeigt es die Anzeige oben.
+    if (!stage.ducked) expect(stage.bubbleText, LumoActorStage.listenText);
+    await _capture(tester, 'frag-lumo-hoert-zu');
+
+    speech.say('Lumo, hilf mir bitte');
+    await _pumpFor(tester, const Duration(milliseconds: 600));
+    expect(find.byKey(const ValueKey('learning-listening')), findsNothing);
+    expect(stage.phase, LumoStagePhase.toTarget);
+    await _pumpFor(tester, const Duration(milliseconds: 4500));
+    expect(stage.phase, LumoStagePhase.atTarget);
+  });
+
+  testWidgets('„Frag Lumo“: eine gesagte Zahl wird nur vorgeschlagen',
+      (tester) async {
+    final speech = _FakeSpeech();
+    await _mount(tester, const Size(412, 915),
+        microphone: true, speech: speech);
+    await _pumpFor(tester, const Duration(milliseconds: 300));
+    final ask = find.byKey(const ValueKey('learning-ask-lumo'));
+    await tester.ensureVisible(ask);
+    await tester.pump();
+    await tester.tap(ask);
+    await _pumpFor(tester, const Duration(milliseconds: 100));
+    speech.say('die Antwort ist sieben');
+    await _pumpFor(tester, const Duration(milliseconds: 200));
+    expect(find.byKey(const ValueKey('learning-answer-candidate')),
+        findsOneWidget);
+    expect(LumoCompanionRequests.instance.taskContext.value!.attempts, 0);
+
+    // Unverständliches: freundlicher Hinweis, nichts passiert sonst.
+    await tester.ensureVisible(ask);
+    await tester.pump();
+    await tester.tap(ask);
+    await _pumpFor(tester, const Duration(milliseconds: 100));
+    speech.say('blablub');
+    await _pumpFor(tester, const Duration(milliseconds: 100));
+    expect(
+        find.byKey(const ValueKey('learning-listen-notice')), findsOneWidget);
   });
 }

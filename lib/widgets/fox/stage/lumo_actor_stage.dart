@@ -75,6 +75,7 @@ class LumoActorStage extends StatefulWidget {
     this.onTapLumo,
     this.onAcceptOffer,
     this.greet = true,
+    this.listening = false,
   });
 
   final LumoStageController controller;
@@ -89,6 +90,10 @@ class LumoActorStage extends StatefulWidget {
   final VoidCallback? onAcceptOffer;
   final bool greet;
 
+  /// Lumo hört dem Kind zu (Mikrofon nur nach Freigabe und Antippen).
+  final bool listening;
+
+  static const String listenText = 'Ich höre dir zu …';
   static const String offerText = 'Brauchst du Hilfe? Tipp mich an!';
 
   @override
@@ -330,7 +335,9 @@ class LumoActorStageState extends State<LumoActorStage>
         stage: box.size, figureHeight: box.size.width < 600 ? 104 : 120);
     _layout = layout;
     final protectedRects = widget.controller.targets.protectedRects(box);
-    final home = layout.freeHome(protectedRects);
+    final homeRects =
+        widget.controller.targets.protectedRects(box, controls: true);
+    final home = layout.freeHome(homeRects);
     final homeFoot = home ?? layout.homeCandidates().first;
     _foot ??= homeFoot;
 
@@ -362,7 +369,8 @@ class LumoActorStageState extends State<LumoActorStage>
         if (_moveTowards(homeFoot, dt)) _setPhase(LumoStagePhase.home);
     }
 
-    _updateBubble(layout, protectedRects);
+    _updateBubble(
+        layout, _phase == LumoStagePhase.home ? homeRects : protectedRects);
     _repaint.value++;
 
     final idleStill = _still &&
@@ -512,6 +520,8 @@ class LumoActorStageState extends State<LumoActorStage>
     if (_phase == LumoStagePhase.atTarget) {
       text = _bubbleText;
       target = _lastTargetRect;
+    } else if (_phase == LumoStagePhase.home && widget.listening && !_ducked) {
+      text = LumoActorStage.listenText;
     } else if (_phase == LumoStagePhase.home &&
         widget.offerHelp &&
         !_ducked &&
@@ -597,6 +607,8 @@ class LumoActorStageState extends State<LumoActorStage>
         }
         return LumoActorMotion.point;
       case LumoStagePhase.home:
+        // Zuhören hat Vorrang: das Kind sieht sofort, dass Lumo hört.
+        if (widget.listening) return LumoActorMotion.listen;
         final reaction = _reaction;
         if (reaction != null) return reaction;
         if (widget.voice?.status.value == VoiceStatus.speaking) {

@@ -10,6 +10,10 @@ enum LumoStageRegionKind {
 
   /// Antworten: nie verdeckt; ein Tipp darauf bricht Lumos Weg freundlich ab.
   answers,
+
+  /// Knöpfe und Karten: Am Standardplatz (wo Lumo antippbar ist) stellt er
+  /// sich nie darüber. Unterwegs und am Ziel gehen Tipps durch ihn hindurch.
+  control,
 }
 
 class _Region {
@@ -47,9 +51,10 @@ class LumoStageTargets extends ChangeNotifier {
       _rectFor(_regions[id]?.key, stage, visibleOnly: visibleOnly);
 
   /// Alle Teile, die Lumo nie verdecken darf.
-  List<Rect> protectedRects(RenderBox stage) => [
+  List<Rect> protectedRects(RenderBox stage, {bool controls = false}) => [
         for (final region in _regions.values)
-          if (_rectFor(region.key, stage) case final Rect rect) rect,
+          if (controls || region.kind != LumoStageRegionKind.control)
+            if (_rectFor(region.key, stage) case final Rect rect) rect,
       ];
 
   static Rect? _rectFor(GlobalKey? key, RenderBox stage,

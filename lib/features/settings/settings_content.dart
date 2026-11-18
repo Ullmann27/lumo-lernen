@@ -686,7 +686,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
                 _SwitchRow(
                   title: 'Mikrofon erlauben',
                   subtitle:
-                      'Spracheingabe erst nach Antippen. Ohne Freigabe bleiben Text und lokale Lernhilfe nutzbar.',
+                      'Spracheingabe erst nach Antippen. Mit Freigabe kann dein Kind in den Aufgaben „Frag Lumo“ antippen und um Hilfe, Wiederholen oder Langsamer bitten. Ohne Freigabe bleiben Text, Knöpfe und lokale Lernhilfe nutzbar.',
                   value: _settings.microphoneEnabled,
                   onChanged: (v) =>
                       _save(_settings.copyWith(microphoneEnabled: v)),

@@ -31,6 +31,9 @@ import '../../core/session_round_resume.dart';
 import '../../domain/learning/practice_session_plan.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/lumo_voice_clips.dart';
+import '../../core/lumo_feature_permissions.dart';
+import '../../core/lumo_learning_dialogue_intent.dart';
+import '../../core/lumo_speech_listener.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
@@ -104,10 +107,14 @@ class LearningContent extends StatefulWidget {
     this.voice,
     this.conversationEntry,
     this.taskSeed,
+    this.speechListener,
   });
   final LumoAppState appState;
   final LumoAiProxyClient aiProxy;
   final LumoVoice? voice;
+
+  /// Nur für Prüfungen: ein Ersatz für die Spracherkennung auf dem Gerät.
+  final LumoSpeechListener? speechListener;
   final LearningConversationEntry? conversationEntry;
 
   /// Fester Startwert der Aufgabenauswahl für Prüfungen; im Betrieb leer.
@@ -205,6 +212,11 @@ class _LearningContentState extends State<LearningContent>
 
   /// Lumo als ganze Figur über der Aufgabe: läuft hin, zeigt, spricht.
   final _stage = LumoStageController();
+
+  /// „Frag Lumo“: nur mit Mikrofon-Freigabe der Eltern, nur nach Antippen.
+  LumoSpeechListener? _speech;
+  bool _listening = false;
+  String? _listenNotice;
   bool _sessionFinished = false;
   // Test: Fragen, die beim ersten Versuch richtig waren (Tests-Bildschirm).
   int _testFirstTryCorrect = 0;
@@ -734,6 +746,8 @@ class _LearningContentState extends State<LearningContent>
 
   void _loadNextTask({bool resetCounter = false}) {
     _cancelCoachMedia(rebuild: false);
+    _stopListening(rebuild: false);
+    _listenNotice = null;
     _stage.goHome();
     _workspace = null;
     _activeObjectId = null;
@@ -1132,7 +1146,85 @@ class _LearningContentState extends State<LearningContent>
           ? 'learning-task'
           : 'task-workspace';
 
+  /// Lumo hört zu: das Kind sagt einen der festen Befehle (Stopp, nochmal,
+  /// langsamer, Hilfe/Tipp, erklären oder eine Antwort zum Bestätigen).
+  Future<void> _askLumo() async {
+    if (_listening) {
+      _stopListening();
+      return;
+    }
+    if (!_allowHelp || _answered) return;
+    final allowed =
+        await LumoFeaturePermissions.microphone(context, widget.appState);
+    if (!allowed || !mounted) return;
+    final taskId = _taskInstance.taskInstanceId;
+    await _cancelCoachMedia(discardCandidate: false);
+    if (!mounted) return;
+    _stage.goHome();
+    setState(() {
+      _listening = true;
+      _listenNotice = null;
+    });
+    final speech = _speech ??= widget.speechListener ?? LumoSpeechListener();
+    final ready = await speech.initialize();
+    if (!mounted || !_listening || taskId != _taskInstance.taskInstanceId) {
+      return;
+    }
+    if (!ready) {
+      setState(() {
+        _listening = false;
+        _listenNotice = speech.error ??
+            'Die Spracheingabe ist gerade nicht bereit. Die Knöpfe gehen immer.';
+      });
+      return;
+    }
+    await speech.startListening(
+      onFinalResult: (text) => _heard(text, taskId),
+      onNoMatch: () {
+        if (!mounted || !_listening) return;
+        setState(() {
+          _listening = false;
+          _listenNotice = 'Ich habe nichts gehört. Tipp nochmal auf '
+              '„Frag Lumo“ oder nimm die Knöpfe.';
+        });
+      },
+    );
+  }
+
+  void _heard(String text, String taskId) {
+    if (!mounted || !_listening) return;
+    setState(() => _listening = false);
+    if (taskId != _taskInstance.taskInstanceId || _answered) return;
+    final intent =
+        LumoLearningDialogueIntent.parse(text, _publishedTaskContext);
+    if (intent == null) {
+      setState(() => _listenNotice = 'Das habe ich nicht verstanden. Sag zum '
+          'Beispiel „Hilf mir“, „nochmal“ oder „langsamer“.');
+      return;
+    }
+    if (intent.action == LumoLearningAction.stop) {
+      _coach.interrupt('stop');
+      return;
+    }
+    // Dieselben Abläufe wie die Knöpfe; eine Antwort wird nur vorgeschlagen.
+    _coach.request(intent.action, candidate: intent.candidate);
+  }
+
+  void _stopListening({bool rebuild = true}) {
+    final speech = _speech;
+    if (speech != null && (_listening || speech.listening)) {
+      unawaited(speech.cancel());
+    }
+    if (!_listening) return;
+    if (rebuild && mounted) {
+      setState(() => _listening = false);
+    } else {
+      _listening = false;
+    }
+  }
+
   void _stopLearningExplanation() {
+    _stopListening();
     _stage.goHome();
     _autoAdvanceTimer?.cancel();
     // After "Stopp" nothing starts speaking by itself.
@@ -1208,6 +1300,7 @@ class _LearningContentState extends State<LearningContent>
     _foreground = foreground;
     if (!_foreground) {
       _autoReadTimer?.cancel();
+      _stopListening();
       _cancelCoachMedia(discardCandidate: !_nativeLearningOpen);
       if (!_nativeLearningOpen) {
         _autoAdvanceTimer?.cancel();
@@ -2357,6 +2450,8 @@ class _LearningContentState extends State<LearningContent>
     _autoReadTimer?.cancel();
     _lumo.dispose();
     _stage.dispose();
+    _stopListening(rebuild: false);
+    if (widget.speechListener == null) _speech?.dispose();
     super.dispose();
   }
 
@@ -2391,6 +2486,38 @@ class _LearningContentState extends State<LearningContent>
         final identity = _coach.identity;
         if (identity != null) _coach.tryMyself(identity);
       }, key: const ValueKey('learning-self-try')),
+      // Nur mit Freigabe der Eltern sichtbar; sonst bleibt alles bei Knöpfen.
+      if (widget.appState.state.settings.microphoneEnabled)
+        action(
+            _listening ? 'Zuhören beenden' : 'Frag Lumo',
+            _listening ? Icons.mic_off_rounded : Icons.mic_rounded,
+            () => unawaited(_askLumo()),
+            key: const ValueKey('learning-ask-lumo')),
+      if (_listening)
+        Semantics(
+          liveRegion: true,
+          child: Container(
+            key: const ValueKey('learning-listening'),
+            constraints: const BoxConstraints(minHeight: 48),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: const Color(0xFF0E4C3A),
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: const Color(0xFF6CF0B5), width: 2),
+            ),
+            child: const Row(mainAxisSize: MainAxisSize.min, children: [
+              Icon(Icons.hearing_rounded, color: Color(0xFF6CF0B5)),
+              SizedBox(width: 8),
+              Text('Lumo hört dir zu …',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w800)),
+            ]),
+          ),
+        ),
+      if (_listenNotice != null && !_listening)
+        Text(_listenNotice!,
+            key: const ValueKey('learning-listen-notice'),
+            style: const TextStyle(color: Colors.white, height: 1.3)),
     ]);
   }
 
@@ -2859,17 +2986,20 @@ class _LearningContentState extends State<LearningContent>
                             !_guided &&
                             _tutorCoordinator.shouldOffer) ...[
                           const SizedBox(height: 14),
-                          LumoTutorOfferCard(
-                            reduceMotion: st.settings.reduceAnimations ||
-                                st.settings.calmMode,
-                            onAccept: _requestTaskHelp,
-                            onDecline: () {
-                              setState(() => LumoCompanionRequests.instance
-                                  .recordLearningEvent(
-                                      LumoLearningEventKind.hintDeclined,
-                                      context: _publishedTaskContext));
-                            },
-                          ),
+                          LumoStageTarget(
+                              id: 'tutor-offer',
+                              kind: LumoStageRegionKind.control,
+                              child: LumoTutorOfferCard(
+                                reduceMotion: st.settings.reduceAnimations ||
+                                    st.settings.calmMode,
+                                onAccept: _requestTaskHelp,
+                                onDecline: () {
+                                  setState(() => LumoCompanionRequests.instance
+                                      .recordLearningEvent(
+                                          LumoLearningEventKind.hintDeclined,
+                                          context: _publishedTaskContext));
+                                },
+                              )),
                         ],
                         if (widget.appState.tutorSaveError != null) ...[
                           Text(widget.appState.tutorSaveError!,
@@ -2884,14 +3014,17 @@ class _LearningContentState extends State<LearningContent>
                         ],
                         if (_showHelp && _tutorHint != null) ...[
                           const SizedBox(height: 14),
-                          LumoTutorHintCard(
-                            text: _tutorHint!,
-                            reduceMotion: st.settings.reduceAnimations ||
-                                st.settings.calmMode,
-                            onSpeak: () => unawaited(_speakTutorHint(
-                                _tutorHint!,
-                                explainAvailability: true)),
-                          ),
+                          LumoStageTarget(
+                              id: 'tutor-hint',
+                              kind: LumoStageRegionKind.control,
+                              child: LumoTutorHintCard(
+                                text: _tutorHint!,
+                                reduceMotion: st.settings.reduceAnimations ||
+                                    st.settings.calmMode,
+                                onSpeak: () => unawaited(_speakTutorHint(
+                                    _tutorHint!,
+                                    explainAvailability: true)),
+                              )),
                         ],
                         if (_allowHelp &&
                             !_answered &&
@@ -2994,7 +3127,10 @@ class _LearningContentState extends State<LearningContent>
                         // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
                         if (_allowHelp && !_answered) ...[
                           const SizedBox(height: 12),
-                          _coachControls(),
+                          LumoStageTarget(
+                              id: 'coach-controls',
+                              kind: LumoStageRegionKind.control,
+                              child: _coachControls()),
                           if (_aiHelpLoading)
                             const Text('Lumo prüft einen weiteren Hinweis …',
                                 style: TextStyle(color: Colors.white)),
@@ -3014,7 +3150,11 @@ class _LearningContentState extends State<LearningContent>
                             },
                           ),
                         ],
-                        if (_candidateIdentity != null) _candidateCard(),
+                        if (_candidateIdentity != null)
+                          LumoStageTarget(
+                              id: 'answer-candidate',
+                              kind: LumoStageRegionKind.control,
+                              child: _candidateCard()),
                         if (_resumedAtRound > 1 &&
                             _questionNum ==
                                 (_resumedAtRound - 1) * SessionRounds.size +
@@ -3108,32 +3248,35 @@ class _LearningContentState extends State<LearningContent>
                         ),
                         if (_answered && _lastCorrect != null) ...[
                           const SizedBox(height: 22),
-                          _ExplanationCard(
-                            correct: _lastCorrect!,
-                            explanation: _task.explanation,
-                            correctAnswer: _visibleAnswer,
-                            rewardDelta: _lastRewardDelta,
-                            feedback: _lastFeedback,
-                            praise: _lastCorrect! && _lastFeedback != null
-                                ? _praiseFor(_lastFeedback!,
-                                    alone: _lastSolvedAlone ?? false)
-                                : null,
-                            solvedAlone: _lastSolvedAlone,
-                            wrongMessage: _lastCorrect!
-                                ? null
-                                : _wrongTestMessage(
-                                    const ErrorDetective().analyze(
-                                    subject: _task.subject,
-                                    prompt: _task.prompt,
-                                    correctAnswer:
-                                        '${_taskInstance.correctAnswer}',
-                                    givenAnswer: _lastGivenAnswer ?? '',
-                                  )),
-                            solutionSteps: _lastCorrect!
-                                ? const <String>[]
-                                : _buildWorkedSteps(),
-                            onNext: _nextQuestion,
-                          ),
+                          LumoStageTarget(
+                              id: 'explanation',
+                              kind: LumoStageRegionKind.control,
+                              child: _ExplanationCard(
+                                correct: _lastCorrect!,
+                                explanation: _task.explanation,
+                                correctAnswer: _visibleAnswer,
+                                rewardDelta: _lastRewardDelta,
+                                feedback: _lastFeedback,
+                                praise: _lastCorrect! && _lastFeedback != null
+                                    ? _praiseFor(_lastFeedback!,
+                                        alone: _lastSolvedAlone ?? false)
+                                    : null,
+                                solvedAlone: _lastSolvedAlone,
+                                wrongMessage: _lastCorrect!
+                                    ? null
+                                    : _wrongTestMessage(
+                                        const ErrorDetective().analyze(
+                                        subject: _task.subject,
+                                        prompt: _task.prompt,
+                                        correctAnswer:
+                                            '${_taskInstance.correctAnswer}',
+                                        givenAnswer: _lastGivenAnswer ?? '',
+                                      )),
+                                solutionSteps: _lastCorrect!
+                                    ? const <String>[]
+                                    : _buildWorkedSteps(),
+                                onNext: _nextQuestion,
+                              )),
                         ],
                       ],
                     ),
@@ -3157,6 +3300,7 @@ class _LearningContentState extends State<LearningContent>
                       !_guided &&
                       _tutorCoordinator.shouldOffer,
                   onAcceptOffer: _requestTaskHelp,
+                  listening: _listening,
                   onTapLumo: () =>
                       LumoCompanionRequests.instance.requestCompanionMenu(),
                 ),
