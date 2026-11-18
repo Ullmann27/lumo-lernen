@@ -161,6 +161,26 @@ object ReturnRegression {
                     check(rejected && file.readBytes().contentEquals(original), "invalid session mutated event store")
                 }
             }
+            "free-writer-lock" -> {
+                reward("before-cleanup")
+                check(GameEventStore.whileNoWriter(context, 300) { "ran" } == "ran", "free lock did not run cleanup")
+                reward("after-cleanup")
+                check(count() == 2, "cleanup lock lost or blocked a reward")
+            }
+            "hold-writer-lock" -> {
+                GameEventStore.whileNoWriter(context, 1000) {
+                    println("WRITER_LOCK_HELD")
+                    System.out.flush()
+                    Thread.sleep(2500)
+                }
+            }
+            "busy-writer-lock" -> {
+                var ran = false
+                val started = System.nanoTime()
+                check(GameEventStore.whileNoWriter(context, 300) { ran = true } == null, "busy writer lock was not reported")
+                check(!ran, "leftover cleanup ran during another process's write")
+                check(System.nanoTime() - started < 2_000_000_000L, "busy lock wait exceeded its limit")
+            }
             else -> throw AssertionError("unknown scenario")
         }
         println("GAME_RETURN_STORE_PASS " + args[0])
@@ -223,8 +243,11 @@ class GameReturnStoreTest(unittest.TestCase):
         return result
 
     def scenario(self, name):
+        self.scenario_in(name, self.work / name)
+
+    def scenario_in(self, name, folder):
         result = self.run_checked([self.java, '-cp', self.classpath, 'dev.ullmann.lumo.ReturnRegression',
-                                   name, str(self.work / name)])
+                                   name, str(folder)])
         self.assertIn('GAME_RETURN_STORE_PASS ' + name, result.stdout)
         print(result.stdout.strip())
 
@@ -237,6 +260,18 @@ class GameReturnStoreTest(unittest.TestCase):
     def test_new_launch_supersedes_only_stale_navigation(self): self.scenario('new-launch-stale-navigation')
     def test_failed_commit_retains_fallback_and_explicit_reset_still_works(self): self.scenario('storage-failure-and-reset')
     def test_invalid_session_never_writes(self): self.scenario('invalid-session')
+    def test_leftover_cleanup_lock_runs_when_no_writer(self): self.scenario('free-writer-lock')
+
+    def test_leftover_cleanup_never_kills_during_another_process_write(self):
+        folder = self.work / 'shared-writer-lock'
+        holder = subprocess.Popen([self.java, '-cp', self.classpath, 'dev.ullmann.lumo.ReturnRegression',
+                                   'hold-writer-lock', str(folder)], stdout=subprocess.PIPE, text=True)
+        try:
+            self.assertEqual(holder.stdout.readline().strip(), 'WRITER_LOCK_HELD')
+            self.scenario_in('busy-writer-lock', folder)
+        finally:
+            holder.wait(timeout=30)
+            holder.stdout.close()
 
 
 class GameReturnWiringTest(unittest.TestCase):
@@ -276,6 +311,27 @@ class GameReturnWiringTest(unittest.TestCase):
         self.assertIn('postDelayed({ completeWhenStopped(attempt) }, 1000)', returned)
         destroyed = text.split('override fun onDestroy()', 1)[1]
         self.assertLess(destroyed.index('pendingGame = null'), destroyed.index('super.onDestroy()'))
+
+    def test_leftover_engine_is_ended_off_the_main_thread_before_a_fresh_start(self):
+        text = (ROOT / 'tools/auto_install/MainActivity.kt').read_text()
+        handler = text.split('"launch3D" -> {', 1)[1].split('private fun clearLeftoverEngine', 1)[0]
+        # Never start into a live engine; pending starts and running cleanups still refuse.
+        self.assertLess(handler.index('if (pendingGame != null || engineCleanupActive)'),
+                        handler.index('if (!engineProcessRunning())'))
+        self.assertLess(handler.index('if (!hostForeground)'), handler.index('clearLeftoverEngine {'))
+        self.assertIn('cleared && !isDestroyed && pendingGame == null && !engineProcessRunning()', handler)
+        self.assertEqual(handler.count('"game_running"'), 3)
+        cleanup = text.split('private fun clearLeftoverEngine', 1)[1].split('private fun launchGame', 1)[0]
+        self.assertIn('Thread({', cleanup)
+        self.assertLess(cleanup.index('GameEventStore.whileNoWriter(context, 1000)'),
+                        cleanup.index('android.os.Process.killProcess(it.pid)'))
+        self.assertLess(cleanup.index('IMPORTANCE_VISIBLE'), cleanup.index('killProcess'))
+        self.assertIn('waited < 3000', cleanup)
+        self.assertIn('main.post { done(cleared) }', cleanup)
+        self.assertNotIn('myPid', cleanup)
+        self.assertIn('hostForeground = true', text.split('override fun onResume()', 1)[1].split('override fun onPause()', 1)[0])
+        self.assertIn('hostForeground = false', text.split('override fun onPause()', 1)[1].split('override fun onRequestPermissionsResult', 1)[0])
+        self.assertIn('Engine globals need a fresh process', text.split('override fun onActivityResult', 1)[1])
 
 
 if __name__ == '__main__':

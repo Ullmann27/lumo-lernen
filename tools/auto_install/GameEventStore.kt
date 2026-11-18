@@ -103,6 +103,23 @@ object GameEventStore {
         }
     }
 
+    /**
+     * Runs [block] while no process writes events (same cross-process file lock
+     * as every write). Returns null when the lock stays busy beyond [timeoutMs],
+     * so a leftover engine is never killed in the middle of a reward write.
+     */
+    fun <T> whileNoWriter(context: Context, timeoutMs: Long, block: () -> T): T? = synchronized(this) {
+        RandomAccessFile(File(context.filesDir, "lumo_game_events.lock"), "rw").use { lockFile ->
+            val deadline = System.nanoTime() + timeoutMs * 1_000_000
+            var lock = lockFile.channel.tryLock()
+            while (lock == null && System.nanoTime() < deadline) {
+                Thread.sleep(25)
+                lock = lockFile.channel.tryLock()
+            }
+            lock?.use { block() }
+        }
+    }
+
     fun clear(context: Context) = locked(context) { file ->
         write(file, JSONObject().put("results", JSONArray()))
     }

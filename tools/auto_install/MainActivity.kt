@@ -11,6 +11,7 @@ import android.provider.Settings
 import androidx.core.content.FileProvider
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import java.io.File
 import org.json.JSONObject
@@ -33,6 +34,8 @@ class MainActivity : FlutterActivity() {
     private var pendingGame: MethodChannel.Result? = null
     private var pendingCallerReturnSession: String? = null
     private val gameRequest = 8201
+    private var hostForeground = false
+    private var engineCleanupActive = false
     private fun engineProcessRunning(pid: Int? = null): Boolean {
         val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
         return manager.runningAppProcesses?.any {
@@ -197,104 +200,164 @@ class MainActivity : FlutterActivity() {
                         } catch (error: Exception) { result.error("storage", "Spielstände konnten nicht bestätigt werden.", null) }
                     }
                     "launch3D" -> {
-                    if (pendingGame != null || engineProcessRunning()) {
+                    // Engine globals need a fresh process: never start into a live
+                    // :lumo_game. A leftover engine that outlived its game is ended
+                    // first, but only while Flutter is in front and nothing is pending.
+                    if (pendingGame != null || engineCleanupActive) {
                         result.error("game_running", "Ein Spiel ist bereits geöffnet.", null)
                         return@setMethodCallHandler
                     }
-                    try {
-                        assets.open("lumo_game.pck").close()
-                        val requested = call.argument<String>("scene")
-                        val villageRequested = call.argument<Boolean>("livingVillage") == true
-                        if ((requested == "settlement") != villageRequested ||
-                            (villageRequested && call.argument<String>("settlementMode") != "settlement")) {
-                            result.error("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.", null)
-                            return@setMethodCallHandler
+                    if (!engineProcessRunning()) {
+                        launchGame(call, result)
+                        return@setMethodCallHandler
+                    }
+                    if (!hostForeground) {
+                        result.error("game_running", "Ein Spiel ist bereits geöffnet.", null)
+                        return@setMethodCallHandler
+                    }
+                    engineCleanupActive = true
+                    clearLeftoverEngine { cleared ->
+                        engineCleanupActive = false
+                        if (cleared && !isDestroyed && pendingGame == null && !engineProcessRunning()) {
+                            Log.i("LumoHost", "Leftover game process ended before a new start")
+                            launchGame(call, result)
+                        } else {
+                            result.error("game_running", "Ein Spiel ist bereits geöffnet.", null)
                         }
-                        val game = if (requested in setOf("kart", "jump", "run", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four", "games", "memory", "quiz", "chess")) requested!! else "kart"
-                        val options = JSONObject()
-                            .put("game", game)
-                            .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
-                            .put("subject", call.argument<String>("subject")?.takeIf { it in setOf("Mathematik", "Deutsch", "Sachunterricht", "Englisch", "Logik") } ?: "Mathematik")
-                            .put("sessionId", UUID.randomUUID().toString())
-                            .put("stars", (call.argument<Int>("stars") ?: 0).coerceAtLeast(0))
-                            .put("lifetimeStars", (call.argument<Int>("lifetimeStars") ?: 0).coerceAtLeast(0))
-                            .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
-                        if (game == "settlement") {
-                            options.put("livingVillage", true).put("settlementMode", "settlement")
-                        }
-                        if (game == "learning") {
-                            val learning = call.argument<Map<String, Any?>>("learning")
-                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts", "english_objects", "pattern", "task_card", "clock")) {
-                                result.error("invalid_learning", "Die Lernansicht ist nicht verfügbar.", null)
-                                return@setMethodCallHandler
-                            }
-                            val descriptor = JSONObject(learning)
-                            val scope = descriptor.optJSONObject("scope") ?: JSONObject()
-                            scope.put("protocolVersion", 1)
-                                .put("sessionId", options.getString("sessionId"))
-                                .put("taskId", scope.optString("taskId").ifBlank {
-                                    descriptor.optString("sourceTaskId").ifBlank { "native-" + options.getString("sessionId") }
-                                })
-                                .put("revision", scope.optLong("revision", 0).coerceAtLeast(0))
-                                .put("cancelEpoch", scope.optLong("cancelEpoch", 0).coerceAtLeast(0))
-                            descriptor.put("scope", scope)
-                            options.put("learning", descriptor)
-                                .put("learningMicrophoneEnabled", call.argument<Boolean>("learningMicrophoneEnabled") == true)
-                        }
-                        if (game in setOf("learning", "build", "settlement")) {
-                            options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
-                                .put("localVoiceLicenseAccepted", call.argument<Boolean>("localVoiceLicenseAccepted") == true)
-                                .put("learningAutoRead", call.argument<Boolean>("learningAutoRead") == true)
-                                .put("learningVoiceRate", (call.argument<Number>("learningVoiceRate")?.toDouble()
-                                    ?.takeIf { it.isFinite() } ?: 1.0).coerceIn(0.70, 1.60))
-                            // Release Flutter's local inference model before the
-                            // isolated lesson or village owns the same original voice.
-                            offlineSpeech?.release()
-                        }
-                        // Der Kartentisch führt Regeln, Mitspieler und Spielstand selbst
-                        // (Sternenstich, Sternenleiter, Lumo-Quartett). Er braucht keine
-                        // Partie aus der App und deshalb kein Token.
-                        if (game == "connect_four") {
-                            val token = call.argument<String>("connectFourToken")
-                            if (token == null || !ConnectFourBridge.hasAuthority(token)) {
-                                result.error("invalid_connect_four", "Deine Vier-Gewinnt-Runde ist nicht verfügbar.", null)
-                                return@setMethodCallHandler
-                            }
-                            options.put("connectFourToken", token)
-                        }
-                        if (game in setOf("memory", "quiz")) {
-                            val token = call.argument<String>("tableToken")
-                            if (token == null || !TableGamesBridge.hasAuthority(token, game)) {
-                                result.error("invalid_table_game", "Deine Spielrunde ist nicht verfügbar.", null)
-                                return@setMethodCallHandler
-                            }
-                            options.put("tableToken", token)
-                        }
-                        options.put("reduceAnimations", call.argument<Boolean>("reduceAnimations") ?: false)
-                        val callerSession = options.getString("sessionId")
-                            // Der Kartentisch kehrt wie Kart und Lumo Lauf in die Spieleauswahl zurück.
-                            .takeIf { game in setOf("learning", "connect_four", "memory", "quiz") }
-                        val activity = when (game) {
-                            "connect_four" -> ConnectFourGameActivity::class.java
-                            "memory", "quiz" -> TableGameActivity::class.java
-                            else -> LumoGameActivity::class.java
-                        }
-                        val intent = Intent(this, activity)
-                            .putExtra("lumoLaunchOptions", options.toString())
-                            .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession)
-                        if (callerSession != null) GameEventStore.beginCallerReturn(this)
-                        pendingGame = result
-                        pendingCallerReturnSession = callerSession
-                        startActivityForResult(intent, gameRequest)
-                    } catch (e: Exception) {
-                        pendingGame = null
-                        pendingCallerReturnSession = null
-                        result.error("game_unavailable", "Das enthaltene Spiel konnte nicht gestartet werden.", null)
                     }
                     }
                     else -> result.notImplemented()
                 }
             }
+    }
+
+    /**
+     * Ends a leftover :lumo_game process (same UID) off the main thread and waits
+     * up to ~3 s until it is gone. A visible engine is a real open game (split
+     * screen, recreated host) and is never touched. The kill happens while the
+     * event-store lock is held, so no durable reward write is cut off.
+     */
+    private fun clearLeftoverEngine(done: (Boolean) -> Unit) {
+        val main = Handler(Looper.getMainLooper())
+        val context = applicationContext
+        val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        val engineName = "$packageName:lumo_game"
+        Thread({
+            val cleared = try {
+                val killed = GameEventStore.whileNoWriter(context, 1000) {
+                    val engines = manager.runningAppProcesses.orEmpty().filter { it.processName == engineName }
+                    if (engines.any { it.importance <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_VISIBLE }) {
+                        false
+                    } else {
+                        engines.forEach { android.os.Process.killProcess(it.pid) }
+                        true
+                    }
+                } == true
+                var waited = 0
+                while (killed && engineProcessRunning() && waited < 3000) {
+                    Thread.sleep(100)
+                    waited += 100
+                }
+                killed && !engineProcessRunning()
+            } catch (error: Exception) {
+                Log.w("LumoHost", "Could not end leftover game process", error)
+                false
+            }
+            main.post { done(cleared) }
+        }, "LumoEngineCleanup").start()
+    }
+
+    private fun launchGame(call: MethodCall, result: MethodChannel.Result) {
+        try {
+            assets.open("lumo_game.pck").close()
+            val requested = call.argument<String>("scene")
+            val villageRequested = call.argument<Boolean>("livingVillage") == true
+            if ((requested == "settlement") != villageRequested ||
+                (villageRequested && call.argument<String>("settlementMode") != "settlement")) {
+                result.error("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.", null)
+                return
+            }
+            val game = if (requested in setOf("kart", "jump", "run", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four", "games", "memory", "quiz", "chess")) requested!! else "kart"
+            val options = JSONObject()
+                .put("game", game)
+                .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
+                .put("subject", call.argument<String>("subject")?.takeIf { it in setOf("Mathematik", "Deutsch", "Sachunterricht", "Englisch", "Logik") } ?: "Mathematik")
+                .put("sessionId", UUID.randomUUID().toString())
+                .put("stars", (call.argument<Int>("stars") ?: 0).coerceAtLeast(0))
+                .put("lifetimeStars", (call.argument<Int>("lifetimeStars") ?: 0).coerceAtLeast(0))
+                .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
+            if (game == "settlement") {
+                options.put("livingVillage", true).put("settlementMode", "settlement")
+            }
+            if (game == "learning") {
+                val learning = call.argument<Map<String, Any?>>("learning")
+                if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts", "english_objects", "pattern", "task_card", "clock")) {
+                    result.error("invalid_learning", "Die Lernansicht ist nicht verfügbar.", null)
+                    return
+                }
+                val descriptor = JSONObject(learning)
+                val scope = descriptor.optJSONObject("scope") ?: JSONObject()
+                scope.put("protocolVersion", 1)
+                    .put("sessionId", options.getString("sessionId"))
+                    .put("taskId", scope.optString("taskId").ifBlank {
+                        descriptor.optString("sourceTaskId").ifBlank { "native-" + options.getString("sessionId") }
+                    })
+                    .put("revision", scope.optLong("revision", 0).coerceAtLeast(0))
+                    .put("cancelEpoch", scope.optLong("cancelEpoch", 0).coerceAtLeast(0))
+                descriptor.put("scope", scope)
+                options.put("learning", descriptor)
+                    .put("learningMicrophoneEnabled", call.argument<Boolean>("learningMicrophoneEnabled") == true)
+            }
+            if (game in setOf("learning", "build", "settlement")) {
+                options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
+                    .put("localVoiceLicenseAccepted", call.argument<Boolean>("localVoiceLicenseAccepted") == true)
+                    .put("learningAutoRead", call.argument<Boolean>("learningAutoRead") == true)
+                    .put("learningVoiceRate", (call.argument<Number>("learningVoiceRate")?.toDouble()
+                        ?.takeIf { it.isFinite() } ?: 1.0).coerceIn(0.70, 1.60))
+                // Release Flutter's local inference model before the
+                // isolated lesson or village owns the same original voice.
+                offlineSpeech?.release()
+            }
+            // Der Kartentisch führt Regeln, Mitspieler und Spielstand selbst
+            // (Sternenstich, Sternenleiter, Lumo-Quartett). Er braucht keine
+            // Partie aus der App und deshalb kein Token.
+            if (game == "connect_four") {
+                val token = call.argument<String>("connectFourToken")
+                if (token == null || !ConnectFourBridge.hasAuthority(token)) {
+                    result.error("invalid_connect_four", "Deine Vier-Gewinnt-Runde ist nicht verfügbar.", null)
+                    return
+                }
+                options.put("connectFourToken", token)
+            }
+            if (game in setOf("memory", "quiz")) {
+                val token = call.argument<String>("tableToken")
+                if (token == null || !TableGamesBridge.hasAuthority(token, game)) {
+                    result.error("invalid_table_game", "Deine Spielrunde ist nicht verfügbar.", null)
+                    return
+                }
+                options.put("tableToken", token)
+            }
+            options.put("reduceAnimations", call.argument<Boolean>("reduceAnimations") ?: false)
+            val callerSession = options.getString("sessionId")
+                // Der Kartentisch kehrt wie Kart und Lumo Lauf in die Spieleauswahl zurück.
+                .takeIf { game in setOf("learning", "connect_four", "memory", "quiz") }
+            val activity = when (game) {
+                "connect_four" -> ConnectFourGameActivity::class.java
+                "memory", "quiz" -> TableGameActivity::class.java
+                else -> LumoGameActivity::class.java
+            }
+            val intent = Intent(this, activity)
+                .putExtra("lumoLaunchOptions", options.toString())
+                .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession)
+            if (callerSession != null) GameEventStore.beginCallerReturn(this)
+            pendingGame = result
+            pendingCallerReturnSession = callerSession
+            startActivityForResult(intent, gameRequest)
+        } catch (e: Exception) {
+            pendingGame = null
+            pendingCallerReturnSession = null
+            result.error("game_unavailable", "Das enthaltene Spiel konnte nicht gestartet werden.", null)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -341,10 +404,12 @@ class MainActivity : FlutterActivity() {
 
     override fun onResume() {
         super.onResume()
+        hostForeground = true
         localRecognition?.setForeground(true)
     }
 
     override fun onPause() {
+        hostForeground = false
         localRecognition?.setForeground(false)
         super.onPause()
     }
