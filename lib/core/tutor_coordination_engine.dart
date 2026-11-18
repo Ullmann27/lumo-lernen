@@ -134,7 +134,11 @@ class TutorCoordinationEngine {
     final task = _scope;
     if (task == null || _solved || attempt < 1 || !_attempts.add(attempt))
       return null;
-    if (assisted && !task.isExam && _helpLevel == 0) _helpLevel = 1;
+    // Independent means the first try without help. A right answer after a
+    // mistake was found with feedback and is assisted evidence.
+    if (!task.isExam && _helpLevel == 0 && (assisted || (correct && _mistakes > 0))) {
+      _helpLevel = 1;
+    }
     if (correct) {
       _solved = true;
       _emit(_helpLevel > 0

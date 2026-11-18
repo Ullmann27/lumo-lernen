@@ -97,20 +97,14 @@ void main() {
     expect(state.helpCount, 3);
   });
 
-  test('a completed guided answer keeps practice rewards without mastery bonus',
-      () {
-    const before =
-        SkillState(childId: 'child-a', skillId: _skill, masteryScore: .20);
-    final result = _answer(0);
-    final after = _updater.applyResult(before: before, result: result);
-    final reward = const RewardEngine().calculateAnswerReward(
-        result: result,
-        before: before,
-        after: after,
-        allowRetry: true,
-        firstAttempt: true);
+  test('a completed guided answer earns the smaller together reward', () {
+    // The former "+1 help bonus" and the mastery bonus are gone: a task
+    // solved together earns 2 stars, a task solved alone 6.
+    final reward =
+        const RewardEngine().calculateAnswerReward(result: _answer(0));
     expect(reward.reasons, contains(RewardReason.usedHelpAndFinished));
-    expect(reward.reasons, isNot(contains(RewardReason.improvedMastery)));
+    expect(reward.reasons, isNot(contains(RewardReason.correctAnswer)));
+    expect(reward.stars, RewardEngine.assistedStars);
   });
 
   test('difficulty window is unchanged by accompanied practice', () {
