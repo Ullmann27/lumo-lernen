@@ -157,15 +157,9 @@ class TaskQualityGuard {
       return count != null && int.parse(count[1]!) == total ~/ denomination
           ? const [] : const ['money_change_wrong_count'];
     }
-    final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
-        .firstMatch(prompt);
-    if (line != null) {
-      final first = int.parse(line[1]!);
-      final second = int.parse(line[2]!);
-      final last = int.parse(line[3]!);
-      if (last != second + 2 * (second - first)) {
-        return const ['number_line_rule_unproved'];
-      }
+    final line = _MissingInLine.parse(prompt);
+    if (line != null && line.missing == null) {
+      return const ['number_line_rule_unproved'];
     }
     return const [];
   }
@@ -473,15 +467,8 @@ class TaskQualityGuard {
     if (times != null && int.parse(times[1]!) > 0) {
       return _MathValue(int.parse(times[2]!), int.parse(times[1]!));
     }
-    final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
-        .firstMatch(prompt);
-    if (line != null) {
-      final first = int.parse(line[1]!);
-      final second = int.parse(line[2]!);
-      final last = int.parse(line[3]!);
-      final step = second - first;
-      if (last == second + 2 * step) return _MathValue(second + step, 1);
-    }
+    final missing = _MissingInLine.parse(prompt)?.missing;
+    if (missing != null) return _MathValue(missing, 1);
     const conversions = [
       (r'^Wie viele Zentimeter sind (\d+) Meter(?: und (\d+) Zentimeter)?\?$', 100),
       (r'^Wie viele Gramm sind (\d+) kg(?: und (\d+) g)?\?$', 1000),
@@ -580,6 +567,42 @@ class TaskQualityGuard {
   }
 }
 
+
+/// „Welche Zahl fehlt? 5, _, 15, 20“: vier Stellen, genau eine Lücke. Die
+/// sichtbaren Zahlen müssen denselben Schritt haben, sonst ist die Regel
+/// nicht belegt und [missing] bleibt null.
+class _MissingInLine {
+  const _MissingInLine(this.missing);
+  final int? missing;
+
+  static _MissingInLine? parse(String prompt) {
+    final match = RegExp(r'^Welche Zahl fehlt\? ((?:\d+|_)(?:, (?:\d+|_)){3})$')
+        .firstMatch(prompt);
+    if (match == null) return null;
+    final items = match[1]!.split(', ');
+    final gap = items.indexOf('_');
+    if (gap < 0 || items.where((item) => item == '_').length != 1) {
+      return const _MissingInLine(null);
+    }
+    final known = <int>[
+      for (var i = 0; i < items.length; i++)
+        if (i != gap) i,
+    ];
+    final first = known[0], second = known[1];
+    final distance = int.parse(items[second]) - int.parse(items[first]);
+    if (distance <= 0 || distance % (second - first) != 0) {
+      return const _MissingInLine(null);
+    }
+    final step = distance ~/ (second - first);
+    for (final index in known) {
+      if (int.parse(items[index]) !=
+          int.parse(items[first]) + step * (index - first)) {
+        return const _MissingInLine(null);
+      }
+    }
+    return _MissingInLine(int.parse(items[first]) + step * (gap - first));
+  }
+}
 
 /// Exact arithmetic for integer, decimal and fraction answer cards.
 class _MathValue {

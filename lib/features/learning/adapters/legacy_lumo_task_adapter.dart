@@ -676,7 +676,10 @@ class LegacyLumoTaskAdapter {
       'fraction_half' => VisualType.fractionPizza,
       'fraction_add' => VisualType.fractionPizza,
       'fraction_expand' => VisualType.fractionPizza,
-      'symmetry' => VisualType.shape,
+      // Symmetrie-Aufgaben haben „ja/nein“ oder Zahlen als Karten. Die
+      // „Formenhilfe“ zeichnet nur Formen, die als Karte vorkommen, und
+      // blieb deshalb leer.
+      'symmetry' => VisualType.none,
       'family' => VisualType.wordFamilyTree,
       'category' => VisualType.wordFamilyTree,
       'word_type' => VisualType.wordTypeColor,

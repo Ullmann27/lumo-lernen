@@ -141,14 +141,20 @@ void main() {
 
   test('fourth-grade symmetry asks for axes rather than reusing yes/no tasks',
       () {
+    // Fachprüfung Mathematik M14: Früher gab es nur vier Figuren. Die Liste
+    // ist jetzt länger; die vier alten Figuren behalten ihre Lösung.
     final expected = {
-      'ein Quadrat': '4',
-      'ein Rechteck, das kein Quadrat ist': '2',
-      'ein gleichseitiges Dreieck': '3',
-      'ein gleichschenkliges Dreieck, das nicht gleichseitig ist': '1',
+      for (final entry in symmetryAxisExamples) entry.$1: '${entry.$2}',
     };
+    expect(expected['ein Quadrat'], '4');
+    expect(expected['ein Rechteck, das kein Quadrat ist'], '2');
+    expect(expected['ein gleichseitiges Dreieck'], '3');
+    expect(
+        expected['ein gleichschenkliges Dreieck, das nicht gleichseitig ist'],
+        '1');
+    expect(expected.length, greaterThanOrEqualTo(20));
     final seen = <String>{};
-    for (var seed = 0; seed < 100; seed++) {
+    for (var seed = 0; seed < 400; seed++) {
       final task = template('g4_symmetry_lines').concretize(seed);
       final key = expected.keys.singleWhere(
           (shape) => task.prompt == 'Wie viele Symmetrieachsen hat $shape?');

@@ -24,9 +24,17 @@ String _visibleMathAnswer(String prompt) {
     final a = int.parse(calculation[1]!), b = int.parse(calculation[3]!);
     return '${calculation[2] == '+' ? a + b : a - b}';
   }
-  final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
-      .firstMatch(prompt);
-  if (line != null) return '${int.parse(line[2]!) + 1}';
+  // Seit der Fachprüfung Mathematik (M14) wechseln Schritt und Lücke:
+  // „Welche Zahl fehlt? 5, _, 15, 20“. Der Schritt folgt aus zwei
+  // sichtbaren Nachbarn.
+  if (prompt.startsWith('Welche Zahl fehlt? ')) {
+    final items = prompt.substring('Welche Zahl fehlt? '.length).split(', ');
+    final gap = items.indexOf('_');
+    final known = [for (var i = 0; i < items.length; i++) if (i != gap) i];
+    final step = (int.parse(items[known[1]]) - int.parse(items[known[0]])) ~/
+        (known[1] - known[0]);
+    return '${int.parse(items[known[0]]) + step * (gap - known[0])}';
+  }
   // Wortlaut seit der Fachprüfung Mathematik (L17): „wo sind mehr Äpfel?“
   // mit der Karte „gleich viele“.
   if (prompt.endsWith('– wo sind mehr Äpfel?')) {

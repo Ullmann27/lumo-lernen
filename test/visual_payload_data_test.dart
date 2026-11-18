@@ -212,6 +212,32 @@ void main() {
     });
   });
 
+  // Fachprüfung Mathematik M18: Symmetrie-Aufgaben zeigten eine leere
+  // „Formenhilfe“, weil ihre Karten „ja/nein“ oder Zahlen sind.
+  test('Symmetrie-Aufgaben bekommen keine leere Formenhilfe', () {
+    for (final id in ['g1_symmetry', 'g4_symmetry_lines']) {
+      final template =
+          MathTaskTemplates.templates.singleWhere((item) => item.id == id);
+      final task = template.concretize(11);
+      final instance = adapter.toTaskInstance(
+        task: LumoTask(
+          id: 'symmetry',
+          grade: 4,
+          subject: 'Mathematik',
+          unit: task.unit,
+          prompt: task.prompt,
+          choices: task.choices,
+          answer: task.answer,
+          explanation: task.explanation,
+          visual: task.visual,
+        ),
+        childId: 'child',
+        difficulty: 1,
+      );
+      expect(instance.visualPayload.type, isNot(VisualType.shape));
+    }
+  });
+
   group('clock parser', () {
     test('extrahiert hour und minute aus "Stunde 7 und Minute 30"', () {
       final data = dataFor(

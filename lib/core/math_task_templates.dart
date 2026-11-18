@@ -245,6 +245,69 @@ class MathTaskTemplates {
   };
 }
 
+/// Klasse 1, Symmetrie: Dinge zum Falten (im Wen-Fall) und ob beide Hälften
+/// aufeinanderpassen. Gleich viele „ja“ und „nein“. Buchstaben und Ziffern
+/// mit nur waagrechter Achse (B, C, D, E, 3) fehlen bewusst: Dort hängt die
+/// Antwort von der Schrift ab.
+const List<(String, bool)> symmetryFoldExamples = <(String, bool)>[
+  ('ein Herz aus Papier', true),
+  ('einen Schmetterling aus Papier', true),
+  ('einen Kreis aus Papier', true),
+  ('ein Quadrat aus Papier', true),
+  ('den Druckbuchstaben A', true),
+  ('den Druckbuchstaben H', true),
+  ('den Druckbuchstaben M', true),
+  ('den Druckbuchstaben O', true),
+  ('den Druckbuchstaben T', true),
+  ('den Druckbuchstaben U', true),
+  ('den Druckbuchstaben V', true),
+  ('den Druckbuchstaben W', true),
+  ('den Druckbuchstaben Y', true),
+  ('die Ziffer 8', true),
+  ('die Ziffer 0', true),
+  ('den Druckbuchstaben F', false),
+  ('den Druckbuchstaben G', false),
+  ('den Druckbuchstaben J', false),
+  ('den Druckbuchstaben L', false),
+  ('den Druckbuchstaben N', false),
+  ('den Druckbuchstaben P', false),
+  ('den Druckbuchstaben Q', false),
+  ('den Druckbuchstaben R', false),
+  ('den Druckbuchstaben S', false),
+  ('den Druckbuchstaben Z', false),
+  ('die Ziffer 2', false),
+  ('die Ziffer 5', false),
+  ('die Ziffer 6', false),
+  ('die Ziffer 7', false),
+  ('die Ziffer 9', false),
+];
+
+/// Klasse 4, Symmetrieachsen: Figur und Anzahl ihrer Spiegelachsen.
+const List<(String, int)> symmetryAxisExamples = <(String, int)>[
+  ('ein Quadrat', 4),
+  ('ein Rechteck, das kein Quadrat ist', 2),
+  ('ein gleichseitiges Dreieck', 3),
+  ('ein gleichschenkliges Dreieck, das nicht gleichseitig ist', 1),
+  ('ein Dreieck mit drei verschieden langen Seiten', 0),
+  ('eine Raute, die kein Quadrat ist', 2),
+  ('ein Parallelogramm, das weder Rechteck noch Raute ist', 0),
+  ('ein gleichschenkliges Trapez', 1),
+  ('ein Drachenviereck, das keine Raute ist', 1),
+  ('ein regelmäßiges Fünfeck', 5),
+  ('ein regelmäßiges Sechseck', 6),
+  ('ein regelmäßiges Achteck', 8),
+  ('ein Halbkreis', 1),
+  ('ein Herz', 1),
+  ('ein Stern mit fünf gleichen Zacken', 5),
+  ('der Druckbuchstabe A', 1),
+  ('der Druckbuchstabe T', 1),
+  ('der Druckbuchstabe M', 1),
+  ('der Druckbuchstabe H', 2),
+  ('der Druckbuchstabe F', 0),
+  ('der Druckbuchstabe Z', 0),
+  ('der Druckbuchstabe N', 0),
+];
+
 class MathTaskTemplate {
   const MathTaskTemplate({
     required this.id,
@@ -303,12 +366,28 @@ class MathTaskTemplate {
           typical: _subtractionErrors(minuend, subtrahend),
         );
       case MathTemplateKind.numberLineMissing:
-        final start = a;
-        final answer = start + 2;
+        // Schritte 1, 2 oder 5, die Lücke an wechselnder Stelle. Früher gab
+        // es nur „a, a+1, _, a+3“ (18 Aufgaben).
+        final step = const <int>[1, 1, 1, 2, 2, 5][_positive(_mixSeed(seed + 11), 6)];
+        final start = step == 5 ? (a % 2) * 5 : a % (20 - 3 * step + 1);
+        final sequence = <int>[for (var i = 0; i < 4; i++) start + i * step];
+        final gap = _positive(_mixSeed(seed + 37), 4);
+        final answer = sequence[gap];
+        final shown = <String>[
+          for (var i = 0; i < 4; i++) i == gap ? '_' : '${sequence[i]}',
+        ];
+        final rule = step == 1
+            ? 'Die Zahlen werden immer um 1 größer.'
+            : 'Die Zahlen werden immer um $step größer.';
         // Karten, die schon in der Reihe stehen, wären sofort auszuschließen.
-        return _numberTask(seed, 'Welche Zahl fehlt? $start, ${start + 1}, _, ${start + 3}', answer, 'Am Zahlenstrahl geht es immer um 1 weiter.', 'number_line',
-          typical: <int>[start + 4, start - 1, start + 5, start - 2],
-          blocked: <int>{start, start + 1, start + 3},
+        return _numberTask(seed, 'Welche Zahl fehlt? ${shown.join(', ')}', answer,
+          gap == 0
+              ? '$rule Rechne von der zweiten Zahl zurück: ${sequence[1]} − $step = $answer.'
+              : '$rule ${sequence[gap - 1]} + $step = $answer.',
+          'number_line',
+          // Typisch: um 1 statt um den Schritt weitergezählt, einen Schritt zu weit.
+          typical: <int>[answer + 1, answer - 1, sequence.last + step, start - step, answer + 10],
+          blocked: sequence.toSet(),
         );
       case MathTemplateKind.quantityCompare:
         final left = a;
@@ -400,32 +479,124 @@ class MathTaskTemplate {
             ['der Tag vor heute', 'der Tag nach morgen', 'der heutige Tag'],
             'Gehe von heute einen Tag zurück. Dann ist gestern.'
           ),
+          (
+            'Welcher Tag kommt nach Montag?',
+            'Dienstag',
+            ['Sonntag', 'Dienstag', 'Mittwoch'],
+            'Die Woche geht so: Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag.'
+          ),
+          (
+            'Welcher Tag kommt vor Sonntag?',
+            'Samstag',
+            ['Montag', 'Freitag', 'Samstag'],
+            'Vor dem Sonntag kommt der Samstag. Beide zusammen sind das Wochenende.'
+          ),
+          (
+            'Welcher Tag kommt nach Freitag?',
+            'Samstag',
+            ['Donnerstag', 'Samstag', 'Sonntag'],
+            'Nach Freitag kommt Samstag. Dann beginnt das Wochenende.'
+          ),
+          (
+            'Heute ist Mittwoch. Welcher Tag ist morgen?',
+            'Donnerstag',
+            ['Dienstag', 'Donnerstag', 'Freitag'],
+            'Morgen ist der Tag nach heute. Nach Mittwoch kommt Donnerstag.'
+          ),
+          (
+            'Heute ist Dienstag. Welcher Tag war gestern?',
+            'Montag',
+            ['Montag', 'Mittwoch', 'Sonntag'],
+            'Gestern ist der Tag vor heute. Vor Dienstag kommt Montag.'
+          ),
+          (
+            'Wie viele Monate hat ein Jahr?',
+            '12',
+            ['7', '10', '12'],
+            'Von Jänner bis Dezember sind es zwölf Monate.'
+          ),
+          (
+            'Welcher Monat kommt nach dem Jänner?',
+            'Februar',
+            ['Dezember', 'Februar', 'März'],
+            'Das Jahr beginnt mit Jänner, Februar, März.'
+          ),
+          (
+            'Welcher Monat ist der letzte im Jahr?',
+            'Dezember',
+            ['Jänner', 'November', 'Dezember'],
+            'Das Jahr endet mit dem Dezember. Danach beginnt ein neues Jahr mit dem Jänner.'
+          ),
+          (
+            'Wie viele Jahreszeiten gibt es?',
+            '4',
+            ['2', '4', '12'],
+            'Frühling, Sommer, Herbst und Winter: Das sind vier Jahreszeiten.'
+          ),
+          (
+            'Welche Jahreszeit kommt nach dem Winter?',
+            'Frühling',
+            ['Herbst', 'Sommer', 'Frühling'],
+            'Nach dem Winter wird es wärmer. Dann ist Frühling.'
+          ),
+          (
+            'Welche Jahreszeit kommt nach dem Sommer?',
+            'Herbst',
+            ['Herbst', 'Winter', 'Frühling'],
+            'Nach dem Sommer kommt der Herbst. Die Blätter werden bunt.'
+          ),
+          (
+            'Wann stehst du auf und frühstückst?',
+            'am Morgen',
+            ['am Morgen', 'am Abend', 'in der Nacht'],
+            'Am Morgen beginnt der Tag. Da stehst du auf und frühstückst.'
+          ),
+          (
+            'Wann gehst du schlafen?',
+            'am Abend',
+            ['am Morgen', 'zu Mittag', 'am Abend'],
+            'Am Abend endet der Tag. Dann gehst du schlafen.'
+          ),
+          (
+            'Was dauert länger: eine Stunde oder eine Minute?',
+            'eine Stunde',
+            ['eine Minute', 'eine Stunde', 'beides gleich lang'],
+            'Eine Stunde ist viel länger als eine Minute. In einer Stunde vergehen 60 Minuten.'
+          ),
+          (
+            'Wie viele Minuten hat eine Stunde?',
+            '60',
+            ['30', '60', '100'],
+            'Eine Stunde hat 60 Minuten. Der lange Zeiger geht in dieser Zeit einmal rundherum.'
+          ),
+          (
+            'Was dauert länger: ein Tag oder eine Woche?',
+            'eine Woche',
+            ['ein Tag', 'eine Woche', 'beides gleich lang'],
+            'Eine Woche hat sieben Tage. Sie dauert länger als ein Tag.'
+          ),
         ];
         final fact = facts[_positive(_mixSeed(seed), facts.length)];
         // Kein Uhr-Feld: Zu diesen Fragen gibt es keine Uhrzeit zu zeigen.
         return _choice(seed, fact.$1, fact.$2, fact.$3, fact.$4, 'time_fact');
       case MathTemplateKind.symmetry:
         if (unit == 'Symmetrieachsen') {
-          const examples = <(String, int)>[
-            ('ein Quadrat', 4),
-            ('ein Rechteck, das kein Quadrat ist', 2),
-            ('ein gleichseitiges Dreieck', 3),
-            ('ein gleichschenkliges Dreieck, das nicht gleichseitig ist', 1),
-          ];
-          final entry = examples[_positive(_mixSeed(seed), examples.length)];
+          final entry = symmetryAxisExamples[_positive(_mixSeed(seed), symmetryAxisExamples.length)];
           return _numberTask(seed, 'Wie viele Symmetrieachsen hat ${entry.$1}?', entry.$2,
               'Eine Symmetrieachse teilt eine Form in zwei spiegelgleiche Hälften. Prüfe jede mögliche Faltlinie.', 'symmetry',
               // Typisch: Ecken oder Seiten zählen statt Faltlinien, oder gar keine Achse finden.
-              typical: const <int>[0, 1, 2, 3, 4, 6, 8], max: 8);
+              typical: const <int>[0, 1, 2, 3, 4, 5, 6, 8, 10], max: 12);
         }
-        const data = <String, bool>{
-          'ein Kreis': true, 'ein Quadrat': true,
-          'ein gleichseitiges Dreieck': true,
-          'ein Dreieck mit drei verschieden langen Seiten': false,
-        };
-        final entry = data.entries.elementAt(_positive(_mixSeed(seed), data.length));
-        return _choice(seed, 'Hat ${entry.key} eine Spiegelachse?', entry.value ? 'ja' : 'nein',
-            <String>['ja', 'nein'], 'Beim Spiegeln an einer Achse müssen beide Hälften genau aufeinanderpassen.', 'symmetry', keepOrder: true);
+        // Klasse 1: falten statt Fachwörter. Früher gab es vier Fragen wie
+        // „Hat ein gleichseitiges Dreieck eine Spiegelachse?“, drei davon
+        // mit der Antwort „ja“.
+        final entry = symmetryFoldExamples[_positive(_mixSeed(seed), symmetryFoldExamples.length)];
+        return _choice(seed, 'Kannst du ${entry.$1} so falten, dass beide Hälften genau aufeinanderpassen?', entry.$2 ? 'ja' : 'nein',
+            <String>['ja', 'nein'],
+            entry.$2
+                ? 'Ja. Falte in der Mitte: Beide Hälften passen genau aufeinander. Die Faltlinie heißt Spiegelachse.'
+                : 'Nein. Wie du auch faltest: Die zwei Hälften passen nie genau aufeinander.',
+            'symmetry', keepOrder: true);
       case MathTemplateKind.multiplicationPrep:
         final answer = b;
         return _numberTask(seed, 'Wie oft passt $a in ${a * b}?', answer, '$a passt $answer-mal in ${a * b}: ${List<String>.filled(answer, '$a').join(' + ')} = ${a * b}.', 'groups',
@@ -706,8 +877,9 @@ class MathTaskTemplate {
             '1 Liter sind 1000 Milliliter. Rechne $liter × 1000 und zähle $extra Milliliter dazu.', 'volume',
             typical: _thousandConversionErrors(liter, extra));
       case MathTemplateKind.timeMinutes:
-        final hours = 1 + (a - 1) % 5;
-        final extra = (b - 1) * 15;
+        // 9 Stundenwerte mal 8 Minutenwerte (früher nur 20 Aufgaben).
+        final hours = 1 + (a - 1) % 9;
+        final extra = const <int>[0, 10, 15, 20, 30, 40, 45, 50][(b - 1 + _positive(_mixSeed(seed + 3), 8)) % 8];
         final answer = hours * 60 + extra;
         final hoursText = '$hours ${hours == 1 ? 'Stunde' : 'Stunden'}';
         final amount = extra == 0 ? hoursText : '$hoursText und $extra Minuten';
