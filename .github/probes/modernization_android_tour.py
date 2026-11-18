@@ -936,6 +936,30 @@ class RaceSession:
         return state
 
 
+PREVIEW_SKIPS: list[dict] = []
+
+
+def _skip_course_preview(out: Path, attempt: int) -> None:
+    """Tap the race picture while the course fly-over is shown.
+
+    Every race opens with a fly-over ("Tippen zum Überspringen"); the countdown and
+    the race clock only start afterwards. On the software-rendered emulator the
+    fly-over outlasted the whole wait (run 44272904194: the race scene was on
+    screen, the saved clock stayed at countdown 3.5). The tap is only sent when the
+    current screenshot shows the race header ("Pause"), and it goes to the road
+    in the picture, clear of the stick, the buttons and the mini map.
+    """
+    screen = _screencap()
+    (out / f'21_race_preview_{attempt}.png').write_bytes(screen)
+    header = _read_garage_footer(screen, 'Pause', min_y=0.0, max_y=.3)
+    if header is None:
+        return
+    image = Image.open(io.BytesIO(screen))
+    tap = (round(image.width * .40), round(image.height * .55))
+    base.adb('shell', 'input', 'tap', str(tap[0]), str(tap[1]), check=False)
+    PREVIEW_SKIPS.append({'attempt': attempt, 'header': header, 'tap': tap})
+
+
 def wait_race_running(session: RaceSession, timeout: float = 150, *,
                       selected_kart: str | None = None, previous_id: str | None = None) -> dict:
     """The countdown is over and the saved race clock has run for a second."""
@@ -964,9 +988,17 @@ def wait_race_running(session: RaceSession, timeout: float = 150, *,
             if ready:
                 return state
             last = {key: state[key] for key in ('countdown', 'elapsed', 'distance')}
+            # The saved clock has not moved: the course fly-over is still running.
+            if (float(state['elapsed']) == 0.0 and float(state['distance']) == 0.0
+                    and attempt % 4 == 1 and len(PREVIEW_SKIPS) < 3):
+                try:
+                    _skip_course_preview(session.out, attempt)
+                except Exception as error:  # a missed tap must not hide the real result
+                    last = {**last, 'preview_skip_error': str(error)[:120]}
         attempt += 1
         time.sleep(2)
-    raise RuntimeError(f'Saved race never showed a running race clock: {last}')
+    raise RuntimeError(
+        f'Saved race never showed a running race clock: {last}; preview taps: {PREVIEW_SKIPS}')
 
 
 def _pause_actual_race(out: Path, session: RaceSession, identity: str) -> dict:
