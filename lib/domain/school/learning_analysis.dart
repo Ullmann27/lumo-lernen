@@ -139,7 +139,7 @@ class LearningAnalysis {
     if (weakest != null) {
       return CoachMessage(
         text:
-            'Bei „${weakest.competency}“ passieren dir noch Fehler. Wollen wir zwei leichte Aufgaben gemeinsam machen?',
+            'Bei „${weakest.competency}“ passieren dir noch Fehler. Wollen wir das gemeinsam üben?',
         subject: weakest.subject,
         unit: weakest.unit,
         isHelp: true,
