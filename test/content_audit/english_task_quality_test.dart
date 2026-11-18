@@ -91,8 +91,10 @@ void main() {
         final known = meanings[grade]!;
         expect(known[task.answer], german, reason: task.prompt);
         for (final choice in task.choices.where((c) => c != task.answer)) {
-          expect(known.containsKey(choice), isTrue, reason: choice);
-          expect(_core(known[choice]!), isNot(_core(german)),
+          // Gleich lautende Wörter (wind = Wind) werden nicht gefragt (E-L7),
+          // stehen aber als Ablenker zur Wahl: ihre Bedeutung ist das Wort.
+          final meaning = known[choice] ?? choice;
+          expect(_core(meaning), isNot(_core(german)),
               reason: '„$choice“ wäre auch richtig für „$german“');
         }
         expect(
@@ -123,5 +125,19 @@ void main() {
     expect(seen.keys.any((english) => english.startsWith('Let us')), isFalse);
     expect(seen.containsKey("Let's play."), isTrue);
     expect(seen.containsKey('England'), isFalse);
+  });
+
+  test('gleich lautende Wörter werden nicht gefragt, österreichisch (E-L5, E-L7)',
+      () {
+    for (final task in <LumoTask>[...forward, ...reverse]) {
+      final asked = RegExp('„(.+)“').firstMatch(task.prompt)!.group(1)!;
+      expect(asked.toLowerCase(), isNot(task.answer.toLowerCase()),
+          reason: task.prompt);
+    }
+    final all = <String, String>{
+      for (final units in englishVocabularyExtensions.values)
+        for (final unit in units.values) ...unit,
+    };
+    expect(all['potato'], 'Erdapfel');
   });
 }

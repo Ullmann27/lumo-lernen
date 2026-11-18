@@ -66,7 +66,10 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'ear': 'Ohr',
       'finger': 'Finger',
       'knee': 'Knie',
-      'toes': 'Zehen'
+      'toes': 'Zehen',
+      'nose': 'Nase',
+      'mouth': 'Mund',
+      'head': 'Kopf'
     },
     'Schulsachen': {
       'pen': 'Stift',
@@ -179,7 +182,7 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'bread': 'Brot',
       'cheese': 'Käse',
       'egg': 'Ei',
-      'potato': 'Kartoffel',
+      'potato': 'Erdapfel',
       'tomato': 'Tomate',
       'carrot': 'Karotte',
       'rice': 'Reis',

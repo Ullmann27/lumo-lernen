@@ -1323,7 +1323,13 @@ class ExerciseFactory {
       outputUnit = keys[_random.nextInt(keys.length)];
       map = levelMaps[outputUnit];
     }
-    final entry = map!.entries.elementAt(_random.nextInt(map.length));
+    // Wörter, die im Deutschen gleich lauten (orange, Hand, Tiger), prüfen
+    // beim Lesen nichts und werden nicht gefragt (Fachprüfung E-L7).
+    final askable = map!.entries
+        .where((e) => e.key.toLowerCase() != e.value.toLowerCase())
+        .toList();
+    final entries = askable.isEmpty ? map.entries.toList() : askable;
+    final entry = entries[_random.nextInt(entries.length)];
     // Ablenker: nie ein zweites richtiges oder fast gleiches Wort (Morgen /
     // am Morgen / morgen, Tasche / Schultasche) und möglichst dieselbe Art
     // (Wort neben Wörtern, Satz neben Sätzen), damit die Länge nichts verrät.

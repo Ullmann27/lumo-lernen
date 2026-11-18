@@ -172,9 +172,11 @@ void main(List<String> args) {
           }
         }
       }
+      // Fachprüfung 2026-11 (E-L7): „ball“ = „Ball“ lautet gleich und wird
+      // nicht mehr gefragt; die übrigen dreizehn Wörter bleiben erreichbar.
       check(
-        realExamples.length == 14,
-        'all fourteen intended local vocabulary entries reached: ${realExamples.keys}',
+        realExamples.length == 13 && !realExamples.containsKey('ball'),
+        'all thirteen intended local vocabulary entries reached: ${realExamples.keys}',
       );
     },
   );
