@@ -29,9 +29,10 @@ void main() {
 
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  test('routing table lists eleven unique portals and unique covers', () {
+  test('routing table lists twelve unique portals and unique covers', () {
     expect(SpielweltRoutes.all.map((r) => r.identity), SpielweltRoutes.identities);
-    expect(SpielweltRoutes.all, hasLength(11));
+    expect(SpielweltRoutes.all, hasLength(12));
+    expect(SpielweltRoutes.byIdentity('chess').target, 'chess');
     final covers = [
       for (final route in SpielweltRoutes.all)
         if (route.coverAsset.isNotEmpty) route.coverAsset

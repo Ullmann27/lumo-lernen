@@ -396,6 +396,8 @@ class _GamesContentState extends State<GamesContent> {
           SpielweltPortal.village(
             onOpen: () => _launch3D('settlement', livingVillage: true),
           )
+        else if (route.identity == 'chess')
+          SpielweltPortal.chess(onOpen: () => _launch3D('chess'))
         else if (route.identity == 'connectFour')
           SpielweltPortal.connectFour(onOpen: _launchConnectFour)
         else if (route.identity == 'quizShow')

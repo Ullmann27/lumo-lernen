@@ -43,6 +43,13 @@ class SpielweltPortal {
         semanticTitle = 'Dorf & Wirtschaft',
         specialId = 'village';
 
+  /// Schach ist von Anfang an offen: Lernweg für Kinder, Partie für Große.
+  const SpielweltPortal.chess({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumo Schach',
+        specialId = 'chess';
+
   final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
@@ -59,6 +66,8 @@ class SpielweltPortal {
         return '4 Gewinnt';
       case 'village':
         return 'Dorfwirtschaft';
+      case 'chess':
+        return 'Schach';
       case 'rhythm':
         return 'Rhythm';
       default:
@@ -75,6 +84,7 @@ class SpielweltPortal {
         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
         'village' => 'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
+        'chess' => 'Schach lernen mit Lumo – oder gegen ihn spielen',
         _ => game?.tagline ?? '',
       };
   bool get playable =>
@@ -136,6 +146,7 @@ class _SpielweltHubState extends State<SpielweltHub> {
   static const _featuredOrder = [
     'kart',
     'village',
+    'chess',
     'cards',
     'build',
     'puzzle',
