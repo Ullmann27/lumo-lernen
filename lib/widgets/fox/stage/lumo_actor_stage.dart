@@ -19,13 +19,18 @@ enum LumoStagePhase { home, toTarget, atTarget, toHome }
 /// Ein Auftrag an Lumo: hinlaufen, zeigen, sprechen – oder heimgehen.
 @immutable
 class LumoStageRequest {
-  const LumoStageRequest._(this.serial, this.targetId, this.text, this.delay);
+  const LumoStageRequest._(this.serial, this.targetId, this.text, this.delay,
+      {this.reveal = true});
   final int serial;
 
   /// Null bedeutet: zurück auf den Standardplatz.
   final String? targetId;
   final String? text;
   final Duration delay;
+
+  /// Darf die Seite dafür scrollen? Nur, wenn das Kind gerade um Hilfe bat –
+  /// ein Besuch aus eigenem Antrieb verschiebt nie die Seite unter dem Finger.
+  final bool reveal;
 }
 
 /// Steuert Lumo auf der Lernbühne. Die Aufgabe ruft nur [helpAt] und
@@ -38,10 +43,17 @@ class LumoStageController extends ChangeNotifier {
   LumoStageRequest? get request => _request;
 
   /// Lumo läuft zu [targetId], zeigt darauf und sagt [text] in seiner Blase.
-  void helpAt(String targetId, String text, {Duration delay = Duration.zero}) {
-    _request = LumoStageRequest._(++_serial, targetId, text, delay);
+  void helpAt(String targetId, String text,
+      {Duration delay = Duration.zero, bool reveal = true}) {
+    _request =
+        LumoStageRequest._(++_serial, targetId, text, delay, reveal: reveal);
     notifyListeners();
   }
+
+  /// Die Seite hat sich bewegt (Scrollen, neue Karten): Lumo prüft seinen
+  /// Platz neu – auch wenn er mit reduzierten Animationen still steht.
+  final ValueNotifier<int> layoutTick = ValueNotifier<int>(0);
+  void layoutChanged() => layoutTick.value++;
 
   /// Freundlich abbrechen: zurück auf den Standardplatz.
   void goHome() {
@@ -53,6 +65,7 @@ class LumoStageController extends ChangeNotifier {
   @override
   void dispose() {
     targets.dispose();
+    layoutTick.dispose();
     super.dispose();
   }
 }
@@ -165,6 +178,7 @@ class LumoActorStageState extends State<LumoActorStage>
     _ticker = createTicker(_tick)..start();
     widget.controller.addListener(_requestChanged);
     widget.controller.targets.addListener(_targetsChanged);
+    widget.controller.layoutTick.addListener(_wake);
     widget.character?.addListener(_characterChanged);
     widget.voice?.status.addListener(_wake);
     _answerTouches = widget.controller.targets.answerTouches;
@@ -177,8 +191,10 @@ class LumoActorStageState extends State<LumoActorStage>
     if (!identical(oldWidget.controller, widget.controller)) {
       oldWidget.controller.removeListener(_requestChanged);
       oldWidget.controller.targets.removeListener(_targetsChanged);
+      oldWidget.controller.layoutTick.removeListener(_wake);
       widget.controller.addListener(_requestChanged);
       widget.controller.targets.addListener(_targetsChanged);
+      widget.controller.layoutTick.addListener(_wake);
     }
     if (!identical(oldWidget.character, widget.character)) {
       oldWidget.character?.removeListener(_characterChanged);
@@ -195,6 +211,7 @@ class LumoActorStageState extends State<LumoActorStage>
   void dispose() {
     widget.controller.removeListener(_requestChanged);
     widget.controller.targets.removeListener(_targetsChanged);
+    widget.controller.layoutTick.removeListener(_wake);
     widget.character?.removeListener(_characterChanged);
     widget.voice?.status.removeListener(_wake);
     _ticker.dispose();
@@ -325,10 +342,13 @@ class LumoActorStageState extends State<LumoActorStage>
   // ── Takt ─────────────────────────────────────────────────────────────
 
   void _tick(Duration elapsed) {
-    final dt =
-        ((elapsed - _last).inMicroseconds / 1000000).clamp(0.0, .1).toDouble();
+    // Die Bühnenzeit läuft stetig weiter, auch wenn der Takt neu startet
+    // (dann beginnt `elapsed` wieder bei null).
+    final step = elapsed < _last ? elapsed : elapsed - _last;
+    final dt = (step.inMicroseconds / 1000000).clamp(0.0, .1).toDouble();
     _last = elapsed;
-    _now = elapsed;
+    // Zeitpunkte zählen echte Zeit; Bewegung nur bis 0,1 s je Bild.
+    _now += step;
     final box = context.findRenderObject();
     if (box is! RenderBox || !box.hasSize || box.size.isEmpty) return;
     final layout = LumoStageLayout(
@@ -354,7 +374,9 @@ class LumoActorStageState extends State<LumoActorStage>
       _lastPlacement = Duration.zero;
       final targets = widget.controller.targets;
       final id = _targetId ?? 'learning-task';
-      _revealTarget(targets.has(id) ? id : 'learning-task');
+      if (_active?.reveal ?? true) {
+        _revealTarget(targets.has(id) ? id : 'learning-task');
+      }
     }
 
     switch (_phase) {
@@ -398,6 +420,11 @@ class LumoActorStageState extends State<LumoActorStage>
     }
     final bounds = Offset.zero & box.size;
     final shown = fullRect.top >= 0 && fullRect.top < bounds.bottom - 120;
+    if (!shown && !(_active?.reveal ?? true)) {
+      // Nicht im Bild und kein Scrollen erlaubt: Lumo bleibt an seinem Platz.
+      _leave();
+      return;
+    }
     if (!shown &&
         (_lastReveal == null ||
             _now - _lastReveal! > const Duration(milliseconds: 700))) {

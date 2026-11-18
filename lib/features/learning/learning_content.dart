@@ -52,6 +52,9 @@ import 'widgets/lumo_learning_tree_card.dart';
 import 'widgets/lumo_tutor_hint_card.dart';
 import 'widgets/lumo_mistake_help_card.dart';
 import 'widgets/lumo_tutor_offer_card.dart';
+import 'widgets/lumo_tutoring_hour.dart';
+import '../tutoring/guided_lesson_screen.dart';
+import '../../domain/tutoring/guided_lesson_catalog.dart';
 import 'widgets/lumo_place_value_workshop.dart';
 import 'widgets/lumo_learning_scene_card.dart';
 import 'widgets/interactive_task_workspace.dart';
@@ -217,6 +220,15 @@ class _LearningContentState extends State<LearningContent>
   LumoSpeechListener? _speech;
   bool _listening = false;
   String? _listenNotice;
+
+  /// Nachhilfestunde: Aufwärmen → Erklären → Gemeinsam → Allein → Rückblick.
+  bool _tutoringExplained = false;
+  bool get _tutoringHour =>
+      widget.appState.state.sessionKind == LumoSessionKind.tutoring &&
+      _allowHelp;
+  LumoTutoringPhase get _tutoringPhase =>
+      LumoTutoringHourPlan.phaseFor(_questionNum,
+          explained: _tutoringExplained, finished: _sessionFinished);
   bool _sessionFinished = false;
   // Test: Fragen, die beim ersten Versuch richtig waren (Tests-Bildschirm).
   int _testFirstTryCorrect = 0;
@@ -757,6 +769,7 @@ class _LearningContentState extends State<LearningContent>
     _autoAdvanceTimer?.cancel();
     if (resetCounter) {
       _sessionFinished = false;
+      _tutoringExplained = false;
       _testFirstTryCorrect = 0;
       _questionNum = 1;
       _twins.clear();
@@ -811,6 +824,72 @@ class _LearningContentState extends State<LearningContent>
     _lastSolvedAlone = null;
     _publishTaskContext();
     _scheduleAutoRead();
+    _beginTutoringStep();
+  }
+
+  /// Lumo führt durch die Stunde: Er kündigt jeden Abschnitt an und begleitet
+  /// beim gemeinsamen Üben jede Aufgabe mit ihrem Lernziel (keine Lösung).
+  void _beginTutoringStep() {
+    if (!_tutoringHour) return;
+    final phase = _tutoringPhase;
+    final unit = Curriculum.prettifyUnit(_task.unit);
+    if (phase == LumoTutoringPhase.explain) {
+      // Erst erklären, dann die Aufgabe: nichts liest sich selbst vor.
+      _autoReadTimer?.cancel();
+      return;
+    }
+    final firstOfPhase = _questionNum == 1 ||
+        _questionNum ==
+            LumoTutoringHourPlan.warmUpTasks +
+                LumoTutoringHourPlan.togetherTasks +
+                1;
+    final text = phase == LumoTutoringPhase.together
+        ? 'Gemeinsam: ${InteractiveTaskWorkspace.goalFor(_taskInstance)}'
+        : firstOfPhase
+            ? LumoTutoringHourPlan.introFor(phase, unit)
+            : null;
+    if (text != null) {
+      _stage.helpAt('learning-task', text,
+          delay: const Duration(milliseconds: 700), reveal: false);
+    }
+  }
+
+  bool get _tutoringExplaining =>
+      _tutoringHour && _tutoringPhase == LumoTutoringPhase.explain;
+
+  void _finishTutoringExplanation() {
+    if (!mounted) return;
+    _stopLearningExplanation();
+    setState(() => _tutoringExplained = true);
+    _beginTutoringStep();
+  }
+
+  /// Rechentrick als Bild zur Erklärung – der Weg, nicht das Ergebnis.
+  Widget? get _tutoringIllustration {
+    if (_task.subject != 'Mathematik') return null;
+    final explanation = const LumoRechentricks().explain(
+        prompt: _task.prompt,
+        correctAnswer: '${_taskInstance.correctAnswer}',
+        grade: widget.appState.state.grade,
+        revealResult: false);
+    return explanation == null
+        ? null
+        : RechentricksMentorCard(explanation: explanation);
+  }
+
+  List<String> get _tutoringExplainSteps => [
+        _taskHints.explain(_task, level: 1),
+        _taskHints.explain(_task, level: 2),
+        'Dann lösen wir zusammen Aufgaben. Ich zeige dir jedes Mal, '
+            'worauf es ankommt.',
+      ];
+
+  Future<void> _openTutoringPictureCourse(GuidedLesson lesson) async {
+    _stopLearningExplanation();
+    await Navigator.of(context).push<void>(MaterialPageRoute(
+      builder: (_) => GuidedLessonScreen(
+          appState: widget.appState, lesson: lesson, discovery: false),
+    ));
   }
 
   /// Grades 1 and 2 hear every new task without asking, as long as Lumo's
@@ -2727,6 +2806,19 @@ class _LearningContentState extends State<LearningContent>
                   fontSize: 11)),
         ]),
       );
+      // Rückblick der Nachhilfestunde: nur echte Ergebnisse dieser Stunde.
+      final review = _tutoringHour
+          ? LumoTutoringReviewCard(
+              review: LumoTutoringReview.from(
+              unit: st.unit == 'Alle'
+                  ? 'dieses Thema'
+                  : Curriculum.prettifyUnit(st.unit),
+              alone: _sessionAlone,
+              together: _sessionTogether,
+              twinWins: _sessionTwinWins,
+              mistakes: _errorBreakdown,
+            ))
+          : null;
       final tree = LumoLearningTreeCard(
         skills: widget.appState.learningSkills(),
         compact: true,
@@ -2745,12 +2837,23 @@ class _LearningContentState extends State<LearningContent>
             constraints: const BoxConstraints(maxWidth: 950),
             child: wide
                 ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Expanded(child: header),
+                    Expanded(
+                        child: Column(children: [
+                      header,
+                      if (review != null) ...[
+                        const SizedBox(height: 13),
+                        review,
+                      ],
+                    ])),
                     const SizedBox(width: 15),
                     Expanded(child: tree),
                   ])
                 : Column(children: [
                     header,
+                    if (review != null) ...[
+                      const SizedBox(height: 13),
+                      review,
+                    ],
                     const SizedBox(height: 13),
                     tree,
                   ]),
@@ -2862,430 +2965,477 @@ class _LearningContentState extends State<LearningContent>
         // physikalisch korrektes Konfetti (Newton-Schwerkraft + Luftwiderstand)
         // ueber den gesamten Inhalt.
         final actors = LumoActorLibrary.shared.value;
+        // Neue Karten verschieben die Aufgabe: Lumo prüft danach seinen Platz.
+        if (actors != null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) _stage.layoutChanged();
+          });
+        }
         return Stack(
           children: [
             LumoStageScope(
               targets: _stage.targets,
-              child: SingleChildScrollView(
-                // Unten Platz für Lumos Standardplatz bzw. seinen Fuchs-Knopf,
-                // damit er keine Antwort verdeckt.
-                padding: EdgeInsets.fromLTRB(
-                    compact ? 14 : 26,
-                    compact ? 10 : 26,
-                    compact ? 14 : 26,
-                    actors == null ? 80 : (compact ? 140 : 156)),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 840),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    title,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      fontFamily: 'Nunito',
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.w900,
-                                      color: LumoVisualTokens.white,
-                                      height: 1.05,
-                                      shadows: [
-                                        Shadow(
-                                            color: Color(0x88000000),
-                                            blurRadius: 8)
-                                      ],
+              child: NotificationListener<ScrollNotification>(
+                onNotification: (_) {
+                  _stage.layoutChanged();
+                  return false;
+                },
+                child: SingleChildScrollView(
+                  // Unten Platz für Lumos Standardplatz bzw. seinen Fuchs-Knopf,
+                  // damit er keine Antwort verdeckt.
+                  padding: EdgeInsets.fromLTRB(
+                      compact ? 14 : 26,
+                      compact ? 10 : 26,
+                      compact ? 14 : 26,
+                      actors == null ? 80 : (compact ? 140 : 156)),
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 840),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      title,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontFamily: 'Nunito',
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w900,
+                                        color: LumoVisualTokens.white,
+                                        height: 1.05,
+                                        shadows: [
+                                          Shadow(
+                                              color: Color(0x88000000),
+                                              blurRadius: 8)
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    experienceSubtitle,
-                                    style: const TextStyle(
-                                      fontFamily: 'Nunito',
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w900,
-                                      color: LumoVisualTokens.cyanBright,
-                                      height: 1.3,
-                                      shadows: [
-                                        Shadow(
-                                            color: Color(0xCC000000),
-                                            blurRadius: 8)
-                                      ],
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      experienceSubtitle,
+                                      style: const TextStyle(
+                                        fontFamily: 'Nunito',
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w900,
+                                        color: LumoVisualTokens.cyanBright,
+                                        height: 1.3,
+                                        shadows: [
+                                          Shadow(
+                                              color: Color(0xCC000000),
+                                              blurRadius: 8)
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 3),
-                                  Text(
-                                    _welcomeForKind,
-                                    style: const TextStyle(
-                                      fontFamily: 'Nunito',
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w700,
-                                      color: LumoVisualTokens.muted,
-                                      height: 1.25,
+                                    const SizedBox(height: 3),
+                                    Text(
+                                      _welcomeForKind,
+                                      style: const TextStyle(
+                                        fontFamily: 'Nunito',
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w700,
+                                        color: LumoVisualTokens.muted,
+                                        height: 1.25,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
+                              const SizedBox(width: 8),
+                              // Vorlesen: runder Glasknopf wie in den Zielbildern.
+                              Material(
+                                color: const Color(0xFF1E6FD9),
+                                shape: const CircleBorder(
+                                    side: BorderSide(
+                                        color: LumoVisualTokens.cyanBright)),
+                                child: IconButton(
+                                  tooltip: 'Aufgabe vorlesen',
+                                  icon: const Icon(Icons.volume_up_rounded,
+                                      color: Colors.white, size: 24),
+                                  onPressed: () {
+                                    _lumo.talk();
+                                    unawaited(_speakTutorHint(
+                                      _task.prompt,
+                                      explainAvailability: true,
+                                    ));
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          if (_tutoringHour) ...[
+                            LumoTutoringPhaseBar(phase: _tutoringPhase),
+                            const SizedBox(height: 10),
+                          ],
+                          _LessonProgressRow(
+                            currentStep: _questionNum,
+                            totalSteps: _totalQuestions,
+                            roundLabel: SessionRounds.applies(_plannedQuestions)
+                                ? 'Runde ${SessionRounds.roundOf(_questionNum, _plannedQuestions)} '
+                                    'von ${SessionRounds.count(_plannedQuestions)}'
+                                : null,
+                            subject: progressTitle,
+                            lumo: _lumo,
+                            reduceMotion: st.settings.reduceAnimations ||
+                                st.settings.calmMode ||
+                                MediaQuery.disableAnimationsOf(context),
+                          ),
+                          const SizedBox(height: 12),
+                          OutlinedButton.icon(
+                            key: const ValueKey('learning-3d-workshop'),
+                            onPressed: _nativeLearningOpen
+                                ? null
+                                : () => unawaited(_open3DWorkshop()),
+                            icon: const Icon(Icons.view_in_ar_rounded),
+                            label: const Text('3D-LUMO-Werkstatt öffnen'),
+                            style: OutlinedButton.styleFrom(
+                              minimumSize: const Size(48, 56),
+                              foregroundColor: LumoVisualTokens.cyanBright,
+                              side: const BorderSide(color: Color(0xFF41DCFB)),
                             ),
-                            const SizedBox(width: 8),
-                            // Vorlesen: runder Glasknopf wie in den Zielbildern.
-                            Material(
-                              color: const Color(0xFF1E6FD9),
-                              shape: const CircleBorder(
-                                  side: BorderSide(
-                                      color: LumoVisualTokens.cyanBright)),
-                              child: IconButton(
-                                tooltip: 'Aufgabe vorlesen',
-                                icon: const Icon(Icons.volume_up_rounded,
-                                    color: Colors.white, size: 24),
-                                onPressed: () {
-                                  _lumo.talk();
-                                  unawaited(_speakTutorHint(
-                                    _task.prompt,
-                                    explainAvailability: true,
-                                  ));
-                                },
+                          ),
+                          if (_showHelp && _rechentricks != null) ...[
+                            const SizedBox(height: 14),
+                            RechentricksMentorCard(explanation: _rechentricks!),
+                          ],
+                          // The worked solution already is the offered help.
+                          if (_allowHelp &&
+                              !_answered &&
+                              !_guided &&
+                              _tutorCoordinator.shouldOffer) ...[
+                            const SizedBox(height: 14),
+                            LumoStageTarget(
+                                id: 'tutor-offer',
+                                kind: LumoStageRegionKind.control,
+                                child: LumoTutorOfferCard(
+                                  reduceMotion: st.settings.reduceAnimations ||
+                                      st.settings.calmMode,
+                                  onAccept: _requestTaskHelp,
+                                  onDecline: () {
+                                    setState(() => LumoCompanionRequests
+                                        .instance
+                                        .recordLearningEvent(
+                                            LumoLearningEventKind.hintDeclined,
+                                            context: _publishedTaskContext));
+                                  },
+                                )),
+                          ],
+                          if (widget.appState.tutorSaveError != null) ...[
+                            Text(widget.appState.tutorSaveError!,
+                                style: const TextStyle(color: Colors.white)),
+                            TextButton(
+                                onPressed: () => unawaited(
+                                    widget.appState.flushTutorEvidence()),
+                                style: TextButton.styleFrom(
+                                    minimumSize: const Size(48, 48)),
+                                child:
+                                    const Text('Lernschritt erneut speichern')),
+                          ],
+                          if (_showHelp && _tutorHint != null) ...[
+                            const SizedBox(height: 14),
+                            LumoStageTarget(
+                                id: 'tutor-hint',
+                                kind: LumoStageRegionKind.control,
+                                child: LumoTutorHintCard(
+                                  text: _tutorHint!,
+                                  reduceMotion: st.settings.reduceAnimations ||
+                                      st.settings.calmMode,
+                                  onSpeak: () => unawaited(_speakTutorHint(
+                                      _tutorHint!,
+                                      explainAvailability: true)),
+                                )),
+                          ],
+                          if (_allowHelp &&
+                              !_answered &&
+                              NativeLearningActivity.forTask(_taskInstance) !=
+                                  null) ...[
+                            const SizedBox(height: 12),
+                            FilledButton.icon(
+                              key: const ValueKey('adaptive-open-3d'),
+                              onPressed: _nativeLearningOpen
+                                  ? null
+                                  : () => unawaited(_openNativeLearning()),
+                              style: FilledButton.styleFrom(
+                                  minimumSize: const Size(48, 56)),
+                              icon: const Icon(Icons.view_in_ar_rounded),
+                              label: const Text('Mit Lumo in 3D ausprobieren'),
+                            ),
+                          ],
+                          // After choosing three explicit help steps, let the
+                          // child count actual tens instead of merely rereading
+                          // the explanation. No rewards or automatic answers.
+                          if (_allowHelp &&
+                              !_answered &&
+                              _requestedHelpLevel > 0 &&
+                              _placeValueLesson != null) ...[
+                            const SizedBox(height: 14),
+                            LumoLearningSceneCard(
+                                key: ValueKey(
+                                    'scene-${_taskInstance.taskInstanceId}'),
+                                appState: widget.appState,
+                                scope: _publishedTaskContext!.tutorScope,
+                                number: _placeValueLesson!.sourceNumber,
+                                requestedHelpLevel: _requestedHelpLevel,
+                                requestSerial: _sceneRequestSerial,
+                                reduceMotion: st.settings.reduceAnimations ||
+                                    st.settings.calmMode,
+                                onDifferentTask: () =>
+                                    setState(() => _loadNextTask()),
+                                onMethodChosen: (method) {
+                                  if (!_allowHelp || _answered) return;
+                                  _placeValueLesson?.markTransferHelp();
+                                  setState(() {
+                                    _sceneMethod = method;
+                                    _requestedHelpLevel = math.max(
+                                        _requestedHelpLevel,
+                                        (method.index + 1).clamp(1, 3));
+                                  });
+                                  _publishTaskContext();
+                                  LumoCompanionRequests.instance
+                                      .recordLearningEvent(
+                                          LumoLearningEventKind.hintRequested,
+                                          context: _publishedTaskContext);
+                                }),
+                          ],
+                          if (_sceneCompletionError != null) ...[
+                            Text(_sceneCompletionError!,
+                                style: const TextStyle(color: Colors.white)),
+                            TextButton(
+                                onPressed: () =>
+                                    unawaited(_saveSceneCompletion()),
+                                style: TextButton.styleFrom(
+                                    minimumSize: const Size(48, 48)),
+                                child:
+                                    const Text('Lernschritt erneut speichern')),
+                          ],
+                          if (_allowHelp &&
+                              !_answered &&
+                              _requestedHelpLevel >= 3 &&
+                              _task.subject == 'Mathematik' &&
+                              LumoPlaceValueWorkshop.numberForPrompt(
+                                      _task.prompt) !=
+                                  null) ...[
+                            const SizedBox(height: 14),
+                            LumoPlaceValueWorkshop(
+                              key: ValueKey(
+                                  'lumo-place-value-${_taskInstance.taskInstanceId}'),
+                              number: LumoPlaceValueWorkshop.numberForPrompt(
+                                  _task.prompt)!,
+                              lesson: _placeValueLesson,
+                              onTransferChecked: (result) {
+                                if (!_allowHelp || result.proof == null) return;
+                                if (_tutorCoordinator
+                                        .checkSceneTransfer(result.proof!) ==
+                                    null) {
+                                  return;
+                                }
+                                _pendingSceneCompletion = result.proof;
+                                _pendingSceneMethod = _sceneMethod;
+                                unawaited(_saveSceneCompletion());
+                              },
+                              reduceMotion: st.settings.reduceAnimations ||
+                                  st.settings.calmMode,
+                              sounds: st.settings.soundEnabled,
+                            ),
+                          ],
+                          if (_showHelp && _visualAid != null) ...[
+                            const SizedBox(height: 14),
+                            _VisualAidCard(aid: _visualAid!),
+                          ],
+                          // KI-Hilfe-Button: nur sichtbar wenn aiProxyEnabled.
+                          // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
+                          if (_allowHelp &&
+                              !_answered &&
+                              !_tutoringExplaining) ...[
+                            const SizedBox(height: 12),
+                            LumoStageTarget(
+                                id: 'coach-controls',
+                                kind: LumoStageRegionKind.control,
+                                child: _coachControls()),
+                            if (_aiHelpLoading)
+                              const Text('Lumo prüft einen weiteren Hinweis …',
+                                  style: TextStyle(color: Colors.white)),
+                          ],
+                          if (_aiHelpReply != null) ...[
+                            const SizedBox(height: 12),
+                            _AiHelpBubble(
+                              text: _aiHelpReply!,
+                              onSpeak: () {
+                                _lumo.talk();
+                                unawaited(
+                                  _playOwnedVoice(
+                                    _aiHelpReply!,
+                                    style: VoiceStyle.explain,
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                          if (_candidateIdentity != null)
+                            LumoStageTarget(
+                                id: 'answer-candidate',
+                                kind: LumoStageRegionKind.control,
+                                child: _candidateCard()),
+                          if (_resumedAtRound > 1 &&
+                              _questionNum ==
+                                  (_resumedAtRound - 1) * SessionRounds.size +
+                                      1) ...[
+                            const SizedBox(height: 12),
+                            Text(
+                              'Runde ${_resumedAtRound - 1} hast du schon '
+                              'geschafft. Du machst bei Runde $_resumedAtRound '
+                              'weiter.',
+                              key: const ValueKey('round-resume-notice'),
+                              style: const TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                                color: LumoVisualTokens.cyanBright,
+                                height: 1.3,
                               ),
                             ),
                           ],
-                        ),
-                        const SizedBox(height: 12),
-                        _LessonProgressRow(
-                          currentStep: _questionNum,
-                          totalSteps: _totalQuestions,
-                          roundLabel: SessionRounds.applies(_plannedQuestions)
-                              ? 'Runde ${SessionRounds.roundOf(_questionNum, _plannedQuestions)} '
-                                  'von ${SessionRounds.count(_plannedQuestions)}'
-                              : null,
-                          subject: progressTitle,
-                          lumo: _lumo,
-                          reduceMotion: st.settings.reduceAnimations ||
-                              st.settings.calmMode ||
-                              MediaQuery.disableAnimationsOf(context),
-                        ),
-                        const SizedBox(height: 12),
-                        OutlinedButton.icon(
-                          key: const ValueKey('learning-3d-workshop'),
-                          onPressed: _nativeLearningOpen
-                              ? null
-                              : () => unawaited(_open3DWorkshop()),
-                          icon: const Icon(Icons.view_in_ar_rounded),
-                          label: const Text('3D-LUMO-Werkstatt öffnen'),
-                          style: OutlinedButton.styleFrom(
-                            minimumSize: const Size(48, 56),
-                            foregroundColor: LumoVisualTokens.cyanBright,
-                            side: const BorderSide(color: Color(0xFF41DCFB)),
-                          ),
-                        ),
-                        if (_showHelp && _rechentricks != null) ...[
-                          const SizedBox(height: 14),
-                          RechentricksMentorCard(explanation: _rechentricks!),
-                        ],
-                        // The worked solution already is the offered help.
-                        if (_allowHelp &&
-                            !_answered &&
-                            !_guided &&
-                            _tutorCoordinator.shouldOffer) ...[
-                          const SizedBox(height: 14),
-                          LumoStageTarget(
-                              id: 'tutor-offer',
-                              kind: LumoStageRegionKind.control,
-                              child: LumoTutorOfferCard(
-                                reduceMotion: st.settings.reduceAnimations ||
-                                    st.settings.calmMode,
-                                onAccept: _requestTaskHelp,
-                                onDecline: () {
-                                  setState(() => LumoCompanionRequests.instance
-                                      .recordLearningEvent(
-                                          LumoLearningEventKind.hintDeclined,
-                                          context: _publishedTaskContext));
-                                },
-                              )),
-                        ],
-                        if (widget.appState.tutorSaveError != null) ...[
-                          Text(widget.appState.tutorSaveError!,
-                              style: const TextStyle(color: Colors.white)),
-                          TextButton(
-                              onPressed: () => unawaited(
-                                  widget.appState.flushTutorEvidence()),
-                              style: TextButton.styleFrom(
-                                  minimumSize: const Size(48, 48)),
-                              child:
-                                  const Text('Lernschritt erneut speichern')),
-                        ],
-                        if (_showHelp && _tutorHint != null) ...[
-                          const SizedBox(height: 14),
-                          LumoStageTarget(
-                              id: 'tutor-hint',
-                              kind: LumoStageRegionKind.control,
-                              child: LumoTutorHintCard(
-                                text: _tutorHint!,
-                                reduceMotion: st.settings.reduceAnimations ||
-                                    st.settings.calmMode,
-                                onSpeak: () => unawaited(_speakTutorHint(
-                                    _tutorHint!,
-                                    explainAvailability: true)),
-                              )),
-                        ],
-                        if (_allowHelp &&
-                            !_answered &&
-                            NativeLearningActivity.forTask(_taskInstance) !=
-                                null) ...[
+                          if (_isTwin && !_answered) ...[
+                            const SizedBox(height: 12),
+                            const LumoTwinTaskBanner(),
+                          ],
                           const SizedBox(height: 12),
-                          FilledButton.icon(
-                            key: const ValueKey('adaptive-open-3d'),
-                            onPressed: _nativeLearningOpen
-                                ? null
-                                : () => unawaited(_openNativeLearning()),
-                            style: FilledButton.styleFrom(
-                                minimumSize: const Size(48, 56)),
-                            icon: const Icon(Icons.view_in_ar_rounded),
-                            label: const Text('Mit Lumo in 3D ausprobieren'),
-                          ),
-                        ],
-                        // After choosing three explicit help steps, let the
-                        // child count actual tens instead of merely rereading
-                        // the explanation. No rewards or automatic answers.
-                        if (_allowHelp &&
-                            !_answered &&
-                            _requestedHelpLevel > 0 &&
-                            _placeValueLesson != null) ...[
-                          const SizedBox(height: 14),
-                          LumoLearningSceneCard(
-                              key: ValueKey(
-                                  'scene-${_taskInstance.taskInstanceId}'),
-                              appState: widget.appState,
-                              scope: _publishedTaskContext!.tutorScope,
-                              number: _placeValueLesson!.sourceNumber,
-                              requestedHelpLevel: _requestedHelpLevel,
-                              requestSerial: _sceneRequestSerial,
-                              reduceMotion: st.settings.reduceAnimations ||
-                                  st.settings.calmMode,
-                              onDifferentTask: () =>
-                                  setState(() => _loadNextTask()),
-                              onMethodChosen: (method) {
-                                if (!_allowHelp || _answered) return;
-                                _placeValueLesson?.markTransferHelp();
-                                setState(() {
-                                  _sceneMethod = method;
-                                  _requestedHelpLevel = math.max(
-                                      _requestedHelpLevel,
-                                      (method.index + 1).clamp(1, 3));
-                                });
-                                _publishTaskContext();
-                                LumoCompanionRequests.instance
-                                    .recordLearningEvent(
-                                        LumoLearningEventKind.hintRequested,
-                                        context: _publishedTaskContext);
-                              }),
-                        ],
-                        if (_sceneCompletionError != null) ...[
-                          Text(_sceneCompletionError!,
-                              style: const TextStyle(color: Colors.white)),
-                          TextButton(
-                              onPressed: () =>
-                                  unawaited(_saveSceneCompletion()),
-                              style: TextButton.styleFrom(
-                                  minimumSize: const Size(48, 48)),
-                              child:
-                                  const Text('Lernschritt erneut speichern')),
-                        ],
-                        if (_allowHelp &&
-                            !_answered &&
-                            _requestedHelpLevel >= 3 &&
-                            _task.subject == 'Mathematik' &&
-                            LumoPlaceValueWorkshop.numberForPrompt(
-                                    _task.prompt) !=
-                                null) ...[
-                          const SizedBox(height: 14),
-                          LumoPlaceValueWorkshop(
-                            key: ValueKey(
-                                'lumo-place-value-${_taskInstance.taskInstanceId}'),
-                            number: LumoPlaceValueWorkshop.numberForPrompt(
-                                _task.prompt)!,
-                            lesson: _placeValueLesson,
-                            onTransferChecked: (result) {
-                              if (!_allowHelp || result.proof == null) return;
-                              if (_tutorCoordinator
-                                      .checkSceneTransfer(result.proof!) ==
-                                  null) {
-                                return;
-                              }
-                              _pendingSceneCompletion = result.proof;
-                              _pendingSceneMethod = _sceneMethod;
-                              unawaited(_saveSceneCompletion());
-                            },
-                            reduceMotion: st.settings.reduceAnimations ||
-                                st.settings.calmMode,
-                            sounds: st.settings.soundEnabled,
-                          ),
-                        ],
-                        if (_showHelp && _visualAid != null) ...[
-                          const SizedBox(height: 14),
-                          _VisualAidCard(aid: _visualAid!),
-                        ],
-                        // KI-Hilfe-Button: nur sichtbar wenn aiProxyEnabled.
-                        // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
-                        if (_allowHelp && !_answered) ...[
-                          const SizedBox(height: 12),
-                          LumoStageTarget(
-                              id: 'coach-controls',
-                              kind: LumoStageRegionKind.control,
-                              child: _coachControls()),
-                          if (_aiHelpLoading)
-                            const Text('Lumo prüft einen weiteren Hinweis …',
-                                style: TextStyle(color: Colors.white)),
-                        ],
-                        if (_aiHelpReply != null) ...[
-                          const SizedBox(height: 12),
-                          _AiHelpBubble(
-                            text: _aiHelpReply!,
-                            onSpeak: () {
-                              _lumo.talk();
-                              unawaited(
-                                _playOwnedVoice(
-                                  _aiHelpReply!,
-                                  style: VoiceStyle.explain,
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                        if (_candidateIdentity != null)
-                          LumoStageTarget(
-                              id: 'answer-candidate',
-                              kind: LumoStageRegionKind.control,
-                              child: _candidateCard()),
-                        if (_resumedAtRound > 1 &&
-                            _questionNum ==
-                                (_resumedAtRound - 1) * SessionRounds.size +
-                                    1) ...[
-                          const SizedBox(height: 12),
-                          Text(
-                            'Runde ${_resumedAtRound - 1} hast du schon '
-                            'geschafft. Du machst bei Runde $_resumedAtRound '
-                            'weiter.',
-                            key: const ValueKey('round-resume-notice'),
-                            style: const TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
-                              color: LumoVisualTokens.cyanBright,
-                              height: 1.3,
-                            ),
-                          ),
-                        ],
-                        if (_isTwin && !_answered) ...[
-                          const SizedBox(height: 12),
-                          const LumoTwinTaskBanner(),
-                        ],
-                        const SizedBox(height: 12),
-                        // Keyed: cards above and below come and go with an
-                        // answer. Without the key the task would be rebuilt
-                        // from scratch and forget which answer was tapped.
-                        AnimatedSwitcher(
-                          key: const ValueKey('learning-task-switcher'),
-                          duration: st.settings.reduceAnimations ||
-                                  st.settings.calmMode
-                              ? Duration.zero
-                              : const Duration(milliseconds: 280),
-                          switchInCurve: Curves.easeOutCubic,
-                          switchOutCurve: Curves.easeInCubic,
-                          transitionBuilder: (child, animation) {
-                            final slide = Tween<Offset>(
-                              begin: const Offset(0.05, 0.04),
-                              end: Offset.zero,
-                            ).animate(animation);
-                            return FadeTransition(
-                              opacity: animation,
-                              child: SlideTransition(
-                                position: slide,
-                                child: child,
-                              ),
-                            );
-                          },
-                          child: Semantics(
-                            key: ValueKey(_taskInstance.taskInstanceId),
-                            label: 'Aktuelle Lernaufgabe',
-                            child: AdaptiveTaskRenderer(
-                              key: const ValueKey('learning-task'),
-                              task: _taskInstance,
-                              allowRetry: _allowHelp,
-                              onInteraction: _workspaceChanged,
-                              requestedHelpLevel:
-                                  _showHelp ? _requestedHelpLevel : 0,
-                              reduceMotion: st.settings.reduceAnimations ||
-                                  st.settings.calmMode ||
-                                  !_foreground,
-                              slow: _slow,
-                              activeObjectId: _activeObjectId,
-                              guided: _guided,
-                              feedback: _answered
-                                  ? null
-                                  : _guided
-                                      ? LumoWorkedSolutionCard(
-                                          key: _feedbackKey,
-                                          steps: _workedSteps,
-                                          callToAction: _guidedCallToAction,
-                                          nudge: _guidedNudge,
-                                        )
-                                      : _mistakeMessage != null
-                                          ? LumoMistakeFeedbackCard(
-                                              key: _feedbackKey,
-                                              message: _mistakeMessage!,
-                                              recognised: _mistakeRecognised,
-                                              hint: _taskHints.explain(_task,
-                                                  level: 1),
-                                              hintVisible: _mistakeHintShown,
-                                              onShowHint: _showMistakeHint,
-                                            )
-                                          : null,
-                              onAnswered: _answerAdaptive,
-                              onWritingSubmitted: _answerWriting,
-                              onWritingPraise: _speakWritingPraise,
-                              onShapeTraced: _answerShapeTrace,
-                            ),
-                          ),
-                        ),
-                        if (_answered && _lastCorrect != null) ...[
-                          const SizedBox(height: 22),
-                          LumoStageTarget(
-                              id: 'explanation',
-                              kind: LumoStageRegionKind.control,
-                              child: _ExplanationCard(
-                                correct: _lastCorrect!,
-                                explanation: _task.explanation,
-                                correctAnswer: _visibleAnswer,
-                                rewardDelta: _lastRewardDelta,
-                                feedback: _lastFeedback,
-                                praise: _lastCorrect! && _lastFeedback != null
-                                    ? _praiseFor(_lastFeedback!,
-                                        alone: _lastSolvedAlone ?? false)
+                          // Keyed: cards above and below come and go with an
+                          // answer. Without the key the task would be rebuilt
+                          // from scratch and forget which answer was tapped.
+                          if (_tutoringHour &&
+                              _tutoringPhase == LumoTutoringPhase.explain)
+                            LumoStageTarget(
+                              id: 'tutoring-explain',
+                              child: LumoTutoringExplainCard(
+                                unit: Curriculum.prettifyUnit(_task.unit),
+                                steps: _tutoringExplainSteps,
+                                illustration: _tutoringIllustration,
+                                onSpeak: st.settings.voiceEnabled
+                                    ? () => unawaited(_speakTutorHint(
+                                        _tutoringExplainSteps.join(' '),
+                                        explainAvailability: true))
                                     : null,
-                                solvedAlone: _lastSolvedAlone,
-                                wrongMessage: _lastCorrect!
-                                    ? null
-                                    : _wrongTestMessage(
-                                        const ErrorDetective().analyze(
+                                onOpenPictureCourse: switch (
+                                    GuidedLessonCatalog.schoolIntroduction(
                                         subject: _task.subject,
-                                        prompt: _task.prompt,
-                                        correctAnswer:
-                                            '${_taskInstance.correctAnswer}',
-                                        givenAnswer: _lastGivenAnswer ?? '',
-                                      )),
-                                solutionSteps: _lastCorrect!
-                                    ? const <String>[]
-                                    : _buildWorkedSteps(),
-                                onNext: _nextQuestion,
-                              )),
+                                        unit: _task.unit,
+                                        grade: st.grade)) {
+                                  final GuidedLesson lesson => () => unawaited(
+                                      _openTutoringPictureCourse(lesson)),
+                                  null => null,
+                                },
+                                onContinue: _finishTutoringExplanation,
+                              ),
+                            )
+                          else
+                            AnimatedSwitcher(
+                              key: const ValueKey('learning-task-switcher'),
+                              duration: st.settings.reduceAnimations ||
+                                      st.settings.calmMode
+                                  ? Duration.zero
+                                  : const Duration(milliseconds: 280),
+                              switchInCurve: Curves.easeOutCubic,
+                              switchOutCurve: Curves.easeInCubic,
+                              transitionBuilder: (child, animation) {
+                                final slide = Tween<Offset>(
+                                  begin: const Offset(0.05, 0.04),
+                                  end: Offset.zero,
+                                ).animate(animation);
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: SlideTransition(
+                                    position: slide,
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              child: Semantics(
+                                key: ValueKey(_taskInstance.taskInstanceId),
+                                label: 'Aktuelle Lernaufgabe',
+                                child: AdaptiveTaskRenderer(
+                                  key: const ValueKey('learning-task'),
+                                  task: _taskInstance,
+                                  allowRetry: _allowHelp,
+                                  onInteraction: _workspaceChanged,
+                                  requestedHelpLevel:
+                                      _showHelp ? _requestedHelpLevel : 0,
+                                  reduceMotion: st.settings.reduceAnimations ||
+                                      st.settings.calmMode ||
+                                      !_foreground,
+                                  slow: _slow,
+                                  activeObjectId: _activeObjectId,
+                                  guided: _guided,
+                                  feedback: _answered
+                                      ? null
+                                      : _guided
+                                          ? LumoWorkedSolutionCard(
+                                              key: _feedbackKey,
+                                              steps: _workedSteps,
+                                              callToAction: _guidedCallToAction,
+                                              nudge: _guidedNudge,
+                                            )
+                                          : _mistakeMessage != null
+                                              ? LumoMistakeFeedbackCard(
+                                                  key: _feedbackKey,
+                                                  message: _mistakeMessage!,
+                                                  recognised:
+                                                      _mistakeRecognised,
+                                                  hint: _taskHints
+                                                      .explain(_task, level: 1),
+                                                  hintVisible:
+                                                      _mistakeHintShown,
+                                                  onShowHint: _showMistakeHint,
+                                                )
+                                              : null,
+                                  onAnswered: _answerAdaptive,
+                                  onWritingSubmitted: _answerWriting,
+                                  onWritingPraise: _speakWritingPraise,
+                                  onShapeTraced: _answerShapeTrace,
+                                ),
+                              ),
+                            ),
+                          if (_answered && _lastCorrect != null) ...[
+                            const SizedBox(height: 22),
+                            LumoStageTarget(
+                                id: 'explanation',
+                                kind: LumoStageRegionKind.control,
+                                child: _ExplanationCard(
+                                  correct: _lastCorrect!,
+                                  explanation: _task.explanation,
+                                  correctAnswer: _visibleAnswer,
+                                  rewardDelta: _lastRewardDelta,
+                                  feedback: _lastFeedback,
+                                  praise: _lastCorrect! && _lastFeedback != null
+                                      ? _praiseFor(_lastFeedback!,
+                                          alone: _lastSolvedAlone ?? false)
+                                      : null,
+                                  solvedAlone: _lastSolvedAlone,
+                                  wrongMessage: _lastCorrect!
+                                      ? null
+                                      : _wrongTestMessage(
+                                          const ErrorDetective().analyze(
+                                          subject: _task.subject,
+                                          prompt: _task.prompt,
+                                          correctAnswer:
+                                              '${_taskInstance.correctAnswer}',
+                                          givenAnswer: _lastGivenAnswer ?? '',
+                                        )),
+                                  solutionSteps: _lastCorrect!
+                                      ? const <String>[]
+                                      : _buildWorkedSteps(),
+                                  onNext: _nextQuestion,
+                                )),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
                   ),
                 ),
