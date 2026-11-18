@@ -166,8 +166,10 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       vsync: this,
       duration: const Duration(milliseconds: 350),
     );
+    // Alle Plusaufgaben bis 10 mit zwei Mengen. Früher war der erste
+    // Summand höchstens 5: 7 + 2, 8 + 1 oder 9 + 1 kamen nie vor.
     _round = [
-      for (var a = 1; a <= 5; a++)
+      for (var a = 1; a <= 9; a++)
         for (var b = 1; b <= 10 - a; b++) (a, b),
     ]..shuffle(_rng);
     _generateTask();

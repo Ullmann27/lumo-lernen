@@ -10,7 +10,7 @@ class MathTaskTemplates {
   static const List<MathTaskTemplate> templates = <MathTaskTemplate>[
     MathTaskTemplate(id: 'g1_word_problem', grade: 1, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[1, 7], validRangeB: <int>[1, 5], promptPattern: 'sachaufgabe-ein-schritt'),
     MathTaskTemplate(id: 'g2_sub_story', grade: 2, unit: 'Textaufgaben', kind: MathTemplateKind.wordProblemOneStep, validRangeA: <int>[5, 20], validRangeB: <int>[1, 5], promptPattern: 'sachaufgabe-wegnehmen'),
-    MathTaskTemplate(id: 'g1_add_10', grade: 1, unit: 'Plus bis 10', kind: MathTemplateKind.addition, validRangeA: <int>[1, 6], validRangeB: <int>[1, 6], promptPattern: 'plus-bis-10',
+    MathTaskTemplate(id: 'g1_add_10', grade: 1, unit: 'Plus bis 10', kind: MathTemplateKind.addition, validRangeA: <int>[0, 10], validRangeB: <int>[0, 10], promptPattern: 'plus-bis-10',
     ),
     MathTaskTemplate(id: 'g1_sub_10', grade: 1, unit: 'Minus bis 10', kind: MathTemplateKind.subtraction, validRangeA: <int>[3, 10], validRangeB: <int>[1, 7], promptPattern: 'minus-bis-10',
     ),
@@ -271,14 +271,32 @@ class MathTaskTemplate {
         final limit = int.tryParse(
           RegExp(r'bis (\d+)').firstMatch(unit)?.group(1) ?? '',
         );
-        final right = limit == null ? b : b.clamp(1, limit - a).toInt();
-        final answer = a + right;
-        return _numberTask(seed, '$a + $right = ?', answer, 'Lege zuerst $a und dann $right dazu. Zusammen sind es $answer.', 'dots',
-          typical: _additionErrors(a, right),
+        // Passt die Summe nicht in den Zahlenraum, wird der zweite Summand
+        // gleichmäßig in den freien Bereich gelegt. Früher wurde er auf
+        // „Grenze − a“ gekürzt: Bis zu 40 % der Aufgaben hatten dann genau
+        // die Grenze (10, 20, 100, 1000) als Lösung.
+        var left = a;
+        var right = limit == null ? b : _foldInto(b, validRangeB.first, limit - a);
+        if (limit != null && validRangeA.first == 0) {
+          // Kleiner Zahlenraum mit 0: jedes Paar a + b ≤ Grenze ist gleich
+          // wahrscheinlich, nur 0 + 0 kommt nicht vor.
+          var index = 1 + _positive(_mixSeed(seed + 71), (limit + 1) * (limit + 2) ~/ 2 - 1);
+          left = 0;
+          while (index > limit - left) {
+            index -= limit - left + 1;
+            left++;
+          }
+          right = index;
+        }
+        final answer = left + right;
+        return _numberTask(seed, '$left + $right = ?', answer, 'Lege zuerst $left und dann $right dazu. Zusammen sind es $answer.', 'dots',
+          typical: _additionErrors(left, right),
         );
       case MathTemplateKind.subtraction:
         final minuend = a ;
-        final subtrahend = b.clamp(1, minuend).toInt();
+        // Wie beim Plus: nicht auf den Minuenden kürzen (das ergab bis zu
+        // 18 % Aufgaben mit der Lösung 0), sondern gleichmäßig verteilen.
+        final subtrahend = _foldInto(b, validRangeB.first, minuend);
         final answer = minuend - subtrahend;
         return _numberTask(seed, '$minuend - $subtrahend = ?', answer, 'Starte bei $minuend und gehe $subtrahend Schritte zurück.', 'line',
           typical: _subtractionErrors(minuend, subtrahend),
@@ -476,7 +494,7 @@ class MathTaskTemplate {
           typical: <int>[a * (b - 1), a * (b + 1), (a - 1) * b, (a + 1) * b, a + b],
         );
       case MathTemplateKind.writtenAddition:
-        final right = grade == 3 ? b.clamp(1, 1000 - a).toInt() : b;
+        final right = grade == 3 ? _foldInto(b, validRangeB.first, 1000 - a) : b;
         final answer = a + right;
         return _numberTask(seed, 'Schriftlich: $a + $right = ?', answer, 'Schreibe Einer unter Einer, Zehner unter Zehner, Hunderter unter Hunderter.', 'written_add',
           typical: _additionErrors(a, right),
@@ -838,6 +856,15 @@ int _valueInRange(List<int> range, int seed) {
 }
 
 int _positive(int seed, int length) => length <= 1 ? 0 : (seed & 0x7fffffff) % length;
+
+/// Legt [value] in den Bereich [min]..[max]. Werte, die schon passen,
+/// bleiben gleich; größere werden gleichmäßig über den Bereich verteilt
+/// statt alle auf [max] gekürzt.
+int _foldInto(int value, int min, int max) {
+  if (value <= max) return value;
+  if (max <= min) return max < 0 ? 0 : max;
+  return min + (value - min) % (max - min + 1);
+}
 
 /// Kleiner, vom Seed abgeleiteter Würfel. Er nutzt dieselbe begrenzte
 /// Ganzzahl-Mischung wie die Aufgabenwahl und liefert deshalb auf Handy und

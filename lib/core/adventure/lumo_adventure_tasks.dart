@@ -358,8 +358,11 @@ class LumoAdventureTasks {
   AdventureTask _market(int g) {
     final hero = _hero();
     if (g == 1) {
-      final a = _between(1, 9);
-      final b = _between(1, 10 - a);
+      // Erst die Summe wählen, dann zerlegen. Früher wurde der zweite Preis
+      // aus „1 bis 10 − a“ gezogen: Ein Drittel der Aufgaben ergab 10 €.
+      final total = _between(2, 10);
+      final a = _between(1, total - 1);
+      final b = total - a;
       return _math(
           'Marktstand',
           '$hero kauft am Markt einen Ball um $a € und ein Buch um $b €. '
