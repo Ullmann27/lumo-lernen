@@ -45,7 +45,7 @@ const readingPassages = <int, List<ReadingPassage>>{
       ReadingCheck('Was legt Ali in den Korb?', 'Äpfel', ['Birnen', 'Nüsse']),
       ReadingCheck('Wie viele Äpfel sind es?', 'zwei', ['drei', 'vier'])
     ]),
-    ReadingPassage('Lea baut im Sand einen Turm.', [
+    ReadingPassage('Lea baut aus Sand einen Turm.', [
       ReadingCheck('Was baut Lea?', 'einen Turm', ['ein Boot', 'eine Brücke']),
       ReadingCheck('Womit baut Lea?', 'mit Sand', ['mit Holz', 'mit Schnee'])
     ]),
@@ -236,7 +236,7 @@ const readingPassages = <int, List<ReadingPassage>>{
               ['die Schule', 'den Bahnhof'])
         ]),
     ReadingPassage(
-        'Lea findet beim Radfahren eine kaputte Lampe. Sie sagt einem Erwachsenen Bescheid und fährt vorerst nur bei Tageslicht. Die Lampe wird repariert.',
+        'Lea bemerkt beim Radfahren, dass ihre Lampe kaputt ist. Sie sagt einem Erwachsenen Bescheid und fährt vorerst nur bei Tageslicht. Die Lampe wird repariert.',
         [
           ReadingCheck('Was lässt Lea reparieren?', 'die Lampe',
               ['den Sattel', 'die Klingel']),
@@ -259,7 +259,7 @@ const readingPassages = <int, List<ReadingPassage>>{
           ])
         ]),
     ReadingPassage(
-        'Am Markt vergleicht Ali zwei Preise für gleich große Körbe Äpfel. Er kauft den günstigeren Korb. Den Kassenbon steckt er in die Tasche.',
+        'Am Markt vergleicht Ali zwei Preise für gleich große Körbe Äpfel. Er kauft den günstigeren Korb. Die Rechnung steckt er in die Tasche.',
         [
           ReadingCheck('Was vergleicht Ali?', 'die Preise',
               ['die Busfahrpläne', 'die Namen der Straßen']),
@@ -317,17 +317,17 @@ const readingPassages = <int, List<ReadingPassage>>{
               ['der Aufenthalt im Regen', 'das Fußballspiel'])
         ]),
     ReadingPassage(
-        'Lumo findet zwei widersprüchliche Angaben über ein Tier. Er vergleicht beide mit einem aktuellen Sachbuch. Die dort beschriebene Beobachtung unterstützt nur eine der Angaben.',
+        'Lumo liest in zwei Büchern etwas Verschiedenes über Igel. Darum schaut er in ein neues Tierlexikon. Dort steht, was Forscher beobachtet haben. Nur eines der beiden Bücher hat recht.',
         [
-          ReadingCheck('Wie prüft Lumo den Widerspruch?',
-              'Er verwendet eine weitere Quelle.', [
-            'Er glaubt automatisch der ersten Angabe.',
+          ReadingCheck('Wie findet Lumo heraus, welches Buch recht hat?',
+              'Er schaut in einem dritten Buch nach.', [
+            'Er glaubt einfach dem ersten Buch.',
             'Er würfelt die Lösung.'
           ]),
           ReadingCheck(
-              'Was stärkt eine Angabe im Text?',
-              'eine passende Beobachtung',
-              ['ihre größere Schrift', 'ihr erster Platz'])
+              'Was steht im Tierlexikon?',
+              'was Forscher beobachtet haben',
+              ['welches Buch dicker ist', 'was Lumo sich wünscht'])
         ]),
     ReadingPassage(
         'Ben gießt täglich, obwohl die Erde noch nass ist. Die Wurzeln seiner Pflanze faulen. Er beschließt, künftig zuerst die Feuchtigkeit zu prüfen und nur bei Bedarf zu gießen.',
@@ -352,17 +352,19 @@ const readingPassages = <int, List<ReadingPassage>>{
           ReadingCheck('Wer prüft den Zeitplan?', 'Lumo', ['Mia', 'Ben'])
         ]),
     ReadingPassage(
-        'Eine Werbung verspricht: Diese Flasche ist die beste. Ali sucht nach Angaben zu Material, Größe und Haltbarkeit. Ohne solche Informationen kann er die Behauptung nicht prüfen.',
+        'Eine Werbung sagt: Diese Trinkflasche ist die beste. Ali will wissen, woraus sie gemacht ist, wie viel hineinpasst und wie lange sie hält. Das steht aber nirgends. So kann Ali nicht prüfen, ob die Werbung stimmt.',
         [
-          ReadingCheck('Was fehlt Ali für einen Vergleich?', 'prüfbare Angaben',
-              ['eine größere Überschrift', 'eine weitere Werbefarbe']),
           ReadingCheck(
-              'Welche Aussage ist im Text nur eine Werbebehauptung?',
-              'Diese Flasche ist die beste.',
-              ['Ali sucht Informationen.', 'Die Angaben fehlen.'])
+              'Was möchte Ali über die Flasche wissen?',
+              'woraus sie ist und wie lange sie hält',
+              ['welche Farbe die Werbung hat', 'wie die Verkäuferin heißt']),
+          ReadingCheck(
+              'Welcher Satz ist nur Werbung?',
+              'Diese Trinkflasche ist die beste.',
+              ['Ali will mehr wissen.', 'Das steht nirgends.'])
         ]),
     ReadingPassage(
-        'Zwei Gruppen untersuchen das Wachstum von Bohnen. Sie verwenden gleiche Töpfe, gleich viel Wasser und denselben Samen. Nur die Lichtmenge ist verschieden.',
+        'Zwei Gruppen untersuchen das Wachstum von Bohnen. Sie verwenden gleiche Töpfe, gleich viel Wasser und die gleichen Samen. Nur die Lichtmenge ist verschieden.',
         [
           ReadingCheck('Welche Bedingung wird verändert?', 'die Lichtmenge',
               ['die Topfgröße', 'die Wassermenge']),
@@ -394,17 +396,17 @@ const readingPassages = <int, List<ReadingPassage>>{
               ['mehr Autoverkehr', 'weniger Platz zum Spielen'])
         ]),
     ReadingPassage(
-        'Ein Zeitungsbericht beschreibt Hochwasser nach starkem Regen. Eine Augenzeugin berichtet von einer überfluteten Straße. Diese Beobachtung sagt noch nichts darüber, wie jede Straße im Ort aussieht.',
+        'Nach starkem Regen schreibt die Zeitung über ein Hochwasser. Eine Frau erzählt: „In meiner Straße stand das Wasser.“ Wie es in den anderen Straßen aussah, hat sie nicht gesehen.',
         [
-          ReadingCheck('Welche Aussage ist durch die Beobachtung belegt?',
-              'Eine Straße war überflutet.', [
-            'Alle Straßen waren überflutet.',
+          ReadingCheck('Was wissen wir sicher?',
+              'Eine Straße stand unter Wasser.', [
+            'Alle Straßen standen unter Wasser.',
             'Im ganzen Land war Hochwasser.'
           ]),
           ReadingCheck(
-              'Warum ist eine Verallgemeinerung auf alle Straßen unsicher?',
-              'Es wurde nur eine Straße beschrieben.', [
-            'Die Augenzeugin nennt Regen.',
+              'Warum wissen wir nichts über die anderen Straßen?',
+              'Die Frau hat nur ihre Straße gesehen.', [
+            'Die Frau erzählt vom Regen.',
             'Straßen können nicht nass werden.'
           ])
         ]),
