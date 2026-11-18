@@ -294,7 +294,7 @@ class ScannedWorkAnalysisEngine {
     final prefix = workType == ScannedWorkType.test || workType == ScannedWorkType.schoolwork
         ? 'Nach Test/Schularbeit zuerst langsam und ohne Zeitdruck üben:'
         : 'Nächste Übung:';
-    return '$prefix $subject – $unit. Erst 3 leichte Aufgaben, dann 2 ähnliche Testaufgaben.';
+    return '$prefix $subject – $unit. Erst ein paar Aufgaben in Ruhe üben, dann ähnliche Aufgaben wie im Test probieren.';
   }
 
   String _calmTip(ScannedWorkType workType, List<String> signals) {

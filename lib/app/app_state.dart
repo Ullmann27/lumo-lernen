@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/session_round_resume.dart';
 import '../core/app_settings.dart';
 import '../domain/games/memory_board.dart';
 import '../domain/games/game_level_catalog.dart';
@@ -980,6 +981,40 @@ class LumoAppState extends ChangeNotifier {
     _safeNotify();
   }
 
+  /// The round at which this child stopped a long session, or null.
+  /// Storage problems simply mean "start at round 1".
+  Future<SessionRoundPosition?> loadSessionRound(String scope,
+      {required int totalTasks}) async {
+    if (_disposed || _resetting) return null;
+    try {
+      final owner = await captureLearningProfile();
+      if (!canUseLearningLease(owner)) return null;
+      return await SessionRoundResumeStore(studentId: owner.studentId)
+          .load(scope, totalTasks: totalTasks);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Remembers a finished round, or forgets the place with a null
+  /// [position] once the whole session is done.
+  Future<void> saveSessionRound(
+      String scope, SessionRoundPosition? position) async {
+    if (_disposed || _resetting) return;
+    try {
+      final owner = await captureLearningProfile();
+      if (!canUseLearningLease(owner)) return;
+      final store = SessionRoundResumeStore(studentId: owner.studentId);
+      if (position == null) {
+        await store.clear(scope);
+      } else {
+        await store.save(scope, position);
+      }
+    } catch (_) {
+      // Losing a resume point only means starting at round 1 again.
+    }
+  }
+
   /// Einträge, die noch nicht gespeichert werden konnten. Sie gehen nicht
   /// verloren: Beim nächsten Eintrag (oder [flushAttemptLog]) wird erneut
   /// geschrieben. Die Oberfläche kann [unsavedAttempts] anzeigen.
@@ -1648,7 +1683,7 @@ class LumoAppState extends ChangeNotifier {
         mood: errors >= 2 ? LumoMood.comfort : LumoMood.think,
         lumoMessage: errors >= 2
             ? 'Ganz ruhig.\nIch zeige dir\nden Weg.'
-            : 'Fast!\nWir schauen\nnochmal hin.',
+            : 'Schau noch\neinmal genau\nhin.',
       ),
     );
   }
