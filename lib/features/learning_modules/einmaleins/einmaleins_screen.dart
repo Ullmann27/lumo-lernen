@@ -22,6 +22,33 @@ import '../../learning/widgets/lumo_mistake_help_card.dart';
 import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
 
+/// Antwortmöglichkeiten einer Malaufgabe: das Ergebnis und drei verschiedene
+/// falsche Zahlen zwischen 1 und 100, gemischt.
+///
+/// Die falschen Zahlen sind zuerst typische Fehler (eine Gruppe zu viel oder zu
+/// wenig). Reicht das nicht – bei 10 × 10 liegt alles Größere über 100 –, wird
+/// rund um das Ergebnis aufgefüllt, nach oben und nach unten. Vorher bot
+/// 10 × 10 nur zwei Antworten an (90 und 100).
+@visibleForTesting
+List<int> einmaleinsAnswers(int a, int b, math.Random rng) {
+  final correct = a * b;
+  final wrongOptions = <int>{};
+  bool fits(int cand) => cand > 0 && cand <= 100 && cand != correct;
+  var safety = 0;
+  while (wrongOptions.length < 3 && safety < 60) {
+    safety++;
+    final shifts = [a, -a, b, -b, a * 2, -a];
+    final cand = correct + shifts[rng.nextInt(shifts.length)];
+    if (fits(cand)) wrongOptions.add(cand);
+  }
+  for (var step = 1; wrongOptions.length < 3 && step < 200; step++) {
+    for (final cand in [correct + step, correct - step]) {
+      if (wrongOptions.length < 3 && fits(cand)) wrongOptions.add(cand);
+    }
+  }
+  return [correct, ...wrongOptions]..shuffle(rng);
+}
+
 class EinmaleinsScreen extends StatefulWidget {
   const EinmaleinsScreen({
     super.key,
@@ -114,30 +141,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   void _generateTask() {
     _a = _availableRows[_rng.nextInt(_availableRows.length)];
     _b = 2 + _rng.nextInt(9); // 2..10
-    final correct = _correct;
-    final wrongOptions = <int>{};
-    // FIX: Safety-Limit. Bei correct=2 (z.B. _a=1, _b=2) koennen
-    // negative Shifts nie greifen - vorher theoretisch Endlos-Loop.
-    var safety = 0;
-    while (wrongOptions.length < 3 && safety < 60) {
-      safety++;
-      final shifts = [_a, -_a, _b, -_b, _a * 2, -_a];
-      final shift = shifts[_rng.nextInt(shifts.length)];
-      final cand = correct + shift;
-      if (cand > 0 && cand <= 100 && cand != correct) {
-        wrongOptions.add(cand);
-      }
-    }
-    // Auffuellen falls weniger als 3 zusammengekommen sind.
-    var fillCounter = 1;
-    while (wrongOptions.length < 3 && fillCounter < 200) {
-      final cand = correct + fillCounter;
-      if (cand > 0 && cand <= 100 && cand != correct) {
-        wrongOptions.add(cand);
-      }
-      fillCounter++;
-    }
-    _answers = [correct, ...wrongOptions]..shuffle(_rng);
+    _answers = einmaleinsAnswers(_a, _b, _rng);
     _answered = false;
     _selectedAnswer = null;
     _wrongAttempts = 0;
