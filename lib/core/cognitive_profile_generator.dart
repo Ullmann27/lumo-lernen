@@ -3,13 +3,18 @@ import '../domain/cognitive/cognitive_profile.dart';
 class CognitiveProfileGenerator {
   const CognitiveProfileGenerator._();
 
-  static const testVersion = 'lumo-cog-v1-2026-10-06';
+  // v2: Fragen nach der Fachprüfung vom 17.11.2026 sprachlich überarbeitet.
+  static const testVersion = 'lumo-cog-v2-2026-11-18';
   static const questionsPerDomain = 10;
   static const totalQuestions = questionsPerDomain * 5;
 
   static final _verbalBanks = <int, List<List<String>>>{
     1: <List<String>>[
-      ['Welpe', 'Kätzchen', 'Hund verhält sich zu Welpe wie Katze zu …'],
+      [
+        'Welpe',
+        'Kätzchen',
+        'Ein junger Hund heißt Welpe. Eine junge Katze heißt …'
+      ],
       ['hell', 'dunkel', 'Tag ist meist hell. Nacht ist meist …'],
       ['Obst', 'Gemüse', 'Apfel gehört zu Obst. Karotte gehört zu …'],
       ['fliegt', 'schwimmt', 'Vogel fliegt. Fisch …'],
@@ -35,7 +40,7 @@ class CognitiveProfileGenerator {
     2: <List<String>>[
       ['Honig', 'Milch', 'Biene passt zu Honig. Kuh passt zu …'],
       ['Herbst', 'Winter', 'Frühling, Sommer, Herbst – was folgt?'],
-      ['Straße', 'Wasser', 'Auto fährt auf der Straße. Schiff fährt auf …'],
+      ['Straße', 'Wasser', 'Auto fährt auf der Straße. Schiff fährt auf dem …'],
       [
         'laut',
         'schnell',
@@ -48,16 +53,17 @@ class CognitiveProfileGenerator {
         'Viele Bäume bilden einen Wald. Viele Häuser bilden eine …'
       ],
       [
-        'Praxis',
+        'Ordination',
         'Schule',
-        'Arzt arbeitet in einer Praxis. Lehrer arbeitet in einer …'
+        'Die Ärztin arbeitet in der Ordination. Die Lehrerin arbeitet in der …'
       ],
       ['sehen', 'hören', 'Mit dem Auge sehen wir. Mit dem Ohr …'],
       ['Zeit', 'Länge', 'Minute misst Zeit. Meter misst …'],
       [
-        'Antwort',
-        'Lösung',
-        'Auf eine Frage folgt eine Antwort. Zu einem Problem suchen wir eine …'
+        // Früher „Frage – Antwort, Problem – …“: Dort passte auch „Antwort“.
+        'schwimmen',
+        'fliegen',
+        'Ein Fisch kann schwimmen. Ein Vogel kann …'
       ],
     ],
     3: <List<String>>[
@@ -65,7 +71,13 @@ class CognitiveProfileGenerator {
       ['Temperatur', 'Gewicht', 'Thermometer misst Temperatur. Waage misst …'],
       ['Folge', 'Antwort', 'Ursache führt zu Folge. Frage führt zu …'],
       ['Richtung', 'Zeit', 'Kompass zeigt Richtung. Uhr zeigt …'],
-      ['blühen', 'sprechen', 'Pflanzen können blühen. Menschen können …'],
+      // Früher „Pflanzen können blühen. Menschen können …“ ohne erkennbaren
+      // Zusammenhang.
+      [
+        'sehen',
+        'riechen',
+        'Mit dem Auge kann man sehen. Mit der Nase kann man …'
+      ],
       [
         'ähnlich',
         'entgegengesetzt',
@@ -100,9 +112,11 @@ class CognitiveProfileGenerator {
         'Produktion bedeutet Herstellung. Konsum bedeutet …'
       ],
       [
-        'Begründung',
-        'Untersuchung',
-        'Eine These braucht Begründung. Eine Frage braucht oft eine …'
+        // Früher „These – Begründung, Frage – …“ mit der Lösung
+        // „Untersuchung“; die naheliegende „Antwort“ fehlte.
+        'Woche',
+        'Jahr',
+        'Sieben Tage sind eine Woche. Zwölf Monate sind ein …'
       ],
       [
         'Umwandlung',
@@ -207,7 +221,7 @@ class CognitiveProfileGenerator {
           r'^Lumo hat (\d+) Sterne und bekommt (\d+) dazu\. Wie viele hat er\?$',
           r'^(\d+) gleiche Gruppen haben je (\d+) Punkte\. Wie viele Punkte sind es\?$',
           r'^Rechne im Kopf: \((\d+) \+ (\d+)\) × 2 = \?$',
-          r'^(\d+) gleiche Dinge kosten je (\d+) Euro\. Bezahlt werden (\d+) Euro\. Wie viel Wechselgeld bleibt\?$',
+          r'^(\d+) gleiche Dinge kosten je (\d+) Euro\. Bezahlt werden (\d+) Euro\. Wie viel Geld bekommt man zurück\?$',
         ];
         if (q.grade >= 1 && q.grade <= 4) {
           final match = RegExp(patterns[q.grade - 1]).firstMatch(q.prompt);
@@ -228,13 +242,23 @@ class CognitiveProfileGenerator {
         if (matching.length == 1) expected = matching.single[1];
       case CognitiveDomain.spatialReasoning:
         const arrows = ['↑', '→', '↓', '←'];
-        final match = RegExp(
-                r'^Der Pfeil ([↑→↓←]) wird um (90|180|270)° nach (rechts|links) gedreht\. Wohin zeigt er danach\?$')
+        final degrees = RegExp(
+                r'^Der Pfeil ([↑→↓←]) wird um (90|180|270)° (im|gegen den) Uhrzeigersinn gedreht\. Wohin zeigt er danach\?$')
             .firstMatch(q.prompt);
+        final turn = RegExp(
+                r'^Der Pfeil ([↑→↓←]) macht (eine Vierteldrehung|eine halbe Drehung|eine Dreivierteldrehung) (im|gegen den) Uhrzeigersinn\. ')
+            .firstMatch(q.prompt);
+        final match = degrees ?? turn;
         if (match != null) {
-          final steps = int.parse(match[2]!) ~/ 90;
+          final steps = degrees != null
+              ? int.parse(match[2]!) ~/ 90
+              : const <String, int>{
+                  'eine Vierteldrehung': 1,
+                  'eine halbe Drehung': 2,
+                  'eine Dreivierteldrehung': 3,
+                }[match[2]]!;
           expected = arrows[(arrows.indexOf(match[1]!) +
-                  (match[3] == 'rechts' ? steps : -steps)) %
+                  (match[3] == 'im' ? steps : -steps)) %
               arrows.length];
         }
       case CognitiveDomain.workingMemory:
@@ -246,7 +270,7 @@ class CognitiveProfileGenerator {
           break;
         }
         final digits = stimulus.trim().split(RegExp(r'\s+'));
-        final position = RegExp(r'^Welche Zahl stand an Position (\d+)\?$')
+        final position = RegExp(r'^Welche Zahl stand an (\d+)\. Stelle\?$')
             .firstMatch(q.prompt);
         if (position != null) {
           final index = int.parse(position[1]!) - 1;
@@ -393,7 +417,7 @@ class CognitiveProfileGenerator {
       grade: g,
       domain: CognitiveDomain.quantitativeReasoning,
       prompt:
-          '$count gleiche Dinge kosten je $price Euro. Bezahlt werden $paid Euro. Wie viel Wechselgeld bleibt?',
+          '$count gleiche Dinge kosten je $price Euro. Bezahlt werden $paid Euro. Wie viel Geld bekommt man zurück?',
       answer: '$answer',
       // Typische Fehler: Gesamtpreis statt Wechselgeld, um eins verrechnet.
       rawChoices: <String>[
@@ -453,8 +477,16 @@ class CognitiveProfileGenerator {
       id: 'g${g}_spatial_$i',
       grade: g,
       domain: CognitiveDomain.spatialReasoning,
-      prompt:
-          'Der Pfeil $start wird um $degrees° ${clockwise ? 'nach rechts' : 'nach links'} gedreht. Wohin zeigt er danach?',
+      // „um 90° nach rechts gedreht“ lasen Kinder als „zeigt dann nach
+      // rechts“. Jetzt heißt es „Vierteldrehung im Uhrzeigersinn“; Grad
+      // kommen erst in Klasse 4 vor.
+      prompt: g >= 4
+          ? 'Der Pfeil $start wird um $degrees° ${clockwise ? 'im' : 'gegen den'} Uhrzeigersinn gedreht. Wohin zeigt er danach?'
+          : 'Der Pfeil $start macht ${const <String>[
+              'eine Vierteldrehung',
+              'eine halbe Drehung',
+              'eine Dreivierteldrehung'
+            ][quarterTurns - 1]} ${clockwise ? 'im' : 'gegen den'} Uhrzeigersinn. Im Uhrzeigersinn heißt: so wie sich die Zeiger einer Uhr drehen. Wohin zeigt der Pfeil danach?',
       answer: answer,
       rawChoices: arrows,
       explanation:
@@ -484,14 +516,15 @@ class CognitiveProfileGenerator {
         id: 'g${g}_memory_$i',
         grade: g,
         domain: CognitiveDomain.workingMemory,
-        prompt: 'Welche Zahl stand an Position $position?',
+        prompt: 'Welche Zahl stand an $position. Stelle?',
         answer: answer,
         rawChoices: <String>[
           ...options,
           // Eine Merkaufgabe braucht vier verschiedene echte Ziffern.
           for (var digit = 1; digit <= 9; digit++) '$digit',
         ],
-        explanation: 'Die Merkfolge wurde nur kurz gezeigt.',
+        explanation:
+            'Die Folge war ${digits.join(' – ')}. An $position. Stelle stand $answer.',
         difficulty: 1 + i ~/ 2,
         rotate: i,
         stimulus: stimulus,
