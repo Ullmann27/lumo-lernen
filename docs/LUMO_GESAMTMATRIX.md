@@ -40,6 +40,15 @@ Zuletzt öffentlich belegte APK laut Repo-Dokumenten: 0.13.19+2031 (16.11.). St�
 
 13. **Freie Hand (17.11.2026, abends):** Heinz erteilt ausdrücklich die Einwilligung für alles, was zum Fertigstellen nötig ist, einschließlich des Vereinfachens der selbst auferlegten Build- und Versions-Sperren. Arbeitsweise: autonom, erst die Spiele, dann die Lern-App auf demselben Niveau; jede Lösung zweimal durchdenken.
 
+14. **Echter Lumo überall (18.11.2026, zweimal gesagt):** „Das ist aber nicht unser Lumo. … Die Gegner kannst du verändern, aber unseren Lumo kannst du maximal noch verbessern." Lumo ist überall das geriggte 3D-Modell; die im Code gebaute Ersatzfigur darf nirgends als Lumo erscheinen.
+15. **Jump & Run wie Donkey Kong (18.11.2026):** „wirklich spannend", Umgebung „dicht und verbaut und aufregend, mit Musik, mit allem drum und dran … Spiel aus dem Jahre 2027".
+16. **Kart-Item-System (18.11.2026):** Raketen links und rechts am Kart, beim Aktivieren mit Feuer, Zielerfassung „wie so ein Kampfjet", Abfeuern auf Knopfdruck; Schild-Abwehr grafisch verbessern; Grafik, Mitspieler und Spielerlebnis „auf das Maximum", Spaß ist wichtig.
+
+Stand zu 14–16 am 18.11.2026:
+- Kart: echter Lumo in Rennen, Garage, Werkstatt, Startbild, Vorspann, als Geist und als Rivale (Godot-Test `kart_real_lumo_regression`, 13 Prüfungen); die 14 Regal-Bilder der App zeigen den echten Lumo. Schatzsuche und Rhythmus-Spiel zeigten noch die Ersatzfigur – Umbau in Arbeit.
+- Jump & Run: neuer Level „Dschungelherz" (1,6 km, sechs Abschnitte, Fässer, Lianen, Lore, Felsball-Verfolgung, eigene Musik) in Godot zusammengeführt (`lumo_run_regression`: 490 Prüfungen, 30/30 Testläufe im Ziel). Grafik-Durchgang mit in Blender gebauten Modellen in Arbeit. App-Anschluss (Route `run`) in Arbeit.
+- Item-System: Zweig `lumo-kart/gameplay-items-20261117` wird zusammengeführt und um Raketenhalter, Zielerfassung und Schild-Kuppel erweitert – in Arbeit.
+
 Daraus von Claude entschieden (kein weiteres Nachfragen):
 - **Kart-Items:** Das Katalog-System des Streams `lumo-kart/gameplay-items` (Rakete, Falle, Schild, Glück nach Platz) wird das einzige Item-System; die Resonanz-Ringe werden darin aufgehen.
 - **Memory:** Der Flutter-Look ist die Untergrenze; der Optik-Commit `5a79c14c` bleibt draußen.
@@ -146,9 +155,9 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 
 | Punkt | Status |
 |---|---|
-| UNO-Regeln entfernen | OFFEN |
-| 2–3 eigene Spiele (Regeln, Gegner-KI ohne verdeckte Information) | OFFEN |
-| 3D-Tisch mit sitzenden Figuren und Kartenwurf | OFFEN (Tisch-Szene vorhanden, Qualität ungeprüft) |
+| UNO-Regeln entfernen | Godot: ERLEDIGT (18.11., Merge `e80a4cb`). App: UNO-Dart-Spiel und nativer Kartendienst werden entfernt – in Arbeit |
+| Drei eigene Spiele (Sternenstich, Sternenleiter, Lumo-Quartett; 2–4 Spieler, KI in drei Stärken ohne Blick in fremde Karten) | Godot: GETESTET (`cards_rules_regression` 212 968 Prüfungen, `cards_table_regression` 595, `cards_safe_area_regression` 2 176 auf 9 Bildschirmformen). App-Anschluss in Arbeit; am Gerät NICHT geprüft |
+| 3D-Tisch mit sitzenden Figuren und Kartenwurf | Godot: ERLEDIGT, 32 Engine-Bilder gesichtet. Offen: Lumo hält am Tisch noch die Kart-Sitzhaltung statt Karten; im Hochformat ist er am Rand angeschnitten |
 
 ### 4.3 Memory
 
@@ -176,6 +185,8 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 - 3D: `scripts/games/jump_islands.gd` („Wolkeninseln", in der App nur unter „Zusätzliche Spielmodi").
 - 2D: `lib/features/games/flame/lumo_jump_game.dart` („Lumos Jump Adventure 2D"), bucht Belohnung ohne Ergebnis-ID.
 - Ziel: Heinz' Punkte 4 und 12. Das 2D-Spiel entspricht nicht dem Ziel; das 3D-Spiel ist ein kurzer Insel-Parcours, kein langer Lauf. Geplant: Lauf-Modus auf den vorhandenen langen Kart-Welten (Streckenbau, Landschaft und Lumo-Laufanimation sind vorhanden). Status OFFEN.
+
+- **18.11.2026:** „Lumo Lauf" (Godot `scripts/games/run/`, Route `run`) mit Level „Dschungelherz" zusammengeführt – siehe Stand zu Entscheidung 15. Zauberwald und Sonnenhafen laufen noch auf den Kart-Strecken. Am Gerät NICHT geprüft.
 
 ### 4.7 Weitere Spiele
 
@@ -206,6 +217,8 @@ Katalog in `core/school_exercise_generator.dart` mit Vorlagen in `math_task_temp
 
 - Dünn: Logik ab Kl. 2, Englisch Kl. 2–4, Sachunterricht Kl. 4. Musik, Kunst, Technik, Sport haben keine Aufgaben.
 - Fachliche Durchsicht (Heinz' Punkt 6): **durchgeführt am 17.11. am Code, nicht am Gerät**; Berichte in `docs/fachpruefung/`. Mathematik/Logik: 49 800 erzeugte Aufgaben, 43 800 unabhängig nachgerechnet, 0 falsche Lösungen; 65 Befunde im Umfeld der Aufgaben (12 schwer: u. a. richtige Antwort immer an zweitkleinster Stelle, Bilder verraten die Lösung, falsche Rechentricks bei Brüchen/Dezimalzahlen). Deutsch/Sachunterricht/Englisch: 84 Befunde (6 schwer: u. a. Reim-Ablenker, die selbst reimen; Endlaut „Hund → T“; Geschichten ohne Umlaute). Korrektur läuft (Pakete L4a Mathematik, L4b Deutsch/Sach/Englisch). Kein Abgleich mit dem amtlichen Lehrplantext; es wird keine Lehrplanabdeckung behauptet.
+- **Korrekturen eingearbeitet am 18.11.2026** (Merges `d8362dc8` Mathematik/Logik und Deutsch/Sachunterricht/Englisch, Stand `b4730556`): alle 12 schweren Mathe-Befunde und alle 6 schweren Deutsch/Sach-Befunde behoben, die mittleren und leichten großteils. Neu u. a.: 96 Schlussfolgerungsfragen zum Lesen, Wortarten im Satz (Kl. 3), Schreiben steigt mit der Klasse, 72 Sachunterricht-Fragen Kl. 2, Englisch in Gegenrichtung ab Kl. 3, Rechengeschichten Kl. 4 bis zur Million, österreichische Wörter (Erdapfel, Zwetschke). Geprüft: `flutter analyze` 0 Fehler; gesamte Testsuite auf dem zusammengeführten Stand einmal gelaufen, ein Fehlschlag (8 oder 9 Äpfel schoben auf 360-dp-Handys die Antworten unter die Navigation) – behoben und mit eigenem Test abgesichert; danach nur die betroffenen Testdateien erneut ausgeführt, kein zweiter Gesamtlauf. Am Gerät NICHT geprüft.
+- **Offen aus der Fachprüfung:** Stufen innerhalb einer Einheit (Einmaleins-Reihen nacheinander), Zahlenmauer und Figuren als Bild, einheitliches Mal-/Minuszeichen, drei Fragen je Lesetext, Englisch mit Hör- und Bildaufgaben, Beispielsätze zu den Englisch-Wörtern, Satzzeichen-Frage verrät die Satzart.
 - Lücken laut Prüfung: Sachunterricht Kl. 2 (fünf Einheiten mit nur 1–5 eigenen Fragen), Englisch nur „Wort lesen → Bedeutung antippen“, Musik/Kunst/Technik/Sport ohne überprüfbare Aufgaben (je 8 offene Aktivitätskarten).
 - 3D-Lernszene: Godot `scripts/learning/learning_world.gd`. Nachhilfe-Szene (Stream `lumo-2040/tutor-godot`, WIP ohne Test): Quelltext integriert (Merge `55c0135`), nur über einen Lern-Aufruf mit `kind: tutor` erreichbar; der Einstieg in der App bleibt verborgen. Status: NOT_RUN.
 
