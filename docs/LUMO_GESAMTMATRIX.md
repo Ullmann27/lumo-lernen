@@ -53,7 +53,10 @@ Zuletzt öffentlich belegte APK laut Repo-Dokumenten: 0.13.19+2031 (16.11.). St�
 22. **APK jetzt, danach erweitern (18.11.2026, mittags):** „Ich will jetzt die APK haben, ausprobieren und dann die Strecken erweitern.“ Alles, was die Helfer entwickelt haben, wird zusammengeführt; die Streckenwahl im Kart muss stimmen (Vulkan → Vulkan, Dschungel → Dschungel), von Claude selbst im Menü durchgetestet, samt Items. Ersetzt für diese APK Entscheidung 19.
 23. **Gemeinsam spielen (18.11.2026):** Geschwister (Zoe und Alina) wählen im Kart je einen Fahrer und fahren zusammen; in Bauwelt/Dorf bauen sie gemeinsam – „verbunden, wenn man will, oder allein weiter“. Profil = Profil der Lern-App. OFFEN, nach der APK; Entscheidung von Heinz nötig: ein Gerät, gleiches WLAN ohne Server oder Internet mit Server (Datenschutz Kinder).
 24. **Dorf/Aufbau/Strategie groß (18.11.2026):** KI-Gegner, die mit aufbauen und mit Sinn angreifen („wie bei Rome“), Tutorial, das ins laufende Spiel übergeht, Umfang für „Wochen oder Monate“. OFFEN, Auftrag geschrieben, Start nach der APK.
-25. **Jump & Run schneller und flüssiger (18.11.2026):** Maßstab Sonic (Tempo, Aufgaben), Lumos Bewegungen flüssiger, mehr Action; Lumo Kart mit Mario Kart vergleichen. OFFEN, Auftrag geschrieben, Start nach der APK.
+25. **Jump & Run schneller und flüssiger (18.11.2026):** Maßstab Sonic (Tempo, Aufgaben), Lumos Bewegungen flüssiger, mehr Action; Lumo Kart mit Mario Kart vergleichen. TEIL ERLEDIGT am 18.11. nachmittags (Tempo, siehe 4.6); offen: fließende Übergänge, Aufgaben je Abschnitt, Gegner mit Charakter, Kart-Gefühl.
+26. **Lumo in der Lern-App lebendig, voller Nachhilfelehrer (18.11.2026, nachmittags):** bessere Visualisierungen, Darstellungen und Hilfestellungen; Lumo bewegt sich am Bildschirm, „rennt zu den Zahlen, wenn das Kind ihn braucht, wieder zurück auf seinen Standardplatz“, redet mit dem Kind und hört zu; der virtuelle Nachhilfelehrer soll einen Nachhilfelehrer voll ersetzen. Heinz: wenn zu aufwendig für jetzt, zuerst die APK mit den verbesserten Spielen. OFFEN – eigenes Paket, NICHT in 0.13.32+2044.
+27. **Schach für Kinder (18.11.2026, nachmittags):** eigene Option „Schach lernen“ für ein Kind ohne jedes Vorwissen (Alina), Stück für Stück über ein geführtes Probespiel; auch ein Weg für Erwachsene; Brett und Figuren „wirklich top“. OFFEN – Auftrag geschrieben, Helfer wurde durch eine Unterbrechung gestoppt und wird neu gestartet.
+28. **Werkzeuge nutzen (18.11.2026, nachmittags):** Blender und Renderer für die Spiele einsetzen, „an Realismus und Schärfe der Grafik so nah wie möglich“. Gilt für alle Grafikpakete.
 
 Dazu am 18.11.2026 gestartet (noch nichts zusammengeführt): Detail-Schicht der Kart-Strecken (Verwitterung, Risse, Kleinteile, Zuschauer, Start/Ziel-Bühne), Kartentisch und Tischspiele (Raum, Karten, Memory, Vier gewinnt, Quiz), Schatzsuche/Rhythmus/Puzzle/Spielewelt.
 
@@ -162,6 +165,8 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 | Fahrbahn je Strecke | PASS (lokal), 17.11. | Sieben eigene Beläge (Waldweg, Steinplatten, Sand, Schnee/Eis, Basalt mit Lavarissen, Sternenglas, Laborfliesen), `5dfc8e9`; 114 Prüfungen |
 | Dschungel-Licht, Zauberwald-Bäume | PASS (lokal), 17./18.11. | eigenes Tageslicht (`7b4a374`), Baumreihe an der Strecke (`4cf3032`) |
 | Grafikqualität aus Rennkamera, alle 13 Strecken | TEILWEISE | 39 Bilder (13 Strecken × 3 Stellen) angesehen; Beläge und zwei Kulissen verbessert. Offen: Streckenrand der übrigen Welten, Licht Vulkan/Bergwelt, Effekte; auf dem Gerät nicht gemessen |
+| Detailschicht der Strecken | PASS (lokal), 18.11. nachmittags | Abrieb, Bremsspuren, Kleinteile, Publikum, Streckennamen-Banner, Zielbühne auf 13 Strecken in drei Profilen (Godot `fbd6a60`); 16 Tests grün. Aus der Rennkamera zurückhaltend (Holo City kaum sichtbar) – zweite Runde offen. In APK 0.13.32+2044 |
+| CI im Spiele-Repository | IN ARBEIT, 18.11. | Seit den Merges vom Vormittag rot: Himmel-Objekt der neuen Kulisse hinterließ beim Beenden zwei Texturen (behoben, `cea266b`); Lade-Test endete bei laufender Menümusik (behoben, `5734d01`). Weitere Schritte dahinter erst mit dem nächsten CI-Lauf belegt |
 | Framezeiten auf Zielgerät | NOT_RUN | kein Gerät |
 
 ### 4.2 Kartenspiele
@@ -179,6 +184,7 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 | Drei eigene Spiele (Sternenstich, Sternenleiter, Lumo-Quartett; 2–4 Spieler, KI in drei Stärken ohne Blick in fremde Karten) | Godot: GETESTET (`cards_rules_regression` 212 968 Prüfungen, `cards_table_regression` 595, `cards_safe_area_regression` 2 176 auf 9 Bildschirmformen). App-Anschluss in Arbeit; am Gerät NICHT geprüft |
 | 3D-Tisch mit sitzenden Figuren und Kartenwurf | Godot: ERLEDIGT, 32 Engine-Bilder gesichtet. Offen: Lumo hält am Tisch noch die Kart-Sitzhaltung statt Karten; im Hochformat ist er am Rand angeschnitten |
 | Spielzimmer (Raum, Möbel, Texturen) | Godot: ZUSAMMENGEFÜHRT 18.11. (`fbac669`): Bücherregale, Eichentisch mit Filz, Pflanzen, Punktetafel; `cards_table` 591, `cards_safe_area` 2176, `cards_rules` 212 968. In APK 0.13.31+2043. Offen: 3D-Memory-Tisch (Lumo im Querformat angeschnitten), 4 Gewinnt und Quiz nicht gesichtet; Titelbild der Spielewelt zeigt jetzt den echten Kartentisch |
+| Namensschilder am Tisch | Godot: ERLEDIGT 18.11. nachmittags (`6fd3e4c`, `aef4dca`): stehen neben dem Kopf, wenn darüber kein Platz ist, und weichen einander aus; `cards_safe_area` 2176/0. In APK 0.13.32+2044. Nicht übernommen: Umbau des 3D-Memory-Tischs (Test mit Renderer rot) |
 
 ### 4.3 Memory
 
@@ -196,6 +202,7 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 - Befund App: „Dorfwirtschaft" (`settlement`) steht nicht in der Belohnungsliste von `core/embedded_game_service.dart` – Ergebnisse werden in Flutter nicht gebucht.
 - Ziel: Heinz' Punkte 5 und 11. Gelände mit Höhen (Hügel und Berge unbebaubar), große Karte, Kampagne, Freibau, sichtbar bauende KI-Städte. Heute ist das Gelände flach. Status OFFEN.
 - **18.11.2026, mittags:** Dorfwelt mit Höhenkarten-Gelände, Fluss, Fachwerkhäusern, Blattbüschel-Bäumen, Gründerlager, Kapitel 1/12 und neuem HUD zusammengeführt (Godot `cbeb7c0`; 17 Tests grün, 14 Bilder gesichtet). In APK 0.13.31+2043. Die Dorfwelt meldet der App weiterhin keine Ergebnisse (kein `reward`-Aufruf). Offen laut Heinz (Entscheidung 24): KI-Gegner, Angriffe mit Sinn, Tutorial, Langzeit-Kampagne; Bauwelt-Grafik als eigenes Paket danach.
+- **18.11.2026, nachmittags:** Strategie Teil 1 und 2 zusammengeführt (Godot `e36799c`): Lumos Einführung in neun Schritten, die ins laufende Spiel übergeht (überspringbar, später je Thema abrufbar), und KI-Nachbardörfer, die nach denselben Regeln sichtbar mit aufbauen. 12 Tests grün (u. a. `build_village_tutorial` 49, `build_village_neighbors` 31); frische Bilder gesichtet. In APK 0.13.32+2044. Offen: Angriffe mit Sinn (Teil 3), Langzeit-Kampagne (Teil 4), Sterne ausgeben/einbringen über die App (`settlement` wird in Flutter weiter nicht gebucht).
 
 ### 4.5 Schatzsuche, Rhythmus, Puzzle
 
@@ -211,6 +218,7 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 
 - **18.11.2026:** „Lumo Lauf" (Godot `scripts/games/run/`, Route `run`) mit Level „Dschungelherz" zusammengeführt – siehe Stand zu Entscheidung 15. Zauberwald und Sonnenhafen laufen noch auf den Kart-Strecken. Am Gerät NICHT geprüft.
 - **18.11.2026, mittags:** neue Dschungelkulisse aus eigenen Blender-Modellen zusammengeführt (Godot `abbc3f3`; `lumo_run_regression` 496 Prüfungen; 24 Bilder aus dem gespielten Lauf gesichtet). In APK 0.13.31+2043. Offen laut Heinz (Entscheidung 25): schneller, flüssiger, mehr Action – Maßstab Sonic.
+- **18.11.2026, nachmittags:** Tempo (Godot `40d5f08`): der Dschungelpfad läuft 1,3-fach, dazu Sprint aus freiem Lauf, zwei Tempo-Felder, großzügigere Sprungfenster; Lumos Laufstil mit weitem Schritt und Kniehub (`9636a3c`). Gemessen mit dem automatischen Spieler (30 Läufe): Durchlauf im Schnitt 113 s statt rund 180 s; am Bildschirm Grundtempo 11,1 m/s (vorher 8,5), Sprint 15,0 m/s. `lumo_run_regression` 496, `lumo_run_flow_regression` 13, `jump_nextgen` 84 grün. Ein Laufzeitfehler der Kulisse (ERROR-Zeile je Bild, auch in 0.13.31) ist behoben (`94ca0af`). In APK 0.13.32+2044. Am Gerät NICHT geprüft (Eingabegefühl, Bildrate).
 
 ### 4.7 Weitere Spiele
 
