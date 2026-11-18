@@ -161,6 +161,10 @@ List<AnswerOption> _wrongOptions(TaskInstance task) => task.options
 AnswerOption _rightOption(TaskInstance task) => task.options
     .firstWhere((option) => _value(option) == '${task.correctAnswer}');
 
+LumoAnswerCrystal _crystal(WidgetTester tester, AnswerOption option) => tester
+    .widgetList<LumoAnswerCrystal>(find.byType(LumoAnswerCrystal))
+    .singleWhere((crystal) => crystal.label == option.label);
+
 /// Taps a real answer crystal, as a child would.
 Future<void> _tap(WidgetTester tester, AnswerOption option) async {
   final target = find
@@ -232,6 +236,9 @@ void main() {
       expect(find.text('Allein gelöst'), findsOneWidget);
       expect(find.text('Gemeinsam gelöst'), findsNothing);
       expect(find.text('+6 Sterne'), findsOneWidget);
+      expect(_crystal(tester, _rightOption(task)).state,
+          LumoCrystalState.correct);
+      expect(find.byKey(const ValueKey('lesson-hint-button')), findsNothing);
       expect(app.state.stars, 6);
       // No ability claim after a single answer.
       expect(find.textContaining('Können'), findsNothing);
@@ -389,7 +396,12 @@ void main() {
       final card = tester
           .widget<LumoWorkedSolutionCard>(find.byType(LumoWorkedSolutionCard));
       expect(card.steps.length, inInclusiveRange(2, 3));
-      expect(card.steps.last, contains('Die Lösung ist: ${task.correctAnswer}.'));
+      expect(card.steps.every((step) => step.length <= 200), isTrue,
+          reason: 'short steps a young child can read');
+      expect(card.steps.last, contains('${task.correctAnswer}'),
+          reason: 'the last step states the solution');
+      // Nothing else competes with the explained answer.
+      expect(find.byKey(const ValueKey('lesson-hint-button')), findsNothing);
       expect(find.text('Tippe jetzt die richtige Antwort an.'), findsOneWidget);
 
       // Every answer can be tapped again: no "last one left".
@@ -415,6 +427,10 @@ void main() {
 
       await _tap(tester, _rightOption(task));
       expect(find.text('Gemeinsam gelöst'), findsWidgets);
+      expect(_crystal(tester, _rightOption(task)).state,
+          LumoCrystalState.correct,
+          reason: 'the tapped solution is marked as right');
+      expect(find.byType(LumoWorkedSolutionCard), findsNothing);
       expect(app.state.stars, 2);
       final record = await _stored(tester, app, 'Mathematik', 'Plus bis 10');
       expect(record.correct, 1);
@@ -546,8 +562,16 @@ void main() {
         expect(find.text('Richtige Antwort: ${_rightOption(task).label}'),
             findsOneWidget);
         expect(find.byKey(const ValueKey('solution-why-box')), findsOneWidget);
-        expect(find.textContaining('Die Lösung ist: ${task.correctAnswer}.'),
-            findsOneWidget);
+        final why = tester
+            .widgetList<Text>(find.descendant(
+                of: find.byKey(const ValueKey('solution-why-box')),
+                matching: find.byType(Text)))
+            .map((text) => text.data ?? '')
+            .toList();
+        expect(why.length, greaterThanOrEqualTo(3),
+            reason: 'a heading and at least two steps');
+        expect(why.last, contains('${task.correctAnswer}'),
+            reason: 'the last step states the solution');
         expect(find.textContaining('Fast'), findsNothing);
       });
     }

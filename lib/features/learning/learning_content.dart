@@ -1836,9 +1836,10 @@ class _LearningContentState extends State<LearningContent>
     return correct;
   }
 
-  /// The way to the solution in a few steps: the two concrete hint levels,
-  /// then why the answer is right. Used after the second wrong answer in
-  /// practice and after a wrong answer in tests and schoolwork.
+  /// The way to the solution in a few short steps: how to start, a second
+  /// step if it is brief enough for a young reader, then why the answer is
+  /// right. Used after the second wrong answer in practice and after a
+  /// wrong answer in tests and schoolwork.
   List<String> _buildWorkedSteps() {
     final steps = <String>[];
     void add(String? text) {
@@ -1847,23 +1848,26 @@ class _LearningContentState extends State<LearningContent>
     }
 
     final guided = _taskInstance.helpPayload.guidedSteps;
-    if (guided.length >= 3) {
-      add(guided[1]);
-      add(guided[2]);
-    } else {
-      add(_taskHints.explain(_task, level: 2));
-      add(_taskHints.explain(_task, level: 3));
-    }
-    // Two steps of guidance are enough to read; the solution follows.
-    while (steps.length > 2) {
-      steps.removeLast();
-    }
+    final start =
+        guided.length >= 3 ? guided[1] : _taskHints.explain(_task, level: 2);
+    final detail =
+        guided.length >= 3 ? guided[2] : _taskHints.explain(_task, level: 3);
+    add(start);
+    // The third hint level is often a long general strategy. It only joins
+    // the path when it is a short, concrete step.
+    if (detail.trim().length <= 130) add(detail);
     final reason = _task.explanation.trim();
     final answer = _visibleAnswer.trim();
+    final reasonNamesAnswer = RegExp(
+            '(^|[^0-9A-Za-zÄÖÜäöüß])${RegExp.escape(answer)}[.!]?\$')
+        .hasMatch(reason);
     if (_task.visual == 'shape_trace' || answer.isEmpty) {
       add(reason);
     } else if (reason.isEmpty || reason.startsWith('Lumo erklärt dir')) {
       add('Die Lösung ist: $answer.');
+    } else if (reasonNamesAnswer) {
+      // "Zusammen sind es 4." already ends with the solution.
+      add(reason);
     } else {
       add('$reason Die Lösung ist: $answer.');
     }
@@ -2987,7 +2991,11 @@ class _LearningContentState extends State<LearningContent>
                         const LumoTwinTaskBanner(),
                       ],
                       const SizedBox(height: 12),
+                      // Keyed: cards above and below come and go with an
+                      // answer. Without the key the task would be rebuilt
+                      // from scratch and forget which answer was tapped.
                       AnimatedSwitcher(
+                        key: const ValueKey('learning-task-switcher'),
                         duration:
                             st.settings.reduceAnimations || st.settings.calmMode
                                 ? Duration.zero

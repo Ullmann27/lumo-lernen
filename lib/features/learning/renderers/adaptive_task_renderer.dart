@@ -368,17 +368,18 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           widget.feedback!,
           const SizedBox(height: 14),
         ],
-        Text(
-          widget.guided && !_solved
-              ? 'Tippe die Antwort an, die wir gefunden haben:'
-              : 'Wähle die richtige Antwort:',
-          style: LumoTextStyles.label.copyWith(
-            color: Colors.white,
-            fontSize: 14,
-            shadows: const [Shadow(color: Color(0xAA000000), blurRadius: 6)],
+        // The worked solution directly above already says what to do.
+        if (!(widget.guided && !_solved)) ...[
+          Text(
+            'Wähle die richtige Antwort:',
+            style: LumoTextStyles.label.copyWith(
+              color: Colors.white,
+              fontSize: 14,
+              shadows: const [Shadow(color: Color(0xAA000000), blurRadius: 6)],
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
+          const SizedBox(height: 12),
+        ],
         _OptionGrid(
           task: task,
           picked: _picked,
@@ -389,7 +390,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           reduceMotion: widget.reduceMotion,
           onPick: _pick,
         ),
-        if (widget.allowRetry && !_solved)
+        if (widget.allowRetry && !_solved && !widget.guided)
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
