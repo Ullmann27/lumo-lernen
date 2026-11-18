@@ -42,8 +42,9 @@ class LumoStageTargets extends ChangeNotifier {
   bool has(String id) => _regions[id]?.key.currentContext != null;
 
   /// Rechteck eines Teils in den Koordinaten von [stage].
-  Rect? rectOf(String id, RenderBox stage) =>
-      _rectFor(_regions[id]?.key, stage);
+  /// Mit [visibleOnly] nur, solange der Teil die Bühne berührt.
+  Rect? rectOf(String id, RenderBox stage, {bool visibleOnly = true}) =>
+      _rectFor(_regions[id]?.key, stage, visibleOnly: visibleOnly);
 
   /// Alle Teile, die Lumo nie verdecken darf.
   List<Rect> protectedRects(RenderBox stage) => [
@@ -51,7 +52,8 @@ class LumoStageTargets extends ChangeNotifier {
           if (_rectFor(region.key, stage) case final Rect rect) rect,
       ];
 
-  static Rect? _rectFor(GlobalKey? key, RenderBox stage) {
+  static Rect? _rectFor(GlobalKey? key, RenderBox stage,
+      {bool visibleOnly = true}) {
     final object = key?.currentContext?.findRenderObject();
     if (object is! RenderBox ||
         !object.attached ||
@@ -62,7 +64,7 @@ class LumoStageTargets extends ChangeNotifier {
     final topLeft = object.localToGlobal(Offset.zero, ancestor: stage);
     final rect = topLeft & object.size;
     final bounds = Offset.zero & stage.size;
-    return rect.overlaps(bounds) ? rect : null;
+    return !visibleOnly || rect.overlaps(bounds) ? rect : null;
   }
 
   BuildContext? contextOf(String id) => _regions[id]?.key.currentContext;

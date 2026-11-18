@@ -62,7 +62,7 @@ class LumoStageLayout {
   /// Bester freier Platz neben [target], von dem aus Lumo hinzeigt.
   /// Null, wenn kein freier Platz existiert (dann hilft Lumo vom Platz aus).
   LumoStagePlacement? placeNear(Rect target, Iterable<Rect> obstacles,
-      {Offset? from}) {
+      {Offset? from, bool preferEdges = false}) {
     final blocked = [target, ...obstacles];
     final size = actorSize;
     LumoStagePlacement? best;
@@ -83,7 +83,15 @@ class LumoStageLayout {
         // Nahe ans Ziel, Hand eher unter/neben dem Ziel, kurzer Weg.
         final above = hand.dy < target.top ? 18.0 : 0.0;
         final travel = from == null ? 0.0 : (from - foot).distance * .04;
-        final score = gap + above + travel;
+        // Zahlen stehen links bis mittig: nahe der Mitte, lieber links vom
+        // Ziel mit Blick nach rechts (so wie die Streifen gezeichnet sind).
+        final centre = (hand.dx - target.center.dx).abs() * .2;
+        final side = facingRight ? 0.0 : 12.0;
+        final edge = preferEdges
+            ? math.min(rect.left, stage.width - rect.right) * 1.5
+            : 0.0;
+        final score =
+            gap + above + travel + (preferEdges ? 0 : centre) + side + edge;
         if (score < bestScore) {
           bestScore = score;
           best = LumoStagePlacement(foot: foot, facingRight: facingRight);

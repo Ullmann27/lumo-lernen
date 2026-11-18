@@ -216,20 +216,44 @@ class LumoActorStageState extends State<LumoActorStage>
       _lastTargetRect = null;
       _spoke = false;
       _speechEndedAt = null;
-      _revealTarget(request.targetId!);
+      _lastReveal = null;
     }
     _wake();
   }
 
+  Duration? _lastReveal;
+
+  /// Holt das Ziel ins Bild. Über ihm bleibt ein Streifen frei, in dem
+  /// Lumo stehen kann – erst nach dem nächsten Layout, wenn Hilfekarten stehen.
   void _revealTarget(String id) {
-    final targetContext = widget.controller.targets.contextOf(id) ??
-        widget.controller.targets.contextOf('learning-task');
-    if (targetContext == null) return;
-    // Ziel mittig zeigen, damit oben und unten Platz für Lumo bleibt.
-    Scrollable.ensureVisible(targetContext,
-        alignment: .4,
-        duration: _still ? Duration.zero : const Duration(milliseconds: 320),
-        curve: Curves.easeOutCubic);
+    _lastReveal = _now;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final targetContext = widget.controller.targets.contextOf(id);
+      final stageBox = context.findRenderObject();
+      final targetBox = targetContext?.findRenderObject();
+      if (targetContext == null ||
+          stageBox is! RenderBox ||
+          targetBox is! RenderBox ||
+          !targetBox.attached) {
+        return;
+      }
+      final position = Scrollable.maybeOf(targetContext)?.position;
+      if (position == null || !position.hasPixels) return;
+      final top = targetBox.localToGlobal(Offset.zero, ancestor: stageBox).dy;
+      final desired = _figureHeight + 64;
+      final goal = (position.pixels + top - desired)
+          .clamp(position.minScrollExtent, position.maxScrollExtent)
+          .toDouble();
+      if ((goal - position.pixels).abs() < 4) return;
+      if (_still) {
+        position.jumpTo(goal);
+      } else {
+        position.animateTo(goal,
+            duration: const Duration(milliseconds: 320),
+            curve: Curves.easeOutCubic);
+      }
+    });
   }
 
   void _targetsChanged() {
@@ -321,6 +345,9 @@ class LumoActorStageState extends State<LumoActorStage>
       _startAt = null;
       _setPhase(LumoStagePhase.toTarget);
       _lastPlacement = Duration.zero;
+      final targets = widget.controller.targets;
+      final id = _targetId ?? 'learning-task';
+      _revealTarget(targets.has(id) ? id : 'learning-task');
     }
 
     switch (_phase) {
@@ -353,12 +380,27 @@ class LumoActorStageState extends State<LumoActorStage>
 
   void _followTarget(LumoStageLayout layout, RenderBox box,
       List<Rect> protectedRects, Offset homeFoot, double dt) {
-    final id = _targetId ?? 'learning-task';
     final targets = widget.controller.targets;
-    final targetRect =
-        targets.rectOf(id, box) ?? targets.rectOf('learning-task', box);
-    if (targetRect == null) {
+    final requested = _targetId ?? 'learning-task';
+    final id = targets.has(requested) ? requested : 'learning-task';
+    final fullRect = targets.rectOf(id, box, visibleOnly: false);
+    if (fullRect == null) {
       _leave();
+      return;
+    }
+    final bounds = Offset.zero & box.size;
+    final shown = fullRect.top >= 0 && fullRect.top < bounds.bottom - 120;
+    if (!shown &&
+        (_lastReveal == null ||
+            _now - _lastReveal! > const Duration(milliseconds: 700))) {
+      _revealTarget(id);
+    }
+    final targetRect = fullRect.intersect(bounds);
+    if (targetRect.isEmpty || targetRect.height < 8) {
+      // Das Ziel scrollt gerade ins Bild: Lumo wartet kurz.
+      if (_now - (_lastReveal ?? _now) > const Duration(milliseconds: 1500)) {
+        _leave();
+      }
       return;
     }
     final moved = _lastTargetRect == null ||
@@ -367,11 +409,26 @@ class LumoActorStageState extends State<LumoActorStage>
     if (moved || _now - _lastPlacement > const Duration(milliseconds: 400)) {
       _lastTargetRect = targetRect;
       _lastPlacement = _now;
-      final others = [
-        for (final r in protectedRects)
-          if (r != targetRect) r
-      ];
-      final placement = layout.placeNear(targetRect, others, from: _foot);
+      var placement = layout.placeNear(targetRect, protectedRects, from: _foot);
+      final text = _bubbleText;
+      if (placement != null &&
+          text != null &&
+          text.isNotEmpty &&
+          _bubbleFor(
+                  layout, text, placement.foot, protectedRects, targetRect) ==
+              null) {
+        // Die Blase braucht Platz: Lumo stellt sich an den Rand.
+        placement = layout.placeNear(targetRect, protectedRects,
+                from: _foot, preferEdges: true) ??
+            placement;
+      }
+      if (placement == null && id != 'learning-task') {
+        // Neben diesem Teil ist kein Platz: Lumo zeigt auf die Rechnung.
+        _targetId = 'learning-task';
+        _lastTargetRect = null;
+        _revealTarget('learning-task');
+        return;
+      }
       // Kein freier Platz: Lumo hilft von seinem Standardplatz aus.
       _destination = placement?.foot ?? homeFoot;
       if (_phase == LumoStagePhase.atTarget || placement == null) {
@@ -431,7 +488,7 @@ class LumoActorStageState extends State<LumoActorStage>
     final loopSeconds = run.duration.inMicroseconds / 1000000;
     // Schneller laufen heißt schneller treten: die Füße rutschen nie.
     final base = stride / loopSeconds;
-    final boost = (distance / (base * 1.4)).clamp(1.0, 2.4);
+    final boost = (distance / (base * 1.4)).clamp(1.0, 3.0);
     final step = math.min(distance, base * boost * dt);
     _foot = foot + delta / distance * step;
     _runDistance += step;
@@ -463,8 +520,14 @@ class LumoActorStageState extends State<LumoActorStage>
     }
     Rect? rect;
     if (text != null && text.isNotEmpty && _foot != null) {
-      final size = _bubbleSize(text, layout.stage);
-      rect = layout.placeBubble(size, _foot!, protectedRects, target: target);
+      final key = Object.hash(text, _foot!.dx.round(), _foot!.dy.round(),
+          target, Object.hashAll(protectedRects), layout.stage);
+      if (key == _bubbleKey) {
+        rect = _bubbleRect;
+      } else {
+        _bubbleKey = key;
+        rect = _bubbleFor(layout, text, _foot!, protectedRects, target);
+      }
     }
     if (rect == null) text = null;
     if (text != _shownText || rect != _bubbleRect) {
@@ -476,8 +539,24 @@ class LumoActorStageState extends State<LumoActorStage>
   }
 
   String? _shownText;
+  int? _bubbleKey;
 
+  /// Breit, wenn Platz ist; sonst schmaler und höher.
+  Rect? _bubbleFor(LumoStageLayout layout, String text, Offset foot,
+      List<Rect> protectedRects, Rect? target) {
+    for (final width in const [280.0, 230.0, 190.0, 160.0]) {
+      final size = _bubbleSize(text, layout.stage, width);
+      final rect =
+          layout.placeBubble(size, foot, protectedRects, target: target);
+      if (rect != null) return rect;
+    }
+    return null;
+  }
+
+  // Ohne Erbe vom Theme: gemessen und gezeichnet wird mit demselben Stil.
   static const _bubbleStyle = TextStyle(
+      inherit: false,
+      letterSpacing: 0,
       fontFamily: 'Nunito',
       fontSize: 15,
       height: 1.3,
@@ -486,9 +565,9 @@ class LumoActorStageState extends State<LumoActorStage>
   static const _bubblePadding = EdgeInsets.fromLTRB(14, 10, 14, 11);
   static const _bubbleMaxLines = 6;
 
-  Size _bubbleSize(String text, Size stage) {
+  Size _bubbleSize(String text, Size stage, double width) {
     final maxWidth =
-        math.min(280.0, stage.width - 32) - _bubblePadding.horizontal;
+        math.min(width, stage.width - 32) - _bubblePadding.horizontal;
     final painter = TextPainter(
       text: TextSpan(text: text, style: _bubbleStyle),
       textDirection: TextDirection.ltr,
@@ -629,7 +708,7 @@ class LumoActorStageState extends State<LumoActorStage>
     var opacity = _opacity;
     if (_ducked && _phase == LumoStagePhase.home) {
       // Beide Ecken belegt: Lumo duckt sich unter den Rand und schaut nur hervor.
-      drawFoot = foot + Offset(0, _figureHeight * .62);
+      drawFoot = foot + Offset(0, _figureHeight * .84);
       opacity *= .8;
     }
     if (opacity <= 0) return;
