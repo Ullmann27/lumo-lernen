@@ -4,7 +4,10 @@ import '../../../widgets/design/lumo_answer_crystal.dart';
 // ════════════════════════════════════════════════════════════════════════
 // Visualisierung: Bonbons werden weggenommen. Kind tippt richtige Anzahl.
 // 4 Multiple-Choice Antworten pro Aufgabe, 30 Aufgaben pro Session.
-// Bei richtig: Lumo lobt + Sterne. Bei falsch: sanft + Hilfe-Bild.
+// Bei richtig: Lumo lobt + Sterne. Nach dem ersten Fehler: Rückmeldung, die
+// zum Fehler passt, und ein zweiter Versuch. Nach dem zweiten Fehler: der
+// Lösungsweg in Schritten; das Kind tippt die erklärte Antwort selbst an.
+// Keine Aufgabe wird übersprungen.
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
@@ -18,8 +21,11 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
+import '../../../domain/learning/error_detective.dart';
+import '../../learning/widgets/lumo_mistake_help_card.dart';
 import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
 
 class MinusBis10Screen extends StatefulWidget {
   const MinusBis10Screen({
@@ -48,13 +54,22 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
   late final AnimationController _entryCtrl;
   final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
   late final _rng = widget.taskRandom ?? math.Random();
   late final List<(int, int)> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
   int _wrongAttempts = 0;
-  bool _showHint = false;
+  // Help in two steps: feedback after the first mistake, the worked
+  // solution after the second. The task is never skipped.
+  final Set<int> _wrongAnswers = <int>{};
+  String? _mistakeMessage;
+  bool _mistakeRecognised = false;
+  bool _hintShown = false;
+  bool _guided = false;
+  bool _guidedNudge = false;
   bool _answered = false;
   int? _selectedAnswer;
   Set<int> _removedBonbons = {};
@@ -84,6 +99,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 350));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _speakTask();
@@ -124,8 +140,13 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     _answers = [correct, ...wrongOptions]..shuffle(_rng);
     _answered = false;
     _selectedAnswer = null;
-    _showHint = false;
     _wrongAttempts = 0;
+    _wrongAnswers.clear();
+    _mistakeMessage = null;
+    _mistakeRecognised = false;
+    _hintShown = false;
+    _guided = false;
+    _guidedNudge = false;
     _removedBonbons = {};
   }
 
@@ -136,31 +157,48 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     } catch (_) {}
   }
 
+  void _speak(String text) {
+    try {
+      LumoVoice.instance.speak(text);
+    } catch (_) {}
+  }
+
   void _onAnswer(int answer) async {
     if (_answered || _progress.hasPending) return;
+    final isCorrect = answer == _correct;
+    // The solution has been worked through together. A wrong tap is not
+    // recorded again; it only points back to the explained answer.
+    if (_guided && !isCorrect) {
+      HapticFeedback.mediumImpact();
+      _shakeCtrl.forward(from: 0);
+      setState(() => _guidedNudge = true);
+      return;
+    }
+    if (_wrongAnswers.contains(answer)) return;
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAnswer = answer;
       _answered = true;
     });
-    final isCorrect = answer == _correct;
+    // Solved alone: first try and no tip. Everything else is recorded as
+    // solved together. The module's small reward for a finished task stays
+    // as it was (the Android flow checks it); the difference shows in the
+    // evidence and in the "allein gelöst" count.
+    final alone = isCorrect && _wrongAttempts == 0 && !_hintShown;
     final saved = await _progress.saveAnswer(
       problemKey: '$_a - $_b',
       cosmosSubjectId: 'm1_minus10',
       cosmosIsMath: true,
       correct: isCorrect,
-      hintUsed: _showHint,
+      hintUsed: _wrongAttempts > 0 || _hintShown,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 5 : 0,
     );
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      setState(() => _correctCount++);
-      final phrase = LumoPhrases.correct();
-      try {
-        LumoVoice.instance.speak(phrase);
-      } catch (_) {}
+      if (alone) setState(() => _correctCount++);
+      _speak(alone ? LumoPhrases.correct() : 'Gemeinsam gelöst!');
       if (!await _progress.feedbackDelay(const Duration(milliseconds: 1100)) ||
           !mounted) {
         return;
@@ -169,37 +207,65 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     } else {
       HapticFeedback.mediumImpact();
       _shakeCtrl.forward(from: 0);
-      _wrongAttempts++;
-      final phrase = LumoPhrases.wrongGentle();
-      try {
-        LumoVoice.instance.speak(phrase);
-      } catch (_) {}
+      final detection = const ErrorDetective().analyze(
+        subject: 'Mathematik',
+        prompt: '$_a − $_b = ?',
+        correctAnswer: '$_correct',
+        givenAnswer: '$answer',
+      );
+      final message = detection.isRecognised
+          ? detection.childFriendlyMessage
+          : 'Das passt noch nicht. Schau noch einmal auf die Bonbons.';
+      final worked = _wrongAttempts + 1 >= 2;
+      _speak(worked ? 'Wir lösen es gemeinsam, Schritt für Schritt.' : message);
       if (!await _progress.feedbackDelay(const Duration(milliseconds: 1400)) ||
           !mounted) {
         return;
       }
-      if (_wrongAttempts >= 2) {
-        setState(() => _showHint = true);
-        if (!await _progress
-                .feedbackDelay(const Duration(milliseconds: 2400)) ||
-            !mounted) {
-          return;
+      setState(() {
+        _wrongAttempts++;
+        _answered = false;
+        _selectedAnswer = null;
+        if (worked) {
+          // All answers are available again: the child taps the explained
+          // answer instead of the last one left.
+          _guided = true;
+          _wrongAnswers.clear();
+          _mistakeMessage = null;
+        } else {
+          _wrongAnswers.add(answer);
+          _mistakeMessage = message;
+          _mistakeRecognised = detection.isRecognised;
         }
-        _nextTask();
-      } else {
-        setState(() {
-          _answered = false;
-          _selectedAnswer = null;
-        });
-      }
+      });
     }
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -224,7 +290,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
             style:
                 TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text('$_correctCount / $_totalTasks richtig!',
+          Text('$_correctCount von $_totalTasks allein gelöst!',
               style: const TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 18,
@@ -283,6 +349,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
         icon: Icons.calculate_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         hasMistake: _answered && _selectedAnswer != _correct,
@@ -326,11 +393,33 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
                 _buildBonbonsVisualization(),
               ]),
               answers: Column(children: [
-                _buildAnswerGrid(),
-                if (_showHint) ...[
-                  const SizedBox(height: 20),
-                  _buildHintCard(),
+                if (_guided) ...[
+                  LumoWorkedSolutionCard(
+                    steps: [
+                      'Du hast $_a Bonbons.',
+                      'Nimm $_b davon weg. Zähle, wie viele ohne Kreuz '
+                          'bleiben.',
+                      'Es bleiben $_correct. Also: $_a − $_b = $_correct.',
+                    ],
+                    callToAction: 'Tippe jetzt die $_correct an.',
+                    nudge: _guidedNudge,
+                  ),
+                  const SizedBox(height: 14),
+                ] else if (_mistakeMessage != null) ...[
+                  LumoMistakeFeedbackCard(
+                    message: _mistakeMessage!,
+                    recognised: _mistakeRecognised,
+                    hint: 'Tippe $_b Bonbons an: Sie werden durchgestrichen. '
+                        'Zähle dann nur die Bonbons ohne Kreuz.',
+                    hintVisible: _hintShown,
+                    onShowHint: () {
+                      _progress.notePresentationHelp();
+                      setState(() => _hintShown = true);
+                    },
+                  ),
+                  const SizedBox(height: 14),
                 ],
+                _buildAnswerGrid(),
               ]),
             ),
           ),
@@ -403,46 +492,15 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       ),
       child: LumoAnswerCrystal(
         label: '$value',
-        onPressed: _answered ? null : () => _onAnswer(value),
-        state: _answered && isCorrect && (isSelected || _wrongAttempts >= 2)
+        onPressed: _answered || _wrongAnswers.contains(value)
+            ? null
+            : () => _onAnswer(value),
+        state: _answered && isCorrect && isSelected
             ? LumoCrystalState.correct
-            : _answered && isSelected
+            : (_answered && isSelected) || _wrongAnswers.contains(value)
                 ? LumoCrystalState.retry
                 : LumoCrystalState.neutral,
       ),
-    );
-  }
-
-  Widget _buildHintCard() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFEF3C7),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFFCD34D), width: 2),
-      ),
-      child: Column(children: [
-        Row(children: [
-          const Icon(Icons.lightbulb_outline_rounded,
-              color: Color(0xFFD97706), size: 22),
-          const SizedBox(width: 8),
-          Text('Schau hin:',
-              style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w900,
-                  color: const Color(0xFFD97706))),
-        ]),
-        const SizedBox(height: 8),
-        Text(
-            'Du hattest $_a Bonbons. Du isst $_b davon. '
-            'Dann sind $_correct übrig.',
-            style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF92400E))),
-      ]),
     );
   }
 }

@@ -39,6 +39,8 @@ import '../../../widgets/design/lumo_lesson_progress.dart';
 import '../../../widgets/design/lumo_learning_module_frame.dart';
 import '../../../widgets/fox/lumo_companion_requests.dart';
 import '../lumo_phrases.dart';
+import '../learning_module_rounds.dart';
+import '../../../domain/learning/practice_session_plan.dart';
 
 class PlusBis10Screen extends StatefulWidget {
   const PlusBis10Screen({
@@ -171,6 +173,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
         for (var b = 1; b <= 10 - a; b++) (a, b),
     ]..shuffle(_rng);
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _speakTask();
@@ -660,7 +663,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       _selectedAnswer = answer;
       _pendingAnswer = answer;
       _submittedAttempts++;
-      _pendingHintUsed = _showHint || _helpLevel > 0;
+      // Solved alone means: first try and no help. A right answer after a
+      // wrong one is recorded as solved together.
+      _pendingHintUsed = _showHint || _helpLevel > 0 || _wrongAttempts > 0;
       _saving = true;
       _answered = answer == _correct;
       if (!_answered) _wrongAttempts++;
@@ -836,11 +841,43 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             }));
   }
 
-  void _nextTask() {
+  late final LearningModuleRounds _rounds = LearningModuleRounds.forUnit(
+      appState: widget.appState,
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      totalTasks: _totalTasks);
+
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null ||
+        !mounted ||
+        _taskIdx != 0 ||
+        _answered ||
+        _submittedAttempts > 0) {
+      return;
+    }
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -1295,6 +1332,15 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             spacing: 8,
             runSpacing: 6,
             children: [
+              Text(
+                  'Runde ${SessionRounds.roundOf(_taskIdx + 1, _totalTasks)} '
+                  'von ${SessionRounds.count(_totalTasks)}',
+                  key: const ValueKey('plus10-round-label'),
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.gold,
+                      fontSize: 13)),
               Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
                   style: const TextStyle(
                       fontFamily: 'Nunito',
