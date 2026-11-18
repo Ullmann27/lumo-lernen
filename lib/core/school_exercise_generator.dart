@@ -622,30 +622,47 @@ class ExerciseFactory {
     }
     final names = <String>['Lumo', 'Mia', 'Ben', 'Ali', 'Lea']
       ..shuffle(_random);
-    final first = names[0], middle = names[1], last = names[2];
-    final askedIndex = _random.nextInt(3);
-    final asked =
-        <String>['ganz links', 'in der Mitte', 'ganz rechts'][askedIndex];
-    final answer = <String>[first, middle, last][askedIndex];
+    // Befund M24: In Klasse 4 auch vier Freunde oder eine verneinte Angabe
+    // („Ben steht nicht am Rand.“), damit wirklich geschlossen werden muss.
+    final variant =
+        unit == 'Schlussfolgern' && grade >= 4 ? _random.nextInt(3) : 0;
+    final count = variant == 2 ? 4 : 3;
+    final order = names.take(count).toList();
+    final places = count == 4
+        ? const <String>[
+            'ganz links',
+            'an zweiter Stelle von links',
+            'an dritter Stelle von links',
+            'ganz rechts',
+          ]
+        : const <String>['ganz links', 'in der Mitte', 'ganz rechts'];
+    final askedIndex = _random.nextInt(count);
+    final asked = places[askedIndex];
+    final answer = order[askedIndex];
+    String leftOf(String left, String right) => _random.nextBool()
+        ? '$left steht links von $right.'
+        : '$right steht rechts von $left.';
     var prompt =
-        'Von links nach rechts stehen $first, $middle und $last. Wer steht $asked?';
+        'Von links nach rechts stehen ${order[0]}, ${order[1]} und ${order[2]}. Wer steht $asked?';
     if (unit == 'Schlussfolgern') {
-      // Die zwei Angaben stehen in wechselnder Reihenfolge und Richtung.
+      // Die Angaben stehen in wechselnder Reihenfolge und Richtung.
       // Früher wurden die Namen immer von links nach rechts genannt, die
       // Lösung war ohne Schluss abzulesen.
-      final clues = <String>[
-        _random.nextBool()
-            ? '$first steht links von $middle.'
-            : '$middle steht rechts von $first.',
-        _random.nextBool()
-            ? '$middle steht links von $last.'
-            : '$last steht rechts von $middle.',
-      ]..shuffle(_random);
+      final clues = switch (variant) {
+        1 => <String>[
+            '${order[1]} steht nicht am Rand.',
+            leftOf(order[0], order[2]),
+          ],
+        _ => <String>[
+            for (var k = 0; k + 1 < count; k++) leftOf(order[k], order[k + 1]),
+          ],
+      }
+        ..shuffle(_random);
       prompt =
-          'Drei Freunde stehen nebeneinander. ${clues.join(' ')} Wer steht $asked?';
+          '${count == 4 ? 'Vier' : 'Drei'} Freunde stehen nebeneinander. ${clues.join(' ')} Wer steht $asked?';
     }
     // Die Karten in fester, vom Rätsel unabhängiger Reihenfolge.
-    final cards = <String>[first, middle, last]..sort();
+    final cards = <String>[...order]..sort();
     return _choiceTask(
         'logik-reihenfolge',
         grade,
@@ -653,7 +670,7 @@ class ExerciseFactory {
         unit,
         prompt,
         answer,
-        'Von links nach rechts ist die Reihenfolge $first – $middle – $last. $answer steht $asked.',
+        'Von links nach rechts ist die Reihenfolge ${order.join(' – ')}. $answer steht $asked.',
         customChoices: cards);
   }
 
