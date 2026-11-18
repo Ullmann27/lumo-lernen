@@ -87,10 +87,10 @@ void main() {
       'Stift',
       'Tasche',
       'Lineal',
-      'Kugelschreiber',
+      // Fachprüfung 2026-11 (E-M4): pen = Stift, desk = Schultisch.
       'Radiergummi',
       'Schultasche',
-      'Schreibtisch',
+      'Schultisch',
       'Sessel',
       'Federpennal',
       'Papier'

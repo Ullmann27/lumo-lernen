@@ -362,7 +362,7 @@ class _ActivityCard extends StatelessWidget {
           ['Symmetrieachsen']
         ),
       'Deutsch' => ('Lesen', ['Lesesinn', 'Reihenfolge']),
-      'Englisch' => ('Englisch', ['Alltag', 'Begruessung', 'Hobbys']),
+      'Englisch' => ('Englisch', ['Alltagssätze', 'Begruessung', 'Hobbys']),
       'Sachunterricht'
           when activity.id.contains('observe') ||
               activity.id.contains('habitat') =>

@@ -20,7 +20,7 @@ abstract final class NativeEnglishVocabulary {
     'bag': {'Tasche'},
     'rubber': {'Radiergummi'},
     'school bag': {'Schultasche'},
-    'desk': {'Schreibtisch'},
+    'desk': {'Schultisch', 'Schreibtisch'},
     'chair': {'Sessel'},
     'pencil case': {'Federpennal'},
     'paper': {'Papier'},

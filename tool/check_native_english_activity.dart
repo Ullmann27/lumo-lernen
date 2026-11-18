@@ -12,12 +12,13 @@ int cases = 0;
 
 const schoolWords = <String, String>{
   'book': 'Buch',
-  'pen': 'Kugelschreiber',
+  // Fachprüfung 2026-11 (E-M4): pen = Stift, desk = Schultisch in allen Klassen.
+  'pen': 'Stift',
   'bag': 'Tasche',
   'ruler': 'Lineal',
   'rubber': 'Radiergummi',
   'school bag': 'Schultasche',
-  'desk': 'Schreibtisch',
+  'desk': 'Schultisch',
   'chair': 'Sessel',
   'pencil case': 'Federpennal',
   'paper': 'Papier',
@@ -156,7 +157,7 @@ void main(List<String> args) {
           );
           if (isFirstSchoolUnit) {
             check(schoolWords[word] == payload['meaning'],
-                'Exact original school translation, including pen/Kugelschreiber');
+                'Exact original school translation, including pen/Stift');
             schoolExamples[original.grade]!.putIfAbsent(
               word,
               () => {

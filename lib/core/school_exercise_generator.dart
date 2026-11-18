@@ -1190,16 +1190,67 @@ class ExerciseFactory {
       map = levelMaps[outputUnit];
     }
     final entry = map!.entries.elementAt(_random.nextInt(map.length));
-    final distractors = map.values.where((v) => v != entry.value).toSet().toList()..shuffle(_random);
+    // Ablenker: nie ein zweites richtiges oder fast gleiches Wort (Morgen /
+    // am Morgen / morgen, Tasche / Schultasche) und möglichst dieselbe Art
+    // (Wort neben Wörtern, Satz neben Sätzen), damit die Länge nichts verrät.
+    final others = map.entries
+        .where((other) =>
+            other.key != entry.key &&
+            !_englishNearSame(other.value, entry.value))
+        .toList();
+    final sameKind = others
+        .where((other) => _isSentence(other.key) == _isSentence(entry.key))
+        .toList();
+    final pool = (sameKind.length >= 2 ? sameKind : others)..shuffle(_random);
+    final sentence = _isSentence(entry.key);
+    // Ab Klasse 3 wird auch die Gegenrichtung geübt: deutsches Wort lesen,
+    // englisches Wort wählen.
+    if (capped >= 3 && _random.nextBool()) {
+      return _choiceTask(
+          'englisch-de-en',
+          grade,
+          'Englisch',
+          outputUnit,
+          sentence
+              ? 'Wie heißt dieser Satz auf Englisch? „${entry.value}“'
+              : 'Wie heißt „${entry.value}“ auf Englisch?',
+          entry.key,
+          '„${entry.value}“ heißt auf Englisch „${entry.key}“.',
+          customChoices: [entry.key, ...pool.take(3).map((other) => other.key)]);
+    }
     return _choiceTask(
         'englisch',
         grade,
         'Englisch',
         outputUnit,
-        'Was bedeutet „${entry.key}“?',
+        sentence
+            ? 'Was bedeutet dieser Satz? „${entry.key}“'
+            : 'Was bedeutet „${entry.key}“?',
         entry.value,
-        'Das englische Wort „${entry.key}“ bedeutet ${entry.value}.',
-        customChoices: [entry.value, ...distractors.take(3)]);
+        sentence
+            ? 'Der englische Satz „${entry.key}“ bedeutet: ${entry.value}'
+            : 'Das englische Wort „${entry.key}“ bedeutet ${entry.value}.',
+        customChoices: [entry.value, ...pool.take(3).map((other) => other.value)]);
+  }
+
+  bool _isSentence(String text) => RegExp(r'[.?!]$').hasMatch(text.trim());
+
+  /// Zwei deutsche Bedeutungen sind zu ähnlich, um nebeneinander zur Wahl zu
+  /// stehen: gleich bis auf Großschreibung und Vorwort (Morgen, morgen, am
+  /// Morgen) oder eines endet auf das andere (Tasche, Schultasche).
+  bool _englishNearSame(String a, String b) {
+    String core(String value) => value
+        .toLowerCase()
+        .replaceFirst(RegExp(r'^(am|im|in der|die|der|das) '), '')
+        .trim();
+    final x = core(a), y = core(b);
+    if (x == y) return true;
+    final shorter = x.length <= y.length ? x : y;
+    final longer = x.length <= y.length ? y : x;
+    return shorter.length >= 4 &&
+        !shorter.contains(' ') &&
+        !longer.contains(' ') &&
+        longer.endsWith(shorter);
   }
 
   LumoTask _choiceTask(String prefix, int grade, String subject, String unit, String prompt, String answer, String explanation, {String visual = 'auto', List<String>? customChoices}) {
@@ -1328,7 +1379,7 @@ const _baseEnglishVocabulary = <int, Map<String, Map<String, String>>>{
       'pen': 'Stift',
       'bag': 'Tasche',
       'ruler': 'Lineal',
-      'desk': 'Tisch'
+      'desk': 'Schultisch'
     },
     'Wetter': <String, String>{
       'sun': 'Sonne',
@@ -1377,7 +1428,7 @@ const _baseEnglishVocabulary = <int, Map<String, Map<String, String>>>{
     'Länder': <String, String>{
       'Austria': 'Österreich',
       'Germany': 'Deutschland',
-      'England': 'England',
+      'Great Britain': 'Großbritannien',
       'France': 'Frankreich'
     },
   },

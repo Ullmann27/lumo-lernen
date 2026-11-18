@@ -69,11 +69,11 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'toes': 'Zehen'
     },
     'Schulsachen': {
-      'pen': 'Kugelschreiber',
+      'pen': 'Stift',
       'rubber': 'Radiergummi',
       'ruler': 'Lineal',
       'school bag': 'Schultasche',
-      'desk': 'Schreibtisch',
+      'desk': 'Schultisch',
       'chair': 'Sessel',
       'pencil case': 'Federpennal',
       'paper': 'Papier'
@@ -152,7 +152,7 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'scissors': 'Schere',
       'glue': 'Klebstoff',
       'calculator': 'Taschenrechner',
-      'whiteboard': 'weiße Schreibtafel',
+      'whiteboard': 'Whiteboard (weiße Tafel)',
       'dictionary': 'Wörterbuch',
       'library': 'Bücherei',
       'lesson': 'Unterrichtsstunde',
@@ -220,7 +220,7 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'Please say it again.': 'Bitte sag es noch einmal.',
       'It is my turn.': 'Ich bin an der Reihe.',
       'It is your turn.': 'Du bist an der Reihe.',
-      'Let us play.': 'Lasst uns spielen.',
+      "Let's play.": 'Lasst uns spielen.',
       'See you tomorrow.': 'Bis morgen.'
     },
   },
@@ -288,7 +288,7 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'Spain': 'Spanien',
       'Portugal': 'Portugal',
       'Greece': 'Griechenland',
-      'Switzerland': 'Schweiz',
+      'Switzerland': 'die Schweiz',
       'Hungary': 'Ungarn',
       'Croatia': 'Kroatien',
       'Slovenia': 'Slowenien',
@@ -315,7 +315,7 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'I would like a sandwich.': 'Ich hätte gerne ein belegtes Brot.',
       'May I join the game?': 'Darf ich beim Spiel mitmachen?',
       'I cannot find my book.': 'Ich kann mein Buch nicht finden.',
-      'Let us check the answer.': 'Lasst uns die Antwort prüfen.',
+      "Let's check the answer.": 'Lasst uns die Antwort prüfen.',
       'Thank you for your help.': 'Danke für deine Hilfe.'
     },
   },
