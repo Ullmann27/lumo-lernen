@@ -495,58 +495,58 @@
     "hint": "Klatsche die Silben."
   },
   {
-    "prompt": "Mit welchem Buchstaben beginnt \"Ball\"?",
+    "prompt": "Welcher Begleiter passt zu „Sonne“?",
     "options": [
-      "B",
-      "K",
-      "A",
-      "D"
+      "die",
+      "der",
+      "das",
+      "den"
     ],
     "correctIndex": 0,
-    "hint": "Schau auf den ersten geschriebenen Buchstaben."
+    "hint": "Sprich Begleiter und Wort zusammen."
   },
   {
-    "prompt": "Mit welchem Buchstaben beginnt \"Katze\"?",
+    "prompt": "Was ist das Gegenteil von „groß“?",
     "options": [
-      "K",
-      "U",
-      "S",
-      "B"
+      "klein",
+      "lang",
+      "dick",
+      "schwer"
     ],
     "correctIndex": 0,
-    "hint": "Schau auf den ersten geschriebenen Buchstaben."
+    "hint": "Ein Elefant ist groß, eine Maus ist …"
   },
   {
-    "prompt": "Mit welchem Buchstaben beginnt \"Nase\"?",
+    "prompt": "Wie viele Silben hat „Banane“?",
     "options": [
-      "N",
-      "O",
-      "J",
-      "U"
+      "3",
+      "2",
+      "4",
+      "1"
     ],
     "correctIndex": 0,
-    "hint": "Schau auf den ersten geschriebenen Buchstaben."
+    "hint": "Klatsche mit: Ba-na-ne."
   },
   {
-    "prompt": "Mit welchem Buchstaben beginnt \"Esel\"?",
+    "prompt": "Welches Wort ist ein Tier?",
     "options": [
-      "E",
-      "F",
-      "X",
-      "B"
+      "Hase",
+      "Hose",
+      "Haus",
+      "Hut"
     ],
     "correctIndex": 0,
-    "hint": "Schau auf den ersten geschriebenen Buchstaben."
+    "hint": "Lies jedes Wort genau."
   },
   {
-    "prompt": "Mit welchem Buchstaben beginnt \"Gans\"?",
+    "prompt": "Was ist das Gegenteil von „kalt“?",
     "options": [
-      "G",
-      "L",
-      "M",
-      "E"
+      "warm",
+      "nass",
+      "weich",
+      "leise"
     ],
     "correctIndex": 0,
-    "hint": "Schau auf den ersten geschriebenen Buchstaben."
+    "hint": "Im Winter ist es kalt, im Sommer …"
   }
 ]

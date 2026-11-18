@@ -232,8 +232,8 @@ void main() {
         3
       ),
       (
-        'Welcher Fischname ist richtig geschrieben?',
-        ['Schtohr', 'Stohr', 'Stoa', 'stör'],
+        'Welches Wort für ⭐ ist richtig geschrieben?',
+        ['Schtern', 'Sternn', 'Stärn', 'stern'],
         3
       ),
     ];
