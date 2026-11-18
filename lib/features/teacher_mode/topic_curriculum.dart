@@ -448,7 +448,7 @@ class TopicCurriculum {
     'm3_einmaleins_voll': TopicContext(
       grade: 3,
       subject: 'Mathematik',
-      title: 'Großes 1×1',
+      title: '1×1 – alle Reihen',
       detailedScope:
           'Alle Multiplikations-Reihen 1×1 bis 10×10. '
           'Auch Division als Umkehrung: 6×4=24, also 24÷4=6.',

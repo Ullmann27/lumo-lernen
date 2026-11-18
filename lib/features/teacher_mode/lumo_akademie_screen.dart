@@ -416,7 +416,7 @@ class LumoCurriculum {
                 ),
                 LearningTopic(
                   id: 'm3_einmaleins_voll',
-                  title: 'Großes 1×1',
+                  title: '1×1 – alle Reihen',
                   icon: Icons.close_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
                   shortDesc: 'Alle Reihen bis 10',

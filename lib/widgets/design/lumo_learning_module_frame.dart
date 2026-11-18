@@ -902,7 +902,7 @@ class _ModuleMethod {
             'Schreibe jeden Geldwert auf und addiere ihn genau einmal. Vergleiche danach gleiche Einheiten.',
           ]),
         'Einmaleins 2/5/10' ||
-        'Großes 1×1' =>
+        '1×1 – alle Reihen' =>
           const _ModuleMethod('Gleich große Gruppen zusammenfassen.', [
             'Zähle die Gruppen und dann die Dinge in einer Gruppe.',
             'Addiere dieselbe Gruppengröße so oft, wie es Gruppen gibt.',

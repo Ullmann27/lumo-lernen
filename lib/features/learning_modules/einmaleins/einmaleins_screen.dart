@@ -63,6 +63,11 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
 
   int get _correct => _a * _b;
 
+  /// Die Reihen 1 bis 10 heißen „kleines Einmaleins“. „Großes Einmaleins“
+  /// wären die Reihen 11 bis 20, die hier nicht geübt werden.
+  String get _moduleTitle =>
+      widget.fullRange ? '1×1 – alle Reihen' : 'Einmaleins 2/5/10';
+
   // Reihen die genutzt werden duerfen
   List<int> get _availableRows =>
       widget.fullRange ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : [2, 5, 10];
@@ -73,6 +78,9 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Mathematik',
+      // Gespeicherter Schlüssel des Lernstands, kein Anzeigetext: Unter
+      // diesem Namen liegen bereits Fortschritte. Die Reihen 1 bis 10 sind
+      // das kleine Einmaleins; angezeigt wird deshalb [_moduleTitle].
       unit: widget.fullRange ? 'Großes 1×1' : 'Kleines 1×1',
     );
     _bounceCtrl = AnimationController(
@@ -275,7 +283,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       child: LumoLearningModuleFrame(
         appState: widget.appState,
         title: 'Mathe-Abenteuer',
-        moduleTitle: widget.fullRange ? 'Großes 1×1' : 'Einmaleins 2/5/10',
+        moduleTitle: _moduleTitle,
         icon: Icons.grid_view_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
