@@ -101,6 +101,9 @@ class _LumoDeutschScreenState extends State<LumoDeutschScreen>
       subject: 'Deutsch',
       unit: _unit,
       correct: correct,
+      // Solved alone means the first try. A pick after a wrong one was
+      // found by elimination and is recorded as accompanied.
+      hintUsed: _hadWrong,
     ));
     if (!correct) {
       setState(() {
