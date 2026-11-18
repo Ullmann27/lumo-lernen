@@ -474,7 +474,7 @@ class GermanTaskTemplate {
           // Begleiter und Fürwörter – nicht dieselbe Aufgabe wie Klasse 2.
           final item =
               _wordTypeSentences[_positive(seed, _wordTypeSentences.length)];
-          final types = _WordTypeSentence.typeNames;
+          const types = _WordTypeSentence.typeNames;
           final asked =
               types[_positive(seed ~/ _wordTypeSentences.length, types.length)];
           final answer = item.wordFor(asked);
