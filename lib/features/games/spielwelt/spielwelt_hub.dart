@@ -43,6 +43,12 @@ class SpielweltPortal {
         semanticTitle = 'Dorf & Wirtschaft',
         specialId = 'village';
 
+  const SpielweltPortal.chess({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumo Schach',
+        specialId = 'chess';
+
   final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
@@ -74,6 +80,7 @@ class SpielweltPortal {
   String get tagline => switch (specialId) {
         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
         'village' => 'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
+        'chess' => SpielweltRoutes.byIdentity('chess').tagline,
         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
         _ => game?.tagline ?? '',
       };
@@ -141,6 +148,7 @@ class _SpielweltHubState extends State<SpielweltHub> {
     'puzzle',
     'memory',
     'jumpRun',
+    'chess',
   ];
 
   @override

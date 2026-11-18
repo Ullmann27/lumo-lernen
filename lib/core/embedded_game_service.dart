@@ -84,6 +84,7 @@ class EmbeddedGameService with WidgetsBindingObserver {
               'jump',
               'run',
               'cards',
+              'chess',
               'puzzle',
               'build',
               'rhythm',

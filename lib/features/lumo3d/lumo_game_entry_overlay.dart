@@ -18,6 +18,7 @@ class LumoGameEntryArt {
         'jump' => 'Lumo Abenteuer',
         'learning' => 'Lumo Lernwerkstatt',
         'cards' => 'Lumo Karten',
+        'chess' => 'Lumo Schach',
         'run' => 'Lumo Lauf',
         _ => 'Lumo Spielewelt',
       };
@@ -30,6 +31,7 @@ class LumoGameEntryArt {
         'rhythm' => 'assets/lumo_design/gameplay/rhythm.png',
         'treasure' => 'assets/lumo_design/gameplay/treasure.png',
         'jump' => 'assets/lumo_design/bg/bg_games.png',
+        'chess' => 'assets/lumo_design/spielwelt/cover_chess.webp',
         'learning' => 'assets/lumo_design/bg/bg_learn.png',
         _ => 'assets/lumo_design/bg/bg_games.png',
       };
@@ -43,6 +45,7 @@ class LumoGameEntryArt {
         'treasure' => 'ENTDECKUNGSREISE',
         'learning' => 'MIT LUMO AUSPROBIEREN',
         'cards' => 'GEMEINSAM AM SPIELTISCH',
+        'chess' => 'SCHACHSPIEL',
         'run' => '3D-LAUFABENTEUER',
         'jump' => 'WOLKENINSELN',
         _ => 'SPIELWELT',
