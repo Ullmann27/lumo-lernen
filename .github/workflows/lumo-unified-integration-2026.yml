@@ -364,7 +364,8 @@ jobs:
   android-tour:
     needs: verify-and-build
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    # 50 min Rundgang + bis zu 20 min Diagnose „native-starts“.
+    timeout-minutes: 70
     steps:
       - uses: actions/checkout@v4
         with:
@@ -412,6 +413,10 @@ jobs:
       - name: Install and tour the exact APK
         uses: reactivecircus/android-emulator-runner@v2
         env:
+          # Diagnose „native-starts“ nach dem Rundgang (ändert dessen Ergebnis nicht).
+          LUMO_NATIVE_START_DIAGNOSTICS: '1'
+          LUMO_NATIVE_START_WAIT: '50'
+          LUMO_NATIVE_START_BUDGET: '1200'
           LUMO_NATIVE_STAGE_MENU: ${{ (github.head_ref == 'chatgpt/lumo-spielewelt-stage-20261112' || github.ref_name == 'chatgpt/lumo-spielewelt-stage-20261112') && '1' || '0' }}
           DISPLAY: ':99'
           LIBGL_ALWAYS_SOFTWARE: 'true'

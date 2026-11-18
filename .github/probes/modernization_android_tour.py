@@ -1494,6 +1494,17 @@ def main() -> int:
             log_images(out)
         except Exception as error:
             print('[TourImage] logging failed:', error, flush=True)
+        # Eigenständige Diagnose „native-starts“: läuft nach allen Schritten,
+        # schreibt nur native-starts.json und native-starts/, nie tour-result.json.
+        if os.environ.get('LUMO_NATIVE_START_DIAGNOSTICS') == '1':
+            try:
+                import native_start_diagnostics
+                native_start_diagnostics.run(
+                    out, base=base, live=live, probe=probe, package=PACKAGE,
+                    wait_seconds=int(os.environ.get('LUMO_NATIVE_START_WAIT', '50')),
+                    budget_seconds=int(os.environ.get('LUMO_NATIVE_START_BUDGET', '1200')))
+            except BaseException as error:  # Diagnose darf den Rundgang nie ändern.
+                print('[NativeStart] Abschnitt abgebrochen:', type(error).__name__, error, flush=True)
     return 0 if result['status'] == 'PASS' else 1
 
 
