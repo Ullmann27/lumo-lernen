@@ -43,5 +43,74 @@ void main() {
         expect(q.prompt, isNot(contains('verhält sich zu')), reason: q.id);
       }
     });
+
+    test('Klasse $grade: keine Frage doppelt im selben Test (M28)', () {
+      for (final domain in CognitiveDomain.values) {
+        final keys = [
+          for (final q in questions.where((q) => q.domain == domain))
+            '${q.prompt}|${q.stimulus}',
+        ];
+        expect(keys.toSet(), hasLength(keys.length), reason: domain.name);
+      }
+    });
+
+    test('Klasse $grade: Muster mit wechselnder Lösung (M28)', () {
+      final patterns = questions.where((q) =>
+          q.domain == CognitiveDomain.patternReasoning &&
+          q.prompt.startsWith('Setze'));
+      final firstShape = [
+        for (final q in patterns)
+          q.correctAnswer ==
+              q.prompt.split(':').last.trim().split(RegExp(r'\s+')).first,
+      ];
+      expect(firstShape.contains(false), isTrue,
+          reason: 'Lösung ist nicht immer die erste Form');
+    });
+
+    test(
+        'Klasse $grade: Merkfolgen altersgemäß, Ablenker gleich beginnend (M30)',
+        () {
+      const longest = <int, int>{1: 4, 2: 5, 3: 5, 4: 6};
+      for (final q in questions
+          .where((q) => q.domain == CognitiveDomain.workingMemory)) {
+        final digits = q.stimulus!.trim().split(RegExp(r'\s+'));
+        expect(digits.length, lessThanOrEqualTo(longest[grade]!), reason: q.id);
+        if (q.prompt.contains('rückwärts')) {
+          final firstDigits = {
+            for (final choice in q.choices) choice.split(' – ').first,
+          };
+          // Wer nur die letzte gezeigte Ziffer behält, kann nicht raten.
+          expect(
+              q.choices
+                  .where((c) => c.split(' – ').first == digits.last)
+                  .length,
+              greaterThanOrEqualTo(3),
+              reason: '${q.id}: ${q.choices} / $firstDigits');
+        }
+      }
+    });
+
+    test('Klasse $grade: Wortpaare mit Ablenkern aus demselben Sachfeld (M29)',
+        () {
+      for (final q in questions
+          .where((q) => q.domain == CognitiveDomain.verbalReasoning)) {
+        for (final word in const ['These', 'Hypothese', 'Konsum', 'Synonym']) {
+          expect(q.prompt, isNot(contains(word)), reason: q.id);
+        }
+        expect(CognitiveProfileGenerator.problems(q), isEmpty, reason: q.id);
+      }
+      // Keine Karte stammt aus einer anderen Frage desselben Tests.
+      final answers = questions
+          .where((q) => q.domain == CognitiveDomain.verbalReasoning)
+          .map((q) => q.correctAnswer)
+          .toList();
+      for (final q in questions
+          .where((q) => q.domain == CognitiveDomain.verbalReasoning)) {
+        final foreign = q.choices
+            .where((c) => c != q.correctAnswer && answers.contains(c))
+            .toList();
+        expect(foreign, isEmpty, reason: '${q.id}: ${q.choices}');
+      }
+    });
   }
 }

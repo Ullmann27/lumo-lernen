@@ -8,146 +8,285 @@ class CognitiveProfileGenerator {
   static const questionsPerDomain = 10;
   static const totalQuestions = questionsPerDomain * 5;
 
+  // Je Eintrag: gegebenes Wort, Lösung, Frage, zwei Ablenker aus demselben
+  // Sachfeld. Früher kamen zwei Ablenker aus den Nachbarfragen und passten
+  // nie („Nacht ist meist …“ → Gemüse, Kätzchen). Fachwörter wie These,
+  // Hypothese, Konsum oder Synonym sind durch Alltagswörter ersetzt.
   static final _verbalBanks = <int, List<List<String>>>{
     1: <List<String>>[
       [
         'Welpe',
         'Kätzchen',
-        'Ein junger Hund heißt Welpe. Eine junge Katze heißt …'
+        'Ein junger Hund heißt Welpe. Eine junge Katze heißt …',
+        'Fohlen',
+        'Küken'
       ],
-      ['hell', 'dunkel', 'Tag ist meist hell. Nacht ist meist …'],
-      ['Obst', 'Gemüse', 'Apfel gehört zu Obst. Karotte gehört zu …'],
-      ['fliegt', 'schwimmt', 'Vogel fliegt. Fisch …'],
-      ['Fuß', 'Hand', 'Schuh gehört zum Fuß. Handschuh gehört zur …'],
+      [
+        'hell',
+        'dunkel',
+        'Tag ist meist hell. Nacht ist meist …',
+        'laut',
+        'bunt'
+      ],
+      [
+        'Obst',
+        'Gemüse',
+        'Apfel gehört zu Obst. Karotte gehört zu …',
+        'Süßigkeiten',
+        'Getränken'
+      ],
+      ['fliegt', 'schwimmt', 'Vogel fliegt. Fisch …', 'hüpft', 'klettert'],
+      [
+        'Fuß',
+        'Hand',
+        'Schuh gehört zum Fuß. Handschuh gehört zur …',
+        'Nase',
+        'Brust'
+      ],
       [
         'kalt',
         'klein',
-        'Gegenteil von warm ist kalt. Gegenteil von groß ist …'
+        'Gegenteil von warm ist kalt. Gegenteil von groß ist …',
+        'lang',
+        'schwer'
       ],
       [
         'Mittwoch',
         'Donnerstag',
-        'Montag, Dienstag, Mittwoch – welcher Tag folgt?'
+        'Montag, Dienstag, Mittwoch – welcher Tag folgt?',
+        'Freitag',
+        'Sonntag'
       ],
-      ['Farbe', 'Form', 'Rot ist eine Farbe. Kreis ist eine …'],
+      [
+        'Farbe',
+        'Form',
+        'Rot ist eine Farbe. Kreis ist eine …',
+        'Zahl',
+        'Größe'
+      ],
       [
         'essen',
         'trinken',
-        'Bei Hunger können wir essen. Bei Durst können wir …'
+        'Bei Hunger können wir essen. Bei Durst können wir …',
+        'schlafen',
+        'spielen'
       ],
-      ['lesen', 'hören', 'Ein Buch kann man lesen. Ein Lied kann man …'],
+      [
+        'lesen',
+        'hören',
+        'Ein Buch kann man lesen. Ein Lied kann man …',
+        'malen',
+        'essen'
+      ],
     ],
     2: <List<String>>[
-      ['Honig', 'Milch', 'Biene passt zu Honig. Kuh passt zu …'],
-      ['Herbst', 'Winter', 'Frühling, Sommer, Herbst – was folgt?'],
-      ['Straße', 'Wasser', 'Auto fährt auf der Straße. Schiff fährt auf dem …'],
+      [
+        'Honig',
+        'Milch',
+        'Biene passt zu Honig. Kuh passt zu …',
+        'Eiern',
+        'Wolle'
+      ],
+      [
+        'Herbst',
+        'Winter',
+        'Frühling, Sommer, Herbst – was folgt?',
+        'Frühling',
+        'Sommer'
+      ],
+      [
+        'Straße',
+        'Wasser',
+        'Auto fährt auf der Straße. Schiff fährt auf dem …',
+        'Gleis',
+        'Weg'
+      ],
       [
         'laut',
         'schnell',
-        'Leise ist das Gegenteil von laut. Langsam ist das Gegenteil von …'
+        'Leise ist das Gegenteil von laut. Langsam ist das Gegenteil von …',
+        'groß',
+        'leicht'
       ],
-      ['Brot', 'Möbel', 'Bäcker macht Brot. Tischler macht …'],
+      [
+        'Brot',
+        'Möbel',
+        'Bäcker macht Brot. Tischler macht …',
+        'Kuchen',
+        'Kleider'
+      ],
       [
         'Wald',
         'Stadt',
-        'Viele Bäume bilden einen Wald. Viele Häuser bilden eine …'
+        'Viele Bäume bilden einen Wald. Viele Häuser bilden eine …',
+        'Wiese',
+        'Insel'
       ],
       [
         'Ordination',
         'Schule',
-        'Die Ärztin arbeitet in der Ordination. Die Lehrerin arbeitet in der …'
+        'Die Ärztin arbeitet in der Ordination. Die Lehrerin arbeitet in der …',
+        'Küche',
+        'Werkstatt'
       ],
-      ['sehen', 'hören', 'Mit dem Auge sehen wir. Mit dem Ohr …'],
-      ['Zeit', 'Länge', 'Minute misst Zeit. Meter misst …'],
       [
-        // Früher „Frage – Antwort, Problem – …“: Dort passte auch „Antwort“.
+        'sehen',
+        'hören',
+        'Mit dem Auge sehen wir. Mit dem Ohr …',
+        'riechen',
+        'schmecken'
+      ],
+      ['Zeit', 'Länge', 'Minute misst Zeit. Meter misst …', 'Gewicht', 'Wärme'],
+      [
         'schwimmen',
         'fliegen',
-        'Ein Fisch kann schwimmen. Ein Vogel kann …'
+        'Ein Fisch kann schwimmen. Ein Vogel kann …',
+        'bellen',
+        'kriechen'
       ],
     ],
     3: <List<String>>[
-      ['Buch', 'Film', 'Kapitel gehört zum Buch. Szene gehört zum …'],
-      ['Temperatur', 'Gewicht', 'Thermometer misst Temperatur. Waage misst …'],
-      ['Folge', 'Antwort', 'Ursache führt zu Folge. Frage führt zu …'],
-      ['Richtung', 'Zeit', 'Kompass zeigt Richtung. Uhr zeigt …'],
-      // Früher „Pflanzen können blühen. Menschen können …“ ohne erkennbaren
-      // Zusammenhang.
+      [
+        'Buch',
+        'Film',
+        'Kapitel gehört zum Buch. Szene gehört zum …',
+        'Bild',
+        'Lied'
+      ],
+      [
+        'Temperatur',
+        'Gewicht',
+        'Thermometer misst Temperatur. Waage misst …',
+        'Länge',
+        'Größe'
+      ],
+      [
+        'Folge',
+        'Antwort',
+        'Ursache führt zu Folge. Frage führt zu …',
+        'Aufgabe',
+        'Fehler'
+      ],
+      [
+        'Richtung',
+        'Zeit',
+        'Kompass zeigt Richtung. Uhr zeigt …',
+        'Wetter',
+        'Weg'
+      ],
       [
         'sehen',
         'riechen',
-        'Mit dem Auge kann man sehen. Mit der Nase kann man …'
+        'Mit dem Auge kann man sehen. Mit der Nase kann man …',
+        'hören',
+        'tasten'
       ],
       [
-        'ähnlich',
-        'entgegengesetzt',
-        'Synonyme bedeuten ähnlich. Gegenteile bedeuten …'
+        'Löffel',
+        'Gabel',
+        'Suppe isst man mit dem Löffel. Spaghetti isst man mit der …',
+        'Schüssel',
+        'Tasse'
       ],
       [
         'Buch',
         'Musikstück',
-        'Autor schreibt ein Buch. Komponist schafft ein …'
+        'Autor schreibt ein Buch. Komponist schreibt ein …',
+        'Bild',
+        'Gedicht'
       ],
-      ['Raum', 'Zeit', 'Landkarte ordnet Raum. Zeitstrahl ordnet …'],
       [
-        'Begründung',
-        'Beleg',
-        'Ein Argument braucht Begründung. Eine Behauptung braucht einen …'
+        'Bahnhof',
+        'Flughafen',
+        'Ein Zug hält am Bahnhof. Ein Flugzeug landet am …',
+        'Hafen',
+        'Parkplatz'
+      ],
+      [
+        'Bäckerei',
+        'Apotheke',
+        'Brot kauft man in der Bäckerei. Medikamente kauft man in der …',
+        'Fleischerei',
+        'Trafik'
       ],
       [
         'Beobachtung',
         'Ergebnis',
-        'Experiment liefert Beobachtung. Rechnung liefert …'
+        'Ein Versuch liefert eine Beobachtung. Eine Rechnung liefert ein …',
+        'Aufgabe',
+        'Rätsel'
       ],
     ],
     4: <List<String>>[
       [
-        'Abstimmung',
+        'Wahl',
         'Experiment',
-        'Demokratie nutzt Abstimmungen. Wissenschaft nutzt …'
+        'Wer abstimmen will, macht eine Wahl. Wer etwas erforschen will, macht ein …',
+        'Fest',
+        'Gesetz'
       ],
       [
-        'Herstellung',
-        'Verbrauch',
-        'Produktion bedeutet Herstellung. Konsum bedeutet …'
+        'Holz',
+        'Glas',
+        'Ein Tisch ist oft aus Holz. Ein Fenster ist meist aus …',
+        'Papier',
+        'Wolle'
       ],
       [
-        // Früher „These – Begründung, Frage – …“ mit der Lösung
-        // „Untersuchung“; die naheliegende „Antwort“ fehlte.
         'Woche',
         'Jahr',
-        'Sieben Tage sind eine Woche. Zwölf Monate sind ein …'
+        'Sieben Tage sind eine Woche. Zwölf Monate sind ein …',
+        'Monat',
+        'Tag'
       ],
       [
-        'Umwandlung',
-        'Kreislauf',
-        'Energie kann umgewandelt werden. Wasser bewegt sich im …'
+        'Schmetterling',
+        'Frosch',
+        'Aus einer Raupe wird ein Schmetterling. Aus einer Kaulquappe wird ein …',
+        'Fisch',
+        'Käfer'
       ],
       [
-        'Karte',
-        'Geschichte',
-        'Maßstab hilft bei Karten. Zeitachse hilft bei …'
+        'Kilogramm',
+        'Tonnen',
+        'Ein Sack Kartoffeln wiegt einige Kilogramm. Ein Lastwagen wiegt einige …',
+        'Gramm',
+        'Liter'
       ],
       [
         'Absatz',
         'Buch',
-        'Mehrere Sätze bilden einen Absatz. Mehrere Kapitel bilden ein …'
-      ],
-      ['Ursache', 'Wirkung', 'Regen ist die Ursache. Nasse Straßen sind die …'],
-      [
-        'nutzen',
-        'schützen',
-        'Ressourcen soll man bewusst nutzen. Umwelt soll man …'
+        'Mehrere Sätze bilden einen Absatz. Mehrere Kapitel bilden ein …',
+        'Satz',
+        'Wort'
       ],
       [
-        'Hypothese',
-        'Ergebnis',
-        'Aus Beobachtungen entsteht eine Hypothese. Durch Prüfung entsteht ein …'
+        'Ursache',
+        'Wirkung',
+        'Regen ist die Ursache. Nasse Straßen sind die …',
+        'Regel',
+        'Lösung'
       ],
       [
-        'Zufall',
-        'Standpunkt',
-        'Perspektive bedeutet Blickwinkel. Ein Argument unterstützt einen …'
+        'pumpen',
+        'atmen',
+        'Mit dem Herz kann man Blut pumpen. Mit der Lunge kann man …',
+        'sehen',
+        'denken'
+      ],
+      [
+        'Kapitän',
+        'Pilot',
+        'Ein Schiff steuert der Kapitän. Ein Flugzeug steuert der …',
+        'Schaffner',
+        'Gärtner'
+      ],
+      [
+        'Eis',
+        'Sand',
+        'Am Nordpol gibt es viel Eis. In der Wüste gibt es viel …',
+        'Schnee',
+        'Wasser'
       ],
     ],
   };
@@ -313,25 +452,34 @@ class CognitiveProfileGenerator {
       );
     }
     const shapes = <String>['●', '▲', '■', '◆'];
-    final offset = (g + i) % shapes.length;
-    final first = shapes[offset];
-    final second = shapes[(offset + 1) % shapes.length];
-    final third = shapes[(offset + 2) % shapes.length];
-    final useThree = g >= 3 || i >= 7;
-    final sequence = useThree
-        ? '$first $second $third $first $second $third ?'
-        : '$first $second $first $second $first ?';
-    final answer = useThree ? first : second;
+    // Mehrere Musterarten und wechselnde Abbruchstellen, damit die Lösung
+    // nicht immer die erste Form ist und keine Frage doppelt vorkommt.
+    final k = i ~/ 2;
+    final units = g <= 2
+        ? const <String>['AB', 'AB', 'AAB', 'ABC', 'ABB']
+        : const <String>['ABC', 'AAB', 'ABB', 'ABCD', 'AABB'];
+    final unit = units[k];
+    final offset = (g + k) % shapes.length;
+    final symbols = <String>[
+      for (final letter in unit.split(''))
+        shapes[(offset + 'ABCD'.indexOf(letter)) % shapes.length],
+    ];
+    final period = symbols.length;
+    // Mindestens zwei ganze Durchgänge, danach bricht die Reihe ab.
+    final shownLength = period * 2 + (g + k) % period;
+    final shown = <String>[
+      for (var n = 0; n < shownLength; n++) symbols[n % period],
+    ];
+    final answer = symbols[shownLength % period];
     return _choice(
       id: 'g${g}_pattern_$i',
       grade: g,
       domain: CognitiveDomain.patternReasoning,
-      prompt: 'Setze das Muster fort:  $sequence',
+      prompt: 'Setze das Muster fort:  ${shown.join(' ')} ?',
       answer: answer,
       rawChoices: shapes,
-      explanation: useThree
-          ? 'Drei Formen wiederholen sich.'
-          : 'Zwei Formen wechseln sich ab.',
+      explanation:
+          'Diese Formen wiederholen sich immer gleich: ${symbols.join(' ')}.',
       difficulty: 1 + i ~/ 2,
       rotate: i,
     );
@@ -439,8 +587,8 @@ class CognitiveProfileGenerator {
     final item = banks[g]![i];
     final answer = item[1];
     final distractorA = item[0];
-    final distractorB = i > 0 ? banks[g]![i - 1][1] : banks[g]![9][1];
-    final distractorC = i < 9 ? banks[g]![i + 1][1] : banks[g]![0][1];
+    final distractorB = item[3];
+    final distractorC = item[4];
     return _choice(
       id: 'g${g}_verbal_$i',
       grade: g,
@@ -464,9 +612,14 @@ class CognitiveProfileGenerator {
 
   static CognitiveQuestion _spatial(int g, int i) {
     const arrows = <String>['↑', '→', '↓', '←'];
-    final startIndex = (i + g) % 4;
-    final quarterTurns = 1 + (i % (g >= 3 ? 3 : 2));
-    final clockwise = i.isEven;
+    // Jede Frage eines Tests ist eine eigene Kombination aus Startpfeil,
+    // Drehweite und Richtung (früher kam dieselbe Frage bis zu dreimal vor).
+    // Schritt 5 ist teilerfremd zu 16 und 24, so entstehen 10 verschiedene.
+    final turnsAvailable = g >= 3 ? 3 : 2;
+    final combo = (g * 3 + i * 5) % (4 * 2 * turnsAvailable);
+    final startIndex = combo % 4;
+    final clockwise = (combo ~/ 4).isEven;
+    final quarterTurns = 1 + combo ~/ 8;
     final delta = clockwise ? quarterTurns : -quarterTurns;
     final answerIndex = (startIndex + delta) % 4;
     final normalized = answerIndex < 0 ? answerIndex + 4 : answerIndex;
@@ -497,10 +650,16 @@ class CognitiveProfileGenerator {
   }
 
   static CognitiveQuestion _memory(int g, int i) {
-    final length = 3 + g + (i ~/ 4);
+    // Altersgemäße Längen: Klasse 1 zwei bis vier Ziffern, Klasse 4 vier
+    // bis sechs (früher bis zu neun). Rückwärts eine Ziffer kürzer.
+    const shortest = <int, int>{1: 2, 2: 3, 3: 3, 4: 4};
+    final forward = shortest[g]! + (i ~/ 4);
+    final length = i.isEven ? forward : (forward - 1).clamp(3, 9);
     final digits = <int>[];
     for (var k = 0; k < length; k++) {
-      digits.add(1 + ((g * 7 + i * 3 + k * 5) % 9));
+      // Schritt 4 je Frage: neun verschiedene Startziffern, keine Folge
+      // doppelt (früher wiederholte sie sich alle drei Fragen).
+      digits.add(1 + ((g * 7 + i * 4 + k * 5) % 9));
     }
     final stimulus = digits.join('  ');
     if (i.isEven) {
@@ -531,14 +690,28 @@ class CognitiveProfileGenerator {
         stimulusVisibleMs: 3500 + g * 350,
       );
     }
-    final reversed = digits.reversed.join(' – ');
-    final shifted = <int>[...digits];
-    final first = shifted.removeAt(0);
-    shifted.add(first);
+    final backwards = digits.reversed.toList();
+    final reversed = backwards.join(' – ');
+    // Ablenker beginnen mit derselben Ziffer wie die Lösung und enden gleich;
+    // nur in der Mitte ist etwas vertauscht oder falsch. Früher begann nur
+    // die richtige Karte mit der zuletzt gezeigten Ziffer.
+    List<int> swapped(int a, int b) {
+      final copy = <int>[...backwards];
+      final t = copy[a];
+      copy[a] = copy[b];
+      copy[b] = t;
+      return copy;
+    }
+
+    final middle = backwards.length ~/ 2;
+    final changed = <int>[...backwards]..[middle] =
+        1 + (backwards[middle] + 3) % 9;
     final raw = <String>[
       reversed,
-      shifted.reversed.join(' – '),
-      shifted.join(' – '),
+      if (backwards.length >= 4) swapped(1, 2).join(' – '),
+      changed.join(' – '),
+      swapped(0, 1).join(' – '),
+      swapped(backwards.length - 2, backwards.length - 1).join(' – '),
       digits.join(' – '),
     ];
     return _choice(

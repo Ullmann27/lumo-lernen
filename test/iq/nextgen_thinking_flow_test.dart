@@ -227,7 +227,7 @@ void main() {
   testWidgets('left-turn cognitive cue shows the actual direction',
       (tester) async {
     final question = CognitiveProfileGenerator.forGrade(3)
-        .firstWhere((q) => q.prompt.contains('nach links'));
+        .firstWhere((q) => q.prompt.contains('gegen den Uhrzeigersinn'));
     await tester.pumpWidget(MaterialApp(
         home:
             Scaffold(body: CognitiveProfileVisualPrompt(question: question))));
