@@ -186,13 +186,43 @@ const adventureVerbPlaces = <String>[
   'hinter dem Haus', 'neben dem Bach', 'auf dem Hügel', 'im Wald',
 ];
 
-/// Gegenteil-Paare (Wiewörter).
+/// Gegenteil-Paare (Wiewörter) mit je einem passenden Satz pro Richtung:
+/// [Wort A, Wort B, Satz mit Lösung A, Satz mit Lösung B].
+/// Jeder Satz handelt von einem Ding, Tier oder einer Lage, zu der das Wort
+/// wirklich passt – nie von einer Eigenschaft des Kindes selbst.
 const adventureOpposites = <List<String>>[
-  ['groß', 'klein'], ['schnell', 'langsam'], ['laut', 'leise'],
-  ['hell', 'dunkel'], ['warm', 'kalt'], ['alt', 'jung'], ['voll', 'leer'],
-  ['nass', 'trocken'], ['schwer', 'leicht'], ['dick', 'dünn'],
-  ['müde', 'munter'], ['lang', 'kurz'], ['früh', 'spät'], ['hart', 'weich'],
-  ['fröhlich', 'traurig'], ['mutig', 'ängstlich'],
+  ['groß', 'klein', 'Ein Elefant ist nicht klein. Er ist …',
+      'Eine Ameise ist nicht groß. Sie ist …'],
+  ['schnell', 'langsam', 'Ein Rennauto ist nicht langsam. Es ist …',
+      'Eine Schnecke ist nicht schnell. Sie ist …'],
+  ['laut', 'leise', 'Der Donner ist nicht leise. Er ist …',
+      'Ein Flüstern ist nicht laut. Es ist …'],
+  ['hell', 'dunkel', 'Zu Mittag ist es draußen nicht dunkel. Es ist …',
+      'In der Nacht ist es draußen nicht hell. Es ist …'],
+  ['warm', 'kalt', 'Die frische Suppe ist nicht kalt. Sie ist …',
+      'Lumos Tee ist nicht mehr warm. Er ist jetzt …'],
+  ['alt', 'jung', 'Lumos Uropa ist nicht jung. Er ist …',
+      'Ein Küken ist nicht alt. Es ist …'],
+  ['voll', 'leer', 'Das Glas ist nicht leer. Es ist …',
+      'Der Korb ist nicht voll. Er ist …'],
+  ['nass', 'trocken', 'Nach dem Regen ist die Wiese nicht trocken. Sie ist …',
+      'Das Handtuch ist nicht mehr nass. Es ist …'],
+  ['schwer', 'leicht', 'Ein Felsen ist nicht leicht. Er ist …',
+      'Eine Feder ist nicht schwer. Sie ist …'],
+  ['dick', 'dünn', 'Ein Baumstamm ist nicht dünn. Er ist …',
+      'Ein Faden ist nicht dick. Er ist …'],
+  ['müde', 'munter', 'Spät am Abend ist Lumo nicht mehr munter. Er ist …',
+      'Nach dem Ausschlafen ist Lumo nicht müde. Er ist …'],
+  ['lang', 'kurz', 'Der Hals der Giraffe ist nicht kurz. Er ist …',
+      'Ein Bleistiftstummel ist nicht lang. Er ist …'],
+  ['früh', 'spät', 'Bei Sonnenaufgang ist es nicht spät. Es ist …',
+      'Um Mitternacht ist es nicht früh. Es ist …'],
+  ['hart', 'weich', 'Ein Stein ist nicht weich. Er ist …',
+      'Ein Polster ist nicht hart. Er ist …'],
+  ['fröhlich', 'traurig', 'Am Geburtstag ist Pip nicht traurig. Pip ist …',
+      'Lumos Eis ist heruntergefallen. Lumo ist nicht fröhlich. Er ist …'],
+  ['mutig', 'ängstlich', 'Lumo springt vom Sprungbrett. Er ist nicht ängstlich. Er ist …',
+      'Die Maus traut sich nicht aus dem Loch. Sie ist nicht mutig. Sie ist …'],
 ];
 
 /// „Wer bin ich?“: Antwort, drei Hinweise, Klasse ab, Gruppe (für

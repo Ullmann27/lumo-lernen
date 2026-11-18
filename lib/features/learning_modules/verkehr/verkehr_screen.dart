@@ -66,10 +66,10 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       kontext: 'Bei Grün: nochmal nach links und rechts schauen!',
     ),
     _VerkehrFrage(
-      frage: 'Wo darf man die Straße überqueren?',
+      frage: 'Wo überquerst du die Straße am sichersten?',
       richtig: 'Am Zebrastreifen',
-      falsch: ['Hinter parkenden Autos', 'Auf der Kurve', 'Bei Nacht überall'],
-      kontext: 'Der Zebrastreifen ist der sichere Weg!',
+      falsch: ['Hinter parkenden Autos', 'In der Kurve', 'Bei Nacht überall'],
+      kontext: 'Der Zebrastreifen heißt auch Schutzweg. Er ist der sichere Weg!',
     ),
     _VerkehrFrage(
       frage: 'Was bedeutet der Zebrastreifen?',
@@ -77,7 +77,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       falsch: ['Parkplatz', 'Spielplatz', 'Tankstelle'],
     ),
     _VerkehrFrage(
-      frage: 'Wann schaut man vor dem Überqueren?',
+      frage: 'Wohin schaust du, bevor du die Straße überquerst?',
       richtig: 'Links, rechts, links',
       falsch: ['Nur links', 'Nur geradeaus', 'Gar nicht'],
       kontext: 'Erst links, dann rechts, dann nochmal links!',
@@ -90,7 +90,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     ),
     _VerkehrFrage(
       frage: 'Wo gehst du als Fußgänger?',
-      richtig: 'Am Gehweg',
+      richtig: 'Am Gehsteig',
       falsch: ['Mitten auf der Straße', 'Auf der Radspur', 'Auf den Schienen'],
     ),
     _VerkehrFrage(
