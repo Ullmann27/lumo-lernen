@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/math_task_templates.dart';
+import 'package:lumo_lernen/core/school_exercise_generator.dart';
+import 'package:lumo_lernen/core/task_quality_guard.dart';
 
 /// Sachlich falsche oder irreführende Erklärtexte aus der Fachprüfung
 /// Mathematik (17.11.2026). Jeder Test nennt den Befund, den er verhindert.
@@ -142,6 +144,69 @@ void main() {
           left == right ? 'gleich viele' : left > right ? 'links' : 'rechts');
     }
     expect(answers, {'links', 'rechts', 'gleich viele'});
+  });
+
+  test('M35: Umfang und Fläche tragen die Einheit, die längere Seite heißt „lang“',
+      () {
+    for (final entry in {'g3_perimeter': ' cm', 'g4_area': ' cm²'}.entries) {
+      var squares = 0;
+      for (var seed = 0; seed < 300; seed++) {
+        final task = byId(entry.key).concretize(seed * 7919 + 13);
+        final sides = numbers(task.prompt);
+        final reason = '${task.prompt} ${task.choices}';
+        expect(task.answer, endsWith(entry.value), reason: reason);
+        for (final card in task.choices) {
+          expect(card, endsWith(entry.value), reason: reason);
+        }
+        final perimeter = entry.key == 'g3_perimeter';
+        if (task.prompt.startsWith('Ein Quadrat')) {
+          squares++;
+          expect(sides, hasLength(1), reason: reason);
+          final side = sides.single;
+          expect(task.answer,
+              '${perimeter ? 4 * side : side * side}${entry.value}');
+        } else {
+          expect(task.prompt, startsWith('Ein Rechteck ist '));
+          // Früher war in 44 % der Aufgaben die „Länge“ kleiner als die
+          // „Breite“, 17-mal war das „Rechteck“ ein Quadrat.
+          expect(sides[0], greaterThan(sides[1]), reason: reason);
+          expect(
+              task.answer,
+              '${perimeter ? 2 * (sides[0] + sides[1]) : sides[0] * sides[1]}'
+              '${entry.value}');
+        }
+        expect(task.explanation, endsWith('${task.answer}.'), reason: reason);
+      }
+      expect(squares, greaterThan(0));
+    }
+  });
+
+  test('M35: Qualitätsprüfung rechnet Umfang und Fläche mit Einheit nach', () {
+    LumoTask task(String prompt, String answer) => LumoTask(
+          id: 'unit-check',
+          grade: 4,
+          subject: 'Mathematik',
+          unit: 'Umfang',
+          prompt: prompt,
+          answer: answer,
+          choices: [answer, '1 cm', '2 cm', '3 cm²'],
+          explanation: 'Probe.',
+        );
+    const guard = TaskQualityGuard();
+    const rectangle = 'Ein Rechteck ist 6 cm lang und 5 cm breit. Wie groß ist der';
+    expect(guard.problems(task('$rectangle Umfang?', '22 cm')), isEmpty);
+    expect(guard.problems(task('$rectangle Flächeninhalt?', '30 cm²')), isEmpty);
+    expect(guard.problems(task('$rectangle Umfang?', '22 cm²')),
+        contains('measurement_unit_wrong'));
+    expect(guard.problems(task('$rectangle Flächeninhalt?', '30 cm')),
+        contains('measurement_unit_wrong'));
+    expect(guard.problems(task('$rectangle Umfang?', '30 cm')),
+        contains('numeric_answer_wrong_result'));
+    const square = 'Ein Quadrat hat die Seitenlänge 4 cm. Wie groß ist der';
+    expect(guard.problems(task('$square Umfang?', '16 cm')), isEmpty);
+    expect(guard.problems(task('$square Flächeninhalt?', '16 cm²')), isEmpty);
+    expect(guard.problems(task('$square Umfang?', '8 cm')),
+        contains('numeric_answer_wrong_result'));
   });
 
   test('S11: Zahlenvergleich zählt zuerst die Stellen', () {

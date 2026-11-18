@@ -529,16 +529,39 @@ class MathTaskTemplate {
           typical: story.typical,
         );
       case MathTemplateKind.perimeter:
-        final answer = 2 * (a + b);
-        return _numberTask(seed, 'Ein Rechteck ist $a cm lang und $b cm breit. Wie groß ist der Umfang?', answer, 'Umfang: $a + $b + $a + $b = $answer cm.', 'perimeter',
+        // Die längere Seite heißt „lang“. Gleich lange Seiten ergeben ein
+        // Quadrat und bekommen eine eigene Frage. Die Karten tragen die
+        // Einheit cm.
+        final length = a >= b ? a : b;
+        final width = a >= b ? b : a;
+        if (length == width) {
+          return _numberTask(seed, 'Ein Quadrat hat die Seitenlänge $length cm. Wie groß ist der Umfang?', 4 * length, 'Ein Quadrat hat 4 gleich lange Seiten. Umfang: 4 · $length = ${4 * length} cm.', 'perimeter',
+            // Typisch: nur zwei Seiten gezählt, Fläche statt Umfang.
+            typical: <int>[2 * length, length * length, 3 * length, length],
+            suffix: ' cm',
+          );
+        }
+        final answer = 2 * (length + width);
+        return _numberTask(seed, 'Ein Rechteck ist $length cm lang und $width cm breit. Wie groß ist der Umfang?', answer, 'Umfang: $length + $width + $length + $width = $answer cm.', 'perimeter',
           // Typisch: nur zwei Seiten addiert, Fläche statt Umfang, eine Seite vergessen.
-          typical: <int>[a + b, a * b, 2 * a + b, a + 2 * b],
+          typical: <int>[length + width, length * width, 2 * length + width, length + 2 * width],
+          suffix: ' cm',
         );
       case MathTemplateKind.area:
-        final answer = a * b;
-        return _numberTask(seed, 'Ein Rechteck ist $a cm lang und $b cm breit. Wie groß ist der Flächeninhalt?', answer, 'Fläche: Länge mal Breite, also $a × $b = $answer cm².', 'area',
+        final length = a >= b ? a : b;
+        final width = a >= b ? b : a;
+        final answer = length * width;
+        if (length == width) {
+          return _numberTask(seed, 'Ein Quadrat hat die Seitenlänge $length cm. Wie groß ist der Flächeninhalt?', answer, 'Fläche: Seite mal Seite, also $length · $length = $answer cm².', 'area',
+            // Typisch: Umfang statt Fläche, Seite nur verdoppelt.
+            typical: <int>[4 * length, 2 * length, length * (length + 1), length * (length - 1)],
+            suffix: ' cm²',
+          );
+        }
+        return _numberTask(seed, 'Ein Rechteck ist $length cm lang und $width cm breit. Wie groß ist der Flächeninhalt?', answer, 'Fläche: Länge mal Breite, also $length · $width = $answer cm².', 'area',
           // Typisch: Umfang statt Fläche, Seiten nur addiert, Nachbaraufgabe im Einmaleins.
-          typical: <int>[2 * (a + b), a + b, a * (b + 1), a * (b - 1)],
+          typical: <int>[2 * (length + width), length + width, length * (width + 1), length * (width - 1)],
+          suffix: ' cm²',
         );
       case MathTemplateKind.writtenMultiplication:
         // Einstelliger Faktor: Dafür gilt das Verfahren „jede Stelle mal
@@ -726,24 +749,29 @@ class MathTaskTemplate {
   }
 
   /// Zahlenaufgabe mit vier Karten. [typical] sind die typischen falschen
-  /// Ergebnisse dieser Aufgabenart, siehe [_numericChoices].
+  /// Ergebnisse dieser Aufgabenart, siehe [_numericChoices]. [suffix] hängt
+  /// eine Einheit an jede Karte, z. B. „ cm“.
   MathConcreteTask _numberTask(int seed, String prompt, int answer, String explanation, String visual, {
     List<int> typical = const <int>[],
     int? max,
     Set<int> blocked = const <int>{},
+    String suffix = '',
   }) {
     return _choice(
       seed,
       prompt,
-      '$answer',
-      _numericChoices(
-        answer,
-        seed,
-        typical: typical,
-        // Klasse 1 kennt nur den Zahlenraum bis 20.
-        max: max ?? (grade == 1 ? 20 : null),
-        blocked: blocked,
-      ),
+      '$answer$suffix',
+      <String>[
+        for (final value in _numericChoices(
+          answer,
+          seed,
+          typical: typical,
+          // Klasse 1 kennt nur den Zahlenraum bis 20.
+          max: max ?? (grade == 1 ? 20 : null),
+          blocked: blocked,
+        ))
+          '$value$suffix',
+      ],
       explanation,
       visual,
       keepOrder: true,

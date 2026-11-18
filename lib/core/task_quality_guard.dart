@@ -241,6 +241,22 @@ class TaskQualityGuard {
     }
     final expected = _expectedValue(prompt);
     if (expected == null) return const <String>[];
+    // Umfang und Flächeninhalt tragen ihre Einheit auf der Karte: „22 cm“,
+    // „88 cm²“. Die Einheit muss zur Frage passen.
+    final measured = RegExp(r'^(\d+) (cm²?)$').firstMatch(answer);
+    if (measured != null) {
+      final asksArea = prompt.contains('Flächeninhalt');
+      final asksPerimeter = prompt.contains('Umfang');
+      if (!asksArea && !asksPerimeter) {
+        return const <String>['numeric_answer_not_parseable'];
+      }
+      if ((measured[2] == 'cm²') != asksArea) {
+        return const <String>['measurement_unit_wrong'];
+      }
+      return _MathValue.parse(measured[1]!)!.key == expected.key
+          ? const <String>[]
+          : const <String>['numeric_answer_wrong_result'];
+    }
     final actual = _MathValue.parse(answer);
     if (actual == null) return const <String>['numeric_answer_not_parseable'];
     return actual.key == expected.key
@@ -418,6 +434,13 @@ class TaskQualityGuard {
       final width = int.parse(rectangle[2]!);
       return _MathValue(rectangle[3] == 'Umfang'
           ? 2 * (length + width) : length * width, 1);
+    }
+    final square = RegExp(
+        r'^Ein Quadrat hat die Seitenlänge (\d+) cm\. Wie groß ist der (Umfang|Flächeninhalt)\?$')
+        .firstMatch(prompt);
+    if (square != null) {
+      final side = int.parse(square[1]!);
+      return _MathValue(square[2] == 'Umfang' ? 4 * side : side * side, 1);
     }
     final average = RegExp(
         r'^Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\. Wie viele Sterne im Mittelwert\?$')

@@ -1239,7 +1239,8 @@ class RectangleMeasureVisual extends StatelessWidget {
     final data = task.visualPayload.data;
     final nums = _digitsFromPrompt(task.prompt);
     final length = _readInt(data['length']) ?? (nums.isNotEmpty ? nums[0] : 6);
-    final width = _readInt(data['width']) ?? (nums.length > 1 ? nums[1] : 4);
+    // Ein Quadrat nennt nur eine Seitenlänge: Dann sind beide Seiten gleich.
+    final width = _readInt(data['width']) ?? (nums.length > 1 ? nums[1] : length);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
       decoration: _stageDecoration(const Color(0xFF34D399)),

@@ -13,15 +13,19 @@ import 'package:lumo_lernen/domain/games/game_math_tasks.dart';
 void main() {
   const samples = 300;
 
+  /// Zahlenwert einer Karte; Umfang und Fläche tragen ihre Einheit.
+  int? numberOf(String card) =>
+      int.tryParse(card.replaceFirst(RegExp(r' cm²?$'), ''));
+
   /// Stelle der Lösung der Größe nach: 0 = kleinste Karte.
   int rankOf(String answer, List<String> choices) {
-    final value = int.parse(answer);
-    return choices.where((choice) => int.parse(choice) < value).length;
+    final value = numberOf(answer)!;
+    return choices.where((choice) => numberOf(choice)! < value).length;
   }
 
   bool allWholeNumbers(MathConcreteTask task) =>
-      int.tryParse(task.answer) != null &&
-      task.choices.every((choice) => int.tryParse(choice) != null);
+      numberOf(task.answer) != null &&
+      task.choices.every((choice) => numberOf(choice) != null);
 
   group('Antwortkarten der Mathe-Vorlagen', () {
     for (final template in MathTaskTemplates.templates) {
@@ -44,12 +48,12 @@ void main() {
               hasLength(1),
               reason: reason);
           for (final choice in task.choices) {
-            expect(int.parse(choice), greaterThanOrEqualTo(0), reason: reason);
+            expect(numberOf(choice), greaterThanOrEqualTo(0), reason: reason);
           }
           ranks[rankOf(task.answer, task.choices)]++;
           positions[task.choices.indexOf(task.answer)]++;
           // Unter 3 gibt es zu wenige kleinere Zahlen ohne Minus.
-          if (int.parse(task.answer) < 3) smallAnswers++;
+          if (numberOf(task.answer)! < 3) smallAnswers++;
         }
         // Bei gleichmäßiger Verteilung wären es je 75 von 300.
         final strict = smallAnswers == 0;
@@ -74,7 +78,7 @@ void main() {
           final task = template.concretize(i * 31 + 5);
           if (!allWholeNumbers(task)) continue;
           for (final choice in task.choices) {
-            expect(int.parse(choice), lessThanOrEqualTo(20),
+            expect(numberOf(choice), lessThanOrEqualTo(20),
                 reason: '${template.id}: ${task.prompt} ${task.choices}');
           }
         }
