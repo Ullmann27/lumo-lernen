@@ -1,5 +1,6 @@
 import '../../../core/primary_school_word_data.dart';
 import '../../../core/checked_task_patterns.dart';
+import '../../../core/math_task_templates.dart';
 import '../../../core/safe_fallback_pool.dart';
 import '../../../core/school_exercise_generator.dart';
 import '../../../core/task_quality_guard.dart';
@@ -671,10 +672,15 @@ class LegacyLumoTaskAdapter {
       // nutzen (vorher fielen viele auf VisualType.none zurueck).
       'money' => VisualType.money,
       'money_change' => VisualType.money,
+      // Preisvergleich: beide Beträge nebeneinander als 1-€-Münzen.
+      'money_compare' => VisualType.quantityCompare,
       'fraction_half' => VisualType.fractionPizza,
       'fraction_add' => VisualType.fractionPizza,
       'fraction_expand' => VisualType.fractionPizza,
-      'symmetry' => VisualType.shape,
+      // Symmetrie-Aufgaben haben „ja/nein“ oder Zahlen als Karten. Die
+      // „Formenhilfe“ zeichnet nur Formen, die als Karte vorkommen, und
+      // blieb deshalb leer.
+      'symmetry' => VisualType.none,
       'family' => VisualType.wordFamilyTree,
       'category' => VisualType.wordFamilyTree,
       'word_type' => VisualType.wordTypeColor,
@@ -726,13 +732,11 @@ class LegacyLumoTaskAdapter {
     }
 
     if (task.subject == 'Mathematik' && task.visual == 'compare') {
-      final comparison = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
-          .firstMatch(task.prompt.trim());
-      if (comparison == null) return const {};
-      return <String, Object?>{
-        'left': int.parse(comparison[1]!),
-        'right': int.parse(comparison[2]!),
-      };
+      final comparison = comparePromptPattern.firstMatch(task.prompt.trim());
+      final left = comparison == null ? null : parseGroupedNumber(comparison[1]!);
+      final right = comparison == null ? null : parseGroupedNumber(comparison[2]!);
+      if (left == null || right == null) return const {};
+      return <String, Object?>{'left': left, 'right': right};
     }
 
     if (task.subject == 'Sachunterricht') {
@@ -798,6 +802,48 @@ class LegacyLumoTaskAdapter {
         'numerator': numerator,
         'denominator': denominator,
         'extra': extra,
+      };
+    }
+
+    // Säulendiagramm: ein Balken je Wert der Aufgabe, passend beschriftet.
+    if (task.visual == 'chart') {
+      final children = RegExp(
+              r'^(?:Knobelaufgabe: )?Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\.')
+          .firstMatch(task.prompt.trim());
+      if (children != null) {
+        return <String, Object?>{
+          'bars': <int>[for (var i = 1; i <= 3; i++) int.parse(children[i]!)],
+          'labels': const <String>['Kind 1', 'Kind 2', 'Kind 3'],
+        };
+      }
+      const days = <String, String>{
+        'Montag': 'Mo', 'Dienstag': 'Di', 'Mittwoch': 'Mi', 'Donnerstag': 'Do',
+        'Freitag': 'Fr', 'Samstag': 'Sa', 'Sonntag': 'So',
+      };
+      final entries = RegExp('(${days.keys.join('|')}) (\\d+)')
+          .allMatches(task.prompt)
+          .toList(growable: false);
+      if (task.prompt.startsWith('Diagramm:') && entries.length >= 2) {
+        return <String, Object?>{
+          'bars': <int>[for (final entry in entries) int.parse(entry[2]!)],
+          'labels': <String>[for (final entry in entries) days[entry[1]]!],
+        };
+      }
+      return const <String, Object?>{};
+    }
+
+    // Erweitern: Die Pizza muss den Bruch aus der Aufgabe zeigen. Ohne diese
+    // Daten zeichnete das Bild immer 1 von n Stücken.
+    if (task.visual == 'fraction_expand') {
+      final expansion =
+          RegExp(r'^(?:Knobelaufgabe: )?Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
+              .firstMatch(task.prompt.trim());
+      if (expansion == null) return const <String, Object?>{};
+      return <String, Object?>{
+        'operation': 'fraction_expansion',
+        'numerator': int.parse(expansion[1]!),
+        'denominator': int.parse(expansion[2]!),
+        'factor': int.parse(expansion[3]!),
       };
     }
 
@@ -888,7 +934,7 @@ class LegacyLumoTaskAdapter {
       return const <String, Object?>{};
     }
 
-    if (task.visual == 'fraction_pizza') {
+    if (task.visual == 'fraction_pizza' || task.visual == 'fraction_half') {
       // 1/2 im Prompt oder in der Antwort
       final fracInPrompt = RegExp(r'(\d+)\s*/\s*(\d+)').firstMatch(task.prompt);
       if (fracInPrompt != null) {
@@ -904,10 +950,27 @@ class LegacyLumoTaskAdapter {
       if (task.prompt.toLowerCase().contains('viertel')) {
         return <String, Object?>{'numerator': 1, 'denominator': 4};
       }
+      if (task.prompt.toLowerCase().contains('achtel')) {
+        return <String, Object?>{'numerator': 1, 'denominator': 8};
+      }
       if (task.prompt.toLowerCase().contains('drittel')) {
         return <String, Object?>{'numerator': 1, 'denominator': 3};
       }
       return const <String, Object?>{};
+    }
+
+    // Preisvergleich: Das Bild legt beide Beträge, nicht nur den ersten.
+    if (task.visual == 'money_compare') {
+      final prices = RegExp(r'kostet (\d+) €')
+          .allMatches(task.prompt)
+          .map((match) => int.parse(match[1]!))
+          .toList(growable: false);
+      if (prices.length != 2) return const <String, Object?>{};
+      return <String, Object?>{
+        'left': prices[0],
+        'right': prices[1],
+        'emoji': '🪙',
+      };
     }
 
     if (task.visual == 'money_coins' || task.visual == 'money' || task.visual == 'money_change') {
@@ -921,13 +984,21 @@ class LegacyLumoTaskAdapter {
         final fraction = euro.group(2) ?? '';
         final c = int.tryParse(fraction.padRight(2, '0'));
         if (e == null || c == null || e > 1000000) return const {};
-        return <String, Object?>{'cents': e * 100 + c, 'amount': e * 100 + c};
+        return <String, Object?>{
+          'cents': e * 100 + c,
+          'amount': e * 100 + c,
+          // „Wie viele 2-€-Münzen ergeben 20 €?“: Nur der Zielbetrag wird
+          // gezeigt. Ein 20-€-Schein im Bild wäre das Gegenteil der Frage.
+          if (task.visual == 'money_change') 'pieces': false,
+        };
       }
       return const <String, Object?>{};
     }
 
     if (task.visual == 'quantity_compare' || task.visual == 'quantity') {
-      final apples = RegExp(r'^(🍎+) oder (🍎+) – wo ist mehr\?$', unicode: true)
+      final apples = RegExp(
+              r'^(🍎+) oder (🍎+) – wo (?:ist mehr|sind mehr Äpfel)\?$',
+              unicode: true)
           .firstMatch(task.prompt);
       if (apples != null) {
         return <String, Object?>{

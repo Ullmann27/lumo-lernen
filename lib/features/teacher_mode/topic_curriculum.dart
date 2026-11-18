@@ -448,7 +448,7 @@ class TopicCurriculum {
     'm3_einmaleins_voll': TopicContext(
       grade: 3,
       subject: 'Mathematik',
-      title: 'Großes 1×1',
+      title: '1×1 – alle Reihen',
       detailedScope:
           'Alle Multiplikations-Reihen 1×1 bis 10×10. '
           'Auch Division als Umkehrung: 6×4=24, also 24÷4=6.',
@@ -609,7 +609,7 @@ class TopicCurriculum {
     'm4_bruch': TopicContext(
       grade: 4,
       subject: 'Mathematik',
-      title: 'Bruchrechnen',
+      title: 'Brüche erkennen',
       detailedScope:
           'Brueche: 1/2 (eine Haelfte), 1/3 (ein Drittel), 1/4 (ein Viertel), 1/8. '
           'Zaehler oben, Nenner unten. Brueche aus Bildern ablesen (z.B. Pizza in 4 Teile, 1 weg). '

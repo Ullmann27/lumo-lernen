@@ -933,13 +933,13 @@ class _ModuleMethod {
             'Schreibe jeden Geldwert auf und addiere ihn genau einmal. Vergleiche danach gleiche Einheiten.',
           ]),
         'Einmaleins 2/5/10' ||
-        'Großes 1×1' =>
+        '1×1 – alle Reihen' =>
           const _ModuleMethod('Gleich große Gruppen zusammenfassen.', [
             'Zähle die Gruppen und dann die Dinge in einer Gruppe.',
             'Addiere dieselbe Gruppengröße so oft, wie es Gruppen gibt.',
             'Zeichne für jede Gruppe gleich viele Punkte. Vergleiche die Gesamtzahl mit deiner Rechnung.',
           ]),
-        'Bruchrechnen' =>
+        'Brüche erkennen' =>
           const _ModuleMethod('Gleich große Teile eines Ganzen beschreiben.', [
             'Prüfe zuerst, in wie viele gleich große Teile das Ganze geteilt ist.',
             'Die Zahl unten beschreibt alle gleich großen Teile. Die Zahl oben beschreibt die ausgewählten Teile.',

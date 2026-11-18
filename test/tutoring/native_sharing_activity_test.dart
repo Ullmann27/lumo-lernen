@@ -182,33 +182,86 @@ void main() {
     }
   });
 
-  testWidgets('all eight groups and 72 units are shown for 72 divided by 8',
+  // Fachprüfung Mathematik S2: Früher verteilte das Bild die Dinge schon auf
+  // die Gruppen („Gruppe 1 · 20“, neun Einer je Gruppe). Damit stand die
+  // Lösung vor dem Antworten im Bild. Die beiden Tests prüften genau dieses
+  // Verhalten und wurden deshalb umgestellt: Gezeigt wird nur das Gegebene.
+  testWidgets('72 : 8 shows the whole supply and eight empty groups',
       (tester) async {
     await tester.pumpWidget(
         wrap(DivisionGroupsVisual(task: task('72 : 8 = ?', '9', 'division'))));
     for (var group = 0; group < 8; group++) {
       expect(find.byKey(ValueKey('division-group-$group')), findsOneWidget);
-      for (var unit = 0; unit < 9; unit++) {
-        expect(
-            find.byKey(ValueKey('division-one-$group-$unit')), findsOneWidget);
-      }
+      expect(find.text('Gruppe ${group + 1}'), findsOneWidget);
     }
+    expect(find.byKey(const ValueKey('division-group-8')), findsNothing);
+    // Vorrat: 7 Zehner und 2 Einer, zusammen 72.
+    for (var ten = 0; ten < 7; ten++) {
+      expect(find.byKey(ValueKey('division-supply-ten-$ten')), findsOneWidget);
+    }
+    expect(find.byKey(const ValueKey('division-supply-ten-7')), findsNothing);
+    expect(find.byKey(const ValueKey('division-supply-one-1')), findsOneWidget);
+    expect(find.byKey(const ValueKey('division-supply-one-2')), findsNothing);
+    // Das Ergebnis 9 steht nirgends im Bild.
+    expect(find.textContaining('9'), findsNothing);
+    expect(find.text('?'), findsNWidgets(8));
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('large exact quantities use counted bundles in every group',
+  testWidgets('large quantities show bundles of the dividend, not the quotient',
       (tester) async {
     await tester.pumpWidget(wrap(
         DivisionGroupsVisual(task: task('240 : 12 = ?', '20', 'division'))));
     for (var group = 0; group < 12; group++) {
-      expect(find.text('Gruppe ${group + 1} · 20'), findsOneWidget);
-      for (var bundle = 0; bundle < 2; bundle++) {
-        expect(find.byKey(ValueKey('division-ten-$group-$bundle')),
-            findsOneWidget);
-      }
-      expect(find.byKey(ValueKey('division-one-$group-0')), findsNothing);
+      expect(find.byKey(ValueKey('division-group-$group')), findsOneWidget);
+      expect(find.text('Gruppe ${group + 1} · 20'), findsNothing);
     }
+    expect(find.byKey(const ValueKey('division-supply-hundred-1')),
+        findsOneWidget);
+    expect(find.byKey(const ValueKey('division-supply-ten-3')), findsOneWidget);
+    expect(find.byKey(const ValueKey('division-supply-one-0')), findsNothing);
+    expect(find.textContaining('20'), findsNothing);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('division picture never names the quotient for generated tasks',
+      (tester) async {
+    for (final id in ['g3_division_basic', 'g4_written_div']) {
+      final template =
+          MathTaskTemplates.templates.singleWhere((item) => item.id == id);
+      for (var seed = 0; seed < 25; seed++) {
+        final generated = template.concretize(seed * 97 + 11);
+        await tester.pumpWidget(wrap(SingleChildScrollView(
+            child: DivisionGroupsVisual(
+                task: task(generated.prompt, generated.answer, 'division',
+                    choices: generated.choices)))));
+        final numbers = RegExp(r'\d+')
+            .allMatches(generated.prompt)
+            .map((match) => match.group(0)!)
+            .toList();
+        final texts = tester
+            .widgetList<Text>(find.descendant(
+                of: find.byType(DivisionGroupsVisual),
+                matching: find.byType(Text)))
+            .map((text) => text.data ?? '')
+            .toList();
+        expect(texts.any((text) => text.startsWith('Gruppe')), isTrue,
+            reason: generated.prompt);
+        // Außer den Gruppennummern dürfen nur der Dividend, der Divisor und
+        // die Bündelwerte 1, 10 und 100 als Zahl vorkommen.
+        final allowed = {...numbers, '1', '10', '100'};
+        for (final text in texts) {
+          for (final match in RegExp(r'\d+').allMatches(text)) {
+            final number = match.group(0)!;
+            if (text.startsWith('Gruppe')) continue;
+            expect(allowed, contains(number),
+                reason: '${generated.prompt}: „$text“');
+          }
+        }
+        expect(texts, isNot(contains('Gruppe 1 · ${generated.answer}')));
+        expect(tester.takeException(), isNull);
+      }
+    }
   });
 
   testWidgets('fraction addition displays plus rather than false equality',

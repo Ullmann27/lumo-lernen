@@ -497,68 +497,172 @@ class ExerciseFactory {
     if (unit == 'Muster') {
       final symbols = <String>['Kreis', 'Dreieck', 'Stern', 'Quadrat']
         ..shuffle(_random);
-      final length = grade == 1 ? 2 : 3;
-      final pattern = symbols.take(length).toList();
-      final shown = <String>[...pattern, ...pattern];
+      // Musterarten je Klasse: Klasse 1 A-B, Klasse 2 dazu A-A-B und A-B-C,
+      // ab Klasse 3 auch A-B-B und A-B-C-D. Die Reihe bricht an wechselnder
+      // Stelle ab, damit die Lösung nicht immer die erste Form ist.
+      final shapes = <List<int>>[
+        const <int>[0, 1],
+        if (grade >= 2) ...const <List<int>>[
+          <int>[0, 0, 1],
+          <int>[0, 1, 2],
+        ],
+        if (grade >= 3) ...const <List<int>>[
+          <int>[0, 1, 1],
+          <int>[0, 1, 2, 3],
+        ],
+      ];
+      final pattern = <String>[
+        for (final index in shapes[_random.nextInt(shapes.length)])
+          symbols[index],
+      ];
+      final extra = _random.nextInt(pattern.length);
+      final shown = <String>[...pattern, ...pattern, ...pattern.take(extra)];
+      final answer = pattern[extra];
       return _choiceTask(
           'logik-muster',
           grade,
           'Logik',
           unit,
           'Das Muster wiederholt sich immer gleich: ${shown.join(' – ')} – ? Welche Form folgt?',
-          pattern.first,
-          'Die Gruppe ${pattern.join(' – ')} wiederholt sich. Nach ${pattern.last} kommt wieder ${pattern.first}.',
+          answer,
+          'Die Gruppe ${pattern.join(' – ')} wiederholt sich. Nach ${shown.last} kommt hier $answer.',
           visual: 'pattern',
           customChoices: symbols);
     }
     if (unit == 'Zahlenmuster') {
-      final step = 1 + _random.nextInt(grade * 2);
-      final start = _random.nextInt(grade == 2 ? 50 : 200);
-      final shown = List.generate(4, (i) => start + i * step);
-      final answer = start + 4 * step;
+      // Schritt mindestens 2 (ein Schritt von 1 ist nur Weiterzählen), ein
+      // Drittel der Reihen geht zurück.
+      final step = 2 + _random.nextInt(grade * 2);
+      final backwards = _random.nextInt(3) == 0;
+      final low = _random.nextInt(grade == 2 ? 50 : 200);
+      final start = backwards ? low + 4 * step : low;
+      final signed = backwards ? -step : step;
+      final shown = List.generate(4, (i) => start + i * signed);
+      final answer = start + 4 * signed;
       return _choiceTask(
           'logik-zahlenmuster',
           grade,
           'Logik',
           unit,
-          'Gehe jedes Mal gleich viele Schritte weiter: ${shown.join(' – ')} – ? Welche Zahl folgt?',
+          'Gehe jedes Mal gleich viele Schritte ${backwards ? 'zurück' : 'weiter'}: ${shown.join(' – ')} – ? Welche Zahl folgt?',
           '$answer',
-          'Der Abstand ist immer $step. Nach ${shown.last} kommt ${shown.last} + $step = $answer.',
-          customChoices: <String>[
-            '$answer',
-            '${answer + 1}',
-            '${answer - 1}',
-            '${answer + step + 1}'
-          ]);
+          'Der Abstand ist immer $step. Nach ${shown.last} kommt ${shown.last} ${backwards ? '−' : '+'} $step = $answer.',
+          // Die Lösung darf der Größe nach an jeder Stelle liegen. Typische
+          // Fehler: einen Schritt zu viel, nur um 1 weitergezählt, verzählt.
+          customChoices: MathTaskTemplates.numberChoices(
+            answer,
+            _random.nextInt(1 << 30),
+            typical: <int>[
+              answer + signed,
+              shown.last + (backwards ? -1 : 1),
+              answer - 1,
+              answer + 1,
+              answer + 2 * signed,
+            ],
+            blocked: shown.toSet(),
+          ));
     }
     if (unit == 'Regeln kombinieren') {
-      final lower = 10 + _random.nextInt(90) * 2;
-      final answer = lower + 4;
+      // Befund M25: Früher gab es nur „… und gerade“. Jetzt wechselt die
+      // dritte Regel: gerade, ungerade oder eine Zahl aus einer Reihe des
+      // Einmaleins. Mehrere Zahlen erfüllen alle Regeln, nur eine davon
+      // wird zur Karte.
+      const properties = <String>[
+        'gerade',
+        'ungerade',
+        'in der 3er-Reihe',
+        'in der 4er-Reihe',
+        'in der 5er-Reihe',
+      ];
+      final property = properties[_random.nextInt(properties.length)];
+      bool fits(int value) => combinedRuleProperty(property, value);
+      final step = switch (property) {
+        'in der 3er-Reihe' => 3,
+        'in der 4er-Reihe' => 4,
+        'in der 5er-Reihe' => 5,
+        _ => 2,
+      };
+      final lower = 10 + _random.nextInt(80);
+      final upper = lower + 3 * step + 2;
+      final matching = <int>[
+        for (var v = lower + 1; v < upper; v++)
+          if (fits(v)) v,
+      ];
+      final answer = matching[_random.nextInt(matching.length)];
+      final reason = switch (property) {
+        'gerade' => 'Die Zahl ist gerade, man kann sie ohne Rest in Paare teilen.',
+        'ungerade' => 'Die Zahl ist ungerade, beim Paarebilden bleibt eins übrig.',
+        _ => '$answer = ${answer ~/ step} · $step, die Zahl steht also $property.',
+      };
       return _choiceTask(
           'logik-regeln',
           grade,
           'Logik',
           unit,
-          'Welche Zahl erfüllt alle drei Regeln: größer als $lower, kleiner als ${lower + 8} und gerade?',
+          'Welche Zahl erfüllt alle drei Regeln: größer als $lower, kleiner als $upper und $property?',
           '$answer',
-          '$answer liegt zwischen $lower und ${lower + 8}. Die Zahl ist gerade, weil man sie ohne Rest in Paare teilen kann. Nur diese Antwort erfüllt alle drei Regeln.',
-          customChoices: <String>[
-            '$answer',
-            '$lower',
-            '${lower + 3}',
-            '${lower + 8}'
-          ]);
+          '$answer liegt zwischen $lower und $upper. $reason Nur diese Antwort erfüllt alle drei Regeln.',
+          // Falsche Karten verletzen je eine Regel: die Grenzen selbst,
+          // Zahlen dazwischen ohne die Eigenschaft, passende Zahlen außerhalb.
+          customChoices: MathTaskTemplates.numberChoices(
+            answer,
+            _random.nextInt(1 << 30),
+            typical: <int>[
+              for (var v = lower + 1; v < upper; v++)
+                if (!fits(v)) v,
+              if (!fits(lower)) lower,
+              if (!fits(upper)) upper,
+              for (var v = lower; v > lower - 3 * step && v > 0; v--)
+                if (fits(v)) v,
+              for (var v = upper; v < upper + 3 * step; v++)
+                if (fits(v)) v,
+            ],
+            blocked: matching.toSet(),
+          ));
     }
     final names = <String>['Lumo', 'Mia', 'Ben', 'Ali', 'Lea']
       ..shuffle(_random);
-    final first = names[0], middle = names[1], last = names[2];
-    final askedIndex = _random.nextInt(3);
-    final asked =
-        <String>['ganz links', 'in der Mitte', 'ganz rechts'][askedIndex];
-    final answer = <String>[first, middle, last][askedIndex];
-    final prompt = unit == 'Schlussfolgern'
-        ? 'Drei Figuren stehen nebeneinander. $first steht links von $middle. $middle steht links von $last. Wer steht $asked?'
-        : 'Von links nach rechts stehen $first, $middle und $last. Wer steht $asked?';
+    // Befund M24: In Klasse 4 auch vier Freunde oder eine verneinte Angabe
+    // („Ben steht nicht am Rand.“), damit wirklich geschlossen werden muss.
+    final variant =
+        unit == 'Schlussfolgern' && grade >= 4 ? _random.nextInt(3) : 0;
+    final count = variant == 2 ? 4 : 3;
+    final order = names.take(count).toList();
+    final places = count == 4
+        ? const <String>[
+            'ganz links',
+            'an zweiter Stelle von links',
+            'an dritter Stelle von links',
+            'ganz rechts',
+          ]
+        : const <String>['ganz links', 'in der Mitte', 'ganz rechts'];
+    final askedIndex = _random.nextInt(count);
+    final asked = places[askedIndex];
+    final answer = order[askedIndex];
+    String leftOf(String left, String right) => _random.nextBool()
+        ? '$left steht links von $right.'
+        : '$right steht rechts von $left.';
+    var prompt =
+        'Von links nach rechts stehen ${order[0]}, ${order[1]} und ${order[2]}. Wer steht $asked?';
+    if (unit == 'Schlussfolgern') {
+      // Die Angaben stehen in wechselnder Reihenfolge und Richtung.
+      // Früher wurden die Namen immer von links nach rechts genannt, die
+      // Lösung war ohne Schluss abzulesen.
+      final clues = switch (variant) {
+        1 => <String>[
+            '${order[1]} steht nicht am Rand.',
+            leftOf(order[0], order[2]),
+          ],
+        _ => <String>[
+            for (var k = 0; k + 1 < count; k++) leftOf(order[k], order[k + 1]),
+          ],
+      }
+        ..shuffle(_random);
+      prompt =
+          '${count == 4 ? 'Vier' : 'Drei'} Freunde stehen nebeneinander. ${clues.join(' ')} Wer steht $asked?';
+    }
+    // Die Karten in fester, vom Rätsel unabhängiger Reihenfolge.
+    final cards = <String>[...order]..sort();
     return _choiceTask(
         'logik-reihenfolge',
         grade,
@@ -566,8 +670,8 @@ class ExerciseFactory {
         unit,
         prompt,
         answer,
-        'Von links nach rechts ist die Reihenfolge $first – $middle – $last. $answer steht $asked.',
-        customChoices: <String>[first, middle, last]);
+        'Von links nach rechts ist die Reihenfolge ${order.join(' – ')}. $answer steht $asked.',
+        customChoices: cards);
   }
 
   /// Lumos Abenteuer-Aufgaben, auf Wunsch mit dem Namen des Kindes.
@@ -1493,3 +1597,14 @@ const List<ScienceQuestion> _scienceQuestions = <ScienceQuestion>[
   ScienceQuestion(grade: 4, unit: 'Ökosysteme', prompt: 'Was schützt ein Wald?', answer: 'Boden, Tiere und Klima', choices: <String>['Boden, Tiere und Klima', 'nur Autos', 'nur Computer', 'nur Ampeln'], explanation: 'Wälder sind wichtige Lebensräume.'),
   ScienceQuestion(grade: 4, unit: 'Stromkreise', prompt: 'Was macht ein Schalter?', answer: 'er öffnet oder schließt den Stromkreis', choices: <String>['er öffnet oder schließt den Stromkreis', 'er kocht Suppe', 'er misst Zeit', 'er schreibt Wörter'], explanation: 'Schalter steuern, ob Strom fließt.'),
 ];
+
+/// Dritte Regel der Logik-Einheit „Regeln kombinieren“. Wird auch von der
+/// Qualitätsprüfung verwendet.
+bool combinedRuleProperty(String property, int value) => switch (property) {
+      'gerade' => value.isEven,
+      'ungerade' => value.isOdd,
+      'in der 3er-Reihe' => value % 3 == 0,
+      'in der 4er-Reihe' => value % 4 == 0,
+      'in der 5er-Reihe' => value % 5 == 0,
+      _ => false,
+    };

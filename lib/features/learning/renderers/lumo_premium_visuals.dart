@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../core/math_task_templates.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 
 /// Sammlung aller neuen Visuals fuer die erweiterten Aufgaben-Templates
@@ -303,15 +304,19 @@ class MoneyCoinsVisual extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
       );
     }
-    final pieces = _splitMoney(amountCents);
+    // Beim Wechseln ist die Stückelung gefragt. Dann zeigt das Bild nur den
+    // Zielbetrag als Preisschild, keine andere Stückelung.
+    final showPieces = data['pieces'] != false;
+    final pieces = showPieces ? _splitMoney(amountCents) : const <(int, int)>[];
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: _stageDecoration(LumoColors.gold),
       child: Column(
         children: [
-          const Text('Geldbetrag',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
+          Text(showPieces ? 'Geldbetrag' : 'Zielbetrag',
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
           const SizedBox(height: 8),
+          if (showPieces)
           Wrap(
             alignment: WrapAlignment.center,
             spacing: 8,
@@ -450,13 +455,18 @@ class FractionPizzaVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final expansion = _expansion();
+    if (expansion != null) return _buildExpansion(expansion);
     final fractions = _allFractionsFromPrompt(task.prompt);
     if (fractions.length >= 2) {
       return _buildDual(fractions[0], fractions[1],
           operator: task.prompt.contains('+') ? '+' : '=');
     }
     final data = task.visualPayload.data;
-    final rawNum = _readInt(data['numerator']) ?? 1;
+    // Ohne Bilddaten gilt der Bruch aus der Aufgabe. Früher wurde der Zähler
+    // dann auf 1 gesetzt: „3/6“ erschien als Pizza mit 1 von 6 Stücken.
+    final rawNum = _readInt(data['numerator']) ??
+        (fractions.isNotEmpty ? fractions.first[0] : 1);
     final rawDen =
         _readInt(data['denominator']) ?? _denomFromPrompt(task.prompt);
     // FIX: Erst Nenner clampen, dann Zaehler an den geclampten Nenner clampen.
@@ -471,9 +481,82 @@ class FractionPizzaVisual extends StatelessWidget {
         child: SizedBox(
           width: 160,
           height: 160,
-          child: CustomPaint(
-              painter: _PizzaPainter(numerator: num, denominator: den)),
+          child: _pizza(num, den),
         ),
+      ),
+    );
+  }
+
+  /// Eine Pizza mit [numerator] gefärbten von [denominator] Stücken.
+  Widget _pizza(int numerator, int denominator) => Semantics(
+        key: ValueKey('fraction-pizza-$numerator-$denominator'),
+        label: 'Pizza: $numerator von $denominator Stücken gefärbt',
+        image: true,
+        child: CustomPaint(
+            painter:
+                _PizzaPainter(numerator: numerator, denominator: denominator)),
+      );
+
+  /// Zähler, Nenner und Erweiterungszahl einer Erweitern-Aufgabe, aus den
+  /// Bilddaten oder aus „Erweitere den Bruch 3/6 mit 2.“.
+  (int, int, int)? _expansion() {
+    final data = task.visualPayload.data;
+    final prompt = RegExp(r'^(?:Knobelaufgabe: )?Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
+        .firstMatch(task.prompt.trim());
+    final numerator =
+        _readInt(data['factor'] == null ? prompt?.group(1) : data['numerator']);
+    final denominator = _readInt(
+        data['factor'] == null ? prompt?.group(2) : data['denominator']);
+    final factor = _readInt(data['factor'] ?? prompt?.group(3));
+    if (numerator == null || denominator == null || factor == null) return null;
+    if (numerator < 1 ||
+        denominator < 1 ||
+        numerator > denominator ||
+        factor < 2 ||
+        denominator * factor > 48) {
+      return null;
+    }
+    return (numerator, denominator, factor);
+  }
+
+  /// Erweitern: links der gegebene Bruch, rechts dieselbe Pizza feiner
+  /// geteilt und noch ungefärbt. Wie viele feine Stücke zu färben sind,
+  /// findet das Kind selbst heraus.
+  Widget _buildExpansion((int, int, int) expansion) {
+    final (numerator, denominator, factor) = expansion;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 16, 14, 14),
+      decoration: _stageDecoration(LumoColors.practice),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                  width: 110,
+                  height: 110,
+                  child: _pizza(numerator, denominator)),
+              const Icon(Icons.arrow_forward_rounded,
+                  size: 30, color: Color(0xFF7C2D12)),
+              SizedBox(
+                  width: 110,
+                  height: 110,
+                  child: _pizza(0, denominator * factor)),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Jedes Stück wird in $factor gleiche Teile geschnitten.',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 13,
+              fontWeight: FontWeight.w800,
+              color: Color(0xFF7C2D12),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -493,9 +576,7 @@ class FractionPizzaVisual extends StatelessWidget {
           SizedBox(
             width: 110,
             height: 110,
-            child: CustomPaint(
-              painter: _PizzaPainter(numerator: numA, denominator: denA),
-            ),
+            child: _pizza(numA, denA),
           ),
           Text(
             operator,
@@ -509,9 +590,7 @@ class FractionPizzaVisual extends StatelessWidget {
           SizedBox(
             width: 110,
             height: 110,
-            child: CustomPaint(
-              painter: _PizzaPainter(numerator: numB, denominator: denB),
-            ),
+            child: _pizza(numB, denB),
           ),
         ],
       ),
@@ -570,7 +649,7 @@ class _PizzaPainter extends CustomPainter {
           true,
           Paint()
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 2.4
+            ..strokeWidth = denominator > 12 ? 1.2 : 2.4
             ..color = Colors.white);
     }
     // Outer ring
@@ -1165,7 +1244,8 @@ class RectangleMeasureVisual extends StatelessWidget {
     final data = task.visualPayload.data;
     final nums = _digitsFromPrompt(task.prompt);
     final length = _readInt(data['length']) ?? (nums.isNotEmpty ? nums[0] : 6);
-    final width = _readInt(data['width']) ?? (nums.length > 1 ? nums[1] : 4);
+    // Ein Quadrat nennt nur eine Seitenlänge: Dann sind beide Seiten gleich.
+    final width = _readInt(data['width']) ?? (nums.length > 1 ? nums[1] : length);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
       decoration: _stageDecoration(const Color(0xFF34D399)),
@@ -1265,8 +1345,12 @@ class _RectangleMeasurePainter extends CustomPainter {
       old.length != length || old.width != width;
 }
 
-/// Lineal-Vergleich fuer Laengen-Umrechnung (cm/m, mm/cm).
-/// Zeigt zwei Lineale uebereinander mit Skala + farblicher Markierung.
+/// Lineal für die Längen-Umrechnung Meter → Zentimeter.
+///
+/// Zeigt nur das Gegebene (ein Lineal mit so vielen Metern wie in der
+/// Aufgabe) und die Grundbeziehung „1 m = 100 cm“. Die umgerechnete Länge
+/// ist die Lösung und steht nicht im Bild. Früher stand am unteren Lineal
+/// z. B. „700 cm“.
 class RulerCompareVisual extends StatelessWidget {
   const RulerCompareVisual({super.key, required this.task});
   final TaskInstance task;
@@ -1276,99 +1360,87 @@ class RulerCompareVisual extends StatelessWidget {
     final data = task.visualPayload.data;
     final nums = _digitsFromPrompt(task.prompt);
     final value = _readInt(data['value']) ?? (nums.isNotEmpty ? nums[0] : 1);
+    final meters = value.clamp(1, 20).toInt();
+    const blue = Color(0xFF1E3A8A);
+    const red = Color(0xFF991B1B);
+    TextStyle label(Color color) => TextStyle(
+        fontFamily: 'Nunito',
+        fontSize: 13,
+        fontWeight: FontWeight.w900,
+        color: color);
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
       decoration: _stageDecoration(const Color(0xFF60A5FA)),
-      child: SizedBox(
-        height: 110,
-        child: CustomPaint(
-          painter: _RulerPainter(meters: value),
+      child: Semantics(
+        label: 'Lineal mit $value Metern. 1 Meter sind 100 Zentimeter.',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('0 m', style: label(blue)),
+                Text('$value m', style: label(blue)),
+              ],
+            ),
+            const SizedBox(height: 4),
+            SizedBox(
+              height: 30,
+              child: CustomPaint(painter: _RulerPainter(meters: meters)),
+            ),
+            const SizedBox(height: 8),
+            Text('1 m = 100 cm',
+                key: const ValueKey('ruler-base-relation'),
+                style: label(red)),
+          ],
         ),
       ),
     );
   }
 }
 
+/// Ein Lineal mit einem Abschnitt je Meter. Der erste Meter ist eingefärbt,
+/// darauf bezieht sich die Beschriftung „1 m = 100 cm“.
 class _RulerPainter extends CustomPainter {
   _RulerPainter({required this.meters});
   final int meters;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paintLine = Paint()
-      ..color = const Color(0xFF1E3A8A)
+    const blue = Color(0xFF1E3A8A);
+    final body = RRect.fromRectAndRadius(
+        Rect.fromLTWH(0, 0, size.width, size.height),
+        const Radius.circular(4));
+    canvas.drawRRect(body, Paint()..color = const Color(0xFFFEF3C7));
+    final segment = size.width / meters;
+    canvas.drawRect(Rect.fromLTWH(0, 0, segment, size.height),
+        Paint()..color = const Color(0xFFFCA5A5));
+    canvas.drawRRect(
+        body,
+        Paint()
+          ..color = blue
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2);
+    final tick = Paint()
+      ..color = blue
       ..strokeWidth = 2;
-    final fill = Paint()..color = const Color(0xFFFEF3C7);
-    final w = size.width;
-    final markStep = w / 10;
-    // Oberes Lineal: Meter
-    final rect1 = Rect.fromLTWH(0, 12, w, 28);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(rect1, const Radius.circular(4)), fill);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(rect1, const Radius.circular(4)),
-        Paint()
-          ..color = const Color(0xFF1E3A8A)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2);
-    for (var i = 0; i <= 10; i++) {
-      final x = i * markStep;
-      final h = i % 5 == 0 ? 14.0 : 8.0;
-      canvas.drawLine(Offset(x, 12), Offset(x, 12 + h), paintLine);
+    for (var i = 0; i <= meters; i++) {
+      final x = i * segment;
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height * .55), tick);
     }
-    _label(canvas, '0 m', 0, 4, anchor: Alignment.centerLeft);
-    _label(canvas, '$meters m', w, 4, anchor: Alignment.centerRight);
-
-    // Unteres Lineal: cm (1m = 100cm)
-    final rect2 = Rect.fromLTWH(0, 64, w, 28);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(rect2, const Radius.circular(4)), fill);
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(rect2, const Radius.circular(4)),
-        Paint()
-          ..color = const Color(0xFF991B1B)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2);
-    for (var i = 0; i <= 10; i++) {
-      final x = i * markStep;
-      final h = i % 5 == 0 ? 14.0 : 8.0;
-      canvas.drawLine(
-          Offset(x, 64),
-          Offset(x, 64 + h),
-          Paint()
-            ..color = const Color(0xFF991B1B)
-            ..strokeWidth = 2);
-    }
-    _label(canvas, '0 cm', 0, 96,
-        anchor: Alignment.centerLeft, color: const Color(0xFF991B1B));
-    _label(canvas, '${meters * 100} cm', w, 96,
-        anchor: Alignment.centerRight, color: const Color(0xFF991B1B));
-  }
-
-  void _label(Canvas canvas, String text, double x, double y,
-      {required Alignment anchor, Color color = const Color(0xFF1E3A8A)}) {
-    final tp = TextPainter(
-      text: TextSpan(
-          text: text,
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 13,
-            fontWeight: FontWeight.w900,
-            color: color,
-          )),
-      textDirection: TextDirection.ltr,
-    )..layout();
-    final dx = x - tp.width * (anchor.x + 1) / 2;
-    final dy = y - tp.height * (anchor.y + 1) / 2;
-    tp.paint(canvas, Offset(dx, dy));
   }
 
   @override
   bool shouldRepaint(_RulerPainter old) => old.meters != meters;
 }
 
-/// Skala-Visualisierung fuer Masse (kg/g) und Hohlmasse (l/ml).
-/// Zwei Bechertank-Symbole mit beschrifteter Skala 1:1000.
+/// Massen (kg/g) und Hohlmaße (l/ml).
+///
+/// Links steht die gegebene Größe, rechts ein Fragezeichen mit der gesuchten
+/// Einheit, darunter die Grundbeziehung „1 kg = 1000 g“. Die umgerechnete
+/// Zahl ist die Lösung und steht nicht im Bild. Früher stand rechts z. B.
+/// „6000 g“.
 class ScaleMeasureVisual extends StatelessWidget {
   const ScaleMeasureVisual({super.key, required this.task});
   final TaskInstance task;
@@ -1378,36 +1450,72 @@ class ScaleMeasureVisual extends StatelessWidget {
     final data = task.visualPayload.data;
     final nums = _digitsFromPrompt(task.prompt);
     final value = _readInt(data['value']) ?? (nums.isNotEmpty ? nums[0] : 1);
+    final extra = nums.length > 1 ? nums[1] : 0;
     final isVolume = task.prompt.toLowerCase().contains('liter') ||
         task.prompt.toLowerCase().contains('milliliter');
     final bigUnit = isVolume ? 'Liter' : 'kg';
     final smallUnit = isVolume ? 'ml' : 'g';
     final emoji = isVolume ? '🫗' : '⚖️';
+    const dark = Color(0xFF9D174D);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
       decoration: _stageDecoration(const Color(0xFFF472B6)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          _ScaleChip(
-              value: '$value',
-              unit: bigUnit,
-              emoji: emoji,
-              color: const Color(0xFF9D174D)),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text('=',
-                style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xFF9D174D),
-                    fontFamily: 'Nunito')),
+          // Auf schmalen Handys passen drei Karten nur verkleinert in eine
+          // Zeile; sie dürfen nie über den Kartenrand laufen.
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _ScaleChip(
+                  value: '$value',
+                  unit: bigUnit,
+                  emoji: emoji,
+                  color: dark),
+              if (extra > 0) ...[
+                const SizedBox(width: 8),
+                const Text('+',
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w900,
+                        color: dark,
+                        fontFamily: 'Nunito')),
+                const SizedBox(width: 8),
+                _ScaleChip(
+                    value: '$extra',
+                    unit: smallUnit,
+                    emoji: emoji,
+                    color: dark),
+              ],
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Text('=',
+                    style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900,
+                        color: dark,
+                        fontFamily: 'Nunito')),
+              ),
+              _ScaleChip(
+                  key: const ValueKey('scale-unknown'),
+                  value: '?',
+                  unit: smallUnit,
+                  emoji: emoji,
+                  color: const Color(0xFFA855F7)),
+            ],
+            ),
           ),
-          _ScaleChip(
-              value: '${value * 1000}',
-              unit: smallUnit,
-              emoji: emoji,
-              color: const Color(0xFFA855F7)),
+          const SizedBox(height: 10),
+          Text('1 $bigUnit = 1000 $smallUnit',
+              key: const ValueKey('scale-base-relation'),
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w900,
+                  color: dark)),
         ],
       ),
     );
@@ -1416,7 +1524,8 @@ class ScaleMeasureVisual extends StatelessWidget {
 
 class _ScaleChip extends StatelessWidget {
   const _ScaleChip(
-      {required this.value,
+      {super.key,
+      required this.value,
       required this.unit,
       required this.emoji,
       required this.color});
@@ -1580,8 +1689,10 @@ class WrittenArithmeticVisual extends StatelessWidget {
   }
 }
 
-/// Every displayed group represents its complete quantity. Larger quantities
-/// use explicitly valued bundles instead of silently clipping visible objects.
+/// Zeigt nur, was gegeben ist: den Vorrat (als Hunderter, Zehner und Einer)
+/// und die leeren Gruppen. Wie viel in jeder Gruppe landet, ist die Lösung
+/// und steht deshalb nicht im Bild. Früher stand in jeder Gruppe das
+/// Ergebnis („Gruppe 1 · 19“).
 class DivisionGroupsVisual extends StatelessWidget {
   const DivisionGroupsVisual({super.key, required this.task});
   final TaskInstance task;
@@ -1602,70 +1713,96 @@ class DivisionGroupsVisual extends StatelessWidget {
         divisor < 1 ||
         divisor > 12 ||
         dividend < 1 ||
-        dividend % divisor != 0 ||
-        dividend ~/ divisor > 999 ||
-        task.correctAnswer != dividend ~/ divisor) {
+        dividend > 9999 ||
+        !_matchesDivision(task.correctAnswer, dividend, divisor)) {
       return Text(task.prompt, textAlign: TextAlign.center);
     }
-    final perGroup = dividend ~/ divisor;
-    final hundreds = perGroup ~/ 100;
-    final tens = perGroup % 100 ~/ 10;
-    final ones = perGroup % 10;
+    final hundreds = dividend ~/ 100;
+    final tens = dividend % 100 ~/ 10;
+    final ones = dividend % 10;
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       decoration: _stageDecoration(const Color(0xFFA855F7)),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            '$dividend Objekte in $divisor gleich große Gruppen',
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 13,
-              fontWeight: FontWeight.w800,
-              color: Color(0xFF6B21A8),
+      child: Semantics(
+        label: '$dividend Dinge sollen gerecht auf $divisor Gruppen '
+            'verteilt werden.',
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Verteile $dividend Dinge gerecht auf $divisor Gruppen.',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF6B21A8),
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 10,
-            runSpacing: 8,
-            alignment: WrapAlignment.center,
-            children: [
-              for (var i = 0; i < divisor; i++)
-                Container(
-                  key: ValueKey('division-group-$i'),
-                  padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        color: const Color(0xFFA855F7).withOpacity(0.45),
-                        width: 1.2),
-                  ),
-                  child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    Text('Gruppe ${i + 1} · $perGroup',
-                        style: const TextStyle(fontWeight: FontWeight.w800)),
-                    const SizedBox(height: 4),
-                    Wrap(spacing: 4, runSpacing: 4, children: [
-                      for (var k = 0; k < hundreds; k++)
-                        _bundle(100, 'division-hundred-$i-$k'),
-                      for (var k = 0; k < tens; k++)
-                        _bundle(10, 'division-ten-$i-$k'),
-                      for (var k = 0; k < ones; k++)
-                        _bundle(1, 'division-one-$i-$k'),
+            const SizedBox(height: 10),
+            Wrap(
+              key: const ValueKey('division-supply'),
+              spacing: 4,
+              runSpacing: 4,
+              alignment: WrapAlignment.center,
+              children: [
+                for (var k = 0; k < hundreds; k++)
+                  _bundle(100, 'division-supply-hundred-$k'),
+                for (var k = 0; k < tens; k++)
+                  _bundle(10, 'division-supply-ten-$k'),
+                for (var k = 0; k < ones; k++)
+                  _bundle(1, 'division-supply-one-$k'),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 10,
+              runSpacing: 8,
+              alignment: WrapAlignment.center,
+              children: [
+                for (var i = 0; i < divisor; i++)
+                  Container(
+                    key: ValueKey('division-group-$i'),
+                    padding: const EdgeInsets.fromLTRB(10, 6, 10, 6),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: const Color(0xFFA855F7).withOpacity(0.45),
+                          width: 1.2),
+                    ),
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      Text('Gruppe ${i + 1}',
+                          style: const TextStyle(fontWeight: FontWeight.w800)),
+                      const SizedBox(height: 2),
+                      const Text('?',
+                          style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                              color: Color(0xFF6B21A8))),
                     ]),
-                  ]),
-                ),
-            ],
-          ),
-        ],
+                  ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
+  /// Die hinterlegte Lösung muss zur Rechnung passen: der Quotient oder,
+  /// wenn etwas übrig bleibt, „Quotient Rest r“.
+  static bool _matchesDivision(Object answer, int dividend, int divisor) {
+    final quotient = dividend ~/ divisor;
+    final rest = dividend % divisor;
+    return rest == 0
+        ? answer == quotient
+        : answer == '$quotient Rest $rest';
+  }
+
   Widget _bundle(int value, String key) => Semantics(
-        label: '$value ${value == 1 ? 'Objekt' : 'Objekte'}',
+        label: value == 1 ? '1 Ding' : '$value Dinge',
         child: Container(
           key: ValueKey(key),
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
@@ -1691,14 +1828,13 @@ class NumberCompareVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final prompt = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
-        .firstMatch(task.prompt.trim());
+    final prompt = comparePromptPattern.firstMatch(task.prompt.trim());
     final a = data['left'] is int
         ? data['left'] as int
-        : int.tryParse(prompt?.group(1) ?? '');
+        : parseGroupedNumber(prompt?.group(1) ?? '');
     final b = data['right'] is int
         ? data['right'] as int
-        : int.tryParse(prompt?.group(2) ?? '');
+        : parseGroupedNumber(prompt?.group(2) ?? '');
     if (a == null || b == null) return const SizedBox.shrink();
     final symbol = const ['<', '>', '='].contains(evaluatedSymbol)
         ? evaluatedSymbol!
@@ -1757,8 +1893,9 @@ class NumberCompareVisual extends StatelessWidget {
               offset: const Offset(0, 4)),
         ],
       ),
+      // Große Zahlen in Dreiergruppen: 925 407 statt 925407.
       child: Text(
-        '$n',
+        groupedNumber(n),
         style: TextStyle(
           fontFamily: 'Nunito',
           fontSize: 36,
@@ -1770,77 +1907,112 @@ class NumberCompareVisual extends StatelessWidget {
   }
 }
 
-/// Einfaches Saeulen-Bar-Chart - 2 Balken nebeneinander mit Werten.
+/// Einfaches Säulendiagramm mit einem Balken je Wert der Aufgabe.
+///
+/// Die Werte und Beschriftungen kommen aus den Bilddaten (`bars`, `labels`).
+/// Fehlen sie, zeigt das Bild alle Zahlen der Aufgabe und nummeriert die
+/// Balken. Früher zeigte es immer nur die ersten zwei Zahlen als „Mo“ und
+/// „Di“ – beim Mittelwert aus drei Kindern fehlte der dritte Wert.
 class SimpleBarChartVisual extends StatelessWidget {
   const SimpleBarChartVisual({super.key, required this.task});
   final TaskInstance task;
 
+  static const _colors = <Color>[
+    Color(0xFF60A5FA),
+    Color(0xFFEC4899),
+    Color(0xFFF59E0B),
+    Color(0xFF22C55E),
+    Color(0xFF8B5CF6),
+    Color(0xFFFF7A2F),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final nums = _digitsFromPrompt(task.prompt);
-    final a = nums.isNotEmpty ? nums[0] : 8;
-    final b = nums.length > 1 ? nums[1] : 5;
-    final maxVal = a > b ? a : b;
-    final heightA = (a / maxVal * 100).clamp(20.0, 100.0);
-    final heightB = (b / maxVal * 100).clamp(20.0, 100.0);
+    final data = task.visualPayload.data;
+    final rawBars = data['bars'];
+    final bars = rawBars is List
+        ? rawBars.map(_readInt).whereType<int>().toList(growable: false)
+        : _digitsFromPrompt(task.prompt);
+    if (bars.isEmpty || bars.length > _colors.length) {
+      return const SizedBox.shrink();
+    }
+    final rawLabels = data['labels'];
+    final labels = rawLabels is List && rawLabels.length == bars.length
+        ? <String>[for (final label in rawLabels) '$label']
+        : <String>[for (var i = 0; i < bars.length; i++) '${i + 1}'];
+    final maxVal = bars.fold<int>(1, (a, b) => b > a ? b : a);
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+      padding: const EdgeInsets.fromLTRB(12, 14, 12, 14),
       decoration: _stageDecoration(const Color(0xFF22C55E)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          _bar(a, heightA, const Color(0xFF60A5FA), 'Mo'),
-          _bar(b, heightB, const Color(0xFFEC4899), 'Di'),
+          for (var i = 0; i < bars.length; i++)
+            Expanded(
+              child: _bar(
+                i,
+                bars[i],
+                (bars[i] / maxVal * 100).clamp(8.0, 100.0),
+                _colors[i],
+                labels[i],
+              ),
+            ),
         ],
       ),
     );
   }
 
-  Widget _bar(int value, double h, Color c, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          '$value',
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 18,
-            fontWeight: FontWeight.w900,
-            color: c,
+  Widget _bar(int index, int value, double h, Color c, String label) {
+    return Semantics(
+      key: ValueKey('chart-bar-$index'),
+      label: '$label: $value',
+      excludeSemantics: true,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '$value',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 18,
+              fontWeight: FontWeight.w900,
+              color: c,
+            ),
           ),
-        ),
-        const SizedBox(height: 4),
-        Container(
-          width: 56,
-          height: h,
-          decoration: BoxDecoration(
-            color: c,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-            boxShadow: [
-              BoxShadow(
-                  color: c.withOpacity(0.35),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4)),
-            ],
+          const SizedBox(height: 4),
+          FractionallySizedBox(
+            widthFactor: .7,
+            child: Container(
+              height: h,
+              decoration: BoxDecoration(
+                color: c,
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
+                boxShadow: [
+                  BoxShadow(
+                      color: c.withOpacity(0.35),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4)),
+                ],
+              ),
+            ),
           ),
-        ),
-        Container(
-          width: 56,
-          height: 3,
-          color: const Color(0xFF065F46),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          label,
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 12,
-            fontWeight: FontWeight.w800,
-            color: Color(0xFF065F46),
+          Container(height: 3, color: const Color(0xFF065F46)),
+          const SizedBox(height: 6),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              label,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF065F46),
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -1907,55 +2079,50 @@ class StoryStageVisual extends StatelessWidget {
     );
   }
 
-  /// Erkennt das Story-Thema aus Schluesselwoertern im Prompt und liefert
-  /// das passende Emoji. Default: Buch-Emoji.
-  String _themeEmoji(String prompt) {
-    final p = prompt.toLowerCase();
-    // Reihenfolge: spezifischer zuerst.
-    if (p.contains('apfel') || p.contains('aepfel') || p.contains('äpfel')) {
-      return '🍎';
-    }
-    if (p.contains('baecker') ||
-        p.contains('bäcker') ||
-        p.contains('brot') ||
-        p.contains('kuchen') ||
-        p.contains('semmel')) {
-      return '🥨';
-    }
-    if (p.contains('schwimm') || p.contains('schwimmbad')) return '🏊';
-    if (p.contains('schule') ||
-        p.contains('klasse') ||
-        p.contains('schüler') ||
-        p.contains('schueler')) {
-      return '🏫';
-    }
-    if (p.contains('blume') || p.contains('garten') || p.contains('baum')) {
-      return '🌳';
-    }
-    if (p.contains('tier') ||
-        p.contains('hund') ||
-        p.contains('katze') ||
-        p.contains('hase')) {
-      return '🐶';
-    }
-    if (p.contains('vogel') || p.contains('biene')) return '🐦';
-    if (p.contains('euro') ||
-        p.contains('geld') ||
-        p.contains('cent') ||
-        p.contains('€')) {
-      return '💶';
-    }
-    if (p.contains('zug') || p.contains('bahn')) return '🚆';
-    if (p.contains('auto') || p.contains('rad')) return '🚗';
-    if (p.contains('uhr') || p.contains('stunde') || p.contains('minute')) {
-      return '⏰';
-    }
-    if (p.contains('eis') || p.contains('schoko')) return '🍦';
-    if (p.contains('ball') || p.contains('spiel')) return '⚽';
-    if (p.contains('kerze') || p.contains('geburtstag')) return '🎂';
-    if (p.contains('regen') || p.contains('wolke') || p.contains('sonne')) {
-      return '🌤️';
-    }
-    return '📖';
+  String _themeEmoji(String prompt) => storyThemeEmoji(prompt);
+}
+
+/// Erkennt das Thema einer Sachaufgabe an ganzen Wörtern und liefert das
+/// passende Bild. Befund L3: Früher wurden Wortteile gesucht, so wurde aus
+/// „Paradeiser“ (enthält „rad“) ein Auto und aus „Preis“ (enthält „eis“)
+/// ein Eis. Ein Schlüssel passt nur auf den Anfang eines Wortes, lange
+/// Schlüssel auch auf das Ende eines zusammengesetzten Wortes
+/// („Fahrrad“ hat aber eine eigene Form).
+@visibleForTesting
+String storyThemeEmoji(String prompt) {
+  final words = RegExp(r'[a-zäöüß]+')
+      .allMatches(prompt.toLowerCase())
+      .map((m) => m.group(0)!)
+      .toList();
+  bool has(List<String> keys, {Set<String> exact = const <String>{}}) =>
+      words.any((word) =>
+          exact.contains(word) ||
+          keys.any((key) =>
+              word.startsWith(key) || (key.length >= 5 && word.endsWith(key))));
+
+  // Reihenfolge: spezifischer zuerst.
+  if (has(['apfel', 'äpfel'])) return '🍎';
+  if (has(['bäcker', 'brot', 'kuchen', 'semmel'])) return '🥨';
+  // Goldfische schwimmen auch, sind aber keine Schwimmer.
+  if (has(['fisch', 'goldfisch', 'aquarium'])) return '🐟';
+  if (has(['schwimm'])) return '🏊';
+  if (has(['schule', 'schüler', 'klasse'])) return '🏫';
+  if (has(['blume', 'garten', 'baum', 'bäume'])) return '🌳';
+  if (has(['tier', 'haustier', 'hund', 'katze', 'hase'])) return '🐶';
+  if (has(['vogel', 'vögel', 'biene'])) return '🐦';
+  if (prompt.contains('€') || has(['euro', 'geld', 'cent'])) return '💶';
+  if (has(['bahn'], exact: {'zug', 'züge', 'zuges'})) return '🚆';
+  if (has(['auto'],
+      exact: {'rad', 'räder', 'fahrrad', 'fahrräder', 'fahrrads'})) {
+    return '🚗';
   }
+  if (has(['stunde', 'minute'], exact: {'uhr', 'uhren'})) return '⏰';
+  if (has(['schoko', 'eiskugel', 'eiscreme'],
+      exact: {'eis', 'speiseeis', 'eistüte'})) {
+    return '🍦';
+  }
+  if (has(['ball', 'spiel'])) return '⚽';
+  if (has(['kerze', 'geburtstag'])) return '🎂';
+  if (has(['regen', 'wolke', 'sonne'])) return '🌤️';
+  return '📖';
 }

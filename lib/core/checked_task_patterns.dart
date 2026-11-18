@@ -47,17 +47,19 @@ class CheckedNumberPattern {
 
   static CheckedNumberPattern? fromPrompt(String prompt) {
     final match = RegExp(
-      r'^Gehe jedes Mal gleich viele Schritte weiter:\s*(.+?)\s*[–—]\s*\?\s*Welche Zahl folgt\?$',
+      r'^Gehe jedes Mal gleich viele Schritte (weiter|zurück):\s*(.+?)\s*[–—]\s*\?\s*Welche Zahl folgt\?$',
     ).firstMatch(prompt.trim());
     if (match == null) return null;
-    final values = match[1]!
+    final forward = match[1] == 'weiter';
+    final values = match[2]!
         .split(RegExp(r'\s*[–—]\s*'))
         .map(int.tryParse)
         .toList(growable: false);
     if (values.length < 3 || values.any((value) => value == null)) return null;
     final sequence = values.cast<int>();
     final step = sequence[1] - sequence.first;
-    if (step == 0) return null;
+    // „weiter“ heißt größer werden, „zurück“ kleiner werden.
+    if (step == 0 || (step > 0) != forward) return null;
     for (var index = 2; index < sequence.length; index++) {
       if (sequence[index] - sequence[index - 1] != step) return null;
     }

@@ -132,15 +132,25 @@ void main() {
         final a = int.parse(math[1]!), b = int.parse(math[3]!);
         return '${math[2] == '+' ? a + b : a - b}';
       }
-      final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
-          .firstMatch(prompt);
-      if (line != null) return '${int.parse(line[2]!) + 1}';
-      if (prompt.endsWith('– wo ist mehr?')) {
+      // Seit der Fachprüfung Mathematik (M14) wechseln Schritt und Lücke:
+      // „Welche Zahl fehlt? 5, _, 15, 20“. Der Schritt folgt aus zwei
+      // sichtbaren Nachbarn.
+      if (prompt.startsWith('Welche Zahl fehlt? ')) {
+        final items = prompt.substring('Welche Zahl fehlt? '.length).split(', ');
+        final gap = items.indexOf('_');
+        final known = [for (var i = 0; i < items.length; i++) if (i != gap) i];
+        final step = (int.parse(items[known[1]]) - int.parse(items[known[0]])) ~/
+            (known[1] - known[0]);
+        return '${int.parse(items[known[0]]) + step * (gap - known[0])}';
+      }
+      // Wortlaut seit der Fachprüfung Mathematik (L17): „wo sind mehr
+      // Äpfel?“ mit der Karte „gleich viele“.
+      if (prompt.endsWith('– wo sind mehr Äpfel?')) {
         final parts = prompt.split(' oder ');
         final left = '🍎'.allMatches(parts[0]).length,
             right = '🍎'.allMatches(parts[1]).length;
         return left == right
-            ? 'gleich'
+            ? 'gleich viele'
             : left > right
                 ? 'links'
                 : 'rechts';
@@ -275,7 +285,7 @@ void main() {
             .map((t) => t.data ?? '')
             .toList();
         final prompt = texts.firstWhere(
-            (text) => text.contains('?') || text.endsWith('wo ist mehr?'));
+            (text) => text.contains('?') || text.endsWith('wo sind mehr Äpfel?'));
         final answer = answerFromPrompt(prompt);
         debugPrint('VISIBLE QUESTION $prompt -> $answer (choices: $texts)');
         final choice = find.descendant(of: panel, matching: find.text(answer));

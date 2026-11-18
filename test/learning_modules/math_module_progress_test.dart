@@ -18,6 +18,7 @@ import 'package:lumo_lernen/features/learning_modules/uhr_lernen/uhr_lernen_scre
 import 'package:lumo_lernen/features/learning_modules/geld/geld_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/einmaleins/einmaleins_screen.dart';
+import 'package:lumo_lernen/features/teacher_mode/topic_curriculum.dart';
 
 import 'learning_module_progress_test.dart'
     show BlockedModuleProgress, BlockedModuleWallet;
@@ -127,11 +128,10 @@ String _correct(WidgetTester tester, String unit) {
     final cents = coins
         .map((coin) => int.parse(coin[1]!) * (coin[2] == '€' ? 100 : 1))
         .reduce((a, b) => a + b);
+    // Schulschreibweise „1,50 €“ statt „1 Euro 50“ (Befund L8).
     return cents < 100
         ? '$cents Cent'
-        : cents % 100 == 0
-            ? '${cents ~/ 100} Euro'
-            : '${cents ~/ 100} Euro ${cents % 100}';
+        : '${cents ~/ 100},${(cents % 100).toString().padLeft(2, '0')} €';
   }
   if (labels.contains('Welche Zahl ist größer?')) {
     final fontSize = unit == 'Zahlen 1-10' ? 56.0 : 48.0;
@@ -232,6 +232,23 @@ void main() {
       await _close(tester, app);
     });
   }
+
+  // Fachprüfung Mathematik S10: Das Modul mit den Reihen 1 bis 10 hieß
+  // „Großes 1×1“. Die Reihen 1 bis 10 sind das kleine Einmaleins, „großes
+  // Einmaleins“ bezeichnet die Reihen 11 bis 20.
+  testWidgets('Reihen 1 bis 10 heißen nicht „Großes 1×1“', (tester) async {
+    final app = await nativeStorageFixture(tester,
+        () => LumoAppState(walletRepository: RewardWalletRepository()));
+    await _open(
+        tester, app, (app) => EinmaleinsScreen(appState: app, fullRange: true));
+    final labels = _texts(tester).map((text) => text.data ?? '').toList();
+    expect(labels.where((label) => label.contains('Großes')), isEmpty);
+    expect(labels, contains('1×1 – alle Reihen'));
+    await tester.binding.handlePopRoute();
+    await _frames(tester);
+    await _close(tester, app);
+    expect(TopicCurriculum.of('m3_einmaleins_voll')!.title, '1×1 – alle Reihen');
+  });
 
   testWidgets(
       'actual Minus retries wallet then profile, blocks both Back paths and pauses feedback',

@@ -29,17 +29,30 @@ void main() {
   });
 
   test('clocks have exactly one correct time, including whole hours', () {
-    for (var seed = 0; seed < 300; seed++) {
+    final seenTimes = <String>{};
+    for (var seed = 0; seed < 600; seed++) {
       final task = template('g2_clock').concretize(seed);
       final values = task.choices.map((choice) {
         final parts = numbers(choice);
         return parts[0] * 60 + (parts.length == 1 ? 0 : parts[1]);
       }).toList();
       expect(values.toSet().length, values.length, reason: task.prompt);
-      final asked = numbers(task.prompt);
+      // Fachprüfung Mathematik M4: Die Frage nannte früher Stunde und
+      // Minute („Stunde 7 und Minute 30“) und damit die Lösung. Jetzt steht
+      // die Uhrzeit nur auf der Uhr im Bild; die Frage enthält keine Zahl.
+      expect(task.prompt, 'Wie spät ist es?');
+      expect(numbers(task.prompt), isEmpty);
+      expect(task.choices, hasLength(4), reason: '${task.choices}');
+      expect(task.choices.where((choice) => choice == task.answer),
+          hasLength(1));
       final answer = numbers(task.answer);
-      expect(answer[0] * 60 + answer[1], asked[0] * 60 + asked[1]);
+      expect(answer[0], inInclusiveRange(1, 12));
+      expect(const [0, 15, 30, 45], contains(answer[1]));
+      expect(task.explanation, endsWith('Auf der Uhr steht ${task.answer}.'));
+      seenTimes.add(task.answer);
     }
+    // Alle 48 Uhrzeiten (12 Stunden mal 4 Viertelstunden) kommen vor.
+    expect(seenTimes, hasLength(48));
   });
 
   test('grade one number lines never extend beyond 20', () {
@@ -56,8 +69,10 @@ void main() {
         for (var seed = 0; seed < 300; seed++)
           template(id).concretize(seed).answer,
       };
-      expect(
-          answers, contains(id == 'g1_money_more' ? 'gleich viel' : 'gleich'));
+      // „gleich viele“ statt „gleich“: Die Frage heißt jetzt „wo sind mehr
+      // Äpfel?“, darauf passt nur „gleich viele“ (Fachprüfung L17).
+      expect(answers,
+          contains(id == 'g1_money_more' ? 'gleich viel' : 'gleich viele'));
     }
   });
 
@@ -88,7 +103,10 @@ void main() {
       final prompts = <String>{};
       final occurrences = <String, int>{};
       for (var seed = 0; seed < 1000; seed++) {
-        final task = template(entry.key).concretize(seed);
+        // „Längen“ rechnet in Klasse 2 jetzt im Zahlenraum 100 (Fachprüfung
+        // M12); die Umrechnung mehrerer Meter gilt ab Klasse 3.
+        final task = template(entry.key)
+            .concretize(seed, forGrade: entry.key == 'g2_length' ? 3 : null);
         prompts.add(task.prompt);
         occurrences[task.prompt] = (occurrences[task.prompt] ?? 0) + 1;
         final parts = numbers(task.prompt);
@@ -126,14 +144,20 @@ void main() {
 
   test('fourth-grade symmetry asks for axes rather than reusing yes/no tasks',
       () {
+    // Fachprüfung Mathematik M14: Früher gab es nur vier Figuren. Die Liste
+    // ist jetzt länger; die vier alten Figuren behalten ihre Lösung.
     final expected = {
-      'ein Quadrat': '4',
-      'ein Rechteck, das kein Quadrat ist': '2',
-      'ein gleichseitiges Dreieck': '3',
-      'ein gleichschenkliges Dreieck, das nicht gleichseitig ist': '1',
+      for (final entry in symmetryAxisExamples) entry.$1: '${entry.$2}',
     };
+    expect(expected['ein Quadrat'], '4');
+    expect(expected['ein Rechteck, das kein Quadrat ist'], '2');
+    expect(expected['ein gleichseitiges Dreieck'], '3');
+    expect(
+        expected['ein gleichschenkliges Dreieck, das nicht gleichseitig ist'],
+        '1');
+    expect(expected.length, greaterThanOrEqualTo(20));
     final seen = <String>{};
-    for (var seed = 0; seed < 100; seed++) {
+    for (var seed = 0; seed < 400; seed++) {
       final task = template('g4_symmetry_lines').concretize(seed);
       final key = expected.keys.singleWhere(
           (shape) => task.prompt == 'Wie viele Symmetrieachsen hat $shape?');

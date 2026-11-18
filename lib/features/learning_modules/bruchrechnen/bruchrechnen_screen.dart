@@ -103,7 +103,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
 
   void _generateTask() {
     // Progressiver Schwierigkeitsgrad:
-    // Aufgabe 1-2: Halbe (1/2)
+    // Aufgabe 1: Halbe (1/2), Aufgabe 2: Viertel
     // Aufgabe 3-4: Drittel/Viertel
     // Aufgabe 5-8: bis Achtel
     final maxNenner = _taskIdx < 2
@@ -113,6 +113,12 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
             : 8;
     _nenner = 2 + _rng.nextInt(maxNenner - 1); // 2..maxNenner
     _gegessen = 1 + _rng.nextInt(_nenner - 1); // 1..nenner-1
+    // Befund L9: Die ersten beiden Aufgaben waren immer 1/2. Die zweite
+    // ist jetzt ein Viertel oder drei Viertel.
+    if (_taskIdx == 1) {
+      _nenner = 4;
+      _gegessen = _rng.nextBool() ? 1 : 3;
+    }
 
     // Enumerate a finite pool of distinct values. Equivalent fractions must
     // neither duplicate each other nor be offered as a wrong answer.
@@ -282,7 +288,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
       child: LumoLearningModuleFrame(
         appState: widget.appState,
         title: 'Mathe-Abenteuer',
-        moduleTitle: 'Bruchrechnen',
+        moduleTitle: 'Brüche erkennen',
         icon: Icons.pie_chart_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,

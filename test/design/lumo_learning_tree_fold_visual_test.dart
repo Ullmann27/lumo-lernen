@@ -15,6 +15,7 @@ import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
 import 'package:lumo_lernen/features/learning/renderers/lumo_premium_visuals.dart';
 import 'package:lumo_lernen/features/learning/widgets/lumo_learning_tree_card.dart';
+import 'package:lumo_lernen/core/math_task_templates.dart';
 
 const captureKey = ValueKey('learning-visual-capture');
 
@@ -96,6 +97,10 @@ void main() {
   ]) {
     testWidgets('Langer Zahlenvergleich passt auf ${target.$2}',
         (tester) async {
+      // Große Zahlen stehen seit der Fachprüfung Mathematik (M7) in
+      // Dreiergruppen: 987 654 321 statt 987654321.
+      final leftShown = groupedNumber(987654321);
+      final rightShown = groupedNumber(123456789);
       await tester.binding.setSurfaceSize(Size(target.$1, 760));
       addTearDown(() => tester.binding.setSurfaceSize(null));
       final task = TaskInstance(
@@ -140,14 +145,14 @@ void main() {
           );
       await tester.pumpWidget(comparison());
       await tester.pump();
-      expect(find.text('987654321'), findsOneWidget);
-      expect(find.text('123456789'), findsOneWidget);
+      expect(find.text(leftShown), findsOneWidget);
+      expect(find.text(rightShown), findsOneWidget);
       expect(find.text('?'), findsOneWidget);
       expect(find.text('>'), findsNothing,
           reason:
               'The hidden answer must not solve the visual before a choice.');
       final bounds = tester.getRect(find.byKey(captureKey));
-      for (final number in ['987654321', '123456789']) {
+      for (final number in [leftShown, rightShown]) {
         final box = tester.renderObject<RenderBox>(find.text(number));
         final painted = Rect.fromPoints(
           box.localToGlobal(Offset.zero),
@@ -161,8 +166,8 @@ void main() {
       // Only the lesson's evaluated result may reveal the relation.
       await tester.pumpWidget(comparison(evaluatedSymbol: '>'));
       await tester.pump();
-      expect(find.text('987654321'), findsOneWidget);
-      expect(find.text('123456789'), findsOneWidget);
+      expect(find.text(leftShown), findsOneWidget);
+      expect(find.text(rightShown), findsOneWidget);
       expect(find.text('>'), findsOneWidget);
       expect(find.text('?'), findsNothing);
       expect(tester.takeException(), isNull);

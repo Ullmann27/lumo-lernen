@@ -7,7 +7,6 @@
 /// oder bei mehreren Fehlversuchen eingeblendet.
 library;
 
-
 enum RechentricksKind {
   /// Emma (K1): "Ich tausche die Zahlen!"
   /// Bei 2 + 6 statt vorne rechnen, hinten die kleinere addieren.
@@ -64,10 +63,14 @@ class RechentricksMentor {
 
 // 2026-06-06 Iter 31: Premium-Avatare aus assets/lumo_cards/avatars/.
 // Heinz' Wunsch nach 'mehr Professionalitaet' - die PNGs lagen brach.
-const String _avatarEmma = 'assets/lumo_cards/avatars/avatar_player_red_girl.png';
-const String _avatarMax = 'assets/lumo_cards/avatars/avatar_player_blue_boy.png';
-const String _avatarHanna = 'assets/lumo_cards/avatars/avatar_player_yellow_girl_headphones.png';
-const String _avatarTim = 'assets/lumo_cards/avatars/avatar_player_green_boy_glasses.png';
+const String _avatarEmma =
+    'assets/lumo_cards/avatars/avatar_player_red_girl.png';
+const String _avatarMax =
+    'assets/lumo_cards/avatars/avatar_player_blue_boy.png';
+const String _avatarHanna =
+    'assets/lumo_cards/avatars/avatar_player_yellow_girl_headphones.png';
+const String _avatarTim =
+    'assets/lumo_cards/avatars/avatar_player_green_boy_glasses.png';
 // Mira ist lila - passt zur Luna-Owl
 const String _avatarMira = 'assets/lumo_cards/avatars/bot_luna_owl.png';
 
@@ -204,12 +207,25 @@ class LumoRechentricks {
     final a = parsed.a;
     final b = parsed.b;
     final op = parsed.op;
-    final answer = int.tryParse(correctAnswer.replaceAll(RegExp(r'[^0-9-]'), ''));
-    if (answer == null) return null;
+    // Nur ganze Zahlen: Früher wurden alle Nichtziffern entfernt, aus 4/9
+    // wurde 49 und aus 15,1 wurde 151 („Also: 9 + 3 = 49“).
+    final trimmedAnswer = correctAnswer.trim();
+    if (!RegExp(r'^\d+$').hasMatch(trimmedAnswer)) return null;
+    final answer = int.parse(trimmedAnswer);
+    // Der Trick muss genau die Aufgabe rechnen, sonst lieber keiner.
+    final computed = switch (op) {
+      '+' => a + b,
+      '-' => a - b,
+      _ => a * b,
+    };
+    if (computed != answer) return null;
 
     final RechentricksExplanation? worked;
     // 2026-06-05 Iter 24: Multiplikations-Tricks fuer K3 Einmaleins.
     if (op == '×' || op == '*' || op == '·') {
+      // Die Einmaleins-Tricks (Tauschen, Verdoppeln, 5er-Trick) gelten
+      // für das kleine Einmaleins, nicht für „Schriftlich: 435 × 8“.
+      if (a > 10 || b > 10) return null;
       worked = _multiplicationTrick(a, b, answer);
     } else if (grade >= 3 && (a >= 100 || b >= 100)) {
       // K3+ Profi-Tricks fuer dreistellige Zahlen.
@@ -355,11 +371,15 @@ class LumoRechentricks {
     return null;
   }
 
-  RechentricksExplanation? _gradeThreeTrick(String op, int a, int b, int answer) {
+  RechentricksExplanation? _gradeThreeTrick(
+      String op, int a, int b, int answer) {
     if (op == '+') {
       // Hanna: Vereinfachen wenn b nah an einer runden Zahl
-      final bToRound = _distanceToRound(b);
-      if (bToRound != null && bToRound.abs() <= 5) {
+      // Nur nahe an einem vollen Hunderter lohnt sich das Vereinfachen
+      // (298 → 300). Früher wurde fast jede Aufgabe auf den nächsten Zehner
+      // geschoben: 387 + 337 → 384 + 340 ist nicht leichter.
+      final bToRound = _distanceToHundred(b);
+      if (bToRound != null && a - bToRound >= 0) {
         final newB = b + bToRound;
         final newA = a - bToRound;
         return RechentricksExplanation(
@@ -393,16 +413,11 @@ class LumoRechentricks {
       final bHundredsPart = (b ~/ 100) * 100;
       final bTensPart = ((b - bHundredsPart) ~/ 10) * 10;
       final bOnesPart = b - bHundredsPart - bTensPart;
-      final step1 = a + bHundredsPart;
-      final step2 = step1 + bTensPart;
       return RechentricksExplanation(
         mentor: _mentorOf(RechentricksKind.stepByStep),
         taskText: '$a + $b = ?',
-        steps: <String>[
-          '$a + $bHundredsPart = $step1',
-          '$step1 + $bTensPart = $step2',
-          '$step2 + $bOnesPart = $answer',
-        ],
+        steps: _stepsWithoutZero(
+            a, '+', <int>[bHundredsPart, bTensPart, bOnesPart]),
         resultText: 'Antwort: $answer',
       );
     }
@@ -410,16 +425,11 @@ class LumoRechentricks {
       final bHundredsPart = (b ~/ 100) * 100;
       final bTensPart = ((b - bHundredsPart) ~/ 10) * 10;
       final bOnesPart = b - bHundredsPart - bTensPart;
-      final step1 = a - bHundredsPart;
-      final step2 = step1 - bTensPart;
       return RechentricksExplanation(
         mentor: _mentorOf(RechentricksKind.stepByStep),
         taskText: '$a - $b = ?',
-        steps: <String>[
-          '$a - $bHundredsPart = $step1',
-          '$step1 - $bTensPart = $step2',
-          '$step2 - $bOnesPart = $answer',
-        ],
+        steps: _stepsWithoutZero(
+            a, '-', <int>[bHundredsPart, bTensPart, bOnesPart]),
         resultText: 'Antwort: $answer',
       );
     }
@@ -430,20 +440,44 @@ class LumoRechentricks {
     return kAllRechentricksMentors.firstWhere((m) => m.kind == kind);
   }
 
-  /// Distanz zu naechster runden Zahl (10er-Schritt), Wertebereich -5..+5.
-  int? _distanceToRound(int n) {
-    final mod = n % 10;
-    if (mod == 0) return null;
-    return mod <= 5 ? -mod : 10 - mod;
+  /// Abstand zum nächsten vollen Hunderter, nur wenn er höchstens 5 ist
+  /// (295 → +5, 303 → −3); sonst null.
+  int? _distanceToHundred(int n) {
+    final mod = n % 100;
+    if (mod == 0 || n < 100) return null;
+    if (mod <= 5) return -mod;
+    if (mod >= 95) return 100 - mod;
+    return null;
+  }
+
+  /// Rechnet die Stellen nacheinander dazu oder weg. Schritte mit 0
+  /// („445 - 0 = 445“) werden ausgelassen.
+  List<String> _stepsWithoutZero(int start, String op, List<int> parts) {
+    final steps = <String>[];
+    var current = start;
+    for (final part in parts) {
+      if (part == 0) continue;
+      final next = op == '+' ? current + part : current - part;
+      steps.add('$current $op $part = $next');
+      current = next;
+    }
+    return steps;
   }
 
   _ParsedTask? _parseTask(String prompt) {
     // 2026-06-05 Iter 24: jetzt auch ×, *, · fuer Multiplikation.
-    final m = RegExp(r'(\d+)\s*([+\-×*·])\s*(\d+)').firstMatch(prompt);
+    // Die ganze Aufgabe muss eine reine Rechnung mit zwei ganzen Zahlen
+    // sein. Früher griff der Ausdruck mitten in Brüche („1/9 + 3/9“ → 9 + 3)
+    // und Kommazahlen („8,4 + 6,7“ → 4 + 6). Erlaubt sind ein kurzer
+    // Vorspann („Schriftlich:“) und ein Nachsatz ohne Ziffern.
+    final m = RegExp(
+            r'^(?:[A-Za-zÄÖÜäöüß ]+:\s*)?(\d+)\s*([+\-−×*·])\s*(\d+)\s*=\s*\?(?:\s+[^0-9]*)?$')
+        .firstMatch(prompt.trim());
     if (m == null) return null;
+    final op = m.group(2)!;
     return _ParsedTask(
       a: int.parse(m.group(1)!),
-      op: m.group(2)!,
+      op: op == '−' ? '-' : op,
       b: int.parse(m.group(3)!),
     );
   }
