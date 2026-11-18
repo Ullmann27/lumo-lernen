@@ -1038,7 +1038,14 @@ class _LearningContentState extends State<LearningContent>
           objectId: _activeObjectId ?? 'learning-task',
           point: true,
           state: 'explaining');
-      _stage.helpAt(_stageTargetFor(_activeObjectId), hint);
+      // Stufe 1 zeigt auf die Rechnung, Stufe 2 auf die Darstellung (Bild,
+      // Zehnerfeld …), die erklärt, ohne die Lösung zu verraten. Ist dort
+      // kein Platz, zeigt Lumo wieder auf die Rechnung.
+      _stage.helpAt(
+          _activeObjectId == null && _requestedHelpLevel == 2
+              ? 'task-workspace'
+              : _stageTargetFor(_activeObjectId),
+          hint);
       if (widget.appState.state.settings.voiceEnabled) {
         unawaited(_speakTutorHint(hint));
       }
