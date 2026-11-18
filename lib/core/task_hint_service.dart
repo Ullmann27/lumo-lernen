@@ -371,7 +371,9 @@ class TaskHintService {
         check,
       ];
     }
-    if (prompt.contains('schenkt') || prompt.contains('fehlen noch')) {
+    if (prompt.contains('schenkt') ||
+        prompt.contains('fehlen noch') ||
+        prompt.contains('ziehen')) {
       return [
         'Hier geht etwas weg. Das ist eine Minusaufgabe.',
         if (values.length >= 2)

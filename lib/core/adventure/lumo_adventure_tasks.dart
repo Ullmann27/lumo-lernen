@@ -135,12 +135,25 @@ class LumoAdventureTasks {
         _ => 10000,
       };
 
+  /// Größte Lösung einer Einheit. Rechengeschichten der 4. Klasse rechnen
+  /// im Zahlenraum bis zur Million (Befund M22), die übrigen Abenteuer
+  /// bleiben bei [maxNumber].
+  static int answerMax(int grade, String unit) =>
+      grade >= 4 && unit == 'Rechengeschichten' ? 1000000 : maxNumber(grade);
+
   /// [max] begrenzt die falschen Karten, z. B. auf den Zahlenraum 20 der
   /// 1. Klasse: Eine Karte „25“ wäre dort ohne Rechnen auszuschließen.
   List<String> _numberChoices(int answer, {int spread = 0, int? max}) {
     final step = spread > 0 ? spread : (answer > 200 ? 10 : 1);
     final options = <int>{answer};
-    final candidates = <int>[
+    // Große Zahlen (Klasse 4): nur Stellenfehler, keine Karte mit anderer
+    // Einerziffer, die man ohne Rechnen ausschließen könnte.
+    final candidates = step >= 1000
+        ? (<int>[
+            answer + step, answer - step, answer + 10, answer - 10,
+            answer + 100, answer - 100, answer + 10 * step, answer - 10 * step,
+          ]..shuffle(_random))
+        : <int>[
       answer + step, answer - step, answer + 2 * step, answer - 2 * step,
       answer + 10, answer - 10, answer + 1, answer - 1,
       answer + 2, answer - 2, answer + 3, answer - 3,
@@ -294,6 +307,7 @@ class LumoAdventureTasks {
   /// es in solchen Mengen wirklich gibt: Punkte, Meter, Zuschauer, Schritte.
   /// Früher hieß es „Hoppel hat 902 Erdbeeren“ oder „fährt 471 Runden“.
   AdventureTask _bigStory(int g, int kind, String hero, String friend) {
+    if (g >= 4) return _millionStory(kind, hero);
     final max = maxNumber(g);
     switch (kind) {
       case 0:
@@ -336,6 +350,55 @@ class LumoAdventureTasks {
             a + b,
             'Zusammen heißt plus: $a + $b = ${a + b}.',
             spread: 10);
+    }
+  }
+
+  /// Klasse 4: Zahlen von 10 000 bis 1 000 000 mit Dingen, bei denen solche
+  /// Zahlen vorkommen (Befund M22: früher endete Klasse 4 bei 10 000).
+  AdventureTask _millionStory(int kind, String hero) {
+    // Runde Zehner, damit die Zahlen lesbar bleiben.
+    int tens(int min, int max) => _between(min ~/ 10, max ~/ 10) * 10;
+    switch (kind) {
+      case 0:
+        final a = tens(10000, 500000);
+        final b = tens(10000, 400000);
+        return _math(
+            'Rechengeschichten',
+            '$hero erreicht im Lumo-Spiel in der ersten Runde $a Punkte und '
+                'in der zweiten Runde $b Punkte. Wie viele Punkte sind das zusammen?',
+            a + b,
+            'Beide Runden zusammen: $a + $b = ${a + b}.',
+            spread: 1000);
+      case 1:
+        final a = tens(200000, 1000000);
+        final b = tens(10000, a - 10000);
+        return _math(
+            'Rechengeschichten',
+            'In einer Stadt wohnen $a Menschen. In einem Jahr ziehen $b '
+                'Menschen weg, niemand kommt dazu. Wie viele wohnen dann noch dort?',
+            a - b,
+            'Wer wegzieht, wird abgezogen: $a − $b = ${a - b}.',
+            spread: 1000);
+      case 2:
+        final a = tens(20000, 50000);
+        final b = tens(10000, a - 1000);
+        return _math(
+            'Rechengeschichten',
+            'Beim ersten Fußballspiel sind $a Zuschauer im Stadion, beim '
+                'zweiten $b. Wie viele Zuschauer waren beim ersten Spiel mehr als beim zweiten?',
+            a - b,
+            'Den Unterschied findest du mit Minus: $a − $b = ${a - b}.',
+            spread: 1000);
+      default:
+        final a = tens(10000, 90000);
+        final b = tens(10000, 90000);
+        return _math(
+            'Rechengeschichten',
+            'Eine Radtour hat zwei Teile: $a Meter am Vormittag und $b Meter '
+                'am Nachmittag. Wie viele Meter sind das zusammen?',
+            a + b,
+            'Zusammen heißt plus: $a + $b = ${a + b}.',
+            spread: 1000);
     }
   }
 

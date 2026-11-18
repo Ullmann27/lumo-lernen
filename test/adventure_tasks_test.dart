@@ -37,7 +37,7 @@ void main() {
             expect(t.prompt, isNot(contains('Aepfel')), reason: where);
             if (subject == 'Mathematik' && int.tryParse(t.answer) != null) {
               final value = int.parse(t.answer);
-              expect(value, inInclusiveRange(0, LumoAdventureTasks.maxNumber(grade)),
+              expect(value, inInclusiveRange(0, LumoAdventureTasks.answerMax(grade, unit)),
                   reason: 'Zahlenraum: $where');
             }
             final task = LumoTask(
@@ -236,6 +236,25 @@ void main() {
             matches(RegExp(r'gehören (zum|zu den|zur Gruppe) .+\. \S+ gehört (zum|zu den|zur Gruppe) ')),
             reason: task.explanation);
       }
+    });
+
+    test('M22: Klasse 4 rechnet in Geschichten bis zur Million', () {
+      final generator = LumoAdventureTasks(Random(21));
+      var big = 0;
+      for (var i = 0; i < 300; i++) {
+        final task = next(generator, 'Rechengeschichten', 4);
+        final value = int.parse(task.answer);
+        if (value <= 10000) continue;
+        big++;
+        expect(value, lessThanOrEqualTo(1000000), reason: task.prompt);
+        // Keine Karte mit anderer Einerziffer, die man ohne Rechnen streicht.
+        for (final choice in task.choices) {
+          expect(int.parse(choice) % 10, value % 10,
+              reason: '${task.prompt} ${task.choices}');
+        }
+        expect(task.prompt, isNot(contains('Erdbeeren')));
+      }
+      expect(big, greaterThan(60));
     });
   });
 }
