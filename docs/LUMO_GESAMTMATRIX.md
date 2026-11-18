@@ -178,6 +178,7 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 | UNO-Regeln entfernen | Godot: ERLEDIGT (18.11., Merge `e80a4cb`). App: UNO-Dart-Spiel und nativer Kartendienst werden entfernt – in Arbeit |
 | Drei eigene Spiele (Sternenstich, Sternenleiter, Lumo-Quartett; 2–4 Spieler, KI in drei Stärken ohne Blick in fremde Karten) | Godot: GETESTET (`cards_rules_regression` 212 968 Prüfungen, `cards_table_regression` 595, `cards_safe_area_regression` 2 176 auf 9 Bildschirmformen). App-Anschluss in Arbeit; am Gerät NICHT geprüft |
 | 3D-Tisch mit sitzenden Figuren und Kartenwurf | Godot: ERLEDIGT, 32 Engine-Bilder gesichtet. Offen: Lumo hält am Tisch noch die Kart-Sitzhaltung statt Karten; im Hochformat ist er am Rand angeschnitten |
+| Spielzimmer (Raum, Möbel, Texturen) | Godot: ZUSAMMENGEFÜHRT 18.11. (`fbac669`): Bücherregale, Eichentisch mit Filz, Pflanzen, Punktetafel; `cards_table` 591, `cards_safe_area` 2176, `cards_rules` 212 968. In APK 0.13.31+2043. Offen: 3D-Memory-Tisch (Lumo im Querformat angeschnitten), 4 Gewinnt und Quiz nicht gesichtet; Titelbild der Spielewelt zeigt jetzt den echten Kartentisch |
 
 ### 4.3 Memory
 
@@ -194,11 +195,13 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 - Integriert am 17.11.: Stream `lumo-2040/bauwelt` (Kampagnenkarte, Dorfverteidigung, HUD). 9 Bauwelt-/Dorf-Tests grün (lokal), u. a. `build_defense_regression` (162), `build_campaign_map_regression` (54), `build_village_economy_regression` (339 Prüfungen).
 - Befund App: „Dorfwirtschaft" (`settlement`) steht nicht in der Belohnungsliste von `core/embedded_game_service.dart` – Ergebnisse werden in Flutter nicht gebucht.
 - Ziel: Heinz' Punkte 5 und 11. Gelände mit Höhen (Hügel und Berge unbebaubar), große Karte, Kampagne, Freibau, sichtbar bauende KI-Städte. Heute ist das Gelände flach. Status OFFEN.
+- **18.11.2026, mittags:** Dorfwelt mit Höhenkarten-Gelände, Fluss, Fachwerkhäusern, Blattbüschel-Bäumen, Gründerlager, Kapitel 1/12 und neuem HUD zusammengeführt (Godot `cbeb7c0`; 17 Tests grün, 14 Bilder gesichtet). In APK 0.13.31+2043. Die Dorfwelt meldet der App weiterhin keine Ergebnisse (kein `reward`-Aufruf). Offen laut Heinz (Entscheidung 24): KI-Gegner, Angriffe mit Sinn, Tutorial, Langzeit-Kampagne; Bauwelt-Grafik als eigenes Paket danach.
 
 ### 4.5 Schatzsuche, Rhythmus, Puzzle
 
 - Godot `scripts/creative/treasure_world.gd`, `rhythm_world.gd`, `puzzle_world.gd`.
 - Integriert am 17.11.: Stream `lumo-2040/kreativ` (Schatzsuche mit Karte/Kompass, Rhythmus-UI). 4 Schatzsuche- und 3 Rhythmus-Tests grün (lokal). Puzzle: NOT_RUN.
+- **18.11.2026, mittags:** Schatzinsel, Konzertbühne, Puzzle-Atelier und Spielewelt mit eigenen Modellen, Texturen und Shadern zusammengeführt (Godot `5a3747d`; 14 Tests grün). In APK 0.13.30+2042. Offen: Puzzle-Teile ohne Fase/Karton-Kante (zweite Runde des Helfers steht aus).
 
 ### 4.6 Jump‑and‑Run
 
@@ -207,6 +210,7 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 - Ziel: Heinz' Punkte 4 und 12. Das 2D-Spiel entspricht nicht dem Ziel; das 3D-Spiel ist ein kurzer Insel-Parcours, kein langer Lauf. Geplant: Lauf-Modus auf den vorhandenen langen Kart-Welten (Streckenbau, Landschaft und Lumo-Laufanimation sind vorhanden). Status OFFEN.
 
 - **18.11.2026:** „Lumo Lauf" (Godot `scripts/games/run/`, Route `run`) mit Level „Dschungelherz" zusammengeführt – siehe Stand zu Entscheidung 15. Zauberwald und Sonnenhafen laufen noch auf den Kart-Strecken. Am Gerät NICHT geprüft.
+- **18.11.2026, mittags:** neue Dschungelkulisse aus eigenen Blender-Modellen zusammengeführt (Godot `abbc3f3`; `lumo_run_regression` 496 Prüfungen; 24 Bilder aus dem gespielten Lauf gesichtet). In APK 0.13.31+2043. Offen laut Heinz (Entscheidung 25): schneller, flüssiger, mehr Action – Maßstab Sonic.
 
 ### 4.7 Weitere Spiele
 
@@ -218,6 +222,10 @@ Godot-Spiele starten über `features/lumo3d/lumo3d_launcher.dart` (nur Android),
 | Sternenpfad | Flutter `star_trail/` | NOT_RUN; Doppelbuchung nur bildschirmlokal verhindert |
 | 50-Level-Karte (5 Minispiele) | Flutter `mini_games/` | NOT_RUN |
 | Sterne sammeln | Godot `star_collect_game.gd` | NOT_RUN |
+
+### 4.8 Klang (alle Spiele)
+
+- **18.11.2026:** Klangwelt zusammengeführt (Godot `b594543`): selbst komponierte Musik, Atmosphären und Ereignistöne, `AudioManager` mit echten Samples, `GameSoundscape`. `game_soundscape_regression` 308 Prüfungen. In APK 0.13.31+2043. **Nicht angehört** – nur rechnerisch geprüft (Pegel, Schleifen); Urteil nach Gehör steht aus.
 
 ## 5. Lernen, Tutor, Daten
 
