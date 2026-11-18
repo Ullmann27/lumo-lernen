@@ -385,7 +385,11 @@ class GameReturnWiringTest(unittest.TestCase):
         self.assertIn('takeLast(400)', log_call)
         reader = text.split('private fun readOwnLog', 1)[1].split('private fun refreshLoadTimes', 1)[0]
         self.assertIn('"logcat", "-d"', reader)
-        self.assertIn('process.waitFor(5, java.util.concurrent.TimeUnit.SECONDS)', reader)
+        self.assertIn('reader.join(5000)', reader)
+        self.assertIn('process.destroy()', reader)
+        # minSdk 24: Process.waitFor(timeout)/isAlive brauchen API 26.
+        self.assertNotIn('process.waitFor(', reader)
+        self.assertNotIn('process.isAlive', reader)
         self.assertIn('listOf("godot", "Godot", "LumoHost", "AndroidRuntime", "DEBUG", "libc")', text)
         device = text.split('private fun startProtocolDevice', 1)[1].split('override fun configureFlutterEngine', 1)[0]
         for field in ('Build.MODEL', 'Build.VERSION.RELEASE', 'versionName', 'lumo_game_source.json', 'availMem'):

@@ -50,7 +50,7 @@ class MainActivity : FlutterActivity() {
     /**
      * Reads this app's own logcat (both processes share the UID; no permission)
      * on the calling background thread. logcat -d exits by itself; a watchdog
-     * ends it after 5 s. Returns the filtered lines, newest last.
+     * ends it after 5 s (minSdk 24, therefore via the reader thread). Returns the filtered lines, newest last.
      */
     private fun readOwnLog(withYear: Boolean = true): List<String> {
         val command = mutableListOf("logcat", "-d", "-v", "threadtime")
@@ -70,8 +70,13 @@ class MainActivity : FlutterActivity() {
             } catch (_: Exception) {}
         }, "LumoStartLogReader")
         reader.start()
-        if (!process.waitFor(5, java.util.concurrent.TimeUnit.SECONDS)) process.destroy()
-        reader.join(1000)
+        // minSdk 24: no Process.waitFor(timeout). The reader ends at EOF, i.e.
+        // when logcat -d exits; a stuck logcat is destroyed after 5 s.
+        reader.join(5000)
+        if (reader.isAlive) {
+            process.destroy()
+            reader.join(1000)
+        }
         val result = synchronized(lines) { lines.toList() }
         val failed = try { process.exitValue() != 0 } catch (_: IllegalThreadStateException) { false }
         if (withYear && failed) return readOwnLog(false)
