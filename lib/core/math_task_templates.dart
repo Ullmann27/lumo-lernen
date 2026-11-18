@@ -724,22 +724,26 @@ class MathTaskTemplate {
           keepOrder: true,
         );
       case MathTemplateKind.average:
-        // Mittelwert aus a, b und (a+b)/2-ish. Drei Werte deren Durchschnitt
-        // ganzzahlig ist: nutze 3-Zahlen die ein Vielfaches von 3 ergeben.
-        final base = a;
-        final v1 = base - b;
-        final v2 = base + 1;
-        final v3 = base + b - 1;
+        // Gerecht teilen: drei Werte mit ganzzahligem Mittel. Früher war die
+        // Lösung immer „zweite Zahl minus 1“ und die Werte standen stets
+        // aufsteigend da. Jetzt werden zwei Abstände zum Mittel frei
+        // gewählt, der dritte gleicht sie aus, die Reihenfolge wechselt.
+        final mean = a;
+        final reach = mean - 1 < b + 3 ? mean - 1 : b + 3;
+        final up = 1 + _positive(_mixSeed(seed + 23), reach);
+        final down = 1 + _positive(_mixSeed(seed + 41), reach);
+        final values = <int>[mean + up, mean - down, mean + down - up];
+        _SeedDice(seed + 59).shuffle(values);
+        final v1 = values[0], v2 = values[1], v3 = values[2];
         final sum = v1 + v2 + v3;
-        final answer = sum ~/ 3;
         return _numberTask(
           seed,
-          'Drei Kinder sammeln Sterne: $v1, $v2 und $v3. Wie viele Sterne im Mittelwert?',
-          answer,
-          'Addiere alle Werte ($v1+$v2+$v3=$sum) und teile durch die Anzahl (3): $sum:3 = $answer.',
+          'Knobelaufgabe: Drei Kinder sammeln Sterne: $v1, $v2 und $v3. Sie teilen alle Sterne gerecht auf. Wie viele Sterne bekommt jedes Kind?',
+          mean,
+          'Zähle alle Sterne zusammen: $v1 + $v2 + $v3 = $sum. Teile durch die 3 Kinder: $sum : 3 = $mean. Diese Zahl heißt Mittelwert.',
           'chart',
           // Typisch: nur addiert, einen der drei Werte genannt, durch 2 geteilt.
-          typical: <int>[v1, v2, v3, sum ~/ 2, answer + 3, answer - 3],
+          typical: <int>[v1, v2, v3, sum ~/ 2, sum, mean + 3, mean - 3],
         );
       case MathTemplateKind.shapeTrace:
         // 2026-06-05 Iter 20: Form-Nachzeichnen.

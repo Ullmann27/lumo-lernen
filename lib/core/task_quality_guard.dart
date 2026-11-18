@@ -443,7 +443,7 @@ class TaskQualityGuard {
       return _MathValue(square[2] == 'Umfang' ? 4 * side : side * side, 1);
     }
     final average = RegExp(
-        r'^Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\. Wie viele Sterne im Mittelwert\?$')
+        r'^(?:Knobelaufgabe: )?Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\. (?:Wie viele Sterne im Mittelwert\?|Sie teilen alle Sterne gerecht auf\. Wie viele Sterne bekommt jedes Kind\?)$')
         .firstMatch(prompt);
     if (average != null) {
       return _MathValue(int.parse(average[1]!) + int.parse(average[2]!) +
