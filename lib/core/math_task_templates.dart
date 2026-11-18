@@ -45,7 +45,7 @@ class MathTaskTemplates {
     ),
     MathTaskTemplate(id: 'g2_sub_100', grade: 2, unit: 'Minus bis 100', kind: MathTemplateKind.subtraction, validRangeA: <int>[30, 100], validRangeB: <int>[5, 29], promptPattern: 'minus-bis-100',
     ),
-    MathTaskTemplate(id: 'g2_tables', grade: 2, unit: 'Einmaleins', kind: MathTemplateKind.multiplication, validRangeA: <int>[2, 10], validRangeB: <int>[2, 10], promptPattern: 'einmaleins',
+    MathTaskTemplate(id: 'g2_tables', grade: 2, unit: 'Einmaleins', kind: MathTemplateKind.multiplication, validRangeA: <int>[2, 10], validRangeB: <int>[1, 10], promptPattern: 'einmaleins',
     ),
     MathTaskTemplate(id: 'g2_times_prep', grade: 2, unit: 'Einmaleins Vorbereitung', kind: MathTemplateKind.multiplicationPrep, validRangeA: <int>[2, 5], validRangeB: <int>[2, 10], promptPattern: 'wie-oft-in-zahl',
     ),
@@ -64,7 +64,7 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g2_tens_ones', grade: 2, unit: 'Zehner und Einer', kind: MathTemplateKind.tensOnes, validRangeA: <int>[10, 99], validRangeB: <int>[0, 1], promptPattern: 'zehner-einer',
     ),
 
-    MathTaskTemplate(id: 'g3_tables', grade: 3, unit: 'Einmaleins', kind: MathTemplateKind.multiplication, validRangeA: <int>[2, 10], validRangeB: <int>[2, 10], promptPattern: 'einmaleins',
+    MathTaskTemplate(id: 'g3_tables', grade: 3, unit: 'Einmaleins', kind: MathTemplateKind.multiplication, validRangeA: <int>[0, 10], validRangeB: <int>[0, 10], promptPattern: 'einmaleins',
     ),
     MathTaskTemplate(id: 'g3_written_add', grade: 3, unit: 'Schriftliche Addition', kind: MathTemplateKind.writtenAddition, validRangeA: <int>[120, 899], validRangeB: <int>[80, 699], promptPattern: 'schriftliche-addition',
     ),
@@ -198,7 +198,7 @@ class MathTaskTemplates {
     // Auswahl und Wiederholungsquote dürfen nicht denselben Modulo nutzen:
     // Bei 16 Templates wären sonst ganze Familien nie erreichbar.
     final template = selected[_positive(_mixSeed(seed + 101), selected.length)];
-    return template.concretize(_mixSeed(seed + 809));
+    return template.concretize(_mixSeed(seed + 809), forGrade: grade.clamp(1, 4).toInt());
   }
 
   /// Vier Antwortkarten für eine Zahlenaufgabe, auch für Spiele und Logik.
@@ -244,6 +244,28 @@ class MathTaskTemplates {
     'Verdoppeln und Halbieren': <String>['Verdoppeln und Halbieren'],
   };
 }
+
+/// Zahlen ab 10 000 in Dreiergruppen mit geschütztem Leerzeichen:
+/// 925 407 statt 925407. Kleinere Zahlen bleiben unverändert.
+String groupedNumber(int value) {
+  final digits = '$value';
+  if (value < 10000) return digits;
+  final buffer = StringBuffer();
+  for (var i = 0; i < digits.length; i++) {
+    if (i > 0 && (digits.length - i) % 3 == 0) buffer.write('\u00A0');
+    buffer.write(digits[i]);
+  }
+  return buffer.toString();
+}
+
+/// Liest eine mit [groupedNumber] geschriebene Zahl.
+int? parseGroupedNumber(String text) =>
+    int.tryParse(text.replaceAll('\u00A0', ''));
+
+/// „Welches Zeichen passt? 925 407 ⬜ 945 369“ (auch die ältere Schreibweise
+/// mit „?“ als Lücke). Gruppe 1 und 2 sind die beiden Zahlen.
+final RegExp comparePromptPattern = RegExp(
+    '^Welches Zeichen passt\\? ([\\d\u00A0]+) [?⬜] ([\\d\u00A0]+)\$');
 
 /// Klasse 1, Symmetrie: Dinge zum Falten (im Wen-Fall) und ob beide Hälften
 /// aufeinanderpassen. Gleich viele „ja“ und „nein“. Buchstaben und Ziffern
@@ -327,7 +349,9 @@ class MathTaskTemplate {
   final List<int> validRangeB;
   final String promptPattern;
 
-  MathConcreteTask concretize(int seed) {
+  /// [forGrade] ist die Klasse des Kindes, wenn eine Vorlage in einer höheren
+  /// Klasse wiederholt wird. Ohne Angabe gilt die Klasse der Vorlage.
+  MathConcreteTask concretize(int seed, {int? forGrade}) {
     final a = _valueInRange(validRangeA, _mixSeed(seed + 17));
     final b = _valueInRange(validRangeB, _mixSeed(seed + 53));
     switch (kind) {
@@ -666,6 +690,38 @@ class MathTaskTemplate {
             <String>[answer, first, ...wrong],
             'Der kurze Zeiger zeigt die Stunde: ${minutes == 0 ? 'Er zeigt genau auf die $a.' : 'Er steht zwischen der $a und der ${a % 12 + 1}. Es gilt die Zahl, an der er schon vorbei ist: die $a.'} $spoken Auf der Uhr steht $answer.', 'clock');
       case MathTemplateKind.lengthConversion:
+        if ((forGrade ?? grade) <= 2) {
+          // Klasse 2 rechnet im Zahlenraum 100: 1 m = 100 cm, halber Meter,
+          // auf 1 Meter ergänzen, Längen vergleichen und zusammenzählen.
+          // Früher lagen 293 von 300 Lösungen über 100 („8 Meter und
+          // 50 Zentimeter“).
+          final variant = _positive(_mixSeed(seed + 67), 8);
+          final length = 5 * (1 + (a * 7 + b) % 19);
+          if (variant == 0) {
+            return _numberTask(seed, 'Wie viele Zentimeter sind 1 Meter?', 100, '1 Meter sind 100 Zentimeter.', 'length_fact',
+                typical: const <int>[10, 1000, 50, 60]);
+          }
+          if (variant == 1) {
+            return _numberTask(seed, 'Wie viele Zentimeter sind ein halber Meter?', 50, '1 Meter sind 100 Zentimeter. Die Hälfte davon sind 50 Zentimeter.', 'length_fact',
+                typical: const <int>[5, 500, 100, 25, 30]);
+          }
+          if (variant <= 4) {
+            final missing = 100 - length;
+            return _numberTask(seed, 'Ein Band ist $length cm lang. Wie viele Zentimeter fehlen auf 1 Meter?', missing, '1 Meter sind 100 cm. Von $length bis 100 fehlen $missing: $length + $missing = 100.', 'length_fact',
+                // Typisch: die gegebene Länge genannt, um einen Zehner verrechnet.
+                typical: <int>[length, missing + 10, missing - 10, missing + 5, missing - 5]);
+          }
+          if (variant <= 6) {
+            final shorter = length > 90 ? 90 : length;
+            final longer = shorter + 5 * (1 + b % ((100 - shorter) ~/ 5));
+            return _numberTask(seed, 'Ein Seil ist $longer cm lang, ein Band ist $shorter cm lang. Wie viele Zentimeter ist das Seil länger?', longer - shorter, 'Der Unterschied: $longer − $shorter = ${longer - shorter} cm.', 'length_fact',
+                typical: <int>[longer + shorter, longer - shorter + 10, longer - shorter + 5, shorter]);
+          }
+          final first = 5 * (1 + a % 9);
+          final second = 5 * (2 + b);
+          return _numberTask(seed, 'Zwei Bänder sind $first cm und $second cm lang. Wie viele Zentimeter sind das zusammen?', first + second, 'Zusammen: $first + $second = ${first + second} cm.', 'length_fact',
+              typical: _additionErrors(first, second));
+        }
         final extra = b * 10;
         final answer = a * 100 + extra;
         final amount = extra == 0 ? '$a Meter' : '$a Meter und $extra Zentimeter';
@@ -706,10 +762,19 @@ class MathTaskTemplate {
           typical: <int>[askTens ? ones : tens, a, tens + ones, askTens ? tens * 10 : ones * 10],
         );
       case MathTemplateKind.multiplication:
-        final answer = a * b;
-        return _numberTask(seed, '$a × $b = ?', answer, 'Nutze die Einmaleins-Reihe von $a.', 'times_table',
+        // Klasse 2 beginnt mit den leichten Reihen 2, 5, 10, 3 und 4.
+        // Klasse 3 übt alle Reihen, auch mit 0 und 1. Früher waren beide
+        // Klassen gleich und begannen sofort mit 9 × 7.
+        final left = grade <= 2 ? const <int>[2, 5, 10, 3, 4][_positive(_mixSeed(seed + 73), 5)] : a;
+        final right = b;
+        final answer = left * right;
+        // Überall dieselbe Deutung: a × b heißt „a-mal die b“.
+        final repeated = left >= 2 && left <= 10
+            ? ' ${List<String>.filled(left, '$right').join(' + ')} = $answer.'
+            : ' $left × $right = $answer.';
+        return _numberTask(seed, '$left × $right = ?', answer, '$left × $right heißt $left-mal die $right.$repeated', 'times_table',
           // Typisch: Nachbaraufgabe in der Reihe oder plus statt mal gerechnet.
-          typical: <int>[a * (b - 1), a * (b + 1), (a - 1) * b, (a + 1) * b, a + b],
+          typical: <int>[left * (right - 1), left * (right + 1), (left - 1) * right, (left + 1) * right, left + right],
         );
       case MathTemplateKind.writtenAddition:
         final right = grade == 3 ? _foldInto(b, validRangeB.first, 1000 - a) : b;
@@ -724,10 +789,21 @@ class MathTaskTemplate {
           typical: _subtractionErrors(minuend, b),
         );
       case MathTemplateKind.fractionHalf:
-        final even = a.isEven ? a : a + 1;
-        final answer = even ~/ 2;
-        return _numberTask(seed, 'Was ist die Hälfte von $even?', answer, 'Die Hälfte ist einer von zwei gleich großen Teilen.', 'fraction_half',
-          typical: <int>[even * 2, even - 2, answer - 1, answer + 1, answer + 10],
+        // Halbe, Viertel und Achtel von Mengen. Früher gab es nur „die
+        // Hälfte von X“ bis 40 – weniger als in Klasse 2.
+        final parts = const <int>[2, 2, 4, 4, 8][_positive(_mixSeed(seed + 47), 5)];
+        final whole = parts == 2 ? 2 * (a + 5) : parts * (1 + a % 10);
+        final answer = whole ~/ parts;
+        final name = switch (parts) { 2 => 'die Hälfte', 4 => 'ein Viertel', _ => 'ein Achtel' };
+        final meaning = switch (parts) {
+          2 => 'Die Hälfte ist einer von 2 gleich großen Teilen',
+          4 => 'Ein Viertel ist einer von 4 gleich großen Teilen',
+          _ => 'Ein Achtel ist einer von 8 gleich großen Teilen',
+        };
+        return _numberTask(seed, 'Was ist $name von $whole?', answer, '$meaning: $whole : $parts = $answer.', 'fraction_half',
+          // Typisch: den falschen Bruchteil genommen, verdoppelt statt
+          // geteilt, die Zahl der Teile abgezogen.
+          typical: <int>[if (parts != 2) whole ~/ 2, if (parts == 2) whole ~/ 4, whole * 2, whole - parts, answer - 1, answer + 1],
         );
       case MathTemplateKind.wordProblemTwoStep:
         // Dritte Zahl 2 bis 9, nie größer als die erste: So bleibt jedes
@@ -851,13 +927,80 @@ class MathTaskTemplate {
           typical: story.typical,
         );
       case MathTemplateKind.chartRead:
-        final answer = a + b;
-        return _numberTask(seed, 'Diagramm: Montag $a Kinder, Dienstag $b Kinder. Wie viele zusammen?', answer, 'Lies beide Balken ab und addiere sie.', 'chart',
-          typical: _additionErrors(a, b),
-        );
+        // Vier Tage, vier Fragearten: meiste, wenigste, Unterschied, Summe.
+        // Früher war jede Aufgabe „Montag a, Dienstag b, wie viele
+        // zusammen?“ – eine Plusaufgabe der 2. Klasse.
+        const days = <String>['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag'];
+        final values = <int>[a + 20, b + 20, 20 + _positive(_mixSeed(seed + 5), 40), 20 + _positive(_mixSeed(seed + 9), 40)];
+        // Jeder Wert kommt nur einmal vor, damit „meiste“ eindeutig ist.
+        for (var i = 1; i < values.length; i++) {
+          while (values.sublist(0, i).contains(values[i])) {
+            values[i]++;
+          }
+        }
+        final data = 'Diagramm: ${<String>[for (var i = 0; i < 4; i++) '${days[i]} ${values[i]}'].join(', ')} Kinder.';
+        final sorted = <int>[...values]..sort();
+        final question = _positive(_mixSeed(seed + 79), 4);
+        if (question == 0 || question == 1) {
+          final wanted = question == 0 ? sorted.last : sorted.first;
+          return _choice(seed, '$data An welchem Tag waren die ${question == 0 ? 'meisten' : 'wenigsten'} Kinder da?', days[values.indexOf(wanted)], days,
+              'Vergleiche alle vier Balken: $wanted ist die ${question == 0 ? 'größte' : 'kleinste'} Zahl. Das war am ${days[values.indexOf(wanted)]}.', 'chart',
+              keepOrder: true);
+        }
+        if (question == 2) {
+          final first = _positive(_mixSeed(seed + 83), 4);
+          final second = (first + 1 + _positive(_mixSeed(seed + 89), 3)) % 4;
+          final more = values[first] > values[second] ? first : second;
+          final less = more == first ? second : first;
+          final difference = values[more] - values[less];
+          return _numberTask(seed, '$data Wie viele Kinder waren am ${days[more]} mehr da als am ${days[less]}?', difference,
+              'Lies beide Balken ab und rechne den Unterschied: ${values[more]} − ${values[less]} = $difference.', 'chart',
+              typical: <int>[values[more] + values[less], values[more], values[less], difference + 10, difference - 10]);
+        }
+        final sum = values.reduce((x, y) => x + y);
+        return _numberTask(seed, '$data Wie viele Kinder waren es an allen vier Tagen zusammen?', sum,
+            'Zähle alle vier Balken zusammen: ${values.join(' + ')} = $sum.', 'chart',
+            typical: <int>[sum - 10, sum + 10, sum - values.last, sorted.last, sum - 100, sum + 100]);
       case MathTemplateKind.compare:
-        final answer = a > b ? '>' : a < b ? '<' : '=';
-        return _choice(seed, 'Welches Zeichen passt? $a ? $b', answer, <String>['<', '>', '='], 'Zähle zuerst die Stellen: Die Zahl mit mehr Stellen ist größer. Bei gleich vielen Stellen vergleichst du von links, Stelle für Stelle.', 'compare',
+        // Paare, bei denen man genau hinschauen muss: gleiche Stellenzahl
+        // und gleiche erste Ziffer, Zahlendreher, manchmal gleiche Zahlen.
+        // Früher waren es zwei Zufallszahlen: Meist entschied der erste
+        // Blick, und „=“ war nie richtig.
+        var left = a;
+        var right = b;
+        final mode = _positive(_mixSeed(seed + 13), 10);
+        if (mode == 0) {
+          right = left;
+        } else if (mode <= 3 && left >= 12) {
+          // Zahlendreher: zwei benachbarte Ziffern vertauscht.
+          final digits = '$left'.split('');
+          final at = 1 + _positive(_mixSeed(seed + 61), digits.length - 1);
+          final swap = digits[at];
+          digits[at] = digits[at - 1];
+          digits[at - 1] = swap;
+          final turned = int.parse(digits.join());
+          right = turned == left || '$turned'.length != '$left'.length ? left + 9 : turned;
+        } else if (mode <= 6 && left >= 10) {
+          // Gleiche erste Ziffer, der Rest stammt von der zweiten Zahl.
+          var place = 1;
+          while (place * 10 <= left) {
+            place *= 10;
+          }
+          right = left - left % place + b % place;
+          if (right == left) right = left + 1;
+        }
+        if (_positive(_mixSeed(seed + 31), 2) == 0) {
+          final keep = left;
+          left = right;
+          right = keep;
+        }
+        final answer = left > right ? '>' : left < right ? '<' : '=';
+        final shownLeft = groupedNumber(left), shownRight = groupedNumber(right);
+        return _choice(seed, 'Welches Zeichen passt? $shownLeft ⬜ $shownRight', answer, <String>['<', '>', '='],
+          answer == '='
+              ? 'Beide Zahlen haben an jeder Stelle dieselbe Ziffer. Sie sind gleich groß: $shownLeft = $shownRight.'
+              : 'Zähle zuerst die Stellen: Die Zahl mit mehr Stellen ist größer. Bei gleich vielen Stellen vergleichst du von links, Stelle für Stelle. $shownLeft $answer $shownRight.',
+          'compare',
           keepOrder: true,
         );
       case MathTemplateKind.massConversion:

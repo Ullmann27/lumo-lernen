@@ -97,7 +97,7 @@ class TaskHintService {
       }
       final operation = _operation(task.prompt);
       if (operation == '×' || unit.contains('einmaleins')) {
-        return 'Denke an gleich große Gruppen. Zähle in Schritten der ersten Zahl oder nutze eine Malaufgabe, die du schon kennst.';
+        return 'Denke an gleich große Gruppen. Zähle in gleich großen Schritten oder nutze eine Malaufgabe, die du schon kennst.';
       }
       if (unit.contains('division') ||
           RegExp(

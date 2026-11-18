@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../core/math_task_templates.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 
 /// Sammlung aller neuen Visuals fuer die erweiterten Aufgaben-Templates
@@ -1827,14 +1828,13 @@ class NumberCompareVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final prompt = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
-        .firstMatch(task.prompt.trim());
+    final prompt = comparePromptPattern.firstMatch(task.prompt.trim());
     final a = data['left'] is int
         ? data['left'] as int
-        : int.tryParse(prompt?.group(1) ?? '');
+        : parseGroupedNumber(prompt?.group(1) ?? '');
     final b = data['right'] is int
         ? data['right'] as int
-        : int.tryParse(prompt?.group(2) ?? '');
+        : parseGroupedNumber(prompt?.group(2) ?? '');
     if (a == null || b == null) return const SizedBox.shrink();
     final symbol = const ['<', '>', '='].contains(evaluatedSymbol)
         ? evaluatedSymbol!
@@ -1893,8 +1893,9 @@ class NumberCompareVisual extends StatelessWidget {
               offset: const Offset(0, 4)),
         ],
       ),
+      // Große Zahlen in Dreiergruppen: 925 407 statt 925407.
       child: Text(
-        '$n',
+        groupedNumber(n),
         style: TextStyle(
           fontFamily: 'Nunito',
           fontSize: 36,

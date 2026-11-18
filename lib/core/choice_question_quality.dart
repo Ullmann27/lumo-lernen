@@ -1,3 +1,5 @@
+import 'math_task_templates.dart';
+
 /// Release-effective checks for the separate card and quiz question banks.
 ///
 /// Arithmetic and explicit word operations are derived from the prompt, never
@@ -96,11 +98,14 @@ class ChoiceQuestionQuality {
       return _number(a ~/ b);
     }
 
-    final comparison =
-        RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$').firstMatch(prompt);
-    if (comparison != null) {
-      final a = int.parse(comparison[1]!);
-      final b = int.parse(comparison[2]!);
+    final comparison = comparePromptPattern.firstMatch(prompt);
+    final comparedLeft =
+        comparison == null ? null : parseGroupedNumber(comparison[1]!);
+    final comparedRight =
+        comparison == null ? null : parseGroupedNumber(comparison[2]!);
+    if (comparedLeft != null && comparedRight != null) {
+      final a = comparedLeft;
+      final b = comparedRight;
       return _answer(a < b
           ? '<'
           : a > b

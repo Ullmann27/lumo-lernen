@@ -1,6 +1,7 @@
 import 'primary_school_word_data.dart';
 import 'school_exercise_generator.dart';
 import 'checked_task_patterns.dart';
+import 'math_task_templates.dart';
 
 /// Deterministic quality gate for generated school tasks.
 /// It blocks tasks with unclear answer logic before they reach the UI.
@@ -86,11 +87,12 @@ class TaskQualityGuard {
     if (task.subject != 'Mathematik') return const [];
     final prompt = task.prompt.trim();
     final answer = task.answer.trim();
-    final compare = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
-        .firstMatch(prompt);
-    if (compare != null) {
-      final left = int.parse(compare[1]!);
-      final right = int.parse(compare[2]!);
+    final compare = comparePromptPattern.firstMatch(prompt);
+    final compareLeft = compare == null ? null : parseGroupedNumber(compare[1]!);
+    final compareRight = compare == null ? null : parseGroupedNumber(compare[2]!);
+    if (compareLeft != null && compareRight != null) {
+      final left = compareLeft;
+      final right = compareRight;
       final expected = left < right ? '<' : left > right ? '>' : '=';
       return answer == expected ? const [] : const ['comparison_answer_wrong'];
     }
@@ -144,6 +146,42 @@ class TaskQualityGuard {
               ? '${priced[1]!.toLowerCase()} ${priced[2]}'
               : '${priced[4]} ${priced[5]}';
       return answer == expected ? const [] : const ['money_comparison_wrong'];
+    }
+    // Diagramm mit Wochentagen: meiste, wenigste, Unterschied, Summe.
+    if (prompt.startsWith('Diagramm: ')) {
+      final entries = <String, int>{
+        for (final entry in RegExp(
+                r'(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag) (\d+)')
+            .allMatches(prompt.substring(0, prompt.indexOf('.') + 1)))
+          entry[1]!: int.parse(entry[2]!),
+      };
+      if (entries.length >= 2) {
+        final sorted = entries.values.toList()..sort();
+        String? expected;
+        if (prompt.contains('die meisten Kinder') ||
+            prompt.contains('die wenigsten Kinder')) {
+          final wanted =
+              prompt.contains('meisten') ? sorted.last : sorted.first;
+          final days = entries.keys
+              .where((day) => entries[day] == wanted)
+              .toList(growable: false);
+          if (days.length != 1) return const ['chart_answer_not_unique'];
+          expected = days.single;
+        } else if (prompt.contains('zusammen?')) {
+          expected = '${sorted.reduce((a, b) => a + b)}';
+        } else {
+          final more = RegExp(r'am (\S+) mehr da als am (\S+)\?$')
+              .firstMatch(prompt);
+          if (more != null &&
+              entries.containsKey(more[1]) &&
+              entries.containsKey(more[2])) {
+            expected = '${entries[more[1]]! - entries[more[2]]!}';
+          }
+        }
+        if (expected != null) {
+          return answer == expected ? const [] : const ['chart_answer_wrong'];
+        }
+      }
     }
     final change = RegExp(r'^Wie viele (\d+)-€-(Münzen|Scheine) ergeben (\d+) €\?$')
         .firstMatch(prompt);
@@ -426,6 +464,11 @@ class TaskQualityGuard {
 
     final half = RegExp(r'^Was ist die Hälfte von (\d+)\?$').firstMatch(prompt);
     if (half != null) return _MathValue(int.parse(half[1]!), 2);
+    final part = RegExp(r'^Was ist ein (Viertel|Achtel) von (\d+)\?$')
+        .firstMatch(prompt);
+    if (part != null) {
+      return _MathValue(int.parse(part[2]!), part[1] == 'Viertel' ? 4 : 8);
+    }
     final twice = RegExp(r'^Was ist das Doppelte von (\d+)\?$').firstMatch(prompt);
     if (twice != null) return _MathValue(int.parse(twice[1]!) * 2, 1);
     final places = RegExp(r'^Wie viele (Zehner|Einer) hat (\d{2})\?$').firstMatch(prompt);

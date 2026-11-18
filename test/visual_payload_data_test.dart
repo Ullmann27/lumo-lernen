@@ -300,6 +300,10 @@ void main() {
       final data = dataFor(
         visual: 'fraction_pizza',
         prompt: 'Was ist ein Viertel von 12?',
+        // Die Qualitätsprüfung rechnet Viertel jetzt nach; die frühere
+        // Platzhalter-Antwort „5“ wäre falsch.
+        answer: '3',
+        choices: const ['3', '4', '6'],
       );
       expect(data['numerator'], equals(1));
       expect(data['denominator'], equals(4));

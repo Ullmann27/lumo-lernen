@@ -111,7 +111,9 @@ abstract class GameMathTasks {
               : (index.isEven ? 10 : 4);
       final multiplier = 1 + random.nextInt(10);
       return numeric('$row × $multiplier = ?', row * multiplier,
-          '$multiplier Gruppen mit je $row: ${List.filled(multiplier, '$row').join(' + ')} = ${row * multiplier}.',
+          // Dieselbe Deutung wie im Einmaleins-Modul und in den Tipps:
+          // a × b heißt „a-mal die b“.
+          '$row × $multiplier heißt $row-mal die $multiplier: ${List.filled(row, '$multiplier').join(' + ')} = ${row * multiplier}.',
           visual: 'groups',
           typical: <int>[
             row * (multiplier - 1),

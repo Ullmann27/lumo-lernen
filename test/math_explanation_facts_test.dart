@@ -215,7 +215,11 @@ void main() {
     for (final id in ['g4_compare', 'g4_compare_1mio']) {
       for (var seed = 0; seed < 50; seed++) {
         final task = byId(id).concretize(seed * 41 + 3);
-        expect(task.explanation, isNot('Vergleiche von links nach rechts.'));
+        expect(task.explanation, isNot(contains('Vergleiche von links nach rechts.')));
+        if (task.answer == '=') {
+          expect(task.explanation, contains('gleich groß'));
+          continue;
+        }
         expect(task.explanation, contains('Zähle zuerst die Stellen'));
         expect(task.explanation, contains('mehr Stellen ist größer'));
       }

@@ -103,7 +103,10 @@ void main() {
       final prompts = <String>{};
       final occurrences = <String, int>{};
       for (var seed = 0; seed < 1000; seed++) {
-        final task = template(entry.key).concretize(seed);
+        // „Längen“ rechnet in Klasse 2 jetzt im Zahlenraum 100 (Fachprüfung
+        // M12); die Umrechnung mehrerer Meter gilt ab Klasse 3.
+        final task = template(entry.key)
+            .concretize(seed, forGrade: entry.key == 'g2_length' ? 3 : null);
         prompts.add(task.prompt);
         occurrences[task.prompt] = (occurrences[task.prompt] ?? 0) + 1;
         final parts = numbers(task.prompt);

@@ -1,5 +1,6 @@
 import '../../../core/primary_school_word_data.dart';
 import '../../../core/checked_task_patterns.dart';
+import '../../../core/math_task_templates.dart';
 import '../../../core/safe_fallback_pool.dart';
 import '../../../core/school_exercise_generator.dart';
 import '../../../core/task_quality_guard.dart';
@@ -731,13 +732,11 @@ class LegacyLumoTaskAdapter {
     }
 
     if (task.subject == 'Mathematik' && task.visual == 'compare') {
-      final comparison = RegExp(r'^Welches Zeichen passt\? (\d+) \? (\d+)$')
-          .firstMatch(task.prompt.trim());
-      if (comparison == null) return const {};
-      return <String, Object?>{
-        'left': int.parse(comparison[1]!),
-        'right': int.parse(comparison[2]!),
-      };
+      final comparison = comparePromptPattern.firstMatch(task.prompt.trim());
+      final left = comparison == null ? null : parseGroupedNumber(comparison[1]!);
+      final right = comparison == null ? null : parseGroupedNumber(comparison[2]!);
+      if (left == null || right == null) return const {};
+      return <String, Object?>{'left': left, 'right': right};
     }
 
     if (task.subject == 'Sachunterricht') {
@@ -935,7 +934,7 @@ class LegacyLumoTaskAdapter {
       return const <String, Object?>{};
     }
 
-    if (task.visual == 'fraction_pizza') {
+    if (task.visual == 'fraction_pizza' || task.visual == 'fraction_half') {
       // 1/2 im Prompt oder in der Antwort
       final fracInPrompt = RegExp(r'(\d+)\s*/\s*(\d+)').firstMatch(task.prompt);
       if (fracInPrompt != null) {
@@ -950,6 +949,9 @@ class LegacyLumoTaskAdapter {
       }
       if (task.prompt.toLowerCase().contains('viertel')) {
         return <String, Object?>{'numerator': 1, 'denominator': 4};
+      }
+      if (task.prompt.toLowerCase().contains('achtel')) {
+        return <String, Object?>{'numerator': 1, 'denominator': 8};
       }
       if (task.prompt.toLowerCase().contains('drittel')) {
         return <String, Object?>{'numerator': 1, 'denominator': 3};
