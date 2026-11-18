@@ -99,12 +99,15 @@ class TaskQualityGuard {
       final expected = int.parse(parity[1]!).isEven ? 'gerade' : 'ungerade';
       return answer == expected ? const [] : const ['parity_answer_wrong'];
     }
-    final quantities = RegExp(r'^(🍎+) oder (🍎+) – wo ist mehr\?$', unicode: true)
+    final quantities = RegExp(
+            r'^(🍎+) oder (🍎+) – wo (ist mehr|sind mehr Äpfel)\?$',
+            unicode: true)
         .firstMatch(prompt);
     if (quantities != null) {
       final left = '🍎'.allMatches(quantities[1]!).length;
       final right = '🍎'.allMatches(quantities[2]!).length;
-      final expected = left == right ? 'gleich' : left > right ? 'links' : 'rechts';
+      final equal = quantities[3] == 'ist mehr' ? 'gleich' : 'gleich viele';
+      final expected = left == right ? equal : left > right ? 'links' : 'rechts';
       return answer == expected ? const [] : const ['quantity_answer_wrong'];
     }
     final clock = RegExp(
@@ -429,7 +432,8 @@ class TaskQualityGuard {
     if (chart != null) {
       return _MathValue(int.parse(chart[1]!) + int.parse(chart[2]!), 1);
     }
-    final times = RegExp(r'^Wie oft (\d+) ist (\d+)\?$').firstMatch(prompt);
+    final times = RegExp(r'^Wie oft (?:passt )?(\d+) (?:ist|in) (\d+)\?$')
+        .firstMatch(prompt);
     if (times != null && int.parse(times[1]!) > 0) {
       return _MathValue(int.parse(times[2]!), int.parse(times[1]!));
     }

@@ -27,11 +27,13 @@ String _visibleMathAnswer(String prompt) {
   final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
       .firstMatch(prompt);
   if (line != null) return '${int.parse(line[2]!) + 1}';
-  if (prompt.endsWith('– wo ist mehr?')) {
+  // Wortlaut seit der Fachprüfung Mathematik (L17): „wo sind mehr Äpfel?“
+  // mit der Karte „gleich viele“.
+  if (prompt.endsWith('– wo sind mehr Äpfel?')) {
     final parts = prompt.split(' oder ');
     final left = '🍎'.allMatches(parts[0]).length;
     final right = '🍎'.allMatches(parts[1]).length;
-    return left == right ? 'gleich' : (left > right ? 'links' : 'rechts');
+    return left == right ? 'gleich viele' : (left > right ? 'links' : 'rechts');
   }
   throw StateError('Unsupported visible mathematical prompt: $prompt');
 }

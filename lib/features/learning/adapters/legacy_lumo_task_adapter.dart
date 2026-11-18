@@ -969,7 +969,9 @@ class LegacyLumoTaskAdapter {
     }
 
     if (task.visual == 'quantity_compare' || task.visual == 'quantity') {
-      final apples = RegExp(r'^(🍎+) oder (🍎+) – wo ist mehr\?$', unicode: true)
+      final apples = RegExp(
+              r'^(🍎+) oder (🍎+) – wo (?:ist mehr|sind mehr Äpfel)\?$',
+              unicode: true)
           .firstMatch(task.prompt);
       if (apples != null) {
         return <String, Object?>{

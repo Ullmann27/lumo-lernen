@@ -56,8 +56,10 @@ void main() {
         for (var seed = 0; seed < 300; seed++)
           template(id).concretize(seed).answer,
       };
-      expect(
-          answers, contains(id == 'g1_money_more' ? 'gleich viel' : 'gleich'));
+      // „gleich viele“ statt „gleich“: Die Frage heißt jetzt „wo sind mehr
+      // Äpfel?“, darauf passt nur „gleich viele“ (Fachprüfung L17).
+      expect(answers,
+          contains(id == 'g1_money_more' ? 'gleich viel' : 'gleich viele'));
     }
   });
 

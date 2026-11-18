@@ -290,7 +290,7 @@ class MathTaskTemplate {
           right = index;
         }
         final answer = left + right;
-        return _numberTask(seed, '$left + $right = ?', answer, 'Lege zuerst $left und dann $right dazu. Zusammen sind es $answer.', 'dots',
+        return _numberTask(seed, '$left + $right = ?', answer, _additionExplanation(left, right), 'dots',
           typical: _additionErrors(left, right),
         );
       case MathTemplateKind.subtraction:
@@ -299,7 +299,7 @@ class MathTaskTemplate {
         // 18 % Aufgaben mit der Lösung 0), sondern gleichmäßig verteilen.
         final subtrahend = _foldInto(b, validRangeB.first, minuend);
         final answer = minuend - subtrahend;
-        return _numberTask(seed, '$minuend - $subtrahend = ?', answer, 'Starte bei $minuend und gehe $subtrahend Schritte zurück.', 'line',
+        return _numberTask(seed, '$minuend - $subtrahend = ?', answer, _subtractionExplanation(minuend, subtrahend), 'line',
           typical: _subtractionErrors(minuend, subtrahend),
         );
       case MathTemplateKind.numberLineMissing:
@@ -312,15 +312,17 @@ class MathTaskTemplate {
         );
       case MathTemplateKind.quantityCompare:
         final left = a;
-        final answer = left == b ? 'gleich' : left > b ? 'links' : 'rechts';
+        final answer = left == b ? 'gleich viele' : left > b ? 'links' : 'rechts';
         final leftDots = _repeatEmoji('🍎', left);
         final rightDots = _repeatEmoji('🍎', b);
-        return _choice(seed, '$leftDots oder $rightDots – wo ist mehr?', answer, <String>['links', 'rechts', 'gleich'], 'Vergleiche die Menge, nicht die Länge der Zeile.', 'quantity',
+        return _choice(seed, '$leftDots oder $rightDots – wo sind mehr Äpfel?', answer, <String>['links', 'rechts', 'gleich viele'],
+          'Zähle beide Seiten: links $left, rechts $b. ${left == b ? 'Es sind gleich viele.' : left > b ? '$left ist mehr als $b: links sind mehr.' : '$b ist mehr als $left: rechts sind mehr.'}',
+          'quantity',
           keepOrder: true,
         );
       case MathTemplateKind.numberWord:
         final answer = _numberWords[a] ?? '$a';
-        return _choice(seed, 'Wie schreibt man die Zahl $a als Wort?', answer, _numberWordChoices(a, seed), 'Zahlwörter liest man wie normale Wörter.', 'word_number',
+        return _choice(seed, 'Wie schreibt man die Zahl $a als Wort?', answer, _numberWordChoices(a, seed), _numberWordExplanation(a, answer), 'word_number',
           keepOrder: true,
         );
       case MathTemplateKind.shapeRecognition:
@@ -409,7 +411,7 @@ class MathTaskTemplate {
             <String>['ja', 'nein'], 'Beim Spiegeln an einer Achse müssen beide Hälften genau aufeinanderpassen.', 'symmetry', keepOrder: true);
       case MathTemplateKind.multiplicationPrep:
         final answer = b;
-        return _numberTask(seed, 'Wie oft $a ist ${a * b}?', answer, '$a wird $answer-mal genommen: ${List<String>.filled(answer, '$a').join(' + ')} = ${a * b}.', 'groups',
+        return _numberTask(seed, 'Wie oft passt $a in ${a * b}?', answer, '$a passt $answer-mal in ${a * b}: ${List<String>.filled(answer, '$a').join(' + ')} = ${a * b}.', 'groups',
           // Typisch: die andere Zahl der Aufgabe nennen oder sich um eins verzählen.
           typical: <int>[a, answer - 1, answer + 1, a * b - a],
         );
@@ -463,7 +465,12 @@ class MathTaskTemplate {
             typical: <int>[a * 10 + extra ~/ 10, a * 1000 + extra, a * 100 + extra ~/ 10, a * 100, a + extra, a * 10 + extra]);
       case MathTemplateKind.evenOdd:
         final answer = a.isEven ? 'gerade' : 'ungerade';
-        return _choice(seed, 'Ist $a gerade oder ungerade?', answer, <String>['gerade', 'ungerade', 'beides'], 'Gerade Zahlen kann man in zwei gleiche Gruppen teilen.', 'parity',
+        // Zwei Karten: „beides“ war nie richtig und nie sinnvoll.
+        return _choice(seed, 'Ist $a gerade oder ungerade?', answer, <String>['gerade', 'ungerade'],
+          a.isEven
+              ? '$a endet auf ${a % 10}. Du kannst $a in Paare aufteilen und nichts bleibt übrig: $a ist gerade.'
+              : '$a endet auf ${a % 10}. Beim Bilden von Paaren bleibt eins übrig: $a ist ungerade.',
+          'parity',
           keepOrder: true,
         );
       case MathTemplateKind.halfDouble:
@@ -497,13 +504,13 @@ class MathTaskTemplate {
       case MathTemplateKind.writtenAddition:
         final right = grade == 3 ? _foldInto(b, validRangeB.first, 1000 - a) : b;
         final answer = a + right;
-        return _numberTask(seed, 'Schriftlich: $a + $right = ?', answer, 'Schreibe Einer unter Einer, Zehner unter Zehner, Hunderter unter Hunderter.', 'written_add',
+        return _numberTask(seed, 'Schriftlich: $a + $right = ?', answer, 'Schreibe Einer unter Einer, Zehner unter Zehner, Hunderter unter Hunderter. Beginne bei den Einern. Sind es zehn oder mehr, schreibe die Einer an und merke dir 1. $a + $right = $answer.', 'written_add',
           typical: _additionErrors(a, right),
         );
       case MathTemplateKind.writtenSubtraction:
         final minuend = a > b ? a : a + b;
         final answer = minuend - b;
-        return _numberTask(seed, 'Schriftlich: $minuend - $b = ?', answer, 'Rechne von rechts nach links und tausche, wenn nötig.', 'written_sub',
+        return _numberTask(seed, 'Schriftlich: $minuend - $b = ?', answer, 'Beginne bei den Einern. Ergänze von der unteren zur oberen Ziffer. Reicht es nicht, ergänze auf die nächste Zehnerzahl und merke dir 1. $minuend − $b = $answer.', 'written_sub',
           typical: _subtractionErrors(minuend, b),
         );
       case MathTemplateKind.fractionHalf:
@@ -1098,6 +1105,69 @@ String _writtenDivisionSteps(int dividend, int divisor) {
   return 'Teile von links, Stelle für Stelle: ${steps.join(', ')}. '
       'Ergebnis: $quotient${rest > 0 ? ' Rest $rest' : ''}. '
       'Probe: $quotient · $divisor${rest > 0 ? ' + $rest' : ''} = $dividend.';
+}
+
+/// Erklärung einer Plusaufgabe, passend zum Zahlenraum, immer mit der
+/// fertigen Rechnung am Schluss. „Lege 4443 und dann 2500 dazu“ hilft bei
+/// großen Zahlen niemandem.
+String _additionExplanation(int a, int b) {
+  final sum = a + b;
+  if (sum <= 20) {
+    if (a < 10 && b < 10 && a > 0 && sum > 10) {
+      final toTen = 10 - a;
+      return 'Rechne zuerst bis zur 10: $a + $toTen = 10. Dann noch ${b - toTen} dazu: $a + $b = $sum.';
+    }
+    return 'Lege zuerst $a und dann $b dazu. Zusammen sind es $sum: $a + $b = $sum.';
+  }
+  if (sum <= 100) {
+    final tens = b ~/ 10 * 10, ones = b % 10;
+    if (tens == 0 || ones == 0) {
+      return 'Zähle $b zu $a dazu. Achte auf den Zehnerübergang: $a + $b = $sum.';
+    }
+    return 'Rechne zuerst die Zehner, dann die Einer: $a + $tens = ${a + tens}, dann ${a + tens} + $ones = $sum. Also: $a + $b = $sum.';
+  }
+  return 'Schreibe die Zahlen untereinander und rechne Stelle für Stelle. Beginne bei den Einern und merke dir den Übertrag. $a + $b = $sum.';
+}
+
+/// Erklärung einer Minusaufgabe, passend zum Zahlenraum, immer mit dem
+/// Ergebnis.
+String _subtractionExplanation(int a, int b) {
+  final difference = a - b;
+  if (a <= 20) {
+    if (a > 10 && b > a - 10 && difference < 10) {
+      final toTen = a - 10;
+      return 'Gehe zuerst bis zur 10 zurück: $a − $toTen = 10. Dann noch ${b - toTen} weg: $a − $b = $difference.';
+    }
+    return 'Starte bei $a und gehe $b ${b == 1 ? 'Schritt' : 'Schritte'} zurück: $a − $b = $difference.';
+  }
+  if (a <= 100) {
+    final tens = b ~/ 10 * 10, ones = b % 10;
+    if (tens == 0 || ones == 0) {
+      return 'Ziehe $b von $a ab. Achte auf den Zehnerübergang: $a − $b = $difference.';
+    }
+    return 'Ziehe zuerst die Zehner ab, dann die Einer: $a − $tens = ${a - tens}, dann ${a - tens} − $ones = $difference. Also: $a − $b = $difference.';
+  }
+  return 'Schreibe die Zahlen untereinander und rechne Stelle für Stelle. Beginne bei den Einern. $a − $b = $difference.';
+}
+
+/// Erklärt, wie das Zahlwort gebaut ist.
+String _numberWordExplanation(int number, String word) {
+  if (number >= 13 && number <= 19) {
+    final ones = _numberWords[number - 10]!;
+    final note = number == 16
+        ? ' Aus „sechs“ wird dabei „sech“.'
+        : number == 17
+            ? ' Aus „sieben“ wird dabei „sieb“.'
+            : '';
+    return 'Bei $number hörst du zuerst die ${number - 10} und dann die 10: $ones und zehn wird zu „$word“.$note';
+  }
+  if (number == 11 || number == 12) {
+    return '„elf“ und „zwölf“ sind eigene Wörter. $number schreibt man „$word“.';
+  }
+  if (number == 20) {
+    return '20 sind zwei Zehner. Das Zahlwort heißt „zwanzig“.';
+  }
+  return 'Sprich die Zahl langsam und höre auf jeden Laut: $number schreibt man „$word“.';
 }
 
 /// Typische falsche Ergebnisse bei a + b: abgezogen statt dazugezählt,
