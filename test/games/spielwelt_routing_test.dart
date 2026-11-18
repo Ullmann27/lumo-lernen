@@ -29,9 +29,9 @@ void main() {
 
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  test('routing table lists eleven unique portals and unique covers', () {
+  test('routing table lists twelve unique portals and unique covers', () {
     expect(SpielweltRoutes.all.map((r) => r.identity), SpielweltRoutes.identities);
-    expect(SpielweltRoutes.all, hasLength(11));
+    expect(SpielweltRoutes.all, hasLength(12));
     final covers = [
       for (final route in SpielweltRoutes.all)
         if (route.coverAsset.isNotEmpty) route.coverAsset
@@ -51,6 +51,8 @@ void main() {
     expect(SpielweltRoutes.byIdentity('rhythm').semanticTitle, 'Rhythm Party');
     expect(SpielweltRoutes.coverFor('connectFour'), contains('cover_connect'));
     expect(SpielweltRoutes.coverFor('quizShow'), contains('cover_quiz'));
+    expect(SpielweltRoutes.byIdentity('chess').isNative, isTrue);
+    expect(SpielweltRoutes.byIdentity('chess').target, 'chess');
   });
 
   test('every viewport uses the image-tile hub with extra columns when wide', () {

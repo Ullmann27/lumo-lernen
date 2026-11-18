@@ -1,5 +1,5 @@
 {
-  "request": 12,
-  "version": "0.13.35+2047",
-  "note": "Zwischenstand vor den großen Kart-Menü-, Strecken- und Dorf-Umbauten: Quizshow erreicht auf Android ihre Spielrunde (blieb bei „Die Spielverbindung wird geprüft“ stehen); im Kart startet ein neues Kind auf „Entdecken“ statt „Extrem“ und die gewählte Gegnerstufe bleibt je Kind gespeichert; am Kartentisch sitzt Lumo ruhig (Kopf drehte sich); Handys ohne Grafikchip starten mit leichtem Profil; in der Lern-App läuft Lumo im Aufgabenbildschirm zur Aufgabe, zeigt, spricht und läuft zurück, „Frag Lumo“ hört nur mit Mikrofon-Freigabe zu, neue Nachhilfestunde mit Lumo; Einmaleins 10 × 10 mit vier Antworten. Jump & Run: Startfehler am Gerät noch nicht geklärt (Diagnose im Emulator läuft mit diesem Stand)."
+  "request": 14,
+  "version": "0.13.37+2049",
+  "note": "Schach in der Spielewelt: 3D-Brett, Lernpartie, vier Gegnerstufen und Sterne. Schach nutzt im Fold-Raster einen freien Platz. Quizshow und alle weiteren Spiele bleiben im offenen Fold-Format im ersten Bildschirm erreichbar. Enthält den Quizshow-Rückweg bei fehlender Spielverbindung."
 }
