@@ -59,6 +59,7 @@ void main() {
         'kart',
         'connectFour',
         'quizShow',
+        'chess',
       ]) {
         final portal = find.byKey(ValueKey('spielwelt-portal-$identity'));
         expect(portal, findsOneWidget, reason: '${entry.key} $identity');
@@ -69,7 +70,7 @@ void main() {
             reason: '${entry.key} $identity height');
         if (entry.key == 'fold7-open-portrait') {
           expect(box.top, greaterThanOrEqualTo(0),
-              reason: 'All eleven games start inside the open Fold viewport');
+              reason: 'All game portals start inside the open Fold viewport');
           expect(box.bottom, lessThanOrEqualTo(entry.value.height),
               reason: 'The compact stage must not push $identity off screen');
         }

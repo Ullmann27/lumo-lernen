@@ -71,7 +71,7 @@ Future<void> _prepare(WidgetTester tester) async {
 
 void main() {
   testWidgets(
-      'all eleven game portals dispatch each accessibility and touch tap once',
+      'all twelve game portals dispatch each accessibility and touch tap once',
       (tester) async {
     await _prepare(tester);
     var opened = 0;
@@ -81,7 +81,7 @@ void main() {
       SpielweltPortal.connectFour(onOpen: () => opened++),
       SpielweltPortal.quizShow(onOpen: () => opened++),
     ];
-    expect(portals, hasLength(11));
+    expect(portals, hasLength(12));
     expect(portals.map((portal) => portal.identity).toSet(),
         SpielweltRoutes.identities.toSet());
 

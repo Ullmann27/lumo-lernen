@@ -174,6 +174,16 @@ class SpielweltRoutes {
       targetDescription: 'Flutter 4 Gewinnt',
     ),
     SpielweltRoute(
+      identity: 'chess',
+      title: 'Schach',
+      semanticTitle: 'Lumo Schach',
+      tagline: 'Schach lernen · gegen Lumo spielen',
+      coverAsset: 'assets/lumo_design/spielwelt/cover_chess.webp',
+      kind: SpielweltTargetKind.nativeScene,
+      target: 'chess',
+      targetDescription: 'Godot 3D-Schach (launch3D scene=chess)',
+    ),
+    SpielweltRoute(
       identity: 'quizShow',
       title: 'Quizshow',
       semanticTitle: 'Wer wird Lumo-Meister?',
@@ -196,6 +206,7 @@ class SpielweltRoutes {
     'village',
     'kart',
     'connectFour',
+    'chess',
     'quizShow',
   ];
 

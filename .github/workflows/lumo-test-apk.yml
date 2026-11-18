@@ -5,7 +5,7 @@ name: "Lumo Test-APK (Flutter + Godot)"
 # das Ergebnis ist eine Vorabversion zum Testen auf dem Handy.
 on:
   push:
-    branches: [ccr-54af69f2-4uged4]
+    branches: [ccr-54af69f2-4uged4, delivery/lumo-schach-2048-20261118]
     paths:
       - config/test-apk-request.json
       - .github/workflows/lumo-test-apk.yml
@@ -69,6 +69,8 @@ jobs:
           set -euo pipefail
           flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings
           flutter test --no-pub --reporter expanded \
+            test/games/spielwelt_routing_test.dart \
+            test/embedded_game_service_test.dart \
             test/games/memory_native_entry_test.dart \
             test/games/memory_screen_test.dart \
             test/games/memory_result_frame_test.dart \
@@ -95,7 +97,7 @@ jobs:
             || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
           for probe in kart_neon_home_regression kart_race_kinds_regression \
             kart_result_reachability_regression native_table_boot_regression \
-            learning_android_host_capability_regression; do
+            learning_android_host_capability_regression chess_regression; do
             echo "::group::$probe"
             timeout 600 godot --headless --path build/lumo-godot-qa \
               --script "res://scripts/tests/$probe.gd"

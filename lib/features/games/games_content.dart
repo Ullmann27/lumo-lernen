@@ -209,6 +209,13 @@ class _GamesContentState extends State<GamesContent> {
     if (mounted) await _load();
   }
 
+  Future<void> _launchChess() async {
+    if (!await _allowLaunch() || !mounted) return;
+    LumoCompanionRequests.instance
+        .recordInteraction(LumoInteractionKind.gameRequested);
+    await _launch3D('chess');
+  }
+
   Future<void> _launchConnectFour() async {
     if (!await _allowLaunch() || !mounted) return;
     HapticFeedback.mediumImpact();
@@ -398,6 +405,8 @@ class _GamesContentState extends State<GamesContent> {
           )
         else if (route.identity == 'connectFour')
           SpielweltPortal.connectFour(onOpen: _launchConnectFour)
+        else if (route.identity == 'chess')
+          SpielweltPortal.chess(onOpen: _launchChess)
         else if (route.identity == 'quizShow')
           SpielweltPortal.quizShow(onOpen: _launchLumoMeister)
         else
