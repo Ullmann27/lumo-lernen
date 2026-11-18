@@ -29,7 +29,9 @@ TaskInstance writingTask(String target) => TaskInstance(
 void main() {
   test('every mixed writing swing exercise uses a real traceable letter', () {
     const repository = ExpandedWritingTemplateRepository();
-    for (var grade = 1; grade <= 4; grade++) {
+    // Ab Klasse 3 ist die Schwungübung ein ganzes Wort (D-M18); Klasse 1
+    // spurt große, Klasse 2 kleine Schwungbuchstaben.
+    for (var grade = 1; grade <= 2; grade++) {
       for (var seed = 0; seed < 30; seed++) {
         final task = ExerciseFactory(seed: seed).next(
           grade: grade,
@@ -37,7 +39,11 @@ void main() {
           unit: 'Schwunguebung',
         );
         final target = WritingTargetParser.parse(task.prompt);
-        expect(target, isIn(<String>['S', 'C', 'O', 'U']));
+        expect(
+            target,
+            isIn(grade == 1
+                ? <String>['S', 'C', 'O', 'U']
+                : <String>['s', 'c', 'o', 'u', 'e']));
         expect(task.prompt, isNot(contains('∿')));
         expect(repository.findOrFallback(target).strokes, isNotEmpty);
       }

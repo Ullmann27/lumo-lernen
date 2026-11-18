@@ -1038,37 +1038,139 @@ class ExerciseFactory {
         customChoices: const <String>['St', 'Sp', 'Sch']);
   }
 
+  // Schreiben steigt mit der Klasse (Fachprüfung 2026-11, D-M18):
+  // Kl. 1 Groß- und Kleinbuchstaben, Kl. 2 Kleinbuchstaben mit Umlauten und
+  // ß, ab Kl. 3 Wörter und kurze Sätze, Kl. 4 Sätze mit Satzzeichen und
+  // wörtlicher Rede. Einzelne Zeichen nutzen nur geprüfte Spurvorlagen.
+  static const _writingLowercase = 'abcdefghijklmnopqrstuvwxyzäöüß';
+  static const _writingTrickyWords = <int, List<String>>{
+    3: <String>['Straße', 'Füße', 'Grüße', 'Mädchen', 'Schlüssel', 'Gemüse',
+      'Löwe', 'Quelle', 'Hexe', 'Käse', 'Brücke', 'Zwetschke'],
+    4: <String>['Fußgänger', 'Gebäude', 'Bibliothek', 'Rhythmus', 'Qualle',
+      'Taxi', 'Pyjama', 'Geräusch', 'Überraschung', 'Gießkanne',
+      'Märchenbuch', 'Spaß'],
+  };
+  static const _writingNumberWords = <int, String>{
+    11: 'elf', 12: 'zwölf', 13: 'dreizehn', 14: 'vierzehn', 15: 'fünfzehn',
+    16: 'sechzehn', 17: 'siebzehn', 18: 'achtzehn', 19: 'neunzehn',
+    20: 'zwanzig', 30: 'dreißig', 40: 'vierzig', 50: 'fünfzig',
+    60: 'sechzig', 70: 'siebzig', 80: 'achtzig', 90: 'neunzig',
+    100: 'hundert', 23: 'dreiundzwanzig', 47: 'siebenundvierzig',
+    66: 'sechsundsechzig', 99: 'neunundneunzig', 200: 'zweihundert',
+    500: 'fünfhundert', 1000: 'tausend',
+  };
+  static const _writingSentencesGrade3 = <String>[
+    'Im Herbst fallen die Blätter.',
+    'Die Straße ist nass und glatt.',
+    'Wir fahren mit dem Zug nach Graz.',
+    'Mein Bruder spielt gern Fußball.',
+    'Am Sonntag besuchen wir Oma.',
+    'Die Kinder lachen in der Pause.',
+    'Ich gieße die Blumen im Garten.',
+    'Der Igel schläft unter dem Laub.',
+    'Wann beginnt die Turnstunde?',
+    'Heute ist es sehr heiß!',
+  ];
+  static const _writingSentencesGrade4 = <String>[
+    'Lumo fragt: „Kommst du mit?“',
+    'Mama ruft: „Das Essen ist fertig!“',
+    'Ben sagt: „Ich habe meine Haube vergessen.“',
+    '„Wo ist mein Heft?“, fragt Lea.',
+    'Wir kaufen Äpfel, Birnen und Zwetschken.',
+    'Die Lehrerin sagt: „Packt eure Sachen ein.“',
+    'Am Montag, Mittwoch und Freitag habe ich Training.',
+    '„Komm schnell!“, ruft Opa.',
+    'Ich glaube, dass es morgen schneit.',
+    'Weil es regnet, bleiben wir drinnen.',
+  ];
+
   LumoTask _writing(int grade, String unit) {
     String prompt;
     String explanation;
     if (unit == 'Zahlen schreiben') {
-      // The tracing repository supports 0–20; larger numbers used to display A.
-      final n = _random.nextInt(21);
-      prompt = 'Schreibe die Zahl $n schön und langsam.';
-      explanation = 'Achte auf die Form jeder Ziffer.';
+      if (grade <= 1) {
+        // The tracing repository supports 0–20; larger numbers used to display A.
+        final n = _random.nextInt(21);
+        prompt = 'Schreibe die Zahl $n schön und langsam.';
+        explanation = 'Achte auf die Form jeder Ziffer.';
+      } else {
+        final entries = _writingNumberWords.entries
+            .where((e) => switch (grade) {
+                  2 => e.key <= 20 || (e.key <= 100 && e.key % 10 == 0),
+                  3 => true,
+                  _ => e.key > 20,
+                })
+            .toList();
+        final entry = entries[_random.nextInt(entries.length)];
+        prompt = 'Die Zahl ${entry.key} als Zahlwort. '
+            'Schreibe das Wort: ${entry.value}';
+        explanation = '${entry.key} schreibt man als Wort „${entry.value}“. '
+            'Zahlwörter schreibst du klein.';
+      }
     } else if (unit == 'Buchstaben nachspuren') {
-      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      final letter = letters[_random.nextInt(letters.length)];
-      prompt = 'Spure den Buchstaben $letter nach.';
-      explanation = 'Beginne am Startpunkt und folge den Strichen der Vorlage.';
+      if (grade >= 3) {
+        final words = _writingTrickyWords[grade.clamp(3, 4)]!;
+        final word = words[_random.nextInt(words.length)];
+        prompt = 'Schreibe das Wort: $word';
+        explanation = 'Schau dir die schwierigen Buchstaben genau an '
+            '(ä, ö, ü, ß, qu, x, y) und schreibe sie sauber.';
+      } else if (grade == 1 && _random.nextBool()) {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        final letter = letters[_random.nextInt(letters.length)];
+        prompt = 'Spure den Buchstaben $letter nach.';
+        explanation =
+            'Beginne am Startpunkt und folge den Strichen der Vorlage.';
+      } else {
+        final pool = grade == 1
+            ? _writingLowercase.substring(0, 26)
+            : _writingLowercase;
+        final letter = pool[_random.nextInt(pool.length)];
+        prompt = 'Schreibe: $letter';
+        explanation = 'Spure den kleinen Buchstaben $letter nach. '
+            'Er steht zwischen den Schreiblinien.';
+      }
     } else if (unit == 'Schwunguebung') {
-      // Auch eine Schwungübung trainiert einen lesbaren Buchstaben statt
-      // ein unbekanntes mathematisches Symbol als "Schreibaufgabe".
-      // Alle vier Buchstaben haben echte, geprüfte Ein-Strich-Vorlagen.
-      const curveLetters = <String>['S', 'C', 'O', 'U'];
-      final letter = curveLetters[_random.nextInt(curveLetters.length)];
-      prompt = 'Schreibe: $letter';
-      explanation =
-          'Spure den Buchstaben $letter in einem ruhigen Schwung nach. '
-          'Beginne beim markierten Startpunkt.';
+      if (grade >= 3) {
+        const swingWords = <String>[
+          'Welle', 'Sonne', 'Wolle', 'Muschel', 'Schnecke', 'Locke'
+        ];
+        final word = swingWords[_random.nextInt(swingWords.length)];
+        prompt = 'Schreibe das Wort: $word';
+        explanation = 'Schreibe das Wort in einem ruhigen Schwung, '
+            'ohne zwischen den Buchstaben lange abzusetzen.';
+      } else {
+        // Auch eine Schwungübung trainiert einen lesbaren Buchstaben statt
+        // ein unbekanntes mathematisches Symbol als "Schreibaufgabe".
+        // Alle Buchstaben haben echte, geprüfte Ein-Strich-Vorlagen.
+        final curveLetters = grade == 1
+            ? const <String>['S', 'C', 'O', 'U']
+            : const <String>['s', 'c', 'o', 'u', 'e'];
+        final letter = curveLetters[_random.nextInt(curveLetters.length)];
+        prompt = 'Schreibe: $letter';
+        explanation =
+            'Spure den Buchstaben $letter in einem ruhigen Schwung nach. '
+            'Beginne beim markierten Startpunkt.';
+      }
     } else if (unit == 'Satz abschreiben') {
-      final options = readingPassages[grade.clamp(1, 4)]!;
-      final passage = options[_random.nextInt(options.length)];
-      // Copy one complete sentence. Avoid long multi-sentence writing targets.
-      final sentence = passage.text.split('.').first;
-      prompt = 'Schreibe: $sentence.';
-      explanation =
-          'Schreibe den ganzen Satz. Achte auf Abstände, den großen Anfang und das Satzzeichen.';
+      if (grade >= 3) {
+        final sentences =
+            grade == 3 ? _writingSentencesGrade3 : _writingSentencesGrade4;
+        final sentence = sentences[_random.nextInt(sentences.length)];
+        prompt = 'Schreibe: $sentence';
+        explanation = grade == 3
+            ? 'Schreibe den ganzen Satz. Achte auf den großen Anfang, '
+                'die Namenwörter und das Satzzeichen.'
+            : 'Schreibe den ganzen Satz. Achte auf Beistriche, '
+                'Doppelpunkt und Anführungszeichen.';
+      } else {
+        final options = readingPassages[grade.clamp(1, 4)]!;
+        final passage = options[_random.nextInt(options.length)];
+        // Copy one complete sentence. Avoid long multi-sentence writing targets.
+        final sentence = passage.text.split('.').first;
+        prompt = 'Schreibe: $sentence.';
+        explanation =
+            'Schreibe den ganzen Satz. Achte auf Abstände, den großen Anfang und das Satzzeichen.';
+      }
     } else {
       final word = PrimarySchoolWordData.nounForGrade(
           grade, _serial + _random.nextInt(9999));

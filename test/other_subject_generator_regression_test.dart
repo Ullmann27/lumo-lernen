@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/domain/writing/expanded_writing_template_repository.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/task_quality_guard.dart';
 import 'package:lumo_lernen/core/writing_target_parser.dart';
@@ -133,34 +134,72 @@ void main() {
     }
   });
 
-  test('writing target matches the chosen activity and available number range',
+  // Fachprüfung 2026-11 (D-M18): Schreiben steigt jetzt mit der Klasse.
+  // Der alte Test verlangte in allen Klassen Großbuchstaben A–Z und Zahlen
+  // 0–20; jetzt gilt: einzelne Zeichen nur mit echter Spurvorlage, ab
+  // Klasse 2 Kleinbuchstaben/Zahlwörter, ab Klasse 3 Wörter und Sätze.
+  test('writing target matches the chosen activity and grows with the grade',
       () {
+    const repository = ExpandedWritingTemplateRepository();
     final factory = ExerciseFactory(seed: 33);
     for (var grade = 1; grade <= 4; grade++) {
-      for (var i = 0; i < 25; i++) {
+      final letterTargets = <String>{};
+      for (var i = 0; i < 40; i++) {
         final letter = factory.next(
             grade: grade, subject: 'Schreiben', unit: 'Buchstaben nachspuren');
-        expect(WritingTargetParser.parse(letter.prompt),
-            matches(RegExp(r'^[A-Z]$')));
+        final target = WritingTargetParser.parse(letter.prompt);
+        letterTargets.add(target);
+        if (grade <= 2) {
+          expect(target, hasLength(1), reason: letter.prompt);
+          expect(repository.findOrFallback(target).strokes, isNotEmpty,
+              reason: letter.prompt);
+        } else {
+          expect(target.length, greaterThan(1), reason: letter.prompt);
+        }
         final number = factory.next(
             grade: grade, subject: 'Schreiben', unit: 'Zahlen schreiben');
-        expect(int.parse(WritingTargetParser.parse(number.prompt)),
-            inInclusiveRange(0, 20));
+        final numberTarget = WritingTargetParser.parse(number.prompt);
+        if (grade == 1) {
+          expect(int.parse(numberTarget), inInclusiveRange(0, 20));
+        } else {
+          expect(numberTarget, matches(RegExp(r'^[a-zäöüß]+$')),
+              reason: number.prompt);
+        }
         final sentence = factory.next(
             grade: grade, subject: 'Schreiben', unit: 'Satz abschreiben');
-        expect(WritingTargetParser.parse(sentence.prompt).split(' ').length,
-            greaterThanOrEqualTo(2));
+        final sentenceTarget = WritingTargetParser.parse(sentence.prompt);
+        expect(sentenceTarget.split(' ').length, greaterThanOrEqualTo(2));
+        if (grade == 3) expect(sentenceTarget.length, lessThanOrEqualTo(40));
       }
-      // Schwungübungen zeigen jetzt echte Buchstaben statt der alten
-      // Wellenlinie ∿ aus dem veralteten Symboltraining.
+      if (grade == 1) {
+        expect(letterTargets.any((t) => RegExp(r'^[A-Z]$').hasMatch(t)),
+            isTrue);
+        expect(letterTargets.any((t) => RegExp(r'^[a-z]$').hasMatch(t)),
+            isTrue);
+      }
+      // Schwungübungen zeigen echte Buchstaben statt der alten Wellenlinie ∿
+      // aus dem veralteten Symboltraining.
       for (var n = 0; n < 30; n++) {
         final curve = factory.next(
             grade: grade, subject: 'Schreiben', unit: 'Schwunguebung');
-        expect(WritingTargetParser.parse(curve.prompt),
-            anyOf('S', 'C', 'O', 'U'));
+        final target = WritingTargetParser.parse(curve.prompt);
         expect(curve.prompt, isNot(contains('∿')));
+        if (grade <= 2) {
+          expect(repository.findOrFallback(target).strokes, isNotEmpty,
+              reason: curve.prompt);
+        } else {
+          expect(target.length, greaterThan(1));
+        }
       }
     }
+    final grade4Sentences = <String>{
+      for (var i = 0; i < 80; i++)
+        WritingTargetParser.parse(factory
+            .next(grade: 4, subject: 'Schreiben', unit: 'Satz abschreiben')
+            .prompt),
+    };
+    expect(grade4Sentences.any((s) => s.contains('„')), isTrue);
+    expect(grade4Sentences.any((s) => s.contains(',')), isTrue);
   });
 
   // Fachprüfung 2026-11 (D-M10): Früher war die Lösung immer „Großer
