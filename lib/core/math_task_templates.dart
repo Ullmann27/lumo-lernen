@@ -571,7 +571,7 @@ class MathTaskTemplate {
         );
       case MathTemplateKind.compare:
         final answer = a > b ? '>' : a < b ? '<' : '=';
-        return _choice(seed, 'Welches Zeichen passt? $a ? $b', answer, <String>['<', '>', '='], 'Vergleiche von links nach rechts.', 'compare',
+        return _choice(seed, 'Welches Zeichen passt? $a ? $b', answer, <String>['<', '>', '='], 'Zähle zuerst die Stellen: Die Zahl mit mehr Stellen ist größer. Bei gleich vielen Stellen vergleichst du von links, Stelle für Stelle.', 'compare',
           keepOrder: true,
         );
       case MathTemplateKind.massConversion:
@@ -653,7 +653,7 @@ class MathTaskTemplate {
           <String>['Kreis', 'Ein Kreis ist eine runde Linie ohne Anfang und Ende.',
           ],
           <String>['Dreieck', 'Ein Dreieck hat 3 Ecken und 3 Seiten.'],
-          <String>['Rechteck', 'Ein Rechteck hat 4 Ecken und 2 verschieden lange Seiten.',
+          <String>['Rechteck', 'Ein Rechteck hat 4 Ecken und 4 Seiten. Gegenüberliegende Seiten sind gleich lang.',
           ],
           <String>['Stern', 'Ein Stern hat 5 Zacken und 10 Ecken.'],
         ];
