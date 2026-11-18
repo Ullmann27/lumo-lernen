@@ -316,6 +316,14 @@ jobs:
           path: acceptance-native/
           if-no-files-found: warn
           retention-days: 30
+      - name: Restore tracked evidence pictures rewritten by the capture tests
+        run: |
+          # The capture tests above render into docs/evidence; their pictures are
+          # already archived as artifacts. The build accepts only the exact
+          # candidate commit, so only these regenerated pictures are restored -
+          # any other difference still stops the build.
+          git checkout -- docs/evidence
+          git status --porcelain
       - name: Build unified real Android APK
         run: bash scripts/build_unified_apk.sh
       - name: Verify APK archive and collect reproducible source hashes
