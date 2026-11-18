@@ -81,7 +81,8 @@ const _articles = {
   'Apfel': 'der',
   'Ball': 'der',
   'Baum': 'der',
-  'Tisch': 'der',
+  // The module shows a chair picture and therefore asks for "Sessel".
+  'Sessel': 'der',
   'Vogel': 'der',
   'Schuh': 'der',
   'Bus': 'der',
