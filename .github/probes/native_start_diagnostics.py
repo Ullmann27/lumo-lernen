@@ -59,6 +59,8 @@ PLAN = (
     ('rhythm', 'rhythm', 'ui', 'Rhythm Party', 'Fühl den Beat!'),
     ('treasure', 'treasure', 'ui', 'Schatzsuche', 'Rätsel. Hinweise. Schätze!'),
     ('memory', 'memory', 'ui', 'Memory', 'Finde die Paare!'),
+    ('chess', 'chess', 'ui', 'Lumo Schach',
+     'Schach lernen mit Lumo – oder gegen ihn spielen'),
     ('games', 'games', 'ui-button', 'Magische 3D-Spielewelt betreten', None),
     ('jump-intent', 'jump', 'intent', None, None),
 )
