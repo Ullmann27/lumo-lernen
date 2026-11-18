@@ -6,6 +6,7 @@ import '../features/agent/lumo_agent_content.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
 import '../widgets/fox/lumo_animated_fox.dart';
 import '../widgets/fox/lumo_free_companion.dart';
+import '../widgets/fox/stage/lumo_actor_library.dart';
 import 'app_state.dart';
 
 /// Connects the visible fox to real learning records and existing app actions.
@@ -27,6 +28,7 @@ class LumoCompanionHost extends StatelessWidget {
     this.offerOnly = false,
     this.taskUnit,
     this.guide,
+    this.stageAware = false,
   });
 
   final LumoAppState appState;
@@ -44,11 +46,18 @@ class LumoCompanionHost extends StatelessWidget {
   final String? taskUnit;
   final LumoCompanionGuide? guide;
 
+  /// Im Aufgabenbildschirm: Steht Lumo dort als ganze Figur auf der Bühne,
+  /// bleibt dieser Begleiter unsichtbar und öffnet nur noch sein Menü.
+  final bool stageAware;
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: Listenable.merge(
-          [appState, LumoCompanionRequests.instance.taskContext]),
+      animation: Listenable.merge([
+        appState,
+        LumoCompanionRequests.instance.taskContext,
+        if (stageAware) LumoActorLibrary.shared,
+      ]),
       builder: (context, _) {
         final state = appState.state;
         final requestedSection = section ?? state.section.name;
@@ -81,6 +90,7 @@ class LumoCompanionHost extends StatelessWidget {
           preferredSubject: subject,
         );
         return LumoFreeCompanion(
+          headless: stageAware && LumoActorLibrary.shared.value != null,
           guide: guide,
           menuPresenter: menuPresenter,
           offerOnly: offerOnly,

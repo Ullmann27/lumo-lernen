@@ -9,10 +9,15 @@ class LumoPersonalDailyPlanCard extends StatelessWidget {
     super.key,
     required this.steps,
     required this.onStart,
+    this.onStartTutoring,
   });
 
   final List<LumoDailyTutorStep> steps;
   final ValueChanged<LumoDailyTutorStep> onStart;
+
+  /// „Nachhilfe mit Lumo“: eine geführte Stunde zum ersten Thema des Plans,
+  /// das aus den echten Lernergebnissen des Kindes stammt.
+  final ValueChanged<LumoDailyTutorStep>? onStartTutoring;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +57,24 @@ class LumoPersonalDailyPlanCard extends StatelessWidget {
               height: 1.25,
             ),
           ),
+          if (onStartTutoring != null) ...[
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                key: const ValueKey('start-lumo-tutoring-hour'),
+                onPressed: () => onStartTutoring!(steps.first),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size(48, 52),
+                  backgroundColor: const Color(0xFF41DCFB),
+                  foregroundColor: const Color(0xFF07214A),
+                ),
+                icon: const Icon(Icons.school_rounded),
+                label: Text('Nachhilfe mit Lumo: ${steps.first.unit}',
+                    maxLines: 2, overflow: TextOverflow.ellipsis),
+              ),
+            ),
+          ],
           const SizedBox(height: 9),
           for (var i = 0; i < steps.length; i++) ...[
             if (i > 0) const Divider(color: Color(0x4465DFFF)),
@@ -64,8 +87,7 @@ class LumoPersonalDailyPlanCard extends StatelessWidget {
                         Icons.auto_stories_rounded,
                       LumoDailyTutorStepKind.practice =>
                         Icons.lightbulb_rounded,
-                      LumoDailyTutorStepKind.confidence =>
-                        Icons.star_rounded,
+                      LumoDailyTutorStepKind.confidence => Icons.star_rounded,
                       LumoDailyTutorStepKind.check => Icons.extension_rounded,
                     },
                     color: const Color(0xFF66DFFE),
@@ -84,9 +106,15 @@ class LumoPersonalDailyPlanCard extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                             color: Colors.white,
                           )),
-                      if (steps[i].pauseAfter) const Text('Danach ist Zeit für eine freiwillige Pause.', style: TextStyle(color: Color(0xFF9EEAFF), fontSize: 12)),
-                      if (steps[i].reason.isNotEmpty) Text(steps[i].reason,
-                        style: const TextStyle(color: Color(0xFF8DEBFF), fontSize: 12)),
+                      if (steps[i].pauseAfter)
+                        const Text(
+                            'Danach ist Zeit für eine freiwillige Pause.',
+                            style: TextStyle(
+                                color: Color(0xFF9EEAFF), fontSize: 12)),
+                      if (steps[i].reason.isNotEmpty)
+                        Text(steps[i].reason,
+                            style: const TextStyle(
+                                color: Color(0xFF8DEBFF), fontSize: 12)),
                       Text(steps[i].description,
                           softWrap: true,
                           style: const TextStyle(

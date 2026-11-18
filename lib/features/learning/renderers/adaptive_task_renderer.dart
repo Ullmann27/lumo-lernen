@@ -1,3 +1,4 @@
+import '../../../widgets/fox/stage/lumo_stage_targets.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -193,179 +194,188 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         // crasht Flutter silent (Widget unsichtbar). Loesung: Outer Container
         // mit border-Side links als separate child, dann inner Card mit
         // borderRadius + uniform border.
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
-            border: Border.all(
-              color: LumoVisualTokens.cyan.withOpacity(.50),
-              width: 1.3,
+        LumoStageTarget(
+          id: 'learning-task',
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: LumoVisualTokens.cyan.withOpacity(.50),
+                width: 1.3,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: LumoVisualTokens.cyan.withOpacity(0.30),
+                  blurRadius: 26,
+                  offset: const Offset(0, 10),
+                ),
+                const BoxShadow(
+                  color: Color(0x66000000),
+                  blurRadius: 22,
+                  offset: Offset(0, 12),
+                ),
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.16),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: LumoVisualTokens.cyan.withOpacity(0.30),
-                blurRadius: 26,
-                offset: const Offset(0, 10),
-              ),
-              const BoxShadow(
-                color: Color(0x66000000),
-                blurRadius: 22,
-                offset: Offset(0, 12),
-              ),
-              BoxShadow(
-                color: Colors.white.withOpacity(0.16),
-                blurRadius: 10,
-                offset: const Offset(0, -2),
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Leuchtende Fachkante statt Papier-Buchrücken.
-                  Container(
-                    width: 5,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [subjectAccent, subjectAccent.withOpacity(.18)],
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Leuchtende Fachkante statt Papier-Buchrücken.
+                    Container(
+                      width: 5,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            subjectAccent,
+                            subjectAccent.withOpacity(.18)
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  // Hauptbereich
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color(0xF00F3F7A),
-                            Color(0xF4092150),
-                            Color(0xED0C356A),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        border: Border.all(
-                          color: LumoVisualTokens.cyan.withOpacity(.28),
-                          width: 1,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: subjectAccent.withOpacity(0.16),
-                              borderRadius: BorderRadius.circular(
-                                LumoRadius.pill,
-                              ),
-                              border: Border.all(
-                                color: subjectAccent.withOpacity(0.70),
-                              ),
-                            ),
-                            child: Text(
-                              _subjectLabel(task.subject),
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: 0.6,
-                                color: Colors.white,
-                              ),
-                            ),
+                    // Hauptbereich
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color(0xF00F3F7A),
+                              Color(0xF4092150),
+                              Color(0xED0C356A),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
                           ),
-                          const SizedBox(height: 12),
-                          _goal(task),
-                          const SizedBox(height: 12),
-                          if (task.subject == LearningSubject.deutsch &&
-                              const [
-                                'Sätze lesen',
-                                'Lesesinn',
-                                'Reihenfolge',
-                              ].contains(task.parameters['unit']) &&
-                              task.prompt.contains('\n'))
-                            ReadingPassageCard(prompt: task.prompt)
-                          else
-                            Text(
-                              LumoTaskObjectArt.matchWordImage(
-                                    prompt: task.prompt,
-                                    answer: task.correctAnswer,
-                                  )?.displayPrompt ??
-                                  task.prompt,
-                              // Kurze Rechnungen groß, lange Geschichten gut lesbar
-                              // ohne dass die Antworten aus dem Bild rutschen.
-                              textAlign:
-                                  task.subject == LearningSubject.mathematik &&
-                                          task.prompt.length < 24
-                                      ? TextAlign.center
-                                      : TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontSize: task.subject ==
+                          border: Border.all(
+                            color: LumoVisualTokens.cyan.withOpacity(.28),
+                            width: 1,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: subjectAccent.withOpacity(0.16),
+                                borderRadius: BorderRadius.circular(
+                                  LumoRadius.pill,
+                                ),
+                                border: Border.all(
+                                  color: subjectAccent.withOpacity(0.70),
+                                ),
+                              ),
+                              child: Text(
+                                _subjectLabel(task.subject),
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: 0.6,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            _goal(task),
+                            const SizedBox(height: 12),
+                            if (task.subject == LearningSubject.deutsch &&
+                                const [
+                                  'Sätze lesen',
+                                  'Lesesinn',
+                                  'Reihenfolge',
+                                ].contains(task.parameters['unit']) &&
+                                task.prompt.contains('\n'))
+                              ReadingPassageCard(prompt: task.prompt)
+                            else
+                              Text(
+                                LumoTaskObjectArt.matchWordImage(
+                                      prompt: task.prompt,
+                                      answer: task.correctAnswer,
+                                    )?.displayPrompt ??
+                                    task.prompt,
+                                // Kurze Rechnungen groß, lange Geschichten gut lesbar
+                                // ohne dass die Antworten aus dem Bild rutschen.
+                                textAlign: task.subject ==
                                             LearningSubject.mathematik &&
                                         task.prompt.length < 24
-                                    ? math.min(
-                                        41,
-                                        _promptSize(task.prompt) * 1.2,
-                                      )
-                                    : _promptSize(task.prompt),
-                                fontWeight: FontWeight.w900,
-                                color: LumoVisualTokens.white,
-                                shadows: const [
-                                  Shadow(
-                                    color: Color(0xAA37D2FD),
-                                    blurRadius: 12,
-                                  ),
-                                ],
-                                height: 1.12,
+                                    ? TextAlign.center
+                                    : TextAlign.start,
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: task.subject ==
+                                              LearningSubject.mathematik &&
+                                          task.prompt.length < 24
+                                      ? math.min(
+                                          41,
+                                          _promptSize(task.prompt) * 1.2,
+                                        )
+                                      : _promptSize(task.prompt),
+                                  fontWeight: FontWeight.w900,
+                                  color: LumoVisualTokens.white,
+                                  shadows: const [
+                                    Shadow(
+                                      color: Color(0xAA37D2FD),
+                                      blurRadius: 12,
+                                    ),
+                                  ],
+                                  height: 1.12,
+                                ),
                               ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
         ),
         const SizedBox(height: 12),
-        if (widget.allowRetry)
-          InteractiveTaskWorkspace(
-            key: ValueKey('task-workspace-${task.taskInstanceId}'),
-            task: task,
-            fallback: _AdaptiveVisual(
-              task: task,
-              picked: _picked,
-              solved: _solved,
-            ),
-            enabled: !_solved,
-            helpLevel: _helpLevel,
-            reduceMotion: widget.reduceMotion,
-            showSolution: _solved,
-            activeObjectId: widget.activeObjectId,
-            slow: widget.slow,
-            replaySerial: widget.replaySerial,
-            onInteraction: _workspaceChanged,
-          )
-        else
-          _AdaptiveVisual(task: task, picked: _picked, solved: _solved),
+        LumoStageTarget(
+          id: 'task-workspace',
+          kind: LumoStageRegionKind.obstacle,
+          child: widget.allowRetry
+              ? InteractiveTaskWorkspace(
+                  key: ValueKey('task-workspace-${task.taskInstanceId}'),
+                  task: task,
+                  fallback: _AdaptiveVisual(
+                    task: task,
+                    picked: _picked,
+                    solved: _solved,
+                  ),
+                  enabled: !_solved,
+                  helpLevel: _helpLevel,
+                  reduceMotion: widget.reduceMotion,
+                  showSolution: _solved,
+                  activeObjectId: widget.activeObjectId,
+                  slow: widget.slow,
+                  replaySerial: widget.replaySerial,
+                  onInteraction: _workspaceChanged,
+                )
+              : _AdaptiveVisual(task: task, picked: _picked, solved: _solved),
+        ),
       ],
     );
     final answerPanel = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (widget.feedback != null) ...[
-          widget.feedback!,
+          LumoStageTarget(id: 'task-feedback', child: widget.feedback!),
           const SizedBox(height: 14),
         ],
         // The worked solution directly above already says what to do.
@@ -380,64 +390,71 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           ),
           const SizedBox(height: 12),
         ],
-        _OptionGrid(
-          task: task,
-          picked: _picked,
-          wrongAnswers: _wrongAnswers,
-          solved: _solved,
-          enabled:
-              !(_solved || (!widget.allowRetry && _wrongAnswers.isNotEmpty)),
-          reduceMotion: widget.reduceMotion,
-          onPick: _pick,
+        LumoStageTarget(
+          id: 'answers',
+          kind: LumoStageRegionKind.answers,
+          child: _OptionGrid(
+            task: task,
+            picked: _picked,
+            wrongAnswers: _wrongAnswers,
+            solved: _solved,
+            enabled:
+                !(_solved || (!widget.allowRetry && _wrongAnswers.isNotEmpty)),
+            reduceMotion: widget.reduceMotion,
+            onPick: _pick,
+          ),
         ),
         if (widget.allowRetry && !_solved && !widget.guided)
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: OutlinedButton.icon(
-                key: const ValueKey('lesson-hint-button'),
-                icon: const Icon(Icons.lightbulb_rounded),
-                label: Text(
-                  _showGentleHint ? 'Anders erklären' : 'Tipp von Lumo',
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: const Color(0xFFFFD36A),
-                  minimumSize: const Size(48, 48),
-                  side: const BorderSide(color: Color(0xB3FFDA7B)),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 13,
-                  ),
-                ),
-                onPressed: () {
-                  setState(() {
-                    _showGentleHint = true;
-                    _localHelpLevel = (_localHelpLevel + 1).clamp(1, 3);
-                  });
-                  widget.onInteraction?.call(
-                    TaskWorkspaceInteraction(
-                      taskId: task.taskInstanceId,
-                      objectId: 'task-workspace',
-                      action: 'requestHelp',
-                      visibleState: {
-                        ..._workspaceState,
-                        'helpLevel': _helpLevel,
-                      },
-                      explanation: _workspaceExplanation ??
-                          InteractiveTaskWorkspace.goalFor(task),
-                      isHelp: true,
+          LumoStageTarget(
+              id: 'lesson-hint',
+              kind: LumoStageRegionKind.control,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: OutlinedButton.icon(
+                    key: const ValueKey('lesson-hint-button'),
+                    icon: const Icon(Icons.lightbulb_rounded),
+                    label: Text(
+                      _showGentleHint ? 'Anders erklären' : 'Tipp von Lumo',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
-                  );
-                },
-              ),
-            ),
-          ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: const Color(0xFFFFD36A),
+                      minimumSize: const Size(48, 48),
+                      side: const BorderSide(color: Color(0xB3FFDA7B)),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 13,
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _showGentleHint = true;
+                        _localHelpLevel = (_localHelpLevel + 1).clamp(1, 3);
+                      });
+                      widget.onInteraction?.call(
+                        TaskWorkspaceInteraction(
+                          taskId: task.taskInstanceId,
+                          objectId: 'task-workspace',
+                          action: 'requestHelp',
+                          visibleState: {
+                            ..._workspaceState,
+                            'helpLevel': _helpLevel,
+                          },
+                          explanation: _workspaceExplanation ??
+                              InteractiveTaskWorkspace.goalFor(task),
+                          isHelp: true,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              )),
         if (widget.allowRetry && _helpLevel > 0 && !_solved && !widget.guided)
           Padding(
             padding: const EdgeInsets.only(top: 12),

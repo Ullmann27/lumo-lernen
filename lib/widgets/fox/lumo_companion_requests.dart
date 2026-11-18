@@ -416,6 +416,10 @@ class LumoCompanionRequests {
   }
 
   void requestTaskHelp() => helpRequested.value++;
+
+  /// Lumo auf der Lernbühne wurde angetippt: das gewohnte Hilfe-Menü öffnen.
+  final ValueNotifier<int> companionMenuRequested = ValueNotifier<int>(0);
+  void requestCompanionMenu() => companionMenuRequested.value++;
   void requestAppExplanation() => appExplanationRequested.value++;
 
   /// Letzter Zeitpunkt einer Anfrage - fuer Cooldown.

@@ -15,6 +15,7 @@ import 'core/profile_repository.dart';
 import 'core/user_profile.dart';
 import 'features/companion/lumo_lottie.dart';
 import 'features/onboarding/lumo_onboarding_holo_screen.dart';
+import 'widgets/fox/stage/lumo_actor_library.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +48,9 @@ Future<void> main() async {
   // persistierten Mute-Status. Spielt von sich aus noch nichts ab -
   // das macht der jeweilige Screen ueber play() im initState.
   await LumoMusic.instance.init();
+  // Lumos Bewegungsbilder für die Lernbühne. Fehlt der Satz, bleibt die Bühne
+  // aus und der bisherige Lumo-Knopf bleibt sichtbar.
+  LumoActorLibrary.preload().ignore();
   runApp(const LumoApp());
 }
 
