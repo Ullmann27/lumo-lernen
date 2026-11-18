@@ -43,7 +43,7 @@ ISSUE_PATTERNS = {
 # ('<semanticTitle>. <tagline> <Status>') bzw. sichtbare Knopftexte.
 # Szenen laut Whitelist in tools/auto_install/MainActivity.kt (launch3D):
 # kart jump run puzzle build settlement rhythm treasure learning cards
-# connect_four games memory quiz.
+# connect_four games memory quiz chess.
 PLAN = (
     ('run', 'run', 'ui', 'Lumo Lauf', 'Spring. Laufe. Sei mutig!'),
     ('quiz', 'quiz', 'ui', 'Wer wird Lumo-Meister?', '20 Fragen · 3 Joker · bis 5.000 Sterne'),
@@ -59,6 +59,7 @@ PLAN = (
     ('rhythm', 'rhythm', 'ui', 'Rhythm Party', 'Fühl den Beat!'),
     ('treasure', 'treasure', 'ui', 'Schatzsuche', 'Rätsel. Hinweise. Schätze!'),
     ('memory', 'memory', 'ui', 'Memory', 'Finde die Paare!'),
+    ('chess', 'chess', 'ui', 'Lumo Schach', 'Schach lernen mit Lumo – oder gegen ihn spielen'),
     ('games', 'games', 'ui-button', 'Magische 3D-Spielewelt betreten', None),
     ('jump-intent', 'jump', 'intent', None, None),
 )
