@@ -154,12 +154,8 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
         _muenzenAufTisch.add(_muenzen[0]);
         _gesamtWert = _muenzen[0].wert;
       }
-      final wrong = <int>{};
-      while (wrong.length < 3) {
-        final delta = (10 + _rng.nextInt(50)) * (_rng.nextBool() ? 1 : -1);
-        final cand = _gesamtWert + delta;
-        if (cand > 0 && cand != _gesamtWert) wrong.add(cand);
-      }
+      final wrong = geldAblenker(
+          _muenzenAufTisch.map((coin) => coin.wert).toList(), _rng);
       _answers = [_gesamtWert, ...wrong]..shuffle(_rng);
     } else {
       // muenzeFinden: zeige 4 Muenzen, frage nach einer bestimmten
@@ -188,11 +184,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
     } catch (_) {}
   }
 
-  String _formatCent(int cent) {
-    if (cent < 100) return '$cent Cent';
-    if (cent % 100 == 0) return '${cent ~/ 100} Euro';
-    return '${cent ~/ 100} Euro ${cent % 100}';
-  }
+  String _formatCent(int cent) => geldBetrag(cent);
 
   void _onAnswer(int idx, bool isCorrect) async {
     if (_answered || _progress.hasPending) return;
@@ -634,4 +626,45 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
       }).toList(),
     );
   }
+}
+
+/// Betrag in der Schreibweise der Schule: „50 Cent“, „1,50 €“, „2,00 €“.
+/// Befund L8/L2: früher „1 Euro 50“.
+@visibleForTesting
+String geldBetrag(int cent) {
+  if (cent < 100) return '$cent Cent';
+  final rest = cent % 100;
+  return '${cent ~/ 100},${rest.toString().padLeft(2, '0')} €';
+}
+
+/// Drei falsche Beträge aus typischen Zählfehlern: eine Münze vergessen,
+/// eine Münze doppelt gezählt, um 10 Cent verzählt. Alle lassen sich mit
+/// den Münzen (10, 20, 50 Cent, 1 und 2 Euro) legen. Befund L8: früher
+/// zufällige Abstände wie 83 Cent.
+@visibleForTesting
+List<int> geldAblenker(List<int> coins, math.Random rng) {
+  final total = coins.fold<int>(0, (sum, coin) => sum + coin);
+  final candidates = <int>{
+    for (final coin in coins) total - coin,
+    for (final coin in coins) total + coin,
+    total - 10,
+    total + 10,
+    total + 20,
+    total - 20,
+    total + 50,
+  }..removeWhere((value) => value <= 0 || value == total);
+  final pool = candidates.toList()..shuffle(rng);
+  // Vergessene und doppelte Münze zuerst, damit die typischen Fehler dabei
+  // sind; der Rest füllt auf.
+  final typical = <int>[
+    for (final coin in coins)
+      if (total - coin > 0) total - coin,
+    for (final coin in coins) total + coin,
+  ]..shuffle(rng);
+  final out = <int>{};
+  for (final value in [...typical, ...pool]) {
+    if (out.length == 3) break;
+    if (value > 0 && value != total) out.add(value);
+  }
+  return out.toList();
 }

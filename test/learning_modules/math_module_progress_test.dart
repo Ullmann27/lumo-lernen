@@ -128,11 +128,10 @@ String _correct(WidgetTester tester, String unit) {
     final cents = coins
         .map((coin) => int.parse(coin[1]!) * (coin[2] == '€' ? 100 : 1))
         .reduce((a, b) => a + b);
+    // Schulschreibweise „1,50 €“ statt „1 Euro 50“ (Befund L8).
     return cents < 100
         ? '$cents Cent'
-        : cents % 100 == 0
-            ? '${cents ~/ 100} Euro'
-            : '${cents ~/ 100} Euro ${cents % 100}';
+        : '${cents ~/ 100},${(cents % 100).toString().padLeft(2, '0')} €';
   }
   if (labels.contains('Welche Zahl ist größer?')) {
     final fontSize = unit == 'Zahlen 1-10' ? 56.0 : 48.0;
