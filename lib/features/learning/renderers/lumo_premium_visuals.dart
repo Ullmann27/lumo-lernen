@@ -1892,77 +1892,112 @@ class NumberCompareVisual extends StatelessWidget {
   }
 }
 
-/// Einfaches Saeulen-Bar-Chart - 2 Balken nebeneinander mit Werten.
+/// Einfaches Säulendiagramm mit einem Balken je Wert der Aufgabe.
+///
+/// Die Werte und Beschriftungen kommen aus den Bilddaten (`bars`, `labels`).
+/// Fehlen sie, zeigt das Bild alle Zahlen der Aufgabe und nummeriert die
+/// Balken. Früher zeigte es immer nur die ersten zwei Zahlen als „Mo“ und
+/// „Di“ – beim Mittelwert aus drei Kindern fehlte der dritte Wert.
 class SimpleBarChartVisual extends StatelessWidget {
   const SimpleBarChartVisual({super.key, required this.task});
   final TaskInstance task;
 
+  static const _colors = <Color>[
+    Color(0xFF60A5FA),
+    Color(0xFFEC4899),
+    Color(0xFFF59E0B),
+    Color(0xFF22C55E),
+    Color(0xFF8B5CF6),
+    Color(0xFFFF7A2F),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final nums = _digitsFromPrompt(task.prompt);
-    final a = nums.isNotEmpty ? nums[0] : 8;
-    final b = nums.length > 1 ? nums[1] : 5;
-    final maxVal = a > b ? a : b;
-    final heightA = (a / maxVal * 100).clamp(20.0, 100.0);
-    final heightB = (b / maxVal * 100).clamp(20.0, 100.0);
+    final data = task.visualPayload.data;
+    final rawBars = data['bars'];
+    final bars = rawBars is List
+        ? rawBars.map(_readInt).whereType<int>().toList(growable: false)
+        : _digitsFromPrompt(task.prompt);
+    if (bars.isEmpty || bars.length > _colors.length) {
+      return const SizedBox.shrink();
+    }
+    final rawLabels = data['labels'];
+    final labels = rawLabels is List && rawLabels.length == bars.length
+        ? <String>[for (final label in rawLabels) '$label']
+        : <String>[for (var i = 0; i < bars.length; i++) '${i + 1}'];
+    final maxVal = bars.fold<int>(1, (a, b) => b > a ? b : a);
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+      padding: const EdgeInsets.fromLTRB(12, 14, 12, 14),
       decoration: _stageDecoration(const Color(0xFF22C55E)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          _bar(a, heightA, const Color(0xFF60A5FA), 'Mo'),
-          _bar(b, heightB, const Color(0xFFEC4899), 'Di'),
+          for (var i = 0; i < bars.length; i++)
+            Expanded(
+              child: _bar(
+                i,
+                bars[i],
+                (bars[i] / maxVal * 100).clamp(8.0, 100.0),
+                _colors[i],
+                labels[i],
+              ),
+            ),
         ],
       ),
     );
   }
 
-  Widget _bar(int value, double h, Color c, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          '$value',
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 18,
-            fontWeight: FontWeight.w900,
-            color: c,
+  Widget _bar(int index, int value, double h, Color c, String label) {
+    return Semantics(
+      key: ValueKey('chart-bar-$index'),
+      label: '$label: $value',
+      excludeSemantics: true,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '$value',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 18,
+              fontWeight: FontWeight.w900,
+              color: c,
+            ),
           ),
-        ),
-        const SizedBox(height: 4),
-        Container(
-          width: 56,
-          height: h,
-          decoration: BoxDecoration(
-            color: c,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-            boxShadow: [
-              BoxShadow(
-                  color: c.withOpacity(0.35),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4)),
-            ],
+          const SizedBox(height: 4),
+          FractionallySizedBox(
+            widthFactor: .7,
+            child: Container(
+              height: h,
+              decoration: BoxDecoration(
+                color: c,
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
+                boxShadow: [
+                  BoxShadow(
+                      color: c.withOpacity(0.35),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4)),
+                ],
+              ),
+            ),
           ),
-        ),
-        Container(
-          width: 56,
-          height: 3,
-          color: const Color(0xFF065F46),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          label,
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 12,
-            fontWeight: FontWeight.w800,
-            color: Color(0xFF065F46),
+          Container(height: 3, color: const Color(0xFF065F46)),
+          const SizedBox(height: 6),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              label,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 12,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF065F46),
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

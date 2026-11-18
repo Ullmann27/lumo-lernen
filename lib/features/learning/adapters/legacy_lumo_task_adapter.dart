@@ -801,6 +801,33 @@ class LegacyLumoTaskAdapter {
       };
     }
 
+    // Säulendiagramm: ein Balken je Wert der Aufgabe, passend beschriftet.
+    if (task.visual == 'chart') {
+      final children = RegExp(
+              r'^(?:Knobelaufgabe: )?Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\.')
+          .firstMatch(task.prompt.trim());
+      if (children != null) {
+        return <String, Object?>{
+          'bars': <int>[for (var i = 1; i <= 3; i++) int.parse(children[i]!)],
+          'labels': const <String>['Kind 1', 'Kind 2', 'Kind 3'],
+        };
+      }
+      const days = <String, String>{
+        'Montag': 'Mo', 'Dienstag': 'Di', 'Mittwoch': 'Mi', 'Donnerstag': 'Do',
+        'Freitag': 'Fr', 'Samstag': 'Sa', 'Sonntag': 'So',
+      };
+      final entries = RegExp('(${days.keys.join('|')}) (\\d+)')
+          .allMatches(task.prompt)
+          .toList(growable: false);
+      if (task.prompt.startsWith('Diagramm:') && entries.length >= 2) {
+        return <String, Object?>{
+          'bars': <int>[for (final entry in entries) int.parse(entry[2]!)],
+          'labels': <String>[for (final entry in entries) days[entry[1]]!],
+        };
+      }
+      return const <String, Object?>{};
+    }
+
     // Erweitern: Die Pizza muss den Bruch aus der Aufgabe zeigen. Ohne diese
     // Daten zeichnete das Bild immer 1 von n Stücken.
     if (task.visual == 'fraction_expand') {

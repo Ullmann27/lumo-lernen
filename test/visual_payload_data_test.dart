@@ -88,6 +88,44 @@ void main() {
     });
   });
 
+  // Fachprüfung Mathematik S12: Das Diagramm zum Mittelwert braucht alle
+  // drei Werte und die Beschriftung „Kind 1/2/3“ statt „Mo“/„Di“.
+  group('chart parser', () {
+    test('Mittelwert: drei Balken fuer drei Kinder', () {
+      final template = MathTaskTemplates.templates
+          .singleWhere((item) => item.id == 'g4_average');
+      for (var seed = 0; seed < 60; seed++) {
+        final task = template.concretize(seed * 53 + 3);
+        final values = RegExp(r'\d+')
+            .allMatches(task.prompt)
+            .map((match) => int.parse(match.group(0)!))
+            .toList();
+        final data = dataFor(
+          visual: task.visual,
+          prompt: task.prompt,
+          answer: task.answer,
+          choices: task.choices,
+          requireValidTask: true,
+        );
+        expect(data['bars'], values.take(3).toList(), reason: task.prompt);
+        expect(data['labels'], ['Kind 1', 'Kind 2', 'Kind 3']);
+      }
+    });
+
+    test('Diagramm mit Wochentagen: Balken und Kurzformen der Tage', () {
+      final data = dataFor(
+        visual: 'chart',
+        prompt:
+            'Diagramm: Montag 12 Kinder, Dienstag 11 Kinder. Wie viele zusammen?',
+        answer: '23',
+        choices: const ['23', '13', '33', '1'],
+        requireValidTask: true,
+      );
+      expect(data['bars'], [12, 11]);
+      expect(data['labels'], ['Mo', 'Di']);
+    });
+  });
+
   group('clock parser', () {
     test('extrahiert hour und minute aus "Stunde 7 und Minute 30"', () {
       final data = dataFor(

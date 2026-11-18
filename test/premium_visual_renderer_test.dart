@@ -289,6 +289,52 @@ void main() {
     });
   });
 
+  // Fachprüfung Mathematik S12: Beim Mittelwert aus drei Kindern zeigte das
+  // Diagramm nur zwei Balken „Mo“ und „Di“, der dritte Wert fehlte.
+  group('SimpleBarChartVisual', () {
+    testWidgets('zeigt alle drei Werte mit den Beschriftungen der Bilddaten',
+        (tester) async {
+      await tester.pumpWidget(wrap(SimpleBarChartVisual(
+        task: buildTask(
+          type: VisualType.simpleBarChart,
+          prompt: 'Drei Kinder sammeln Sterne: 42, 49 und 53.',
+          answer: 48,
+          data: {
+            'bars': [42, 49, 53],
+            'labels': ['Kind 1', 'Kind 2', 'Kind 3'],
+          },
+        ),
+      )));
+      for (final value in ['42', '49', '53']) {
+        expect(find.text(value), findsOneWidget);
+      }
+      for (final label in ['Kind 1', 'Kind 2', 'Kind 3']) {
+        expect(find.text(label), findsOneWidget);
+      }
+      expect(find.text('Mo'), findsNothing);
+      expect(find.text('Di'), findsNothing);
+      // Der Mittelwert selbst steht nicht im Bild.
+      expect(find.text('48'), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('ohne Bilddaten: alle Zahlen der Aufgabe, keine erfundenen Tage',
+        (tester) async {
+      await tester.pumpWidget(wrap(SimpleBarChartVisual(
+        task: buildTask(
+          type: VisualType.simpleBarChart,
+          prompt: 'Drei Kinder sammeln Sterne: 12, 18 und 21.',
+        ),
+      )));
+      for (var index = 0; index < 3; index++) {
+        expect(find.byKey(ValueKey('chart-bar-$index')), findsOneWidget);
+      }
+      expect(find.byKey(const ValueKey('chart-bar-3')), findsNothing);
+      expect(find.text('Mo'), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+  });
+
   group('RhymeBubbleVisual', () {
     testWidgets('rendert bei leerem Prompt ohne Crash', (tester) async {
       // Bug B1: split(' ').last crashte bei leerem Prompt.
