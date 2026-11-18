@@ -1708,8 +1708,7 @@ class DivisionGroupsVisual extends StatelessWidget {
         divisor > 12 ||
         dividend < 1 ||
         dividend > 9999 ||
-        dividend % divisor != 0 ||
-        task.correctAnswer != dividend ~/ divisor) {
+        !_matchesDivision(task.correctAnswer, dividend, divisor)) {
       return Text(task.prompt, textAlign: TextAlign.center);
     }
     final hundreds = dividend ~/ 100;
@@ -1784,6 +1783,16 @@ class DivisionGroupsVisual extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Die hinterlegte Lösung muss zur Rechnung passen: der Quotient oder,
+  /// wenn etwas übrig bleibt, „Quotient Rest r“.
+  static bool _matchesDivision(Object answer, int dividend, int divisor) {
+    final quotient = dividend ~/ divisor;
+    final rest = dividend % divisor;
+    return rest == 0
+        ? answer == quotient
+        : answer == '$quotient Rest $rest';
   }
 
   Widget _bundle(int value, String key) => Semantics(

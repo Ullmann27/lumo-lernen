@@ -632,7 +632,7 @@ class TaskHintService {
         if ((op == ':' || op == '÷') && left > 100) {
           return level == 2
               ? 'Teile Stelle für Stelle und beginne ganz links. Wie oft passt $right in die erste Stelle oder in die ersten zwei Stellen von $left?'
-              : 'Schreibe jedes Teilergebnis an und nimm den Rest mit zur nächsten Stelle. Prüfe am Ende mit der Malaufgabe: dein Ergebnis mal $right muss $left ergeben.';
+              : 'Schreibe jedes Teilergebnis an und nimm den Rest mit zur nächsten Stelle. Prüfe am Ende mit der Probe: dein Ergebnis mal $right, plus ein Rest, wenn etwas übrig bleibt, muss $left ergeben.';
         }
         if (op == ':' || op == '÷') {
           return level == 2

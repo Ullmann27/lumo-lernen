@@ -221,6 +221,21 @@ class TaskQualityGuard {
           ? const []
           : const ['fraction_expansion_wrong_representation'];
     }
+    // Division mit Rest: „499 : 4“ hat die Lösung „124 Rest 3“. Der Rest
+    // muss kleiner als der Divisor sein und die Probe muss aufgehen.
+    final division = RegExp(
+        r'^(?:Schriftlich:\s*)?(\d+)\s*[:÷]\s*(\d+)\s*=\s*\?$')
+        .firstMatch(prompt);
+    final withRest = RegExp(r'^(\d+) Rest (\d+)$').firstMatch(answer);
+    if (division != null && withRest != null) {
+      final dividend = int.parse(division[1]!);
+      final divisor = int.parse(division[2]!);
+      final quotient = int.parse(withRest[1]!);
+      final rest = int.parse(withRest[2]!);
+      return rest > 0 && rest < divisor && quotient * divisor + rest == dividend
+          ? const <String>[]
+          : const <String>['division_remainder_wrong'];
+    }
     final expected = _expectedValue(prompt);
     if (expected == null) return const <String>[];
     final actual = _MathValue.parse(answer);

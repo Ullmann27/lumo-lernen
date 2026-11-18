@@ -90,7 +90,9 @@ class ChoiceQuestionQuality {
       if (const {'mal', '·', '×', 'x', '*'}.contains(op)) {
         return _number(a * b);
       }
-      if (b == 0 || a % b != 0) return null;
+      if (b == 0) return null;
+      // Division mit Rest: Nur die Karte „Quotient Rest r“ ist richtig.
+      if (a % b != 0) return _answer('${a ~/ b} Rest ${a % b}');
       return _number(a ~/ b);
     }
 

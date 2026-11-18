@@ -532,16 +532,41 @@ class MathTaskTemplate {
           typical: <int>[2 * (a + b), a + b, a * (b + 1), a * (b - 1)],
         );
       case MathTemplateKind.writtenMultiplication:
-        final answer = a * b;
-        return _numberTask(seed, 'Schriftlich: $a × $b = ?', answer, 'Multipliziere jede Stelle von $a mit $b.', 'written_mul',
+        // Einstelliger Faktor: Dafür gilt das Verfahren „jede Stelle mal
+        // den Faktor“. Früher kamen auch 10, 11 und 12 vor, zu denen die
+        // Erklärung nicht passte.
+        final factor = 2 + (b - 2) % 8;
+        final answer = a * factor;
+        return _numberTask(seed, 'Schriftlich: $a × $factor = ?', answer, _writtenMultiplicationSteps(a, factor), 'written_mul',
           // Typisch: gemerkte Zehner vergessen, einmal zu oft oder zu selten genommen.
-          typical: <int>[if (b < 10) _productWithoutCarry(a, b), a * (b - 1), a * (b + 1), answer - 10, answer + 10, answer - 100, answer + 100],
+          typical: <int>[_productWithoutCarry(a, factor), a * (factor - 1), a * (factor + 1), answer - 10, answer + 10, answer - 100, answer + 100],
         );
       case MathTemplateKind.division:
-        final divisor = b.clamp(2, 12).toInt();
-        final quotient = (a ~/ divisor).clamp(2, 99).toInt();
+        if (promptPattern == 'schriftliche-division') {
+          // Dreistelliger Dividend, einstelliger Divisor. Der Quotient wird
+          // gleichmäßig gewählt (früher war er in 18 % der Aufgaben 99).
+          // Jede dritte Aufgabe hat einen Rest.
+          final divisor = 2 + (b - 2) % 8;
+          final lowest = (100 + divisor - 1) ~/ divisor;
+          final highest = 999 ~/ divisor;
+          final quotient = lowest + (a - validRangeA.first) % (highest - lowest + 1);
+          var rest = _positive(_mixSeed(seed + 97), 3) == 0
+              ? 1 + _positive(_mixSeed(seed + 131), divisor - 1)
+              : 0;
+          if (quotient * divisor + rest > 999) rest = 0;
+          final dividend = quotient * divisor + rest;
+          final answer = rest == 0 ? '$quotient' : '$quotient Rest $rest';
+          return _choice(seed, 'Schriftlich: $dividend : $divisor = ?', answer,
+              _divisionChoices(quotient, rest, divisor, seed),
+              _writtenDivisionSteps(dividend, divisor), 'division',
+              keepOrder: true);
+        }
+        // Umkehrung des Einmaleins und halbschriftliches Teilen bis 100.
+        final divisor = b.clamp(2, 9).toInt();
+        final highest = 100 ~/ divisor;
+        final quotient = 2 + (a - validRangeA.first) % (highest - 1);
         final dividend = quotient * divisor;
-        return _numberTask(seed, '$dividend : $divisor = ?', quotient, 'Teile $dividend in $divisor gleich große Gruppen.', 'division',
+        return _numberTask(seed, '$dividend : $divisor = ?', quotient, 'Wie oft passt $divisor in $dividend? $quotient-mal, denn $quotient · $divisor = $dividend.', 'division',
           // Typisch: Nachbaraufgabe im Einmaleins, eine Null zu viel oder zu wenig, abgezogen statt geteilt.
           typical: <int>[quotient - 1, quotient + 1, if (quotient % 10 == 0) quotient ~/ 10, if (quotient % 10 == 0) quotient * 10, quotient + 10, quotient - 10, if (dividend - divisor < 100) dividend - divisor],
         );
@@ -996,6 +1021,80 @@ List<String> _fractionChoices(
   ];
   dice.shuffle(cards);
   return <String>[for (final card in cards) '${card.$1}/${card.$2}'];
+}
+
+/// Karten für die schriftliche Division. Zwei Karten sind reine Zahlen, zwei
+/// haben einen Rest – so verrät die Form der Karten nicht, ob die Aufgabe
+/// aufgeht. Typische Fehler: Rest ignoriert, aufgerundet, falscher Rest,
+/// Rest erfunden, Nachbarzahl.
+List<String> _divisionChoices(int quotient, int rest, int divisor, int seed) {
+  final dice = _SeedDice(seed);
+  final side = dice.next(2) == 0 ? -1 : 1;
+  final otherRest = rest == 0
+      ? 1 + dice.next(divisor - 1)
+      : 1 + (rest - 1 + 1 + dice.next(divisor > 2 ? divisor - 2 : 1)) % (divisor - 1);
+  final cards = rest == 0
+      ? <String>[
+          '$quotient',
+          '${quotient + side * (dice.next(2) == 0 ? 1 : 10)}',
+          '$quotient Rest $otherRest',
+          '${quotient - 1} Rest ${1 + dice.next(divisor - 1)}',
+        ]
+      : <String>[
+          '$quotient Rest $rest',
+          '$quotient',
+          '${quotient + 1}',
+          if (otherRest != rest)
+            '$quotient Rest $otherRest'
+          else
+            '${quotient + side} Rest $rest',
+        ];
+  dice.shuffle(cards);
+  return cards;
+}
+
+/// Rechenweg der schriftlichen Multiplikation mit einstelligem Faktor,
+/// Stelle für Stelle von rechts, mit den gemerkten Zehnern.
+String _writtenMultiplicationSteps(int number, int factor) {
+  final steps = <String>[];
+  var carry = 0;
+  var rest = number;
+  while (rest > 0) {
+    final digit = rest % 10;
+    rest ~/= 10;
+    final product = digit * factor + carry;
+    final added = carry > 0 ? ', plus $carry = $product' : '';
+    if (rest > 0) {
+      steps.add('$digit · $factor = ${digit * factor}$added, schreibe ${product % 10}'
+          '${product >= 10 ? ', merke ${product ~/ 10}' : ''}');
+      carry = product ~/ 10;
+    } else {
+      steps.add('$digit · $factor = ${digit * factor}$added, schreibe $product');
+    }
+  }
+  return 'Beginne bei den Einern: ${steps.join('. ')}. '
+      'Ergebnis: $number · $factor = ${number * factor}.';
+}
+
+/// Rechenweg der schriftlichen Division, Stelle für Stelle von links, mit
+/// Probe.
+String _writtenDivisionSteps(int dividend, int divisor) {
+  final steps = <String>[];
+  var carry = 0;
+  var started = false;
+  for (final char in '$dividend'.split('')) {
+    final current = carry * 10 + int.parse(char);
+    final digit = current ~/ divisor;
+    carry = current % divisor;
+    if (digit == 0 && !started) continue;
+    started = true;
+    steps.add('$current : $divisor = $digit${carry > 0 ? ' Rest $carry' : ''}');
+  }
+  final quotient = dividend ~/ divisor;
+  final rest = dividend % divisor;
+  return 'Teile von links, Stelle für Stelle: ${steps.join(', ')}. '
+      'Ergebnis: $quotient${rest > 0 ? ' Rest $rest' : ''}. '
+      'Probe: $quotient · $divisor${rest > 0 ? ' + $rest' : ''} = $dividend.';
 }
 
 /// Typische falsche Ergebnisse bei a + b: abgezogen statt dazugezählt,
