@@ -32,6 +32,17 @@ void main() {
     'lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart',
     'lib/features/deutsch/deutsch_gap_sentences.dart',
     'lib/core/lumo_quest_library.dart',
+    // Zweite Runde: Spiele, Schreibvorlagen, Erfolge, Lumo-Welt.
+    'lib/domain/games/game_level_catalog.dart',
+    'lib/features/games/lumo_cards/lumo_cards_rules.dart',
+    'lib/features/games/lumo_cards/lumo_cards_game_controller.dart',
+    'lib/features/lumo_welt/lumo_welt_screen.dart',
+    'lib/features/story/lumo_story_library_screen.dart',
+    'lib/features/story/lumo_quest_hub_screen.dart',
+    'lib/widgets/premium/lumo_empty_error_state.dart',
+    'lib/features/games/dice_race/lumo_dice_race_game.dart',
+    'lib/core/achievements/lumo_achievement.dart',
+    'lib/features/writing/writing_engine.dart',
   ];
 
   for (final path in screens) {

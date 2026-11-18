@@ -292,7 +292,7 @@ class LumoCardsGameController extends ChangeNotifier {
     _state = next;
     _speak(correct
         ? 'Richtig! Plus einen Stern.'
-        : 'Nicht ganz. Schau nochmal beim naechsten Mal.');
+        : 'Nicht ganz. Schau nochmal beim nächsten Mal.');
     notifyListeners();
     _maybeRunBotTurn();
   }
@@ -376,7 +376,7 @@ class LumoCardsGameController extends ChangeNotifier {
     if (s.phase == GamePhase.chooseColor) {
       final color = _pickBotColor(s);
       _state = LumoCardsRules.applyColorChoice(state: s, chosen: color);
-      _speak('Lumo waehlt ${_colorName(color)}.');
+      _speak('Lumo wählt ${_colorName(color)}.');
       notifyListeners();
       _maybeRunBotTurn();
       return;
@@ -396,7 +396,7 @@ class LumoCardsGameController extends ChangeNotifier {
         state: s,
         chosenIndex: chosen,
       );
-      _speak(lumoCorrect ? 'Lumo weiss die Antwort!' : 'Lumo hat sich vertan.');
+      _speak(lumoCorrect ? 'Lumo weiß die Antwort!' : 'Lumo hat sich vertan.');
       notifyListeners();
       _maybeRunBotTurn();
       return;
@@ -487,7 +487,7 @@ class LumoCardsGameController extends ChangeNotifier {
             : 'Sternenregen! Du ziehst zwei Karten.');
         break;
       case LumoCardType.colorMagic:
-        _speak('Farbzauber! Neue Farbe waehlen.');
+        _speak('Farbzauber! Neue Farbe wählen.');
         break;
       case LumoCardType.superRain:
         _speak(playedByPlayer1

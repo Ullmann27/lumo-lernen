@@ -162,7 +162,7 @@ class LumoCardsRules {
           discardPile: newDiscard,
           phase: GamePhase.chooseColor,
           lastActionMessage:
-              'Farbzauber! ${state.currentPlayer.name} waehlt eine Farbe.',
+              'Farbzauber! ${state.currentPlayer.name} wählt eine Farbe.',
         );
 
       case LumoCardType.superRain:
@@ -187,7 +187,7 @@ class LumoCardsRules {
           discardPile: restDiscardSuper,
           phase: GamePhase.chooseColor,
           lastActionMessage:
-              'Super-Sternenregen! ${state.players[nextIdxSuper].name} zieht 4 Karten - jetzt Farbe waehlen.',
+              'Super-Sternenregen! ${state.players[nextIdxSuper].name} zieht 4 Karten - jetzt Farbe wählen.',
         );
 
       case LumoCardType.whirlwind:
@@ -237,7 +237,7 @@ class LumoCardsRules {
           phase: GamePhase.learningQuestion,
           pendingLearningQuestion: q,
           lastActionMessage:
-              'Denkpause! Lumo hat eine kleine Frage fuer ${state.currentPlayer.name}.',
+              'Denkpause! Lumo hat eine kleine Frage für ${state.currentPlayer.name}.',
         );
     }
   }
@@ -259,7 +259,7 @@ class LumoCardsRules {
       state.copyWith(
         selectedColor: chosen,
         phase: GamePhase.playing,
-        lastActionMessage: '${state.currentPlayer.name} waehlt ${chosen.name}.',
+        lastActionMessage: '${state.currentPlayer.name} wählt ${chosen.name}.',
       ),
       steps: steps,
     );
@@ -294,7 +294,7 @@ class LumoCardsRules {
         phase: GamePhase.playing,
         pendingLearningQuestion: null,
         lastActionMessage:
-            'Schade. ${q.hint ?? "Beim naechsten Mal klappt es!"}',
+            'Schade. ${q.hint ?? "Beim nächsten Mal klappt es!"}',
       ));
     }
   }
@@ -477,10 +477,10 @@ class LumoCardsRules {
       hint: 'Ein Hund hat 4 Beine.',
     ),
     LearningQuestion(
-      prompt: 'Welche Zahl ist die groesste?',
+      prompt: 'Welche Zahl ist die größte?',
       options: ['12', '8', '5', '9'],
       correctIndex: 0,
-      hint: '12 ist die groesste der vier.',
+      hint: '12 ist die größte der vier.',
     ),
     LearningQuestion(
       prompt: 'Wie viel ist 5 + 5?',

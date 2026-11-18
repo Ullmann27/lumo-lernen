@@ -9,7 +9,8 @@ const _allowedWords = <String>{
   'koexistenz', 'aerobic', 'joe', 'zoe', 'manuel', 'manuela', 'samuel',
   'emanuel', 'bellevue', 'revue', 'true', 'blue', 'tuesday', 'shoe', 'shoes',
   'does', 'goes', 'toe', 'toes', 'queue', 'glue', 'rescue', 'statuen',
-  'genuesisch', 'aloe', 'kanoe', 'ruefen',
+  'genuesisch', 'aloe', 'kanoe', 'ruefen', 'visuell', 'visuelle',
+  'visuellen', 'konzeptuell', 'intellektuell',
 };
 
 /// ß-Wörter, die mit ss geschrieben falsch sind (österreichische Schreibung).
