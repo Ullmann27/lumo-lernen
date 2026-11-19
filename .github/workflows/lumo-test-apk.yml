@@ -200,7 +200,7 @@ jobs:
     if: github.ref_name == 'repair/lumo-quiz-run-kart-20261119'
     needs: apk
     runs-on: ubuntu-24.04
-    timeout-minutes: 55
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -213,12 +213,34 @@ jobs:
           mkdir -p tour
           sudo chmod a+rw /dev/kvm
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr-deu tesseract-ocr-eng
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           awk '{print $1 "  dist/x86_64/Lumo-Lernen-Neu.apk"}' candidate/x86_64/SHA256SUMS.txt > candidate/ANDROID-TOUR-SHA256SUMS.txt
+      - name: Mesa-Software-Anzeige für das Emulator-GL starten
+        # SwiftShader (swiftshader_indirect) linkt Godots gl_compatibility-Shader nicht
+        # ("Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)",
+        # Lauf 44473804677): Godot zeigte nur die Clear-Farbe, die Tour fand keine Knöpfe.
+        # -gpu host über Mesa llvmpipe ist der Weg der übrigen Android-Touren.
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -Fi 'llvmpipe' tour/mesa-renderer.txt
       - uses: reactivecircus/android-emulator-runner@v2
         env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
           LUMO_NATIVE_START_DIAGNOSTICS: '1'
           LUMO_NATIVE_START_WAIT: '35'
           LUMO_NATIVE_START_BUDGET: '850'
@@ -228,7 +250,8 @@ jobs:
           arch: x86_64
           profile: pixel_5
           ram-size: 4096M
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          emulator-build: '14472402'
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
       - uses: actions/upload-artifact@v4
         if: always()
