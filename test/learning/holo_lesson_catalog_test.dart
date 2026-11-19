@@ -169,6 +169,58 @@ void main() {
       expect(seen.length, greaterThanOrEqualTo(6));
     });
 
+    test('Namenwort-Sätze: genau ein Namenwort, bekanntes Bild, Umlaute', () {
+      expect(HoloLessonCatalog.nounSentences.length, greaterThanOrEqualTo(6));
+      for (final item in HoloLessonCatalog.nounSentences) {
+        expect(item.types.length, item.words.length, reason: item.sentence);
+        expect(item.types.where((type) => type == 'nomen').length, 1,
+            reason: item.sentence);
+        expect(item.types[item.nounIndex], 'nomen', reason: item.sentence);
+        expect(item.types[item.verbIndex], 'verb', reason: item.sentence);
+        expect(item.nounIndex, isNot(item.verbIndex));
+        expect(HoloLessonCatalog.nounPictures, contains(item.picture));
+        expect(item.noun[0], item.noun[0].toUpperCase(),
+            reason: 'Namenwörter sind großgeschrieben');
+        expect(item.sentence.contains(RegExp('ae|oe|ue(?!r)')), isFalse,
+            reason: 'echte Umlaute: ${item.sentence}');
+      }
+    });
+
+    test('Namenwort im Satz: Generator, Ablenker und Holo-Daten passen', () {
+      final seen = <String>{};
+      for (var seed = 0; seed < 600; seed++) {
+        final generated = GermanTaskTemplates.generate(
+            grade: 2, unit: 'Namenwoerter', seed: seed);
+        if (generated.promptPattern != 'namenwort-im-satz') continue;
+        final payload = HoloLessonCatalog.sentencePayload(
+            prompt: generated.prompt,
+            correctAnswer: generated.answer,
+            taskId: 'seed-$seed');
+        expect(payload, isNotNull, reason: generated.prompt);
+        expect(payload!['mode'], 'noun');
+        final words = payload['words'] as List;
+        expect(words[payload['nounIndex'] as int], generated.answer);
+        expect(HoloLessonCatalog.nounPictures, contains(payload['picture']));
+        expect(generated.choices.every(words.contains), isTrue,
+            reason: 'Ablenker kommen aus demselben Satz');
+        final twin = payload['twin'] as Map;
+        expect(twin['sentence'], isNot(payload['sentence']));
+        expect(twin['nounIndex'], isA<int>());
+        expect(HoloLessonCatalog.nounPictures, contains(twin['picture']));
+        seen.add(payload['sentence'] as String);
+      }
+      expect(seen, contains('Der kleine Fuchs springt.'));
+      expect(seen.length, greaterThanOrEqualTo(6));
+      // Eine falsche Lösung öffnet keinen Holo-Raum.
+      expect(
+          HoloLessonCatalog.sentencePayload(
+              prompt: HoloLessonCatalog.nounPrompt(
+                  HoloLessonCatalog.nounSentences.first),
+              correctAnswer: 'springt',
+              taskId: 'falsch'),
+          isNull);
+    });
+
     test('Satz bauen: gemischte Wörter, eine richtige Reihenfolge', () {
       var found = 0;
       for (var seed = 0; seed < 400; seed++) {

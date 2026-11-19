@@ -15,6 +15,8 @@ class HoloSentence {
     required this.verbIndex,
     required this.question,
     this.demo = 'none',
+    this.nounIndex = -1,
+    this.picture = '',
   });
 
   /// Wörter ohne Satzzeichen; der Satz endet mit einem Punkt.
@@ -30,8 +32,15 @@ class HoloSentence {
   /// Was Lumo vormachen kann: jump, wave, nod oder none.
   final String demo;
 
+  /// Nur für „Namenwort finden“: Stelle des einen Namenworts und das Bild,
+  /// das der Holo-Raum nach der richtigen Wahl zeigt (fuchs, katze, hase, ente,
+  /// hund, vogel, sonne, apfel).
+  final int nounIndex;
+  final String picture;
+
   String get sentence => '${words.join(' ')}.';
   String get verb => words[verbIndex];
+  String get noun => words[nounIndex];
 
   Map<String, Object> toPayload() => <String, Object>{
         'sentence': sentence,
@@ -40,6 +49,8 @@ class HoloSentence {
         'verbIndex': verbIndex,
         'question': question,
         'demo': demo,
+        if (nounIndex >= 0) 'nounIndex': nounIndex,
+        if (picture.isNotEmpty) 'picture': picture,
       };
 }
 
@@ -151,14 +162,85 @@ class HoloLessonCatalog {
         demo: 'jump'),
   ];
 
+  /// Sätze für „Namenwort finden“: je genau ein Namenwort und ein Bild, das der
+  /// Holo-Raum als Hologramm kennt. Die Frage führt zum Namenwort („Wer …?“).
+  static const List<HoloSentence> nounSentences = <HoloSentence>[
+    HoloSentence(
+        words: ['Der', 'kleine', 'Fuchs', 'springt'],
+        types: ['artikel', 'adjektiv', 'nomen', 'verb'],
+        verbIndex: 3,
+        nounIndex: 2,
+        picture: 'fuchs',
+        question: 'Wer springt?'),
+    HoloSentence(
+        words: ['Die', 'Katze', 'schläft'],
+        types: ['artikel', 'nomen', 'verb'],
+        verbIndex: 2,
+        nounIndex: 1,
+        picture: 'katze',
+        question: 'Wer schläft?'),
+    HoloSentence(
+        words: ['Der', 'Hase', 'hüpft', 'weit'],
+        types: ['artikel', 'nomen', 'verb', 'adjektiv'],
+        verbIndex: 2,
+        nounIndex: 1,
+        picture: 'hase',
+        question: 'Wer hüpft weit?'),
+    HoloSentence(
+        words: ['Die', 'Ente', 'schwimmt'],
+        types: ['artikel', 'nomen', 'verb'],
+        verbIndex: 2,
+        nounIndex: 1,
+        picture: 'ente',
+        question: 'Wer schwimmt?'),
+    HoloSentence(
+        words: ['Der', 'Hund', 'bellt', 'laut'],
+        types: ['artikel', 'nomen', 'verb', 'adjektiv'],
+        verbIndex: 2,
+        nounIndex: 1,
+        picture: 'hund',
+        question: 'Wer bellt laut?'),
+    HoloSentence(
+        words: ['Ein', 'Vogel', 'singt'],
+        types: ['artikel', 'nomen', 'verb'],
+        verbIndex: 2,
+        nounIndex: 1,
+        picture: 'vogel',
+        question: 'Wer singt?'),
+    HoloSentence(
+        words: ['Die', 'Sonne', 'scheint', 'hell'],
+        types: ['artikel', 'nomen', 'verb', 'adjektiv'],
+        verbIndex: 2,
+        nounIndex: 1,
+        picture: 'sonne',
+        question: 'Was scheint hell?'),
+    HoloSentence(
+        words: ['Der', 'rote', 'Apfel', 'fällt'],
+        types: ['artikel', 'adjektiv', 'nomen', 'verb'],
+        verbIndex: 3,
+        nounIndex: 2,
+        picture: 'apfel',
+        question: 'Was fällt?'),
+  ];
+
+  /// Bilder, die der Holo-Raum als Hologramm zeigen kann.
+  static const Set<String> nounPictures = <String>{
+    'fuchs', 'katze', 'hase', 'ente', 'hund', 'vogel', 'sonne', 'apfel',
+  };
+
   static String verbPrompt(HoloSentence item) =>
       'Lies den Satz: „${item.sentence}“\nWelches Wort ist das Tunwort?';
+
+  static String nounPrompt(HoloSentence item) =>
+      'Lies den Satz: „${item.sentence}“\nWelches Wort ist das Namenwort?';
 
   static String orderPrompt(List<String> shuffledWords) =>
       'Bilde einen Satz aus diesen Wörtern: ${shuffledWords.join(' · ')}';
 
   static final RegExp _verbPattern =
       RegExp(r'^Lies den Satz: „(.+)“\nWelches Wort ist das Tunwort\?$');
+  static final RegExp _nounPattern =
+      RegExp(r'^Lies den Satz: „(.+)“\nWelches Wort ist das Namenwort\?$');
   static const String _orderPrefix = 'Bilde einen Satz aus diesen Wörtern: ';
 
   /// Vier Antwortkarten für die Textaufgabe: richtige Summe, je eins daneben
@@ -248,6 +330,23 @@ class HoloLessonCatalog {
         'kind': 'holo_sentence',
         'mode': 'verb',
         ...verbSentences[index].toPayload(),
+        'twin': twin.toPayload(),
+      };
+    }
+    final noun = _nounPattern.firstMatch(prompt);
+    if (noun != null) {
+      final index =
+          nounSentences.indexWhere((item) => item.sentence == noun[1]);
+      if (index < 0 || '$correctAnswer' != nounSentences[index].noun) {
+        return null;
+      }
+      final twin = nounSentences[
+          (index + 1 + seed.abs() % (nounSentences.length - 1)) %
+              nounSentences.length];
+      return <String, Object>{
+        'kind': 'holo_sentence',
+        'mode': 'noun',
+        ...nounSentences[index].toPayload(),
         'twin': twin.toPayload(),
       };
     }

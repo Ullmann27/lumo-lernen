@@ -48,6 +48,16 @@ void main() {
               isTrue);
           continue;
         }
+        // Holo-Satzaufgabe (2026-11-19): dieselbe Wortart, aber im Satz.
+        if (entry.key == 'Namenwoerter' &&
+            task.promptPattern == 'namenwort-im-satz') {
+          expect(task.prompt, endsWith('Welches Wort ist das Namenwort?'));
+          expect(
+              HoloLessonCatalog.nounSentences
+                  .any((item) => item.noun == task.answer),
+              isTrue);
+          continue;
+        }
         expect(task.prompt, 'Welches Wort ist ein ${entry.value}?');
         final type = PrimarySchoolWordData.dictionary[task.answer]!.wordType;
         expect(

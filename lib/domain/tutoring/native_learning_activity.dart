@@ -336,7 +336,9 @@ class NativeLearningActivity {
         taskId: taskId,
       );
     } else if (task.subject == LearningSubject.deutsch &&
-        (unit == 'Tunwoerter' || unit == 'Erste Sätze')) {
+        (unit == 'Tunwoerter' ||
+            unit == 'Erste Sätze' ||
+            unit == 'Namenwoerter')) {
       payload = HoloLessonCatalog.sentencePayload(
         prompt: task.prompt,
         correctAnswer: task.correctAnswer,

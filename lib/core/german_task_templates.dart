@@ -106,6 +106,13 @@ class GermanTaskTemplates {
         unit: 'Tunwoerter',
         kind: GermanTemplateKind.wordTypes,
         promptPattern: 'wortart-verb'),
+    // Namenwort in einem echten Satz finden (Holo-Raum mit Wortkarten).
+    GermanTaskTemplate(
+        id: 'g2_noun_in_sentence',
+        grade: 2,
+        unit: 'Namenwoerter',
+        kind: GermanTemplateKind.wordTypes,
+        promptPattern: 'namenwort-im-satz'),
     // Tunwort in einem echten Satz finden (Holo-Raum mit Wortkarten).
     GermanTaskTemplate(
         id: 'g2_verb_in_sentence',
@@ -545,6 +552,24 @@ class GermanTaskTemplate {
               <String>[item.verb, ...others],
               'Tunwörter sagen, was jemand tut. ${item.question} '
                   '– „${item.verb}“.',
+              'sentence');
+        }
+        if (promptPattern == 'namenwort-im-satz') {
+          final item = HoloLessonCatalog.nounSentences[
+              _positive(seed, HoloLessonCatalog.nounSentences.length)];
+          // Ablenker sind die anderen Wörter desselben Satzes: zuerst das
+          // Tunwort, dann Wiewort/Begleiter. Keine Farb- oder Lagehinweise.
+          final others = <String>[
+            for (final type in const ['verb', 'adjektiv', 'artikel', 'andere'])
+              for (var i = 0; i < item.words.length; i++)
+                if (item.types[i] == type) item.words[i],
+          ];
+          return _choice(
+              HoloLessonCatalog.nounPrompt(item),
+              item.noun,
+              <String>[item.noun, ...others],
+              'Namenwörter sagen, wer oder was. ${item.question} '
+                  '– „${item.noun}“.',
               'sentence');
         }
         final selector = promptPattern.contains('nomen')
