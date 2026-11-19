@@ -153,6 +153,9 @@ class JSONObject(private val raw: String = "{}") {
     // Holo-Zusammenfassung (Lernräume) – im Karten-Test ohne Bedeutung.
     fun optJSONObject(key: String): JSONObject? = null
     fun opt(key: String): Any? = null
+    // Elternfreigabe „Geister-Duell“ (friendsGhostShare) – wie android.org.json: true nur bei true.
+    fun optBoolean(key: String, fallback: Boolean = false): Boolean =
+        Regex("\"" + key + "\"\\s*:\\s*(true|false)").find(raw)?.groupValues?.get(1)?.let { it == "true" } ?: fallback
     fun put(key: String, value: Any?): JSONObject = this
 }
 ''',
