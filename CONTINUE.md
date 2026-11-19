@@ -1,3 +1,9 @@
+# Lumo 2052 · Arbeitsstand für Fable 5.2
+
+Stand 19.11.2026. Beide Arbeitszweige heißen `repair/lumo-quiz-run-kart-20261119`. Der Kandidat `0.13.40+2052` öffnet die spielbare Quizrunde direkt, verkürzt den Laufstart und schließt den Frosch an Kart an. Die [Übergabe 2052](docs/handoffs/LUMO_2052_FABLE_5_2.md) enthält Bestandsaufnahme und Prüfungen. Der [Parallelauftrag an Fable 5.2](docs/handoffs/FABLE_5_2_LUMO_PARALLELAUF.md) deckt Strecken, Spiele und Lern-Holos ab. Den Auslieferungsstand am [APK-Bau und Android-Rundgang](https://github.com/Ullmann27/lumo-lernen/actions/runs/44473804677) prüfen.
+
+## Archiv früherer Arbeitsstände
+
 # Wiederaufnahme 2032 — Vollbuild aktivieren
 
 Stand: 16.11.2026, 09:09 UTC. Native ist **9d6ef1d704a0e54098a8f8f0818f36deae0e3789**. Der vollständige echte Katalogexport an Host **a5ea7422b1152576b34cf80519856129ff264ac1** ist jetzt erfolgreich übernommen, alle 480 Quellhashes stimmen. Der Coverage-Builder lief am selben HEAD: 364 gebundene Quellen, 61 Inventareinträge, 55 Screens, 236 Lehrplanfamilien, 18 bytegleiche Schutzdateien. Originale unter `docs/nextgen/evidence/ci-2032-catalog-export/`, lokale Fehler und Builder unter `coverage_refresh_20261116_2032/`.

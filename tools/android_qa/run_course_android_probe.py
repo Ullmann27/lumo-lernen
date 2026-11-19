@@ -16,8 +16,8 @@ ACTIVITY = "dev.ullmann.lumo.lumo_lernen.LumoGameActivity"
 COURSES = ["dschungelherz", "zauberwald", "sonnenhafen"]
 
 
-def adb(*args, binary=False):
-    return subprocess.check_output(["adb", *args], text=not binary, timeout=35)
+def adb(*args, binary=False, timeout=35):
+    return subprocess.check_output(["adb", *args], text=not binary, timeout=timeout)
 
 
 def capture(path):
@@ -106,7 +106,7 @@ def main():
     adb("wait-for-device")
     if adb("shell", "id", "-u").strip() != "0":
         raise RuntimeError("Rooted Android emulator needed to launch non-exported activity")
-    installation = adb("install", "-r", sys.argv[1])
+    installation = adb("install", "-r", "--no-streaming", sys.argv[1], timeout=300)
     if "Success" not in installation:
         raise RuntimeError(installation)
     adb("shell", "wm", "size", "840x960")
