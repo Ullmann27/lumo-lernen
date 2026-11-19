@@ -5,7 +5,7 @@ name: "Lumo Test-APK (Flutter + Godot)"
 # das Ergebnis ist eine Vorabversion zum Testen auf dem Handy.
 on:
   push:
-    branches: [ccr-54af69f2-4uged4, delivery/lumo-2051-completion]
+    branches: [ccr-54af69f2-4uged4, delivery/lumo-2051-completion, repair/lumo-quiz-run-kart-20261119]
     paths:
       - config/test-apk-request.json
       - .github/workflows/lumo-test-apk.yml
@@ -72,6 +72,8 @@ jobs:
             test/games/memory_native_entry_test.dart \
             test/games/memory_screen_test.dart \
             test/games/memory_result_frame_test.dart \
+            test/quiz_native_roundtrip_lifecycle_test.dart \
+            test/quiz_show_meister_test.dart \
             test/home_3d_workshop_entry_test.dart \
             test/learning/lab_native_entry_test.dart \
             test/learning/remaining_native_entry_test.dart \
@@ -101,6 +103,14 @@ jobs:
               --script "res://scripts/tests/$probe.gd"
             echo "::endgroup::"
           done
+          if [ "$GITHUB_REF_NAME" = repair/lumo-quiz-run-kart-20261119 ]; then
+            for probe in lumo_kart_production_driver_regression lumo_opponent_roster_regression lumo_run_regression quiz_studio_escape_regression; do
+              echo "::group::$probe"
+              timeout 600 godot --headless --path build/lumo-godot-qa \
+                --script "res://scripts/tests/$probe.gd"
+              echo "::endgroup::"
+            done
+          fi
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
@@ -118,6 +128,14 @@ jobs:
           (cd release && sha256sum "$NAME" > SHA256SUMS.txt)
           echo "LUMO_APK_NAME=$NAME" >> "$GITHUB_ENV"
           echo "LUMO_APK_VERSION=$VERSION" >> "$GITHUB_ENV"
+      - name: APK für den Android-Emulator sichern
+        if: github.ref_name == 'repair/lumo-quiz-run-kart-20261119'
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-EMULATOR-APK-${{ github.run_id }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          compression-level: 0
       - name: Test-APK als Vorabversion zum Herunterladen bereitstellen
         shell: bash
         run: |
@@ -167,3 +185,44 @@ jobs:
             build-proof/*.json
           if-no-files-found: warn
           compression-level: 0
+
+  android-tour:
+    name: Installierte APK im Android-Emulator prüfen
+    if: github.ref_name == 'repair/lumo-quiz-run-kart-20261119'
+    needs: apk
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-EMULATOR-APK-${{ github.run_id }}
+          path: candidate/x86_64
+      - name: Emulator und Prüftools vorbereiten
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          awk '{print $1 "  dist/x86_64/Lumo-Lernen-Neu.apk"}' candidate/x86_64/SHA256SUMS.txt > candidate/ANDROID-TOUR-SHA256SUMS.txt
+      - uses: reactivecircus/android-emulator-runner@v2
+        env:
+          LUMO_NATIVE_START_DIAGNOSTICS: '1'
+          LUMO_NATIVE_START_WAIT: '35'
+          LUMO_NATIVE_START_BUDGET: '850'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          ram-size: 4096M
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-ANDROID-TOUR-${{ github.run_id }}
+          path: tour/

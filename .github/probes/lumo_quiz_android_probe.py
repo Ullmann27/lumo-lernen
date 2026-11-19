@@ -834,6 +834,7 @@ class QuizProbe(shared.AndroidProbe):
         self.owner = hashlib.sha256(student.encode()).hexdigest()
         write(self.out/'binding-before.json', before)
         self.navigate()
+        self.open_native_button()
         self.wait('native Quiz Activity', lambda: 'TableGameActivity' in self.surfaces.resumed_activity(), bool, 60)
         initial = self.snapshot('initial-quiz')
         initial_saved = self.saved(initial['state'])
