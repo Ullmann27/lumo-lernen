@@ -51,12 +51,26 @@ class GermanTaskTemplates {
         unit: 'Erste Sätze',
         kind: GermanTemplateKind.sentenceOrder,
         promptPattern: 'satz-bauen'),
+    // Satz lesen und das passende Bild wählen (Holo-Raum mit drei Szenen).
+    GermanTaskTemplate(
+        id: 'g1_sentence_read',
+        grade: 1,
+        unit: 'Erste Sätze',
+        kind: GermanTemplateKind.sentenceOrder,
+        promptPattern: 'satz-lesen-bild'),
     GermanTaskTemplate(
         id: 'g1_syllables',
         grade: 1,
         unit: 'Silben',
         kind: GermanTemplateKind.syllables,
         promptPattern: 'silben-klatschen'),
+    // Silben klatschen mit den geprüften Wörtern des Holo-Raums (1–4 Silben).
+    GermanTaskTemplate(
+        id: 'g1_syllables_clap',
+        grade: 1,
+        unit: 'Silben',
+        kind: GermanTemplateKind.syllables,
+        promptPattern: 'silben-klatschen-holo'),
     GermanTaskTemplate(
         id: 'g1_articles',
         grade: 1,
@@ -126,6 +140,13 @@ class GermanTaskTemplates {
         unit: 'Wiewoerter',
         kind: GermanTemplateKind.wordTypes,
         promptPattern: 'wortart-adjektiv'),
+    // Wiewort in einem echten Satz finden (Holo-Raum mit Wortkarten).
+    GermanTaskTemplate(
+        id: 'g2_adjective_in_sentence',
+        grade: 2,
+        unit: 'Wiewoerter',
+        kind: GermanTemplateKind.wordTypes,
+        promptPattern: 'wiewort-im-satz'),
 
     GermanTaskTemplate(
         id: 'g3_synonyms',
@@ -399,6 +420,23 @@ class GermanTaskTemplate {
             'Verbinde das Bild mit dem passenden Namenwort.',
             'word_image');
       case GermanTemplateKind.sentenceOrder:
+        if (promptPattern == 'satz-lesen-bild') {
+          final item = HoloLessonCatalog.readingSentences[
+              _positive(seed, HoloLessonCatalog.readingSentences.length)];
+          // Antworten sind die Lagewörter zum Möbel (darauf, darunter …):
+          // Das Kind muss das Lagewort im Satz verstehen, nicht abschreiben.
+          return _choice(
+              HoloLessonCatalog.readingPrompt(item),
+              item.answer,
+              <String>[
+                for (final relation
+                    in HoloLessonCatalog.readingScenes(item, seed))
+                  relation,
+              ],
+              'Das Wort „${HoloLessonCatalog.relationWords[item.answer]}“ '
+                  'sagt, wo es ist: ${item.answer}.',
+              'sentence');
+        }
         if (promptPattern == 'satz-bauen') {
           final item = HoloLessonCatalog.orderSentences[
               _positive(seed, HoloLessonCatalog.orderSentences.length)];
@@ -437,6 +475,21 @@ class GermanTaskTemplate {
             'In diesen kurzen Aussagesätzen steht zuerst, wer etwas tut. Danach steht das Tunwort.',
             'sentence');
       case GermanTemplateKind.syllables:
+        if (promptPattern == 'silben-klatschen-holo') {
+          final item = HoloLessonCatalog.syllableWords[
+              _positive(seed, HoloLessonCatalog.syllableWords.length)];
+          final count = item.syllables.length;
+          return _choice(
+              HoloLessonCatalog.syllablePrompt(item.word),
+              '$count',
+              <String>[
+                '$count',
+                '${count + 1}',
+                '${count == 1 ? 3 : count - 1}'
+              ],
+              'Klatsche jede Silbe: ${item.syllables.join(' - ')}.',
+              'syllables');
+        }
         final word = _wordWithSyllables(seed, grade);
         final syllables =
             PrimarySchoolWordData.syllablesFor(word) ?? <String>[word];
@@ -552,6 +605,25 @@ class GermanTaskTemplate {
               <String>[item.verb, ...others],
               'Tunwörter sagen, was jemand tut. ${item.question} '
                   '– „${item.verb}“.',
+              'sentence');
+        }
+        if (promptPattern == 'wiewort-im-satz') {
+          final item = HoloLessonCatalog.adjectiveSentences[
+              _positive(seed, HoloLessonCatalog.adjectiveSentences.length)];
+          // Ablenker sind die anderen Wörter desselben Satzes: Namenwort,
+          // Tunwort, Begleiter. Keine Farb- oder Lagehinweise.
+          final others = <String>[
+            for (final type in const ['nomen', 'verb', 'artikel', 'andere'])
+              for (var i = 0; i < item.words.length; i++)
+                if (item.types[i] == type) item.words[i],
+          ];
+          return _choice(
+              HoloLessonCatalog.adjectivePrompt(item),
+              item.adjective,
+              <String>[item.adjective, ...others],
+              'Wiewörter sagen, wie jemand oder etwas ist. '
+                  '„${item.adjective}“ sagt, '
+                  '${item.question.replaceFirst('Welches Wort sagt, ', '').replaceFirst('?', '')}.',
               'sentence');
         }
         if (promptPattern == 'namenwort-im-satz') {

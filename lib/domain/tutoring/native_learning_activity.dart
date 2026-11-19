@@ -320,7 +320,8 @@ class NativeLearningActivity {
   }
 
   /// Aufgabenbezogener Holo-Raum aus dem Aufgabenkatalog: nur für genau die
-  /// geprüften Textaufgaben (Zehnerübergang) und Satzaufgaben. Die Holo-Szene
+  /// geprüften Textaufgaben (Zehnerübergang), Satzaufgaben (Tunwort, Namenwort,
+  /// Wiewort, Satz bauen, Lesen) und Silbenwörter. Die Holo-Szene
   /// meldet eine Zusammenfassung zurück; die App bucht sie wie eine Antwort.
   static NativeLearningActivity? holoFor(TaskInstance task) {
     final taskId = task.taskInstanceId;
@@ -339,8 +340,15 @@ class NativeLearningActivity {
     } else if (task.subject == LearningSubject.deutsch &&
         (unit == 'Tunwoerter' ||
             unit == 'Erste Sätze' ||
-            unit == 'Namenwoerter')) {
+            unit == 'Namenwoerter' ||
+            unit == 'Wiewoerter')) {
       payload = HoloLessonCatalog.sentencePayload(
+        prompt: task.prompt,
+        correctAnswer: task.correctAnswer,
+        taskId: taskId,
+      );
+    } else if (task.subject == LearningSubject.deutsch && unit == 'Silben') {
+      payload = HoloLessonCatalog.syllablePayload(
         prompt: task.prompt,
         correctAnswer: task.correctAnswer,
         taskId: taskId,

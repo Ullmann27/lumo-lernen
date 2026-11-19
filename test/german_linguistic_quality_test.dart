@@ -58,6 +58,17 @@ void main() {
               isTrue);
           continue;
         }
+        // Holo-Satzaufgabe (2026-11-19): Wiewort im Satz („wie … ist?“).
+        if (entry.key == 'Wiewoerter' &&
+            task.promptPattern == 'wiewort-im-satz') {
+          expect(task.prompt,
+              matches(RegExp(r'Welches Wort sagt, wie .+ ist\?$')));
+          expect(
+              HoloLessonCatalog.adjectiveSentences
+                  .any((item) => item.adjective == task.answer),
+              isTrue);
+          continue;
+        }
         expect(task.prompt, 'Welches Wort ist ein ${entry.value}?');
         final type = PrimarySchoolWordData.dictionary[task.answer]!.wordType;
         expect(
