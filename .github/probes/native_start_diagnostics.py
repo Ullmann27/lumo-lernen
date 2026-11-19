@@ -257,7 +257,7 @@ class Runner:
                         entry['observed_portal_labels'] = observed_portal_status(work, title)
                 if scene == 'quiz' and entry['tapped'] and 'TableGameActivity' not in self.resumed():
                     self.probe.flutter_tap(work, '3D-Quizstudio öffnen', 'quiz-studio',
-                                           scroll_attempts=0, min_visible_height_px=48)
+                                           scroll_attempts=1, min_visible_height_px=48)
                     entry['studio_button_tapped'] = True
             else:
                 self.adb('shell', 'am', 'force-stop', self.package)

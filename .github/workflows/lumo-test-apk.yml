@@ -9,6 +9,7 @@ on:
     paths:
       - config/test-apk-request.json
       - .github/workflows/lumo-test-apk.yml
+      - .github/probes/native_start_diagnostics.py
 
 permissions:
   contents: write
