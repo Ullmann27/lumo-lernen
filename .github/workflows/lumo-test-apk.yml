@@ -108,7 +108,12 @@ jobs:
             for probe in lumo_kart_production_driver_regression lumo_opponent_roster_regression \
               lumo_run_regression lumo_run_flow_regression quiz_studio_escape_regression; do
               echo "::group::$probe"
-              timeout 600 godot --headless --path build/lumo-godot-qa \
+              # Der Lauf-Test spielt 30 ganze Dschungelherz-Läufe mit den echten
+              # Teilschritten des Spiels (rund 18 s je Lauf im CI): 600 s reichten nur
+              # bis Lauf 24 (Lauf 44551761545, Abbruch mit 124 ohne Fehlschlag).
+              limit=600
+              if [ "$probe" = lumo_run_regression ]; then limit=1500; fi
+              timeout "$limit" godot --headless --path build/lumo-godot-qa \
                 --script "res://scripts/tests/$probe.gd"
               echo "::endgroup::"
             done
