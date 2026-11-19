@@ -125,8 +125,9 @@ void main() {
             .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))
             .task;
         opened = NativeLearningActivity.holoFor(task) != null;
-        if (opened)
+        if (opened) {
           debugPrint('Holo-Textaufgabe bei taskSeed $seed: ${task.prompt}');
+        }
       }
       expect(opened, isTrue, reason: 'Kein Holo-Einstieg in 80 Aufgaben');
       final task = tester
