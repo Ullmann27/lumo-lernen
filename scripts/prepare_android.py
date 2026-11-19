@@ -147,6 +147,17 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False,
         for category in ('DEFAULT', 'BROWSABLE'):
             ET.SubElement(intent, 'category', {attr('name'): f'android.intent.category.{category}'})
         ET.SubElement(intent, 'data', {attr('scheme'): 'lumolernen'})
+    # Lumo Kart Geister-Duell: Eine „Lumo-Geist“-Datei lässt sich mit Lumo öffnen oder an
+    # Lumo teilen. Keine Berechtigung; der Host nimmt nur kleine Dateien mit Kennung „LGST“.
+    for action in ('VIEW', 'SEND'):
+        if not any(e.get(attr('mimeType')) == 'application/vnd.lumo.geist'
+                   and any(a.get(attr('name')) == f'android.intent.action.{action}' for a in f.findall('action'))
+                   for f in activity.findall('intent-filter') for e in f.findall('data')):
+            intent = ET.SubElement(activity, 'intent-filter')
+            ET.SubElement(intent, 'action', {attr('name'): f'android.intent.action.{action}'})
+            ET.SubElement(intent, 'category', {attr('name'): 'android.intent.category.DEFAULT'})
+            for mime in ('application/vnd.lumo.geist', 'application/octet-stream'):
+                ET.SubElement(intent, 'data', {attr('mimeType'): mime})
     queries = doc.find('queries')
     if queries is None:
         queries = ET.SubElement(doc, 'queries')
@@ -223,6 +234,8 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False,
         ('LumoLearningConversation.kt', 'kotlin'),
         ('LumoLearningDialogLogic.java', 'java'),
         ('LumoSpeechEnvelope.kt', 'kotlin'),
+        ('KartGhostRules.kt', 'kotlin'),
+        ('KartFriendsBridge.kt', 'kotlin'),
     ):
         source = root / 'tools/auto_install' / filename
         if source.is_file():

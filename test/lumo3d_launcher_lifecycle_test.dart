@@ -427,4 +427,42 @@ void main() {
     await tester.pump();
     expect(find.textContaining('Android-App'), findsOneWidget);
   });
+
+  launcherTestWidgets('kart carries first name, LAN consent and a checked friend ghost', (
+    tester,
+  ) async {
+    final state = _ControlledState(() async {});
+    addTearDown(state.dispose);
+    state.state.childName = 'Lena';
+    final context = await _mount(tester);
+    final ghost = 'LUMOGEIST1:${'A' * 40}';
+    // Ein Geist gehört nur ins Kart und nur in geprüfter Form.
+    expect(await launchLumo3D(context, scene: 'jump', appState: state, kartFriendGhost: ghost), isFalse);
+    expect(await launchLumo3D(context, appState: state, kartFriendGhost: 'http://x'), isFalse);
+    // Ohne Elternfreigabe „Geister-Duell“ startet kein Geist …
+    expect(await launchLumo3D(context, appState: state, kartFriendGhost: ghost), isFalse);
+    expect(calls, isEmpty);
+    // … und ein normales Kart-Rennen gibt weder Vornamen noch Freigaben mit.
+    expect(await launchLumo3D(context, appState: state), isTrue);
+    expect(calls.single.arguments, allOf(
+      containsPair('scene', 'kart'), containsPair('playerName', ''),
+      containsPair('friendsLan', false), containsPair('friendsGhostShare', false),
+      isNot(contains('kartFriendGhost'))));
+    calls.clear();
+    state.updateSettings(state.state.settings.copyWith(ghostDuelEnabled: true));
+    expect(await launchLumo3D(context, appState: state, kartFriendGhost: ghost), isTrue);
+    expect(calls.single.arguments, allOf(
+      containsPair('scene', 'kart'), containsPair('playerName', 'Lena'),
+      containsPair('friendsLan', false), containsPair('friendsGhostShare', true),
+      containsPair('kartFriendGhost', ghost),
+      containsPair('kartFriendStart', true)));
+    calls.clear();
+    state.updateSettings(state.state.settings
+        .copyWith(lanPlayEnabled: true, ghostDuelEnabled: false));
+    expect(await launchLumo3D(context, appState: state), isTrue);
+    expect(calls.single.arguments, allOf(
+      containsPair('friendsLan', true), containsPair('playerName', 'Lena'),
+      containsPair('friendsGhostShare', false),
+      isNot(contains('kartFriendGhost'))));
+  });
 }

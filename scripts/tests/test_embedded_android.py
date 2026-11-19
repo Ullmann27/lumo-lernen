@@ -190,6 +190,11 @@ class EmbeddedCardsWindowTest(unittest.TestCase):
 
 
 WINDOW_ADAPTERS = {
+    'KartFriendsBridge.kt': r'''
+package dev.ullmann.lumo
+// Teilen-Menü des Geister-Duells ist Android; hier nur die Signatur für LumoHostPlugin.
+object KartFriendsBridge { fun share(activity: Any, base64: String, fileName: String, title: String): Boolean = false }
+''',
     'AndroidActivity.kt': r'''
 package android.app
 open class Activity : android.content.Context() {

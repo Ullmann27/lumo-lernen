@@ -92,7 +92,13 @@ class AndroidHostTest(unittest.TestCase):
             doc=ET.parse(main/'AndroidManifest.xml').getroot(); attr=module.attr
             self.assertEqual(len(doc.findall('uses-permission')),4)
             self.assertEqual(len(doc.findall('application/provider')),1)
-            self.assertEqual(len(doc.findall('application/activity/intent-filter')),1)
+            # lumolernen:-Link plus „Lumo-Geist“ öffnen (VIEW) und empfangen (SEND), je einmal
+            # auch nach doppelter Vorbereitung; keine zusätzliche Berechtigung.
+            filters = doc.findall('application/activity/intent-filter')
+            self.assertEqual(len(filters),3)
+            ghost_actions = sorted(f.find('action').get(attr('name')) for f in filters
+                                   if f.find('data').get(attr('mimeType')) == 'application/vnd.lumo.geist')
+            self.assertEqual(ghost_actions, ['android.intent.action.SEND', 'android.intent.action.VIEW'])
             self.assertEqual(doc.find('queries/package').get(attr('name')),'dev.ullmann.lumo3d')
             activity=main/'kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt'
             self.assertTrue(activity.read_text().startswith('package dev.ullmann.lumo.lumo_lernen'))

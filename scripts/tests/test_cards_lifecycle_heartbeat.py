@@ -26,6 +26,11 @@ def missing_toolchain(message):
 
 
 STUBS = {
+    'KartFriendsBridge.kt': r'''
+package dev.ullmann.lumo
+// Teilen-Menü des Geister-Duells ist Android; hier nur die Signatur für LumoHostPlugin.
+object KartFriendsBridge { fun share(activity: Any, base64: String, fileName: String, title: String): Boolean = false }
+''',
     'Os.kt': r'''
 package android.os
 class Bundle

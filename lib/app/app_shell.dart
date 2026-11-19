@@ -10,6 +10,7 @@ import '../widgets/fox/lumo_companion_requests.dart';
 import '../widgets/fox/lumo_free_companion.dart';
 import '../widgets/fox/stage/lumo_actor_library.dart';
 import '../core/lumo_asset_paths.dart';
+import '../features/kart_friends/kart_friends_inbox.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
@@ -117,6 +118,10 @@ class _AppShellState extends State<AppShell>
         ),
       );
     }
+    // Ein per „Öffnen mit Lumo“ angekommener Freundes-Geist (Lumo Kart).
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(KartFriendsInbox.checkIncoming(context, _appState));
+    });
     // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
     final deepSection = widget.initialSection;
     if (deepSection != null && deepSection != _appState.state.section) {
@@ -352,6 +357,7 @@ class _AppShellState extends State<AppShell>
         _proxyClient.warmup(settings);
       }
       _startKeepAlive();
+      unawaited(KartFriendsInbox.checkIncoming(context, _appState));
     } else if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.detached) {
       _keepAliveTimer?.cancel();

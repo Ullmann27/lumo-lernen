@@ -23,6 +23,7 @@ import android.util.Log
 class MainActivity : FlutterActivity() {
     private var offlineSpeech: LumoOfflineSpeechBridge? = null
     private var localRecognition: LumoLocalRecognition? = null
+    private var kartFriends: KartFriendsBridge? = null
     private val installerChannel = "lumo_lernen/installer"
     private val distributionChannel: String by lazy {
         try {
@@ -132,6 +133,11 @@ class MainActivity : FlutterActivity() {
         CardsTableBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
         ConnectFourBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
         TableGamesBridge.attach(flutterEngine.dartExecutor.binaryMessenger, filesDir)
+        // Geister-Duell: angekommene „Lumo-Geist“-Datei bereithalten (Dart holt sie ab).
+        kartFriends = KartFriendsBridge(this).also {
+            it.attach(flutterEngine.dartExecutor.binaryMessenger)
+            it.handleIntent(intent)
+        }
         offlineSpeech = LumoOfflineSpeechBridge(applicationContext).also {
             it.attach(flutterEngine)
         }
@@ -449,6 +455,18 @@ class MainActivity : FlutterActivity() {
                 }
                 options.put("tableToken", token)
             }
+            if (game == "kart") {
+                // Geister-Duell / WLAN: nur geprüfte Formen; sonst wird das Feld weggelassen.
+                options.put("playerName", KartGhostRules.playerName(call.argument<String>("playerName")))
+                    .put("friendsLan", call.argument<Boolean>("friendsLan") == true)
+                val ghostDuel = call.argument<Boolean>("friendsGhostShare") == true
+                options.put("friendsGhostShare", ghostDuel)
+                val ghost = call.argument<String>("kartFriendGhost")
+                if (ghostDuel && KartGhostRules.isLaunchText(ghost)) {
+                    options.put("kartFriendGhost", ghost)
+                        .put("kartFriendStart", call.argument<Boolean>("kartFriendStart") == true)
+                }
+            }
             options.put("reduceAnimations", call.argument<Boolean>("reduceAnimations") ?: false)
             val callerSession = options.getString("sessionId")
                 // Der Kartentisch kehrt wie Kart und Lumo Lauf in die Spieleauswahl zurück.
@@ -481,8 +499,14 @@ class MainActivity : FlutterActivity() {
         }
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        kartFriends?.handleIntent(intent)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (kartFriends?.onActivityResult(requestCode, resultCode, data) == true) return
         if (requestCode == gameRequest) {
             // A recreated host has no live Dart caller. Its durable return is
             // intentionally left for EmbeddedGameService's normal navigation.

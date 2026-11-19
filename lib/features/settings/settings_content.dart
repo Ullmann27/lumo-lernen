@@ -27,6 +27,7 @@ import 'writing_report_card.dart';
 import 'lumo_voice_diagnostics_card.dart';
 import 'local_voice_license_dialog.dart';
 import 'discovery_settings_card.dart';
+import '../kart_friends/kart_friends_inbox.dart';
 
 /// All settings, sheets and dialogs share the same night surface.
 /// The State must live below the scope so showDialog captures this Theme.
@@ -709,6 +710,52 @@ class _SettingsContentState extends State<_SettingsContentBody> {
               ],
             ),
             const SizedBox(height: 14),
+            _SettingsCard(
+              key: const ValueKey('settingsFriendsCard'),
+              title: 'Mit Freunden spielen',
+              children: [
+                const Text(
+                    'Ohne Konto, ohne Chat, ohne Internet-Server. Beides ist aus, bis ihr es hier '
+                    'erlaubt. Geteilt werden dann nur der Vorname, das gewählte Kart und die '
+                    'Fahrlinie einer Kart-Strecke – sonst nichts.'),
+                const SizedBox(height: 12),
+                _SwitchRow(
+                  title: 'Gemeinsam spielen im WLAN erlauben',
+                  subtitle:
+                      'Zwei Geräte im selben WLAN fahren in Lumo Kart zusammen ein Rennen. '
+                      'Ein Gerät zeigt einen vierstelligen Raumcode, das andere gibt ihn ein. '
+                      'Nur im eigenen Netz, keine Verbindung zu Fremden.',
+                  value: _settings.lanPlayEnabled,
+                  onChanged: (v) =>
+                      _save(_settings.copyWith(lanPlayEnabled: v)),
+                ),
+                _SwitchRow(
+                  title: 'Geister-Duell erlauben',
+                  subtitle:
+                      'Nach einem Zeitfahren kann dein Kind seine beste Fahrt als kleine Datei '
+                      '„Lumo-Geist“ (wenige KB) über das Teilen-Menü verschicken – ihr wählt '
+                      'selbst, an wen – und Geister von Freunden öffnen.',
+                  value: _settings.ghostDuelEnabled,
+                  onChanged: (v) =>
+                      _save(_settings.copyWith(ghostDuelEnabled: v)),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                    'Kommt ein Geist bei euch an, öffnet ihn mit Lumo Lernen oder hier:',
+                    style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  key: const ValueKey('openFriendGhostFile'),
+                  onPressed: !_settings.ghostDuelEnabled
+                      ? null
+                      : () =>
+                          KartFriendsInbox.pickFile(context, widget.appState),
+                  icon: const Icon(Icons.folder_open_rounded),
+                  label: const Text('Geist-Datei öffnen'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
         _SettingsCard(title: 'Lumo-KI Testserver', children: [
           _SwitchRow(
             title: 'Lumo-KI-Server erlauben',
@@ -927,7 +974,7 @@ class _Header extends StatelessWidget {
 }
 
 class _SettingsCard extends StatelessWidget {
-  const _SettingsCard({required this.title, required this.children});
+  const _SettingsCard({super.key, required this.title, required this.children});
   final String title;
   final List<Widget> children;
 

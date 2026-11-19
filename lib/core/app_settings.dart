@@ -26,6 +26,8 @@ class AppSettings {
     this.learningMode = LearningMode.normal,
     this.voiceRate = 0.35,
     this.voicePitch = 1.0,
+    this.lanPlayEnabled = false,
+    this.ghostDuelEnabled = false,
   });
   final int dailyGoal;
   final bool requireDailyMissionForGames;
@@ -52,6 +54,15 @@ class AppSettings {
   final double voiceRate;
   final double voicePitch;
 
+  /// Elternfreigabe: Lumo Kart darf im selben WLAN mit einem zweiten Gerät fahren
+  /// (Raumcode, kein Internet, kein Chat). Vorgabe aus.
+  final bool lanPlayEnabled;
+
+  /// Elternfreigabe: Geister-Duell in Lumo Kart. Erst damit darf das Kind eine eigene
+  /// Bestfahrt (Vorname, Kart, Fahrlinie) über das Teilen-Menü verschicken und Geister
+  /// von Freunden öffnen. Vorgabe aus.
+  final bool ghostDuelEnabled;
+
   AppSettings copyWith({
     int? dailyGoal,
     bool? requireDailyMissionForGames,
@@ -72,6 +83,8 @@ class AppSettings {
     LearningMode? learningMode,
     double? voiceRate,
     double? voicePitch,
+    bool? lanPlayEnabled,
+    bool? ghostDuelEnabled,
   }) {
     return AppSettings(
       dailyGoal: dailyGoal ?? this.dailyGoal,
@@ -96,6 +109,8 @@ class AppSettings {
       learningMode: learningMode ?? this.learningMode,
       voiceRate: voiceRate ?? this.voiceRate,
       voicePitch: voicePitch ?? this.voicePitch,
+      lanPlayEnabled: lanPlayEnabled ?? this.lanPlayEnabled,
+      ghostDuelEnabled: ghostDuelEnabled ?? this.ghostDuelEnabled,
     );
   }
 
@@ -119,6 +134,8 @@ class AppSettings {
         'learningMode': learningMode.name,
         'voiceRate': voiceRate,
         'voicePitch': voicePitch,
+        'lanPlayEnabled': lanPlayEnabled,
+        'ghostDuelEnabled': ghostDuelEnabled,
       };
 
   factory AppSettings.fromJson(Map<String, dynamic> json) {
@@ -130,8 +147,8 @@ class AppSettings {
       ),
       requireDailyMissionForGames:
           _bool(json['requireDailyMissionForGames'], fallback: false),
-      missionTasksPerStation: _intIn(
-        json['missionTasksPerStation'], fallback: 4, allowed: const [2, 4, 6]),
+      missionTasksPerStation: _intIn(json['missionTasksPerStation'],
+          fallback: 4, allowed: const [2, 4, 6]),
       soundEnabled: _bool(json['soundEnabled'], fallback: true),
       voiceEnabled: _bool(json['voiceEnabled'], fallback: true),
       autoReadEnabled: _bool(json['autoReadEnabled'], fallback: true),
@@ -165,6 +182,8 @@ class AppSettings {
         min: 0.85,
         max: 1.18,
       ),
+      lanPlayEnabled: _bool(json['lanPlayEnabled'], fallback: false),
+      ghostDuelEnabled: _bool(json['ghostDuelEnabled'], fallback: false),
     );
   }
 

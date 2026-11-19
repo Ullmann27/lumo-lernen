@@ -341,6 +341,16 @@ class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotP
         return CardsTableBridge.submit(host.filesDir, token, payload)
     }
 
+    /** Lumo Kart: eigene Bestfahrt als „Lumo-Geist“ über das Android-Teilen-Menü schicken. */
+    @UsedByGodot
+    fun shareKartGhost(base64: String, fileName: String, title: String): Boolean {
+        // Nur mit der Elternfreigabe „Geister-Duell“ (Startoption friendsGhostShare).
+        val allowed = try {
+            org.json.JSONObject(host.options()).optBoolean("friendsGhostShare", false)
+        } catch (_: Exception) { false }
+        return allowed && KartFriendsBridge.share(host, base64, fileName, title)
+    }
+
     @UsedByGodot
     fun reward(payload: String): Boolean = try {
         GameEventStore.recordReward(host, payload)

@@ -11,6 +11,7 @@ import '../../core/reward_wallet_repository.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
+import '../kart_friends/kart_friend_ghost.dart';
 import 'lumo_game_entry_overlay.dart';
 
 // The native channel completes only when the game returns. Keep the guard
@@ -31,6 +32,7 @@ Future<bool> launchLumo3D(
   String? tableToken,
   String? legacyGameKey,
   ValueChanged<Map<String, Object?>>? onLearningResult,
+  String? kartFriendGhost,
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
   // Only reviewed, bounded lesson descriptors open the educational route.
@@ -55,6 +57,14 @@ Future<bool> launchLumo3D(
   if (tableGame != (tableToken != null) ||
       (tableGame && appState == null) ||
       (tableToken != null && !RegExp(r'^[a-f0-9]{32}$').hasMatch(tableToken))) {
+    return false;
+  }
+  // Ein Freundes-Geist gehört nur ins Kart, nur in der geprüften Textform und nur mit
+  // der Elternfreigabe „Geister-Duell“.
+  if (kartFriendGhost != null &&
+      (scene != 'kart' ||
+          !KartFriendGhost.isLaunchText(kartFriendGhost) ||
+          appState?.state.settings.ghostDuelEnabled != true)) {
     return false;
   }
   if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
@@ -214,6 +224,20 @@ Future<bool> launchLumo3D(
         'learningVoiceRate':
             ((appState?.state.settings.voiceRate ?? 0.35) / 0.35)
                 .clamp(0.70, 1.60),
+      },
+      if (scene == 'kart') ...{
+        // Der Vorname (Namensschild im WLAN-Rennen, verschickter Geist) geht nur mit
+        // einer der beiden Elternfreigaben ins Spiel; beide sind als Vorgabe aus.
+        'playerName': (appState?.state.settings.lanPlayEnabled == true ||
+                appState?.state.settings.ghostDuelEnabled == true)
+            ? (appState?.state.childName ?? '')
+            : '',
+        'friendsLan': appState?.state.settings.lanPlayEnabled == true,
+        'friendsGhostShare': appState?.state.settings.ghostDuelEnabled == true,
+        if (kartFriendGhost != null) ...{
+          'kartFriendGhost': kartFriendGhost,
+          'kartFriendStart': true,
+        },
       },
       if (scene == 'connect_four') 'connectFourToken': connectFourToken,
       if (tableGame) 'tableToken': tableToken,
