@@ -357,7 +357,20 @@ Gesamtlauf und `flutter analyze` siehe Abschnitt „Prüfung“.
 
 ## Prüfung
 
-Siehe Bericht des Abschlusslaufs unten (wird mit dem letzten Commit eingetragen).
+Container-Läufe (kein Gerät, kein Emulator) auf dem Stand nach allen Übernahmen:
+
+- `flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings`: **0 Fehler**, 297 Hinweise
+  (Ausgang 279; +18 Stil-Hinweise aus übernommenem Code, z. B. `curly_braces`).
+- `flutter test --no-pub` (Gesamtlauf): **3197 bestanden, 190 übersprungen, 2 rot**:
+  - `test/games/lesson_trail_completion_test.dart`: zählte genau 2 Wallet-Schreibvorgänge; mit
+    der übernommenen Bestätigung (`34feeac9`) kommt ein dritter, identischer Bestätigungs-
+    Schreibvorgang dazu (Sterne weiter genau einmal gebucht). Erwartung angepasst und
+    kommentiert (Folge-Commit) → einzeln **PASS LOKAL**.
+  - `test/lumo_voice_clips_test.dart` „mouth follows native media position…“: rot nur im
+    Gesamtlauf unter hoher Last, einzeln **PASS LOKAL** (30/30 mit dem obigen Test). Von den
+    Übernahmen nicht berührt; als zeitabhängiger Wackeltest vermerkt.
+- `python3 scripts/verify_legacy_release_pin.py`: PASS.
+- Kotlin/Java: nichts geändert (nicht baubar hier).
 
 ## Nur Belege / Werkzeug (102 Zweige)
 

@@ -77,7 +77,11 @@ void main() {
     expect(saved['stars'], 3);
     expect(saved['xp'], 40);
     expect(app.hasPendingRewards, isFalse);
-    expect(store.snapshots, hasLength(2));
+    // Failed write, successful retry, then one identical confirmation write:
+    // an already booked result is persisted again instead of trusting the
+    // cache (reward_wallet_dedup_confirmation_test). The reward stays booked
+    // exactly once – every snapshot carries the same 3 stars and 40 XP.
+    expect(store.snapshots, hasLength(3));
     for (final snapshot in store.snapshots) {
       expect(snapshot['stars'], 3);
       expect(snapshot['xp'], 40);
