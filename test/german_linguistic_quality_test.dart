@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/core/holo_lesson_catalog.dart';
 import 'package:lumo_lernen/core/german_task_templates.dart';
 import 'package:lumo_lernen/core/primary_school_word_data.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
@@ -37,6 +38,16 @@ void main() {
       for (var seed = 0; seed < 48; seed++) {
         final task =
             GermanTaskTemplates.generate(grade: 2, unit: entry.key, seed: seed);
+        // Holo-Satzaufgabe (2026-11-19): dieselbe Wortart, aber im Satz.
+        if (entry.key == 'Tunwoerter' &&
+            task.promptPattern == 'tunwort-im-satz') {
+          expect(task.prompt, endsWith('Welches Wort ist das Tunwort?'));
+          expect(
+              HoloLessonCatalog.verbSentences
+                  .any((item) => item.verb == task.answer),
+              isTrue);
+          continue;
+        }
         expect(task.prompt, 'Welches Wort ist ein ${entry.value}?');
         final type = PrimarySchoolWordData.dictionary[task.answer]!.wordType;
         expect(

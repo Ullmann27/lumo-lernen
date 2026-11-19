@@ -1,3 +1,4 @@
+import 'holo_lesson_catalog.dart';
 import 'shape_question_data.dart';
 
 /// Deterministische Mathe-Templates für Volksschule 1-4.
@@ -1796,7 +1797,11 @@ const List<_WordStory> _oneStepStories = <_WordStory>[
   _WordStory(_p1Baum, _e1Sum),
   _WordStory(_p1Jause, _e1Sum),
   _WordStory(_p1Basteln, _e1Sum),
+  // Heinz' Holo-Textaufgabe: zählbare Äpfel, Zehnerfeld und Zwillingsaufgabe.
+  _WordStory(_p1Korb, _e1Sum),
 ];
+
+String _p1Korb(int a, int b, int s) => HoloLessonCatalog.korbPrompt(a, b);
 
 String _p1Bibliothek(int a, int b, int s) => 'In der Leseecke liegen $a Bilderbücher. Die Lehrerin bringt $b dazu. Wie viele Bücher sind es zusammen?';
 String _p1Baum(int a, int b, int s) => 'Auf dem Baum sitzen $a Vögel. $b fliegen dazu. Wie viele Vögel sitzen jetzt auf dem Baum?';

@@ -1,3 +1,4 @@
+import 'holo_lesson_catalog.dart';
 import 'primary_school_word_data.dart';
 
 part 'german_curriculum_extensions.dart';
@@ -43,6 +44,13 @@ class GermanTaskTemplates {
         unit: 'Erste Sätze',
         kind: GermanTemplateKind.sentenceOrder,
         promptPattern: 'satzstellung-einfach'),
+    // Satz aus Wortkarten bauen (Holo-Raum mit beweglichen Karten).
+    GermanTaskTemplate(
+        id: 'g1_sentence_build',
+        grade: 1,
+        unit: 'Erste Sätze',
+        kind: GermanTemplateKind.sentenceOrder,
+        promptPattern: 'satz-bauen'),
     GermanTaskTemplate(
         id: 'g1_syllables',
         grade: 1,
@@ -98,6 +106,13 @@ class GermanTaskTemplates {
         unit: 'Tunwoerter',
         kind: GermanTemplateKind.wordTypes,
         promptPattern: 'wortart-verb'),
+    // Tunwort in einem echten Satz finden (Holo-Raum mit Wortkarten).
+    GermanTaskTemplate(
+        id: 'g2_verb_in_sentence',
+        grade: 2,
+        unit: 'Tunwoerter',
+        kind: GermanTemplateKind.wordTypes,
+        promptPattern: 'tunwort-im-satz'),
     GermanTaskTemplate(
         id: 'g2_adjectives',
         grade: 2,
@@ -377,6 +392,27 @@ class GermanTaskTemplate {
             'Verbinde das Bild mit dem passenden Namenwort.',
             'word_image');
       case GermanTemplateKind.sentenceOrder:
+        if (promptPattern == 'satz-bauen') {
+          final item = HoloLessonCatalog.orderSentences[
+              _positive(seed, HoloLessonCatalog.orderSentences.length)];
+          final words = item.words;
+          // Gemischte Kärtchen: nie die richtige Reihenfolge, nie das erste
+          // Wort vorn. Die Ablenker sind echte Vertauschungen derselben Wörter.
+          final shown = <String>[...words.sublist(1), words.first];
+          final wrong = <String>[
+            '${words.reversed.join(' ')}.',
+            '${<String>[...words.sublist(1), words.first].join(' ')}.',
+            '${<String>[words[1], words[0], ...words.sublist(2)].join(' ')}.',
+          ];
+          return _choice(
+              HoloLessonCatalog.orderPrompt(shown),
+              item.sentence,
+              <String>[item.sentence, ...wrong],
+              'Zuerst steht, wer etwas tut. ${item.question} – das Tunwort '
+                  '„${item.verb}“ kommt gleich danach. Der Satz beginnt groß '
+                  'und endet mit einem Punkt.',
+              'sentence');
+        }
         final item = _sentenceActors[_positive(seed, _sentenceActors.length)];
         final noun = item[1];
         final article = item[0];
@@ -492,6 +528,24 @@ class GermanTaskTemplate {
               '${_WordTypeSentence.ruleFor(asked)} '
                   'Im Satz ist „$answer“ ${_WordTypeSentence.articleFor(asked)}.',
               'word_type');
+        }
+        if (promptPattern == 'tunwort-im-satz') {
+          final item = HoloLessonCatalog.verbSentences[
+              _positive(seed, HoloLessonCatalog.verbSentences.length)];
+          // Ablenker sind die anderen Wörter desselben Satzes: zuerst das
+          // Namenwort, dann Wiewort/Begleiter. Keine Farb- oder Lagehinweise.
+          final others = <String>[
+            for (final type in const ['nomen', 'adjektiv', 'artikel', 'andere'])
+              for (var i = 0; i < item.words.length; i++)
+                if (item.types[i] == type) item.words[i],
+          ];
+          return _choice(
+              HoloLessonCatalog.verbPrompt(item),
+              item.verb,
+              <String>[item.verb, ...others],
+              'Tunwörter sagen, was jemand tut. ${item.question} '
+                  '– „${item.verb}“.',
+              'sentence');
         }
         final selector = promptPattern.contains('nomen')
             ? 0

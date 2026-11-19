@@ -1,3 +1,4 @@
+import '../../core/holo_lesson_catalog.dart';
 import 'guided_lesson_catalog.dart';
 import '../../features/learning/lab/learning_lab_catalog.dart';
 import 'native_english_vocabulary.dart';
@@ -145,6 +146,8 @@ class NativeLearningActivity {
   /// Only consume the checked renderer payload and verify its arithmetic
   /// against the actual answer. Complex or unknown tasks keep their renderer.
   static NativeLearningActivity? fromTask(TaskInstance task) {
+    final holo = holoFor(task);
+    if (holo != null) return holo;
     if (task.subject == LearningSubject.englisch) {
       final payload = NativeEnglishVocabulary.illustrationFor(task);
       return payload == null
@@ -313,6 +316,41 @@ class NativeLearningActivity {
       }
     }
     return null;
+  }
+
+  /// Aufgabenbezogener Holo-Raum aus dem Aufgabenkatalog: nur für genau die
+  /// geprüften Textaufgaben (Zehnerübergang) und Satzaufgaben. Die Holo-Szene
+  /// meldet eine Zusammenfassung zurück; die App bucht sie wie eine Antwort.
+  static NativeLearningActivity? holoFor(TaskInstance task) {
+    final taskId = task.taskInstanceId;
+    if (taskId.isEmpty || taskId.length > 120 || task.prompt.length > 240) {
+      return null;
+    }
+    final unit = '${task.parameters['unit'] ?? ''}';
+    Map<String, Object>? payload;
+    if (task.subject == LearningSubject.mathematik && unit == 'Textaufgaben') {
+      payload = HoloLessonCatalog.wordProblemPayload(
+        prompt: task.prompt,
+        correctAnswer: task.correctAnswer,
+        choiceLabels: [for (final option in task.options) option.label],
+        taskId: taskId,
+      );
+    } else if (task.subject == LearningSubject.deutsch &&
+        (unit == 'Tunwoerter' || unit == 'Erste Sätze')) {
+      payload = HoloLessonCatalog.sentencePayload(
+        prompt: task.prompt,
+        correctAnswer: task.correctAnswer,
+        taskId: taskId,
+      );
+    }
+    if (payload == null) return null;
+    return NativeLearningActivity._(payload['kind']! as String, {
+      ...payload,
+      'sourceTaskId': taskId,
+      'subject': task.subject == LearningSubject.deutsch
+          ? 'Deutsch'
+          : 'Mathematik',
+    });
   }
 
   /// Preserve supported legacy arithmetic wording without inferring an
