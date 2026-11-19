@@ -215,6 +215,62 @@ def _screencap() -> bytes:
                           check=True, capture_output=True, timeout=25).stdout
 
 
+GL_LINK_LIMIT = re.compile(
+    r'(Canvas|Scene|Sky|Cubemap\w*|Copy\w*)ShaderGLES3: Program linking failed')
+GL_UNIFORM_LIMIT = 'active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS'
+
+
+def blank_native_frame(png: bytes, *, share: float = .995, tolerance: int = 6) -> dict | None:
+    """Return the colour when the app area of a real screenshot shows no UI at all.
+
+    Status and navigation bars are excluded (top/bottom 7 %). In run
+    44473804677 every Godot frame was the project clear colour (20,15,31)
+    because the emulator GL refused to link Godot's shaders; the Kart tour then
+    reported a missing "Weiter" button. A frame that is >= 99.5 % one colour
+    cannot contain any button, so that is reported as what it is.
+    """
+    image = Image.open(io.BytesIO(png)).convert('RGB')
+    top, bottom = int(image.height * .07), int(image.height * .93)
+    area = image.crop((0, top, image.width, bottom))
+    area.thumbnail((240, 240))
+    pixels = [area.getpixel((x, y)) for y in range(area.height) for x in range(area.width)]
+    counts: dict[tuple[int, int, int], int] = {}
+    for pixel in pixels:
+        counts[pixel] = counts.get(pixel, 0) + 1
+    colour = max(counts, key=counts.get)
+    near = sum(1 for pixel in pixels
+               if max(abs(a - b) for a, b in zip(pixel, colour)) <= tolerance)
+    if near < share * len(pixels):
+        return None
+    return {'rgb': list(colour), 'share': round(near / len(pixels), 4)}
+
+
+def gl_link_failures(log: str) -> dict:
+    """Count the GLES3 shader link refusals of the device/emulator GL driver."""
+    shaders: dict[str, int] = {}
+    for match in GL_LINK_LIMIT.finditer(log):
+        shaders[match.group(1)] = shaders.get(match.group(1), 0) + 1
+    return {'link_failures': shaders, 'uniform_limit_lines': log.count(GL_UNIFORM_LIMIT),
+            'renderer': next((line.split('godot   : ', 1)[-1].strip()[:200]
+                              for line in log.splitlines() if 'OpenGL API' in line), None)}
+
+
+def _raise_if_blank_native_frame(out: Path, png: bytes, step: str) -> None:
+    blank = blank_native_frame(png)
+    if blank is None:
+        return
+    log = base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=False)
+    report = {'step': step, 'blank_frame': blank, 'gl': gl_link_failures(log),
+              'classification': ('rendering on this emulator GL'
+                                 if gl_link_failures(log)['link_failures'] else 'unclear'),
+              'scope': 'No caption can be searched on a frame without any drawn UI'}
+    (out / '21_kart_blank_frame.json').write_text(json.dumps(report, indent=2) + '\n')
+    raise RuntimeError(
+        f'Native Godot frame shows no UI at {step}: one colour {blank["rgb"]} on '
+        f'{blank["share"]:.1%} of the app area; GL link failures '
+        f'{report["gl"]["link_failures"]} ({report["gl"]["renderer"]})')
+
+
 def _shot(out: Path, name: str) -> bytes:
     probe.capture(out, name)
     return (out / (name + '.png')).read_bytes()
@@ -826,6 +882,9 @@ def _start_actual_embedded_race(out: Path) -> dict:
             break
         time.sleep(1)
     if premium_start is None:
+        # Nothing to read on a frame that only shows the clear colour: say so
+        # instead of reporting a missing wizard button (run 44473804677).
+        _raise_if_blank_native_frame(out, screen, 'kart-landing')
         # Older/compatibility builds still expose the verified five-step
         # wizard. Require each actual Android-rendered button explicitly.
         for index in range(5):
