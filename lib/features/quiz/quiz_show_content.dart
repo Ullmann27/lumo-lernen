@@ -127,9 +127,7 @@ class _QuizShowContentState extends State<QuizShowContent>
         _loadError = null;
         _syncSubject();
       });
-      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-        await _openNative();
-      } else if (!_state.gameOver) {
+      if (!_state.gameOver) {
         unawaited(_music.start());
       }
     } catch (_) {
@@ -328,7 +326,7 @@ class _QuizShowContentState extends State<QuizShowContent>
     }
   }
 
-  Future<void> _openNative({bool reportFailure = false}) async {
+  Future<void> _openNative() async {
     if (!_available || _locking || _nativePreparing) return;
     setState(() => _nativePreparing = true);
     final session = QuizTableSession(
@@ -346,7 +344,7 @@ class _QuizShowContentState extends State<QuizShowContent>
       if (!_currentOwner()) return;
       _cancelLockIn();
       setState(() => _nativeOpening = true);
-      await _music.stop();
+      await _music.pauseForLockIn();
       if (mounted && _currentOwner()) {
         await launchLumo3D(
           context,
@@ -356,7 +354,7 @@ class _QuizShowContentState extends State<QuizShowContent>
         );
       }
     } catch (_) {
-      if (mounted && reportFailure && _currentOwner()) {
+      if (_currentOwner()) {
         await showDialog<void>(
           context: context,
           builder: (dialogContext) => AlertDialog(
@@ -469,7 +467,7 @@ class _QuizShowContentState extends State<QuizShowContent>
             IconButton(
               tooltip: '3D-Quizstudio öffnen',
               onPressed: _available && !_locking && !_nativePreparing
-                  ? () => unawaited(_openNative(reportFailure: true))
+                  ? () => unawaited(_openNative())
                   : null,
               constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
               icon: const Icon(Icons.view_in_ar),

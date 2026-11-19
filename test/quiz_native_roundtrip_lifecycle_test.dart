@@ -289,6 +289,7 @@ void main() {
         await tester.pump();
         await tester.pumpWidget(const SizedBox.shrink());
         await tester.pump();
+        debugDefaultTargetPlatformOverride = null;
       }
     },
   );
@@ -299,7 +300,11 @@ void main() {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
       try {
         final app = await _mountQuiz(tester);
-        await _until(tester, () => _nativeButton().evaluate().isNotEmpty);
+        await _until(
+          tester,
+          () => _nativeButton().evaluate().isNotEmpty &&
+              tester.widget<IconButton>(_nativeButton()).onPressed != null,
+        );
         await tester.tap(_nativeButton());
         await _until(tester, () => launchCalls.length == 1);
         final token = mailbox.opened.single;
