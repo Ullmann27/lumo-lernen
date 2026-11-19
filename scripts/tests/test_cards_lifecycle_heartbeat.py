@@ -145,6 +145,10 @@ package org.json
 class JSONObject(private val raw: String = "{}") {
     fun optString(key: String, fallback: String = ""): String =
         Regex("\"" + key + "\"\\s*:\\s*\"([^\"]*)\"").find(raw)?.groupValues?.get(1) ?: fallback
+    // Holo-Zusammenfassung (Lernräume) – im Karten-Test ohne Bedeutung.
+    fun optJSONObject(key: String): JSONObject? = null
+    fun opt(key: String): Any? = null
+    fun put(key: String, value: Any?): JSONObject = this
 }
 ''',
     'Bridge.kt': r'''

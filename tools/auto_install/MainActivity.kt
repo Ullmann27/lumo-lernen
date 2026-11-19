@@ -527,7 +527,11 @@ class MainActivity : FlutterActivity() {
                             return
                         }
                     }
-                    callback.success(mapOf("destination" to destination))
+                    val learningResult = data?.getStringExtra("learningResult")
+                    callback.success(
+                        if (learningResult != null) mapOf("destination" to destination, "learningResult" to learningResult)
+                        else mapOf("destination" to destination)
+                    )
                     pendingGame = null
                     pendingCallerReturnSession = null
                 }

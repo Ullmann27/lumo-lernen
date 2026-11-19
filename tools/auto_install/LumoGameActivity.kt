@@ -257,7 +257,7 @@ class LumoGameActivity : GodotActivity() {
     } catch (_: Exception) { null }
 
     @Synchronized
-    fun returnToLearningApp(destination: String): Boolean {
+    fun returnToLearningApp(destination: String, learningResult: String? = null): Boolean {
         if (returning) return true
         val target = if (destination == "learn") "learn" else "games"
         val callerSession = callerReturnSession()
@@ -274,9 +274,12 @@ class LumoGameActivity : GodotActivity() {
             cardsActive = false
             cardsHeartbeat.close()
             releaseCardsAuthority()
-            setResult(Activity.RESULT_OK, Intent().putExtra("destination", target)
+            val result = Intent().putExtra("destination", target)
                 .putExtra("gamePid", android.os.Process.myPid())
-                .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession))
+                .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession)
+            // Holo-Lernraum: geprüfte Zusammenfassung für die Aufgabe in Flutter.
+            if (learningResult != null) result.putExtra("learningResult", learningResult)
+            setResult(Activity.RESULT_OK, result)
             finish()
             // Android receives finish/result first. Kill only :lumo_game, never Flutter.
             Handler(Looper.getMainLooper()).postDelayed({
@@ -348,16 +351,41 @@ class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotP
 
     @UsedByGodot
     fun returnToApp(destination: String, payload: String): Boolean {
+        var learningResult: String? = null
         if (payload.isNotBlank()) {
             try {
-                if (org.json.JSONObject(payload).optString("status") == "completed") {
+                val parsed = org.json.JSONObject(payload)
+                if (parsed.optString("status") == "completed") {
                     if (!reward(payload)) return false
                 }
+                learningResult = holoSummary(parsed)
             } catch (error: Exception) {
                 Log.e("LumoHost", "Invalid return payload", error)
                 return false
             }
         }
-        return host.returnToLearningApp(destination)
+        return host.returnToLearningApp(destination, learningResult)
+    }
+
+    /// Nur die bekannten, kurzen Felder der Holo-Zusammenfassung; Flutter
+    /// prüft sie noch einmal streng. Kein Lohn, kein Spielstand.
+    private fun holoSummary(parsed: org.json.JSONObject): String? {
+        if (parsed.optString("status") != "illustrated" || parsed.optString("game") != "learning") return null
+        val holo = parsed.optJSONObject("holo") ?: return null
+        val clean = org.json.JSONObject()
+        for (key in listOf("resultId", "taskId", "kind", "mode", "originalAnswer", "twinPrompt")) {
+            val value = holo.opt(key)
+            if (value is String && value.length <= 240) clean.put(key, value)
+        }
+        for (key in listOf("originalCorrect", "twinSolved")) {
+            val value = holo.opt(key)
+            if (value is Boolean) clean.put(key, value)
+        }
+        for (key in listOf("hintLevel", "originalAttempts", "twinAttempts")) {
+            val value = holo.opt(key)
+            if (value is Number) clean.put(key, value.toInt())
+        }
+        val text = clean.toString()
+        return if (text.length <= 4000) text else null
     }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,6 +30,7 @@ Future<bool> launchLumo3D(
   String? connectFourToken,
   String? tableToken,
   String? legacyGameKey,
+  ValueChanged<Map<String, Object?>>? onLearningResult,
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
   // Only reviewed, bounded lesson descriptors open the educational route.
@@ -240,6 +243,14 @@ Future<bool> launchLumo3D(
                     (owner.logStudentId == 'self' ? null : owner.studentId)))) {
       return false;
     }
+    // Holo-Lernräume melden eine geprüfte Zusammenfassung zurück. Die
+    // Aufgabe bucht sie selbst (einmal je Ergebnis-ID) nach ihren Regeln.
+    final summary = learning == null
+        ? null
+        : parseLearningResult(response?['learningResult']);
+    if (summary != null && onLearningResult != null) {
+      onLearningResult(summary);
+    }
     return true;
   } on NativeProfileKeyException catch (error) {
     if (context.mounted && error.code != 'profile-changed') {
@@ -286,6 +297,69 @@ Future<bool> launchLumo3D(
     entry?.close();
     _launchInProgress = false;
   }
+}
+
+/// Strenge Prüfung der Holo-Zusammenfassung aus dem nativen Rückgabewert.
+/// Unbekannte oder unplausible Daten werden verworfen (dann gilt die alte
+/// Regel: das Kind antwortet in der App).
+@visibleForTesting
+Map<String, Object?>? parseLearningResult(Object? raw) {
+  if (raw is! String || raw.isEmpty || raw.length > 4000) return null;
+  Object? decoded;
+  try {
+    decoded = jsonDecode(raw);
+  } catch (_) {
+    return null;
+  }
+  if (decoded is! Map) return null;
+  final holo = decoded['holo'] is Map ? decoded['holo'] as Map : decoded;
+  final resultId = holo['resultId'];
+  final taskId = holo['taskId'];
+  final kind = holo['kind'];
+  final answer = holo['originalAnswer'];
+  final correct = holo['originalCorrect'];
+  final hint = holo['hintLevel'];
+  final attempts = holo['originalAttempts'];
+  final twinSolved = holo['twinSolved'];
+  final twinAttempts = holo['twinAttempts'];
+  final twinPrompt = holo['twinPrompt'];
+  if (resultId is! String ||
+      resultId.isEmpty ||
+      resultId.length > 160 ||
+      taskId is! String ||
+      taskId.isEmpty ||
+      taskId.length > 120 ||
+      (kind != 'holo_word_problem' && kind != 'holo_sentence') ||
+      answer is! String ||
+      answer.length > 240 ||
+      correct is! bool ||
+      hint is! int ||
+      hint < 0 ||
+      hint > 2 ||
+      attempts is! int ||
+      attempts < 0 ||
+      attempts > 50 ||
+      twinSolved is! bool ||
+      twinAttempts is! int ||
+      twinAttempts < 0 ||
+      twinAttempts > 50 ||
+      twinPrompt is! String ||
+      twinPrompt.length > 240 ||
+      (correct && answer.isEmpty)) {
+    return null;
+  }
+  return <String, Object?>{
+    'resultId': resultId,
+    'taskId': taskId,
+    'kind': kind,
+    'originalAnswer': answer,
+    'originalCorrect': correct,
+    'hintLevel': hint,
+    'originalAttempts': attempts,
+    'twinSolved': twinSolved,
+    'twinAttempts': twinAttempts,
+    'twinPrompt': twinPrompt,
+  };
 }
 
 Future<String> _childSaveKey({

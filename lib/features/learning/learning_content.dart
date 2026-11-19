@@ -1450,11 +1450,16 @@ class _LearningContentState extends State<LearningContent>
           _taskInstance.taskInstanceId != taskId) {
         return;
       }
+      Map<String, Object?>? holoResult;
       await launchLumo3D(context,
           scene: 'learning',
           appState: widget.appState,
           subject: _task.subject,
-          learning: activity);
+          learning: activity,
+          onLearningResult: (summary) => holoResult = summary);
+      if (holoResult != null) {
+        _applyHoloResult(holoResult!, taskId: taskId, generation: generation);
+      }
     } finally {
       if (mounted) {
         setState(() {
@@ -1466,6 +1471,52 @@ class _LearningContentState extends State<LearningContent>
           _publishTaskContext();
         }
       }
+    }
+  }
+
+  /// Ergebnis-IDs aus Holo-Lernräumen, die schon gebucht wurden (über
+  /// Seitenwechsel hinweg): Ein Ergebnis zählt genau einmal.
+  static final Set<String> _bookedHoloResults = <String>{};
+
+  /// Bucht die im Holo-Raum gegebene Antwort wie eine Antwort in der App:
+  /// gleiche Aufgabe, gleicher Bewerter, Hilfegrad nach den bestehenden
+  /// Regeln (3D zählt als Hilfe). Die selbstständig gelöste Zwillingsaufgabe
+  /// kommt als eigener Lernnachweis ohne Sterne ins Protokoll.
+  void _applyHoloResult(Map<String, Object?> result,
+      {required String taskId, required int generation}) {
+    final resultId = result['resultId'] as String;
+    if (!mounted ||
+        widget.appState.profileGeneration != generation ||
+        _taskInstance.taskInstanceId != taskId ||
+        result['taskId'] != taskId ||
+        _bookedHoloResults.contains(resultId)) {
+      return;
+    }
+    _bookedHoloResults.add(resultId);
+    final given = result['originalAnswer'] as String;
+    if (result['originalCorrect'] == true && !_answered) {
+      AnswerOption? option;
+      for (final candidate in _taskInstance.options) {
+        if (candidate.label == given) option = candidate;
+      }
+      if (option != null) {
+        _answerAdaptive(AdaptiveTaskAnswer(
+          task: _taskInstance,
+          answer: option.payload ?? given,
+          correct: '${option.payload}' == '${_taskInstance.correctAnswer}',
+          hintUsed: true,
+        ));
+      }
+    }
+    if (result['twinSolved'] == true) {
+      widget.appState.recordLearningAnswer(
+        subject: _task.subject,
+        unit: _task.unit,
+        correct: true,
+        hintUsed: (result['twinAttempts'] as int) > 1,
+        prompt: result['twinPrompt'] as String,
+        given: 'Holo-Raum: allein gelöst',
+      );
     }
   }
 
