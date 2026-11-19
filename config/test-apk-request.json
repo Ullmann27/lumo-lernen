@@ -1,5 +1,5 @@
 {
-  "request": 20,
-  "version": "0.13.42+2054",
-  "note": "Wie 2053, dazu: Kart mit 5–8 Sammelzonen je Runde, LUMO Sternenkompass und häufigeren Sternraketen ohne Trefferketten; Stufenregeln für Abenteuer/Extrem korrigiert; Erst-Anleitung liegt unter der Renn-Leiste (Emulator-Befund 2053); Kart-Kamera bildratenunabhängig, Kurvenpfeile, Leitmarken Sonnenhafen-Höhle, Schach-Lektion „Das schnelle Matt“; Eltern-Freigaben für WLAN-Rennen und Geister-Duell (beide aus)."
+  "request": 21,
+  "version": "0.13.43+2055",
+  "note": "Alles Fertige zusammengeführt: zehn neue Kart-Items (auf Sternenkompass und Fairness abgestimmt), Abenteuer-Parcours mit drei Welten, Leistungsteile, Memory-Tisch, WLAN-Rennen/Geister-Duell mit Netz-Unterbau (nur mit Elternfreigabe), Holo-Räume Silben klatschen/Wiewort/Lesen, Sammelzonen und Sternenkompass, Erst-Anleitung unter der Renn-Leiste; App: Memory-Optik, Vier-gewinnt-Absicherung, bestätigte Spielstände, Nachhilfe Schritt für Schritt. Kotlin-Fehler des Baus 2054 behoben."
 }
