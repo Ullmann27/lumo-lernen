@@ -1,8 +1,14 @@
-name: Lumo 2052 – Android-Kurse mit Mesa prüfen
+name: Lumo – signierten ARM64-Kandidaten auf Android-Kursen prüfen (Mesa)
+# Prüft genau die signierte ARM64-APK eines fertigen Baus (lumo-test-apk.yml) mit einem
+# zweiten Renderer (Mesa/llvmpipe): installieren, die drei Lumo-Lauf-Welten über echte
+# Berührungen starten, Bewegung im Bild nachweisen. Welcher Bau geprüft wird, steht in
+# config/arm64-course-check.json – nur eine Änderung dort (oder an dieser Datei) startet
+# den Lauf. Bis 19.11.2026 war der Bau 2052 fest eingetragen; dadurch schlug der Lauf
+# nach jedem Wechsel des Spielstands fehl, bevor überhaupt ein Emulator startete.
 on:
   push:
     branches: [repair/lumo-quiz-run-kart-20261119]
-    paths: [.github/workflows/lumo-2052-rendered-android.yml, tools/android_qa/run_course_android_probe.py]
+    paths: [.github/workflows/lumo-2052-rendered-android.yml, config/arm64-course-check.json]
 
 permissions:
   contents: read
@@ -13,8 +19,6 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
-      BUILD_RUN: '44473804677'
-      BUILD_SOURCE: e06bff96cd243de897152a1f37da7c5fd3688d5b
       DISPLAY: ':99'
       LIBGL_ALWAYS_SOFTWARE: 'true'
       GALLIUM_DRIVER: llvmpipe
@@ -23,9 +27,27 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Zu prüfenden Bau aus config/arm64-course-check.json lesen
+        id: candidate
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, re
+          from pathlib import Path
+          check = json.loads(Path('config/arm64-course-check.json').read_text())
+          run, source, code = str(check['build_run']), check['flutter_source_commit'], int(check['version_code'])
+          assert re.fullmatch(r'[0-9]{6,20}', run), run
+          assert re.fullmatch(r'[0-9a-f]{40}', source), source
+          assert 2000 < code < 100000, code
+          print(f'build_run={run}')
+          print(f'build_source={source}')
+          print(f'version_code={code}')
+          PY
       - name: Auf das signierte ARM64-Artefakt des exakten Builds warten
         env:
           GH_TOKEN: ${{ github.token }}
+          BUILD_RUN: ${{ steps.candidate.outputs.build_run }}
+          BUILD_SOURCE: ${{ steps.candidate.outputs.build_source }}
         run: |
           set -euo pipefail
           api="repos/$GITHUB_REPOSITORY/actions/runs/$BUILD_RUN"
@@ -42,24 +64,34 @@ jobs:
           exit 1
       - uses: actions/download-artifact@v4
         with:
-          run-id: 44473804677
-          name: LUMO-TEST-APK-44473804677
+          run-id: ${{ steps.candidate.outputs.build_run }}
+          name: LUMO-TEST-APK-${{ steps.candidate.outputs.build_run }}
           path: candidate
           github-token: ${{ github.token }}
       - name: APK-Bytes, Renderer und Prüftools vorbereiten
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_SOURCE: ${{ steps.candidate.outputs.build_source }}
+          VERSION_CODE: ${{ steps.candidate.outputs.version_code }}
         run: |
           set -euo pipefail
           (cd candidate/release && sha256sum -c SHA256SUMS.txt)
+          # Der Spielstand muss der sein, den der geprüfte App-Stand selbst festlegt.
+          gh api "repos/$GITHUB_REPOSITORY/contents/config/godot-source.json?ref=$BUILD_SOURCE" \
+            -H 'Accept: application/vnd.github.raw' > candidate/godot-source-at-build.json
           python3 - <<'PY'
           import json
           import os
           from pathlib import Path
 
           proof = json.loads(Path('candidate/release/BUILD-PROVENANCE.json').read_text())
-          source = json.loads(Path('config/godot-source.json').read_text())
+          source = json.loads(Path('candidate/godot-source-at-build.json').read_text())
           assert proof['flutter_source_commit'] == os.environ['BUILD_SOURCE']
           assert proof['godot']['revision'] == source['revision']
-          assert proof['abis'] == ['arm64-v8a'] and proof['versionCode'] == 2052
+          assert proof['abis'] == ['arm64-v8a'] and proof['versionCode'] == int(os.environ['VERSION_CODE'])
+          apks = sorted(Path('candidate/release').glob('*.apk'))
+          assert len(apks) == 1, apks
+          Path('candidate/APK-PATH.txt').write_text(str(apks[0]))
           PY
           mkdir -p course-evidence
           sudo chmod a+rw /dev/kvm
@@ -83,9 +115,9 @@ jobs:
           ram-size: 4096M
           disable-animations: true
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python tools/android_qa/run_course_android_probe.py candidate/release/Lumo-Lernen-Test-0.13.40-2052.apk --movement
+          script: .probe-venv/bin/python tools/android_qa/run_course_android_probe.py "$(cat candidate/APK-PATH.txt)" --movement
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-2052-rendered-android-courses
+          name: lumo-arm64-candidate-android-courses
           path: course-evidence/
