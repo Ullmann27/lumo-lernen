@@ -10,6 +10,8 @@ from pathlib import Path
 
 from PIL import Image
 
+from rooted_emulator import ensure_rooted_emulator
+
 OUT = Path("course-evidence")
 PACKAGE = "dev.ullmann.lumo.lumo_lernen.coachpreview"
 ACTIVITY = "dev.ullmann.lumo.lumo_lernen.LumoGameActivity"
@@ -18,6 +20,22 @@ COURSES = ["dschungelherz", "zauberwald", "sonnenhafen"]
 
 def adb(*args, binary=False, timeout=35):
     return subprocess.check_output(["adb", *args], text=not binary, timeout=timeout)
+
+
+def strict_adb(*args, timeout=35, run=subprocess.run):
+    """ADB call in the error format the shared root-readiness helper recognises.
+
+    `adb root` restarts adbd; right after boot the caller often loses its
+    transport and adb prints "unable to connect for root: closed" (rc 1)
+    although the restart is accepted (run 44476731175). The helper treats
+    exactly that response as recoverable and then proves UID 0 and boot 1.
+    """
+    command = ("adb", *args)
+    result = run(list(command), capture_output=True, text=True, timeout=timeout)
+    output = (result.stdout or "") + (result.stderr or "")
+    if result.returncode != 0:
+        raise RuntimeError(f"Command failed ({result.returncode}): {command!r}\n{output.strip()}")
+    return output
 
 
 def capture(path):
@@ -102,10 +120,10 @@ def course(index, name, require_movement_log):
 
 def main():
     OUT.mkdir(exist_ok=True)
-    adb("root")
-    adb("wait-for-device")
-    if adb("shell", "id", "-u").strip() != "0":
-        raise RuntimeError("Rooted Android emulator needed to launch non-exported activity")
+    # Root is needed to start the real non-exported LumoGameActivity. The
+    # helper retries only the documented adbd-restart disconnect and fails
+    # unless the shell really runs as UID 0 on a booted emulator.
+    ensure_rooted_emulator(strict_adb, OUT)
     installation = adb("install", "-r", "--no-streaming", sys.argv[1], timeout=300)
     if "Success" not in installation:
         raise RuntimeError(installation)
