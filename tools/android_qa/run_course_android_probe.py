@@ -12,7 +12,7 @@ from PIL import Image
 
 OUT = Path("course-evidence")
 PACKAGE = "dev.ullmann.lumo.lumo_lernen.coachpreview"
-ACTIVITY = "dev.ullmann.lumo.LumoGameActivity"
+ACTIVITY = "dev.ullmann.lumo.lumo_lernen.LumoGameActivity"
 COURSES = ["dschungelherz", "zauberwald", "sonnenhafen"]
 
 
@@ -106,7 +106,9 @@ def main():
     adb("wait-for-device")
     if adb("shell", "id", "-u").strip() != "0":
         raise RuntimeError("Rooted Android emulator needed to launch non-exported activity")
-    adb("install", "-r", sys.argv[1])
+    installation = adb("install", "-r", sys.argv[1])
+    if "Success" not in installation:
+        raise RuntimeError(installation)
     adb("shell", "wm", "size", "840x960")
     adb("shell", "wm", "density", "160")
     failures = []
