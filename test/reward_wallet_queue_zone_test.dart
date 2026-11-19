@@ -184,6 +184,9 @@ void main() {
     SharedPreferencesStorePlatform.instance = store;
     final wallet = RewardWalletRepository();
     await wallet.load();
+    final emitted = <RewardWallet>[];
+    final subscription = wallet.changes.listen(emitted.add);
+    addTearDown(subscription.cancel);
     final originalZone = _HeldMicrotasks();
     Object? failure;
     var incorrectlySucceeded = false;
@@ -199,6 +202,7 @@ void main() {
     expect(wallet.snapshot.stars, 0);
     expect(wallet.snapshot.gameResultIds, isEmpty);
     expect((await store.persisted())['stars'], 0);
+    expect(emitted, isEmpty);
 
     final retried = await _fromCurrentZone(
       originalZone,
@@ -211,12 +215,17 @@ void main() {
     expect(retried.stars, 2);
     expect(retried.xp, 16);
     expect(retried.gameResultIds, ['retry-round']);
-    await wallet.awardGameResult(
+    final replay = await wallet.awardGameResult(
       resultId: 'retry-round',
       stars: 2,
       xp: 16,
     );
-    expect(store.writes, hasLength(2));
+    await Future<void>.delayed(Duration.zero);
+    // Rejection, successful retry, then the same-value durability confirmation.
+    expect(store.writes, hasLength(3));
+    expect(store.writes, List.filled(3, retried.toJson()));
+    expect(replay, same(retried));
+    expect(emitted.map((value) => value.toJson()).toList(), [retried.toJson()]);
     expect(await store.persisted(), retried.toJson());
   });
 
@@ -283,6 +292,9 @@ void main() {
     expect(wallet.snapshot.xp, 80);
     expect(await store.persisted(), wallet.snapshot.toJson());
     final reopened = RewardWalletRepository();
+    final replayEvents = <RewardWallet>[];
+    final replaySubscription = reopened.changes.listen(replayEvents.add);
+    addTearDown(replaySubscription.cancel);
     final replay = await reopened.awardGameResult(
       resultId: 'second',
       stars: 5,
@@ -290,6 +302,12 @@ void main() {
     );
     expect(replay.stars, 10);
     expect(replay.gameResultIds, ['first', 'second', 'third']);
-    expect(store.writes, hasLength(3));
+    await Future<void>.delayed(Duration.zero);
+    // Reopening confirms the final snapshot; it grants no fourth reward.
+    expect(store.writes, hasLength(4));
+    expect(store.writes.last, store.writes[2]);
+    expect(replay.toJson(), wallet.snapshot.toJson());
+    expect(await store.persisted(), replay.toJson());
+    expect(replayEvents, isEmpty);
   });
 }
