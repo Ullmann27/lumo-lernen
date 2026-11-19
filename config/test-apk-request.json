@@ -1,5 +1,5 @@
 {
-  "request": 21,
-  "version": "0.13.43+2055",
-  "note": "Alles Fertige zusammengeführt: zehn neue Kart-Items (auf Sternenkompass und Fairness abgestimmt), Abenteuer-Parcours mit drei Welten, Leistungsteile, Memory-Tisch, WLAN-Rennen/Geister-Duell mit Netz-Unterbau (nur mit Elternfreigabe), Holo-Räume Silben klatschen/Wiewort/Lesen, Sammelzonen und Sternenkompass, Erst-Anleitung unter der Renn-Leiste; App: Memory-Optik, Vier-gewinnt-Absicherung, bestätigte Spielstände, Nachhilfe Schritt für Schritt. Kotlin-Fehler des Baus 2054 behoben."
+  "request": 22,
+  "version": "0.13.44+2056",
+  "note": "Aktiviert alle zehn Kart-Erweiterungsitems im Rennkatalog und gleicht die Sternraketenquoten an die 19 ziehbaren Items an. Prüft die Ziehung und Effektinstanzen direkt im exportierten PCK."
 }

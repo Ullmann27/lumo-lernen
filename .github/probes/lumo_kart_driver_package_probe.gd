@@ -1,5 +1,11 @@
 extends SceneTree
 
+# Check the normal Android race catalogue against the exported PCK.
+const EXPANSION_ITEMS := [
+	"thunder_star", "frost_crystal", "fire_meteor", "star_fortress", "whirlwind",
+	"gravity_wave", "star_decoy", "turbo_xl", "arc_trap", "time_bloom",
+]
+
 var failures: int = 0
 
 func _initialize() -> void:
@@ -33,6 +39,18 @@ func _run() -> void:
 		for rival in game.opponents:
 			field[rival.animal] = is_instance_valid(rival.production_driver)
 		_check(game.opponents.size() == 5 and field.get("frog", false) and field.get("rabbit", false), "real Dschungelherz lineup with five rivals and both authored drivers")
+		var catalog = load("res://scripts/games/kart_items/kart_item_catalog.gd")
+		var collected: Dictionary = {}
+		var rng := RandomNumberGenerator.new()
+		rng.seed = 2056
+		for place in range(1, 7):
+			for draw in range(400):
+				collected[catalog.roll(place, rng)] = true
+		for id in EXPANSION_ITEMS:
+			var item: Dictionary = catalog.entry(id)
+			var behaviour := str(item.get("behaviour", ""))
+			_check(collected.has(id), "%s is drawable from the packaged race catalogue" % id)
+			_check(game.item_ext.effect(behaviour) != null, "%s has an active race effect" % id)
 		game.queue_free()
 		await process_frame
 	quit(int(failures != 0))

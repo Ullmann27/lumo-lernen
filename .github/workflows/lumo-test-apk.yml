@@ -171,10 +171,18 @@ jobs:
           # Eine Vorabversion legt ein Tag auf diesem Commit an. Verweigert GitHub
           # das dem Lauf-Token, bleibt der Entwurf: Er braucht kein Tag und ist
           # für die Eigentümer des Repos sichtbar und herunterladbar.
-          if gh release create "$TAG" "${FILES[@]}" \
-            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
-            --title "Lumo Test-APK $LUMO_APK_VERSION" --notes "$NOTES" \
-            --prerelease --latest=false; then
+          RELEASE_ARGS=(--repo "$GITHUB_REPOSITORY"
+            --title "Lumo Test-APK $LUMO_APK_VERSION" --notes "$NOTES"
+            --prerelease --latest=false)
+          if gh release create "$TAG" "${FILES[@]}" "${RELEASE_ARGS[@]}" --target "$GITHUB_SHA" ||
+            {
+              # Some installations allow the explicit ref but reject implicit
+              # tag creation in the release endpoint. Never retag a candidate.
+              gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+                -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA" >/dev/null &&
+                test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq .object.sha)" = "$GITHUB_SHA" &&
+                gh release create "$TAG" "${FILES[@]}" "${RELEASE_ARGS[@]}" --verify-tag
+            }; then
             URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"
             echo "Test-APK: $URL" >> "$GITHUB_STEP_SUMMARY"
           elif URL="$(gh release create "$TAG" "${FILES[@]}" \
