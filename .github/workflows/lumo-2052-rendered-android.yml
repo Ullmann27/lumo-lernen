@@ -2,7 +2,7 @@ name: Lumo 2052 – Android-Kurse mit Mesa prüfen
 on:
   push:
     branches: [repair/lumo-quiz-run-kart-20261119]
-    paths: [.github/workflows/lumo-2052-rendered-android.yml]
+    paths: [.github/workflows/lumo-2052-rendered-android.yml, tools/android_qa/run_course_android_probe.py]
 
 permissions:
   contents: read
@@ -22,7 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: e06bff96cd243de897152a1f37da7c5fd3688d5b
           persist-credentials: false
       - name: Auf das signierte ARM64-Artefakt des exakten Builds warten
         env:
