@@ -1,3 +1,9 @@
+# Lumo 2052 · Quizshow, Lumo Lauf und Kart-Frosch
+
+Stand 19.11.2026. Beide Arbeitszweige heißen `repair/lumo-quiz-run-kart-20261119`. Der Kandidat `0.13.40+2052` öffnet die spielbare Quizrunde direkt, verkürzt den Laufstart und schließt den Frosch an Kart an. Bestandsaufnahme, Prüfnachweise und Weiterarbeit für Fable 5.2 stehen in der [Übergabe 2052](docs/handoffs/LUMO_2052_FABLE_5_2.md). Den Auslieferungsstand am [APK-Bau und Android-Rundgang](https://github.com/Ullmann27/lumo-lernen/actions/runs/44473804677) prüfen.
+
+## Archiv früherer Arbeitsstände
+
 # LUMO 2032 — geprüfte Quellen und frischer Katalog, Build bereit
 
 Stand: 16.11.2026, 09:09 UTC. Native **9d6ef1d704a0e54098a8f8f0818f36deae0e3789** enthält ausschließlich die geprüften zusätzlichen dunklen Button-Schriftzustände. Godot-Regression **79/79**, bestehende Produktionslogik unverändert. Der neue aktuelle Stoppanschluss besitzt **26/26 gezielte Hostprüfungen** und zwei unabhängige Quellreviews; der aktuelle Publisher verlangt seinen tatsächlichen Androidbefund ab 2032.

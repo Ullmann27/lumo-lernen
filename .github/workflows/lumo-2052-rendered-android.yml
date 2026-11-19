@@ -1,0 +1,92 @@
+name: Lumo 2052 – Android-Kurse mit Mesa prüfen
+on:
+  push:
+    branches: [repair/lumo-quiz-run-kart-20261119]
+    paths: [.github/workflows/lumo-2052-rendered-android.yml]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  arm64-courses:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      BUILD_RUN: '44473804677'
+      BUILD_SOURCE: e06bff96cd243de897152a1f37da7c5fd3688d5b
+      DISPLAY: ':99'
+      LIBGL_ALWAYS_SOFTWARE: 'true'
+      GALLIUM_DRIVER: llvmpipe
+      LP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: e06bff96cd243de897152a1f37da7c5fd3688d5b
+          persist-credentials: false
+      - name: Auf das signierte ARM64-Artefakt des exakten Builds warten
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          api="repos/$GITHUB_REPOSITORY/actions/runs/$BUILD_RUN"
+          test "$(gh api "$api" --jq .head_sha)" = "$BUILD_SOURCE"
+          for attempt in $(seq 1 90); do
+            if gh api "$api/artifacts" --jq '.artifacts[] | select(.expired == false) | .name' | grep -Fxq "LUMO-TEST-APK-$BUILD_RUN"; then
+              exit 0
+            fi
+            case "$(gh api "$api" --jq .conclusion)" in
+              failure|cancelled) exit 1 ;;
+            esac
+            sleep 15
+          done
+          exit 1
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 44473804677
+          name: LUMO-TEST-APK-44473804677
+          path: candidate
+          github-token: ${{ github.token }}
+      - name: APK-Bytes, Renderer und Prüftools vorbereiten
+        run: |
+          set -euo pipefail
+          (cd candidate/release && sha256sum -c SHA256SUMS.txt)
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          proof = json.loads(Path('candidate/release/BUILD-PROVENANCE.json').read_text())
+          source = json.loads(Path('config/godot-source.json').read_text())
+          assert proof['flutter_source_commit'] == os.environ['BUILD_SOURCE']
+          assert proof['godot']['revision'] == source['revision']
+          assert proof['abis'] == ['arm64-v8a'] and proof['versionCode'] == 2052
+          PY
+          mkdir -p course-evidence
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > course-evidence/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > course-evidence/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -Fi 'llvmpipe' course-evidence/mesa-renderer.txt
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 4096M
+          disable-animations: true
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python tools/android_qa/run_course_android_probe.py candidate/release/Lumo-Lernen-Test-0.13.40-2052.apk --movement
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2052-rendered-android-courses
+          path: course-evidence/
