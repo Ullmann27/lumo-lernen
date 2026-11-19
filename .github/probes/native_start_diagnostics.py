@@ -98,6 +98,28 @@ def issues(lines: list[str]) -> dict[str, int]:
             for name, pattern in ISSUE_PATTERNS.items()}
 
 
+def godot_error_classes(lines: list[str]) -> dict[str, int]:
+    """Split ``ERROR:`` lines into GL shader link refusals and everything else.
+
+    On the SwiftShader emulator of run 44473804677 every logged Godot error was
+    a GLES3 link refusal ("Fragment shader active uniforms exceed
+    GL_MAX_FRAGMENT_UNIFORM_VECTORS"), each followed by "Method/function
+    failed" at ``_compile_specialization``. Those say something about the GL
+    driver, not about a game script; ``other`` keeps the remaining errors.
+    """
+    gl = other = 0
+    for index, text in enumerate(lines):
+        if not ISSUE_PATTERNS['godot_error'].search(text):
+            continue
+        following = ' '.join(lines[index + 1:index + 3])
+        if 'ShaderGLES3: Program linking failed' in text or (
+                'Method/function failed' in text and '_compile_specialization' in following):
+            gl += 1
+        else:
+            other += 1
+    return {'gl_shader_link': gl, 'other': other}
+
+
 def first_lines(lines: list[str], pattern: re.Pattern, count: int = 3) -> list[str]:
     return [line[-300:] for line in lines if pattern.search(line)][:count]
 
@@ -207,10 +229,19 @@ class Runner:
     def resolve_component(self) -> str | None:
         if self.component is None:
             text = self.adb('shell', 'dumpsys', 'package', self.package)
-            match = re.search(re.escape(self.package) + r'/([\w.]*LumoGameActivity)', text)
-            if match:
-                self.component = self.package + '/' + match.group(1)
+            self.component = self.observe_component(text)
         return self.component
+
+    def observe_component(self, text: str) -> str | None:
+        """LumoGameActivity as Android itself named it.
+
+        ``dumpsys package`` lists only activities with intent filters; the
+        non-exported LumoGameActivity has none (run 44473804677: "nicht im
+        installierten Paket gefunden"). The resumed-activity line of an earlier
+        real start through the Flutter tile names the same component.
+        """
+        match = re.search(re.escape(self.package) + r'/([\w.]*LumoGameActivity)\b', text)
+        return self.package + '/' + match.group(1) if match else None
 
     def fresh_app(self, tag: str) -> dict:
         """App neu starten und zur Spielewelt gehen, wie ein Kind."""
@@ -273,6 +304,8 @@ class Runner:
                 entry['am_start'] = self.adb('shell', command, timeout=90)[-600:]
                 entry['tapped'] = True
             entry['resumed_after_tap'] = self.resumed()
+            if self.component is None:
+                self.component = self.observe_component(entry['resumed_after_tap'])
             started = time.monotonic()
             loaded_at = None
             marker = f'[Router] loaded:{scene} '
@@ -297,6 +330,7 @@ class Runner:
             (self.root / f'{ident}.log').write_text('\n'.join(lines) + '\n')
             entry['log_lines'] = len(lines)
             entry['issues'] = issues(lines)
+            entry['godot_error_classes'] = godot_error_classes(lines)
             entry['markers'] = {
                 'router_loaded': first_lines(lines, re.compile(re.escape('[Router] loaded:')), 2),
                 'boot_load_error': first_lines(lines, ISSUE_PATTERNS['boot_load_error']),
@@ -311,7 +345,12 @@ class Runner:
             entry['error'] = f'{type(error).__name__}: {error}'[:500]
             entry['traceback'] = traceback.format_exc()[-1500:]
         finally:
-            self.adb('shell', 'am', 'force-stop', self.package)
+            # A hanging force-stop (run 44473804677: 60 s timeout after
+            # run-abenteuer) must not discard this entry and every later scene.
+            try:
+                self.adb('shell', 'am', 'force-stop', self.package)
+            except Exception as error:
+                entry['force_stop_error'] = f'{type(error).__name__}: {error}'[:300]
         return entry
 
     def run(self) -> dict:

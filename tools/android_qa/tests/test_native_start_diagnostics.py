@@ -3,6 +3,7 @@ import importlib.util
 import json
 from pathlib import Path
 import re
+import subprocess
 import sys
 import tempfile
 from types import SimpleNamespace
@@ -160,6 +161,72 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(len(command), 1)
         self.assertIn('--es lumoLaunchOptions', command[0][1])
         self.assertIn('"game":"run"', command[0][1])
+
+
+class RealRunFindingsTests(unittest.TestCase):
+    """Findings of run 44473804677 (native-starts.json, native-starts/*.log)."""
+
+    def test_gl_link_refusals_are_separated_from_other_godot_errors(self):
+        log = [line('godot', 'ERROR: CanvasShaderGLES3: Program linking failed:', 'E'),
+               line('godot', 'Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)', 'E'),
+               line('godot', '   at: _display_error_with_code (drivers/gles3/shader_gles3.cpp:259)', 'E'),
+               line('godot', 'ERROR: Method/function failed.', 'E'),
+               line('godot', '   at: _compile_specialization (drivers/gles3/shader_gles3.cpp:461)', 'E'),
+               line('godot', 'ERROR: Failed loading resource: res://missing.tscn', 'E'),
+               line('godot', 'SCRIPT ERROR: Invalid call', 'E')]
+        self.assertEqual(diag.godot_error_classes(log), {'gl_shader_link': 2, 'other': 2})
+        self.assertEqual(diag.issues(log)['godot_error'], 4)  # SCRIPT ERROR counts too
+
+    def run_with(self, device, plan):
+        base = SimpleNamespace(adb=device.adb, launch=lambda *a: '1',
+                               accessible_text=lambda nodes: 'Spielen')
+        live = SimpleNamespace(live_nodes=lambda *a: [])
+        probe = SimpleNamespace(flutter_tap=lambda *a, **k: None,
+                                capture=lambda *a: (_ for _ in ()).throw(RuntimeError('no screen')))
+        with tempfile.TemporaryDirectory() as folder, \
+                patch.object(diag, 'PLAN', plan), patch.object(diag.time, 'sleep', lambda s: None):
+            ticks = iter(range(0, 100000, 5))
+            with patch.object(diag.time, 'monotonic', lambda: next(ticks)):
+                diag.run(Path(folder), base=base, live=live, probe=probe,
+                         package=PACKAGE, wait_seconds=45, budget_seconds=100000)
+            return json.loads((Path(folder) / 'native-starts.json').read_text())
+
+    def test_intent_start_uses_the_component_android_resumed(self):
+        class Device(FakeDevice):
+            def adb(self, *args, timeout=60, check=True):
+                if args[:3] == ('shell', 'dumpsys', 'package'):
+                    # Real resolver table: only activities with intent filters.
+                    return f'  44e135c {PACKAGE}/dev.example.MainActivity filter 7bf5f3a'
+                if args[:3] == ('shell', 'dumpsys', 'activity'):
+                    self.commands.append(args)
+                    return (f'  topResumedActivity=ActivityRecord{{7394784 u0 '
+                            f'{PACKAGE}/dev.example.LumoGameActivity t10}}')
+                return super().adb(*args, timeout=timeout, check=check)
+
+        device = Device()
+        written = self.run_with(device, (('run', 'run', 'ui', 'Lumo Lauf', 'Spring. Laufe. Sei mutig!'),
+                                         ('run-intent', 'run', 'intent', None, None)))
+        intent = written['scenes'][1]
+        self.assertNotIn('error', intent)
+        self.assertEqual(intent['intent']['component'], f'{PACKAGE}/dev.example.LumoGameActivity')
+
+    def test_hanging_force_stop_keeps_the_entry_and_later_scenes(self):
+        class Device(FakeDevice):
+            stops = 0
+
+            def adb(self, *args, timeout=60, check=True):
+                if args[:3] == ('shell', 'am', 'force-stop'):
+                    self.stops += 1
+                    if self.stops == 2:
+                        raise subprocess.TimeoutExpired(('adb', *args), 60)
+                return super().adb(*args, timeout=timeout, check=check)
+
+        written = self.run_with(Device(), (('run-intent', 'run', 'intent', None, None),
+                                           ('jump-intent', 'jump', 'intent', None, None)))
+        self.assertEqual(written['status'], 'DONE')
+        self.assertEqual([scene['id'] for scene in written['scenes']], ['run-intent', 'jump-intent'])
+        self.assertIn('TimeoutExpired', written['scenes'][0]['force_stop_error'])
+        self.assertNotIn('force_stop_error', written['scenes'][1])
 
 
 class TourIndependenceTests(unittest.TestCase):
