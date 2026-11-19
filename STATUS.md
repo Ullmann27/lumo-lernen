@@ -1,6 +1,6 @@
 # Lumo 2052 · Quizshow, Lumo Lauf und Kart-Frosch
 
-Stand 19.11.2026. Beide Arbeitszweige heißen `repair/lumo-quiz-run-kart-20261119`. Der Kandidat `0.13.40+2052` öffnet die spielbare Quizrunde direkt, verkürzt den Laufstart und schließt den Frosch an Kart an. Bestandsaufnahme, Prüfnachweise und Weiterarbeit für Fable 5.2 stehen in der [Übergabe 2052](docs/handoffs/LUMO_2052_FABLE_5_2.md). Den Auslieferungsstand am [APK-Bau und Android-Rundgang](https://github.com/Ullmann27/lumo-lernen/actions/runs/44473804677) prüfen.
+Stand 19.11.2026. Beide Arbeitszweige heißen `repair/lumo-quiz-run-kart-20261119`. Der Kandidat `0.13.40+2052` öffnet die spielbare Quizrunde direkt, verkürzt den Laufstart und schließt den Frosch an Kart an. Die [Übergabe 2052](docs/handoffs/LUMO_2052_FABLE_5_2.md) enthält Bestandsaufnahme und Prüfungen. Der [Parallelauftrag an Fable 5.2](docs/handoffs/FABLE_5_2_LUMO_PARALLELAUF.md) deckt Strecken, Spiele und Lern-Holos ab. Den Auslieferungsstand am [APK-Bau und Android-Rundgang](https://github.com/Ullmann27/lumo-lernen/actions/runs/44473804677) prüfen.
 
 ## Archiv früherer Arbeitsstände
 
