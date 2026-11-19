@@ -194,11 +194,13 @@ void main() {
                 'Wie viele Silben hat Banane?', '3', 'syllables',
                 subject: 'Deutsch'))!
             .toLaunchOptions(),
-        {
-          'kind': 'syllables',
-          'word': 'Banane',
-          'syllables': ['Ba', 'na', 'ne']
-        });
+        // Silben-Aufgaben öffnen seit dem Holo-Raum „Silben klatschen“ den Wortkarten-Raum.
+        allOf(
+          containsPair('kind', 'holo_sentence'),
+          containsPair('mode', 'syllables'),
+          containsPair('word', 'Banane'),
+          containsPair('syllables', ['Ba', 'na', 'ne']),
+        ));
     expect(
         NativeLearningActivity.fromTask(
             task('Wie viel ist 27 + 15?', '42', 'counters')),

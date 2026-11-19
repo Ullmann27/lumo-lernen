@@ -120,7 +120,7 @@ class KartFriendsBridge(private val activity: Activity) {
             }
         }
         // Nicht zweimal bei Neuerstellung der Activity verarbeiten.
-        intent.action = Intent.ACTION_MAIN
+        intent?.action = Intent.ACTION_MAIN
         return true
     }
 
