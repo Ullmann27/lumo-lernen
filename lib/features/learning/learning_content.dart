@@ -36,7 +36,9 @@ import '../../core/lumo_learning_dialogue_intent.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
+import '../../domain/tutoring/lumo_nachhilfe.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
+import '../tutoring/lumo_nachhilfe_screen.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import 'lab/learning_lab_hub.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
@@ -1417,6 +1419,64 @@ class _LearningContentState extends State<LearningContent>
     }
   }
 
+  /// Lumo-Nachhilfe: nur für geprüfte Aufgabentypen und nur, wenn Hilfe
+  /// erlaubt ist. Wie die bestehende 3D-Hilfe zählt das Öffnen als Hilfe für
+  /// die folgende Antwort; die Nachhilfe selbst schreibt keinen Fortschritt.
+  Future<void> _openNachhilfe(NachhilfeAufgabe aufgabe) async {
+    if (!mounted ||
+        _activeSessionScope != _sessionScope ||
+        !_allowHelp ||
+        _answered ||
+        _sessionFinished ||
+        _nativeLearningOpen) {
+      return;
+    }
+    const tutor = LumoNachhilfe();
+    final taskId = _taskInstance.taskInstanceId;
+    final generation = widget.appState.profileGeneration;
+    final settings = widget.appState.state.settings;
+    final fehler = tutor.erkenneFehler(aufgabe, _lastGivenAnswer);
+    final stufe = NachhilfeStufeInfo.ausHilfeStufe(
+      _localTutorEngine.decideHelpLevel(
+        attemptCount: _attemptCount,
+        hasRepeatedWeakness: false,
+        premiumEnabled: true,
+      ),
+    );
+    final stopping = _cancelCoachMedia();
+    setState(() => _requestedHelpLevel = math.max(1, _requestedHelpLevel));
+    _publishTaskContext(immediately: true);
+    LumoCompanionRequests.instance.recordLearningEvent(
+        LumoLearningEventKind.hintRequested,
+        context: _publishedTaskContext);
+    await stopping;
+    if (!mounted ||
+        widget.appState.profileGeneration != generation ||
+        _taskInstance.taskInstanceId != taskId) {
+      return;
+    }
+    await Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => LumoNachhilfeScreen(
+        aufgabe: aufgabe,
+        fehler: fehler,
+        startStufe: stufe,
+        tutor: tutor,
+        reduceMotion: settings.reduceAnimations || settings.calmMode,
+        onSpeak: settings.voiceEnabled
+            ? (text) => _voice.speak(text, style: VoiceStyle.explain)
+            : null,
+        onStopSpeech: () => unawaited(_voice.stop()),
+        // Die 3D-Nachhilfe braucht die Godot-Szene "tutor"; bis sie im
+        // gebündelten Godot-Stand liegt, bleibt es beim 2D-Weg.
+      ),
+    ));
+    if (mounted &&
+        widget.appState.profileGeneration == generation &&
+        _taskInstance.taskInstanceId == taskId) {
+      _publishTaskContext();
+    }
+  }
+
   Future<void> _openNativeLearning() async {
     if (!mounted ||
         _activeSessionScope != _sessionScope ||
@@ -2592,6 +2652,26 @@ class _LearningContentState extends State<LearningContent>
     super.dispose();
   }
 
+  Widget _nachhilfeEinstieg(NachhilfeAufgabe aufgabe) => SizedBox(
+        width: double.infinity,
+        child: FilledButton.icon(
+          key: const ValueKey('nachhilfe-open'),
+          style: FilledButton.styleFrom(
+            minimumSize: const Size(48, 56),
+            backgroundColor: const Color(0xFFFFC94A),
+            foregroundColor: const Color(0xFF10243A),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          ),
+          onPressed: _nativeLearningOpen
+              ? null
+              : () => unawaited(_openNachhilfe(aufgabe)),
+          icon: const Icon(Icons.school_rounded, size: 26),
+          label: const Text('Schritt für Schritt mit Lumo',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+        ),
+      );
+
   Widget _coachControls() {
     Widget action(String label, IconData icon, VoidCallback onPressed,
             {Key? key}) =>
@@ -3305,6 +3385,11 @@ class _LearningContentState extends State<LearningContent>
                           if (_allowHelp &&
                               !_answered &&
                               !_tutoringExplaining) ...[
+                            if (NachhilfeAufgabe.ausTask(_taskInstance)
+                                case final nachhilfe?) ...[
+                              const SizedBox(height: 12),
+                              _nachhilfeEinstieg(nachhilfe),
+                            ],
                             const SizedBox(height: 12),
                             LumoStageTarget(
                                 id: 'coach-controls',
