@@ -1,0 +1,39 @@
+name: Jump and Run Android course launch reproduction
+on:
+  push:
+    branches: [delivery/lumo-2052-run-course-start]
+    paths: [.github/workflows/lumo-run-2051-repro.yml, tools/android_qa/run_course_android_probe.py]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 44458362688
+          name: LUMO-TEST-APK-44458362688
+          path: old
+          github-token: ${{ github.token }}
+      - name: Enable KVM and image processing
+        run: |
+          sudo chmod 666 /dev/kvm
+          python3 -m venv .probe
+          .probe/bin/pip -q install Pillow
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          ram-size: 4096M
+          profile: pixel_5
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: .probe/bin/python tools/android_qa/run_course_android_probe.py old/release/Lumo-Lernen-Test-0.13.39-2051.apk
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jump-run-2051-baseline
+          path: course-evidence/
