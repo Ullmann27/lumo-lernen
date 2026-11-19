@@ -266,11 +266,41 @@ void main() {
   );
 
   testWidgets(
+    'Android opens a playable saved quiz before starting the optional studio',
+    (tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      try {
+        final app = await _mountQuiz(tester);
+        await _until(tester, () => _nativeButton().evaluate().isNotEmpty);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(launchCalls, isEmpty);
+        expect(mailbox.opened, isEmpty);
+        final answer = find.byKey(const ValueKey('lumo-meister-answer-0'));
+        await tester.ensureVisible(answer);
+        await tester.tap(answer);
+        await tester.pump();
+        expect((await _savedRound(app))['actions'], [
+          {'action': 'select', 'option': 0},
+        ]);
+      } finally {
+        for (final result in returns) {
+          if (!result.isCompleted) result.complete({'destination': 'games'});
+        }
+        await tester.pump();
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
+      }
+    },
+  );
+
+  testWidgets(
     'Native selection, Flutter return and reopen keep one saved round',
     (tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
       try {
         final app = await _mountQuiz(tester);
+        await _until(tester, () => _nativeButton().evaluate().isNotEmpty);
+        await tester.tap(_nativeButton());
         await _until(tester, () => launchCalls.length == 1);
         final token = mailbox.opened.single;
         final initial = Map<String, dynamic>.from(mailbox.states[token]!);
