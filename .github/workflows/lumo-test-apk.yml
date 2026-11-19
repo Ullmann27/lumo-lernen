@@ -5,7 +5,7 @@ name: "Lumo Test-APK (Flutter + Godot)"
 # das Ergebnis ist eine Vorabversion zum Testen auf dem Handy.
 on:
   push:
-    branches: [ccr-54af69f2-4uged4]
+    branches: [ccr-54af69f2-4uged4, delivery/lumo-2051-completion]
     paths:
       - config/test-apk-request.json
       - .github/workflows/lumo-test-apk.yml
@@ -93,7 +93,7 @@ jobs:
           # wird der idempotente Import genau einmal wiederholt.
           godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
             || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
-          for probe in kart_neon_home_regression kart_race_kinds_regression \
+          for probe in kart_neon_home_regression kart_garage_landscape_regression kart_race_kinds_regression \
             kart_result_reachability_regression native_table_boot_regression \
             learning_android_host_capability_regression; do
             echo "::group::$probe"
