@@ -1,0 +1,102 @@
+name: "LUMO – Android-Rundgang für eine gebaute APK"
+on:
+  push:
+    branches: [repair/lumo-quiz-run-kart-20261119]
+    paths:
+      - .github/workflows/lumo-apk-tour-recheck.yml
+      - .github/probes/modernization_android_tour.py
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  android-tour:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      DISPLAY: ':99'
+      LIBGL_ALWAYS_SOFTWARE: 'true'
+      GALLIUM_DRIVER: llvmpipe
+      LP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Gepinnte Bau-Identität prüfen
+        id: candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import re
+          from pathlib import Path
+
+          config = json.loads(Path('config/arm64-course-check.json').read_text())
+          run = str(config['build_run'])
+          source = config['flutter_source_commit']
+          assert re.fullmatch(r'[0-9]{6,20}', run)
+          assert re.fullmatch(r'[0-9a-f]{40}', source)
+          print(f'run={run}')
+          print(f'source={source}')
+          print(f'version={int(config["version_code"])}')
+          PY
+          source="$(sed -n 's/^source=//p' "$GITHUB_OUTPUT")"
+          run="$(sed -n 's/^run=//p' "$GITHUB_OUTPUT")"
+          test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .head_sha)" = "$source"
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.candidate.outputs.run }}
+          name: LUMO-EMULATOR-APK-${{ steps.candidate.outputs.run }}
+          path: candidate/x86_64
+          github-token: ${{ github.token }}
+      - name: APK und Emulator vorbereiten
+        env:
+          BUILD_SHA: ${{ steps.candidate.outputs.source }}
+          BUILD_VERSION: ${{ steps.candidate.outputs.version }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          directory = Path('candidate/x86_64')
+          proof = json.loads((directory / 'BUILD-PROVENANCE.json').read_text())
+          assert proof['flutter_source_commit'] == os.environ['BUILD_SHA']
+          assert proof['versionCode'] == int(os.environ['BUILD_VERSION'])
+          expected = (directory / 'SHA256SUMS.txt').read_text().split()[0]
+          with (directory / 'Lumo-Lernen-Neu.apk').open('rb') as apk:
+              assert hashlib.file_digest(apk, 'sha256').hexdigest() == expected
+          PY
+          mkdir -p tour
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          awk '{print $1 "  dist/x86_64/Lumo-Lernen-Neu.apk"}' candidate/x86_64/SHA256SUMS.txt > candidate/ANDROID-TOUR-SHA256SUMS.txt
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -Fi 'llvmpipe' tour/mesa-renderer.txt
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          ram-size: 4096M
+          emulator-build: '14472402'
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-front none -camera-back none
+          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-ANDROID-TOUR-RECHECK-${{ github.run_id }}
+          path: tour/

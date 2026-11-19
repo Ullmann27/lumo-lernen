@@ -1112,15 +1112,49 @@ def _continue_actual_race(out: Path, session: RaceSession, paused: dict) -> dict
     return report
 
 
+def _focused_icon_hud_lap(path: Path) -> str:
+    """Read the lap at the left of the icon-based landscape HUD."""
+    with Image.open(path) as image:
+        width, height = image.size
+        ribbon = image.convert('L').crop((
+            round(width * .345), round(height * .10),
+            round(width * .48), round(height * .20),
+        ))
+    scaled = ribbon.resize((ribbon.width * 3, ribbon.height * 3), Image.Resampling.LANCZOS)
+    contrast = scaled.point(lambda value: 0 if value >= 172 else 255)
+    buffer = io.BytesIO()
+    contrast.save(buffer, format='PNG')
+    result = subprocess.run(
+        ['tesseract', 'stdin', 'stdout', '-l', 'eng', '--psm', '7'],
+        input=buffer.getvalue(), check=True, capture_output=True, timeout=20,
+    )
+    return result.stdout.decode('utf-8', errors='replace').strip()
+
+
 def wait_race_hud(out: Path, timeout: float = 90) -> dict:
     """Current screenshot: rendered 3D scene plus the in-race HUD, no pause/result."""
     deadline = time.monotonic() + timeout
     attempt, last = 0, ''
+    skipped_guide = False
     while time.monotonic() < deadline:
         name = f'21_race_hud_{attempt}'
         screen = _shot(out, name)
         frame = read_frame(out / (name + '.png'))
         last = frame['text'][:300]
+        if not skipped_guide:
+            skip_word = next((word for word in frame['words']
+                              if _simplify(word['text']) == 'uberspringen'
+                              and .22 * frame['height'] <= word['top'] <= .57 * frame['height']), None)
+            if skip_word is not None:
+                skip = (skip_word['left'] + skip_word['width'] // 2,
+                        skip_word['top'] + skip_word['height'] // 2)
+                base.adb('shell', 'input', 'tap', str(skip[0]), str(skip[1]))
+                skipped_guide = True
+                (out / '21_race_guide_skip.json').write_text(
+                    json.dumps({'capture': name, 'touch': skip}) + '\n')
+                attempt += 1
+                time.sleep(1)
+                continue
         # The original 1978 emulator PNG visibly contains RUNDE 1/2,
         # PLATZ 6/6 and km/h, yet full-frame OCR omitted the first token.
         # Re-read only the real top HUD pixels with Tesseract psm 7.
@@ -1129,10 +1163,18 @@ def wait_race_hud(out: Path, timeout: float = 90) -> dict:
         # distance + changing-world gates remain mandatory downstream.
         focus = None
         if not race_view_visible(frame):
-            focus_text = focused_race_hud_text(out / (name + '.png'))
+            image_path = out / (name + '.png')
+            focus_text = focused_race_hud_text(image_path)
+            # The newer HUD shows rank as an icon and fraction, with no PLATZ
+            # caption. Verify its exact lap label and plausible lap fraction
+            # separately. The rendered-frame and native progress checks stay.
+            icon_hud_text = _focused_icon_hud_lap(image_path)
+            lap = re.search(r'\bRUNDE\s*([1-9]\d*)\s*/\s*([1-9]\d*)', icon_hud_text, re.I)
             focus = {
                 'ocr': focus_text,
                 'three_hud_indicators': focused_race_hud_visible(focus_text),
+                'icon_hud_ocr': icon_hud_text,
+                'icon_hud_lap': bool(lap and int(lap[1]) <= int(lap[2])),
                 'not_paused_or_finished': not any(
                     race_marker(frame, caption) for caption in
                     ('Weiterfahren', 'Kleine Pause', 'geschafft', 'Noch ein Rennen')),
@@ -1141,7 +1183,7 @@ def wait_race_hud(out: Path, timeout: float = 90) -> dict:
                 json.dumps(focus, ensure_ascii=False, indent=2) + '\n')
         if race_view_visible(frame) or (
             focus is not None
-            and focus['three_hud_indicators']
+            and (focus['three_hud_indicators'] or focus['icon_hud_lap'])
             and focus['not_paused_or_finished']
         ):
             (out / '21_race_hud.png').write_bytes(screen)
