@@ -11,7 +11,7 @@
 ## Weitere lokale Belege
 
 - 73 Flutter-Prüfungen zu Spielewelt, Spielrückkehr, Memory, 3D-Lerneinstiegen und App-Ansichten bestanden. Die App-Analyse meldet keine Fehler und 279 Hinweise/Warnungen.
-- Godot-Tests zur Garage im Querformat (76), Schachregeln (238), Dorf-Tutorial (250), Quiz-Ausgang (14), Host-Fähigkeiten (10) und Laufgefühl (13) bestanden. Der lange Streckenpassagenlauf wurde nach 130 Sekunden beendet und meldete beim Rennwechsel mehrfach einen bereits beendeten Audio-Tween. Er belegt keinen vollständigen Durchlauf.
+- Godot-Tests zur Garage im Querformat (76), Schachregeln (238), Dorf-Tutorial (250), Quiz-Ausgang (14), Host-Fähigkeiten (10) und Laufgefühl (13) bestanden. Winter-Sprint und Dschungelherz bestanden nach Wiederholung mit längerem Zeitbudget 122 Passagen-Prüfungen. Godot meldete beim Rennwechsel mehrfach einen bereits beendeten Audio-Tween in `kart_audio.gd`. Die Streckenprüfung lief dabei bis zum Ende.
 - Die Lumo-Lauf-Suite bestand alle 498 Prüfungen. 30 von 30 automatisierten Dschungelherz-Läufen erreichten das Ziel mit je einer Belohnung. Die durchschnittliche Spielzeit lag bei 98 Sekunden. Die Prüfung misst Simulationszeit.
 - Das lokal exportierte Spielpaket vom endgültigen Godot-Pin hatte die SHA-256 `9c2c46fc7ba24e6ffad74f1a39f7187bb77a664bf52253b1f17301079759c223`. Der Android-Bau exportiert und prüft sein eigenes PCK.
 
