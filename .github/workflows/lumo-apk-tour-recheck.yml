@@ -46,6 +46,15 @@ jobs:
           source="$(sed -n 's/^source=//p' "$GITHUB_OUTPUT")"
           run="$(sed -n 's/^run=//p' "$GITHUB_OUTPUT")"
           test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .head_sha)" = "$source"
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.candidate.outputs.source }}
+          path: verified-build-source
+          persist-credentials: false
+      - name: Korrigierte Prüfautomatisierung für den alten Bau einsetzen
+        run: |
+          set -euo pipefail
+          install -m 644 .github/probes/modernization_android_tour.py verified-build-source/.github/probes/modernization_android_tour.py
       - uses: actions/download-artifact@v4
         with:
           run-id: ${{ steps.candidate.outputs.run }}
@@ -94,7 +103,12 @@ jobs:
           ram-size: 4096M
           emulator-build: '14472402'
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-front none -camera-back none
-          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
+          script: >-
+            cd verified-build-source &&
+            ../.probe-venv/bin/python .github/probes/modernization_android_tour.py
+            --apk ../candidate/x86_64/Lumo-Lernen-Neu.apk
+            --provenance ../candidate/x86_64/BUILD-PROVENANCE.json
+            --sums ../candidate/ANDROID-TOUR-SHA256SUMS.txt --out ../tour
       - uses: actions/upload-artifact@v4
         if: always()
         with:
