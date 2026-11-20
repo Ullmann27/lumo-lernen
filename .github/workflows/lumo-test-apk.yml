@@ -179,8 +179,13 @@ jobs:
               # Some installations allow the explicit ref but reject implicit
               # tag creation in the release endpoint. Never retag a candidate.
               gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
-                -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA" >/dev/null &&
-                test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq .object.sha)" = "$GITHUB_SHA" &&
+                -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA" >/dev/null ||
+                {
+                  # Fall back to Git transport on the same exact checked-out commit.
+                  gh auth setup-git --hostname github.com &&
+                    git push origin "$GITHUB_SHA:refs/tags/$TAG"
+                }
+              test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq .object.sha)" = "$GITHUB_SHA" &&
                 gh release create "$TAG" "${FILES[@]}" "${RELEASE_ARGS[@]}" --verify-tag
             }; then
             URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"
