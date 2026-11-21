@@ -84,20 +84,17 @@ void main() {
         }))!;
         try {
           final aufgabe = NachhilfeAufgabe.addition(fall.a, fall.b)!;
-          final activity = NativeLearningActivity.fromNachhilfe(aufgabe,
-              startWeg: fall.weg, startStufe: fall.stufe, fehler: fall.fehler)!;
           final taskId = 'synthetic-tutor-${fall.name}';
-          // Wie LearningContent: die Aufgabe ist veröffentlicht, daraus
-          // entsteht die Lern-Identität (Scope) für die 3D-Szene.
-          LumoCompanionRequests.instance.publishTask(LumoCompanionTaskContext(
-            subject: 'Mathematik',
-            unit: 'Plus bis 20',
-            prompt: '${aufgabe.text} = ?',
-            taskId: taskId,
-            profileGeneration: app.profileGeneration,
-          ));
-          expect(
-              LumoCompanionRequests.instance.learningIdentity.value, isNotNull);
+          // Wie LearningContent._openNachhilfe3D: Die Nachhilfe-Seite liegt
+          // über der Aufgabe, dort ist kein Lern-Scope veröffentlicht. Die
+          // Sitzung trägt die Aufgaben-ID selbst; Android bildet daraus den
+          // Scope (MainActivity), die Szene meldet sie zurück.
+          final activity = NativeLearningActivity.fromNachhilfe(aufgabe,
+                  startWeg: fall.weg,
+                  startStufe: fall.stufe,
+                  fehler: fall.fehler)!
+              .boundToTask(taskId)!;
+          expect(LumoCompanionRequests.instance.learningIdentity.value, isNull);
           final calls = <MethodCall>[];
           TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
               .setMockMethodCallHandler(_channel, (call) async {
@@ -132,8 +129,11 @@ void main() {
           final wege = const LumoNachhilfe().wegeFuer(aufgabe);
           expect(wire['wege'], [for (final w in wege) w.name]);
           expect(wire['plaene'], hasLength(wege.length * 4));
-          expect((wire['scope'] as Map)['taskId'], taskId);
-          expect(wire['allowedActions'], isA<List>());
+          expect(wire['sourceTaskId'], taskId);
+          expect(wire.containsKey('scope'), isFalse,
+              reason: 'kein veröffentlichter Lern-Scope über der Aufgabe');
+          expect(wire['allowedActions'], ['stop'],
+              reason: 'ohne Scope nur „Stopp“ – keine Gesprächsaktionen');
           // Pläne sind vorberechnet: der ganze Launch bleibt klein genug für
           // Intent-Extra, JSONObject und die Godot-Prüfung.
           final size = utf8.encode(jsonEncode(wire)).length;
@@ -240,11 +240,15 @@ void main() {
       twinPrompt = '${ueben['a']} + ${ueben['b']} = ?';
       // Was die Godot-Szene nach „Selbst üben“ zurückgibt (Format wie der
       // Godot-Regressionstest es prüft); Kotlin reicht es als Text durch.
+      // Wie MainActivity: Scope-Aufgabe, sonst die Quellaufgabe.
+      final scope = learning['scope'];
+      final scopedTask = scope is Map ? '${scope['taskId'] ?? ''}' : '';
       return <String, Object?>{
         'destination': 'learn',
         'learningResult': jsonEncode({
           'resultId': resultId,
-          'taskId': (learning['scope'] as Map)['taskId'],
+          'taskId':
+              scopedTask.isNotEmpty ? scopedTask : learning['sourceTaskId'],
           'kind': 'tutor',
           'mode': learning['startWeg'],
           'originalAnswer': '',
@@ -320,7 +324,9 @@ void main() {
       final learning = Map<String, Object?>.from(arguments['learning'] as Map);
       expect(learning['kind'], 'tutor');
       expect((learning['a'], learning['b']), (aufgabe.a, aufgabe.b));
-      expect((learning['scope'] as Map)['taskId'], task.taskInstanceId);
+      expect(learning['sourceTaskId'], task.taskInstanceId,
+          reason: 'die 3D-Nachhilfe gehört zur offenen Aufgabe');
+      expect(learning['startWeg'], isA<String>());
       expect(learning['plaene'], isNotEmpty);
       // Zurück aus 3D: die Nachhilfe schließt, dieselbe Aufgabe ist offen.
       expect(find.byType(LumoNachhilfeScreen), findsNothing);
@@ -404,7 +410,9 @@ void main() {
       await tester.tap(find.text('Aufgabe'));
       await tester.pumpAndSettle();
       final button = find.byKey(const ValueKey('nachhilfe-3d'));
-      await tester.ensureVisible(button);
+      await tester.scrollUntilVisible(button, 200,
+          scrollable: find.byType(Scrollable).first);
+      await tester.pumpAndSettle();
       await tester.tap(button);
       await tester.pumpAndSettle();
       expect(opened, 1);

@@ -590,5 +590,15 @@ class NativeLearningActivity {
     });
   }
 
+  /// Bindet die Nachhilfe an die Aufgabe, aus der sie geöffnet wurde. Über der
+  /// Nachhilfe-Seite ist kein Lern-Scope veröffentlicht (die Aufgabe liegt
+  /// darunter); Android bildet den Scope dann aus dieser ID, und die
+  /// Zusammenfassung der Szene trägt sie zurück zur selben Aufgabe.
+  NativeLearningActivity? boundToTask(String taskId) {
+    if (kind != 'tutor' || taskId.isEmpty || taskId.length > 120) return null;
+    return NativeLearningActivity._(
+        kind, {..._payload, 'sourceTaskId': taskId});
+  }
+
   Map<String, Object> toLaunchOptions() => Map<String, Object>.of(_payload);
 }
