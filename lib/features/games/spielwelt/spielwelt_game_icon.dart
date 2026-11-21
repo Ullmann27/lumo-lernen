@@ -14,6 +14,7 @@ class SpielweltGameIcon extends StatelessWidget {
         'kart' => 'assets/lumo_design/characters/kart_side.webp',
         'village' => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
         'chess' => 'assets/lumo_design/spielwelt/cover_chess.jpg',
+        'skypost' => 'assets/lumo_design/spielwelt/cover_skypost.jpg',
         'treasure' => 'assets/lumo_design/icons/treasure_chest.png',
         'quizShow' => 'assets/lumo_design/icons/trophy_gold.png',
         'jumpRun' => 'assets/lumo_design/characters/fox_trophy_jump.webp',

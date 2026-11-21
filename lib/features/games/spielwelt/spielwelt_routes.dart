@@ -150,7 +150,8 @@ class SpielweltRoutes {
       coverAsset: 'assets/lumo_design/spielwelt/portal_bauwelt.png',
       kind: SpielweltTargetKind.nativeScene,
       target: 'settlement',
-      targetDescription: 'Godot living village economy (launch3D scene=settlement)',
+      targetDescription:
+          'Godot living village economy (launch3D scene=settlement)',
     ),
     SpielweltRoute(
       identity: 'chess',
@@ -161,6 +162,16 @@ class SpielweltRoutes {
       kind: SpielweltTargetKind.nativeScene,
       target: 'chess',
       targetDescription: 'Godot Lumo Schach (launch3D scene=chess)',
+    ),
+    SpielweltRoute(
+      identity: 'skypost',
+      title: 'Sternenpost',
+      semanticTitle: 'Lumos Sternenpost',
+      tagline: 'Fliegen, Briefe liefern, Rätsel lösen',
+      coverAsset: 'assets/lumo_design/spielwelt/cover_skypost.jpg',
+      kind: SpielweltTargetKind.nativeScene,
+      target: 'skypost',
+      targetDescription: 'Godot Lumos Sternenpost (launch3D scene=skypost)',
     ),
     SpielweltRoute(
       identity: 'kart',
@@ -205,6 +216,7 @@ class SpielweltRoutes {
     'build',
     'village',
     'chess',
+    'skypost',
     'kart',
     'connectFour',
     'quizShow',
@@ -213,6 +225,5 @@ class SpielweltRoutes {
   static SpielweltRoute byIdentity(String identity) =>
       all.firstWhere((route) => route.identity == identity);
 
-  static String coverFor(String identity) =>
-      byIdentity(identity).coverAsset;
+  static String coverFor(String identity) => byIdentity(identity).coverAsset;
 }

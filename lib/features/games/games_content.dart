@@ -398,6 +398,8 @@ class _GamesContentState extends State<GamesContent> {
           )
         else if (route.identity == 'chess')
           SpielweltPortal.chess(onOpen: () => _launch3D('chess'))
+        else if (route.identity == 'skypost')
+          SpielweltPortal.skypost(onOpen: () => _launch3D('skypost'))
         else if (route.identity == 'connectFour')
           SpielweltPortal.connectFour(onOpen: _launchConnectFour)
         else if (route.identity == 'quizShow')

@@ -88,7 +88,8 @@ class EmbeddedGameService with WidgetsBindingObserver {
               'build',
               'rhythm',
               'treasure',
-              'chess'
+              'chess',
+              'skypost'
             ].contains(event['game'])) {
           continue;
         }

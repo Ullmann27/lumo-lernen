@@ -50,6 +50,13 @@ class SpielweltPortal {
         semanticTitle = 'Lumo Schach',
         specialId = 'chess';
 
+  /// Lumos Sternenpost (3D-Flugspiel) ist von Anfang an offen.
+  const SpielweltPortal.skypost({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumos Sternenpost',
+        specialId = 'skypost';
+
   final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
@@ -68,6 +75,8 @@ class SpielweltPortal {
         return 'Dorfwirtschaft';
       case 'chess':
         return 'Schach';
+      case 'skypost':
+        return 'Sternenpost';
       case 'rhythm':
         return 'Rhythm';
       default:
@@ -82,9 +91,11 @@ class SpielweltPortal {
 
   String get tagline => switch (specialId) {
         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
-        'village' => 'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
+        'village' =>
+          'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
         'chess' => 'Schach lernen mit Lumo – oder gegen ihn spielen',
+        'skypost' => 'Fliegen, Briefe liefern, Rätsel lösen',
         _ => game?.tagline ?? '',
       };
   bool get playable =>
@@ -125,6 +136,7 @@ class SpielweltHub extends StatefulWidget {
 
   final List<SpielweltPortal> portals;
   final VoidCallback onAdventure;
+
   /// Entry to the existing native Godot game hub. Null in legacy callers.
   final VoidCallback? onEnterNative3D;
   final VoidCallback onHome;
@@ -146,6 +158,7 @@ class _SpielweltHubState extends State<SpielweltHub> {
   static const _featuredOrder = [
     'kart',
     'village',
+    'skypost',
     'chess',
     'cards',
     'build',
@@ -177,7 +190,8 @@ class _SpielweltHubState extends State<SpielweltHub> {
         Theme.of(context).textTheme.bodyMedium!.merge(_gameTileTitleStyle);
     final textScaler = MediaQuery.textScalerOf(context);
     var fittedColumns = columns;
-    for (final portal in portals.where((portal) => portal.identity == 'village')) {
+    for (final portal
+        in portals.where((portal) => portal.identity == 'village')) {
       final title = TextPainter(
         text: TextSpan(text: portal.title, style: titleStyle),
         textDirection: Directionality.of(context),
@@ -192,8 +206,7 @@ class _SpielweltHubState extends State<SpielweltHub> {
           math.max(1, ((width + gap) / (minimumWidth + gap)).floor());
       fittedColumns = math.min(fittedColumns, availableColumns);
     }
-    final tileWidth =
-        (width - gap * (fittedColumns - 1)) / fittedColumns;
+    final tileWidth = (width - gap * (fittedColumns - 1)) / fittedColumns;
     final textScale = textScaler.scale(1).clamp(1.0, 2.0);
     final iconHeight = (tileWidth * .67).clamp(76.0, 139.0);
     final tileHeight = iconHeight + 54 * textScale;
@@ -388,7 +401,8 @@ class _SpielweltHubState extends State<SpielweltHub> {
                           style: OutlinedButton.styleFrom(
                             foregroundColor: const Color(0xFFFFE7A0),
                             backgroundColor: const Color(0xFF123354),
-                            side: const BorderSide(color: Color(0xFF53DDFD), width: 1.5),
+                            side: const BorderSide(
+                                color: Color(0xFF53DDFD), width: 1.5),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
                             ),
