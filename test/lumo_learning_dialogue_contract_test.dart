@@ -48,6 +48,7 @@ void main() {
     int attempts = 0,
     bool? correct,
     bool explaining = false,
+    bool? answering,
     bool exam = false,
     String prompt = '8 + 5',
     String explanation = '8 + 5: Acht liegen im Zehnerfeld. Zwei ergänzen '
@@ -82,7 +83,7 @@ void main() {
           lastCorrect: correct,
           localHelp: 'Ergänze zuerst zur Zehn.',
           isExplanation: explaining,
-          answering: !explaining,
+          answering: answering ?? !explaining,
           isExam: exam);
 
   setUp(() {
@@ -261,6 +262,37 @@ void main() {
     expect(slower.reply, repeated.reply);
     expect(bus.learningPresentation.value?.gazeObjectId, 'syllable_0');
     expect(app.state.solved, isEmpty);
+  });
+
+  test('repeat and slower say Lumo\'s last answer again for the same step',
+      () async {
+    bus.publishTask(task(explaining: true));
+    final why = await conversation.ask('Warum zuerst zwei?');
+    expect(why.reply, contains('10 minus 8 ist 2'));
+    final again = await conversation.ask('Nochmal');
+    expect(again.source, 'local_lesson_repeat');
+    expect(again.reply, why.reply);
+    expect(bus.learningPresentation.value?.pointObjectId, 'bridge_two');
+    final slower = await conversation.ask('Bitte langsamer.');
+    expect(slower.source, 'local_lesson_slower');
+    expect(slower.reply, why.reply);
+    // Stop and owner-raised help (new revision/step) keep the same task.
+    await conversation.ask('Stopp');
+    bus.publishTask(task(explaining: true, attempts: 1, step: 'helped'));
+    expect((await conversation.ask('Noch einmal')).reply, why.reply);
+    // The same task, once completed, does not repeat its old explanation.
+    bus.publishTask(task(step: 'helped', answering: false));
+    expect((await conversation.ask('Nochmal')).reply,
+        contains('abgeschlossen'));
+    // Another task never repeats help about the previous one.
+    bus.publishTask(task(explaining: true));
+    await conversation.ask('Warum zuerst zwei?');
+    bus.publishTask(task(id: 'seven-plus-six', explaining: true));
+    final next = await conversation.ask('Nochmal');
+    expect(next.reply, isNot(why.reply));
+    expect(next.reply, contains('Zwei ergänzen zur Zehn'));
+    expect(app.state.solved, isEmpty);
+    expect(app.state.stars, 0);
   });
 
   test('pattern hint points to its group and does not submit an answer',
