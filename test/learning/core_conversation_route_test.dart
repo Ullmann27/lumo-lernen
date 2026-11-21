@@ -176,6 +176,43 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets(
+      'actual Core dialog repeats its last help for the same task',
+      (tester) async {
+    final app = await _openCore(tester);
+    final task = _bus.taskContext.value!;
+    final rewards = (app.state.stars, app.state.xp, app.learningDailyDone());
+    await _tap(tester, find.byKey(const ValueKey('mobile-lumo-button')));
+    final dialog = find.byType(LumoAgentContent);
+    final field = find.descendant(of: dialog, matching: find.byType(TextField));
+    Future<void> send(String text) async {
+      await tester.enterText(field, text);
+      tester.testTextInput.hide();
+      await _tap(
+          tester,
+          find.descendant(
+              of: dialog,
+              matching: find.widgetWithText(FilledButton, 'Senden')));
+    }
+
+    await send('Erklär mir diese Aufgabe');
+    final help = app.state.lumoMessage;
+    expect(help, contains('Wir schauen auf deine Aufgabe.'));
+    // The owner raised its help level; the step and task stay the same.
+    expect(_bus.taskContext.value!.helpLevel, greaterThan(task.helpLevel));
+    for (final chip in ['Noch einmal', 'Langsamer']) {
+      await _tap(
+          tester,
+          find.descendant(
+              of: dialog, matching: find.widgetWithText(ActionChip, chip)));
+      expect(app.state.lumoMessage, help, reason: chip);
+    }
+    expect(app.state.settings.microphoneEnabled, isFalse);
+    expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
+    await _tap(tester, find.byTooltip('Zurück zur Aufgabe'));
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('foreign overlay withdraws even an owned Core conversation',
       (tester) async {
     final app = await _openCore(tester);

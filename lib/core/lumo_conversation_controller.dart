@@ -60,6 +60,9 @@ class LumoConversationController extends ChangeNotifier {
   LumoLearningPresentation? _audioPresentation;
   int? _audioUtterance;
   String _subtitle = '';
+  String? _lastHelpKey;
+  String _lastHelpReply = '';
+  String _lastHelpInput = '';
   int _audioCompletionBefore = 0;
   bool _disposed = false;
   bool _paused = false;
@@ -246,17 +249,30 @@ class LumoConversationController extends ChangeNotifier {
           blocked: false,
           source: 'local_assessment_instruction');
     }
-    final explanation = const LumoCompanionEngine()
-        .answer(
-            input: 'Erklär mir: $input',
-            state: context.appState.state,
-            task: task)
-        .text;
+    // "Noch einmal" and "Langsamer" repeat what Lumo just said about this
+    // still open task. Otherwise the task's own explanation is used.
+    final replay = (intent.action == LumoLearningAction.repeat ||
+                intent.action == LumoLearningAction.slower) &&
+            task != null &&
+            (task.answering || task.isExplanation) &&
+            _lastHelpReply.isNotEmpty &&
+            _lastHelpKey != null &&
+            _lastHelpKey == _helpKey(identity)
+        ? _lastHelpReply
+        : null;
+    final explanation = replay ??
+        const LumoCompanionEngine()
+            .answer(
+                input: 'Erklär mir: $input',
+                state: context.appState.state,
+                task: task)
+            .text;
+    final targetInput = replay == null ? input : _lastHelpInput;
     final current = context.learningIdentity;
     if (current != null && task != null) {
       final target = task.objectIds.contains('bridge_two') &&
               RegExp(r'\b(warum|wieso|weshalb)\b', caseSensitive: false)
-                  .hasMatch(input)
+                  .hasMatch(targetInput)
           ? 'bridge_two'
           : task.objectIds.contains('pattern_group')
               ? 'pattern_group'
@@ -306,6 +322,19 @@ class LumoConversationController extends ChangeNotifier {
     _responseGeneration = generation;
     _responseRevision = context.revision;
     _responseIdentity = context.learningIdentity;
+    final helpKey = _helpKey(_responseIdentity);
+    if (!response.blocked &&
+        helpKey != null &&
+        response.reply.trim().isNotEmpty &&
+        (response.source.startsWith('local_lesson_') ||
+            response.source == 'local_companion' ||
+            response.isCloudAnswer)) {
+      if (_lastHelpKey != helpKey || _lastHelpReply != response.reply) {
+        _lastHelpInput = input;
+      }
+      _lastHelpKey = helpKey;
+      _lastHelpReply = response.reply;
+    }
     _interactionIdentity = _responseIdentity;
     _responseTurn = turn;
     _responseSpeed = speed;
@@ -315,6 +344,19 @@ class LumoConversationController extends ChangeNotifier {
 
   bool _current(int generation) =>
       !_disposed && !_paused && generation == _generation;
+
+  /// Owners publish raised help as a new revision or step of the same task,
+  /// and a stop only changes the cancel epoch: the last help may be repeated.
+  /// Another task, conversation scope or profile session may never reuse it.
+  String? _helpKey(LumoLearningIdentity? identity) => identity == null
+      ? null
+      : '${context.conversationScope}|${identity.sessionId}|${identity.taskId}';
+
+  void _forgetHelp() {
+    _lastHelpKey = null;
+    _lastHelpReply = '';
+    _lastHelpInput = '';
+  }
 
   Future<void> speak(String text,
       {VoiceStyle style = VoiceStyle.explain}) async {
@@ -475,6 +517,7 @@ class LumoConversationController extends ChangeNotifier {
     final scope = context.conversationScope;
     if (scope != _conversationScope) {
       _history.clear();
+      _forgetHelp();
       _conversationScope = scope;
     } else if (_ownCompatibleAction) {
       return;
@@ -571,6 +614,7 @@ class LumoConversationController extends ChangeNotifier {
     LumoVoice.instance.mediaAudibility.removeListener(_publishAudio);
     _request?.cancel();
     _history.clear();
+    _forgetHelp();
     super.dispose();
   }
 }
