@@ -1466,8 +1466,12 @@ class _LearningContentState extends State<LearningContent>
             ? (text) => _voice.speak(text, style: VoiceStyle.explain)
             : null,
         onStopSpeech: () => unawaited(_voice.stop()),
-        // Die 3D-Nachhilfe braucht die Godot-Szene "tutor"; bis sie im
-        // gebündelten Godot-Stand liegt, bleibt es beim 2D-Weg.
+        // Dieselben Pläne in der Godot-Szene "tutor" (Lern-Route, gleicher
+        // Scope). Ohne Android-Engine bleibt der 2D-Weg; launchLumo3D meldet
+        // das selbst.
+        open3D: (screenContext, activity) => _openNachhilfe3D(
+            screenContext, activity,
+            taskId: taskId, generation: generation),
       ),
     ));
     if (mounted &&
@@ -1475,6 +1479,47 @@ class _LearningContentState extends State<LearningContent>
         _taskInstance.taskInstanceId == taskId) {
       _publishTaskContext();
     }
+  }
+
+  /// 3D-Nachhilfe: Lumo zeigt am Rechenrahmen oder Zahlenstrahl, das Kind
+  /// übt an Zwillingsaufgaben. Die Originalaufgabe bleibt offen; die Szene
+  /// meldet nur eine Zusammenfassung, die wie bei den Holo-Räumen genau einmal
+  /// je Ergebnis-ID verbucht wird (Zwilling als Lernnachweis, keine Sterne).
+  Future<bool> _openNachhilfe3D(
+      BuildContext screenContext, NativeLearningActivity activity,
+      {required String taskId, required int generation}) async {
+    if (!mounted ||
+        activity.kind != 'tutor' ||
+        _activeSessionScope != _sessionScope ||
+        _answered ||
+        _sessionFinished ||
+        _nativeLearningOpen ||
+        widget.appState.profileGeneration != generation ||
+        _taskInstance.taskInstanceId != taskId) {
+      return false;
+    }
+    setState(() => _nativeLearningOpen = true);
+    Map<String, Object?>? summary;
+    var returned = false;
+    try {
+      returned = await launchLumo3D(screenContext,
+          scene: 'learning',
+          appState: widget.appState,
+          subject: _task.subject,
+          learning: activity,
+          onLearningResult: (result) => summary = result);
+      if (summary != null) {
+        _applyHoloResult(summary!, taskId: taskId, generation: generation);
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _nativeReturnPending = !_foreground;
+          _nativeLearningOpen = !_foreground;
+        });
+      }
+    }
+    return returned;
   }
 
   Future<void> _openNativeLearning() async {
@@ -1575,7 +1620,9 @@ class _LearningContentState extends State<LearningContent>
         correct: true,
         hintUsed: (result['twinAttempts'] as int) > 1,
         prompt: result['twinPrompt'] as String,
-        given: 'Holo-Raum: allein gelöst',
+        given: result['kind'] == 'tutor'
+            ? 'Nachhilfe 3D: allein gelöst'
+            : 'Holo-Raum: allein gelöst',
       );
     }
   }

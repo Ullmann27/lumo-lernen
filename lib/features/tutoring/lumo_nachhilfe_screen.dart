@@ -304,11 +304,15 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
     if (activity == null) return;
     widget.onStopSpeech?.call();
     setState(() => _oeffne3D = true);
+    var zurueck = false;
     try {
-      await open(context, activity);
+      zurueck = await open(context, activity);
     } finally {
       if (mounted) setState(() => _oeffne3D = false);
     }
+    // „Zur Aufgabe“ in 3D führt direkt zurück zur selben Aufgabe. Startet die
+    // 3D-Szene nicht, bleibt die 2D-Nachhilfe offen.
+    if (zurueck && mounted) await Navigator.of(context).maybePop();
   }
 
   @override

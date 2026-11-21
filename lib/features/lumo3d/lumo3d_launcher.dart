@@ -323,6 +323,14 @@ Future<bool> launchLumo3D(
   }
 }
 
+const _tutorWays = {
+  'rechenrahmen',
+  'zahlenstrahl',
+  'zerlegen',
+  'verdoppeln',
+  'tauschen',
+};
+
 /// Strenge Prüfung der Holo-Zusammenfassung aus dem nativen Rückgabewert.
 /// Unbekannte oder unplausible Daten werden verworfen (dann gilt die alte
 /// Regel: das Kind antwortet in der App).
@@ -353,13 +361,15 @@ Map<String, Object?>? parseLearningResult(Object? raw) {
       taskId is! String ||
       taskId.isEmpty ||
       taskId.length > 120 ||
-      (kind != 'holo_word_problem' && kind != 'holo_sentence') ||
+      (kind != 'holo_word_problem' &&
+          kind != 'holo_sentence' &&
+          kind != 'tutor') ||
       answer is! String ||
       answer.length > 240 ||
       correct is! bool ||
       hint is! int ||
       hint < 0 ||
-      hint > 2 ||
+      hint > (kind == 'tutor' ? 3 : 2) ||
       attempts is! int ||
       attempts < 0 ||
       attempts > 50 ||
@@ -370,6 +380,15 @@ Map<String, Object?>? parseLearningResult(Object? raw) {
       twinPrompt is! String ||
       twinPrompt.length > 240 ||
       (correct && answer.isEmpty)) {
+    return null;
+  }
+  // Die Nachhilfe beantwortet die Originalaufgabe nie: nur Hilfestufe und
+  // Zwillingsaufgabe dürfen zurückkommen.
+  if (kind == 'tutor' &&
+      (correct ||
+          answer.isNotEmpty ||
+          attempts != 0 ||
+          !_tutorWays.contains(holo['mode']))) {
     return null;
   }
   return <String, Object?>{
