@@ -28,6 +28,27 @@ class LumoLearningDialogueIntent {
       r'(?: mehr)?'
       r'|ohne (?:hilfe|tipp|hinweis))(?: bitte)?$');
 
+  // "Zeig mir das", "Kannst du es mir zeigen?", "Zeig mir, wie das geht":
+  // the existing explanation with the owner-validated pointing gesture.
+  // "Zeig mir einen Hund" is not about the task and stays a normal question.
+  static final _show = RegExp(r'^(?:lumo )?(?:bitte )?(?:'
+      r'kannst du (?:(?:mir|uns|es|das|mal) )*zeigen'
+      r'|zeige?(?: (?:es|mir|uns|mal|bitte|das))*'
+      r'(?: (?:wie (?:das|es) geht|wie geht das|wo|'
+      r'den (?:naechsten |1 |ersten |2 |zweiten )?schritt))?'
+      r')(?: bitte)?$');
+
+  // Lumo cannot see a finger on the screen. "Die zwei da" must be clarified,
+  // never guessed as an object, a step or an answer.
+  static final _ambiguousReference = RegExp(
+      r'\b(?:die|der|das|den|diese|dieser|dieses|diesen)(?: \d+)? '
+      r'(?:da|dort|hier)\b|\bdiese \d+\b');
+
+  /// True for an unclassified utterance that points at something unnamed.
+  static bool isAmbiguousReference(String input) =>
+      _ambiguousReference.hasMatch(
+          const LumoChildSpeechNormalizer().normalizeText(input));
+
   static LumoLearningDialogueIntent? parse(
       String input, LumoCompanionTaskContext? task) {
     final raw = input.trim();
@@ -77,6 +98,9 @@ class LumoLearningDialogueIntent {
       if (RegExp(r'\b(?:hinweis|tipp|hilfe|hilf)\b').hasMatch(text)) {
         return const LumoLearningDialogueIntent(LumoLearningAction.hint);
       }
+    }
+    if (_show.hasMatch(text)) {
+      return const LumoLearningDialogueIntent(LumoLearningAction.explain);
     }
     if (RegExp(r'\b(?:warum|wieso|weshalb|erklaer|erklaere|erklaeren|'
             r'verstehe|versteh|was soll ich|was muss ich)\b')

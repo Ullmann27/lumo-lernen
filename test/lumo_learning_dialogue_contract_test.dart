@@ -341,6 +341,48 @@ void main() {
         isNull);
   });
 
+  test('show requests use the owner gesture; unnamed references are clarified',
+      () async {
+    bus.publishTask(task());
+    final shown = await conversation.ask('Zeig mir das');
+    expect(shown.source, 'local_lesson_explain');
+    expect(bus.learningAction.value?.action, LumoLearningAction.explain);
+    expect(bus.learningPresentation.value?.pointObjectId, 'ten_frame');
+
+    final unclear = await conversation.ask('Zeig mir die zwei da');
+    expect(unclear.source, 'local_clarify');
+    expect(unclear.reply, contains('Welche meinst du'));
+    expect(bus.learningPresentation.value, isNull);
+    expect(bus.learningAction.value?.action,
+        isNot(LumoLearningAction.explain));
+    expect(bus.learningAction.value?.candidate, isNull);
+    expect(app.state.solved, isEmpty);
+    expect(app.state.stars, 0);
+
+    final current = task();
+    for (final phrase in [
+      'Kannst du es mir zeigen?',
+      'Zeig mir, wie das geht.',
+      'Zeig mir den zweiten Schritt',
+      'Lumo, zeig mal bitte',
+    ]) {
+      expect(LumoLearningDialogueIntent.parse(phrase, current)?.action,
+          LumoLearningAction.explain,
+          reason: phrase);
+    }
+    expect(LumoLearningDialogueIntent.parse('Zeig mir einen Hund', current),
+        isNull);
+    expect(LumoLearningDialogueIntent.parse('Zeig mir das nicht', current),
+        isNull);
+    expect(LumoLearningDialogueIntent.isAmbiguousReference('Was ist das da?'),
+        true);
+    expect(LumoLearningDialogueIntent.isAmbiguousReference('Diese zwei'), true);
+    expect(LumoLearningDialogueIntent.isAmbiguousReference('Das ist 13'), false);
+    expect(
+        LumoLearningDialogueIntent.isAmbiguousReference('Die Antwort ist 13'),
+        false);
+  });
+
   test('pattern hint points to its group and does not submit an answer',
       () async {
     bus.publishTask(task(

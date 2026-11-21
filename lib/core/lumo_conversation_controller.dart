@@ -153,6 +153,13 @@ class LumoConversationController extends ChangeNotifier {
       _completeResponse(input, _unavailable, generation, turn);
       return _unavailable;
     }
+    if (safeInput &&
+        visibleTask != null &&
+        LumoLearningDialogueIntent.isAmbiguousReference(input)) {
+      // Neither the local engine nor a provider may guess the pointed object.
+      _completeResponse(input, _clarifyReference, generation, turn);
+      return _clarifyReference;
+    }
 
     final revision = context.revision;
     final identity = context.learningIdentity;
@@ -307,6 +314,12 @@ class LumoConversationController extends ChangeNotifier {
         blocked: false,
         source: 'local_lesson_${intent.action.name}');
   }
+
+  static const _clarifyReference = LumoAiProxyResponse(
+      reply: 'Welche meinst du genau? Sag mir bitte, was darauf steht, '
+          'welche Farbe es hat oder wo es liegt.',
+      blocked: false,
+      source: 'local_clarify');
 
   static const _unavailable = LumoAiProxyResponse(
       reply: 'Diese Hilfe ist bei der aktuellen Aufgabe nicht freigegeben. '
