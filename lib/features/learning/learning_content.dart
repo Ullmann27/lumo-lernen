@@ -1488,8 +1488,9 @@ class _LearningContentState extends State<LearningContent>
   Future<bool> _openNachhilfe3D(
       BuildContext screenContext, NativeLearningActivity activity,
       {required String taskId, required int generation}) async {
+    final bound = activity.boundToTask(taskId);
     if (!mounted ||
-        activity.kind != 'tutor' ||
+        bound == null ||
         _activeSessionScope != _sessionScope ||
         _answered ||
         _sessionFinished ||
@@ -1506,7 +1507,7 @@ class _LearningContentState extends State<LearningContent>
           scene: 'learning',
           appState: widget.appState,
           subject: _task.subject,
-          learning: activity,
+          learning: bound,
           onLearningResult: (result) => summary = result);
       if (summary != null) {
         _applyHoloResult(summary!, taskId: taskId, generation: generation);
