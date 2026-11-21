@@ -84,6 +84,13 @@ class LumoConversationController extends ChangeNotifier {
     final intent = LumoLearningDialogueIntent.parse(input, context.task);
     if (intent?.action == LumoLearningAction.stop) {
       interrupt();
+      if (intent!.declinesHelp) {
+        return const LumoAiProxyResponse(
+            reply: 'Gerne. Versuch es zuerst selbst. Ich gebe dir keinen '
+                'weiteren Tipp. Wenn du Hilfe möchtest, frag mich einfach.',
+            blocked: false,
+            source: 'local_try_myself');
+      }
       return const LumoAiProxyResponse(
           reply: 'Ich habe aufgehört. Du kannst in Ruhe weitermachen.',
           blocked: false,
