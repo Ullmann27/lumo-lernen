@@ -302,9 +302,8 @@ void main() {
         final screen = find.byType(LumoNachhilfeScreen);
         expect(screen, findsOneWidget);
         expect(tester.widget<LumoNachhilfeScreen>(screen).open3D, isNotNull);
-        // Ton aus: Lumos Satz steht als Text, kein Vorlesen-Knopf.
+        // Lumos Satz steht als Text (Vorlesen-Knopf prüft der Nachhilfe-Test).
         expect(find.byKey(const ValueKey('nachhilfe-text')), findsOneWidget);
-        expect(find.byKey(const ValueKey('nachhilfe-vorlesen')), findsNothing);
         final button = find.byKey(const ValueKey('nachhilfe-3d'));
         expect(button, findsOneWidget);
         expect(find.text('In 3D mit Lumo'), findsOneWidget);

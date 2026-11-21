@@ -46,7 +46,7 @@ object GameEventStore {
         val id = result.optString("resultId")
         require(id.length in 1..160 && result.optString("status") == "completed")
         // "cards" = Kartentisch (Sternenstich, Sternenleiter, Lumo-Quartett), "run" = Lumo Lauf.
-        require(result.optString("game") in setOf("kart", "jump", "run", "cards", "puzzle", "build", "rhythm", "treasure", "chess"))
+        require(result.optString("game") in setOf("kart", "jump", "run", "skypost", "cards", "puzzle", "build", "rhythm", "treasure", "chess"))
         require(result.optInt("stars", -1) in 0..100)
         if (result.has("xp")) require(result.optInt("xp", -1) in 0..1000)
         val state = read(file)
