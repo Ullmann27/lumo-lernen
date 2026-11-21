@@ -6,11 +6,27 @@ import 'lumo_learning_session_contract.dart';
 /// never derives a grade from the child's wording or recognition confidence.
 class LumoLearningDialogueIntent {
   const LumoLearningDialogueIntent(this.action,
-      {this.candidate, this.isCorrection = false});
+      {this.candidate, this.isCorrection = false, this.declinesHelp = false});
 
   final LumoLearningAction action;
   final String? candidate;
   final bool isCorrection;
+
+  /// "Ich möchte es allein versuchen": the existing protocol stop, which
+  /// leaves the child free to work. It never removes help already used.
+  final bool declinesHelp;
+
+  // Whole utterance only, so "ich kann es nicht allein" or a request for
+  // help can never be mistaken for declining help.
+  static final _declineHelp = RegExp(r'^(?:lumo )?(?:bitte )?(?:'
+      r'(?:ich )?(?:moechte|will|mag|kann|darf)(?: es)?(?: jetzt)? '
+      r'(?:allein|alleine|selbst|selber)'
+      r'(?: (?:versuchen|probieren|machen|loesen|rechnen|schaffen))?'
+      r'|lass mich(?: es)?(?: jetzt)? (?:allein|alleine|selbst|selber)'
+      r'(?: (?:versuchen|probieren|machen|loesen|rechnen))?'
+      r'|(?:ich brauche |ich will )?(?:keinen tipp|keine hilfe|keinen hinweis)'
+      r'(?: mehr)?'
+      r'|ohne (?:hilfe|tipp|hinweis))(?: bitte)?$');
 
   static LumoLearningDialogueIntent? parse(
       String input, LumoCompanionTaskContext? task) {
@@ -23,6 +39,10 @@ class LumoLearningDialogueIntent {
       return const LumoLearningDialogueIntent(LumoLearningAction.stop);
     }
     if (task == null) return null;
+    if (_declineHelp.hasMatch(text)) {
+      return const LumoLearningDialogueIntent(LumoLearningAction.stop,
+          declinesHelp: true);
+    }
 
     // A correction names the replacement, never the first number in
     // "nicht vier, sondern dreizehn". Nothing is checked until confirmation.

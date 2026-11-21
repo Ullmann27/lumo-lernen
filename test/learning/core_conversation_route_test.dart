@@ -177,7 +177,7 @@ void main() {
   });
 
   testWidgets(
-      'actual Core dialog repeats its last help for the same task',
+      'actual Core dialog repeats its last help and accepts trying alone',
       (tester) async {
     final app = await _openCore(tester);
     final task = _bus.taskContext.value!;
@@ -207,6 +207,16 @@ void main() {
               of: dialog, matching: find.widgetWithText(ActionChip, chip)));
       expect(app.state.lumoMessage, help, reason: chip);
     }
+    final helpLevel = _bus.taskContext.value!.helpLevel;
+    final lease = _bus.learningIdentity.value!;
+    await send('Ich möchte es allein versuchen');
+    expect(
+        find.descendant(
+            of: dialog, matching: find.textContaining('keinen weiteren Tipp')),
+        findsOneWidget);
+    expect(_bus.isCurrentLearningIdentity(lease), isFalse);
+    expect(_bus.taskContext.value!.taskId, task.taskId);
+    expect(_bus.taskContext.value!.helpLevel, helpLevel);
     expect(app.state.settings.microphoneEnabled, isFalse);
     expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
     await _tap(tester, find.byTooltip('Zurück zur Aufgabe'));

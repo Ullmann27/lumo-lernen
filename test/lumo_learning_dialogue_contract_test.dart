@@ -295,6 +295,48 @@ void main() {
     expect(app.state.stars, 0);
   });
 
+  test('declining help is a protocol stop, not an answer or a hint', () async {
+    bus.publishTask(task());
+    final lease = bus.learningIdentity.value!;
+    final reply = await conversation.ask('Ich möchte es allein versuchen.');
+    expect(reply.source, 'local_try_myself');
+    expect(reply.reply, contains('keinen weiteren Tipp'));
+    expect(bus.isCurrentLearningIdentity(lease), false);
+    expect(bus.learningAction.value?.action, LumoLearningAction.stop);
+    expect(conversation.responseMaySpeak, false);
+    expect(bus.taskContext.value?.helpLevel, task().helpLevel);
+    expect(app.state.solved, isEmpty);
+    expect(app.state.stars, 0);
+
+    final current = task();
+    for (final phrase in [
+      'Lass mich selber probieren',
+      'Ich will es selbst machen',
+      'Ich brauche keine Hilfe',
+      'Keinen Tipp bitte',
+      'Ohne Hilfe',
+    ]) {
+      expect(LumoLearningDialogueIntent.parse(phrase, current)?.declinesHelp,
+          true,
+          reason: phrase);
+    }
+    for (final phrase in [
+      'Ich kann es nicht allein',
+      'Hilf mir bitte',
+      'Ich will es nicht selbst machen',
+      'Ich brauche Hilfe',
+    ]) {
+      expect(LumoLearningDialogueIntent.parse(phrase, current)?.declinesHelp,
+          isNot(true),
+          reason: phrase);
+    }
+    expect(LumoLearningDialogueIntent.parse('Hilf mir bitte', current)?.action,
+        LumoLearningAction.hint);
+    expect(
+        LumoLearningDialogueIntent.parse('Ich möchte es allein versuchen', null),
+        isNull);
+  });
+
   test('pattern hint points to its group and does not submit an answer',
       () async {
     bus.publishTask(task(
