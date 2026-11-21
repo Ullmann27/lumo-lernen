@@ -316,7 +316,7 @@ class LumoConversationController extends ChangeNotifier {
   }
 
   static const _clarifyReference = LumoAiProxyResponse(
-      reply: 'Welche meinst du genau? Sag mir bitte, was darauf steht, '
+      reply: 'Was genau meinst du? Sag mir bitte, was darauf steht, '
           'welche Farbe es hat oder wo es liegt.',
       blocked: false,
       source: 'local_clarify');

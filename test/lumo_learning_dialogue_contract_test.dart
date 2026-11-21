@@ -351,7 +351,7 @@ void main() {
 
     final unclear = await conversation.ask('Zeig mir die zwei da');
     expect(unclear.source, 'local_clarify');
-    expect(unclear.reply, contains('Welche meinst du'));
+    expect(unclear.reply, contains('Was genau meinst du?'));
     expect(bus.learningPresentation.value, isNull);
     expect(bus.learningAction.value?.action,
         isNot(LumoLearningAction.explain));
@@ -376,6 +376,9 @@ void main() {
         isNull);
     expect(LumoLearningDialogueIntent.isAmbiguousReference('Was ist das da?'),
         true);
+    final single = await conversation.ask('Was ist das hier?');
+    expect(single.source, 'local_clarify');
+    expect(single.reply, startsWith('Was genau meinst du?'));
     expect(LumoLearningDialogueIntent.isAmbiguousReference('Diese zwei'), true);
     expect(LumoLearningDialogueIntent.isAmbiguousReference('Das ist 13'), false);
     expect(
