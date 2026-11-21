@@ -278,8 +278,12 @@ void main() {
     expect(slower.reply, why.reply);
     // Stop and owner-raised help (new revision/step) keep the same task.
     await conversation.ask('Stopp');
-    bus.publishTask(task(explaining: true, attempts: 1, step: 'helped'));
+    bus.publishTask(task(explaining: true, step: 'helped'));
     expect((await conversation.ask('Noch einmal')).reply, why.reply);
+    // After a new attempt the child gets the task's current help instead.
+    bus.publishTask(
+        task(explaining: true, step: 'helped', attempts: 1, correct: false));
+    expect((await conversation.ask('Noch einmal')).reply, isNot(why.reply));
     // The same task, once completed, does not repeat its old explanation.
     bus.publishTask(task(step: 'helped', answering: false));
     expect((await conversation.ask('Nochmal')).reply,
