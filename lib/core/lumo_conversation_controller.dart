@@ -200,6 +200,7 @@ class LumoConversationController extends ChangeNotifier {
       String input, LumoLearningDialogueIntent intent, int turn, String scope) {
     final requests = context.requests;
     final identity = context.learningIdentity;
+    final asked = context.task;
     if (context.isAssessment) {
       final task = context.task;
       final instructionOnly = task != null &&
@@ -264,7 +265,7 @@ class LumoConversationController extends ChangeNotifier {
             (task.answering || task.isExplanation) &&
             _lastHelpReply.isNotEmpty &&
             _lastHelpKey != null &&
-            _lastHelpKey == _helpKey(identity)
+            _lastHelpKey == _helpKey(identity, asked)
         ? _lastHelpReply
         : null;
     final explanation = replay ??
@@ -329,7 +330,7 @@ class LumoConversationController extends ChangeNotifier {
     _responseGeneration = generation;
     _responseRevision = context.revision;
     _responseIdentity = context.learningIdentity;
-    final helpKey = _helpKey(_responseIdentity);
+    final helpKey = _helpKey(_responseIdentity, context.task);
     if (!response.blocked &&
         helpKey != null &&
         response.reply.trim().isNotEmpty &&
@@ -354,10 +355,14 @@ class LumoConversationController extends ChangeNotifier {
 
   /// Owners publish raised help as a new revision or step of the same task,
   /// and a stop only changes the cancel epoch: the last help may be repeated.
-  /// Another task, conversation scope or profile session may never reuse it.
-  String? _helpKey(LumoLearningIdentity? identity) => identity == null
-      ? null
-      : '${context.conversationScope}|${identity.sessionId}|${identity.taskId}';
+  /// After a new attempt or result the child needs the task's current help;
+  /// another task, conversation scope or profile session never reuses it.
+  String? _helpKey(
+          LumoLearningIdentity? identity, LumoCompanionTaskContext? task) =>
+      identity == null || task == null
+          ? null
+          : '${context.conversationScope}|${identity.sessionId}|'
+              '${identity.taskId}|${task.attempts}|${task.lastCorrect}';
 
   void _forgetHelp() {
     _lastHelpKey = null;
