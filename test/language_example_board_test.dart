@@ -4,6 +4,7 @@ import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/curriculum/primary_activity_catalog.dart';
 import 'package:lumo_lernen/features/learning/widgets/language_practice_material.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
+import 'package:lumo_lernen/domain/tutoring/native_english_vocabulary.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
 import 'package:lumo_lernen/features/learning/widgets/interactive_task_workspace.dart';
 import 'package:lumo_lernen/features/learning/widgets/language_example_board.dart';
@@ -34,6 +35,24 @@ void main() {
         }
       }
     }
+  });
+
+  test('English animal illustrations are bound to their real current words',
+      () {
+    final factory = ExerciseFactory(seed: 2065);
+    final animals = <String>{};
+    for (var i = 0; i < 220; i++) {
+      final task =
+          factory.nextExact(grade: 2, subject: 'Englisch', unit: 'Tiere');
+      final instance = const LegacyLumoTaskAdapter().toTaskInstance(
+          task: task, childId: 'animal-check', difficulty: task.difficulty);
+      final object = NativeEnglishVocabulary.illustrationFor(instance);
+      if (object != null) {
+        expect(object['meaning'], task.answer);
+        animals.add(object['word']! as String);
+      }
+    }
+    expect(animals, containsAll(['lion', 'cow', 'sheep']));
   });
 
   testWidgets('Picture cards reveal one word and report a help action',
