@@ -590,6 +590,8 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
               grade: grade,
               initiallyOpen: grade < 3 || widget.helpLevel > 0,
               options: widget.task.options,
+              reduceMotion: _quiet,
+              slow: widget.slow,
               onExplore: widget.enabled
                   ? () => _emit('inspectLanguageExample', 'task-workspace', isHelp: true)
                   : null,
