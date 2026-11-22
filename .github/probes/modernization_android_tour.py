@@ -63,7 +63,7 @@ LOG_IMAGES = (
     '21_kart_garage_step_5',
     '21_lumo_kart_real_race', '21_race_hud', '21_race_driving_late', '21_lumo_kart_pause',
     '23_zurueck_in_flutter', '24_lernen_nach_kart', '25_start_nach_kart', '26_neustart',
-    '99_fehler',
+    'skypost-flight', 'skypost-finish', 'skypost-return', '99_fehler',
 )
 
 
@@ -252,6 +252,41 @@ def _free_flight_card(png: bytes) -> tuple[int, int] | None:
     return None
 
 
+def _skypost_pause_glyph(png: bytes) -> tuple[int, int] | None:
+    """Find the two separated white bars inside the upper-left flight control."""
+    full = Image.open(io.BytesIO(png)).convert('RGB')
+    thumb = full.copy()
+    thumb.thumbnail((540, 980))
+    w, h = thumb.size
+    pixels = thumb.load()
+    bright = {(x, y) for x in range(int(.22*w)) for y in range(int(.20*h))
+              if min(pixels[x, y]) >= 220}
+    bars = []
+    while bright:
+        work = [bright.pop()]
+        part = []
+        while work:
+            x, y = work.pop()
+            part.append((x, y))
+            for point in ((x-1, y), (x+1, y), (x, y-1), (x, y+1)):
+                if point in bright:
+                    bright.remove(point)
+                    work.append(point)
+        xs, ys = zip(*part)
+        left, right, top, bottom = min(xs), max(xs), min(ys), max(ys)
+        width, height = right-left+1, bottom-top+1
+        if height >= 7 and 1.8 < height/width < 4.3 and len(part) > .78*width*height:
+            bars.append((left, top, width, height))
+    for x, y, width, height in sorted(bars, key=lambda bar: -bar[3]):
+        for other, top, bw, bh in bars:
+            if (1.6*width < other-x < 3.4*width and abs(top-y) <= 2
+                    and abs(bw-width) <= 2 and abs(bh-height) <= 2):
+                cx, cy = (x+other+bw)//2, y+height//2
+                if max(pixels[cx, cy]) < 155:
+                    return (round(cx*full.width/w), round(cy*full.height/h))
+    return None
+
+
 def _skypost_roundtrip(out: Path) -> dict:
     """Launch the tile, end a genuine free flight and verify the Flutter wallet after restart."""
     if not try_tap(out, ['Spielen', 'Spiele'], 'skypost-spiele'):
@@ -298,26 +333,27 @@ def _skypost_roundtrip(out: Path) -> dict:
             raise RuntimeError('Freiflug ist nicht gestartet')
         time.sleep(2)
     receipt_file = f'/data/user/0/{PACKAGE}/files/lumo_game_events.json'
-    # Elapsed time is game time. A slow software emulator may need several real minutes.
-    for attempt_index in range(8):
-        time.sleep(35)
-        if attempt_index == 0:
-            probe.capture(out, 'skypost-flight')
-        base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
-        time.sleep(2)
-        saves = base.adb('shell', 'find', f'/data/user/0/{PACKAGE}/files', '-name',
-                         'skypost_*_free.cfg', check=False).splitlines()
-        elapsed = 0
-        for path in saves:
+    # The game periodically saves its own clock while flying. Wait for that
+    # checkpoint before pressing the actual visible HUD control once.
+    deadline = time.monotonic() + 330
+    elapsed = 0
+    while elapsed < 20000 and time.monotonic() < deadline:
+        time.sleep(5)
+        paths = base.adb('shell', 'find', f'/data/user/0/{PACKAGE}', '-type', 'f',
+                         '-name', 'skypost_*_free.cfg', check=False).splitlines()
+        for path in paths:
             raw = base.adb('exec-out', 'cat', path.strip(), check=False)
             match = re.search(r'^elapsed_ms\s*=\s*(\d+)', raw, re.MULTILINE)
             if match:
                 elapsed = max(elapsed, int(match[1]))
-        if elapsed >= 20000:
-            break
-        touch('Weiterfliegen', 'resume')
-    else:
-        raise RuntimeError('20 Sekunden gespeicherte Flugzeit wurden nicht erreicht')
+    if elapsed < 20000:
+        raise RuntimeError(f'Gespeicherte Freiflugzeit blieb bei {elapsed} ms')
+    flight = _screencap()
+    (out / 'skypost-flight.png').write_bytes(flight)
+    point = _skypost_pause_glyph(flight)
+    if point is None:
+        raise RuntimeError('Pause-Symbol im Flugbild fehlt')
+    base.adb('shell', 'input', 'tap', *map(str, point))
     touch('Freiflug beenden', 'finish')
     deadline = time.monotonic() + 60
     payload = None
