@@ -1,0 +1,216 @@
+name: Lumo – geprüfte APK und Lieferbelege getrennt bereitstellen
+
+on:
+  push:
+    branches: [integration/lumo-complete-20261122]
+    paths:
+      - config/delivery-package.json
+      - .github/workflows/lumo-delivery-package.yml
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  delivery-package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exakten vorhandenen APK-Kandidaten bestimmen
+        id: candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import re
+          from pathlib import Path
+
+          cfg = json.loads(Path('config/delivery-package.json').read_text())
+          for key in ('build_run', 'source_artifact_id'):
+              if not re.fullmatch(r'[0-9]{6,20}', str(cfg[key])):
+                  raise ValueError(f'Invalid {key}')
+          for key in ('flutter_source_commit', 'godot_source_commit'):
+              if not re.fullmatch(r'[0-9a-f]{40}', cfg[key]):
+                  raise ValueError(f'Invalid {key}')
+          for key in ('apk_sha256', 'signing_certificate_sha256', 'godot_pck_sha256'):
+              if not re.fullmatch(r'[0-9a-f]{64}', cfg[key]):
+                  raise ValueError(f'Invalid {key}')
+          if not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+', cfg['version_name']):
+              raise ValueError('Invalid version_name')
+          if type(cfg['version_code']) is not int or not 2000 < cfg['version_code'] < 100000:
+              raise ValueError('Invalid version_code')
+          if type(cfg['apk_bytes']) is not int or not 0 < cfg['apk_bytes'] < 536870912:
+              raise ValueError('APK does not fit the 512-MiB download limit')
+          if type(cfg['godot_pck_bytes']) is not int or not 0 < cfg['godot_pck_bytes'] < cfg['apk_bytes']:
+              raise ValueError('Invalid PCK size')
+          print(f"build_run={cfg['build_run']}")
+          print(f"source_artifact_id={cfg['source_artifact_id']}")
+          print(f"version_code={cfg['version_code']}")
+          print(f"apk_name=Lumo-Lernen-Test-{cfg['version_name']}-{cfg['version_code']}.apk")
+          PY
+      - name: Ursprünglichen Run und Artefakt-Quellstand prüfen
+        shell: bash
+        env:
+          BUILD_RUN: ${{ steps.candidate.outputs.build_run }}
+          SOURCE_ARTIFACT_ID: ${{ steps.candidate.outputs.source_artifact_id }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$BUILD_RUN" > source-run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$SOURCE_ARTIFACT_ID" > source-artifact.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          cfg = json.loads(Path('config/delivery-package.json').read_text())
+          run = json.loads(Path('source-run.json').read_text())
+          artifact = json.loads(Path('source-artifact.json').read_text())
+          expected_name = f"LUMO-TEST-APK-{cfg['build_run']}"
+          if str(run['id']) != str(cfg['build_run']) or run['head_sha'] != cfg['flutter_source_commit']:
+              raise ValueError('The original build has a different Flutter source')
+          if str(artifact['id']) != str(cfg['source_artifact_id']) or artifact['name'] != expected_name:
+              raise ValueError('Wrong source artifact')
+          if artifact['expired'] or str(artifact['workflow_run']['id']) != str(cfg['build_run']):
+              raise ValueError('Source artifact expired or belongs to another run')
+          if artifact['workflow_run']['head_sha'] != cfg['flutter_source_commit']:
+              raise ValueError('Source artifact belongs to another Flutter commit')
+          print(f"Verified {expected_name} at {cfg['flutter_source_commit']}")
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.candidate.outputs.build_run }}
+          name: LUMO-TEST-APK-${{ steps.candidate.outputs.build_run }}
+          path: candidate
+          github-token: ${{ github.token }}
+      - name: Originalbytes und Provenienz prüfen, APK und Belege trennen
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd candidate/release && sha256sum -c SHA256SUMS.txt)
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import shutil
+          from pathlib import Path
+          import zipfile
+
+          def require(condition, message):
+              if not condition:
+                  raise ValueError(message)
+
+          cfg = json.loads(Path('config/delivery-package.json').read_text())
+          release = Path('candidate/release')
+          name = f"Lumo-Lernen-Test-{cfg['version_name']}-{cfg['version_code']}.apk"
+          apk = release / name
+          require(sorted(release.glob('*.apk')) == [apk], 'Expected one exact ARM64 APK')
+          require(apk.stat().st_size == cfg['apk_bytes'], 'APK size changed')
+          with apk.open('rb') as stream:
+              digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+          require(digest == cfg['apk_sha256'], 'APK bytes changed')
+          sums = [line.split() for line in (release / 'SHA256SUMS.txt').read_text().splitlines() if line.strip()]
+          require(sums == [[digest, name]], 'SHA256SUMS does not name the exact APK')
+
+          proof = json.loads((release / 'BUILD-PROVENANCE.json').read_text())
+          verified = json.loads((release / 'APK-VERIFICATION.json').read_text())
+          split = json.loads((release / 'SPLIT-APK-IDENTITY.json').read_text())
+          require(all(proof.get(key) == value for key, value in verified.items()), 'Verification/provenance mismatch')
+          expected = {'flutter_source_commit': cfg['flutter_source_commit'],
+                      'versionName': cfg['version_name'], 'versionCode': cfg['version_code']}
+          for key, value in expected.items():
+              require(proof.get(key) == value and split.get(key) == value, f'Wrong {key}')
+          require(proof.get('package') == 'dev.ullmann.lumo.lumo_lernen.coachpreview', 'Wrong Android package')
+          require(proof.get('abis') == ['arm64-v8a'], 'Wrong APK architecture')
+          require(proof.get('tracked_source_clean') is True, 'Original source was not clean')
+          require(proof.get('sha256') == digest and proof.get('bytes') == cfg['apk_bytes'], 'Wrong provenance identity')
+          require(proof.get('signingCertificateSha256') == cfg['signing_certificate_sha256'], 'Wrong signing certificate')
+          expected_godot = {'repository': 'https://github.com/Ullmann27/lumo-godot.git',
+                            'revision': cfg['godot_source_commit'], 'engine': '4.6.3'}
+          require(split.get('godot') == expected_godot and split.get('same_pck') is True, 'Wrong split-package Godot source')
+          arm = split['packages']['arm64-v8a']
+          require(arm.get('abi') == 'arm64-v8a' and arm.get('sha256') == digest and arm.get('bytes') == cfg['apk_bytes'], 'Wrong ARM64 split identity')
+          require(arm.get('signingCertificateSha256') == cfg['signing_certificate_sha256'], 'Wrong split signing certificate')
+          require(arm.get('godot_pck_sha256') == cfg['godot_pck_sha256'] and arm.get('godot_pck_bytes') == cfg['godot_pck_bytes'], 'Wrong split PCK identity')
+          with zipfile.ZipFile(apk) as archive:
+              names = archive.namelist()
+              for member in ('assets/lumo_game_source.json', 'assets/lumo_game.pck'):
+                  require(names.count(member) == 1, f'Missing or duplicated {member}')
+              abis = {member.split('/')[1] for member in names if member.startswith('lib/') and member.endswith('.so')}
+              require(abis == {'arm64-v8a'}, 'APK contains another native architecture')
+              packaged = json.loads(archive.read('assets/lumo_game_source.json'))
+              require(packaged == proof.get('godot'), 'Embedded Godot provenance changed')
+              require(all(packaged.get(key) == value for key, value in expected_godot.items()), 'Wrong embedded Godot source')
+              with archive.open('assets/lumo_game.pck') as stream:
+                  pck_digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+              require(pck_digest == cfg['godot_pck_sha256'] == packaged.get('pck_sha256'), 'PCK bytes changed')
+              require(archive.getinfo('assets/lumo_game.pck').file_size == cfg['godot_pck_bytes'] == packaged.get('bytes'), 'PCK size changed')
+
+          direct = Path('delivery-apk')
+          metadata = Path('delivery-metadata')
+          direct.mkdir()
+          metadata.mkdir()
+          shutil.copy2(apk, direct / name)
+          required = {'SHA256SUMS.txt', 'BUILD-PROVENANCE.json', 'APK-VERIFICATION.json',
+                      'SPLIT-APK-IDENTITY.json', 'LUMO-INTEGRATIONSBELEGE.zip', 'LIESMICH.txt'}
+          require(all((release / item).is_file() and (release / item).stat().st_size > 0 for item in required), 'Release evidence missing')
+          for path in sorted(release.rglob('*')):
+              require(not path.is_symlink(), 'Unexpected symbolic release path')
+              if path.is_file() and path.suffix.lower() != '.apk':
+                  target = metadata / path.relative_to(release)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(path, target)
+          (metadata / 'DELIVERY-PACKAGE-IDENTITY.json').write_text(json.dumps({
+              'method': 'Verified original bytes; no rebuild, no signing change, no release publication.',
+              'build_run': cfg['build_run'], 'source_artifact_id': cfg['source_artifact_id'],
+              **expected, 'apk_name': name, 'apk_sha256': digest, 'apk_bytes': cfg['apk_bytes'],
+              'godot': expected_godot, 'godot_pck_sha256': pck_digest,
+              'signingCertificateSha256': cfg['signing_certificate_sha256'],
+          }, indent=2) + '\n')
+          print(f'Original ARM64 APK verified: {name}, {cfg["apk_bytes"]} bytes, SHA-256 {digest}')
+          PY
+      - name: Nur die unveränderte ARM64-APK sichern
+        id: apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-ARM64-APK-DIRECT-${{ steps.candidate.outputs.version_code }}
+          path: delivery-apk/${{ steps.candidate.outputs.apk_name }}
+          if-no-files-found: error
+          compression-level: 0
+      - name: Vorhandene Lieferbelege getrennt sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-DELIVERY-METADATA-${{ steps.candidate.outputs.version_code }}
+          path: delivery-metadata/
+          if-no-files-found: error
+          compression-level: 0
+      - name: Tatsächliches APK-Artefakt unterhalb der Downloadgrenze bestätigen
+        shell: bash
+        env:
+          APK_ARTIFACT_ID: ${{ steps.apk.outputs.artifact-id }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$APK_ARTIFACT_ID" > delivery-artifact.json
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          cfg = json.loads(Path('config/delivery-package.json').read_text())
+          artifact = json.loads(Path('delivery-artifact.json').read_text())
+          if artifact['name'] != f"LUMO-ARM64-APK-DIRECT-{cfg['version_code']}" or artifact['expired']:
+              raise ValueError('Wrong or expired delivery artifact')
+          if str(artifact['workflow_run']['id']) != os.environ['GITHUB_RUN_ID'] or artifact['workflow_run']['head_sha'] != os.environ['GITHUB_SHA']:
+              raise ValueError('Delivery artifact belongs to another packaging run')
+          if not 0 < artifact['size_in_bytes'] < 536870912:
+              raise ValueError('Delivery artifact still exceeds the 512-MiB download limit')
+          summary = (f"APK-Artefakt {artifact['id']}: {artifact['size_in_bytes']} Bytes, unter 512 MiB.\n"
+                     f"Originalbau {cfg['build_run']}, App-Quelle {cfg['flutter_source_commit']}, "
+                     f"APK-SHA-256 {cfg['apk_sha256']}. Kein Neubau.\n")
+          print(summary)
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as stream:
+              stream.write(summary)
+          PY

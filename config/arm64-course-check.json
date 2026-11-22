@@ -1,6 +1,6 @@
 {
-  "build_run": "44594748371",
-  "flutter_source_commit": "6c93bd1118f102d408a9d5d07e750ec1f92a62df",
-  "version_code": 2056,
-  "note": "Signierte LUMO 0.13.44+2056 aus dem exakten Bau als installierte ARM64-App auf allen drei Lumo-Lauf-Strecken prüfen."
+  "build_run": "45064686303",
+  "flutter_source_commit": "376217b4e39b726657a8fe96e9868f816f681edf",
+  "version_code": 2067,
+  "note": "Die tatsächlich gebaute signierte LUMO 0.13.55+2067 auf allen drei Lumo-Lauf-Strecken als installierte ARM64-App im Android-Emulator prüfen. APK-/PCK-/Quellbindung und gerenderte Bewegung sind Pflicht."
 }
