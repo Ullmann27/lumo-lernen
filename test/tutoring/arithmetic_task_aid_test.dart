@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/features/tutoring/arithmetic_task_aid.dart';
 import 'package:lumo_lernen/widgets/design/lumo_quantity_art.dart';
+
+import '../helpers/lumo_capture.dart';
 
 TaskInstance task(String op, int a, int b, int answer) => TaskInstance(
       taskInstanceId: '$op-$a-$b',
@@ -27,6 +31,45 @@ TaskInstance task(String op, int a, int b, int answer) => TaskInstance(
     );
 
 void main() {
+  final output = Platform.environment['LUMO_MATH_CAPTURES'];
+  if (output != null) {
+    testWidgets('Rechenhilfen auf Außen- und Innendisplay aufnehmen',
+        (tester) async {
+      await tester.runAsync(loadLumoCaptureFonts);
+      const panel = ValueKey('Rechenhilfe');
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      for (final screen in ['fold-cover', 'fold-open']) {
+        tester.view.physicalSize = lumoCaptureSizes[screen]!;
+        for (final example in [
+          task('multiplication', 6, 7, 42),
+          task('addition', 8, 5, 13),
+          task('subtraction', 14, 8, 6),
+        ]) {
+          await tester.pumpWidget(MaterialApp(
+            theme: ThemeData.dark().copyWith(
+              textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Nunito'),
+            ),
+            home: Scaffold(
+                body: Center(
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+              RepaintBoundary(
+                key: panel,
+                child: ArithmeticTaskAid(
+                  key: ValueKey(example.taskInstanceId),
+                  task: example,
+                  reduceMotion: true,
+                ),
+              )
+            ]))),
+          ));
+          await captureLumoBoundary(
+              tester, panel, '$output/${example.taskInstanceId}-$screen.png');
+          expect(tester.takeException(), isNull);
+        }
+      }
+    });
+  }
   Future<void> show(WidgetTester tester, TaskInstance instance) =>
       tester.pumpWidget(MaterialApp(
           home: Scaffold(

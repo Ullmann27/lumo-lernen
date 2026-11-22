@@ -1,6 +1,6 @@
 # Rechnen mit Anschauung
 
-Stand 22. November 2026. Die hier beschriebenen Ergänzungen im Arbeitszweig folgen zeitlich auf den Quellstand für APK 2063.
+Stand 22. November 2026. Die Rechenhilfen sind für Testversion 2064 vorgesehen.
 
 | Aufgabe | Ausgangslage | Ergänzung im Arbeitszweig |
 | --- | --- | --- |
@@ -10,6 +10,8 @@ Stand 22. November 2026. Die hier beschriebenen Ergänzungen im Arbeitszweig fol
 | Rückmeldung | Die erste falsche Antwort in einer geführten Lektion erhielt einen allgemeinen Wiederholungshinweis. | Bei erkennbaren Fehlermustern erklärt Lumo den betreffenden Schritt, etwa wenn das Kind die Faktoren addiert oder nach dem ersten Sprung bis zehn stehen bleibt. |
 
 Der Adapter prüft Rechenart, ganzzahlige Operanden, Zahlenraum und hinterlegte Lösung. Das Feld zur Originalaufgabe erscheint bei angeforderter Hilfe. Für selbstständige Aufgaben bleibt die bestehende Erfassung von Versuchen und Hilfestufen maßgeblich. Lokale Nachweise und die Elternansicht verwenden weiterhin den bestehenden Speicher pro Kinderprofil.
+
+Drei Ausschnitte zeigen die tatsächlichen Flutter-Widgets in den logischen Formaten des Fold-Außen- und Innendisplays. [Rechenhilfen im Bild](Rechenhilfen_2064.webp)
 
 ## Lehrplanbezug
 
