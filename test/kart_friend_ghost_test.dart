@@ -40,6 +40,20 @@ void main() {
     expect(ghost.launchText.contains('='), isFalse);
   });
 
+  test('Windwerk-Geist zeigt den Namen der neuen Rennstrecke', () {
+    final source = _fixture();
+    final track = 'windwerk_3000'.codeUnits;
+    final body = [
+      ...source.sublist(0, 5),
+      track.length,
+      ...track,
+      ...source.sublist(6 + source[5], source.length - 8),
+    ];
+    final data =
+        Uint8List.fromList([...body, ...sha256.convert(body).bytes.take(8)]);
+    expect(KartFriendGhost.read(data).ghost?.trackName, 'Lumos Windwerk');
+  });
+
   test('leere, zu große und fremde Dateien werden abgelehnt', () {
     expect(KartFriendGhost.read(null).ghost, isNull);
     expect(KartFriendGhost.read(Uint8List(0)).message, 'Die Datei ist leer.');

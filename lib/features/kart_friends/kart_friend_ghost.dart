@@ -34,7 +34,7 @@ class KartFriendGhost {
   final String kart;
   final Uint8List bytes;
 
-  /// Alle 13 Strecken von Lumo Kart (Kennung wie im Spiel: kart_catalog.gd,
+  /// Für Freundesgeister verfügbare Strecken (Kennung wie im Spiel: kart_catalog.gd,
   /// kart_expansion_tracks.gd). Unbekannte Kennungen lehnt das Spiel ab.
   static const Map<String, String> trackNames = {
     'sonnenhafen': 'Sonnenhafen',
@@ -50,6 +50,7 @@ class KartFriendGhost {
     'desert_drift': 'Desert Dune Drift',
     'learning_lab': 'Funkel-Labor',
     'jungle_emerald_3600': 'Dschungelherz',
+    'windwerk_3000': 'Lumos Windwerk',
   };
 
   String get trackName => trackNames[track] ?? 'eine Kart-Strecke';
