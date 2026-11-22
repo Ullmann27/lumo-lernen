@@ -1002,29 +1002,8 @@ class _CardFront extends StatelessWidget {
           padding: const EdgeInsets.all(3.5),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(11),
-            child: motif.sticker
-                ? DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Color.lerp(
-                              const Color(0xFFFFF6DC), motif.tintLight, .22)!,
-                          Color.lerp(
-                              const Color(0xFFE8C97A), motif.tintDark, .18)!,
-                        ],
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Image.asset(motif.path,
-                          fit: BoxFit.contain,
-                          filterQuality: FilterQuality.medium),
-                    ),
-                  )
-                : Image.asset(motif.path,
-                    fit: BoxFit.cover, filterQuality: FilterQuality.medium),
+            child: Image.asset(motif.path,
+                fit: BoxFit.cover, filterQuality: FilterQuality.high),
           ),
         ),
         if (matched)
