@@ -170,7 +170,12 @@ void main() {
       expect(answers, isEmpty);
       if (captureDir != null) {
         await tester.pump(const Duration(seconds: 6));
-        await tester.ensureVisible(find.byType(LanguageStepSequence));
+        final sample = tester.element(find.byType(LanguageStepSequence));
+        await Scrollable.ensureVisible(sample, alignment: .4);
+        final illustrations =
+            tester.widgetList<Image>(find.byType(Image)).toList();
+        await tester.runAsync(() => Future.wait(
+            illustrations.map((image) => precacheImage(image.image, sample))));
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 350));
         final boundary = tester.renderObject<RenderRepaintBoundary>(
