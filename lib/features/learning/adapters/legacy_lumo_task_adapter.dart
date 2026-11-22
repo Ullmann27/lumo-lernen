@@ -44,7 +44,9 @@ class LegacyLumoTaskAdapter {
     // scaled values remain available to the interactive place-value view.
     final visualType = decimalOperation
         ? VisualType.none
-        : _visual(fixedTask.visual, handwriting: fixedTask.handwriting);
+        : fixedTask.subject == 'Mathematik' && fixedTask.unit == 'Rechengeschichten'
+            ? VisualType.storyStage
+            : _visual(fixedTask.visual, handwriting: fixedTask.handwriting);
     // A semantically equivalent card (e.g. 0,50 for 0.5) must score exactly
     // like the same card rendered below. Preserve its unit and punctuation.
     final correctLabel = fixedTask.choices.isEmpty
@@ -711,6 +713,23 @@ class LegacyLumoTaskAdapter {
   Map<String, Object?> _visualData(LumoTask task) {
     if (task.handwriting) {
       return <String, Object?>{'symbol': WritingTargetParser.parse(task.prompt)};
+    }
+
+    if (task.subject == 'Mathematik' && (task.visual == 'story' || task.unit == 'Rechengeschichten')) {
+      // Only bind a counter model to the exact equation supplied by the authored
+      // story. Equal-looking numbers in an unrelated story remain plain evidence.
+      final equation = RegExp(r'(\d+) ([+−]) (\d+) = (\d+)').firstMatch(task.explanation);
+      final given = RegExp(r'\b\d+\b').allMatches(task.prompt).map((m) => m[0]).toList();
+      if (equation != null && given.length == 2 && given[0] == equation[1] &&
+          given[1] == equation[3] && task.answer == equation[4]) {
+        final start = int.parse(equation[1]!);
+        final change = int.parse(equation[3]!);
+        final subtract = equation[2] == '−';
+        if (!task.prompt.contains('mehr als') && start <= 30 && change <= 20 && (subtract ? start - change : start + change) == int.parse(equation[4]!)) {
+          return {'storyStart': start, 'storyChange': change, 'storySubtract': subtract};
+        }
+      }
+      return const {};
     }
 
     if (task.subject == 'Logik' && task.unit == 'Muster') {

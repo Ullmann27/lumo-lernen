@@ -149,6 +149,22 @@ class NativeLearningActivity {
   static NativeLearningActivity? fromTask(TaskInstance task) {
     final holo = holoFor(task);
     if (holo != null) return holo;
+    if (task.subject == LearningSubject.mathematik && task.visualPayload.type == VisualType.storyStage) {
+      final data = task.visualPayload.data;
+      final a = data['storyStart'], b = data['storyChange'];
+      final subtract = data['storySubtract'];
+      if (a is int && b is int && subtract is bool && a > 0 && b > 0 &&
+          (subtract ? a <= 20 && b <= a : a <= 10 && b <= 10) &&
+          task.correctAnswer == (subtract ? a - b : a + b) &&
+          task.taskInstanceId.isNotEmpty && task.taskInstanceId.length <= 120 &&
+          task.prompt.length <= 240) {
+        final kind = subtract ? 'subtract_ten' : 'addition';
+        return NativeLearningActivity._(kind, {
+          'kind': kind, 'a': a, 'b': b,
+          'sourceTaskId': task.taskInstanceId, 'storyPrompt': task.prompt,
+        });
+      }
+    }
     if (task.subject == LearningSubject.englisch) {
       final payload = NativeEnglishVocabulary.illustrationFor(task);
       return payload == null

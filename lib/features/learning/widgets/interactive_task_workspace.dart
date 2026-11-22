@@ -7,7 +7,10 @@ import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_motion.dart';
 import '../../../widgets/design/lumo_task_object_art.dart';
 import '../lab/learning_manipulatives.dart';
+import 'inquiry_workbench.dart';
 import 'language_example_board.dart';
+import 'story_math_workbench.dart';
+import 'symmetry_workbench.dart';
 
 /// A local presentation event. The owning lesson translates it into its
 /// companion contract and remains responsible for assessment and persistence.
@@ -1349,10 +1352,21 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
         ),
       );
 
-  Widget _evidence() => Column(
+  Widget _evidence() {
+    if (widget.task.visualPayload.type == VisualType.storyStage) {
+      return StoryMathWorkbench(key: ValueKey('story-${widget.task.taskInstanceId}'), task: widget.task, enabled: widget.enabled);
+    }
+    final shape = SymmetryWorkbench.shapeFor(widget.task);
+    if (shape != null) {
+      return SymmetryWorkbench(key: ValueKey('fold-${widget.task.taskInstanceId}'), shape: shape,
+          turnable: widget.task.parameters['unit'] == 'Symmetrieachsen', enabled: widget.enabled);
+    }
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (widget.fallback != null) widget.fallback!,
+          if (InquiryWorkbench.kindFor(widget.task) != null)
+            InquiryWorkbench(key: ValueKey('inquiry-${widget.task.taskInstanceId}'), task: widget.task, enabled: widget.enabled)
+          else if (widget.fallback != null) widget.fallback!,
           const SizedBox(height: 8),
           if (!_unfolded)
             _action(
@@ -1399,6 +1413,8 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
             ),
         ],
       );
+
+  }
 
   Widget _counter(
     String key,
