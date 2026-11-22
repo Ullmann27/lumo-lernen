@@ -321,7 +321,7 @@ def _showroom_after_race(out: Path) -> dict:
         return {'colour_bins': len(colors), 'local_edges': edges}
 
     wait_for('Neue Fahrt auswählen', '22_pause_zur_garage', press=True)
-    home = wait_for('Garage', '22_rueckkehr_hauptmenue', press=True, min_y=.55, max_y=.8)
+    home = wait_for('Garage', '22_rueckkehr_hauptmenue', press=True, min_y=.80, max_y=.985)
     garage = wait_for('Teile wechseln', '22_rueckkehr_garage', press=True)
     parts = wait_for('Teilewerkstatt', '22_teilewerkstatt', press=False, max_y=.7)
     # Each sampled area is inside the unobscured 3D subject stage, excluding

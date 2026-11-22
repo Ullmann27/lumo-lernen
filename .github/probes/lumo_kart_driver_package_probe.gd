@@ -18,7 +18,8 @@ func _check(condition: bool, operation: String) -> void:
 func _run() -> void:
 	var roster = load("res://scripts/games/lumo_opponent_roster.gd")
 	_check(roster != null and roster.ready_for_race(), "packaged race roster")
-	for id in ["frog", "rabbit"]:
+	for driver in roster.for_game("kart"):
+		var id := str(driver.id)
 		for level in range(3):
 			var path: String = roster.racing_model_path(id, level)
 			var scene := load(path) as PackedScene
@@ -41,6 +42,18 @@ func _run() -> void:
 			var mesh := body.find_child("LOD%d" % level, true, false) as MeshInstance3D
 			_check(mesh != null and mesh.mesh != null, "%s packaged shell LOD%d" % [id, level])
 		body.free()
+	for id in ["bridge", "mill", "orchard", "signal_gate", "slider", "station", "turbine", "workshop", "wind_whale"]:
+		var path := "res://assets/kart/production/windwerk/%s" % id
+		_check(load(path + ".glb") is PackedScene and load(path + ".webp") is Texture2D, "%s Windwerk module and portrait" % id)
+	for id in ["pawn", "rook", "knight", "bishop", "queen", "king", "board"]:
+		_check(load("res://assets/chess/models/%s.glb" % id) is PackedScene, "%s chess table model" % id)
+	var parcours = load("res://scripts/games/parcours/parcours_worlds.gd")
+	for id in parcours.playable_ids():
+		_check(load("res://assets/kart/parcours_previews/%s.webp" % id) is Texture2D, "%s adventure menu photograph" % id)
+	var memory = load("res://scripts/games/memory/memory_table.gd")
+	for motif in memory.MOTIFS:
+		var card_face := load("res://assets/games/memory/collection/%s.webp" % motif) as Texture2D
+		_check(card_face != null and card_face.get_width() >= 768, "%s high-resolution Memory card" % motif)
 	var track := load("res://scenes/games/kart_island.tscn") as PackedScene
 	_check(track != null, "normal race scene")
 	if track != null:
