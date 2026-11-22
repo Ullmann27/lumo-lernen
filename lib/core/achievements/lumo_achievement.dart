@@ -59,15 +59,16 @@ class LumoAchievementProgress {
     required this.current,
     required this.unlocked,
     this.unlockedAt,
+    this.claimed = false,
   });
 
   final LumoAchievement achievement;
   final int current;
   final bool unlocked;
   final DateTime? unlockedAt;
+  final bool claimed;
 
-  double get progressPercent =>
-      (current / achievement.target).clamp(0.0, 1.0);
+  double get progressPercent => (current / achievement.target).clamp(0.0, 1.0);
 }
 
 class LumoAchievementCatalog {
@@ -203,7 +204,7 @@ class LumoAchievementCatalog {
       id: 'all_quests',
       emoji: '🦊',
       title: 'Quest-Champion',
-      description: 'Bestehe alle 4 Lumo Quests deiner Klasse.',
+      description: 'Bestehe die vier Lumo Quests von Klasse 1 bis 4.',
       metric: AchievementMetric.questsCompleted,
       target: 4,
       rewardStars: 100,

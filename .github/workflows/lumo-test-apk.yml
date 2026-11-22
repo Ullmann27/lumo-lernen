@@ -122,6 +122,8 @@ jobs:
             test/tutoring/guided_coach_binding_test.dart \
             test/parent_task_repository_test.dart \
             test/parent_task_flow_test.dart \
+            test/recognized_task_parser_test.dart \
+            test/recognized_task_flow_test.dart \
             test/learning_answer_reward_test.dart \
             test/local_backup_format_test.dart \
             test/local_backup_flow_test.dart \
@@ -136,6 +138,15 @@ jobs:
             test/state_persistence_regression_test.dart \
             test/restart_regression_test.dart \
             test/pin_free_access_test.dart \
+            test/design/learning_adventure_layout_test.dart \
+            test/games/connect_four_native_session_test.dart \
+            test/games/flame_adventure_flow_test.dart \
+            test/learning_modules/bruchrechnen_answers_test.dart \
+            test/learning_modules/deutsch_sach_module_progress_test.dart \
+            test/learning_modules/learning_module_progress_test.dart \
+            test/learning_modules/plus_bis_10_persistence_test.dart \
+            test/legacy_learning_data_test.dart \
+            test/writing_word_progress_test.dart \
             | tee build-proof/FLUTTER-CORE-TESTS.txt
       - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
         shell: bash
@@ -220,6 +231,8 @@ jobs:
               Path('docs/integration/2026-11-22/PARENT-TASKS-INTEGRATION.md'),
               Path('docs/integration/2026-11-22/BACKUP-INTEGRATION.md'),
               Path('docs/integration/2026-11-22/LUMO-ROOM-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/ACHIEVEMENTS-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/RECOGNITION-INTEGRATION.md'),
               Path('docs/integration/2026-11-22/flutter-branch-inventory.json'),
               Path('build/lumo-godot-qa/docs/integration/2026-11-22/GODOT_INTEGRATION.md'),
               Path('build/lumo-godot-qa/docs/integration/2026-11-22/godot-branch-inventory.json'),

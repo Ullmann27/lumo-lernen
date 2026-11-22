@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
+import '../../core/lumo_learning_narration.dart';
 import '../../core/lumo_room_repository.dart';
 import '../../core/lumo_room_session.dart';
 import '../../core/lumo_voice.dart';
@@ -49,14 +49,18 @@ class LumoRoomCard extends StatelessWidget {
 }
 
 class LumoRoomScreen extends StatefulWidget {
-  const LumoRoomScreen({super.key, required this.appState});
+  const LumoRoomScreen({super.key, required this.appState, this.voice});
   final LumoAppState appState;
+  final LumoVoice? voice;
   @override
   State<LumoRoomScreen> createState() => _LumoRoomScreenState();
 }
 
-class _LumoRoomScreenState extends State<LumoRoomScreen> {
+class _LumoRoomScreenState extends State<LumoRoomScreen>
+    with WidgetsBindingObserver {
   late final LumoRoomSession _session;
+  late final LumoLearningNarration _speech;
+  late int _profileGeneration;
   final _character = LumoCharacterController();
   Timer? _clock;
   bool _promptOpen = false;
@@ -65,6 +69,9 @@ class _LumoRoomScreenState extends State<LumoRoomScreen> {
   @override
   void initState() {
     super.initState();
+    _speech = LumoLearningNarration(voice: widget.voice);
+    _profileGeneration = widget.appState.profileGeneration;
+    WidgetsBinding.instance.addObserver(this);
     _session = LumoRoomSession(widget.appState)..addListener(_changed);
     _clock = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted && _session.nextPraise != null) setState(() {});
@@ -72,12 +79,24 @@ class _LumoRoomScreenState extends State<LumoRoomScreen> {
   }
 
   void _changed() {
+    if (_profileGeneration != widget.appState.profileGeneration) {
+      _profileGeneration = widget.appState.profileGeneration;
+      unawaited(_speech.stop());
+      _line = 'Schön, dass du mich besuchst!';
+    }
     if (mounted) setState(() {});
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) unawaited(_speech.stop());
   }
 
   @override
   void dispose() {
     _clock?.cancel();
+    WidgetsBinding.instance.removeObserver(this);
+    _speech.dispose();
     _session.removeListener(_changed);
     _session.dispose();
     _character.dispose();
@@ -93,7 +112,9 @@ class _LumoRoomScreenState extends State<LumoRoomScreen> {
       _character.wiggle();
     }
     if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(LumoVoice.instance.speak(text));
+      // Feedback never displaces another page's audio. The shared narration
+      // owner cancels our pending synthesis on profile change or disposal.
+      unawaited(_speech.feedback(text));
     }
   }
 
@@ -173,7 +194,9 @@ class _LumoRoomScreenState extends State<LumoRoomScreen> {
           !await _confirm(
               'Fuchs-Snack geben?',
               'Der Snack kostet 10 Sterne. Dafür bekommst du 20 XP.',
-              'Für 10 Sterne geben')) return;
+              'Für 10 Sterne geben')) {
+        return;
+      }
       if (!mounted) return;
       _session.guard(owner);
       final request =
@@ -193,9 +216,10 @@ class _LumoRoomScreenState extends State<LumoRoomScreen> {
   }
 
   void _showFailure(Object error) {
-    if (mounted)
+    if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(LumoRoomSession.message(error))));
+    }
   }
 
   @override
@@ -622,10 +646,10 @@ class _RoomScarf extends CustomPainter {
     canvas.save();
     canvas.scale(size.width, size.height);
     final tail = Path()
-      ..moveTo(.60, .505)
-      ..quadraticBezierTo(.67, .53, .67, .64)
-      ..lineTo(.61, .66)
-      ..quadraticBezierTo(.615, .56, .565, .54)
+      ..moveTo(.515, .515)
+      ..quadraticBezierTo(.56, .55, .55, .65)
+      ..lineTo(.49, .66)
+      ..quadraticBezierTo(.515, .56, .48, .53)
       ..close();
     canvas.drawShadow(tail, Colors.black, .01, false);
     canvas.drawPath(

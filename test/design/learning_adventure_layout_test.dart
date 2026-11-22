@@ -25,10 +25,14 @@ import '../helpers/native_storage_fixture.dart';
 class _GatedWallet extends RewardWalletRepository {
   final gate = Completer<void>();
   @override
-  Future<RewardWallet> applyRewardDelta(
-      {int starsDelta = 0, int xpDelta = 0}) async {
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+    String? ownerId,
+  }) async {
     await gate.future;
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 }
 
@@ -65,11 +69,12 @@ Future<LumoAppState> _open(
     home: topic == 'm1_plus10' && plusSeed != null
         ? PlusBis10Screen(appState: app, taskRandom: math.Random(plusSeed))
         : topic == 'm1_minus10' && minusSeed != null
-        ? MinusBis10Screen(appState: app, taskRandom: math.Random(minusSeed))
-        : topic == 'm1_zahlen10' && numberSeed != null
-            ? ZahlenBis10Screen(
-                appState: app, taskRandom: math.Random(numberSeed))
-            : LearningModuleRegistry.builderFor(topic, app),
+            ? MinusBis10Screen(
+                appState: app, taskRandom: math.Random(minusSeed))
+            : topic == 'm1_zahlen10' && numberSeed != null
+                ? ZahlenBis10Screen(
+                    appState: app, taskRandom: math.Random(numberSeed))
+                : LearningModuleRegistry.builderFor(topic, app),
   ));
   await _frames(tester);
   return app;
@@ -249,8 +254,8 @@ void main() {
             await _frames(tester, 3);
           }
           final rect = tester.getRect(target);
-          expect(rect.height, greaterThanOrEqualTo(
-              topic == 'm1_minus10' ? 100 : 48));
+          expect(rect.height,
+              greaterThanOrEqualTo(topic == 'm1_minus10' ? 100 : 48));
           expect(rect.width, greaterThanOrEqualTo(48));
           expect(rect.top, greaterThan(24));
           expect(rect.bottom, lessThanOrEqualTo(navigation.top),

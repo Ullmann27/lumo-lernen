@@ -22,6 +22,8 @@ Der heutige `lib/widgets/scan_screen.dart` bietet Kamera und Galerie und übergi
 
 `LumoAgentContent._ask` übergibt Text an `LumoConversationController.ask` und zeigt/spricht dessen Antwort. Der vorhandene Dialog-Intent-Parser steuert die bereits aktuelle Lernaufgabe. Auch dieser Weg startet keine aus dem eingegebenen Ausdruck neu erkannte Aufgabe. Eine bloße Foto-Lektion oder Dialogantwort ist daher kein gleichwertiger Ersatz für den alten Startablauf.
 
+Der anschließend autorisierte Anschluss ist nun als eigenes Modul vorhanden: `LumoTaskRecognitionScreen` mit lokalem `RecognizedTask`-Parser, dauerhafter Versuchsidentität und dem bestehenden `AdaptiveTaskRenderer`. Drei echte Widget-Flows prüfen Eingabe → Vorschau → identische Aufgabe → gespeichertes Ergebnis. Die gezielte Suite besteht aus 45 erfolgreichen Tests; Umfang und Grenzen stehen in `RECOGNITION-INTEGRATION.md`.
+
 ## Tatsächlich vorhandene Anschlüsse
 
 | Alter Bereich | Beobachteter heutiger Weg | Aussage |

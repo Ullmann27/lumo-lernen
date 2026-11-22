@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
+import '../../core/achievements/achievement_repository.dart';
+import '../../core/lumo_quest_library.dart';
 import '../../app/lumo_companion_host.dart';
 import '../../core/lumo_feature_permissions.dart';
 import '../../core/learning_attempt_id.dart';
@@ -104,6 +106,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   bool _completionActionTaken = false;
   String? _savedStoryId;
   bool _readCountRecorded = false;
+  final Set<int> _solvedQuestPages = {};
 
   bool get _ownsProfile =>
       _profileGeneration == widget.appState.profileGeneration;
@@ -171,8 +174,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           voice.requestRevision != preparingRequest) {
         return;
       }
-      final speaking =
-          voice.speakAndWait(text, speedFactor: _slow ? .75 : 1);
+      final speaking = voice.speakAndWait(text, speedFactor: _slow ? .75 : 1);
       _voiceRequest = voice.requestRevision == preparingRequest
           ? null
           : voice.requestRevision;
@@ -1054,6 +1056,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       _exerciseAttempts++;
     });
     if (correct) {
+      _solvedQuestPages.add(_pageIdx);
       // Keep the progress reward, but do not push a blocking modal over
       // the next reading page 1s later. That interrupted child-led reading
       // and could swallow the next mystery clue tap.
@@ -1064,6 +1067,16 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
 
   Future<void> _showFinish() async {
     if (_finishing || !_ownsProfile) return;
+    final questId = widget.storyId;
+    final finishedQuest = questId != null &&
+        LumoQuestLibrary.all().any((quest) => quest.id == questId) &&
+        widget.story.pages
+            .asMap()
+            .entries
+            .where((entry) => entry.value.exercise != null)
+            .every((entry) => _solvedQuestPages.contains(entry.key));
+    final questOwner =
+        finishedQuest ? widget.appState.captureLearningProfile() : null;
     setState(() => _finishing = true);
     try {
       if (_savedStoryId == null) {
@@ -1075,6 +1088,16 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       if (!_readCountRecorded && _savedStoryId != null) {
         await LumoStoryLibrary.instance.incrementRead(_savedStoryId!);
         _readCountRecorded = true;
+      }
+      if (!mounted || !_ownsProfile) return;
+      if (questOwner != null) {
+        final owner = await questOwner;
+        if (!widget.appState.canUseLearningLease(owner)) return;
+        await AchievementRepository(
+            studentId: owner.studentId,
+            mayWrite: () =>
+                widget.appState.canUseLearningLease(owner) &&
+                !widget.appState.backupBusy).recordQuestCompleted(questId!);
       }
       if (!mounted || !_ownsProfile) return;
       await _showFinishDialog();

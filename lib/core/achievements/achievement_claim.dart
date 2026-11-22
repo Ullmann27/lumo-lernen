@@ -21,7 +21,9 @@ class AchievementClaim {
   }
 
   void validate() {
-    if (ownerId.trim() != ownerId || ownerId.isEmpty || ownerId.length > 160 ||
+    if (ownerId.trim() != ownerId ||
+        ownerId.isEmpty ||
+        ownerId.length > 160 ||
         ownerId.runes.any((v) => v < 32) ||
         LumoAchievementCatalog.byId(achievementId) == null) {
       throw ArgumentError('Ungültige profilgebundene Auszeichnung.');
@@ -37,16 +39,23 @@ class AchievementClaim {
 
   factory AchievementClaim.fromJson(Object? value) {
     if (value is! Map<String, dynamic> ||
-        value.keys.toSet().difference(
-            const {'ownerId', 'achievementId', 'claimId', 'stars'}).isNotEmpty ||
-        value['ownerId'] is! String || value['achievementId'] is! String) {
+        value.keys.toSet().difference(const {
+          'ownerId',
+          'achievementId',
+          'claimId',
+          'stars'
+        }).isNotEmpty ||
+        value['ownerId'] is! String ||
+        value['achievementId'] is! String) {
       throw const FormatException('Ungültiger Auszeichnungsbeleg.');
     }
-    final claim = AchievementClaim(ownerId: value['ownerId'] as String,
+    final claim = AchievementClaim(
+        ownerId: value['ownerId'] as String,
         achievementId: value['achievementId'] as String);
     claim.validate();
     if (value['claimId'] != claim.claimId || value['stars'] != claim.stars) {
-      throw const FormatException('Auszeichnungsbeleg passt nicht zum Katalog.');
+      throw const FormatException(
+          'Auszeichnungsbeleg passt nicht zum Katalog.');
     }
     return claim;
   }

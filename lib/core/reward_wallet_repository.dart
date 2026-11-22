@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/rewards/reward_shop.dart';
 import '../domain/room/lumo_room.dart';
+import 'achievements/achievement_claim.dart';
 
 /// Aktueller Wallet-Zustand (Snapshot).
 class RewardWallet {
@@ -30,6 +31,8 @@ class RewardWallet {
     this.lumoCardsWinStreak = 0,
     this.shopRedemptions = const <RewardShopRedemption>[],
     this.roomActions = const <LumoRoomActionReceipt>[],
+    this.achievementClaims = const <AchievementClaim>[],
+    this.earnedStarsByOwner = const <String, int>{},
   });
 
   final int stars;
@@ -51,6 +54,8 @@ class RewardWallet {
   /// These are not game results and never inflate the played-games counter.
   final List<RewardShopRedemption> shopRedemptions;
   final List<LumoRoomActionReceipt> roomActions;
+  final List<AchievementClaim> achievementClaims;
+  final Map<String, int> earnedStarsByOwner;
 
   RewardWallet copyWith({
     int? stars,
@@ -63,6 +68,8 @@ class RewardWallet {
     int? lumoCardsWinStreak,
     List<RewardShopRedemption>? shopRedemptions,
     List<LumoRoomActionReceipt>? roomActions,
+    List<AchievementClaim>? achievementClaims,
+    Map<String, int>? earnedStarsByOwner,
   }) {
     return RewardWallet(
       stars: stars ?? this.stars,
@@ -79,6 +86,12 @@ class RewardWallet {
       roomActions: roomActions == null
           ? this.roomActions
           : List.unmodifiable(roomActions),
+      achievementClaims: achievementClaims == null
+          ? this.achievementClaims
+          : List.unmodifiable(achievementClaims),
+      earnedStarsByOwner: earnedStarsByOwner == null
+          ? this.earnedStarsByOwner
+          : Map.unmodifiable(earnedStarsByOwner),
     );
   }
 
@@ -93,6 +106,8 @@ class RewardWallet {
         'lumoCardsWinStreak': lumoCardsWinStreak,
         'shopRedemptions': shopRedemptions.map((v) => v.toJson()).toList(),
         'roomActions': roomActions.map((v) => v.toJson()).toList(),
+        'achievementClaims': achievementClaims.map((v) => v.toJson()).toList(),
+        'earnedStarsByOwner': earnedStarsByOwner,
       };
 
   factory RewardWallet.fromJson(Map<String, dynamic> j) => RewardWallet(
@@ -110,6 +125,8 @@ class RewardWallet {
             : 0,
         shopRedemptions: _shopReceipts(j['shopRedemptions']),
         roomActions: _roomReceipts(j['roomActions']),
+        achievementClaims: _claims(j['achievementClaims']),
+        earnedStarsByOwner: _ownerStars(j['earnedStarsByOwner']),
       );
 
   static List<RewardShopRedemption> _shopReceipts(Object? raw) {
@@ -144,6 +161,32 @@ class RewardWallet {
       throw const FormatException('Doppelte Zimmer-Historie');
     }
     return List.unmodifiable(values);
+  }
+
+  static List<AchievementClaim> _claims(Object? raw) {
+    if (raw == null) return const [];
+    if (raw is! List) {
+      throw const FormatException('Ungültige Auszeichnungsbelege');
+    }
+    final values = raw.map(AchievementClaim.fromJson).toList();
+    if (values.map((v) => v.claimId).toSet().length != values.length) {
+      throw const FormatException('Doppelte Auszeichnungsbelege');
+    }
+    return List.unmodifiable(values);
+  }
+
+  static Map<String, int> _ownerStars(Object? raw) {
+    if (raw == null) return const {};
+    if (raw is! Map ||
+        raw.entries.any((v) =>
+            v.key is! String ||
+            (v.key as String).trim().isEmpty ||
+            (v.key as String).length > 160 ||
+            v.value is! int ||
+            (v.value as int) < 0)) {
+      throw const FormatException('Ungültige profilgebundene Sterne');
+    }
+    return Map.unmodifiable(raw.cast<String, int>());
   }
 
   @override
@@ -241,12 +284,15 @@ class RewardWalletRepository {
   Future<RewardWallet> applyRewardDelta({
     int starsDelta = 0,
     int xpDelta = 0,
+    String? ownerId,
   }) =>
       _transaction((current) async {
         if (starsDelta == 0 && xpDelta == 0) return current;
         final nextXp = (current.xp + xpDelta).clamp(0, 9999999);
         return _commit(current.copyWith(
           stars: (current.stars + starsDelta).clamp(0, 999999),
+          earnedStarsByOwner: _creditOwner(current, ownerId,
+              (current.stars + starsDelta).clamp(0, 999999) - current.stars),
           totalEarnedStars:
               current.totalEarnedStars + (starsDelta > 0 ? starsDelta : 0),
           xp: nextXp,
@@ -337,6 +383,8 @@ class RewardWalletRepository {
           level: 1 + xp ~/ 400,
           totalEarnedStars: current.totalEarnedStars +
               (receipt.starsDelta > 0 ? receipt.starsDelta : 0),
+          earnedStarsByOwner:
+              _creditOwner(current, request.ownerId, receipt.starsDelta),
           roomActions: [...current.roomActions, receipt],
         ));
       });
@@ -346,6 +394,7 @@ class RewardWalletRepository {
     required String resultId,
     required int stars,
     required int xp,
+    String? ownerId,
   }) =>
       _transaction((current) async {
         if (resultId.isEmpty ||
@@ -363,6 +412,8 @@ class RewardWalletRepository {
         final nextXp = (current.xp + xp).clamp(0, 9999999);
         return _commit(current.copyWith(
           stars: (current.stars + stars).clamp(0, 999999),
+          earnedStarsByOwner: _creditOwner(current, ownerId,
+              (current.stars + stars).clamp(0, 999999) - current.stars),
           totalEarnedStars: current.totalEarnedStars + stars,
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
@@ -375,6 +426,7 @@ class RewardWalletRepository {
   Future<RewardWallet> awardQuizResult({
     required String resultId,
     required int stars,
+    String? ownerId,
   }) =>
       _transaction((current) async {
         if (!RegExp(r'^quiz:[a-f0-9]{64}:[a-f0-9]{32}$').hasMatch(resultId) ||
@@ -387,6 +439,8 @@ class RewardWalletRepository {
         }
         return _commit(current.copyWith(
           stars: (current.stars + stars).clamp(0, 999999),
+          earnedStarsByOwner: _creditOwner(current, ownerId,
+              (current.stars + stars).clamp(0, 999999) - current.stars),
           totalEarnedStars: current.totalEarnedStars + stars,
           gameResultIds: [...current.gameResultIds, resultId],
         ));
@@ -396,6 +450,7 @@ class RewardWalletRepository {
   Future<RewardWallet> awardLumoCardsResult({
     required bool won,
     String? resultId,
+    String? ownerId,
   }) =>
       _transaction((current) async {
         if (resultId != null) {
@@ -414,6 +469,8 @@ class RewardWalletRepository {
         final nextXp = (current.xp + xp).clamp(0, 9999999);
         return _commit(current.copyWith(
           stars: (current.stars + stars).clamp(0, 999999),
+          earnedStarsByOwner: _creditOwner(current, ownerId,
+              (current.stars + stars).clamp(0, 999999) - current.stars),
           totalEarnedStars: current.totalEarnedStars + stars,
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
@@ -423,6 +480,44 @@ class RewardWalletRepository {
               : [...current.gameResultIds, resultId],
         ));
       });
+
+  Future<RewardWallet> claimAchievement({
+    required AchievementClaim claim,
+    required void Function() validateOwner,
+  }) =>
+      _transaction((current) async {
+        validateOwner();
+        claim.validate();
+        if (current.achievementClaims.any((v) => v.claimId == claim.claimId)) {
+          await _persist(current);
+          return current;
+        }
+        final stars = claim.stars;
+        if (stars < 0 || current.stars > 999999 - stars) {
+          throw StateError('Deine Sternetasche ist gerade voll.');
+        }
+        return _commit(current.copyWith(
+          stars: current.stars + stars,
+          totalEarnedStars: current.totalEarnedStars + stars,
+          earnedStarsByOwner: _creditOwner(current, claim.ownerId, stars),
+          achievementClaims: [...current.achievementClaims, claim],
+        ));
+      });
+
+  Map<String, int> _creditOwner(
+      RewardWallet current, String? ownerId, int stars) {
+    if (ownerId == null || stars <= 0) return current.earnedStarsByOwner;
+    if (ownerId.isEmpty ||
+        ownerId.trim() != ownerId ||
+        ownerId.length > 160 ||
+        ownerId.runes.any((v) => v < 32)) {
+      throw ArgumentError('Ungültiger Sterne-Eigentümer');
+    }
+    return {
+      ...current.earnedStarsByOwner,
+      ownerId: (current.earnedStarsByOwner[ownerId] ?? 0) + stars
+    };
+  }
 
   /// Markiere heutigen Lerntag - aktualisiert Streak.
   Future<RewardWallet> markDailyActivity() => _transaction((current) async {
@@ -507,9 +602,21 @@ class RewardWalletRepository {
 
   Future<void> _persist(RewardWallet snapshot) async {
     final prefs = await SharedPreferences.getInstance();
-    final saved =
-        await prefs.setString(_storageKey, _encode(snapshot.toJson()));
-    if (!saved) throw StateError('Belohnung konnte nicht gespeichert werden');
+    try {
+      final saved =
+          await prefs.setString(_storageKey, _encode(snapshot.toJson()));
+      if (!saved) throw StateError('Belohnung konnte nicht gespeichert werden');
+    } catch (error, stack) {
+      // setString updates the Dart cache before the platform acknowledges it.
+      // Reload removes a rejected Dart-only value. An uncertain native cache
+      // still requires the identical receipt's positive persistence retry.
+      try {
+        await prefs.reload();
+      } catch (_) {
+        // Preserve the original failure; never report an unconfirmed write.
+      }
+      Error.throwWithStackTrace(error, stack);
+    }
   }
 
   void _emit() {

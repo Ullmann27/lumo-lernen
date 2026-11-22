@@ -19,6 +19,8 @@ import 'package:image_picker/image_picker.dart';
 import '../../core/lumo_speech_listener.dart';
 
 import '../../app/app_state.dart';
+import '../../core/achievements/achievement_events.dart';
+import '../../core/achievements/achievement_repository.dart';
 import '../../core/lumo_brain.dart';
 import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_voice.dart';
@@ -431,6 +433,10 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
           // The device final replaces any partial. It only proposes an answer;
           // the existing evaluator runs after an explicit, scoped confirmation.
           final finalWords = words.trim();
+          if (finalWords.isNotEmpty) {
+            unawaited(recordAchievementParticipation(
+                widget.appState, owner!, AchievementParticipation.live));
+          }
           setState(() {
             _recognized = finalWords;
             _listening = false;
@@ -539,6 +545,9 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
       final photo = await _picker.pickImage(
           source: ImageSource.camera, imageQuality: 60, maxWidth: 800);
       if (photo == null || !_isCurrentInteraction(revision, owner)) return;
+      await recordAchievementParticipation(
+          widget.appState, owner, AchievementParticipation.live);
+      if (!_isCurrentInteraction(revision, owner)) return;
       _cancelInteraction();
       _modeRevision++;
       setState(() {

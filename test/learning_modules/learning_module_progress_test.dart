@@ -16,12 +16,16 @@ class BlockedModuleWallet extends RewardWalletRepository {
   int attempts = 0;
 
   @override
-  Future<RewardWallet> applyRewardDelta(
-      {int starsDelta = 0, int xpDelta = 0}) async {
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+    String? ownerId,
+  }) async {
     attempts++;
     if (reject) throw StateError('Wallet disk unavailable');
     await gate?.future;
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 }
 

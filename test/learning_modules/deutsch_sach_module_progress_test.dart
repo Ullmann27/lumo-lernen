@@ -29,6 +29,7 @@ class _ControlledWallet extends RewardWalletRepository {
   Future<RewardWallet> applyRewardDelta({
     int starsDelta = 0,
     int xpDelta = 0,
+    String? ownerId,
   }) async {
     transactions.add((starsDelta, xpDelta));
     if (reject) throw StateError('Wallet storage unavailable');

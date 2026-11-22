@@ -200,8 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _applyWallet(RewardWallet wallet) {
     if (!mounted) return;
     setState(() {
-      _gamesPlayed =
-          wallet.gameResultIds.where((id) => !id.startsWith('parent:')).length;
+      _gamesPlayed = wallet.gameResultIds.where(_isGameResult).length;
       _totalEarnedStars = wallet.totalEarnedStars;
       final owner = _rewardOwner;
       if (owner != null &&
@@ -220,6 +219,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       }
     });
   }
+
+  static bool _isGameResult(String id) =>
+      !id.startsWith('parent:') && !id.startsWith('recognized:');
 
   bool get _reduceMotion {
     final settings = widget.appState.state.settings;
@@ -938,8 +940,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           width: 38, height: 38, excludeFromSemantics: true),
       onTap: () => widget.onSection(LumoSection.rewards),
     );
-    // Im Bild steht hier „Dein Avatar“ mit Outfits. Die gibt es nicht;
-    // die Karte führt ehrlich zu Klasse und Einstellungen.
+    // Diese Profilkarte führt zu Klasse und Einstellungen. Die lokale
+    // Schal-/Zimmerausstattung hat ihren eigenen Einstieg auf der Startseite.
     final settings = Semantics(
       key: const ValueKey('profile-settings'),
       button: true,

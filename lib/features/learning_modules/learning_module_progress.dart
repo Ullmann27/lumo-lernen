@@ -332,7 +332,7 @@ class LearningModuleProgress extends ChangeNotifier
       }
       if (!pending.rewardBooked) {
         pending.rewardBooked = true;
-        appState.addRewards(stars: pending.stars, xp: pending.xp);
+        appState.addRewards(stars: pending.stars, xp: pending.xp, lease: owner);
       }
       await appState.flushRewards();
       if (!appState.canUseLearningLease(owner)) {

@@ -16,6 +16,7 @@ import '../domain/games/game_level_model.dart';
 import '../core/daily_mission_repository.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/learning_journey.dart';
+import '../core/learning_attempt_id.dart';
 import '../domain/learning_intelligence/scene_memory.dart';
 import '../domain/learning_intelligence/lesson_scene_engine.dart';
 import '../domain/learning_intelligence/learning_scene_contract.dart';
@@ -25,6 +26,8 @@ import '../core/progress_repository.dart';
 import '../core/profile_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/attempt_log_repository.dart';
+import '../core/achievements/achievement_claim.dart';
+import '../core/achievements/achievement_repository.dart';
 import '../core/error_breakdown_repository.dart';
 import '../core/lumo_error_log.dart';
 import '../core/reward_wallet_repository.dart';
@@ -60,6 +63,7 @@ enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 
 class _PendingRewardWrite {
   const _PendingRewardWrite({
+    required this.owner,
     this.stars = 0,
     this.xp = 0,
     this.cardsWon,
@@ -71,15 +75,18 @@ class _PendingRewardWrite {
   final bool? cardsWon;
   final String? resultId;
   final bool quizMilestone;
+  final Future<String?> owner;
 
-  Future<RewardWallet> persist(RewardWalletRepository wallet) =>
-      cardsWon != null
-          ? wallet.awardLumoCardsResult(won: cardsWon!, resultId: resultId)
+  Future<RewardWallet> persist(RewardWalletRepository wallet) async {
+    final ownerId = await owner;
+    return cardsWon != null
+          ? wallet.awardLumoCardsResult(won: cardsWon!, resultId: resultId, ownerId: ownerId)
           : quizMilestone
-              ? wallet.awardQuizResult(resultId: resultId!, stars: stars)
+              ? wallet.awardQuizResult(resultId: resultId!, stars: stars, ownerId: ownerId)
               : resultId == null
-                  ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
-                  : wallet.awardGameResult(resultId: resultId!, stars: stars, xp: xp);
+                  ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp, ownerId: ownerId)
+                  : wallet.awardGameResult(resultId: resultId!, stars: stars, xp: xp, ownerId: ownerId);
+  }
 }
 
 enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
@@ -476,9 +483,18 @@ class LumoAppState extends ChangeNotifier {
 
   Future<void> retryRewards() => flushRewards();
 
-  void _persistRewards({int stars = 0, int xp = 0}) {
+  Future<String?> _rewardOwner([LearningProfileLease? lease]) {
+    if (lease != null) return Future.value(lease.studentId);
+    // Capture the selection now. A later profile switch must never adopt a
+    // reward which was already accepted for another child. An unreadable owner
+    // keeps the real wallet credit, without inventing achievement attribution.
+    return captureLearningProfile().then<String?>((owner) => owner.studentId,
+        onError: (Object _, StackTrace __) => null);
+  }
+
+  void _persistRewards({int stars = 0, int xp = 0, LearningProfileLease? lease}) {
     if (stars == 0 && xp == 0) return;
-    _rewardWrites.add(_PendingRewardWrite(stars: stars, xp: xp));
+    _rewardWrites.add(_PendingRewardWrite(stars: stars, xp: xp, owner: _rewardOwner(lease)));
     _beginRewardDrain();
   }
 
@@ -572,13 +588,16 @@ class LumoAppState extends ChangeNotifier {
   }
 
   /// Books a game reward's stars and XP in one persisted wallet transaction.
-  void addRewards({required int stars, required int xp}) {
-    if (_disposed || _resetting || (stars == 0 && xp == 0)) return;
+  void addRewards({required int stars, required int xp, LearningProfileLease? lease}) {
+    if (_disposed || _resetting || (stars == 0 && xp == 0) ||
+        (lease != null && !canUseLearningLease(lease))) {
+      return;
+    }
     _state = _state.copyWith(
       stars: (_state.stars + stars).clamp(0, 999999),
       xp: (_state.xp + xp).clamp(0, 9999999),
     );
-    _persistRewards(stars: stars, xp: xp);
+    _persistRewards(stars: stars, xp: xp, lease: lease);
     _safeNotify();
   }
 
@@ -835,6 +854,16 @@ class LumoAppState extends ChangeNotifier {
         owner = await source;
         await _prepareLearningLease(owner);
         if (!canUseLearningLease(owner)) return;
+        DailyMissionSnapshot? achievementBefore;
+        final achievementTaskId = taskId ?? newLearningAttemptId();
+        if (const ['Mathematik', 'Deutsch', 'Englisch', 'Sachunterricht'].contains(subject)) {
+          try {
+            achievementBefore = await _missionRepository(owner)
+                .load(tasksPerStation: _state.settings.missionTasksPerStation);
+          } catch (_) {
+            // Missing badge evidence must not block a real school answer.
+          }
+        }
         if (correct && taskId != null) {
           owner._session.pendingMissionAnswers
               .add(_PendingMissionAnswer(taskId, subject));
@@ -879,6 +908,29 @@ class LumoAppState extends ChangeNotifier {
               _safeNotify();
             }
             rethrow;
+          }
+        }
+        if (achievementBefore != null && unsavedAttempts == 0 && canUseLearningLease(owner)) {
+          try {
+            final after = await _missionRepository(owner)
+                .load(tasksPerStation: _state.settings.missionTasksPerStation);
+            final attempts = await attemptLog.load(studentId: owner.logStudentId);
+            final hasWrongToday = attempts.any((attempt) {
+              final at = attempt.at.toLocal();
+              final day = '${at.year}-${at.month.toString().padLeft(2, '0')}-'
+                  '${at.day.toString().padLeft(2, '0')}';
+              return !attempt.correct && day == after.dayKey &&
+                  const ['Mathematik', 'Deutsch', 'Englisch', 'Sachunterricht']
+                      .contains(attempt.subject);
+            });
+            await AchievementRepository(studentId: owner.studentId,
+                mayWrite: () => canUseLearningLease(owner!)).recordMissionAnswer(
+                    taskId: achievementTaskId, subject: subject,
+                    correct: correct && !hasWrongToday,
+                    before: achievementBefore, after: after);
+          } catch (_) {
+            // The school answer and its log are already durable. Badge failure
+            // must never repeat that answer or invent an unobserved mission.
           }
         }
         if (isCurrentLearningLease(owner)) {
@@ -1313,7 +1365,7 @@ class LumoAppState extends ChangeNotifier {
   /// kleiner Trost-Stern.
   Future<void> recordLumoCardsResult({required bool won, String? resultId}) {
     if (_disposed || _resetting) return Future<void>.value();
-    _rewardWrites.add(_PendingRewardWrite(cardsWon: won, resultId: resultId));
+    _rewardWrites.add(_PendingRewardWrite(cardsWon: won, resultId: resultId, owner: _rewardOwner()));
     return _beginRewardDrain();
   }
 
@@ -1342,7 +1394,7 @@ class LumoAppState extends ChangeNotifier {
     // caller must recheck the lease before acknowledging the round.
     await flushRewards();
     guard();
-    _rewardWrites.add(_PendingRewardWrite(stars: stars, xp: xp, resultId: resultId));
+    _rewardWrites.add(_PendingRewardWrite(stars: stars, xp: xp, resultId: resultId, owner: _rewardOwner(lease)));
     await _beginRewardDrain();
     guard();
   }
@@ -1440,7 +1492,7 @@ class LumoAppState extends ChangeNotifier {
     await flushRewards();
     guard();
     _rewardWrites.add(_PendingRewardWrite(
-        stars: stars, xp: xp, resultId: resultId));
+        stars: stars, xp: xp, resultId: resultId, owner: _rewardOwner(lease)));
     await _beginRewardDrain();
     guard();
   }());
@@ -1453,6 +1505,56 @@ class LumoAppState extends ChangeNotifier {
     _checkActiveRewardOwner(lease);
     final wallet = await _walletRepository.load();
     _checkActiveRewardOwner(lease);
+    return wallet;
+  }());
+
+  Future<void> awardRecognizedTaskResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required int stars,
+    required int xp,
+  }) => _trackLearning(() async {
+    void guard() {
+      _checkActiveRewardOwner(lease);
+      final owner = sha256.convert(utf8.encode(lease.studentId)).toString();
+      if (!RegExp('^recognized:$owner:[a-f0-9]{32}\$').hasMatch(resultId) ||
+          !const {(0, 0), (2, 10), (6, 25)}.contains((stars, xp))) {
+        throw StateError('Das Ergebnis der erkannten Aufgabe ist nicht gültig.');
+      }
+    }
+    guard();
+    await flushRewards();
+    guard();
+    _rewardWrites.add(_PendingRewardWrite(stars: stars, xp: xp,
+        resultId: resultId, owner: _rewardOwner(lease)));
+    await _beginRewardDrain();
+    guard();
+  }());
+
+  Future<RewardWallet> claimAchievement({
+    required LearningProfileLease lease,
+    required AchievementClaim claim,
+  }) => _trackLearning(() async {
+    void guard() {
+      _checkActiveRewardOwner(lease);
+      claim.validate();
+      if (claim.ownerId != lease.studentId) {
+        throw StateError('Die Auszeichnung gehört zu einem anderen Kinderprofil.');
+      }
+    }
+    guard();
+    await flushRewards();
+    guard();
+    final achievements = await AchievementRepository(studentId: lease.studentId).load();
+    if (!achievements.unlocked.containsKey(claim.achievementId)) {
+      throw StateError('Diese Auszeichnung ist noch nicht freigeschaltet.');
+    }
+    guard();
+    final wallet = await _walletRepository.claimAchievement(claim: claim, validateOwner: guard);
+    guard();
+    _state = _state.copyWith(stars: wallet.stars, xp: wallet.xp);
+    _lumoCardsWinStreak = wallet.lumoCardsWinStreak;
+    _safeNotify();
     return wallet;
   }());
 
@@ -1577,7 +1679,7 @@ class LumoAppState extends ChangeNotifier {
     guard();
     _rewardWrites.add(_PendingRewardWrite(
         stars: stars, xp: xp, resultId: resultId,
-        quizMilestone: game == 'quiz'));
+        quizMilestone: game == 'quiz', owner: _rewardOwner(lease)));
     await _beginRewardDrain();
     guard();
   }
@@ -1585,7 +1687,7 @@ class LumoAppState extends ChangeNotifier {
   /// A resumed Cards question/call can replay its pending star safely.
   Future<void> recordLumoCardsBonus({required String resultId}) {
     if (_disposed || _resetting) return Future<void>.value();
-    _rewardWrites.add(_PendingRewardWrite(stars: 1, resultId: resultId));
+    _rewardWrites.add(_PendingRewardWrite(stars: 1, resultId: resultId, owner: _rewardOwner()));
     return _beginRewardDrain();
   }
 

@@ -18,12 +18,16 @@ class _BlockedWallet extends RewardWalletRepository {
   final transactions = <(int, int)>[];
 
   @override
-  Future<RewardWallet> applyRewardDelta(
-      {int starsDelta = 0, int xpDelta = 0}) async {
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+    String? ownerId,
+  }) async {
     transactions.add((starsDelta, xpDelta));
     if (rejectWrites) throw StateError('Test storage temporarily unavailable');
     await gate.future;
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 }
 
@@ -52,8 +56,7 @@ Future<LumoFlameJumpGame> _menuAndCollect(
   // bottom edge (y≈910 on a 900px test surface). Scroll it fully into
   // the actual hit-testable viewport before tapping; do not change the game
   // or skip the joystick/collision/persistence assertions.
-  await tester.drag(find.byType(CustomScrollView),
-      const Offset(0, -220));
+  await tester.drag(find.byType(CustomScrollView), const Offset(0, -220));
   await tester.pump();
   expect(extras.hitTestable(), findsOneWidget);
   await tester.tap(extras);
@@ -198,7 +201,8 @@ void main() {
     expect(stored.totalEarnedStars, earned,
         reason: 'Rapid retry taps must never book a second reward');
     expect(repository.transactions, everyElement((earned, earned * 2)),
-        reason: 'Stars and XP must be retried together in one wallet transaction');
+        reason:
+            'Stars and XP must be retried together in one wallet transaction');
     await _dispose(tester, app);
   });
 }

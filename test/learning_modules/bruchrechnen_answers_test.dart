@@ -21,10 +21,15 @@ class _RejectWallet extends RewardWalletRepository {
   int attempts = 0;
 
   @override
-  Future<RewardWallet> applyRewardDelta({int starsDelta = 0, int xpDelta = 0}) {
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+    String? ownerId,
+  }) {
     attempts++;
     if (reject) return Future.error(StateError('Disk unavailable'));
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 }
 

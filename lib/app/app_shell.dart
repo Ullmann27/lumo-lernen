@@ -27,6 +27,8 @@ import '../features/settings/settings_content.dart';
 import '../widgets/scan_screen.dart';
 import '../widgets/profile_screen.dart';
 import '../core/achievements/achievement_tracker.dart';
+import '../core/achievements/achievement_events.dart';
+import '../core/achievements/achievement_repository.dart';
 import '../core/achievements/lumo_achievement.dart';
 import '../core/lumo_ai_proxy_client.dart';
 import '../core/lumo_companion_agent.dart';
@@ -87,6 +89,8 @@ class _AppShellState extends State<AppShell>
   final _proxyClient = const LumoAiProxyClient();
   Timer? _keepAliveTimer;
   StreamSubscription<LumoAchievement>? _achievementSubscription;
+  late final AchievementTracker _achievements = AchievementTracker(_appState);
+  LumoLearningEvent? _lastAchievementEvent;
   int _navigationRequest = 0;
   bool _criticalTileArtWarmupStarted = false;
 
@@ -120,7 +124,8 @@ class _AppShellState extends State<AppShell>
     }
     // Ein per „Öffnen mit Lumo“ angekommener Freundes-Geist (Lumo Kart).
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) unawaited(KartFriendsInbox.checkIncoming(context, _appState));
+      if (mounted)
+        unawaited(KartFriendsInbox.checkIncoming(context, _appState));
     });
     // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
     final deepSection = widget.initialSection;
@@ -137,7 +142,8 @@ class _AppShellState extends State<AppShell>
     _embeddedGames.start();
     // 2026-06-04: Achievement-Tracker hydrieren + Unlock-Toast-Listener.
     _hydrateAchievements();
-    _appState.addListener(_syncAchievementMetrics);
+    LumoCompanionRequests.instance.learningEvents
+        .addListener(_recordQuestionAchievement);
     _browsingProfileGeneration = _appState.profileGeneration;
     _appState.addListener(_syncLearningProfile);
   }
@@ -182,18 +188,31 @@ class _AppShellState extends State<AppShell>
   /// und bindet einen Unlock-Stream-Listener, der bei jedem freigeschalteten
   /// Achievement einen prominenten Toast/Burst zeigt.
   Future<void> _hydrateAchievements() async {
-    await AchievementTracker.instance.hydrate();
-    if (!mounted) return;
     _achievementSubscription =
-        AchievementTracker.instance.unlockStream.listen(_onAchievementUnlock);
-    // Initialen Sterne-Counter syncen (sofort beim Start damit Stars-Achievements
-    // greifen wenn das Kind ohne Aktion schon X Sterne im Wallet hat).
-    _syncAchievementMetrics();
+        _achievements.unlockStream.listen(_onAchievementUnlock);
+    await _achievements.refresh();
   }
 
-  void _syncAchievementMetrics() {
-    final stars = _appState.state.stars;
-    AchievementTracker.instance.setMetric(AchievementMetric.starsTotal, stars);
+  void _recordQuestionAchievement() {
+    final requests = LumoCompanionRequests.instance;
+    final events = requests.learningEvents.value;
+    if (events.isEmpty || identical(events.last, _lastAchievementEvent)) return;
+    final event = events.last;
+    _lastAchievementEvent = event;
+    if (event.kind != LumoLearningEventKind.childAskedQuestion) return;
+    final task = requests.taskContext.value;
+    if (task?.profileGeneration != null &&
+        task!.profileGeneration != _appState.profileGeneration) return;
+    // Capture before the first await. A later profile switch cannot assign
+    // the accepted question to the replacement child.
+    final source = _appState.captureLearningProfile();
+    unawaited(() async {
+      try {
+        final owner = await source;
+        await recordAchievementParticipation(
+            _appState, owner, AchievementParticipation.question);
+      } catch (_) {/* No durable evidence means no promised bonus. */}
+    }());
   }
 
   void _onAchievementUnlock(LumoAchievement a) {
@@ -262,7 +281,7 @@ class _AppShellState extends State<AppShell>
                 borderRadius: BorderRadius.circular(99),
               ),
               child: Text(
-                '+${a.rewardStars} ★',
+                '${a.rewardStars} ★\nabholen',
                 style: const TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 12,
@@ -392,7 +411,9 @@ class _AppShellState extends State<AppShell>
     WidgetsBinding.instance.removeObserver(this);
     _keepAliveTimer?.cancel();
     _achievementSubscription?.cancel();
-    _appState.removeListener(_syncAchievementMetrics);
+    LumoCompanionRequests.instance.learningEvents
+        .removeListener(_recordQuestionAchievement);
+    _achievements.dispose();
     _appState.removeListener(_syncLearningProfile);
     _learningNavigation.dispose();
     _appState.dispose();

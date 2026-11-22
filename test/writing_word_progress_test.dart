@@ -29,11 +29,13 @@ class _BlockedWallet extends RewardWalletRepository {
   Future<RewardWallet> applyRewardDelta({
     int starsDelta = 0,
     int xpDelta = 0,
+    String? ownerId,
   }) async {
     attempts++;
     if (reject) throw StateError('Test disk unavailable');
     await gate?.future;
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 }
 
@@ -123,8 +125,7 @@ Future<void> _open(
   await _frames(tester, 25);
 }
 
-Finder _canvas() =>
-    find.byKey(const ValueKey('lumo-word-ink-surface'));
+Finder _canvas() => find.byKey(const ValueKey('lumo-word-ink-surface'));
 
 Future<void> _draw(
   WidgetTester tester,
@@ -274,8 +275,8 @@ void main() {
     final app = await tester.runAsync(_app);
     await _open(tester, app!, [WritingWordBank.byId('w1_mama')!]);
     for (var index = 0; index < 4; index++) {
-      expect(
-          find.text('Schreibe Buchstabe ${index + 1} von 4 nach Gehör.'), findsOneWidget);
+      expect(find.text('Schreibe Buchstabe ${index + 1} von 4 nach Gehör.'),
+          findsOneWidget);
       await _letter(tester, 'MAMA'[index]);
       await _submit(tester, doubleTap: true);
       if (index < 3) {

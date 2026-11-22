@@ -1,6 +1,6 @@
 # LUMO 2067 · gemeinsame Vollintegration
 
-Stand 22.11.2026. Aktiver Integrationszweig in beiden Repositories: `integration/lumo-complete-20261122`. Ausgangsstände Flutter `52c2c570` und Godot `25fc4ff1`. Die vollständige Quelleninventur und aktuellen Anschlüsse stehen in [der Integrationsübergabe](docs/integration/2026-11-22/INTEGRATION.md). Kandidat `0.13.55+2067`; neue APK und Android-Abschluss werden anhand des tatsächlich gebauten Runs bestätigt. Die Zwischenbauten 2065 und 2066 lieferten keine neue APK. Ergänzt sind jetzt eigene Gutscheine, eigene Elternaufgaben und lokale Datensicherung; Godot-Pin `29ac19f8984b510e5add531f15e555a98c72bed4`. Der tatsächliche Android-SAF-Durchlauf ist Pflicht vor der abschließenden Lieferung.
+Stand 22.11.2026. Aktiver Integrationszweig in beiden Repositories: `integration/lumo-complete-20261122`. Ausgangsstände Flutter `52c2c570` und Godot `25fc4ff1`. Die vollständige Quelleninventur und aktuellen Anschlüsse stehen in [der Integrationsübergabe](docs/integration/2026-11-22/INTEGRATION.md). Kandidat `0.13.55+2067`; neue APK und Android-Abschluss werden anhand des tatsächlich gebauten Runs bestätigt. Die Zwischenbauten 2065 und 2066 lieferten keine neue APK. Ergänzt sind eigene Gutscheine, eigene Elternaufgaben, lokale Datensicherung, Lumos Zimmer, tatsächlich einlösbare Auszeichnungen und die genaue lokale Aufgaben-Erkennung; Godot-Pin `29ac19f8984b510e5add531f15e555a98c72bed4`. Der tatsächliche Android-SAF-Durchlauf ist Pflicht vor der abschließenden Lieferung.
 
 ## Archiv früherer Arbeitsstände
 

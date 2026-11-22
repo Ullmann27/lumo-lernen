@@ -22,12 +22,16 @@ class _BlockedWallet extends RewardWalletRepository {
   final transactions = <(int, int)>[];
 
   @override
-  Future<RewardWallet> applyRewardDelta(
-      {int starsDelta = 0, int xpDelta = 0}) async {
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+    String? ownerId,
+  }) async {
     transactions.add((starsDelta, xpDelta));
     if (reject) throw StateError('Storage unavailable');
     await gate?.future;
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 }
 
@@ -402,8 +406,8 @@ void main() {
       // The thirty tasks now run in three rounds of ten, each with a
       // stopping point. This run continues through both breaks.
       if (task == 10 || task == 20) {
-        expect(find.text('Runde ${task ~/ 10} von 3 geschafft!'),
-            findsOneWidget);
+        expect(
+            find.text('Runde ${task ~/ 10} von 3 geschafft!'), findsOneWidget);
         await tester.tap(find.byKey(const ValueKey('module-round-continue')));
         await _frames(tester);
       }

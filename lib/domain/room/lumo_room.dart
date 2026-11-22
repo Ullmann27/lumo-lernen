@@ -125,8 +125,9 @@ DateTime? lumoRoomNextPraise(
   for (final receipt in receipts) {
     if (receipt.request.ownerId == ownerId &&
         receipt.request.kind == LumoRoomActionKind.pet &&
-        (latest == null || receipt.performedAt.isAfter(latest)))
+        (latest == null || receipt.performedAt.isAfter(latest))) {
       latest = receipt.performedAt;
+    }
   }
   return latest?.add(const Duration(minutes: 5));
 }

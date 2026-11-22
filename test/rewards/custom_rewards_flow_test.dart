@@ -23,7 +23,7 @@ const _initialWallet = RewardWallet(
     xp: 800,
     level: 3,
     totalEarnedStars: 500,
-    gameResultIds: ['race-1', 'parent:old-task-reward']);
+    gameResultIds: ['race-1', 'parent:old-task-reward', 'recognized:old-task']);
 const _seed = CustomRewardDefinition(
     id: 'custom_33333333333333333333333333333333',
     revision: 1,
@@ -221,7 +221,7 @@ void main() {
               widget.properties.label == 'Spieler:in: 1 von 5'),
           findsOneWidget,
           reason:
-              'Elternaufgaben und Gutscheinbelege sind keine gespielten Spiele.');
+              'Eltern-, erkannte Aufgaben und Gutscheinbelege sind keine gespielten Spiele.');
       expect(tester.takeException(), isNull);
     } finally {
       await tester.pumpWidget(const SizedBox.shrink());

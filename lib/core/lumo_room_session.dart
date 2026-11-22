@@ -40,9 +40,10 @@ class LumoRoomSession extends ChangeNotifier {
       owner?.studentId == lease.studentId;
 
   void guard(LearningProfileLease lease) {
-    if (!isCurrent(lease))
+    if (!isCurrent(lease)) {
       throw StateError(
           'Das Kinderprofil hat gewechselt oder wird gesichert. Bitte öffne Lumos Zimmer erneut.');
+    }
   }
 
   bool owns(LumoRoomItem item) =>
@@ -130,13 +131,15 @@ class LumoRoomSession extends ChangeNotifier {
       if (_disposed || ticket != _loadId) return;
       owner = lease;
       guard(lease);
-      var saved = await repository.load(lease.studentId);
+      var saved = await repository.loadConfirmed(
+          ownerId: lease.studentId, validateOwner: () => guard(lease));
       guard(lease);
       var balance = await appState.loadRewardShopWallet(lease: lease);
       for (final purchase in saved.purchases.where((v) => !v.confirmed)) {
         if (!balance.shopRedemptions
-            .any((v) => v.transactionId == purchase.receipt.transactionId))
+            .any((v) => v.transactionId == purchase.receipt.transactionId)) {
           continue;
+        }
         guard(lease);
         balance = await appState.redeemShopReward(
             lease: lease, redemption: purchase.receipt);
@@ -148,7 +151,9 @@ class LumoRoomSession extends ChangeNotifier {
       }
       for (final action in saved.pendingActions) {
         if (!balance.roomActions
-            .any((v) => v.request.actionId == action.actionId)) continue;
+            .any((v) => v.request.actionId == action.actionId)) {
+          continue;
+        }
         guard(lease);
         balance =
             await appState.performLumoRoomAction(lease: lease, request: action);
@@ -206,9 +211,10 @@ class LumoRoomSession extends ChangeNotifier {
         guard(lease);
         profile = confirmed;
       } catch (_) {
-        if (isCurrent(lease))
+        if (isCurrent(lease)) {
           error =
               'Der Kauf ist gespeichert. Du kannst den Gegenstand ausrüsten.';
+        }
       }
       return true;
     } catch (failure) {
@@ -251,8 +257,9 @@ class LumoRoomSession extends ChangeNotifier {
       LumoRoomActionRequest request, LearningProfileLease lease) async {
     if (busy) return false;
     guard(lease);
-    if (request.ownerId != lease.studentId)
+    if (request.ownerId != lease.studentId) {
       throw StateError('Falsches Kinderprofil');
+    }
     busy = true;
     error = null;
     _memoryActions[request.actionId] = request;
@@ -306,8 +313,9 @@ class LumoRoomSession extends ChangeNotifier {
   static String message(Object failure) {
     if (failure is StateError) return failure.message.toString();
     if (failure is LumoRoomActionUnavailable) return failure.message;
-    if (failure is FormatException)
+    if (failure is FormatException) {
       return 'Dein gespeichertes Zimmer konnte nicht sicher gelesen werden. Der vorhandene Stand bleibt erhalten.';
+    }
     return 'Speichern noch nicht bestätigt. Bitte versuche es erneut.';
   }
 

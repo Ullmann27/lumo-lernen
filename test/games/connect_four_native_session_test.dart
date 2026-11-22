@@ -62,18 +62,27 @@ class HeldWallet extends RewardWalletRepository {
   final entered = Completer<void>(), release = Completer<void>();
   final resultIds = <String>[];
   @override
-  Future<RewardWallet> applyRewardDelta(
-      {int starsDelta = 0, int xpDelta = 0}) async {
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+    String? ownerId,
+  }) async {
     entered.complete();
     await release.future;
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 
   @override
-  Future<RewardWallet> awardGameResult(
-      {required String resultId, required int stars, required int xp}) {
+  Future<RewardWallet> awardGameResult({
+    required String resultId,
+    required int stars,
+    required int xp,
+    String? ownerId,
+  }) {
     resultIds.add(resultId);
-    return super.awardGameResult(resultId: resultId, stars: stars, xp: xp);
+    return super.awardGameResult(
+        resultId: resultId, stars: stars, xp: xp, ownerId: ownerId);
   }
 }
 

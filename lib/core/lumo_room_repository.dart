@@ -23,10 +23,18 @@ class LumoRoomRepository {
     if (raw == null) return LumoRoomProfile(ownerId: ownerId);
     final profile = LumoRoomProfile.fromJson(
         (jsonDecode(raw) as Map).cast<String, Object?>());
-    if (profile.ownerId != ownerId)
+    if (profile.ownerId != ownerId) {
       throw const FormatException('Falsches Zimmerprofil');
+    }
     return profile;
   }
+
+  /// A failed platform reply can leave native preferences in memory even
+  /// after reload. A screen only displays equipment after this positive
+  /// acknowledgement, including when reopening after an uncertain write.
+  Future<LumoRoomProfile> loadConfirmed(
+          {required String ownerId, required void Function() validateOwner}) =>
+      _update(ownerId, validateOwner, (profile) => profile);
 
   Future<LumoRoomProfile> stagePurchase(
       {required String ownerId,
@@ -83,11 +91,13 @@ class LumoRoomRepository {
           required List<RewardShopRedemption> receipts,
           required void Function() validateOwner}) =>
       _update(ownerId, validateOwner, (profile) {
-        if (!LumoRoomCatalog.owns(ownerId, item, receipts)) {
+        if (!identical(item, LumoRoomCatalog.byId(item.id)) ||
+            !LumoRoomCatalog.owns(ownerId, item, receipts)) {
           throw StateError('Dieser Gegenstand ist noch nicht gekauft.');
         }
-        if (item.kind == LumoRoomItemKind.theme)
+        if (item.kind == LumoRoomItemKind.theme) {
           return profile.copyWith(theme: item.id);
+        }
         final equipped = {...profile.equipped};
         if (item.kind == LumoRoomItemKind.scarf) {
           equipped.removeWhere((id) => id.startsWith('scarf_'));
@@ -115,8 +125,9 @@ class LumoRoomRepository {
     return _update(request.ownerId, validateOwner, (profile) {
       for (final existing in profile.pendingActions) {
         if (existing.actionId != request.actionId) continue;
-        if (existing.kind != request.kind)
+        if (existing.kind != request.kind) {
           throw StateError('Die Zimmeraktion hat sich geändert.');
+        }
         return profile;
       }
       if (profile.pendingActions.length >= 20) {
@@ -149,10 +160,19 @@ class LumoRoomRepository {
       final next = mutate(profile);
       final prefs = await SharedPreferences.getInstance();
       validateOwner();
-      if (!await prefs.setString(
-          profileKey(ownerId), jsonEncode(next.toJson()))) {
-        throw StateError(
-            'Dein Zimmer konnte noch nicht gespeichert werden. Bitte erneut versuchen.');
+      try {
+        if (!await prefs.setString(
+            profileKey(ownerId), jsonEncode(next.toJson()))) {
+          throw StateError(
+              'Dein Zimmer konnte noch nicht gespeichert werden. Bitte erneut versuchen.');
+        }
+      } catch (error, stack) {
+        try {
+          await prefs.reload();
+        } catch (_) {
+          // A failed cache refresh must not hide the original write failure.
+        }
+        Error.throwWithStackTrace(error, stack);
       }
       return next;
     });
