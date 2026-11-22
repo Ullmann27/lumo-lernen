@@ -899,8 +899,7 @@ class _CardBack extends StatelessWidget {
   }
 }
 
-/// Original LUMO star back: blue gradient, diamond weave, double gold frame,
-/// a golden star and four light points. Same design as the 3D card shader.
+/// A gilded compass rose on teal enamel, shared with the 3D tabletop design.
 class _StarBackPainter extends CustomPainter {
   const _StarBackPainter();
 
@@ -913,7 +912,7 @@ class _StarBackPainter extends CustomPainter {
         ..shader = const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xFF2CA6C0), Color(0xFF1E3F88)],
+          colors: [Color(0xFF247783), Color(0xFF182D50)],
         ).createShader(rect),
     );
     final weave = Paint()
@@ -949,7 +948,22 @@ class _StarBackPainter extends CustomPainter {
         ..strokeWidth = .9
         ..color = const Color(0xAAE0A93C),
     );
-    final r = size.shortestSide * .27;
+    final dial = size.shortestSide * .32;
+    canvas.drawCircle(center, dial, Paint()..color = const Color(0xFF193D54));
+    final dialLine = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(.65, size.shortestSide * .011)
+      ..color = const Color(0xFFE3B775);
+    for (final radius in [dial, dial * .79]) {
+      canvas.drawCircle(center, radius, dialLine);
+    }
+    for (var tick = 0; tick < 24; tick++) {
+      final bearing = tick * math.pi / 12;
+      final axis = Offset(math.sin(bearing), math.cos(bearing));
+      canvas.drawLine(center + axis * dial * (tick % 3 == 0 ? .80 : .90),
+          center + axis * dial * .98, dialLine);
+    }
+    final r = size.shortestSide * .20;
     final star = Path();
     for (var i = 0; i < 10; i++) {
       final a = -math.pi / 2 + i * math.pi / 5;
@@ -974,6 +988,18 @@ class _StarBackPainter extends CustomPainter {
           colors: [Color(0xFFFFF4C8), Color(0xFFFFC93C)],
         ).createShader(Rect.fromCircle(center: center, radius: r)),
     );
+    for (var point = 0; point < 5; point++) {
+      final bearing = -math.pi / 2 + point * 2 * math.pi / 5;
+      final tip = center + Offset(math.cos(bearing), math.sin(bearing)) * r;
+      final valley = center + Offset(math.cos(bearing + math.pi / 5),
+          math.sin(bearing + math.pi / 5)) * (r * .46);
+      final facet = Path()
+        ..moveTo(center.dx, center.dy)
+        ..lineTo(tip.dx, tip.dy)
+        ..lineTo(valley.dx, valley.dy)
+        ..close();
+      canvas.drawPath(facet, Paint()..color = const Color(0x66AA6624));
+    }
     final light = Paint()..color = const Color(0xFFFFEFB8);
     for (final corner in const [Offset(-1, -1), Offset(1, -1), Offset(1, 1), Offset(-1, 1)]) {
       canvas.drawCircle(
@@ -1002,8 +1028,14 @@ class _CardFront extends StatelessWidget {
           padding: const EdgeInsets.all(3.5),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(11),
-            child: Image.asset(motif.path,
-                fit: BoxFit.cover, filterQuality: FilterQuality.high),
+            child: LayoutBuilder(builder: (context, bounds) {
+              final pixels = bounds.maxWidth * MediaQuery.devicePixelRatioOf(context);
+              // Leave room for the 4% flip lift. Round up to reuse decoded sizes
+              // across nearby layouts, while keeping the native pixel detail.
+              final decodeWidth = (((pixels * 1.04) / 64).ceil() * 64).clamp(64, 768);
+              return Image.asset(motif.path,
+                  cacheWidth: decodeWidth, fit: BoxFit.cover, filterQuality: FilterQuality.high);
+            }),
           ),
         ),
         if (matched)
