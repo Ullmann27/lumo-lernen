@@ -39,6 +39,7 @@ import '../../domain/learning/error_detective.dart';
 import '../../domain/tutoring/lumo_nachhilfe.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
 import '../tutoring/lumo_nachhilfe_screen.dart';
+import '../tutoring/arithmetic_task_aid.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import 'lab/learning_lab_hub.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
@@ -3424,6 +3425,9 @@ class _LearningContentState extends State<LearningContent>
                               sounds: st.settings.soundEnabled,
                             ),
                           ],
+                          if (_allowHelp && _showHelp && !_answered)
+                            ArithmeticTaskAid(task: _taskInstance,
+                                reduceMotion: st.settings.reduceAnimations || st.settings.calmMode),
                           if (_showHelp && _visualAid != null) ...[
                             const SizedBox(height: 14),
                             _VisualAidCard(aid: _visualAid!),

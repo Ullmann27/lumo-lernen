@@ -131,6 +131,28 @@ class GuidedLessonStep {
 
   bool accepts(String value) => isQuestion && value == expected;
 
+  String? arithmeticRetry(String answer) {
+    final number = int.tryParse(answer);
+    return switch (answerKind) {
+      GuidedAnswerKind.groups when number == a + b =>
+        'Du hast die beiden Zahlen addiert. Jede der $a Reihen enthält $b Äpfel. Zähle in Schritten von $b.',
+      GuidedAnswerKind.groups when number == a || number == b =>
+        'Schau auf das ganze Feld. Fahre mit dem Finger jede Reihe entlang und zähle die Äpfel weiter.',
+      GuidedAnswerKind.repeatedAddition =>
+        'Für jede der $a Reihen brauchst du einmal die $b in der Plusrechnung.',
+      GuidedAnswerKind.sum when number == 10 =>
+        'Du bist schon beim vollen Zehner angekommen. Welche Äpfel kommen danach noch dazu?',
+      GuidedAnswerKind.difference when number == 10 =>
+        'Bis zehn bist du schon zurückgegangen. Schau, wie viel von der $b du noch wegnehmen musst.',
+      GuidedAnswerKind.difference when number == a + b =>
+        'Hier gehen Äpfel weg. Starte bei $a und gehe zuerst zurück zur Zehn.',
+      GuidedAnswerKind.gapToTen || GuidedAnswerKind.remainder ||
+      GuidedAnswerKind.toPreviousTen || GuidedAnswerKind.subtractRemainder =>
+        'Fast! ${help(level: 1)}',
+      _ => null,
+    };
+  }
+
   String help({required int level}) {
     if (answerKind == GuidedAnswerKind.tensValue) {
       return level < 2

@@ -11,6 +11,7 @@ import '../../widgets/design/lumo_quantity_art.dart';
 import 'guided_language_nature_illustration.dart';
 import 'guided_advanced_math_illustration.dart';
 import 'guided_ten_frame_animation.dart';
+import 'guided_product_array.dart';
 
 /// Actual countable original assets. Moving apples remain single widgets:
 /// no duplicated "animation" objects that could falsify a quantity.
@@ -94,7 +95,9 @@ class GuidedMathIllustration extends StatelessWidget {
       );
     }
     return switch (lesson.concept) {
-      GuidedLessonConcept.equalGroups => _groups(),
+      GuidedLessonConcept.equalGroups => GuidedProductArray(
+          key: ValueKey(step), rows: step.a, columns: step.b,
+          example: step.type == TutoringStepType.showExample, reduceMotion: reduceMotion),
       GuidedLessonConcept.bridgeTen => step.type == TutoringStepType.showExample
           ? GuidedTenFrameAnimation(
               left: step.a,
@@ -213,69 +216,6 @@ class GuidedMathIllustration extends StatelessWidget {
       child: LumoQuantityArt.apple(size: cell - 3),
     );
   }
-
-  Widget _groups() => LumoLessonSurface(
-        child: LayoutBuilder(builder: (context, constraints) {
-          final columns = math.max(
-              1, math.min(step.a, (constraints.maxWidth / 116).floor()));
-          final width = (constraints.maxWidth - (columns - 1) * 10) / columns;
-          return Column(children: [
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 10,
-              runSpacing: 10,
-              children: [
-                for (var group = 0; group < step.a; group++)
-                  SizedBox(
-                    width: width,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                          color: const Color(0xFF123D70),
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                              color:
-                                  LumoVisualTokens.cyan.withValues(alpha: .7))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(children: [
-                          Text('Gruppe ${group + 1}', style: _text),
-                          const SizedBox(height: 10),
-                          Semantics(
-                            label: '${step.b} Äpfel in Gruppe ${group + 1}',
-                            excludeSemantics: true,
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              spacing: 3,
-                              runSpacing: 3,
-                              children: [
-                                for (var item = 0; item < step.b; item++)
-                                  LumoQuantityArt.apple(
-                                      key: ValueKey(
-                                          'guided-group-apple-$group-$item'),
-                                      size: 30),
-                              ],
-                            ),
-                          ),
-                        ]),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-            if (step.type == TutoringStepType.showExample) ...[
-              const SizedBox(height: 12),
-              Text(
-                  '${List.filled(step.a, "${step.b}").join(" + ")} = '
-                  '${step.a * step.b}',
-                  style: _text.copyWith(fontSize: 20),
-                  textAlign: TextAlign.center),
-              Text('${step.a} × ${step.b} = ${step.a * step.b}',
-                  style: _text.copyWith(fontSize: 20),
-                  textAlign: TextAlign.center),
-            ],
-          ]);
-        }),
-      );
 
   Widget _tenFrame(BuildContext context) => LumoLessonSurface(
         padding: const EdgeInsets.all(10),

@@ -524,10 +524,11 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen>
                 ? 'Das passt! Mit den gemeinsamen Schritten hast du es geschafft.'
                 : 'Das passt! Weiter geht es in deinem Tempo.';
       } else {
-        _feedback = _attempts == 1
+        final hint = step.arithmeticRetry(answer);
+        _feedback = hint ?? (_attempts == 1
             ? 'Fast! Probiere es noch einmal. Wenn du magst, hilft dir ein Tipp.'
             : 'Wir können es mit kleineren Schritten probieren. '
-                'Du entscheidest, ob du Hilfe möchtest.';
+                'Du entscheidest, ob du Hilfe möchtest.');
       }
     });
     if (!saved) return;
