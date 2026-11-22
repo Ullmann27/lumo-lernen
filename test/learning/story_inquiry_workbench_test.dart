@@ -114,6 +114,7 @@ void main() {
             final activity = NativeLearningActivity.fromTask(task);
             if (activity != null) native.add(activity.kind);
           }
+          if (unit == 'Rechengeschichten') expect(filmCount, 8);
           units[unit] = {
             'distinctPrompts': examples.length,
             'arithmeticFilmsInEightTasks': filmCount,

@@ -749,6 +749,13 @@ class LegacyLumoTaskAdapter {
         final start = int.parse(equation[1]!);
         final change = int.parse(equation[3]!);
         final subtract = equation[2] == '−';
+        if (task.prompt.contains('mehr als') && subtract && start - change == int.parse(equation[4]!)) {
+          final names = RegExp(r'(\S+) hat \d+').allMatches(task.prompt).map((m) => m[1]!).toList();
+          if (names.length == 2) {
+            return {'operation': 'story_comparison', 'left': start, 'right': change, 'names': names};
+          }
+          return const {};
+        }
         if (!task.prompt.contains('mehr als') && start <= 30 && change <= 20 && (subtract ? start - change : start + change) == int.parse(equation[4]!)) {
           return {'storyStart': start, 'storyChange': change, 'storySubtract': subtract};
         }

@@ -168,6 +168,31 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+  testWidgets('a real comparison story pairs the two named collections',
+      (tester) async {
+    final task = adapt(ExerciseFactory(seed: 20265).nextExact(
+        grade: 1,
+        subject: 'Mathematik',
+        unit: 'Rechengeschichten',
+        currentGradeOnly: true));
+    final plan = MathFilmPlan.forTask(task)!;
+    expect(plan.comparisonNames, ['Ivo', 'Nala']);
+    expect(plan.shots.first.equation, (a: 10, sign: '−', b: 6));
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: MathExplanationFilm(
+                plan: plan, enabled: true, quiet: true, slow: false))));
+    await tester.tap(find.byKey(const ValueKey('math-film-open')));
+    await tester.pump();
+    final next = find.byKey(const ValueKey('math-film-next'));
+    await tester.tap(next);
+    await tester.pump();
+    expect(find.textContaining('Paare'), findsOneWidget);
+    await tester.tap(next);
+    await tester.pump();
+    expect(find.textContaining('keinen Partner'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
   for (final id in [
     'g4_fraction_add',
     'g4_decimal',

@@ -29,16 +29,65 @@ typedef MathFilmShot = ({
 
 class MathFilmPlan {
   const MathFilmPlan(this.title, this.shots, this.question, this.object,
-      {this.decimals = 0, this.denominator = 0, this.expression});
+      {this.decimals = 0,
+      this.denominator = 0,
+      this.expression,
+      this.comparisonNames});
 
   final String title;
   final String? question, object, expression;
   final int decimals, denominator;
   final List<MathFilmShot> shots;
+  final List<String>? comparisonNames;
 
   static MathFilmPlan? forTask(TaskInstance task) {
     if (task.subject != LearningSubject.mathematik) return null;
     final data = task.visualPayload.data;
+    if (data['operation'] == 'story_comparison') {
+      final a = data['left'], b = data['right'], names = data['names'];
+      if (a is! int ||
+          b is! int ||
+          a < b ||
+          b < 0 ||
+          a > 30 ||
+          names is! List ||
+          names.length != 2 ||
+          names.any((n) => n is! String)) {
+        return null;
+      }
+      final e = (a: a, sign: '−', b: b);
+      return MathFilmPlan(
+          'Zwei Mengen vergleichen',
+          [
+            (
+              equation: e,
+              from: 0,
+              to: 0,
+              caption:
+                  '${names[0]} hat $a, ${names[1]} hat $b. Lege beide Reihen untereinander.'
+            ),
+            (
+              equation: e,
+              from: 0,
+              to: .72,
+              caption:
+                  'Verbinde immer zwei Plättchen. Wie viele Paare kannst du bilden?'
+            ),
+            (
+              equation: e,
+              from: .72,
+              to: 1,
+              caption:
+                  'Welche Plättchen haben keinen Partner? Sie zeigen, wie viel mehr ${names[0]} hat.'
+            )
+          ],
+          RegExp(r'[^.!?]+\?$')
+              .firstMatch(task.prompt.trim())
+              ?.group(0)
+              ?.trim(),
+          null,
+          comparisonNames: names.cast<String>());
+    }
     if (data['operation'] == 'fraction_addition') {
       final a = data['numerator'], b = data['extra'], d = data['denominator'];
       if (a is! int ||
@@ -491,8 +540,9 @@ class _MathExplanationFilmState extends State<MathExplanationFilm>
                                                       equation,
                                                       p,
                                                       widget.plan.decimals,
-                                                      widget
-                                                          .plan.denominator))),
+                                                      widget.plan.denominator,
+                                                      widget.plan
+                                                          .comparisonNames))),
                                         ]))),
                             const SizedBox(height: 8),
                             Semantics(
@@ -557,9 +607,11 @@ class _MathExplanationFilmState extends State<MathExplanationFilm>
 }
 
 class _FilmDiagram extends CustomPainter {
-  const _FilmDiagram(this.e, this.p, this.decimals, this.denominator);
+  const _FilmDiagram(
+      this.e, this.p, this.decimals, this.denominator, this.comparisonNames);
   final int decimals, denominator;
   final MathFilmEquation e;
+  final List<String>? comparisonNames;
   final double p;
   static const navy = Color(0xff234354),
       teal = Color(0xff16867b),
@@ -584,6 +636,30 @@ class _FilmDiagram extends CustomPainter {
   void paint(Canvas c, Size size) {
     final paints = Paint()..isAntiAlias = true;
     final a = e.a, b = e.b, plus = e.sign == '+', take = e.sign == '−';
+    if (comparisonNames case final names?) {
+      final pitch = math.min(24.0, (size.width - 74) / math.max(a, 1));
+      final paired = (p / .72).clamp(0.0, 1.0) * b;
+      final extras = ((p - .72) / .28).clamp(0.0, 1.0) * (a - b);
+      for (var row = 0; row < 2; row++) {
+        _text(c, names[row], Offset(30, row == 0 ? 25 : 64), 13);
+      }
+      for (var i = 0; i < a; i++) {
+        final x = 65 + pitch * (i + .5);
+        if (i < b) {
+          final extent = (paired - i).clamp(0.0, 1.0);
+          c.drawLine(
+              Offset(x, 25),
+              Offset(x, 25 + 39 * extent),
+              Paint()
+                ..color = teal
+                ..strokeWidth = 2);
+          c.drawCircle(Offset(x, 64), pitch * .32, paints..color = teal);
+        }
+        c.drawCircle(Offset(x, 25), pitch * .32,
+            paints..color = i < b || i - b >= extras ? teal : coral);
+      }
+      return;
+    }
     if (denominator > 0) {
       final width = (size.width - 16) / denominator;
       final top = Offset(8, 17), bottom = Offset(8, 55);
@@ -739,5 +815,6 @@ class _FilmDiagram extends CustomPainter {
       old.e != e ||
       old.p != p ||
       old.decimals != decimals ||
-      old.denominator != denominator;
+      old.denominator != denominator ||
+      old.comparisonNames != comparisonNames;
 }
