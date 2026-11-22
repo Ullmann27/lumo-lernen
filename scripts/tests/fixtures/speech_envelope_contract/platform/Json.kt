@@ -6,6 +6,13 @@ class JSONObject(text:String="{}") {
  fun optInt(key:String,fallback:Int=0)=(data[key] as? Number)?.toInt()?:fallback
  fun optDouble(key:String,fallback:Double=0.0)=(data[key] as? Number)?.toDouble()?:fallback
  fun optBoolean(key:String,fallback:Boolean=false)=data[key] as? Boolean ?:fallback
+ fun optJSONObject(key:String)=data[key] as? JSONObject
+ fun optJSONArray(key:String)=data[key] as? JSONArray
  fun put(key:String,value:Any?):JSONObject {data[key]=value;return this}
  override fun toString()=data.entries.joinToString(",","{","}"){"\"${it.key}\":"+if(it.value is String)"\"${it.value}\"" else it.value.toString()}
+}
+
+class JSONArray(private val values:List<Any?>) {
+ fun length()=values.size
+ fun opt(index:Int):Any?=values.getOrNull(index)
 }

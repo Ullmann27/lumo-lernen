@@ -5,7 +5,7 @@ name: "Lumo Test-APK (Flutter + Godot)"
 # das Ergebnis ist eine Vorabversion zum Testen auf dem Handy.
 on:
   push:
-    branches: [ccr-54af69f2-4uged4, delivery/lumo-2051-completion, repair/lumo-quiz-run-kart-20261119]
+    branches: [ccr-54af69f2-4uged4, delivery/lumo-2051-completion, repair/lumo-quiz-run-kart-20261119, integration/lumo-complete-20261122]
     paths:
       - config/test-apk-request.json
       - .github/workflows/lumo-test-apk.yml
@@ -54,6 +54,9 @@ jobs:
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           python3 scripts/verify_legacy_release_pin.py
           mkdir -p build-proof
+          python3 -m unittest discover -s scripts/tests -p test_verify_test_apk_candidate.py -v
+          python3 scripts/verify_test_apk_candidate.py source --expected-commit "$GITHUB_SHA" \
+            --out build-proof/CANDIDATE-SOURCE.json
           git rev-parse HEAD > build-proof/FLUTTER-COMMIT.txt
           cp config/godot-source.json build-proof/GODOT-SOURCE.json
           cp config/test-apk-request.json build-proof/TEST-APK-REQUEST.json
@@ -68,7 +71,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings
+          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
+            | tee build-proof/FLUTTER-ANALYSIS.txt
           flutter test --no-pub --reporter expanded \
             test/games/memory_native_entry_test.dart \
             test/games/memory_screen_test.dart \
@@ -81,7 +85,14 @@ jobs:
             test/tutoring/native_english_activity_test.dart \
             test/learning/lab_native_model_contract_test.dart \
             test/profile_target_layout_test.dart \
-            test/smoke_main_screens_test.dart
+            test/smoke_main_screens_test.dart \
+            test/learning/math_explanation_film_test.dart \
+            test/math_explanation_facts_test.dart \
+            test/language_example_board_test.dart \
+            test/tutoring/lumo_nachhilfe_test.dart \
+            test/tutoring/lumo_nachhilfe_entry_test.dart \
+            test/tutoring/lumo_nachhilfe_3d_test.dart \
+            | tee build-proof/FLUTTER-CORE-TESTS.txt
       - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
         shell: bash
         run: |
@@ -104,33 +115,33 @@ jobs:
               --script "res://scripts/tests/$probe.gd"
             echo "::endgroup::"
           done
-          if [ "$GITHUB_REF_NAME" = repair/lumo-quiz-run-kart-20261119 ]; then
-            for probe in lumo_kart_production_driver_regression lumo_opponent_roster_regression \
-              lumo_run_regression lumo_run_flow_regression quiz_studio_escape_regression; do
-              echo "::group::$probe"
-              # Der Lauf-Test spielt 30 ganze Dschungelherz-Läufe mit den echten
-              # Teilschritten des Spiels (rund 18 s je Lauf im CI): 600 s reichten nur
-              # bis Lauf 24 (Lauf 44551761545, Abbruch mit 124 ohne Fehlschlag).
-              limit=600
-              if [ "$probe" = lumo_run_regression ]; then limit=1500; fi
-              timeout "$limit" godot --headless --path build/lumo-godot-qa \
-                --script "res://scripts/tests/$probe.gd"
-              echo "::endgroup::"
-            done
-          fi
+          for probe in lumo_kart_production_driver_regression lumo_opponent_roster_regression \
+            learning_holo_lesson_regression lumo_run_stunt_relay_regression \
+            kart_arena_battle_regression parcours_menu_entry_regression parcours_race_regression \
+            lumo_run_regression lumo_run_flow_regression quiz_studio_escape_regression; do
+            echo "::group::$probe"
+            # Der Lauf-Test spielt 30 ganze Dschungelherz-Läufe mit den echten
+            # Teilschritten des Spiels (rund 18 s je Lauf im CI): 600 s reichten nur
+            # bis Lauf 24 (Lauf 44551761545, Abbruch mit 124 ohne Fehlschlag).
+            limit=600
+            if [ "$probe" = lumo_run_regression ]; then limit=1500; fi
+            timeout "$limit" godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/$probe.gd"
+            echo "::endgroup::"
+          done
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
           set -euo pipefail
           bash scripts/build_unified_apk.sh
           test -s dist/Lumo-Lernen-Neu.apk
-          if [ "$GITHUB_REF_NAME" = repair/lumo-quiz-run-kart-20261119 ]; then
-            mkdir -p "$RUNNER_TEMP/lumo-pck-runtime"
-            timeout 90 godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
-              --main-pack "$PWD/android/app/src/main/assets/lumo_game.pck" \
-              --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" \
-              | tee build-proof/KART-DRIVER-PCK.txt
-          fi
+          python3 scripts/verify_test_apk_candidate.py packages --expected-commit "$GITHUB_SHA" \
+            --extract-pck "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+            --out build-proof/SPLIT-APK-IDENTITY.json
+          timeout 90 godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
+            --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+            --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" \
+            | tee build-proof/KART-DRIVER-PCK.txt
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
@@ -139,11 +150,12 @@ jobs:
           cp dist/Lumo-Lernen-Neu.apk "release/$NAME"
           cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
           cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
+          cp build-proof/SPLIT-APK-IDENTITY.json release/SPLIT-APK-IDENTITY.json
+          cp build-proof/SPLIT-APK-IDENTITY.json dist/x86_64/SPLIT-APK-IDENTITY.json
           (cd release && sha256sum "$NAME" > SHA256SUMS.txt)
           echo "LUMO_APK_NAME=$NAME" >> "$GITHUB_ENV"
           echo "LUMO_APK_VERSION=$VERSION" >> "$GITHUB_ENV"
       - name: APK für den Android-Emulator sichern
-        if: github.ref_name == 'repair/lumo-quiz-run-kart-20261119'
         uses: actions/upload-artifact@v4
         with:
           name: LUMO-EMULATOR-APK-${{ github.run_id }}
@@ -166,7 +178,7 @@ jobs:
           EOF
           TAG="lumo-test-${LUMO_APK_VERSION/+/-}-$GITHUB_RUN_ID"
           FILES=("release/$LUMO_APK_NAME" release/SHA256SUMS.txt release/APK-VERIFICATION.json
-            release/BUILD-PROVENANCE.json release/LIESMICH.txt)
+            release/BUILD-PROVENANCE.json release/SPLIT-APK-IDENTITY.json release/LIESMICH.txt)
           NOTES="Test-APK zum Ausprobieren auf dem Handy. Kein Store-Release. Details in LIESMICH.txt."
           # Eine Vorabversion legt ein Tag auf diesem Commit an. Verweigert GitHub
           # das dem Lauf-Token, bleibt der Entwurf: Er braucht kein Tag und ist
@@ -215,7 +227,6 @@ jobs:
 
   android-tour:
     name: Installierte APK im Android-Emulator prüfen
-    if: github.ref_name == 'repair/lumo-quiz-run-kart-20261119'
     needs: apk
     runs-on: ubuntu-24.04
     timeout-minutes: 75
@@ -229,6 +240,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p tour
+          cp candidate/x86_64/SPLIT-APK-IDENTITY.json tour/SPLIT-APK-IDENTITY.json
           sudo chmod a+rw /dev/kvm
           sudo apt-get -o Acquire::Retries=2 update -qq
           sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
@@ -277,3 +289,4 @@ jobs:
         with:
           name: LUMO-ANDROID-TOUR-${{ github.run_id }}
           path: tour/
+

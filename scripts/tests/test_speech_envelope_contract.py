@@ -7,6 +7,7 @@ It uses only already installed Gradle Kotlin libraries and never downloads tools
 from pathlib import Path
 import os
 import shutil
+import struct
 import subprocess
 import tempfile
 import unittest
@@ -46,6 +47,16 @@ class SpeechEnvelopeContractTest(unittest.TestCase):
             '-classpath', cls.classpath, '-jvm-target', '1.8', '-d', str(classes),
             *map(str, sources),
         ])
+        # A declared PCM boundary fixture, never an English voice recording:
+        # audible first segment, silent gap, audible second segment.
+        frames = 44100 * 4 // 5
+        pcm = b''.join(struct.pack('<h', 6000 if n < 8820 else 0 if n < 19845 else 9000)
+                       for n in range(frames))
+        cls.joined_pcm = Path(cls.temp.name) / 'synthetic-joined-pcm-no-speech.wav'
+        cls.joined_pcm.write_bytes(
+            b'RIFF' + struct.pack('<I', 36 + len(pcm)) + b'WAVEfmt ' +
+            struct.pack('<IHHIIHH', 16, 1, 1, 44100, 88200, 2, 16) +
+            b'data' + struct.pack('<I', len(pcm)) + pcm)
 
     @classmethod
     def run_checked(cls, command):
@@ -85,6 +96,33 @@ class SpeechEnvelopeContractTest(unittest.TestCase):
             'LearningSpeechFailureContractKt',
             'LUMO_SPEECH_FAILURE_PASS checks=15 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
         )
+
+    def english_scenario(self, name):
+        result = self.run_checked([
+            self.java, '-cp', self.classpath,
+            'dev.ullmann.lumo.EnglishLessonLifecycleContractKt',
+            name, str(self.joined_pcm),
+        ])
+        self.assertIn('ENGLISH_LESSON_LIFECYCLE_PASS scenario=' + name, result.stdout)
+        print(result.stdout, end='')
+
+    def test_english_host_binds_all_twenty_current_words(self):
+        self.english_scenario('binding')
+
+    def test_english_invalid_task_descriptor_never_synthesizes(self):
+        self.english_scenario('invalid-descriptor')
+
+    def test_english_parent_guards_and_default_german_path(self):
+        self.english_scenario('parent-and-default')
+
+    def test_english_sequence_uses_one_player_and_measured_silent_gap(self):
+        self.english_scenario('one-player')
+
+    def test_english_late_callbacks_cannot_outlive_pause_or_task(self):
+        self.english_scenario('late-callback')
+
+    def test_english_result_identity_cannot_change_word_or_voice(self):
+        self.english_scenario('result-identity')
 
 
 if __name__ == '__main__':
