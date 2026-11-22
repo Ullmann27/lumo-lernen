@@ -18,7 +18,8 @@ const customRewardTemplates = <CustomRewardTemplate>[
   CustomRewardTemplate('Roller', CustomRewardCategory.sport, '🛴'),
   CustomRewardTemplate('Radfahren', CustomRewardCategory.sport, '🚲'),
   CustomRewardTemplate('Klettern', CustomRewardCategory.sport, '🧗'),
-  CustomRewardTemplate('Hörgeschichte', CustomRewardCategory.entertainment, '🎧'),
+  CustomRewardTemplate(
+      'Hörgeschichte', CustomRewardCategory.entertainment, '🎧'),
   CustomRewardTemplate('Kinderlied', CustomRewardCategory.entertainment, '🎵'),
   CustomRewardTemplate('Puppenspiel', CustomRewardCategory.entertainment, '🎭'),
   CustomRewardTemplate('Knete', CustomRewardCategory.creative, '🎨'),

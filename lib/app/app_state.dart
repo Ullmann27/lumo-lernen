@@ -28,6 +28,7 @@ import '../core/attempt_log_repository.dart';
 import '../core/error_breakdown_repository.dart';
 import '../core/lumo_error_log.dart';
 import '../core/reward_wallet_repository.dart';
+import '../core/reward_shop_repository.dart';
 import '../core/school_repository.dart';
 import '../domain/school/attempt.dart';
 import '../domain/school/competency.dart';
@@ -1486,6 +1487,7 @@ class LumoAppState extends ChangeNotifier {
       if (_settingsLoad != null) await _settingsLoad;
       await _drainLearningOperations();
       await flushRewards();
+      await RewardShopRepository.flushPendingWrites();
       for (final session in _learningSessions.values.toList()) {
         final lease = LearningProfileLease._(session, _profileGeneration,
             _learningResetEpoch, session.epoch,

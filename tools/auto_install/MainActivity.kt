@@ -5,6 +5,7 @@ import android.app.ActivityManager
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
@@ -24,6 +25,7 @@ class MainActivity : FlutterActivity() {
     private var offlineSpeech: LumoOfflineSpeechBridge? = null
     private var localRecognition: LumoLocalRecognition? = null
     private var kartFriends: KartFriendsBridge? = null
+    private var localBackup: LumoLocalBackupBridge? = null
     private val installerChannel = "lumo_lernen/installer"
     private val distributionChannel: String by lazy {
         try {
@@ -125,8 +127,18 @@ class MainActivity : FlutterActivity() {
         } == true
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // A confirmed import is recovered/applied before Flutter plugins can
+        // cache preferences or Dart can write a previous in-memory snapshot.
+        LumoLocalBackupBridge.recoverBeforeFlutter(this)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        localBackup = LumoLocalBackupBridge(this) {
+            pendingGame == null && !engineCleanupActive && !engineProcessRunning()
+        }.also { it.attach(flutterEngine.dartExecutor.binaryMessenger) }
         // Keep the pinned Dart API; replace its native recognition handler
         // after registration so every capture either stays local or fails.
         localRecognition = LumoLocalRecognition(this, flutterEngine.dartExecutor.binaryMessenger)
@@ -310,7 +322,7 @@ class MainActivity : FlutterActivity() {
                     // :lumo_game. A leftover engine that outlived its game is ended
                     // first, but only while Flutter is in front and nothing is pending.
                     val scene = requestedScene(call)
-                    if (pendingGame != null || engineCleanupActive) {
+                    if (pendingGame != null || engineCleanupActive || localBackup?.blocksGames == true) {
                         journal { GameStartJournal.refused(this, scene, System.currentTimeMillis(), "game_running",
                             if (pendingGame != null) "Start läuft noch" else "Rest wird beendet") }
                         result.error("game_running", "Ein Spiel ist bereits geöffnet.", null)
@@ -510,6 +522,7 @@ class MainActivity : FlutterActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (localBackup?.onActivityResult(requestCode, resultCode, data) == true) return
         if (kartFriends?.onActivityResult(requestCode, resultCode, data) == true) return
         if (requestCode == gameRequest) {
             // A recreated host has no live Dart caller. Its durable return is
@@ -605,6 +618,8 @@ class MainActivity : FlutterActivity() {
         localRecognition = null
         offlineSpeech?.destroy()
         offlineSpeech = null
+        localBackup?.destroy()
+        localBackup = null
         super.onDestroy()
     }
 }

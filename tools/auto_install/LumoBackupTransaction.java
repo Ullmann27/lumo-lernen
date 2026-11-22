@@ -117,12 +117,21 @@ public final class LumoBackupTransaction {
         if (total > MAX_NATIVE) throw new IOException("Game backup size limit exceeded");
     }
     public void stage(byte[] archive) throws IOException {
+        stage(archive, "test-process");
+    }
+    public void stage(byte[] archive, String processIdentity) throws IOException {
         if (archive.length == 0 || archive.length > MAX_ARCHIVE) throw new IOException("Invalid archive size");
         if (new File(stateRoot, "state").exists() || pending()) throw new IOException("Restore already pending");
+        durable(new File(stateRoot, "pending-origin"), processIdentity.getBytes("UTF-8"));
         durable(new File(stateRoot, "pending.json"), archive);
     }
     public boolean pending() {
         return new File(stateRoot, "pending.json").isFile() || new File(stateRoot, "pending-previous.pack").isFile();
+    }
+    public boolean recoveryRequired() { return new File(stateRoot, "state").isFile(); }
+    public boolean stagedBy(String processIdentity) throws IOException {
+        File origin = new File(stateRoot, "pending-origin");
+        return origin.isFile() && new String(readLimited(origin, 100), "UTF-8").equals(processIdentity);
     }
     public byte[] pendingArchive() throws IOException {
         File file = new File(stateRoot, "pending.json");
@@ -130,9 +139,13 @@ public final class LumoBackupTransaction {
     }
     public boolean hasPrevious() { return new File(stateRoot, "previous.pack").isFile(); }
     public void stagePrevious() throws IOException {
+        stagePrevious("test-process");
+    }
+    public void stagePrevious(String processIdentity) throws IOException {
         if (pending() || new File(stateRoot, "state").exists()) throw new IOException("Restore already pending");
         byte[] bytes = readLimited(new File(stateRoot, "previous.pack"), MAX_ARCHIVE);
         unpack(bytes);
+        durable(new File(stateRoot, "pending-origin"), processIdentity.getBytes("UTF-8"));
         durable(new File(stateRoot, "pending-previous.pack"), bytes);
     }
     public Snapshot pendingPrevious() throws IOException {
@@ -219,6 +232,7 @@ public final class LumoBackupTransaction {
     private void clearPending() throws IOException {
         delete(new File(stateRoot, "pending.json"));
         delete(new File(stateRoot, "pending-previous.pack"));
+        delete(new File(stateRoot, "pending-origin"));
     }
     private static void delete(File file) throws IOException {
         if (file.exists() && !file.delete()) throw new IOException("Backup cleanup failed");

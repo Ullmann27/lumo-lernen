@@ -123,10 +123,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int _gamesPlayed = 0;
   int _totalEarnedStars = 0;
   StreamSubscription<RewardWallet>? _walletChanges;
+  LearningProfileLease? _rewardOwner;
+  List<RedeemedReward> _legacyRedeemed = const [];
+  int _rewardLoad = 0;
+  late int _profileGeneration;
 
   @override
   void initState() {
     super.initState();
+    _profileGeneration = widget.appState.profileGeneration;
+    widget.appState.addListener(_profileChanged);
     _load();
     _walletChanges =
         RewardWalletRepository.instance.changes.listen(_applyWallet);
@@ -144,6 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void dispose() {
     _walletChanges?.cancel();
+    widget.appState.removeListener(_profileChanged);
     super.dispose();
   }
 
@@ -158,21 +165,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _load() async {
-    final shop = await const RewardShopRepository().load(_shopChildId);
-    final wallet = await RewardWalletRepository.instance.load();
-    if (!mounted) return;
-    setState(() {
-      _redeemed = shop.redeemed.reversed.take(5).toList();
-      _gamesPlayed = wallet.gameResultIds.length;
-      _totalEarnedStars = wallet.totalEarnedStars;
-    });
+    final ticket = ++_rewardLoad;
+    final identity = widget.appState.captureLearningProfile();
+    final legacyId = _shopChildId;
+    try {
+      final owner = await identity;
+      final shop = await const RewardShopRepository().load(legacyId);
+      final wallet = await widget.appState.loadRewardShopWallet(lease: owner);
+      if (!mounted ||
+          ticket != _rewardLoad ||
+          owner.generation != widget.appState.profileGeneration) {
+        return;
+      }
+      _rewardOwner = owner;
+      _legacyRedeemed = shop.redeemed;
+      _applyWallet(wallet);
+    } catch (_) {
+      // A read failure neither replaces the saved history nor switches its
+      // ownership to the profile that happened to become visible meanwhile.
+    }
+  }
+
+  void _profileChanged() {
+    if (!mounted || _profileGeneration == widget.appState.profileGeneration) {
+      return;
+    }
+    _profileGeneration = widget.appState.profileGeneration;
+    _rewardOwner = null;
+    _legacyRedeemed = const [];
+    setState(() => _redeemed = const []);
+    _load();
   }
 
   void _applyWallet(RewardWallet wallet) {
     if (!mounted) return;
     setState(() {
-      _gamesPlayed = wallet.gameResultIds.length;
+      _gamesPlayed =
+          wallet.gameResultIds.where((id) => !id.startsWith('parent:')).length;
       _totalEarnedStars = wallet.totalEarnedStars;
+      final owner = _rewardOwner;
+      if (owner != null &&
+          owner.generation == widget.appState.profileGeneration) {
+        final entries = <RedeemedReward>[..._legacyRedeemed];
+        final ids =
+            entries.map((v) => v.transactionId).whereType<String>().toSet();
+        for (final receipt in wallet.shopRedemptions) {
+          if (receipt.ownerId == owner.studentId &&
+              ids.add(receipt.transactionId)) {
+            entries.add(receipt.historyEntry);
+          }
+        }
+        entries.sort((a, b) => b.redeemedAt.compareTo(a.redeemedAt));
+        _redeemed = entries.take(5).toList();
+      }
     });
   }
 
@@ -1199,6 +1244,17 @@ class _RewardShelf extends StatelessWidget {
   Widget _piece(_ShelfItem item) {
     final reward = item.reward;
     if (reward != null) {
+      if (reward.itemId.startsWith('custom_') && reward.emoji != null) {
+        return Container(
+            width: _token,
+            height: _token,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: LumoVisualTokens.gold.withValues(alpha: .20),
+                border: Border.all(color: LumoVisualTokens.gold)),
+            child: Text(reward.emoji!, style: const TextStyle(fontSize: 27)));
+      }
       return ProfileRewardToken(
         icon: _art(reward).$1,
         color: _art(reward).$2,

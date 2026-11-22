@@ -9,7 +9,8 @@ import 'reward_wallet_repository.dart';
 /// await. The historical name/grade shop remains intact; all new definitions
 /// and receipts use the stable learning-profile identity.
 class RewardShopSession extends ChangeNotifier {
-  RewardShopSession(this.appState, {this.repository = const RewardShopRepository()}) {
+  RewardShopSession(this.appState,
+      {this.repository = const RewardShopRepository()}) {
     _generation = appState.profileGeneration;
     _legacyId = _currentLegacyId;
     appState.addListener(_onAppChanged);
@@ -21,6 +22,7 @@ class RewardShopSession extends ChangeNotifier {
   LearningProfileLease? owner;
   RewardShopProfile? profile;
   RewardWallet? wallet;
+  String ownerName = '';
   RewardShopState legacy = const RewardShopState();
   bool loading = true;
   bool busy = false;
@@ -34,10 +36,13 @@ class RewardShopSession extends ChangeNotifier {
   String get _currentLegacyId => RewardShopRepository.legacyChildId(
       appState.state.childName, appState.state.grade);
 
-  bool get ready => !loading && owner != null && profile != null && wallet != null;
+  bool get ready =>
+      !loading && owner != null && profile != null && wallet != null;
 
-  bool isCurrent(LearningProfileLease lease) => !_disposed &&
-      !appState.backupBusy && appState.canUseLearningLease(lease) &&
+  bool isCurrent(LearningProfileLease lease) =>
+      !_disposed &&
+      !appState.backupBusy &&
+      appState.canUseLearningLease(lease) &&
       lease.generation == appState.profileGeneration &&
       appState.school.cachedActiveStudentId ==
           (lease.logStudentId == 'self' ? null : lease.studentId) &&
@@ -58,8 +63,10 @@ class RewardShopSession extends ChangeNotifier {
   List<RedeemedReward> get history {
     final entries = <RedeemedReward>[...legacy.redeemed];
     final ids = entries.map((v) => v.transactionId).whereType<String>().toSet();
-    for (final receipt in wallet?.shopRedemptions ?? const <RewardShopRedemption>[]) {
-      if (receipt.ownerId == owner?.studentId && ids.add(receipt.transactionId)) {
+    for (final receipt
+        in wallet?.shopRedemptions ?? const <RewardShopRedemption>[]) {
+      if (receipt.ownerId == owner?.studentId &&
+          ids.add(receipt.transactionId)) {
         entries.add(receipt.historyEntry);
       }
     }
@@ -68,14 +75,19 @@ class RewardShopSession extends ChangeNotifier {
   }
 
   List<RewardShopRedemption> get pending {
-    final completed = wallet?.shopRedemptions.map((v) => v.transactionId).toSet() ?? {};
+    final completed =
+        wallet?.shopRedemptions.map((v) => v.transactionId).toSet() ?? {};
     final items = <String, RewardShopRedemption>{
-      for (final value in profile?.pendingRedemptions ?? const <RewardShopRedemption>[])
+      for (final value
+          in profile?.pendingRedemptions ?? const <RewardShopRedemption>[])
         value.transactionId: value,
       ..._memoryPending,
     };
-    return items.values.where((v) => v.ownerId == owner?.studentId &&
-        !completed.contains(v.transactionId)).toList();
+    return items.values
+        .where((v) =>
+            v.ownerId == owner?.studentId &&
+            !completed.contains(v.transactionId))
+        .toList();
   }
 
   void _notify() {
@@ -84,7 +96,8 @@ class RewardShopSession extends ChangeNotifier {
 
   void _onAppChanged() {
     if (_disposed) return;
-    if (_generation != appState.profileGeneration || _legacyId != _currentLegacyId) {
+    if (_generation != appState.profileGeneration ||
+        _legacyId != _currentLegacyId) {
       _generation = appState.profileGeneration;
       _legacyId = _currentLegacyId;
       _memoryPending.clear();
@@ -92,7 +105,9 @@ class RewardShopSession extends ChangeNotifier {
       return;
     }
     if (wallet != null && !loading) {
-      wallet = wallet!.copyWith(stars: appState.state.stars, xp: appState.state.xp,
+      wallet = wallet!.copyWith(
+          stars: appState.state.stars,
+          xp: appState.state.xp,
           level: appState.state.level);
       _notify();
     }
@@ -113,15 +128,45 @@ class RewardShopSession extends ChangeNotifier {
       if (_disposed || ticket != _loadId) return;
       owner = lease;
       validateOwner(lease);
-      final saved = await repository.loadProfile(lease.studentId);
+      final name = lease.logStudentId == 'self'
+          ? appState.state.childName
+          : await appState.school.studentName(lease.studentId) ?? 'Schulprofil';
+      validateOwner(lease);
+      var saved = await repository.loadProfile(lease.studentId);
       validateOwner(lease);
       final old = await repository.load(legacyId);
       validateOwner(lease);
-      final balance = await appState.loadRewardShopWallet(lease: lease);
+      var balance = await appState.loadRewardShopWallet(lease: lease);
+      // A pending receipt may already be visible in native preference memory
+      // after an ambiguous write reply. Only an identical, positively confirmed
+      // wallet retry establishes durability; merely finding its ID is not an
+      // acknowledgement. Missing receipts stay pending for explicit resumption.
+      for (final receipt in saved.pendingRedemptions) {
+        if (!balance.shopRedemptions
+            .any((v) => v.transactionId == receipt.transactionId)) {
+          continue;
+        }
+        validateOwner(lease);
+        balance =
+            await appState.redeemShopReward(lease: lease, redemption: receipt);
+        validateOwner(lease);
+        try {
+          saved = await repository.finishRedemption(
+              ownerId: lease.studentId,
+              transactionId: receipt.transactionId,
+              validateOwner: () => validateOwner(lease));
+        } catch (_) {
+          validateOwner(lease);
+          // The wallet receipt is durable even if queue cleanup must wait.
+        }
+      }
       await appState.hydrateFromWallet();
+      validateOwner(lease);
+      balance = await appState.loadRewardShopWallet(lease: lease);
       validateOwner(lease);
       if (ticket != _loadId) return;
       profile = saved;
+      ownerName = name;
       legacy = old;
       wallet = balance;
       loading = false;
@@ -137,13 +182,18 @@ class RewardShopSession extends ChangeNotifier {
   Future<void> saveDefinition(CustomRewardDefinition definition,
       {required LearningProfileLease lease}) async {
     validateOwner(lease);
-    if (busy) throw StateError('Bitte warte, bis der aktuelle Gutschein gespeichert ist.');
+    if (busy) {
+      throw StateError(
+          'Bitte warte, bis der aktuelle Gutschein gespeichert ist.');
+    }
     busy = true;
     error = null;
     _notify();
     try {
-      final saved = await repository.saveDefinition(ownerId: lease.studentId,
-          definition: definition, validateOwner: () => validateOwner(lease));
+      final saved = await repository.saveDefinition(
+          ownerId: lease.studentId,
+          definition: definition,
+          validateOwner: () => validateOwner(lease));
       validateOwner(lease);
       profile = saved;
     } catch (failure) {
@@ -160,28 +210,36 @@ class RewardShopSession extends ChangeNotifier {
     if (busy) return false;
     validateOwner(lease);
     if (receipt.ownerId != lease.studentId) {
-      throw StateError('Dieser Gutschein gehört zu einem anderen Kinderprofil.');
+      throw StateError(
+          'Dieser Gutschein gehört zu einem anderen Kinderprofil.');
     }
     busy = true;
     error = null;
     _memoryPending[receipt.transactionId] = receipt;
     _notify();
     try {
-      profile = await repository.stageRedemption(redemption: receipt,
-          validateOwner: () => validateOwner(lease));
+      final staged = await repository.stageRedemption(
+          redemption: receipt, validateOwner: () => validateOwner(lease));
       validateOwner(lease);
-      wallet = await appState.redeemShopReward(lease: lease, redemption: receipt);
+      profile = staged;
+      final committed =
+          await appState.redeemShopReward(lease: lease, redemption: receipt);
       validateOwner(lease);
+      wallet = committed;
       _memoryPending.remove(receipt.transactionId);
       // The wallet is already durably committed. A cleanup error must not turn
       // a successful debit into a fresh purchase with a different identity.
       try {
-        profile = await repository.finishRedemption(ownerId: lease.studentId,
+        final finished = await repository.finishRedemption(
+            ownerId: lease.studentId,
             transactionId: receipt.transactionId,
             validateOwner: () => validateOwner(lease));
+        validateOwner(lease);
+        profile = finished;
       } catch (_) {
         if (isCurrent(lease)) {
-          error = 'Der Gutschein ist eingelöst. Der gespeicherte Beleg bleibt erhalten.';
+          error =
+              'Der Gutschein ist eingelöst. Der gespeicherte Beleg bleibt erhalten.';
         }
       }
       return true;

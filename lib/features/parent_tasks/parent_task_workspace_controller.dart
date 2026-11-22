@@ -35,8 +35,9 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
 
   bool get current => lease != null && appState.isCurrentLearningLease(lease!);
   bool get ready => current && !loading && !busy && workspace != null;
-  ParentTaskAttempt? get activeAttempt =>
-      current ? _pendingAnswers[lease!.studentId] ?? workspace?.activeAttempt : null;
+  ParentTaskAttempt? get activeAttempt => current
+      ? _pendingAnswers[lease!.studentId] ?? workspace?.activeAttempt
+      : null;
   bool get hasPendingResult =>
       activeAttempt?.answered == true && activeAttempt?.completed == false;
 
@@ -46,7 +47,9 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
 
   void _profileChanged() {
     if (_generation == appState.profileGeneration &&
-        _wasResetting == appState.resetting) return;
+        _wasResetting == appState.resetting) {
+      return;
+    }
     _generation = appState.profileGeneration;
     _wasResetting = appState.resetting;
     // Clear synchronously: not even one frame may show the other child's text.
@@ -66,7 +69,8 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
   }
 
   void _tasksChanged() {
-    if (!busy && lease != null &&
+    if (!busy &&
+        lease != null &&
         ParentTaskRepository.changes.value == lease!.studentId) {
       unawaited(reload());
     }
@@ -80,16 +84,23 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
     try {
       final owner = await appState.captureLearningProfile();
       await appState.prepareLearningLease(owner);
-      final repository = ParentTaskRepository(studentId: owner.studentId,
+      final repository = ParentTaskRepository(
+          studentId: owner.studentId,
           mayWrite: () => appState.canUseLearningLease(owner));
       final data = await repository.load();
       final name = await appState.school.studentName(owner.studentId);
-      if (_disposed || revision != _loadRevision ||
-          !appState.isCurrentLearningLease(owner)) return;
+      if (_disposed ||
+          revision != _loadRevision ||
+          !appState.isCurrentLearningLease(owner)) {
+        return;
+      }
       lease = owner;
       _repository = repository;
       workspace = data;
-      profileName = name ?? appState.state.childName;
+      profileName = name ??
+          (owner.logStudentId == 'self'
+              ? appState.state.childName
+              : 'dieses Kinderprofil');
     } catch (failure) {
       if (_disposed || revision != _loadRevision) return;
       error = _message(failure);
@@ -101,8 +112,10 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
     }
   }
 
-  Future<bool> _operate(Future<ParentTaskWorkspace> Function(
-      LearningProfileLease, ParentTaskRepository) operation) async {
+  Future<bool> _operate(
+      Future<ParentTaskWorkspace> Function(
+              LearningProfileLease, ParentTaskRepository)
+          operation) async {
     if (!ready) return false;
     final owner = lease!;
     final repository = _repository!;
@@ -113,10 +126,13 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
     try {
       final actionOwner = await action.resolve();
       if (actionOwner.studentId != owner.studentId || action.invalidated) {
-        throw StateError('Das Kinderprofil wurde gewechselt. Bitte erneut öffnen.');
+        throw StateError(
+            'Das Kinderprofil wurde gewechselt. Bitte erneut öffnen.');
       }
       final data = await operation(owner, repository);
-      if (!_disposed && appState.isCurrentLearningLease(owner)) workspace = data;
+      if (!_disposed && appState.isCurrentLearningLease(owner)) {
+        workspace = data;
+      }
       return true;
     } catch (failure) {
       if (!_disposed && appState.isCurrentLearningLease(owner)) {
@@ -131,7 +147,8 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
   }
 
   Future<bool> save(ParentTaskDraft draft, {ParentAuthoredTask? previous}) =>
-      _operate((owner, repository) => repository.save(draft, previous: previous));
+      _operate(
+          (owner, repository) => repository.save(draft, previous: previous));
 
   Future<bool> remove(ParentAuthoredTask task) =>
       _operate((owner, repository) => repository.remove(task));
@@ -147,29 +164,44 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
 
   Future<bool> answer(AdaptiveTaskAnswer value) {
     final active = activeAttempt;
-    if (!ready || active == null || active.answered ||
+    if (!ready ||
+        active == null ||
+        active.answered ||
         value.task.taskInstanceId != active.id ||
         value.task.childId != lease!.studentId ||
         !active.task.content.options.contains('${value.answer}')) {
       return Future.value(false);
     }
     final now = DateTime.now().toUtc();
-    final duration = now.difference(active.startedAt).inMilliseconds.clamp(0, 86400000);
+    final duration =
+        now.difference(active.startedAt).inMilliseconds.clamp(0, 86400000);
     // Correctness is supplied by AdaptiveTaskRenderer, exactly as in lessons.
     final reward = const RewardEngine().calculateAnswerReward(
-        result: TaskResult(taskInstanceId: active.id,
-            childId: active.task.studentId, skillId: value.task.skillId,
-            correct: value.correct, helpUsed: value.hintUsed,
+        result: TaskResult(
+            taskInstanceId: active.id,
+            childId: active.task.studentId,
+            skillId: value.task.skillId,
+            correct: value.correct,
+            helpUsed: value.hintUsed,
             responseTimeMs: duration));
-    final accepted = ParentTaskAttempt(id: active.id, task: active.task,
-        startedAt: active.startedAt, answer: '${value.answer}',
-        correct: value.correct, hintUsed: value.hintUsed, answeredAt: now,
-        durationMs: duration, stars: reward.stars, xp: reward.xp);
+    final accepted = ParentTaskAttempt(
+        id: active.id,
+        task: active.task,
+        startedAt: active.startedAt,
+        answer: '${value.answer}',
+        correct: value.correct,
+        hintUsed: value.hintUsed,
+        answeredAt: now,
+        durationMs: duration,
+        stars: reward.stars,
+        xp: reward.xp);
     _pendingAnswers[lease!.studentId] = accepted;
     return _operate((owner, repository) async {
       final saved = await repository.accept(accepted);
       _pendingAnswers.remove(owner.studentId);
-      if (!_disposed && appState.isCurrentLearningLease(owner)) workspace = saved;
+      if (!_disposed && appState.isCurrentLearningLease(owner)) {
+        workspace = saved;
+      }
       return _finish(owner, repository, saved.activeAttempt!);
     });
   }
@@ -182,7 +214,9 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
     return _operate((owner, repository) async {
       final saved = await repository.accept(attempt);
       _pendingAnswers.remove(owner.studentId);
-      if (!_disposed && appState.isCurrentLearningLease(owner)) workspace = saved;
+      if (!_disposed && appState.isCurrentLearningLease(owner)) {
+        workspace = saved;
+      }
       return _finish(owner, repository, saved.activeAttempt!);
     });
   }
@@ -191,7 +225,8 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
       ParentTaskRepository repository, ParentTaskAttempt attempt) async {
     if (attempt.completed) return repository.load();
     if (!appState.isCurrentLearningLease(owner)) {
-      throw StateError('Das Ergebnis wird beim Öffnen dieses Kinderprofils fortgesetzt.');
+      throw StateError(
+          'Das Ergebnis wird beim Öffnen dieses Kinderprofils fortgesetzt.');
     }
     await appState.attemptLog.append(Attempt(
       id: attempt.id,
@@ -209,16 +244,19 @@ class ParentTaskWorkspaceController extends ChangeNotifier {
       durationMs: attempt.durationMs,
       score: attempt.correct! ? 1 : 0,
     ));
-    await appState.awardParentTaskResult(lease: owner, resultId: attempt.id,
-        stars: attempt.stars, xp: attempt.xp);
+    await appState.awardParentTaskResult(
+        lease: owner,
+        resultId: attempt.id,
+        stars: attempt.stars,
+        xp: attempt.xp);
     return repository.complete(attempt.id);
   }
 
   static String _message(Object failure) => switch (failure) {
-    FormatException() => failure.message,
-    StateError() => failure.message,
-    _ => 'Speichern ist gerade nicht möglich. Bitte erneut versuchen.',
-  };
+        FormatException() => failure.message,
+        StateError() => failure.message,
+        _ => 'Speichern ist gerade nicht möglich. Bitte erneut versuchen.',
+      };
 
   @override
   void dispose() {

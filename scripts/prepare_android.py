@@ -236,6 +236,8 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False,
         ('LumoSpeechEnvelope.kt', 'kotlin'),
         ('KartGhostRules.kt', 'kotlin'),
         ('KartFriendsBridge.kt', 'kotlin'),
+        ('LumoBackupTransaction.java', 'java'),
+        ('LumoLocalBackupBridge.kt', 'kotlin'),
     ):
         source = root / 'tools/auto_install' / filename
         if source.is_file():

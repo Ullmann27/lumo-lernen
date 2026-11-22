@@ -44,7 +44,8 @@ class ParentTaskDraft {
     if (this.options.length < 2 || this.options.length > 6) {
       throw const FormatException('Bitte insgesamt 2 bis 6 Antworten angeben.');
     }
-    final normalized = this.options
+    final normalized = this
+        .options
         .map((value) => value.replaceAll(RegExp(r'\s+'), ' '))
         .toSet();
     if (this.options.any((value) => value.isEmpty || value.length > 240) ||
@@ -52,12 +53,14 @@ class ParentTaskDraft {
       throw const FormatException(
           'Alle Antworten müssen verschieden sein und 1 bis 240 Zeichen haben.');
     }
-    if (this.options.where((value) => value == this.correctAnswer).length != 1) {
+    if (this.options.where((value) => value == this.correctAnswer).length !=
+        1) {
       throw const FormatException(
           'Die richtige Antwort muss genau einmal in der Auswahl stehen.');
     }
     if (this.explanation.length > 2000) {
-      throw const FormatException('Die Erklärung darf höchstens 2000 Zeichen haben.');
+      throw const FormatException(
+          'Die Erklärung darf höchstens 2000 Zeichen haben.');
     }
   }
 
@@ -78,7 +81,8 @@ class ParentAuthoredTask {
     required this.createdAt,
     required this.updatedAt,
   }) {
-    if (studentId.trim().isEmpty || revision < 1 ||
+    if (studentId.trim().isEmpty ||
+        revision < 1 ||
         !RegExp('^parent-task:${parentTaskOwnerHash(studentId)}:[a-f0-9]{32}\$')
             .hasMatch(id)) {
       throw const FormatException('Ungültige Zuordnung der Elternaufgabe.');
@@ -140,11 +144,17 @@ class ParentAuthoredTask {
       skillId: const SkillId('parent-authored'),
       taskType: TaskType.multipleChoice,
       difficulty: 1,
-      parameters: {'source': 'parent', 'parentTaskId': id, 'grade': content.grade},
+      parameters: {
+        'source': 'parent',
+        'parentTaskId': id,
+        'grade': content.grade
+      },
       prompt: content.prompt,
       options: List.unmodifiable([
         for (var index = 0; index < choices.length; index++)
-          AnswerOption(id: 'parent-choice-$index', label: choices[index],
+          AnswerOption(
+              id: 'parent-choice-$index',
+              label: choices[index],
               payload: choices[index]),
       ]),
       correctAnswer: content.correctAnswer,
@@ -172,12 +182,22 @@ class ParentTaskAttempt {
     this.completed = false,
   }) {
     if (!RegExp('^parent:${parentTaskOwnerHash(task.studentId)}:[a-f0-9]{32}\$')
-            .hasMatch(id) || durationMs < 0 || stars < 0 || stars > 12 ||
-        xp < 0 || xp > 70 ||
-        (answered && (!task.content.options.contains(answer) ||
-            correct == null || answeredAt == null)) ||
-        (!answered && (correct != null || answeredAt != null || completed ||
-            stars != 0 || xp != 0)) ||
+            .hasMatch(id) ||
+        durationMs < 0 ||
+        stars < 0 ||
+        stars > 12 ||
+        xp < 0 ||
+        xp > 70 ||
+        (answered &&
+            (!task.content.options.contains(answer) ||
+                correct == null ||
+                answeredAt == null)) ||
+        (!answered &&
+            (correct != null ||
+                answeredAt != null ||
+                completed ||
+                stars != 0 ||
+                xp != 0)) ||
         (correct == false && (stars != 0 || xp != 0))) {
       throw const FormatException('Ungültiger Elternaufgaben-Versuch.');
     }
@@ -197,9 +217,17 @@ class ParentTaskAttempt {
   bool get answered => answer != null;
 
   ParentTaskAttempt finish() => ParentTaskAttempt(
-      id: id, task: task, startedAt: startedAt, answer: answer,
-      correct: correct, hintUsed: hintUsed, answeredAt: answeredAt,
-      durationMs: durationMs, stars: stars, xp: xp, completed: true);
+      id: id,
+      task: task,
+      startedAt: startedAt,
+      answer: answer,
+      correct: correct,
+      hintUsed: hintUsed,
+      answeredAt: answeredAt,
+      durationMs: durationMs,
+      stars: stars,
+      xp: xp,
+      completed: true);
 
   Map<String, Object?> toJson() => {
         'id': id,
@@ -224,7 +252,8 @@ class ParentTaskAttempt {
         answer: json['answer'] as String?,
         correct: json['correct'] as bool?,
         hintUsed: json['hintUsed'] as bool,
-        answeredAt: json['answeredAt'] == null ? null
+        answeredAt: json['answeredAt'] == null
+            ? null
             : DateTime.parse(json['answeredAt'] as String),
         durationMs: json['durationMs'] as int,
         stars: json['stars'] as int,

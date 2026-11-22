@@ -192,12 +192,15 @@ class CustomRewardDefinition {
 
   void validate() {
     if (!RegExp(r'^custom_[a-f0-9]{32}$').hasMatch(id) ||
-        revision < 1 || revision > 1000000 ||
+        revision < 1 ||
+        revision > 1000000 ||
         !_validRewardText(title, 100) ||
         !_validRewardText(emoji, 32) ||
         !_validRewardText(description, 500, empty: true) ||
-        cost < 1 || cost > _maxRewardCurrency ||
-        minLevel < 1 || minLevel > 25000) {
+        cost < 1 ||
+        cost > _maxRewardCurrency ||
+        minLevel < 1 ||
+        minLevel > 25000) {
       throw const FormatException('Ungültiger eigener Gutschein');
     }
   }
@@ -210,10 +213,15 @@ class CustomRewardDefinition {
         cost: cost,
         currency: RewardCurrency.stars,
         seasons: const [],
-        tier: cost < 300 ? RewardTier.micro
-            : cost < 1000 ? RewardTier.small
-            : cost < 5000 ? RewardTier.medium
-            : cost < 20000 ? RewardTier.big : RewardTier.premium,
+        tier: cost < 300
+            ? RewardTier.micro
+            : cost < 1000
+                ? RewardTier.small
+                : cost < 5000
+                    ? RewardTier.medium
+                    : cost < 20000
+                        ? RewardTier.big
+                        : RewardTier.premium,
         parentApprovalRequired: true,
         minLevel: minLevel,
         revision: revision,
@@ -228,7 +236,8 @@ class CustomRewardDefinition {
     int? minLevel,
     CustomRewardCategory? category,
     bool? active,
-  }) => CustomRewardDefinition(
+  }) =>
+      CustomRewardDefinition(
         id: id,
         revision: revision + 1,
         title: title ?? this.title,
@@ -241,9 +250,15 @@ class CustomRewardDefinition {
       );
 
   Map<String, Object?> toJson() => {
-        'id': id, 'revision': revision, 'title': title, 'emoji': emoji,
-        'description': description, 'cost': cost, 'minLevel': minLevel,
-        'category': category.name, 'active': active,
+        'id': id,
+        'revision': revision,
+        'title': title,
+        'emoji': emoji,
+        'description': description,
+        'cost': cost,
+        'minLevel': minLevel,
+        'category': category.name,
+        'active': active,
       };
 
   factory CustomRewardDefinition.fromJson(Map<String, Object?> json) {
@@ -265,7 +280,8 @@ class CustomRewardDefinition {
 
 bool _validRewardText(String value, int maximum, {bool empty = false}) =>
     (empty || value.trim().isNotEmpty) &&
-    value == value.trim() && value.runes.length <= maximum &&
+    value == value.trim() &&
+    value.runes.length <= maximum &&
     !RegExp(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]').hasMatch(value);
 
 /// The same immutable receipt is staged after adult approval and committed
@@ -302,23 +318,31 @@ class RewardShopRedemption {
     if (!RegExp(r'^shop:[a-f0-9]{64}:[a-f0-9]{32}$').hasMatch(transactionId) ||
         !_validRewardText(ownerId, 160) ||
         !RegExp(r'^[a-zA-Z0-9_-]{1,100}$').hasMatch(itemId) ||
-        itemRevision < 0 || itemRevision > 1000000 ||
+        itemRevision < 0 ||
+        itemRevision > 1000000 ||
         !_validRewardText(title, 100) ||
         !_validRewardText(emoji, 32) ||
         !_validRewardText(description, 500, empty: true) ||
-        cost < 1 || cost > _maxRewardCurrency ||
-        minLevel < 1 || minLevel > 25000 ||
+        cost < 1 ||
+        cost > _maxRewardCurrency ||
+        minLevel < 1 ||
+        minLevel > 25000 ||
         (itemId.startsWith('custom_') &&
-          (itemRevision == 0 || category == null))) {
+            (itemRevision == 0 || category == null))) {
       throw const FormatException('Ungültige Gutschein-Einlösung');
     }
   }
 
   Map<String, Object?> toJson() => {
-        'transactionId': transactionId, 'ownerId': ownerId,
-        'itemId': itemId, 'itemRevision': itemRevision,
-        'title': title, 'emoji': emoji, 'description': description,
-        'cost': cost, 'minLevel': minLevel,
+        'transactionId': transactionId,
+        'ownerId': ownerId,
+        'itemId': itemId,
+        'itemRevision': itemRevision,
+        'title': title,
+        'emoji': emoji,
+        'description': description,
+        'cost': cost,
+        'minLevel': minLevel,
         'redeemedAt': redeemedAt.toIso8601String(),
         if (category != null) 'category': category!.name,
       };
@@ -335,7 +359,8 @@ class RewardShopRedemption {
       cost: json['cost'] as int,
       minLevel: json['minLevel'] as int,
       redeemedAt: DateTime.parse(json['redeemedAt'] as String),
-      category: json['category'] == null ? null
+      category: json['category'] == null
+          ? null
           : CustomRewardCategory.values.byName(json['category'] as String),
     );
     value.validate();
@@ -343,9 +368,14 @@ class RewardShopRedemption {
   }
 
   RedeemedReward get historyEntry => RedeemedReward(
-        itemId: itemId, title: title, redeemedAt: redeemedAt, cost: cost,
-        currency: RewardCurrency.stars, transactionId: transactionId,
-        itemRevision: itemRevision, emoji: emoji,
+        itemId: itemId,
+        title: title,
+        redeemedAt: redeemedAt,
+        cost: cost,
+        currency: RewardCurrency.stars,
+        transactionId: transactionId,
+        itemRevision: itemRevision,
+        emoji: emoji,
       );
 }
 
@@ -356,8 +386,8 @@ class RewardShopProfile {
     required this.ownerId,
     List<CustomRewardDefinition> revisions = const [],
     List<RewardShopRedemption> pendingRedemptions = const [],
-  }) : revisions = List.unmodifiable(revisions),
-       pendingRedemptions = List.unmodifiable(pendingRedemptions);
+  })  : revisions = List.unmodifiable(revisions),
+        pendingRedemptions = List.unmodifiable(pendingRedemptions);
 
   final String ownerId;
   final List<CustomRewardDefinition> revisions;
@@ -366,7 +396,9 @@ class RewardShopProfile {
   List<CustomRewardDefinition> get currentDefinitions {
     final current = <String, CustomRewardDefinition>{};
     for (final item in revisions) {
-      if ((current[item.id]?.revision ?? 0) < item.revision) current[item.id] = item;
+      if ((current[item.id]?.revision ?? 0) < item.revision) {
+        current[item.id] = item;
+      }
     }
     return List.unmodifiable(current.values);
   }
@@ -374,39 +406,47 @@ class RewardShopProfile {
   RewardShopProfile copyWith({
     List<CustomRewardDefinition>? revisions,
     List<RewardShopRedemption>? pendingRedemptions,
-  }) => RewardShopProfile(
+  }) =>
+      RewardShopProfile(
         ownerId: ownerId,
         revisions: revisions ?? this.revisions,
         pendingRedemptions: pendingRedemptions ?? this.pendingRedemptions,
       );
 
   Map<String, Object?> toJson() => {
-        'version': 1, 'ownerId': ownerId,
+        'version': 1,
+        'ownerId': ownerId,
         'revisions': revisions.map((v) => v.toJson()).toList(),
-        'pendingRedemptions': pendingRedemptions.map((v) => v.toJson()).toList(),
+        'pendingRedemptions':
+            pendingRedemptions.map((v) => v.toJson()).toList(),
       };
 
   factory RewardShopProfile.fromJson(Map<String, Object?> json) {
     if (json['version'] != 1 ||
-        json['revisions'] is! List || json['pendingRedemptions'] is! List ||
+        json['revisions'] is! List ||
+        json['pendingRedemptions'] is! List ||
         (json['revisions'] as List).length > 5000 ||
         (json['pendingRedemptions'] as List).length > 100) {
       throw const FormatException('Unbekannter Gutschein-Speicherstand');
     }
     final value = RewardShopProfile(
       ownerId: json['ownerId'] as String,
-      revisions: (json['revisions'] as List).map((v) =>
-          CustomRewardDefinition.fromJson((v as Map).cast<String, Object?>())).toList(),
-      pendingRedemptions: (json['pendingRedemptions'] as List).map((v) =>
-          RewardShopRedemption.fromJson((v as Map).cast<String, Object?>())).toList(),
+      revisions: (json['revisions'] as List)
+          .map((v) => CustomRewardDefinition.fromJson(
+              (v as Map).cast<String, Object?>()))
+          .toList(),
+      pendingRedemptions: (json['pendingRedemptions'] as List)
+          .map((v) =>
+              RewardShopRedemption.fromJson((v as Map).cast<String, Object?>()))
+          .toList(),
     );
     final ids = <String>{};
     final receiptIds = <String>{};
     if (!_validRewardText(value.ownerId, 160) ||
         value.currentDefinitions.length > 100 ||
         value.revisions.any((v) => !ids.add('${v.id}:${v.revision}')) ||
-        value.pendingRedemptions.any((v) => v.ownerId != value.ownerId ||
-            !receiptIds.add(v.transactionId))) {
+        value.pendingRedemptions.any((v) =>
+            v.ownerId != value.ownerId || !receiptIds.add(v.transactionId))) {
       throw const FormatException('Widersprüchlicher Gutschein-Speicherstand');
     }
     return value;
@@ -480,8 +520,7 @@ class RewardApprovalRequest {
       ),
       requestedAt: DateTime.tryParse(json['requestedAt']?.toString() ?? '') ??
           DateTime.now(),
-      resolvedAt:
-          DateTime.tryParse(json['resolvedAt']?.toString() ?? ''),
+      resolvedAt: DateTime.tryParse(json['resolvedAt']?.toString() ?? ''),
       parentNote: json['parentNote']?.toString(),
     );
   }
@@ -511,6 +550,7 @@ class RedeemedReward {
   final String? transactionId;
   final int itemRevision;
   final String? emoji;
+
   /// Optional: Eltern-Notiz beim Einloesen ("Eingeloest am Samstag im Park").
   final String? note;
 
@@ -530,7 +570,8 @@ class RedeemedReward {
     return RedeemedReward(
       itemId: json['itemId']?.toString() ?? '',
       title: json['title']?.toString() ?? '',
-      redeemedAt: DateTime.tryParse(json['redeemedAt']?.toString() ?? '') ?? DateTime.now(),
+      redeemedAt: DateTime.tryParse(json['redeemedAt']?.toString() ?? '') ??
+          DateTime.now(),
       cost: (json['cost'] as num?)?.toInt() ?? 0,
       currency: RewardCurrency.values.firstWhere(
         (c) => c.name == json['currency']?.toString(),
@@ -561,6 +602,7 @@ class TestPhotoEntry {
   final int note;
   final DateTime recordedAt;
   final int pointsAwarded;
+
   /// Pfad zum lokal gespeicherten Foto (optional).
   final String? imagePath;
 
@@ -578,7 +620,8 @@ class TestPhotoEntry {
       subject: json['subject']?.toString() ?? '',
       grade: (json['grade'] as num?)?.toInt() ?? 1,
       note: (json['note'] as num?)?.toInt() ?? 5,
-      recordedAt: DateTime.tryParse(json['recordedAt']?.toString() ?? '') ?? DateTime.now(),
+      recordedAt: DateTime.tryParse(json['recordedAt']?.toString() ?? '') ??
+          DateTime.now(),
       pointsAwarded: (json['pointsAwarded'] as num?)?.toInt() ?? 0,
       imagePath: json['imagePath']?.toString(),
     );
@@ -593,11 +636,16 @@ class TestPhotoEntry {
   ///   Note 5 (Nicht gen.) = 0 Punkte
   static int pointsForNote(int note) {
     switch (note) {
-      case 1: return 50;
-      case 2: return 25;
-      case 3: return 10;
-      case 4: return 3;
-      default: return 0;
+      case 1:
+        return 50;
+      case 2:
+        return 25;
+      case 3:
+        return 10;
+      case 4:
+        return 3;
+      default:
+        return 0;
     }
   }
 }
@@ -635,11 +683,9 @@ class RewardShopState {
   }) {
     return RewardShopState(
       availableStars:
-          (availableStars ?? this.availableStars)
-              .clamp(0, _maxRewardCurrency),
-      availablePoints:
-          (availablePoints ?? this.availablePoints)
-              .clamp(0, _maxRewardCurrency),
+          (availableStars ?? this.availableStars).clamp(0, _maxRewardCurrency),
+      availablePoints: (availablePoints ?? this.availablePoints)
+          .clamp(0, _maxRewardCurrency),
       redeemed: redeemed ?? this.redeemed,
       testPhotos: testPhotos ?? this.testPhotos,
       approvalRequests: approvalRequests ?? this.approvalRequests,
@@ -659,28 +705,24 @@ class RewardShopState {
 
   factory RewardShopState.fromJson(Map<String, Object?> json) {
     return RewardShopState(
-      availableStars:
-          ((json['availableStars'] as num?)?.toInt() ?? 0)
-              .clamp(0, _maxRewardCurrency),
-      availablePoints:
-          ((json['availablePoints'] as num?)?.toInt() ?? 0)
-              .clamp(0, _maxRewardCurrency),
+      availableStars: ((json['availableStars'] as num?)?.toInt() ?? 0)
+          .clamp(0, _maxRewardCurrency),
+      availablePoints: ((json['availablePoints'] as num?)?.toInt() ?? 0)
+          .clamp(0, _maxRewardCurrency),
       redeemed: (json['redeemed'] as List?)
               ?.whereType<Map>()
-              .map((m) =>
-                  RedeemedReward.fromJson(m.cast<String, Object?>()))
+              .map((m) => RedeemedReward.fromJson(m.cast<String, Object?>()))
               .toList(growable: false) ??
           const <RedeemedReward>[],
       testPhotos: (json['testPhotos'] as List?)
               ?.whereType<Map>()
-              .map((m) =>
-                  TestPhotoEntry.fromJson(m.cast<String, Object?>()))
+              .map((m) => TestPhotoEntry.fromJson(m.cast<String, Object?>()))
               .toList(growable: false) ??
           const <TestPhotoEntry>[],
       approvalRequests: (json['approvalRequests'] as List?)
               ?.whereType<Map>()
-              .map((m) => RewardApprovalRequest.fromJson(
-                  m.cast<String, Object?>()))
+              .map((m) =>
+                  RewardApprovalRequest.fromJson(m.cast<String, Object?>()))
               .toList(growable: false) ??
           const <RewardApprovalRequest>[],
       goalItemId: json['goalItemId']?.toString(),
@@ -699,11 +741,10 @@ class RewardShopEngine {
   }) {
     final season = Season.fromDate(now ?? DateTime.now());
     return <RewardItem>[
-        ...RewardCatalog.all,
-        for (final reward in customRewards) if (reward.active) reward.item,
-      ]
-        .where((r) => r.availableIn(season))
-        .toList(growable: false);
+      ...RewardCatalog.all,
+      for (final reward in customRewards)
+        if (reward.active) reward.item,
+    ].where((r) => r.availableIn(season)).toList(growable: false);
   }
 
   /// Prueft ob die aktuelle Belohnung leistbar ist.
@@ -722,8 +763,9 @@ class RewardShopEngine {
     RewardItem item, {
     String? note,
     DateTime? now,
+    int level = 1,
   }) {
-    if (!canAfford(state, item)) return null;
+    if (!canAfford(state, item, level: level)) return null;
     final entry = RedeemedReward(
       itemId: item.id,
       title: item.title,
@@ -768,7 +810,8 @@ class RewardShopEngine {
   }
 
   /// Eltern genehmigen eine Anfrage.
-  RewardShopState approveRequest(RewardShopState state, String requestId, {DateTime? now}) {
+  RewardShopState approveRequest(RewardShopState state, String requestId,
+      {DateTime? now}) {
     return state.copyWith(
       approvalRequests: state.approvalRequests.map((r) {
         if (r.id == requestId) {
@@ -804,7 +847,8 @@ class RewardShopEngine {
   }
 
   /// Markiert eine genehmigte Anfrage als eingeloest.
-  RewardShopState markRedeemed(RewardShopState state, String requestId, {DateTime? now}) {
+  RewardShopState markRedeemed(RewardShopState state, String requestId,
+      {DateTime? now}) {
     return state.copyWith(
       approvalRequests: state.approvalRequests.map((r) {
         if (r.id == requestId) {

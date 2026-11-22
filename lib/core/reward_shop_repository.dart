@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/rewards/reward_shop.dart';
+import '../domain/rewards/reward_catalog.dart';
 
 /// Persistiert RewardShopState in SharedPreferences pro Kind.
 class RewardShopRepository {
@@ -19,7 +20,9 @@ class RewardShopRepository {
     final raw = prefs.getString(_key(childId));
     if (raw == null || raw.isEmpty) return const RewardShopState();
     final json = jsonDecode(raw);
-    if (json is! Map) throw const FormatException('Ungültiger Shop-Speicherstand');
+    if (json is! Map) {
+      throw const FormatException('Ungültiger Shop-Speicherstand');
+    }
     return RewardShopState.fromJson(json.cast<String, Object?>());
   }
 
@@ -32,8 +35,9 @@ class RewardShopRepository {
 
   static String _randomId() {
     final random = Random.secure();
-    return List.generate(16, (_) => random.nextInt(256)
-        .toRadixString(16).padLeft(2, '0')).join();
+    return List.generate(
+            16, (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'))
+        .join();
   }
 
   static String newDefinitionId() => 'custom_${_randomId()}';
@@ -42,7 +46,8 @@ class RewardShopRepository {
       'lumo.reward_shop.profile.${sha256.convert(utf8.encode(ownerId))}';
 
   static String legacyChildId(String name, int grade) {
-    final safe = name.trim().isEmpty ? 'kind'
+    final safe = name.trim().isEmpty
+        ? 'kind'
         : name.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     return 'local_${safe}_$grade';
   }
@@ -55,7 +60,8 @@ class RewardShopRepository {
       throw ArgumentError('Neue Gutscheine werden mit Sternen eingelöst');
     }
     final receipt = RewardShopRedemption(
-      transactionId: 'shop:${sha256.convert(utf8.encode(ownerId))}:${_randomId()}',
+      transactionId:
+          'shop:${sha256.convert(utf8.encode(ownerId))}:${_randomId()}',
       ownerId: ownerId,
       itemId: item.id,
       itemRevision: item.revision,
@@ -97,19 +103,22 @@ class RewardShopRepository {
       for (final item in current.currentDefinitions) {
         if (item.id == definition.id) previous = item;
       }
-      if (previous != null && previous.revision == definition.revision &&
+      if (previous != null &&
+          previous.revision == definition.revision &&
           jsonEncode(previous.toJson()) == jsonEncode(definition.toJson())) {
         // An identical retry must still obtain a positive disk confirmation.
         return current;
       }
       if (definition.revision != (previous?.revision ?? 0) + 1) {
-        throw StateError('Dieser Gutschein wurde inzwischen geändert. Bitte neu öffnen.');
+        throw StateError(
+            'Dieser Gutschein wurde inzwischen geändert. Bitte neu öffnen.');
       }
       if (previous == null && current.currentDefinitions.length >= 100) {
         throw StateError('Bis zu 100 eigene Gutscheine sind möglich.');
       }
       if (current.revisions.length >= 5000) {
-        throw StateError('Der Gutschein-Speicher ist voll. Bestehende Belege bleiben erhalten.');
+        throw StateError(
+            'Der Gutschein-Speicher ist voll. Bestehende Belege bleiben erhalten.');
       }
       return current.copyWith(revisions: [...current.revisions, definition]);
     });
@@ -134,29 +143,52 @@ class RewardShopRepository {
         if (originals.length != 1 || !_matches(originals.single, redemption)) {
           throw StateError('Die ursprüngliche Gutschein-Definition fehlt');
         }
+      } else {
+        final originals =
+            RewardCatalog.all.where((item) => item.id == redemption.itemId);
+        if (originals.length != 1 ||
+            originals.single.title != redemption.title ||
+            originals.single.cost != redemption.cost ||
+            originals.single.currency != RewardCurrency.stars ||
+            originals.single.emoji != redemption.emoji ||
+            originals.single.minLevel != redemption.minLevel ||
+            originals.single.revision != redemption.itemRevision) {
+          throw StateError('Die ursprüngliche Katalog-Belohnung fehlt');
+        }
       }
       if (current.pendingRedemptions.length >= 100) {
         throw StateError('Bitte schließe zuerst die wartenden Einlösungen ab.');
       }
       return current.copyWith(pendingRedemptions: [
-        ...current.pendingRedemptions, redemption,
+        ...current.pendingRedemptions,
+        redemption,
       ]);
     });
   }
 
-  static bool _matches(CustomRewardDefinition item, RewardShopRedemption receipt) =>
-      item.title == receipt.title && item.emoji == receipt.emoji &&
-      item.description == receipt.description && item.cost == receipt.cost &&
-      item.minLevel == receipt.minLevel && item.category == receipt.category;
+  static bool _matches(
+          CustomRewardDefinition item, RewardShopRedemption receipt) =>
+      item.active &&
+      item.title == receipt.title &&
+      item.emoji == receipt.emoji &&
+      item.description == receipt.description &&
+      item.cost == receipt.cost &&
+      item.minLevel == receipt.minLevel &&
+      item.category == receipt.category;
 
   Future<RewardShopProfile> finishRedemption({
     required String ownerId,
     required String transactionId,
     required void Function() validateOwner,
-  }) => _update(ownerId, validateOwner, (current) => current.copyWith(
-        pendingRedemptions: current.pendingRedemptions
-            .where((v) => v.transactionId != transactionId).toList(),
-      ));
+  }) =>
+      _update(
+          ownerId,
+          validateOwner,
+          (current) => current.copyWith(
+                pendingRedemptions: current.pendingRedemptions
+                    .where((v) => v.transactionId != transactionId)
+                    .toList(),
+              ));
 
   Future<RewardShopProfile> _update(
     String ownerId,
@@ -171,14 +203,19 @@ class RewardShopRepository {
       final next = change(current);
       final prefs = await SharedPreferences.getInstance();
       validateOwner();
-      final saved = await prefs.setString(profileKey(ownerId), jsonEncode(next.toJson()));
-      if (!saved) throw StateError('Der Gutschein konnte noch nicht gespeichert werden. Bitte erneut versuchen.');
+      final saved =
+          await prefs.setString(profileKey(ownerId), jsonEncode(next.toJson()));
+      if (!saved) {
+        throw StateError(
+            'Der Gutschein konnte noch nicht gespeichert werden. Bitte erneut versuchen.');
+      }
       return next;
     });
     late final Future<void> tail;
     void release() {
       if (identical(_writes[ownerId], tail)) _writes.remove(ownerId);
     }
+
     tail = work.then<void>((_) => release(),
         onError: (Object _, StackTrace __) => release());
     _writes[ownerId] = tail;

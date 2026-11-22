@@ -193,19 +193,27 @@ jobs:
           from pathlib import Path
           import zipfile
 
-          documents = [
+          required_documents = [
               Path('docs/integration/2026-11-22/INTEGRATION.md'),
               Path('docs/integration/2026-11-22/LEARNING-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/UPLOAD-ABGLEICH.md'),
               Path('docs/integration/2026-11-22/flutter-branch-inventory.json'),
               Path('build/lumo-godot-qa/docs/integration/2026-11-22/GODOT_INTEGRATION.md'),
               Path('build/lumo-godot-qa/docs/integration/2026-11-22/godot-branch-inventory.json'),
           ]
+          for path in required_documents:
+              if not path.is_file():
+                  raise FileNotFoundError(f'Missing integration evidence: {path}')
+          sources = {
+              'flutter': Path('docs/integration/2026-11-22'),
+              'godot': Path('build/lumo-godot-qa/docs/integration/2026-11-22'),
+          }
           proof = sorted(Path('build-proof').glob('*.txt')) + sorted(Path('build-proof').glob('*.json'))
           with zipfile.ZipFile('release/LUMO-INTEGRATIONSBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
-              for path in documents:
-                  if not path.is_file():
-                      raise FileNotFoundError(f'Missing integration evidence: {path}')
-                  archive.write(path, path.name)
+              for label, directory in sources.items():
+                  for path in sorted(directory.rglob('*')):
+                      if path.is_file() and path.suffix in {'.md', '.json', '.txt', '.log'}:
+                          archive.write(path, f'{label}/{path.relative_to(directory)}')
               for path in proof:
                   archive.write(path, 'build-proof/' + path.name)
           PY_EVIDENCE

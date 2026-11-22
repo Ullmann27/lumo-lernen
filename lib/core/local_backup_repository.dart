@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,20 +12,27 @@ class LocalBackupRepository {
   Future<Map<String, dynamic>> status() async => Map<String, dynamic>.from(
       await channel.invokeMapMethod<String, dynamic>('status') ?? const {});
 
-  Future<bool> export(LumoAppState app) async {
+  Future<bool> saveBackup(LumoAppState app) async {
     final archive = await app.withBackupStoragePaused(() async {
       final native = await channel.invokeListMethod<dynamic>('snapshotNative');
-      if (native == null) throw StateError('Spielstände konnten nicht gelesen werden.');
+      if (native == null) {
+        throw StateError('Spielstände konnten nicht gelesen werden.');
+      }
       final prefs = await SharedPreferences.getInstance();
+      // Event acknowledgements follow durable wallet writes. Reading events
+      // first, then the fresh wallet, preserves every pending reward or its ID.
+      await prefs.reload();
       final values = <String, Object>{
-        for (final key in prefs.getKeys()) if (prefs.get(key) != null) key: prefs.get(key)!,
+        for (final key in prefs.getKeys())
+          if (prefs.get(key) != null) key: prefs.get(key)!,
       };
       return LocalBackup.create(preferences: values, nativeFiles: [
         for (final row in native)
           LocalBackupFile(row['path'] as String, row['data'] as Uint8List),
       ]);
     });
-    return await channel.invokeMethod<bool>('saveBackup', archive.bytes) ?? false;
+    return await channel.invokeMethod<bool>('saveBackup', archive.bytes) ??
+        false;
   }
 
   Future<LocalBackup?> choose() async {
@@ -38,7 +44,8 @@ class LocalBackupRepository {
     // Revalidate the exact reviewed bytes immediately before staging them.
     final checked = LocalBackup.parse(archive.bytes);
     await app.withBackupStoragePaused(() async {
-      if (await channel.invokeMethod<bool>('stageRestore', checked.bytes) != true) {
+      if (await channel.invokeMethod<bool>('stageRestore', checked.bytes) !=
+          true) {
         throw StateError('Die Wiederherstellung wurde nicht vorgemerkt.');
       }
     });

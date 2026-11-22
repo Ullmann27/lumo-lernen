@@ -30,6 +30,7 @@ class AndroidHostTest(unittest.TestCase):
                 for name in ('MainActivity.kt', 'LumoOfflineSpeechBridge.kt', 'LumoLearningSpeech.kt',
                              'LumoLocalRecognition.kt',
                              'LumoSpeechEnvelope.kt',
+                             'LumoLocalBackupBridge.kt', 'LumoBackupTransaction.java',
                              'LumoOfflineSpeechEngine.java', 'lumo_file_paths.xml'):
                     shutil.copyfile(source / name, templates / name)
                 (root / 'tools/lumo-debug.keystore').write_bytes(b'test-fixture')
@@ -44,6 +45,8 @@ class AndroidHostTest(unittest.TestCase):
                         ('LumoLocalRecognition.kt', 'kotlin'),
                         ('LumoLearningSpeech.kt', 'kotlin'),
                         ('LumoSpeechEnvelope.kt', 'kotlin'),
+                        ('LumoLocalBackupBridge.kt', 'kotlin'),
+                        ('LumoBackupTransaction.java', 'java'),
                         ('MainActivity.kt', 'kotlin'),
                     ):
                         target = main / language / Path(*namespace.split('.')) / name

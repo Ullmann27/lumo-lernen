@@ -69,7 +69,8 @@ class RewardWallet {
       lastDailyKey: lastDailyKey ?? this.lastDailyKey,
       gameResultIds: gameResultIds ?? this.gameResultIds,
       lumoCardsWinStreak: lumoCardsWinStreak ?? this.lumoCardsWinStreak,
-      shopRedemptions: shopRedemptions == null ? this.shopRedemptions
+      shopRedemptions: shopRedemptions == null
+          ? this.shopRedemptions
           : List.unmodifiable(shopRedemptions),
     );
   }
@@ -104,10 +105,14 @@ class RewardWallet {
 
   static List<RewardShopRedemption> _shopReceipts(Object? raw) {
     if (raw == null) return const [];
-    if (raw is! List) throw const FormatException('Ungültige Gutschein-Historie');
+    if (raw is! List) {
+      throw const FormatException('Ungültige Gutschein-Historie');
+    }
     final ids = <String>{};
-    final values = raw.map((v) => RewardShopRedemption.fromJson(
-        (v as Map).cast<String, Object?>())).toList();
+    final values = raw
+        .map((v) =>
+            RewardShopRedemption.fromJson((v as Map).cast<String, Object?>()))
+        .toList();
     for (final value in values) {
       final owner = sha256.convert(utf8.encode(value.ownerId)).toString();
       if (!value.transactionId.startsWith('shop:$owner:') ||
@@ -146,16 +151,17 @@ class RewardWalletRepository {
 
   RewardWallet get snapshot => _wallet;
 
-  /// Laedt die Wallet aus SharedPreferences. Sicher: bei Fehlern Defaults.
+  /// Reads the wallet without replacing damaged or temporarily unreadable
+  /// saved data. Callers can retry; no mutation may overwrite an unread wallet.
   /// Wenn keine Wallet existiert, aber Legacy-Stars/XP gefunden werden,
   /// migriert sie diese.
   Future<RewardWallet> load() {
     if (_loaded) return Future<RewardWallet>.value(_wallet);
     return _loadFuture ??= _loadFromDisk().then((value) => value,
         onError: (Object error, StackTrace stack) {
-          _loadFuture = null;
-          Error.throwWithStackTrace(error, stack);
-        });
+      _loadFuture = null;
+      Error.throwWithStackTrace(error, stack);
+    });
   }
 
   Future<RewardWallet> _loadFromDisk() async {
@@ -229,23 +235,27 @@ class RewardWalletRepository {
   Future<RewardWallet> redeemShopReward({
     required RewardShopRedemption redemption,
     required void Function() validateOwner,
-  }) => _transaction((current) async {
+  }) =>
+      _transaction((current) async {
         validateOwner();
         redemption.validate();
-        final owner = sha256.convert(utf8.encode(redemption.ownerId)).toString();
+        final owner =
+            sha256.convert(utf8.encode(redemption.ownerId)).toString();
         if (!redemption.transactionId.startsWith('shop:$owner:')) {
           throw ArgumentError('Einlösung gehört zu einem anderen Kinderprofil');
         }
         for (final receipt in current.shopRedemptions) {
           if (receipt.transactionId != redemption.transactionId) continue;
           if (jsonEncode(receipt.toJson()) != jsonEncode(redemption.toJson())) {
-            throw StateError('Eine bestätigte Einlösung darf sich nicht ändern');
+            throw StateError(
+                'Eine bestätigte Einlösung darf sich nicht ändern');
           }
           await _persist(current);
           return current;
         }
         if (current.level < redemption.minLevel) {
-          throw StateError('Dieser Gutschein wird erst ab Level ${redemption.minLevel} frei');
+          throw StateError(
+              'Dieser Gutschein wird erst ab Level ${redemption.minLevel} frei');
         }
         if (current.stars < redemption.cost) {
           throw StateError('Für diesen Gutschein fehlen noch Sterne');
