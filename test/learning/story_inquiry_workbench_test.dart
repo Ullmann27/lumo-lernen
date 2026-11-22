@@ -11,6 +11,7 @@ import 'package:lumo_lernen/domain/tutoring/native_learning_activity.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
 import 'package:lumo_lernen/features/learning/widgets/interactive_task_workspace.dart';
 import 'package:lumo_lernen/features/learning/widgets/inquiry_workbench.dart';
+import 'package:lumo_lernen/features/learning/widgets/math_explanation_film.dart';
 import 'package:lumo_lernen/features/learning/widgets/symmetry_workbench.dart';
 
 import '../helpers/lumo_capture.dart';
@@ -94,6 +95,7 @@ void main() {
           final visuals = <String>{};
           final inquiries = <String>{};
           final native = <String>{};
+          var filmCount = 0;
           for (var n = 0; n < 8; n++) {
             final t = factory.nextExact(
                 grade: grade,
@@ -104,6 +106,7 @@ void main() {
             final task = adapt(t);
             expect(task.parameters['unit'], unit);
             examples.add(task.prompt);
+            if (MathFilmPlan.forTask(task) != null) filmCount++;
             visuals.add(task.visualPayload.type.name);
             final kind = InquiryWorkbench.kindFor(task) ??
                 (SymmetryWorkbench.shapeFor(task) == null ? null : 'mirror');
@@ -113,6 +116,7 @@ void main() {
           }
           units[unit] = {
             'distinctPrompts': examples.length,
+            'arithmeticFilmsInEightTasks': filmCount,
             'rendererTypes': visuals.toList(),
             'inquiry': inquiries.toList(),
             'native': native.toList()
