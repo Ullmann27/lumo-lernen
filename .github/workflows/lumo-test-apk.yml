@@ -262,6 +262,7 @@ jobs:
           LUMO_NATIVE_START_DIAGNOSTICS: '1'
           LUMO_NATIVE_START_WAIT: '35'
           LUMO_NATIVE_START_BUDGET: '850'
+          LUMO_ANDROID_SKYPOST_PROBE: '1'
         with:
           api-level: 35
           target: google_apis

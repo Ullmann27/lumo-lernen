@@ -205,6 +205,101 @@ def _atelier_roundtrip(out: Path) -> dict:
     }
 
 
+def _skypost_roundtrip(out: Path) -> dict:
+    """Launch the tile, end a genuine free flight and verify the Flutter wallet after restart."""
+    if not try_tap(out, ['Spielen', 'Spiele'], 'skypost-spiele'):
+        raise RuntimeError('Spielebereich nicht erreichbar')
+    before = probe.wallet(out, 'skypost-before')
+    tile = 'Lumos Sternenpost. Fliegen, Briefe liefern, Rätsel lösen Spielen'
+    probe.flutter_tap(out, tile, 'skypost-tile', scroll_attempts=12,
+                      direction_order=(1, -1), min_visible_height_px=48)
+
+    def touch(label: str, tag: str, seconds: int = 70) -> None:
+        deadline = time.monotonic() + seconds
+        while time.monotonic() < deadline:
+            png = _screencap()
+            point = _read_garage_footer(png, label, min_y=.04, max_y=.995)
+            if point is not None:
+                (out / f'skypost-{tag}.png').write_bytes(png)
+                base.adb('shell', 'input', 'tap', str(point[0]), str(point[1]))
+                time.sleep(1)
+                return
+            (out / f'skypost-{tag}-search.png').write_bytes(png)
+            if tag in ('start', 'return') and godot_alive():
+                width, height = Image.open(io.BytesIO(png)).size
+                x = str(int(width * (.74 if tag == 'start' and width > height else .5)))
+                base.adb('shell', 'input', 'swipe', x, str(int(height * .88)),
+                         x, str(int(height * .48)), '450')
+            time.sleep(1)
+        raise RuntimeError('Sternenpost-Schaltfläche fehlt: ' + label)
+
+    # Use the embedded process's log. The prior kart process has already exited.
+    touch('Freiflug', 'menu', seconds=135)
+    touch('LOSFLIEGEN!', 'start')
+    pid = base.adb('shell', 'pidof', PACKAGE + ':lumo_game').strip()
+    if not pid.isdigit():
+        raise RuntimeError('Sternenpost-Engine fehlt')
+
+    def log() -> str:
+        return base.adb('logcat', '-d', '--pid=' + pid, '-v', 'brief', check=False)
+
+    deadline = time.monotonic() + 100
+    while '[SkyPost] start: mode=free' not in log():
+        if time.monotonic() >= deadline:
+            raise RuntimeError('Freiflug ist nicht gestartet')
+        time.sleep(2)
+    receipt_file = f'/data/user/0/{PACKAGE}/files/lumo_game_events.json'
+    # Elapsed time is game time. A slow software emulator may need several real minutes.
+    for attempt_index in range(8):
+        time.sleep(35)
+        if attempt_index == 0:
+            probe.capture(out, 'skypost-flight')
+        base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
+        time.sleep(2)
+        saves = base.adb('shell', 'find', f'/data/user/0/{PACKAGE}/files', '-name',
+                         'skypost_*_free.cfg', check=False).splitlines()
+        elapsed = 0
+        for path in saves:
+            raw = base.adb('exec-out', 'cat', path.strip(), check=False)
+            match = re.search(r'^elapsed_ms\s*=\s*(\d+)', raw, re.MULTILINE)
+            if match:
+                elapsed = max(elapsed, int(match[1]))
+        if elapsed >= 20000:
+            break
+        touch('Weiterfliegen', 'resume')
+    else:
+        raise RuntimeError('20 Sekunden gespeicherte Flugzeit wurden nicht erreicht')
+    touch('Freiflug beenden', 'finish')
+    deadline = time.monotonic() + 60
+    payload = None
+    while time.monotonic() < deadline:
+        raw = base.adb('exec-out', 'cat', receipt_file, check=False)
+        if raw.strip().startswith('{'):
+            receipts = [e for e in json.loads(raw).get('results', []) if e.get('game') == 'skypost']
+            if len(receipts) == 1:
+                payload = receipts[0]
+                break
+            if len(receipts) > 1:
+                raise RuntimeError('Ein Flug lieferte mehrere Sternenpost-Ergebnisse')
+        time.sleep(1)
+    if not payload or payload.get('status') != 'completed' or payload.get('stars', 0) < 1:
+        raise RuntimeError('Kein abgeschlossenes Sternenpost-Ergebnis mit Sternen')
+    touch('Zur Spielewelt', 'return')
+    deadline = time.monotonic() + 90
+    while time.monotonic() < deadline:
+        after = probe.wallet(out, 'skypost-after')
+        if payload['resultId'] in after.get('gameResultIds', []):
+            break
+        time.sleep(2)
+    complete.require_reward(before, after, payload)
+    base.adb('shell', 'am', 'force-stop', PACKAGE)
+    base.launch(out, 'skypost-restart')
+    probe.capture_flutter_ready(out, 'skypost-returned')
+    complete.require_reward(before, probe.wallet(out, 'skypost-reloaded'), payload)
+    return {'mode': payload['mode'], 'flight_ms': payload['timeMs'], 'awarded_stars': payload['stars'],
+            'result_id': payload['resultId'], 'wallet_checked_after_restart': True}
+
+
 def _simplify(word: str) -> str:
     plain = unicodedata.normalize('NFKD', word).encode('ascii', 'ignore').decode()
     return re.sub('[^a-z0-9]', '', plain.lower())
@@ -1565,11 +1660,16 @@ def main() -> int:
             step(f'display-{name}', alive(), size=f'{w}x{h}@{d}')
         base.display(1080, 2400, 420)
 
+        required = HARD_STEPS
+        if os.environ.get('LUMO_ANDROID_SKYPOST_PROBE') == '1':
+            required = (*required, 'skypost-roundtrip')
+            attempt('skypost-roundtrip', lambda: _skypost_roundtrip(out))
+
         fatal = logcat_fatal()
         (out / 'fatal-logcat.txt').write_text('\n\n'.join(fatal))
         result['fatal_crashes'] = len(fatal)
-        hard = [s['step'] for s in result['steps'] if not s['ok'] and s['step'] in HARD_STEPS]
-        missing = [name for name in HARD_STEPS if not any(s['step'] == name for s in result['steps'])]
+        hard = [s['step'] for s in result['steps'] if not s['ok'] and s['step'] in required]
+        missing = [name for name in required if not any(s['step'] == name for s in result['steps'])]
         if fatal or hard or missing or not alive():
             raise RuntimeError(f'Hard failure: crashes={len(fatal)} failed={hard} '
                                f'not_reached={missing} alive={alive()}')
