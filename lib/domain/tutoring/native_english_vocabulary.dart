@@ -7,6 +7,9 @@ import '../learning/lumo_learning_domain.dart';
 /// for the current task, not a second exercise generator or answer channel.
 abstract final class NativeEnglishVocabulary {
   static const meanings = <String, Set<String>>{
+    'lion': {'Löwe'},
+    'cow': {'Kuh'},
+    'sheep': {'Schaf'},
     'cat': {'Katze'},
     'dog': {'Hund'},
     'bird': {'Vogel'},

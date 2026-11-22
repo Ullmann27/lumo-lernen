@@ -7,6 +7,7 @@ import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_motion.dart';
 import '../../../widgets/design/lumo_task_object_art.dart';
 import '../lab/learning_manipulatives.dart';
+import 'language_example_board.dart';
 
 /// A local presentation event. The owning lesson translates it into its
 /// companion contract and remains responsible for assessment and persistence.
@@ -553,6 +554,9 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
 
   @override
   Widget build(BuildContext context) {
+    final example = LanguageExample.forUnit(
+        widget.task.parameters['unit']?.toString() ?? '', widget.task.subject);
+    final grade = widget.task.parameters['grade'];
     final content = switch (_model.kind) {
       _WorkspaceKind.bridge => _bridge(),
       _WorkspaceKind.subtraction => _subtraction(),
@@ -576,6 +580,17 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
         key: ValueKey('interactive-workspace-${_model.kind.name}'),
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (example != null && grade is int && grade >= 1 && grade <= 4)
+            LanguageExampleBoard(
+              key: ValueKey('example-${widget.task.taskInstanceId}'),
+              example: example,
+              grade: grade,
+              initiallyOpen: grade < 3 || widget.helpLevel > 0,
+              options: widget.task.options,
+              onExplore: widget.enabled
+                  ? () => _emit('inspectLanguageExample', 'task-workspace', isHelp: true)
+                  : null,
+            ),
           content,
           if (_model.kind != _WorkspaceKind.evidence || _unfolded) ...[
             const SizedBox(height: 10),

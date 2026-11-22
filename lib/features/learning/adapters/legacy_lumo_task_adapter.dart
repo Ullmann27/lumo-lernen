@@ -67,6 +67,7 @@ class LegacyLumoTaskAdapter {
       difficulty: difficulty,
       parameters: <String, Object?>{
         'legacyId': fixedTask.id,
+        'grade': fixedTask.grade,
         'unit': fixedTask.unit,
         'visual': fixedTask.visual,
         if (fixedTask.handwriting) 'symbol': WritingTargetParser.parse(fixedTask.prompt),

@@ -1,3 +1,4 @@
+import 'widgets/language_practice_material.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
@@ -269,7 +270,10 @@ class _ActivityCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
+          if (LanguagePracticeMaterial.supports(activity.id))
+            LanguagePracticeMaterial(activity)
+          else
+            const Text(
               '1 · Lies den Auftrag und bereite das Material vor.\n'
               '2 · Probiere ihn aus und beobachte genau.\n'
               '3 · Erkläre: Was hast du gemacht? Was hast du bemerkt? '
