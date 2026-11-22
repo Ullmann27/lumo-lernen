@@ -32,6 +32,8 @@ Der Kandidat ist `0.13.54+2066`. Dieses Dokument ist ein Arbeitsnachweis vor der
 
 Der integrierte Godot-Quellstand ist `04613baa8e4e3e597d3ed8c683aa1778eefc4c07`. Einzelne lokale Originalprotokolle und ihre SHA-256-Werte stehen in [local-proof/manifest.json](local-proof/manifest.json). Der separate [Lern- und Dialogbericht](LEARNING-INTEGRATION.md) nennt die tatsächlich geprüften Verträge und ihre jeweiligen Grenzen.
 
+Die abschließende Produktionsmodellprüfung dieses Godot-Standes besteht 8.200 Prüfungen über 27 LOD-Szenen für neun Arten. Die Android-Startdiagnose ist zusätzlich gegen übersehene Fehler im gekürzten Protokoll und gegen falsch zugeordnete Prozesse abgesichert: Fehlerauswertung aus dem vollständigen relevanten Log; passende Szenen-Routerzeile und derselbe tatsächlich lebende native Prozess. Die 26 Diagnose-/Gate-Tests und der echte Manifest-Vorbereitungsvertrag bestehen lokal.
+
 Lokale Werkzeuge werden in den offiziellen Versionen Flutter 3.44.9, Godot 4.6.3, JDK 17 und Gradle 9.1.0 geprüft. Einzelne bestandene Quell-/JVM-/Engine-Prüfungen ersetzen den anschließenden Android-Lauf nicht. Ein physischer Fold7-/60-FPS-Nachweis wird nicht aus Emulator- oder Desktopprüfungen abgeleitet.
 
 ## Dauerhafte Sicherung

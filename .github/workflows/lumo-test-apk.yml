@@ -55,6 +55,8 @@ jobs:
           python3 scripts/verify_legacy_release_pin.py
           mkdir -p build-proof
           python3 -m unittest discover -s scripts/tests -p test_verify_test_apk_candidate.py -v
+          python3 -m unittest discover -s scripts/tests -p test_verify_native_start_diagnostics.py -v
+          python3 -m unittest discover -s tools/android_qa/tests -p test_native_start_diagnostics.py -v
           python3 scripts/verify_test_apk_candidate.py source --expected-commit "$GITHUB_SHA" \
             --out build-proof/CANDIDATE-SOURCE.json
           git rev-parse HEAD > build-proof/FLUTTER-COMMIT.txt
@@ -67,13 +69,27 @@ jobs:
           flutter pub get --enforce-lockfile
           bash scripts/install_ndk_for_build.sh build-proof/ndk
           bash scripts/install_godot_for_build.sh
+      - name: Native Sprache und lokaler Lerndialog – JVM-Verträge
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip \
+            -o "$RUNNER_TEMP/lumo-contract-gradle.zip"
+          printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 \
+            "$RUNNER_TEMP/lumo-contract-gradle.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/lumo-contract-gradle.zip" -d "$RUNNER_TEMP/lumo-contract-gradle"
+          export LUMO_KOTLIN_LIB_DIR="$RUNNER_TEMP/lumo-contract-gradle/gradle-9.1.0/lib"
+          python3 -m unittest scripts.tests.test_english_lesson_speech \
+            scripts.tests.test_speech_envelope_contract scripts.tests.test_learning_dialog_logic \
+            scripts.tests.test_studio_learning_contract -v \
+            2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
       - name: Flutter – Analyse und Kernprüfungen
         shell: bash
         run: |
           set -euo pipefail
           flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
             | tee build-proof/FLUTTER-ANALYSIS.txt
-          flutter test --no-pub --reporter expanded \
+          flutter test --no-pub --reporter expanded --concurrency=2 \
             test/games/memory_native_entry_test.dart \
             test/games/memory_screen_test.dart \
             test/games/memory_result_frame_test.dart \
@@ -92,6 +108,15 @@ jobs:
             test/tutoring/lumo_nachhilfe_test.dart \
             test/tutoring/lumo_nachhilfe_entry_test.dart \
             test/tutoring/lumo_nachhilfe_3d_test.dart \
+            test/lumo_learning_dialogue_contract_test.dart \
+            test/lumo_context_conversation_test.dart \
+            test/learning/core_conversation_route_test.dart \
+            test/learning/nextgen_answer_payload_test.dart \
+            test/learning/nextgen_lab_bus_integration_test.dart \
+            test/learning/nextgen_task_quality_test.dart \
+            test/learning/nextgen_task_hint_precision_test.dart \
+            test/learning/module_frame_practical_links_test.dart \
+            test/tutoring/guided_coach_binding_test.dart \
             | tee build-proof/FLUTTER-CORE-TESTS.txt
       - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
         shell: bash
@@ -109,13 +134,14 @@ jobs:
             || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
           for probe in kart_neon_home_regression kart_garage_landscape_regression kart_race_kinds_regression \
             kart_result_reachability_regression native_table_boot_regression \
-            learning_android_host_capability_regression; do
+            learning_android_host_capability_regression native_learning_boot_regression; do
             echo "::group::$probe"
             timeout 600 godot --headless --path build/lumo-godot-qa \
-              --script "res://scripts/tests/$probe.gd"
+              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
             echo "::endgroup::"
           done
           for probe in lumo_kart_production_driver_regression lumo_opponent_roster_regression \
+            kart_extra_drivers_regression \
             learning_holo_lesson_regression lumo_run_stunt_relay_regression \
             kart_arena_battle_regression parcours_menu_entry_regression parcours_race_regression \
             lumo_run_regression lumo_run_flow_regression quiz_studio_escape_regression; do
@@ -126,22 +152,33 @@ jobs:
             limit=600
             if [ "$probe" = lumo_run_regression ]; then limit=1500; fi
             timeout "$limit" godot --headless --path build/lumo-godot-qa \
-              --script "res://scripts/tests/$probe.gd"
+              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
             echo "::endgroup::"
           done
+          echo "::group::learning_tutor_regression (validation, invalid, return, voice)"
+          timeout 600 godot --headless --path build/lumo-godot-qa \
+            --script res://scripts/tests/learning_tutor_regression.gd -- \
+            --part=validation,invalid,return,voice | tee build-proof/GODOT-learning_tutor_regression.txt
+          echo "::endgroup::"
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
           set -euo pipefail
           bash scripts/build_unified_apk.sh
           test -s dist/Lumo-Lernen-Neu.apk
+          # Both ABI builds are complete. Release the build JVM before the PCK runtime probe.
+          (cd android && ./gradlew --stop)
           python3 scripts/verify_test_apk_candidate.py packages --expected-commit "$GITHUB_SHA" \
             --extract-pck "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
             --out build-proof/SPLIT-APK-IDENTITY.json
-          timeout 90 godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
-            --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
-            --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" \
-            | tee build-proof/KART-DRIVER-PCK.txt
+          # Separate processes release the asset audit's resources before the full race scene.
+          # Both phases are mandatory and inspect the same PCK extracted from the ARM64 APK.
+          for phase in assets race; do
+            timeout 90 godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
+              --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+              --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" -- "$phase" \
+              | tee "build-proof/KART-DRIVER-PCK-${phase}.txt"
+          done
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
@@ -152,6 +189,26 @@ jobs:
           cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
           cp build-proof/SPLIT-APK-IDENTITY.json release/SPLIT-APK-IDENTITY.json
           cp build-proof/SPLIT-APK-IDENTITY.json dist/x86_64/SPLIT-APK-IDENTITY.json
+          python3 - <<'PY_EVIDENCE'
+          from pathlib import Path
+          import zipfile
+
+          documents = [
+              Path('docs/integration/2026-11-22/INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/LEARNING-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/flutter-branch-inventory.json'),
+              Path('build/lumo-godot-qa/docs/integration/2026-11-22/GODOT_INTEGRATION.md'),
+              Path('build/lumo-godot-qa/docs/integration/2026-11-22/godot-branch-inventory.json'),
+          ]
+          proof = sorted(Path('build-proof').glob('*.txt')) + sorted(Path('build-proof').glob('*.json'))
+          with zipfile.ZipFile('release/LUMO-INTEGRATIONSBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in documents:
+                  if not path.is_file():
+                      raise FileNotFoundError(f'Missing integration evidence: {path}')
+                  archive.write(path, path.name)
+              for path in proof:
+                  archive.write(path, 'build-proof/' + path.name)
+          PY_EVIDENCE
           (cd release && sha256sum "$NAME" > SHA256SUMS.txt)
           echo "LUMO_APK_NAME=$NAME" >> "$GITHUB_ENV"
           echo "LUMO_APK_VERSION=$VERSION" >> "$GITHUB_ENV"
@@ -171,6 +228,12 @@ jobs:
           Lumo Lernen – Test-APK $LUMO_APK_VERSION
           App-Quellstand:   $GITHUB_SHA
           Spiel-Quellstand: $GODOT (Godot 4.6.3)
+          Vollständige App-Quellen: https://github.com/Ullmann27/lumo-lernen/archive/$GITHUB_SHA.zip
+          Vollständige Spiel-Quellen: https://github.com/Ullmann27/lumo-godot/archive/$GODOT.zip
+          Integrationsberichte, Quelleninventuren und Bauprüfungen: LUMO-INTEGRATIONSBELEGE.zip
+          Android-Rundgang: Ergebnis im nachfolgenden Job dieses Laufs:
+          https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          Diese vorab erzeugten Bau-Belege enthalten noch kein Ergebnis des Android-Rundgangs.
           Zweck: Testen auf dem Handy. Kein Store-Release, kein Merge nach main.
           Geprüft in diesem Lauf: Flutter-Analyse und Kernprüfungen, Start und
           Kernprüfungen des gepinnten Spielstands, APK-Aufbau und Signatur.
@@ -178,7 +241,8 @@ jobs:
           EOF
           TAG="lumo-test-${LUMO_APK_VERSION/+/-}-$GITHUB_RUN_ID"
           FILES=("release/$LUMO_APK_NAME" release/SHA256SUMS.txt release/APK-VERIFICATION.json
-            release/BUILD-PROVENANCE.json release/SPLIT-APK-IDENTITY.json release/LIESMICH.txt)
+            release/BUILD-PROVENANCE.json release/SPLIT-APK-IDENTITY.json
+            release/LUMO-INTEGRATIONSBELEGE.zip release/LIESMICH.txt)
           NOTES="Test-APK zum Ausprobieren auf dem Handy. Kein Store-Release. Details in LIESMICH.txt."
           # Eine Vorabversion legt ein Tag auf diesem Commit an. Verweigert GitHub
           # das dem Lauf-Token, bleibt der Entwurf: Er braucht kein Tag und ist
@@ -273,7 +337,7 @@ jobs:
           LP_NUM_THREADS: '2'
           LUMO_NATIVE_START_DIAGNOSTICS: '1'
           LUMO_NATIVE_START_WAIT: '35'
-          LUMO_NATIVE_START_BUDGET: '850'
+          LUMO_NATIVE_START_BUDGET: '1200'
           LUMO_ANDROID_SKYPOST_PROBE: '1'
         with:
           api-level: 35
@@ -284,6 +348,8 @@ jobs:
           emulator-build: '14472402'
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
+      - name: Beobachtete native Spielstarts verbindlich prüfen
+        run: python3 scripts/verify_native_start_diagnostics.py tour/native-starts.json --out tour/NATIVE-GAME-STARTS.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -112,15 +112,15 @@ class FakeDevice:
                 line('godot', 'SCRIPT ERROR: boom', 'E'),
             ])
         if args[:2] == ('shell', 'ps'):
-            return f'PID NAME\n1 {PACKAGE}\n2 {PACKAGE}:lumo_game'
+            return f'PID NAME\n5678 {PACKAGE}\n1234 {PACKAGE}:lumo_game'
         if args[:3] == ('shell', 'dumpsys', 'package'):
             return f'  {PACKAGE}/dev.example.LumoGameActivity filter'
         return ''
 
 
 class RunnerTests(unittest.TestCase):
-    def run_plan(self, plan, loads=True):
-        device = FakeDevice(loads)
+    def run_plan(self, plan, loads=True, device=None):
+        device = device or FakeDevice(loads)
         taps = []
         base = SimpleNamespace(adb=device.adb, launch=lambda *a: '1',
                                accessible_text=lambda nodes: 'Spielen')
@@ -149,6 +149,65 @@ class RunnerTests(unittest.TestCase):
         self.assertIn('Das Spiel konnte nicht starten.', scene['screen_texts']['app'])
         self.assertIn('Lumo Lauf. Spring. Laufe. Sei mutig! Spielen', taps)
         self.assertIn('[Router] loaded:run', log)
+        self.assertEqual(scene['native_pid_at_end'], 1234)
+        self.assertEqual(scene['router_loaded_pid'], 1234)
+        self.assertIn('[Router] loaded:run', scene['router_loaded_line'])
+
+    def test_middle_of_long_log_keeps_errors_and_router_evidence_before_display_truncation(self):
+        class Device(FakeDevice):
+            def adb(self, *args, timeout=60, check=True):
+                if args[:1] == ('logcat',) and args[:2] != ('logcat', '-c'):
+                    messages = [line('godot', f'ordinary line {index}') for index in range(1000)]
+                    messages[500] = line('godot', '[Router] loaded:run (res://scene.tscn)')
+                    messages[550] = line('godot', 'SCRIPT ERROR: middle failure', 'E')
+                    return '\n'.join(messages)
+                return super().adb(*args, timeout=timeout, check=check)
+
+        _, written, log, _, _ = self.run_plan(
+            (('run', 'run', 'ui', 'Lumo Lauf', 'Spring. Laufe. Sei mutig!'),), device=Device())
+        scene = written['scenes'][0]
+        self.assertEqual(scene['log_lines'], 400)
+        self.assertEqual(scene['full_relevant_log_lines'], 1000)
+        self.assertNotIn('middle failure', log)
+        self.assertNotIn('[Router] loaded:run', log)
+        self.assertEqual(scene['issues']['script_error'], 1)
+        self.assertEqual(scene['godot_error_classes']['other'], 1)
+        self.assertIn('middle failure', scene['markers']['script_error'][0])
+        self.assertTrue(scene['router_loaded'])
+        self.assertEqual(scene['router_loaded_pid'], 1234)
+        self.assertIn('[Router] loaded:run', scene['router_loaded_line'])
+
+    def test_foreign_godot_pid_cannot_supply_router_or_crash_evidence(self):
+        class Device(FakeDevice):
+            def adb(self, *args, timeout=60, check=True):
+                if args[:1] == ('logcat',) and args[:2] != ('logcat', '-c'):
+                    return '\n'.join([
+                        line('godot', '[Router] loaded:run (x)').replace('1234', '9999'),
+                        line('godot', 'SCRIPT ERROR: foreign game', 'E').replace('1234', '9999')])
+                return super().adb(*args, timeout=timeout, check=check)
+
+        _, written, _, _, _ = self.run_plan(
+            (('run', 'run', 'ui', 'Lumo Lauf', 'Spring. Laufe. Sei mutig!'),), device=Device())
+        scene = written['scenes'][0]
+        self.assertTrue(scene['game_process_alive_at_end'])
+        self.assertFalse(scene['router_loaded'])
+        self.assertIsNone(scene['router_loaded_pid'])
+        self.assertEqual(scene['issues']['script_error'], 0)
+
+    def test_similar_package_and_other_child_process_do_not_count_as_game_engine(self):
+        class Device(FakeDevice):
+            def adb(self, *args, timeout=60, check=True):
+                if args[:2] == ('shell', 'ps'):
+                    return (f'PID NAME\n5678 {PACKAGE}\n'
+                            f'1234 {PACKAGE}.other:lumo_game\n4567 {PACKAGE}:helper')
+                return super().adb(*args, timeout=timeout, check=check)
+
+        _, written, _, _, _ = self.run_plan(
+            (('run', 'run', 'ui', 'Lumo Lauf', 'Spring. Laufe. Sei mutig!'),), device=Device())
+        scene = written['scenes'][0]
+        self.assertFalse(scene['game_process_alive_at_end'])
+        self.assertFalse(scene['router_loaded'])
+        self.assertTrue(scene['app_alive_at_end'])
 
     def test_intent_start_is_labelled_and_uses_launch_extras(self):
         _, written, _, taps, device = self.run_plan((('run-intent', 'run', 'intent', None, None),),
@@ -161,6 +220,25 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(len(command), 1)
         self.assertIn('--es lumoLaunchOptions', command[0][1])
         self.assertIn('"game":"run"', command[0][1])
+
+    def test_memory_explicitly_opens_native_table_after_flutter_round(self):
+        _, written, _, taps, _ = self.run_plan(
+            (('memory', 'memory', 'ui', 'Memory', 'Finde die Paare!'),))
+        label = '3D-Memory-Tisch freiwillig öffnen'
+        self.assertIn(label, taps)
+        scene = written['scenes'][0]
+        self.assertTrue(scene['memory_table_button_tapped'])
+        self.assertEqual(scene['native_table_button'], label)
+        # A tap alone never fabricates the observed native router marker.
+        self.assertFalse(scene['router_loaded'])
+        self.assertIn(label, (ROOT / 'lib/features/games/memory/lumo_memory_game.dart').read_text())
+
+    def test_already_open_native_table_is_not_started_twice(self):
+        with patch.object(diag.Runner, 'resumed', return_value='TableGameActivity'):
+            _, written, _, taps, _ = self.run_plan(
+                (('memory', 'memory', 'ui', 'Memory', 'Finde die Paare!'),))
+        self.assertNotIn('3D-Memory-Tisch freiwillig öffnen', taps)
+        self.assertNotIn('memory_table_button_tapped', written['scenes'][0])
 
 
 class RealRunFindingsTests(unittest.TestCase):

@@ -16,10 +16,58 @@ func _check(condition: bool, operation: String) -> void:
 	failures += int(not condition)
 
 func _run() -> void:
+	var arguments := OS.get_cmdline_user_args()
+	var phase := "all" if arguments.is_empty() else str(arguments[0])
+	if arguments.size() > 1 or phase not in ["all", "assets", "race"]:
+		push_error("Expected one PCK probe phase: assets or race")
+		quit(2)
+		return
+	print("[Kart-PCK] phase ", phase)
+	if phase in ["all", "assets"]:
+		_check_assets()
+	if phase in ["all", "race"]:
+		await _check_race()
+	quit(int(failures != 0))
+
+
+func _check_assets() -> void:
+	_check(load("res://scenes/learning/holo_lesson.tscn") is PackedScene, "packaged interactive learning lesson")
+	_check(load("res://scenes/learning/tutor_world.tscn") is PackedScene, "packaged interactive tutoring world")
+	for script_path in [
+		"res://scripts/learning/holo/holo_lesson_plan.gd",
+		"res://scripts/learning/tutor/tutor_plan.gd",
+		"res://scripts/games/run/run_stunt_relay.gd",
+		"res://scripts/games/kart_arena_battle.gd",
+		"res://scripts/games/parcours/parcours_worlds.gd",
+		"res://scripts/games/chess/chess_school.gd",
+	]:
+		_check(load(script_path) is GDScript, "packaged feature script %s" % script_path)
 	var roster = load("res://scripts/games/lumo_opponent_roster.gd")
 	_check(roster != null and roster.ready_for_race(), "packaged race roster")
-	for driver in roster.for_game("kart"):
-		var id := str(driver.id)
+	var catalog = load("res://scripts/games/kart_catalog.gd")
+	var model_ids: Dictionary = {}
+	for rival in roster.for_game("kart"):
+		model_ids[str(rival.id)] = true
+	var playable_ids: Array[String] = []
+	for entry in catalog.DRIVERS:
+		var id := str(entry.id)
+		playable_ids.append(id)
+		_check(load("res://assets/kart/menu/drivers/%s.webp" % id) is Texture2D, "%s playable driver portrait" % id)
+		if id != "fox":
+			model_ids[id] = true
+	playable_ids.sort()
+	_check(playable_ids == ["badger", "cat", "fox", "frog", "otter", "rabbit"], "all six playable drivers are in the exported selection catalogue")
+	var lumo_scene := load("res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb") as PackedScene
+	_check(lumo_scene != null, "original Lumo facial model")
+	if lumo_scene != null:
+		var actor := lumo_scene.instantiate()
+		var players := actor.find_children("*", "AnimationPlayer", true, false)
+		_check(players.size() == 1 and players[0].has_animation("kart_seated"), "original Lumo seated animation")
+		actor.free()
+	# Check shared rival/player models once; player-only Borin, Yuki and Milo
+	# must not depend on membership in the independent opponent roster.
+	for model_id in model_ids:
+		var id := str(model_id)
 		for level in range(3):
 			var path: String = roster.racing_model_path(id, level)
 			var scene := load(path) as PackedScene
@@ -29,7 +77,6 @@ func _run() -> void:
 				var players := actor.find_children("*", "AnimationPlayer", true, false)
 				_check(players.size() == 1 and players[0].has_animation("kart_seated"), "%s LOD %d seated animation" % [id, level])
 				actor.free()
-	var catalog = load("res://scripts/games/kart_catalog.gd")
 	_check(load("res://assets/kart/track_stage/clips/windwerk_auftakt.ogv") is VideoStream, "packaged race opening film")
 	for route in catalog.TRACKS:
 		var photo_path := "res://assets/kart/track_stage/%s.webp" % route.id
@@ -59,6 +106,9 @@ func _run() -> void:
 	for motif in memory.MOTIFS:
 		var card_face := load("res://assets/games/memory/collection/%s.webp" % motif) as Texture2D
 		_check(card_face != null and card_face.get_width() >= 768, "%s high-resolution Memory card" % motif)
+
+
+func _check_race() -> void:
 	var track := load("res://scenes/games/kart_island.tscn") as PackedScene
 	_check(track != null, "normal race scene")
 	if track != null:
@@ -84,4 +134,3 @@ func _run() -> void:
 			_check(game.item_ext.effect(behaviour) != null, "%s has an active race effect" % id)
 		game.queue_free()
 		await process_frame
-	quit(int(failures != 0))

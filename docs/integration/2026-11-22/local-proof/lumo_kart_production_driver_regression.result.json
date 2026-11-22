@@ -1,0 +1,18 @@
+{
+  "test": "lumo_kart_production_driver_regression",
+  "exit_code": 0,
+  "elapsed_seconds": 0.715,
+  "log_path": "/tmp/lumo-integration-20261122/lumo_kart_production_driver_regression.log",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "mode": "headless gl_compatibility",
+  "command": [
+    "/home/agent/lumo-tools/Godot_v4.6.3-stable_linux.x86_64",
+    "--headless",
+    "--path",
+    "/tmp/lumo-integration-20261122/lumo-godot",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/lumo_kart_production_driver_regression.gd"
+  ]
+}
