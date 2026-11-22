@@ -11,6 +11,7 @@ import '../../widgets/design/lumo_section_heading.dart';
 import '../teacher/student_assignments_card.dart';
 import '../parent_tasks/parent_tasks_entry_card.dart';
 import '../room/lumo_room_screen.dart';
+import '../recognition/lumo_task_recognition_screen.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/school_exercise_generator.dart';
@@ -665,6 +666,13 @@ class HomeContent extends StatelessWidget {
                             Icons.photo_camera_rounded,
                             () => _open(context,
                                 LumoPhotoLessonScreen(appState: appState))),
+                        _extra(
+                            'Aufgabe eintippen',
+                            'Deine eigene Aufgabe mit Lumo üben',
+                            Icons.keyboard_alt_rounded,
+                            () => _open(context,
+                                LumoTaskRecognitionScreen(appState: appState)),
+                            key: const ValueKey('home-discover-recognition')),
                         _extra(
                             'Laut lesen',
                             'Lumo hört dir auf Wunsch zu',

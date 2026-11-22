@@ -133,7 +133,7 @@ def verify_preferences(archive, observed):
     if type(expected) is not bool or actual is not expected:
         raise ValueError('Persisted reduceAnimations differs from archive')
     for key in ('lumo_learning_local_student_id_v1', 'lumo_school_active_student_v1',
-                'lumo_school_v1', 'lumo_native_profile_keys_v1'):
+                'lumo_school_v1', 'lumo_3d_profile_keys_v1', 'lumo_3d_save_salt_v1'):
         if key in archive['preferences'] and observed.get('flutter.' + key) != archive['preferences'][key]:
             raise ValueError('Profile ownership differs from archive: ' + key)
     return {'profile': stored_json(observed, PROFILE, physical=True),
@@ -175,7 +175,39 @@ def remote_bytes(path):
         stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=90, check=True).stdout
 
 
-def native_snapshot(out, archive, tag, wallet):
+def native_comparison(path, expected, actual, wallet, *, exporting=False):
+    if path == 'lumo_game_events.json' and exporting:
+        original = strict_json(expected)
+        if not isinstance(original, dict) or any(
+                key in original for key in ('destination', 'callerReturnSession')):
+            raise ValueError('Export retained stale native navigation')
+    if actual == expected:
+        return 'identical-bytes'
+    if path != 'lumo_game_events.json':
+        raise ValueError('Native save differs: ' + path)
+    comparable = actual
+    removed_navigation = False
+    if exporting:
+        # snapshotNative deliberately omits the old Activity's return route.
+        # Only this export comparison normalizes it; a restored file cannot
+        # acquire a new navigation field and pass as an acknowledgement.
+        original, observed = strict_json(expected), strict_json(actual)
+        if not isinstance(original, dict) or not isinstance(observed, dict):
+            raise ValueError('Malformed native event store')
+        if any(key in original for key in ('destination', 'callerReturnSession')):
+            raise ValueError('Export retained stale native navigation')
+        for key in ('destination', 'callerReturnSession'):
+            if key in observed:
+                observed.pop(key)
+                removed_navigation = True
+        comparable = json.dumps(observed).encode()
+    if not event_ack_only(expected, comparable, wallet):
+        raise ValueError('Unproven native event change')
+    return ('export-navigation-normalized-and-proven-acks' if removed_navigation
+            else 'proven-event-ack-only')
+
+
+def native_snapshot(out, archive, tag, wallet, *, exporting=False):
     result = []
     folder = out / tag
     folder.mkdir(exist_ok=True)
@@ -184,14 +216,11 @@ def native_snapshot(out, archive, tag, wallet):
         target = folder / path
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(actual)
-        same = actual == expected
-        ack = path == 'lumo_game_events.json' and event_ack_only(expected, actual, wallet)
-        if not same and not ack:
-            raise ValueError('Native save differs: ' + path)
+        comparison = native_comparison(path, expected, actual, wallet, exporting=exporting)
         result.append({'path': path, 'bytes': len(actual),
             'sha256': hashlib.sha256(actual).hexdigest(),
             'archive_sha256': hashlib.sha256(expected).hexdigest(),
-            'comparison': 'identical-bytes' if same else 'proven-event-ack-only'})
+            'comparison': comparison})
     return result
 
 
@@ -449,7 +478,7 @@ def main():
         phase = 'export-archive'
         archive = validate_archive(raw)
         preserved = verify_preferences(archive, baseline)
-        files = native_snapshot(out, archive, 'native-export', preserved['wallet'])
+        files = native_snapshot(out, archive, 'native-export', preserved['wallet'], exporting=True)
         passed(phase, format='lumo-local-backup', version=1, createdAt=archive['createdAt'],
             payload_sha256=archive['payload_sha256'], profile=preserved['profile'],
             wallet=preserved['wallet'], preference_count=len(archive['preferences']), native_files=files)

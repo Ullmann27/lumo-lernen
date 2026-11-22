@@ -15,6 +15,7 @@ import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/rewards/reward_shop.dart';
+import '../domain/room/lumo_room.dart';
 
 /// Aktueller Wallet-Zustand (Snapshot).
 class RewardWallet {
@@ -28,6 +29,7 @@ class RewardWallet {
     this.gameResultIds = const <String>[],
     this.lumoCardsWinStreak = 0,
     this.shopRedemptions = const <RewardShopRedemption>[],
+    this.roomActions = const <LumoRoomActionReceipt>[],
   });
 
   final int stars;
@@ -48,6 +50,7 @@ class RewardWallet {
   /// A debit and its immutable receipt are one durable wallet snapshot.
   /// These are not game results and never inflate the played-games counter.
   final List<RewardShopRedemption> shopRedemptions;
+  final List<LumoRoomActionReceipt> roomActions;
 
   RewardWallet copyWith({
     int? stars,
@@ -59,6 +62,7 @@ class RewardWallet {
     List<String>? gameResultIds,
     int? lumoCardsWinStreak,
     List<RewardShopRedemption>? shopRedemptions,
+    List<LumoRoomActionReceipt>? roomActions,
   }) {
     return RewardWallet(
       stars: stars ?? this.stars,
@@ -72,6 +76,9 @@ class RewardWallet {
       shopRedemptions: shopRedemptions == null
           ? this.shopRedemptions
           : List.unmodifiable(shopRedemptions),
+      roomActions: roomActions == null
+          ? this.roomActions
+          : List.unmodifiable(roomActions),
     );
   }
 
@@ -85,6 +92,7 @@ class RewardWallet {
         'gameResultIds': gameResultIds,
         'lumoCardsWinStreak': lumoCardsWinStreak,
         'shopRedemptions': shopRedemptions.map((v) => v.toJson()).toList(),
+        'roomActions': roomActions.map((v) => v.toJson()).toList(),
       };
 
   factory RewardWallet.fromJson(Map<String, dynamic> j) => RewardWallet(
@@ -101,6 +109,7 @@ class RewardWallet {
             ? (j['lumoCardsWinStreak'] as int).clamp(0, 999999)
             : 0,
         shopRedemptions: _shopReceipts(j['shopRedemptions']),
+        roomActions: _roomReceipts(j['roomActions']),
       );
 
   static List<RewardShopRedemption> _shopReceipts(Object? raw) {
@@ -123,6 +132,20 @@ class RewardWallet {
     return List.unmodifiable(values);
   }
 
+  static List<LumoRoomActionReceipt> _roomReceipts(Object? raw) {
+    if (raw == null) return const [];
+    if (raw is! List) throw const FormatException('Ungültige Zimmer-Historie');
+    final ids = <String>{};
+    final values = raw
+        .map((v) =>
+            LumoRoomActionReceipt.fromJson((v as Map).cast<String, Object?>()))
+        .toList();
+    if (values.any((v) => !ids.add(v.request.actionId))) {
+      throw const FormatException('Doppelte Zimmer-Historie');
+    }
+    return List.unmodifiable(values);
+  }
+
   @override
   String toString() =>
       'RewardWallet(stars: $stars, xp: $xp, level: $level, streak: $streak)';
@@ -130,8 +153,10 @@ class RewardWallet {
 
 /// Persistente Wallet mit Lazy-Load + Write-Through.
 class RewardWalletRepository {
-  RewardWalletRepository();
+  RewardWalletRepository({DateTime Function()? clock})
+      : _clock = clock ?? DateTime.now;
   static final RewardWalletRepository instance = RewardWalletRepository();
+  final DateTime Function() _clock;
 
   static const _storageKey = 'lumo_reward_wallet_v1';
   static const _legacyStarsKey = 'lumo_legacy_stars';
@@ -263,6 +288,56 @@ class RewardWalletRepository {
         return _commit(current.copyWith(
           stars: current.stars - redemption.cost,
           shopRedemptions: [...current.shopRedemptions, redemption],
+        ));
+      });
+
+  /// Exact original room actions: praise +5 stars at most once per five
+  /// minutes and child; snack -10 stars/+20 XP in one durable transaction.
+  Future<RewardWallet> performLumoRoomAction({
+    required LumoRoomActionRequest request,
+    required void Function() validateOwner,
+  }) =>
+      _transaction((current) async {
+        validateOwner();
+        request.validate();
+        for (final receipt in current.roomActions) {
+          if (receipt.request.actionId != request.actionId) continue;
+          if (receipt.request.ownerId != request.ownerId ||
+              receipt.request.kind != request.kind) {
+            throw StateError(
+                'Eine bestätigte Zimmeraktion darf sich nicht ändern.');
+          }
+          await _persist(current);
+          return current;
+        }
+        final now = _clock().toUtc();
+        if (request.kind == LumoRoomActionKind.pet) {
+          final next = lumoRoomNextPraise(request.ownerId, current.roomActions);
+          if (next != null && now.isBefore(next)) {
+            throw const LumoRoomActionUnavailable(
+                'Lumo wurde gerade gelobt. Der nächste Sternbonus ist später wieder bereit.');
+          }
+          if (current.stars > 999994) {
+            throw const LumoRoomActionUnavailable(
+                'Deine Sternetasche ist gerade voll.');
+          }
+        } else if (current.stars < 10) {
+          throw const LumoRoomActionUnavailable(
+              'Für den Fuchs-Snack brauchst du 10 Sterne.');
+        } else if (current.xp > 9999979) {
+          throw const LumoRoomActionUnavailable(
+              'Dein Lernstand hat die aktuelle Obergrenze erreicht.');
+        }
+        final receipt =
+            LumoRoomActionReceipt(request: request, performedAt: now);
+        final xp = current.xp + receipt.xpDelta;
+        return _commit(current.copyWith(
+          stars: current.stars + receipt.starsDelta,
+          xp: xp,
+          level: 1 + xp ~/ 400,
+          totalEarnedStars: current.totalEarnedStars +
+              (receipt.starsDelta > 0 ? receipt.starsDelta : 0),
+          roomActions: [...current.roomActions, receipt],
         ));
       });
 

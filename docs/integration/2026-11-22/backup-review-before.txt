@@ -1,0 +1,30 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart
+00:00 +0: backup preserves visible A after flushing previously visited B
+00:00 +0 -1: backup preserves visible A after flushing previously visited B [E]
+  Expected: ['mathematik::plus bis 10']
+    Actual: _CompactKeysIterable<String>:['deutsch::artikel']
+     Which: at location [0] is 'deutsch::artikel' instead of 'mathematik::plus bis 10'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/local_backup_flow_test.dart 221:7              main.<fn>.<fn>
+  package:lumo_lernen/app/app_state.dart 1512:25      LumoAppState.withBackupStoragePaused.<fn>
+  
+00:00 +0 -1: unpersisted tutor evidence blocks backup and survives a later retry
+00:00 +0 -2: unpersisted tutor evidence blocks backup and survives a later retry [E]
+  Expected: throws <Instance of 'StateError'>
+    Actual: <Instance of 'Future<Null>'>
+     Which: emitted <null>
+  
+  package:matcher                                    expectLater
+  package:flutter_test/src/widget_tester.dart 507:8  expectLater
+  test/local_backup_flow_test.dart 245:11            main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                         _CustomZone.registerUnaryCallback
+  test/local_backup_flow_test.dart 238:5             main.<fn>
+  
+00:00 +0 -2: Some tests failed.
+
+Failing tests:
+  /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: backup preserves visible A after flushing previously visited B
+  /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: unpersisted tutor evidence blocks backup and survives a later retry

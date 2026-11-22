@@ -139,6 +139,26 @@ class BackupArchiveContracts(unittest.TestCase):
         self.assertFalse(check({'results': [pending], 'destination': 'games'}))
         self.assertFalse(check({'results': [pending], 'unproven': True}))
 
+    def test_export_navigation_normalization_never_allows_added_routes_after_restore(self):
+        expected = b'{"results":[]}'
+        native = b'{"results":[],"destination":"games","callerReturnSession":"old-session"}'
+        self.assertEqual(PROBE.native_comparison('lumo_game_events.json', expected,
+            native, {}, exporting=True), 'export-navigation-normalized-and-proven-acks')
+        with self.assertRaisesRegex(ValueError, 'Unproven native event'):
+            PROBE.native_comparison('lumo_game_events.json', expected, native, {})
+        with self.assertRaisesRegex(ValueError, 'Native save differs'):
+            PROBE.native_comparison('kart_a.cfg', expected, native, {}, exporting=True)
+
+    def test_native_owner_mapping_and_salt_must_survive_restore(self):
+        archive = PROBE.validate_archive(encoded(body()))
+        archive['preferences'].update(lumo_3d_save_salt_v1='owner-salt',
+            lumo_3d_profile_keys_v1='{"version":1,"owners":{}}')
+        physical = {'flutter.' + key: value for key, value in archive['preferences'].items()}
+        PROBE.verify_preferences(archive, physical)
+        for key in ('lumo_3d_save_salt_v1', 'lumo_3d_profile_keys_v1'):
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'Profile ownership'):
+                PROBE.verify_preferences(archive, {**physical, 'flutter.' + key: 'changed'})
+
     def test_remote_read_does_not_strip_newlines_or_mix_stderr_into_archive(self):
         data = b' [cfg]\n\n'
         with patch.object(PROBE.subprocess, 'run', return_value=SimpleNamespace(stdout=data)) as run:

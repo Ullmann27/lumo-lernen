@@ -29,10 +29,12 @@ import '../core/error_breakdown_repository.dart';
 import '../core/lumo_error_log.dart';
 import '../core/reward_wallet_repository.dart';
 import '../core/reward_shop_repository.dart';
+import '../core/lumo_room_repository.dart';
 import '../core/school_repository.dart';
 import '../domain/school/attempt.dart';
 import '../domain/school/competency.dart';
 import '../domain/rewards/reward_shop.dart';
+import '../domain/room/lumo_room.dart';
 import '../core/scanned_work_analysis.dart';
 import '../core/settings_repository.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
@@ -216,9 +218,10 @@ class _PendingMissionAnswer {
 }
 
 class _LearningSession {
-  _LearningSession(this.studentId, this.profile)
+  _LearningSession(this.studentId, this.profile, {required this.local})
       : cosmos = CosmosWorld(studentId: studentId);
   final String studentId;
+  final bool local;
   final LearningProfileEngine profile;
   final CosmosWorld cosmos;
   final Queue<_PendingMissionAnswer> pendingMissionAnswers = Queue();
@@ -614,6 +617,7 @@ class LumoAppState extends ChangeNotifier {
                   : LearningProfileEngine(
                       repository: ProgressRepository(studentId: studentId),
                     )),
+          local: local,
         ),
       );
 
@@ -1474,6 +1478,28 @@ class LumoAppState extends ChangeNotifier {
     return wallet;
   }());
 
+  Future<RewardWallet> performLumoRoomAction({
+    required LearningProfileLease lease,
+    required LumoRoomActionRequest request,
+  }) => _trackLearning(() async {
+    void guard() {
+      _checkActiveRewardOwner(lease);
+      if (request.ownerId != lease.studentId) {
+        throw StateError('Die Zimmeraktion gehört zu einem anderen Kinderprofil.');
+      }
+    }
+    guard();
+    await flushRewards();
+    guard();
+    final wallet = await _walletRepository.performLumoRoomAction(
+        request: request, validateOwner: guard);
+    guard();
+    _state = _state.copyWith(stars: wallet.stars, xp: wallet.xp);
+    _lumoCardsWinStreak = wallet.lumoCardsWinStreak;
+    _safeNotify();
+    return wallet;
+  }());
+
   /// Flushes accepted work before a local snapshot or staged cold-start import.
   /// The import itself runs before the next Flutter engine is created, so no
   /// cached repository from this process can overwrite restored data.
@@ -1488,17 +1514,25 @@ class LumoAppState extends ChangeNotifier {
       await _drainLearningOperations();
       await flushRewards();
       await RewardShopRepository.flushPendingWrites();
+      await LumoRoomRepository.flushPendingWrites();
+      final activeSession = _activeLearningSession;
       for (final session in _learningSessions.values.toList()) {
-        final lease = LearningProfileLease._(session, _profileGeneration,
+        // Inactive profiles may flush their own accepted work, but must not
+        // install their session in the currently selected child's display.
+        final generation = identical(session, activeSession)
+            ? _profileGeneration : -1;
+        final lease = LearningProfileLease._(session, generation,
             _learningResetEpoch, session.epoch,
-            session.studentId == school.cachedActiveStudentId
-                ? session.studentId : 'self');
+            session.local ? 'self' : session.studentId);
         await session.profile.flush();
         for (final answer in session.pendingMissionAnswers) {
           answer.schoolSaved = true;
         }
         await session.cosmos.flush();
         await _drainTutorEvidence(lease);
+        if (session.tutorPending.isNotEmpty) {
+          throw StateError('Ein Lernschritt wartet noch aufs Speichern.');
+        }
         await _flushDailyMission(lease);
       }
       if (!await flushAttemptLog()) {

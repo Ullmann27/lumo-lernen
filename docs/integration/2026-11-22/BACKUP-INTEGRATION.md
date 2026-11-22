@@ -14,7 +14,7 @@ Der Settings-Anschluss lautet `LocalBackupCard(app: appState)` aus `lib/features
 |---|---|
 | Flutter-Präferenzen | Vorhandene Daten unter `lumo_`, `lumo.`, `cross_grade_practice_v1:` und `cross_grade_writing_v1:` mit ihren ursprünglichen bool/int/double/String/StringList-Typen. |
 | Profile und Lernen | Kinderprofile, Schulverzeichnis und aktive Auswahl, Lern-/Lese-/Schreibdaten, Journal, Geschichten, Aufgabenprotokolle, eigene Elternaufgaben einschließlich noch nicht vollständig bestätigter Versuche. |
-| Belohnungen | Vollständiger gespeicherter Wallet-Wert mit Ergebnis-IDs und Gutschein-Transaktionshistorie sowie eigene Gutschein-Definitionen und Pending-Belege. |
+| Belohnungen | Vollständiger gespeicherter Wallet-Wert mit Ergebnis-IDs, Gutschein-Transaktionshistorie und Zimmeraktionen sowie eigene Gutschein-/Zimmer-Daten und Pending-Belege. |
 | Native Profilzuordnung | `lumo_3d_profile_keys_v1`, zugehöriger `lumo_3d_save_salt_v1` und lokale Lernidentität. Der Salt ist Bestandteil der Spielstandzuordnung und wird erhalten. |
 | Native Spiele | Gespeicherte CFG-/JSON-Familien für Kart, Parcours, Werkstatt/Streckenpass, Run, Jump, SkyPost, Bauwelt/Settlement, Puzzle, Rhythmus, Schatzsuche, Karten und Schach; native Fortschritts-/Darstellungseinstellungen und Dateien unter `kart_geister/`. |
 | Noch offene Spielergebnisse | `lumo_game_events.json` mit Ergebnis-IDs sowie `lumo_host_pending_rewards.cfg`. Alte Activity-Navigation und `callerReturnSession` werden aus dem transportierten Event-Store entfernt. |
@@ -33,7 +33,7 @@ Grenzen: 64 MiB Archiv, 16 MiB Präferenzen, 32 MiB native Dateien insgesamt, 8 
 
 ## Konsistenz und unterbrochener Import
 
-`LumoAppState.withBackupStoragePaused` pausiert die Profilwahl, drainiert bereits angenommene Lernoperationen und Rewards, die Gutschein-Repository-Queue sowie offene Lern-/Cosmos-/Tutor-/Tagesmissions-/Aufgabenprotokoll-Schreibvorgänge. Anschließend hält es die bestehende `LearningStorage`-Serialisierung während des Snapshots bzw. Vormerkens. Ein Speicherversagen wird weitergegeben; es gilt nicht als erfolgreiche Sicherung.
+`LumoAppState.withBackupStoragePaused` pausiert die Profilwahl, drainiert bereits angenommene Lernoperationen und Rewards, die Gutschein- und Zimmer-Repository-Queues sowie offene Lern-/Cosmos-/Tutor-/Tagesmissions-/Aufgabenprotokoll-Schreibvorgänge. Anschließend hält es die bestehende `LearningStorage`-Serialisierung während des Snapshots bzw. Vormerkens. Ein Speicherversagen wird weitergegeben; es gilt nicht als erfolgreiche Sicherung. Insbesondere blockiert ein nach dem Tutor-Drain noch offener Lernschritt den Snapshot. Inaktive Profile erhalten beim Flush keine aktuelle UI-Generation; ihre Daten werden gespeichert, ohne das ausgewählte Kind auszutauschen.
 
 Beim Export werden native Ergebnisse unter dem vorhandenen Event-Store-Lock vor den frisch geladenen Flutter-Präferenzen erfasst. Die normale Ereignisbestätigung erfolgt erst nach dem dauerhaften Wallet-Schreibvorgang. Damit enthält eine Sicherung entweder noch das ausstehende Ergebnis oder bereits seine idempotente Wallet-Quittung, gegebenenfalls beides. Ein aktiver nativer Spielprozess oder ein offener Start-/Rückkehrvorgang blockiert die Sicherung.
 
@@ -53,8 +53,8 @@ Die App verwendet `ACTION_CREATE_DOCUMENT` und `ACTION_OPEN_DOCUMENT`, MIME `app
 
 | Prüfung | Beobachtetes Ergebnis |
 |---|---|
-| Neue Backup-Format-/Flowtests | 18/18 PASS: Roundtrip, persönliche Daten, Rechteausschluss, native IDs/Bytes, beschädigte und fremde Formate, Grenzen, Profile, echte 390-dp-Bestätigungs-UI, Abbruch und ausstehende Wallet-Writes. |
-| Gemeinsamer Flutter-Lauf | 31/31 PASS, einschließlich bestehender AppState-Identitäts-, Profil-Isolations- und beschädigter-Profil-Regressionen. |
+| Neue Backup-Format-/Flowtests | 20/20 PASS: Roundtrip, persönliche Daten, Rechteausschluss, native IDs/Bytes, beschädigte und fremde Formate, Grenzen, Profile, echte 390-dp-Bestätigungs-UI, Abbruch, ausstehende Wallet-Writes, aktive Profilanzeige nach dem Flush mehrerer Kinder und blockierender Tutor-Speicherfehler mit erfolgreichem Retry. |
+| Gemeinsamer Flutter-Lauf | 33/33 PASS, einschließlich bestehender AppState-Identitäts-, Profil-Isolations- und beschädigter-Profil-Regressionen. Die beiden zusätzlichen Review-Regressionen waren vor der Korrektur nachweislich rot; siehe `backup-review-before.txt`. |
 | Native Transaktion | 14/14 PASS auf echten temporären JVM-Dateien: Roundtrip/Vorher-Kopie, Stage/Abbruch, Prozessunterbrechungen vor/nach Journal und Commit, Dateitausch, Preferences, erneut unterbrochener Rollback, Schreibfehler, Hash-/Pfad-/Symlink-/Größenfehler. |
 | Nativer API-Compilecheck | PASS: tatsächlicher SAF-Bridge-Code und GameEventStore gegen das offizielle Android-API-36-JAR, vorhandene JDK-/Kotlin-Werkzeuge. Der Flutter-Channel ist dabei nur eine deklarierte Transport-Schnittstelle. |
 | Android-Generator | 3/3 PASS, darunter beide echten Backup-Quellen mit ursprünglichem Inhalt und angepasstem Namespace bei wiederholter Vorbereitung. |

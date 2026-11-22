@@ -9,6 +9,9 @@ import 'package:shared_preferences_platform_interface/shared_preferences_platfor
 
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/local_backup_repository.dart';
+import 'package:lumo_lernen/core/learning_journey.dart';
+import 'package:lumo_lernen/core/learning_profile_engine.dart';
+import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/domain/backup/local_backup.dart';
 import 'package:lumo_lernen/features/backup/local_backup_card.dart';
@@ -54,6 +57,16 @@ class _HeldWalletStore extends InMemorySharedPreferencesStore {
       await release.future;
     }
     return super.setValue(type, key, value);
+  }
+}
+
+class _UnavailableJourney extends ProgressRepository {
+  _UnavailableJourney() : super(studentId: 'backup-child-a');
+  bool available = false;
+  @override
+  Future<LearningJourney> loadJourney() async {
+    if (!available) throw StateError('Journey cannot be read yet');
+    return super.loadJourney();
   }
 }
 
@@ -186,6 +199,76 @@ void main() {
     expect(enteredSnapshot, true);
     expect(app.hasPendingRewards, false);
     expect(app.resetting, false);
+  });
+
+  test('backup preserves visible A after flushing previously visited B',
+      () async {
+    final app = LumoAppState(walletRepository: RewardWalletRepository());
+    addTearDown(app.dispose);
+    await app.school.setActiveStudent('backup-child-a');
+    await app.recordLearningAnswer(
+        subject: 'Mathematik',
+        unit: 'Plus bis 10',
+        correct: true,
+        requireSaved: true);
+    await app.school.setActiveStudent('backup-child-b');
+    await app.recordLearningAnswer(
+        subject: 'Deutsch',
+        unit: 'Artikel',
+        correct: false,
+        requireSaved: true);
+    await app.school.setActiveStudent('backup-child-a');
+    await app.loadLearningProfile();
+    final owner = await app.captureLearningProfile();
+    expect(app.isCurrentLearningLease(owner), true);
+
+    await app.withBackupStoragePaused(() async {
+      expect(app.school.cachedActiveStudentId, 'backup-child-a');
+      expect(app.learningSkills().keys, ['mathematik::plus bis 10']);
+    });
+    expect(app.isCurrentLearningLease(owner), true);
+    expect(app.learningSkills().keys, ['mathematik::plus bis 10']);
+    expect(
+        (await ProgressRepository(studentId: 'backup-child-b').loadSkills())
+            .keys,
+        ['deutsch::artikel']);
+  });
+
+  test('unpersisted tutor evidence blocks backup and survives a later retry',
+      () async {
+    final repository = _UnavailableJourney();
+    final app = LumoAppState(
+        walletRepository: RewardWalletRepository(),
+        learningProfileFactory: (studentId) => LearningProfileEngine(
+            repository: studentId == 'backup-child-a'
+                ? repository
+                : ProgressRepository(studentId: studentId)));
+    addTearDown(app.dispose);
+    await app.school.setActiveStudent('backup-child-a');
+    await app.loadLearningProfile();
+    await app.recordTutorEvidence(
+        subject: 'Mathematik',
+        unit: 'Plus bis 10',
+        evidence: const LearningEvidence(
+            taskId: 'backup-accepted', correct: true, helpLevel: 2));
+    expect(app.tutorSaveError, isNotNull);
+    var snapshots = 0;
+    await expectLater(app.withBackupStoragePaused(() async {
+      snapshots++;
+    }), throwsStateError);
+    expect(snapshots, 0);
+    expect(app.backupBusy, false);
+    expect(app.resetting, false);
+
+    repository.available = true;
+    await app.withBackupStoragePaused(() async {
+      snapshots++;
+    });
+    expect(snapshots, 1);
+    expect(app.tutorSaveError, isNull);
+    final restored = await repository.loadJourney();
+    expect(restored.records.values.single.attempts, 1);
+    expect(restored.records.values.single.assistedCorrect, 1);
   });
 
   Future<void> mount(WidgetTester tester, _Repository repository) async {
