@@ -22,6 +22,7 @@ class LocalBackupCard extends StatefulWidget {
 
 class _LocalBackupCardState extends State<LocalBackupCard> {
   bool _busy = false;
+  bool _reviewing = false;
   bool _previous = false;
   String? _message;
   bool get _available =>
@@ -121,60 +122,68 @@ class _LocalBackupCardState extends State<LocalBackupCard> {
     var accepted = false;
     final date = backup?.createdAt.toLocal();
     final names = backup?.profileNames ?? const <String>[];
-    return await showDialog<bool>(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => StatefulBuilder(
-              builder: (context, setDialogState) => AlertDialog(
-                    title: Text(backup == null
-                        ? 'Vorherigen Stand wiederherstellen?'
-                        : 'Geprüfte Sicherung wiederherstellen?'),
-                    content: SingleChildScrollView(
-                        child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                          if (date != null)
-                            Text(
-                                'Sicherung vom ${date.day}.${date.month}.${date.year} '
-                                '${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}'),
-                          if (names.isNotEmpty)
-                            Text('Profile: ${names.join(', ')}'),
-                          if (backup != null)
-                            Text(
-                                '${backup.preferences.length} Lerndaten-Einträge und '
-                                '${backup.nativeFiles.length} native Spielstandsdateien.'),
-                          const SizedBox(height: 12),
-                          const Text(
-                              'Alle bisherigen Lern-, Profil-, Journal- und Spielstände dieses Geräts '
-                              'werden durch diesen Stand ersetzt. Lumo sichert vorher den aktuellen Stand lokal.'),
-                          const SizedBox(height: 8),
-                          const Text(
-                              'Lumo schließt nach der Bestätigung. Öffne die App anschließend erneut. '
-                              'Erst beim Start werden die Daten sicher übernommen. '
-                              'Mikrofon-, Kamera-, Netzwerk- und Modellfreigaben werden aus einer Datei nicht übernommen.'),
-                          CheckboxListTile(
-                              contentPadding: EdgeInsets.zero,
-                              title: const Text(
-                                  'Als erwachsene Person möchte ich diesen Stand wiederherstellen.'),
-                              value: accepted,
-                              onChanged: (value) => setDialogState(
-                                  () => accepted = value == true)),
-                        ])),
-                    actions: [
-                      TextButton(
-                          onPressed: () => Navigator.pop(context, false),
-                          child: const Text('Abbrechen')),
-                      FilledButton(
-                          key: const ValueKey('backup-confirm-restore'),
-                          onPressed: accepted
-                              ? () => Navigator.pop(context, true)
-                              : null,
-                          child: const Text('Wiederherstellen und schließen')),
-                    ],
-                  )),
-        ) ??
-        false;
+    setState(() => _reviewing = true);
+    try {
+      return await showDialog<bool>(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => StatefulBuilder(
+                builder: (context, setDialogState) => AlertDialog(
+                      title: Text(backup == null
+                          ? 'Vorherigen Stand wiederherstellen?'
+                          : 'Geprüfte Sicherung wiederherstellen?'),
+                      content: SingleChildScrollView(
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                            if (date != null)
+                              Text(
+                                  'Sicherung vom ${date.day}.${date.month}.${date.year} '
+                                  '${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}'),
+                            if (names.isNotEmpty)
+                              Text('Profile: ${names.join(', ')}'),
+                            if (backup != null)
+                              Text(
+                                  '${backup.preferences.length} Lerndaten-Einträge und '
+                                  '${backup.nativeFiles.length} native Spielstandsdateien.'),
+                            const SizedBox(height: 12),
+                            const Text(
+                                'Alle bisherigen Lern-, Profil-, Journal- und Spielstände dieses Geräts '
+                                'werden durch diesen Stand ersetzt. Lumo sichert vorher den aktuellen Stand lokal.'),
+                            const SizedBox(height: 8),
+                            const Text(
+                                'Lumo schließt nach der Bestätigung. Öffne die App anschließend erneut. '
+                                'Erst beim Start werden die Daten sicher übernommen. '
+                                'Mikrofon-, Kamera-, Netzwerk- und Modellfreigaben werden aus einer Datei nicht übernommen.'),
+                            CheckboxListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: const Text(
+                                    'Als erwachsene Person möchte ich diesen Stand wiederherstellen.'),
+                                value: accepted,
+                                onChanged: (value) => setDialogState(
+                                    () => accepted = value == true)),
+                          ])),
+                      actions: [
+                        TextButton(
+                            onPressed: () => Navigator.pop(context, false),
+                            child: const Text('Abbrechen')),
+                        FilledButton(
+                            key: const ValueKey('backup-confirm-restore'),
+                            onPressed: accepted
+                                ? () => Navigator.pop(context, true)
+                                : null,
+                            child:
+                                const Text('Wiederherstellen und schließen')),
+                      ],
+                    )),
+          ) ??
+          false;
+    } finally {
+      if (mounted) {
+        setState(() => _reviewing = false);
+      }
+    }
   }
 
   @override
@@ -200,7 +209,7 @@ class _LocalBackupCardState extends State<LocalBackupCard> {
                       padding: EdgeInsets.only(top: 8),
                       child: Text(
                           'Die Dateisicherung steht in der Android-App zur Verfügung.')),
-                if (_busy)
+                if (_busy && !_reviewing)
                   const Padding(
                       padding: EdgeInsets.symmetric(vertical: 12),
                       child: LinearProgressIndicator()),

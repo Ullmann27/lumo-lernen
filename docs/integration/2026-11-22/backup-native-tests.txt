@@ -1,0 +1,20 @@
+test_real_saf_bridge_compiles_against_android_api (scripts.tests.test_local_backup_transaction.LocalBackupAndroidCompileTest.test_real_saf_bridge_compiles_against_android_api) ... ok
+test_corrupted_previous_snapshot_rejected (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_corrupted_previous_snapshot_rejected) ... ok
+test_crash_after_commit_keeps_restored_data (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_crash_after_commit_keeps_restored_data) ... ok
+test_crash_after_journal (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_crash_after_journal) ... ok
+test_crash_after_preferences (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_crash_after_preferences) ... ok
+test_crash_before_commit (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_crash_before_commit) ... ok
+test_crash_before_live_mutation (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_crash_before_live_mutation) ... ok
+test_crash_during_native_files (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_crash_during_native_files) ... ok
+test_failed_commit_rolls_back (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_failed_commit_rolls_back) ... ok
+test_interrupted_rollback_retries (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_interrupted_rollback_retries) ... ok
+test_roundtrip_and_previous_snapshot (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_roundtrip_and_previous_snapshot) ... ok
+test_size_limit_refused_before_mutation (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_size_limit_refused_before_mutation) ... ok
+test_stage_and_cancel_do_not_change_live_data (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_stage_and_cancel_do_not_change_live_data) ... ok
+test_symlink_refused_before_mutation (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_symlink_refused_before_mutation) ... ok
+test_traversal_authority_and_unknown_paths_refused (scripts.tests.test_local_backup_transaction.LocalBackupTransactionTest.test_traversal_authority_and_unknown_paths_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 7.527s
+
+OK

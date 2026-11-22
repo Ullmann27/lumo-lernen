@@ -11,7 +11,7 @@ on:
     paths: [.github/workflows/lumo-2052-rendered-android.yml, config/arm64-course-check.json]
 
 permissions:
-  contents: read
+  contents: write
   actions: read
 
 jobs:
@@ -116,8 +116,60 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: .probe-venv/bin/python tools/android_qa/run_course_android_probe.py "$(cat candidate/APK-PATH.txt)" --movement
+      - name: ARM64-Kursbelege an den geprüften APK-Kandidaten binden
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_RUN: ${{ steps.candidate.outputs.build_run }}
+          BUILD_SOURCE: ${{ steps.candidate.outputs.build_source }}
+          VERSION_CODE: ${{ steps.candidate.outputs.version_code }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import zipfile
+
+          proof = json.loads(Path('candidate/release/BUILD-PROVENANCE.json').read_text())
+          apk = Path(Path('candidate/APK-PATH.txt').read_text().strip())
+          expected = Path('candidate/release/SHA256SUMS.txt').read_text().split()[0]
+          actual = hashlib.file_digest(apk.open('rb'), 'sha256').hexdigest()
+          if actual != expected or proof['flutter_source_commit'] != os.environ['BUILD_SOURCE']:
+              raise RuntimeError('The checked ARM64 candidate identity changed')
+          if proof['abis'] != ['arm64-v8a'] or proof['versionCode'] != int(os.environ['VERSION_CODE']):
+              raise RuntimeError('Wrong ARM64 candidate version or ABI')
+          courses = ['dschungelherz', 'zauberwald', 'sonnenhafen']
+          for course in courses:
+              for suffix in ['selection.png', 'play-1.png', 'play-2.png', 'logcat.txt', 'exit-info.txt']:
+                  path = Path('course-evidence') / f'{course}-{suffix}'
+                  if not path.is_file() or not path.stat().st_size:
+                      raise RuntimeError(f'Missing successful course evidence: {path}')
+          result = {
+              'status': 'PASS', 'apk_sha256': actual,
+              'build_run': os.environ['BUILD_RUN'], 'flutter_source_commit': os.environ['BUILD_SOURCE'],
+              'godot_source_commit': proof['godot']['revision'], 'versionCode': proof['versionCode'],
+              'tested_courses': courses,
+              'method': 'Installed signed ARM64 APK on disposable Android API35 emulator with native bridge; Mesa llvmpipe, real course-card touches and changing rendered frames.',
+              'limits': 'Not a physical ARM64 device, no Fold7 performance, audio or 60 FPS certification.',
+              'check_run': f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}",
+          }
+          Path('course-evidence/ARM64-COURSES.json').write_text(json.dumps(result, indent=2) + '\n')
+          Path('course-evidence/BUILD-PROVENANCE.json').write_bytes(Path('candidate/release/BUILD-PROVENANCE.json').read_bytes())
+          with zipfile.ZipFile('LUMO-ARM64-KURSPRUEFUNG.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(Path('course-evidence').rglob('*')):
+                  if path.is_file():
+                      archive.write(path, str(path))
+          Path('candidate/RELEASE-TAG.txt').write_text(
+              f"lumo-test-{proof['versionName']}-{proof['versionCode']}-{os.environ['BUILD_RUN']}")
+          PY
+          TAG="$(cat candidate/RELEASE-TAG.txt)"
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq .object.sha)" = "$BUILD_SOURCE"
+          gh release upload "$TAG" LUMO-ARM64-KURSPRUEFUNG.zip --repo "$GITHUB_REPOSITORY"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lumo-arm64-candidate-android-courses
-          path: course-evidence/
+          path: |
+            course-evidence/
+            LUMO-ARM64-KURSPRUEFUNG.zip

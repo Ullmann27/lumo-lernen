@@ -1,10 +1,40 @@
 {
-  "scope": "Local source and contract checks only; Android and APK evidence follows in the build workflow.",
+  "scope": "Local source, engine and contract checks; 2066 failure recorded separately. Actual candidate APK and Android evidence is produced by the mandatory build workflows.",
   "files": [
     {
-      "name": "games-flutter-validation.json",
-      "bytes": 1521,
-      "sha256": "5942fb48147ce2c9b836f698e5077e880651a7e27e97c1ac53f5d953c61a6826"
+      "name": "2066-build-result.json",
+      "bytes": 9611,
+      "sha256": "84edf8847e58de3e02edf0aaaaccbd4a0b180959f53bcf5df53750797bb81fe6"
+    },
+    {
+      "name": "backup-dart-analysis.log",
+      "bytes": 178,
+      "sha256": "55f35d99f6c5621f83858064572a0f18ff6ab1021584496415e013982f2ac7ee"
+    },
+    {
+      "name": "backup-flutter-tests.log",
+      "bytes": 5481,
+      "sha256": "c7f8d4375376d2c2683aee5344b1b76c5fe9d334e2ce54f3454fe73d9a62b677"
+    },
+    {
+      "name": "backup-generator-tests.log",
+      "bytes": 2592,
+      "sha256": "36332060f7be4f1c8dd6aa1b6f04691c1dd10a2c607eb3c14d44bc40b52b5fa1"
+    },
+    {
+      "name": "backup-native-tests.log",
+      "bytes": 2408,
+      "sha256": "957681401471d08df14086811a4923d37b7a57e5606e38952348706a9935b1b7"
+    },
+    {
+      "name": "games-custom-rewards-analysis-final.log",
+      "bytes": 96,
+      "sha256": "30d1f5bedc8172bf099d0e0f675c5f0fd725b6f95be01194cad753aa11493dae"
+    },
+    {
+      "name": "games-custom-rewards-final.log",
+      "bytes": 14556,
+      "sha256": "a1a64326dc05fb546558eaecc72488034daac53745b351ee253bf967287ac493"
     },
     {
       "name": "games-flutter-complete.log",
@@ -12,19 +42,34 @@
       "sha256": "f40fdd8dd247bd77705bf0e898b95a9d8f92049e8d28b349df97a199428ead40"
     },
     {
+      "name": "games-flutter-validation.json",
+      "bytes": 1521,
+      "sha256": "5942fb48147ce2c9b836f698e5077e880651a7e27e97c1ac53f5d953c61a6826"
+    },
+    {
+      "name": "games-holo-lessons.log",
+      "bytes": 7253,
+      "sha256": "88f2de0e986a00aba62a319b3ace025673264bba89a8fa5784cc0b759181ef54"
+    },
+    {
+      "name": "games-learning-boot.log",
+      "bytes": 559,
+      "sha256": "64ec23507bbb2dc6b8974c52dca491b5bc10322a30eafe4f386912fd86f8f2ee"
+    },
+    {
       "name": "games-native-final.log",
       "bytes": 6826,
       "sha256": "0ffbf057c8c4c2acec03d15241b44dcd1b8db8444c55e92ecdbf3a1233834430"
     },
     {
-      "name": "games-native-host-red.log",
-      "bytes": 1167,
-      "sha256": "29b571c0efb230d87c77f5275a5571d8afe50fea3fe7c8a02ebb1da59ce800e7"
-    },
-    {
       "name": "games-native-host-green.log",
       "bytes": 394,
       "sha256": "f42c251341ba946c12dd5d03965d41d0ce063a2a74fa2be5b479cd1f7c30d86c"
+    },
+    {
+      "name": "games-native-host-red.log",
+      "bytes": 1167,
+      "sha256": "29b571c0efb230d87c77f5275a5571d8afe50fea3fe7c8a02ebb1da59ce800e7"
     },
     {
       "name": "games-run-regression.log",
@@ -37,39 +82,14 @@
       "sha256": "2c43c2f57c6d7dcafe68d7452cd73906170ed24e126d716aa9d23efbc095723a"
     },
     {
-      "name": "games-holo-lessons.log",
-      "bytes": 7253,
-      "sha256": "88f2de0e986a00aba62a319b3ace025673264bba89a8fa5784cc0b759181ef54"
-    },
-    {
-      "name": "pck-source-probe.json",
-      "bytes": 464,
-      "sha256": "ff3a7a479f83b8536d1806c3d29f325fbd4b931bafbdf2a967543b8f50181a44"
-    },
-    {
-      "name": "pck-source-assets.log",
-      "bytes": 8769,
-      "sha256": "a1d52af8009ee3d4f1b321fd3a037e4a882a5ded0343a737a9a4b3aa0c3f47a2"
-    },
-    {
-      "name": "pck-source-race.log",
-      "bytes": 2286,
-      "sha256": "f4930c8ff5857c200317859ba10a5b72fd0ac3f5f153d04280e610f84bd6f074"
-    },
-    {
-      "name": "tool-provenance.json",
-      "bytes": 1073,
-      "sha256": "aa6f888c0a5971b526f56b7747ac4b45bc6c6334de1bf987665f67a47190191f"
-    },
-    {
-      "name": "games-learning-boot.log",
-      "bytes": 559,
-      "sha256": "64ec23507bbb2dc6b8974c52dca491b5bc10322a30eafe4f386912fd86f8f2ee"
-    },
-    {
       "name": "games-tutor-routed.log",
       "bytes": 645,
       "sha256": "f3a8a3191b4259bae300f08ae1830c4bb3e369a9db6c958d6cd0ccf2ae3aead2"
+    },
+    {
+      "name": "local-backup-android-helper-tests.log",
+      "bytes": 3063,
+      "sha256": "383c08ed41dd4bfa5806a3e6296191a08c77a7386f7e31b6ea0ad29656a084a2"
     },
     {
       "name": "lumo_kart_production_driver_regression.log",
@@ -80,6 +100,41 @@
       "name": "lumo_kart_production_driver_regression.result.json",
       "bytes": 576,
       "sha256": "4e0422d411a68f69c5f5144c49b13fc513dd82a55eb07a1d0e398b9783dd2808"
+    },
+    {
+      "name": "parent-task-analysis.log",
+      "bytes": 161,
+      "sha256": "08137f996f8cde204e887a721a20d561bdd588deb86c7995c46be915379e2bdb"
+    },
+    {
+      "name": "parent-task-existing-learning-tests.log",
+      "bytes": 509,
+      "sha256": "fe50c62800536e1b987e1ff89c909eed1e80b0e2fc8949a5353e716aab1d771d"
+    },
+    {
+      "name": "parent-task-tests.log",
+      "bytes": 2632,
+      "sha256": "14b3d7eae2b7cbcbc2e7000ed56cea49e5140fac9758535eccb3f0d15da93dce"
+    },
+    {
+      "name": "pck-source-assets.log",
+      "bytes": 8769,
+      "sha256": "a1d52af8009ee3d4f1b321fd3a037e4a882a5ded0343a737a9a4b3aa0c3f47a2"
+    },
+    {
+      "name": "pck-source-probe.json",
+      "bytes": 464,
+      "sha256": "ff3a7a479f83b8536d1806c3d29f325fbd4b931bafbdf2a967543b8f50181a44"
+    },
+    {
+      "name": "pck-source-race.log",
+      "bytes": 2286,
+      "sha256": "f4930c8ff5857c200317859ba10a5b72fd0ac3f5f153d04280e610f84bd6f074"
+    },
+    {
+      "name": "tool-provenance.json",
+      "bytes": 1073,
+      "sha256": "aa6f888c0a5971b526f56b7747ac4b45bc6c6334de1bf987665f67a47190191f"
     }
   ]
 }

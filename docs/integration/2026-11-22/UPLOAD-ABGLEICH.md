@@ -22,7 +22,7 @@ Das Alter eines Prototyps beweist nicht, dass alle seine Funktionen in einer sp�
 
 **Eltern-PIN:** Die neuere dokumentierte Entscheidung in `docs/PIN_FREI_2026-10-03.md` und Commit `d7b1e3ff0e420d2444787ffe68e804e4dae7d9c3` ersetzt die frühere PIN durch direkten Eltern-/Profilzugang und ausdrückliche Erwachsenenbestätigung für Familienbelohnungen. Der alte PIN-Dialog wird daher nicht wieder eingeführt.
 
-**140 Gutscheine:** Die alte Darstellung entsteht aus 40 Basisideen und automatisch erzeugten weiteren Stufen. Das sind keine 140 unterschiedlichen Familienaktivitäten. Der Anschluss erhält vorhandene Katalogeinträge; zusätzliche belegte Ideen können als auswählbare Editorvorlagen dienen. Für solche Vorlagen wählt ein Erwachsener den heutigen Sternpreis. Virtuelle Zimmeraccessoires werden nicht als reale Familienleistungen ausgegeben.
+**140 Gutscheine:** Die alte Darstellung entsteht aus 40 Basisideen und automatisch erzeugten weiteren Stufen. Das sind keine 140 unterschiedlichen Familienaktivitäten. Der Anschluss erhält die 33 bestehenden Katalogeinträge und ergänzt 16 belegte Familienideen als auswählbare Editorvorlagen. Für solche Vorlagen wählt ein Erwachsener den heutigen Sternpreis. Virtuelle Zimmeraccessoires werden nicht als reale Familienleistungen ausgegeben. Der vollständige Ideenabgleich steht im [Gutscheinbericht](CUSTOM-REWARDS-INTEGRATION.md).
 
 **Fotoanalyse:** Die alten HTML-Fotoeingänge sind als Demonstration implementiert; im Flutter-MVP-ZIP liefert `scanImage` konstant „12 + 7“. Das ist kein verlorener fertiger OCR- oder KI-Dienst. Die heutige tatsächliche Scannerintegration bleibt maßgeblich.
 
@@ -32,4 +32,4 @@ Das Alter eines Prototyps beweist nicht, dass alle seine Funktionen in einer sp�
 
 ## Nachweisstand
 
-Dieser Bericht dokumentiert die Quellenentscheidung. Implementierungs- und Testnachweise der drei Ergänzungen werden separat mit dem tatsächlich fertiggestellten Kandidaten erfasst. Der bisherige 2066-Bau beweist diese zusätzlichen Funktionen noch nicht. Eine offene PR, ein alter Funktionsname oder ein gespeichertes Feld allein wird nicht als funktionsfähiger Anschluss gezählt.
+Die drei Ergänzungen sind als produktive Abläufe im Kandidaten 2067 implementiert. Ihre gezielten Prüfungen und Grenzen stehen in [CUSTOM-REWARDS-INTEGRATION.md](CUSTOM-REWARDS-INTEGRATION.md), [PARENT-TASKS-INTEGRATION.md](PARENT-TASKS-INTEGRATION.md) und [BACKUP-INTEGRATION.md](BACKUP-INTEGRATION.md). Der verpflichtende APK-Workflow führt sie erneut gemeinsam mit den vorhandenen Kernprüfungen aus. Der Android-Nachweis entsteht erst aus der tatsächlich installierten Kandidaten-APK. Eine offene PR, ein alter Funktionsname oder ein gespeichertes Feld allein wird nicht als funktionsfähiger Anschluss gezählt.

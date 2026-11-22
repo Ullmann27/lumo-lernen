@@ -10,6 +10,7 @@ import 'widgets/lumo_home_hero.dart';
 import '../../widgets/design/lumo_section_heading.dart';
 import '../teacher/student_assignments_card.dart';
 import '../parent_tasks/parent_tasks_entry_card.dart';
+import '../room/lumo_room_screen.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/school_exercise_generator.dart';
@@ -569,6 +570,7 @@ class HomeContent extends StatelessWidget {
                         _startPractice(subject, unit: unit),
                   ),
                   ParentTasksEntryCard(appState: appState),
+                  LumoRoomCard(appState: appState),
                   const SizedBox(height: 20),
                   const SizedBox(height: 10),
                   Card(

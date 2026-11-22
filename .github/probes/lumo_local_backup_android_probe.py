@@ -257,9 +257,9 @@ def picker_identity(activities, action):
     if len(candidates) != 1:
         raise RuntimeError('One actual foreground DocumentsUI activity is required')
     token, package = next(iter(candidates))
-    sections = re.split(r'(?=\n\s*\* Hist #\d+:)', activities)
+    sections = re.split(r'(?=\n\s*\* Hist\s+#\d+:)', activities)
     sections = [section for section in sections if re.match(
-        r'\s*\* Hist #\d+: ActivityRecord\{' + re.escape(token) + r'\s', section)]
+        r'\s*\* Hist\s+#\d+:\s*ActivityRecord\{' + re.escape(token) + r'\s', section)]
     for section in sections:
         for line in section.splitlines():
             if ('Intent {' in line and f'act=android.intent.action.{action}' in line and
@@ -288,7 +288,8 @@ def suggested_filename(nodes, package):
 
 
 def downloads(out, package, tag):
-    tap_native(out, package, ['Show roots', 'Speicherorte anzeigen', 'Wurzeln anzeigen'], tag + '-roots')
+    # Android 15 DocumentsUI res/values{,-de}/strings.xml, drawer_open.
+    tap_native(out, package, ['Show roots', 'Root-Verzeichnis anzeigen'], tag + '-roots')
     tap_native(out, package, ['Downloads'], tag + '-downloads')
     nodes = live.live_nodes(out, tag + '-download-folder')
     if not any(node.get('package') == package and caption(node, ['Downloads']) for node in nodes):
@@ -354,7 +355,10 @@ def parents(out, tag):
 def wait_setting(out, expected, tag):
     for attempt in range(30):
         current = probe.prefs(out, f'{tag}-{attempt}')
-        value = stored_json(current, SETTINGS, physical=True).get('reduceAnimations')
+        try:
+            value = stored_json(current, SETTINGS, physical=True).get('reduceAnimations')
+        except ValueError:
+            value = None
         if type(value) is bool and (expected is None or value is expected):
             return current
         time.sleep(.3)
@@ -496,6 +500,7 @@ def main():
         probe.flutter_tap(out, 'Wiederherstellen und schließen', 'confirm-restore',
             scroll_attempts=16, min_visible_height_px=48)
         observations = []
+        result['process_close_observations'] = observations
         for attempt in range(60):
             pid = base.adb('shell', 'pidof', PACKAGE, check=False)
             native = base.adb('shell', 'pidof', PACKAGE + ':lumo_game', check=False)

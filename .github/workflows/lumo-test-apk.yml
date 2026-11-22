@@ -57,6 +57,8 @@ jobs:
           python3 -m unittest discover -s scripts/tests -p test_verify_test_apk_candidate.py -v
           python3 -m unittest discover -s scripts/tests -p test_verify_native_start_diagnostics.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_native_start_diagnostics.py -v
+          python3 -m unittest discover -s tools/android_qa/tests -p test_local_backup_android_probe.py -v
+          python3 -m unittest scripts.tests.test_prepare_android -v
           python3 scripts/verify_test_apk_candidate.py source --expected-commit "$GITHUB_SHA" \
             --out build-proof/CANDIDATE-SOURCE.json
           git rev-parse HEAD > build-proof/FLUTTER-COMMIT.txt
@@ -69,7 +71,7 @@ jobs:
           flutter pub get --enforce-lockfile
           bash scripts/install_ndk_for_build.sh build-proof/ndk
           bash scripts/install_godot_for_build.sh
-      - name: Native Sprache und lokaler Lerndialog – JVM-Verträge
+      - name: Native Sprache, Lerndialog und Datensicherung – JVM-Verträge
         shell: bash
         run: |
           set -euo pipefail
@@ -81,7 +83,8 @@ jobs:
           export LUMO_KOTLIN_LIB_DIR="$RUNNER_TEMP/lumo-contract-gradle/gradle-9.1.0/lib"
           python3 -m unittest scripts.tests.test_english_lesson_speech \
             scripts.tests.test_speech_envelope_contract scripts.tests.test_learning_dialog_logic \
-            scripts.tests.test_studio_learning_contract -v \
+            scripts.tests.test_studio_learning_contract \
+            scripts.tests.test_local_backup_transaction -v \
             2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
       - name: Flutter – Analyse und Kernprüfungen
         shell: bash
@@ -117,6 +120,22 @@ jobs:
             test/learning/nextgen_task_hint_precision_test.dart \
             test/learning/module_frame_practical_links_test.dart \
             test/tutoring/guided_coach_binding_test.dart \
+            test/parent_task_repository_test.dart \
+            test/parent_task_flow_test.dart \
+            test/learning_answer_reward_test.dart \
+            test/local_backup_format_test.dart \
+            test/local_backup_flow_test.dart \
+            test/learning_profile_isolation_test.dart \
+            test/profile_fail_closed_regression_test.dart \
+            test/rewards/custom_reward_repository_test.dart \
+            test/rewards/reward_shop_redemption_test.dart \
+            test/rewards/custom_rewards_flow_test.dart \
+            test/reward_wallet_transaction_test.dart \
+            test/reward_wallet_dedup_confirmation_test.dart \
+            test/reward_wallet_queue_zone_test.dart \
+            test/state_persistence_regression_test.dart \
+            test/restart_regression_test.dart \
+            test/pin_free_access_test.dart \
             | tee build-proof/FLUTTER-CORE-TESTS.txt
       - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
         shell: bash
@@ -197,6 +216,10 @@ jobs:
               Path('docs/integration/2026-11-22/INTEGRATION.md'),
               Path('docs/integration/2026-11-22/LEARNING-INTEGRATION.md'),
               Path('docs/integration/2026-11-22/UPLOAD-ABGLEICH.md'),
+              Path('docs/integration/2026-11-22/CUSTOM-REWARDS-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/PARENT-TASKS-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/BACKUP-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/LUMO-ROOM-INTEGRATION.md'),
               Path('docs/integration/2026-11-22/flutter-branch-inventory.json'),
               Path('build/lumo-godot-qa/docs/integration/2026-11-22/GODOT_INTEGRATION.md'),
               Path('build/lumo-godot-qa/docs/integration/2026-11-22/godot-branch-inventory.json'),
@@ -302,6 +325,8 @@ jobs:
     needs: apk
     runs-on: ubuntu-24.04
     timeout-minutes: 75
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -355,12 +380,44 @@ jobs:
           ram-size: 4096M
           emulator-build: '14472402'
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
+          script: |
+            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
+            .probe-venv/bin/python .github/probes/lumo_local_backup_android_probe.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour/local-backup
       - name: Beobachtete native Spielstarts verbindlich prüfen
         run: python3 scripts/verify_native_start_diagnostics.py tour/native-starts.json --out tour/NATIVE-GAME-STARTS.json
+      - name: Abgeschlossene Android-Prüfbelege zum selben Kandidaten bereitstellen
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY_ANDROID_EVIDENCE'
+          import json
+          from pathlib import Path
+          import zipfile
+
+          backup = json.loads(Path('tour/local-backup/backup-result.json').read_text())
+          if backup.get('status') != 'PASS':
+              raise RuntimeError('The real Android backup roundtrip has not passed')
+          required = {'apk-identity', 'fictional-profile', 'saf-export', 'export-archive',
+                      'changed-setting', 'saf-review', 'process-closed', 'restore-and-preservation'}
+          passed = {row['step'] for row in backup.get('steps', []) if row.get('ok') is True}
+          if not required <= passed:
+              raise RuntimeError('Incomplete Android backup evidence')
+          if not Path('tour/NATIVE-GAME-STARTS.json').is_file():
+              raise RuntimeError('Missing mandatory native game gate evidence')
+          with zipfile.ZipFile('LUMO-ANDROID-PRUEFBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(Path('tour').rglob('*')):
+                  if path.is_file():
+                      archive.write(path, str(path))
+          PY_ANDROID_EVIDENCE
+          VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
+          TAG="lumo-test-${VERSION/+/-}-$GITHUB_RUN_ID"
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq .object.sha)" = "$GITHUB_SHA"
+          gh release upload "$TAG" LUMO-ANDROID-PRUEFBELEGE.zip --repo "$GITHUB_REPOSITORY"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: LUMO-ANDROID-TOUR-${{ github.run_id }}
-          path: tour/
+          path: |
+            tour/
+            LUMO-ANDROID-PRUEFBELEGE.zip
 
