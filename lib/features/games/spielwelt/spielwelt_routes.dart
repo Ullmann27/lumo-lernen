@@ -83,7 +83,7 @@ class SpielweltRoutes {
       kind: SpielweltTargetKind.nativeScene,
       target: 'cards',
       targetDescription:
-          'Godot Kartentisch: Sternenstich, Sternenleiter, Lumo-Quartett '
+          'Godot Kartentisch: Sternenstich, Sternenleiter, Lumo-Quartett und Punktlandung '
           '(launch3D scene=cards)',
       gameId: GameId.cards,
     ),
