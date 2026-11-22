@@ -707,7 +707,8 @@ class _LanguageStepSequenceState extends State<LanguageStepSequence>
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 if (early && LumoTaskObjectArt.assetForName(picture) != null)
-                  LumoTaskObjectArt(name: picture, size: 44)
+                  LumoTaskObjectArt(
+                      name: picture, size: widget.grade == 1 ? 64 : 44)
                 else if (early && widget.symbol != null)
                   Icon(widget.symbol, size: 35, color: const Color(0xffffd594)),
                 for (var i = 0; i < steps.length; i++)

@@ -96,13 +96,21 @@ class LanguagePracticeMaterial extends StatelessWidget {
   // A short model for each oral or written assignment in the primary catalog.
   static const _examples = <String, (List<String>, List<String>)>{
     'g1_de_listen': (
-      ['Hase', 'rollt den Ball', 'zum Bus'],
+      [
+        'Der Hase findet den Ball.',
+        'Er rollt ihn zur Haltestelle.',
+        'Der Bus kommt.'
+      ],
       ['Hase', 'Ball', 'Bus']
     ),
     'g1_en_listen': (['cat', 'book', 'ball'], ['Katze', 'Buch', 'Ball']),
     'g1_en_speak': (['Hello!', 'I am Mia.', 'Goodbye!'], []),
     'g2_de_retell': (
-      ['Zuerst: eine Maus', 'Dann: die Birne', 'Am Ende: zu Hause'],
+      [
+        'Die Maus findet eine Birne.',
+        'Sie rollt die Birne heim.',
+        'Sie teilt sie mit ihrer Schwester.'
+      ],
       ['Maus', 'Birne', 'Haus']
     ),
     'g2_en_commands': (['Stand up.', 'Clap twice.', 'Sit down.'], []),
