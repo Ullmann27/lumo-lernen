@@ -88,6 +88,8 @@ jobs:
             2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
       - name: Flutter – Analyse und Kernprüfungen
         shell: bash
+        env:
+          LUMO_ROOM_SCREENSHOT_DIR: build-proof/room
         run: |
           set -euo pipefail
           flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
@@ -127,11 +129,21 @@ jobs:
             test/learning_answer_reward_test.dart \
             test/local_backup_format_test.dart \
             test/local_backup_flow_test.dart \
+            test/app_state_student_identity_test.dart \
             test/learning_profile_isolation_test.dart \
             test/profile_fail_closed_regression_test.dart \
             test/rewards/custom_reward_repository_test.dart \
             test/rewards/reward_shop_redemption_test.dart \
             test/rewards/custom_rewards_flow_test.dart \
+            test/rewards/legacy_reward_history_owner_test.dart \
+            test/room/lumo_room_wallet_test.dart \
+            test/room/lumo_room_flow_test.dart \
+            test/achievement_repository_test.dart \
+            test/achievement_flow_test.dart \
+            test/live_pro_question_coach_test.dart \
+            test/story_nextgen_flow_test.dart \
+            test/story_completion_storage_test.dart \
+            test/story_answer_retry_test.dart \
             test/reward_wallet_transaction_test.dart \
             test/reward_wallet_dedup_confirmation_test.dart \
             test/reward_wallet_queue_zone_test.dart \
@@ -248,10 +260,16 @@ jobs:
           with zipfile.ZipFile('release/LUMO-INTEGRATIONSBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
               for label, directory in sources.items():
                   for path in sorted(directory.rglob('*')):
-                      if path.is_file() and path.suffix in {'.md', '.json', '.txt', '.log'}:
+                      if path.is_file() and path.suffix in {'.md', '.json', '.txt', '.log', '.png'}:
                           archive.write(path, f'{label}/{path.relative_to(directory)}')
               for path in proof:
                   archive.write(path, 'build-proof/' + path.name)
+              for label, directory in {
+                  'room': Path('build-proof/room'),
+                  'achievements': Path('.ci-results/achievements'),
+              }.items():
+                  for path in sorted(directory.glob('*.png')):
+                      archive.write(path, f'widget-previews/{label}/{path.name}')
           PY_EVIDENCE
           (cd release && sha256sum "$NAME" > SHA256SUMS.txt)
           echo "LUMO_APK_NAME=$NAME" >> "$GITHUB_ENV"
@@ -275,6 +293,7 @@ jobs:
           Vollständige App-Quellen: https://github.com/Ullmann27/lumo-lernen/archive/$GITHUB_SHA.zip
           Vollständige Spiel-Quellen: https://github.com/Ullmann27/lumo-godot/archive/$GODOT.zip
           Integrationsberichte, Quelleninventuren und Bauprüfungen: LUMO-INTEGRATIONSBELEGE.zip
+          Enthaltene Widget-Vorschaubilder stammen aus echten Flutter-Tests; sie sind keine Android-Geräteaufnahmen.
           Android-Rundgang: Ergebnis im nachfolgenden Job dieses Laufs:
           https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
           Diese vorab erzeugten Bau-Belege enthalten noch kein Ergebnis des Android-Rundgangs.
@@ -313,7 +332,7 @@ jobs:
           elif URL="$(gh release create "$TAG" "${FILES[@]}" \
             --repo "$GITHUB_REPOSITORY" \
             --title "Lumo Test-APK $LUMO_APK_VERSION (Entwurf)" --notes "$NOTES" \
-            --draft --prerelease)"; then
+            --draft --prerelease --target "$GITHUB_SHA")"; then
             echo "Test-APK (Entwurf, nur für Eigentümer sichtbar): $URL" >> "$GITHUB_STEP_SUMMARY"
             echo "Entwurf angelegt: $URL"
           else
@@ -330,6 +349,8 @@ jobs:
             release/
             build-proof/*.txt
             build-proof/*.json
+            build-proof/room/*.png
+            .ci-results/achievements/*.png
           if-no-files-found: warn
           compression-level: 0
 
@@ -425,7 +446,7 @@ jobs:
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
           TAG="lumo-test-${VERSION/+/-}-$GITHUB_RUN_ID"
           test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq .object.sha)" = "$GITHUB_SHA"
-          gh release upload "$TAG" LUMO-ANDROID-PRUEFBELEGE.zip --repo "$GITHUB_REPOSITORY"
+          gh release upload "$TAG" LUMO-ANDROID-PRUEFBELEGE.zip --repo "$GITHUB_REPOSITORY" --clobber
       - uses: actions/upload-artifact@v4
         if: always()
         with:

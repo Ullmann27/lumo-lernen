@@ -134,7 +134,12 @@ class RewardShopSession extends ChangeNotifier {
       validateOwner(lease);
       var saved = await repository.loadProfile(lease.studentId);
       validateOwner(lease);
-      final old = await repository.load(legacyId);
+      // Name/grade legacy history has no stable school-student owner. Keep
+      // those files available to the local profile without adopting them for
+      // whichever classroom child happens to be selected now.
+      final old = lease.logStudentId == 'self'
+          ? await repository.load(legacyId)
+          : const RewardShopState();
       validateOwner(lease);
       var balance = await appState.loadRewardShopWallet(lease: lease);
       // A pending receipt may already be visible in native preference memory

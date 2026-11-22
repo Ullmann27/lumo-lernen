@@ -91,7 +91,9 @@ HTML `baseVouchers()` enthält 40 Basisideen. Die dort beworbenen 140 Einträge 
 
 ## Tatsächliche lokale Prüfung
 
-Der eigenständige Gutschein-Gate vor der nachfolgenden Zimmererweiterung bestand mit **80/80 Tests, Exit 0, etwa 19 Sekunden**. Darin sind **25 neue** Gutscheinprüfungen: acht Repository-, neun Wallet-/Wiederaufnahme- und acht echte UI-Flows. Gezielte Flutteranalyse der acht Quellen und `test/rewards`: **keine Befunde, Exit 0**. Der gesicherte zugehörige Integrationscheckpoint ist `071f4ecef407e6851c0601c8050e0ac89eadb414`; spätere gemeinsame Wallet-Erweiterungen erhalten erneut gemeinsame Gates.
+Der eigenständige Gutschein-Gate vor der nachfolgenden Zimmererweiterung bestand mit **80/80 Tests, Exit 0, etwa 19 Sekunden**. Darin sind **25 neue** Gutscheinprüfungen: acht Repository-, neun Wallet-/Wiederaufnahme- und acht echte UI-Flows. Gezielte Flutteranalyse der acht Quellen und `test/rewards`: **keine Befunde, Exit 0**. Der gesicherte zugehörige Integrationscheckpoint ist `071f4ecef407e6851c0601c8050e0ac89eadb414`.
+
+Nach der koordinierten Zimmer-/Auszeichnungs-Walleterweiterung wurde derselbe 80er Bestand erneut vollständig geprüft: **25 Gutschein-, 38 Wallet-, sechs State-, fünf Restart- und sechs PIN-frei-Fälle bestanden, jeweils Exit 0**. Zusammen mit den 23 neuen Zimmerfällen sind es **103/103 unterschiedliche grüne Tests** im aktuellen Abschlussstand. Wegen nachgewiesener lokaler Compilerabbrüche beim Vorladen weiterer Dateien liefen die finalen Gates in sechs separaten Prozessen; fehlgeschlagene Sammelaufrufe werden nicht als PASS gezählt. `room-rewards-evidence/games-final-validation.json` enthält sämtliche Befehle, Dateien, UTC-Zeiten, Loghashes und die ausdrücklich erhaltene frühere Fehlversuchsgruppe. Näheres zu diesen Laufzeitgrenzen und zur Zimmerprüfung steht in `LUMO-ROOM-INTEGRATION.md`.
 
 ```sh
 flutter test --no-pub --concurrency=1 --reporter expanded \

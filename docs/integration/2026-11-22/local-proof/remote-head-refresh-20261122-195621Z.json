@@ -1,0 +1,37 @@
+{
+  "checked_at_utc": "2026-11-22T19:56:21.702731+00:00",
+  "repositories": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "checked_at_utc": "2026-11-22T19:56:21.701605+00:00",
+      "method": "git ls-remote --heads against public origin; compare every branch name and exact commit with the initial branch inventory",
+      "initial_inventory": "docs/integration/2026-11-22/flutter-branch-inventory.json",
+      "initial_inventory_sha256": "7149572d8e75e4eca4ae2f8053f362d666413d20f5ca0a0cf6b29af7a3208388",
+      "initial_branch_count": 797,
+      "current_branch_count": 797,
+      "previous_refresh_at_utc": "2026-11-22T19:15:56.434147+00:00",
+      "ignored_own_heads": {
+        "integration/lumo-complete-20261122": "5cf738e20634aaf3c135dee160a91e2cad278866"
+      },
+      "remote_ref_snapshot_sha256": "3909f870afe335b606b303833def99d526a419c5a01213c206741ff4bf45f773",
+      "changes": [],
+      "removed": []
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "checked_at_utc": "2026-11-22T19:56:21.569391+00:00",
+      "method": "git ls-remote --heads against public origin; compare every branch name and exact commit with the initial branch inventory",
+      "initial_inventory": "../lumo-godot/docs/integration/2026-11-22/godot-branch-inventory.json",
+      "initial_inventory_sha256": "4e47869335a36746379537e561a41e455ee07f11e8e444b98108026c8f80a588",
+      "initial_branch_count": 301,
+      "current_branch_count": 302,
+      "previous_refresh_at_utc": "2026-11-22T19:15:57.696718+00:00",
+      "ignored_own_heads": {
+        "integration/lumo-complete-20261122": "29ac19f8984b510e5add531f15e555a98c72bed4"
+      },
+      "remote_ref_snapshot_sha256": "7a884e1a280d323a25f2ec6ac73e2d0799e4029983e71da6c29e470d79e926b2",
+      "changes": [],
+      "removed": []
+    }
+  ]
+}

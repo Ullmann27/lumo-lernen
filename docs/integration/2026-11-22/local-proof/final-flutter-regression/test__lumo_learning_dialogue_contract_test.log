@@ -1,0 +1,18 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/lumo_learning_dialogue_contract_test.dart
+00:00 +0: why two explains the active example instead of calling it completed
+00:00 +1: wrong answer, misrecognition and correction only propose editable text
+00:00 +2: Chat4 wording requests slower reading through the current task owner
+00:00 +3: Chat4 alternative and second step use the visible worked example
+00:00 +4: same task retains conversation while changed snapshot invalidates old lease
+00:00 +5: stop cancels pending inference and its figure lease; late reply stays silent
+00:00 +6: new question replaces thinking; old reply cannot win the race
+00:00 +7: owned help can publish its checked next step without losing the local reply
+00:00 +8: Banane repeat and slower preserve the checked syllables
+00:00 +9: repeat and slower say Lumo's last answer again for the same step
+00:00 +10: declining help is a protocol stop, not an answer or a hint
+00:00 +11: show requests use the owner gesture; unnamed references are clarified
+00:00 +12: pattern hint points to its group and does not submit an answer
+00:00 +13: stale, foreign and disallowed commands cannot enter the active scene
+00:00 +14: pause and resume do not resurrect an utterance or enable microphone
+00:00 +15: negation and a question containing a number are not submitted answers
+00:00 +16: All tests passed!

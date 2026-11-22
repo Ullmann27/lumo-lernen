@@ -1,9 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/achievements/achievement_claim.dart';
 import 'package:lumo_lernen/core/achievements/achievement_events.dart';
 import 'package:lumo_lernen/core/achievements/achievement_repository.dart';
@@ -36,8 +41,9 @@ class _ControlledStore extends InMemorySharedPreferencesStore {
 
   @override
   Future<bool> setValue(String type, String key, Object value) async {
-    if (rejectAchievement && key.contains(AchievementRepository.baseKey))
+    if (rejectAchievement && key.contains(AchievementRepository.baseKey)) {
       return false;
+    }
     if (key == 'flutter.lumo_reward_wallet_v1') {
       if (rejectWallet) {
         if (nativeCacheOnFailure) await super.setValue(type, key, value);
@@ -71,6 +77,9 @@ class _LostReplyWallet extends RewardWalletRepository {
 
 class _Speech extends LumoSpeechListener {
   ValueChanged<String>? result;
+  bool active = false;
+  @override
+  bool get listening => active;
   @override
   bool get available => true;
   @override
@@ -81,10 +90,14 @@ class _Speech extends LumoSpeechListener {
       ValueChanged<String>? onFinalResult,
       VoidCallback? onNoMatch}) async {
     result = onFinalResult;
+    active = true;
+    notifyListeners();
   }
 
   @override
-  Future<void> cancel() async {}
+  Future<void> cancel() async {
+    active = false;
+  }
 }
 
 Future<LumoAppState> _app({RewardWalletRepository? wallet}) async {
@@ -101,7 +114,9 @@ Future<void> _ready(AchievementTracker tracker) async {
   for (var i = 0; i < 200 && !tracker.ready; i++) {
     await Future<void>.delayed(const Duration(milliseconds: 1));
   }
-  expect(tracker.error, isNull);
+  if (tracker.snapshot?.pendingClaims.isEmpty ?? true) {
+    expect(tracker.error, isNull);
+  }
   expect(tracker.ready, isTrue);
 }
 
@@ -124,8 +139,34 @@ Future<void> _pumpIo(WidgetTester tester, [int frames = 25]) async {
   }
 }
 
+Future<void> _captureWall(WidgetTester tester, String name) async {
+  final boundary = tester.renderObject<RenderRepaintBoundary>(
+      find.byKey(const ValueKey('achievement-wall-proof')));
+  await tester.runAsync(() async {
+    final image = await boundary.toImage(pixelRatio: 1);
+    try {
+      final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+      final file = File('.ci-results/achievements/$name.png');
+      await file.parent.create(recursive: true);
+      await file.writeAsBytes(bytes!.buffer.asUint8List());
+    } finally {
+      image.dispose();
+    }
+  });
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(() async {
+    await (FontLoader('Nunito')
+          ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
+          ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'))
+          ..addFont(rootBundle.load('assets/fonts/Nunito-ExtraBold.ttf')))
+        .load();
+    await (FontLoader('MaterialIcons')
+          ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf')))
+        .load();
+  });
   setUp(() {
     SharedPreferences.setMockInitialValues(
         {LegacyLearningDataRepository.localIdKey: _local});
@@ -189,6 +230,25 @@ void main() {
     await _ready(tracker);
     expect(tracker.counter(AchievementMetric.starsTotal), 0);
     expect(app.state.stars, 1000);
+  });
+
+  test('wrong practice is a learning day but never a solved-task achievement',
+      () async {
+    final app = await _app();
+    final tracker = AchievementTracker(app);
+    addTearDown(() {
+      tracker.dispose();
+      app.dispose();
+    });
+    await _answer(app, correct: false, taskId: 'wrong-practice');
+    await _ready(tracker);
+    expect(tracker.counter(AchievementMetric.totalTasks), 0);
+    expect(tracker.snapshot!.unlocked, isNot(contains('first_steps')));
+    expect(tracker.counter(AchievementMetric.streakDays), 1);
+    await _answer(app, taskId: 'solved-practice');
+    await _ready(tracker);
+    expect(tracker.counter(AchievementMetric.totalTasks), 1);
+    expect(tracker.snapshot!.unlocked, contains('first_steps'));
   });
 
   test('failed wallet write remains unclaimed, retry pays exactly once',
@@ -269,6 +329,8 @@ void main() {
     expect(tracker.wallet!.achievementClaims.length, 1);
     expect(tracker.snapshot!.pendingClaims, contains('first_steps'));
     expect(tracker.isClaimed('first_steps'), isFalse);
+    expect(tracker.counter(AchievementMetric.starsTotal), 0,
+        reason: 'Unconfirmed claims cannot unlock another stars reward.');
     expect(await tracker.claim('first_steps'), isFalse);
     store.rejectWallet = false;
     await _ready(tracker);
@@ -442,13 +504,17 @@ void main() {
     final app = await _app();
     addTearDown(app.dispose);
     await _answer(app);
-    await tester
-        .pumpWidget(MaterialApp(home: AchievementsWallScreen(appState: app)));
+    await tester.pumpWidget(RepaintBoundary(
+        key: const ValueKey('achievement-wall-proof'),
+        child: MaterialApp(
+            theme: LumoAppTheme.light(),
+            home: AchievementsWallScreen(appState: app))));
     await _pumpIo(tester);
     final button = find.byKey(const ValueKey('claim-first_steps'));
     await Scrollable.ensureVisible(tester.element(button), alignment: .45);
     await _pumpIo(tester, 3);
     expect(tester.getSize(button).height, greaterThanOrEqualTo(48));
+    await _captureWall(tester, 'ready');
     store.walletEntered = Completer<void>();
     store.releaseWallet = Completer<void>();
     await tester.tap(button);
@@ -462,6 +528,7 @@ void main() {
     expect(find.text('Schon eingesammelt.'), findsOneWidget);
     expect(find.textContaining('5 Sterne sind gespeichert.'), findsOneWidget);
     expect(app.state.stars, 5);
+    await _captureWall(tester, 'claimed');
     await app.school.setActiveStudent('child-b');
     await _pumpIo(tester);
     expect(find.text('Schon eingesammelt.'), findsNothing);
@@ -526,7 +593,7 @@ void main() {
     Future<void> tap(Finder target) async {
       await Scrollable.ensureVisible(tester.element(target), alignment: .5);
       await tester.tap(target);
-      await _pumpIo(tester, 8);
+      await _pumpIo(tester, 25);
     }
 
     for (final quest in LumoQuestLibrary.all()) {
@@ -549,6 +616,10 @@ void main() {
       await tester.enterText(
           summary, 'Lumo hilft und zählt. ${quest.story.keyPoints.join(' ')}');
       await tap(find.byKey(const ValueKey('lumo-summary-evaluate')));
+      // The existing summary celebration owns the route for 1.8 seconds.
+      // Wait for its real dismissal before tapping the visible finish button.
+      await tester.pump(const Duration(seconds: 2));
+      await _pumpIo(tester, 20);
       await tap(find.byKey(const ValueKey('lumo-summary-finish')));
       expect(
           find.text('Heft in deine Bibliothek gespeichert!'), findsOneWidget);

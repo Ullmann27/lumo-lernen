@@ -125,7 +125,8 @@ class _NativeCachePlatform extends InMemorySharedPreferencesStore {
       case _Reply.falseAfterMemory:
         return false;
       case _Reply.throwAfterMemory:
-        throw StateError('Native memory changed; disk commit was not confirmed');
+        throw StateError(
+            'Native memory changed; disk commit was not confirmed');
       case _Reply.throwAfterCommit:
         throw StateError('Disk commit completed; the positive reply was lost');
     }
@@ -201,8 +202,8 @@ RewardWallet _awarded(_Award award, {String? id}) {
 
 Future<RewardWallet> _deliver(RewardWalletRepository wallet, _Award award) =>
     switch (award) {
-      _Award.game => wallet.awardGameResult(
-          resultId: _id(award), stars: 2, xp: 16),
+      _Award.game =>
+        wallet.awardGameResult(resultId: _id(award), stars: 2, xp: 16),
       _Award.quiz => wallet.awardQuizResult(resultId: _id(award), stars: 50),
       _Award.cards =>
         wallet.awardLumoCardsResult(resultId: _id(award), won: true),
@@ -306,7 +307,8 @@ void main() {
         expect(await _deliver(reopened, award), same(loaded));
         await Future<void>.delayed(Duration.zero);
         expect(platform.walletPayloads, hasLength(3));
-        expect(platform.walletPayloads.toSet(), {jsonEncode(expected.toJson())});
+        expect(
+            platform.walletPayloads.toSet(), {jsonEncode(expected.toJson())});
         expect(platform.positiveWalletReplies, 1);
         expect(platform.diskWallet.toJson(), expected.toJson());
         expect(platform.diskWallet.gameResultIds, [_id(award)]);
@@ -332,7 +334,8 @@ void main() {
       final lease = await app.captureLearningProfile();
       final owner = sha256.convert(utf8.encode(lease.studentId)).toString();
       final resultId = 'memory:$owner:$_round';
-      final expected = _awarded(_Award.game, id: resultId);
+      final expected = _awarded(_Award.game, id: resultId)
+          .copyWith(earnedStarsByOwner: {lease.studentId: 2});
       platform.walletReply = fault;
       await expectLater(
         app.recordMemoryResult(
@@ -388,7 +391,8 @@ void main() {
       expect(platform.walletPayloads, hasLength(3));
       expect(platform.durableDisk[_otherKey], _otherValue);
       platform.restartFromDisk();
-      expect((await RewardWalletRepository().load()).toJson(), expected.toJson());
+      expect(
+          (await RewardWalletRepository().load()).toJson(), expected.toJson());
     });
   }
 }

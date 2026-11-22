@@ -165,7 +165,7 @@ jobs:
           PY
           TAG="$(cat candidate/RELEASE-TAG.txt)"
           test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq .object.sha)" = "$BUILD_SOURCE"
-          gh release upload "$TAG" LUMO-ARM64-KURSPRUEFUNG.zip --repo "$GITHUB_REPOSITORY"
+          gh release upload "$TAG" LUMO-ARM64-KURSPRUEFUNG.zip --repo "$GITHUB_REPOSITORY" --clobber
       - uses: actions/upload-artifact@v4
         if: always()
         with:

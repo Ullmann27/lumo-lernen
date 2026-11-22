@@ -202,7 +202,9 @@ class _AppShellState extends State<AppShell>
     if (event.kind != LumoLearningEventKind.childAskedQuestion) return;
     final task = requests.taskContext.value;
     if (task?.profileGeneration != null &&
-        task!.profileGeneration != _appState.profileGeneration) return;
+        task!.profileGeneration != _appState.profileGeneration) {
+      return;
+    }
     // Capture before the first await. A later profile switch cannot assign
     // the accepted question to the replacement child.
     final source = _appState.captureLearningProfile();
@@ -217,10 +219,8 @@ class _AppShellState extends State<AppShell>
 
   void _onAchievementUnlock(LumoAchievement a) {
     if (!mounted) return;
-    // 2026-06-05 Iter 16/A2: Full-screen Star-Burst-Lottie als visueller Pop.
-    // Wird ueber Navigator.push als transparente Page-Route gepusht und
-    // automatisch nach 1500 ms wieder gepoppt. Lottie + Emoji + Achievement-
-    // Titel zusammen = befriedigendes Belohnungs-Feedback.
+    // Learning and conversations keep their route ownership. The nonmodal
+    // notice below still announces their durably unlocked achievement.
     _showAchievementBurstOverlay(a);
     final messenger = ScaffoldMessenger.maybeOf(context);
     if (messenger == null) return;
@@ -384,24 +384,30 @@ class _AppShellState extends State<AppShell>
     }
   }
 
-  /// 2026-06-05 Iter 16/A2: Vollbild-Overlay mit Star-Burst-Lottie bei
-  /// Achievement-Unlock. Halbtransparenter schwarzer Hintergrund + grosse
-  /// Lottie-Animation 240px + Badge-Emoji + Titel. Automatisch nach 1.6s
-  /// gepoppt - synchron mit der SnackBar.
+  /// Celebrate only when no current task or dialog would lose its route.
   void _showAchievementBurstOverlay(LumoAchievement a) {
     if (!mounted) return;
+    final settings = _appState.state.settings;
+    if (settings.reduceAnimations ||
+        settings.calmMode ||
+        _appState.state.section == LumoSection.agent ||
+        LumoCompanionRequests.instance.taskContext.value != null ||
+        ModalRoute.of(context)?.isCurrent != true) {
+      return;
+    }
     final navigator = Navigator.maybeOf(context, rootNavigator: true);
     if (navigator == null) return;
-    navigator.push(
-      PageRouteBuilder<void>(
-        opaque: false,
-        barrierDismissible: false,
-        transitionDuration: const Duration(milliseconds: 200),
-        pageBuilder: (_, __, ___) => _AchievementBurstOverlay(achievement: a),
-      ),
+    final burst = PageRouteBuilder<void>(
+      opaque: false,
+      barrierDismissible: false,
+      transitionDuration: const Duration(milliseconds: 200),
+      pageBuilder: (_, __, ___) => _AchievementBurstOverlay(achievement: a),
     );
+    navigator.push(burst);
     Future<void>.delayed(const Duration(milliseconds: 1600), () {
-      if (navigator.canPop()) navigator.pop();
+      // Another dialog may have opened meanwhile. Remove this celebration
+      // only; never pop whichever route happens to be on top now.
+      if (navigator.mounted && burst.isActive) navigator.removeRoute(burst);
     });
   }
 

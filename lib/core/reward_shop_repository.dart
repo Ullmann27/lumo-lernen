@@ -203,11 +203,20 @@ class RewardShopRepository {
       final next = change(current);
       final prefs = await SharedPreferences.getInstance();
       validateOwner();
-      final saved =
-          await prefs.setString(profileKey(ownerId), jsonEncode(next.toJson()));
-      if (!saved) {
-        throw StateError(
-            'Der Gutschein konnte noch nicht gespeichert werden. Bitte erneut versuchen.');
+      try {
+        final saved = await prefs.setString(
+            profileKey(ownerId), jsonEncode(next.toJson()));
+        if (!saved) {
+          throw StateError(
+              'Der Gutschein konnte noch nicht gespeichert werden. Bitte erneut versuchen.');
+        }
+      } catch (error, stack) {
+        try {
+          await prefs.reload();
+        } catch (_) {
+          // Keep the original failure and the unchanged retry identity.
+        }
+        Error.throwWithStackTrace(error, stack);
       }
       return next;
     });

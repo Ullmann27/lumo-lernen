@@ -34,8 +34,8 @@ import '../domain/games/kart_fleet_catalog.dart';
 //    Sternensammler     → insgesamt gesammelte Sterne (Wallet.totalEarnedStars)
 //    Held:in, Lernserie → Lerntage in Folge (Tagesliste des Lernprofils)
 //    Meine Belohnungen  → im Belohnungs-Laden eingelöste Belohnungen
-//  Was es in der App nicht gibt (Avatar-Outfits, Geschenk zum Levelaufstieg),
-//  wird nicht als Attrappe gezeigt.
+//  Lumos lokale Schal-/Zimmerausstattung hat einen eigenen Home-Einstieg.
+//  Ein Geschenk zum Levelaufstieg wird hier nicht als Attrappe gezeigt.
 // ═══════════════════════════════════════════════════════════════════════════
 
 const _font = 'Nunito';
@@ -170,7 +170,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final legacyId = _shopChildId;
     try {
       final owner = await identity;
-      final shop = await const RewardShopRepository().load(legacyId);
+      final shop = owner.logStudentId == 'self'
+          ? await const RewardShopRepository().load(legacyId)
+          : const RewardShopState();
       final wallet = await widget.appState.loadRewardShopWallet(lease: owner);
       if (!mounted ||
           ticket != _rewardLoad ||

@@ -105,6 +105,9 @@ void main() {
       fonts.addFont(rootBundle.load('assets/fonts/Nunito-$variant.ttf'));
     }
     await fonts.load();
+    final icons = FontLoader('MaterialIcons')
+      ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
+    await icons.load();
   });
   setUp(() {
     WidgetController.hitTestWarningShouldBeFatal = true;

@@ -26,6 +26,7 @@ class AchievementTracker extends ChangeNotifier {
   LearningProfileLease? lease;
   RewardWallet? wallet;
   String? error;
+  String? _claimError;
   bool loading = true;
   bool busy = false;
   bool legacyUnassigned = false;
@@ -77,6 +78,7 @@ class AchievementTracker extends ChangeNotifier {
       wallet = null;
       _loadedOwner = null;
       error = null;
+      _claimError = null;
       legacyUnassigned = false;
       loading = true;
       _notify();
@@ -91,8 +93,9 @@ class AchievementTracker extends ChangeNotifier {
   }
 
   Future<void> refresh() {
-    if (_disposed || appState.resetting || appState.backupBusy)
+    if (_disposed || appState.resetting || appState.backupBusy) {
       return Future.value();
+    }
     if (_refreshing != null) {
       _again = true;
       return _refreshing!;
@@ -134,15 +137,22 @@ class AchievementTracker extends ChangeNotifier {
       final attempts =
           await appState.attemptLog.load(studentId: owner.logStudentId);
       final savedWallet = await appState.loadRewardShopWallet(lease: owner);
+      final previousProof = await repository.load();
       if (_disposed || !appState.isCurrentLearningLease(owner)) return;
       final standard =
           attempts.where((a) => a.subject != 'Elternaufgaben').toList();
       final parent =
           attempts.where((a) => a.subject == 'Elternaufgaben').toList();
-      final skillTotal = skills.values
-          .fold(0, (sum, skill) => sum + skill.correct + skill.wrong);
       final skillCorrect =
           skills.values.fold(0, (sum, skill) => sum + skill.correct);
+      final solvedTasks =
+          math.max(skillCorrect, standard.where((a) => a.correct).length) +
+              parent.where((a) => a.correct).length;
+      final unconfirmedStars = savedWallet.achievementClaims
+          .where((claim) =>
+              claim.ownerId == owner.studentId &&
+              previousProof.pendingClaims.contains(claim.achievementId))
+          .fold(0, (sum, claim) => sum + claim.stars);
       int subjectCorrect(String subject) => math.max(
           skills.values
               .where((s) => s.subject == subject)
@@ -154,14 +164,15 @@ class AchievementTracker extends ChangeNotifier {
         for (final attempt in attempts) dayKey(attempt.at.toLocal()),
       };
       final saved = await repository.syncDurableProgress(
-        totalTasks: math.max(skillTotal, standard.length) + parent.length,
-        correctTasks:
-            math.max(skillCorrect, standard.where((a) => a.correct).length) +
-                parent.where((a) => a.correct).length,
+        totalTasks: solvedTasks,
+        correctTasks: solvedTasks,
         mathCorrect: subjectCorrect('Mathematik'),
         germanCorrect: subjectCorrect('Deutsch'),
         longestLearningStreak: longestStreak(learningDays),
-        earnedStars: savedWallet.earnedStarsByOwner[owner.studentId] ?? 0,
+        earnedStars: math.max(
+            0,
+            (savedWallet.earnedStarsByOwner[owner.studentId] ?? 0) -
+                unconfirmedStars),
       );
       final legacy = await repository.hasUnassignedLegacy();
       if (_disposed || !appState.isCurrentLearningLease(owner)) return;
@@ -172,7 +183,10 @@ class AchievementTracker extends ChangeNotifier {
       snapshot = saved;
       _loadedOwner = owner.studentId;
       legacyUnassigned = legacy;
-      error = null;
+      error = _claimError ??
+          (saved.pendingClaims.isNotEmpty
+              ? 'Ein Bonus wartet noch auf Bestätigung. Bitte erneut abholen; jeder Bonus wird nur einmal gebucht.'
+              : null);
       loading = false;
       _notify();
       if (announce) {
@@ -198,10 +212,13 @@ class AchievementTracker extends ChangeNotifier {
   Future<bool> claim(String achievementId) async {
     if (!ready ||
         isClaimed(achievementId) ||
-        snapshot?.unlocked.containsKey(achievementId) != true) return false;
+        snapshot?.unlocked.containsKey(achievementId) != true) {
+      return false;
+    }
     final owner = lease!;
     busy = true;
     error = null;
+    _claimError = null;
     _notify();
     try {
       final repository = AchievementRepository(
@@ -219,13 +236,15 @@ class AchievementTracker extends ChangeNotifier {
       if (_disposed || !appState.isCurrentLearningLease(owner)) return false;
       snapshot = confirmed;
       wallet = result;
-      if (!isClaimed(achievementId))
+      if (!isClaimed(achievementId)) {
         throw StateError('Auszahlungsbeleg fehlt.');
+      }
       return true;
     } catch (_) {
       if (!_disposed && appState.isCurrentLearningLease(owner)) {
-        error =
+        _claimError =
             'Die Sterne sind noch nicht sicher bestätigt. Bitte erneut abholen; derselbe Bonus wird nur einmal gebucht.';
+        error = _claimError;
       }
       return false;
     } finally {
@@ -245,7 +264,9 @@ class AchievementTracker extends ChangeNotifier {
       if (date == null ||
           dayKey(date) != key ||
           date.year < 2000 ||
-          date.isAfter(today)) continue;
+          date.isAfter(today)) {
+        continue;
+      }
       dates.add(date);
     }
     final sorted = dates.toList()..sort();

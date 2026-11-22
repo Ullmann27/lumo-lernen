@@ -9,6 +9,7 @@ import 'package:lumo_lernen/app/app_shell.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/core/achievements/achievement_repository.dart';
 import 'package:lumo_lernen/core/lumo_learning_session_contract.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
@@ -220,6 +221,54 @@ void main() {
     expect(app.state.settings.microphoneEnabled, isFalse);
     expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
     await _tap(tester, find.byTooltip('Zurück zur Aufgabe'));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'saved chat achievement keeps the owned dialog with animations enabled',
+      (tester) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+        'lumo_app_settings_v1',
+        jsonEncode(const AppSettings(
+          soundEnabled: false,
+          voiceEnabled: false,
+          autoReadEnabled: false,
+          aiProxyEnabled: false,
+          reduceAnimations: false,
+          calmMode: false,
+        ).toJson()));
+    final app = await _openCore(tester);
+    final task = _bus.taskContext.value!;
+    final rewards = (app.state.stars, app.state.xp, app.learningDailyDone());
+    final owner = await app.captureLearningProfile();
+    await _tap(tester, find.byKey(const ValueKey('mobile-lumo-button')));
+    final dialog = find.byType(LumoAgentContent);
+    await tester.enterText(
+        find.descendant(of: dialog, matching: find.byType(TextField)),
+        'Erklär mir diese Aufgabe');
+    tester.testTextInput.hide();
+    await _tap(
+        tester,
+        find.descendant(
+            of: dialog, matching: find.widgetWithText(FilledButton, 'Senden')));
+
+    final saved =
+        await AchievementRepository(studentId: owner.studentId).load();
+    expect(saved.unlocked, contains('first_ki_chat'),
+        reason: 'Suppressing the modal must not suppress the saved badge.');
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    expect(ModalRoute.of(tester.element(dialog))?.isCurrent, isTrue);
+    expect((app.state.stars, app.state.xp, app.learningDailyDone()), rewards);
+
+    // The old celebration timer must never close an unrelated conversation.
+    await tester.pump(const Duration(seconds: 2));
+    await _frames(tester);
+    expect(dialog, findsOneWidget);
+    expect(_bus.taskContext.value?.taskId, task.taskId);
+    expect(ModalRoute.of(tester.element(dialog))?.isCurrent, isTrue);
+    await _tap(tester, find.byTooltip('Zurück zur Aufgabe'));
+    expect(_bus.taskContext.value?.taskId, task.taskId);
     expect(tester.takeException(), isNull);
   });
 

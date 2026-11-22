@@ -1,0 +1,203 @@
+[
+  {
+    "group": "room",
+    "expected": 23,
+    "passed": 23,
+    "exit_code": 0,
+    "started_utc": "2026-11-22T19:46:32.583527+00:00",
+    "finished_utc": "2026-11-22T19:46:41.401610+00:00",
+    "files": [
+      "test/room/lumo_room_wallet_test.dart",
+      "test/room/lumo_room_flow_test.dart"
+    ],
+    "command": [
+      "timeout",
+      "-k",
+      "5s",
+      "90s",
+      "/home/agent/lumo-tools/flutter/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter",
+      "expanded",
+      "test/room/lumo_room_wallet_test.dart",
+      "test/room/lumo_room_flow_test.dart"
+    ],
+    "log": "/tmp/lumo-integration-20261122/games-final-room.log",
+    "sha256": "872ece991c1372b589a852f2c3b38cb15ce86f192122699109cc4818d7c6b887"
+  },
+  {
+    "group": "custom-rewards",
+    "expected": 25,
+    "passed": 25,
+    "exit_code": 0,
+    "started_utc": "2026-11-22T19:46:41.401957+00:00",
+    "finished_utc": "2026-11-22T19:46:53.731299+00:00",
+    "files": [
+      "test/rewards/custom_reward_repository_test.dart",
+      "test/rewards/reward_shop_redemption_test.dart",
+      "test/rewards/custom_rewards_flow_test.dart"
+    ],
+    "command": [
+      "timeout",
+      "-k",
+      "5s",
+      "90s",
+      "/home/agent/lumo-tools/flutter/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter",
+      "expanded",
+      "test/rewards/custom_reward_repository_test.dart",
+      "test/rewards/reward_shop_redemption_test.dart",
+      "test/rewards/custom_rewards_flow_test.dart"
+    ],
+    "log": "/tmp/lumo-integration-20261122/games-final-custom-rewards.log",
+    "sha256": "cf1f86823affe95be44924ce1ee81d05e61abfec6c879487bc03e77cbc946272"
+  },
+  {
+    "group": "wallet",
+    "expected": 38,
+    "passed": 38,
+    "exit_code": 0,
+    "started_utc": "2026-11-22T19:46:53.731501+00:00",
+    "finished_utc": "2026-11-22T19:46:56.304563+00:00",
+    "files": [
+      "test/reward_wallet_transaction_test.dart",
+      "test/reward_wallet_dedup_confirmation_test.dart",
+      "test/reward_wallet_queue_zone_test.dart"
+    ],
+    "command": [
+      "timeout",
+      "-k",
+      "5s",
+      "90s",
+      "/home/agent/lumo-tools/flutter/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter",
+      "expanded",
+      "test/reward_wallet_transaction_test.dart",
+      "test/reward_wallet_dedup_confirmation_test.dart",
+      "test/reward_wallet_queue_zone_test.dart"
+    ],
+    "log": "/tmp/lumo-integration-20261122/games-final-wallet.log",
+    "sha256": "f8aca67f647ed6bb051e27d8809d12adda6c6bd3140013f6084fcd2d4d95619b"
+  },
+  {
+    "group": "persistence",
+    "expected": 17,
+    "passed": null,
+    "exit_code": 124,
+    "started_utc": "2026-11-22T19:46:56.304880+00:00",
+    "finished_utc": "2026-11-22T19:48:26.373767+00:00",
+    "files": [
+      "test/state_persistence_regression_test.dart",
+      "test/restart_regression_test.dart",
+      "test/pin_free_access_test.dart"
+    ],
+    "command": [
+      "timeout",
+      "-k",
+      "5s",
+      "90s",
+      "/home/agent/lumo-tools/flutter/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter",
+      "expanded",
+      "test/state_persistence_regression_test.dart",
+      "test/restart_regression_test.dart",
+      "test/pin_free_access_test.dart"
+    ],
+    "log": "/tmp/lumo-integration-20261122/games-final-persistence.log",
+    "sha256": "0fb053521dde2755b9b3e213afefb6fa473ce380309389031c23220ea530ed66",
+    "superseded_by": [
+      "state-single",
+      "restart-single",
+      "pin-single"
+    ]
+  },
+  {
+    "group": "state-single",
+    "expected": 6,
+    "passed": 6,
+    "exit_code": 0,
+    "started_utc": "2026-11-22T19:48:33.356811+00:00",
+    "finished_utc": "2026-11-22T19:48:39.627153+00:00",
+    "files": [
+      "test/state_persistence_regression_test.dart"
+    ],
+    "command": [
+      "timeout",
+      "-k",
+      "5s",
+      "90s",
+      "/home/agent/lumo-tools/flutter/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter",
+      "expanded",
+      "test/state_persistence_regression_test.dart"
+    ],
+    "log": "/tmp/lumo-integration-20261122/games-final-state-single.log",
+    "sha256": "bc2fa7370fb67dac662368406d477613a677deb01847eb6905d23dac33f345fd"
+  },
+  {
+    "group": "restart-single",
+    "expected": 5,
+    "passed": 5,
+    "exit_code": 0,
+    "started_utc": "2026-11-22T19:48:39.627463+00:00",
+    "finished_utc": "2026-11-22T19:48:42.265198+00:00",
+    "files": [
+      "test/restart_regression_test.dart"
+    ],
+    "command": [
+      "timeout",
+      "-k",
+      "5s",
+      "90s",
+      "/home/agent/lumo-tools/flutter/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter",
+      "expanded",
+      "test/restart_regression_test.dart"
+    ],
+    "log": "/tmp/lumo-integration-20261122/games-final-restart-single.log",
+    "sha256": "93e60c20e191fd296649b4cf38e3da9502530048f09ceb39e7a426b044fa3d53"
+  },
+  {
+    "group": "pin-single",
+    "expected": 6,
+    "passed": 6,
+    "exit_code": 0,
+    "started_utc": "2026-11-22T19:48:42.265444+00:00",
+    "finished_utc": "2026-11-22T19:48:45.349595+00:00",
+    "files": [
+      "test/pin_free_access_test.dart"
+    ],
+    "command": [
+      "timeout",
+      "-k",
+      "5s",
+      "90s",
+      "/home/agent/lumo-tools/flutter/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter",
+      "expanded",
+      "test/pin_free_access_test.dart"
+    ],
+    "log": "/tmp/lumo-integration-20261122/games-final-pin-single.log",
+    "sha256": "85b97c747d73901cef5df75c4ff52f6b9aed8f7ee42a37b5c23acf65ecf3bafb"
+  }
+]

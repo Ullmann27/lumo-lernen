@@ -1,0 +1,11 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/smoke_main_screens_test.dart
+00:00 +0: AppState lasst sich erstellen und disposen
+00:00 +1: RewardWallet kann geladen werden ohne Crash
+00:00 +2: RewardWallet addStars erhoeht persistent
+00:00 +3: RewardWallet addXp erhoeht und Level steigt
+00:00 +4: LumoAkademieScreen baut ohne harten Crash
+00:00 +5: LumoAkademieScreen hat 4 Klassen-Chips im Widget-Tree
+00:00 +6: AppState addStars erhoeht den State
+00:00 +7: AppState addXp erhoeht den State
+00:00 +8: Hydration aus voller Wallet bringt Werte zurueck
+00:00 +9: All tests passed!

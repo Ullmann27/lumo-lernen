@@ -45,8 +45,14 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
   }
 
   Future<void> _claim(LumoAchievement achievement) async {
+    final generation = widget.appState.profileGeneration;
     final paid = await _tracker.claim(achievement.id);
-    if (!mounted || !paid || !_tracker.current) return;
+    if (!mounted ||
+        !paid ||
+        !_tracker.current ||
+        generation != widget.appState.profileGeneration) {
+      return;
+    }
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('${achievement.rewardStars} Sterne sind gespeichert. '
           '${achievement.title} ist eingesammelt.'),
@@ -72,11 +78,11 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
     return Scaffold(
       backgroundColor: LumoVisualTokens.night,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: LumoVisualTokens.night,
         elevation: 0,
         leading: const BackButton(color: LumoVisualTokens.white),
         title: const Text(
-          '🏆 Achievements',
+          'Auszeichnungen',
           style: TextStyle(
             fontFamily: 'Nunito',
             fontSize: 22,
@@ -85,47 +91,61 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
           ),
         ),
       ),
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       body: LumoMagicBackground(
         intensity: 1.0,
         starCount: 24,
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 80, 16, 32),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
           children: [
             _hero(unlockedCount, total),
             const SizedBox(height: 12),
-            const Text(
-                'Freigeschaltete Sterne holst du einmalig ab. '
-                'Fortschritte und Belege gehören zu diesem Kinderprofil.',
-                style: TextStyle(color: LumoVisualTokens.white, fontSize: 14)),
-            if (_tracker.loading)
-              const Padding(
-                  padding: EdgeInsets.all(12),
-                  child: LinearProgressIndicator()),
-            if (_tracker.error != null) ...[
-              const SizedBox(height: 10),
-              Text(_tracker.error!,
-                  style: const TextStyle(color: Colors.amber)),
-              TextButton(
-                  onPressed: _tracker.busy ? null : _tracker.refresh,
-                  style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
-                  child: const Text('Erneut laden')),
-            ],
-            if (_tracker.legacyUnassigned)
-              const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                      'Frühere geräteweite Abzeichen sind aufbewahrt. '
-                      'Ohne sichere Profilzuordnung zählen sie hier nicht mit.',
-                      style: TextStyle(
-                          color: LumoVisualTokens.muted, fontSize: 13))),
-            const Padding(
-                padding: EdgeInsets.only(top: 8),
-                child: Text(
-                    'Sterne-Ziele zählen bestätigte Einnahmen dieses Profils. '
-                    'Frühere gemeinsame Sterne bleiben in der Sternetasche.',
-                    style: TextStyle(
-                        color: LumoVisualTokens.muted, fontSize: 13))),
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: const Color(0xF0102A50),
+                borderRadius: BorderRadius.circular(LumoRadius.md),
+              ),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                        'Freigeschaltete Sterne holst du einmalig ab. '
+                        'Fortschritte und Belege gehören zu diesem Kinderprofil.',
+                        style: TextStyle(
+                            color: LumoVisualTokens.white, fontSize: 14)),
+                    if (_tracker.loading)
+                      const Padding(
+                          padding: EdgeInsets.all(12),
+                          child: LinearProgressIndicator()),
+                    if (_tracker.error != null) ...[
+                      const SizedBox(height: 10),
+                      Text(_tracker.error!,
+                          style: const TextStyle(color: Colors.amber)),
+                      TextButton(
+                          onPressed: _tracker.busy ? null : _tracker.refresh,
+                          style: TextButton.styleFrom(
+                              minimumSize: const Size(48, 48)),
+                          child: const Text('Erneut laden')),
+                    ],
+                    if (_tracker.legacyUnassigned)
+                      const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                              'Frühere geräteweite Abzeichen sind aufbewahrt. '
+                              'Ohne sichere Profilzuordnung zählen sie hier nicht mit.',
+                              style: TextStyle(
+                                  color: LumoVisualTokens.muted,
+                                  fontSize: 13))),
+                    const Padding(
+                        padding: EdgeInsets.only(top: 8),
+                        child: Text(
+                            'Sterne-Ziele zählen bestätigte Einnahmen dieses Profils. '
+                            'Frühere gemeinsame Sterne bleiben in der Sternetasche.',
+                            style: TextStyle(
+                                color: LumoVisualTokens.muted, fontSize: 13))),
+                  ]),
+            ),
             const SizedBox(height: 18),
             _tierSection('🥉 Bronze', byTier[AchievementTier.bronze]!,
                 const Color(0xFFCD7F32)),

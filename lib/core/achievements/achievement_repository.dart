@@ -193,7 +193,9 @@ class AchievementRepository {
       if (known != before.completedCount ||
           after.completedCount < before.completedCount ||
           after.completedCount > before.completedCount + 1 ||
-          after.targetCount != before.targetCount) completeEvidence = false;
+          after.targetCount != before.targetCount) {
+        completeEvidence = false;
+      }
       final mission = <String, Object?>{
         'dayKey': after.dayKey,
         'completeEvidence': completeEvidence,
@@ -243,8 +245,9 @@ class AchievementRepository {
       AchievementSnapshot Function(AchievementSnapshot) operation) async {
     var changed = false;
     final result = await LearningStorage.run((prefs) async {
-      if (_mayWrite?.call() == false)
+      if (_mayWrite?.call() == false) {
         throw StateError('Das Lernprofil ist beendet.');
+      }
       final raw = prefs.getString(storageKey);
       final current =
           raw == null ? AchievementSnapshot(studentId: studentId) : _read(raw);
@@ -261,8 +264,9 @@ class AchievementRepository {
   }
 
   AchievementSnapshot _read(String raw) {
-    if (raw.length > 32768)
+    if (raw.length > 32768) {
       throw const FormatException('Auszeichnungsdaten zu groß.');
+    }
     final value = jsonDecode(raw);
     if (value is! Map<String, dynamic> ||
         value['version'] != 2 ||

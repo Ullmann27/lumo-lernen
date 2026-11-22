@@ -1,0 +1,28 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart
+00:00 +0: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: Catalog preserves all eight original IDs and star prices
+00:00 +1: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: Concurrent purchase and restart retain one quote, one debit and owner inventory
+00:00 +2: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: Only the original free blue scarf is available without a paid receipt
+00:00 +3: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: Praise cooldown is persistent per child and survives wall-clock rollback
+00:00 +4: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: Snack commits its -10 stars and +20 XP together and rejects a changed action
+00:00 +5: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: Insufficient stars reject a snack before XP or a receipt changes
+00:00 +6: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: LumoRoomActionKind.pet with RewardWriteReply.falseAfterMemory requires positive persistence and never pays twice
+00:00 +7: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: LumoRoomActionKind.pet with RewardWriteReply.throwAfterMemory requires positive persistence and never pays twice
+00:00 +8: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: LumoRoomActionKind.pet with RewardWriteReply.throwAfterCommit requires positive persistence and never pays twice
+00:00 +9: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: LumoRoomActionKind.feed with RewardWriteReply.falseAfterMemory requires positive persistence and never pays twice
+00:00 +10: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: LumoRoomActionKind.feed with RewardWriteReply.throwAfterMemory requires positive persistence and never pays twice
+00:00 +11: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: LumoRoomActionKind.feed with RewardWriteReply.throwAfterCommit requires positive persistence and never pays twice
+00:00 +12: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: A stale child lease cannot perform an action after a profile switch
+00:00 +13: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: Owner lifetime credits record actual positive changes without assigning legacy stars
+00:00 +14: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: Malformed room data stays intact and blocks replacement writes
+00:00 +15: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: A rejected equipment write reloads the previous platform state
+00:00 +16: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_wallet_test.dart: An uncertain native equipment cache requires a positive reopen acknowledgement
+00:00 +17: loading /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart
+00:00 +17: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart: (setUpAll)
+00:00 +17: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart: Actual Home entry buys, equips and renders all historical room items across restart and profile switches
+00:04 +18: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart: Praise, snack confirmation and dance use the original amounts without repeat rewards
+00:04 +19: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart: Uncertain purchase survives cold restart and the same confirmed quote costs stars once
+00:05 +20: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart: Changing child during a price confirmation cannot buy for either child
+00:05 +21: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart: 320-dp room with 1.6 text scaling has reachable price and equip controls
+00:05 +22: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart: Room cancels its pending speech on child switch and disposal without cancelling a newer speaker
+00:05 +23: /tmp/lumo-integration-20261122/lumo-lernen/test/room/lumo_room_flow_test.dart: (tearDownAll)
+00:05 +23: All tests passed!
