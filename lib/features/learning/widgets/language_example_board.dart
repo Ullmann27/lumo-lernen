@@ -642,8 +642,14 @@ class LanguageStepSequence extends StatefulWidget {
 
 class _LanguageStepSequenceState extends State<LanguageStepSequence>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _playback = AnimationController(vsync: this);
+  late final AnimationController _playback;
   bool _opened = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _playback = AnimationController(vsync: this);
+  }
 
   @override
   void didUpdateWidget(covariant LanguageStepSequence oldWidget) {
