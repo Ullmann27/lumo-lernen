@@ -61,6 +61,13 @@ fun main(args: Array<String>) {
                     "German explanation is unchanged for $word")
                 close(speech)
             }
+            for ((word, meaning) in listOf("pen" to "Stift", "desk" to "Schultisch")) {
+                val speech = active(options(word, meaning))
+                verify(speech.speak(request(1)), "Current alternate meaning accepts $word: $meaning")
+                Handler.drain()
+                verify(LumoOfflineSpeechBridge.lastWord == word, "Alias keeps the bound English word")
+                close(speech)
+            }
             val mutable = options()
             val speech = active(mutable)
             mutable.optJSONObject("learning")!!.put("word", "paper").put("meaning", "Papier")

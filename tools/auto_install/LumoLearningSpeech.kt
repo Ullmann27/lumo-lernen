@@ -30,7 +30,10 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
     }
     private var envelopeTask: Future<*>? = null
     private var envelope = LumoSpeechEnvelope.EMPTY
-    private val allowed = options.optString("game") in setOf("learning", "build") &&
+    private val allowed = (options.optString("game") in setOf("learning", "build") ||
+        (options.optString("game") == "settlement" &&
+            options.optBoolean("livingVillage", false) &&
+            options.optString("settlementMode") == "settlement")) &&
         options.optBoolean("learningVoiceEnabled", false) &&
         options.optBoolean("localVoiceLicenseAccepted", false)
     private val englishLesson = options.optJSONObject("learning")

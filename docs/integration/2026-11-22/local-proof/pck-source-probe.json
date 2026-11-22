@@ -1,0 +1,19 @@
+{
+  "scope": "Source-tree validation with Godot 4.6.3, not APK/PCK acceptance",
+  "phases": [
+    {
+      "phase": "assets",
+      "exit_code": 0,
+      "elapsed_seconds": 1.517,
+      "pass_count": 173,
+      "log": "/tmp/lumo-integration-20261122/pck-source-assets.log"
+    },
+    {
+      "phase": "race",
+      "exit_code": 0,
+      "elapsed_seconds": 8.241,
+      "pass_count": 22,
+      "log": "/tmp/lumo-integration-20261122/pck-source-race.log"
+    }
+  ]
+}

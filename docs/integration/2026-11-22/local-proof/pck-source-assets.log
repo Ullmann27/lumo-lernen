@@ -1,0 +1,185 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 0 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Soundscape] ready
+[Progress] no save file (first run) - starting fresh
+[Kart-PCK] phase assets
+[Kart-PCK] PASS packaged interactive learning lesson
+[Kart-PCK] PASS packaged feature script res://scripts/learning/holo/holo_lesson_plan.gd
+[Kart-PCK] PASS packaged feature script res://scripts/games/run/run_stunt_relay.gd
+[Kart-PCK] PASS packaged feature script res://scripts/games/kart_arena_battle.gd
+[Kart-PCK] PASS packaged feature script res://scripts/games/parcours/parcours_worlds.gd
+[Kart-PCK] PASS packaged feature script res://scripts/games/chess/chess_school.gd
+[Kart-PCK] PASS packaged race roster
+[Kart-PCK] PASS fox playable driver portrait
+[Kart-PCK] PASS rabbit playable driver portrait
+[Kart-PCK] PASS otter playable driver portrait
+[Kart-PCK] PASS frog playable driver portrait
+[Kart-PCK] PASS badger playable driver portrait
+[Kart-PCK] PASS cat playable driver portrait
+[Kart-PCK] PASS all six playable drivers are in the exported selection catalogue
+[Kart-PCK] PASS original Lumo facial model
+[Kart-PCK] PASS original Lumo seated animation
+[Kart-PCK] PASS lion imported LOD 0
+[Kart-PCK] PASS lion LOD 0 seated animation
+[Kart-PCK] PASS lion imported LOD 1
+[Kart-PCK] PASS lion LOD 1 seated animation
+[Kart-PCK] PASS lion imported LOD 2
+[Kart-PCK] PASS lion LOD 2 seated animation
+[Kart-PCK] PASS owl imported LOD 0
+[Kart-PCK] PASS owl LOD 0 seated animation
+[Kart-PCK] PASS owl imported LOD 1
+[Kart-PCK] PASS owl LOD 1 seated animation
+[Kart-PCK] PASS owl imported LOD 2
+[Kart-PCK] PASS owl LOD 2 seated animation
+[Kart-PCK] PASS rabbit imported LOD 0
+[Kart-PCK] PASS rabbit LOD 0 seated animation
+[Kart-PCK] PASS rabbit imported LOD 1
+[Kart-PCK] PASS rabbit LOD 1 seated animation
+[Kart-PCK] PASS rabbit imported LOD 2
+[Kart-PCK] PASS rabbit LOD 2 seated animation
+[Kart-PCK] PASS squirrel imported LOD 0
+[Kart-PCK] PASS squirrel LOD 0 seated animation
+[Kart-PCK] PASS squirrel imported LOD 1
+[Kart-PCK] PASS squirrel LOD 1 seated animation
+[Kart-PCK] PASS squirrel imported LOD 2
+[Kart-PCK] PASS squirrel LOD 2 seated animation
+[Kart-PCK] PASS turtle imported LOD 0
+[Kart-PCK] PASS turtle LOD 0 seated animation
+[Kart-PCK] PASS turtle imported LOD 1
+[Kart-PCK] PASS turtle LOD 1 seated animation
+[Kart-PCK] PASS turtle imported LOD 2
+[Kart-PCK] PASS turtle LOD 2 seated animation
+[Kart-PCK] PASS frog imported LOD 0
+[Kart-PCK] PASS frog LOD 0 seated animation
+[Kart-PCK] PASS frog imported LOD 1
+[Kart-PCK] PASS frog LOD 1 seated animation
+[Kart-PCK] PASS frog imported LOD 2
+[Kart-PCK] PASS frog LOD 2 seated animation
+[Kart-PCK] PASS otter imported LOD 0
+[Kart-PCK] PASS otter LOD 0 seated animation
+[Kart-PCK] PASS otter imported LOD 1
+[Kart-PCK] PASS otter LOD 1 seated animation
+[Kart-PCK] PASS otter imported LOD 2
+[Kart-PCK] PASS otter LOD 2 seated animation
+[Kart-PCK] PASS badger imported LOD 0
+[Kart-PCK] PASS badger LOD 0 seated animation
+[Kart-PCK] PASS badger imported LOD 1
+[Kart-PCK] PASS badger LOD 1 seated animation
+[Kart-PCK] PASS badger imported LOD 2
+[Kart-PCK] PASS badger LOD 2 seated animation
+[Kart-PCK] PASS cat imported LOD 0
+[Kart-PCK] PASS cat LOD 0 seated animation
+[Kart-PCK] PASS cat imported LOD 1
+[Kart-PCK] PASS cat LOD 1 seated animation
+[Kart-PCK] PASS cat imported LOD 2
+[Kart-PCK] PASS cat LOD 2 seated animation
+[Kart-PCK] PASS packaged race opening film
+[Kart-PCK] PASS sonnenhafen full-size track photograph
+[Kart-PCK] PASS zauberwald full-size track photograph
+[Kart-PCK] PASS bergwelt full-size track photograph
+[Kart-PCK] PASS holo_city full-size track photograph
+[Kart-PCK] PASS crystal_canyon full-size track photograph
+[Kart-PCK] PASS jungle_temple full-size track photograph
+[Kart-PCK] PASS candy_cloud full-size track photograph
+[Kart-PCK] PASS volcano_night full-size track photograph
+[Kart-PCK] PASS winter_sprint full-size track photograph
+[Kart-PCK] PASS galaxy_ringway full-size track photograph
+[Kart-PCK] PASS desert_drift full-size track photograph
+[Kart-PCK] PASS learning_lab full-size track photograph
+[Kart-PCK] PASS jungle_emerald_3600 full-size track photograph
+[Kart-PCK] PASS riesengarten_2400 full-size track photograph
+[Kart-PCK] PASS windwerk_3000 full-size track photograph
+[Kart-PCK] PASS comet vehicle body and garage portrait
+[Kart-PCK] PASS comet packaged shell LOD0
+[Kart-PCK] PASS comet packaged shell LOD1
+[Kart-PCK] PASS comet packaged shell LOD2
+[Kart-PCK] PASS gecko_velo vehicle body and garage portrait
+[Kart-PCK] PASS gecko_velo packaged shell LOD0
+[Kart-PCK] PASS gecko_velo packaged shell LOD1
+[Kart-PCK] PASS gecko_velo packaged shell LOD2
+[Kart-PCK] PASS boru_rally vehicle body and garage portrait
+[Kart-PCK] PASS boru_rally packaged shell LOD0
+[Kart-PCK] PASS boru_rally packaged shell LOD1
+[Kart-PCK] PASS boru_rally packaged shell LOD2
+[Kart-PCK] PASS glider vehicle body and garage portrait
+[Kart-PCK] PASS glider packaged shell LOD0
+[Kart-PCK] PASS glider packaged shell LOD1
+[Kart-PCK] PASS glider packaged shell LOD2
+[Kart-PCK] PASS nala_comet vehicle body and garage portrait
+[Kart-PCK] PASS nala_comet packaged shell LOD0
+[Kart-PCK] PASS nala_comet packaged shell LOD1
+[Kart-PCK] PASS nala_comet packaged shell LOD2
+[Kart-PCK] PASS noa_tide vehicle body and garage portrait
+[Kart-PCK] PASS noa_tide packaged shell LOD0
+[Kart-PCK] PASS noa_tide packaged shell LOD1
+[Kart-PCK] PASS noa_tide packaged shell LOD2
+[Kart-PCK] PASS iva_aurora vehicle body and garage portrait
+[Kart-PCK] PASS iva_aurora packaged shell LOD0
+[Kart-PCK] PASS iva_aurora packaged shell LOD1
+[Kart-PCK] PASS iva_aurora packaged shell LOD2
+[Kart-PCK] PASS turbo vehicle body and garage portrait
+[Kart-PCK] PASS turbo packaged shell LOD0
+[Kart-PCK] PASS turbo packaged shell LOD1
+[Kart-PCK] PASS turbo packaged shell LOD2
+[Kart-PCK] PASS zuri_volt vehicle body and garage portrait
+[Kart-PCK] PASS zuri_volt packaged shell LOD0
+[Kart-PCK] PASS zuri_volt packaged shell LOD1
+[Kart-PCK] PASS zuri_volt packaged shell LOD2
+[Kart-PCK] PASS blitz vehicle body and garage portrait
+[Kart-PCK] PASS blitz packaged shell LOD0
+[Kart-PCK] PASS blitz packaged shell LOD1
+[Kart-PCK] PASS blitz packaged shell LOD2
+[Kart-PCK] PASS terra vehicle body and garage portrait
+[Kart-PCK] PASS terra packaged shell LOD0
+[Kart-PCK] PASS terra packaged shell LOD1
+[Kart-PCK] PASS terra packaged shell LOD2
+[Kart-PCK] PASS koloss vehicle body and garage portrait
+[Kart-PCK] PASS koloss packaged shell LOD0
+[Kart-PCK] PASS koloss packaged shell LOD1
+[Kart-PCK] PASS koloss packaged shell LOD2
+[Kart-PCK] PASS phantom vehicle body and garage portrait
+[Kart-PCK] PASS phantom packaged shell LOD0
+[Kart-PCK] PASS phantom packaged shell LOD1
+[Kart-PCK] PASS phantom packaged shell LOD2
+[Kart-PCK] PASS stella vehicle body and garage portrait
+[Kart-PCK] PASS stella packaged shell LOD0
+[Kart-PCK] PASS stella packaged shell LOD1
+[Kart-PCK] PASS stella packaged shell LOD2
+[Kart-PCK] PASS bridge Windwerk module and portrait
+[Kart-PCK] PASS mill Windwerk module and portrait
+[Kart-PCK] PASS orchard Windwerk module and portrait
+[Kart-PCK] PASS signal_gate Windwerk module and portrait
+[Kart-PCK] PASS slider Windwerk module and portrait
+[Kart-PCK] PASS station Windwerk module and portrait
+[Kart-PCK] PASS turbine Windwerk module and portrait
+[Kart-PCK] PASS workshop Windwerk module and portrait
+[Kart-PCK] PASS wind_whale Windwerk module and portrait
+[Kart-PCK] PASS pawn chess table model
+[Kart-PCK] PASS rook chess table model
+[Kart-PCK] PASS knight chess table model
+[Kart-PCK] PASS bishop chess table model
+[Kart-PCK] PASS queen chess table model
+[Kart-PCK] PASS king chess table model
+[Kart-PCK] PASS board chess table model
+[Kart-PCK] PASS wolkenwerkstatt adventure menu photograph
+[Kart-PCK] PASS eisturm adventure menu photograph
+[Kart-PCK] PASS dschungeltempel adventure menu photograph
+[Kart-PCK] PASS panda high-resolution Memory card
+[Kart-PCK] PASS giraffe high-resolution Memory card
+[Kart-PCK] PASS lumo high-resolution Memory card
+[Kart-PCK] PASS hase high-resolution Memory card
+[Kart-PCK] PASS pinguin high-resolution Memory card
+[Kart-PCK] PASS stern high-resolution Memory card
+[Kart-PCK] PASS laterne high-resolution Memory card
+[Kart-PCK] PASS truhe high-resolution Memory card
+[Kart-PCK] PASS note high-resolution Memory card
+[Kart-PCK] PASS fahne high-resolution Memory card
+[Kart-PCK] PASS pilz high-resolution Memory card
+[Kart-PCK] PASS stein high-resolution Memory card
+[Perf] quality_profile:medium

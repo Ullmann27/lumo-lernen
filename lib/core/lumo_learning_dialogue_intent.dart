@@ -44,6 +44,22 @@ class LumoLearningDialogueIntent {
       r'\b(?:die|der|das|den|diese|dieser|dieses|diesen)(?: \d+)? '
       r'(?:da|dort|hier)\b|\bdiese \d+\b');
 
+  static final _differentExplanation = RegExp(
+      r'\b(?:anders (?:erklaeren|erklaer|erklaere|zeigen)|andere erklaerung|'
+      r'(?:erklaer|erklaere|zeig|zeige) (?:es |das |mir )*anders)\b');
+  static final _secondStep = RegExp(
+      r'\b(?:(?:zweiten|zweite|zweiter|2) schritt|schritt (?:zwei|2))\b');
+  static final _tooFast = RegExp(r'^(?:lumo )?(?:bitte )?(?:'
+      r'(?:(?:sprich|rede|lies)(?: bitte)? )?nicht so schnell|'
+      r'das (?:geht|ist)(?: mir)? zu schnell)(?: bitte)?$');
+
+  static bool requestsDifferentExplanation(String input) =>
+      _differentExplanation.hasMatch(
+          const LumoChildSpeechNormalizer().normalizeText(input));
+
+  static bool requestsSecondStep(String input) => _secondStep.hasMatch(
+      const LumoChildSpeechNormalizer().normalizeText(input));
+
   /// True for an unclassified utterance that points at something unnamed.
   static bool isAmbiguousReference(String input) =>
       _ambiguousReference.hasMatch(
@@ -68,7 +84,7 @@ class LumoLearningDialogueIntent {
     // A correction names the replacement, never the first number in
     // "nicht vier, sondern dreizehn". Nothing is checked until confirmation.
     final correction = RegExp(
-            r'\b(?:sondern|ich meinte|ich meine|gemeint habe ich)\s+(.+)$',
+            r'\b(?:sondern|ich meinte|ich meine|gemeint habe ich|ich hab(?:e)? gesagt)\s+(.+)$',
             caseSensitive: false)
         .firstMatch(raw);
     final answerPhrase = RegExp(
@@ -87,6 +103,11 @@ class LumoLearningDialogueIntent {
     }
 
     // Negated requests must not unexpectedly start a narrated lesson.
+    // "Nicht so schnell" explicitly asks to slow down; "nicht langsamer"
+    // still declines that change. Replay remains owned by the visible task.
+    if (_tooFast.hasMatch(text)) {
+      return const LumoLearningDialogueIntent(LumoLearningAction.slower);
+    }
     if (!RegExp(r'\b(?:nicht|kein|keine|ohne)\b').hasMatch(text)) {
       if (RegExp(r'\b(?:langsamer|langsam)\b').hasMatch(text)) {
         return const LumoLearningDialogueIntent(LumoLearningAction.slower);
@@ -97,6 +118,9 @@ class LumoLearningDialogueIntent {
       }
       if (RegExp(r'\b(?:hinweis|tipp|hilfe|hilf)\b').hasMatch(text)) {
         return const LumoLearningDialogueIntent(LumoLearningAction.hint);
+      }
+      if (requestsDifferentExplanation(text) || requestsSecondStep(text)) {
+        return const LumoLearningDialogueIntent(LumoLearningAction.explain);
       }
     }
     if (_show.hasMatch(text)) {

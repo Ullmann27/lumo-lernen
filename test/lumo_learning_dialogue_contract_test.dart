@@ -139,12 +139,64 @@ void main() {
         await conversation.ask('Nein, nicht vierzehn, sondern dreizehn.');
     expect(corrected.reply, contains('bestätigst'));
     expect(actions.last.candidate, '13');
+    final heard = await conversation.ask('Nein, ich habe gesagt dreizehn.');
+    expect(heard.source, 'local_answer_proposal');
+    expect(actions.last.candidate, '13');
     expect(bus.taskContext.value?.lastCorrect, false);
     expect(bus.taskContext.value?.attempts, 1);
     expect(bus.tutor.mistakes, 0);
     expect(app.state.solved, isEmpty);
     expect(app.state.stars, 0);
     expect(app.state.xp, 0);
+  });
+
+  test('Chat4 wording requests slower reading through the current task owner',
+      () async {
+    bus.publishTask(task(explaining: true));
+    for (final phrase in ['Nicht so schnell bitte', 'Das geht mir zu schnell']) {
+      final reply = await conversation.ask(phrase);
+      expect(reply.source, 'local_lesson_slower', reason: phrase);
+      expect(bus.learningAction.value?.action, LumoLearningAction.slower);
+    }
+    expect(LumoLearningDialogueIntent.parse('Nicht langsamer', task()), isNull);
+    expect(app.state.solved, isEmpty);
+    expect(app.state.stars, 0);
+  });
+
+  test('Chat4 alternative and second step use the visible worked example',
+      () async {
+    bus.publishTask(task(explaining: true));
+    final different = await conversation.ask('Kannst du es anders zeigen?');
+    expect(different.source, 'local_lesson_explain');
+    expect(different.reply, contains('zehn Plätze'));
+    expect(different.reply, contains('8 sind schon besetzt'));
+    expect(different.reply, isNot(contains('13')));
+    final second = await conversation.ask('Bitte Schritt zwei');
+    expect(second.source, 'local_lesson_explain');
+    expect(second.reply, contains('3 übrig'));
+    expect(second.reply, contains('zweiten Schritt'));
+    expect(second.reply, isNot(contains('13')));
+    expect(bus.learningAction.value?.action, LumoLearningAction.explain);
+    expect(bus.taskContext.value?.attempts, 0);
+    expect(app.state.solved, isEmpty);
+    expect(app.state.stars, 0);
+
+    bus.publishTask(task(
+        explaining: true,
+        prompt: '8 + 10',
+        explanation: 'Acht liegen im Zehnerfeld. Ergänze zunächst zur Zehn.'));
+    final tenMore = await conversation.ask('Bitte den zweiten Schritt');
+    expect(tenMore.reply, contains('8 übrig'));
+    expect(tenMore.reply, isNot(contains('18')));
+
+    bus.publishTask(task(actions: const {LumoLearningAction.look}));
+    final denied = await conversation.ask('Eine andere Erklärung bitte');
+    expect(denied.source, 'local_action_unavailable');
+    expect(denied.reply, isNot(contains('zehn Plätze')));
+    expect(bus.learningPresentation.value, isNull);
+    expect(LumoLearningDialogueIntent.parse('Bitte Schritt zwei', null), isNull);
+    expect(LumoLearningDialogueIntent.parse('Nicht anders zeigen', task()),
+        isNull);
   });
 
   test(

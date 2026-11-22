@@ -91,6 +91,12 @@ class SpeechEnvelopeContractTest(unittest.TestCase):
             'LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
         )
 
+    def test_explicit_village_consent_playback_and_late_callbacks(self):
+        self.run_contract(
+            'LearningSpeechSettlementContractKt',
+            'LUMO_SETTLEMENT_SPEECH_PASS checks=19 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
+        )
+
     def test_current_failure_has_private_content_free_owner_and_stale_guard(self):
         self.run_contract(
             'LearningSpeechFailureContractKt',

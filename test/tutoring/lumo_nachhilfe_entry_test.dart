@@ -69,8 +69,11 @@ void main() {
       expect(screen, findsOneWidget);
       expect(tester.widget<LumoNachhilfeScreen>(screen).aufgabe.text,
           aufgabe!.text);
-      // Ohne Godot-Szene "tutor" gibt es keinen 3D-Knopf, nur den 2D-Weg.
-      expect(tester.widget<LumoNachhilfeScreen>(screen).open3D, isNull);
+      // Beide Einstiege sind verbunden. Hier bleibt der direkte 2D-Rückweg
+      // geprüft; der tatsächliche 3D-Launch samt Rückgabe hat einen eigenen
+      // Vertrag in lumo_nachhilfe_3d_test.dart.
+      expect(tester.widget<LumoNachhilfeScreen>(screen).open3D, isNotNull);
+      expect(find.byKey(const ValueKey('nachhilfe-3d')), findsOneWidget);
       // Die Lösung der Originalaufgabe steht nirgends auf dem Schirm.
       expect(find.text('${aufgabe.text} = ${aufgabe.ergebnis}'), findsNothing);
 

@@ -36,6 +36,27 @@ public class LearningDialogProbe {
     require(seven.text.contains("bleiben 2 übrig"), "Compute the current task's remainder");
     var slow = LumoLearningDialogLogic.answer(bridge, "Bitte langsamer", "explain");
     require(slow.slower && slow.text.equals(why.text), "Slow down the same checked explanation");
+    var different = LumoLearningDialogLogic.answer(bridge, "Kannst du es anders zeigen?", "explain");
+    require(different.text.contains("zehn Plätze") && different.text.contains("8 sind schon besetzt") &&
+        !different.text.contains("13"), "Use another bounded explanation without the final answer");
+    var second = LumoLearningDialogLogic.answer(bridge, "Bitte Schritt zwei", "explain");
+    require(second.text.contains("3 übrig") && second.text.contains("zweiten Schritt") &&
+        !second.text.contains("13"), "Explain the second step of the active example");
+    var tenMore = LumoLearningDialogLogic.answer(context("bridge_ten", 8, 10, "", List.of(), List.of(), ""),
+        "Bitte den zweiten Schritt", "explain");
+    require(tenMore.text.contains("8 übrig") && !tenMore.text.contains("18"),
+        "Second step supports the original Chat4 upper addend bound");
+    require(LumoLearningDialogLogic.answerIfAllowed(bridge, "Anders zeigen", "explain",
+        Set.of("stop")) == null, "Alternative explanation still requires the task owner's permission");
+    var heard = LumoLearningDialogLogic.answer(bridge, "Nein, ich habe gesagt dreizehn", "explain");
+    require(heard.text.contains("Prüfen") && !heard.text.contains("richtig"), "A corrected transcript never grades");
+    var unclear = LumoLearningDialogLogic.answer(bridge, "Zeig mir die zwei da", "explain");
+    require(unclear.text.contains("Was genau meinst du") && !unclear.text.contains("10 minus"),
+        "An unnamed object is clarified rather than inferred from the task");
+    require(LumoLearningDialogLogic.isStop("Ich möchte es allein versuchen."),
+        "Independent study stops narration");
+    require(!LumoLearningDialogLogic.isStop("Ich kann es nicht allein"),
+        "Needing help does not stop the lesson");
     for (String stop : List.of("Stopp", "Stop!", "Bitte stopp", "Halt bitte", "Pause", "Aufhören")) {
       var reply = LumoLearningDialogLogic.answer(bridge, stop, "explain");
       require(reply.action.equals("stop") && reply.text.isEmpty(), "Stop must not start another utterance");
@@ -86,8 +107,9 @@ public class LearningDialogProbe {
                             str(production), str(probe)], check=True, capture_output=True)
             result = subprocess.run(["java", "-cp", str(directory),
                                      "dev.ullmann.lumo.LearningDialogProbe"],
-                                    check=True, capture_output=True, text=True)
-            self.assertIn("PASS 26 production dialogue checks", result.stdout)
+                                    capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("PASS 34 production dialogue checks", result.stdout)
 
 
 if __name__ == "__main__":

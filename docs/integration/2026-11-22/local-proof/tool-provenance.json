@@ -1,0 +1,23 @@
+{
+  "flutter": {
+    "version": "3.44.9",
+    "framework_commit": "6b182d2c7585eba26d4edce0f97630effd256c33",
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.44.9-stable.tar.xz",
+    "sha256": "a9120fa4a01048bdef438ddc3a2d4b7389662ea98a95db86eeaf10382bc4efcb"
+  },
+  "godot": {
+    "version": "4.6.3.stable.official.7d41c59c4",
+    "url": "https://github.com/godotengine/godot-builds/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip",
+    "sha256": "d0bc2113065e481c9c2c2b2c37daa4e8be3fe9e27f0ab9ab0b6096e9a37907f3"
+  },
+  "jdk": {
+    "version": "17.0.21.1+2",
+    "url": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21.1%2B2/OpenJDK17U-jdk_x64_linux_hotspot_17.0.21.1_2.tar.gz",
+    "sha256": "0b0ac5eab6db6abaec68c9913bcddb31321e5da411c45073d520d9c125e6f7b4"
+  },
+  "gradle": {
+    "version": "9.1.0",
+    "url": "https://services.gradle.org/distributions/gradle-9.1.0-bin.zip",
+    "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806"
+  }
+}

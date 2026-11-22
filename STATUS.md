@@ -1,3 +1,9 @@
+# LUMO 2066 · gemeinsame Vollintegration
+
+Stand 22.11.2026. Aktiver Integrationszweig in beiden Repositories: `integration/lumo-complete-20261122`. Ausgangsstände Flutter `52c2c570` und Godot `25fc4ff1`. Die vollständige Quelleninventur und aktuellen Anschlüsse stehen in [der Integrationsübergabe](docs/integration/2026-11-22/INTEGRATION.md). Kandidat `0.13.54+2066`; neue APK und Android-Abschluss werden anhand des tatsächlich gebauten Runs bestätigt. Der fehlgeschlagene 2065-Bau ist keine Lieferung.
+
+## Archiv früherer Arbeitsstände
+
 # Lumo 2052 · Quizshow, Lumo Lauf und Kart-Frosch
 
 Stand 19.11.2026. Beide Arbeitszweige heißen `repair/lumo-quiz-run-kart-20261119`. Der Kandidat `0.13.40+2052` öffnet die spielbare Quizrunde direkt, verkürzt den Laufstart und schließt den Frosch an Kart an. Die [Übergabe 2052](docs/handoffs/LUMO_2052_FABLE_5_2.md) enthält Bestandsaufnahme und Prüfungen. Der [Parallelauftrag an Fable 5.2](docs/handoffs/FABLE_5_2_LUMO_PARALLELAUF.md) deckt Strecken, Spiele und Lern-Holos ab. Den Auslieferungsstand am [APK-Bau und Android-Rundgang](https://github.com/Ullmann27/lumo-lernen/actions/runs/44473804677) prüfen.

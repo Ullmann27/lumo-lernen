@@ -44,7 +44,16 @@ public final class LumoLearningDialogLogic {
 
     public static boolean isStop(String input) {
         String q = normalized(input).replaceAll("[.!?]+$", "");
-        return q.matches("(?:bitte )?(?:stopp?|halt|pause|aufhören|sei still)(?: bitte)?");
+        if (q.matches("(?:bitte )?(?:stopp?|halt|pause|aufhören|sei still)(?: bitte)?")) return true;
+        // Only a whole positive request declines help. A child saying
+        // "Ich kann es nicht allein" is still asking us to stay available.
+        return q.matches("(?:lumo )?(?:bitte )?(?:" +
+            "(?:ich )?(?:möchte|moechte|will|mag|kann|darf)(?: es)?(?: jetzt)? " +
+            "(?:allein|alleine|selbst|selber)(?: (?:versuchen|probieren|machen|lösen|loesen|rechnen|schaffen))?" +
+            "|lass mich(?: es)?(?: jetzt)? (?:allein|alleine|selbst|selber)" +
+            "(?: (?:versuchen|probieren|machen|lösen|loesen|rechnen))?" +
+            "|(?:ich brauche |ich will )?(?:keinen tipp|keine hilfe|keinen hinweis)(?: mehr)?" +
+            "|ohne (?:hilfe|tipp|hinweis))(?: bitte)?");
     }
 
     private static String normalized(String input) {
@@ -73,9 +82,15 @@ public final class LumoLearningDialogLogic {
         String action = slow ? "slower" :
             ("repeat".equals(requestedAction) || q.matches(".*(?:noch einmal|nochmal|wiederhol).*"))
                 ? "repeat" : "hint".equals(requestedAction) ? "hint" : "explain";
-        if (q.matches(".*(?:ich meinte|ich meine|falsch verstanden|verhört).*")) {
+        if (q.matches(".*(?:ich meinte|ich meine|ich hab(?:e)? gesagt|falsch verstanden|verhört).*")) {
             return new Reply("Ändere deine Antwort in der Aufgabe. Du entscheidest mit „Prüfen“, " +
                 "welche Antwort gezählt wird.", action, "task_prompt", slow);
+        }
+        String number = "(?:\\d+|eins|zwei|drei|vier|fünf|fuenf|sechs|sieben|acht|neun|zehn)";
+        if (q.matches(".*\\b(?:(?:die|der|das|den|diese|dieser|dieses|diesen)(?: " + number +
+                ")? (?:da|dort|hier)|diese " + number + ")\\b.*")) {
+            return new Reply("Was genau meinst du? Nenne das Objekt oder den Schritt, " +
+                "damit wir gemeinsam darauf schauen können.", action, "", slow);
         }
         switch (c.kind) {
             case "bridge_ten":
@@ -83,6 +98,18 @@ public final class LumoLearningDialogLogic {
                 if (c.a > 0 && c.a < 10 && c.b > 0 && c.b <= 10 && c.a + c.b > 10) {
                     int missing = 10 - c.a;
                     int remainder = c.b - missing;
+                    if (q.matches(".*\\b(?:anders (?:erklären|erklaeren|erklär|erklaer|erkläre|erklaere|zeigen)" +
+                            "|andere (?:erklärung|erklaerung)|(?:erklär|erklaer|erkläre|erklaere|zeig|zeige) " +
+                            "(?:es |das |mir )*anders)\\b.*")) {
+                        return new Reply("Stell dir zehn Plätze vor. " + c.a + " sind schon besetzt. " +
+                            "Wie viele Plätze fehlen noch bis zehn? Nimm dafür einen Teil der " + c.b +
+                            " zusätzlichen Objekte. Der Rest bleibt daneben.", action, "bridge_two", slow);
+                    }
+                    if (q.matches(".*\\b(?:(?:zweiten|zweite|zweiter|2) schritt|schritt (?:zwei|2))\\b.*")) {
+                        return new Reply("Im ersten Schritt ergänzen wir " + missing + " zur Zehn. " +
+                            "Von den " + c.b + " zusätzlichen Objekten bleiben " + remainder +
+                            " übrig. Was machst du im zweiten Schritt mit ihnen?", action, "bridge_two", slow);
+                    }
                     return new Reply("Im Zehnerfeld liegen " + c.a + ". Bis zehn fehlen " + missing +
                         ", denn 10 minus " + c.a + " ist " + missing + ". Deshalb nehmen wir zuerst " +
                         missing + " von den " + c.b + ". Danach bleiben " + remainder + " übrig.",

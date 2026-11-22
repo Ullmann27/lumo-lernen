@@ -1,0 +1,398 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 0 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Soundscape] ready
+[Progress] no save file (first run) - starting fresh
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[KartDetail] zauberwald medium {"facade":0,"facade_skips":{"boxes":5468,"dark":0,"distance":0,"size":5468,"tilt":0},"life":18,"light":42,"props":26,"scenery_skips":42,"stage":11,"triangles":{"banner":16,"decal":302,"glow":1356,"props":20464},"wear":151} 59 ms
+[Perf] quality_profile:medium
+[LumoRun] course zauberwald: 1994 m, 464 stars, 5 checkpoints, built in 2668 ms
+[LumoRun] running zauberwald s=34.72
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 2113 ms
+[LumoRun] running sonnenhafen s=144.05
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 50 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course zauberwald: 1994 m, 464 stars, 5 checkpoints, built in 2462 ms
+[LumoRun] running zauberwald s=34.72
+[KartDetail] zauberwald medium {"facade":0,"facade_skips":{"boxes":5468,"dark":0,"distance":0,"size":5468,"tilt":0},"life":18,"light":42,"props":26,"scenery_skips":42,"stage":11,"triangles":{"banner":16,"decal":302,"glow":1356,"props":20464},"wear":151} 34 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[KartDetail] zauberwald medium {"facade":0,"facade_skips":{"boxes":5468,"dark":0,"distance":0,"size":5468,"tilt":0},"life":18,"light":42,"props":26,"scenery_skips":42,"stage":11,"triangles":{"banner":16,"decal":302,"glow":1356,"props":20464},"wear":151} 37 ms
+[Perf] quality_profile:medium
+[LumoRun] course zauberwald: 1994 m, 464 stars, 5 checkpoints, built in 2324 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course zauberwald: 1994 m, 464 stars, 5 checkpoints, built in 2262 ms
+[LumoRun] running zauberwald s=34.72
+[KartDetail] zauberwald medium {"facade":0,"facade_skips":{"boxes":5468,"dark":0,"distance":0,"size":5468,"tilt":0},"life":18,"light":42,"props":26,"scenery_skips":42,"stage":11,"triangles":{"banner":16,"decal":302,"glow":1356,"props":20464},"wear":151} 33 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course zauberwald: 1994 m, 464 stars, 5 checkpoints, built in 2249 ms
+[KartDetail] zauberwald medium {"facade":0,"facade_skips":{"boxes":5468,"dark":0,"distance":0,"size":5468,"tilt":0},"life":18,"light":42,"props":26,"scenery_skips":42,"stage":11,"triangles":{"banner":16,"decal":302,"glow":1356,"props":20464},"wear":151} 34 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 1953 ms
+[LumoRun] running sonnenhafen s=34.38
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 62 ms
+[LumoHost] return: games
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[LumoHost] return: games
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 2000 ms
+WARNING: [LumoHost] reward not saved; retry on return: run-test-1795370935338-18722763
+     at: push_warning (core/variant/variant_utility.cpp:1034)
+     GDScript backtrace (most recent call first):
+         [0] reward (res://scripts/systems/host_bridge.gd:135)
+         [1] _finish (res://scripts/games/run/lumo_run.gd:1061)
+         [2] _on_track_event (res://scripts/games/run/lumo_run.gd:778)
+         [3] _simulate (res://scripts/games/run/lumo_run.gd:481)
+         [4] _step (res://scripts/games/run/lumo_run.gd:461)
+         [5] advance (res://scripts/games/run/lumo_run.gd:442)
+         [6] _complete (res://scripts/tests/lumo_run_regression.gd:123)
+         [7] _test_host_contract (res://scripts/tests/lumo_run_regression.gd:905)
+         [8] _open (res://scripts/tests/lumo_run_regression.gd:95)
+         [9] _new_game (res://scripts/tests/lumo_run_regression.gd:76)
+[LumoRun] finished: course=sonnenhafen reward=15 rating=3 kept=452/484 solved=3 time=1:27
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 56 ms
+[LumoHost] reward reported: run-test-1795370935338-18722763
+[LumoHost] return: learn
+[LumoHost] return: games
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 1002 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=622/750 solved=3 time=1:27
+[LumoRun] dschungelherz bot: 87 s, 622/750 stars, 0 stumbles, rating 3, reward 15
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 652 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=429/750 solved=3 time=2:52
+[LumoRun] dschungelherz no input: 172 s, 429/750 stars, 76 stumbles, rating 2
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course zauberwald: 1994 m, 464 stars, 5 checkpoints, built in 2595 ms
+[LumoRun] running zauberwald s=34.72
+[LumoRun] finished: course=zauberwald reward=15 rating=3 kept=394/464 solved=3 time=1:37
+[LumoRun] zauberwald bot: 98 s, 394/464 stars, 0 stumbles, rating 3, reward 15
+[KartDetail] zauberwald medium {"facade":0,"facade_skips":{"boxes":5468,"dark":0,"distance":0,"size":5468,"tilt":0},"life":18,"light":42,"props":26,"scenery_skips":42,"stage":11,"triangles":{"banner":16,"decal":302,"glow":1356,"props":20464},"wear":151} 34 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course zauberwald: 1994 m, 464 stars, 5 checkpoints, built in 2614 ms
+[LumoRun] running zauberwald s=34.72
+[LumoRun] finished: course=zauberwald reward=9 rating=1 kept=77/464 solved=3 time=1:45
+[LumoRun] zauberwald no input: 106 s, 77/464 stars, 18 stumbles, rating 1
+[KartDetail] zauberwald medium {"facade":0,"facade_skips":{"boxes":5468,"dark":0,"distance":0,"size":5468,"tilt":0},"life":18,"light":42,"props":26,"scenery_skips":42,"stage":11,"triangles":{"banner":16,"decal":302,"glow":1356,"props":20464},"wear":151} 57 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 2102 ms
+[LumoRun] running sonnenhafen s=34.38
+[LumoRun] finished: course=sonnenhafen reward=15 rating=3 kept=452/484 solved=3 time=1:27
+[LumoRun] sonnenhafen bot: 87 s, 452/484 stars, 0 stumbles, rating 3, reward 15
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 47 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 2038 ms
+[LumoRun] running sonnenhafen s=34.38
+[LumoRun] finished: course=sonnenhafen reward=9 rating=1 kept=217/484 solved=3 time=1:37
+[LumoRun] sonnenhafen no input: 97 s, 217/484 stars, 24 stumbles, rating 1
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 48 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 668 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=546/750 solved=3 time=1:25
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 651 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 632 ms
+[LumoRun] running dschungelherz s=46.55
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 835 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 706 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 710 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 635 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 702 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 660 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 619 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 712 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 663 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 663 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 747 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 624 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 626 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 702 ms
+[LumoRun] running dschungelherz s=1284.03
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 628 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 693 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 678 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 705 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 670 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 680 ms
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 645 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=546/750 solved=3 time=1:25
+[LumoRun] jungle seed 1: 85 s, 546/750 stars, letters 4, hall false, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "upper", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 617 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=622/750 solved=3 time=1:27
+[LumoRun] jungle seed 2: 87 s, 622/750 stars, letters 0, hall true, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 653 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=512/750 solved=3 time=1:24
+[LumoRun] jungle seed 3: 84 s, 512/750 stars, letters 0, hall false, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 683 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=635/750 solved=3 time=1:27
+[LumoRun] jungle seed 4: 87 s, 635/750 stars, letters 4, hall true, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 696 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=537/750 solved=3 time=1:25
+[LumoRun] jungle seed 5: 85 s, 537/750 stars, letters 3, hall false, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "upper", "Tempelsims": "upper", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 617 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=617/750 solved=3 time=1:27
+[LumoRun] jungle seed 6: 87 s, 617/750 stars, letters 0, hall true, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 647 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=546/750 solved=3 time=1:25
+[LumoRun] jungle seed 7: 85 s, 546/750 stars, letters 4, hall false, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "upper", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 656 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=630/750 solved=3 time=1:27
+[LumoRun] jungle seed 8: 87 s, 630/750 stars, letters 3, hall true, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 682 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=503/750 solved=3 time=1:24
+[LumoRun] jungle seed 9: 85 s, 503/750 stars, letters 0, hall false, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 627 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=635/750 solved=3 time=1:27
+[LumoRun] jungle seed 10: 87 s, 635/750 stars, letters 4, hall true, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 702 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=533/750 solved=3 time=1:24
+[LumoRun] jungle seed 11: 84 s, 533/750 stars, letters 1, hall false, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "lower", "Einsturzbrücke": "upper", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 683 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=615/750 solved=3 time=1:27
+[LumoRun] jungle seed 12: 87 s, 615/750 stars, letters 0, hall true, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 620 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=543/750 solved=3 time=1:24
+[LumoRun] jungle seed 13: 85 s, 543/750 stars, letters 3, hall false, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "upper", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 768 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=622/750 solved=3 time=1:27
+[LumoRun] jungle seed 14: 87 s, 622/750 stars, letters 2, hall true, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 671 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=503/750 solved=3 time=1:24
+[LumoRun] jungle seed 15: 85 s, 503/750 stars, letters 0, hall false, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 638 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=635/750 solved=3 time=1:27
+[LumoRun] jungle seed 16: 87 s, 635/750 stars, letters 3, hall true, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 623 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=532/750 solved=3 time=1:23
+[LumoRun] jungle seed 17: 84 s, 532/750 stars, letters 2, hall false, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "lower", "Einsturzbrücke": "upper", "Tempelsims": "lower", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 741 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=610/750 solved=3 time=1:27
+[LumoRun] jungle seed 18: 88 s, 610/750 stars, letters 0, hall true, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 643 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=542/750 solved=3 time=1:24
+[LumoRun] jungle seed 19: 85 s, 542/750 stars, letters 4, hall false, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "upper", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 643 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=622/750 solved=3 time=1:27
+[LumoRun] jungle seed 20: 87 s, 622/750 stars, letters 1, hall true, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "upper", "Kristallsims": "lower", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 651 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=503/750 solved=3 time=1:24
+[LumoRun] jungle seed 21: 85 s, 503/750 stars, letters 0, hall false, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 620 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=635/750 solved=3 time=1:27
+[LumoRun] jungle seed 22: 87 s, 635/750 stars, letters 3, hall true, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 614 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=512/750 solved=3 time=1:24
+[LumoRun] jungle seed 23: 85 s, 512/750 stars, letters 1, hall false, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 663 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=610/750 solved=3 time=1:27
+[LumoRun] jungle seed 24: 88 s, 610/750 stars, letters 0, hall true, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 663 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=546/750 solved=3 time=1:25
+[LumoRun] jungle seed 25: 85 s, 546/750 stars, letters 4, hall false, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "upper", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 715 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=636/750 solved=3 time=1:27
+[LumoRun] jungle seed 26: 88 s, 636/750 stars, letters 2, hall true, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 651 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=509/750 solved=3 time=1:24
+[LumoRun] jungle seed 27: 84 s, 509/750 stars, letters 0, hall false, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 623 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=635/750 solved=3 time=1:27
+[LumoRun] jungle seed 28: 87 s, 635/750 stars, letters 4, hall true, rescues 0, routes { "Wurzelkrone": "upper", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "upper", "Glutbach-Sprung": "upper", "Kristallsims": "upper", "Wasserfall-Rutsche": "upper" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 623 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=12 rating=2 kept=504/750 solved=3 time=1:23
+[LumoRun] jungle seed 29: 84 s, 504/750 stars, letters 2, hall false, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "upper", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "upper", "Wasserfall-Rutsche": "lower" }
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course dschungelherz: 1939 m, 750 stars, 9 checkpoints, built in 707 ms
+[LumoRun] running dschungelherz s=23.06
+[LumoRun] finished: course=dschungelherz reward=15 rating=3 kept=610/750 solved=3 time=1:27
+[LumoRun] jungle seed 30: 88 s, 610/750 stars, letters 0, hall true, rescues 0, routes { "Wurzelkrone": "lower", "Seilrutsche": "lower", "Einsturzbrücke": "lower", "Tempelsims": "lower", "Glutbach-Sprung": "lower", "Kristallsims": "lower", "Wasserfall-Rutsche": "lower" }
+[LumoRun] jungle bots: 30/30 finished, average 86 s, longest 88 s
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 2160 ms
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 52 ms
+[LumoRun] finished: course=sonnenhafen reward=3 rating=1 kept=0/484 solved=0 time=0:00
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 2182 ms
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 52 ms
+[LumoRun] finished: course=sonnenhafen reward=3 rating=1 kept=0/484 solved=0 time=0:00
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 2039 ms
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 47 ms
+[LumoRun] finished: course=sonnenhafen reward=3 rating=1 kept=0/484 solved=0 time=0:00
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 2070 ms
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 49 ms
+[LumoRun] finished: course=sonnenhafen reward=3 rating=1 kept=0/484 solved=0 time=0:00
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course sonnenhafen: 1852 m, 484 stars, 5 checkpoints, built in 1910 ms
+[KartDetail] sonnenhafen medium {"facade":0,"facade_skips":{"boxes":10165,"dark":0,"distance":0,"size":10165,"tilt":0},"life":70,"light":48,"props":79,"scenery_skips":17,"stage":20,"triangles":{"banner":14,"decal":358,"glow":1564,"props":93850},"wear":179} 46 ms
+[LumoRun] finished: course=sonnenhafen reward=3 rating=1 kept=0/484 solved=0 time=0:00
+[LumoRun] ready: grade=2 subject=Deutsch courses=3
+[Perf] quality_profile:medium
+[LumoRun] course zauberwald: 1994 m, 464 stars, 5 checkpoints, built in 2276 ms
+[LumoRun] running zauberwald s=39.42
+[KartDetail] zauberwald medium {"facade":0,"facade_skips":{"boxes":5468,"dark":0,"distance":0,"size":5468,"tilt":0},"life":18,"light":42,"props":26,"scenery_skips":42,"stage":11,"triangles":{"banner":16,"decal":302,"glow":1356,"props":20464},"wear":151} 35 ms
+[LumoRun] PASS: 510 checks

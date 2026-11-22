@@ -1,0 +1,110 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 0 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Soundscape] ready
+[Progress] no save file (first run) - starting fresh
+[HoloLesson] ready kind=holo_word_problem mode=add valid=true
+[Perf] quality_profile:medium
+[HoloLesson] first_frame_ms=132.7
+[HoloLesson] ready kind=holo_word_problem mode=add valid=true
+[HoloLesson] first_frame_ms=16.7
+[HoloLesson] ready kind=holo_sentence mode=verb valid=true
+[HoloLesson] first_frame_ms=25.0
+[HoloLesson] ready kind=holo_sentence mode=order valid=true
+[HoloLesson] first_frame_ms=21.7
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'Nil'.
+          at: field_spot (res://scripts/learning/holo/holo_word_room.gd:467)
+          GDScript backtrace (most recent call first):
+              [0] field_spot (res://scripts/learning/holo/holo_word_room.gd:467)
+              [1] confirm (res://scripts/learning/holo/holo_lesson_world.gd:1324)
+              [2] _order_flow (res://scripts/tests/learning_holo_lesson_regression.gd:384)
+              [3] _open (res://scripts/tests/learning_holo_lesson_regression.gd:40)
+              [4] _frames (res://scripts/tests/learning_holo_lesson_regression.gd:28)
+[HoloLesson] ready kind=holo_sentence mode=noun valid=true
+[HoloLesson] first_frame_ms=29.8
+[HoloLesson] ready kind=holo_sentence mode=syllables valid=true
+[HoloLesson] first_frame_ms=30.4
+[HoloLesson] ready kind=holo_sentence mode=syllables valid=true
+[HoloLesson] first_frame_ms=19.1
+[HoloLesson] ready kind=holo_sentence mode=adjective valid=true
+[HoloLesson] first_frame_ms=13.7
+[HoloLesson] ready kind=holo_sentence mode=adjective valid=false
+[HoloLesson] first_frame_ms=12.7
+[HoloLesson] ready kind=holo_sentence mode=reading valid=true
+[HoloLesson] first_frame_ms=20.4
+[HoloLesson] ready kind=holo_word_problem mode=add valid=true
+[HoloLesson] first_frame_ms=23.6
+[HoloLesson] layout holo_word_problem 1080x2340 free=[P: (26.25, 847.875), S: (1027.5, 935.6251)] cam=(-0.071945, 35.53818, 27.53037)
+[HoloLesson] ready kind=holo_sentence mode=verb valid=true
+[HoloLesson] first_frame_ms=20.2
+[HoloLesson] layout holo_sentenceverb 1080x2340 free=[P: (26.25, 847.875), S: (1027.5, 1103.625)] cam=(0.614333, 19.57642, 24.10333)
+[HoloLesson] ready kind=holo_sentence mode=order valid=true
+[HoloLesson] first_frame_ms=20.6
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'Nil'.
+          at: field_spot (res://scripts/learning/holo/holo_word_room.gd:467)
+          GDScript backtrace (most recent call first):
+              [0] field_spot (res://scripts/learning/holo/holo_word_room.gd:467)
+              [1] confirm (res://scripts/learning/holo/holo_lesson_world.gd:1324)
+              [2] _wrong_sentence (res://scripts/tests/learning_holo_lesson_regression.gd:654)
+              [3] _layouts (res://scripts/tests/learning_holo_lesson_regression.gd:630)
+              [4] _frames (res://scripts/tests/learning_holo_lesson_regression.gd:28)
+[HoloLesson] layout holo_sentenceorder 1080x2340 free=[P: (26.25, 847.875), S: (1027.5, 1103.625)] cam=(0.563647, 20.20227, 26.52552)
+[HoloLesson] ready kind=holo_sentence mode=noun valid=true
+[HoloLesson] first_frame_ms=14.4
+[HoloLesson] layout holo_sentencenoun 1080x2340 free=[P: (26.25, 847.875), S: (1027.5, 1103.625)] cam=(0.614333, 19.57642, 24.10333)
+[HoloLesson] ready kind=holo_word_problem mode=add valid=true
+[HoloLesson] first_frame_ms=16.0
+[HoloLesson] layout holo_word_problem 2340x1080 free=[P: (921.75, 26.25), S: (1392.0, 812.2499)] cam=(-3.472439, 15.30827, 15.03784)
+[HoloLesson] ready kind=holo_sentence mode=verb valid=true
+[HoloLesson] first_frame_ms=14.2
+[HoloLesson] layout holo_sentenceverb 2340x1080 free=[P: (921.75, 26.25), S: (1392.0, 812.2499)] cam=(-3.041905, 10.84114, 14.97835)
+[HoloLesson] ready kind=holo_sentence mode=order valid=true
+[HoloLesson] first_frame_ms=15.0
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'Nil'.
+          at: field_spot (res://scripts/learning/holo/holo_word_room.gd:467)
+          GDScript backtrace (most recent call first):
+              [0] field_spot (res://scripts/learning/holo/holo_word_room.gd:467)
+              [1] confirm (res://scripts/learning/holo/holo_lesson_world.gd:1324)
+              [2] _wrong_sentence (res://scripts/tests/learning_holo_lesson_regression.gd:654)
+              [3] _layouts (res://scripts/tests/learning_holo_lesson_regression.gd:630)
+              [4] _frames (res://scripts/tests/learning_holo_lesson_regression.gd:28)
+[HoloLesson] layout holo_sentenceorder 2340x1080 free=[P: (921.75, 26.25), S: (1392.0, 812.2499)] cam=(-3.2695, 11.8195, 16.80691)
+[HoloLesson] ready kind=holo_sentence mode=noun valid=true
+[HoloLesson] first_frame_ms=13.3
+[HoloLesson] layout holo_sentencenoun 2340x1080 free=[P: (921.75, 26.25), S: (1392.0, 812.2499)] cam=(-3.041905, 10.84114, 14.97835)
+[HoloLesson] ready kind=holo_word_problem mode=add valid=true
+[HoloLesson] first_frame_ms=15.1
+[HoloLesson] layout holo_word_problem 1812x2176 free=[P: (26.25, 693.0), S: (1759.5, 1094.5)] cam=(-0.075759, 29.19923, 22.4327)
+[HoloLesson] ready kind=holo_sentence mode=verb valid=true
+[HoloLesson] first_frame_ms=12.4
+[HoloLesson] layout holo_sentenceverb 1812x2176 free=[P: (26.25, 779.625), S: (1759.5, 1007.875)] cam=(0.650056, 18.56573, 22.28541)
+[HoloLesson] ready kind=holo_sentence mode=order valid=true
+[HoloLesson] first_frame_ms=13.5
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'Nil'.
+          at: field_spot (res://scripts/learning/holo/holo_word_room.gd:467)
+          GDScript backtrace (most recent call first):
+              [0] field_spot (res://scripts/learning/holo/holo_word_room.gd:467)
+              [1] confirm (res://scripts/learning/holo/holo_lesson_world.gd:1324)
+              [2] _wrong_sentence (res://scripts/tests/learning_holo_lesson_regression.gd:654)
+              [3] _layouts (res://scripts/tests/learning_holo_lesson_regression.gd:630)
+              [4] _frames (res://scripts/tests/learning_holo_lesson_regression.gd:28)
+[HoloLesson] layout holo_sentenceorder 1812x2176 free=[P: (26.25, 693.0), S: (1759.5, 1094.5)] cam=(0.731105, 18.17244, 24.1658)
+[HoloLesson] ready kind=holo_sentence mode=noun valid=true
+[HoloLesson] first_frame_ms=13.8
+[HoloLesson] layout holo_sentencenoun 1812x2176 free=[P: (26.25, 779.625), S: (1759.5, 1007.875)] cam=(0.650056, 18.56573, 22.28541)
+[HoloLesson] ready kind=holo_word_problem mode=add valid=true
+[HoloLesson] first_frame_ms=14.7
+[HoloLesson] ready kind=holo_sentence mode=noun valid=true
+[HoloLesson] first_frame_ms=17.3
+[HoloLesson] ready kind=holo_word_problem mode=add valid=true
+[HoloLesson] first_frame_ms=18.2
+[Perf] quality_profile:low
+[Perf] quality_profile:medium
+[HoloLesson] checks=1328 failures=0
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)

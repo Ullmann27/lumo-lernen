@@ -19,7 +19,16 @@ class StudioLearningHostTest(unittest.TestCase):
     def test_generated_host_admits_every_checked_dart_learning_descriptor(self):
         dart = (ROOT / "lib/domain/tutoring/native_learning_activity.dart").read_text()
         descriptor_kinds = set(re.findall(r"NativeLearningActivity\._\(\s*'([^']+)'", dart))
+        # Holo and vocabulary descriptors are forwarded from their checked
+        # catalogs. A literal-constructor-only inventory misses those routes.
+        for source in ("lib/domain/tutoring/native_learning_activity.dart",
+                       "lib/core/holo_lesson_catalog.dart",
+                       "lib/domain/tutoring/native_english_vocabulary.dart"):
+            descriptor_kinds.update(re.findall(
+                r"'kind'\s*:\s*'([^']+)'", (ROOT / source).read_text()))
         self.assertIn("equal_sharing", descriptor_kinds)
+        self.assertTrue({"tutor", "holo_word_problem", "holo_sentence"}
+                        .issubset(descriptor_kinds))
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             main = root / "android/app/src/main"

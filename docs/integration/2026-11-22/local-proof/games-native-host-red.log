@@ -1,0 +1,15 @@
+test_generated_host_admits_every_checked_dart_learning_descriptor (scripts.tests.test_studio_learning_contract.StudioLearningHostTest.test_generated_host_admits_every_checked_dart_learning_descriptor) ... FAIL
+
+======================================================================
+FAIL: test_generated_host_admits_every_checked_dart_learning_descriptor (scripts.tests.test_studio_learning_contract.StudioLearningHostTest.test_generated_host_admits_every_checked_dart_learning_descriptor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-integration-20261122/lumo-lernen/scripts/tests/test_studio_learning_contract.py", line 55, in test_generated_host_admits_every_checked_dart_learning_descriptor
+    self.assertTrue(descriptor_kinds.issubset(accepted_kinds),
+AssertionError: False is not true : Android rejects actual Flutter descriptors: {'tutor', 'holo_sentence', 'holo_word_problem'}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)
+Android host prepared: example.studio.learning; distribution=family; 3D bridge connected

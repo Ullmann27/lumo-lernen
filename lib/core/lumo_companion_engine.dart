@@ -2,6 +2,7 @@ import '../app/app_state.dart';
 import '../domain/companion/lumo_companion_core.dart' as companion;
 import '../domain/learning/lumo_learning_domain.dart' as learning;
 import '../widgets/fox/lumo_companion_requests.dart';
+import 'lumo_learning_dialogue_intent.dart';
 import 'school_exercise_generator.dart';
 import 'task_hint_service.dart';
 
@@ -370,11 +371,16 @@ class LumoCompanionEngine {
       words.any(value.contains);
 
   String? _bridgeExplanation(String question, LumoCompanionTaskContext task) {
+    final different =
+        LumoLearningDialogueIntent.requestsDifferentExplanation(question);
+    final second = LumoLearningDialogueIntent.requestsSecondStep(question);
     if (!task.isExplanation ||
         !task.objectIds.contains('ten_frame') ||
-        !RegExp(r'\b(warum|wieso|weshalb)\b').hasMatch(question)) return null;
+        (!different &&
+            !second &&
+            !RegExp(r'\b(warum|wieso|weshalb)\b').hasMatch(question))) return null;
     final source = '${task.prompt} ${task.explanation ?? ''}'.toLowerCase();
-    final match = RegExp(r'(?<!\d)([1-9])\s*(?:\+|plus)\s*([1-9])(?!\d)')
+    final match = RegExp(r'(?<!\d)([1-9])\s*(?:\+|plus)\s*(10|[1-9])(?!\d)')
         .firstMatch(source);
     if (match == null) return null;
     final left = int.parse(match.group(1)!);
@@ -382,6 +388,16 @@ class LumoCompanionEngine {
     if (left + right <= 10) return null;
     final needed = 10 - left;
     final remainder = right - needed;
+    if (different) {
+      return 'Stell dir zehn Plätze vor. $left sind schon besetzt. '
+          'Wie viele Plätze fehlen noch bis zehn? Nimm dafür einen Teil '
+          'der $right zusätzlichen Objekte. Der Rest bleibt daneben.';
+    }
+    if (second) {
+      return 'Im ersten Schritt ergänzen wir $needed zur Zehn. '
+          'Von den $right zusätzlichen Objekten bleiben $remainder übrig. '
+          'Was machst du im zweiten Schritt mit ihnen?';
+    }
     return 'Im Zehnerfeld sind $left Plätze besetzt. Bis zur Zehn fehlen '
         '$needed, denn 10 minus $left ist $needed. Von den $right zusätzlichen '
         'Objekten ergänzen wir deshalb zuerst $needed. Dann bleiben '

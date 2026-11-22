@@ -7,7 +7,7 @@ name: Lumo – signierten ARM64-Kandidaten auf Android-Kursen prüfen (Mesa)
 # nach jedem Wechsel des Spielstands fehl, bevor überhaupt ein Emulator startete.
 on:
   push:
-    branches: [repair/lumo-quiz-run-kart-20261119]
+    branches: [repair/lumo-quiz-run-kart-20261119, integration/lumo-complete-20261122]
     paths: [.github/workflows/lumo-2052-rendered-android.yml, config/arm64-course-check.json]
 
 permissions:

@@ -1,0 +1,75 @@
+{
+  "scope": "Local source and contract checks only; Android and APK evidence follows in the build workflow.",
+  "files": [
+    {
+      "name": "games-flutter-validation.json",
+      "bytes": 1521,
+      "sha256": "5942fb48147ce2c9b836f698e5077e880651a7e27e97c1ac53f5d953c61a6826"
+    },
+    {
+      "name": "games-flutter-complete.log",
+      "bytes": 38178,
+      "sha256": "f40fdd8dd247bd77705bf0e898b95a9d8f92049e8d28b349df97a199428ead40"
+    },
+    {
+      "name": "games-native-final.log",
+      "bytes": 6826,
+      "sha256": "0ffbf057c8c4c2acec03d15241b44dcd1b8db8444c55e92ecdbf3a1233834430"
+    },
+    {
+      "name": "games-native-host-red.log",
+      "bytes": 1167,
+      "sha256": "29b571c0efb230d87c77f5275a5571d8afe50fea3fe7c8a02ebb1da59ce800e7"
+    },
+    {
+      "name": "games-native-host-green.log",
+      "bytes": 394,
+      "sha256": "f42c251341ba946c12dd5d03965d41d0ce063a2a74fa2be5b479cd1f7c30d86c"
+    },
+    {
+      "name": "games-run-regression.log",
+      "bytes": 33039,
+      "sha256": "1a341e196e60b9f70ca9260cfbf866378e346c478a18a91b138f5afff96a42da"
+    },
+    {
+      "name": "games-stunt-relay.log",
+      "bytes": 3023,
+      "sha256": "2c43c2f57c6d7dcafe68d7452cd73906170ed24e126d716aa9d23efbc095723a"
+    },
+    {
+      "name": "games-holo-lessons.log",
+      "bytes": 7253,
+      "sha256": "88f2de0e986a00aba62a319b3ace025673264bba89a8fa5784cc0b759181ef54"
+    },
+    {
+      "name": "pck-source-probe.json",
+      "bytes": 464,
+      "sha256": "ff3a7a479f83b8536d1806c3d29f325fbd4b931bafbdf2a967543b8f50181a44"
+    },
+    {
+      "name": "pck-source-assets.log",
+      "bytes": 8769,
+      "sha256": "a1d52af8009ee3d4f1b321fd3a037e4a882a5ded0343a737a9a4b3aa0c3f47a2"
+    },
+    {
+      "name": "pck-source-race.log",
+      "bytes": 2286,
+      "sha256": "f4930c8ff5857c200317859ba10a5b72fd0ac3f5f153d04280e610f84bd6f074"
+    },
+    {
+      "name": "tool-provenance.json",
+      "bytes": 1073,
+      "sha256": "aa6f888c0a5971b526f56b7747ac4b45bc6c6334de1bf987665f67a47190191f"
+    },
+    {
+      "name": "games-learning-boot.log",
+      "bytes": 559,
+      "sha256": "64ec23507bbb2dc6b8974c52dca491b5bc10322a30eafe4f386912fd86f8f2ee"
+    },
+    {
+      "name": "games-tutor-routed.log",
+      "bytes": 645,
+      "sha256": "f3a8a3191b4259bae300f08ae1830c4bb3e369a9db6c958d6cd0ccf2ae3aead2"
+    }
+  ]
+}
