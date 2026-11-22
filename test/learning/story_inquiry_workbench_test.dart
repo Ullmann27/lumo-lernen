@@ -128,9 +128,10 @@ void main() {
       coverage['$grade'] = subjects;
     }
     if (directory != null) Directory(directory).createSync(recursive: true);
-    if (directory != null)
+    if (directory != null) {
       File('$directory/curriculum.json').writeAsStringSync(
           const JsonEncoder.withIndent('  ').convert(coverage));
+    }
   });
 
   for (final id in ['g1_word_problem', 'g2_sub_story']) {
@@ -153,9 +154,10 @@ void main() {
               matching: find
                   .byIcon(id == 'g2_sub_story' ? Icons.close : Icons.check)),
           findsOneWidget);
-      if (directory != null)
+      if (directory != null) {
         await captureLumoBoundary(tester, boundary, '$directory/$id.png',
             pixelRatio: 1);
+      }
     });
   }
   for (final id in ['g3_two_step', 'g4_three_step']) {
@@ -174,9 +176,10 @@ void main() {
       tester.testTextInput.hide();
       await tester.pump();
       expect(find.text(note), findsOneWidget);
-      if (directory != null)
+      if (directory != null) {
         await captureLumoBoundary(tester, boundary, '$directory/$id.png',
             pixelRatio: 1);
+      }
     });
   }
   testWidgets('a chosen axis really changes the reflected model',
@@ -191,9 +194,10 @@ void main() {
     await tester.pump();
     expect(find.text('Decken sich die beiden Umrisse?'), findsOneWidget);
     expect(tester.widget<Slider>(slider).value, isNot(90));
-    if (directory != null)
+    if (directory != null) {
       await captureLumoBoundary(tester, boundary, '$directory/symmetry.png',
           pixelRatio: 1);
+    }
   });
   testWidgets('rearrange real children and experiment with a broken circuit',
       (tester) async {
@@ -204,9 +208,10 @@ void main() {
     await tester.tap(find.widgetWithText(ActionChip, label));
     await tester.pump();
     expect(find.text('1 · $label'), findsOneWidget);
-    if (directory != null)
+    if (directory != null) {
       await captureLumoBoundary(tester, boundary, '$directory/lineup.png',
           pixelRatio: 1);
+    }
     final circuit = selectWhere(4, 'Sachunterricht', 'Stromkreise',
         (t) => InquiryWorkbench.kindFor(t) == 'circuit');
     await open(tester, circuit);
@@ -216,8 +221,9 @@ void main() {
     await tester.tap(find.byKey(const ValueKey('circuit-wire')));
     await tester.pump();
     expect(find.byIcon(Icons.lightbulb_outline), findsOneWidget);
-    if (directory != null)
+    if (directory != null) {
       await captureLumoBoundary(tester, boundary, '$directory/circuit.png',
           pixelRatio: 1);
+    }
   });
 }

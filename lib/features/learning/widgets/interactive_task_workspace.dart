@@ -9,6 +9,7 @@ import '../../../widgets/design/lumo_task_object_art.dart';
 import '../lab/learning_manipulatives.dart';
 import 'inquiry_workbench.dart';
 import 'language_example_board.dart';
+import 'math_explanation_film.dart';
 import 'story_math_workbench.dart';
 import 'symmetry_workbench.dart';
 
@@ -597,6 +598,10 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
                   : null,
             ),
           content,
+          if (MathFilmPlan.forTask(widget.task) case final film?)
+            MathExplanationFilm(key: ValueKey('film-${widget.task.taskInstanceId}'),
+                plan: film, enabled: widget.enabled, quiet: _quiet, slow: _slow,
+                onExplore: () => _emit('playMathExplanation', 'task-workspace', isHelp: true)),
           if (_model.kind != _WorkspaceKind.evidence || _unfolded) ...[
             const SizedBox(height: 10),
             Semantics(

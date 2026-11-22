@@ -715,6 +715,30 @@ class LegacyLumoTaskAdapter {
       return <String, Object?>{'symbol': WritingTargetParser.parse(task.prompt)};
     }
 
+    if (task.subject == 'Mathematik' && const {'story_two', 'story_three'}.contains(task.visual)) {
+      // Preserve independent branches too, e.g. juice crates and water crates
+      // are counted separately before combining their subtotals.
+      final steps = <List<Object>>[];
+      for (final match in RegExp(r'(\d+)\s*([+−·:])\s*(\d+)\s*=\s*(\d+)').allMatches(task.explanation)) {
+        final a = int.parse(match[1]!);
+        final op = match[2]!;
+        final b = int.parse(match[3]!);
+        final result = int.parse(match[4]!);
+        final valid = switch (op) {
+          '+' => a + b == result,
+          '−' => a - b == result,
+          '·' => a * b == result,
+          ':' => b > 0 && result * b == a,
+          _ => false,
+        };
+        if (!valid) return const {};
+        steps.add([a, op, b, result]);
+      }
+      if (steps.length >= 2 && steps.length <= 4 && steps.last.last.toString() == task.answer) {
+        return {'storyEquations': steps};
+      }
+      return const {};
+    }
     if (task.subject == 'Mathematik' && (task.visual == 'story' || task.unit == 'Rechengeschichten')) {
       // Only bind a counter model to the exact equation supplied by the authored
       // story. Equal-looking numbers in an unrelated story remain plain evidence.

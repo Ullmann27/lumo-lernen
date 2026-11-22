@@ -24,12 +24,14 @@ class InquiryWorkbench extends StatefulWidget {
     }
     if (task.subject == LearningSubject.logik &&
         unit == 'Regeln kombinieren' &&
-        text.startsWith('welche zahl erfüllt alle drei regeln:'))
+        text.startsWith('welche zahl erfüllt alle drei regeln:')) {
       return 'rules';
+    }
     if (task.subject != LearningSubject.sachkunde) return null;
     if (unit == 'Stromkreise' &&
-        (text.contains('unterbrochen') || text.contains('schalter')))
+        (text.contains('unterbrochen') || text.contains('schalter'))) {
       return 'circuit';
+    }
     if (unit == 'Wasserkreislauf') return 'water';
     if ((unit == 'Zeit und Kalender' || unit == 'Monate und Wochentage') &&
         RegExp('montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|wochentag')

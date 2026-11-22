@@ -49,11 +49,14 @@ class _StoryMathWorkbenchState extends State<StoryMathWorkbench> {
     final change = data['storyChange'];
     final subtraction = data['storySubtract'] == true;
     final oneStep = first is int && change is int;
-    final steps = switch (widget.task.parameters['visual']) {
-      'story_three' => 3,
-      'story_two' => 2,
-      _ => widget.task.parameters['grade'] == 4 ? 3 : 2,
-    };
+    final equations = data['storyEquations'];
+    final steps = equations is List && equations.isNotEmpty
+        ? equations.length
+        : switch (widget.task.parameters['visual']) {
+            'story_three' => 3,
+            'story_two' => 2,
+            _ => widget.task.parameters['grade'] == 4 ? 3 : 2,
+          };
     return DecoratedBox(
       decoration: BoxDecoration(
         color: const Color(0xff113653),
@@ -81,7 +84,7 @@ class _StoryMathWorkbenchState extends State<StoryMathWorkbench> {
             ],
           ] else ...[
             Text(
-                steps == 3
+                steps >= 3
                     ? 'Welche Angaben brauchst du, welche sind überflüssig? Schätze zuerst die Größenordnung.'
                     : 'Welche Angaben gehören zusammen? Markiere sie und finde eine Zwischenfrage.',
                 style: TextStyle(color: _ink)),
@@ -91,6 +94,13 @@ class _StoryMathWorkbenchState extends State<StoryMathWorkbench> {
                 FilterChip(
                   key: ValueKey('story-fact-$i'),
                   label: Text(names[i]),
+                  labelStyle: const TextStyle(
+                      fontFamily: 'Nunito',
+                      color: _ink,
+                      fontWeight: FontWeight.w700),
+                  backgroundColor: const Color(0xff234852),
+                  selectedColor: const Color(0xff23665d),
+                  checkmarkColor: _mint,
                   selected: _marked.contains(i),
                   onSelected: widget.enabled ? (_) => _toggle(i) : null,
                 )
@@ -144,7 +154,7 @@ class _StoryMathWorkbenchState extends State<StoryMathWorkbench> {
                       ),
                     )),
                   ]),
-                if (steps == 3)
+                if (steps >= 3)
                   const Padding(
                       padding: EdgeInsets.only(top: 8),
                       child: Text(

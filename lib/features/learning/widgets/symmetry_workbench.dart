@@ -37,7 +37,9 @@ class SymmetryWorkbench extends StatefulWidget {
   };
   static String? shapeFor(TaskInstance task) {
     if (task.subject != LearningSubject.mathematik ||
-        task.parameters['visual'] != 'symmetry') return null;
+        task.parameters['visual'] != 'symmetry') {
+      return null;
+    }
     final match = RegExp(
             r'^Wie viele Symmetrieachsen hat (.+)\?$|^Kannst du (.+) so falten, dass beide Hälften genau aufeinanderpassen\?$')
         .firstMatch(task.prompt);
