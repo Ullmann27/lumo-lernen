@@ -28,6 +28,19 @@ func _run() -> void:
 				var players := actor.find_children("*", "AnimationPlayer", true, false)
 				_check(players.size() == 1 and players[0].has_animation("kart_seated"), "%s LOD %d seated animation" % [id, level])
 				actor.free()
+	var catalog = load("res://scripts/games/kart_catalog.gd")
+	for entry in catalog.KARTS:
+		var id := str(entry.id)
+		var packed := load("res://assets/kart/production/fleet/%s.glb" % id) as PackedScene
+		var portrait := load("res://assets/kart/menu/fleet/%s.webp" % id) as Texture2D
+		_check(packed != null and portrait != null, "%s vehicle body and garage portrait" % id)
+		if packed == null:
+			continue
+		var body := packed.instantiate()
+		for level in range(3):
+			var mesh := body.find_child("LOD%d" % level, true, false) as MeshInstance3D
+			_check(mesh != null and mesh.mesh != null, "%s packaged shell LOD%d" % [id, level])
+		body.free()
 	var track := load("res://scenes/games/kart_island.tscn") as PackedScene
 	_check(track != null, "normal race scene")
 	if track != null:
@@ -39,15 +52,15 @@ func _run() -> void:
 		for rival in game.opponents:
 			field[rival.animal] = is_instance_valid(rival.production_driver)
 		_check(game.opponents.size() == 5 and field.get("frog", false) and field.get("rabbit", false), "real Dschungelherz lineup with five rivals and both authored drivers")
-		var catalog = load("res://scripts/games/kart_items/kart_item_catalog.gd")
+		var item_catalog = load("res://scripts/games/kart_items/kart_item_catalog.gd")
 		var collected: Dictionary = {}
 		var rng := RandomNumberGenerator.new()
 		rng.seed = 2056
 		for place in range(1, 7):
 			for draw in range(400):
-				collected[catalog.roll(place, rng)] = true
+				collected[item_catalog.roll(place, rng)] = true
 		for id in EXPANSION_ITEMS:
-			var item: Dictionary = catalog.entry(id)
+			var item: Dictionary = item_catalog.entry(id)
 			var behaviour := str(item.get("behaviour", ""))
 			_check(collected.has(id), "%s is drawable from the packaged race catalogue" % id)
 			_check(game.item_ext.effect(behaviour) != null, "%s has an active race effect" % id)
