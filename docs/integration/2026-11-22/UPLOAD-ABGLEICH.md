@@ -1,0 +1,35 @@
+# Abgleich der hochgeladenen LUMO-Entwicklungen
+
+Stand: 22. November 2026. Dieser Abgleich ergänzt die Inventur der 797 Flutter- und 301 Godot-Zweige um die 19 bereitgestellten historischen HTML-, ZIP-, Markdown- und Textdateien. [upload-source-inventory.json](upload-source-inventory.json) identifiziert die unveränderten Originale anhand von Dateiname, Größe und SHA-256.
+
+## Ergebnis und Konsequenz
+
+Das Alter eines Prototyps beweist nicht, dass alle seine Funktionen in einer späteren App vorhanden sind. Der tatsächliche Weg von Eingabe über Speicherung bis zur späteren Nutzung zeigte drei zusätzliche Lücken im zwischenzeitlich gebauten Flutter-Stand `f19f8311b0967d8dc5ff375d50260df1ab191068` (2066). Deshalb ist 2066 ein Zwischenstand. Der abschließende Kandidat 2067 ergänzt eigene Gutscheine, frei formulierte Elternaufgaben und eine lokale Datensicherung mit Wiederherstellung.
+
+| Bereich | Tatsächlicher Altbestand | Befund in 2066 | Integrationsentscheidung |
+|---|---|---|---|
+| Eigene Gutscheine | HTML 05 verbindet `st.customVouchers` in `allVouchers()` mit den Basisideen. `addCustomVoucher()` speichert Titel, Symbol, Kategorie, Sternpreis und Mindestlevel; die Einlösung verwendet denselben Katalog. | Der erreichbare Flutter-Shop verwendet ausschließlich die 33 vorhandenen Einträge in `RewardCatalog.all`; kein Editor und kein eigener Gutscheinbestand. | Profilgebundene eigene Gutscheine, bedienbare Verwaltung und Anschluss an die bestehende gemeinsame Wallet. Stabile Revisionen und unveränderliche Einlösebelege verhindern einen nachträglichen Preiswechsel laufender Vorgänge. |
+| Frei formulierte Elternaufgaben | HTML 05 speichert die Aufgaben nur. HTML 09 führt sie dagegen über `addCustomTasksToBank()` und `bank[r].push(t)` tatsächlich in den Aufgabenablauf; `renderTask()` und `check()` zeigen und bewerten sie. | Eltern → Lehrerbereich kann Fach-/Themenübungen zuweisen, aber keine konkrete Frage, Antwort und Antwortoptionen verfassen. Missionen und Foto-Hilfe ersetzen diesen Autoreneingang nicht. | Eigener profilgebundener Autoreneingang und sichtbarer Kind-Einstieg mit der vorhandenen Aufgabenanzeige. Elterninhalte bleiben als solche erkennbar und werden nicht als standardisierter Curriculum- oder Prüfungsnachweis ausgegeben. |
+| Datensicherung | HTML 05 `exportData()`/`importData(file)` (Zeilen 861–862) und HTML 09 (324–326) exportieren bzw. übernehmen den damaligen gesamten `st`-JSON-Zustand. Die sichtbaren Schaltflächen sind angeschlossen. | Kein allgemeiner Backup-Eingang. Die vorhandene Android-Dateiauswahl in `KartFriendsBridge` gilt ausschließlich für Kart-Geister. | Versioniertes, validiertes lokales Format für die heutige Flutter-Persistenz und native Spielstände. Import mit vorheriger Prüfung, nachvollziehbarer Bestätigung, Vorher-Sicherung und Wiederherstellung vor Start der Flutter-Engine. Das alte HTML-Format wird nicht ungeprüft als kompatibel behandelt. |
+
+## Nachvollziehbare Quellpfade
+
+- `05-lumo_lernen_agent_playready_prototype_app.html`: `allVouchers()` (317), `deleteCustom()` (832), `addCustomVoucher()` (835), `exportData()`/`importData(file)` (861–862), deren sichtbare Bindungen in `init()` (894).
+- `09-lumo_lernen_menu_pro_app.html`: `addCustomTasksToBank()`, `addCustomTask()`, `task()`, `renderTask()`, `check()`, `setRubric()` und `startTest()` bilden den tatsächlich angeschlossenen Aufgabenweg. Der alte Code darf nicht wörtlich übernommen werden: `opts.slice(0,4)` kann die richtige Antwort abschneiden; fehlende Antworten werden dort mit Zufallszahlen aufgefüllt.
+- Flutter 2066: `lib/features/sections/section_content.dart` führt zum `RewardShopContent`; `RewardShopEngine.availableRewards()` greift auf `RewardCatalog.all` zu. `SettingsContent` führt zu `TeacherDashboardScreen` und `showAssignSheet()`. `Assignment` enthält Fach, Curriculum-Thema, Zahl und Frist, aber keine konkrete Frage oder Lösung. `StudentAssignmentsCard` startet entsprechend vorhandene Themenübungen.
+
+## Bewusst nicht als fehlende fertige Funktionen gewertet
+
+**Eltern-PIN:** Die neuere dokumentierte Entscheidung in `docs/PIN_FREI_2026-10-03.md` und Commit `d7b1e3ff0e420d2444787ffe68e804e4dae7d9c3` ersetzt die frühere PIN durch direkten Eltern-/Profilzugang und ausdrückliche Erwachsenenbestätigung für Familienbelohnungen. Der alte PIN-Dialog wird daher nicht wieder eingeführt.
+
+**140 Gutscheine:** Die alte Darstellung entsteht aus 40 Basisideen und automatisch erzeugten weiteren Stufen. Das sind keine 140 unterschiedlichen Familienaktivitäten. Der Anschluss erhält vorhandene Katalogeinträge; zusätzliche belegte Ideen können als auswählbare Editorvorlagen dienen. Für solche Vorlagen wählt ein Erwachsener den heutigen Sternpreis. Virtuelle Zimmeraccessoires werden nicht als reale Familienleistungen ausgegeben.
+
+**Fotoanalyse:** Die alten HTML-Fotoeingänge sind als Demonstration implementiert; im Flutter-MVP-ZIP liefert `scanImage` konstant „12 + 7“. Das ist kein verlorener fertiger OCR- oder KI-Dienst. Die heutige tatsächliche Scannerintegration bleibt maßgeblich.
+
+**Flutter-MVP-ZIP:** Der dortige Elternscreen nennt Export, Import und eigene Aufgaben teilweise nur als statischen Text. Der Funktionsnachweis stammt deshalb aus den tatsächlich angeschlossenen HTML-Fassungen, nicht aus dieser bloßen Aufzählung.
+
+**Journal und Schreibcoach:** Beide besitzen im aktuellen Flutter reale Einstiege. In den angehängten älteren HTML-Fassungen wurde keine zusätzliche produktive Implementierung gefunden, die daneben einzubauen wäre. Die geschützten bestehenden Module werden durch die Integration nicht umgeschrieben.
+
+## Nachweisstand
+
+Dieser Bericht dokumentiert die Quellenentscheidung. Implementierungs- und Testnachweise der drei Ergänzungen werden separat mit dem tatsächlich fertiggestellten Kandidaten erfasst. Der bisherige 2066-Bau beweist diese zusätzlichen Funktionen noch nicht. Eine offene PR, ein alter Funktionsname oder ein gespeichertes Feld allein wird nicht als funktionsfähiger Anschluss gezählt.

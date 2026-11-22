@@ -31,6 +31,7 @@ import '../core/reward_wallet_repository.dart';
 import '../core/school_repository.dart';
 import '../domain/school/attempt.dart';
 import '../domain/school/competency.dart';
+import '../domain/rewards/reward_shop.dart';
 import '../core/scanned_work_analysis.dart';
 import '../core/settings_repository.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
@@ -427,6 +428,7 @@ class LumoAppState extends ChangeNotifier {
   bool _learningProfileLoaded = false;
   bool _disposed = false;
   bool _resetting = false;
+  bool _backupBusy = false;
   int _profileGeneration = 0;
   bool _settingsLoaded = false;
   Future<void>? _settingsLoad;
@@ -434,6 +436,7 @@ class LumoAppState extends ChangeNotifier {
   bool get settingsLoaded => _settingsLoaded;
   int get profileGeneration => _profileGeneration;
   bool get resetting => _resetting;
+  bool get backupBusy => _backupBusy;
 
   Future<void> ensureSettingsLoaded() => _settingsLoad ??= _loadSettings();
 
@@ -1401,6 +1404,117 @@ class LumoAppState extends ChangeNotifier {
     }
     await _recordTableGameResult(lease: lease, resultId: resultId,
         game: 'quiz', stars: stars, xp: 0);
+  }
+
+  void _checkActiveRewardOwner(LearningProfileLease lease) {
+    if (_disposed || _resetting ||
+        !canUseLearningLease(lease) ||
+        lease.generation != _profileGeneration ||
+        school.cachedActiveStudentId !=
+            (lease.logStudentId == 'self' ? null : lease.studentId)) {
+      throw StateError('Die Belohnung gehört nicht zum aktiven Kinderprofil.');
+    }
+  }
+
+  /// A durable parent-task attempt keeps the same owner-bound ID on retry.
+  Future<void> awardParentTaskResult({
+    required LearningProfileLease lease,
+    required String resultId,
+    required int stars,
+    required int xp,
+  }) => _trackLearning(() async {
+    void guard() {
+      _checkActiveRewardOwner(lease);
+      final owner = sha256.convert(utf8.encode(lease.studentId)).toString();
+      if (!RegExp('^parent:$owner:[a-f0-9]{32}\$').hasMatch(resultId) ||
+          stars < 0 || stars > 12 || xp < 0 || xp > 70) {
+        throw StateError('Elternaufgaben-Ergebnis ist nicht gültig.');
+      }
+    }
+    guard();
+    await flushRewards();
+    guard();
+    _rewardWrites.add(_PendingRewardWrite(
+        stars: stars, xp: xp, resultId: resultId));
+    await _beginRewardDrain();
+    guard();
+  }());
+
+  Future<RewardWallet> loadRewardShopWallet({
+    required LearningProfileLease lease,
+  }) => _trackLearning(() async {
+    _checkActiveRewardOwner(lease);
+    await flushRewards();
+    _checkActiveRewardOwner(lease);
+    final wallet = await _walletRepository.load();
+    _checkActiveRewardOwner(lease);
+    return wallet;
+  }());
+
+  Future<RewardWallet> redeemShopReward({
+    required LearningProfileLease lease,
+    required RewardShopRedemption redemption,
+  }) => _trackLearning(() async {
+    void guard() {
+      _checkActiveRewardOwner(lease);
+      if (redemption.ownerId != lease.studentId) {
+        throw StateError('Der Gutschein gehört zu einem anderen Kinderprofil.');
+      }
+    }
+    guard();
+    await flushRewards();
+    guard();
+    final wallet = await _walletRepository.redeemShopReward(
+        redemption: redemption, validateOwner: guard);
+    guard();
+    _state = _state.copyWith(stars: wallet.stars, xp: wallet.xp);
+    _lumoCardsWinStreak = wallet.lumoCardsWinStreak;
+    _safeNotify();
+    return wallet;
+  }());
+
+  /// Flushes accepted work before a local snapshot or staged cold-start import.
+  /// The import itself runs before the next Flutter engine is created, so no
+  /// cached repository from this process can overwrite restored data.
+  Future<T> withBackupStoragePaused<T>(Future<T> Function() operation) async {
+    if (_disposed || _resetting || _backupBusy) {
+      throw StateError('Die Datensicherung ist gerade nicht verfügbar.');
+    }
+    _backupBusy = true;
+    try {
+      await school.pauseSelectionForReset();
+      if (_settingsLoad != null) await _settingsLoad;
+      await _drainLearningOperations();
+      await flushRewards();
+      for (final session in _learningSessions.values.toList()) {
+        final lease = LearningProfileLease._(session, _profileGeneration,
+            _learningResetEpoch, session.epoch,
+            session.studentId == school.cachedActiveStudentId
+                ? session.studentId : 'self');
+        await session.profile.flush();
+        for (final answer in session.pendingMissionAnswers) {
+          answer.schoolSaved = true;
+        }
+        await session.cosmos.flush();
+        await _drainTutorEvidence(lease);
+        await _flushDailyMission(lease);
+      }
+      if (!await flushAttemptLog()) {
+        throw StateError('Ein Aufgabenprotokoll wartet noch aufs Speichern.');
+      }
+      await _drainLearningOperations();
+      await flushRewards();
+      _resetting = true;
+      return await LearningStorage.run((prefs) async {
+        await prefs.reload();
+        return operation();
+      });
+    } finally {
+      _resetting = false;
+      _backupBusy = false;
+      school.resumeSelectionAfterReset();
+      _safeNotify();
+    }
   }
 
   Future<void> _recordTableGameResult({

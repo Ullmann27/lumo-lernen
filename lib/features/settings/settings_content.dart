@@ -28,6 +28,9 @@ import 'lumo_voice_diagnostics_card.dart';
 import 'local_voice_license_dialog.dart';
 import 'discovery_settings_card.dart';
 import '../kart_friends/kart_friends_inbox.dart';
+import '../backup/local_backup_card.dart';
+import '../parent_tasks/parent_tasks_editor_card.dart';
+import '../rewards/custom_rewards_card.dart';
 
 /// All settings, sheets and dialogs share the same night surface.
 /// The State must live below the scope so showDialog captures this Theme.
@@ -491,6 +494,8 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           error: _updateError,
           onUpdate: _checkAndUpdate,
         ),
+        const SizedBox(height: 18),
+        LocalBackupCard(app: widget.appState),
         const SizedBox(height: 22),
         const LumoSectionHeading(
           title: 'Schule und Lernwege',
@@ -518,6 +523,10 @@ class _SettingsContentState extends State<_SettingsContentBody> {
             if (mounted) setState(() => _legacyDataRevision++);
           },
         ),
+        const SizedBox(height: 18),
+        ParentTasksEditorCard(appState: widget.appState),
+        const SizedBox(height: 18),
+        CustomRewardsCard(appState: widget.appState),
         LegacyLearningDataCard(
           appState: widget.appState,
           refreshRevision: _legacyDataRevision,

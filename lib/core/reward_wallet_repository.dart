@@ -11,7 +11,10 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../domain/rewards/reward_shop.dart';
 
 /// Aktueller Wallet-Zustand (Snapshot).
 class RewardWallet {
@@ -24,6 +27,7 @@ class RewardWallet {
     this.lastDailyKey = '',
     this.gameResultIds = const <String>[],
     this.lumoCardsWinStreak = 0,
+    this.shopRedemptions = const <RewardShopRedemption>[],
   });
 
   final int stars;
@@ -41,6 +45,10 @@ class RewardWallet {
   /// Consecutive Cards wins share the same transaction as their Stars and XP.
   final int lumoCardsWinStreak;
 
+  /// A debit and its immutable receipt are one durable wallet snapshot.
+  /// These are not game results and never inflate the played-games counter.
+  final List<RewardShopRedemption> shopRedemptions;
+
   RewardWallet copyWith({
     int? stars,
     int? xp,
@@ -50,6 +58,7 @@ class RewardWallet {
     String? lastDailyKey,
     List<String>? gameResultIds,
     int? lumoCardsWinStreak,
+    List<RewardShopRedemption>? shopRedemptions,
   }) {
     return RewardWallet(
       stars: stars ?? this.stars,
@@ -60,6 +69,8 @@ class RewardWallet {
       lastDailyKey: lastDailyKey ?? this.lastDailyKey,
       gameResultIds: gameResultIds ?? this.gameResultIds,
       lumoCardsWinStreak: lumoCardsWinStreak ?? this.lumoCardsWinStreak,
+      shopRedemptions: shopRedemptions == null ? this.shopRedemptions
+          : List.unmodifiable(shopRedemptions),
     );
   }
 
@@ -72,6 +83,7 @@ class RewardWallet {
         'lastDailyKey': lastDailyKey,
         'gameResultIds': gameResultIds,
         'lumoCardsWinStreak': lumoCardsWinStreak,
+        'shopRedemptions': shopRedemptions.map((v) => v.toJson()).toList(),
       };
 
   factory RewardWallet.fromJson(Map<String, dynamic> j) => RewardWallet(
@@ -87,7 +99,24 @@ class RewardWallet {
         lumoCardsWinStreak: j['lumoCardsWinStreak'] is int
             ? (j['lumoCardsWinStreak'] as int).clamp(0, 999999)
             : 0,
+        shopRedemptions: _shopReceipts(j['shopRedemptions']),
       );
+
+  static List<RewardShopRedemption> _shopReceipts(Object? raw) {
+    if (raw == null) return const [];
+    if (raw is! List) throw const FormatException('Ungültige Gutschein-Historie');
+    final ids = <String>{};
+    final values = raw.map((v) => RewardShopRedemption.fromJson(
+        (v as Map).cast<String, Object?>())).toList();
+    for (final value in values) {
+      final owner = sha256.convert(utf8.encode(value.ownerId)).toString();
+      if (!value.transactionId.startsWith('shop:$owner:') ||
+          !ids.add(value.transactionId)) {
+        throw const FormatException('Widersprüchliche Gutschein-Historie');
+      }
+    }
+    return List.unmodifiable(values);
+  }
 
   @override
   String toString() =>
@@ -122,7 +151,11 @@ class RewardWalletRepository {
   /// migriert sie diese.
   Future<RewardWallet> load() {
     if (_loaded) return Future<RewardWallet>.value(_wallet);
-    return _loadFuture ??= _loadFromDisk();
+    return _loadFuture ??= _loadFromDisk().then((value) => value,
+        onError: (Object error, StackTrace stack) {
+          _loadFuture = null;
+          Error.throwWithStackTrace(error, stack);
+        });
   }
 
   Future<RewardWallet> _loadFromDisk() async {
@@ -130,13 +163,10 @@ class RewardWalletRepository {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_storageKey);
       if (raw != null && raw.isNotEmpty) {
-        // Defensive JSON-Parsing
-        try {
-          final map = _decode(raw);
-          _wallet = RewardWallet.fromJson(map);
-        } catch (_) {
-          _wallet = const RewardWallet();
-        }
+        // A malformed receipt must not turn an existing balance into an empty
+        // wallet that the next transaction would overwrite.
+        final map = _decode(raw);
+        _wallet = RewardWallet.fromJson(map);
       } else {
         // Legacy-Migration falls vorhanden
         final storedStars = prefs.getInt(_legacyStarsKey) ?? 0;
@@ -162,8 +192,7 @@ class RewardWalletRepository {
         }
       }
     } catch (_) {
-      // Bei jeglichem Fehler: leere Wallet, App startet trotzdem
-      _wallet = const RewardWallet();
+      rethrow;
     }
     _loaded = true;
     return _wallet;
@@ -191,6 +220,39 @@ class RewardWalletRepository {
               current.totalEarnedStars + (starsDelta > 0 ? starsDelta : 0),
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
+        ));
+      });
+
+  /// Only a positively confirmed write counts as redemption. Retrying the
+  /// identical receipt also persists it again, including after an uncertain
+  /// native SharedPreferences reply or after process restart.
+  Future<RewardWallet> redeemShopReward({
+    required RewardShopRedemption redemption,
+    required void Function() validateOwner,
+  }) => _transaction((current) async {
+        validateOwner();
+        redemption.validate();
+        final owner = sha256.convert(utf8.encode(redemption.ownerId)).toString();
+        if (!redemption.transactionId.startsWith('shop:$owner:')) {
+          throw ArgumentError('Einlösung gehört zu einem anderen Kinderprofil');
+        }
+        for (final receipt in current.shopRedemptions) {
+          if (receipt.transactionId != redemption.transactionId) continue;
+          if (jsonEncode(receipt.toJson()) != jsonEncode(redemption.toJson())) {
+            throw StateError('Eine bestätigte Einlösung darf sich nicht ändern');
+          }
+          await _persist(current);
+          return current;
+        }
+        if (current.level < redemption.minLevel) {
+          throw StateError('Dieser Gutschein wird erst ab Level ${redemption.minLevel} frei');
+        }
+        if (current.stars < redemption.cost) {
+          throw StateError('Für diesen Gutschein fehlen noch Sterne');
+        }
+        return _commit(current.copyWith(
+          stars: current.stars - redemption.cost,
+          shopRedemptions: [...current.shopRedemptions, redemption],
         ));
       });
 
