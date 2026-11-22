@@ -1,0 +1,38 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/recognized_task_parser_test.dart
+00:00 +0: recognizes the entire input and preserves the exact answer: 12 + 7
+00:00 +1: recognizes the entire input and preserves the exact answer: 3 − 8
+00:00 +2: recognizes the entire input and preserves the exact answer: -8 + -7
+00:00 +3: recognizes the entire input and preserves the exact answer: 6 × -2
+00:00 +4: recognizes the entire input and preserves the exact answer: -4--6
+00:00 +5: recognizes the entire input and preserves the exact answer: 999 * 10 = ?
+00:00 +6: recognizes the entire input and preserves the exact answer: Anfangsbuchstabe Mama
+00:00 +7: recognizes the entire input and preserves the exact answer: Anfangsbuchstabe von Äpfel
+00:00 +8: recognizes the entire input and preserves the exact answer: Mit welchem Buchstaben beginnt Schule?
+00:00 +9: recognizes the entire input and preserves the exact answer: Hund Anfangsbuchstabe
+00:00 +10: recognizes the entire input and preserves the exact answer: 2, 4, 6, ?
+00:00 +11: recognizes the entire input and preserves the exact answer: 9 6 3 ?
+00:00 +12: recognizes the entire input and preserves the exact answer: -2, -5, -8, ?
+00:00 +13: recognizes the entire input and preserves the exact answer: 0, 0, 0, ?
+00:00 +14: recognizes the entire input and preserves the exact answer: 9996, 9997, 9998, ?
+00:00 +15: recognizes the entire input and preserves the exact answer: -9996, -9997, -9998, ?
+00:00 +16: rejects unsupported, oversized or ambiguous input: 1 + 2 + 3
+00:00 +17: rejects unsupported, oversized or ambiguous input: 1 + 2 = 3
+00:00 +18: rejects unsupported, oversized or ambiguous input: 1 / 2
+00:00 +19: rejects unsupported, oversized or ambiguous input: 1.5 + 2
+00:00 +20: rejects unsupported, oversized or ambiguous input: Rechne 1+2 und 3+4
+00:00 +21: rejects unsupported, oversized or ambiguous input: 1, 2, 4, ?
+00:00 +22: rejects unsupported, oversized or ambiguous input: 1, 2, 3, 7, ?
+00:00 +23: rejects unsupported, oversized or ambiguous input: 1,,2,3,?
+00:00 +24: rejects unsupported, oversized or ambiguous input: 1,2,?
+00:00 +25: rejects unsupported, oversized or ambiguous input: 1,2,3,4,5,6,7,8,9,?
+00:00 +26: rejects unsupported, oversized or ambiguous input: 9997,9998,9999,?
+00:00 +27: rejects unsupported, oversized or ambiguous input: 1000 + 1
+00:00 +28: rejects unsupported, oversized or ambiguous input: 999 × 999
+00:00 +29: rejects unsupported, oversized or ambiguous input: Anfangsbuchstabe Mama Papa
+00:00 +30: rejects unsupported, oversized or ambiguous input: Anfangsbuchstabe ßa
+00:00 +31: rejects unsupported, oversized or ambiguous input: 
+00:00 +32: rejects unsupported, oversized or ambiguous input: <script>2+3</script>
+00:00 +33: input length and control characters are bounded
+00:00 +34: a changed stored solution is rejected before it can be rendered
+00:00 +35: damaged or newer stored state is retained and cannot be overwritten
+00:00 +36: All tests passed!

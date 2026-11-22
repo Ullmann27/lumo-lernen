@@ -1,0 +1,11 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_lab_bus_integration_test.dart
+00:00 +0: own lab conversation keeps the stopped task and explains why two
+00:01 +1: own conversation completion preserves a newer voice request
+00:02 +2: own lab conversation rejects late reply after foreign route
+00:02 +3: own lab conversation rejects late reply after pause
+00:03 +4: own lab conversation rejects late reply after profile
+00:03 +5: own lab conversation rejects late reply after dispose
+00:03 +6: lab retires hidden bindings and restores the same model
+00:03 +7: lab proposal needs confirmation and stop discards its candidate
+00:04 +8: reopening the lab restores its saved model without new rewards
+00:04 +9: All tests passed!

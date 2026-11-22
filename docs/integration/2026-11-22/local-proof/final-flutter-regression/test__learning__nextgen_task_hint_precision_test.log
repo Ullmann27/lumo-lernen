@@ -1,0 +1,11 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_hint_precision_test.dart
+00:00 +0: mixed decimal and integer operands retain their actual place value
+00:00 +1: decimal precision and subtraction survive prefixes and punctuation
+00:00 +2: embedded or fractional formulas never become whole-number groups
+00:00 +3: fraction addition counts like-sized parts and leaves the result open
+00:00 +4: unlike denominators are converted before the numerators are added
+00:00 +5: fraction expansion uses the requested factor for both numbers
+00:00 +6: only a visible half question receives the half instruction
+00:00 +7: a written-operation label is never mistaken for division
+00:00 +8: all active fractional families receive three task-specific stages
+00:00 +9: All tests passed!

@@ -1,0 +1,7 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/parent_task_flow_test.dart
+00:00 +0: double submit logs once, uses canonical reward and leaves curriculum unchanged
+00:00 +1: restart after wallet success and failed receipt never pays twice
+00:00 +2: profile switch during accepted answer hides A and resumes only under A
+00:00 +3: parent creates task, restart exposes Home entry and real renderer saves answer
+00:01 +4: profile switch closes stale editor and hides previous child Home entry
+00:01 +5: All tests passed!

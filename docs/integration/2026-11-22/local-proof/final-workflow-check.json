@@ -3,7 +3,8 @@
     "lumo-test-apk.yml",
     "lumo-2052-rendered-android.yml"
   ],
-  "bashBlocks": 15,
+  "shellRunBlocks": 15,
+  "emulatorScriptBlocks": 2,
   "pythonBlocks": 5,
-  "flutterPaths": 63
+  "flutterPaths": 64
 }

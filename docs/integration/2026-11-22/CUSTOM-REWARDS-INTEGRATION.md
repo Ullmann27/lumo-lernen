@@ -20,7 +20,7 @@ Die Kategorie „Lumo“ ist eine Kategorie frei formulierter gemeinsamer Gutsch
 
 ## Speicher- und Transaktionsvertrag
 
-`RewardShopProfile` liegt unter `lumo.reward_shop.profile.<sha256(studentId)>`. Die Identität wird vor dem ersten asynchronen Schritt festgehalten. Namen und Klassenstufen bestimmen keine neuen Gutschein-Eigentümer. Historische `lumo.reward_shop.local_<name>_<grade>`-Daten bleiben bestehen und werden nicht blind einem anderen Kind zugeordnet.
+`RewardShopProfile` liegt unter `lumo.reward_shop.profile.<sha256(studentId)>`. Die Identität wird vor dem ersten asynchronen Schritt festgehalten. Namen und Klassenstufen bestimmen keine neuen Gutschein-Eigentümer. Historische `lumo.reward_shop.local_<name>_<grade>`-Daten bleiben bestehen. Laden und Profil lesen sie ausschließlich für das lokale Profil (`lease.logStudentId == 'self'`); ein ausgewähltes Schulkind A/B bekommt diese nicht zuordenbare Alt-Historie nicht angezeigt.
 
 Der Profilstore behält Definitionen, ältere Revisionen und bestätigte, noch abzuschließende Einlösungen. Höchstens 100 Definitionen, 5000 Revisionen und 100 gleichzeitig wartende Einlösungen begrenzen den Speicher; das Erreichen dieser Grenzen verwirft keine vorhandenen Daten.
 
@@ -93,7 +93,17 @@ HTML `baseVouchers()` enthält 40 Basisideen. Die dort beworbenen 140 Einträge 
 
 Der eigenständige Gutschein-Gate vor der nachfolgenden Zimmererweiterung bestand mit **80/80 Tests, Exit 0, etwa 19 Sekunden**. Darin sind **25 neue** Gutscheinprüfungen: acht Repository-, neun Wallet-/Wiederaufnahme- und acht echte UI-Flows. Gezielte Flutteranalyse der acht Quellen und `test/rewards`: **keine Befunde, Exit 0**. Der gesicherte zugehörige Integrationscheckpoint ist `071f4ecef407e6851c0601c8050e0ac89eadb414`.
 
-Nach der koordinierten Zimmer-/Auszeichnungs-Walleterweiterung wurde derselbe 80er Bestand erneut vollständig geprüft: **25 Gutschein-, 38 Wallet-, sechs State-, fünf Restart- und sechs PIN-frei-Fälle bestanden, jeweils Exit 0**. Zusammen mit den 23 neuen Zimmerfällen sind es **103/103 unterschiedliche grüne Tests** im aktuellen Abschlussstand. Wegen nachgewiesener lokaler Compilerabbrüche beim Vorladen weiterer Dateien liefen die finalen Gates in sechs separaten Prozessen; fehlgeschlagene Sammelaufrufe werden nicht als PASS gezählt. `room-rewards-evidence/games-final-validation.json` enthält sämtliche Befehle, Dateien, UTC-Zeiten, Loghashes und die ausdrücklich erhaltene frühere Fehlversuchsgruppe. Näheres zu diesen Laufzeitgrenzen und zur Zimmerprüfung steht in `LUMO-ROOM-INTEGRATION.md`.
+Nach der koordinierten Zimmer-/Auszeichnungs-Walleterweiterung wurde derselbe 80er Bestand erneut vollständig geprüft: **25 Gutschein-, 38 Wallet-, sechs State-, fünf Restart- und sechs PIN-frei-Fälle bestanden, jeweils Exit 0**. Zusammen mit den 23 neuen Zimmerfällen waren es **103/103 unterschiedliche grüne Tests** im gemeinsamen Lauf vor dem nachfolgenden Alt-Historien-Nachtrag. Wegen nachgewiesener lokaler Compilerabbrüche beim Vorladen weiterer Dateien liefen die finalen Gates in sechs separaten Prozessen; fehlgeschlagene Sammelaufrufe werden nicht als PASS gezählt. `room-rewards-evidence/games-final-validation.json` enthält sämtliche Befehle, Dateien, UTC-Zeiten, Loghashes und die ausdrücklich erhaltene frühere Fehlversuchsgruppe. Näheres zu diesen Laufzeitgrenzen und zur Zimmerprüfung steht in `LUMO-ROOM-INTEGRATION.md`.
+
+### Nachtrag: isolierte lokale Alt-Historie
+
+Die abschließende Quellenkontrolle fand noch eine eng begrenzte Anzeigelücke: Die neue Historie war bereits stabil profilgebunden; die alte name/grade-Shopdatei wurde aber zusätzlich bei ausgewählten Schulkindern gelesen. `RewardShopSession.load` und `ProfileScreen._load` begrenzen diese Alt-Daten jetzt ausdrücklich auf `logStudentId == 'self'`. Die Dateien bleiben erhalten, und es wurde keine Walletregel geändert.
+
+`test/rewards/legacy_reward_history_owner_test.dart` besteht mit **2/2 echten UI-Flows, Exit 0**. Shop und Profil wechseln jeweils **A → B → Self → A** und prüfen die tatsächlich sichtbare passende Historie sowie bitgenau unveränderte gespeicherte Legacy- und Wallet-Strings. Der vorhandene `custom_rewards_flow_test.dart` wurde danach erneut geprüft: **8/8 PASS, Exit 0**. Die gezielte Analyse der zwei geänderten Quellen und des neuen Tests ist ohne Befund.
+
+Damit sind **103 ursprüngliche + zwei neue = 105 unterschiedliche Prüfungen** belegt. Die acht nochmals ausgeführten Bestandsfälle werden nicht zusätzlich gezählt. Die enge Korrektur erhielt diesen gezielten Nachlauf; das vollständige 103er Paket wurde deswegen nicht noch einmal ausgeführt. Exakte Aufrufe, Quellhashes, Loghashes und die zwei vorherigen Test-Fixture-Korrekturen stehen in `room-rewards-evidence/games-legacy-history-validation.json`.
+
+### Ursprünglicher 80er Aufruf
 
 ```sh
 flutter test --no-pub --concurrency=1 --reporter expanded \
@@ -112,4 +122,4 @@ Die UI-Prüfungen erstellen einen Gutschein über die tatsächlichen Formulare, 
 
 Die Speicherfehler sind kontrollierte Simulationen der Preference-Grenze, keine behaupteten physischen Android-Datenträgerexperimente. Dieser Bericht allein belegt weder eine installierte neue APK noch Fold7-Laufzeit oder hörbare Android-Sprachausgabe. Diese Nachweise gehören zur gemeinsamen Auslieferung.
 
-Logs im Arbeitscontainer: `games-custom-rewards-final.log` (SHA-256 `a1a64326dc05fb546558eaecc72488034daac53745b351ee253bf967287ac493`) und `games-custom-rewards-analysis-final.log` (SHA-256 `30d1f5bedc8172bf099d0e0f675c5f0fd725b6f95be01194cad753aa11493dae`), jeweils unter `/tmp/lumo-integration-20261122/`.
+Ursprüngliche Logs: `games-custom-rewards-final.log` (SHA-256 `a1a64326dc05fb546558eaecc72488034daac53745b351ee253bf967287ac493`) und `games-custom-rewards-analysis-final.log` (SHA-256 `30d1f5bedc8172bf099d0e0f675c5f0fd725b6f95be01194cad753aa11493dae`). Diese und die Nachtragslogs liegen im Quellpaket unter `room-rewards-evidence/`; die ursprünglichen Laufzeitkopien liegen unter `/tmp/lumo-integration-20261122/`.

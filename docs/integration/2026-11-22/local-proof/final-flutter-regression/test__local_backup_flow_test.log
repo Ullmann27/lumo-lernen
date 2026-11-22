@@ -1,0 +1,12 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart
+00:00 +0: native picker cancellation never stages a restore
+00:00 +1: export keeps pending events plus fresh wallet and a cancelled save changes nothing
+00:00 +2: failed staging does not close and releases the pause
+00:00 +3: restore stages reviewed bytes while paused and closes only after durable acknowledgement
+00:00 +4: pending wallet write finishes before a backup can read it
+00:00 +5: backup preserves visible A after flushing previously visited B
+00:00 +6: unpersisted tutor evidence blocks backup and survives a later retry
+00:00 +7: 390dp review requires adult checkbox, cancellation performs no restore
+00:00 +8: actual adult confirmation invokes exactly one staged restore
+00:00 +9: cancelled Android selection remains a clean UI cancellation
+00:00 +10: All tests passed!

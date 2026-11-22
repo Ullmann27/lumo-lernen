@@ -2,6 +2,8 @@
 
 Stand 22.11.2026. Aktiver Integrationszweig in beiden Repositories: `integration/lumo-complete-20261122`. Ausgangsstände Flutter `52c2c570` und Godot `25fc4ff1`. Die vollständige Quelleninventur und aktuellen Anschlüsse stehen in [der Integrationsübergabe](docs/integration/2026-11-22/INTEGRATION.md). Kandidat `0.13.55+2067`; neue APK und Android-Abschluss werden anhand des tatsächlich gebauten Runs bestätigt. Die Zwischenbauten 2065 und 2066 lieferten keine neue APK. Ergänzt sind eigene Gutscheine, eigene Elternaufgaben, lokale Datensicherung, Lumos Zimmer, tatsächlich einlösbare Auszeichnungen und die genaue lokale Aufgaben-Erkennung; Godot-Pin `29ac19f8984b510e5add531f15e555a98c72bed4`. Der tatsächliche Android-SAF-Durchlauf ist Pflicht vor der abschließenden Lieferung.
 
+Lokaler Abschluss: 637 unterschiedliche Flutter-Fälle über 64 Dateien, 39 native Verträge, Flutter-Analyse ohne Fehler (fünf Warnungen, 293 Hinweise). Die tatsächliche Kandidaten-CI und die Android-/ARM64-Prüfungen sind die nachfolgenden Pflichtschritte. Der korrigierte Quellcheckpoint ist `04de7045c0369c8e54c86a87a611b1423774e66f`; Bauauftrag 35 startet Version `0.13.55+2067`.
+
 ## Archiv früherer Arbeitsstände
 
 # Lumo 2052 · Arbeitsstand für Fable 5.2

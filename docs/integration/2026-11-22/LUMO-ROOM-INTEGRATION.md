@@ -72,7 +72,9 @@ Der vorhandene Profil-Spielezähler schließt `parent:`- und `recognized:`-Ergeb
 
 ## Ausgeführte Prüfungen
 
-Der abschließende aktuelle Stand bestand mit **103/103 unterschiedlichen Tests**, auf sechs vollständig beendete Prozesse verteilt, jeweils **Exit 0**. Der Zimmeranteil enthält 17 Repository-/Walletfälle und sechs echte Widget-Flows. Die gezielte Dart-Analyse der Zimmerquellen, Wallet, Room-/Gutschein-Tests und zehn angepassten Bestands-Test-Fakes meldete **keine Befunde**.
+Die gemeinsame Zimmer-/Gutschein-/Walletprüfung bestand mit **103/103 unterschiedlichen Tests**, auf sechs vollständig beendete Prozesse verteilt, jeweils **Exit 0**. Der Zimmeranteil enthält 17 Repository-/Walletfälle und sechs echte Widget-Flows. Die gezielte Dart-Analyse der Zimmerquellen, Wallet, Room-/Gutschein-Tests und zehn angepassten Bestands-Test-Fakes meldete **keine Befunde**.
+
+Der anschließend im Gutscheinbericht dokumentierte enge Alt-Historien-Nachtrag ergänzt **zwei neue bestandene UI-Prüfungen** für Shop und Profil sowie acht erneut bestandene vorhandene Gutschein-Flows. Das ergibt **105 unterschiedliche grüne Fälle**, ohne die acht Wiederholungen doppelt zu zählen. Der Zimmercode wurde dafür nicht verändert; die gezielte Prüfung steht in `room-rewards-evidence/games-legacy-history-validation.json` und `CUSTOM-REWARDS-INTEGRATION.md`.
 
 | Endgültiger Teilaufruf | Ergebnis | Dauer einschließlich Start |
 | --- | ---: | ---: |

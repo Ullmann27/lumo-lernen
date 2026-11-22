@@ -1,0 +1,12 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/parent_task_repository_test.dart
+00:00 +0: accepts only 2–6 distinct options including the explicit correct answer
+00:00 +1: create, restart, edit and remove preserve stable owner-bound identity
+00:00 +2: profiles stay isolated and stale/foreign edits never overwrite
+00:00 +3: concurrent repository instances merge additions instead of losing one
+00:00 +4: unreadable and newer data is preserved on reads and attempted writes
+00:00 +5: begun attempt and authored snapshot survive edits and restart
+00:00 +6: first accepted answer cannot be overwritten or discarded before completion
+00:00 +7: explicit next round has new ID while repeat begin keeps current ID
+00:00 +8: deleting an unanswered task removes its resumable presentation
+00:00 +9: failed write keeps prior durable content and invalidated leases cannot write
+00:00 +10: All tests passed!

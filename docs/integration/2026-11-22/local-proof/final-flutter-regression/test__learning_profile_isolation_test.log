@@ -1,0 +1,9 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart
+00:00 +0: switching A to B shows B own skills and daily progress
+00:00 +1: a fresh app restores only the selected student after restart
+00:00 +2: module captures A before a delayed wallet and leaves visible B empty
+00:00 +3: resetting A learning preserves B progress and B attempt history
+00:00 +4: a first local identity write failure can retry the same accepted module answer
+00:00 +5: independent A and B answers preserve both logs when the first log write is delayed
+00:00 +6: full reset waits for an old student selection before clearing storage
+00:00 +7: All tests passed!

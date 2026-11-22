@@ -1,0 +1,87 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/design/learning_adventure_layout_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: m1_plus10 short landscape shows the task and every answer
+00:00 +1: m1_plus10 large text landscape keeps answers reachable
+00:01 +2: m1_plus10 phone visible answers and complete Lumo
+00:01 +3: m1_plus10 phone-safe visible answers and complete Lumo
+00:01 +4: m1_plus10 fold visible answers and complete Lumo
+00:01 +5: m1_plus10 wide visible answers and complete Lumo
+00:01 +6: m1_plus10 large text keeps all generated controls reachable
+00:01 +7: m1_minus10 short landscape shows the task and every answer
+00:02 +8: m1_minus10 large text landscape keeps answers reachable
+00:02 +9: m1_minus10 phone visible answers and complete Lumo
+00:02 +10: m1_minus10 phone-safe visible answers and complete Lumo
+00:02 +11: m1_minus10 fold visible answers and complete Lumo
+00:02 +12: m1_minus10 wide visible answers and complete Lumo
+00:02 +13: m1_minus10 large text keeps all generated controls reachable
+00:03 +14: m1_zahlen10 short landscape shows the task and every answer
+00:03 +15: m1_zahlen10 large text landscape keeps answers reachable
+00:03 +16: m1_zahlen10 phone visible answers and complete Lumo
+00:03 +17: m1_zahlen10 phone-safe visible answers and complete Lumo
+00:03 +18: m1_zahlen10 fold visible answers and complete Lumo
+00:03 +19: m1_zahlen10 wide visible answers and complete Lumo
+00:03 +20: m1_zahlen10 large text keeps all generated controls reachable
+00:03 +21: m1_formen short landscape shows the task and every answer
+00:03 +22: m1_formen large text landscape keeps answers reachable
+00:04 +23: m1_formen phone visible answers and complete Lumo
+00:04 +24: m1_formen phone-safe visible answers and complete Lumo
+00:04 +25: m1_formen fold visible answers and complete Lumo
+00:04 +26: m1_formen wide visible answers and complete Lumo
+00:04 +27: m1_formen large text keeps all generated controls reachable
+00:04 +28: m2_uhr short landscape shows the task and every answer
+00:04 +29: m2_uhr large text landscape keeps answers reachable
+00:04 +30: m2_uhr phone visible answers and complete Lumo
+00:04 +31: m2_uhr phone-safe visible answers and complete Lumo
+00:04 +32: m2_uhr fold visible answers and complete Lumo
+00:05 +33: m2_uhr wide visible answers and complete Lumo
+00:05 +34: m2_uhr large text keeps all generated controls reachable
+00:05 +35: Plus with eight or nine apples keeps every answer above the navigation
+00:08 +36: visible Plus quantities equal the actual sum, without emoji
+00:08 +37: Minus all 3 objects fit phone-safe
+00:08 +38: Minus all 3 objects fit fold-safe
+00:08 +39: Minus all 4 objects fit phone-safe
+00:08 +40: Minus all 4 objects fit fold-safe
+00:08 +41: Minus all 5 objects fit phone-safe
+00:08 +42: Minus all 5 objects fit fold-safe
+00:08 +43: Minus all 6 objects fit phone-safe
+00:08 +44: Minus all 6 objects fit fold-safe
+00:09 +45: Minus all 7 objects fit phone-safe
+00:09 +46: Minus all 7 objects fit fold-safe
+00:09 +47: Minus all 8 objects fit phone-safe
+00:09 +48: Minus all 8 objects fit fold-safe
+00:09 +49: Minus all 9 objects fit phone-safe
+00:09 +50: Minus all 9 objects fit fold-safe
+00:09 +51: Minus all 10 objects fit phone-safe
+00:10 +52: Minus all 10 objects fit fold-safe
+00:10 +53: Zahlen counts all 1 points in phone-safe
+00:10 +54: Zahlen counts all 2 points in phone-safe
+00:10 +55: Zahlen counts all 3 points in phone-safe
+00:10 +56: Zahlen counts all 4 points in phone-safe
+00:10 +57: Zahlen counts all 5 points in phone-safe
+00:10 +58: Zahlen counts all 6 points in phone-safe
+00:10 +59: Zahlen counts all 7 points in phone-safe
+00:10 +60: Zahlen counts all 8 points in phone-safe
+00:10 +61: Zahlen counts all 9 points in phone-safe
+00:11 +62: Zahlen counts all 10 points in phone-safe
+00:11 +63: Zahlen successor of 0 in phone-safe
+00:11 +64: Zahlen successor of 8 in phone-safe
+00:11 +65: Zahlen successor of 9 in phone-safe
+00:11 +66: Zahlen compares only 1 and 10 in phone-safe
+00:11 +67: Zahlen counts all 1 points in fold-safe
+00:11 +68: Zahlen counts all 2 points in fold-safe
+00:11 +69: Zahlen counts all 3 points in fold-safe
+00:11 +70: Zahlen counts all 4 points in fold-safe
+00:11 +71: Zahlen counts all 5 points in fold-safe
+00:12 +72: Zahlen counts all 6 points in fold-safe
+00:12 +73: Zahlen counts all 7 points in fold-safe
+00:12 +74: Zahlen counts all 8 points in fold-safe
+00:12 +75: Zahlen counts all 9 points in fold-safe
+00:12 +76: Zahlen counts all 10 points in fold-safe
+00:12 +77: Zahlen successor of 0 in fold-safe
+00:12 +78: Zahlen successor of 8 in fold-safe
+00:12 +79: Zahlen successor of 9 in fold-safe
+00:12 +80: Zahlen compares only 1 and 10 in fold-safe
+00:12 +81: Minus preserves every object and precisely the removed amount
+00:13 +82: real success reacts only after durable saving completes
+00:13 +83: (tearDownAll)
+00:13 +83: All tests passed!

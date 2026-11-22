@@ -33,6 +33,14 @@ Die sechs aus den historischen Uploads ergänzten Funktionsbereiche sind in [UPL
 
 Die gemeinsame Schlussregression fand zusätzlich eine Unterbrechung des Lernchats durch die alte modale Auszeichnungsfeier. Der bestehende Eigentümerschutz wurde beibehalten: Die Feier respektiert nun aktive Aufgaben, Dialoge sowie ruhige/reduzierte Animationen; ihr Timer entfernt ausschließlich die eigene Feier-Route. Zehn bestehende Core-Dialogfälle und ein neuer Gegenfall mit aktivierten Animationen bestanden; die 16 Auszeichnungsabläufe bestanden anschließend erneut.
 
+Die alte lokale Gutschein-Historie wird nach der Schlusskorrektur ausschließlich im lokalen Profil angezeigt. Zwei neue echte Shop-/Profilabläufe prüfen A → B → lokal → A und unveränderte gespeicherte Legacy-/Wallet-Daten. Die acht bestehenden Gutschein-UI-Flows bestanden erneut; der Gutschein-/Zimmer-/Walletbereich umfasst damit 105 unterschiedliche bestandene Fälle.
+
+## Lokaler Abschluss vor dem signierten Bau
+
+Die 64 verpflichtenden Flutter-Dateien sind lokal in getrennten, erfolgreich beendeten Läufen abgedeckt: 484 Fälle in der übrigen Gesamtregression, 105 im Gutschein-/Zimmer-/Walletbereich, 28 bei Auszeichnungen und 20 in bestehenden Story-/LIVE-Suiten, zusammen 637 unterschiedliche Fälle. Wiederholungen werden nicht doppelt gezählt. Der ursprüngliche Core-Dialog-Fehlschlag bleibt neben dem korrigierten 11-Fälle-Lauf nachvollziehbar gespeichert. Die CI führt diese 64 Dateien anschließend gemeinsam auf dem unveränderlichen APK-Quellcommit erneut aus.
+
+Die vollständige Flutter-Analyse endete mit Exit 0 und null Fehlern; sie meldet im Gesamtprojekt fünf Warnungen und 293 Hinweise. Diese werden nicht als bereinigt ausgegeben. Der kombinierte native Vertragslauf besteht 39 Tests. Die beiden Workflowdateien enthalten 17 geprüfte Bash-Skripte, fünf eingebettete Python-Blöcke, 19 gepinnte Godot-Prüfprogramme und zwölf vorhandene Pflichtberichte/-inventuren.
+
 ## Bereits enthaltene gemeinsame Funktionsbasis
 
 15 Rennstrecken, 14 Fahrzeuge, 19 Items, drei Abenteuer-Parcours, beide Arena-Regeln, lokales Zwei-Geräte-Zeitfahren, Schach mit 22 Lernstationen, vier Kartenspiele einschließlich Punktlandung, Sternenpost, zwölf Memory-Motive, Lernfilme und die angebundene 3D-Nachhilfe bleiben Bestandteil der gemeinsamen Quelle. Die eigene Nachhilfe ist weiterhin auf die dafür entwickelten Aufgaben beschränkt; die Integration erweitert sie nicht ohne neue Inhalte auf sämtliche Fächer.

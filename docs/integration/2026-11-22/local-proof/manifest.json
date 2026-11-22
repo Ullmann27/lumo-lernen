@@ -1,10 +1,45 @@
 {
-  "scope": "Local source, engine and contract checks; 2066 failure recorded separately. Actual candidate APK and Android evidence is produced by the mandatory build workflows.",
+  "scope": "Local source, engine and contract checks. Earlier failed attempts remain explicit; actual candidate APK and Android evidence is produced by the mandatory build workflows.",
   "files": [
     {
       "name": "2066-build-result.json",
       "bytes": 9611,
       "sha256": "84edf8847e58de3e02edf0aaaaccbd4a0b180959f53bcf5df53750797bb81fe6"
+    },
+    {
+      "name": "achievement-core-route-final.log",
+      "bytes": 982,
+      "sha256": "ef193a77c21a1804d1f1111fda006f9ce5ae0f63483e1c22fe97593a9170b8a0"
+    },
+    {
+      "name": "achievement-flow-after-route-fix.log",
+      "bytes": 1525,
+      "sha256": "ceaee745fdbb3d77f2fe7f3482fefff0c91d8a668badaeaca38d13315bfb5124"
+    },
+    {
+      "name": "achievement-flow-final.log",
+      "bytes": 1525,
+      "sha256": "7b0767d3793eb201324e333b7ac6348af2e85d208798fca97684a9009d14d891"
+    },
+    {
+      "name": "achievement-repository-final.log",
+      "bytes": 1093,
+      "sha256": "321049bfb25f2039a4e9ac388fdc67bc87fd39b3418c817752cb85d2f9af209f"
+    },
+    {
+      "name": "achievements-claimed.png",
+      "bytes": 207863,
+      "sha256": "0500a17787821bd006e47ac9b0084d20ac2ca79021247508a4c7b245fa75d3e0"
+    },
+    {
+      "name": "achievements-proof.json",
+      "bytes": 3504,
+      "sha256": "36290e7b0e8342680138aede035a1b599d1e26667516ce369bac8182a99d3f50"
+    },
+    {
+      "name": "achievements-ready.png",
+      "bytes": 211199,
+      "sha256": "ff0f77eedc472d755dcd358642131287cf1d090ef192d9f1802eceee08d60972"
     },
     {
       "name": "backup-dart-analysis.log",
@@ -25,6 +60,266 @@
       "name": "backup-native-tests.log",
       "bytes": 2408,
       "sha256": "957681401471d08df14086811a4923d37b7a57e5606e38952348706a9935b1b7"
+    },
+    {
+      "name": "final-flutter-analysis.json",
+      "bytes": 357,
+      "sha256": "ec8a41d1ba756b0c2eddd104f9422d459ca37492202e663ab9962a98fefbec9c"
+    },
+    {
+      "name": "final-flutter-analysis.log",
+      "bytes": 62870,
+      "sha256": "ebbffcff65c66903fb64516af0b337bd16b00e0969ecd19a6214797e87c91efd"
+    },
+    {
+      "name": "final-flutter-regression/result.json",
+      "bytes": 30255,
+      "sha256": "c9b9b4e64efc42a3a5df821bb1e62e6ff743ad12fc7c4fdf26b27a2a1e1f51b6"
+    },
+    {
+      "name": "final-flutter-regression/test__app_state_student_identity_test.log",
+      "bytes": 362,
+      "sha256": "de143d3e98969b336f6174311d8bb6cca1643adda066f16bdc3b919d737e04fd"
+    },
+    {
+      "name": "final-flutter-regression/test__design__learning_adventure_layout_test.log",
+      "bytes": 4882,
+      "sha256": "7918db033583ec6960c928c4b9d0248996103e68d4fe5d8ee45b636e66ed4149"
+    },
+    {
+      "name": "final-flutter-regression/test__games__connect_four_native_session_test.log",
+      "bytes": 2172,
+      "sha256": "710695f8c244fd66b7acdf3e9db51652bf05e45ec510a010e071eb6f5116d5d4"
+    },
+    {
+      "name": "final-flutter-regression/test__games__flame_adventure_flow_test.log",
+      "bytes": 425,
+      "sha256": "776707eb9e9ea0d4ada1b962af67118fa04755a1169c249a35bb338f8e84afd7"
+    },
+    {
+      "name": "final-flutter-regression/test__games__memory_native_entry_test.log",
+      "bytes": 892,
+      "sha256": "a220f601f5ae0a7581985ad9f0cd5d0f37f1986c69cfc085798097ecdb31bc5a"
+    },
+    {
+      "name": "final-flutter-regression/test__games__memory_result_frame_test.log",
+      "bytes": 210,
+      "sha256": "0ac4008c7ac23631e7d9a44ea8eca1e39f6018f16a0a3c4f7acd835369c89526"
+    },
+    {
+      "name": "final-flutter-regression/test__games__memory_screen_test.log",
+      "bytes": 553,
+      "sha256": "6e5d67c2ec36ccdd5ba26f5724913c4c9e2771670249bd3529d627822acf8a6e"
+    },
+    {
+      "name": "final-flutter-regression/test__home_3d_workshop_entry_test.log",
+      "bytes": 198,
+      "sha256": "253d39c79e4edc59d989158c8516f3bbdc028f204aa4e894da28454129fbdceb"
+    },
+    {
+      "name": "final-flutter-regression/test__language_example_board_test.log",
+      "bytes": 1201,
+      "sha256": "97c125f3ac20a3cdc20d830301651ebf045bb186e161c5027dc2fc1707933fa8"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__core_conversation_route_test-before-fix.log",
+      "bytes": 4209,
+      "sha256": "887bbe22958bc82cf81b2636954f07c2c1a12c74fc99d154c3528fddaca5a756"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__core_conversation_route_test.log",
+      "bytes": 4209,
+      "sha256": "887bbe22958bc82cf81b2636954f07c2c1a12c74fc99d154c3528fddaca5a756"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__lab_native_entry_test.log",
+      "bytes": 667,
+      "sha256": "c969d33c9d43cb1728f59a7488b211c8c636732fda780aa471e63cc1bedf98a3"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__lab_native_model_contract_test.log",
+      "bytes": 348,
+      "sha256": "aaa2fe6e886d8e4650194a404a42184608ab5a65d3557ed0645e658e873a4da4"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__math_explanation_film_test.log",
+      "bytes": 902,
+      "sha256": "d707810ac5c4c18ab1a966757ec909ff58dfc37cbd8aac28f11de6f009665afd"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__module_frame_practical_links_test.log",
+      "bytes": 290,
+      "sha256": "007809d2fd57896232217d4c29d6706cdbdf1d19d8c77770df0dffbb24588d12"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__nextgen_answer_payload_test.log",
+      "bytes": 858,
+      "sha256": "365c3080911f604cf5852049b4efa9e56ab253bc74de49a43309c4388280b7c9"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__nextgen_lab_bus_integration_test.log",
+      "bytes": 759,
+      "sha256": "ff974b41f50a396bc5e670ce4d672a995d77ba6280a2cc64540440fac72887de"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__nextgen_task_hint_precision_test.log",
+      "bytes": 809,
+      "sha256": "ad7a4056aa87e6900b1de9204e067b45980052252c6d9b9d6fa1c2f92ba59640"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__nextgen_task_quality_test.log",
+      "bytes": 1181,
+      "sha256": "38d5739409725f361595733a41ad9cae4c59481bd5f3a205740aace5da06db39"
+    },
+    {
+      "name": "final-flutter-regression/test__learning__remaining_native_entry_test.log",
+      "bytes": 782,
+      "sha256": "efefacd4f1b0799dc0adfd638db6afec1abb19a4fc21950854464323c946c4eb"
+    },
+    {
+      "name": "final-flutter-regression/test__learning_answer_reward_test.log",
+      "bytes": 509,
+      "sha256": "fe50c62800536e1b987e1ff89c909eed1e80b0e2fc8949a5353e716aab1d771d"
+    },
+    {
+      "name": "final-flutter-regression/test__learning_modules__bruchrechnen_answers_test.log",
+      "bytes": 457,
+      "sha256": "d3c7244ce1d2798489222fcc3cc978f19c5da4d7280931dd986a94958e371c8a"
+    },
+    {
+      "name": "final-flutter-regression/test__learning_modules__deutsch_sach_module_progress_test.log",
+      "bytes": 1659,
+      "sha256": "452a98785f14bffcc8a271d923f98c6d29c31996cba2e298c9d8b0bfec4a3727"
+    },
+    {
+      "name": "final-flutter-regression/test__learning_modules__learning_module_progress_test.log",
+      "bytes": 977,
+      "sha256": "798cd0ec64c6626c07cdfb33004026b926f68ff880cab5e424427b5768dccdde"
+    },
+    {
+      "name": "final-flutter-regression/test__learning_modules__plus_bis_10_persistence_test.log",
+      "bytes": 898,
+      "sha256": "fdd6758f01c91821d25ba1f06cc7184e8b8e230a072dcdd5ad0b2dadb1f038b2"
+    },
+    {
+      "name": "final-flutter-regression/test__learning_profile_isolation_test.log",
+      "bytes": 682,
+      "sha256": "d381907956e53e15959528170feb6cb7809ce324493c9390d553bb726e55f59d"
+    },
+    {
+      "name": "final-flutter-regression/test__legacy_learning_data_test.log",
+      "bytes": 1269,
+      "sha256": "d27466cd37702723dd370ebede07228f5b6b228159ea493c4d41978da38b0b3b"
+    },
+    {
+      "name": "final-flutter-regression/test__local_backup_flow_test.log",
+      "bytes": 879,
+      "sha256": "ffa6f713e92c41c48fcda738310fb59d67203f7df1f0c86f01d998d0d759fc74"
+    },
+    {
+      "name": "final-flutter-regression/test__local_backup_format_test.log",
+      "bytes": 900,
+      "sha256": "22fff43da731d753e8ce09cceafb353d1b06d1b49993632944cff9e29868a17d"
+    },
+    {
+      "name": "final-flutter-regression/test__lumo_context_conversation_test.log",
+      "bytes": 957,
+      "sha256": "0eb7c453c797394d021b4cd0cca3f9f7743df6128b6d4b3314a2702deee2f50e"
+    },
+    {
+      "name": "final-flutter-regression/test__lumo_learning_dialogue_contract_test.log",
+      "bytes": 1387,
+      "sha256": "5d2ce17ae1afbba1b93012ad174b97a36681108b4e829dbd8fd58c226728dffb"
+    },
+    {
+      "name": "final-flutter-regression/test__math_explanation_facts_test.log",
+      "bytes": 967,
+      "sha256": "8afd68a057b7cb30538fdac3d50242f2015712ce4353cb3a79d2f1ebacd7ca7a"
+    },
+    {
+      "name": "final-flutter-regression/test__parent_task_flow_test.log",
+      "bytes": 536,
+      "sha256": "0a32c84aa2f684be9305d4a52d82e4b3c0a6d5a4c67356cf0a735f6531980c51"
+    },
+    {
+      "name": "final-flutter-regression/test__parent_task_repository_test.log",
+      "bytes": 918,
+      "sha256": "230bf06b5faaa9bbde69cae7d1d254a8339b2d66165f1b5ea3908d3781e79f8d"
+    },
+    {
+      "name": "final-flutter-regression/test__profile_fail_closed_regression_test.log",
+      "bytes": 361,
+      "sha256": "767cbc5dff3e41ca73b0c16ae90da34f5ea7ff4b63e73af6a5ea71336db0f1d4"
+    },
+    {
+      "name": "final-flutter-regression/test__profile_target_layout_test.log",
+      "bytes": 1171,
+      "sha256": "0d51a553f6ea14b01d011535f25b5a167ce9c169930a7a51e986b405dec7be56"
+    },
+    {
+      "name": "final-flutter-regression/test__quiz_native_roundtrip_lifecycle_test.log",
+      "bytes": 528,
+      "sha256": "5bbcf4eefdda71797ec070fa10d44b75ab0f6371058b8211be4b5208dba8277d"
+    },
+    {
+      "name": "final-flutter-regression/test__quiz_show_meister_test.log",
+      "bytes": 656,
+      "sha256": "e183a068fea82e97c7aa07ac68666ecac58ddff71c1d79dd6abe02c7ded0ec4c"
+    },
+    {
+      "name": "final-flutter-regression/test__recognized_task_flow_test.log",
+      "bytes": 848,
+      "sha256": "b2b4be740811aefe420de2e068051aa9be036e28dd11b91ecba230f6360ec367"
+    },
+    {
+      "name": "final-flutter-regression/test__recognized_task_parser_test.log",
+      "bytes": 2989,
+      "sha256": "8c56de9cefe3e39ec1f205f73b695b32621abbde9ae42e8603113ccb53bef2de"
+    },
+    {
+      "name": "final-flutter-regression/test__smoke_main_screens_test.log",
+      "bytes": 599,
+      "sha256": "ba8a2f8e5c190d7e900c99db9fd97a0512535334781eca8c6f5e7f1d58c8cc47"
+    },
+    {
+      "name": "final-flutter-regression/test__tutoring__guided_coach_binding_test.log",
+      "bytes": 431,
+      "sha256": "91c4a0cea6438b7f8fb0d267f29a9d1c4edf85d506b1b10956b17cfb68e6d657"
+    },
+    {
+      "name": "final-flutter-regression/test__tutoring__lumo_nachhilfe_3d_test.log",
+      "bytes": 527,
+      "sha256": "95ed18d3c7c1859e194a04c3f271ae7b679fa3e0acb0e7307782252bb6253106"
+    },
+    {
+      "name": "final-flutter-regression/test__tutoring__lumo_nachhilfe_entry_test.log",
+      "bytes": 320,
+      "sha256": "2f2364f877a4aec348dbebc583c7d6d81976c9489d9a2f038d1d97e0d9e83f1f"
+    },
+    {
+      "name": "final-flutter-regression/test__tutoring__lumo_nachhilfe_test.log",
+      "bytes": 1103,
+      "sha256": "879798301e908ea9eba59b8aa7d07d396f0ebae6acca96f6866ad4c344ff1816"
+    },
+    {
+      "name": "final-flutter-regression/test__tutoring__native_english_activity_test.log",
+      "bytes": 1228,
+      "sha256": "8771e64cbf1cfbbaa2c8034f08f49ca2b0574e0a993b5b52022339fe3d4a72af"
+    },
+    {
+      "name": "final-flutter-regression/test__writing_word_progress_test.log",
+      "bytes": 784,
+      "sha256": "ca2b835d91114862a63c44be349f88457cca585ac50d755e8822751d0721ef35"
+    },
+    {
+      "name": "final-native-contracts-corrected-env.log",
+      "bytes": 9136,
+      "sha256": "ff62516dc9adaad3097e8545700260fc3a1d511b6c553528e397e9c4609a9a49"
+    },
+    {
+      "name": "final-workflow-check.json",
+      "bytes": 178,
+      "sha256": "b953e744d1e43c6fc3235a22ebd6ba26a79793c53793faab9699c8579b2b47d2"
     },
     {
       "name": "games-custom-rewards-analysis-final.log",
@@ -92,6 +387,16 @@
       "sha256": "383c08ed41dd4bfa5806a3e6296191a08c77a7386f7e31b6ea0ad29656a084a2"
     },
     {
+      "name": "lumo-godot-branch-refresh.json",
+      "bytes": 266,
+      "sha256": "672b234912e1ee348d7975daa57f0cd30fcb28e19285b64104754fd30c6edf68"
+    },
+    {
+      "name": "lumo-lernen-branch-refresh.json",
+      "bytes": 267,
+      "sha256": "e3d428de19c35f1e36457580aa9741e2948f8025afbf32d774c6ee243284cc08"
+    },
+    {
       "name": "lumo_kart_production_driver_regression.log",
       "bytes": 752,
       "sha256": "41443c6126f4bfddfd13c9488f67bb4b8e546c4daa351c968c3e97ad93747a6b"
@@ -130,6 +435,11 @@
       "name": "pck-source-race.log",
       "bytes": 2286,
       "sha256": "f4930c8ff5857c200317859ba10a5b72fd0ac3f5f153d04280e610f84bd6f074"
+    },
+    {
+      "name": "remote-head-refresh-20261122-195621Z.json",
+      "bytes": 1814,
+      "sha256": "c1e2120752cbf86b37a498d352fbe32abb227348b53017a0184473a7e9bb11fc"
     },
     {
       "name": "tool-provenance.json",
