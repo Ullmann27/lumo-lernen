@@ -886,6 +886,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
                           child: WritingTaskRenderer(
                               key: ValueKey(_taskInstance.taskInstanceId),
                               task: _taskInstance,
+                              reduceMotion: _reduced || _supportStopped,
                               onSubmitted: _writingAnswer),
                         )
                       else if (_taskInstance.taskType == TaskType.shapeTrace)

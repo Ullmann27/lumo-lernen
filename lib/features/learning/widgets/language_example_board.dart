@@ -7,11 +7,16 @@ import '../../../widgets/design/lumo_task_object_art.dart';
 /// The scored answer stays in the owning lesson.
 class LanguageExample {
   const LanguageExample(
-      this.picture, this.icon, this.front, this.back, this.action);
+      this.picture, this.icon, this.front, this.back, this.action,
+      {this.beats = const []});
 
   final String? picture;
   final IconData icon;
   final String front, back, action;
+  final List<String> beats;
+
+  /// Each beat demonstrates a sound, transformation or turn in a separate example.
+  List<String> get sequence => beats.isNotEmpty ? beats : [front, back];
 
   static LanguageExample? forUnit(String unit, LearningSubject subject) {
     if (subject == LearningSubject.englisch) return _english[unit];
@@ -20,31 +25,38 @@ class LanguageExample {
   }
 
   static const _sounds = LanguageExample('Maus', Icons.hearing, 'Maus',
-      'M · aus', 'Sprich das Wort langsam. Höre auf den ersten Laut.');
+      'M · aus', 'Sprich das Wort langsam. Höre auf den ersten Laut.',
+      beats: ['Maus', 'M–aus', 'M']);
   static const _last = LanguageExample('Hund', Icons.hearing, 'Hund', 'Hun · d',
-      'Sprich Hunde. Jetzt hörst du, wie das Wort am Ende geschrieben wird.');
+      'Sprich Hunde. Jetzt hörst du, wie das Wort am Ende geschrieben wird.',
+      beats: ['Hund', 'Hun-de', 'Hund → d']);
   static const _syllables = LanguageExample('Banane', Icons.pan_tool_alt,
-      'Banane', 'Ba · na · ne', 'Klatsche mit jedem Wortteil einmal.');
+      'Banane', 'Ba · na · ne', 'Klatsche mit jedem Wortteil einmal.',
+      beats: ['Ba', 'na', 'ne']);
   static const _sentence = LanguageExample(
       'Hase',
       Icons.view_week,
       'Der Hase   •   hüpft',
       'Der Hase hüpft.',
-      'Wer tut etwas? Setze das Wort für die Handlung hinter den Namen.');
+      'Wer tut etwas? Setze das Wort für die Handlung hinter den Namen.',
+      beats: ['Der Hase', 'hüpft', 'Der Hase hüpft.']);
   static const _compound = LanguageExample(
       'Baum',
       Icons.join_inner,
       'Apfel + Baum',
       'Apfelbaum',
-      'Verbinde die Wörter. Das letzte Wort sagt, worum es sich handelt.');
+      'Verbinde die Wörter. Das letzte Wort sagt, worum es sich handelt.',
+      beats: ['Apfel', 'Baum', 'Apfelbaum']);
   static const _article = LanguageExample('Buch', Icons.book, 'ein Buch',
-      'das Buch', 'Nenne das Ding mit seinem Begleiter.');
+      'das Buch', 'Nenne das Ding mit seinem Begleiter.',
+      beats: ['Buch', 'ein Buch', 'das Buch']);
   static const _kind = LanguageExample(
       'Fuchs',
       Icons.category,
       'Fuchs · läuft · leise',
       'Tier · Tätigkeit · Eigenschaft',
-      'Frage bei jedem Wort: Was ist es, was tut es oder wie ist es?');
+      'Frage bei jedem Wort: Was ist es, was tut es oder wie ist es?',
+      beats: ['Fuchs → Tier', 'läuft → Tätigkeit', 'leise → Eigenschaft']);
   static const _opposite = LanguageExample(
       'Sonne',
       Icons.compare_arrows,
@@ -56,13 +68,15 @@ class LanguageExample {
       Icons.menu_book,
       'Mia fährt mit dem Bus.',
       'Wer? Mia.  Womit? Mit dem Bus.',
-      'Finde im Satz die Stelle, die zur Frage passt.');
+      'Finde im Satz die Stelle, die zur Frage passt.',
+      beats: ['Wer fährt?', 'Mia fährt.', 'Womit? Mit dem Bus.']);
   static const _writing = LanguageExample(
       'Ball',
       Icons.edit,
       'Ball',
       'B · a · l · l',
-      'Schau auf den Anfang. Schreibe das Wort und prüfe jeden Buchstaben.');
+      'Schau auf den Anfang. Schreibe das Wort und prüfe jeden Buchstaben.',
+      beats: ['B', 'Ba', 'Bal', 'Ball']);
   static const _upper = LanguageExample(
       'Mond',
       Icons.text_fields,
@@ -74,7 +88,8 @@ class LanguageExample {
       Icons.directions_run,
       'ich hüpfe',
       'du hüpfst · wir hüpfen',
-      'Wechsle die Person und sprich das Verb dazu.');
+      'Wechsle die Person und sprich das Verb dazu.',
+      beats: ['ich hüpfe', 'du hüpfst', 'wir hüpfen']);
   static const _german = <String, LanguageExample>{
     'Buchstaben-Lautierung': _sounds,
     'Anfangslaute': _sounds,
@@ -132,7 +147,8 @@ class LanguageExample {
         Icons.history,
         'Heute fährt der Bus.',
         'Gestern fuhr der Bus.',
-        'Ändere die Zeit. Vergleiche die Form des Verbs.'),
+        'Ändere die Zeit. Vergleiche die Form des Verbs.',
+        beats: ['heute → fährt', 'gestern → fuhr', 'Gestern fuhr der Bus.']),
     'Vorvergangenheit': LanguageExample(
         null,
         Icons.history,
@@ -151,7 +167,11 @@ class LanguageExample {
         Icons.swap_horiz,
         'Am Morgen schläft der Fuchs.',
         'Der Fuchs schläft am Morgen.',
-        'Stelle Satzteile um. Welche Wörter bleiben beieinander?'),
+        'Stelle Satzteile um. Welche Wörter bleiben beieinander?',
+        beats: [
+          'Am Morgen | schläft | der Fuchs.',
+          'Der Fuchs | schläft | am Morgen.'
+        ]),
     'Direkte Rede': LanguageExample(
         null,
         Icons.forum,
@@ -193,13 +213,19 @@ class LanguageExample {
         Icons.person_search,
         'Mia hilft dem Hund.',
         'Wem hilft Mia? Dem Hund.',
-        'Stelle die Fallfrage und prüfe den Artikel.'),
+        'Stelle die Fallfrage und prüfe den Artikel.',
+        beats: ['Mia hilft dem Hund.', 'Wem hilft Mia?', 'dem Hund → Dativ']),
     'dass oder das': LanguageExample(
         null,
         Icons.find_replace,
         'Das Bild, das du siehst, ist alt.',
         'Das Bild, welches du siehst, ist alt.',
-        'Probiere dieses, jenes oder welches für das markierte Wort.'),
+        'Probiere dieses, jenes oder welches für das markierte Wort.',
+        beats: [
+          'Das Bild, das du siehst …',
+          'das → welches',
+          'Das Bild, welches du siehst …'
+        ]),
     'Umstandswörter': LanguageExample(
         'Haus',
         Icons.place,
@@ -245,11 +271,14 @@ class LanguageExample {
 
   static const _english = <String, LanguageExample>{
     'Farben': LanguageExample('Banane', Icons.palette, 'Which colour?',
-        'yellow', 'Zeige auf etwas Gelbes und sprich die Farbe.'),
+        'yellow', 'Zeige auf etwas Gelbes und sprich die Farbe.',
+        beats: ['Banane', 'gelb', 'yellow']),
     'Zahlen': LanguageExample(null, Icons.filter_3, '●  ●  ●', '3 · three',
-        'Zeige auf jeden Punkt und zähle auf Englisch.'),
+        'Zeige auf jeden Punkt und zähle auf Englisch.',
+        beats: ['●  one', '● ●  two', '● ● ●  three']),
     'Tiere': LanguageExample('Hase', Icons.pets, 'Which animal?', 'rabbit',
-        'Zeige auf das Tier und sprich sein englisches Wort.'),
+        'Zeige auf das Tier und sprich sein englisches Wort.',
+        beats: ['Hase', 'rabbit', 'a rabbit']),
     'Schulsachen': LanguageExample(
         'Buch',
         Icons.school,
@@ -257,7 +286,8 @@ class LanguageExample {
         'a book',
         'Zeige einen Gegenstand und sage, was in deiner Schultasche ist.'),
     'Begruessung': LanguageExample(null, Icons.waving_hand, 'Hello!',
-        'Hi, Mia!', 'Spiele eine Begrüßung mit zwei Stimmen.'),
+        'Hi, Mia!', 'Spiele eine Begrüßung mit zwei Stimmen.',
+        beats: ['Mia: Hello!', 'Ben: Hi, Mia!']),
     'Familie': LanguageExample(
         null,
         Icons.family_restroom,
@@ -269,13 +299,15 @@ class LanguageExample {
     'Spielzeug': LanguageExample('Ball', Icons.sports_soccer, 'I play with a …',
         'ball', 'Benenne etwas, mit dem du spielen kannst.'),
     'Wetter': LanguageExample('Sonne', Icons.wb_sunny, 'The sun is shining.',
-        'It is sunny.', 'Beschreibe das Wetter vor deinem Fenster.'),
+        'It is sunny.', 'Beschreibe das Wetter vor deinem Fenster.',
+        beats: ['sun', 'sunny', 'It is sunny.']),
     'Essen': LanguageExample(
         'Apfel',
         Icons.restaurant,
         'Can I have an apple?',
         'Here you are.',
-        'Spiele das Bestellen und Überreichen mit zwei Stimmen.'),
+        'Spiele das Bestellen und Überreichen mit zwei Stimmen.',
+        beats: ['Can I have an apple?', 'Here you are.', 'Thank you!']),
     'Tageszeit': LanguageExample('Mond', Icons.nightlight, 'The moon is up.',
         'Good night!', 'Wähle einen Gruß, der zur Tageszeit passt.'),
     'Verben': LanguageExample('Buch', Icons.directions_run, 'I read.',
@@ -285,25 +317,37 @@ class LanguageExample {
         Icons.calendar_month,
         'Monday → Tuesday',
         'Tuesday → Wednesday',
-        'Finde heraus, welcher Tag als Nächstes kommt.'),
+        'Finde heraus, welcher Tag als Nächstes kommt.',
+        beats: ['Monday', 'Tuesday', 'Wednesday']),
     'Hobbys': LanguageExample(
         'Ball',
         Icons.sports_soccer,
         'What do you like doing?',
         'I like playing football.',
-        'Antworte mit einem Hobby, das zu dir passt.'),
+        'Antworte mit einem Hobby, das zu dir passt.',
+        beats: [
+          'What do you like doing?',
+          'playing football',
+          'I like playing football.'
+        ]),
     'Länder': LanguageExample(
         null,
         Icons.public,
         'Where are you from?',
         'I am from Austria.',
-        'Antworte mit einem Land in einem vollständigen Satz.'),
+        'Antworte mit einem Land in einem vollständigen Satz.',
+        beats: ['Where are you from?', 'Austria', 'I am from Austria.']),
     'Alltagssätze': LanguageExample(
         null,
         Icons.forum,
         'Could you help me?',
         'Of course. What do you need?',
-        'Spiele beide Rollen und ändere die zweite Antwort.'),
+        'Spiele beide Rollen und ändere die zweite Antwort.',
+        beats: [
+          'Could you help me?',
+          'Of course. What do you need?',
+          'I need a pencil.'
+        ]),
   };
 }
 
@@ -314,11 +358,14 @@ class LanguageExampleBoard extends StatefulWidget {
       required this.grade,
       required this.initiallyOpen,
       required this.options,
+      this.reduceMotion = false,
+      this.slow = false,
       required this.onExplore});
 
   final LanguageExample example;
   final int grade;
   final bool initiallyOpen;
+  final bool reduceMotion, slow;
   final List<AnswerOption> options;
   final VoidCallback? onExplore;
 
@@ -467,8 +514,23 @@ class _LanguageExampleBoardState extends State<LanguageExampleBoard> {
     final ex = widget.example;
     final early = widget.grade <= 2;
     final choices = _choicePictures();
-    if (choices != null)
-      return Padding(padding: const EdgeInsets.only(bottom: 8), child: choices);
+    final walkthrough = LanguageStepSequence(
+      key: ValueKey(ex),
+      steps: ex.sequence,
+      picture: ex.picture,
+      symbol: ex.icon,
+      enabled: widget.onExplore != null,
+      grade: widget.grade,
+      reduceMotion: widget.reduceMotion,
+      slow: widget.slow,
+      onExplore: widget.onExplore,
+    );
+    if (choices != null) {
+      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        choices,
+        walkthrough,
+      ]);
+    }
     final picture = ex.picture;
     final art = LumoTaskObjectArt.assetForName(picture);
     if (!expanded) {
@@ -490,58 +552,206 @@ class _LanguageExampleBoardState extends State<LanguageExampleBoard> {
             fontWeight: FontWeight.w700));
     return Padding(
         padding: const EdgeInsets.only(bottom: 8),
-        child: Material(
-            color: early ? const Color(0xff244257) : const Color(0xff243446),
-            borderRadius: BorderRadius.circular(14),
-            child: InkWell(
-                borderRadius: BorderRadius.circular(14),
-                onTap: widget.onExplore == null
-                    ? null
-                    : () => _explore(() => flipped = !flipped),
-                child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: DefaultTextStyle(
-                        style: const TextStyle(
-                            color: Colors.white, fontSize: 15, height: 1.3),
-                        child: Column(children: [
-                          Row(children: [
-                            if (early && art != null)
-                              LumoTaskObjectArt(
-                                  name: picture,
-                                  size: widget.grade == 1 ? 70 : 50)
-                            else
-                              Icon(ex.icon,
-                                  size: early ? 40 : 26,
-                                  color: const Color(0xffffcf82)),
-                            const SizedBox(width: 10),
-                            Expanded(
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                  Text(
-                                      widget.grade == 2
-                                          ? 'Beispiel · ${flipped ? 2 : 1} von 2'
-                                          : 'Beispiel',
-                                      style: const TextStyle(
-                                          color: Color(0xffbfe4ef),
-                                          fontSize: 13)),
-                                  const SizedBox(height: 3),
-                                  text,
-                                ])),
-                            Icon(
-                                flipped
-                                    ? Icons.replay_rounded
-                                    : Icons.touch_app_rounded,
-                                color: const Color(0xffbfe4ef),
-                                semanticLabel: flipped
-                                    ? 'Vorderseite zeigen'
-                                    : 'Beispiel umdrehen'),
-                          ]),
-                          if (flipped) ...[
-                            const SizedBox(height: 7),
-                            Text(ex.action, textAlign: TextAlign.center)
-                          ],
-                        ]))))));
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Material(
+              color: early ? const Color(0xff244257) : const Color(0xff243446),
+              borderRadius: BorderRadius.circular(14),
+              child: InkWell(
+                  borderRadius: BorderRadius.circular(14),
+                  onTap: widget.onExplore == null
+                      ? null
+                      : () => _explore(() => flipped = !flipped),
+                  child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: DefaultTextStyle(
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 15, height: 1.3),
+                          child: Column(children: [
+                            Row(children: [
+                              if (early && art != null)
+                                LumoTaskObjectArt(
+                                    name: picture,
+                                    size: widget.grade == 1 ? 70 : 50)
+                              else
+                                Icon(ex.icon,
+                                    size: early ? 40 : 26,
+                                    color: const Color(0xffffcf82)),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                    Text(
+                                        widget.grade == 2
+                                            ? 'Beispiel · ${flipped ? 2 : 1} von 2'
+                                            : 'Beispiel',
+                                        style: const TextStyle(
+                                            color: Color(0xffbfe4ef),
+                                            fontSize: 13)),
+                                    const SizedBox(height: 3),
+                                    text,
+                                  ])),
+                              Icon(
+                                  flipped
+                                      ? Icons.replay_rounded
+                                      : Icons.touch_app_rounded,
+                                  color: const Color(0xffbfe4ef),
+                                  semanticLabel: flipped
+                                      ? 'Vorderseite zeigen'
+                                      : 'Beispiel umdrehen'),
+                            ]),
+                            if (flipped) ...[
+                              const SizedBox(height: 7),
+                              Text(ex.action, textAlign: TextAlign.center)
+                            ],
+                          ]))))),
+          walkthrough,
+        ]));
+  }
+}
+
+/// A single, replayable pass through the sounds, word forms or speaker turns.
+/// Later steps stay readable until the child starts another example.
+class LanguageStepSequence extends StatefulWidget {
+  const LanguageStepSequence({
+    super.key,
+    required this.steps,
+    this.picture,
+    this.symbol,
+    this.stepPictures = const [],
+    this.enabled = true,
+    required this.grade,
+    required this.reduceMotion,
+    this.slow = false,
+    this.onExplore,
+  });
+  final List<String> steps;
+  final String? picture;
+  final IconData? symbol;
+  final List<String> stepPictures;
+  final bool enabled;
+  final int grade;
+  final bool reduceMotion, slow;
+  final VoidCallback? onExplore;
+
+  @override
+  State<LanguageStepSequence> createState() => _LanguageStepSequenceState();
+}
+
+class _LanguageStepSequenceState extends State<LanguageStepSequence>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _playback = AnimationController(vsync: this);
+  bool _opened = false;
+
+  @override
+  void didUpdateWidget(covariant LanguageStepSequence oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (_opened && (widget.reduceMotion || !widget.enabled)) {
+      _playback.value = 1;
+    }
+  }
+
+  void _play() {
+    setState(() => _opened = true);
+    widget.onExplore?.call();
+    if (widget.reduceMotion) {
+      _playback.value = 1;
+      return;
+    }
+    // Give a sentence enough reading time while keeping individual sounds brief.
+    final sentence = widget.steps.any((step) => step.length > 12);
+    final ms = sentence ? 1700 : 850;
+    _playback.duration = Duration(
+        milliseconds:
+            (widget.steps.length * ms * (widget.slow ? 1.6 : 1.0)).round());
+    _playback.forward(from: 0);
+  }
+
+  @override
+  void dispose() {
+    _playback.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final steps = widget.steps;
+    final early = widget.grade < 3;
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      TextButton.icon(
+        key: const ValueKey('language-play-steps'),
+        onPressed: !widget.enabled ? null : _play,
+        icon: Icon(_opened ? Icons.replay_rounded : Icons.play_circle_outline),
+        label: Text(widget.reduceMotion
+            ? 'Beispielschritte zeigen'
+            : _opened
+                ? 'Noch einmal vormachen'
+                : 'Schritt für Schritt vormachen'),
+        style: TextButton.styleFrom(foregroundColor: const Color(0xffffda92)),
+      ),
+      if (_opened)
+        AnimatedBuilder(
+          animation: _playback,
+          builder: (context, _) {
+            final current = (_playback.value * steps.length)
+                .floor()
+                .clamp(0, steps.length - 1);
+            final picture = widget.stepPictures.length == steps.length
+                ? widget.stepPictures[current]
+                : widget.picture;
+            return Wrap(
+              spacing: 5,
+              runSpacing: 5,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                if (early && LumoTaskObjectArt.assetForName(picture) != null)
+                  LumoTaskObjectArt(name: picture, size: 44)
+                else if (early && widget.symbol != null)
+                  Icon(widget.symbol, size: 35, color: const Color(0xffffd594)),
+                for (var i = 0; i < steps.length; i++)
+                  if (widget.reduceMotion || i <= current)
+                    TweenAnimationBuilder<double>(
+                      key: ValueKey('language-beat-$i'),
+                      tween: Tween(
+                          begin: widget.reduceMotion ? 1.0 : 0.0, end: 1.0),
+                      duration:
+                          Duration(milliseconds: widget.reduceMotion ? 0 : 230),
+                      curve: Curves.easeOut,
+                      builder: (context, arrival, chip) => Transform.translate(
+                        offset: Offset((1 - arrival) * 12, 0),
+                        child: Opacity(opacity: arrival, child: chip),
+                      ),
+                      child: Semantics(
+                        label: 'Schritt ${i + 1} von ${steps.length}',
+                        child: AnimatedContainer(
+                          duration: Duration(
+                              milliseconds: widget.reduceMotion ? 0 : 180),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 9, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: widget.reduceMotion || i == current
+                                ? const Color(0xffffdda0)
+                                : const Color(0xffcbe2df),
+                            borderRadius: BorderRadius.circular(early ? 10 : 5),
+                          ),
+                          child: Text(
+                              widget.grade == 2
+                                  ? '${i + 1} · ${steps[i]}'
+                                  : steps[i],
+                              style: TextStyle(
+                                  fontSize: early ? 20 : 16,
+                                  height: 1.2,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xff16323c))),
+                        ),
+                      ),
+                    ),
+              ],
+            );
+          },
+        ),
+    ]);
   }
 }

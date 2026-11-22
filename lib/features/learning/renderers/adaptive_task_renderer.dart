@@ -146,6 +146,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           ],
           WritingTaskRenderer(
             task: task,
+            showLanguageExample: widget.allowRetry,
+            reduceMotion: widget.reduceMotion,
             onSubmitted: widget.onWritingSubmitted,
             speak: widget.onWritingPraise,
           ),

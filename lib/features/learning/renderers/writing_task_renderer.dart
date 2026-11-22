@@ -7,6 +7,8 @@ import '../../../domain/writing/writing_domain.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../writing/widgets/lumo_letter_practice_board.dart';
+import '../../../widgets/design/lumo_motion.dart';
+import '../widgets/language_example_board.dart';
 
 class WritingTaskResult {
   const WritingTaskResult({
@@ -41,10 +43,13 @@ class WritingTaskRenderer extends StatefulWidget {
     required this.task,
     this.onSubmitted,
     this.speak,
+    this.showLanguageExample = true,
+    this.reduceMotion = false,
   });
 
   final TaskInstance task;
   final ValueChanged<WritingTaskResult>? onSubmitted;
+  final bool showLanguageExample, reduceMotion;
 
   /// Optional voice for Lumo's praise in the trainer.
   final ValueChanged<String>? speak;
@@ -210,6 +215,9 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
       ]);
     }
     final template = _template;
+    final grade = widget.task.parameters['grade'];
+    final example = LanguageExample.forUnit(
+        widget.task.parameters['unit']?.toString() ?? '', widget.task.subject);
     final kicker = _isSentenceTarget
         ? 'Schreibsatz'
         : _isWordTarget
@@ -246,6 +254,15 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
             _WordTargetStrip(word: template.symbol)
           else
             _LetterShowcase(template: template),
+          if (widget.showLanguageExample && example != null && grade is int)
+            LanguageStepSequence(
+              key: ValueKey(widget.task.taskInstanceId),
+              steps: example.sequence,
+              picture: example.picture,
+              symbol: example.icon,
+              grade: grade,
+              reduceMotion: widget.reduceMotion || LumoMotion.reduced(context),
+            ),
           const SizedBox(height: 16),
           FilledButton.icon(
             key: const ValueKey('writing-start'),
