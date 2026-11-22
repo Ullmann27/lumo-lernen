@@ -8,19 +8,24 @@ import '../../../widgets/design/lumo_task_object_art.dart';
 class LanguageExample {
   const LanguageExample(
       this.picture, this.icon, this.front, this.back, this.action,
-      {this.beats = const []});
+      {this.beats = const [], this.counts = const []});
 
   final String? picture;
   final IconData icon;
   final String front, back, action;
   final List<String> beats;
+  final List<int> counts;
 
   /// Each beat demonstrates a sound, transformation or turn in a separate example.
   List<String> get sequence => beats.isNotEmpty ? beats : [front, back];
 
   static LanguageExample? forUnit(String unit, LearningSubject subject) {
-    if (subject == LearningSubject.englisch) return _english[unit];
-    if (subject != LearningSubject.deutsch) return null;
+    if (subject == LearningSubject.englisch) {
+      return _english[unit];
+    }
+    if (subject != LearningSubject.deutsch) {
+      return null;
+    }
     return _german[unit];
   }
 
@@ -273,9 +278,9 @@ class LanguageExample {
     'Farben': LanguageExample('Banane', Icons.palette, 'Which colour?',
         'yellow', 'Zeige auf etwas Gelbes und sprich die Farbe.',
         beats: ['Banane', 'gelb', 'yellow']),
-    'Zahlen': LanguageExample(null, Icons.filter_3, '●  ●  ●', '3 · three',
-        'Zeige auf jeden Punkt und zähle auf Englisch.',
-        beats: ['●  one', '● ●  two', '● ● ●  three']),
+    'Zahlen': LanguageExample(null, Icons.filter_3, 'Zähle die Punkte.',
+        '3 · three', 'Zeige auf jeden Punkt und zähle auf Englisch.',
+        beats: ['one', 'two', 'three'], counts: [1, 2, 3]),
     'Tiere': LanguageExample('Hase', Icons.pets, 'Which animal?', 'rabbit',
         'Zeige auf das Tier und sprich sein englisches Wort.',
         beats: ['Hase', 'rabbit', 'a rabbit']),
@@ -379,7 +384,9 @@ class _LanguageExampleBoardState extends State<LanguageExampleBoard> {
   int? openPicture;
 
   void _explore(VoidCallback change) {
-    if (widget.onExplore == null) return;
+    if (widget.onExplore == null) {
+      return;
+    }
     setState(change);
     widget.onExplore!();
   }
@@ -429,12 +436,17 @@ class _LanguageExampleBoardState extends State<LanguageExampleBoard> {
       return LumoTaskObjectArt(name: object, size: 50);
     }
     final color = _colors[lower];
-    if (color != null) return CircleAvatar(radius: 20, backgroundColor: color);
+    if (color != null) {
+      return CircleAvatar(radius: 20, backgroundColor: color);
+    }
     final number = _numbers.indexOf(lower);
-    if (number < 0) return null;
-    if (number > 10 || number == 0)
+    if (number < 0) {
+      return null;
+    }
+    if (number > 10 || number == 0) {
       return Text('$number',
           style: const TextStyle(fontSize: 25, color: Colors.white));
+    }
     return SizedBox(
         width: 50,
         child: Wrap(
@@ -451,11 +463,15 @@ class _LanguageExampleBoardState extends State<LanguageExampleBoard> {
   Widget? _choicePictures() {
     if (widget.grade > 2 ||
         widget.options.length < 2 ||
-        widget.options.length > 5) return null;
+        widget.options.length > 5) {
+      return null;
+    }
     final pictures =
         widget.options.map((option) => _pictureFor(option.label)).toList();
     // Give every possible answer the same treatment.
-    if (pictures.any((picture) => picture == null)) return null;
+    if (pictures.any((picture) => picture == null)) {
+      return null;
+    }
     return Wrap(
         alignment: WrapAlignment.center,
         spacing: 6,
@@ -506,7 +522,9 @@ class _LanguageExampleBoardState extends State<LanguageExampleBoard> {
   @override
   void didUpdateWidget(covariant LanguageExampleBoard oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (!oldWidget.initiallyOpen && widget.initiallyOpen) expanded = true;
+    if (!oldWidget.initiallyOpen && widget.initiallyOpen) {
+      expanded = true;
+    }
   }
 
   @override
@@ -517,6 +535,7 @@ class _LanguageExampleBoardState extends State<LanguageExampleBoard> {
     final walkthrough = LanguageStepSequence(
       key: ValueKey(ex),
       steps: ex.sequence,
+      counts: ex.counts,
       picture: ex.picture,
       symbol: ex.icon,
       enabled: widget.onExplore != null,
@@ -566,7 +585,10 @@ class _LanguageExampleBoardState extends State<LanguageExampleBoard> {
                       padding: const EdgeInsets.all(12),
                       child: DefaultTextStyle(
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 15, height: 1.3),
+                              fontFamily: 'Nunito',
+                              color: Colors.white,
+                              fontSize: 15,
+                              height: 1.3),
                           child: Column(children: [
                             Row(children: [
                               if (early && art != null)
@@ -621,6 +643,7 @@ class LanguageStepSequence extends StatefulWidget {
     this.picture,
     this.symbol,
     this.stepPictures = const [],
+    this.counts = const [],
     this.enabled = true,
     required this.grade,
     required this.reduceMotion,
@@ -631,6 +654,7 @@ class LanguageStepSequence extends StatefulWidget {
   final String? picture;
   final IconData? symbol;
   final List<String> stepPictures;
+  final List<int> counts;
   final bool enabled;
   final int grade;
   final bool reduceMotion, slow;
@@ -743,15 +767,27 @@ class _LanguageStepSequenceState extends State<LanguageStepSequence>
                                 : const Color(0xffcbe2df),
                             borderRadius: BorderRadius.circular(early ? 10 : 5),
                           ),
-                          child: Text(
-                              widget.grade == 2
-                                  ? '${i + 1} · ${steps[i]}'
-                                  : steps[i],
-                              style: TextStyle(
-                                  fontSize: early ? 20 : 16,
-                                  height: 1.2,
-                                  fontWeight: FontWeight.w700,
-                                  color: const Color(0xff16323c))),
+                          child:
+                              Column(mainAxisSize: MainAxisSize.min, children: [
+                            if (widget.counts.length == steps.length)
+                              Wrap(spacing: 3, children: [
+                                for (var dot = 0; dot < widget.counts[i]; dot++)
+                                  const DecoratedBox(
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff28465e),
+                                          shape: BoxShape.circle),
+                                      child: SizedBox.square(dimension: 8)),
+                              ]),
+                            Text(
+                                widget.grade == 2
+                                    ? '${i + 1} · ${steps[i]}'
+                                    : steps[i],
+                                style: TextStyle(
+                                    fontSize: early ? 20 : 16,
+                                    height: 1.2,
+                                    fontWeight: FontWeight.w700,
+                                    color: const Color(0xff16323c))),
+                          ]),
                         ),
                       ),
                     ),

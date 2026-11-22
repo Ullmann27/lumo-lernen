@@ -19,6 +19,9 @@ void main() {
   final captureDir = Platform.environment['LUMO_LANGUAGE_CAPTURE_DIR'];
   if (captureDir != null) {
     setUpAll(() async {
+      await (FontLoader('MaterialIcons')
+            ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf')))
+          .load();
       await (FontLoader('Nunito')
             ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
             ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf')))
@@ -169,6 +172,7 @@ void main() {
         await tester.pump(const Duration(seconds: 6));
         await tester.ensureVisible(find.byType(LanguageStepSequence));
         await tester.pump();
+        await tester.pump(const Duration(milliseconds: 350));
         final boundary = tester.renderObject<RenderRepaintBoundary>(
             find.byKey(const ValueKey('lesson-sample')));
         await tester.runAsync(() async {
