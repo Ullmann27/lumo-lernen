@@ -60,7 +60,7 @@ LOG_IMAGES = (
     '07_home_after_onboarding', '08_games_after_navigation', '10_lernen',
     '11_atelier_hub', '12_atelier_beispiel', '13_atelier_zehnerbruecke',
     '20_spiele', '21_lumo_kart_20s', '21_kart_premium_start', '21_kart_garage_step_1',
-    '21_kart_garage_step_5',
+    '21_kart_garage_step_5', '22_rueckkehr_hauptmenue', '22_rueckkehr_garage', '22_teilewerkstatt',
     '21_lumo_kart_real_race', '21_race_hud', '21_race_driving_late', '21_lumo_kart_pause',
     '23_zurueck_in_flutter', '24_lernen_nach_kart', '25_start_nach_kart', '26_neustart',
     'skypost-flight', 'skypost-finish', 'skypost-return', '99_fehler',
@@ -285,6 +285,50 @@ def _skypost_pause_glyph(png: bytes) -> tuple[int, int] | None:
                 if max(pixels[cx, cy]) < 155:
                     return (round(cx*full.width/w), round(cy*full.height/h))
     return None
+
+
+def _showroom_after_race(out: Path) -> dict:
+    """Leave the paused real Android race using the menu and enter its parts bay."""
+    def wait_for(caption: str, stem: str, *, press: bool, min_y=.02, max_y=.99):
+        deadline = time.monotonic() + 100
+        while time.monotonic() < deadline:
+            shot = _screencap()
+            (out / (stem + '.png')).write_bytes(shot)
+            point = _read_garage_footer(shot, caption, min_y=min_y, max_y=max_y)
+            if point is not None:
+                if press:
+                    base.adb('shell', 'input', 'tap', *map(str, point))
+                    time.sleep(1)
+                return shot
+            time.sleep(2)
+        raise RuntimeError('Schaltfläche auf Android fehlt: ' + caption)
+
+    def stage(shot, box):
+        screen = Image.open(io.BytesIO(shot)).convert('RGB')
+        if screen.width <= screen.height:
+            raise RuntimeError('Querformat der Emulatorfahrt fehlt')
+        crop = screen.crop(tuple(round(factor * dimension) for factor, dimension in
+                                 zip(box, screen.size * 2))).resize((96, 64))
+        colors = set()
+        edges = 0
+        for y in range(64):
+            for x in range(1, 96):
+                a, b = crop.getpixel((x, y)), crop.getpixel((x-1, y))
+                colors.add(tuple(value // 24 for value in a))
+                edges += max(abs(v-u) for v, u in zip(a, b)) >= 22
+        if len(colors) < 24 or edges < 55:
+            raise RuntimeError(f'Leere Android-Kartbühne: {len(colors)} Farben, {edges} Kanten')
+        return {'colour_bins': len(colors), 'local_edges': edges}
+
+    wait_for('Neue Fahrt auswählen', '22_pause_zur_garage', press=True)
+    home = wait_for('Garage', '22_rueckkehr_hauptmenue', press=True, min_y=.55, max_y=.8)
+    garage = wait_for('Teile wechseln', '22_rueckkehr_garage', press=True)
+    parts = wait_for('Teilewerkstatt', '22_teilewerkstatt', press=False, max_y=.7)
+    # Each sampled area is inside the unobscured 3D subject stage, excluding
+    # tabs, balance and action buttons. Full original frames stay in the artifact.
+    return {'hauptmenue': stage(home, (.15,.28,.39,.56)),
+            'garage': stage(garage, (.48,.38,.82,.65)),
+            'werkstatt': stage(parts, (.50,.26,.84,.68))}
 
 
 def _skypost_roundtrip(out: Path) -> dict:
@@ -1643,12 +1687,14 @@ def main() -> int:
                         out / '21_pause_after_continue', session, start_state['result_id'])
                 return paused
 
-            attempt('pause-menu', pause)
+            paused = attempt('pause-menu', pause)
+            if paused is not None and identity['versionCode'] >= 2065:
+                attempt('showroom-after-race', lambda: _showroom_after_race(out))
 
         def return_to_flutter() -> dict:
             # Back while paused hands the session back to Flutter. Whatever
             # happened before, leave the game the way a child would.
-            for _ in range(3):
+            for _ in range(5):
                 try:
                     current = base.foreground()
                 except RuntimeError:  # No resumed activity during the rotation.
@@ -1749,6 +1795,8 @@ def main() -> int:
         base.display(1080, 2400, 420)
 
         required = HARD_STEPS
+        if identity['versionCode'] >= 2065:
+            required = (*required, 'showroom-after-race')
         if os.environ.get('LUMO_ANDROID_SKYPOST_PROBE') == '1':
             required = (*required, 'skypost-roundtrip')
             attempt('skypost-roundtrip', lambda: _skypost_roundtrip(out))
