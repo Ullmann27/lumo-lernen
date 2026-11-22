@@ -580,6 +580,27 @@ def _read_garage_footer(png: bytes, expected: str, *, min_y: float = .6,
                 continue
             key = tuple(word[k] for k in ('block_num', 'par_num', 'line_num'))
             lines.setdefault(key, []).append(word)
+        # Narrow touch buttons wrap e.g. "Freiflug beenden". Tesseract
+        # may report the two centred words in separate sparse-text blocks.
+        expected_words = expected.split()
+        if len(expected_words) == 2:
+            tokens = [word for row in lines.values() for word in row]
+            for top in tokens:
+                if _simplify(top['text']) != _simplify(expected_words[0]):
+                    continue
+                left = int(top['left']) + int(top['width']) / 2
+                height = int(top['height'])
+                for bottom in tokens:
+                    if _simplify(bottom['text']) != _simplify(expected_words[1]):
+                        continue
+                    centre = int(bottom['left']) + int(bottom['width']) / 2
+                    dy = int(bottom['top']) - int(top['top'])
+                    if abs(centre - left) > height or not .75 * height <= dy <= 2.5 * height:
+                        continue
+                    x = round((left + centre) / (2 * scale)) + offset_x
+                    y = round((int(top['top']) + int(bottom['top']) + int(bottom['height'])) / (2 * scale)) + offset_y
+                    if image.height * min_y <= y <= image.height * max_y:
+                        return x, y
         for words in lines.values():
             words.sort(key=lambda word: int(word['left']))
             for start in range(len(words)):
