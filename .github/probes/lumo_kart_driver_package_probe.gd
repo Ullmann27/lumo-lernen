@@ -30,6 +30,11 @@ func _run() -> void:
 				_check(players.size() == 1 and players[0].has_animation("kart_seated"), "%s LOD %d seated animation" % [id, level])
 				actor.free()
 	var catalog = load("res://scripts/games/kart_catalog.gd")
+	_check(load("res://assets/kart/track_stage/clips/windwerk_auftakt.ogv") is VideoStream, "packaged race opening film")
+	for route in catalog.TRACKS:
+		var photo_path := "res://assets/kart/track_stage/%s.webp" % route.id
+		var photo := load(photo_path) as Texture2D
+		_check(photo != null and photo.get_width() >= 1920 and photo.get_height() >= 1080, "%s full-size track photograph" % route.id)
 	for entry in catalog.KARTS:
 		var id := str(entry.id)
 		var packed := load("res://assets/kart/production/fleet/%s.glb" % id) as PackedScene
