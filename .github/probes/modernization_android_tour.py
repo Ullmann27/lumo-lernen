@@ -294,7 +294,17 @@ def _showroom_after_race(out: Path) -> dict:
         while time.monotonic() < deadline:
             shot = _screencap()
             (out / (stem + '.png')).write_bytes(shot)
-            point = _read_garage_footer(shot, caption, min_y=min_y, max_y=max_y)
+            if caption == 'Garage':
+                # Isolate the second dock tile. Its icon and the 3D stage make
+                # whole-frame sparse OCR discard the small printed caption.
+                screen = Image.open(io.BytesIO(shot))
+                box = tuple(round(d*f) for d, f in zip(screen.size*2, (.10,.86,.37,.975)))
+                crop = io.BytesIO()
+                screen.crop(box).save(crop, 'PNG')
+                local = _read_garage_footer(crop.getvalue(), caption, min_y=0, max_y=1)
+                point = (box[0]+local[0], box[1]+local[1]) if local else None
+            else:
+                point = _read_garage_footer(shot, caption, min_y=min_y, max_y=max_y)
             if point is not None:
                 if press:
                     base.adb('shell', 'input', 'tap', *map(str, point))
