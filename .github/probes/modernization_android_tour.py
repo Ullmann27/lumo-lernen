@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import base64
 import csv
+import hashlib
 import io
 import json
 import os
@@ -287,6 +288,51 @@ def _skypost_pause_glyph(png: bytes) -> tuple[int, int] | None:
     return None
 
 
+def _read_showroom_action(png: bytes, caption: str, out: Path, tag: str) -> tuple[int, int] | None:
+    """Read a complete caption inside actual amber components, never a fixed region."""
+    screen = Image.open(io.BytesIO(png)).convert('RGB')
+    evidence = {'scope': 'Observed screenshot text only; no touch or workshop PASS',
+                'source_sha256': hashlib.sha256(png).hexdigest(),
+                'surface': list(screen.size), 'caption': caption,
+                'components': [], 'matches': []}
+    deadline = time.monotonic() + 20
+    try:
+        for box in probe.gold_caption_boxes(screen):
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError('Showroom caption observation deadline exceeded')
+            crop = screen.crop(tuple(box))
+            buffer = io.BytesIO()
+            crop.resize((crop.width * 3, crop.height * 3),
+                        Image.Resampling.LANCZOS).save(buffer, 'PNG')
+            result = subprocess.run(
+                ['tesseract', 'stdin', 'stdout', '--psm', '7', '-l', 'deu+eng'],
+                input=buffer.getvalue(), capture_output=True,
+                timeout=min(10, remaining), check=True)
+            observed = result.stdout.decode('utf-8', 'replace').strip()
+            evidence['components'].append({'bounds': box, 'observed_caption': observed})
+            # Whole single-line text: an instruction containing the requested
+            # words is not a control. Ignore punctuation from a button border.
+            if _simplify(observed) == _simplify(caption):
+                evidence['matches'].append(box)
+        if time.monotonic() >= deadline:
+            raise TimeoutError('Showroom caption observation deadline exceeded')
+        if len(evidence['matches']) > 1:
+            raise RuntimeError('Ambiguous distinct showroom action: ' + caption)
+        if not evidence['matches']:
+            evidence['status'] = 'NOT_FOUND'
+            return None
+        x0, y0, x1, y1 = evidence['matches'][0]
+        evidence.update(status='OBSERVED', point=[(x0+x1)//2, (y0+y1)//2])
+        return tuple(evidence['point'])
+    except Exception as error:
+        evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        (out / (tag + '-component-caption.json')).write_text(
+            json.dumps(evidence, ensure_ascii=False, indent=2) + '\n')
+
+
 def _showroom_after_race(out: Path) -> dict:
     """Leave the paused real Android race using the menu and enter its parts bay."""
     def wait_for(caption: str, stem: str, *, press: bool, min_y=.02, max_y=.99):
@@ -305,6 +351,11 @@ def _showroom_after_race(out: Path) -> dict:
                 point = (box[0]+local[0], box[1]+local[1]) if local else None
             else:
                 point = _read_garage_footer(shot, caption, min_y=min_y, max_y=max_y)
+                if point is None and caption == 'Teile wechseln':
+                    # Run 45064686303 visibly rendered this amber action above
+                    # the footer. The legacy footer's bottom-only gold reader
+                    # cannot see it; inspect current colour components instead.
+                    point = _read_showroom_action(shot, caption, out, stem)
             if point is not None:
                 if press:
                     base.adb('shell', 'input', 'tap', *map(str, point))

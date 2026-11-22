@@ -1,0 +1,353 @@
+name: Lumo – unveränderte APK 2067 vollständig auf Android nachprüfen
+
+on:
+  push:
+    branches: [integration/lumo-complete-20261122]
+    paths:
+      - config/android-recheck.json
+      - .github/workflows/lumo-android-recheck.yml
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  android-recheck:
+    name: Originale APK, vollständiger Rundgang und SAF-Wiederherstellung
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Prüfquellen des neuen QA-Commits auschecken
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: qa
+          persist-credentials: false
+      - name: Unveränderten Kandidaten und ursprünglichen Fehllauf festlegen
+        id: candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          cp qa/config/android-recheck.json tour/ANDROID-RECHECK-REQUEST.json
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import re
+          from pathlib import Path
+
+          cfg = json.loads(Path('qa/config/android-recheck.json').read_text())
+          for key in ('build_run', 'source_artifact_id', 'failed_original_run'):
+              if not re.fullmatch(r'[0-9]{6,20}', str(cfg[key])):
+                  raise ValueError(f'Invalid {key}')
+          for key in ('flutter_source_commit', 'godot_source_commit'):
+              if not re.fullmatch(r'[0-9a-f]{40}', cfg[key]):
+                  raise ValueError(f'Invalid {key}')
+          for key in ('apk_sha256', 'signing_certificate_sha256', 'godot_pck_sha256'):
+              if not re.fullmatch(r'[0-9a-f]{64}', cfg[key]):
+                  raise ValueError(f'Invalid {key}')
+          if not re.fullmatch(r'[0-9]+[.][0-9]+[.][0-9]+', cfg['version_name']):
+              raise ValueError('Invalid version_name')
+          if type(cfg['version_code']) is not int or cfg['version_code'] <= 0:
+              raise ValueError('Invalid version_code')
+          for key in ('apk_bytes', 'godot_pck_bytes'):
+              if type(cfg[key]) is not int or cfg[key] <= 0:
+                  raise ValueError(f'Invalid {key}')
+          if cfg['godot_pck_bytes'] >= cfg['apk_bytes']:
+              raise ValueError('Invalid PCK/APK sizes')
+          if cfg['source_artifact_name'] != f"LUMO-EMULATOR-APK-{cfg['build_run']}":
+              raise ValueError('Unexpected original emulator artifact name')
+          if cfg['failed_original_run'] != cfg['build_run']:
+              raise ValueError('The failed original tour must belong to this APK build')
+          for key in ('build_run', 'source_artifact_id', 'source_artifact_name', 'flutter_source_commit'):
+              print(f'{key}={cfg[key]}')
+          PY
+      - name: Unveränderte Produktquellen des APK-Baus auschecken
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.candidate.outputs.flutter_source_commit }}
+          path: product
+          persist-credentials: false
+      - name: Ursprünglichen Run und exaktes Emulator-Artefakt prüfen
+        shell: bash
+        env:
+          BUILD_RUN: ${{ steps.candidate.outputs.build_run }}
+          SOURCE_ARTIFACT_ID: ${{ steps.candidate.outputs.source_artifact_id }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$BUILD_RUN" > tour/source-run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$SOURCE_ARTIFACT_ID" > tour/source-artifact.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          cfg = json.loads(Path('qa/config/android-recheck.json').read_text())
+          run = json.loads(Path('tour/source-run.json').read_text())
+          artifact = json.loads(Path('tour/source-artifact.json').read_text())
+          if str(run['id']) != cfg['build_run'] or run['head_sha'] != cfg['flutter_source_commit']:
+              raise ValueError('The original build has a different source')
+          if str(artifact['id']) != cfg['source_artifact_id'] or artifact['name'] != cfg['source_artifact_name']:
+              raise ValueError('Wrong original emulator artifact')
+          if artifact['expired'] or str(artifact['workflow_run']['id']) != cfg['build_run']:
+              raise ValueError('Artifact expired or belongs to another build')
+          if artifact['workflow_run']['head_sha'] != cfg['flutter_source_commit']:
+              raise ValueError('Artifact belongs to another source commit')
+          print(f"Verified original artifact {artifact['id']}: {artifact['name']}")
+          PY
+      - name: Originale Emulator-APK herunterladen
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.candidate.outputs.build_run }}
+          name: ${{ steps.candidate.outputs.source_artifact_name }}
+          path: candidate/x86_64
+          github-token: ${{ github.token }}
+      - name: APK-Bytes, Produktquelle, PCK und getrennte QA-Provenienz binden
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd candidate/x86_64 && sha256sum -c SHA256SUMS.txt)
+          python3 - <<'PY'
+          from datetime import datetime, timezone
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import shutil
+          import subprocess
+          import sys
+
+          root = Path.cwd()
+          qa = root / 'qa'
+          sys.path.insert(0, str(qa / 'scripts'))
+          from verify_test_apk_candidate import package_identity, source_identity, require
+
+          cfg = json.loads((qa / 'config/android-recheck.json').read_text())
+          expected = source_identity(root / 'product', cfg['flutter_source_commit'])
+          require(expected['versionName'] == cfg['version_name']
+                  and expected['versionCode'] == cfg['version_code'], 'Original product version differs')
+          require(expected['godot']['revision'] == cfg['godot_source_commit'], 'Original Godot pin differs')
+          actual = package_identity(root / 'candidate/x86_64', 'x86_64', expected)
+          pinned = {'abi': 'x86_64', 'sha256': cfg['apk_sha256'], 'bytes': cfg['apk_bytes'],
+                    'signingCertificateSha256': cfg['signing_certificate_sha256'],
+                    'godot_pck_sha256': cfg['godot_pck_sha256'],
+                    'godot_pck_bytes': cfg['godot_pck_bytes']}
+          require(actual == pinned, 'The downloaded emulator APK differs from the fixed original bytes')
+          split_path = root / 'candidate/x86_64/SPLIT-APK-IDENTITY.json'
+          split = json.loads(split_path.read_text())
+          require(all(split.get(key) == value for key, value in expected.items()), 'Split package source differs')
+          require(split.get('same_pck') is True and split['packages']['x86_64'] == actual,
+                  'Emulator APK does not match the original split identity')
+          arm64 = split['packages']['arm64-v8a']
+          for key in ('signingCertificateSha256', 'godot_pck_sha256', 'godot_pck_bytes'):
+              require(arm64[key] == actual[key], f'ARM64/emulator {key} differs')
+          qa_commit = subprocess.check_output(['git', '-C', str(qa), 'rev-parse', 'HEAD'], text=True).strip()
+          require(qa_commit == os.environ['GITHUB_SHA'], 'Wrong QA checkout')
+          require(not subprocess.check_output(
+              ['git', '-C', str(qa), 'status', '--porcelain', '--untracked-files=no'],
+              text=True).strip(), 'Tracked QA sources were changed')
+          sources = {qa / '.github/workflows/lumo-android-recheck.yml', qa / 'config/android-recheck.json',
+                     qa / 'scripts/verify_test_apk_candidate.py', qa / 'scripts/verify_native_start_diagnostics.py'}
+          for directory in ('.github/probes', 'scripts/probes', 'tools/android_qa'):
+              sources.update((qa / directory).rglob('*.py'))
+          hashes = [{'path': str(path.relative_to(qa)), 'bytes': path.stat().st_size,
+                     'sha256': hashlib.sha256(path.read_bytes()).hexdigest()} for path in sorted(sources)]
+          original_run = json.loads((root / 'tour/source-run.json').read_text())
+          report = {
+              'identity_status': 'PASS', 'android_status_at_identity_check': 'NOT_RUN',
+              'created_at_utc': datetime.now(timezone.utc).isoformat(),
+              'original_build_run': cfg['build_run'], 'source_artifact_id': cfg['source_artifact_id'],
+              'source_artifact_name': cfg['source_artifact_name'], 'original_source': expected,
+              'failed_original_run': cfg['failed_original_run'],
+              'original_workflow_conclusion': original_run.get('conclusion'),
+              'original_workflow_url': original_run['html_url'], 'apk': actual,
+              'qa_commit': qa_commit, 'qa_run': os.environ['GITHUB_RUN_ID'],
+              'qa_run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'qa_workflow': os.environ['GITHUB_WORKFLOW'],
+              'qa_source_files': hashes,
+              'execution': {'product_cwd': 'product', 'qa_sources': 'qa',
+                            'product_source_changed': False, 'apk_rebuilt': False},
+              'scope': 'Exact original x86_64 APK in an API35 emulator; no physical ARM64/Fold/FPS claim.',
+          }
+          (root / 'tour/QA-IDENTITY.json').write_text(json.dumps(report, indent=2) + chr(10))
+          for name in ('BUILD-PROVENANCE.json', 'APK-VERIFICATION.json', 'SPLIT-APK-IDENTITY.json', 'SHA256SUMS.txt'):
+              shutil.copy2(root / 'candidate/x86_64' / name, root / 'tour' / name)
+          print(json.dumps({'original_source': expected, 'apk': actual, 'qa_commit': qa_commit}, indent=2))
+          PY
+          awk '{print $1 "  dist/x86_64/Lumo-Lernen-Neu.apk"}' candidate/x86_64/SHA256SUMS.txt > candidate/ANDROID-TOUR-SHA256SUMS.txt
+      - name: Emulator und unveränderte Prüftool-Versionen vorbereiten
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+      - name: QA-Hilfsimporte aus dem unveränderten Produkt-Arbeitsverzeichnis prüfen
+        shell: bash
+        working-directory: product
+        run: |
+          set -euo pipefail
+          "$GITHUB_WORKSPACE/.probe-venv/bin/python" - <<'PY'
+          import importlib
+          import json
+          import os
+          from pathlib import Path
+          import sys
+
+          root = Path(os.environ['GITHUB_WORKSPACE'])
+          qa = root / 'qa'
+          sys.path.insert(0, str(qa / '.github/probes'))
+          modules = {}
+          for name in ('modernization_android_tour', 'lumo_local_backup_android_probe',
+                       'native_start_diagnostics', 'creative_android_probe', 'kart_complete_android_probe',
+                       'kart_tour_evidence', 'kart_garage_evidence', 'kart_android_race',
+                       'pr207_android_smoke', 'pr207_android_ui_probe', 'rooted_emulator',
+                       'flutter_surface_readiness', 'native_surface_readiness', 'native_ocr_tiles'):
+              module = importlib.import_module(name)
+              path = Path(module.__file__).resolve()
+              if not path.is_relative_to(qa):
+                  raise RuntimeError(f'QA helper {name} was imported from outside the QA checkout')
+              modules[name] = str(path.relative_to(qa))
+          report = {'status': 'PASS', 'product_cwd': str(Path.cwd()), 'qa_helpers': modules}
+          (root / 'tour/QA-IMPORT-RESOLUTION.json').write_text(json.dumps(report, indent=2) + chr(10))
+          print(json.dumps(report, indent=2))
+          PY
+      - name: Mesa-Software-Anzeige für das Emulator-GL starten
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        shell: bash
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -Fi 'llvmpipe' tour/mesa-renderer.txt
+      - name: Vollständigen Rundgang und SAF-Probe im selben Emulator ausführen
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_NATIVE_START_DIAGNOSTICS: '1'
+          LUMO_NATIVE_START_WAIT: '35'
+          LUMO_NATIVE_START_BUDGET: '1200'
+          LUMO_ANDROID_SKYPOST_PROBE: '1'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          ram-size: 4096M
+          emulator-build: '14472402'
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            cd "$GITHUB_WORKSPACE/product" && "$GITHUB_WORKSPACE/.probe-venv/bin/python" "$GITHUB_WORKSPACE/qa/.github/probes/modernization_android_tour.py" --apk "$GITHUB_WORKSPACE/candidate/x86_64/Lumo-Lernen-Neu.apk" --provenance "$GITHUB_WORKSPACE/candidate/x86_64/BUILD-PROVENANCE.json" --sums "$GITHUB_WORKSPACE/candidate/ANDROID-TOUR-SHA256SUMS.txt" --out "$GITHUB_WORKSPACE/tour"
+            cd "$GITHUB_WORKSPACE/product" && "$GITHUB_WORKSPACE/.probe-venv/bin/python" "$GITHUB_WORKSPACE/qa/.github/probes/lumo_local_backup_android_probe.py" --apk "$GITHUB_WORKSPACE/candidate/x86_64/Lumo-Lernen-Neu.apk" --provenance "$GITHUB_WORKSPACE/candidate/x86_64/BUILD-PROVENANCE.json" --sums "$GITHUB_WORKSPACE/candidate/ANDROID-TOUR-SHA256SUMS.txt" --out "$GITHUB_WORKSPACE/tour/local-backup"
+      - name: Sechs beobachtete native UI-Starts verbindlich prüfen
+        shell: bash
+        working-directory: product
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/qa/scripts/verify_native_start_diagnostics.py" "$GITHUB_WORKSPACE/tour/native-starts.json" --out "$GITHUB_WORKSPACE/tour/NATIVE-GAME-STARTS.json"
+      - name: Nur vollständig bestandene Android-Prüfbelege bündeln
+        shell: bash
+        run: |
+          set -euo pipefail
+          .probe-venv/bin/python - <<'PY'
+          from datetime import datetime, timezone
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          import zipfile
+
+          root = Path.cwd()
+          qa = root / 'qa'
+          sys.path.insert(0, str(qa / '.github/probes'))
+          from modernization_android_tour import HARD_STEPS
+          from lumo_local_backup_android_probe import REQUIRED as BACKUP_STEPS
+          sys.path.insert(0, str(qa / 'scripts'))
+          from verify_native_start_diagnostics import REQUIRED as NATIVE_SCENES, verify
+          from verify_test_apk_candidate import source_identity, require
+
+          out = root / 'tour'
+          identity = json.loads((out / 'QA-IDENTITY.json').read_text())
+          require(identity.get('identity_status') == 'PASS', 'Candidate identity did not pass')
+          require(identity['qa_commit'] == os.environ['GITHUB_SHA']
+                  and identity['qa_run'] == os.environ['GITHUB_RUN_ID'], 'Wrong QA run identity')
+          require(source_identity(root / 'product', identity['original_source']['flutter_source_commit'])
+                  == identity['original_source'], 'Original product source changed during QA')
+          require(not subprocess.check_output(
+              ['git', '-C', str(qa), 'status', '--porcelain', '--untracked-files=no'],
+              text=True).strip(), 'Tracked QA sources changed during the tour')
+          for entry in identity['qa_source_files']:
+              raw = (qa / entry['path']).read_bytes()
+              require(len(raw) == entry['bytes']
+                      and hashlib.sha256(raw).hexdigest() == entry['sha256'], 'QA helper changed during execution')
+
+          tour = json.loads((out / 'tour-result.json').read_text())
+          require(tour.get('status') == 'PASS' and tour.get('apk_sha256') == identity['apk']['sha256'],
+                  'Full modernization tour has not passed for the exact APK')
+          require(tour.get('fatal_crashes') == 0, 'Android tour reported a fatal crash')
+          required = (*HARD_STEPS, 'showroom-after-race', 'skypost-roundtrip')
+          for name in required:
+              matches = [row for row in tour.get('steps', []) if row.get('step') == name]
+              require(len(matches) == 1 and matches[0].get('ok') is True,
+                      f'Missing or failed mandatory tour step: {name}')
+          native = json.loads((out / 'NATIVE-GAME-STARTS.json').read_text())
+          require(native == verify(json.loads((out / 'native-starts.json').read_text())),
+                  'Native gate differs from its source observations')
+          require(native.get('status') == 'PASS' and set(native['required_scenes']) == set(NATIVE_SCENES),
+                  'The six native UI starts have not passed')
+          backup = json.loads((out / 'local-backup/backup-result.json').read_text())
+          require(backup.get('status') == 'PASS'
+                  and [row.get('step') for row in backup.get('steps', [])] == list(BACKUP_STEPS)
+                  and all(row.get('ok') is True for row in backup['steps']),
+                  'The eight real Android SAF export/restore steps have not all passed')
+          require(backup.get('identity', {}).get('apk_sha256') == identity['apk']['sha256'],
+                  'Backup probe used another candidate')
+          for phase in ('installed', 'installed_after'):
+              require(backup.get(phase, {}).get('sha256') == identity['apk']['sha256'],
+                      f'Backup {phase} APK bytes changed')
+
+          result = {
+              'status': 'PASS', 'completed_at_utc': datetime.now(timezone.utc).isoformat(),
+              'original_build_run': identity['original_build_run'],
+              'failed_original_run': identity['failed_original_run'],
+              'original_source': identity['original_source'], 'apk': identity['apk'],
+              'qa_commit': identity['qa_commit'], 'qa_run': identity['qa_run'],
+              'mandatory_tour_steps': list(required), 'native_ui_starts': list(NATIVE_SCENES),
+              'saf_steps': list(BACKUP_STEPS),
+              'scope': identity['scope'],
+              'original_failed_run_changed': False,
+          }
+          (out / 'ANDROID-RECHECK-RESULT.json').write_text(json.dumps(result, indent=2) + chr(10))
+          with zipfile.ZipFile(root / 'LUMO-ANDROID-PRUEFBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(out.rglob('*')):
+                  require(not path.is_symlink(), 'Unexpected symbolic evidence path')
+                  if path.is_file():
+                      archive.write(path, str(path.relative_to(root)))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('Android-Nachprüfung PASS: unveränderte APK, vollständiger Rundgang, sechs native UI-Starts und acht SAF-Schritte.' + chr(10))
+          print(json.dumps(result, indent=2))
+          PY
+      - name: Alle ursprünglichen Beobachtungen auch bei einem Fehlschlag sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-ANDROID-TOUR-${{ github.run_id }}
+          path: |
+            tour/
+            LUMO-ANDROID-PRUEFBELEGE.zip
+          if-no-files-found: warn
