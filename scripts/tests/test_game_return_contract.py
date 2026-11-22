@@ -67,6 +67,22 @@ object ReturnRegression {
         }
         fun count() = disk().getJSONArray("results").length()
         when (args[0]) {
+            "skypost-replay" -> {
+                val source = System.getenv("LUMO_TEST_FLIGHT_RECEIPT")
+                val payload = if (source == null) JSONObject().put("resultId", "test-post-flight")
+                    .put("game", "skypost").put("status", "completed").put("stars", 5).toString()
+                    else File(source).readText()
+                check(JSONObject(payload).getString("game") == "skypost", "Sternenpost receipt expected")
+                repeat(2) { check(GameEventStore.recordReward(context, payload), "flight not accepted") }
+                val pending = disk()
+                val receipts = pending.getJSONArray("results")
+                check(receipts.length() == 1, "duplicate flight")
+                val id = JSONObject(payload).getString("resultId")
+                check(receipts.getJSONObject(0).getString("resultId") == id, "flight ID changed")
+                System.getenv("LUMO_TEST_FLIGHT_PENDING")?.let { File(it).writeText(pending.toString()) }
+                GameEventStore.acknowledge(context, listOf(id), null, null)
+                check(count() == 0, "flight not acknowledged")
+            }
             "result-before-resume", "resume-before-result" -> {
                 reward("earned-before-native")
                 GameEventStore.beginCallerReturn(context)
@@ -301,6 +317,8 @@ class GameReturnStoreTest(unittest.TestCase):
     def test_stale_ack_keeps_return_and_unacknowledged_rewards(self): self.scenario('stale-ack-and-rewards')
     def test_new_launch_supersedes_only_stale_navigation(self): self.scenario('new-launch-stale-navigation')
     def test_failed_commit_retains_fallback_and_explicit_reset_still_works(self): self.scenario('storage-failure-and-reset')
+    def test_skypost_retry_persists_one_flight(self): self.scenario('skypost-replay')
+
     def test_invalid_session_never_writes(self): self.scenario('invalid-session')
     def test_leftover_cleanup_lock_runs_when_no_writer(self): self.scenario('free-writer-lock')
     def test_start_journal_keeps_twenty_bounded_entries_and_derives_load_time(self): self.scenario('start-journal')
@@ -327,7 +345,7 @@ class GameReturnWiringTest(unittest.TestCase):
         self.assertIn('.takeIf { game in setOf("learning", "connect_four", "memory", "quiz") }', launch)
         self.assertNotIn('"invalid_cards"', launch)
         self.assertNotIn('cardsToken', launch)
-        self.assertIn('"kart", "jump", "run", "puzzle"', launch)
+        self.assertRegex(launch, r'"kart", "jump", "run", "skypost", "puzzle"')
         self.assertLess(launch.index('"invalid_connect_four"'), launch.index('GameEventStore.beginCallerReturn'))
         self.assertLess(launch.index('"invalid_table_game"'), launch.index('GameEventStore.beginCallerReturn'))
         self.assertLess(launch.index('GameEventStore.beginCallerReturn'), launch.index('pendingGame = result'))

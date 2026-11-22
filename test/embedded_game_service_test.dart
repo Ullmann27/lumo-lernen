@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -104,6 +105,30 @@ void main() {
     expect(acknowledged, ['race-1']);
     nextService.dispose();
     nextState.dispose();
+  });
+
+  test('Sternenpost: ein quittierter Flug trotz verlorener erster Quittung', () async {
+    const fixture = String.fromEnvironment('LUMO_TEST_FLIGHT_PENDING');
+    pending = fixture.isEmpty
+        ? {'results': [{'game': 'skypost', 'resultId': 'test-post-flight', 'stars': 5, 'solved': 2, 'status': 'completed'}]}
+        : Map<String, dynamic>.from(jsonDecode(File(fixture).readAsStringSync()) as Map);
+    final receipt = (pending['results'] as List).single as Map;
+    expect(receipt['game'], 'skypost');
+    final wallet = RewardWalletRepository();
+    final state = LumoAppState(walletRepository: wallet);
+    final service = EmbeddedGameService(appState: state, wallet: wallet, onDestination: (_) {});
+    failAcknowledgement = true;
+    await service.synchronize();
+    expect((pending['results'] as List), hasLength(1));
+    failAcknowledgement = false;
+    await service.synchronize();
+    expect(pending['results'], isEmpty);
+    expect(acknowledged, [receipt['resultId']]);
+    final stored = await RewardWalletRepository().load();
+    expect(stored.stars, receipt['stars']);
+    expect(stored.gameResultIds, [receipt['resultId']]);
+    service.dispose();
+    state.dispose();
   });
 
   test('simultaneous resumed callbacks share the same replay operation',
