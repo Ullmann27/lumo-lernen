@@ -45,8 +45,11 @@ class CourseEvidenceTests(unittest.TestCase):
         primary = primary or {}
         observed, calls, active = [], [], {}
 
-        def gameplay(index, name, require_movement):
+        def gameplay(index, name, require_movement, *, environment):
             self.assertEqual(require_movement, movement)
+            if 'environment' in active:
+                self.assertIs(environment, active['environment'])
+            active['environment'] = environment
             active['name'] = name
             observed.append(name)
             if name in primary:

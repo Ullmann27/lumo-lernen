@@ -11,7 +11,7 @@ on:
     paths: [.github/workflows/lumo-2052-rendered-android.yml, config/arm64-course-check.json]
 
 permissions:
-  contents: write
+  contents: read
   actions: read
 
 jobs:
@@ -118,7 +118,6 @@ jobs:
           script: .probe-venv/bin/python tools/android_qa/run_course_android_probe.py "$(cat candidate/APK-PATH.txt)" --movement
       - name: ARM64-Kursbelege an den geprüften APK-Kandidaten binden
         env:
-          GH_TOKEN: ${{ github.token }}
           BUILD_RUN: ${{ steps.candidate.outputs.build_run }}
           BUILD_SOURCE: ${{ steps.candidate.outputs.build_source }}
           VERSION_CODE: ${{ steps.candidate.outputs.version_code }}
@@ -140,6 +139,19 @@ jobs:
           if proof['abis'] != ['arm64-v8a'] or proof['versionCode'] != int(os.environ['VERSION_CODE']):
               raise RuntimeError('Wrong ARM64 candidate version or ABI')
           courses = ['dschungelherz', 'zauberwald', 'sonnenhafen']
+          observed = json.loads(Path('course-evidence/COURSE-PROBE.json').read_text())
+          if observed.get('status') != 'PASS' or observed.get('movement_log_required') is not True:
+              raise RuntimeError('The actual course probe did not pass with required movement logs')
+          observed_courses = observed.get('courses', [])
+          if [item.get('course') for item in observed_courses] != courses:
+              raise RuntimeError('The actual course observations are incomplete or out of order')
+          for item in observed_courses:
+              if (item.get('status') != 'PASS' or item.get('gameplay_status') != 'PASS'
+                      or item.get('primary_failure') is not None or item.get('evidence_failures')):
+                  raise RuntimeError('A retained gameplay or evidence failure prevents delivery')
+              if any(item.get('evidence', {}).get(kind, {}).get('status') != 'PASS'
+                     for kind in ['logcat', 'exit-info']):
+                  raise RuntimeError('A required diagnostic collection did not pass')
           for course in courses:
               for suffix in ['selection.png', 'play-1.png', 'play-2.png', 'logcat.txt', 'exit-info.txt']:
                   path = Path('course-evidence') / f'{course}-{suffix}'
@@ -149,6 +161,9 @@ jobs:
               'status': 'PASS', 'apk_sha256': actual,
               'build_run': os.environ['BUILD_RUN'], 'flutter_source_commit': os.environ['BUILD_SOURCE'],
               'godot_source_commit': proof['godot']['revision'], 'versionCode': proof['versionCode'],
+              'qa_commit': os.environ['GITHUB_SHA'],
+              'qa_probe_sha256': hashlib.sha256(Path('tools/android_qa/run_course_android_probe.py').read_bytes()).hexdigest(),
+              'course_probe_sha256': hashlib.sha256(Path('course-evidence/COURSE-PROBE.json').read_bytes()).hexdigest(),
               'tested_courses': courses,
               'method': 'Installed signed ARM64 APK on disposable Android API35 emulator with native bridge; Mesa llvmpipe, real course-card touches and changing rendered frames.',
               'limits': 'Not a physical ARM64 device, no Fold7 performance, audio or 60 FPS certification.',
@@ -160,12 +175,7 @@ jobs:
               for path in sorted(Path('course-evidence').rglob('*')):
                   if path.is_file():
                       archive.write(path, str(path))
-          Path('candidate/RELEASE-TAG.txt').write_text(
-              f"lumo-test-{proof['versionName']}-{proof['versionCode']}-{os.environ['BUILD_RUN']}")
           PY
-          TAG="$(cat candidate/RELEASE-TAG.txt)"
-          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq .object.sha)" = "$BUILD_SOURCE"
-          gh release upload "$TAG" LUMO-ARM64-KURSPRUEFUNG.zip --repo "$GITHUB_REPOSITORY" --clobber
       - uses: actions/upload-artifact@v4
         if: always()
         with:

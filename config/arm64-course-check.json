@@ -2,5 +2,5 @@
   "build_run": "45064686303",
   "flutter_source_commit": "376217b4e39b726657a8fe96e9868f816f681edf",
   "version_code": 2067,
-  "note": "Unveränderte signierte APK 0.13.55+2067: vollständige Wiederholung aller drei ARM64-Kurse nach dem belegten Logcat-Lesefehler (Exit 255) in Run 45067933161. Echte Berührungen, Bewegung, Vordergrund und vollständige Pflichtbelege bleiben erforderlich; Primärfehler und alle Diagnoseversuche bleiben erhalten."
+  "note": "Unveränderte signierte APK 0.13.55+2067: Wiederholung aller drei ARM64-Kurse nach dem belegten Pixel-Launcher-ANR in Run 45069535268. Nur der eindeutig identifizierte Android-Systemdialog darf einmal pro Lauf über seine frisch beobachtete Schaltfläche geschlossen werden; andere oder wiederkehrende ANRs bleiben Fehler. Echte Kursberührungen, gerenderte Bewegung, Vordergrund und vollständige Originaldiagnosen bleiben Pflicht. Erfolgreiche Belege werden ohne öffentliche Release-Schreibrechte als Artefakt gesichert."
 }
