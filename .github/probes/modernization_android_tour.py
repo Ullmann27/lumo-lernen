@@ -333,12 +333,18 @@ def _skypost_roundtrip(out: Path) -> dict:
             raise RuntimeError('Freiflug ist nicht gestartet')
         time.sleep(2)
     receipt_file = f'/data/user/0/{PACKAGE}/files/lumo_game_events.json'
-    # The game periodically saves its own clock while flying. Wait for that
-    # checkpoint before pressing the actual visible HUD control once.
-    deadline = time.monotonic() + 330
-    elapsed = 0
-    while elapsed < 20000 and time.monotonic() < deadline:
-        time.sleep(5)
+    # Only a native pause writes the free-flight checkpoint. The Android back
+    # gesture can dismiss the tutorial first, so tap the actual two-bar control.
+    for attempt_index in range(4):
+        time.sleep(60)
+        flight = _screencap()
+        (out / 'skypost-flight.png').write_bytes(flight)
+        point = _skypost_pause_glyph(flight)
+        if point is None:
+            raise RuntimeError('Pause-Symbol im Flugbild fehlt')
+        base.adb('shell', 'input', 'tap', *map(str, point))
+        time.sleep(2)
+        elapsed = 0
         paths = base.adb('shell', 'find', f'/data/user/0/{PACKAGE}', '-type', 'f',
                          '-name', 'skypost_*_free.cfg', check=False).splitlines()
         for path in paths:
@@ -346,14 +352,11 @@ def _skypost_roundtrip(out: Path) -> dict:
             match = re.search(r'^elapsed_ms\s*=\s*(\d+)', raw, re.MULTILINE)
             if match:
                 elapsed = max(elapsed, int(match[1]))
-    if elapsed < 20000:
+        if elapsed >= 20000:
+            break
+        touch('Weiterfliegen', 'resume')
+    else:
         raise RuntimeError(f'Gespeicherte Freiflugzeit blieb bei {elapsed} ms')
-    flight = _screencap()
-    (out / 'skypost-flight.png').write_bytes(flight)
-    point = _skypost_pause_glyph(flight)
-    if point is None:
-        raise RuntimeError('Pause-Symbol im Flugbild fehlt')
-    base.adb('shell', 'input', 'tap', *map(str, point))
     touch('Freiflug beenden', 'finish')
     deadline = time.monotonic() + 60
     payload = None
