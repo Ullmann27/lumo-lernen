@@ -3,6 +3,7 @@ on:
   push:
     branches: [repair/lumo-quiz-run-kart-20261119]
     paths:
+      - config/android-tour-recheck.json
       - .github/workflows/lumo-apk-tour-recheck.yml
       - .github/probes/modernization_android_tour.py
 
@@ -15,6 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
+      LUMO_ANDROID_SKYPOST_PROBE: '1'
       DISPLAY: ':99'
       LIBGL_ALWAYS_SOFTWARE: 'true'
       GALLIUM_DRIVER: llvmpipe
@@ -34,7 +36,7 @@ jobs:
           import re
           from pathlib import Path
 
-          config = json.loads(Path('config/arm64-course-check.json').read_text())
+          config = json.loads(Path('config/android-tour-recheck.json').read_text())
           run = str(config['build_run'])
           source = config['flutter_source_commit']
           assert re.fullmatch(r'[0-9]{6,20}', run)

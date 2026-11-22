@@ -205,6 +205,53 @@ def _atelier_roundtrip(out: Path) -> dict:
     }
 
 
+def _free_flight_card(png: bytes) -> tuple[int, int] | None:
+    """Read the caption inside the magenta mode card, excluding its thick bright border."""
+    full = Image.open(io.BytesIO(png)).convert('RGB')
+    small = full.copy()
+    small.thumbnail((360, 600))
+    width, height = small.size
+    pixels = small.load()
+    edges = set()
+    for y in range(height):
+        for x in range(width):
+            r, g, b = pixels[x, y]
+            if r > 150 and r - g > 38 and b > .74 * r and b - g > 30:
+                edges.add((x, y))
+    while edges:
+        queue = [edges.pop()]
+        component = []
+        while queue:
+            x, y = queue.pop()
+            component.append((x, y))
+            for dx, dy in ((0,1),(0,-1),(1,0),(-1,0)):
+                point = (x+dx, y+dy)
+                if point in edges:
+                    edges.remove(point)
+                    queue.append(point)
+        if len(component) < 35:
+            continue
+        xs, ys = zip(*component)
+        x0, x1 = min(xs), max(xs)
+        y0, y1 = min(ys), max(ys)
+        if x1-x0 < width*.09 or y1-y0 < height*.025 or x1-x0 > width*.48:
+            continue
+        box = tuple(round(v * scale) for v, scale in zip(
+            (x0+.06*(x1-x0), y0+.26*(y1-y0), x1-.06*(x1-x0), y1-.26*(y1-y0)),
+            (full.width/width, full.height/height, full.width/width, full.height/height)))
+        if box[2] <= box[0] or box[3] <= box[1]:
+            continue
+        caption = full.crop(box).convert('L').point(lambda v: 0 if v >= 160 else 255)
+        caption = caption.resize((500, max(40, int(500*caption.height/caption.width))))
+        raw = io.BytesIO()
+        caption.save(raw, 'PNG')
+        words = subprocess.run(['tesseract','stdin','stdout','-l','eng','--psm','7'],
+                               input=raw.getvalue(), capture_output=True, timeout=15, check=True)
+        if _simplify(words.stdout.decode()) == 'freiflug':
+            return ((box[0]+box[2])//2, (box[1]+box[3])//2)
+    return None
+
+
 def _skypost_roundtrip(out: Path) -> dict:
     """Launch the tile, end a genuine free flight and verify the Flutter wallet after restart."""
     if not try_tap(out, ['Spielen', 'Spiele'], 'skypost-spiele'):
@@ -218,7 +265,9 @@ def _skypost_roundtrip(out: Path) -> dict:
         deadline = time.monotonic() + seconds
         while time.monotonic() < deadline:
             png = _screencap()
-            point = _read_garage_footer(png, label, min_y=.04, max_y=.995)
+            point = _free_flight_card(png) if label == "Freiflug" else None
+            if point is None:
+                point = _read_garage_footer(png, label, min_y=.04, max_y=.995)
             if point is not None:
                 (out / f'skypost-{tag}.png').write_bytes(png)
                 base.adb('shell', 'input', 'tap', str(point[0]), str(point[1]))
