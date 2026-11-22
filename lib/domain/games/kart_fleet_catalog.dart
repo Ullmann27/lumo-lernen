@@ -2,8 +2,8 @@
 ///
 /// Spiegel von `scripts/games/kart_fleet.gd` im Repository lumo-godot
 /// (Kennung, Name, Rolle, Sternschwelle). Die Bilder unter
-/// `assets/lumo_design/karts/` sind echte Aufnahmen der Kart-Modelle aus der
-/// Spiel-Engine. `scripts/verify_kart_fleet_mirror.py` vergleicht diese Liste
+/// `assets/lumo_design/karts/` zeigen die spielbaren Karosserien und Fahrwerke
+/// als freigestellte Blender-Studioaufnahmen. `scripts/verify_kart_fleet_mirror.py` vergleicht diese Liste
 /// beim APK-Bau mit dem gepinnten Spielstand.
 class KartFleetEntry {
   const KartFleetEntry(this.id, this.name, this.role, this.unlockStars);
