@@ -60,10 +60,14 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
     try {
       final grade = widget.appState.state.grade.clamp(1, 4);
       final owner = _owner ?? await widget.appState.captureLearningProfile();
+      await widget.appState.prepareLearningLease(owner);
       var progress = await widget.store.load(owner.studentId);
-      if (!mounted ||
-          !widget.appState.isCurrentLearningLease(owner) ||
-          widget.appState.backupBusy) return;
+      if (!mounted) return;
+      if (!widget.appState.isCurrentLearningLease(owner) ||
+          widget.appState.backupBusy) {
+        throw StateError(
+            'The selected learning profile changed while loading.');
+      }
       if (_owner == null &&
           progress.results.isEmpty &&
           progress.drafts.isEmpty) {
@@ -74,17 +78,23 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
       }
       await LumoSound.instance.init();
       if (!mounted) return;
+      if (!widget.appState.isCurrentLearningLease(owner) ||
+          widget.appState.backupBusy) {
+        throw StateError(
+            'The selected learning profile changed while loading.');
+      }
       setState(() {
         _owner = owner;
         _progress = progress;
         _error = null;
       });
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(
           () => _error =
               'Dein Rätselstand konnte noch nicht geladen werden. Bitte versuche es erneut.',
         );
+      }
     }
   }
 
@@ -101,17 +111,19 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
     setState(() => _busy = true);
     try {
       final progress = await widget.store.setGrade(_owner!.studentId, grade);
-      if (mounted && _current)
+      if (mounted && _current) {
         setState(() {
           _progress = progress;
           _error = null;
         });
+      }
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(
           () =>
               _error = 'Die Klassenwahl konnte noch nicht gespeichert werden.',
         );
+      }
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -120,7 +132,9 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
   Future<void> _open(LogicPuzzle puzzle) async {
     if (_busy ||
         !_current ||
-        !_progress!.isUnlocked(puzzle.kind, puzzle.grade, puzzle.level)) return;
+        !_progress!.isUnlocked(puzzle.kind, puzzle.grade, puzzle.level)) {
+      return;
+    }
     _click();
     setState(() => _busy = true);
     try {
@@ -143,11 +157,12 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
       );
       if (mounted && _current) await _load();
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(
           () => _error =
               'Das Rätsel konnte noch nicht geöffnet werden. Dein bisheriger Stand bleibt erhalten.',
         );
+      }
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -275,12 +290,17 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                                     if (_kind == null) ...[
                                       LayoutBuilder(
                                         builder: (context, constraints) {
+                                          final textScale =
+                                              MediaQuery.textScalerOf(context)
+                                                      .scale(21) /
+                                                  21;
+                                          final minCardWidth = 300 *
+                                              (textScale < 1 ? 1 : textScale);
                                           final columns =
-                                              constraints.maxWidth >= 870
-                                                  ? 3
-                                                  : constraints.maxWidth >= 560
-                                                      ? 2
-                                                      : 1;
+                                              ((constraints.maxWidth + 16) /
+                                                      (minCardWidth + 16))
+                                                  .floor()
+                                                  .clamp(1, 3);
                                           final width = (constraints.maxWidth -
                                                   (columns - 1) * 16) /
                                               columns;
@@ -353,12 +373,11 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
   }
 
   Widget _hero() => ClipRRect(
+        key: const ValueKey('logic-hero'),
         borderRadius: BorderRadius.circular(26),
         child: Stack(
           children: [
-            const SizedBox(
-              height: 218,
-              width: double.infinity,
+            const Positioned.fill(
               child: Image(
                 image:
                     AssetImage('assets/lumo_design/spielwelt/cover_logic.webp'),
@@ -378,18 +397,25 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                 ),
               ),
             ),
-            Positioned(
-              left: 20,
-              right: 20,
-              bottom: 18,
+            Container(
+              constraints: const BoxConstraints(minHeight: 218),
+              width: double.infinity,
+              alignment: Alignment.bottomLeft,
+              padding: const EdgeInsets.fromLTRB(20, 70, 20, 18),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Dein Rätselabenteuer',
-                      style: iqText(27, shadows: iqScrim)),
+                  Text(
+                    'Dein Rätsel\u00ADabenteuer',
+                    key: const ValueKey('logic-hero-title'),
+                    semanticsLabel: 'Dein Rätselabenteuer',
+                    style: iqText(27, shadows: iqScrim),
+                  ),
                   const SizedBox(height: 4),
                   Text(
                     'Entdecken. Ausprobieren. Weiterkommen.',
+                    key: const ValueKey('logic-hero-subtitle'),
                     style: iqText(15, color: const Color(0xFFE1F5FF)),
                   ),
                 ],

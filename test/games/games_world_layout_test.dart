@@ -10,7 +10,7 @@ import 'package:lumo_lernen/features/games/games_content.dart';
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  testWidgets('Spielewelt zeigt alle elf Spiele einschließlich Dorfwirtschaft', (tester) async {
+  testWidgets('Spielewelt erhält bestehende Spiele und zeigt World und Logikspiele', (tester) async {
     await tester.binding.setSurfaceSize(const Size(392, 2800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final handle = tester.ensureSemantics();
@@ -28,6 +28,8 @@ void main() {
     expect(find.text('Weitere Spielwelten entdecken'), findsNothing);
     expect(find.bySemanticsLabel('Lumo Spielewelt'), findsOneWidget);
     for (final title in [
+      'Lumo World',
+      'Logikspiele',
       'Memory',
       'Cards',
       'Puzzle',
@@ -68,6 +70,8 @@ void main() {
     expect(find.byKey(const ValueKey('spielwelt-reference-hub')), findsNothing);
     expect(find.text('Auf ins Abenteuer!'), findsOneWidget);
     for (final identity in const [
+      'world',
+      'logic',
       'memory',
       'cards',
       'puzzle',

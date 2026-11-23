@@ -61,6 +61,7 @@ PLAN = (
     ('puzzle', 'puzzle', 'ui', 'Puzzle', 'Stück für Stück die Welt entdecken!'),
     ('rhythm', 'rhythm', 'ui', 'Rhythm Party', 'Fühl den Beat!'),
     ('treasure', 'treasure', 'ui', 'Schatzsuche', 'Rätsel. Hinweise. Schätze!'),
+    ('world', 'world', 'ui', 'Lumo World', 'Dein Dorf, deine Freunde und neue Abenteuer.'),
     ('games', 'games', 'ui-button', 'Magische 3D-Spielewelt betreten', None),
     ('jump-intent', 'jump', 'intent', None, None),
 )

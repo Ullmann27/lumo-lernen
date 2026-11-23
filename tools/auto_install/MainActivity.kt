@@ -422,18 +422,12 @@ class MainActivity : FlutterActivity() {
             if (game == "world") {
                 val receipt = call.argument<Map<String, Any?>>("worldLearningReceipt")
                 if (receipt != null) {
-                    val requestId = receipt["requestId"] as? String
-                    if (receipt["version"] != 1 || receipt["missionId"] != "school_numbers" ||
-                        receipt["completed"] != true || receipt["subject"] != "Mathematik" ||
-                        receipt["grade"] != options.getInt("grade") || receipt["returnGame"] != "world" ||
-                        requestId == null || !requestId.matches(Regex("[A-Za-z0-9_.:-]{8,160}"))) {
+                    val checked = WorldMissionContract.receipt(game, options.getInt("grade"), receipt)
+                    if (checked == null) {
                         refuse("invalid_world_receipt", "Der Schulauftrag wurde nicht bestätigt.")
                         return
                     }
-                    options.put("worldLearningReceipt", JSONObject()
-                        .put("version", 1).put("missionId", "school_numbers").put("completed", true)
-                        .put("requestId", requestId).put("subject", "Mathematik")
-                        .put("grade", options.getInt("grade")).put("returnGame", "world"))
+                    options.put("worldLearningReceipt", checked)
                 }
             }
             if (game == "learning") {

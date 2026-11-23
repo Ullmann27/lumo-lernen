@@ -65,7 +65,7 @@ class PlanTests(unittest.TestCase):
         allowed = set(re.findall(r'"(\w+)"', re.search(
             r'val game = if \(requested in setOf\(([^)]*)\)', source).group(1)))
         planned = {scene for _, scene, *_ in diag.PLAN}
-        self.assertTrue({'run', 'quiz', 'cards', 'settlement', 'build', 'kart', 'chess'} <= planned)
+        self.assertTrue({'run', 'quiz', 'cards', 'settlement', 'build', 'kart', 'chess', 'world'} <= planned)
         self.assertEqual(planned | set(diag.NOT_COVERED), allowed)
         self.assertEqual(diag.PLAN[0][1], 'run')
 
@@ -91,6 +91,10 @@ class PlanTests(unittest.TestCase):
         hub = (ROOT / 'lib/features/games/spielwelt/spielwelt_routes.dart').read_text()
         self.assertIn("semanticTitle: 'Lumo Schach'", hub)
         self.assertIn(f"tagline: '{chess[4]}'", hub)
+        world = next(entry for entry in diag.PLAN if entry[0] == 'world')
+        self.assertEqual(world[2], 'ui')
+        self.assertIn(f"semanticTitle: '{world[3]}'", hub)
+        self.assertIn(f"tagline: '{world[4]}'", hub)
 
 
 class FakeDevice:

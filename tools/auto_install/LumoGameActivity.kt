@@ -366,23 +366,21 @@ class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotP
         var worldMission: String? = null
         if (payload.isNotBlank()) {
             try {
+                val options = org.json.JSONObject(host.options())
+                if (options.optString("game") == "world" &&
+                    payload.length > WorldMissionContract.MAX_PAYLOAD_LENGTH) return false
                 val parsed = org.json.JSONObject(payload)
+                if (parsed.has("worldMission")) {
+                    if (destination != "learn") return false
+                    worldMission = WorldMissionContract.returnRequest(
+                        options.optString("game"), options.optInt("grade"),
+                        options.optString("sessionId"), payload
+                    )?.toString() ?: return false
+                }
                 if (parsed.optString("status") == "completed") {
                     if (!reward(payload)) return false
                 }
                 learningResult = holoSummary(parsed)
-                if (destination == "learn" && parsed.has("worldMission")) {
-                    val options = org.json.JSONObject(host.options())
-                    val mission = parsed.optJSONObject("worldMission") ?: return false
-                    val id = mission.opt("requestId") as? String ?: return false
-                    if (options.optString("game") != "world" || mission.opt("version") != 1 ||
-                        mission.opt("id") != "school_numbers" || mission.opt("subject") != "Mathematik" ||
-                        mission.opt("returnGame") != "world" || mission.opt("grade") != options.optInt("grade") ||
-                        !id.matches(Regex("[A-Za-z0-9_.:-]{8,160}"))) return false
-                    worldMission = org.json.JSONObject().put("version", 1).put("id", "school_numbers")
-                        .put("requestId", id).put("subject", "Mathematik")
-                        .put("grade", options.optInt("grade")).put("returnGame", "world").toString()
-                }
             } catch (error: Exception) {
                 Log.e("LumoHost", "Invalid return payload", error)
                 return false
