@@ -17,7 +17,7 @@ Der aktuelle übernommene Hauptchat-Stand ist `91a121f4302a4840ede44ece8a0494477
 ## Nachgewiesene Ergebnisse vor diesem APK-Bau
 - [Supportlauf 45175546161](https://github.com/Ullmann27/lumo-lernen/actions/runs/45175546161): Flutter-Analyse ohne Befunde, **53 Tests bestanden**; ursprüngliche World-Regression **169** und Freundepostmodell **289** bestanden.
 - [Supportlauf 45176854451](https://github.com/Ullmann27/lumo-lernen/actions/runs/45176854451): Flutter mit dem Iconfix bei `7c0004736c95c293c310336d161f6c3cd5b441cc` erneut **53 Tests bestanden**, Analyse ohne Befunde; echte Phone-/Fold-PNGs wurden vom Koordinator gesichtet. Sein älterer nativer Prüfabschnitt wird dadurch nicht als grün ausgegeben.
-- Godot **4.6.3**, dieselbe Version wie der APK-Bau: Controller **22**, Map **139 im Headless-Lauf** und tatsächliche World-Produktionsmethoden **27** Prüfungen bestanden. Die vollständigen CI-/Rendererläufe auf dem nun gepinnten nativen Stand sind separat erforderlich.
+- Godot **4.6.3**, dieselbe Version wie der APK-Bau: Controller **22**, Map **149 im Headless-Lauf** und tatsächliche World-Produktionsmethoden **27** Prüfungen bestanden. Die vollständigen CI-/Rendererläufe auf dem nun gepinnten nativen Stand sind separat erforderlich.
 - Die Controllerprüfung beendete ursprünglich Godot mit aktivem Autoload-Klickton. Der vorhandene Teardown-Helfer prüft jetzt die tatsächliche Mixerfreigabe; es werden keine ERRORs ausgeblendet.
 - Der Map-Test verwendet jetzt bereits lokale Viewportkoordinaten korrekt; der frühere Minimalprojekt-Test berücksichtigte den echten Projekt-Stretch noch nicht.
 - Die World-Integration lädt nach Autoloadstart und vergleicht tatsächlich JSON-dekodierte Zukunftsdaten. Alle 27 fachlichen Assertions bleiben erhalten.
@@ -28,7 +28,7 @@ Details zu Quellidentitäten und tatsächlichen lokalen Ausführungen:
 - `team-b-evidence/world-support-integration-report.json`
 
 ## Gemeinsamer Kandidat und verbindliche Freigabe
-Version **0.14.1+2070**, Bauauftrag **46**, nativer Pin **51084c8424fcf5c753f3c72ad1503c3c208518eb**.
+Version **0.14.1+2070**, Bauauftrag **46**, nativer Pin **93557b3ca206916a39fdeaa6ae6ce05442b08846**.
 Der neue `lumo-team-b-apk.yml` baut nur auf dem Supportzweig und verändert den 2069-Bau des Hauptchats nicht.
 
 Veröffentlichung erfolgt erst nach den vorhandenen verbindlichen Schritten: feste saubere Quellen, Flutter-/JVM-/Godot-Prüfungen, tatsächliche Rendererbilder, signierte ARM64- und x86_64-Pakete, übereinstimmender PCK-/Versions-/Zertifikatsnachweis, installierte Android-Tour, native Starts und vollständiger Android-Backup-Rundlauf. Auch Godot-ERRORs bei Exitcode 0 lassen die neuen Proben fehlschlagen. Anschließend werden APK-Prüfsumme, Herkunft und Tourstatus erneut geprüft und ein neuer unveränderlicher Test-Release erstellt.

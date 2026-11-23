@@ -8,6 +8,7 @@ on:
     branches: [support/logic-world-team-b-20261123]
     paths:
       - config/test-apk-request.json
+      - config/godot-source.json
       - .github/workflows/lumo-team-b-apk.yml
       - .github/probes/native_start_diagnostics.py
       - .github/probes/run_godot_probe.py
