@@ -464,10 +464,6 @@ class _GamesContentState extends State<GamesContent> {
           SpielweltPortal.logic(onOpen: _launchLogic)
         else if (route.identity == 'world')
           SpielweltPortal.world(onOpen: _launchWorld)
-        else if (route.identity == 'village')
-          SpielweltPortal.village(
-            onOpen: () => _launch3D('settlement', livingVillage: true),
-          )
         else if (route.identity == 'chess')
           SpielweltPortal.chess(onOpen: () => _launch3D('chess'))
         else if (route.identity == 'skypost')
