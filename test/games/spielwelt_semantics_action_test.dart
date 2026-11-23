@@ -71,19 +71,22 @@ Future<void> _prepare(WidgetTester tester) async {
 
 void main() {
   testWidgets(
-      'all thirteen game portals dispatch each accessibility and touch tap once',
+      'all unified Spielwelt portals dispatch each accessibility and touch tap once',
       (tester) async {
     await _prepare(tester);
     var opened = 0;
     final portals = [
-      for (final game in GameCatalog.games) _portal(game.id, () => opened++),
-      SpielweltPortal.village(onOpen: () => opened++),
+      SpielweltPortal.world(onOpen: () => opened++),
+      SpielweltPortal.logic(onOpen: () => opened++),
+      for (final game in GameCatalog.games)
+        if (game.id != GameId.build && game.id != GameId.treasure)
+          _portal(game.id, () => opened++),
       SpielweltPortal.connectFour(onOpen: () => opened++),
       SpielweltPortal.quizShow(onOpen: () => opened++),
       SpielweltPortal.chess(onOpen: () => opened++),
       SpielweltPortal.skypost(onOpen: () => opened++),
     ];
-    expect(portals, hasLength(13));
+    expect(portals, hasLength(12));
     expect(portals.map((portal) => portal.identity).toSet(),
         SpielweltRoutes.identities.toSet());
 
@@ -112,7 +115,7 @@ void main() {
           reason: '${portal.identity}: existing InkWell still fires once');
       expect(tester.takeException(), isNull, reason: portal.identity);
     }
-    expect(opened, 26);
+    expect(opened, 24);
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
