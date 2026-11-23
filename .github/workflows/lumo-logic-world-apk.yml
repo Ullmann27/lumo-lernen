@@ -34,6 +34,11 @@ jobs:
       LUMO_NDK_DISPOSABLE_RUNNER: '1'
       GH_TOKEN: ${{ github.token }}
     steps:
+      - name: Sichtprüfung hat die Auslieferung angehalten
+        if: contains(github.event.head_commit.message, '[world-visual-hold]')
+        run: |
+          echo 'Die aktuelle World-Sichtprüfung ist nicht bestanden. Dieser Lauf stoppt die vorherige Auslieferung; ein korrigierter Kandidat muss alle Prüfungen neu bestehen.'
+          exit 1
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
@@ -150,6 +155,17 @@ jobs:
             exit 1
           fi
           test -s build-proof/world-ui/world-capture.json
+      - name: Echte World-Ansichten vor dem APK-Bau bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-VIEWS-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build-proof/world-ui/
+            build-proof/GODOT-WORLD-CAPTURE.txt
+            build-proof/FLUTTER-COMMIT.txt
+            build-proof/GODOT-SOURCE.json
+          if-no-files-found: error
+          compression-level: 6
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
