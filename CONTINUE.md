@@ -1,68 +1,80 @@
-# LUMO Team B · gemeinsamer Kandidat 2071
+# Wiederaufnahme · Team B 2071 fertig prüfen und unverändert liefern
 
-Stand: 23. November 2026. Version **0.14.2+2071**, Bauauftrag **48**. Unterstützungszweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Hauptteam-Flutter `47c1a6437aee4320598f3ead58be76b50934567f` und Hauptteam-Godot `90648b0639391c88d3c2da0e3f235d30f725256d` sind erhalten. Gemeinsamer nativer Pin: `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913`.
+Stand: 23. November 2026, 15:54 Uhr Wien. Supportzweige in beiden Repositories: `support/logic-world-team-b-20261123`; Ziel `feature/logic-world-20261123`. Main bleibt geschützt.
 
-Drei zusätzliche Agents ergänzen 24 Pfotenpfad-Aufgaben, Weltkarte, drei Freundepost-Lieferungen und die dauerhafte Fußgängerampel. Zusammen mit den bisherigen Aufgaben sind vier Logikspiele mit 168 Aufgaben vorhanden. Der neue Telefonaufbau und die direkten Spieleinstiege werden in diesem Kandidaten geprüft.
+1. **Produktquelle nicht mit späteren Dokumentationscommits verwechseln.** Gebaute Version 0.14.2+2071: Flutter `b4db287fe562893d849d1c826c9b92e8f2e44761`, Godot `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913`, Engine4.6.3, Auftrag48. Originalrun45191784853, Baujob137751923651 SUCCESS. Supportlauf45191784803 vollständig SUCCESS. [Quellen, Prüfumfang und Grenzen](docs/agent-network/TEAM_B_2071_QUALITY.md).
+2. Eigenen Androidjob137767273722 bis zum tatsächlichen Ende prüfen. Originaltour, alle acht SAF-Backup-Schritte und verbindliche native Starts müssen dieselbe originale x86_64-APK betreffen. Hauptteam2070-Ergebnisse dürfen nicht als2071-PASS übernommen werden. Aktuelle Android-Artefakt-ID erst aus realem erfolgreichen Upload übernehmen.
+3. Nachgelagerten Original-Publishjob beobachten. Ein realer HTTP403 ist als Rechteblocker festzuhalten. Kein erratener Release-Link und kein Umgehen einer Berechtigungsablehnung. Der dokumentierte GitHub-Fall verlangt Contents:write plus Workflows:write, wenn das Releaseziel Workflows gegenüber dem Defaultbranch verändert; GITHUB_TOKEN allein genügt dafür nicht.
+4. Der separat vorbereitete geprüfte Publisher muss die Original-2071-Metadaten, den ursprünglichen Bau-/Androidrun und alle originalen Testbelege binden. Keine auslösende Configdatei, bevor tatsächliches Android-PASS und ausdrücklich bereitgestellte legitime Publisher-Identität feststehen. Geheimnisse nicht im Chat erfragen oder in Dateien ablegen.
+5. APK-Datei `Lumo-Lernen-Test-0.14.2-2071.apk`:537231343 Bytes; SHA256 `c7036b318ba9f3e0c0751abcc1f3745ce0fd0a96a617954501feb40b63627737`; Zertifikat `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`. PCK279910300 Bytes/SHA256 `398cf6cdd6cac5233037b6cd1247c89b3a92392050a0c9a9696af82d0beedf5f`.
+6. Originalartefakte: ARM6414828082269, Metadaten14827937341, x86_6414828446718, Tests14829430168, World-Bilder14825704906. Der isolierte Transportlauf45196734395 hat genau diese APK transportiert; die endgültige lokal zusammengesetzte Datei war hashgleich. Kein neuer Bau und keine neue Signierung.
+7. Lokale Runtime aktuell unavailable. Vor einem neuen lokalen Zugriff tatsächliche Verfügbarkeit prüfen; keine Download-/Dateiverfügbarkeit aus alten Pfaden behaupten. Der begonnene ZIP-Fallback hat noch keinen gesicherten Abschluss. Die Original-APK bleibt im GitHub-Artefakt vorhanden. Ein ZIP wäre nur ein offen benannter Zusatz, kein öffentlicher Einzel-APK-Direktdownload.
+8. Nach Abschluss STATUS, diese Datei, Team-B-Qualitätsbericht, PR539/211 und die Koordinationskommentare in538/210 aktualisieren. Produktdateien, Versionsauftrag und nativen Pin dabei unverändert lassen. Spätere Liefer-/Dokumentationscommits können mit [skip ci] erfolgen, ohne den aktuellen APK-Lauf abzubrechen.
+9. Bedienwege: Start → Spielen → Logikspiele → Pfotenpfad; in Pfotenpfad Klassen-/Pfadauswahl, Pfeilplan, nummerierte Sterne, Picknick, Los! Für World: Spielen → Lumo World → Weltkarte. Nach sechs Hauptmissionen „Welt weiter erkunden“, zu Fuß Nelli ansprechen, Freundepost mitnehmen, bei Bruno abgeben; danach Tilda und wieder Nelli.
+10. Grenzen beibehalten: eigene Flutter-Widgets/PNGs sind keine Android-Pfotenpfad-Tour. Linux-Renderer und x86_64-Emulator belegen keine physischen ARM64/Fold7-60FPS, thermischen Eigenschaften oder hörbare Sprachqualität.
 
-Der gemeinsame native Stand besteht Supportlauf [45186770272](https://github.com/Ullmann27/lumo-lernen/actions/runs/45186770272) mit Godot 4.6.3 vollständig: World 194, Freundepost 289, Controller 22, tatsächliche World-Methoden 27, HUD 499 und Kartenrenderer 152 Prüfaussagen. Der vollständige Import ist fehlerfrei; Flutter am vorherigen UI-Zwischenstand besteht 53 Tests und die Analyse. Neue UI, tatsächliche 3D-Bilder, APK-/PCK-/Signatur-, Android- und SAF-Backup-Nachweise müssen am frischen 2071-Lauf beurteilt werden.
+## Übernommene Hauptteam-Fortsetzung 00056a (unverändert; eigener Kandidat 2070)
 
-Der erste neue 2071-Quellstand `af1b15a690ff34f5c9de7e1cbf155ff050156a97` bestand [Supportlauf 45190521155](https://github.com/Ullmann27/lumo-lernen/actions/runs/45190521155) vollständig mit 61 Flutter-Tests und den genannten nativen Prüfungen. Im vollständigen APK-Lauf bestanden JVM und Flutter. Die tatsächliche PNG-Sichtprüfung zeigte jedoch die weiße Los!-Beschriftung auf hellem Grün. Der neue Auftrag 48 übernimmt die vorhandene dunkle Buttonfarbe für diese Beschriftung; der native Pin bleibt unverändert. Der Vorläuferlauf [45190521151](https://github.com/Ullmann27/lumo-lernen/actions/runs/45190521151) wird dadurch ersetzt. Dieser Farbfix wird frisch gebaut und visuell geprüft.
+# Wiederaufnahme · APK 2070 abschließend prüfen und direkt liefern
 
-Der frühere Support-2070 ist wegen bestätigter Sichtmängel und eines tatsächlich gescheiterten kalten Fontimports zurückgehalten. [Belegter Befund](docs/agent-network/TEAM_B_2070_QUALITY.md). Es wird keine fertige 2071-APK oder physische 60-FPS-Freigabe vor einem Nachweis behauptet.
+Stand: 23. November 2026. Branch in beiden Repositories
+`feature/logic-world-20261123`. [Flutter-PR 538](https://github.com/Ullmann27/lumo-lernen/pull/538)
+und [Godot-PR 210](https://github.com/Ullmann27/lumo-godot/pull/210) sind Drafts.
+Main bleibt unberührt.
 
-[Team-B-Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md) · Flutter #539 · Godot #211 · Koordination #537. Main bleibt unverändert.
-
-## Stand und Fortsetzung des Hauptteams
-
-# Wiederaufnahme · korrigierten World-Kandidaten 2070 prüfen und liefern
-
-Stand: 23. November 2026. Beide Branches `feature/logic-world-20261123`.
-Flutter-PR https://github.com/Ullmann27/lumo-lernen/pull/538,
-Godot-PR https://github.com/Ullmann27/lumo-godot/pull/210. Kein Main-Merge.
-
-1. Der fertige Godot-Fix ist remote unter
-   `90648b0639391c88d3c2da0e3f235d30f725256d` gesichert. Lokale Godot 4.7.2-
-   Prüfungen: World 194, HUD 499 bestanden, Exit 0. Belege liegen im Godot-Repo
-   unter `docs/evidence/lumo-world-2070-*`. Kamera, School-Rampe und HUD sind
-   eingefroren; Capture-Posen unverändert. Flutter pinnt diesen Stand mit
-   Engine 4.6.3 und Version 0.14.1+2070, Bauauftrag 46.
-2. Den frischen Lauf `.github/workflows/lumo-logic-world-apk.yml` vollständig
-   verfolgen. Das frühe Artefakt `LUMO-WORLD-VIEWS-<run>-<attempt>` enthält
-   alle fünf echten World-Ansichten. Alle ansehen; Kart/Fahrer, eigenes Dorf,
-   Schulzugang und Aktionsknöpfe müssen sichtbar sein. World und HUD laufen
-   zusätzlich gegen das tatsächliche APK-PCK. Keine alte Prüfung ersetzt
-   diese Kandidatenprüfung. Physische60FPS bleiben ohne Gerätemessung offen.
-3. Bei echten neuen Sichtfehlern die Auslieferung wie 2069 ausdrücklich stoppen.
-   Der vorhandene Hold-Marker `[world-visual-hold]` beendet über die bestehende
-   Concurrency-Gruppe den Vorgängerlauf und schlägt vor Checkout fehl. Nicht
-   als grünen Test umdeuten. 2069 wurde genau deshalb zurückgehalten:
-   `QUALITY_2069.md`, Run 45176827649 Versuch 2, kein Android-Gesamt-PASS.
-4. Nach erfolgreicher Sichtprüfung APK-/PCK-/Signatur-/Versionsbindung und
-   vollständigen Android-/Backup-Rundgang abnehmen. Der frühere 2069-Download
-   der ganzen APK-ZIP scheiterte am Connector-Zeitlimit. Der reine Transfer
-   `.github/workflows/lumo-world-apk-transfer.yml` transportiert unveränderte
-   Bytes. Vor Nutzung dessen Auftrag in `config/lumo-world-apk-transfer.json`
-   auf die echten 2070-Metadaten aktualisieren: Run, Artefakt-ID, Commit,
-   Dateiname, Bytes und SHA256. Teilhashes und abschließenden Gesamthash prüfen.
-   Keine neue APK bauen, keinen Release-Zielcommit austauschen.
-5. Öffentlichen Publisher tatsächlich prüfen. 2068 scheiterte mit HTTP 403
-   am Release-Endpunkt. Für Zielcommits mit Workflow-Änderungen verlangt
-   GitHub zusätzlich Workflows:write; der eingebaute GITHUB_TOKEN unterstützt
-   dies nicht. Keine Berechtigung umgehen, kein erfundener Direktlink.
-   Ein legitim autorisierter späterer Publisher muss dieselben geprüften
-   Bytes veröffentlichen. APK erst konkret herstellen und prüfen.
-6. Lokale Checkouts liegen unter `/tmp/lumo-logic-20261123/`. Workspace-Platte
-   ist nahezu voll; /tmp hat Platz, ist aber flüchtig. Vor langen Prüfungen
-   remote sichern. Kein Reset/Clean/Force-Push und keine Änderung fremder
-   älterer Checkouts. Vor Aktualisierung eigene Änderungen exakt abgleichen.
-7. Original-Schatzsuche, gemeinsamer Dorfspielstand, Dorfökonomie,
-   Schreibtrainer und Journal erhalten. Schul-Requests behalten die originale
-   LearningProfileLease; fehlerhafte Speicherdateien bleiben unverändert.
-   Die World ist noch nicht vollständig vertont. Keine normierten IQ-/EQ-/AQ-
-   Werte und keine vollständige AAA- oder physische 60 FPS-Freigabe behaupten.
+1. Die unveränderte gebaute APK stammt aus Flutter
+   `11c0711f23f887796a7281ddfc6ee7a2aa56ac67`, Godot
+   `90648b0639391c88d3c2da0e3f235d30f725256d`, Version **0.14.1+2070**.
+   Originalrun **45186225313**, Versuch **1**, Baujob **137732425563 SUCCESS**.
+   79 JVM/158 Flutter/World194/HUD499/Treasure92/Table26/HostBridge sowie
+   World/HUD im tatsächlich extrahierten APK-PCK bestanden. Alle fünf originalen
+   4.6.3-Rendereraufnahmen unabhängig angenommen: `VISUAL_2070.md`.
+2. Den noch laufenden Androidjob **137748819779** bis zu seinem tatsächlichen
+   Ende verfolgen. Danach Originaltour, 8 Backup-Schritte und verbindliche
+   native Spielstarts einschließlich World inhaltlich prüfen. Belege müssen die
+   Original-x86_64-APK und dieselbe PCK wie ARM64 betreffen. Ein grüner Baujob
+   ersetzt den Android-/Backup-PASS nicht. Aktuelle IDs/Digests dokumentieren.
+3. Danach den bisherigen Publishjob im selben Originalrun beobachten.
+   Bei 2068 war der Release-Endpunkt mit HTTP 403 blockiert; das 2070-Ergebnis
+   ist an diesem Checkpoint noch offen. Keinen Release-URL ohne tatsächlich
+   existierendes Asset und vollständigen anonymen Byteabgleich ausgeben.
+4. Die APK ist bereits vollständig aus dem Originalartefakt **14826480557**
+   lokal transportiert und unabhängig überprüft. Metadatenartefakt **14826031651**.
+   Transferlauf **45191150151** erfolgreich, keine neue Signierung oder neue APK.
+   APK **537159895 Bytes**, SHA-256
+   `8dca425b869b91b18956ecd848ed993ffbd5e21d114fe489b83f78fea6aff6ff`.
+   PCK **279880864 Bytes**, SHA-256
+   `9a91ed2b428e086fd0d2c813fc9f55aaac5e65aa75944736a94af55673416fd6`.
+   Öffentliches Zertifikat SHA-256
+   `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`.
+5. Der separate spätere Publisher ist in vier neuen Dateien bereit und mit
+   24 Schutztests sowie unabhängigem Review geprüft. Siehe
+   `docs/logic-games/REVIEWED_PUBLISH_2070.md`. Es gibt noch keinen auslösenden
+   `config/lumo-world-reviewed-publish.json`. Erst vollständige tatsächliche
+   Androidbelege und legitime Publisher-Identität binden. Dafür vorgesehen:
+   `LUMO_RELEASE_PUBLISH_TOKEN`, Repository-restriktiv Contents:write und
+   Workflows:write. Keine Geheimnisse suchen, keinen Wert im Chat erfragen,
+   keine alternative Identität oder Endpunkt zum Umgehen einer Ablehnung nutzen.
+   APK und Releaseziel bleiben Original11c; vorhandene Releases bleiben erhalten.
+6. Zusatz-Dateibereitstellung der einzelnen APK scheiterte mit bestätigtem
+   `FILE_TOO_LARGE`: Limit536870912Bytes, APK288983Bytes darüber. Ein echter
+   ZIP-Fallback **525445059 Bytes** mit exakt denselben signierten APK-Bytes
+   wurde erfolgreich gespeichert; er erfüllt die öffentliche Einzel-APK-Regel
+   nicht. Die Ausnahme muss bis zur richtigen Veröffentlichung sichtbar bleiben.
+7. Quellcheckouts: `/tmp/lumo-logic-20261123/{flutter,godot}`; lokale Lieferung
+   `/tmp/lumo-2070-delivery/`. Workspace-Platte fast voll, /tmp flüchtig. Vor
+   langen Schritten den genauen Stand über den GitHub-Connector sichern.
+   Keine fremden Dateien löschen, kein Reset/Clean/Force-Push. Das Autosave-
+   Skript ist im Sparse-Checkout teilweise dematerialisiert; exakt aus Git
+   wiederherstellen, keine abgewandelte Ersatzregel erfinden.
+8. Nach tatsächlichem Abschluss STATUS, CONTINUE, Qualitätsbericht, beide
+   Draft-PRs und Benutzerbericht aktualisieren und remote sichern. Keine
+   normierten IQ-/EQ-/AQ-Werte, keine volle AAA-Welt, Vollvertonung, fahrbaren
+   Bikes/Scooter oder physische60FPS behaupten. Original-Schatzsuche,
+   gemeinsamer Dorfspielstand, Dorfökonomie, Schreibtrainer und Journal erhalten.
 
 [Implementierung](docs/logic-games/IMPLEMENTATION.md) ·
-[Zurückgehaltener Befund 2069](docs/logic-games/QUALITY_2069.md)
+[Vorbereiteter Publisher](docs/logic-games/REVIEWED_PUBLISH_2070.md)
 
 ## Archiv vorheriger Wiederaufnahmen
 

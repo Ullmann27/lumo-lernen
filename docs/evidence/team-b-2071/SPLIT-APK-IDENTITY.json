@@ -1,0 +1,30 @@
+{
+  "flutter_source_commit": "b4db287fe562893d849d1c826c9b92e8f2e44761",
+  "versionName": "0.14.2",
+  "versionCode": 2071,
+  "godot": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913",
+    "engine": "4.6.3"
+  },
+  "packages": {
+    "arm64-v8a": {
+      "abi": "arm64-v8a",
+      "sha256": "c7036b318ba9f3e0c0751abcc1f3745ce0fd0a96a617954501feb40b63627737",
+      "bytes": 537231343,
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot_pck_sha256": "398cf6cdd6cac5233037b6cd1247c89b3a92392050a0c9a9696af82d0beedf5f",
+      "godot_pck_bytes": 279910300
+    },
+    "x86_64": {
+      "abi": "x86_64",
+      "sha256": "57a48218d833a3e5114cf8ae93d7a32acd51b0aa10d1e9dad6483699e785f306",
+      "bytes": 540400988,
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot_pck_sha256": "398cf6cdd6cac5233037b6cd1247c89b3a92392050a0c9a9696af82d0beedf5f",
+      "godot_pck_bytes": 279910300
+    }
+  },
+  "same_pck": true,
+  "runtime_scope": "The Android tour executes the x86_64 package in an emulator; this identity check is not a physical ARM64 device test."
+}

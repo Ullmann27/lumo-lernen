@@ -1,57 +1,98 @@
-# LUMO Team B · gemeinsamer Kandidat 2071
+# LUMO Team B · gebaute gemeinsame APK 2071
 
-Stand: 23. November 2026. Version **0.14.2+2071**, Bauauftrag **48**. Unterstützungszweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Hauptteam-Flutter `47c1a6437aee4320598f3ead58be76b50934567f` und Hauptteam-Godot `90648b0639391c88d3c2da0e3f235d30f725256d` sind erhalten. Gemeinsamer nativer Pin: `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913`.
+Stand: 23. November 2026, 15:54 Uhr Wien. Die signierte Test-APK **0.14.2+2071** ist gebaut. Ihr unveränderter Produktquellstand ist **b4db287fe562893d849d1c826c9b92e8f2e44761**, Godot **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**, Engine **4.6.3**, Bauauftrag **48**. Spätere Dokumentations-, Prüf- und Liefercommits ändern diese gebaute APK nicht.
 
-Drei zusätzliche Agents ergänzen 24 Pfotenpfad-Aufgaben, Weltkarte, drei Freundepost-Lieferungen und die dauerhafte Fußgängerampel. Zusammen mit den bisherigen Aufgaben sind vier Logikspiele mit 168 Aufgaben vorhanden. Der neue Telefonaufbau und die direkten Spieleinstiege werden in diesem Kandidaten geprüft.
+## Tatsächlich nachgewiesen
 
-Der gemeinsame native Stand besteht Supportlauf [45186770272](https://github.com/Ullmann27/lumo-lernen/actions/runs/45186770272) mit Godot 4.6.3 vollständig: World 194, Freundepost 289, Controller 22, tatsächliche World-Methoden 27, HUD 499 und Kartenrenderer 152 Prüfaussagen. Der vollständige Import ist fehlerfrei; Flutter am vorherigen UI-Zwischenstand besteht 53 Tests und die Analyse. Neue UI, tatsächliche 3D-Bilder, APK-/PCK-/Signatur-, Android- und SAF-Backup-Nachweise müssen am frischen 2071-Lauf beurteilt werden.
+[Originalrun 45191784853](https://github.com/Ullmann27/lumo-lernen/actions/runs/45191784853), Baujob **137751923651 SUCCESS**: 119 JVM-Tests, 190 Flutter-Tests, World194, Freundepost289, Controller22, World-Integration27, HUD499, Kartenrenderer152, Schatzsuche92 und HostBridge erfolgreich. World194 und HUD499 bestehen außerdem gegen die tatsächlich aus der ARM64-APK entnommene PCK. Die Gesamtanalyse hat 0 Fehler, 5 Warnungen und 296 Hinweise; sie ist nicht warnungsfrei.
 
-Der erste neue 2071-Quellstand `af1b15a690ff34f5c9de7e1cbf155ff050156a97` bestand [Supportlauf 45190521155](https://github.com/Ullmann27/lumo-lernen/actions/runs/45190521155) vollständig mit 61 Flutter-Tests und den genannten nativen Prüfungen. Im vollständigen APK-Lauf bestanden JVM und Flutter. Die tatsächliche PNG-Sichtprüfung zeigte jedoch die weiße Los!-Beschriftung auf hellem Grün. Der neue Auftrag 48 übernimmt die vorhandene dunkle Buttonfarbe für diese Beschriftung; der native Pin bleibt unverändert. Der Vorläuferlauf [45190521151](https://github.com/Ullmann27/lumo-lernen/actions/runs/45190521151) wird dadurch ersetzt. Dieser Farbfix wird frisch gebaut und visuell geprüft.
+Der endgültige [Supportlauf 45191784803](https://github.com/Ullmann27/lumo-lernen/actions/runs/45191784803) ist vollständig erfolgreich: 61 Flutter-Tests, 20 JAR-Helfertests, gezielte Analyse ohne Befund und alle eigenen nativen Prüfungen. Die tatsächlichen neuen Flutter-Bilder und alle sechs World-/Kartenansichten sind geprüft. Der aktive Los!-Knopf hat lesbare dunkle Schrift; Welt, Kart, Schulrampe und Aktionsknöpfe sind in den aufgenommenen Ansichten sichtbar.
 
-Der frühere Support-2070 ist wegen bestätigter Sichtmängel und eines tatsächlich gescheiterten kalten Fontimports zurückgehalten. [Belegter Befund](docs/agent-network/TEAM_B_2070_QUALITY.md). Es wird keine fertige 2071-APK oder physische 60-FPS-Freigabe vor einem Nachweis behauptet.
+Datei **Lumo-Lernen-Test-0.14.2-2071.apk**, **537231343 Bytes**, SHA-256 **c7036b318ba9f3e0c0751abcc1f3745ce0fd0a96a617954501feb40b63627737**. Beide ABI-Pakete haben dasselbe Zertifikat und dieselbe PCK. Original-ARM64-Artefakt **14828082269**, Metadaten **14827937341**. Der separate Transferlauf **45196734395** ist erfolgreich; die vollständig zusammengesetzte lokale APK war vor dem Laufzeitausfall byte- und hashgleich.
 
-[Team-B-Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md) · Flutter #539 · Godot #211 · Koordination #537. Main bleibt unverändert.
+## Offener Abschluss
 
-## Stand und Fortsetzung des Hauptteams
+Der eigene Androidjob **137767273722** läuft zu diesem Checkpoint noch. Seine originale Tour, acht SAF-Sicherungs-/Rückspielschritte, beobachtete native Starts und nachgelagerte Veröffentlichung sind noch nicht als bestanden bestätigt. Ein öffentlicher Direktlink besteht noch nicht.
 
-# LUMO World und Logikspiele · korrigierter Kandidat 2070
+Der früher beobachtete Release-HTTP403 ist dokumentiert. Der getrennte Hauptteam-Publisher wurde unverändert aus **00056a379d40cda2538619f114c12c76ed3c7f1c** übernommen. Seine später vorbereitete Team-B-Anpassung darf erst nach tatsächlichem Android-PASS und einer ausdrücklich eingerichteten Repository-Publisher-Identität aktiviert werden. Keine Tokensuche, keine Rechteumgehung.
+
+Die lokale Arbeitsumgebung ist seit etwa 15:49 Uhr Wien nicht verfügbar. Deshalb werden dortige Dateien und der begonnene private ZIP-Fallback nicht als dauerhaft abrufbar ausgegeben. Die Originalartefakte liegen weiter im obigen GitHub-Lauf. Die einzelne APK ist 360431 Bytes größer als die vom Dateidienst beim Hauptteam tatsächlich bestätigte 512-MiB-Grenze. Es wird kein eigener fehlgeschlagener Upload erfunden.
+
+## Produkt und Zusammenarbeit
+
+Drei zusätzliche Agents haben 24 Pfotenpfad-Aufgaben, kompakte Telefonbedienung, direkte Spielwahl, Weltkarte, drei Freundepost-Lieferungen und die dauerhafte Fußgängerampel beigetragen. Mit den vorhandenen 144 Aufgaben gibt es vier Logikspiele mit **168 Aufgaben**. Hauptteam-Kamera, Schulzugang und HUD-Korrekturen sind integriert. Schreibtrainer, Journal, Original-Schatzsuche und Dorfwirtschaft bleiben angeschlossen.
+
+[Qualitätsbeleg 2071](docs/agent-network/TEAM_B_2071_QUALITY.md) · [Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md) · [Flutter #539](https://github.com/Ullmann27/lumo-lernen/pull/539) · [Godot #211](https://github.com/Ullmann27/lumo-godot/pull/211). Main bleibt geschützt. Kein physischer Fold7-/60-FPS-Nachweis; Pfotenpfad-Interaktionen sind noch nicht Bestandteil der installierten Android-Tour.
+
+## Übernommener Hauptteam-Checkpoint 00056a (unverändert; eigener Kandidat 2070)
+
+# LUMO World und Logikspiele · gebauter Kandidat 2070
 
 Stand: 23. November 2026. Beide Feature-Zweige heißen
-`feature/logic-world-20261123`. Kandidat **0.14.1+2070**, Bauauftrag 46,
-pinnt Godot **90648b0639391c88d3c2da0e3f235d30f725256d** mit Engine 4.6.3.
-Die neue APK, tatsächlichen Rendererbilder und Android-/Backup-Prüfungen
-stehen bei diesem Quellcheckpoint noch aus. Es wird keine Freigabe behauptet.
+`feature/logic-world-20261123`. Die signierte ARM64-Test-APK **0.14.1+2070**
+ist gebaut und lokal vollständig byte-, signatur-, manifest-, ABI- und PCK-geprüft.
+APK-Quellstand bleibt **11c0711f23f887796a7281ddfc6ee7a2aa56ac67**,
+Godot **90648b0639391c88d3c2da0e3f235d30f725256d**, Engine **4.6.3**.
+Spätere Dokumentations-/Transfer-/Publisher-Checkpoints ändern diese APK nicht.
 
-Der zurückgehaltene 2069-Build bleibt nachvollziehbar dokumentiert:
-[visueller Befund, tatsächliche Prüfungen und Identitäten](docs/logic-games/QUALITY_2069.md).
-Seine Android-Tour und Veröffentlichung wurden vorzeitig abgebrochen.
+## Tatsächlich abgeschlossen
 
-2070 korrigiert die normale Folge- und Kartkamera, vollständig sichtbare
-Aktionsknöpfe, die World-Joystick-Größe, den begehbaren Schulzugang und das
-Schatzinsel-Wegschild. Der gemeinsame Dorf-Batch ergänzt nur unveränderte
-Transformationsmetadaten. Dorfwirtschaft, Spielstand und ursprüngliche
-Schatzsuche bleiben erhalten. Alle fünf bisherigen Aufnahmeorte bleiben
-für den tatsächlichen Bildvergleich unverändert.
+Der Baujob **137732425563** im Originalrun
+[45186225313, Versuch 1](https://github.com/Ullmann27/lumo-lernen/actions/runs/45186225313)
+ist erfolgreich: **79 native JVM-Tests, 158 Flutter-Tests, 194 World-Prüfaussagen,
+499 HUD-Prüfaussagen, 92 Schatzsuche-Prüfaussagen, 26 Kartentisch-Prüfaussagen**
+und HostBridge. World und HUD bestehen außerdem gegen die tatsächlich aus der
+ARM64-APK entnommene PCK. Alle fünf frischen Godot-4.6.3-Aufnahmen wurden von
+Root und unabhängig visuell geprüft: Lumo/Kart, Dorf, Schulzugang und Bedienelemente
+sind sichtbar. [Genaue Bildabnahme](docs/logic-games/VISUAL_2070.md).
 
-Lokal unter Godot 4.7.2: **World 194 Prüfaussagen und HUD 499 Prüfaussagen
-bestanden**, jeweils Exit 0. Diese Headless-Prüfung ersetzt weder die
-Godot 4.6.3-Renderabnahme noch die Android-Prüfung. Die Kandidatenpipeline
-prüft World und HUD erneut gegen den exakten Quellstand und gegen das
-tatsächlich aus der gebauten ARM64-APK entnommene PCK. World-Bilder sind
-bereits vor dem APK-Bau als eigenes Artefakt abrufbar.
+Datei `Lumo-Lernen-Test-0.14.1-2070.apk`: **537159895 Bytes**, SHA-256
+`8dca425b869b91b18956ecd848ed993ffbd5e21d114fe489b83f78fea6aff6ff`.
+Die zusätzlich transportierte APK ist nachweislich bytegleich zum Originalartefakt
+**14826480557**. Der Transfer baut und signiert nichts neu.
 
-Der gesamte Ausbau umfasst 144 deterministische Logikaufgaben für Schulstufen 1–4,
-gespeicherte Entwürfe und ein beobachtungsbezogenes Stärkenprofil. Die World
-verbindet Original-Schatzinsel, Sonnendorf, Schule, Garten, Stadt und das echte
-vorhandene Dorf. Kart, Karten und ursprüngliche Dorfstrategie sind angeschlossen.
-Die Schule öffnet drei tatsächlich bewertete Lernaufgaben. Die vorhandene
-Dorfstrategie bleibt die schreibende Instanz für Wirtschaft und Bauten.
+## Noch offener Abschluss
 
-Normierte IQ/EQ/AQ-Werte, eine vollständige AAA-Welt, vollständig gesprochene
-World-Dialoge und physische 60 FPS sind nicht behauptet. Main und frühere
-Veröffentlichungen bleiben erhalten. Der öffentliche Publisher kann an der
-bereits für 2068 bestätigten GitHub-Berechtigung scheitern; kein öffentlicher
-Link darf ohne tatsächlichen Datei-Nachweis ausgegeben werden.
+Die echte Android-Emulator-Tour **137748819779** läuft beim Stand dieses Checkpoints
+noch. Ihr Gesamtresultat, der Backup-Rückspieltest und die danach anstehende
+öffentliche Veröffentlichung werden hier **nicht als bestanden** ausgegeben.
+Ein öffentlicher Einzel-APK-Link ist noch nicht verifiziert.
+
+Der normale Publisher scheiterte bereits bei 2068 mit HTTP 403. Ein separater,
+[geprüfter Publisher](docs/logic-games/REVIEWED_PUBLISH_2070.md) ist vorbereitet:
+24 lokale Schutztests, unabhängiger Review und Prüfung der echten vorhandenen
+2070-Metadaten erfolgreich. Er verlangt zuerst die abgeschlossene originale
+Android-Prüfung und eine ausdrücklich bereitgestellte Repository-Publisher-Identität.
+Der auslösende Configauftrag existiert noch nicht; es wurde kein Secret abgefragt.
+
+Der Versuch, die einzelne APK zusätzlich als Datei bereitzustellen, wurde vom
+Dateidienst mit `FILE_TOO_LARGE` abgelehnt: höchstens **536870912 Bytes**,
+Überschreitung **288983 Bytes**. Ein echter ZIP-Fallback der unveränderten APK
+(**525445059 Bytes**, SHA-256
+`66d33571724c0838c6b1a49d74704400dffcc47594f627fb6977c4b4a0e18b32`)
+ist erfolgreich bereitgestellt und nach Entpacken hashgeprüft. Er ersetzt den
+angeforderten öffentlichen Direktdownload der einzelnen APK ausdrücklich nicht.
+
+## Produktumfang und Grenzen
+
+144 feste Logikrätsel für Schulstufen 1–4, gespeicherte Entwürfe und ein
+beobachtungsbezogenes Stärkenprofil. Die World verbindet Original-Schatzinsel,
+Sonnendorf, Schule, Garten, Stadt und das echte vorhandene Dorf. Kart, Karten und
+ursprüngliche Dorfstrategie sind angeschlossen. Die Schulmission öffnet drei
+wirklich bewertete Lernaufgaben. Die bisherige Dorfstrategie schreibt weiterhin
+Wirtschaft und Bauten; die World stellt denselben Spielstand dar.
+
+Die 2070-Korrekturen betreffen die normale Folge-/Kartkamera, sichtbare
+Aktionsknöpfe, World-Joystick, Schulzugang und Schatzinsel-Wegschild. Die
+Aufnahmeorte wurden nicht zugunsten schönerer Prüfbilder geändert.
+Original-Schatzsuche, Dorfwirtschaft, Schreibtrainer, Journal und Main bleiben erhalten.
+
+Dies ist das erste spielbare World-Kapitel, keine vollständig gefüllte AAA-Welt.
+Keine normierten IQ/EQ/AQ-Werte, keine vollständige World-Vertonung und keine
+physische 60-FPS-Messung behaupten. Die Rendererbilder wurden mit llvmpipe erzeugt;
+die gemessenen langsamen Software-Renderzeiten belegen keine Handy-Bildrate.
+Der zurückgehaltene 2069-Build bleibt mit seinen Fehlern separat dokumentiert:
+[QUALITY_2069.md](docs/logic-games/QUALITY_2069.md).
 
 Details: [Implementierung](docs/logic-games/IMPLEMENTATION.md),
 [Auswertung](docs/logic-games/LEARNING_PROFILE.md),
