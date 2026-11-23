@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 5
           persist-credentials: false
 
       - name: Prove the delta from Android 2075
