@@ -232,14 +232,14 @@ void main() {
   });
 
   testWidgets(
-      'the Spielwelt replaces duplicate promo panels with nine real glass portals',
+      'the Spielwelt exposes one unified World and the real game portals',
       (tester) async {
     final app = await stateFor(tester);
     await mount(tester, GamesContent(appState: app));
     await capture(tester, 'games_phone');
     for (final id in [
-      'kart', 'quizShow', 'memory', 'cards', 'puzzle', 'jumpRun',
-      'rhythm', 'treasure', 'build',
+      'world', 'logic', 'memory', 'cards', 'puzzle', 'jumpRun',
+      'rhythm', 'chess', 'skypost', 'kart', 'connectFour', 'quizShow',
     ]) {
       expect(find.byKey(ValueKey('spielwelt-portal-$id')), findsOneWidget);
     }
@@ -248,6 +248,9 @@ void main() {
         findsNothing);
     expect(find.text('Weitere Spielwelten entdecken'), findsNothing);
     expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
+    expect(find.byKey(const ValueKey('spielwelt-portal-treasure')), findsNothing);
+    expect(find.byKey(const ValueKey('spielwelt-portal-build')), findsNothing);
+    expect(find.byKey(const ValueKey('spielwelt-portal-village')), findsNothing);
     expect(tester.takeException(), isNull);
   });
 
