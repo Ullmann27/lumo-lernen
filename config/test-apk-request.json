@@ -1,5 +1,5 @@
 {
-  "request": 49,
-  "version": "0.14.2+2071",
-  "note": "Erneuter vollständiger Standardlauf nach gezielter Reparatur der nativen Startdiagnose und zugehörigen Regressionen: kritische ADB-Antworten vollständig prüfen, das Ende alter App-Prozesse bestätigen und jeden UI-Start an einen frischen Flutter-Host binden. Produktdateien, Godot-Pin e0460c0, verpflichtendes Native-Gate und Prüfzeiten bleiben unverändert. Auftrag 48 / Quelle b4db bleibt wegen fehlender nativer Startnachweise zurückgehalten."
+  "request": 50,
+  "version": "0.14.3+2072",
+  "note": "Vollständiger gemeinsamer LUMO-Kandidat nach Abgleich mit dem neuesten Kart-Integrationszweig: Open World/Pfotenpfad/Freundepost plus die aktuellen importierten Fahrerreaktionen in Garage, Treffer und Zieleinlauf. Nur LUMO-Laufzeit- und Regressiondateien übernommen; keine Imperathen-/Continuum-/Fremdspiel-Inhalte. Native Quelle 2746bf1e289d4b477414f1ec3ff9394591c0bdfe; vollständige Android- und Native-Gates bleiben verpflichtend."
 }
