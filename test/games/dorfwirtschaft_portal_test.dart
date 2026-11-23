@@ -10,19 +10,24 @@ import 'package:lumo_lernen/features/games/spielwelt/spielwelt_routes.dart';
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  test('Village economy has its own real native scene and unique identity', () {
-    final village = SpielweltRoutes.byIdentity('village');
-    expect(village.isNative, isTrue);
-    expect(village.target, 'settlement');
-    expect(village.identity, 'village');
-    expect(village.title, 'Dorfwirtschaft');
-    expect(village.coverAsset, isNot(SpielweltRoutes.byIdentity('build').coverAsset));
-    expect(SpielweltRoutes.identities, contains('village'));
+  test('Dorfwirtschaft and building are native parts of the one Lumo World', () {
+    final world = SpielweltRoutes.byIdentity('world');
+    expect(world.isNative, isTrue);
+    expect(world.target, 'world');
+    expect(world.identity, 'world');
+    expect(world.title, 'Lumo World');
+    expect(world.targetDescription, contains('Dorfwirtschaft'));
+    expect(world.targetDescription, contains('Baumodus'));
+    expect(world.targetDescription, contains('Schatzinsel'));
+    expect(SpielweltRoutes.identities, isNot(contains('village')));
+    expect(SpielweltRoutes.identities, isNot(contains('build')));
+    expect(SpielweltRoutes.identities, isNot(contains('treasure')));
     expect(SpielweltRoutes.all.map((r) => r.identity).toSet().length,
         SpielweltRoutes.all.length);
   });
 
-  testWidgets('Dorfwirtschaft tile launches true village, not Kart or the classic settlement',
+  testWidgets(
+      'Lumo World launches one native scene that owns exploration and village building',
       (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     const bridge = MethodChannel('lumo_lernen/bridge');
@@ -43,8 +48,11 @@ void main() {
       await tester.runAsync(
           () => Future<void>.delayed(const Duration(milliseconds: 300)));
       await tester.pump(const Duration(milliseconds: 700));
-      final tile = find.byKey(const ValueKey('spielwelt-portal-village'));
+      final tile = find.byKey(const ValueKey('spielwelt-portal-world'));
       expect(tile, findsOneWidget);
+      expect(find.byKey(const ValueKey('spielwelt-portal-village')), findsNothing);
+      expect(find.byKey(const ValueKey('spielwelt-portal-build')), findsNothing);
+      expect(find.byKey(const ValueKey('spielwelt-portal-treasure')), findsNothing);
       await tester.ensureVisible(tile);
       await tester.tap(tile);
       await tester.runAsync(
@@ -53,11 +61,11 @@ void main() {
       final launched = calls.where((c) => c.method == 'launch3D').toList();
       expect(launched, hasLength(1));
       final options = launched.single.arguments as Map;
-      expect(options['scene'], 'settlement');
-      expect(options['livingVillage'], true);
-      expect(options['settlementMode'], 'settlement');
+      expect(options['scene'], 'world');
       expect(options['childKey'], isNotNull);
       expect(options['grade'], inInclusiveRange(1, 4));
+      expect(options.containsKey('livingVillage'), isFalse);
+      expect(options.containsKey('settlementMode'), isFalse);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
     } finally {
