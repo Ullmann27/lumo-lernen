@@ -11,16 +11,16 @@ const logicGreen = Color(0xFF95FF79);
 const logicMuted = Color(0xFFB9CEE5);
 
 Color logicColor(LogicGameKind kind) => switch (kind) {
-  LogicGameKind.sudoku => logicCyan,
-  LogicGameKind.words => const Color(0xFFC3A7FF),
-  LogicGameKind.maths => const Color(0xFFFFD388),
-};
+      LogicGameKind.sudoku => logicCyan,
+      LogicGameKind.words => const Color(0xFFC3A7FF),
+      LogicGameKind.maths => const Color(0xFFFFD388),
+    };
 
 IconData logicIcon(LogicGameKind kind) => switch (kind) {
-  LogicGameKind.sudoku => Icons.grid_on_rounded,
-  LogicGameKind.words => Icons.abc_rounded,
-  LogicGameKind.maths => Icons.calculate_rounded,
-};
+      LogicGameKind.sudoku => Icons.grid_on_rounded,
+      LogicGameKind.words => Icons.abc_rounded,
+      LogicGameKind.maths => Icons.calculate_rounded,
+    };
 
 /// The existing Knobeltest palette and typography, with a quiet spatial grid.
 class LogicBackdrop extends StatelessWidget {
@@ -29,24 +29,25 @@ class LogicBackdrop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [Color(0xFF163D61), logicNavy, Color(0xFF211940)],
-      ),
-    ),
-    child: Stack(
-      children: [
-        const Positioned.fill(
-          child: IgnorePointer(
-            child: RepaintBoundary(child: CustomPaint(painter: _RoomGrid())),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF163D61), logicNavy, Color(0xFF211940)],
           ),
         ),
-        child,
-      ],
-    ),
-  );
+        child: Stack(
+          children: [
+            const Positioned.fill(
+              child: IgnorePointer(
+                child:
+                    RepaintBoundary(child: CustomPaint(painter: _RoomGrid())),
+              ),
+            ),
+            child,
+          ],
+        ),
+      );
 }
 
 class LogicGlass extends StatelessWidget {
@@ -62,26 +63,26 @@ class LogicGlass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: padding,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(26),
-      border: Border.all(color: color.withValues(alpha: .35)),
-      gradient: const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [Color(0xF0204262), Color(0xF00B203D)],
-      ),
-      boxShadow: [
-        BoxShadow(color: color.withValues(alpha: .08), blurRadius: 24),
-        const BoxShadow(
-          color: Color(0x3D00081C),
-          offset: Offset(0, 8),
-          blurRadius: 16,
+        padding: padding,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(26),
+          border: Border.all(color: color.withValues(alpha: .35)),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xF0204262), Color(0xF00B203D)],
+          ),
+          boxShadow: [
+            BoxShadow(color: color.withValues(alpha: .08), blurRadius: 24),
+            const BoxShadow(
+              color: Color(0x3D00081C),
+              offset: Offset(0, 8),
+              blurRadius: 16,
+            ),
+          ],
         ),
-      ],
-    ),
-    child: child,
-  );
+        child: child,
+      );
 }
 
 class LogicAction extends StatelessWidget {
@@ -99,25 +100,29 @@ class LogicAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FilledButton(
-    onPressed: onPressed,
-    style: FilledButton.styleFrom(
-      minimumSize: const Size(48, 52),
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-      backgroundColor: primary ? logicGreen : const Color(0xFF254D70),
-      foregroundColor: primary ? logicNavy : Colors.white,
-      disabledBackgroundColor: const Color(0xFF263850),
-      disabledForegroundColor: const Color(0xFF9CB1CA),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-      textStyle: iqText(16),
-    ),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (icon != null) ...[Icon(icon, size: 21), const SizedBox(width: 8)],
-        Flexible(child: Text(label, textAlign: TextAlign.center)),
-      ],
-    ),
-  );
+        onPressed: onPressed,
+        style: FilledButton.styleFrom(
+          minimumSize: const Size(48, 52),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          backgroundColor: primary ? logicGreen : const Color(0xFF254D70),
+          foregroundColor: primary ? logicNavy : Colors.white,
+          disabledBackgroundColor: const Color(0xFF263850),
+          disabledForegroundColor: const Color(0xFF9CB1CA),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          textStyle: iqText(16),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null) ...[
+              Icon(icon, size: 21),
+              const SizedBox(width: 8)
+            ],
+            Flexible(child: Text(label, textAlign: TextAlign.center)),
+          ],
+        ),
+      );
 }
 
 /// Exact decorative preview drawn from an actual level, not generated glyphs.
@@ -128,19 +133,19 @@ class LogicBoardPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-    child: RepaintBoundary(
-      child: SizedBox(
-        height: 156,
-        child: CustomPaint(
-          painter: _BoardPreview(
-            LogicCatalog.puzzle(kind, grade, 1),
-            logicColor(kind),
+        child: RepaintBoundary(
+          child: SizedBox(
+            height: 156,
+            child: CustomPaint(
+              painter: _BoardPreview(
+                LogicCatalog.puzzle(kind, grade, 1),
+                logicColor(kind),
+              ),
+              child: const SizedBox.expand(),
+            ),
           ),
-          child: const SizedBox.expand(),
         ),
-      ),
-    ),
-  );
+      );
 }
 
 class _BoardPreview extends CustomPainter {
@@ -194,9 +199,8 @@ class _BoardPreview extends CustomPainter {
       canvas.drawRRect(
         RRect.fromRectAndRadius(rect, const Radius.circular(5)),
         Paint()
-          ..color = cell.given
-              ? const Color(0xFFECF4FF)
-              : const Color(0xFF315A7B),
+          ..color =
+              cell.given ? const Color(0xFFECF4FF) : const Color(0xFF315A7B),
       );
       if (cell.given || cell.isOperator) {
         final text = TextPainter(
@@ -237,15 +241,14 @@ class _RoomGrid extends CustomPainter {
       canvas.drawLine(Offset(0, y), Offset(size.width, y), line);
     }
     final glow = Paint()
-      ..shader =
-          const RadialGradient(
-            colors: [Color(0x125BDFFC), Color(0x005BDFFC)],
-          ).createShader(
-            Rect.fromCircle(
-              center: Offset(size.width * .8, size.height * .15),
-              radius: 250,
-            ),
-          );
+      ..shader = const RadialGradient(
+        colors: [Color(0x125BDFFC), Color(0x005BDFFC)],
+      ).createShader(
+        Rect.fromCircle(
+          center: Offset(size.width * .8, size.height * .15),
+          radius: 250,
+        ),
+      );
     canvas.drawRect(Offset.zero & size, glow);
   }
 

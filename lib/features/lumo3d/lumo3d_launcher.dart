@@ -34,8 +34,12 @@ Future<bool> launchLumo3D(
   String? legacyGameKey,
   ValueChanged<Map<String, Object?>>? onLearningResult,
   String? kartFriendGhost,
+  Map<String, Object>? worldLearningReceipt,
+  ValueChanged<Map<String, Object?>>? onWorldMission,
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
+  if ((worldLearningReceipt != null || onWorldMission != null) &&
+      scene != 'world') return false;
   // Only reviewed, bounded lesson descriptors open the educational route.
   if ((scene == 'learning') != (learning != null)) return false;
   if (scene == 'learning' && learning?.kind == 'task_card') {
@@ -199,6 +203,8 @@ Future<bool> launchLumo3D(
       'stars': appState?.state.stars ?? 0,
       'lifetimeStars': lifetimeStars,
       'childKey': childKey,
+      if (worldLearningReceipt != null)
+        'worldLearningReceipt': worldLearningReceipt,
       'reduceAnimations':
           (appState?.state.settings.reduceAnimations ?? false) ||
               (appState?.state.settings.calmMode ?? false),
@@ -212,7 +218,10 @@ Future<bool> launchLumo3D(
         'learningMicrophoneEnabled':
             appState?.state.settings.microphoneEnabled == true,
       },
-      if (learning != null || scene == 'build' || scene == 'settlement') ...{
+      if (learning != null ||
+          scene == 'build' ||
+          scene == 'settlement' ||
+          scene == 'world') ...{
         // Preserve the selected voice. Only the existing, licensed local
         // identity is available in the isolated engine; no silent fallback.
         'learningVoiceEnabled': appState?.state.settings.voiceEnabled == true &&
@@ -280,6 +289,18 @@ Future<bool> launchLumo3D(
         : parseLearningResult(response?['learningResult']);
     if (summary != null && onLearningResult != null) {
       onLearningResult(summary);
+    }
+    if (scene == 'world' && destination == 'learn' && onWorldMission != null) {
+      final raw = response?['worldMission'];
+      if (raw is String && raw.length <= 2000) {
+        try {
+          final mission = jsonDecode(raw);
+          if (mission is Map<String, dynamic>)
+            onWorldMission(Map<String, Object?>.from(mission));
+        } on FormatException {
+          // The world keeps its pending mission; malformed results grant nothing.
+        }
+      }
     }
     return true;
   } on NativeProfileKeyException catch (error) {

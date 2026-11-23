@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_sound.dart';
-import '../../../core/lumo_voice.dart';
 import '../../../domain/logic/logic_games.dart';
 import '../../../domain/logic/logic_learning_profile.dart';
 import '../../tests/iq/iq_style.dart';
@@ -48,10 +47,16 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
   int _writes = 0;
 
   LogicPuzzle get _puzzle => widget.puzzle;
-  bool get _current => widget.appState.isCurrentLearningLease(widget.owner);
+  bool get _current =>
+      !widget.appState.backupBusy &&
+      widget.appState.isCurrentLearningLease(widget.owner);
   bool get _reduced => iqReduceMotion(context, widget.appState);
   bool get _editable =>
-      _current && !_success && !_finishing && _saveError == null;
+      _current &&
+      !_success &&
+      !_finishing &&
+      _writes == 0 &&
+      _saveError == null;
   LogicCell get _cell => _puzzle.cells[_selected];
   String get _value => _session.answers[_selected] ?? '';
 
@@ -59,8 +64,7 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
   void initState() {
     super.initState();
     _session = widget.session;
-    _selected =
-        _puzzle.suggestedHintIndex(_session.answers) ??
+    _selected = _puzzle.suggestedHintIndex(_session.answers) ??
         _puzzle.editableCells.first.index;
     for (final entry in _session.answers.entries) {
       if (_puzzle.isCorrectCell(entry.key, entry.value))
@@ -124,11 +128,10 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
       );
     }
     if (_boardScroll.hasClients) {
-      final target =
-          ((index % _puzzle.columns) * 54 -
-                  _boardScroll.position.viewportDimension / 2 +
-                  27)
-              .clamp(0.0, _boardScroll.position.maxScrollExtent);
+      final target = ((index % _puzzle.columns) * 54 -
+              _boardScroll.position.viewportDimension / 2 +
+              27)
+          .clamp(0.0, _boardScroll.position.maxScrollExtent);
       if (_reduced) {
         _boardScroll.jumpTo(target);
       } else {
@@ -149,8 +152,8 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
     final current = _session.answers[index] ?? '';
     final text = _puzzle.kind == LogicGameKind.maths
         ? (_checked.contains(index) || current.length >= _cell.maxLength
-              ? input
-              : current + input)
+            ? input
+            : current + input)
         : input;
     _sound(SoundEffect.click);
     setState(() {
@@ -212,8 +215,7 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
                 !_puzzle.isCorrectCell(i, _session.answers[i] ?? ''),
           )
           .firstOrNull;
-      final next =
-          following ??
+      final next = following ??
           _puzzle.editableCells
               .where(
                 (c) =>
@@ -228,11 +230,10 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
       if (next != null) {
         setState(() => _selected = next);
         if (_boardScroll.hasClients) {
-          final target =
-              ((next % _puzzle.columns) * 54 -
-                      _boardScroll.position.viewportDimension / 2 +
-                      27)
-                  .clamp(0.0, _boardScroll.position.maxScrollExtent);
+          final target = ((next % _puzzle.columns) * 54 -
+                  _boardScroll.position.viewportDimension / 2 +
+                  27)
+              .clamp(0.0, _boardScroll.position.maxScrollExtent);
           _boardScroll.jumpTo(target);
         }
       }
@@ -285,8 +286,7 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
     if (_finishing ||
         _success ||
         !_current ||
-        !_puzzle.isComplete(_session.answers))
-      return;
+        !_puzzle.isComplete(_session.answers)) return;
     setState(() => _finishing = true);
     try {
       await widget.store.complete(
@@ -484,7 +484,8 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
                                       ),
                                     ),
                                     const SizedBox(height: 14),
-                                    if (_puzzle.clues.isNotEmpty) _clues(),
+                                    if (wide && _puzzle.clues.isNotEmpty)
+                                      _clues(),
                                   ],
                                 );
                                 final controls = Column(
@@ -507,8 +508,8 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
                                           icon: Icons.backspace_outlined,
                                           onPressed:
                                               _editable && _value.isNotEmpty
-                                              ? _erase
-                                              : null,
+                                                  ? _erase
+                                                  : null,
                                         ),
                                       ],
                                     ),
@@ -531,6 +532,10 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
                                           board,
                                           const SizedBox(height: 18),
                                           controls,
+                                          if (_puzzle.clues.isNotEmpty) ...[
+                                            const SizedBox(height: 18),
+                                            _clues()
+                                          ],
                                         ],
                                       );
                               },
@@ -550,72 +555,73 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
   }
 
   Widget _grid() => LayoutBuilder(
-    builder: (context, constraints) {
-      final cellSide = math.max(
-        48.0,
-        math.min(66.0, (constraints.maxWidth - 16) / _puzzle.columns - 4),
-      );
-      final boardWidth = (cellSide + 4) * _puzzle.columns + 12;
-      final scrolls = boardWidth > constraints.maxWidth;
-      return Column(
-        key: _boardKey,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (scrolls)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                children: [
-                  const Icon(Icons.swipe_rounded, size: 20, color: logicCyan),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      'Das Raster lässt sich seitlich schieben.',
-                      style: iqText(13, color: logicMuted),
+        builder: (context, constraints) {
+          final cellSide = math.max(
+            48.0,
+            math.min(66.0, (constraints.maxWidth - 16) / _puzzle.columns - 4),
+          );
+          final boardWidth = (cellSide + 4) * _puzzle.columns + 12;
+          final scrolls = boardWidth > constraints.maxWidth;
+          return Column(
+            key: _boardKey,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (scrolls)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.swipe_rounded,
+                          size: 20, color: logicCyan),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Das Raster lässt sich seitlich schieben.',
+                          style: iqText(13, color: logicMuted),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              Scrollbar(
+                controller: _boardScroll,
+                thumbVisibility: scrolls,
+                child: SingleChildScrollView(
+                  controller: _boardScroll,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Container(
+                    width: boardWidth,
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF06182D),
+                      borderRadius: BorderRadius.circular(22),
+                      border: Border.all(
+                        color: logicColor(_puzzle.kind).withValues(alpha: .5),
+                      ),
+                      boxShadow: iqGlow(logicColor(_puzzle.kind)),
+                    ),
+                    child: Column(
+                      children: [
+                        for (var row = 0; row < _puzzle.rows; row++)
+                          Row(
+                            children: [
+                              for (var col = 0; col < _puzzle.columns; col++)
+                                _gridCell(
+                                  _puzzle.cells[row * _puzzle.columns + col],
+                                  cellSide,
+                                ),
+                            ],
+                          ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          Scrollbar(
-            controller: _boardScroll,
-            thumbVisibility: scrolls,
-            child: SingleChildScrollView(
-              controller: _boardScroll,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Container(
-                width: boardWidth,
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF06182D),
-                  borderRadius: BorderRadius.circular(22),
-                  border: Border.all(
-                    color: logicColor(_puzzle.kind).withValues(alpha: .5),
-                  ),
-                  boxShadow: iqGlow(logicColor(_puzzle.kind)),
-                ),
-                child: Column(
-                  children: [
-                    for (var row = 0; row < _puzzle.rows; row++)
-                      Row(
-                        children: [
-                          for (var col = 0; col < _puzzle.columns; col++)
-                            _gridCell(
-                              _puzzle.cells[row * _puzzle.columns + col],
-                              cellSide,
-                            ),
-                        ],
-                      ),
-                  ],
                 ),
               ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       );
-    },
-  );
 
   Widget _gridCell(LogicCell cell, double side) {
     if (cell.blocked) return SizedBox(width: side + 4, height: side + 4);
@@ -623,8 +629,7 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
     final value = cell.given || cell.isOperator
         ? cell.answer
         : _session.answers[cell.index] ?? '';
-    final correct =
-        cell.editable &&
+    final correct = cell.editable &&
         _checked.contains(cell.index) &&
         _puzzle.isCorrectCell(cell.index, value);
     final needsCheck =
@@ -636,10 +641,10 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
     final edge = correct
         ? logicGreen
         : needsCheck
-        ? const Color(0xFFFFCF79)
-        : selected
-        ? logicCyan
-        : const Color(0xFF446B8B);
+            ? const Color(0xFFFFCF79)
+            : selected
+                ? logicCyan
+                : const Color(0xFF446B8B);
     return Padding(
       padding: const EdgeInsets.all(2),
       child: Semantics(
@@ -652,13 +657,11 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(11),
-            onTap: _editable && cell.editable
-                ? () => _select(cell.index)
-                : null,
+            onTap:
+                _editable && cell.editable ? () => _select(cell.index) : null,
             child: AnimatedContainer(
-              duration: _reduced
-                  ? Duration.zero
-                  : const Duration(milliseconds: 180),
+              duration:
+                  _reduced ? Duration.zero : const Duration(milliseconds: 180),
               width: side,
               height: side,
               decoration: BoxDecoration(
@@ -669,10 +672,16 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
                   colors: cell.given
                       ? [const Color(0xFFE8F4FF), const Color(0xFFB8CEE4)]
                       : correct
-                      ? [const Color(0xFF214E43), const Color(0xFF0B302D)]
-                      : selected
-                      ? [const Color(0xFF32678C), const Color(0xFF153F62)]
-                      : [const Color(0xFF284967), const Color(0xFF142E49)],
+                          ? [const Color(0xFF214E43), const Color(0xFF0B302D)]
+                          : selected
+                              ? [
+                                  const Color(0xFF32678C),
+                                  const Color(0xFF153F62)
+                                ]
+                              : [
+                                  const Color(0xFF284967),
+                                  const Color(0xFF142E49)
+                                ],
                 ),
                 border: Border(
                   top: BorderSide(
@@ -681,9 +690,8 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
                   ),
                   left: BorderSide(
                     color: edge,
-                    width: blockColumns != null && col % blockColumns == 0
-                        ? 2
-                        : 1,
+                    width:
+                        blockColumns != null && col % blockColumns == 0 ? 2 : 1,
                   ),
                   right: BorderSide(
                     color: edge,
@@ -730,8 +738,8 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
                             color: cell.given
                                 ? logicNavy
                                 : correct
-                                ? logicGreen
-                                : Colors.white,
+                                    ? logicGreen
+                                    : Colors.white,
                           ),
                         ),
                       ),
@@ -757,163 +765,162 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
   }
 
   Widget _keypad() => LogicGlass(
-    color: logicColor(_puzzle.kind),
-    padding: const EdgeInsets.all(16),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          _puzzle.kind == LogicGameKind.words
-              ? 'Deine Buchstaben'
-              : 'Deine Zahlen',
-          style: iqText(18),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          'Feld ${_selected ~/ _puzzle.columns + 1} · ${_selected % _puzzle.columns + 1}',
-          style: iqText(13, color: logicMuted),
-        ),
-        const SizedBox(height: 14),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
+        color: logicColor(_puzzle.kind),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            for (final input in _puzzle.inputChoices)
-              SizedBox(
-                width: 50,
-                height: 52,
-                child: FilledButton(
-                  key: ValueKey('logic-input-$input'),
-                  onPressed: _editable ? () => _enter(input) : null,
-                  style: FilledButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: const Size(48, 52),
-                    backgroundColor: const Color(0xFF315D80),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(13),
-                    ),
-                  ),
-                  child: Text(input, style: iqText(23)),
-                ),
-              ),
-          ],
-        ),
-        if (_puzzle.kind == LogicGameKind.maths) ...[
-          const SizedBox(height: 16),
-          LogicAction(
-            key: const ValueKey('logic-check'),
-            label: 'Zahl prüfen',
-            icon: Icons.check_rounded,
-            primary: true,
-            onPressed: _editable && _value.isNotEmpty
-                ? () => _check(_selected)
-                : null,
-          ),
-        ],
-      ],
-    ),
-  );
-
-  Widget _clues() => Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      Text(
-        _puzzle.kind == LogicGameKind.words
-            ? 'Deine Hinweise'
-            : 'So hängen die Felder zusammen',
-        style: iqText(17),
-      ),
-      const SizedBox(height: 8),
-      for (final clue in _puzzle.clues)
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: Material(
-            color: _clue == clue.id
-                ? const Color(0xFF2D5477)
-                : const Color(0xFF18344F),
-            borderRadius: BorderRadius.circular(14),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(14),
-              onTap: _editable
-                  ? () {
-                      setState(() => _clue = clue.id);
-                      final index =
-                          clue.cells
-                              .where(
-                                (i) =>
-                                    _puzzle.cells[i].editable &&
-                                    !_puzzle.isCorrectCell(
-                                      i,
-                                      _session.answers[i] ?? '',
-                                    ),
-                              )
-                              .firstOrNull ??
-                          clue.cells
-                              .where((i) => _puzzle.cells[i].editable)
-                              .firstOrNull;
-                      if (index != null) _select(index);
-                    }
-                  : null,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: 48),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        clue.label,
-                        style: iqText(13, color: logicColor(_puzzle.kind)),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          clue.text,
-                          style: iqText(15, weight: FontWeight.w600),
+            Text(
+              _puzzle.kind == LogicGameKind.words
+                  ? 'Deine Buchstaben'
+                  : 'Deine Zahlen',
+              style: iqText(18),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Feld ${_selected ~/ _puzzle.columns + 1} · ${_selected % _puzzle.columns + 1}',
+              style: iqText(13, color: logicMuted),
+            ),
+            const SizedBox(height: 14),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final input in _puzzle.inputChoices)
+                  SizedBox(
+                    width: 50,
+                    height: 52,
+                    child: FilledButton(
+                      key: ValueKey('logic-input-$input'),
+                      onPressed: _editable ? () => _enter(input) : null,
+                      style: FilledButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(48, 52),
+                        backgroundColor: const Color(0xFF315D80),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(13),
                         ),
                       ),
-                    ],
+                      child: Text(input, style: iqText(23)),
+                    ),
+                  ),
+              ],
+            ),
+            if (_puzzle.kind == LogicGameKind.maths) ...[
+              const SizedBox(height: 16),
+              LogicAction(
+                key: const ValueKey('logic-check'),
+                label: 'Zahl prüfen',
+                icon: Icons.check_rounded,
+                primary: true,
+                onPressed: _editable && _value.isNotEmpty
+                    ? () => _check(_selected)
+                    : null,
+              ),
+            ],
+          ],
+        ),
+      );
+
+  Widget _clues() => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            _puzzle.kind == LogicGameKind.words
+                ? 'Deine Hinweise'
+                : 'So hängen die Felder zusammen',
+            style: iqText(17),
+          ),
+          const SizedBox(height: 8),
+          for (final clue in _puzzle.clues)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Material(
+                color: _clue == clue.id
+                    ? const Color(0xFF2D5477)
+                    : const Color(0xFF18344F),
+                borderRadius: BorderRadius.circular(14),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(14),
+                  onTap: _editable
+                      ? () {
+                          setState(() => _clue = clue.id);
+                          final index = clue.cells
+                                  .where(
+                                    (i) =>
+                                        _puzzle.cells[i].editable &&
+                                        !_puzzle.isCorrectCell(
+                                          i,
+                                          _session.answers[i] ?? '',
+                                        ),
+                                  )
+                                  .firstOrNull ??
+                              clue.cells
+                                  .where((i) => _puzzle.cells[i].editable)
+                                  .firstOrNull;
+                          if (index != null) _select(index);
+                        }
+                      : null,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(minHeight: 48),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            clue.label,
+                            style: iqText(13, color: logicColor(_puzzle.kind)),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              clue.text,
+                              style: iqText(15, weight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
-    ],
-  );
+        ],
+      );
 
   Widget _successPanel() => Padding(
-    padding: const EdgeInsets.only(bottom: 22),
-    child: LogicGlass(
-      color: logicGreen,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Icon(Icons.verified_rounded, color: logicGreen, size: 52),
-          const SizedBox(height: 12),
-          Text(
-            'Abenteuer geschafft!',
-            textAlign: TextAlign.center,
-            style: iqText(28, color: logicGreen),
+        padding: const EdgeInsets.only(bottom: 22),
+        child: LogicGlass(
+          color: logicGreen,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Icon(Icons.verified_rounded, color: logicGreen, size: 52),
+              const SizedBox(height: 12),
+              Text(
+                'Abenteuer geschafft!',
+                textAlign: TextAlign.center,
+                style: iqText(28, color: logicGreen),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                _puzzle.level == 12
+                    ? 'Du hast alle zwölf Level dieser Rätselwelt entdeckt!'
+                    : 'Level ${_puzzle.level + 1} ist jetzt offen. Dein Fortschritt ist gespeichert.',
+                textAlign: TextAlign.center,
+                style: iqText(17),
+              ),
+              const SizedBox(height: 18),
+              LogicAction(
+                key: const ValueKey('logic-finished'),
+                label: 'Zu meinen Levels',
+                primary: true,
+                onPressed: _leave,
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            _puzzle.level == 12
-                ? 'Du hast alle zwölf Level dieser Rätselwelt entdeckt!'
-                : 'Level ${_puzzle.level + 1} ist jetzt offen. Dein Fortschritt ist gespeichert.',
-            textAlign: TextAlign.center,
-            style: iqText(17),
-          ),
-          const SizedBox(height: 18),
-          LogicAction(
-            key: const ValueKey('logic-finished'),
-            label: 'Zu meinen Levels',
-            primary: true,
-            onPressed: _leave,
-          ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }

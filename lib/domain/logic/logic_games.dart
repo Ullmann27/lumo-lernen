@@ -9,22 +9,22 @@ enum LogicGameKind { sudoku, words, maths }
 
 extension LogicGameKindText on LogicGameKind {
   String get title => switch (this) {
-    LogicGameKind.sudoku => 'Sudoku-Insel',
-    LogicGameKind.words => 'Wörterwerkstatt',
-    LogicGameKind.maths => 'Zahlenbrücken',
-  };
+        LogicGameKind.sudoku => 'Sudoku-Insel',
+        LogicGameKind.words => 'Wörterwerkstatt',
+        LogicGameKind.maths => 'Zahlenbrücken',
+      };
 
   String get subtitle => switch (this) {
-    LogicGameKind.sudoku => 'Finde für jede Zahl ihren Platz.',
-    LogicGameKind.words => 'Löse Hinweise und verbinde Wörter.',
-    LogicGameKind.maths => 'Verbinde Rechnungen zu einem Rätsel.',
-  };
+        LogicGameKind.sudoku => 'Finde für jede Zahl ihren Platz.',
+        LogicGameKind.words => 'Löse Hinweise und verbinde Wörter.',
+        LogicGameKind.maths => 'Verbinde Rechnungen zu einem Rätsel.',
+      };
 
   String get skill => switch (this) {
-    LogicGameKind.sudoku => 'Regeln prüfen und logisch ausschließen',
-    LogicGameKind.words => 'Wortschatz und Rechtschreibung',
-    LogicGameKind.maths => 'Rechnen und Umkehraufgaben',
-  };
+        LogicGameKind.sudoku => 'Regeln prüfen und logisch ausschließen',
+        LogicGameKind.words => 'Wortschatz und Rechtschreibung',
+        LogicGameKind.maths => 'Rechnen und Umkehraufgaben',
+      };
 }
 
 /// One row-major grid cell. `answer` also contains fixed operator labels.
@@ -73,27 +73,29 @@ enum LogicMathOperation { add, subtract, multiply, divide }
 
 extension LogicMathOperationText on LogicMathOperation {
   String get symbol => switch (this) {
-    LogicMathOperation.add => '+',
-    LogicMathOperation.subtract => '−',
-    LogicMathOperation.multiply => '×',
-    LogicMathOperation.divide => '÷',
-  };
+        LogicMathOperation.add => '+',
+        LogicMathOperation.subtract => '−',
+        LogicMathOperation.multiply => '×',
+        LogicMathOperation.divide => '÷',
+      };
 
   String get instruction => switch (this) {
-    LogicMathOperation.add => 'Die beiden Zahlen ergeben zusammen die Summe.',
-    LogicMathOperation.subtract => 'Ziehe die zweite Zahl von der ersten ab.',
-    LogicMathOperation.multiply => 'Rechne die erste Zahl mal die zweite.',
-    LogicMathOperation.divide => 'Teile die erste Zahl durch die zweite.',
-  };
+        LogicMathOperation.add =>
+          'Die beiden Zahlen ergeben zusammen die Summe.',
+        LogicMathOperation.subtract =>
+          'Ziehe die zweite Zahl von der ersten ab.',
+        LogicMathOperation.multiply => 'Rechne die erste Zahl mal die zweite.',
+        LogicMathOperation.divide => 'Teile die erste Zahl durch die zweite.',
+      };
 
   /// Division is exact; fractional and undefined results are not puzzle values.
   int? apply(int first, int second) => switch (this) {
-    LogicMathOperation.add => first + second,
-    LogicMathOperation.subtract => first - second,
-    LogicMathOperation.multiply => first * second,
-    LogicMathOperation.divide =>
-      second != 0 && first % second == 0 ? first ~/ second : null,
-  };
+        LogicMathOperation.add => first + second,
+        LogicMathOperation.subtract => first - second,
+        LogicMathOperation.multiply => first * second,
+        LogicMathOperation.divide =>
+          second != 0 && first % second == 0 ? first ~/ second : null,
+      };
 }
 
 class LogicMathEquation {
@@ -154,8 +156,8 @@ class LogicMathEquation {
 
   static int? _exactDivide(int numerator, int denominator) =>
       denominator != 0 && numerator % denominator == 0
-      ? numerator ~/ denominator
-      : null;
+          ? numerator ~/ denominator
+          : null;
 }
 
 /// Shared API for the three visual boards.
@@ -178,10 +180,10 @@ class LogicPuzzle {
     Iterable<LogicMathEquation> equations = const [],
     this.blockRows,
     this.blockColumns,
-  }) : cells = List<LogicCell>.unmodifiable(cells),
-       clues = List<LogicClue>.unmodifiable(clues),
-       inputChoices = List<String>.unmodifiable(inputChoices),
-       equations = List<LogicMathEquation>.unmodifiable(equations) {
+  })  : cells = List<LogicCell>.unmodifiable(cells),
+        clues = List<LogicClue>.unmodifiable(clues),
+        inputChoices = List<String>.unmodifiable(inputChoices),
+        equations = List<LogicMathEquation>.unmodifiable(equations) {
     if (rows <= 0 || columns <= 0 || this.cells.length != rows * columns) {
       throw ArgumentError('The grid dimensions and cells must agree.');
     }
@@ -213,8 +215,9 @@ class LogicPuzzle {
       value.trim().replaceAll('ß', 'SS').toUpperCase();
 
   bool isCorrectCell(int index, String value) {
-    if (index < 0 || index >= cells.length || cells[index].blocked)
+    if (index < 0 || index >= cells.length || cells[index].blocked) {
       return false;
+    }
     final expected = cells[index].answer;
     final entered = normalize(value);
     if (kind == LogicGameKind.maths && !cells[index].isOperator) {
@@ -225,8 +228,8 @@ class LogicPuzzle {
   }
 
   bool isComplete(Map<int, String> answers) => editableCells.every(
-    (cell) => isCorrectCell(cell.index, answers[cell.index] ?? ''),
-  );
+        (cell) => isCorrectCell(cell.index, answers[cell.index] ?? ''),
+      );
 
   String visibleValue(int index, Map<int, String> answers) {
     final cell = cells[index];
@@ -244,6 +247,13 @@ class LogicPuzzle {
       return 'Wähle zuerst ein freies Feld aus.';
     }
     if (kind == LogicGameKind.sudoku) {
+      final incorrect = _incorrectSudokuEntry(answers);
+      if (incorrect != null) {
+        return 'Prüfe zuerst deinen Eintrag in Zeile '
+            '${incorrect ~/ columns + 1}, Spalte ${incorrect % columns + 1}. '
+            'Diese Zahl stimmt noch nicht. Danach hilft dir die Regel '
+            'für Zeile, Spalte und kleinen Block weiter.';
+      }
       final candidates = sudokuCandidates(index, answers);
       if (candidates.isEmpty) {
         return 'Prüfe die eingetragenen Zahlen in dieser Zeile, Spalte und '
@@ -296,17 +306,32 @@ class LogicPuzzle {
 
   /// Prefer a logically forced Sudoku cell; otherwise the first unanswered cell.
   int? suggestedHintIndex(Map<int, String> answers) {
+    if (kind == LogicGameKind.sudoku) {
+      final incorrect = _incorrectSudokuEntry(answers);
+      if (incorrect != null) return incorrect;
+    }
     final remaining = editableCells.where(
       (cell) => !isCorrectCell(cell.index, answers[cell.index] ?? ''),
     );
     if (remaining.isEmpty) return null;
     if (kind == LogicGameKind.sudoku) {
       for (final cell in remaining) {
-        if (sudokuCandidates(cell.index, answers).length == 1)
+        if (sudokuCandidates(cell.index, answers).length == 1) {
           return cell.index;
+        }
       }
     }
     return remaining.first.index;
+  }
+
+  int? _incorrectSudokuEntry(Map<int, String> answers) {
+    for (final cell in editableCells) {
+      final answer = normalize(answers[cell.index] ?? '');
+      if (answer.isNotEmpty && !isCorrectCell(cell.index, answer)) {
+        return cell.index;
+      }
+    }
+    return null;
   }
 }
 
@@ -351,8 +376,9 @@ class LogicSudokuSolver {
         blockRows * blockColumns != size ||
         size % blockRows != 0 ||
         size % blockColumns != 0 ||
-        grid.length != size * size)
+        grid.length != size * size) {
       return false;
+    }
     for (var i = 0; i < grid.length; i++) {
       final value = grid[i];
       if (value < 0 || value > size) return false;
@@ -490,8 +516,8 @@ class LogicCatalog {
     final targetHoles = size == 4
         ? (grade == 1 ? 4 + (level - 1) ~/ 2 : 7 + (level - 1) ~/ 2)
         : (grade == 2
-              ? 10 + (level - 7)
-              : (grade == 3 ? 12 : 16) + (level - 1) ~/ 2);
+            ? 10 + (level - 7)
+            : (grade == 3 ? 12 : 16) + (level - 1) ~/ 2);
     var removed = 0;
     // A coprime step visits every cell once and makes the catalog reproducible.
     final order = List<int>.generate(
@@ -525,10 +551,9 @@ class LogicCatalog {
       kind: LogicGameKind.sudoku,
       grade: grade,
       level: level,
-      title: '${size}×$size · Insel $level',
-      instruction:
-          'Jede Zahl von 1 bis $size steht genau einmal in jeder '
-          'Zeile, Spalte und jedem kleinen ${blockRows}×$blockColumns-Block.',
+      title: '$size×$size · Insel $level',
+      instruction: 'Jede Zahl von 1 bis $size steht genau einmal in jeder '
+          'Zeile, Spalte und jedem kleinen $blockRows×$blockColumns-Block.',
       rows: size,
       columns: size,
       cells: [
@@ -628,8 +653,7 @@ class LogicCatalog {
       grade: grade,
       level: level,
       title: 'Wörterpfad $level',
-      instruction:
-          'Löse die Hinweise und schreibe die Wörter ins Gitter. '
+      instruction: 'Löse die Hinweise und schreibe die Wörter ins Gitter. '
           'Kreuzungen teilen einen Buchstaben. Ä, Ö und Ü haben ein Feld; '
           'für ß schreibst du SS.',
       rows: rows,
@@ -668,22 +692,25 @@ class LogicCatalog {
     Map<(int, int), Set<bool>> directions,
   ) {
     if (letters.containsKey(candidate.at(-1)) ||
-        letters.containsKey(candidate.at(candidate.word.answer.length)))
+        letters.containsKey(candidate.at(candidate.word.answer.length))) {
       return null;
+    }
     var crossings = 0;
     for (var i = 0; i < candidate.word.answer.length; i++) {
       final p = candidate.at(i);
       final existing = letters[p];
       if (existing != null) {
         if (existing != candidate.word.answer[i] ||
-            directions[p]!.contains(candidate.across))
+            directions[p]!.contains(candidate.across)) {
           return null;
+        }
         crossings++;
       } else {
         final before = candidate.across ? (p.$1 - 1, p.$2) : (p.$1, p.$2 - 1);
         final after = candidate.across ? (p.$1 + 1, p.$2) : (p.$1, p.$2 + 1);
-        if (letters.containsKey(before) || letters.containsKey(after))
+        if (letters.containsKey(before) || letters.containsKey(after)) {
           return null;
+        }
       }
     }
     if (crossings == 0) return null;
@@ -692,12 +719,10 @@ class LogicCatalog {
       candidate.at(0),
       candidate.at(candidate.word.answer.length - 1),
     ];
-    final rows =
-        allPoints.map((p) => p.$1).reduce(_max) -
+    final rows = allPoints.map((p) => p.$1).reduce(_max) -
         allPoints.map((p) => p.$1).reduce(_min) +
         1;
-    final columns =
-        allPoints.map((p) => p.$2).reduce(_max) -
+    final columns = allPoints.map((p) => p.$2).reduce(_max) -
         allPoints.map((p) => p.$2).reduce(_min) +
         1;
     if (rows > 10 || columns > 10) return null;
@@ -771,9 +796,8 @@ class LogicCatalog {
       final subtraction = level >= 5;
       final a = subtraction ? b + x : x;
       final d = subtraction ? e + y : y;
-      final rowOperation = subtraction
-          ? LogicMathOperation.subtract
-          : LogicMathOperation.add;
+      final rowOperation =
+          subtraction ? LogicMathOperation.subtract : LogicMathOperation.add;
       final c = rowOperation.apply(a, b)!;
       final f = rowOperation.apply(d, e)!;
       answers.addAll({
@@ -804,9 +828,8 @@ class LogicCatalog {
     }
     final givens = Map<int, int>.of(answers);
     final ordered = answers.keys.toList()..sort();
-    final targetHoles = equations.length == 3
-        ? 2 + (level >= 8 ? 1 : 0)
-        : 3 + (level - 1) ~/ 5;
+    final targetHoles =
+        equations.length == 3 ? 2 + (level >= 8 ? 1 : 0) : 3 + (level - 1) ~/ 5;
     var removed = 0;
     for (var offset = 0; offset < ordered.length; offset++) {
       if (removed == targetHoles) break;
@@ -825,8 +848,7 @@ class LogicCatalog {
       grade: grade,
       level: level,
       title: 'Zahlenbrücke $level',
-      instruction:
-          'Jede Rechnung muss stimmen – von links nach rechts und '
+      instruction: 'Jede Rechnung muss stimmen – von links nach rechts und '
           'von oben nach unten. Geteilte Felder gehören zu beiden Rechnungen.',
       rows: 5,
       columns: 5,
@@ -834,9 +856,8 @@ class LogicCatalog {
         for (var i = 0; i < 25; i++)
           LogicCell(
             index: i,
-            answer: answers.containsKey(i)
-                ? '${answers[i]}'
-                : operators[i] ?? '',
+            answer:
+                answers.containsKey(i) ? '${answers[i]}' : operators[i] ?? '',
             given: givens.containsKey(i) || operators.containsKey(i),
             blocked: !answers.containsKey(i) && !operators.containsKey(i),
             isOperator: operators.containsKey(i),

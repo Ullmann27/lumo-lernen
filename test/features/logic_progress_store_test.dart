@@ -6,9 +6,9 @@ import 'package:lumo_lernen/domain/logic/logic_learning_profile.dart';
 import 'package:lumo_lernen/features/games/logic/logic_progress_store.dart';
 
 Map<int, String> _solution(LogicPuzzle puzzle) => {
-  for (final cell in puzzle.cells)
-    if (cell.editable) cell.index: cell.answer,
-};
+      for (final cell in puzzle.cells)
+        if (cell.editable) cell.index: cell.answer,
+    };
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -17,11 +17,11 @@ void main() {
   final start = DateTime(2026, 11, 23, 10);
 
   Future<LogicPuzzleSession> begin(String profileId) => store.begin(
-    profileId: profileId,
-    puzzle: puzzle,
-    sessionId: 'visit-one',
-    now: start,
-  );
+        profileId: profileId,
+        puzzle: puzzle,
+        sessionId: 'visit-one',
+        now: start,
+      );
 
   setUp(() {
     SharedPreferences.setMockInitialValues({});
@@ -100,7 +100,8 @@ void main() {
     () async {
       final session = (await begin(
         'child-a',
-      )).copyWith(answers: _solution(puzzle));
+      ))
+          .copyWith(answers: _solution(puzzle));
       final first = await store.complete(
         'child-a',
         session,
@@ -129,7 +130,8 @@ void main() {
     () async {
       final assisted = (await begin(
         'child-a',
-      )).copyWith(answers: _solution(puzzle), hints: 2);
+      ))
+          .copyWith(answers: _solution(puzzle), hints: 2);
       await store.complete(
         'child-a',
         assisted,
@@ -138,7 +140,8 @@ void main() {
       );
       final replay = (await begin(
         'child-a',
-      )).copyWith(answers: _solution(puzzle));
+      ))
+          .copyWith(answers: _solution(puzzle));
       expect(replay.isReplay, isTrue);
       final progress = await store.complete(
         'child-a',

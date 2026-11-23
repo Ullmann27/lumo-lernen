@@ -9,6 +9,7 @@ class LumoGameEntryArt {
   const LumoGameEntryArt._();
 
   static String titleFor(String scene) => switch (scene) {
+        'world' => 'Lumo World',
         'kart' => 'Lumo Kart',
         'build' => 'Lumo Bauwelt',
         'settlement' => 'Dorfwirtschaft',
@@ -25,6 +26,7 @@ class LumoGameEntryArt {
       };
 
   static String imageFor(String scene) => switch (scene) {
+        'world' => 'assets/lumo_design/spielwelt/cover_world.webp',
         'kart' => 'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
         'build' => 'assets/lumo_design/gameplay/build.png',
         'settlement' => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
@@ -39,6 +41,7 @@ class LumoGameEntryArt {
       };
 
   static String categoryFor(String scene) => switch (scene) {
+        'world' => 'DEINE WELT VOLLER ABENTEUER',
         'kart' => '3D-RENNSPIEL',
         'build' => 'BAUABENTEUER',
         'settlement' => 'DEIN LEBENDIGES DORF',

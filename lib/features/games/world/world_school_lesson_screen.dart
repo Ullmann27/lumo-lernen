@@ -204,8 +204,7 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
       _fox.think();
       setState(() {
         _busy = false;
-        _feedback =
-            'Schau noch einmal genau. Du kannst dir den Rechenweg '
+        _feedback = 'Schau noch einmal genau. Du kannst dir den Rechenweg '
             'zeigen lassen und es in Ruhe wieder versuchen.';
       });
     }
@@ -275,43 +274,44 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
           child: _loading
               ? const Center(child: CircularProgressIndicator())
               : _invalid
-              ? _invalidView()
-              : _lessonView(),
+                  ? _invalidView()
+                  : _lessonView(),
         ),
       ),
     );
   }
 
   Widget _invalidView() => Center(
-    child: Padding(
-      padding: const EdgeInsets.all(24),
-      child: LumoGlassCard(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Icons.school_rounded,
-              color: LumoVisualTokens.cyan,
-              size: 48,
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: LumoGlassCard(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.school_rounded,
+                  color: LumoVisualTokens.cyan,
+                  size: 48,
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Diese Schulmission konnte nicht sicher fortgesetzt werden. '
+                  'Kehre mit deinem gewählten Lernprofil zur Welt zurück.',
+                  style: _body,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                FilledButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  style:
+                      FilledButton.styleFrom(minimumSize: const Size(48, 52)),
+                  child: const Text('Zurück zur Welt'),
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            const Text(
-              'Diese Schulmission konnte nicht sicher fortgesetzt werden. '
-              'Kehre mit deinem gewählten Lernprofil zur Welt zurück.',
-              style: _body,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () => Navigator.of(context).pop(),
-              style: FilledButton.styleFrom(minimumSize: const Size(48, 52)),
-              child: const Text('Zurück zur Welt'),
-            ),
-          ],
+          ),
         ),
-      ),
-    ),
-  );
+      );
 
   Widget _lessonView() {
     final lesson = _lesson!;
@@ -379,8 +379,8 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
                               color: i < lesson.solved
                                   ? const Color(0xFF7DFF9A)
                                   : i == _index
-                                  ? LumoVisualTokens.cyan
-                                  : const Color(0xFF406079),
+                                      ? LumoVisualTokens.cyan
+                                      : const Color(0xFF406079),
                             ),
                           ),
                           child: Icon(
@@ -407,8 +407,9 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
                   requestedHelpLevel: _hintUsed ? 3 : 0,
                   guided: _hintUsed,
                   onInteraction: (interaction) {
-                    if (!_safe || _busy || _accepted || !interaction.isHelp)
+                    if (!_safe || _busy || _accepted || !interaction.isHelp) {
                       return;
+                    }
                     _currentProgress.notePresentationHelp(level: 3);
                     setState(() => _hintUsed = true);
                   },
@@ -434,9 +435,8 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
                 ),
                 if (_currentProgress.error != null)
                   FilledButton.icon(
-                    onPressed: _currentProgress.saving
-                        ? null
-                        : _currentProgress.retry,
+                    onPressed:
+                        _currentProgress.saving ? null : _currentProgress.retry,
                     style: FilledButton.styleFrom(
                       minimumSize: const Size(48, 52),
                     ),

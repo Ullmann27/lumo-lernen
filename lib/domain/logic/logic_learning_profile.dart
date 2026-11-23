@@ -40,22 +40,23 @@ class LogicPuzzleSession {
     int? hints,
     int? errors,
     bool? solutionRevealed,
-  }) => LogicPuzzleSession(
-    attemptId: attemptId,
-    puzzleId: puzzleId,
-    contentVersion: contentVersion,
-    kind: kind,
-    grade: grade,
-    level: level,
-    sessionId: sessionId,
-    startedAt: startedAt,
-    answers: answers ?? this.answers,
-    hints: hints ?? this.hints,
-    errors: errors ?? this.errors,
-    solutionRevealed: solutionRevealed ?? this.solutionRevealed,
-    isReplay: isReplay,
-    revision: revision + 1,
-  );
+  }) =>
+      LogicPuzzleSession(
+        attemptId: attemptId,
+        puzzleId: puzzleId,
+        contentVersion: contentVersion,
+        kind: kind,
+        grade: grade,
+        level: level,
+        sessionId: sessionId,
+        startedAt: startedAt,
+        answers: answers ?? this.answers,
+        hints: hints ?? this.hints,
+        errors: errors ?? this.errors,
+        solutionRevealed: solutionRevealed ?? this.solutionRevealed,
+        isReplay: isReplay,
+        revision: revision + 1,
+      );
 
   /// A late write cannot erase assistance recorded by an earlier write.
   LogicPuzzleSession preservingEvidenceFrom(LogicPuzzleSession earlier) =>
@@ -77,21 +78,21 @@ class LogicPuzzleSession {
       );
 
   Map<String, Object?> toJson() => {
-    'attemptId': attemptId,
-    'puzzleId': puzzleId,
-    'contentVersion': contentVersion,
-    'kind': kind.name,
-    'grade': grade,
-    'level': level,
-    'sessionId': sessionId,
-    'startedAt': startedAt.toIso8601String(),
-    'answers': {for (final e in answers.entries) '${e.key}': e.value},
-    'hints': hints,
-    'errors': errors,
-    'solutionRevealed': solutionRevealed,
-    'isReplay': isReplay,
-    'revision': revision,
-  };
+        'attemptId': attemptId,
+        'puzzleId': puzzleId,
+        'contentVersion': contentVersion,
+        'kind': kind.name,
+        'grade': grade,
+        'level': level,
+        'sessionId': sessionId,
+        'startedAt': startedAt.toIso8601String(),
+        'answers': {for (final e in answers.entries) '${e.key}': e.value},
+        'hints': hints,
+        'errors': errors,
+        'solutionRevealed': solutionRevealed,
+        'isReplay': isReplay,
+        'revision': revision,
+      };
 
   factory LogicPuzzleSession.fromJson(Object? value) {
     final json = _map(value);
@@ -145,21 +146,22 @@ class LogicPuzzleResult {
   factory LogicPuzzleResult.fromSession(
     LogicPuzzleSession session,
     DateTime completedAt,
-  ) => LogicPuzzleResult(
-    attemptId: session.attemptId,
-    puzzleId: session.puzzleId,
-    contentVersion: session.contentVersion,
-    kind: session.kind,
-    grade: session.grade,
-    level: session.level,
-    sessionId: session.sessionId,
-    startedAt: session.startedAt,
-    completedAt: completedAt,
-    hints: session.hints,
-    errors: session.errors,
-    solutionRevealed: session.solutionRevealed,
-    isReplay: session.isReplay,
-  );
+  ) =>
+      LogicPuzzleResult(
+        attemptId: session.attemptId,
+        puzzleId: session.puzzleId,
+        contentVersion: session.contentVersion,
+        kind: session.kind,
+        grade: session.grade,
+        level: session.level,
+        sessionId: session.sessionId,
+        startedAt: session.startedAt,
+        completedAt: completedAt,
+        hints: session.hints,
+        errors: session.errors,
+        solutionRevealed: session.solutionRevealed,
+        isReplay: session.isReplay,
+      );
 
   final String attemptId;
   final String puzzleId;
@@ -178,20 +180,20 @@ class LogicPuzzleResult {
   bool get independent => !isReplay && hints == 0 && !solutionRevealed;
 
   Map<String, Object?> toJson() => {
-    'attemptId': attemptId,
-    'puzzleId': puzzleId,
-    'contentVersion': contentVersion,
-    'kind': kind.name,
-    'grade': grade,
-    'level': level,
-    'sessionId': sessionId,
-    'startedAt': startedAt.toIso8601String(),
-    'completedAt': completedAt.toIso8601String(),
-    'hints': hints,
-    'errors': errors,
-    'solutionRevealed': solutionRevealed,
-    'isReplay': isReplay,
-  };
+        'attemptId': attemptId,
+        'puzzleId': puzzleId,
+        'contentVersion': contentVersion,
+        'kind': kind.name,
+        'grade': grade,
+        'level': level,
+        'sessionId': sessionId,
+        'startedAt': startedAt.toIso8601String(),
+        'completedAt': completedAt.toIso8601String(),
+        'hints': hints,
+        'errors': errors,
+        'solutionRevealed': solutionRevealed,
+        'isReplay': isReplay,
+      };
 
   factory LogicPuzzleResult.fromJson(Object? value) {
     final json = _map(value);
@@ -221,8 +223,8 @@ class LogicProgress {
     this.selectedGrade = 1,
     Map<String, LogicPuzzleSession> drafts = const {},
     Map<String, LogicPuzzleResult> results = const {},
-  }) : drafts = Map.unmodifiable(drafts),
-       results = Map.unmodifiable(results);
+  })  : drafts = Map.unmodifiable(drafts),
+        results = Map.unmodifiable(results);
 
   final String profileId;
   final int selectedGrade;
@@ -246,20 +248,21 @@ class LogicProgress {
     int? selectedGrade,
     Map<String, LogicPuzzleSession>? drafts,
     Map<String, LogicPuzzleResult>? results,
-  }) => LogicProgress(
-    profileId: profileId,
-    selectedGrade: selectedGrade ?? this.selectedGrade,
-    drafts: drafts ?? this.drafts,
-    results: results ?? this.results,
-  );
+  }) =>
+      LogicProgress(
+        profileId: profileId,
+        selectedGrade: selectedGrade ?? this.selectedGrade,
+        drafts: drafts ?? this.drafts,
+        results: results ?? this.results,
+      );
 
   Map<String, Object?> toJson() => {
-    'schema': 1,
-    'profileId': profileId,
-    'selectedGrade': selectedGrade,
-    'drafts': {for (final e in drafts.entries) e.key: e.value.toJson()},
-    'results': {for (final e in results.entries) e.key: e.value.toJson()},
-  };
+        'schema': 1,
+        'profileId': profileId,
+        'selectedGrade': selectedGrade,
+        'drafts': {for (final e in drafts.entries) e.key: e.value.toJson()},
+        'results': {for (final e in results.entries) e.key: e.value.toJson()},
+      };
 
   factory LogicProgress.fromJson(Object? value) {
     final json = _map(value);
@@ -332,17 +335,16 @@ class LogicLearningProfile {
   }) {
     final reports = <LogicSkillReport>[];
     for (final kind in LogicGameKind.values) {
-      final observed =
-          progress.results.values
-              .where(
-                (r) =>
-                    r.kind == kind &&
-                    r.grade == grade &&
-                    r.contentVersion == contentVersion &&
-                    !r.isReplay,
-              )
-              .toList()
-            ..sort((a, b) => a.completedAt.compareTo(b.completedAt));
+      final observed = progress.results.values
+          .where(
+            (r) =>
+                r.kind == kind &&
+                r.grade == grade &&
+                r.contentVersion == contentVersion &&
+                !r.isReplay,
+          )
+          .toList()
+        ..sort((a, b) => a.completedAt.compareTo(b.completedAt));
       final sessions = observed.map((r) => r.sessionId).toSet().length;
       final days = observed
           .map((r) {
@@ -363,26 +365,26 @@ class LogicLearningProfile {
       final stage = !enough
           ? LogicEvidenceStage.exploring
           : independent >= 5
-          ? advanced.contains(11) && advanced.contains(12)
-                ? LogicEvidenceStage.challenge
-                : LogicEvidenceStage.independent
-          : LogicEvidenceStage.practicing;
+              ? advanced.contains(11) && advanced.contains(12)
+                  ? LogicEvidenceStage.challenge
+                  : LogicEvidenceStage.independent
+              : LogicEvidenceStage.practicing;
       final (title, puzzleName, tip) = switch (kind) {
         LogicGameKind.sudoku => (
-          'Logisches Kombinieren',
-          'Sudoku-Rätsel',
-          'Schau dir eine Reihe, eine Spalte und einen Block nacheinander an.',
-        ),
+            'Logisches Kombinieren',
+            'Sudoku-Rätsel',
+            'Schau dir eine Reihe, eine Spalte und einen Block nacheinander an.',
+          ),
         LogicGameKind.words => (
-          'Wörter und Rechtschreiben',
-          'Wort-Kreuzrätsel',
-          'Sprich ein Wort langsam und prüfe die Buchstaben an den Kreuzungen.',
-        ),
+            'Wörter und Rechtschreiben',
+            'Wort-Kreuzrätsel',
+            'Sprich ein Wort langsam und prüfe die Buchstaben an den Kreuzungen.',
+          ),
         LogicGameKind.maths => (
-          'Rechnen und Prüfen',
-          'Mathe-Kreuzrätsel',
-          'Prüfe deine Zahl in der waagerechten und der senkrechten Rechnung.',
-        ),
+            'Rechnen und Prüfen',
+            'Mathe-Kreuzrätsel',
+            'Prüfe deine Zahl in der waagerechten und der senkrechten Rechnung.',
+          ),
       };
       final summary = switch (stage) {
         LogicEvidenceStage.exploring =>

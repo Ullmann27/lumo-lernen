@@ -36,8 +36,9 @@ class WorldSchoolMissionRequest {
         raw['subject'] != subject ||
         raw['returnGame'] != returnGame ||
         raw['requestId'] is! String ||
-        raw['grade'] is! int)
+        raw['grade'] is! int) {
       return null;
+    }
     final requestId = raw['requestId'] as String;
     final grade = raw['grade'] as int;
     if (!_validRequestId(requestId) || grade < 1 || grade > 4) return null;
@@ -45,13 +46,13 @@ class WorldSchoolMissionRequest {
   }
 
   Map<String, Object> toJson() => {
-    'version': version,
-    'id': missionId,
-    'requestId': requestId,
-    'subject': subject,
-    'grade': grade,
-    'returnGame': returnGame,
-  };
+        'version': version,
+        'id': missionId,
+        'requestId': requestId,
+        'subject': subject,
+        'grade': grade,
+        'returnGame': returnGame,
+      };
 }
 
 /// Created only after all three assessed tasks have been accepted as saved.
@@ -60,14 +61,14 @@ class WorldSchoolMissionReceipt {
   final WorldSchoolMissionRequest request;
 
   Map<String, Object> toJson() => {
-    'version': WorldSchoolMissionRequest.version,
-    'requestId': request.requestId,
-    'missionId': WorldSchoolMissionRequest.missionId,
-    'completed': true,
-    'subject': WorldSchoolMissionRequest.subject,
-    'grade': request.grade,
-    'returnGame': WorldSchoolMissionRequest.returnGame,
-  };
+        'version': WorldSchoolMissionRequest.version,
+        'requestId': request.requestId,
+        'missionId': WorldSchoolMissionRequest.missionId,
+        'completed': true,
+        'subject': WorldSchoolMissionRequest.subject,
+        'grade': request.grade,
+        'returnGame': WorldSchoolMissionRequest.returnGame,
+      };
 }
 
 /// Three real tasks from the existing learning-app generator and quality gate.
@@ -77,7 +78,7 @@ class WorldSchoolMissionReceipt {
 /// call [acceptSavedAnswer], after its original profile lease is still current.
 class WorldSchoolLesson {
   WorldSchoolLesson._(this.request, this.ownerId, Iterable<LumoTask> tasks)
-    : tasks = List<LumoTask>.unmodifiable(tasks);
+      : tasks = List<LumoTask>.unmodifiable(tasks);
 
   factory WorldSchoolLesson.start({
     required WorldSchoolMissionRequest request,
@@ -145,8 +146,9 @@ class WorldSchoolLesson {
     required String answer,
     required String currentOwnerId,
   }) {
-    if (_cancelled || currentOwnerId != ownerId || index != _solved)
+    if (_cancelled || currentOwnerId != ownerId || index != _solved) {
       return false;
+    }
     if (!accepts(index, answer)) return false;
     _solved++;
     return true;
@@ -154,8 +156,8 @@ class WorldSchoolLesson {
 
   WorldSchoolMissionReceipt? receiptForOwner(String currentOwnerId) =>
       complete && currentOwnerId == ownerId
-      ? WorldSchoolMissionReceipt._(request)
-      : null;
+          ? WorldSchoolMissionReceipt._(request)
+          : null;
 
   void cancel() => _cancelled = true;
 

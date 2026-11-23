@@ -12,6 +12,17 @@ import '../../../widgets/fox/lumo_character.dart';
 /// Ein Spielportal der Spielwelt: Spiel, Freischaltung und was beim Tippen
 /// passiert. Ob es offen ist, sagt [state] aus der Domain, nie das Portal.
 class SpielweltPortal {
+  const SpielweltPortal.logic({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Logikspiele',
+        specialId = 'logic';
+
+  const SpielweltPortal.world({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumo World',
+        specialId = 'world';
   const SpielweltPortal({
     required this.game,
     required this.state,
@@ -90,6 +101,8 @@ class SpielweltPortal {
   }
 
   String get tagline => switch (specialId) {
+        'logic' => 'Sudoku, Wörterwerkstatt und Zahlenbrücken',
+        'world' => 'Dein Dorf, deine Freunde und neue Abenteuer',
         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
         'village' =>
           'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
@@ -156,6 +169,8 @@ class _SpielweltHubState extends State<SpielweltHub> {
   final LumoCharacterController _lumo = LumoCharacterController();
 
   static const _featuredOrder = [
+    'world',
+    'logic',
     'kart',
     'village',
     'skypost',

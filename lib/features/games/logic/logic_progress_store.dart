@@ -25,8 +25,12 @@ class LogicProgressStore {
     );
     _pending.add(work);
     unawaited(work.then<void>(
-      (_) { _pending.remove(work); },
-      onError: (Object _, StackTrace __) { _pending.remove(work); },
+      (_) {
+        _pending.remove(work);
+      },
+      onError: (Object _, StackTrace __) {
+        _pending.remove(work);
+      },
     ));
     return work;
   }
@@ -71,8 +75,9 @@ class LogicProgressStore {
 
   Future<LogicProgress> setGrade(String profileId, int grade) =>
       _run(profileId, () async {
-        if (grade < 1 || grade > 4)
+        if (grade < 1 || grade > 4) {
           throw RangeError.range(grade, 1, 4, 'grade');
+        }
         final current = await _read(profileId);
         return _write(current.copyWith(selectedGrade: grade));
       });
@@ -83,105 +88,111 @@ class LogicProgressStore {
     required String sessionId,
     DateTime? now,
     bool restart = false,
-  }) => _run(profileId, () async {
-    if (sessionId.trim().isEmpty) {
-      throw ArgumentError.value(sessionId, 'sessionId', 'A visit is required');
-    }
-    final progress = await _read(profileId);
-    final prior = progress.drafts[puzzle.id];
-    if (prior != null && !restart) {
-      _checkPuzzle(prior, puzzle);
-      return prior;
-    }
-    final instant = now ?? DateTime.now();
-    final attempt = LogicPuzzleSession(
-      attemptId: 'logic-${instant.microsecondsSinceEpoch}-${_nextAttempt++}',
-      puzzleId: puzzle.id,
-      contentVersion: LogicCatalog.contentVersion,
-      kind: puzzle.kind,
-      grade: puzzle.grade,
-      level: puzzle.level,
-      sessionId: sessionId,
-      startedAt: instant,
-      hints: prior?.hints ?? 0,
-      errors: prior?.errors ?? 0,
-      solutionRevealed: prior?.solutionRevealed ?? false,
-      isReplay: prior != null || progress.isCompleted(puzzle.id),
-    );
-    await _write(
-      progress.copyWith(drafts: {...progress.drafts, puzzle.id: attempt}),
-    );
-    return attempt;
-  });
+  }) =>
+      _run(profileId, () async {
+        if (sessionId.trim().isEmpty) {
+          throw ArgumentError.value(
+              sessionId, 'sessionId', 'A visit is required');
+        }
+        final progress = await _read(profileId);
+        final prior = progress.drafts[puzzle.id];
+        if (prior != null && !restart) {
+          _checkPuzzle(prior, puzzle);
+          return prior;
+        }
+        final instant = now ?? DateTime.now();
+        final attempt = LogicPuzzleSession(
+          attemptId:
+              'logic-${instant.microsecondsSinceEpoch}-${_nextAttempt++}',
+          puzzleId: puzzle.id,
+          contentVersion: LogicCatalog.contentVersion,
+          kind: puzzle.kind,
+          grade: puzzle.grade,
+          level: puzzle.level,
+          sessionId: sessionId,
+          startedAt: instant,
+          hints: prior?.hints ?? 0,
+          errors: prior?.errors ?? 0,
+          solutionRevealed: prior?.solutionRevealed ?? false,
+          isReplay: prior != null || progress.isCompleted(puzzle.id),
+        );
+        await _write(
+          progress.copyWith(drafts: {...progress.drafts, puzzle.id: attempt}),
+        );
+        return attempt;
+      });
 
   Future<LogicProgress> saveSession(
     String profileId,
     LogicPuzzleSession session,
-  ) => _run(profileId, () async {
-    // Validate public constructor input before it reaches persistent bytes.
-    LogicPuzzleSession.fromJson(session.toJson());
-    final progress = await _read(profileId);
-    final current = progress.drafts[session.puzzleId];
-    if (current == null) {
-      // A delayed answer write after completion must not reopen the puzzle.
-      if (progress.results.containsKey(session.puzzleId)) {
-        return progress;
-      }
-      throw StateError('Dieses Logik-Rätsel ist nicht mehr geöffnet');
-    }
-    _checkIdentity(current, session);
-    if (session.revision < current.revision) return progress;
-    final merged = session.preservingEvidenceFrom(current);
-    return _write(
-      progress.copyWith(drafts: {...progress.drafts, session.puzzleId: merged}),
-    );
-  });
+  ) =>
+      _run(profileId, () async {
+        // Validate public constructor input before it reaches persistent bytes.
+        LogicPuzzleSession.fromJson(session.toJson());
+        final progress = await _read(profileId);
+        final current = progress.drafts[session.puzzleId];
+        if (current == null) {
+          // A delayed answer write after completion must not reopen the puzzle.
+          if (progress.results.containsKey(session.puzzleId)) {
+            return progress;
+          }
+          throw StateError('Dieses Logik-Rätsel ist nicht mehr geöffnet');
+        }
+        _checkIdentity(current, session);
+        if (session.revision < current.revision) return progress;
+        final merged = session.preservingEvidenceFrom(current);
+        return _write(
+          progress
+              .copyWith(drafts: {...progress.drafts, session.puzzleId: merged}),
+        );
+      });
 
   Future<LogicProgress> complete(
     String profileId,
     LogicPuzzleSession session, {
     required LogicPuzzle puzzle,
     DateTime? now,
-  }) => _run(profileId, () async {
-    final progress = await _read(profileId);
-    final current = progress.drafts[session.puzzleId];
-    final existing = progress.results[session.puzzleId];
-    if (current == null && existing != null) {
-      return progress;
-    }
-    if (current == null) {
-      throw StateError('Dieses Logik-Rätsel ist nicht mehr geöffnet');
-    }
-    _checkIdentity(current, session);
-    if (session.revision < current.revision) {
-      throw StateError(
-        'Der neueste Logik-Spielstand muss abgeschlossen werden',
-      );
-    }
-    final merged = session.preservingEvidenceFrom(current);
-    _checkPuzzle(merged, puzzle);
-    if (!puzzle.isComplete(merged.answers)) {
-      throw StateError('Das Logik-Rätsel ist noch nicht vollständig gelöst');
-    }
-    final finishedAt = now ?? DateTime.now();
-    if (finishedAt.isBefore(merged.startedAt)) {
-      throw StateError('Der Abschluss liegt vor dem Rätselbeginn');
-    }
-    final drafts = {...progress.drafts}..remove(session.puzzleId);
-    return _write(
-      progress.copyWith(
-        drafts: drafts,
-        results: {
-          ...progress.results,
-          session.puzzleId:
-              existing ?? LogicPuzzleResult.fromSession(merged, finishedAt),
-        },
-      ),
-    );
-  });
-
-  Future<void> clear(String profileId) =>
+  }) =>
       _run(profileId, () async {
+        final progress = await _read(profileId);
+        final current = progress.drafts[session.puzzleId];
+        final existing = progress.results[session.puzzleId];
+        if (current == null && existing != null) {
+          return progress;
+        }
+        if (current == null) {
+          throw StateError('Dieses Logik-Rätsel ist nicht mehr geöffnet');
+        }
+        _checkIdentity(current, session);
+        if (session.revision < current.revision) {
+          throw StateError(
+            'Der neueste Logik-Spielstand muss abgeschlossen werden',
+          );
+        }
+        final merged = session.preservingEvidenceFrom(current);
+        _checkPuzzle(merged, puzzle);
+        if (!puzzle.isComplete(merged.answers)) {
+          throw StateError(
+              'Das Logik-Rätsel ist noch nicht vollständig gelöst');
+        }
+        final finishedAt = now ?? DateTime.now();
+        if (finishedAt.isBefore(merged.startedAt)) {
+          throw StateError('Der Abschluss liegt vor dem Rätselbeginn');
+        }
+        final drafts = {...progress.drafts}..remove(session.puzzleId);
+        return _write(
+          progress.copyWith(
+            drafts: drafts,
+            results: {
+              ...progress.results,
+              session.puzzleId:
+                  existing ?? LogicPuzzleResult.fromSession(merged, finishedAt),
+            },
+          ),
+        );
+      });
+
+  Future<void> clear(String profileId) => _run(profileId, () async {
         final prefs = await preferences();
         await LearningStorage.remove(prefs, _key(profileId));
       });

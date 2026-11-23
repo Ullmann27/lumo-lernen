@@ -35,7 +35,9 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
   bool _busy = false;
 
   bool get _current =>
-      _owner != null && widget.appState.isCurrentLearningLease(_owner!);
+      _owner != null &&
+      !widget.appState.backupBusy &&
+      widget.appState.isCurrentLearningLease(_owner!);
 
   @override
   void initState() {
@@ -56,14 +58,18 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
 
   Future<void> _load() async {
     try {
+      final grade = widget.appState.state.grade.clamp(1, 4);
       final owner = _owner ?? await widget.appState.captureLearningProfile();
       var progress = await widget.store.load(owner.studentId);
+      if (!mounted ||
+          !widget.appState.isCurrentLearningLease(owner) ||
+          widget.appState.backupBusy) return;
       if (_owner == null &&
           progress.results.isEmpty &&
           progress.drafts.isEmpty) {
         progress = await widget.store.setGrade(
           owner.studentId,
-          widget.appState.state.grade.clamp(1, 4),
+          grade,
         );
       }
       await LumoSound.instance.init();
@@ -95,7 +101,11 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
     setState(() => _busy = true);
     try {
       final progress = await widget.store.setGrade(_owner!.studentId, grade);
-      if (mounted && _current) setState(() => _progress = progress);
+      if (mounted && _current)
+        setState(() {
+          _progress = progress;
+          _error = null;
+        });
     } catch (_) {
       if (mounted)
         setState(
@@ -110,8 +120,7 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
   Future<void> _open(LogicPuzzle puzzle) async {
     if (_busy ||
         !_current ||
-        !_progress!.isUnlocked(puzzle.kind, puzzle.grade, puzzle.level))
-      return;
+        !_progress!.isUnlocked(puzzle.kind, puzzle.grade, puzzle.level)) return;
     _click();
     setState(() => _busy = true);
     try {
@@ -159,9 +168,8 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      tooltip: _kind == null
-                          ? 'Zur Spielwelt'
-                          : 'Alle Logikspiele',
+                      tooltip:
+                          _kind == null ? 'Zur Spielwelt' : 'Alle Logikspiele',
                       color: Colors.white,
                       onPressed: () {
                         if (_kind == null) {
@@ -203,136 +211,139 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                               ),
                       )
                     : !_current
-                    ? Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: Text(
-                            'Das Kinderprofil wurde gewechselt. Öffne die Logikspiele für das ausgewählte Kind erneut.',
-                            style: iqText(19),
-                          ),
-                        ),
-                      )
-                    : SingleChildScrollView(
-                        key: const ValueKey('logic-scroll'),
-                        padding: const EdgeInsets.fromLTRB(18, 12, 18, 28),
-                        child: Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 1080),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                if (_error != null)
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 12),
-                                    child: Text(
-                                      _error!,
-                                      style: iqText(
-                                        15,
-                                        color: const Color(0xFFFFD388),
-                                      ),
-                                    ),
-                                  ),
-                                if (_kind == null) _hero(),
-                                const SizedBox(height: 18),
-                                Text(
-                                  'Deine Schulstufe',
-                                  style: iqText(15, color: logicMuted),
-                                ),
-                                const SizedBox(height: 10),
-                                Wrap(
-                                  spacing: 9,
-                                  runSpacing: 8,
+                        ? Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(24),
+                              child: Text(
+                                'Das Kinderprofil wurde gewechselt. Öffne die Logikspiele für das ausgewählte Kind erneut.',
+                                style: iqText(19),
+                              ),
+                            ),
+                          )
+                        : SingleChildScrollView(
+                            key: const ValueKey('logic-scroll'),
+                            padding: const EdgeInsets.fromLTRB(18, 12, 18, 28),
+                            child: Center(
+                              child: ConstrainedBox(
+                                constraints:
+                                    const BoxConstraints(maxWidth: 1080),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   children: [
-                                    for (var grade = 1; grade <= 4; grade++)
-                                      Semantics(
-                                        selected:
-                                            progress.selectedGrade == grade,
-                                        child: LogicAction(
-                                          key: ValueKey('logic-grade-$grade'),
-                                          label: '$grade. Klasse',
-                                          primary:
-                                              progress.selectedGrade == grade,
-                                          onPressed: _busy
-                                              ? null
-                                              : () => _grade(grade),
+                                    if (_error != null)
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 12),
+                                        child: Text(
+                                          _error!,
+                                          style: iqText(
+                                            15,
+                                            color: const Color(0xFFFFD388),
+                                          ),
                                         ),
                                       ),
-                                  ],
-                                ),
-                                const SizedBox(height: 22),
-                                if (_kind == null) ...[
-                                  LayoutBuilder(
-                                    builder: (context, constraints) {
-                                      final columns =
-                                          constraints.maxWidth >= 870
-                                          ? 3
-                                          : constraints.maxWidth >= 560
-                                          ? 2
-                                          : 1;
-                                      final width =
-                                          (constraints.maxWidth -
-                                              (columns - 1) * 16) /
-                                          columns;
-                                      return Wrap(
-                                        spacing: 16,
-                                        runSpacing: 16,
-                                        children: [
-                                          for (final kind
-                                              in LogicGameKind.values)
-                                            SizedBox(
-                                              width: width,
-                                              child: _gameCard(kind, progress),
+                                    if (_kind == null) _hero(),
+                                    const SizedBox(height: 18),
+                                    Text(
+                                      'Deine Schulstufe',
+                                      style: iqText(15, color: logicMuted),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Wrap(
+                                      spacing: 9,
+                                      runSpacing: 8,
+                                      children: [
+                                        for (var grade = 1; grade <= 4; grade++)
+                                          Semantics(
+                                            selected:
+                                                progress.selectedGrade == grade,
+                                            child: LogicAction(
+                                              key: ValueKey(
+                                                  'logic-grade-$grade'),
+                                              label: '$grade. Klasse',
+                                              primary: progress.selectedGrade ==
+                                                  grade,
+                                              onPressed: _busy
+                                                  ? null
+                                                  : () => _grade(grade),
                                             ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                  const SizedBox(height: 24),
-                                  _profileCard(progress),
-                                ] else ...[
-                                  Text(
-                                    'Ein Rätsel öffnet das nächste Abenteuer.',
-                                    style: iqText(17, color: logicMuted),
-                                  ),
-                                  const SizedBox(height: 14),
-                                  LayoutBuilder(
-                                    builder: (context, constraints) {
-                                      final columns =
-                                          constraints.maxWidth >= 700
-                                          ? 4
-                                          : constraints.maxWidth >= 480
-                                          ? 3
-                                          : 2;
-                                      final width =
-                                          (constraints.maxWidth -
-                                              (columns - 1) * 12) /
-                                          columns;
-                                      return Wrap(
-                                        spacing: 12,
-                                        runSpacing: 12,
-                                        children: [
-                                          for (final puzzle
-                                              in LogicCatalog.levels(
+                                          ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 22),
+                                    if (_kind == null) ...[
+                                      LayoutBuilder(
+                                        builder: (context, constraints) {
+                                          final columns =
+                                              constraints.maxWidth >= 870
+                                                  ? 3
+                                                  : constraints.maxWidth >= 560
+                                                      ? 2
+                                                      : 1;
+                                          final width = (constraints.maxWidth -
+                                                  (columns - 1) * 16) /
+                                              columns;
+                                          return Wrap(
+                                            spacing: 16,
+                                            runSpacing: 16,
+                                            children: [
+                                              for (final kind
+                                                  in LogicGameKind.values)
+                                                SizedBox(
+                                                  width: width,
+                                                  child:
+                                                      _gameCard(kind, progress),
+                                                ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                      const SizedBox(height: 24),
+                                      _profileCard(progress),
+                                    ] else ...[
+                                      Text(
+                                        'Ein Rätsel öffnet das nächste Abenteuer.',
+                                        style: iqText(17, color: logicMuted),
+                                      ),
+                                      const SizedBox(height: 14),
+                                      LayoutBuilder(
+                                        builder: (context, constraints) {
+                                          final columns =
+                                              constraints.maxWidth >= 700
+                                                  ? 4
+                                                  : constraints.maxWidth >= 480
+                                                      ? 3
+                                                      : 2;
+                                          final width = (constraints.maxWidth -
+                                                  (columns - 1) * 12) /
+                                              columns;
+                                          return Wrap(
+                                            spacing: 12,
+                                            runSpacing: 12,
+                                            children: [
+                                              for (final puzzle
+                                                  in LogicCatalog.levels(
                                                 _kind!,
                                                 progress.selectedGrade,
                                               ))
-                                            SizedBox(
-                                              width: width,
-                                              child: _levelCard(
-                                                puzzle,
-                                                progress,
-                                              ),
-                                            ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ],
+                                                SizedBox(
+                                                  width: width,
+                                                  child: _levelCard(
+                                                    puzzle,
+                                                    progress,
+                                                  ),
+                                                ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
               ),
             ],
           ),
@@ -342,102 +353,104 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
   }
 
   Widget _hero() => ClipRRect(
-    borderRadius: BorderRadius.circular(26),
-    child: Stack(
-      children: [
-        const SizedBox(
-          height: 218,
-          width: double.infinity,
-          child: Image(
-            image: AssetImage('assets/lumo_design/spielwelt/cover_logic.webp'),
-            fit: BoxFit.cover,
-            alignment: Alignment(0, -.25),
-            excludeFromSemantics: true,
-          ),
-        ),
-        const Positioned.fill(
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0x00071C38), Color(0xF2071C38)],
+        borderRadius: BorderRadius.circular(26),
+        child: Stack(
+          children: [
+            const SizedBox(
+              height: 218,
+              width: double.infinity,
+              child: Image(
+                image:
+                    AssetImage('assets/lumo_design/spielwelt/cover_logic.webp'),
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -.25),
+                excludeFromSemantics: true,
               ),
             ),
-          ),
-        ),
-        Positioned(
-          left: 20,
-          right: 20,
-          bottom: 18,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Dein Rätselabenteuer', style: iqText(27, shadows: iqScrim)),
-              const SizedBox(height: 4),
-              Text(
-                'Entdecken. Ausprobieren. Weiterkommen.',
-                style: iqText(15, color: const Color(0xFFE1F5FF)),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
-
-  Widget _gameCard(LogicGameKind kind, LogicProgress progress) => LogicGlass(
-    color: logicColor(kind),
-    padding: const EdgeInsets.all(18),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Row(
-          children: [
-            Icon(logicIcon(kind), color: logicColor(kind)),
-            const SizedBox(width: 8),
-            Expanded(child: Text(kind.title, style: iqText(21))),
-          ],
-        ),
-        LogicBoardPreview(kind: kind, grade: progress.selectedGrade),
-        Text(kind.subtitle, style: iqText(16, color: logicMuted)),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: LinearProgressIndicator(
-                  value:
-                      progress.completedCount(kind, progress.selectedGrade) /
-                      12,
-                  minHeight: 6,
-                  color: logicColor(kind),
-                  backgroundColor: const Color(0xFF102C48),
+            const Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0x00071C38), Color(0xF2071C38)],
+                  ),
                 ),
               ),
             ),
-            const SizedBox(width: 10),
-            Text(
-              '${progress.completedCount(kind, progress.selectedGrade)} / 12',
-              style: iqText(13, color: logicMuted),
+            Positioned(
+              left: 20,
+              right: 20,
+              bottom: 18,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Dein Rätselabenteuer',
+                      style: iqText(27, shadows: iqScrim)),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Entdecken. Ausprobieren. Weiterkommen.',
+                    style: iqText(15, color: const Color(0xFFE1F5FF)),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-        const SizedBox(height: 16),
-        LogicAction(
-          key: ValueKey('logic-game-${kind.name}'),
-          label: 'Level entdecken',
-          icon: Icons.arrow_forward_rounded,
-          primary: true,
-          onPressed: () {
-            _click();
-            setState(() => _kind = kind);
-          },
+      );
+
+  Widget _gameCard(LogicGameKind kind, LogicProgress progress) => LogicGlass(
+        color: logicColor(kind),
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                Icon(logicIcon(kind), color: logicColor(kind)),
+                const SizedBox(width: 8),
+                Expanded(child: Text(kind.title, style: iqText(21))),
+              ],
+            ),
+            LogicBoardPreview(kind: kind, grade: progress.selectedGrade),
+            Text(kind.subtitle, style: iqText(16, color: logicMuted)),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: LinearProgressIndicator(
+                      value: progress.completedCount(
+                              kind, progress.selectedGrade) /
+                          12,
+                      minHeight: 6,
+                      color: logicColor(kind),
+                      backgroundColor: const Color(0xFF102C48),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  '${progress.completedCount(kind, progress.selectedGrade)} / 12',
+                  style: iqText(13, color: logicMuted),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            LogicAction(
+              key: ValueKey('logic-game-${kind.name}'),
+              label: 'Level entdecken',
+              icon: Icons.arrow_forward_rounded,
+              primary: true,
+              onPressed: () {
+                _click();
+                setState(() => _kind = kind);
+              },
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 
   Widget _levelCard(LogicPuzzle puzzle, LogicProgress progress) {
     final unlocked = progress.isUnlocked(
@@ -459,8 +472,8 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                 completed
                     ? Icons.check_circle_rounded
                     : unlocked
-                    ? Icons.explore_rounded
-                    : Icons.lock_outline_rounded,
+                        ? Icons.explore_rounded
+                        : Icons.lock_outline_rounded,
                 color: completed ? logicGreen : logicColor(puzzle.kind),
               ),
               const SizedBox(width: 8),
@@ -477,10 +490,10 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
               label: completed
                   ? 'Noch einmal'
                   : draft
-                  ? 'Weiter'
-                  : unlocked
-                  ? 'Starten'
-                  : 'Noch verschlossen',
+                      ? 'Weiter'
+                      : unlocked
+                          ? 'Starten'
+                          : 'Noch verschlossen',
               onPressed: unlocked && !_busy ? () => _open(puzzle) : null,
               primary: unlocked && !completed,
             ),

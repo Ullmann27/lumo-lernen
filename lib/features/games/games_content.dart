@@ -29,6 +29,9 @@ import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
 import 'star_trail/star_trail_screen.dart';
 import 'memory/lumo_memory_game.dart';
+import 'logic/logic_games_screen.dart';
+import 'world/world_school_lesson_screen.dart';
+import '../../domain/world/world_school_mission.dart';
 import 'mini_games/color_boxes_game.dart';
 import 'mini_games/letter_fill_game.dart';
 import 'mini_games/number_house_game.dart';
@@ -209,6 +212,58 @@ class _GamesContentState extends State<GamesContent> {
     if (mounted) await _load();
   }
 
+  Future<void> _launchLogic() async {
+    if (!await _allowLaunch() || !mounted || _launchingGame) return;
+    setState(() => _launchingGame = true);
+    try {
+      await Navigator.of(context).push<void>(MaterialPageRoute(
+        builder: (_) => LogicGamesScreen(appState: widget.appState),
+      ));
+    } finally {
+      if (mounted) setState(() => _launchingGame = false);
+    }
+  }
+
+  Future<void> _launchWorld() async {
+    if (!await _allowLaunch() || !mounted || _launchingGame) return;
+    setState(() => _launchingGame = true);
+    final owner = await widget.appState.captureLearningProfile();
+    Map<String, Object>? receipt;
+    try {
+      while (mounted && widget.appState.isCurrentLearningLease(owner)) {
+        WorldSchoolMissionRequest? school;
+        final launched = await launchLumo3D(
+          context,
+          scene: 'world',
+          grade: widget.appState.state.grade,
+          subject: 'Mathematik',
+          appState: widget.appState,
+          worldLearningReceipt: receipt,
+          onWorldMission: (payload) =>
+              school = WorldSchoolMissionRequest.tryParse(payload),
+        );
+        if (!mounted ||
+            !launched ||
+            !widget.appState.isCurrentLearningLease(owner)) break;
+        final request = school;
+        if (request == null || request.grade != widget.appState.state.grade) {
+          await widget.onGameReturn?.call();
+          break;
+        }
+        receipt = await Navigator.of(context).push<Map<String, Object>>(
+          MaterialPageRoute(
+              builder: (_) => WorldSchoolLessonScreen(
+                  appState: widget.appState, request: request)),
+        );
+        // Back returns to the same world with its pending mission intact.
+        // Only the assessed school screen produces a completion receipt.
+      }
+    } finally {
+      if (mounted) setState(() => _launchingGame = false);
+    }
+    if (mounted) await _load();
+  }
+
   Future<void> _launchConnectFour() async {
     if (!await _allowLaunch() || !mounted) return;
     HapticFeedback.mediumImpact();
@@ -382,6 +437,7 @@ class _GamesContentState extends State<GamesContent> {
       return () => _launch3D(route.target);
     }
     return switch (route.identity) {
+      'logic' => _launchLogic,
       'memory' => _launchMemory,
       'connectFour' => _launchConnectFour,
       'quizShow' => _launchLumoMeister,
@@ -392,7 +448,11 @@ class _GamesContentState extends State<GamesContent> {
   List<SpielweltPortal> _portals() {
     return [
       for (final route in SpielweltRoutes.all)
-        if (route.identity == 'village')
+        if (route.identity == 'logic')
+          SpielweltPortal.logic(onOpen: _launchLogic)
+        else if (route.identity == 'world')
+          SpielweltPortal.world(onOpen: _launchWorld)
+        else if (route.identity == 'village')
           SpielweltPortal.village(
             onOpen: () => _launch3D('settlement', livingVillage: true),
           )
@@ -466,12 +526,9 @@ class _GamesContentState extends State<GamesContent> {
                         if (!await _allowLaunch() || !mounted) return;
                         await _launch3D('games');
                       },
-                      onHome: () =>
-                          widget.onSection?.call(LumoSection.home),
-                      onLearn: () =>
-                          widget.onSection?.call(LumoSection.learn),
-                      onTests: () =>
-                          widget.onSection?.call(LumoSection.tests),
+                      onHome: () => widget.onSection?.call(LumoSection.home),
+                      onLearn: () => widget.onSection?.call(LumoSection.learn),
+                      onTests: () => widget.onSection?.call(LumoSection.tests),
                       onParents: () =>
                           widget.onSection?.call(LumoSection.settings),
                       onProgress: () =>
@@ -487,77 +544,75 @@ class _GamesContentState extends State<GamesContent> {
                       child: Material(
                         type: MaterialType.transparency,
                         child: ExpansionTile(
-                        key: const PageStorageKey('games-extra-modes'),
-                        leading: const Icon(Icons.extension_rounded,
-                            color: LumoVisualTokens.cyanBright),
-                        title: const Text('Zusätzliche Spielmodi'),
-                        subtitle: const Text(
-                            'Sternenpfad, Würfel, Vier gewinnt und Abenteuer'),
-                        children: [
-                          // Preserve the existing Flame adventure-first order.
-                          _AdventureCard(onPlay: _launchAdventure),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
-                            child: _GameGrid(
-                              onConnectFour: _launchConnectFour,
-                              onDiceRace: _launchDiceRace,
+                          key: const PageStorageKey('games-extra-modes'),
+                          leading: const Icon(Icons.extension_rounded,
+                              color: LumoVisualTokens.cyanBright),
+                          title: const Text('Zusätzliche Spielmodi'),
+                          subtitle: const Text(
+                              'Sternenpfad, Würfel, Vier gewinnt und Abenteuer'),
+                          children: [
+                            // Preserve the existing Flame adventure-first order.
+                            _AdventureCard(onPlay: _launchAdventure),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+                              child: _GameGrid(
+                                onConnectFour: _launchConnectFour,
+                                onDiceRace: _launchDiceRace,
+                              ),
                             ),
-                          ),
-                          LumoNightScope(
+                            LumoNightScope(
                               child: Material(
                                 type: MaterialType.transparency,
                                 child: ExpansionTile(
-                            leading: const Icon(Icons.tune_rounded,
-                                color: LumoVisualTokens.cyanBright),
-                            title: const Text('3D-Profiloptionen'),
-                            subtitle: const Text(
-                                'Keine Aufgaben während des Rennens'),
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: _kartOptions(),
-                              )
-                            ],
+                                  leading: const Icon(Icons.tune_rounded,
+                                      color: LumoVisualTokens.cyanBright),
+                                  title: const Text('3D-Profiloptionen'),
+                                  subtitle: const Text(
+                                      'Keine Aufgaben während des Rennens'),
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: _kartOptions(),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                          ),
-                          _VsLumoCard(
-                            title: 'Sternenpfad · Kartenabenteuer',
-                            subtitle: 'Kooperatives Kartenabenteuer mit Lumo',
-                            emoji: '⭐',
-                            gradient: const [
-                              Color(0xFF6D4BC3),
-                              Color(0xFF2C68B8)
-                            ],
-                            onPlay: _launchStarTrail,
-                          ),
-                          _VsLumoCard(
-                            title: 'Wolkeninseln · 3D-Jump',
-                            subtitle: 'Springe mit Lumo von Insel zu Insel',
-                            emoji: '☁️',
-                            gradient: const [
-                              Color(0xFF41A993),
-                              Color(0xFF237568)
-                            ],
-                            onPlay: () => _launch3D('jump'),
-                          ),
-                          _HeaderStrip(
-                            totalStars: totalStars,
-                            maxStars: maxStars,
-                            unlockedCount: unlockedCount,
-                            levelCount: runtime.length,
-                          ),
-                          _LevelMap(runtime: runtime, onTap: _onLevelTap),
-                        ],
-                      ),
+                            _VsLumoCard(
+                              title: 'Sternenpfad · Kartenabenteuer',
+                              subtitle: 'Kooperatives Kartenabenteuer mit Lumo',
+                              emoji: '⭐',
+                              gradient: const [
+                                Color(0xFF6D4BC3),
+                                Color(0xFF2C68B8)
+                              ],
+                              onPlay: _launchStarTrail,
+                            ),
+                            _VsLumoCard(
+                              title: 'Wolkeninseln · 3D-Jump',
+                              subtitle: 'Springe mit Lumo von Insel zu Insel',
+                              emoji: '☁️',
+                              gradient: const [
+                                Color(0xFF41A993),
+                                Color(0xFF237568)
+                              ],
+                              onPlay: () => _launch3D('jump'),
+                            ),
+                            _HeaderStrip(
+                              totalStars: totalStars,
+                              maxStars: maxStars,
+                              unlockedCount: unlockedCount,
+                              levelCount: runtime.length,
+                            ),
+                            _LevelMap(runtime: runtime, onTap: _onLevelTap),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ],
               );
-    return widget.drawBackground
-        ? SpielweltBackdrop(child: content)
-        : content;
+    return widget.drawBackground ? SpielweltBackdrop(child: content) : content;
   }
 
   /// Klasse und Fach, mit denen das Kart startet (für ältere Kart-Stände).

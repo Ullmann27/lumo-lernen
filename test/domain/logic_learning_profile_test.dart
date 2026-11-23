@@ -12,27 +12,28 @@ LogicPuzzleResult _result(
   int errors = 0,
   bool replay = false,
   bool revealed = false,
-}) => LogicPuzzleResult(
-  attemptId: 'attempt-$level',
-  puzzleId: 'sudoku-$grade-$level-$version',
-  contentVersion: version,
-  kind: LogicGameKind.sudoku,
-  grade: grade,
-  level: level,
-  sessionId: sessionId ?? 'visit-${level % 3}',
-  startedAt: DateTime(2026, 11, day ?? 20 + level % 2, 10),
-  completedAt: DateTime(2026, 11, day ?? 20 + level % 2, 10, 5),
-  hints: hints,
-  errors: errors,
-  solutionRevealed: revealed,
-  isReplay: replay,
-);
+}) =>
+    LogicPuzzleResult(
+      attemptId: 'attempt-$level',
+      puzzleId: 'sudoku-$grade-$level-$version',
+      contentVersion: version,
+      kind: LogicGameKind.sudoku,
+      grade: grade,
+      level: level,
+      sessionId: sessionId ?? 'visit-${level % 3}',
+      startedAt: DateTime(2026, 11, day ?? 20 + level % 2, 10),
+      completedAt: DateTime(2026, 11, day ?? 20 + level % 2, 10, 5),
+      hints: hints,
+      errors: errors,
+      solutionRevealed: revealed,
+      isReplay: replay,
+    );
 
 LogicProgress _progress(Iterable<LogicPuzzleResult> results) => LogicProgress(
-  profileId: 'child-a',
-  selectedGrade: 2,
-  results: {for (final result in results) result.puzzleId: result},
-);
+      profileId: 'child-a',
+      selectedGrade: 2,
+      results: {for (final result in results) result.puzzleId: result},
+    );
 
 LogicSkillReport _report(LogicProgress progress) =>
     LogicLearningProfile.fromProgress(
@@ -148,14 +149,12 @@ void main() {
       errors: 3,
       solutionRevealed: true,
     );
-    final edited = session
-        .copyWith(
-          answers: {0: '2'},
-          hints: 0,
-          errors: 0,
-          solutionRevealed: false,
-        )
-        .preservingEvidenceFrom(session);
+    final edited = session.copyWith(
+      answers: {0: '2'},
+      hints: 0,
+      errors: 0,
+      solutionRevealed: false,
+    ).preservingEvidenceFrom(session);
     expect(edited.answers[0], '2');
     expect(edited.hints, 2);
     expect(edited.errors, 3);

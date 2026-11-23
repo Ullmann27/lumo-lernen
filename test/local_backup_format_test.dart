@@ -309,4 +309,7 @@ void main() {
       'lumo_world_0123456789abcdef0123456789abcdef.json',
       'kart_geister/Lumo-Geist_Zoey.lumogeist'
     ]) {
-   
+      expect(LocalBackupPolicy.allowsNativePath(path), true, reason: path);
+    }
+  });
+}

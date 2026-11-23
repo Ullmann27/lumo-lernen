@@ -2,11 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/domain/logic/logic_games.dart';
 
 Map<int, String> _solution(LogicPuzzle puzzle) => {
-  for (final cell in puzzle.editableCells) cell.index: cell.answer,
-};
+      for (final cell in puzzle.editableCells) cell.index: cell.answer,
+    };
 
-String _signature(LogicPuzzle puzzle) =>
-    '${puzzle.rows}/${puzzle.columns}/'
+String _signature(LogicPuzzle puzzle) => '${puzzle.rows}/${puzzle.columns}/'
     '${puzzle.cells.map((c) => '${c.answer}:${c.given}').join('|')}';
 
 void main() {
@@ -186,9 +185,8 @@ void main() {
               }
 
               for (var b = 0; b < inner; b++) {
-                final index = across
-                    ? a * puzzle.columns + b
-                    : b * puzzle.columns + a;
+                final index =
+                    across ? a * puzzle.columns + b : b * puzzle.columns + a;
                 if (puzzle.cells[index].blocked) {
                   checkRun();
                   run = [];
@@ -218,12 +216,15 @@ void main() {
                 cell.index: int.parse(cell.answer),
           };
           expect(solution.values.every((value) => value >= 0), isTrue);
-          if (grade == 1)
+          if (grade == 1) {
             expect(solution.values, everyElement(lessThanOrEqualTo(20)));
-          if (grade == 2)
+          }
+          if (grade == 2) {
             expect(solution.values, everyElement(lessThanOrEqualTo(100)));
-          if (grade == 3)
+          }
+          if (grade == 3) {
             expect(solution.values, everyElement(lessThanOrEqualTo(1000)));
+          }
           expect(
             puzzle.equations.every((e) => e.isSatisfied(solution)),
             isTrue,
@@ -270,6 +271,20 @@ void main() {
     );
   });
 
+  test('Sudoku hints repair wrong entries before deriving another number', () {
+    for (var grade = 1; grade <= 4; grade++) {
+      final puzzle = LogicCatalog.puzzle(LogicGameKind.sudoku, grade, 12);
+      final wrongCell = puzzle.editableCells.first;
+      final wrongValue = '${int.parse(wrongCell.answer) % puzzle.columns + 1}';
+      final entered = {wrongCell.index: wrongValue};
+      expect(puzzle.suggestedHintIndex(entered), wrongCell.index);
+      for (final target in puzzle.editableCells) {
+        expect(puzzle.hintFor(target.index, answers: entered),
+            startsWith('Prüfe zuerst deinen Eintrag'));
+      }
+    }
+  });
+
   test(
     'exact math inverses do not manufacture answers for division by zero',
     () {
@@ -309,8 +324,9 @@ void main() {
     expect(puzzle.isCorrectCell(-1, 'A'), isFalse);
     expect(puzzle.isCorrectCell(puzzle.cells.length, 'A'), isFalse);
     final blocked = puzzle.cells.where((cell) => cell.blocked);
-    if (blocked.isNotEmpty)
+    if (blocked.isNotEmpty) {
       expect(puzzle.isCorrectCell(blocked.first.index, ''), isFalse);
+    }
   });
 
   test('givens cannot be overwritten through the answers map', () {

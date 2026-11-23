@@ -64,6 +64,28 @@ class SpielweltRoutes {
 
   static const List<SpielweltRoute> all = [
     SpielweltRoute(
+      identity: 'world',
+      title: 'Lumo World',
+      semanticTitle: 'Lumo World',
+      tagline: 'Dein Dorf, deine Freunde und neue Abenteuer.',
+      coverAsset: 'assets/lumo_design/spielwelt/cover_world.webp',
+      kind: SpielweltTargetKind.nativeScene,
+      target: 'world',
+      targetDescription:
+          'Godot Lumo World mit Schatzinsel, Dorf und Spielorten (launch3D scene=world)',
+    ),
+    SpielweltRoute(
+      identity: 'logic',
+      title: 'Logikspiele',
+      semanticTitle: 'Logikspiele',
+      tagline: 'Sudoku, Wörterwerkstatt und Zahlenbrücken.',
+      coverAsset: 'assets/lumo_design/spielwelt/cover_logic.webp',
+      kind: SpielweltTargetKind.flutterScreen,
+      target: 'LogicGamesScreen',
+      targetDescription:
+          'Flutter Logikspiele mit 144 Aufgaben für die Klassen 1 bis 4',
+    ),
+    SpielweltRoute(
       identity: 'memory',
       title: 'Memory',
       semanticTitle: 'Memory',
@@ -207,6 +229,8 @@ class SpielweltRoutes {
   ];
 
   static const identities = [
+    'world',
+    'logic',
     'memory',
     'cards',
     'puzzle',
