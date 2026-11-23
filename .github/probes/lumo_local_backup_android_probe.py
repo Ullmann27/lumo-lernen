@@ -59,7 +59,7 @@ def owned_native_path(path):
                     'lumo_host_pending_rewards.cfg', 'lumo_soundscape.cfg',
                     'lumo_sternenjagd.cfg'} or bool(re.fullmatch(
         r'(?:kart|run|skypost|jump)_[A-Za-z0-9_-]{1,180}\.cfg|'
-        r'lumo_(?:build|settlement|puzzle|rhythm|treasure|cards|chess|first_run)_'
+        r'lumo_(?:build|settlement|puzzle|rhythm|treasure|cards|chess|first_run|world)_'
         r'[A-Za-z0-9_-]{1,160}\.(?:json|cfg)', path))
 
 

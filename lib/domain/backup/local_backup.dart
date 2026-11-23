@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart';
 
 import '../../core/app_settings.dart';
 import '../../core/reward_wallet_repository.dart';
+import '../logic/logic_learning_profile.dart';
 
 /// Portable learning data only. Credentials and device permissions stay local.
 class LocalBackupPolicy {
@@ -66,7 +67,7 @@ class LocalBackupPolicy {
     }
     return RegExp(r'^(kart|run|skypost|jump)_[A-Za-z0-9_-]{1,180}\.cfg$')
             .hasMatch(path) ||
-        RegExp(r'^lumo_(build|settlement|puzzle|rhythm|treasure|cards|chess|first_run)_[A-Za-z0-9_-]{1,160}\.(json|cfg)$')
+        RegExp(r'^lumo_(build|settlement|puzzle|rhythm|treasure|cards|chess|first_run|world)_[A-Za-z0-9_-]{1,160}\.(json|cfg)$')
             .hasMatch(path);
   }
 
@@ -158,6 +159,15 @@ class LocalBackupPolicy {
         if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
           decodeJson(value);
         }
+      }
+    }
+    for (final key in prefs.keys) {
+      if (!key.startsWith(LogicProgress.preferencePrefix)) continue;
+      final progress = LogicProgress.fromJson(document(key));
+      if (key != LogicProgress.preferencePrefix +
+          Uri.encodeComponent(progress.profileId)) {
+        throw const FormatException(
+            'Ein Logik-Spielstand ist dem falschen Kinderprofil zugeordnet.');
       }
     }
     if (prefs.containsKey('lumo_active_profile')) {
