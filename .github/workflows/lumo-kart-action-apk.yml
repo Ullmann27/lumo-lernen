@@ -179,8 +179,10 @@ jobs:
           # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
           # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
           # wird der idempotente Import genau einmal wiederholt.
-          godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
-            || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
+          python3 .github/probes/run_godot_probe.py --timeout 600 --log build-proof/GODOT-import-first.txt -- \
+            godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
+            || python3 .github/probes/run_godot_probe.py --timeout 600 --log build-proof/GODOT-import-retry.txt -- \
+              godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
           for probe in lumo_run_loop_regression kart_dyno_parts_regression kart_evolution_regression \
             kart_action_spectacle_regression kart_loop_seam_regression \
             kart_sonnenhafen_stunt_regression kart_action_course_regression \
