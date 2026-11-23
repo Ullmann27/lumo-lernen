@@ -63,6 +63,18 @@ def activities(current='CREATE_DOCUMENT', stale='OPEN_DOCUMENT'):
 
 
 class BackupArchiveContracts(unittest.TestCase):
+    def test_world_mission_save_is_preserved_in_the_portable_archive(self):
+        changed = body()
+        path = 'lumo_world_0123456789abcdef0123456789abcdef.json'
+        world = b'{"version":1,"completed":["school"]}'
+        changed['nativeFiles'].append({
+            'path': path, 'bytes': len(world),
+            'sha256': hashlib.sha256(world).hexdigest(),
+            'data': base64.b64encode(world).decode(),
+        })
+        archive = PROBE.validate_archive(encoded(changed))
+        self.assertEqual(archive['nativeFiles'][path], world)
+
     def test_real_format_hashes_utf8_payload_and_preserves_exact_native_bytes(self):
         archive = PROBE.validate_archive(encoded(body()))
         self.assertEqual(archive['nativeFiles']['kart_sonnenhafen_session.cfg'],

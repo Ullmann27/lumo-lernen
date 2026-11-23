@@ -251,13 +251,13 @@ class LumoGameActivity : GodotActivity() {
     private fun callerReturnSession(): String? = try {
         val options = org.json.JSONObject(launchOptions)
         intent.getStringExtra(GameEventStore.CALLER_RETURN_SESSION)?.takeIf {
-            options.optString("game") in setOf("learning", "cards") &&
+            options.optString("game") in setOf("learning", "cards", "world") &&
                 options.optString("sessionId") == it && GameEventStore.validCallerSession(it)
         }
     } catch (_: Exception) { null }
 
     @Synchronized
-    fun returnToLearningApp(destination: String, learningResult: String? = null): Boolean {
+    fun returnToLearningApp(destination: String, learningResult: String? = null, worldMission: String? = null): Boolean {
         if (returning) return true
         val target = if (destination == "learn") "learn" else "games"
         val callerSession = callerReturnSession()
@@ -279,6 +279,7 @@ class LumoGameActivity : GodotActivity() {
                 .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession)
             // Holo-Lernraum: geprüfte Zusammenfassung für die Aufgabe in Flutter.
             if (learningResult != null) result.putExtra("learningResult", learningResult)
+            if (worldMission != null && target == "learn") result.putExtra("worldMission", worldMission)
             setResult(Activity.RESULT_OK, result)
             finish()
             // Android receives finish/result first. Kill only :lumo_game, never Flutter.
@@ -362,9 +363,20 @@ class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotP
     @UsedByGodot
     fun returnToApp(destination: String, payload: String): Boolean {
         var learningResult: String? = null
+        var worldMission: String? = null
         if (payload.isNotBlank()) {
             try {
+                val options = org.json.JSONObject(host.options())
+                if (options.optString("game") == "world" &&
+                    payload.length > WorldMissionContract.MAX_PAYLOAD_LENGTH) return false
                 val parsed = org.json.JSONObject(payload)
+                if (parsed.has("worldMission")) {
+                    if (destination != "learn") return false
+                    worldMission = WorldMissionContract.returnRequest(
+                        options.optString("game"), options.optInt("grade"),
+                        options.optString("sessionId"), payload
+                    )?.toString() ?: return false
+                }
                 if (parsed.optString("status") == "completed") {
                     if (!reward(payload)) return false
                 }
@@ -374,7 +386,7 @@ class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotP
                 return false
             }
         }
-        return host.returnToLearningApp(destination, learningResult)
+        return host.returnToLearningApp(destination, learningResult, worldMission)
     }
 
     /// Nur die bekannten, kurzen Felder der Holo-Zusammenfassung; Flutter

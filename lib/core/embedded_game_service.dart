@@ -88,6 +88,7 @@ class EmbeddedGameService with WidgetsBindingObserver {
               'build',
               'rhythm',
               'treasure',
+              'world',
               'chess',
               'skypost'
             ].contains(event['game'])) {
@@ -98,15 +99,19 @@ class EmbeddedGameService with WidgetsBindingObserver {
         final solved = event['solved'];
         final xp = event.containsKey('xp')
             ? event['xp']
-            : (solved is int && solved >= 0 && solved <= 100 ? solved * 10 : null);
+            : (solved is int && solved >= 0 && solved <= 100
+                ? solved * 10
+                : null);
         if (id is! String ||
             stars is! int ||
-            stars < 0 || stars > 100 ||
-            xp is! int || xp < 0 || xp > 1000) {
+            stars < 0 ||
+            stars > 100 ||
+            xp is! int ||
+            xp < 0 ||
+            xp > 1000) {
           continue;
         }
-        await wallet.awardGameResult(
-            resultId: id, stars: stars, xp: xp);
+        await wallet.awardGameResult(resultId: id, stars: stars, xp: xp);
         ids.add(id);
       }
       if (_disposed ||

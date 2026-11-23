@@ -294,7 +294,7 @@ class MainActivity : FlutterActivity() {
                                     if (file.exists() && !file.delete()) throw IllegalStateException("Game reset failed")
                                 }
                             }
-                            val creativeSave = Regex("(lumo_(build|puzzle|rhythm|treasure)_[A-Za-z0-9_-]+\\.(json|cfg)|kart_workshop_[A-Za-z0-9_-]+\\.cfg)(\\.tmp)?")
+                            val creativeSave = Regex("(lumo_(build|puzzle|rhythm|treasure|world)_[A-Za-z0-9_-]+\\.(json|cfg)|kart_workshop_[A-Za-z0-9_-]+\\.cfg)(\\.tmp)?")
                             for (file in filesDir.listFiles().orEmpty()) {
                                 if (file.isFile && creativeSave.matches(file.name) && !file.delete()) {
                                     throw IllegalStateException("Creative game reset failed")
@@ -407,7 +407,7 @@ class MainActivity : FlutterActivity() {
                 refuse("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.")
                 return
             }
-            val game = if (requested in setOf("kart", "jump", "run", "skypost", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four", "games", "memory", "quiz", "chess")) requested!! else "kart"
+            val game = if (requested in setOf("kart", "jump", "run", "skypost", "puzzle", "build", "settlement", "rhythm", "treasure", "world", "learning", "cards", "connect_four", "games", "memory", "quiz", "chess")) requested!! else "kart"
             val options = JSONObject()
                 .put("game", game)
                 .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))
@@ -418,6 +418,17 @@ class MainActivity : FlutterActivity() {
                 .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
             if (game == "settlement") {
                 options.put("livingVillage", true).put("settlementMode", "settlement")
+            }
+            if (game == "world") {
+                val receipt = call.argument<Map<String, Any?>>("worldLearningReceipt")
+                if (receipt != null) {
+                    val checked = WorldMissionContract.receipt(game, options.getInt("grade"), receipt)
+                    if (checked == null) {
+                        refuse("invalid_world_receipt", "Der Schulauftrag wurde nicht bestätigt.")
+                        return
+                    }
+                    options.put("worldLearningReceipt", checked)
+                }
             }
             if (game == "learning") {
                 val learning = call.argument<Map<String, Any?>>("learning")
@@ -442,7 +453,7 @@ class MainActivity : FlutterActivity() {
                 options.put("learning", descriptor)
                     .put("learningMicrophoneEnabled", call.argument<Boolean>("learningMicrophoneEnabled") == true)
             }
-            if (game in setOf("learning", "build", "settlement")) {
+            if (game in setOf("learning", "build", "settlement", "world")) {
                 options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
                     .put("localVoiceLicenseAccepted", call.argument<Boolean>("localVoiceLicenseAccepted") == true)
                     .put("learningAutoRead", call.argument<Boolean>("learningAutoRead") == true)
@@ -499,7 +510,7 @@ class MainActivity : FlutterActivity() {
             options.put("reduceAnimations", call.argument<Boolean>("reduceAnimations") ?: false)
             val callerSession = options.getString("sessionId")
                 // Der Kartentisch kehrt wie Kart und Lumo Lauf in die Spieleauswahl zurück.
-                .takeIf { game in setOf("learning", "connect_four", "memory", "quiz") }
+                .takeIf { game in setOf("learning", "connect_four", "memory", "quiz", "world") }
             val activity = when (game) {
                 "connect_four" -> ConnectFourGameActivity::class.java
                 "memory", "quiz" -> TableGameActivity::class.java
@@ -582,10 +593,14 @@ class MainActivity : FlutterActivity() {
                         }
                     }
                     val learningResult = data?.getStringExtra("learningResult")
-                    callback.success(
-                        if (learningResult != null) mapOf("destination" to destination, "learningResult" to learningResult)
-                        else mapOf("destination" to destination)
-                    )
+                    val response = mutableMapOf<String, Any>("destination" to destination)
+                    if (learningResult != null) response["learningResult"] = learningResult
+                    if (callerOwned && destination == "learn") {
+                        data?.getStringExtra("worldMission")?.takeIf { it.length <= 2000 }?.let {
+                            response["worldMission"] = it
+                        }
+                    }
+                    callback.success(response)
                     pendingGame = null
                     pendingCallerReturnSession = null
                 }

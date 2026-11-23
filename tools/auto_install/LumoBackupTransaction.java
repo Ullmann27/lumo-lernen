@@ -55,7 +55,7 @@ public final class LumoBackupTransaction {
         if (Arrays.asList("settings.cfg", "progress.cfg", "lumo_game_events.json",
             "lumo_host_pending_rewards.cfg", "lumo_soundscape.cfg", "lumo_sternenjagd.cfg").contains(path)) return true;
         return path.matches("(kart|run|skypost|jump)_[A-Za-z0-9_-]{1,180}\\.cfg") ||
-            path.matches("lumo_(build|settlement|puzzle|rhythm|treasure|cards|chess|first_run)_[A-Za-z0-9_-]{1,160}\\.(json|cfg)");
+            path.matches("lumo_(build|settlement|puzzle|rhythm|treasure|cards|chess|first_run|world)_[A-Za-z0-9_-]{1,160}\\.(json|cfg)");
     }
     private File target(String path) throws IOException {
         if (!ownedPath(path)) throw new IOException("Unsupported backup path");

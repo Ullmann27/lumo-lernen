@@ -8,6 +8,7 @@ import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/user_profile.dart';
 import 'package:lumo_lernen/domain/backup/local_backup.dart';
+import 'package:lumo_lernen/domain/logic/logic_learning_profile.dart';
 
 Map<String, Object> samplePreferences() => {
       'lumo_active_profile': jsonEncode(UserProfile(
@@ -54,6 +55,8 @@ Map<String, Object> samplePreferences() => {
       'cross_grade_writing_v1:alina:4:aufsatz:draft:0':
           'Mein geschriebener Aufsatz.',
       'lumo_voice_rate': 0.35,
+      'lumo.logic_progress.v1.local-a': jsonEncode(
+          LogicProgress(profileId: 'local-a', selectedGrade: 2).toJson()),
     };
 
 LocalBackup sampleBackup() => LocalBackup.create(
@@ -95,6 +98,16 @@ class _Oversized extends ListBase<int> {
 }
 
 void main() {
+  test('logic progress cannot be restored into a different child key', () {
+    final wrongOwner = jsonEncode(
+        LogicProgress(profileId: 'child-b', selectedGrade: 2).toJson());
+    expect(
+        () => LocalBackup.create(preferences: {
+              '${LogicProgress.preferencePrefix}child-a': wrongOwner,
+            }, nativeFiles: []),
+        throwsFormatException);
+  });
+
   test(
       'portable roundtrip preserves journal, IDs, parents, wallet and native bytes',
       () {
@@ -293,6 +306,7 @@ void main() {
       'lumo_rhythm_p_abc.cfg',
       'lumo_treasure_p_abc.json',
       'lumo_first_run_abc.cfg',
+      'lumo_world_0123456789abcdef0123456789abcdef.json',
       'kart_geister/Lumo-Geist_Zoey.lumogeist'
     ]) {
       expect(LocalBackupPolicy.allowsNativePath(path), true, reason: path);

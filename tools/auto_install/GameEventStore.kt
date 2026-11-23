@@ -7,6 +7,51 @@ import org.json.JSONObject
 import java.io.File
 import java.io.RandomAccessFile
 
+/** Bounded local World-school messages. Owner identity comes from the launch. */
+object WorldMissionContract {
+    const val MAX_PAYLOAD_LENGTH = 2000
+    private val requestKeys = setOf("version", "id", "requestId", "subject", "grade", "returnGame")
+    private val receiptKeys = setOf("version", "missionId", "requestId", "subject", "grade", "returnGame", "completed")
+    private val requestId = Regex("[A-Za-z0-9_.:-]{8,160}")
+
+    // Godot re-serializes saved JSON numbers as doubles. Accept 1 and 1.0,
+    // never numeric strings, booleans, fractions, NaN or infinity.
+    private fun exactNumber(value: Any?, expected: Int): Boolean =
+        value is Number && value.toDouble() == expected.toDouble()
+
+    private fun base(game: String, grade: Int, value: Map<String, Any?>): Boolean =
+        game == "world" && grade in 1..4 && exactNumber(value["version"], 1) &&
+            exactNumber(value["grade"], grade) && value["subject"] == "Mathematik" &&
+            value["returnGame"] == "world" &&
+            (value["requestId"] as? String)?.matches(requestId) == true
+
+    fun request(game: String, grade: Int, value: JSONObject): JSONObject? {
+        if (value.length() != requestKeys.size) return null
+        val fields = requestKeys.associateWith { value.opt(it) }
+        if (!base(game, grade, fields) || fields["id"] != "school_numbers") return null
+        return JSONObject().put("version", 1).put("id", "school_numbers")
+            .put("requestId", fields["requestId"]).put("subject", "Mathematik")
+            .put("grade", grade).put("returnGame", "world")
+    }
+
+    fun returnRequest(game: String, grade: Int, session: String, payload: String): JSONObject? {
+        if (game != "world" || payload.isEmpty() || payload.length > MAX_PAYLOAD_LENGTH ||
+            !GameEventStore.validCallerSession(session)) return null
+        val envelope = try { JSONObject(payload) } catch (_: Exception) { return null }
+        if (envelope.length() != 2 || envelope.opt("sessionId") != session) return null
+        val mission = envelope.optJSONObject("worldMission") ?: return null
+        return request(game, grade, mission)
+    }
+
+    fun receipt(game: String, grade: Int, value: Map<String, Any?>): JSONObject? {
+        if (value.keys != receiptKeys || !base(game, grade, value) ||
+            value["missionId"] != "school_numbers" || value["completed"] != true) return null
+        return JSONObject().put("version", 1).put("missionId", "school_numbers")
+            .put("completed", true).put("requestId", value["requestId"])
+            .put("subject", "Mathematik").put("grade", grade).put("returnGame", "world")
+    }
+}
+
 /** Durable events shared by Flutter and the isolated engine process. No child identity. */
 object GameEventStore {
     const val CALLER_RETURN_SESSION = "callerReturnSession"
@@ -46,7 +91,7 @@ object GameEventStore {
         val id = result.optString("resultId")
         require(id.length in 1..160 && result.optString("status") == "completed")
         // "cards" = Kartentisch (Sternenstich, Sternenleiter, Lumo-Quartett), "run" = Lumo Lauf.
-        require(result.optString("game") in setOf("kart", "jump", "run", "skypost", "cards", "puzzle", "build", "rhythm", "treasure", "chess"))
+        require(result.optString("game") in setOf("kart", "jump", "run", "skypost", "cards", "puzzle", "build", "rhythm", "treasure", "world", "chess"))
         require(result.optInt("stars", -1) in 0..100)
         if (result.has("xp")) require(result.optInt("xp", -1) in 0..1000)
         val state = read(file)

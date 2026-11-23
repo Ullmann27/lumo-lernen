@@ -1,3 +1,77 @@
+# LUMO World und Logikspiele · gebauter Kandidat 2070
+
+Stand: 23. November 2026. Beide Feature-Zweige heißen
+`feature/logic-world-20261123`. Die signierte ARM64-Test-APK **0.14.1+2070**
+ist gebaut und lokal vollständig byte-, signatur-, manifest-, ABI- und PCK-geprüft.
+APK-Quellstand bleibt **11c0711f23f887796a7281ddfc6ee7a2aa56ac67**,
+Godot **90648b0639391c88d3c2da0e3f235d30f725256d**, Engine **4.6.3**.
+Spätere Dokumentations-/Transfer-/Publisher-Checkpoints ändern diese APK nicht.
+
+## Tatsächlich abgeschlossen
+
+Der Baujob **137732425563** im Originalrun
+[45186225313, Versuch 1](https://github.com/Ullmann27/lumo-lernen/actions/runs/45186225313)
+ist erfolgreich: **79 native JVM-Tests, 158 Flutter-Tests, 194 World-Prüfaussagen,
+499 HUD-Prüfaussagen, 92 Schatzsuche-Prüfaussagen, 26 Kartentisch-Prüfaussagen**
+und HostBridge. World und HUD bestehen außerdem gegen die tatsächlich aus der
+ARM64-APK entnommene PCK. Alle fünf frischen Godot-4.6.3-Aufnahmen wurden von
+Root und unabhängig visuell geprüft: Lumo/Kart, Dorf, Schulzugang und Bedienelemente
+sind sichtbar. [Genaue Bildabnahme](docs/logic-games/VISUAL_2070.md).
+
+Datei `Lumo-Lernen-Test-0.14.1-2070.apk`: **537159895 Bytes**, SHA-256
+`8dca425b869b91b18956ecd848ed993ffbd5e21d114fe489b83f78fea6aff6ff`.
+Die zusätzlich transportierte APK ist nachweislich bytegleich zum Originalartefakt
+**14826480557**. Der Transfer baut und signiert nichts neu.
+
+## Noch offener Abschluss
+
+Die echte Android-Emulator-Tour **137748819779** läuft beim Stand dieses Checkpoints
+noch. Ihr Gesamtresultat, der Backup-Rückspieltest und die danach anstehende
+öffentliche Veröffentlichung werden hier **nicht als bestanden** ausgegeben.
+Ein öffentlicher Einzel-APK-Link ist noch nicht verifiziert.
+
+Der normale Publisher scheiterte bereits bei 2068 mit HTTP 403. Ein separater,
+[geprüfter Publisher](docs/logic-games/REVIEWED_PUBLISH_2070.md) ist vorbereitet:
+24 lokale Schutztests, unabhängiger Review und Prüfung der echten vorhandenen
+2070-Metadaten erfolgreich. Er verlangt zuerst die abgeschlossene originale
+Android-Prüfung und eine ausdrücklich bereitgestellte Repository-Publisher-Identität.
+Der auslösende Configauftrag existiert noch nicht; es wurde kein Secret abgefragt.
+
+Der Versuch, die einzelne APK zusätzlich als Datei bereitzustellen, wurde vom
+Dateidienst mit `FILE_TOO_LARGE` abgelehnt: höchstens **536870912 Bytes**,
+Überschreitung **288983 Bytes**. Ein echter ZIP-Fallback der unveränderten APK
+(**525445059 Bytes**, SHA-256
+`66d33571724c0838c6b1a49d74704400dffcc47594f627fb6977c4b4a0e18b32`)
+ist erfolgreich bereitgestellt und nach Entpacken hashgeprüft. Er ersetzt den
+angeforderten öffentlichen Direktdownload der einzelnen APK ausdrücklich nicht.
+
+## Produktumfang und Grenzen
+
+144 feste Logikrätsel für Schulstufen 1–4, gespeicherte Entwürfe und ein
+beobachtungsbezogenes Stärkenprofil. Die World verbindet Original-Schatzinsel,
+Sonnendorf, Schule, Garten, Stadt und das echte vorhandene Dorf. Kart, Karten und
+ursprüngliche Dorfstrategie sind angeschlossen. Die Schulmission öffnet drei
+wirklich bewertete Lernaufgaben. Die bisherige Dorfstrategie schreibt weiterhin
+Wirtschaft und Bauten; die World stellt denselben Spielstand dar.
+
+Die 2070-Korrekturen betreffen die normale Folge-/Kartkamera, sichtbare
+Aktionsknöpfe, World-Joystick, Schulzugang und Schatzinsel-Wegschild. Die
+Aufnahmeorte wurden nicht zugunsten schönerer Prüfbilder geändert.
+Original-Schatzsuche, Dorfwirtschaft, Schreibtrainer, Journal und Main bleiben erhalten.
+
+Dies ist das erste spielbare World-Kapitel, keine vollständig gefüllte AAA-Welt.
+Keine normierten IQ/EQ/AQ-Werte, keine vollständige World-Vertonung und keine
+physische 60-FPS-Messung behaupten. Die Rendererbilder wurden mit llvmpipe erzeugt;
+die gemessenen langsamen Software-Renderzeiten belegen keine Handy-Bildrate.
+Der zurückgehaltene 2069-Build bleibt mit seinen Fehlern separat dokumentiert:
+[QUALITY_2069.md](docs/logic-games/QUALITY_2069.md).
+
+Details: [Implementierung](docs/logic-games/IMPLEMENTATION.md),
+[Auswertung](docs/logic-games/LEARNING_PROFILE.md),
+[Grafikherkunft](docs/logic-games/ART_PROVENANCE.md).
+
+## Archiv vorheriger Arbeitsstände
+
 # LUMO 2067 · gemeinsame Vollintegration
 
 Stand 22.11.2026. Aktiver Integrationszweig in beiden Repositories: `integration/lumo-complete-20261122`. Ausgangsstände Flutter `52c2c570` und Godot `25fc4ff1`. Die vollständige Quelleninventur und aktuellen Anschlüsse stehen in [der Integrationsübergabe](docs/integration/2026-11-22/INTEGRATION.md). Kandidat `0.13.55+2067`; neue APK und Android-Abschluss werden anhand des tatsächlich gebauten Runs bestätigt. Die Zwischenbauten 2065 und 2066 lieferten keine neue APK. Ergänzt sind eigene Gutscheine, eigene Elternaufgaben, lokale Datensicherung, Lumos Zimmer, tatsächlich einlösbare Auszeichnungen und die genaue lokale Aufgaben-Erkennung; Godot-Pin `29ac19f8984b510e5add531f15e555a98c72bed4`. Der tatsächliche Android-SAF-Durchlauf ist Pflicht vor der abschließenden Lieferung.

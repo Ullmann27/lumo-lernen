@@ -120,7 +120,7 @@ class EmbeddedCardsWindowTest(unittest.TestCase):
         import shutil
         import subprocess
         import urllib.request
-        from scripts.tests.test_game_return_contract import JSON_URL, JSON_SHA256
+        from scripts.tests.test_game_return_contract import JSON_URL, JSON_SHA256, world_mission_contract_source
 
         cls.os = os
         cls.subprocess = subprocess
@@ -150,7 +150,8 @@ class EmbeddedCardsWindowTest(unittest.TestCase):
         json_jar = cls.work / 'json.jar'
         json_jar.write_bytes(data)
         sources = []
-        for name, source in WINDOW_ADAPTERS.items():
+        for name, source in {**WINDOW_ADAPTERS,
+                             'WorldMissionContract.kt': world_mission_contract_source()}.items():
             path = cls.work / name
             path.write_text(source)
             sources.append(str(path))
@@ -188,6 +189,9 @@ class EmbeddedCardsWindowTest(unittest.TestCase):
     def test_cards_window_hook_keeps_live_authority_pause_resume_and_stop_guards(self):
         self.scenario('authority')
 
+    def test_world_plugin_rejects_foreign_and_unearned_school_returns(self):
+        self.scenario('world-return')
+
 
 WINDOW_ADAPTERS = {
     'KartFriendsBridge.kt': r'''
@@ -200,7 +204,8 @@ package android.app
 open class Activity : android.content.Context() {
     companion object { const val RESULT_OK = -1 }
     var intent = android.content.Intent()
-    fun setResult(code: Int, intent: android.content.Intent) {}
+    var resultIntent: android.content.Intent? = null
+    fun setResult(code: Int, intent: android.content.Intent) { resultIntent = intent }
     fun finish() {}
     fun runOnUiThread(action: Runnable) { org.godotengine.godot.Calls.ui.add(action) }
 }
@@ -343,9 +348,11 @@ class LumoLearningConversation(context: Context, options: org.json.JSONObject, s
 }
 object GameEventStore {
     const val CALLER_RETURN_SESSION = "callerReturnSession"
+    var returns = 0
+    var rewards = 0
     fun validCallerSession(value: String) = true
-    fun recordReturn(context: Context, target: String, session: String?) {}
-    fun recordReward(context: Context, payload: String) = true
+    fun recordReturn(context: Context, target: String, session: String?) { returns++ }
+    fun recordReward(context: Context, payload: String): Boolean { rewards++; return true }
 }
 ''',
     'CardsWindowRegression.kt': r'''
@@ -355,6 +362,7 @@ import android.content.Intent
 import android.os.IBinder
 import org.godotengine.godot.Calls
 import org.godotengine.godot.Godot
+import org.json.JSONObject
 object CardsWindowRegression {
     private val originalArguments = listOf("--existing-host-argument", "--main-pack", "res://lumo_game.pck",
                                            "--rendering-method", "gl_compatibility")
@@ -369,6 +377,35 @@ object CardsWindowRegression {
     }
     @JvmStatic fun main(args: Array<String>) {
         when (args[0]) {
+            "world-return" -> {
+                val session = "11111111-1111-4111-8111-111111111111"
+                val activity = launch(JSONObject().put("game", "world").put("grade", 2)
+                    .put("sessionId", session).toString())
+                activity.intent.putExtra(GameEventStore.CALLER_RETURN_SESSION, session)
+                val plugin = activity.getHostPlugins(activity.engine!!).single() as LumoHostPlugin
+                val mission = JSONObject("""{"version":1.0,"id":"school_numbers","requestId":"world-school-native-001","subject":"Mathematik","grade":2.0,"returnGame":"world"}""")
+                val payload = JSONObject().put("sessionId", session).put("worldMission", mission).toString()
+                val foreign = JSONObject(payload).put("sessionId", "22222222-2222-4222-8222-222222222222").toString()
+                val unearned = JSONObject(payload).put("status", "completed").put("game", "world")
+                    .put("resultId", "should-never-pay").put("stars", 100).toString()
+                for (bad in listOf("{", foreign, unearned, payload.padEnd(2001),
+                    JSONObject(payload).put("worldMission", JSONObject(mission.toString()).put("grade", 3)).toString(),
+                    JSONObject(payload).put("worldMission", JSONObject(mission.toString()).put("owner", "child-b")).toString())) {
+                    check(!plugin.returnToApp("learn", bad)) { "Malformed or foreign school return accepted" }
+                    check(GameEventStore.returns == 0 && GameEventStore.rewards == 0) { "Rejected school return reached storage" }
+                    check(activity.resultIntent == null)
+                }
+                check(!plugin.returnToApp("games", payload)) { "School mission entered the generic games return" }
+                check(plugin.returnToApp("learn", payload)) { "Legitimate saved-number request rejected" }
+                check(GameEventStore.returns == 1 && GameEventStore.rewards == 0)
+                Calls.dispatch()
+                val result = activity.resultIntent!!
+                check(result.getStringExtra(GameEventStore.CALLER_RETURN_SESSION) == session)
+                check(result.getStringExtra("destination") == "learn")
+                val returned = JSONObject(result.getStringExtra("worldMission")!!)
+                check(returned.opt("grade") == 2 && returned.opt("version") == 1)
+                check(returned.getString("requestId") == "world-school-native-001")
+            }
             "cards" -> {
                 val activity=launch(cards)
                 check(Calls.events.take(2)==listOf("android-edge","super:create")) { "Cards window initialization must precede Godot creation" }

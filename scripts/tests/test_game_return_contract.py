@@ -8,6 +8,7 @@ exercise those boundaries. The test-only org.json JAR is digest pinned.
 import hashlib
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -18,6 +19,20 @@ import urllib.request
 ROOT = Path(__file__).resolve().parents[2]
 JSON_URL = 'https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar'
 JSON_SHA256 = '3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed'
+
+
+def world_mission_contract_source():
+    """Use the production protocol verbatim in Activity boundary fixtures.
+
+    Those fixtures observe store calls with a test adapter. The complete real
+    store and the protocol are compiled together by GameReturnStoreTest below.
+    """
+    source = (ROOT / 'tools/auto_install/GameEventStore.kt').read_text()
+    start = source.index('object WorldMissionContract {')
+    end = source.index('/** Durable events shared', start)
+    return 'package dev.ullmann.lumo\nimport org.json.JSONObject\n' + source[start:end]
+
+
 CONTEXT = '''package android.content;
 public abstract class Context { public abstract java.io.File getFilesDir(); }
 '''
@@ -67,6 +82,79 @@ object ReturnRegression {
         }
         fun count() = disk().getJSONArray("results").length()
         when (args[0]) {
+            "world-mission-contract" -> {
+                fun request() = JSONObject("""{"version":1.0,"id":"school_numbers","requestId":"world-school-0001","subject":"Mathematik","grade":2.0,"returnGame":"world"}""")
+                val original = request()
+                val clean = WorldMissionContract.request("world", 2, original)
+                check(clean != null, "restored Godot integral JSON numbers were rejected")
+                check(clean!!.opt("version") == 1 && clean.opt("grade") == 2, "canonical transport must use integer numbers")
+                check(clean.getString("requestId") == "world-school-0001", "request identity changed")
+                check(WorldMissionContract.request("learning", 2, request()) == null, "another scene opened the World mission")
+                check(WorldMissionContract.request("world", 3, request()) == null, "another grade accepted the request")
+                for (key in listOf("version", "id", "requestId", "subject", "grade", "returnGame")) {
+                    check(WorldMissionContract.request("world", 2, request().apply { remove(key) }) == null, "missing $key accepted")
+                }
+                for (key in listOf("version", "grade")) {
+                    for (bad in listOf(true, "1", "2", 1.25, -1, 0, 5, Long.MAX_VALUE)) {
+                        check(WorldMissionContract.request("world", 2, request().put(key, bad)) == null, "invalid numeric $key accepted: $bad")
+                    }
+                }
+                for (bad in listOf("short", "bad request", "x".repeat(161), "../owner")) {
+                    check(WorldMissionContract.request("world", 2, request().put("requestId", bad)) == null, "invalid request ID accepted")
+                }
+                for ((key, value) in listOf("id" to "another_mission", "subject" to "Deutsch", "returnGame" to "kart")) {
+                    check(WorldMissionContract.request("world", 2, request().put(key, value)) == null, "foreign $key accepted")
+                }
+                for (key in listOf("owner", "childKey", "stars", "completed")) {
+                    check(WorldMissionContract.request("world", 2, request().put(key, "injected")) == null, "request supplied $key")
+                }
+                val envelope = JSONObject().put("sessionId", OWNER).put("worldMission", request())
+                val payload = envelope.toString()
+                check(WorldMissionContract.returnRequest("world", 2, OWNER, payload) != null, "owned request envelope rejected")
+                check(WorldMissionContract.returnRequest("world", 2, OTHER, payload) == null, "another launch session claimed a school return")
+                check(WorldMissionContract.returnRequest("world", 2, "", payload) == null, "missing caller session accepted")
+                check(WorldMissionContract.returnRequest("kart", 2, OWNER, payload) == null, "another game supplied a school envelope")
+                check(WorldMissionContract.returnRequest("world", 2, OWNER, "{") == null, "malformed envelope accepted")
+                check(WorldMissionContract.returnRequest("world", 2, OWNER, payload.padEnd(2000)) != null, "bounded payload limit rejected")
+                check(WorldMissionContract.returnRequest("world", 2, OWNER, payload.padEnd(2001)) == null, "oversized payload accepted")
+                for (key in listOf("owner", "childKey", "status", "stars", "xp")) {
+                    val injected = JSONObject(payload).put(key, "completed").toString()
+                    check(WorldMissionContract.returnRequest("world", 2, OWNER, injected) == null, "envelope supplied $key")
+                }
+                fun receipt(): MutableMap<String, Any?> = mutableMapOf("version" to 1.0, "missionId" to "school_numbers",
+                    "requestId" to "world-school-0001", "subject" to "Mathematik", "grade" to 2.0,
+                    "returnGame" to "world", "completed" to true)
+                val accepted = WorldMissionContract.receipt("world", 2, receipt())
+                check(accepted != null && accepted.opt("version") == 1 && accepted.opt("grade") == 2, "receipt normalization failed")
+                check(WorldMissionContract.receipt("kart", 2, receipt()) == null, "receipt crossed game boundary")
+                check(WorldMissionContract.receipt("world", 3, receipt()) == null, "receipt crossed grade boundary")
+                for (key in receipt().keys) {
+                    check(WorldMissionContract.receipt("world", 2, receipt().apply { remove(key) }) == null, "missing receipt $key accepted")
+                }
+                for (key in listOf("version", "grade")) {
+                    for (bad in listOf(true, "1", "2", 1.25, Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY)) {
+                        check(WorldMissionContract.receipt("world", 2, receipt().apply { put(key, bad) }) == null, "invalid receipt number accepted")
+                    }
+                }
+                for (bad in listOf(false, "true", 1, null)) {
+                    check(WorldMissionContract.receipt("world", 2, receipt().apply { put("completed", bad) }) == null, "unearned completion accepted")
+                }
+                for (key in listOf("owner", "childKey", "stars", "xp")) {
+                    check(WorldMissionContract.receipt("world", 2, receipt().apply { put(key, "injected") }) == null, "receipt supplied $key")
+                }
+            }
+            "world-reward-replay" -> {
+                val payload = JSONObject().put("resultId", "world-chapter-one")
+                    .put("game", "world").put("status", "completed").put("stars", 6).put("xp", 30).toString()
+                check(GameEventStore.recordReward(context, payload), "World reward rejected")
+                check(GameEventStore.recordReward(context, payload), "World reward retry rejected")
+                check(count() == 1, "World retry duplicated a reward")
+                GameEventStore.beginCallerReturn(context)
+                GameEventStore.recordReturn(context, "learn", OWNER)
+                check(!GameEventStore.completeCallerReturn(context, "learn", OTHER), "foreign World caller consumed return")
+                check(GameEventStore.completeCallerReturn(context, "learn", OWNER), "World caller return lost")
+                check(count() == 1, "World navigation lost its chapter reward")
+            }
             "skypost-replay" -> {
                 val source = System.getenv("LUMO_TEST_FLIGHT_RECEIPT")
                 val payload = if (source == null) JSONObject().put("resultId", "test-post-flight")
@@ -318,6 +406,8 @@ class GameReturnStoreTest(unittest.TestCase):
     def test_new_launch_supersedes_only_stale_navigation(self): self.scenario('new-launch-stale-navigation')
     def test_failed_commit_retains_fallback_and_explicit_reset_still_works(self): self.scenario('storage-failure-and-reset')
     def test_skypost_retry_persists_one_flight(self): self.scenario('skypost-replay')
+    def test_world_request_and_receipt_reject_foreign_and_malformed_data(self): self.scenario('world-mission-contract')
+    def test_world_reward_retry_and_caller_identity(self): self.scenario('world-reward-replay')
 
     def test_invalid_session_never_writes(self): self.scenario('invalid-session')
     def test_leftover_cleanup_lock_runs_when_no_writer(self): self.scenario('free-writer-lock')
@@ -342,7 +432,7 @@ class GameReturnWiringTest(unittest.TestCase):
         # The card table (Sternenstich, Sternenleiter, Lumo-Quartett) keeps its
         # own rules and save in the game. It is opened like Kart and Lumo Lauf:
         # no round token from the app and a normal return to the games section.
-        self.assertIn('.takeIf { game in setOf("learning", "connect_four", "memory", "quiz") }', launch)
+        self.assertIn('.takeIf { game in setOf("learning", "connect_four", "memory", "quiz", "world") }', launch)
         self.assertNotIn('"invalid_cards"', launch)
         self.assertNotIn('cardsToken', launch)
         self.assertRegex(launch, r'"kart", "jump", "run", "skypost", "puzzle"')
@@ -351,6 +441,17 @@ class GameReturnWiringTest(unittest.TestCase):
         self.assertLess(launch.index('GameEventStore.beginCallerReturn'), launch.index('pendingGame = result'))
         self.assertLess(launch.index('pendingCallerReturnSession = callerSession'), launch.index('startActivityForResult'))
         self.assertIn('pendingCallerReturnSession.takeIf { pendingGame != null }', text)
+
+    def test_world_message_limits_and_owner_free_canonical_transport(self):
+        main = (ROOT / 'tools/auto_install/MainActivity.kt').read_text()
+        game = (ROOT / 'tools/auto_install/LumoGameActivity.kt').read_text()
+        returning = game.split('fun returnToApp(destination:', 1)[1]
+        self.assertLess(returning.index('payload.length > WorldMissionContract.MAX_PAYLOAD_LENGTH'),
+                        returning.index('org.json.JSONObject(payload)'))
+        self.assertLess(returning.index('WorldMissionContract.returnRequest('), returning.index('if (!reward(payload))'))
+        self.assertIn('WorldMissionContract.receipt(game, options.getInt("grade"), receipt)', main)
+        self.assertIn('if (callerOwned && destination == "learn")', main)
+        self.assertIn('options.optString("game") in setOf("learning", "cards", "world")', game)
 
     def test_native_persists_fallback_before_return_and_retains_process_shutdown(self):
         text = (ROOT / 'tools/auto_install/LumoGameActivity.kt').read_text()
@@ -377,7 +478,7 @@ class GameReturnWiringTest(unittest.TestCase):
         text = (ROOT / 'tools/auto_install/MainActivity.kt').read_text()
         handler = text.split('"launch3D" -> {', 1)[1].split('private fun clearLeftoverEngine', 1)[0]
         # Never start into a live engine; pending starts and running cleanups still refuse.
-        self.assertLess(handler.index('if (pendingGame != null || engineCleanupActive)'),
+        self.assertLess(handler.index('if (pendingGame != null || engineCleanupActive || localBackup?.blocksGames == true)'),
                         handler.index('if (!engineProcessRunning())'))
         self.assertLess(handler.index('if (!hostForeground)'), handler.index('clearLeftoverEngine {'))
         self.assertIn('cleared && !isDestroyed && pendingGame == null && !engineProcessRunning()', handler)
@@ -415,7 +516,10 @@ class GameReturnWiringTest(unittest.TestCase):
         launch = text.split('private fun launchGame', 1)[1].split('override fun onActivityResult', 1)[0]
         self.assertLess(launch.index('GameStartJournal.begin(this, game'), launch.index('startActivityForResult'))
         self.assertIn('"exception", detail', launch)
-        self.assertEqual(launch.count('refuse("invalid_'), 4)
+        self.assertEqual(set(re.findall(r'refuse\("(invalid_[a-z_]+)"', launch)), {
+            'invalid_village', 'invalid_world_receipt', 'invalid_learning',
+            'invalid_connect_four', 'invalid_table_game',
+        })
         returned = text.split('override fun onActivityResult', 1)[1].split('override fun onResume', 1)[0]
         self.assertLess(returned.index('GameStartJournal.finish'), returned.index('completeWhenStopped(0)'))
         self.assertIn('Thread({ try { refreshLoadTimes(readOwnLog()) }', returned)
