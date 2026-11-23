@@ -1,60 +1,49 @@
-# Wiederaufnahme · World-Sichtfehler korrigieren und 2070 liefern
+# Wiederaufnahme · korrigierten World-Kandidaten 2070 prüfen und liefern
 
-Stand: 23. November 2026. Beide Branches:
-`feature/logic-world-20261123`; Flutter-PR
-https://github.com/Ullmann27/lumo-lernen/pull/538 und Godot-PR
-https://github.com/Ullmann27/lumo-godot/pull/210. Kein Main-Merge.
+Stand: 23. November 2026. Beide Branches `feature/logic-world-20261123`.
+Flutter-PR https://github.com/Ullmann27/lumo-lernen/pull/538,
+Godot-PR https://github.com/Ullmann27/lumo-godot/pull/210. Kein Main-Merge.
 
-1. 2069 ist bewusst zurückgehalten. Buildquelle
-   `91a121f4302a4840ede44ece8a0494477d81c579`, Godot
-   `9decd8eb59b03f31cdc7b2a33b0703a1e0d9b8c2`. Run
-   `45176827649`, Versuch 2: Build erfolgreich, Android und Veröffentlichung
-   tatsächlich abgebrochen. Hold-Commit
-   `f3b315bfabea1b41b30923e891fb7e0b406e52d3` und Hold-Run
-   `45182351403` blockieren die Auslieferung wegen der Bilder. Der vorgesehene
-   Release-Tag war bei der Nachprüfung nicht vorhanden. Siehe QUALITY_2069.md.
-2. World-Agent bearbeitet die gewöhnliche Kamera, verdeckende Vegetation,
-   den Schulzugang und das große Schatzinsel-Schild. Logic-Agent besitzt
-   ausschließlich die HUD-Funktionen `_build_ui`, `_layout`,
-   `_layout_modal` in `lumo_world.gd` sowie eine eigene HUD-Regression.
-   Keine ganzdateiligen Überschreibungen in der gemeinsam bearbeiteten Datei.
-   Godot-Prüfungen seriell ausführen. Aufnahmeorte für den Vorher/Nachher-
-   Vergleich erhalten; keine reine Umpositionierung der Belegkamera.
-3. Die aktuelle neue lokale Umgebung enthält isolierte Checkouts unter
-   `/tmp/lumo-logic-20261123/flutter` und `/tmp/lumo-logic-20261123/godot`.
-   `/workspace` ist nahezu voll. Neue Ausgaben bleiben in /tmp.
-   Vor jeder Bereinigung oder einem Checkout die aktuellen Änderungen sichern.
-   Keine alten fremden Checkouts, keinen Reset, Clean oder Force-Push verwenden.
-4. Nach dem geprüften Kamera-/HUD-Fix Godot exakt remote sichern, den neuen
-   Pin in Flutter übernehmen, Versionsname und versionCode konsistent auf
-   den nächsten Kandidaten 2070 setzen und die bestehende Pin-Policy ergänzen.
-   `config/test-apk-request.json` mit neuem Auftrag ohne Hold-/Skip-Marker
-   aktivieren. Alle neuen Quellen werden erneut geprüft, keine Übernahme
-   eines früheren Android-PASS.
-5. Die APK-Pipeline veröffentlicht World-Bilder jetzt schon unmittelbar
-   nach dem Renderer-Schritt. Diese fünf Ansichten tatsächlich ansehen.
-   Nur ein visuell akzeptierter Kandidat darf ausgeliefert werden. APK/PCK,
-   Signatur, Version und anschließenden Android-/Backup-Rundgang vollständig
-   prüfen. Physische 60 FPS bleiben ohne Gerätemessung offen.
-6. `.github/workflows/lumo-world-apk-transfer.yml` ist ein vorbereiteter
-   reiner Dateitransport mit ausschließlich Leserechten. Der Connector-Abruf
-   der ganzen 2069-APK-ZIP scheiterte am Zeitlimit. Vor Nutzung des Helfers
-   `config/lumo-world-apk-transfer.json` anhand der tatsächlichen endgültigen
-   Buildmetadaten aktualisieren: Run, Artefakt-ID, Commit, Dateiname, Bytes
-   und SHA-256. Alle Teilhashes und den zusammengesetzten Gesamthash prüfen.
-   Der Transfer erteilt keine Release-Freigabe und baut keine neue APK.
-7. Öffentliche GitHub-Veröffentlichung: Der vorhandene GITHUB_TOKEN besitzt
-   Contents:write, kann aber nicht die zusätzliche Workflows:write-
-   Berechtigung für Zielcommits mit geänderten Workflows erhalten. Der
-   frühere 2068-Publisher scheiterte tatsächlich mit HTTP 403. Keine
-   Berechtigung umgehen und keine öffentliche APK-URL erfinden. Erst den
-   fertigen geprüften Kandidaten bereitstellen; eine spätere legitim
-   autorisierte Veröffentlichung muss dieselben geprüften Bytes verwenden.
-8. Original-Schatzsuche, gemeinsamer Dorfspielstand und ursprüngliche
-   Dorfökonomie, Schreibtrainer und Journal erhalten. Schul-Requests behalten
-   die originale LearningProfileLease; fehlerhafte Speicherdateien bleiben
-   unverändert. Die World ist noch nicht vollständig vertont. Keine
-   normierten IQ-/EQ-/AQ-Werte und keine vollständige AAA-Freigabe behaupten.
+1. Der fertige Godot-Fix ist remote unter
+   `90648b0639391c88d3c2da0e3f235d30f725256d` gesichert. Lokale Godot 4.7.2-
+   Prüfungen: World 194, HUD 499 bestanden, Exit 0. Belege liegen im Godot-Repo
+   unter `docs/evidence/lumo-world-2070-*`. Kamera, School-Rampe und HUD sind
+   eingefroren; Capture-Posen unverändert. Flutter pinnt diesen Stand mit
+   Engine 4.6.3 und Version 0.14.1+2070, Bauauftrag 46.
+2. Den frischen Lauf `.github/workflows/lumo-logic-world-apk.yml` vollständig
+   verfolgen. Das frühe Artefakt `LUMO-WORLD-VIEWS-<run>-<attempt>` enthält
+   alle fünf echten World-Ansichten. Alle ansehen; Kart/Fahrer, eigenes Dorf,
+   Schulzugang und Aktionsknöpfe müssen sichtbar sein. World und HUD laufen
+   zusätzlich gegen das tatsächliche APK-PCK. Keine alte Prüfung ersetzt
+   diese Kandidatenprüfung. Physische60FPS bleiben ohne Gerätemessung offen.
+3. Bei echten neuen Sichtfehlern die Auslieferung wie 2069 ausdrücklich stoppen.
+   Der vorhandene Hold-Marker `[world-visual-hold]` beendet über die bestehende
+   Concurrency-Gruppe den Vorgängerlauf und schlägt vor Checkout fehl. Nicht
+   als grünen Test umdeuten. 2069 wurde genau deshalb zurückgehalten:
+   `QUALITY_2069.md`, Run 45176827649 Versuch 2, kein Android-Gesamt-PASS.
+4. Nach erfolgreicher Sichtprüfung APK-/PCK-/Signatur-/Versionsbindung und
+   vollständigen Android-/Backup-Rundgang abnehmen. Der frühere 2069-Download
+   der ganzen APK-ZIP scheiterte am Connector-Zeitlimit. Der reine Transfer
+   `.github/workflows/lumo-world-apk-transfer.yml` transportiert unveränderte
+   Bytes. Vor Nutzung dessen Auftrag in `config/lumo-world-apk-transfer.json`
+   auf die echten 2070-Metadaten aktualisieren: Run, Artefakt-ID, Commit,
+   Dateiname, Bytes und SHA256. Teilhashes und abschließenden Gesamthash prüfen.
+   Keine neue APK bauen, keinen Release-Zielcommit austauschen.
+5. Öffentlichen Publisher tatsächlich prüfen. 2068 scheiterte mit HTTP 403
+   am Release-Endpunkt. Für Zielcommits mit Workflow-Änderungen verlangt
+   GitHub zusätzlich Workflows:write; der eingebaute GITHUB_TOKEN unterstützt
+   dies nicht. Keine Berechtigung umgehen, kein erfundener Direktlink.
+   Ein legitim autorisierter späterer Publisher muss dieselben geprüften
+   Bytes veröffentlichen. APK erst konkret herstellen und prüfen.
+6. Lokale Checkouts liegen unter `/tmp/lumo-logic-20261123/`. Workspace-Platte
+   ist nahezu voll; /tmp hat Platz, ist aber flüchtig. Vor langen Prüfungen
+   remote sichern. Kein Reset/Clean/Force-Push und keine Änderung fremder
+   älterer Checkouts. Vor Aktualisierung eigene Änderungen exakt abgleichen.
+7. Original-Schatzsuche, gemeinsamer Dorfspielstand, Dorfökonomie,
+   Schreibtrainer und Journal erhalten. Schul-Requests behalten die originale
+   LearningProfileLease; fehlerhafte Speicherdateien bleiben unverändert.
+   Die World ist noch nicht vollständig vertont. Keine normierten IQ-/EQ-/AQ-
+   Werte und keine vollständige AAA- oder physische 60 FPS-Freigabe behaupten.
 
 [Implementierung](docs/logic-games/IMPLEMENTATION.md) ·
 [Zurückgehaltener Befund 2069](docs/logic-games/QUALITY_2069.md)
