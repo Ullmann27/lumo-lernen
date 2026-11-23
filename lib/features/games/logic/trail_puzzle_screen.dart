@@ -314,6 +314,13 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
                           textAlign: TextAlign.center),
                     ))
                   : LayoutBuilder(builder: (context, constraints) {
+                      final textScale =
+                          MediaQuery.textScalerOf(context).scale(16) / 16;
+                      if (constraints.maxWidth < 850 &&
+                          constraints.maxHeight >= 640 &&
+                          textScale <= 1.3) {
+                        return _compactPlanner(puzzle);
+                      }
                       final wide = constraints.maxWidth >= 850;
                       final board = _boardPanel(puzzle);
                       final controls = _programPanel(puzzle);
@@ -350,6 +357,343 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
       ),
     );
   }
+
+  Future<T?> _showTrailSheet<T>(WidgetBuilder content) =>
+      showModalBottomSheet<T>(
+        context: context,
+        backgroundColor: logicNavy,
+        isScrollControlled: true,
+        useSafeArea: true,
+        builder: (sheetContext) => SafeArea(
+          top: false,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.sizeOf(sheetContext).height * .85,
+            ),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: ListenableBuilder(
+                listenable: widget.appState,
+                builder: (context, _) => !_current
+                    ? Column(mainAxisSize: MainAxisSize.min, children: [
+                        Text(
+                          'Das Lernprofil wurde gewechselt oder wird gerade gesichert. '
+                          'Öffne den Pfotenpfad danach erneut.',
+                          style: iqText(18),
+                        ),
+                        const SizedBox(height: 16),
+                        LogicAction(
+                          label: 'Schließen',
+                          onPressed: () => Navigator.of(sheetContext).pop(),
+                        ),
+                      ])
+                    : content(sheetContext),
+              ),
+            ),
+          ),
+        ),
+      );
+
+  Future<void> _choosePuzzle() async {
+    if (!_editable) return;
+    var grade = _puzzle!.grade;
+    final chosen = await _showTrailSheet<TrailPuzzle>(
+      (sheetContext) => StatefulBuilder(
+        builder: (context, updateSheet) => Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text('Klasse und Pfad wählen', style: iqText(22)),
+            const SizedBox(height: 8),
+            Text('24 Pfade · 6 Wege pro Schulstufe',
+                style: iqText(14, color: logicMuted)),
+            const SizedBox(height: 16),
+            Wrap(spacing: 8, runSpacing: 8, children: [
+              for (var choice = 1; choice <= 4; choice++)
+                _choice('Klasse $choice', grade == choice,
+                    () => updateSheet(() => grade = choice),
+                    key: ValueKey('trail-grade-$choice')),
+            ]),
+            const SizedBox(height: 16),
+            Text('Tippe auf deinen Pfad.', style: iqText(16)),
+            const SizedBox(height: 10),
+            Wrap(spacing: 8, runSpacing: 8, children: [
+              for (var level = 1; level <= 6; level++)
+                _choice('Pfad $level',
+                    _puzzle!.grade == grade && _puzzle!.level == level,
+                    () => Navigator.of(sheetContext)
+                        .pop(TrailCatalog.puzzle(grade, level)),
+                    key: ValueKey('trail-level-$level'),
+                    completed: _progress!.completed
+                        .contains(TrailCatalog.puzzle(grade, level).id)),
+            ]),
+            const SizedBox(height: 20),
+            LogicAction(
+              label: 'Beim aktuellen Pfad bleiben',
+              onPressed: () => Navigator.of(sheetContext).pop(),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (!mounted || chosen == null) return;
+    await _select(chosen.grade, chosen.level);
+  }
+
+  Future<void> _showGuide() async {
+    if (!_current || _puzzle == null) return;
+    await _showTrailSheet<void>((sheetContext) => Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text('Dein Pfotenpfad', style: iqText(22)),
+            const SizedBox(height: 12),
+            Text(_puzzle!.instruction, style: iqText(17)),
+            const SizedBox(height: 12),
+            Text(
+              'Die Pfeile gelten so, wie du den Bildschirm siehst. '
+              'Jeder Pfeil bewegt die Pfote ein Feld. '
+              'Jeder Lauf beginnt wieder an der Startpfote. '
+              'In der Pfeilleiste kannst du nach links und rechts wischen, '
+              'um deinen ganzen Plan zu prüfen.',
+              style: iqText(15, color: logicMuted),
+            ),
+            const SizedBox(height: 16),
+            Wrap(spacing: 16, runSpacing: 8, children: [
+              _legend(Icons.pets_rounded, const Color(0xFFFFB767), 'Deine Pfote'),
+              _legend(Icons.star_rounded, const Color(0xFFFFDC81),
+                  '${_state!.nextStation}/${_puzzle!.stations.length} Sterne'),
+              _legend(Icons.park_rounded, logicGreen, 'Picknick'),
+            ]),
+            const SizedBox(height: 18),
+            Text('Dein Hinweis', style: iqText(17, color: logicCyan)),
+            const SizedBox(height: 6),
+            Text(_feedback, style: iqText(16)),
+            const SizedBox(height: 18),
+            Text(
+              '${_commands.length}/${TrailCatalog.maxCommands} Pfeile · '
+              '${_progress!.completed.length}/24 Pfade entdeckt',
+              style: iqText(14, color: logicMuted),
+            ),
+            if (_commands.length >= TrailCatalog.maxCommands) ...[
+              const SizedBox(height: 8),
+              Text(
+                'Dein Programm hat 64 Pfeile. Entferne einen Pfeil, um es zu ändern.',
+                style: iqText(14, color: logicMuted),
+              ),
+            ],
+            const SizedBox(height: 12),
+            Wrap(spacing: 5, runSpacing: 6, children: [
+              for (var i = 0; i < _commands.length; i++) _commandChip(i),
+            ]),
+            const SizedBox(height: 18),
+            LogicAction(
+              key: const ValueKey('trail-reset'),
+              label: 'Neuer Plan',
+              icon: Icons.restart_alt_rounded,
+              onPressed: _editable && _commands.isNotEmpty
+                  ? () {
+                      Navigator.of(sheetContext).pop();
+                      unawaited(_remove(all: true));
+                    }
+                  : null,
+            ),
+            const SizedBox(height: 10),
+            LogicAction(
+              key: const ValueKey('trail-guide-close'),
+              label: 'Weiter planen',
+              primary: true,
+              onPressed: () => Navigator.of(sheetContext).pop(),
+            ),
+          ],
+        ));
+  }
+
+  Widget _compactPlanner(TrailPuzzle puzzle) => Padding(
+        padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Row(children: [
+            Expanded(
+              child: FilledButton.icon(
+                key: const ValueKey('trail-choose'),
+                onPressed: _editable ? _choosePuzzle : null,
+                style: _compactButtonStyle(),
+                icon: const Icon(Icons.unfold_more_rounded, size: 20),
+                label: Text('${puzzle.title} · Wählen', style: iqText(13)),
+              ),
+            ),
+            const SizedBox(width: 6),
+            FilledButton.icon(
+              key: const ValueKey('trail-guide'),
+              onPressed: _showGuide,
+              style: _compactButtonStyle(),
+              icon: const Icon(Icons.help_outline_rounded, size: 20),
+              label: Text('Hilfe', style: iqText(13)),
+            ),
+          ]),
+          const SizedBox(height: 6),
+          Text(puzzle.instruction, style: iqText(14)),
+          const SizedBox(height: 6),
+          Expanded(
+            key: _boardKey,
+            child: Center(
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: _TrailBoard(
+                  key: const ValueKey('trail-board'),
+                  puzzle: puzzle,
+                  state: _state!,
+                  reduced: _reduced,
+                  won: _won,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Semantics(
+            liveRegion: true,
+            child: Row(
+              key: const ValueKey('trail-feedback'),
+              children: [
+                Expanded(
+                  child: Text(_feedback,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: iqText(13,
+                          color: _won ? logicGreen : Colors.white)),
+                ),
+                IconButton(
+                  tooltip: 'Den ganzen Hinweis lesen',
+                  onPressed: _showGuide,
+                  constraints:
+                      const BoxConstraints(minWidth: 48, minHeight: 48),
+                  color: logicCyan,
+                  icon: const Icon(Icons.read_more_rounded),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            key: const ValueKey('trail-program'),
+            height: 48,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              color: const Color(0xFF081B32),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: const Color(0xFF39627C)),
+            ),
+            child: Row(children: [
+              Text(_saving ? '…' : '${_commands.length}',
+                  semanticsLabel: _saving
+                      ? 'Dein Programm wird gespeichert.'
+                      : '${_commands.length} Pfeile im Plan',
+                  style: iqText(14, color: logicCyan)),
+              const SizedBox(width: 8),
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  reverse: true,
+                  child: _commands.isEmpty
+                      ? Text('Tippe auf einen Pfeil.',
+                          style: iqText(13, color: logicMuted))
+                      : Row(children: [
+                          for (var i = 0; i < _commands.length; i++)
+                            Padding(
+                              padding: const EdgeInsets.only(right: 5),
+                              child: _commandChip(i),
+                            ),
+                        ]),
+                ),
+              ),
+              if (_commands.isNotEmpty) ...[
+                const SizedBox(width: 4),
+                const Icon(Icons.swipe_rounded, size: 18, color: logicMuted),
+              ],
+            ]),
+          ),
+          const SizedBox(height: 6),
+          _directionControls(compact: true),
+          const SizedBox(height: 6),
+          Row(children: [
+            FilledButton.icon(
+              key: const ValueKey('trail-undo'),
+              onPressed: _editable && _commands.isNotEmpty ? _remove : null,
+              style: _compactButtonStyle(),
+              icon: const Icon(Icons.backspace_outlined, size: 19),
+              label: Text('Pfeil weg', style: iqText(13)),
+            ),
+            const SizedBox(width: 6),
+            FilledButton.icon(
+              key: const ValueKey('trail-hint'),
+              onPressed: _editable
+                  ? () {
+                      _hint();
+                      unawaited(_showGuide());
+                    }
+                  : null,
+              style: _compactButtonStyle(),
+              icon: const Icon(Icons.lightbulb_outline_rounded, size: 19),
+              label: Text('Tipp', style: iqText(13)),
+            ),
+            const SizedBox(width: 6),
+            Expanded(
+              child: FilledButton.icon(
+                key: const ValueKey('trail-run'),
+                onPressed: _running
+                    ? () {
+                        ++_runToken;
+                        setState(() {
+                          _running = false;
+                          _feedback =
+                              'Angehalten. Dein Programm bleibt erhalten.';
+                        });
+                      }
+                    : _editable && _commands.isNotEmpty
+                        ? _run
+                        : null,
+                style: _compactButtonStyle(primary: true),
+                icon: Icon(
+                    _running ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                    size: 20),
+                label: Text(_running ? 'Stopp' : 'Los!', style: iqText(14)),
+              ),
+            ),
+          ]),
+          if (_won) ...[
+            const SizedBox(height: 6),
+            LogicAction(
+              key: const ValueKey('trail-next'),
+              label: puzzle.level < 6 ? 'Nächster Pfad' : 'Noch einmal entdecken',
+              icon: Icons.flag_rounded,
+              onPressed: _editable
+                  ? () => _select(
+                      puzzle.grade, puzzle.level < 6 ? puzzle.level + 1 : 1)
+                  : null,
+            ),
+          ],
+          if (_saveError != null) ...[
+            const SizedBox(height: 6),
+            Text(_saveError!,
+                style: iqText(13, color: const Color(0xFFFFD388))),
+            LogicAction(
+              label: 'Speichern erneut versuchen',
+              onPressed:
+                  _saving || !_current ? null : () => _save(complete: _won),
+            ),
+          ],
+        ]),
+      );
+
+  ButtonStyle _compactButtonStyle({bool primary = false}) =>
+      FilledButton.styleFrom(
+        minimumSize: const Size(48, 48),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        backgroundColor: primary ? logicGreen : const Color(0xFF254D70),
+        foregroundColor: primary ? logicNavy : Colors.white,
+        disabledBackgroundColor: const Color(0xFF263850),
+        disabledForegroundColor: logicMuted,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      );
 
   Widget _selection(TrailPuzzle puzzle) => LogicGlass(
         padding: const EdgeInsets.all(16),
@@ -420,6 +764,7 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
             child: AspectRatio(
               aspectRatio: 1,
               child: _TrailBoard(
+                  key: const ValueKey('trail-board'),
                   puzzle: puzzle, state: _state!, reduced: _reduced, won: _won),
             ),
           )),
@@ -460,6 +805,54 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
             style: iqText(13, color: logicMuted, weight: FontWeight.w700)),
       ]);
 
+  Widget _commandChip(int index) => Semantics(
+        label: 'Schritt ${index + 1}: ${_commands[index].label}',
+        excludeSemantics: true,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+          decoration: BoxDecoration(
+            color: index == _executing ? logicGreen : const Color(0xFF2A5270),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            Text('${index + 1}',
+                style: iqText(17,
+                    color: index == _executing ? logicNavy : Colors.white)),
+            const SizedBox(width: 4),
+            Icon(_trailDirectionIcon(_commands[index]),
+                size: 21,
+                color: index == _executing ? logicNavy : Colors.white),
+          ]),
+        ),
+      );
+
+  Widget _directionControls({bool compact = false}) => Row(children: [
+        for (final direction in TrailDirection.values) ...[
+          if (direction != TrailDirection.up) const SizedBox(width: 6),
+          Expanded(
+            child: FilledButton(
+              key: ValueKey('trail-add-${direction.name}'),
+              onPressed: _editable && _commands.length < TrailCatalog.maxCommands
+                  ? () => _add(direction)
+                  : null,
+              style: FilledButton.styleFrom(
+                minimumSize: Size(48, compact ? 52 : 72),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 2, vertical: compact ? 4 : 10),
+                backgroundColor: const Color(0xFF2D5878),
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+              ),
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Icon(_trailDirectionIcon(direction), size: compact ? 24 : 28),
+                Text(direction.label, style: iqText(12)),
+              ]),
+            ),
+          ),
+        ],
+      ]);
+
   Widget _programPanel(TrailPuzzle puzzle) => LogicGlass(
         padding: const EdgeInsets.all(16),
         child:
@@ -484,61 +877,11 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
                     child: Text('Tippe unten auf einen Pfeil.',
                         style: iqText(15, color: logicMuted)))
                 : Wrap(spacing: 5, runSpacing: 6, children: [
-                    for (var i = 0; i < _commands.length; i++)
-                      Semantics(
-                        label: 'Schritt ${i + 1}: ${_commands[i].label}',
-                        excludeSemantics: true,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 5),
-                          decoration: BoxDecoration(
-                              color: i == _executing
-                                  ? logicGreen
-                                  : const Color(0xFF2A5270),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Row(mainAxisSize: MainAxisSize.min, children: [
-                            Text('${i + 1}',
-                                style: iqText(17,
-                                    color: i == _executing
-                                        ? logicNavy
-                                        : Colors.white)),
-                            const SizedBox(width: 4),
-                            Icon(_trailDirectionIcon(_commands[i]),
-                                size: 21,
-                                color: i == _executing
-                                    ? logicNavy
-                                    : Colors.white),
-                          ]),
-                        ),
-                      ),
+                    for (var i = 0; i < _commands.length; i++) _commandChip(i),
                   ]),
           ),
           const SizedBox(height: 12),
-          Row(children: [
-            for (final direction in TrailDirection.values) ...[
-              if (direction != TrailDirection.up) const SizedBox(width: 6),
-              Expanded(
-                  child: FilledButton(
-                key: ValueKey('trail-add-${direction.name}'),
-                onPressed:
-                    _editable && _commands.length < TrailCatalog.maxCommands
-                        ? () => _add(direction)
-                        : null,
-                style: FilledButton.styleFrom(
-                    minimumSize: const Size(48, 72),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
-                    backgroundColor: const Color(0xFF2D5878),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Icon(_trailDirectionIcon(direction), size: 28),
-                  Text(direction.label, style: iqText(12)),
-                ]),
-              )),
-            ],
-          ]),
+          _directionControls(),
           const SizedBox(height: 12),
           Wrap(spacing: 8, runSpacing: 8, children: [
             LogicAction(
@@ -613,7 +956,8 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
 
 class _TrailBoard extends StatelessWidget {
   const _TrailBoard(
-      {required this.puzzle,
+      {super.key,
+      required this.puzzle,
       required this.state,
       required this.reduced,
       required this.won});
