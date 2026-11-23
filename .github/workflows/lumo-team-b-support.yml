@@ -77,7 +77,7 @@ jobs:
       LIBGL_ALWAYS_SOFTWARE: 'true'
       GALLIUM_DRIVER: llvmpipe
       LP_NUM_THREADS: '2'
-      LUMO_NATIVE_SHA: '7c6e728b1c0ec45d7098855c205bba6dfc50c190'
+      LUMO_NATIVE_SHA: 'e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913'
     defaults:
       run:
         working-directory: native
@@ -85,7 +85,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Ullmann27/lumo-godot
-          ref: '7c6e728b1c0ec45d7098855c205bba6dfc50c190'
+          ref: 'e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913'
           path: native
           persist-credentials: false
       - name: Install the project's pinned Godot engine and offscreen renderer
