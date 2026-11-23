@@ -655,7 +655,7 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
                 icon: Icon(
                     _running ? Icons.pause_rounded : Icons.play_arrow_rounded,
                     size: 20),
-                label: Text(_running ? 'Stopp' : 'Los!', style: iqText(14)),
+                label: Text(_running ? 'Stopp' : 'Los!'),
               ),
             ),
           ]),
@@ -686,6 +686,7 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
 
   ButtonStyle _compactButtonStyle({bool primary = false}) =>
       FilledButton.styleFrom(
+        textStyle: iqText(14),
         minimumSize: const Size(48, 48),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         backgroundColor: primary ? logicGreen : const Color(0xFF254D70),

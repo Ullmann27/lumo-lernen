@@ -1,10 +1,12 @@
 # LUMO Team B · gemeinsamer Kandidat 2071
 
-Stand: 23. November 2026. Version **0.14.2+2071**, Bauauftrag **47**. Unterstützungszweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Hauptteam-Flutter `47c1a6437aee4320598f3ead58be76b50934567f` und Hauptteam-Godot `90648b0639391c88d3c2da0e3f235d30f725256d` sind erhalten. Gemeinsamer nativer Pin: `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913`.
+Stand: 23. November 2026. Version **0.14.2+2071**, Bauauftrag **48**. Unterstützungszweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Hauptteam-Flutter `47c1a6437aee4320598f3ead58be76b50934567f` und Hauptteam-Godot `90648b0639391c88d3c2da0e3f235d30f725256d` sind erhalten. Gemeinsamer nativer Pin: `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913`.
 
 Drei zusätzliche Agents ergänzen 24 Pfotenpfad-Aufgaben, Weltkarte, drei Freundepost-Lieferungen und die dauerhafte Fußgängerampel. Zusammen mit den bisherigen Aufgaben sind vier Logikspiele mit 168 Aufgaben vorhanden. Der neue Telefonaufbau und die direkten Spieleinstiege werden in diesem Kandidaten geprüft.
 
 Der gemeinsame native Stand besteht Supportlauf [45186770272](https://github.com/Ullmann27/lumo-lernen/actions/runs/45186770272) mit Godot 4.6.3 vollständig: World 194, Freundepost 289, Controller 22, tatsächliche World-Methoden 27, HUD 499 und Kartenrenderer 152 Prüfaussagen. Der vollständige Import ist fehlerfrei; Flutter am vorherigen UI-Zwischenstand besteht 53 Tests und die Analyse. Neue UI, tatsächliche 3D-Bilder, APK-/PCK-/Signatur-, Android- und SAF-Backup-Nachweise müssen am frischen 2071-Lauf beurteilt werden.
+
+Der erste neue 2071-Quellstand `af1b15a690ff34f5c9de7e1cbf155ff050156a97` bestand [Supportlauf 45190521155](https://github.com/Ullmann27/lumo-lernen/actions/runs/45190521155) vollständig mit 61 Flutter-Tests und den genannten nativen Prüfungen. Im vollständigen APK-Lauf bestanden JVM und Flutter. Die tatsächliche PNG-Sichtprüfung zeigte jedoch die weiße Los!-Beschriftung auf hellem Grün. Der neue Auftrag 48 übernimmt die vorhandene dunkle Buttonfarbe für diese Beschriftung; der native Pin bleibt unverändert. Der Vorläuferlauf [45190521151](https://github.com/Ullmann27/lumo-lernen/actions/runs/45190521151) wird dadurch ersetzt. Dieser Farbfix wird frisch gebaut und visuell geprüft.
 
 Der frühere Support-2070 ist wegen bestätigter Sichtmängel und eines tatsächlich gescheiterten kalten Fontimports zurückgehalten. [Belegter Befund](docs/agent-network/TEAM_B_2070_QUALITY.md). Es wird keine fertige 2071-APK oder physische 60-FPS-Freigabe vor einem Nachweis behauptet.
 

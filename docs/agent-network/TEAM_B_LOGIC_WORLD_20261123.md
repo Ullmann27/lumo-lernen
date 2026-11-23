@@ -34,9 +34,11 @@ Der JAR-Helfer behält den festgelegten SHA-256 bei und verwendet einen gemeinsa
 
 Der neueste kombinierte native Stand `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913` besteht [Supportlauf 45186770272](https://github.com/Ullmann27/lumo-lernen/actions/runs/45186770272) vollständig mit Godot 4.6.3: World **194**, Freundepost **289**, Controller **22**, World-Integration **27**, HUD **499** und Kartenrenderer **152** Prüfaussagen. Flutter am zugehörigen Zwischenstand `02d674daa65d13d2517a005943cd86db1ff5636b` besteht 53 Tests und die Analyse. Die spätere kompakte Telefonansicht und der vollständige APK-/Android-Kandidat müssen separat geprüft werden.
 
+Der Zwischenstand `af1b15a690ff34f5c9de7e1cbf155ff050156a97` bestand [45190521155](https://github.com/Ullmann27/lumo-lernen/actions/runs/45190521155) vollständig: 61 Flutter-Tests, Analyse ohne Befund und alle nativen Prüfungen. Die neuen Telefonaufnahmen zeigen vollständiges Brett und Steuerung sowie das echte Auswahlsheet. Root entdeckte dabei die kontrastarme weiße Los!-Beschriftung auf `#95FF79`; der Farbkontrast beträgt rechnerisch etwa 1,246:1. Der minimale Fix lässt die Beschriftung den bereits vorhandenen Button-Vordergrund `#071C38` erben (etwa 13,681:1); deaktivierte Zustände erben ihre eigene vorgesehene Farbe. Die gemeinsame LogicAction-Komponente, Geometrie und Spiellogik bleiben unverändert. Der Vorläuferauftrag47/Lauf45190521151 wird vor Veröffentlichung durch Auftrag48 ersetzt. Kein neuer Runtime-PASS wird vor Ausführung behauptet.
+
 ## Kandidatenidentität und ausstehende Freigabe
 
-Neuer gemeinsamer Kandidat: **0.14.2+2071**, Bauauftrag **47**, Godot **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**, Engine **4.6.3**. Der jeweils tatsächlich gebaute Flutter-Commit steht in der Build-Provenienz.
+Neuer gemeinsamer Kandidat: **0.14.2+2071**, Bauauftrag **48**, Godot **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**, Engine **4.6.3**. Der jeweils tatsächlich gebaute Flutter-Commit steht in der Build-Provenienz.
 
 Die neue Quelle muss alle Prüfungen erneut bestehen: Flutter/JVM, echte Godot-Quellen und Rendereraufnahmen, signierte ARM64- und x86_64-Pakete mit gleichem PCK und Zertifikat, World und HUD gegen das extrahierte APK-PCK, installierte Android-Tour, native Starts und Android-SAF-Sicherung mit Wiederherstellung. Die fünf World-Aufnahmen werden vor dem APK-Bau bereitgestellt und tatsächlich angesehen. Ein bestätigter Sichtfehler stoppt die Auslieferung.
 
