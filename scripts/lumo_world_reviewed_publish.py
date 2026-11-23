@@ -127,6 +127,7 @@ def verify_api(request, evidence):
         same(run.get(key), expected, 'Original run ' + key)
     for key in ('repository', 'head_repository'):
         same(run[key]['full_name'], request['repository'], 'Original run ' + key)
+    same(run['repository'].get('private'), False, 'Public download repository')
     jobs = evidence['jobs']
     same(jobs['total_count'], len(jobs['jobs']), 'Complete job list')
     for field, name in JOB_NAMES.items():
@@ -377,8 +378,11 @@ def publish(request):
     url = asset.get('browser_download_url', '')
     expected_url = f'https://github.com/{request["repository"]}/releases/download/{tag}/{request["apk_file"]}'
     same(url, expected_url, 'Returned direct APK URL')
-    anonymous_download(url, ROOT / 'proof/public-download.apk', request['apk_bytes'], request['apk_sha256'])
-    (ROOT / 'proof/public-download.apk').unlink()
+    downloaded = ROOT / 'public-download.apk'
+    try:
+        anonymous_download(url, downloaded, request['apk_bytes'], request['apk_sha256'])
+    finally:
+        downloaded.unlink(missing_ok=True)
     result = {'status': 'PASS', 'release_url': release['html_url'], 'download_url': url,
               'bytes': request['apk_bytes'], 'sha256': request['apk_sha256'],
               'anonymous_https_download_verified': True, 'release_id': release['id'], 'asset_id': asset['id']}
@@ -395,11 +399,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=('prepare', 'verify', 'publish', 'template'))
     parser.add_argument('--build-tools', type=Path)
-    for field in VARIABLE:
+    for field in sorted(VARIABLE):
         parser.add_argument('--' + field.replace('_', '-'), type=str if field == 'publisher_login' else int)
     args = parser.parse_args()
     if args.mode == 'template':
-        request = validate_request({**EXPECTED, **{key: getattr(args, key) for key in VARIABLE}})
+        request = validate_request({**EXPECTED, **{key: getattr(args, key) for key in sorted(VARIABLE)}})
         print(json.dumps(request, indent=2))
         return
     request = validate_request(read(REQUEST))
