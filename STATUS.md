@@ -1,3 +1,62 @@
+## Aktuell: vollständiger Wiederholungslauf für Auftrag 49
+
+Stand: 23. November 2026, 16:51 Uhr Wien. Version **0.14.2+2071**, nativer Pin **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**. Dieser Commit startet den vollständigen Standardlauf erneut. Ein neues Android-Ergebnis liegt beim Commit noch nicht vor.
+
+Die gezielte Korrektur betrifft ausschließlich den Collector `.github/probes/native_start_diagnostics.py` und seine Regressionen: ADB- und Geräte-Exitcodes, vollständige Antworten, tatsächlich beendete Altprozesse und einen frischen Flutter-Host vor jedem UI-Start bestätigen. Beide Prüfer führten den abschließenden Stand aus: **38 Collector- und 9 unveränderte Verifier-Tests bestanden**. Die vorhandene zweisekündige Pause liegt jetzt vor der Bestätigung des Prozessendes; es gibt keinen zusätzlichen Start, Retry oder höheren Timeout.
+
+Produktdateien, Godot-Pin, Pflichtgate und Beobachtungszeiten bleiben unverändert. Der ursprüngliche fehlgeschlagene Bericht wird weiterhin korrekt abgelehnt. Lokale Fixtures ersetzen keinen echten Android-Lauf. Belege: [Diagnose-Korrektur](docs/agent-network/TEAM_B_2071_REQUEST49.md), [lokale Prüfbelege](docs/evidence/team-b-2071-request49/harness-validation.json).
+
+**Auftrag 48 / Quelle b4db287 bleibt zurückgehalten.** Sein Android-Fehler und seine Originalbelege bleiben im folgenden historischen Abschnitt und im [Prüfhaltbericht](docs/agent-network/TEAM_B_2071_ANDROID_HOLD.md) erhalten. Keine Auslieferungsfreigabe aus den lokalen Tests ableiten; den neuen Standardlauf einschließlich Tour, Pflichtstarts und SAF-Wiederherstellung abwarten. Der separate Publisher ist noch an den alten fehlgeschlagenen Lauf gebunden und darf nicht aktiviert werden.
+
+---
+
+# LUMO Team B · APK2071 wird zurückgehalten
+
+## Verbindlicher Prüfhalt für APK 2071
+
+**Originalrun45191784853 ist beendet: Bau erfolgreich, Android-Pflichtgate fehlgeschlagen, Veröffentlichung übersprungen.** Produktquelle bleibt Flutterb4db287fe562893d849d1c826c9b92e8f2e44761 / Godote0460c0b3eda9d42e9d963eb2236dc8d9c7b5913.
+
+- Originaltour:23/23 Schritte PASS.
+- Android-SAF-Sicherung/Wiederherstellung:8/8 Schritte PASS; installierte APK-Identität stimmt.
+- Native Pflichtstarts: run/quiz/kart/cards positiv; Memory ohne Router-Ladebeleg, Schach und World ohne erfolgreichen Kachelstart. Nach Memory beziehungsweise Schatzsuche bleibt beim folgenden Versuch dieselbe native Activity/PID sichtbar.
+- Tatsächlicher Gatefehler: `ValueError: memory: missing positive observation for router_loaded`.
+- Die leeren gefilterten Memory-/Schatzsuche-Logs erlauben keine Aussage, dass diese Starts fehlerfrei waren. Produkt-, Start-/Teardown- und Beobachtungsmechanismen werden anhand der Originalbelege parallel untersucht.
+- Original-Androidartefakt14831399839,92447590Bytes, SHA256`61709df3558f864800a2476bed01236ede9713c45a947e2e5193611bcfae6252` tatsächlich heruntergeladen und geprüft.
+
+**Diese APK wird nicht als freigegeben geliefert.** Der separate Publisher bleibt ohne aktivierende Config und würde den fehlgeschlagenen Original-Androidjob abweisen. Keine Gateabschwächung, keine Umwertung fehlender Beobachtungen zuPASS. Main und Hauptteamzweige bleiben unberührt.
+
+[Originalbefund und nächste Korrektur](docs/agent-network/TEAM_B_2071_ANDROID_HOLD.md). Der lokale Runtimezugriff ist wiederhergestellt; die Original-APK ist bytegleich rekonstruiert. Sie bleibt wegen des Native-Gates gesperrt.
+
+## Historischer Bau- und Sichtprüfcheckpoint vor Androidabschluss
+
+# LUMO Team B · gebaute gemeinsame APK 2071
+
+Stand: 23. November 2026, 15:54 Uhr Wien. Die signierte Test-APK **0.14.2+2071** ist gebaut. Ihr unveränderter Produktquellstand ist **b4db287fe562893d849d1c826c9b92e8f2e44761**, Godot **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**, Engine **4.6.3**, Bauauftrag **48**. Spätere Dokumentations-, Prüf- und Liefercommits ändern diese gebaute APK nicht.
+
+## Tatsächlich nachgewiesen
+
+[Originalrun 45191784853](https://github.com/Ullmann27/lumo-lernen/actions/runs/45191784853), Baujob **137751923651 SUCCESS**: 119 JVM-Tests, 190 Flutter-Tests, World194, Freundepost289, Controller22, World-Integration27, HUD499, Kartenrenderer152, Schatzsuche92 und HostBridge erfolgreich. World194 und HUD499 bestehen außerdem gegen die tatsächlich aus der ARM64-APK entnommene PCK. Die Gesamtanalyse hat 0 Fehler, 5 Warnungen und 296 Hinweise; sie ist nicht warnungsfrei.
+
+Der endgültige [Supportlauf 45191784803](https://github.com/Ullmann27/lumo-lernen/actions/runs/45191784803) ist vollständig erfolgreich: 61 Flutter-Tests, 20 JAR-Helfertests, gezielte Analyse ohne Befund und alle eigenen nativen Prüfungen. Die tatsächlichen neuen Flutter-Bilder und alle sechs World-/Kartenansichten sind geprüft. Der aktive Los!-Knopf hat lesbare dunkle Schrift; Welt, Kart, Schulrampe und Aktionsknöpfe sind in den aufgenommenen Ansichten sichtbar.
+
+Datei **Lumo-Lernen-Test-0.14.2-2071.apk**, **537231343 Bytes**, SHA-256 **c7036b318ba9f3e0c0751abcc1f3745ce0fd0a96a617954501feb40b63627737**. Beide ABI-Pakete haben dasselbe Zertifikat und dieselbe PCK. Original-ARM64-Artefakt **14828082269**, Metadaten **14827937341**. Der separate Transferlauf **45196734395** ist erfolgreich; die vollständig zusammengesetzte lokale APK war vor dem Laufzeitausfall byte- und hashgleich.
+
+## Offener Abschluss
+
+Der eigene Androidjob **137767273722** läuft zu diesem Checkpoint noch. Seine originale Tour, acht SAF-Sicherungs-/Rückspielschritte, beobachtete native Starts und nachgelagerte Veröffentlichung sind noch nicht als bestanden bestätigt. Ein öffentlicher Direktlink besteht noch nicht.
+
+Der früher beobachtete Release-HTTP403 ist dokumentiert. Der getrennte Hauptteam-Publisher wurde unverändert aus **00056a379d40cda2538619f114c12c76ed3c7f1c** übernommen. Die eigene Team-B-Anpassung besteht jetzt24 Schutztests, den Vergleich der realen2071-Metadaten und echte YAML-/Bash-Syntaxprüfung im separaten Lauf45200058196. Sie darf erst nach tatsächlichem Android-PASS und einer ausdrücklich eingerichteten Repository-Publisher-Identität aktiviert werden. Keine Tokensuche, keine Rechteumgehung.
+
+Die lokale Arbeitsumgebung ist seit etwa 15:49 Uhr Wien nicht verfügbar. Deshalb werden dortige Dateien und der begonnene private ZIP-Fallback nicht als dauerhaft abrufbar ausgegeben. Die Originalartefakte liegen weiter im obigen GitHub-Lauf. Die einzelne APK ist 360431 Bytes größer als die vom Dateidienst beim Hauptteam tatsächlich bestätigte 512-MiB-Grenze. Es wird kein eigener fehlgeschlagener Upload erfunden.
+
+## Produkt und Zusammenarbeit
+
+Drei zusätzliche Agents haben 24 Pfotenpfad-Aufgaben, kompakte Telefonbedienung, direkte Spielwahl, Weltkarte, drei Freundepost-Lieferungen und die dauerhafte Fußgängerampel beigetragen. Mit den vorhandenen 144 Aufgaben gibt es vier Logikspiele mit **168 Aufgaben**. Hauptteam-Kamera, Schulzugang und HUD-Korrekturen sind integriert. Schreibtrainer, Journal, Original-Schatzsuche und Dorfwirtschaft bleiben angeschlossen.
+
+[Qualitätsbeleg 2071](docs/agent-network/TEAM_B_2071_QUALITY.md) · [Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md) · [Flutter #539](https://github.com/Ullmann27/lumo-lernen/pull/539) · [Godot #211](https://github.com/Ullmann27/lumo-godot/pull/211). Main bleibt geschützt. Kein physischer Fold7-/60-FPS-Nachweis; Pfotenpfad-Interaktionen sind noch nicht Bestandteil der installierten Android-Tour.
+
+## Übernommener Hauptteam-Checkpoint 00056a (unverändert; eigener Kandidat 2070)
+
 # LUMO World und Logikspiele · gebauter Kandidat 2070
 
 Stand: 23. November 2026. Beide Feature-Zweige heißen

@@ -11,6 +11,7 @@ import 'package:lumo_lernen/features/games/logic/logic_games_screen.dart';
 import 'package:lumo_lernen/features/games/logic/logic_progress_store.dart';
 import 'package:lumo_lernen/features/games/logic/logic_puzzle_screen.dart';
 import 'package:lumo_lernen/features/games/logic/logic_widgets.dart';
+import 'package:lumo_lernen/features/games/logic/trail_puzzle_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../helpers/lumo_capture.dart';
@@ -31,6 +32,22 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
   await tester.pump();
   await tester.tap(finder);
   await _ticks(tester);
+}
+
+void _expectDirectChoicesVisible(WidgetTester tester, Size viewport) {
+  for (final id in const ['sudoku', 'words', 'maths', 'trail']) {
+    final entry = find.byKey(ValueKey('logic-direct-$id'));
+    expect(entry, findsOneWidget);
+    expect(entry.hitTestable(), findsOneWidget, reason: '$id is immediately tappable');
+    final bounds = tester.getRect(entry);
+    expect(bounds.left, greaterThanOrEqualTo(0), reason: id);
+    expect(bounds.top, greaterThanOrEqualTo(0), reason: id);
+    expect(bounds.right, lessThanOrEqualTo(viewport.width), reason: id);
+    expect(bounds.bottom, lessThanOrEqualTo(viewport.height), reason: id);
+    expect(bounds.width, greaterThanOrEqualTo(48), reason: id);
+    expect(bounds.height, greaterThanOrEqualTo(48), reason: id);
+    expect(tester.widget<FilledButton>(entry).onPressed, isNotNull);
+  }
 }
 
 Future<void> _capture(WidgetTester tester, String name) async {
@@ -115,6 +132,58 @@ void main() {
     await tester.pumpWidget(const SizedBox());
     app.dispose();
   });
+
+  for (final device in const {
+    'narrow': Size(344, 882),
+    'short-landscape': Size(640, 360),
+  }.entries) {
+    testWidgets('${device.key}: four direct games are visible and navigate with large text',
+        (tester) async {
+      await tester.binding.setSurfaceSize(device.value);
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final app = _app();
+      await app.school.setActiveStudent(_profile);
+      await app.loadLearningProfile();
+      await tester.pumpWidget(
+          _wrapped(LogicGamesScreen(appState: app), textScale: 1.5));
+      await _ticks(tester, 30);
+
+      // No ensureVisible/scroll is allowed before checking or tapping an entry.
+      _expectDirectChoicesVisible(tester, device.value);
+      final choices =
+          tester.getRect(find.byKey(const ValueKey('logic-direct-games')));
+      final hero = tester.getRect(find.byKey(const ValueKey('logic-hero')));
+      expect(choices.bottom, lessThanOrEqualTo(hero.top));
+      await _capture(tester, 'hub-direct-${device.key}-large');
+
+      for (final kind in LogicGameKind.values) {
+        final entry = find.byKey(ValueKey('logic-direct-${kind.name}'));
+        expect(entry.hitTestable(), findsOneWidget);
+        await tester.tap(entry);
+        await _ticks(tester);
+        expect(find.text(logicDisplayTitle(kind)), findsOneWidget);
+        expect(find.byKey(const ValueKey('logic-direct-games')), findsNothing);
+        expect(
+            tester.widget<LogicAction>(
+                find.byKey(const ValueKey('logic-level-1'))).onPressed,
+            isNotNull);
+        await tester.tap(find.byTooltip('Alle Logikspiele'));
+        await _ticks(tester);
+        _expectDirectChoicesVisible(tester, device.value);
+      }
+
+      await tester.tap(find.byKey(const ValueKey('logic-direct-trail')));
+      await _ticks(tester, 30);
+      expect(find.byType(TrailPuzzleScreen), findsOneWidget);
+      expect(
+          tester.widget<TrailPuzzleScreen>(find.byType(TrailPuzzleScreen))
+              .initialGrade,
+          (await _store.load(_profile)).selectedGrade);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+      app.dispose();
+    });
+  }
 
   for (final kind in LogicGameKind.values) {
     testWidgets(
@@ -212,6 +281,7 @@ void main() {
       await tester.pumpWidget(
           _wrapped(LogicGamesScreen(appState: app), textScale: 1.5));
       await _ticks(tester);
+      _expectDirectChoicesVisible(tester, device.value);
       final hero = tester.getRect(find.byKey(const ValueKey('logic-hero')));
       for (final key in const ['logic-hero-title', 'logic-hero-subtitle']) {
         final text = tester.getRect(find.byKey(ValueKey(key)));

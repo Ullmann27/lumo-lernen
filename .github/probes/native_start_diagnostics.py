@@ -161,6 +161,24 @@ def portal_label(title: str, tagline: str | None, status: str = 'Spielen') -> st
     return title if tagline is None else f'{title}. {tagline} {status}'
 
 
+def live_navigation_labels(nodes: list, package: str) -> list[str]:
+    labels = set()
+    for node in nodes:
+        if (node.get('package') != package or node.get('enabled') != 'true'
+                or node.get('clickable') != 'true'):
+            continue
+        bounds = re.fullmatch(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', node.get('bounds', ''))
+        if bounds is None:
+            continue
+        x0, y0, x1, y1 = map(int, bounds.groups())
+        if x1 <= x0 or y1 - y0 < 48:
+            continue
+        values = (node.get('text', ''), node.get('content-desc', ''))
+        labels.update(label for label in ('Spielen', 'Spiele')
+                      if any(label in value.splitlines() for value in values))
+    return [label for label in ('Spielen', 'Spiele') if label in labels]
+
+
 def observed_portal_status(folder: Path, title: str) -> list[str]:
     """Beschriftungen der Kachel aus den beim Suchen gelesenen Bäumen."""
     found: set[str] = set()
@@ -190,13 +208,57 @@ class Runner:
         self.started = time.monotonic()
         self.summary: dict = {'section': 'native-starts', 'status': 'RUNNING', 'package': package,
                               'wait_seconds': self.wait_seconds, 'scenes': [],
+                              'adb_checks': [],
                               'not_covered': NOT_COVERED,
                               'note': 'Diagnose; beeinflusst tour-result.json und den Exit-Code nicht.'}
         self.component: str | None = None
+        self.active_scene: str | None = None
 
     # ------------------------------------------------------------- helpers
     def adb(self, *args: str, timeout: int = 60) -> str:
-        return self.base.adb(*args, timeout=timeout, check=False)
+        """Require a successful, complete remote command, including empty output.
+
+        ADB can return a truncated stream without a useful error message. Both
+        frames are unique to this call; neither a prefix nor a tail is evidence.
+        The remote status and ADB's own exit status must both indicate success.
+        """
+        if args[0] == 'shell':
+            command = args[1] if len(args) == 2 else shlex.join(args[1:])
+        elif args[0] == 'logcat':
+            command = shlex.join(args)
+        else:
+            raise ValueError(f'Unsupported diagnostic ADB command: {args!r}')
+        token = uuid.uuid4().hex
+        begin, end = f'__LUMO_ADB_BEGIN_{token}__', f'__LUMO_ADB_END_{token}__'
+        script = (f"printf '%s\\n' '{begin}'\n{command}\n"
+                  "lumo_probe_status=$?\n"
+                  f"printf '\\n%s:%s\\n' '{end}' \"$lumo_probe_status\"\n"
+                  'exit "$lumo_probe_status"')
+        check = {'scene': self.active_scene, 'command': command,
+                 'adb_exit_ok': False, 'complete': False, 'shell_exit_code': None}
+        self.summary['adb_checks'].append(check)
+        number = len(self.summary['adb_checks'])
+        try:
+            raw = self.base.adb('shell', script, timeout=timeout, check=True)
+        except Exception as error:
+            check['error'] = f'{type(error).__name__}: {error}'[:500]
+            check['evidence'] = f'work/adb-error-{number:04d}.txt'
+            (self.root / check['evidence']).write_text(f'{type(error).__name__}: {error}\n')
+            raise
+        check['adb_exit_ok'] = True
+        check['response_bytes'] = len(raw.encode('utf-8'))
+        match = re.search(r'\n' + re.escape(end) + r':(\d+)\Z', raw)
+        if (not raw.startswith(begin + '\n') or raw.count(begin) != 1
+                or raw.count(end) != 1 or match is None):
+            check['evidence'] = f'work/adb-incomplete-{number:04d}.txt'
+            (self.root / check['evidence']).write_text(raw)
+            raise RuntimeError(f'Incomplete ADB response for {command!r}; '
+                               f'{check["response_bytes"]} bytes, missing or invalid framing')
+        check['complete'] = True
+        check['shell_exit_code'] = int(match.group(1))
+        if check['shell_exit_code'] != 0:
+            raise RuntimeError(f'Remote command failed ({check["shell_exit_code"]}): {command}')
+        return raw[len(begin) + 1:match.start()]
 
     def write(self) -> None:
         self.summary_path.write_text(json.dumps(self.summary, indent=2, ensure_ascii=False))
@@ -205,11 +267,39 @@ class Runner:
         text = self.adb('shell', 'ps', '-A', '-o', 'PID,NAME')
         allowed = {self.package, self.package + ':lumo_game'}
         result = {}
-        for line in text.splitlines():
-            columns = line.split()
-            if len(columns) == 2 and columns[0].isdigit() and columns[1] in allowed:
-                result[columns[1]] = int(columns[0])
+        lines = text.splitlines()
+        if len(lines) < 2 or lines[0].split() != ['PID', 'NAME']:
+            raise RuntimeError('Invalid ps response: expected PID NAME and a global process list')
+        seen = set()
+        for line in lines[1:]:
+            columns = line.split(maxsplit=1)
+            if len(columns) != 2 or not columns[0].isdigit() or int(columns[0]) <= 0:
+                raise RuntimeError(f'Invalid ps process row: {line!r}')
+            pid, name = int(columns[0]), columns[1].strip()
+            if pid in seen or name in result:
+                raise RuntimeError(f'Ambiguous ps process row: {line!r}')
+            seen.add(pid)
+            if name in allowed:
+                result[name] = pid
         return result
+
+    def stop_app(self, *, settle: bool = False) -> None:
+        self.adb('shell', 'am', 'force-stop', self.package)
+        if settle:
+            time.sleep(2)  # Reuse the existing pre-launch pause before confirming exit.
+        remaining = self.process_snapshot()
+        if remaining:
+            raise RuntimeError(f'App processes survived force-stop: {remaining}')
+
+    def require_flutter_host(self) -> dict:
+        snapshot = self.process_snapshot()
+        resumed = self.resumed()
+        host_activity = re.escape(self.package) + r'/(?:[\w.]*\.)?MainActivity(?=[\s}])'
+        if (self.package not in snapshot or self.package + ':lumo_game' in snapshot
+                or not re.search(host_activity, resumed)):
+            raise RuntimeError(f'Fresh Flutter host not confirmed: processes={snapshot}; '
+                               f'resumed={resumed!r}')
+        return {'pid': snapshot[self.package], 'resumed': resumed}
 
     def processes(self) -> list[str]:
         return list(self.process_snapshot())
@@ -272,30 +362,34 @@ class Runner:
 
     def fresh_app(self, tag: str) -> dict:
         """App neu starten und zur Spielewelt gehen, wie ein Kind."""
-        self.adb('shell', 'am', 'force-stop', self.package)
-        time.sleep(2)
+        self.stop_app(settle=True)
         work = self.root / 'work'
         self.base.launch(work, tag + '-launch')
+        self.require_flutter_host()
+        labels = []
         for index in range(30):
             try:
-                text = self.base.accessible_text(self.live.live_nodes(work, f'{tag}-home-{index}'))
+                labels = live_navigation_labels(
+                    self.live.live_nodes(work, f'{tag}-home-{index}'), self.package)
             except Exception:
-                text = ''
-            if 'Spielen' in text or 'Spiele' in text:
+                labels = []
+            if labels:
                 break
             time.sleep(1)
-        for label in ('Spielen', 'Spiele'):
+        for label in labels:
             try:
-                self.probe.flutter_tap(work, label, f'{tag}-nav', scroll_attempts=2)
+                self.probe.flutter_tap(work, label, f'{tag}-nav', scroll_attempts=2,
+                                       min_visible_height_px=48)
                 time.sleep(2)
-                return {'navigated': label}
             except Exception:
                 continue
-        return {'navigated': None}
+            return {'navigated': label, 'flutter_host': self.require_flutter_host()}
+        raise RuntimeError('Fresh Flutter host has no enabled live Spiele/Spielen control')
 
     # ------------------------------------------------------------- one scene
     def observe(self, ident: str, scene: str, path: str, title, tagline) -> dict:
         entry: dict = {'id': ident, 'scene': scene, 'path': path}
+        self.active_scene = ident
         work = self.root / 'work' / ident
         work.mkdir(parents=True, exist_ok=True)
         try:
@@ -324,8 +418,7 @@ class Runner:
                     entry['studio_button_tapped' if scene == 'quiz'
                           else 'memory_table_button_tapped'] = True
             else:
-                self.adb('shell', 'am', 'force-stop', self.package)
-                time.sleep(2)
+                self.stop_app(settle=True)
                 self.adb('logcat', '-c')
                 component = self.resolve_component()
                 if component is None:
@@ -402,9 +495,11 @@ class Runner:
             # A hanging force-stop (run 44473804677: 60 s timeout after
             # run-abenteuer) must not discard this entry and every later scene.
             try:
-                self.adb('shell', 'am', 'force-stop', self.package)
+                self.stop_app()
             except Exception as error:
                 entry['force_stop_error'] = f'{type(error).__name__}: {error}'[:300]
+                entry.setdefault('error', 'Unverified app shutdown: ' + entry['force_stop_error'])
+            self.active_scene = None
         return entry
 
     def run(self) -> dict:

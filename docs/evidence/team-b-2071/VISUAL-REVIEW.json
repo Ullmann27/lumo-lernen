@@ -1,0 +1,220 @@
+{
+  "source": "b4db287fe562893d849d1c826c9b92e8f2e44761",
+  "native": "e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913",
+  "world": {
+    "flutter": "b4db287fe562893d849d1c826c9b92e8f2e44761",
+    "native": "e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913",
+    "run": 45191784853,
+    "artifact": 14825704906,
+    "artifactSha256": "452c231e49a700a5ddad418bc90e1367f84eb7f668aea440e88a6328bd1ac34b",
+    "reviewedBy": [
+      "root",
+      "open_world"
+    ],
+    "files": [
+      "world-treasure_foundation.webp",
+      "world-village_walking.webp",
+      "world-school_portrait.webp",
+      "world-kart_driving.webp",
+      "world-saved_village.webp",
+      "world-map.png"
+    ],
+    "result": "No blocking visibility, clipping, or control-overlap defect observed in the six reviewed captures.",
+    "scope": "Five captured initial 0/6 mission views plus map; not all later dialogs, device rotation or Android performance."
+  },
+  "trail": {
+    "flutter": "b4db287fe562893d849d1c826c9b92e8f2e44761",
+    "run": 45191784803,
+    "artifact": 14826112732,
+    "artifactSha256": "8dde9e5877880dea725f47df1af47c82b7f8051deb4d0f3c21860d83ea734847",
+    "reviewedBy": [
+      "root",
+      "game_design"
+    ],
+    "files": [
+      "trail-phone-narrow-program.png",
+      "trail-phone-narrow-board.png"
+    ],
+    "result": "Complete board and controls fit; active Los label is dark, disabled Los label is muted; geometry unchanged.",
+    "scope": "Root reviewed both narrow views; design agent reviewed all seven PNGs including 390px and fold."
+  },
+  "details": {
+    "files": [
+      {
+        "path": "logic-ui/hub-direct-narrow-large.png",
+        "bytes": 566219,
+        "sha256": "a56fc94636dfe78536a7bc767ae181bea2b72cc1e5c21a29a04a50c4d03ac7de"
+      },
+      {
+        "path": "logic-ui/hub-direct-short-landscape-large.png",
+        "bytes": 387272,
+        "sha256": "1b3a0fada5a6a8be90c25b97bc2b26b8282231ab569ab7d88d173118a47fa53c"
+      },
+      {
+        "path": "trail-ui/trail-phone-narrow-program.png",
+        "bytes": 249661,
+        "sha256": "977bce5de6d7147e35675b1757cb18267e7c376c97720965fe21d69587ebd215"
+      },
+      {
+        "path": "trail-ui/trail-phone-narrow-board.png",
+        "bytes": 248656,
+        "sha256": "af35690ed10bbaa7a106e5b126848bb30460d1a095d549fb846253135dab8e6e"
+      },
+      {
+        "path": "trail-ui/trail-phone-narrow-chooser.png",
+        "bytes": 135161,
+        "sha256": "f9f09761b584f56c1a6bfd779a2a2c8146d9aa519f5eeca1c819ea638f753602"
+      }
+    ],
+    "worldReview": {
+      "checkedAtUTC": "2026-11-23T14:30:14.617970+00:00",
+      "reviewScope": "Read-only visual review of exact combined unpublished build 2071 Auftrag 48 early world artifact; no source or ref changes",
+      "run": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45191784853",
+      "jobId": 137751923651,
+      "artifact": {
+        "id": 14825704906,
+        "name": "LUMO-TEAM-B-WORLD-VIEWS-45191784853-1",
+        "zipBytes": 1223657,
+        "expectedSha256": "452c231e49a700a5ddad418bc90e1367f84eb7f668aea440e88a6328bd1ac34b",
+        "actualSha256": "452c231e49a700a5ddad418bc90e1367f84eb7f668aea440e88a6328bd1ac34b",
+        "digestMatches": true,
+        "extractionPath": "/dev/shm/lumo-team-b-views-45191784853/extracted",
+        "safeExtractionChecks": [
+          "no absolute paths",
+          "no parent traversal",
+          "no symbolic links",
+          "expanded size below 100 MB"
+        ]
+      },
+      "flutterCommit": "b4db287fe562893d849d1c826c9b92e8f2e44761",
+      "godotCommit": "e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913",
+      "captureSourceCommit": "e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913",
+      "exactPinsMatch": true,
+      "captureMetadata": {
+        "engine": "4.6.3-stable (official)",
+        "renderer": "gl_compatibility",
+        "display": "X11",
+        "kind": "actual gameplay viewport capture",
+        "profile": "synthetic isolated fixture",
+        "originalLumo": true,
+        "sameVillageSave": true,
+        "performanceScope": "Measurements describe this capture machine only, not Android device performance"
+      },
+      "vegetationClearance": [
+        {
+          "view": "treasure_foundation",
+          "rendererVerified": true,
+          "clearedCount": 0
+        },
+        {
+          "view": "village_walking",
+          "rendererVerified": true,
+          "clearedCount": 0
+        },
+        {
+          "view": "school_portrait",
+          "rendererVerified": true,
+          "clearedCount": 0
+        },
+        {
+          "view": "kart_driving",
+          "rendererVerified": true,
+          "clearedCount": 1
+        },
+        {
+          "view": "saved_village",
+          "rendererVerified": true,
+          "clearedCount": 2
+        }
+      ],
+      "result": "No blocking visual or HUD defect observed in all six inspected images. The four previously reported world visual problems are corrected in these sampled views.",
+      "images": [
+        {
+          "file": "/dev/shm/lumo-team-b-views-45191784853/extracted/world-ui/world-treasure_foundation.webp",
+          "width": 1280,
+          "height": 720,
+          "sha256": "dcc8f752e07acadf290f2b80ec199b4ed8bd3c66527af178bf2cca8f6ad3c919",
+          "visuallyInspected": true,
+          "blockingDefectObserved": false,
+          "finding": "Lumo und Weg sind sichtbar. Der fruehere bildbreite Schatzinsel-Text fehlt; ein kleiner Sonnendorf-Wegweiser steht seitlich rechts. Missionsfeld und Bedienflaechen sind vollstaendig sichtbar."
+        },
+        {
+          "file": "/dev/shm/lumo-team-b-views-45191784853/extracted/world-ui/world-village_walking.webp",
+          "width": 1280,
+          "height": 720,
+          "sha256": "278e7031e609214f71472c750064fe125019bc82d1342c57e36718551e64a5af",
+          "visuallyInspected": true,
+          "blockingDefectObserved": false,
+          "finding": "Lumo und Nelli sind sichtbar. Das aktive Ansprechen-Feld ist lesbar. Missionsfeld, Weltkarte, Pause und Bewegungssteuerung ueberlappen einander nicht."
+        },
+        {
+          "file": "/dev/shm/lumo-team-b-views-45191784853/extracted/world-ui/world-school_portrait.webp",
+          "width": 720,
+          "height": 1280,
+          "sha256": "8425477a58f46292d2672baf3b862ff4dcd483d367e19ebdaaae0e8bd4ec26fb",
+          "visuallyInspected": true,
+          "blockingDefectObserved": false,
+          "finding": "Der Schuleingang hat eine sichtbare Rampe statt der frueheren hohen Frontmauer. Lumo, Missionsfeld und Touchsteuerung sind im Hochformat vollstaendig sichtbar; Weltkarte und Pause liegen unter dem Missionsfeld."
+        },
+        {
+          "file": "/dev/shm/lumo-team-b-views-45191784853/extracted/world-ui/world-kart_driving.webp",
+          "width": 1280,
+          "height": 720,
+          "sha256": "3b81edb81637e78b22bf404d84e23084410963c10da33a05780d13adc639dc8a",
+          "visuallyInspected": true,
+          "blockingDefectObserved": false,
+          "finding": "Lumo und das gesamte Kart sind sichtbar; der fruehere bildfuellende Laubvorhang ist entfernt. Aussteigen und Bremse sind lesbar und nicht abgeschnitten."
+        },
+        {
+          "file": "/dev/shm/lumo-team-b-views-45191784853/extracted/world-ui/world-saved_village.webp",
+          "width": 1280,
+          "height": 720,
+          "sha256": "2526782e9e96032bcce4fb4462983e3719504793fd05194cc6391a8935aad66b",
+          "visuallyInspected": true,
+          "blockingDefectObserved": false,
+          "finding": "Lumo, Eingangskreis, drei Haeuser und Bewohner sind sichtbar; die frueher verdeckende Vordergrundkrone ist entfernt. Ort oeffnen und Dorf-Beschriftung sind lesbar."
+        },
+        {
+          "file": "/dev/shm/lumo-team-b-views-45191784853/extracted/world-ui/world-map.png",
+          "width": 600,
+          "height": 590,
+          "sha256": "364b2ab9881aa1bceb8555c5ea161e3a395abbd477bdee1287c8422bfc7f4798",
+          "visuallyInspected": true,
+          "blockingDefectObserved": false,
+          "finding": "Karte zeigt lesbare Ortsnamen, Spieler-, Ziel- und Spielortmarker, Nordrichtung, Massstab, Legende und vier Ortsknopfe. Keine sichtbare Ueberlappung oder abgeschnittene Beschriftung."
+        }
+      ],
+      "logs": [
+        {
+          "file": "/dev/shm/lumo-team-b-views-45191784853/extracted/GODOT-WORLD-CAPTURE.txt",
+          "sha256": "f3ca64873913384dc137f94e81c55dd4fd35a8401ace23f4fcad148237ae6ac4",
+          "passes": [
+            "[LumoWorldCapture] PASS views=5 renderer=gl_compatibility"
+          ],
+          "errors": [],
+          "warnings": [
+            "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+            "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+          ]
+        },
+        {
+          "file": "/dev/shm/lumo-team-b-views-45191784853/extracted/GODOT-WORLD-MAP.txt",
+          "sha256": "e7d08d27a3618cd25cc0ccb12dd33523c1c7616d86022dfeb7b99026d65ad5f7",
+          "passes": [
+            "[WorldMap] PASS 152 checks"
+          ],
+          "errors": [],
+          "warnings": [
+            "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+            "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+          ]
+        }
+      ],
+      "limits": [
+        "The five world screenshots show sampled initial 0/6 mission states; they do not cover every mission, Freundepost clue, dialog, crossing, camera angle, or orientation change.",
+        "Static Linux X11 gl_compatibility captures do not establish Android device frame rate, thermal performance, touch behavior, or completed APK installation.",
+        "This review concerns the early world artifact; the parent owns APK completion, signing and publication checks."
+      ]
+    }
+  }
+}

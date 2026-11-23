@@ -1,3 +1,54 @@
+## Aktuell: vollständiger Wiederholungslauf für Auftrag 49
+
+Stand: 23. November 2026, 16:51 Uhr Wien. Version **0.14.2+2071**, nativer Pin **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**. Dieser Commit startet den vollständigen Standardlauf erneut. Ein neues Android-Ergebnis liegt beim Commit noch nicht vor.
+
+Die gezielte Korrektur betrifft ausschließlich den Collector `.github/probes/native_start_diagnostics.py` und seine Regressionen: ADB- und Geräte-Exitcodes, vollständige Antworten, tatsächlich beendete Altprozesse und einen frischen Flutter-Host vor jedem UI-Start bestätigen. Beide Prüfer führten den abschließenden Stand aus: **38 Collector- und 9 unveränderte Verifier-Tests bestanden**. Die vorhandene zweisekündige Pause liegt jetzt vor der Bestätigung des Prozessendes; es gibt keinen zusätzlichen Start, Retry oder höheren Timeout.
+
+Produktdateien, Godot-Pin, Pflichtgate und Beobachtungszeiten bleiben unverändert. Der ursprüngliche fehlgeschlagene Bericht wird weiterhin korrekt abgelehnt. Lokale Fixtures ersetzen keinen echten Android-Lauf. Belege: [Diagnose-Korrektur](docs/agent-network/TEAM_B_2071_REQUEST49.md), [lokale Prüfbelege](docs/evidence/team-b-2071-request49/harness-validation.json).
+
+**Auftrag 48 / Quelle b4db287 bleibt zurückgehalten.** Sein Android-Fehler und seine Originalbelege bleiben im folgenden historischen Abschnitt und im [Prüfhaltbericht](docs/agent-network/TEAM_B_2071_ANDROID_HOLD.md) erhalten. Keine Auslieferungsfreigabe aus den lokalen Tests ableiten; den neuen Standardlauf einschließlich Tour, Pflichtstarts und SAF-Wiederherstellung abwarten. Der separate Publisher ist noch an den alten fehlgeschlagenen Lauf gebunden und darf nicht aktiviert werden.
+
+---
+
+# Wiederaufnahme · Native-Collector korrigieren, danach vollständiger neuer Prüflauf
+
+## Verbindlicher Prüfhalt für APK 2071
+
+**Originalrun45191784853 ist beendet: Bau erfolgreich, Android-Pflichtgate fehlgeschlagen, Veröffentlichung übersprungen.** Produktquelle bleibt Flutterb4db287fe562893d849d1c826c9b92e8f2e44761 / Godote0460c0b3eda9d42e9d963eb2236dc8d9c7b5913.
+
+- Originaltour:23/23 Schritte PASS.
+- Android-SAF-Sicherung/Wiederherstellung:8/8 Schritte PASS; installierte APK-Identität stimmt.
+- Native Pflichtstarts: run/quiz/kart/cards positiv; Memory ohne Router-Ladebeleg, Schach und World ohne erfolgreichen Kachelstart. Nach Memory beziehungsweise Schatzsuche bleibt beim folgenden Versuch dieselbe native Activity/PID sichtbar.
+- Tatsächlicher Gatefehler: `ValueError: memory: missing positive observation for router_loaded`.
+- Die leeren gefilterten Memory-/Schatzsuche-Logs erlauben keine Aussage, dass diese Starts fehlerfrei waren. Produkt-, Start-/Teardown- und Beobachtungsmechanismen werden anhand der Originalbelege parallel untersucht.
+- Original-Androidartefakt14831399839,92447590Bytes, SHA256`61709df3558f864800a2476bed01236ede9713c45a947e2e5193611bcfae6252` tatsächlich heruntergeladen und geprüft.
+
+**Diese APK wird nicht als freigegeben geliefert.** Der separate Publisher bleibt ohne aktivierende Config und würde den fehlgeschlagenen Original-Androidjob abweisen. Keine Gateabschwächung, keine Umwertung fehlender Beobachtungen zuPASS. Main und Hauptteamzweige bleiben unberührt.
+
+1. Zuerst [Android-Prüfhalt](docs/agent-network/TEAM_B_2071_ANDROID_HOLD.md) und unveränderte Originalbelege lesen. Collector-Korrektur und ihre Regressionstests werden getrennt von Produktdateien erstellt und unabhängig geprüft.
+2. KritischeADB-Ergebnisse, vollständige Log-/Prozessantworten, tatsächliches Ende alter Prozesse und einen frischen Flutter-Host bestätigen. Fehler nicht unterdrücken. Pflichtgate unverändert lassen.
+3. Erst nach belegter minimaler Korrektur und lokalen Tests den normalen vollständigen Kandidatenlauf mit neuem Bauauftrag auslösen. Keine hypothetische Produktreparatur und keine Zeitbudgeterhöhung.
+4. Sämtliche neuen Quellen-/Bild-/APK-/Android-/Backup-/Native-Belege müssen tatsächlich zum neu gestarteten Kandidaten passen. Alten2071/b4db nicht alsfreigegeben ausgeben; öffentliche Veröffentlichung erst nach allen echtenPASS.
+
+## Historische Fortsetzung vor Androidabschluss
+
+# Wiederaufnahme · Team B 2071 fertig prüfen und unverändert liefern
+
+Stand: 23. November 2026, 15:54 Uhr Wien. Supportzweige in beiden Repositories: `support/logic-world-team-b-20261123`; Ziel `feature/logic-world-20261123`. Main bleibt geschützt.
+
+1. **Produktquelle nicht mit späteren Dokumentationscommits verwechseln.** Gebaute Version 0.14.2+2071: Flutter `b4db287fe562893d849d1c826c9b92e8f2e44761`, Godot `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913`, Engine4.6.3, Auftrag48. Originalrun45191784853, Baujob137751923651 SUCCESS. Supportlauf45191784803 vollständig SUCCESS. [Quellen, Prüfumfang und Grenzen](docs/agent-network/TEAM_B_2071_QUALITY.md).
+2. Eigenen Androidjob137767273722 bis zum tatsächlichen Ende prüfen. Originaltour, alle acht SAF-Backup-Schritte und verbindliche native Starts müssen dieselbe originale x86_64-APK betreffen. Hauptteam2070-Ergebnisse dürfen nicht als2071-PASS übernommen werden. Aktuelle Android-Artefakt-ID erst aus realem erfolgreichen Upload übernehmen.
+3. Nachgelagerten Original-Publishjob beobachten. Ein realer HTTP403 ist als Rechteblocker festzuhalten. Kein erratener Release-Link und kein Umgehen einer Berechtigungsablehnung. Der dokumentierte GitHub-Fall verlangt Contents:write plus Workflows:write, wenn das Releaseziel Workflows gegenüber dem Defaultbranch verändert; GITHUB_TOKEN allein genügt dafür nicht.
+4. Der separate Team-B-Publisher ist im Lauf45200058196 auf1128d28 mit24 Tests, realen Metadaten, zwei YAML-Dateien und11 Bashblöcken tatsächlich geprüft. Er muss die Original-2071-Metadaten, den ursprünglichen Bau-/Androidrun und alle originalen Testbelege binden. Keine auslösende Configdatei, bevor tatsächliches Android-PASS und ausdrücklich bereitgestellte legitime Publisher-Identität feststehen. Geheimnisse nicht im Chat erfragen oder in Dateien ablegen.
+5. APK-Datei `Lumo-Lernen-Test-0.14.2-2071.apk`:537231343 Bytes; SHA256 `c7036b318ba9f3e0c0751abcc1f3745ce0fd0a96a617954501feb40b63627737`; Zertifikat `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`. PCK279910300 Bytes/SHA256 `398cf6cdd6cac5233037b6cd1247c89b3a92392050a0c9a9696af82d0beedf5f`.
+6. Originalartefakte: ARM6414828082269, Metadaten14827937341, x86_6414828446718, Tests14829430168, World-Bilder14825704906. Der isolierte Transportlauf45196734395 hat genau diese APK transportiert; die endgültige lokal zusammengesetzte Datei war hashgleich. Kein neuer Bau und keine neue Signierung.
+7. Lokale Runtime aktuell unavailable. Vor einem neuen lokalen Zugriff tatsächliche Verfügbarkeit prüfen; keine Download-/Dateiverfügbarkeit aus alten Pfaden behaupten. Der begonnene ZIP-Fallback hat noch keinen gesicherten Abschluss. Die Original-APK bleibt im GitHub-Artefakt vorhanden. Ein ZIP wäre nur ein offen benannter Zusatz, kein öffentlicher Einzel-APK-Direktdownload.
+8. Nach Abschluss STATUS, diese Datei, Team-B-Qualitätsbericht, PR539/211 und die Koordinationskommentare in538/210 aktualisieren. Produktdateien, Versionsauftrag und nativen Pin dabei unverändert lassen. Spätere Liefer-/Dokumentationscommits können mit [skip ci] erfolgen, ohne den aktuellen APK-Lauf abzubrechen.
+9. Bedienwege: Start → Spielen → Logikspiele → Pfotenpfad; in Pfotenpfad Klassen-/Pfadauswahl, Pfeilplan, nummerierte Sterne, Picknick, Los! Für World: Spielen → Lumo World → Weltkarte. Nach sechs Hauptmissionen „Welt weiter erkunden“, zu Fuß Nelli ansprechen, Freundepost mitnehmen, bei Bruno abgeben; danach Tilda und wieder Nelli.
+10. Grenzen beibehalten: eigene Flutter-Widgets/PNGs sind keine Android-Pfotenpfad-Tour. Linux-Renderer und x86_64-Emulator belegen keine physischen ARM64/Fold7-60FPS, thermischen Eigenschaften oder hörbare Sprachqualität.
+
+## Übernommene Hauptteam-Fortsetzung 00056a (unverändert; eigener Kandidat 2070)
+
 # Wiederaufnahme · APK 2070 abschließend prüfen und direkt liefern
 
 Stand: 23. November 2026. Branch in beiden Repositories

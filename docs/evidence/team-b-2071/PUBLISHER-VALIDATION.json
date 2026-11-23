@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "reviewedAtUTC": "2026-11-23T15:01:00Z",
+  "result": "PASS",
+  "sourceCommit": "1128d28dd9aed476228757e2efe8973493f75885",
+  "runId": 45200058196,
+  "jobId": 137780845069,
+  "runUrl": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45200058196",
+  "productSourceCommit": "b4db287fe562893d849d1c826c9b92e8f2e44761",
+  "preparedFiles": [
+    {
+      "path": ".github/workflows/lumo-team-b-reviewed-publish.yml",
+      "blob": "f7998385d63a5b4eae91e476e7d89172a6508156"
+    },
+    {
+      "path": "scripts/lumo_team_b_reviewed_publish.py",
+      "blob": "1fb30210fcdf57698cef89cbdcad6555bd94e18a"
+    },
+    {
+      "path": "scripts/tests/test_lumo_team_b_reviewed_publish.py",
+      "blob": "a5ffd22170e806ec926d57796e8ace753b35ff2f"
+    },
+    {
+      "path": "docs/agent-network/REVIEWED_PUBLISH_2071.md",
+      "blob": "0281cf9dea6b90fe88455b963a8147a85b6d686b"
+    },
+    {
+      "path": ".github/workflows/lumo-team-b-reviewed-publish-check.yml",
+      "blob": "73d842e604e7c34c5adaf706a8d026b697190836"
+    }
+  ],
+  "actualChecks": {
+    "pythonSyntax": "PASS",
+    "unitTestsPassed": 24,
+    "unitTestsFailed": 0,
+    "actualBuiltMetadata": "PASS",
+    "workflowYamlDocumentsParsed": 2,
+    "bashBlocksSyntaxChecked": 11
+  },
+  "independentStaticReview": {
+    "reviewer": "logic_games",
+    "unchangedProtectionBlocks": 20,
+    "testBodiesRetained": 24,
+    "activationConfigPresent": false
+  },
+  "executionScope": "Dedicated GitHub Actions validator, not local execution. Tests use controlled fixtures; actual built metadata is separately validated without a request, token or publication.",
+  "notEstablished": [
+    "Completed Android result at this checkpoint",
+    "A legitimate configured publication identity",
+    "Successful public release or public download",
+    "Physical ARM64 performance"
+  ]
+}

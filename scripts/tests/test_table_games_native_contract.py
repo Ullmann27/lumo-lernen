@@ -5,18 +5,16 @@ deterministic main looper. JSON parsing, mailbox writes, token/game ownership,
 the Java intent validator and durable return storage are production sources.
 This is not an Android device, Godot render or Dart reward test.
 """
-import hashlib
 import os
 from pathlib import Path
 import shutil
 import subprocess
 import tempfile
 import unittest
-import urllib.request
 
 import test_connect_four_native_contract as boundary
 from test_cards_lifecycle_heartbeat import missing_toolchain
-from test_game_return_contract import ATOMIC_FILE, JSON_SHA256, JSON_URL
+from test_game_return_contract import ATOMIC_FILE, prepare_json_jar
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -203,16 +201,7 @@ class TableGamesNativeContractTest(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory(prefix='lumo-table-native-')
         cls.addClassCleanup(cls.temp.cleanup)
         cls.work = Path(cls.temp.name)
-        supplied = os.environ.get('LUMO_TEST_JSON_JAR')
-        if supplied:
-            data = Path(supplied).read_bytes()
-        else:
-            with urllib.request.urlopen(JSON_URL, timeout=60) as response:
-                data = response.read()
-        if hashlib.sha256(data).hexdigest() != JSON_SHA256:
-            raise RuntimeError('Existing pinned org.json dependency changed')
-        jar = cls.work / 'json.jar'
-        jar.write_bytes(data)
+        jar = prepare_json_jar(cls.work / 'json.jar')
         classes = cls.work / 'classes'
         classes.mkdir()
         atomic = cls.work / 'AtomicFile.java'

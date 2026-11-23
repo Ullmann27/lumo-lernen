@@ -1,0 +1,44 @@
+{
+  "base_commit": "2daa65c7bf8d4357684d8364fb14deb0be4d0660",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Original production World methods with the test fixture, all actual autoloads, exact 2daa World sources and locally available imported assets. Not full-scene visual, FPS or Android evidence.",
+  "verified_blobs": {
+    "scripts/creative/lumo_world.gd": "635c83415a2fdb66486938eb69f0b173d26003b2",
+    "scripts/creative/lumo_world_state.gd": "441102dd1472d0acfa9d5dcb10efaa9589aa8d1e",
+    "scripts/creative/lumo_world_errands.gd": "47facaa58a22f29b5d5e40e185b56abd6ba506b0",
+    "scripts/creative/lumo_world_errands_ui.gd": "40a46196da48bf9f11ad459b61fdb5fa32c43edb",
+    "scripts/creative/lumo_world_village.gd": "85124f42f0f5595227eb7b4fe3f04000c5fddbac",
+    "scripts/creative/lumo_world_map.gd": "bffeaf5326a468c10c65bee80cf7f9aee392e77d",
+    "scripts/tests/lumo_world_support_integration_regression.gd": "3c2295cb859a01830dbdfc6863fa0dcf32ddf621",
+    "assets/creative/village/carpenter_village.glb": "1b8edce5f86c0ffde8ade7633a1d901bd419388e",
+    "assets/creative/village/lion_village.glb": "59cb243aeef144dbfd0d5adb115b5ed9150a221e"
+  },
+  "before": {
+    "test_blob": "6f66b72c9b43c7045b45bd2870dcc7c597d711ae",
+    "result": "FAIL",
+    "reason": "Top-level preload compiles World before SceneRouter singleton initialization; missing SceneRouter identifier prevents test execution. Captured then process terminated after 5 seconds.",
+    "log": "world-support-before.log"
+  },
+  "intermediate": {
+    "result": "FAIL 27 checks",
+    "reason": "After deferred loading, complete unknown-sidequest Dictionary equality compares initial integer version 99 against JSON-restored float 99.0. All values and futurePayload are preserved.",
+    "log": "world-support-json-before.log"
+  },
+  "after": {
+    "result": "PASS 27 checks",
+    "exit_code": 0,
+    "errors_or_exit_leaks": false,
+    "log": "world-support-after.log"
+  },
+  "fix": [
+    "Load World from the already deferred _run after actual autoload initialization.",
+    "Normalize original unknown-sidequest fixture through real JSON serialization/parsing before setup, matching production input types. Preserve all assertions, including full futurePayload comparison."
+  ],
+  "product_changes": false,
+  "source_workspace_changes": "All staging under /dev/shm. Existing foreign assets/imports were read only; two missing GLBs downloaded from 2daa and imported in a separate private project.",
+  "log_sha256": {
+    "world-support-before.log": "4bf30b2bbdf6cf86fb6c1979ee71722759599065a9e24cc94aa8c4e45fafe69a",
+    "world-support-json-before.log": "ce2d7f63a74b735cdf9171b91fa03d9cb70e5557d2ebed292e5dc7533835c7b6",
+    "world-support-after.log": "c8ee284106530b21d8ef237d9e0e55d69c6ab7940850f398b972bd43d0a6911e"
+  }
+}

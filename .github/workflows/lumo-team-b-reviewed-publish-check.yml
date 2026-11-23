@@ -1,0 +1,125 @@
+name: "Lumo Team B 2071 – Publisher-Schutztests"
+
+# Validation only. This branch cannot start the separate publication workflow.
+on:
+  push:
+    branches: [support/team-b-publisher-check-2071]
+    paths:
+      - .github/workflows/lumo-team-b-reviewed-publish-check.yml
+      - .github/workflows/lumo-team-b-reviewed-publish.yml
+      - scripts/lumo_team_b_reviewed_publish.py
+      - scripts/tests/test_lumo_team_b_reviewed_publish.py
+      - scripts/verify_native_start_diagnostics.py
+      - docs/agent-network/REVIEWED_PUBLISH_2071.md
+      - docs/evidence/team-b-2071/BUILD-PROVENANCE.json
+      - docs/evidence/team-b-2071/APK-VERIFICATION.json
+      - docs/evidence/team-b-2071/SPLIT-APK-IDENTITY.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-team-b-reviewed-publish-check-2071
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Python, 24 Schutztests, YAML und Bash prüfen
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/support/team-b-publisher-check-2071'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Festen YAML-Parser installieren
+        run: python3 -m pip install --disable-pip-version-check --no-input PyYAML==6.0.2
+      - name: Python-Syntax prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile \
+            scripts/lumo_team_b_reviewed_publish.py \
+            scripts/tests/test_lumo_team_b_reviewed_publish.py \
+            scripts/verify_native_start_diagnostics.py
+      - name: Genau 24 Schutztests ohne Netzwerkzugriff ausführen
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import unittest
+
+          loader = unittest.TestLoader()
+          suite = loader.discover(
+              'scripts/tests', pattern='test_lumo_team_b_reviewed_publish.py')
+          if loader.errors:
+              raise SystemExit('\n'.join(loader.errors))
+          count = suite.countTestCases()
+          if count != 24:
+              raise SystemExit(f'Expected exactly 24 protection tests, found {count}')
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          raise SystemExit(0 if result.wasSuccessful() else 1)
+          PY
+      - name: Originale Metadaten mit unverändertem Gate prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, str(Path('scripts').resolve()))
+          from lumo_team_b_reviewed_publish import EXPECTED, read, verify_metadata
+
+          evidence = Path('docs/evidence/team-b-2071')
+          documents = [read(evidence / name) for name in (
+              'BUILD-PROVENANCE.json',
+              'APK-VERIFICATION.json',
+              'SPLIT-APK-IDENTITY.json',
+          )]
+          verify_metadata(EXPECTED, *documents)
+          print('Original ARM64, x86_64 and shared PCK metadata: PASS')
+          PY
+      - name: Beide YAML-Dateien und sämtliche Bash-Blöcke parsen
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import subprocess
+          import yaml
+
+          workflows = (
+              Path('.github/workflows/lumo-team-b-reviewed-publish.yml'),
+              Path('.github/workflows/lumo-team-b-reviewed-publish-check.yml'),
+          )
+          checked_shell_blocks = 0
+          for path in workflows:
+              document = yaml.load(path.read_text(), Loader=yaml.BaseLoader)
+              if not isinstance(document, dict) or not isinstance(document.get('jobs'), dict):
+                  raise ValueError(f'Workflow mapping is missing: {path}')
+              for job in document['jobs'].values():
+                  for step in job.get('steps', []):
+                      script = step.get('run')
+                      if script is not None:
+                          if not isinstance(script, str) or step.get('shell', 'bash') != 'bash':
+                              raise ValueError(f'Unexpected shell block: {path}')
+                          subprocess.run(['bash', '-n'], input=script, text=True, check=True)
+                          checked_shell_blocks += 1
+              print(f'YAML parsed: {path}')
+          guide = Path('docs/agent-network/REVIEWED_PUBLISH_2071.md')
+          fence = chr(96) * 3
+          examples = re.findall(
+              r'(?ms)^' + fence + r'bash\n(.*?)^' + fence + r'[ \t]*$',
+              guide.read_text())
+          if len(examples) != 2:
+              raise ValueError('Expected both documented Bash commands')
+          for script in examples:
+              subprocess.run(['bash', '-n'], input=script, text=True, check=True)
+              checked_shell_blocks += 1
+          print(f'Bash syntax parsed without execution: {checked_shell_blocks} blocks')
+          PY

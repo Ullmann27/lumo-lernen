@@ -1,0 +1,45 @@
+{
+  "base_commit": "2daa65c7bf8d4357684d8364fb14deb0be4d0660",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Reduced actual runtime closure: unchanged World errands model/controller, all ten original project autoloads, original default environment and asset manifest, four byte-verified original UI-click OGG assets. Not a full World scene or Android run.",
+  "cause": "Deferred GameSoundscape auto-UI click starts an AudioManager Vorbis playback. Probe quit follows two process frames while the mixer still owns that playback and its OGG stream.",
+  "before": {
+    "test_blob": "63df87d677709cf9ca8655368e0fa73a77806721",
+    "assertions": 21,
+    "process_exit": 0,
+    "strict_result": "FAIL",
+    "leaks": [
+      "AudioStreamPlaybackOggVorbis",
+      "OggPacketSequencePlayback",
+      "OggPacketSequence",
+      "AudioStreamOggVorbis"
+    ],
+    "resource_count": 2,
+    "asset": "assets/audio/klangwelt/sfx/ui_click_1.ogg",
+    "log": "world-errands-audio-before.log"
+  },
+  "after": {
+    "test_blob": "3d0ecd56152afdfc46d4994418a68ff9ef5366c9",
+    "assertions": 22,
+    "process_exit": 0,
+    "strict_result": "PASS",
+    "tracked_playbacks": 1,
+    "released": true,
+    "release_elapsed_ms": 100,
+    "error_or_exit_leak": false,
+    "log": "world-errands-audio-after.log"
+  },
+  "fix": "Only test: preload the existing kart_scene_teardown helper and await/assert release_audio(self, root, label) after the original two process-frame waits. All original assertions, product code and fixture class declarations unchanged.",
+  "helper_blob": "f8ca372f63c4e89eefc775caca3a8b750c8c2d40",
+  "verified_asset_blobs": {
+    "assets/audio/klangwelt/sfx/ui_click_0.ogg": "9b7152a482806245c50f438b9264bd624c0d8dd1",
+    "assets/audio/klangwelt/sfx/ui_click_1.ogg": "8f86bf87d1ccd5fd8cc50204978edb0b30f392f6",
+    "assets/audio/klangwelt/sfx/ui_click_2.ogg": "0735b75ddd3289ea42034d23db861caeb0b7c1c4",
+    "assets/audio/klangwelt/sfx/ui_click_3.ogg": "da56532be06656e4c50a7c5ac07cd2a6d6e78232"
+  },
+  "closure_import_note": "The reduced editor-import stage reports missing boot.tscn because application scenes were deliberately excluded. Runtime invocations use the explicit regression script, not boot. The before/after runtime logs contain no missing-resource or parse errors.",
+  "log_sha256": {
+    "world-errands-audio-before.log": "e92a08f44246e506093b52acf5f0eaccd00bdae9410fec792e5c745e058d3162",
+    "world-errands-audio-after.log": "622b32c18791469fb658c983b93f00be8b886a25690217a42398f6bdeb2c79de"
+  }
+}

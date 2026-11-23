@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "status": "HOLD",
+  "runId": 45191784853,
+  "buildJob": {
+    "id": 137751923651,
+    "conclusion": "success"
+  },
+  "androidJob": {
+    "id": 137767273722,
+    "conclusion": "failure"
+  },
+  "publishJob": {
+    "id": 137795206593,
+    "conclusion": "skipped"
+  },
+  "flutter": "b4db287fe562893d849d1c826c9b92e8f2e44761",
+  "godot": "e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913",
+  "artifact": {
+    "id": 14831399839,
+    "bytes": 92447590,
+    "sha256": "61709df3558f864800a2476bed01236ede9713c45a947e2e5193611bcfae6252",
+    "digestIndependentlyVerified": true
+  },
+  "originalTour": {
+    "status": "PASS",
+    "steps": 23
+  },
+  "safBackup": {
+    "status": "PASS",
+    "steps": 8
+  },
+  "nativeGate": {
+    "status": "FAILED",
+    "firstError": "memory: missing positive observation for router_loaded",
+    "positiveRequired": [
+      "run",
+      "quiz",
+      "kart",
+      "cards"
+    ],
+    "missingRequired": [
+      "memory",
+      "chess",
+      "world"
+    ]
+  },
+  "files": [
+    {
+      "path": "tour/tour-result.json",
+      "bytes": 10027,
+      "sha256": "d94a6871eed3cdb2faff7c40215e261153d8da1dcc66a28681dab73cca8f6b00"
+    },
+    {
+      "path": "tour/native-starts.json",
+      "bytes": 36476,
+      "sha256": "d5835c4278a7940f4894d8c06a3a572b2e9c4032cc3bb42dac2adf7569c3850d"
+    },
+    {
+      "path": "tour/local-backup/backup-result.json",
+      "bytes": 13642,
+      "sha256": "73b14d5552067624cc80633c477a08320fb70c33dc30581b60dc5284b245ff5b"
+    },
+    {
+      "path": "tour/SPLIT-APK-IDENTITY.json",
+      "bytes": 1249,
+      "sha256": "289f5a736d329bd03b492469e6bdb53fccd5f618b599cf890d0b84e963896ba7"
+    }
+  ]
+}

@@ -4,17 +4,15 @@ Only Android/Godot/Flutter boundary classes and the main looper are JVM adapters
 JSON parsing, mailbox files, private authority and durable return writes are real
 production code. This does not claim an Android emulator or device execution.
 """
-import hashlib
 import os
 from pathlib import Path
 import shutil
 import subprocess
 import tempfile
 import unittest
-import urllib.request
 
 from test_cards_lifecycle_heartbeat import missing_toolchain
-from test_game_return_contract import ATOMIC_FILE, JSON_SHA256, JSON_URL
+from test_game_return_contract import ATOMIC_FILE, prepare_json_jar
 
 ROOT = Path(__file__).resolve().parents[2]
 STUBS = {
@@ -282,16 +280,7 @@ class ConnectFourNativeContractTest(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory(prefix='lumo-c4-native-')
         cls.addClassCleanup(cls.temp.cleanup)
         cls.work = Path(cls.temp.name)
-        jar = cls.work / 'json.jar'
-        supplied = os.environ.get('LUMO_TEST_JSON_JAR')
-        if supplied:
-            data = Path(supplied).read_bytes()
-        else:
-            with urllib.request.urlopen(JSON_URL, timeout=60) as response:
-                data = response.read()
-        if hashlib.sha256(data).hexdigest() != JSON_SHA256:
-            raise RuntimeError('Existing pinned org.json dependency changed')
-        jar.write_bytes(data)
+        jar = prepare_json_jar(cls.work / 'json.jar')
         classes = cls.work / 'classes'
         classes.mkdir()
         atomic = cls.work / 'AtomicFile.java'

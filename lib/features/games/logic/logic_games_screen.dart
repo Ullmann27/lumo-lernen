@@ -12,6 +12,7 @@ import '../../tests/iq/iq_style.dart';
 import 'logic_progress_store.dart';
 import 'logic_puzzle_screen.dart';
 import 'logic_widgets.dart';
+import 'trail_puzzle_screen.dart';
 
 class LogicGamesScreen extends StatefulWidget {
   const LogicGamesScreen({
@@ -168,6 +169,25 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
     }
   }
 
+  Future<void> _openTrail() async {
+    if (_busy || !_current || _progress == null) return;
+    _click();
+    setState(() => _busy = true);
+    try {
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute(
+          builder: (_) => TrailPuzzleScreen(
+            appState: widget.appState,
+            initialGrade: _progress!.selectedGrade,
+          ),
+        ),
+      );
+      if (mounted && _current) await _load();
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final progress = _progress;
@@ -261,7 +281,11 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                                           ),
                                         ),
                                       ),
-                                    if (_kind == null) _hero(),
+                                    if (_kind == null) ...[
+                                      _directGames(),
+                                      const SizedBox(height: 16),
+                                      _hero(),
+                                    ],
                                     const SizedBox(height: 18),
                                     Text(
                                       'Deine Schulstufe',
@@ -318,6 +342,10 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                                                   child:
                                                       _gameCard(kind, progress),
                                                 ),
+                                              SizedBox(
+                                                width: width,
+                                                child: _trailCard(),
+                                              ),
                                             ],
                                           );
                                         },
@@ -374,6 +402,88 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
       ),
     );
   }
+
+  Widget _directGames() => LayoutBuilder(
+        key: const ValueKey('logic-direct-games'),
+        builder: (context, constraints) {
+          final columns = constraints.maxWidth >= 760 ? 4 : 2;
+          final width = (constraints.maxWidth - (columns - 1) * 8) / columns;
+          return Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final kind in LogicGameKind.values)
+                SizedBox(
+                  width: width,
+                  child: _directButton(
+                    id: kind.name,
+                    label: switch (kind) {
+                      LogicGameKind.sudoku => 'Sudoku',
+                      LogicGameKind.words => 'Wörter',
+                      LogicGameKind.maths => 'Zahlen',
+                    },
+                    semanticLabel: kind.title,
+                    icon: logicIcon(kind),
+                    color: logicColor(kind),
+                    onPressed: () {
+                      _click();
+                      setState(() => _kind = kind);
+                    },
+                  ),
+                ),
+              SizedBox(
+                width: width,
+                child: _directButton(
+                  id: 'trail',
+                  label: 'Pfotenpfad',
+                  semanticLabel: 'Pfotenpfad',
+                  icon: Icons.route_rounded,
+                  color: logicGreen,
+                  onPressed: _openTrail,
+                ),
+              ),
+            ],
+          );
+        },
+      );
+
+  Widget _directButton({
+    required String id,
+    required String label,
+    required String semanticLabel,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onPressed,
+  }) =>
+      FilledButton(
+        key: ValueKey('logic-direct-$id'),
+        onPressed: _busy || !_current
+            ? null
+            : () {
+                if (_busy || !_current) return;
+                onPressed();
+              },
+        style: FilledButton.styleFrom(
+          minimumSize: const Size(48, 72),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          backgroundColor: const Color(0xFF153651),
+          foregroundColor: Colors.white,
+          side: BorderSide(color: color.withOpacity(.65)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: color, size: 24),
+            const SizedBox(height: 6),
+            Text(label,
+                semanticsLabel: semanticLabel,
+                textAlign: TextAlign.center,
+                style: iqText(16)),
+          ],
+        ),
+      );
 
   Widget _hero() => ClipRRect(
         key: const ValueKey('logic-hero'),
@@ -482,6 +592,51 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                 _click();
                 setState(() => _kind = kind);
               },
+            ),
+          ],
+        ),
+      );
+
+  Widget _trailCard() => LogicGlass(
+        color: logicGreen,
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.route_rounded, color: logicGreen),
+                const SizedBox(width: 8),
+                Expanded(child: Text('Pfotenpfad', style: iqText(21))),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 28),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Icon(Icons.pets_rounded, size: 32, color: Color(0xFFFFB866)),
+                  Icon(Icons.arrow_forward_rounded, color: logicCyan),
+                  Icon(Icons.spa_rounded, size: 32, color: logicGreen),
+                  Icon(Icons.turn_right_rounded, color: logicCyan),
+                  Icon(Icons.flag_rounded, size: 32, color: Color(0xFFFFD388)),
+                ],
+              ),
+            ),
+            Text(
+              'Plane Lumos Weg mit Pfeilen. Besuche die Stationen und finde dein Ziel.',
+              style: iqText(16, color: logicMuted),
+            ),
+            const SizedBox(height: 12),
+            Text('6 Wege pro Schulstufe · Ohne Zeitdruck',
+                style: iqText(13, color: logicMuted)),
+            const SizedBox(height: 16),
+            LogicAction(
+              key: const ValueKey('logic-game-trail'),
+              label: 'Lumos Weg planen',
+              icon: Icons.arrow_forward_rounded,
+              primary: true,
+              onPressed: _busy || !_current ? null : _openTrail,
             ),
           ],
         ),

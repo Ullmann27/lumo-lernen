@@ -115,12 +115,10 @@ class EmbeddedAndroidTest(unittest.TestCase):
 class EmbeddedCardsWindowTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        import hashlib
         import os
         import shutil
         import subprocess
-        import urllib.request
-        from scripts.tests.test_game_return_contract import JSON_URL, JSON_SHA256, world_mission_contract_source
+        from scripts.tests.test_game_return_contract import prepare_json_jar, world_mission_contract_source
 
         cls.os = os
         cls.subprocess = subprocess
@@ -139,16 +137,7 @@ class EmbeddedCardsWindowTest(unittest.TestCase):
         libraries = next((p for p in candidates if list(p.glob('kotlin-compiler-embeddable-*.jar'))), None)
         if libraries is None:
             raise RuntimeError('Set LUMO_KOTLIN_LIB_DIR or use the verified Gradle installation on PATH')
-        supplied = os.environ.get('LUMO_TEST_JSON_JAR')
-        if supplied:
-            data = Path(supplied).read_bytes()
-        else:
-            with urllib.request.urlopen(JSON_URL, timeout=60) as response:
-                data = response.read()
-        if hashlib.sha256(data).hexdigest() != JSON_SHA256:
-            raise RuntimeError('The existing test-only JSON dependency digest changed')
-        json_jar = cls.work / 'json.jar'
-        json_jar.write_bytes(data)
+        json_jar = prepare_json_jar(cls.work / 'json.jar')
         sources = []
         for name, source in {**WINDOW_ADAPTERS,
                              'WorldMissionContract.kt': world_mission_contract_source()}.items():

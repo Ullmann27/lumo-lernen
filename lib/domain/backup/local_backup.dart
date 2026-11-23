@@ -6,6 +6,7 @@ import 'package:crypto/crypto.dart';
 import '../../core/app_settings.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../logic/logic_learning_profile.dart';
+import '../logic/trail_puzzle.dart';
 
 /// Portable learning data only. Credentials and device permissions stay local.
 class LocalBackupPolicy {
@@ -168,6 +169,15 @@ class LocalBackupPolicy {
           Uri.encodeComponent(progress.profileId)) {
         throw const FormatException(
             'Ein Logik-Spielstand ist dem falschen Kinderprofil zugeordnet.');
+      }
+    }
+    for (final key in prefs.keys) {
+      if (!key.startsWith(TrailProgress.preferencePrefix)) continue;
+      final progress = TrailProgress.fromJson(document(key));
+      if (key != TrailProgress.preferencePrefix +
+          Uri.encodeComponent(progress.profileId)) {
+        throw const FormatException(
+            'Ein Pfotenpfad-Spielstand ist dem falschen Kinderprofil zugeordnet.');
       }
     }
     if (prefs.containsKey('lumo_active_profile')) {
