@@ -46,8 +46,13 @@ class KartFriendsContractTest(unittest.TestCase):
         bridge = (ROOT / 'tools/auto_install/KartFriendsBridge.kt').read_text()
         self.assertIn('kartFriends?.handleIntent(intent)', main)
         self.assertIn('kartFriends?.onActivityResult(requestCode, resultCode, data) == true', main)
-        # Startoption nur für das Kart und nur in geprüfter Form.
-        self.assertRegex(main, r'if \(game == "kart"\) \{[^}]*KartGhostRules\.isLaunchText\(ghost\)')
+        # Startoption nur für das Kart und nur in geprüfter Form. Der Block
+        # enthält inzwischen sichere runCatching/Lambda-Blöcke mit eigenen
+        # Klammern; deshalb die echte Kart-Scope-Grenze statt eines [^}]-Regex.
+        kart_start = main.index('if (game == "kart") {')
+        kart_end = main.index('options.put("reduceAnimations"', kart_start)
+        kart_block = main[kart_start:kart_end]
+        self.assertIn('if (ghostDuel && KartGhostRules.isLaunchText(ghost))', kart_block)
         self.assertIn('fun shareKartGhost(base64: String, fileName: String, title: String): Boolean', game)
         # Zweite Elternfreigabe „Geister-Duell“: ohne sie startet kein Geist und teilt der Host nichts.
         self.assertIn('if (ghostDuel && KartGhostRules.isLaunchText(ghost))', main)
