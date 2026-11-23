@@ -1,3 +1,15 @@
+## Aktuell: vollständiger Wiederholungslauf für Auftrag 49
+
+Stand: 23. November 2026, 16:51 Uhr Wien. Version **0.14.2+2071**, nativer Pin **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**. Dieser Commit startet den vollständigen Standardlauf erneut. Ein neues Android-Ergebnis liegt beim Commit noch nicht vor.
+
+Die gezielte Korrektur betrifft ausschließlich den Collector `.github/probes/native_start_diagnostics.py` und seine Regressionen: ADB- und Geräte-Exitcodes, vollständige Antworten, tatsächlich beendete Altprozesse und einen frischen Flutter-Host vor jedem UI-Start bestätigen. Beide Prüfer führten den abschließenden Stand aus: **38 Collector- und 9 unveränderte Verifier-Tests bestanden**. Die vorhandene zweisekündige Pause liegt jetzt vor der Bestätigung des Prozessendes; es gibt keinen zusätzlichen Start, Retry oder höheren Timeout.
+
+Produktdateien, Godot-Pin, Pflichtgate und Beobachtungszeiten bleiben unverändert. Der ursprüngliche fehlgeschlagene Bericht wird weiterhin korrekt abgelehnt. Lokale Fixtures ersetzen keinen echten Android-Lauf. Belege: [Diagnose-Korrektur](docs/agent-network/TEAM_B_2071_REQUEST49.md), [lokale Prüfbelege](docs/evidence/team-b-2071-request49/harness-validation.json).
+
+**Auftrag 48 / Quelle b4db287 bleibt zurückgehalten.** Sein Android-Fehler und seine Originalbelege bleiben im folgenden historischen Abschnitt und im [Prüfhaltbericht](docs/agent-network/TEAM_B_2071_ANDROID_HOLD.md) erhalten. Keine Auslieferungsfreigabe aus den lokalen Tests ableiten; den neuen Standardlauf einschließlich Tour, Pflichtstarts und SAF-Wiederherstellung abwarten. Der separate Publisher ist noch an den alten fehlgeschlagenen Lauf gebunden und darf nicht aktiviert werden.
+
+---
+
 # LUMO Team B · APK2071 wird zurückgehalten
 
 ## Verbindlicher Prüfhalt für APK 2071

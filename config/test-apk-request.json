@@ -1,5 +1,5 @@
 {
-  "request": 48,
+  "request": 49,
   "version": "0.14.2+2071",
-  "note": "2071 nach tatsächlicher PNG-Sichtprüfung: Los/Stopp übernimmt die vorhandene kontrastreiche Dunkelblau-Farbe des Primärknopfs statt Weiß auf Hellgrün. Gleicher nativer Stand e0460c0; vollständige erneute Quellen-, Renderer-, APK-/PCK-, Signatur-, Android- und Backup-Prüfung. Vorläuferauftrag47 ist keine freigegebene APK."
+  "note": "Erneuter vollständiger Standardlauf nach gezielter Reparatur der nativen Startdiagnose und zugehörigen Regressionen: kritische ADB-Antworten vollständig prüfen, das Ende alter App-Prozesse bestätigen und jeden UI-Start an einen frischen Flutter-Host binden. Produktdateien, Godot-Pin e0460c0, verpflichtendes Native-Gate und Prüfzeiten bleiben unverändert. Auftrag 48 / Quelle b4db bleibt wegen fehlender nativer Startnachweise zurückgehalten."
 }

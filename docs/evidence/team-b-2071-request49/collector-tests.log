@@ -1,0 +1,73 @@
+test_android_runtime_start_noise_is_not_a_crash (test_native_start_diagnostics.FilterTests.test_android_runtime_start_noise_is_not_a_crash) ... ok
+test_keeps_game_tags_and_package_activity_lines_only (test_native_start_diagnostics.FilterTests.test_keeps_game_tags_and_package_activity_lines_only) ... ok
+test_log_is_capped_to_400_lines_with_head_and_tail (test_native_start_diagnostics.FilterTests.test_log_is_capped_to_400_lines_with_head_and_tail) ... ok
+test_empty_output_and_shell_metacharacters_round_trip_without_execution (test_native_start_diagnostics.FramedAdbTests.test_empty_output_and_shell_metacharacters_round_trip_without_execution) ... ok
+test_nonzero_adb_exit_rejects_even_a_complete_success_frame (test_native_start_diagnostics.FramedAdbTests.test_nonzero_adb_exit_rejects_even_a_complete_success_frame) ... ok
+test_nonzero_remote_exit_is_rejected_even_if_adb_returns_zero (test_native_start_diagnostics.FramedAdbTests.test_nonzero_remote_exit_is_rejected_even_if_adb_returns_zero) ... ok
+test_valid_complete_log_preserves_all_payload_and_exit_evidence (test_native_start_diagnostics.FramedAdbTests.test_valid_complete_log_preserves_all_payload_and_exit_evidence) ... ok
+test_wrong_duplicate_or_nonfinal_frame_is_rejected (test_native_start_diagnostics.FramedAdbTests.test_wrong_duplicate_or_nonfinal_frame_is_rejected) ... ok
+test_zero_exit_with_only_first_4096_bytes_is_incomplete (test_native_start_diagnostics.FramedAdbTests.test_zero_exit_with_only_first_4096_bytes_is_incomplete) ... ok
+test_zero_exit_with_only_last_4096_bytes_is_incomplete (test_native_start_diagnostics.FramedAdbTests.test_zero_exit_with_only_last_4096_bytes_is_incomplete) ... ok
+test_intent_extras_match_launch3d_fields (test_native_start_diagnostics.PlanTests.test_intent_extras_match_launch3d_fields) ... ok
+test_plan_scenes_come_from_the_main_activity_whitelist (test_native_start_diagnostics.PlanTests.test_plan_scenes_come_from_the_main_activity_whitelist) ... ok
+test_portal_labels_follow_the_hub_semantics (test_native_start_diagnostics.PlanTests.test_portal_labels_follow_the_hub_semantics) ... ok
+test_empty_header_only_malformed_or_ambiguous_ps_never_proves_absence (test_native_start_diagnostics.ProcessSnapshotTests.test_empty_header_only_malformed_or_ambiguous_ps_never_proves_absence) ... ok
+test_existing_start_pause_precedes_exit_confirmation_without_reissuing_stop (test_native_start_diagnostics.ProcessSnapshotTests.test_existing_start_pause_precedes_exit_confirmation_without_reissuing_stop) ... ok
+test_failed_or_truncated_ps_is_not_an_empty_snapshot (test_native_start_diagnostics.ProcessSnapshotTests.test_failed_or_truncated_ps_is_not_an_empty_snapshot) ... ok
+test_framed_valid_global_process_list_can_prove_app_absence (test_native_start_diagnostics.ProcessSnapshotTests.test_framed_valid_global_process_list_can_prove_app_absence) ... ok
+test_target_process_names_with_trailing_whitespace_are_not_absent (test_native_start_diagnostics.ProcessSnapshotTests.test_target_process_names_with_trailing_whitespace_are_not_absent) ... ok
+test_gl_link_refusals_are_separated_from_other_godot_errors (test_native_start_diagnostics.RealRunFindingsTests.test_gl_link_refusals_are_separated_from_other_godot_errors) ... ok
+test_hanging_force_stop_keeps_the_entry_and_later_scenes (test_native_start_diagnostics.RealRunFindingsTests.test_hanging_force_stop_keeps_the_entry_and_later_scenes) ... [NativeStart] id=run-intent weg=intent getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."] fehler=Unverified app shutdown: TimeoutExpired: Command '('adb', 'shell', 'am', 'force-stop', 'dev.example.app')' timed out aft
+[NativeStart] id=jump-intent weg=intent getippt=True geladen=False nach_s=None spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_intent_start_uses_the_component_android_resumed (test_native_start_diagnostics.RealRunFindingsTests.test_intent_start_uses_the_component_android_resumed) ... [NativeStart] id=run weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+[NativeStart] id=run-intent weg=intent getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_already_open_native_table_is_not_started_twice (test_native_start_diagnostics.RunnerTests.test_already_open_native_table_is_not_started_twice) ... [NativeStart] id=memory weg=ui getippt=True geladen=False nach_s=None spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_failed_stop_or_log_clear_aborts_instead_of_observing_a_game (test_native_start_diagnostics.RunnerTests.test_failed_stop_or_log_clear_aborts_instead_of_observing_a_game) ... [NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Command failed (7): critical ADB command
+[NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Command failed (7): critical ADB command
+ok
+test_final_stop_failure_sets_error_even_after_positive_router_observation (test_native_start_diagnostics.RunnerTests.test_final_stop_failure_sets_error_even_after_positive_router_observation) ... [NativeStart] id=run weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."] fehler=Unverified app shutdown: RuntimeError: Command failed (7): final stop
+ok
+test_foreign_disabled_or_untappable_navigation_does_not_start_a_game (test_native_start_diagnostics.RunnerTests.test_foreign_disabled_or_untappable_navigation_does_not_start_a_game) ... [NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Fresh Flutter host has no enabled live Spiele/Spielen control
+[NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Fresh Flutter host has no enabled live Spiele/Spielen control
+[NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Fresh Flutter host has no enabled live Spiele/Spielen control
+[NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Fresh Flutter host has no enabled live Spiele/Spielen control
+ok
+test_foreign_godot_pid_cannot_supply_router_or_crash_evidence (test_native_start_diagnostics.RunnerTests.test_foreign_godot_pid_cannot_supply_router_or_crash_evidence) ... [NativeStart] id=run weg=ui getippt=True geladen=False nach_s=None spielprozess_am_ende=True auffaellig={} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_intent_start_is_labelled_and_uses_launch_extras (test_native_start_diagnostics.RunnerTests.test_intent_start_is_labelled_and_uses_launch_extras) ... [NativeStart] id=run-intent weg=intent getippt=True geladen=False nach_s=None spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_memory_explicitly_opens_native_table_after_flutter_round (test_native_start_diagnostics.RunnerTests.test_memory_explicitly_opens_native_table_after_flutter_round) ... [NativeStart] id=memory weg=ui getippt=True geladen=False nach_s=None spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_middle_of_long_log_keeps_errors_and_router_evidence_before_display_truncation (test_native_start_diagnostics.RunnerTests.test_middle_of_long_log_keeps_errors_and_router_evidence_before_display_truncation) ... [NativeStart] id=run weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_native_activity_or_engine_cannot_stand_in_for_fresh_flutter_host (test_native_start_diagnostics.RunnerTests.test_native_activity_or_engine_cannot_stand_in_for_fresh_flutter_host) ... [NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Fresh Flutter host not confirmed: processes={'dev.example.app': 5678}; resumed='topResumedActivity=Activit
+[NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Fresh Flutter host not confirmed: processes={'dev.example.app': 5678, 'dev.example.app:lumo_game': 1234}; 
+ok
+test_normal_required_ui_starts_pass_the_unchanged_verifier (test_native_start_diagnostics.RunnerTests.test_normal_required_ui_starts_pass_the_unchanged_verifier) ... [NativeStart] id=run weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={}
+[NativeStart] id=quiz weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={}
+[NativeStart] id=memory weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={}
+[NativeStart] id=chess weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={}
+[NativeStart] id=kart weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={}
+[NativeStart] id=cards weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={}
+[NativeStart] id=world weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={}
+ok
+test_old_processes_surviving_stop_prevent_launch_and_ui_taps (test_native_start_diagnostics.RunnerTests.test_old_processes_surviving_stop_prevent_launch_and_ui_taps) ... [NativeStart] id=run weg=ui getippt=None geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: App processes survived force-stop: {'dev.example.app': 5678, 'dev.example.app:lumo_game': 1234}
+ok
+test_partial_log_containing_router_marker_is_not_positive_evidence (test_native_start_diagnostics.RunnerTests.test_partial_log_containing_router_marker_is_not_positive_evidence) ... [NativeStart] id=run weg=ui getippt=True geladen=None nach_s=None spielprozess_am_ende=None auffaellig={} fehler=RuntimeError: Incomplete ADB response for 'logcat -d -v threadtime'; 4096 bytes, missing or invalid framing
+ok
+test_relative_main_activity_component_is_a_valid_flutter_host (test_native_start_diagnostics.RunnerTests.test_relative_main_activity_component_is_a_valid_flutter_host) ... [NativeStart] id=run weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_similar_package_and_other_child_process_do_not_count_as_game_engine (test_native_start_diagnostics.RunnerTests.test_similar_package_and_other_child_process_do_not_count_as_game_engine) ... [NativeStart] id=run weg=ui getippt=True geladen=False nach_s=None spielprozess_am_ende=False auffaellig={} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_ui_start_reports_router_process_and_app_text (test_native_start_diagnostics.RunnerTests.test_ui_start_reports_router_process_and_app_text) ... [NativeStart] id=run weg=ui getippt=True geladen=True nach_s=10 spielprozess_am_ende=True auffaellig={'script_error': 1, 'godot_error': 1} app_text=["Das Spiel konnte nicht starten."]
+ok
+test_only_the_unified_tour_enables_it_with_time_for_it (test_native_start_diagnostics.TourIndependenceTests.test_only_the_unified_tour_enables_it_with_time_for_it) ... ok
+test_tour_exit_code_is_computed_before_and_independent_of_diagnostics (test_native_start_diagnostics.TourIndependenceTests.test_tour_exit_code_is_computed_before_and_independent_of_diagnostics) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 0.089s
+
+OK

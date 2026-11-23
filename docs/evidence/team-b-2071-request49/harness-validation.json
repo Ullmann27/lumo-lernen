@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "base_sha": "8ceccf4db59da325a02e9bf421b278a2416e9a79",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "checks": [
+    {
+      "name": "collector",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_native_start_diagnostics.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests": 38,
+      "log": "collector-tests.log"
+    },
+    {
+      "name": "verifier",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_verify_native_start_diagnostics.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests": 9,
+      "log": "verifier-tests.log"
+    }
+  ],
+  "files": {
+    ".github/probes/native_start_diagnostics.py": {
+      "bytes": 28030,
+      "sha256": "0413d7112041d52b7d1a0f30c10f0be0d08a8638a8d67a381a95a7c82b4ca1a7",
+      "git_blob": "7b64bc3e74444268167f32c95851b8232bf0b3a3"
+    },
+    "tools/android_qa/tests/test_native_start_diagnostics.py": {
+      "bytes": 36508,
+      "sha256": "04f0cad46f78bf79db072ed9dbec1591a9c72d6a0dbbeaca953fbf763eee345b",
+      "git_blob": "8adf3da15e2b3b88099c35feaab85592aeaed29d"
+    },
+    "scripts/verify_native_start_diagnostics.py": {
+      "bytes": 4226,
+      "sha256": "6aeec2a101bf440ab7e6eca5e34a23d32b159749dc86fa9a93febb16ee52ac9b",
+      "git_blob": "2b7a1b192153fdab16106f36bfb7722f5264e7bf"
+    },
+    "scripts/tests/test_verify_native_start_diagnostics.py": {
+      "bytes": 5628,
+      "sha256": "25e6439ebecc51cc174d32b7abaa3bcdafa610125c88688c2b728a696dd20f38",
+      "git_blob": "d7b7c9bd5f02bd715427ce2ec7fec265a4f3331b"
+    }
+  },
+  "unchanged_authority_functions": [
+    "log_pid",
+    "is_relevant",
+    "filter_log",
+    "router_lines",
+    "issues",
+    "godot_error_classes",
+    "launch_options",
+    "portal_label"
+  ],
+  "unchanged_verifier": true,
+  "original_failed_2071_still_rejected": "memory: missing positive observation for router_loaded",
+  "scope": "Local collector shell/state regressions and unchanged verifier; no new emulator result or APK claim"
+}
