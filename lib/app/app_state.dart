@@ -14,6 +14,7 @@ import '../domain/games/memory_board.dart';
 import '../domain/games/game_level_catalog.dart';
 import '../domain/games/game_level_model.dart';
 import '../features/games/logic/logic_progress_store.dart';
+import '../features/games/logic/trail_progress_store.dart';
 import '../core/daily_mission_repository.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/learning_journey.dart';
@@ -1645,6 +1646,7 @@ class LumoAppState extends ChangeNotifier {
       await flushRewards();
       _resetting = true;
       await LogicProgressStore.flushPendingWrites();
+      await TrailProgressStore.flushPendingWrites();
       return await LearningStorage.run((prefs) async {
         await prefs.reload();
         return operation();
@@ -1733,6 +1735,7 @@ class LumoAppState extends ChangeNotifier {
       await _drainLearningOperations();
       await owner.profile.reset();
       await const LogicProgressStore().clear(id);
+      await const TrailProgressStore().clear(id);
       await const ErrorBreakdownRepository().resetForProfile(id);
       await _missionRepository(owner).reset();
       owner._session.pendingMissionAnswers.clear();
@@ -1784,6 +1787,7 @@ class LumoAppState extends ChangeNotifier {
       await _drainLearningOperations();
       if (_settingsLoad != null) await _settingsLoad;
       await LogicProgressStore.flushPendingWrites();
+      await TrailProgressStore.flushPendingWrites();
       await _walletRepository.reset();
       for (final session in _learningSessions.values) {
         try {

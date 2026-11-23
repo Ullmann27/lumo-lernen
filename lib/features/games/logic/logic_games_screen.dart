@@ -12,6 +12,7 @@ import '../../tests/iq/iq_style.dart';
 import 'logic_progress_store.dart';
 import 'logic_puzzle_screen.dart';
 import 'logic_widgets.dart';
+import 'trail_puzzle_screen.dart';
 
 class LogicGamesScreen extends StatefulWidget {
   const LogicGamesScreen({
@@ -153,6 +154,25 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
     }
   }
 
+  Future<void> _openTrail() async {
+    if (_busy || !_current || _progress == null) return;
+    _click();
+    setState(() => _busy = true);
+    try {
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute(
+          builder: (_) => TrailPuzzleScreen(
+            appState: widget.appState,
+            initialGrade: _progress!.selectedGrade,
+          ),
+        ),
+      );
+      if (mounted && _current) await _load();
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final progress = _progress;
@@ -276,8 +296,8 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                                       LayoutBuilder(
                                         builder: (context, constraints) {
                                           final columns =
-                                              constraints.maxWidth >= 870
-                                                  ? 3
+                                              constraints.maxWidth >= 1040
+                                                  ? 4
                                                   : constraints.maxWidth >= 560
                                                       ? 2
                                                       : 1;
@@ -295,6 +315,10 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                                                   child:
                                                       _gameCard(kind, progress),
                                                 ),
+                                              SizedBox(
+                                                width: width,
+                                                child: _trailCard(),
+                                              ),
                                             ],
                                           );
                                         },
@@ -447,6 +471,51 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                 _click();
                 setState(() => _kind = kind);
               },
+            ),
+          ],
+        ),
+      );
+
+  Widget _trailCard() => LogicGlass(
+        color: logicGreen,
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.route_rounded, color: logicGreen),
+                const SizedBox(width: 8),
+                Expanded(child: Text('Pfotenpfad', style: iqText(21))),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 28),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Icon(Icons.pets_rounded, size: 32, color: Color(0xFFFFB866)),
+                  Icon(Icons.arrow_forward_rounded, color: logicCyan),
+                  Icon(Icons.spa_rounded, size: 32, color: logicGreen),
+                  Icon(Icons.turn_right_rounded, color: logicCyan),
+                  Icon(Icons.flag_rounded, size: 32, color: Color(0xFFFFD388)),
+                ],
+              ),
+            ),
+            Text(
+              'Plane Lumos Weg mit Pfeilen. Besuche die Stationen und finde dein Ziel.',
+              style: iqText(16, color: logicMuted),
+            ),
+            const SizedBox(height: 12),
+            Text('6 Wege pro Schulstufe · Ohne Zeitdruck',
+                style: iqText(13, color: logicMuted)),
+            const SizedBox(height: 16),
+            LogicAction(
+              key: const ValueKey('logic-game-trail'),
+              label: 'Lumos Weg planen',
+              icon: Icons.arrow_forward_rounded,
+              primary: true,
+              onPressed: _busy || !_current ? null : _openTrail,
             ),
           ],
         ),
