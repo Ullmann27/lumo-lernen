@@ -486,7 +486,11 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             true,
           _ => false,
         };
-        final wide = constraints.maxWidth >= (simpleVisual ? 760 : 1260) &&
+        final shortViewport = constraints.hasBoundedHeight &&
+            constraints.maxHeight < 850;
+        final wideThreshold =
+            simpleVisual && shortViewport ? 620.0 : (simpleVisual ? 760.0 : 1260.0);
+        final wide = constraints.maxWidth >= wideThreshold &&
             MediaQuery.textScalerOf(context).scale(1) <= 1.25;
         if (wide) {
           return Row(
@@ -498,9 +502,17 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             ],
           );
         }
+        final verticalGap = constraints.hasBoundedHeight &&
+                constraints.maxHeight < 900
+            ? 6.0
+            : 17.0;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [questionCard, const SizedBox(height: 17), answerPanel],
+          children: [
+            questionCard,
+            SizedBox(height: verticalGap),
+            answerPanel,
+          ],
         );
       },
     );
@@ -782,6 +794,7 @@ class _OptionGrid extends StatelessWidget {
                           : () => onPick(option),
                     )
                   : _AnswerButton(
+                      key: ValueKey('answer-option-${option.id}'),
                       label: option.label,
                       isPicked: isPicked,
                       isWrongPicked: isWrongPicked,
@@ -806,6 +819,7 @@ class _OptionGrid extends StatelessWidget {
 /// bleiben unveraendert.
 class _AnswerButton extends StatefulWidget {
   const _AnswerButton({
+    super.key,
     required this.label,
     required this.isPicked,
     required this.isWrongPicked,
