@@ -25,10 +25,14 @@ class WorldSchoolLessonScreen extends StatefulWidget {
     super.key,
     required this.appState,
     required this.request,
+    required this.owner,
   });
 
   final LumoAppState appState;
   final WorldSchoolMissionRequest request;
+  /// The World caller's original lease. A school request never selects a new
+  /// owner while navigation or profile storage is awaiting completion.
+  final LearningProfileLease owner;
 
   @override
   State<WorldSchoolLessonScreen> createState() =>
@@ -40,7 +44,6 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
   final _narration = LumoLearningNarration();
   final List<LearningModuleProgress> _progress = [];
   final List<TaskInstance> _instances = [];
-  LearningProfileLease? _lease;
   WorldSchoolLesson? _lesson;
   bool _loading = true;
   bool _invalid = false;
@@ -54,8 +57,8 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
   bool get _safe =>
       mounted &&
       !_invalid &&
-      _lease != null &&
-      widget.appState.isCurrentLearningLease(_lease!) &&
+      !widget.appState.backupBusy &&
+      widget.appState.isCurrentLearningLease(widget.owner) &&
       widget.appState.state.grade == widget.request.grade;
 
   bool get _reduced =>
@@ -74,11 +77,17 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
 
   Future<void> _load() async {
     try {
-      final lease = await widget.appState.captureLearningProfile();
+      final lease = widget.owner;
+      if (!_safe) {
+        setState(() {
+          _loading = false;
+          _invalid = true;
+        });
+        return;
+      }
       await widget.appState.prepareLearningLease(lease);
       if (!mounted) return;
-      if (!widget.appState.isCurrentLearningLease(lease) ||
-          widget.appState.state.grade != widget.request.grade) {
+      if (!_safe) {
         setState(() {
           _loading = false;
           _invalid = true;
@@ -109,7 +118,6 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
         );
       }
       setState(() {
-        _lease = lease;
         _lesson = lesson;
         _loading = false;
       });
@@ -128,11 +136,16 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
   }
 
   void _checkOwner() {
-    if (_lease == null || _invalid || _returning) return;
+    if (_invalid || _returning) return;
     if (!_safe) {
       _lesson?.cancel();
       unawaited(_narration.stop());
-      if (mounted) setState(() => _invalid = true);
+      if (mounted) {
+        setState(() {
+          _loading = false;
+          _invalid = true;
+        });
+      }
     }
   }
 
@@ -184,7 +197,7 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
       final accepted = _lesson!.acceptSavedAnswer(
         index: index,
         answer: given,
-        currentOwnerId: _lease!.studentId,
+        currentOwnerId: widget.owner.studentId,
       );
       if (!accepted) {
         setState(() {
@@ -225,7 +238,7 @@ class _WorldSchoolLessonScreenState extends State<WorldSchoolLessonScreen> {
     if (!_safe || !_accepted || _busy || _lesson == null) return;
     unawaited(_narration.stop());
     if (_index + 1 == _lesson!.tasks.length) {
-      final receipt = _lesson!.receiptForOwner(_lease!.studentId);
+      final receipt = _lesson!.receiptForOwner(widget.owner.studentId);
       if (receipt == null) return;
       _returning = true;
       Navigator.of(context).pop<Map<String, Object>>(receipt.toJson());

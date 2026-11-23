@@ -1,3 +1,48 @@
+# LUMO — zusätzliche Logik- und World-Unterstützung
+
+23.11.2026. Drei zusätzliche Agents haben Pfotenpfad, World-Karte und Freundepost geliefert. Eigener Zweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Der aktuelle Hauptchat-Stand `22ebef5bd325f30fe3faa1e3fe54f9cd70ff2895` bleibt enthalten. Die zusätzliche Prüfung läuft getrennt über `lumo-team-b-support.yml`; sie veröffentlicht keine APK und verändert den laufenden Hauptchat-Bau nicht. Exakte Inhalte, lokale Prüfergebnisse und Ausfallgrenzen: [Team-B-Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md). Native Unterstützung: Ullmann27/lumo-godot#211. Gemeinsame Koordination: #537. main bleibt unverändert.
+
+## Bisherige Projektaufzeichnungen
+
+# Wiederaufnahme · Lumo World und Logikspiele 2069
+
+Stand: 23. November 2026. Beide Feature-Zweige:
+`feature/logic-world-20261123`; kein Main-Merge.
+Godot-Draft-PR: https://github.com/Ullmann27/lumo-godot/pull/210
+
+1. Neue Version `0.14.0+2069`, Bauauftrag 44. Godot-Pin
+   `9decd8eb59b03f31cdc7b2a33b0703a1e0d9b8c2` ist in 32 Dateien gesichert.
+   Flutter-Ausgangsbasis ist `da66baeed50be33bc13d750a846a9eced33aa3dc`.
+   Die letzte große App-Zwischensicherung war `57759e038315fd0dbc2600c9b39caf2b50aaf518`.
+   Neuere Feature-HEADs enthalten die präzise Remote-Wiederherstellung.
+2. Die lokale Umgebung wurde nach SIGKILLs als unavailable gemeldet. Nicht
+   voraussetzen, dass Scratch-Dateien noch erreichbar sind. Alle Quellen aus
+   den Remote-Feature-Zweigen lesen. Kein Reset/Clean/Force und kein Main-Merge.
+3. Schul-UI braucht die originale LearningProfileLease als required owner;
+   GamesContent reicht sie weiter. Native/Dart normalisieren exakte JSON-Zahlen
+   wie 1.0 und verwerfen falsche IDs, fremde Felder und verspätete Übergänge.
+   Beschädigte World-Dateien bleiben bytegenau erhalten.
+4. Die Dorfprojektion liest vorhandene Gebäude, Gelände, Kind und Bauplatz;
+   nur die ursprüngliche Dorfstrategie schreibt Wirtschaft und Bauten.
+   Original-Schatzsuche, Schreibtrainer und Journal bleiben erhalten.
+5. Neue Pipeline: `.github/workflows/lumo-logic-world-apk.yml`.
+   Kein reuse_verified_core für die neuen Quellen. Die echte World-Capture
+   muss auch bei Shader-/Renderer-ERROR scheitern. APK-PCK wird unabhängig
+   erneut geprüft. Veröffentlichung benötigt Android- und Backup-PASS.
+6. Baseline 2068 hatte einen tatsächlichen Veröffentlichungsfehler:
+   Run 45163167275, Job 137664636331, HTTP 403 Resource not accessible by
+   integration. Für 2069 neuen Lauf tatsächlich prüfen und niemals eine
+   erfundene APK-URL ausgeben. Berechtigungen nicht umgehen.
+7. Godot 4.7.2 lokale Belege sind keine 4.6.3- oder Android-Gerätefreigabe.
+   Blender-Vorschaubild und echte Rendereraufnahme unterscheiden.
+   Screenshot-CI liefert aktuelle UI-Bilder auch für letzte Titeländerungen.
+   Normierte IQ/EQ/AQ-Werte, eine vollständige AAA-Welt und physische 60 FPS
+   sind nicht behauptet.
+
+Details: [Implementierung](docs/logic-games/IMPLEMENTATION.md).
+
+## Archiv vorheriger Wiederaufnahmen
+
 # LUMO 2067 · gemeinsame Vollintegration
 
 Stand 22.11.2026. Aktiver Integrationszweig in beiden Repositories: `integration/lumo-complete-20261122`. Ausgangsstände Flutter `52c2c570` und Godot `25fc4ff1`. Die vollständige Quelleninventur und aktuellen Anschlüsse stehen in [der Integrationsübergabe](docs/integration/2026-11-22/INTEGRATION.md). Kandidat `0.13.55+2067`; neue APK und Android-Abschluss werden anhand des tatsächlich gebauten Runs bestätigt. Die Zwischenbauten 2065 und 2066 lieferten keine neue APK. Ergänzt sind eigene Gutscheine, eigene Elternaufgaben, lokale Datensicherung, Lumos Zimmer, tatsächlich einlösbare Auszeichnungen und die genaue lokale Aufgaben-Erkennung; Godot-Pin `29ac19f8984b510e5add531f15e555a98c72bed4`. Der tatsächliche Android-SAF-Durchlauf ist Pflicht vor der abschließenden Lieferung.

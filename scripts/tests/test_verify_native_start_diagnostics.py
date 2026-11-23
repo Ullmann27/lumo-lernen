@@ -34,6 +34,12 @@ class NativeStartGateTests(unittest.TestCase):
         self.assertIn('not full gameplay', result['scope'])
         self.assertEqual(result['required_scenes']['memory']['native_pid'], 1234)
 
+    def test_world_requires_its_own_observed_ui_start(self):
+        self.assertIn('world', gate.REQUIRED)
+        self.report['scenes'] = [e for e in self.report['scenes'] if e['id'] != 'world']
+        with self.assertRaisesRegex(ValueError, 'world.*exactly one'):
+            gate.verify(self.report)
+
     def test_flutter_memory_landing_is_not_a_native_table_proof(self):
         memory = next(e for e in self.report['scenes'] if e['id'] == 'memory')
         memory['router_loaded'] = False

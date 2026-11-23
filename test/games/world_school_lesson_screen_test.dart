@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
@@ -9,6 +11,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<void> _ticks(WidgetTester tester, [int count = 20]) async {
   for (var i = 0; i < count; i++) {
     await tester.pump(const Duration(milliseconds: 25));
+  }
+}
+
+class _DelayedPrepareState extends LumoAppState {
+  final preparing = Completer<void>();
+  final release = Completer<void>();
+  bool holdNextPrepare = false;
+
+  @override
+  Future<void> prepareLearningLease(LearningProfileLease lease) async {
+    if (holdNextPrepare) {
+      holdNextPrepare = false;
+      preparing.complete();
+      await release.future;
+    }
+    await super.prepareLearningLease(lease);
   }
 }
 
@@ -32,6 +50,7 @@ void main() {
     WorldSchoolMissionRequest request,
     ValueChanged<Map<String, Object>?> finished,
   ) async {
+    final owner = await app.captureLearningProfile();
     await tester.pumpWidget(
       MaterialApp(
         home: Builder(
@@ -46,6 +65,7 @@ void main() {
                             builder: (_) => WorldSchoolLessonScreen(
                               appState: app,
                               request: request,
+                              owner: owner,
                             ),
                           ),
                         );
@@ -146,5 +166,60 @@ void main() {
     expect(result, isNull);
     await tester.pumpWidget(const SizedBox());
     app.dispose();
+  });
+
+  testWidgets('a World request cannot acquire the new child before screen load',
+      (tester) async {
+    final (app, request) = await prepare();
+    final owner = await app.captureLearningProfile();
+    await app.school.setActiveStudent('child-b');
+    await app.loadLearningProfile();
+    await tester.pumpWidget(MaterialApp(
+      home: WorldSchoolLessonScreen(
+          appState: app, request: request, owner: owner),
+    ));
+    await _ticks(tester);
+    expect(find.byType(AdaptiveTaskRenderer), findsNothing);
+    expect(find.textContaining('nicht sicher fortgesetzt'), findsOneWidget);
+    expect(find.byKey(const ValueKey('world-school-next')), findsNothing);
+    expect(await app.attemptLog.load(studentId: 'child-a'), isEmpty);
+    expect(await app.attemptLog.load(studentId: 'child-b'), isEmpty);
+    expect((await app.captureLearningProfile()).studentId, 'child-b');
+    await tester.pumpWidget(const SizedBox());
+    app.dispose();
+  });
+
+  testWidgets('profile change during delayed school load keeps its original owner',
+      (tester) async {
+    final app = _DelayedPrepareState();
+    await app.school.setActiveStudent('child-a');
+    await app.loadLearningProfile();
+    final owner = await app.captureLearningProfile();
+    final request = WorldSchoolMissionRequest(
+        requestId: 'world-delayed-school-001', grade: 1);
+    app.holdNextPrepare = true;
+    addTearDown(() {
+      if (!app.release.isCompleted) app.release.complete();
+      app.dispose();
+    });
+    await tester.pumpWidget(MaterialApp(
+      home: WorldSchoolLessonScreen(
+          appState: app, request: request, owner: owner),
+    ));
+    await _ticks(tester, 2);
+    expect(app.preparing.isCompleted, isTrue);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    await app.school.setActiveStudent('child-b');
+    await app.loadLearningProfile();
+    await _ticks(tester, 2);
+    app.release.complete();
+    await _ticks(tester);
+    expect(find.byType(AdaptiveTaskRenderer), findsNothing);
+    expect(find.textContaining('nicht sicher fortgesetzt'), findsOneWidget);
+    expect(find.byKey(const ValueKey('world-school-next')), findsNothing);
+    expect(await app.attemptLog.load(studentId: 'child-a'), isEmpty);
+    expect(await app.attemptLog.load(studentId: 'child-b'), isEmpty);
+    expect((await app.captureLearningProfile()).studentId, 'child-b');
+    await tester.pumpWidget(const SizedBox());
   });
 }

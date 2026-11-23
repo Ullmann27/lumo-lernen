@@ -1,13 +1,5 @@
 {
-  "request": 43,
-  "version": "0.13.56+2068",
-  "note": "Lumo Kart: zusätzliche echte Streckenabschnitte und Landschaften auf allen 15 Kursen, räumlich befahrbare Loop-Abzweigungen, neun neue sichtbare Teile mit gemeinsamer Fahrphysik/Werkstattberechnung und permanenter Freundes-/Live-Rennablauf. Vollständiger nativer Prüflauf auf exakt gepinntem Quellstand, tatsächlicher APK/PCK-Nachweis und Android-Tour sind verbindliche Liefergates. Öffentlicher Serverbetrieb benötigt noch die gesonderte Workspace-/Kostenfreigabe. Gezielt bestätigt: fünf Rampenkanten-Phasen, echte Boost-Anfahrten mit drei montierten Grenzkonfigurationen, freie vollständige Planeten-/Ringfußabdrücke und tatsächliche Spielkamera im Feensee. LUMO-Lauf folgt jetzt dem echten Außenloop-Fahrweg (Zufahrt, Ring, Rückfahrt); die freie Hauptstraße wird nicht mehr durch alte Loop-Sperrzonen verschoben. Eigene Lumo-Lauf-Regression in der nativen Quellenprüfung verbindlich. Die native Godot-QA prüft den Loop gezielt; der vollständige LUMO-Lauf bleibt unverändert im Android-APK-Baugate. Integrierte Kompatibilitätskorrekturen: stetige Lumo-Run-Loopfahrt mit freier Hauptstraße/Kamera, korrektes Satzleisten-Blickziel, gültige HUD-Glyphen, vollständig abgewarteter Test-Audiomixer. Laufzeitfehler scheitern auch bei Exit 0; die vollständige Run-Ausdauerprobe bleibt erhalten. Derselbe Fehlerwächter umfasst auch den vollständigen Editor-Import einschließlich des vorhandenen einmaligen Import-Retry. Export-Härtung: der wiederholbare Godot-4.6.3-SIGSEGV beim Editor-Neuimport wird mit genau zwei weiteren Versuchen derselben unveränderten Quelle behandelt. Andere Fehler und ein dauerhafter SIGSEGV bleiben auslieferungssperrend; eigene vier Unit-Tests werden vor dem Build ausgeführt. Der tatsächlich abgeschlossene Kernlauf 45148445440 (650 Flutter-Tests, alle 26 Godot-Proben einschließlich 511 Run-Prüfungen) ist nur bei nachgewiesen identischen Produkt-/Abhängigkeits-/Spielquellen wiederverwendbar. Originalprotokoll, alle sechs abgeschlossenen Prüfschritte und unveränderte APK/PCK/Android-Gates werden fail-closed geprüft. Nur Exporter, Exportertests, CI und dieser Bauauftrag ändern sich. Der Exporter bewahrt vollständige Logs und lehnt Laufzeitfehler auch bei Exit 0 ab.",
-  "reuse_verified_core": {
-    "repository": "Ullmann27/lumo-lernen",
-    "baseline_run": 45148445440,
-    "baseline_job": 137603486783,
-    "baseline_commit": "351ec6418264ec0f69d7c65d0fcb4dc1a71c4fb8",
-    "godot_revision": "c9619c589e3a9faa0b56f190fb38a61bf44bb1d6",
-    "native_run": 45148095909
-  }
+  "request": 44,
+  "version": "0.14.0+2069",
+  "note": "Neue Logikspiele: 144 deterministische Sudoku-, Wort- und Mathekreuzworträtsel für Schulstufen 1–4, beobachtungsbezogenes Lernprofil, gespeicherte Fortsetzung und Backup. Lumo World erweitert die Original-Schatzsuche um Dorf, Stadt, Verkehr, steuerbares Kart und sechs Lernmissionen; bestehender Dorfspielstand wird identisch projiziert, native Portale verbinden Kart, Karten und Dorfstrategie. Die Schulmission nutzt drei tatsächlich bewertete Lernaufgaben. Frische zielgerichtete Tests, Godot-Rendererbilder, exakte APK/PCK-/Signaturprüfung und vollständiger Android-/Backup-Rundgang sind Pflicht. Kein Wiederverwenden fremder Kernprüfungen, keine behauptete psychometrische Normierung oder 60-FPS-Gerätefreigabe."
 }

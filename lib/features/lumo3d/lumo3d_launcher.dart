@@ -11,6 +11,7 @@ import '../../core/native_profile_key_repository.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
+import '../../domain/world/world_school_mission.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../kart_friends/kart_friend_ghost.dart';
 import 'lumo_game_entry_overlay.dart';
@@ -39,7 +40,19 @@ Future<bool> launchLumo3D(
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
   if ((worldLearningReceipt != null || onWorldMission != null) &&
-      scene != 'world') return false;
+      scene != 'world') {
+    return false;
+  }
+  final launchGrade = grade ?? appState?.state.grade ?? 1;
+  final checkedWorldReceipt = worldLearningReceipt == null
+      ? null
+      : parseWorldLearningReceipt(worldLearningReceipt, grade: launchGrade);
+  if (scene == 'world' &&
+      (launchGrade < 1 ||
+          launchGrade > 4 ||
+          (worldLearningReceipt != null && checkedWorldReceipt == null))) {
+    return false;
+  }
   // Only reviewed, bounded lesson descriptors open the educational route.
   if ((scene == 'learning') != (learning != null)) return false;
   if (scene == 'learning' && learning?.kind == 'task_card') {
@@ -198,13 +211,13 @@ Future<bool> launchLumo3D(
         'livingVillage': true,
         'settlementMode': 'settlement',
       },
-      'grade': grade ?? appState?.state.grade ?? 1,
+      'grade': launchGrade,
       'subject': subject ?? appState?.state.subject ?? 'Mathematik',
       'stars': appState?.state.stars ?? 0,
       'lifetimeStars': lifetimeStars,
       'childKey': childKey,
-      if (worldLearningReceipt != null)
-        'worldLearningReceipt': worldLearningReceipt,
+      if (checkedWorldReceipt != null)
+        'worldLearningReceipt': checkedWorldReceipt,
       'reduceAnimations':
           (appState?.state.settings.reduceAnimations ?? false) ||
               (appState?.state.settings.calmMode ?? false),
@@ -290,17 +303,13 @@ Future<bool> launchLumo3D(
     if (summary != null && onLearningResult != null) {
       onLearningResult(summary);
     }
-    if (scene == 'world' && destination == 'learn' && onWorldMission != null) {
-      final raw = response?['worldMission'];
-      if (raw is String && raw.length <= 2000) {
-        try {
-          final mission = jsonDecode(raw);
-          if (mission is Map<String, dynamic>)
-            onWorldMission(Map<String, Object?>.from(mission));
-        } on FormatException {
-          // The world keeps its pending mission; malformed results grant nothing.
-        }
-      }
+    if (scene == 'world' &&
+        destination == 'learn' &&
+        onWorldMission != null &&
+        currentOwner()) {
+      final mission =
+          parseWorldMission(response?['worldMission'], grade: launchGrade);
+      if (mission != null) onWorldMission(mission);
     }
     return true;
   } on NativeProfileKeyException catch (error) {
@@ -348,6 +357,61 @@ Future<bool> launchLumo3D(
     entry?.close();
     _launchInProgress = false;
   }
+}
+
+/// Accept only the bounded local request. A restored Godot integer may be
+/// serialized as 1.0; its canonical Dart representation remains an int.
+@visibleForTesting
+Map<String, Object>? parseWorldMission(Object? raw, {required int grade}) {
+  if (raw is! String || raw.isEmpty || raw.length > 2000) return null;
+  Object? decoded;
+  try {
+    decoded = jsonDecode(raw);
+  } on FormatException {
+    return null;
+  }
+  if (decoded is! Map ||
+      decoded.length != 6 ||
+      decoded['grade'] is! num ||
+      decoded['grade'] != grade) {
+    return null;
+  }
+  final request =
+      WorldSchoolMissionRequest.tryParse({...decoded, 'grade': grade});
+  return request?.toJson();
+}
+
+/// A receipt never supplies owner identity or rewards. Those remain controlled
+/// by the captured child lease and the world's matching pending request ID.
+@visibleForTesting
+Map<String, Object>? parseWorldLearningReceipt(Object? raw,
+    {required int grade}) {
+  if (raw is! Map ||
+      raw.length != 7 ||
+      raw['completed'] != true ||
+      raw['missionId'] != WorldSchoolMissionRequest.missionId ||
+      raw['grade'] is! num ||
+      raw['grade'] != grade) {
+    return null;
+  }
+  final request = WorldSchoolMissionRequest.tryParse({
+    'version': raw['version'],
+    'id': raw['missionId'],
+    'requestId': raw['requestId'],
+    'subject': raw['subject'],
+    'grade': grade,
+    'returnGame': raw['returnGame'],
+  });
+  if (request == null) return null;
+  return {
+    'version': WorldSchoolMissionRequest.version,
+    'missionId': WorldSchoolMissionRequest.missionId,
+    'requestId': request.requestId,
+    'subject': WorldSchoolMissionRequest.subject,
+    'grade': request.grade,
+    'returnGame': WorldSchoolMissionRequest.returnGame,
+    'completed': true,
+  };
 }
 
 const _tutorWays = {

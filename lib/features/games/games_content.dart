@@ -225,11 +225,15 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchWorld() async {
-    if (!await _allowLaunch() || !mounted || _launchingGame) return;
+    if (!await _allowLaunch() ||
+        !mounted ||
+        _launchingGame ||
+        widget.appState.backupBusy) return;
     setState(() => _launchingGame = true);
-    final owner = await widget.appState.captureLearningProfile();
     Map<String, Object>? receipt;
     try {
+      final owner = await widget.appState.captureLearningProfile();
+      await widget.appState.prepareLearningLease(owner);
       while (mounted && widget.appState.isCurrentLearningLease(owner)) {
         WorldSchoolMissionRequest? school;
         final launched = await launchLumo3D(
@@ -253,10 +257,18 @@ class _GamesContentState extends State<GamesContent> {
         receipt = await Navigator.of(context).push<Map<String, Object>>(
           MaterialPageRoute(
               builder: (_) => WorldSchoolLessonScreen(
-                  appState: widget.appState, request: request)),
+                  appState: widget.appState, request: request, owner: owner)),
         );
         // Back returns to the same world with its pending mission intact.
         // Only the assessed school screen produces a completion receipt.
+      }
+    } catch (error, stack) {
+      debugPrint('Lumo World could not complete its launch: $error\n$stack');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Deine Welt konnte gerade nicht geöffnet werden. '
+              'Bitte versuche es noch einmal.'),
+        ));
       }
     } finally {
       if (mounted) setState(() => _launchingGame = false);

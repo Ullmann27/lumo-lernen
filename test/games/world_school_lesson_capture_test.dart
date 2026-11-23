@@ -25,6 +25,7 @@ void main() {
       final app = LumoAppState();
       await app.school.setActiveStudent('school-capture');
       await app.loadLearningProfile();
+      final owner = await app.captureLearningProfile();
       const boundary = ValueKey('world-school-capture');
       await tester.pumpWidget(MaterialApp(
         theme: LumoAppTheme.light(),
@@ -36,6 +37,7 @@ void main() {
           key: boundary,
           child: WorldSchoolLessonScreen(
             appState: app,
+            owner: owner,
             request: WorldSchoolMissionRequest(
                 requestId: 'school-capture-request', grade: 1),
           ),

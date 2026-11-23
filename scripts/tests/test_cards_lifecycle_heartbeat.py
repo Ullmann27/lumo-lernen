@@ -153,6 +153,10 @@ class JSONObject(private val raw: String = "{}") {
     // Holo-Zusammenfassung (Lernräume) – im Karten-Test ohne Bedeutung.
     fun optJSONObject(key: String): JSONObject? = null
     fun opt(key: String): Any? = null
+    // School messages are exercised with real JSON by the native return suite.
+    fun has(key: String): Boolean = false
+    fun length(): Int = 0
+    fun optInt(key: String, fallback: Int = 0): Int = fallback
     // Elternfreigabe „Geister-Duell“ (friendsGhostShare) – wie android.org.json: true nur bei true.
     fun optBoolean(key: String, fallback: Boolean = false): Boolean =
         Regex("\"" + key + "\"\\s*:\\s*(true|false)").find(raw)?.groupValues?.get(1)?.let { it == "true" } ?: fallback
@@ -349,8 +353,10 @@ class CardsLifecycleHeartbeatTest(unittest.TestCase):
         libraries = next((p for p in candidates if list(p.glob('kotlin-compiler-embeddable-*.jar'))), None)
         if libraries is None:
             missing_toolchain('Use the existing validated Gradle installation or LUMO_KOTLIN_LIB_DIR; this test downloads nothing')
+        from scripts.tests.test_game_return_contract import world_mission_contract_source
         sources = []
-        for name, text in {**STUBS, 'CardsHeartbeatRegression.kt': HARNESS}.items():
+        for name, text in {**STUBS, 'CardsHeartbeatRegression.kt': HARNESS,
+                           'WorldMissionContract.kt': world_mission_contract_source()}.items():
             path = cls.work / name
             path.write_text(text)
             sources.append(str(path))
