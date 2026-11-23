@@ -52,15 +52,17 @@ void main() {
         'Puzzle',
         'Jump & Run',
         'Rhythm',
-        'Schatzsuche',
-        'Bauwelt',
-        'Dorfwirtschaft',
+        'Schach',
+        'Sternenpost',
         'Lumo Kart',
       ]) {
         expect(find.text(title), findsWidgets, reason: title);
       }
       expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
       expect(find.byKey(const ValueKey('spielwelt-adventure')), findsOneWidget);
+      expect(find.byKey(const ValueKey('spielwelt-portal-treasure')), findsNothing);
+      expect(find.byKey(const ValueKey('spielwelt-portal-build')), findsNothing);
+      expect(find.byKey(const ValueKey('spielwelt-portal-village')), findsNothing);
       expect(find.text('Quizshow'), findsOneWidget);
       expect(find.text('Wer wird Lumo-Meister?'), findsNothing);
       expect(find.text('4 Gewinnt'), findsOneWidget);
@@ -110,9 +112,8 @@ void main() {
       'puzzle',
       'jumpRun',
       'rhythm',
-      'treasure',
-      'build',
-      'village',
+      'chess',
+      'skypost',
       'kart',
       'connectFour',
       'quizShow',
@@ -171,9 +172,8 @@ void main() {
           'puzzle',
           'jumpRun',
           'rhythm',
-          'treasure',
-          'build',
-          'village',
+          'chess',
+          'skypost',
           'kart',
           'connectFour',
           'quizShow',
