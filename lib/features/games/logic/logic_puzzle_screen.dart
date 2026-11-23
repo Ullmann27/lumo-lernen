@@ -446,7 +446,9 @@ class _LogicPuzzleScreenState extends State<LogicPuzzleScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(_puzzle.kind.title, style: iqText(21)),
+                            Text(logicDisplayTitle(_puzzle.kind),
+                                semanticsLabel: _puzzle.kind.title,
+                                style: iqText(21)),
                             Text(
                               '${_puzzle.grade}. Klasse · Level ${_puzzle.level}',
                               style: iqText(13, color: logicMuted),

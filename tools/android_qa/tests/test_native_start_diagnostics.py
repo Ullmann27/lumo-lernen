@@ -94,7 +94,10 @@ class PlanTests(unittest.TestCase):
         world = next(entry for entry in diag.PLAN if entry[0] == 'world')
         self.assertEqual(world[2], 'ui')
         self.assertIn(f"semanticTitle: '{world[3]}'", hub)
-        self.assertIn(f"tagline: '{world[4]}'", hub)
+        portal = (ROOT / 'lib/features/games/spielwelt/spielwelt_hub.dart').read_text()
+        self.assertIn(f"'world' => '{world[4]}'", portal)
+        self.assertEqual(diag.portal_label(world[3], world[4]),
+                         'Lumo World. Dein Dorf, deine Freunde und neue Abenteuer Spielen')
 
 
 class FakeDevice:

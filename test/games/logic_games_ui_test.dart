@@ -219,6 +219,12 @@ void main() {
         expect(text.bottom, lessThanOrEqualTo(hero.bottom));
       }
       await _capture(tester, 'hub-${device.key}-large');
+      final wordsCard = find.ancestor(
+          of: find.byKey(const ValueKey('logic-game-words')),
+          matching: find.byType(LogicGlass));
+      await tester.ensureVisible(wordsCard);
+      await _ticks(tester);
+      await _capture(tester, 'hub-words-${device.key}-large');
       expect(tester.takeException(), isNull);
       final owner = await app.captureLearningProfile();
       for (final kind in LogicGameKind.values) {

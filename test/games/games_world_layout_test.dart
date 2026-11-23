@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
+import 'package:lumo_lernen/features/games/logic/logic_games_screen.dart';
 
 /// Spielewelt nach Bild 06: nur echte Spiele, Android-Prüftexte bleiben.
 void main() {
@@ -93,7 +94,7 @@ void main() {
   });
 
 
-  testWidgets('Fold7 open portrait and tablet keep the tile hub with all eleven games', (tester) async {
+  testWidgets('Fold7 open portrait and tablet keep existing and new game portals', (tester) async {
     for (final size in const [Size(690, 829), Size(768, 1024), Size(1024, 768)]) {
       await tester.binding.setSurfaceSize(size);
       final app = LumoAppState();
@@ -109,7 +110,7 @@ void main() {
           reason: '$size uses the image-tile menu, not the arch hub');
       expect(find.text('Auf ins Abenteuer!'), findsOneWidget, reason: '$size');
       for (final identity in const [
-        'memory', 'cards', 'puzzle', 'jumpRun', 'rhythm',
+        'world', 'logic', 'memory', 'cards', 'puzzle', 'jumpRun', 'rhythm',
         'treasure', 'build', 'village', 'kart', 'connectFour', 'quizShow',
       ]) {
         expect(find.byKey(ValueKey('spielwelt-portal-$identity')), findsOneWidget,
@@ -120,7 +121,8 @@ void main() {
     await tester.binding.setSurfaceSize(null);
   });
 
-  testWidgets('Rhythm Party opens the real native rhythm scene', (tester) async {
+  for (final scene in ['rhythm', 'world']) {
+  testWidgets('$scene portal opens its real native scene after cold start', (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     const bridge = MethodChannel('lumo_lernen/bridge');
     final calls = <MethodCall>[];
@@ -135,12 +137,12 @@ void main() {
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
       await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
       await tester.pump(const Duration(milliseconds: 600));
-      final start = find.byKey(const ValueKey('spielwelt-portal-rhythm'));
+      final start = find.byKey(ValueKey('spielwelt-portal-$scene'));
       await tester.ensureVisible(start); await tester.tap(start);
       await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
       await tester.pump(const Duration(milliseconds: 600));
       expect(calls.where((c) => c.method == 'launch3D'), hasLength(1));
-      expect((calls.firstWhere((c) => c.method == 'launch3D').arguments as Map)['scene'], 'rhythm');
+      expect((calls.firstWhere((c) => c.method == 'launch3D').arguments as Map)['scene'], scene);
       expect(find.text('Rhythm Party kommt bald!'), findsNothing);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
@@ -149,4 +151,29 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     }
   });
+  }
+
+  testWidgets('Logikspiele portal opens the actual saved puzzle hub', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+    await tester.pumpWidget(
+        MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
+    await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 300)));
+    await tester.pump(const Duration(milliseconds: 600));
+    final start = find.byKey(const ValueKey('spielwelt-portal-logic'));
+    await tester.ensureVisible(start);
+    await tester.tap(start);
+    await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 300)));
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.byType(LogicGamesScreen), findsOneWidget);
+    expect(find.text('Deine Schulstufe'), findsOneWidget);
+    expect(find.text('Sudoku-Insel'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+  });
+
 }

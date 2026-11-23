@@ -10,6 +10,13 @@ const logicCyan = Color(0xFF68E5FF);
 const logicGreen = Color(0xFF95FF79);
 const logicMuted = Color(0xFFB9CEE5);
 
+/// Clear compound-word boundaries preserve readable titles at large text sizes.
+String logicDisplayTitle(LogicGameKind kind) => switch (kind) {
+      LogicGameKind.words => 'Wörter-Werkstatt',
+      LogicGameKind.maths => 'Zahlen-Brücken',
+      LogicGameKind.sudoku => kind.title,
+    };
+
 Color logicColor(LogicGameKind kind) => switch (kind) {
       LogicGameKind.sudoku => logicCyan,
       LogicGameKind.words => const Color(0xFFC3A7FF),

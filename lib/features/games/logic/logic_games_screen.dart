@@ -171,7 +171,7 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
   @override
   Widget build(BuildContext context) {
     final progress = _progress;
-    final title = _kind?.title ?? 'Logikspiele';
+    final title = _kind == null ? 'Logikspiele' : logicDisplayTitle(_kind!);
     return Scaffold(
       backgroundColor: logicNavy,
       body: LogicBackdrop(
@@ -200,7 +200,10 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                       ),
                     ),
                     const SizedBox(width: 6),
-                    Expanded(child: Text(title, style: iqText(24))),
+                    Expanded(
+                        child: Text(title,
+                            semanticsLabel: _kind?.title ?? 'Logikspiele',
+                            style: iqText(24))),
                     const Icon(Icons.auto_awesome_rounded, color: logicCyan),
                   ],
                 ),
@@ -407,7 +410,7 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Dein Rätsel\u00ADabenteuer',
+                    'Dein Rätsel-Abenteuer',
                     key: const ValueKey('logic-hero-title'),
                     semanticsLabel: 'Dein Rätselabenteuer',
                     style: iqText(27, shadows: iqScrim),
@@ -435,7 +438,13 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
               children: [
                 Icon(logicIcon(kind), color: logicColor(kind)),
                 const SizedBox(width: 8),
-                Expanded(child: Text(kind.title, style: iqText(21))),
+                Expanded(
+                    child: Text(
+                  logicDisplayTitle(kind),
+                  key: ValueKey('logic-game-title-${kind.name}'),
+                  semanticsLabel: kind.title,
+                  style: iqText(21),
+                )),
               ],
             ),
             LogicBoardPreview(kind: kind, grade: progress.selectedGrade),

@@ -14,6 +14,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 APPROVED = {
+    # World and logic-games candidate; exact reviewed native feature source.
+    2069: "9decd8eb59b03f31cdc7b2a33b0703a1e0d9b8c2",
     1950: "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
     1951: "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
     1952: "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",

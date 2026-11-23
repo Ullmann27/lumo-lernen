@@ -1,3 +1,40 @@
+# LUMO 2069 · World und Logikspiele
+
+Stand: 23. November 2026. Arbeitszweig in beiden Repositories:
+`feature/logic-world-20261123`. Kandidat `0.14.0+2069`.
+Godot-Pin: `9decd8eb59b03f31cdc7b2a33b0703a1e0d9b8c2`.
+Grundlage: Flutter `da66baeed50be33bc13d750a846a9eced33aa3dc`.
+
+Drei deterministische Logikspiele bieten 144 Aufgaben für die Schulstufen 1–4,
+gespeicherte Fortsetzung, Hilfen und ein beobachtungsbezogenes Lernprofil.
+Lumo World verbindet die Original-Schatzinsel mit Sonnendorf, Sternenstadt,
+Schule, Garten, Verkehr und dem vorhandenen eigenen Dorf. Das Original-Kart
+ist steuerbar; Portale öffnen Kart, Karten und die bestehende Dorfstrategie.
+Die sechs Missionen enthalten einen Schulauftrag mit drei tatsächlich
+bewerteten Aufgaben der Lern-App. Dorfwirtschaft und Dorfspielstand werden
+weiterhin von der vorhandenen Strategie geführt.
+
+Nachweise vor dem Umgebungsabbruch: Godot 4.7.2 World 169 Checks und ursprüngliche
+Schatzsuche 92 Checks, HostBridge und Capture-Parser bestanden. NativeStore 21,
+Activity/World-Plugin 6, Karten-Lifecycle 13, Startdiagnose 18, RequiredGate 9 sowie
+49 Build-/Hostverträge bestanden. Die Logik-UI bestand 9 Tests mit Exit 0 und
+gezielte Analyse 0. Die letzten Owner-/Titelkorrekturen werden im frischen
+CI-Lauf geprüft; nach einem lokalen SIGKILL wurde die gesamte Ausführungsumgebung
+unerreichbar. Die Welt war vollständig remote gesichert; die wenigen letzten
+App-Korrekturen wurden vom gesicherten Stand gezielt über GitHub wiederhergestellt.
+
+Die Pipeline `.github/workflows/lumo-logic-world-apk.yml` verwendet Godot 4.6.3
+und prüft exakt diese neue Quelle, echte Rendereransichten, APK/PCK/Signatur,
+Android-Spielstarts einschließlich World und SAF-Backup. Noch kein neuer
+APK-/Android-/öffentlicher Download- oder physischer 60-FPS-Nachweis behauptet.
+Main und frühere Releases bleiben unverändert.
+
+Details: [Implementierung](docs/logic-games/IMPLEMENTATION.md),
+[Auswertungsgrenzen](docs/logic-games/LEARNING_PROFILE.md),
+[Grafikherkunft](docs/logic-games/ART_PROVENANCE.md).
+
+## Archiv vorheriger Arbeitsstände
+
 # LUMO 2067 · gemeinsame Vollintegration
 
 Stand 22.11.2026. Aktiver Integrationszweig in beiden Repositories: `integration/lumo-complete-20261122`. Ausgangsstände Flutter `52c2c570` und Godot `25fc4ff1`. Die vollständige Quelleninventur und aktuellen Anschlüsse stehen in [der Integrationsübergabe](docs/integration/2026-11-22/INTEGRATION.md). Kandidat `0.13.55+2067`; neue APK und Android-Abschluss werden anhand des tatsächlich gebauten Runs bestätigt. Die Zwischenbauten 2065 und 2066 lieferten keine neue APK. Ergänzt sind eigene Gutscheine, eigene Elternaufgaben, lokale Datensicherung, Lumos Zimmer, tatsächlich einlösbare Auszeichnungen und die genaue lokale Aufgaben-Erkennung; Godot-Pin `29ac19f8984b510e5add531f15e555a98c72bed4`. Der tatsächliche Android-SAF-Durchlauf ist Pflicht vor der abschließenden Lieferung.

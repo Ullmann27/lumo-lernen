@@ -88,7 +88,7 @@ jobs:
             scripts.tests.test_speech_envelope_contract scripts.tests.test_learning_dialog_logic \
             scripts.tests.test_studio_learning_contract \
             scripts.tests.test_local_backup_transaction scripts.tests.test_game_return_contract \
-            scripts.tests.test_cards_lifecycle_heartbeat -v \
+            scripts.tests.test_cards_lifecycle_heartbeat scripts.tests.test_embedded_android -v \
             2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
       - name: Flutter – Logikspiele, Lernprofile und echte Rückkehrwege
         shell: bash
@@ -146,6 +146,9 @@ jobs:
             xvfb-run -a godot --path build/lumo-godot-qa --rendering-method gl_compatibility \
             --audio-driver Dummy --resolution 1280x720 --script res://scripts/tests/lumo_world_capture.gd \
             -- --out="$PWD/build-proof/world-ui"
+          if grep -E '(^|[[:space:]])(SHADER ERROR:|ERROR:)' build-proof/GODOT-WORLD-CAPTURE.txt; then
+            exit 1
+          fi
           test -s build-proof/world-ui/world-capture.json
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
