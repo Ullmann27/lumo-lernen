@@ -37,6 +37,7 @@ jobs:
           git rev-parse HEAD > team-b-proof/FLUTTER-COMMIT.txt
           flutter pub get --enforce-lockfile
           git diff --exit-code -- pubspec.lock
+          python3 -m unittest discover -s scripts/tests -p test_jvm_test_dependencies.py -v
       - name: Analyze integrated source and tests
         shell: bash
         run: |
@@ -76,7 +77,7 @@ jobs:
       LIBGL_ALWAYS_SOFTWARE: 'true'
       GALLIUM_DRIVER: llvmpipe
       LP_NUM_THREADS: '2'
-      LUMO_NATIVE_SHA: '2daa65c7bf8d4357684d8364fb14deb0be4d0660'
+      LUMO_NATIVE_SHA: '51084c8424fcf5c753f3c72ad1503c3c208518eb'
     defaults:
       run:
         working-directory: native
@@ -84,7 +85,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Ullmann27/lumo-godot
-          ref: '2daa65c7bf8d4357684d8364fb14deb0be4d0660'
+          ref: '51084c8424fcf5c753f3c72ad1503c3c208518eb'
           path: native
           persist-credentials: false
       - name: Install the project's pinned Godot engine and offscreen renderer
@@ -102,8 +103,10 @@ jobs:
           unzip -q "$RUNNER_TEMP/lumo-team-b-godot/engine.zip" -d "$RUNNER_TEMP/lumo-team-b-godot"
           mv "$RUNNER_TEMP/lumo-team-b-godot/Godot_v4.6.3-stable_linux.x86_64" "$RUNNER_TEMP/lumo-team-b-godot/godot"
           echo "$RUNNER_TEMP/lumo-team-b-godot" >> "$GITHUB_PATH"
-          sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y xvfb xauth libgl1-mesa-dri
+          if ! command -v xvfb-run >/dev/null || ! command -v xauth >/dev/null || ! test -f /usr/lib/x86_64-linux-gnu/dri/swrast_dri.so; then
+            sudo timeout 180 apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 update -qq
+            sudo timeout 180 apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 install -y xvfb xauth libgl1-mesa-dri
+          fi
       - name: Import the complete current project
         shell: bash
         run: |

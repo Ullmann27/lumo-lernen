@@ -1,6 +1,10 @@
-# LUMO — zusätzliche Logik- und World-Unterstützung
+# LUMO 2070 — gemeinsames Supportpaket
 
-23.11.2026. Drei zusätzliche Agents haben Pfotenpfad, World-Karte und Freundepost geliefert. Eigener Zweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Der aktuelle Hauptchat-Stand `22ebef5bd325f30fe3faa1e3fe54f9cd70ff2895` bleibt enthalten. Die zusätzliche Prüfung läuft getrennt über `lumo-team-b-support.yml`; sie veröffentlicht keine APK und verändert den laufenden Hauptchat-Bau nicht. Exakte Inhalte, lokale Prüfergebnisse und Ausfallgrenzen: [Team-B-Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md). Native Unterstützung: Ullmann27/lumo-godot#211. Gemeinsame Koordination: #537. main bleibt unverändert.
+23.11.2026. Drei zusätzliche Agents haben Pfotenpfad, Weltkarte und Freundepost geliefert. Unterstützungszweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Der Hauptchat-Stand `91a121f4302a4840ede44ece8a0494477d81c579` ist übernommen. Kandidat `0.14.1+2070`, Bauauftrag 46, nativer Pin `51084c8424fcf5c753f3c72ad1503c3c208518eb`.
+
+Nachgewiesen: Flutter 53 Tests samt echter Phone-/Fold-Darstellung grün; World 169 und Freundepostmodell 289 im ersten CI; versionsgleich lokal Controller 22, Map 139 Headless und tatsächliche World-Methoden 27 grün. Der neue SHA-geprüfte JVM-JAR-Cache besteht 20 Tests. Der vollständige neue APK-/Android-/Backup-/Veröffentlichungslauf ist durch `lumo-team-b-apk.yml` vorbereitet und muss am tatsächlichen Ergebnis beurteilt werden. Keine fertige APK oder physische 60-FPS-Freigabe behauptet.
+
+PRs: Flutter #539 und Ullmann27/lumo-godot#211; Koordination #537; direkte Übergabe auf Hauptchat-PRs #538 und Godot #210. Details und Prüfgrenzen: [Team-B-Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md). main bleibt unverändert.
 
 ## Bisherige Projektaufzeichnungen
 

@@ -5,7 +5,6 @@ GameEventStore and JSON parsing are real production code; this is not an
 Android lifecycle/device test. The separate Flutter origin and Android gates
 exercise those boundaries. The test-only org.json JAR is digest pinned.
 """
-import hashlib
 import os
 from pathlib import Path
 import re
@@ -13,12 +12,13 @@ import shutil
 import subprocess
 import tempfile
 import unittest
-import urllib.request
 
 
 ROOT = Path(__file__).resolve().parents[2]
-JSON_URL = 'https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar'
-JSON_SHA256 = '3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed'
+if __package__:
+    from .jvm_test_dependencies import JSON_SHA256, JSON_URL, prepare_json_jar
+else:
+    from jvm_test_dependencies import JSON_SHA256, JSON_URL, prepare_json_jar
 
 
 def world_mission_contract_source():
@@ -353,16 +353,7 @@ class GameReturnStoreTest(unittest.TestCase):
         libraries = next((p for p in candidates if list(p.glob('kotlin-compiler-embeddable-*.jar'))), None)
         if libraries is None:
             raise RuntimeError('Set LUMO_KOTLIN_LIB_DIR or use the verified Gradle installation on PATH')
-        cls.json_jar = cls.work / 'json-20240303.jar'
-        supplied = os.environ.get('LUMO_TEST_JSON_JAR')
-        if supplied:
-            data = Path(supplied).read_bytes()
-        else:
-            with urllib.request.urlopen(JSON_URL, timeout=60) as response:
-                data = response.read()
-        if hashlib.sha256(data).hexdigest() != JSON_SHA256:
-            raise RuntimeError('The test-only JSON dependency digest changed')
-        cls.json_jar.write_bytes(data)
+        cls.json_jar = prepare_json_jar(cls.work / 'json-20240303.jar')
         cls.classes = cls.work / 'classes'
         cls.classes.mkdir()
         java_sources = []
