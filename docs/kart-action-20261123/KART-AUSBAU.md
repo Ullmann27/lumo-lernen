@@ -11,10 +11,10 @@ ist kein Nachweis einer installierten oder öffentlich betriebenen Version.
 ## Strecken
 
 Die gemeinsame Erweiterung ist an alle 15 Produktionsstrecken angeschlossen:
-Sonnenhafen, Zauberwald, Himmelsinseln, Holo City sowie die Erweiterungsstrecken
-`crystal_canyon`, `jungle_temple`, `candy_cloud`, `volcano_night`,
-`winter_sprint`, `galaxy_ringway`, `desert_drift`, `learning_lab`,
-Dschungelherz, Riesengarten und Lumos Windwerk.
+Sonnenhafen, Zauberwald, Himmelsinseln, Holo City, Kristall-Canyon,
+Dschungel-Tempel, Candy Cloud Circuit, Volcano Night Run, Winter-Sprint,
+Galaxy Ringway, Desert Dune Drift, Funkel-Labor, Dschungelherz, Riesengarten
+und Lumos Windwerk.
 
 Zusätzliche Abschnitte verwenden den tatsächlichen Straßen- und Kontaktaufbau:
 Panorama-Rampen, verengte Fahrpassagen und alternative Turbospuren werden nur
@@ -32,9 +32,11 @@ dieselbe räumliche Bahn. Die Hauptstraße bleibt als durchgängige Alternative
 erhalten. Spieler und Rivalen nutzen ihre tatsächlichen Fahrzeugfaktoren auch
 für Gas, Bremswirkung und seitliche Reaktion in der Loopbahn.
 
-Die Sonnenhafen-Sequenz wird zusätzlich im Zusammenhang mit dem
-Präzisionssprung, dem Tunnel und der erreichbaren Fahrzeuggeschwindigkeit
-geprüft. Diese anspruchsvollere Fahrprüfung benötigt einen echten
+Die Sonnenhafen-Sequenz berücksichtigt zusätzlich den Präzisionssprung,
+den Tunnel und die tatsächlich erreichbare Fahrzeuggeschwindigkeit.
+Eine sichtbar markierte Bremshilfe verwendet die normalen Bremswerte des
+montierten Karts. Die Geometrie hält den Landebereich vor dem Tunnel frei;
+der Flug selbst erhält keine verdeckte Positionskorrektur. Diese anspruchsvollere Fahrprüfung benötigt einen echten
 GL-Renderer; ein Aufruf mit `--headless` erfüllt ihre Voraussetzungen nicht.
 
 ## Fahrzeuge und Bauteile
@@ -88,6 +90,11 @@ keine ebenso große Zahl tatsächlich gefahrener Testläufe.
 8. Im Rennen sind beide Karts und ihre Namensschilder vorhanden. Der Rennstand
    zeigt Platz 1/2 oder 2/2 sowie den relativen Abstand.
 9. Das Ergebnis bietet einen eigenen Rückweg zur Online-Lobby.
+
+Die erste Online-Ausbaustufe synchronisiert Start, aktuelle Fahrzeuge, laufende
+Positionen, Orientierung, Platzierung, Checkpoints und das gemeinsame
+Zielergebnis. Offensive Itemtreffer und physische Zusammenstöße zwischen den
+beiden Karts sind noch nicht Bestandteil der Netzwerksynchronisierung.
 
 Nach der erstmaligen Registrierung verbindet sich ein freigegebenes Profil
 beim erneuten Eintritt in Lumo Kart automatisch. Eingehende Anfragen werden
@@ -154,6 +161,12 @@ python scripts/tests/kart_online_two_process.py --godot godot --output proof/onl
 python scripts/tests/kart_online_scene_probe.py --godot godot --output proof/online-scene
 xvfb-run -a python scripts/tests/kart_online_scene_probe.py --godot godot --output proof/online-images --shots
 ```
+
+Der APK-Workflow wartet vor dem Paketbau auf einen vollständig erfolgreichen
+nativen Prüflauf des exakt eingebetteten Godot-Commits. Die tatsächliche
+Run-ID und dessen Schlussstatus werden in
+`build-proof/NATIVE-KART-SOURCE-QA.json` festgehalten; ein roter oder noch
+unbelegter Quellstand wird damit nicht als geprüfte APK veröffentlicht.
 
 Der APK-Workflow verwendet zusätzlich die bestehenden Lern-, Profil-,
 Datensicherungs- und Wallet-Prüfungen, überprüft den tatsächlich gepackten
