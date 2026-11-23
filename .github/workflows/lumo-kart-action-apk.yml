@@ -187,7 +187,7 @@ jobs:
             kart_result_reachability_regression native_table_boot_regression \
             learning_android_host_capability_regression native_learning_boot_regression; do
             echo "::group::$probe"
-            if [ "$probe" = kart_sonnenhafen_stunt_regression ] || [ "$probe" = kart_action_course_regression ]; then
+            if [ "$probe" = kart_sonnenhafen_stunt_regression ] || [ "$probe" = kart_action_course_regression ] || [ "$probe" = kart_action_spectacle_regression ]; then
               timeout 600 xvfb-run -a godot --path build/lumo-godot-qa \
                 --rendering-method gl_compatibility --audio-driver Dummy --resolution 1280x720 \
                 --script "res://scripts/tests/$probe.gd" 2>&1 | tee "build-proof/GODOT-${probe}.txt"
@@ -286,6 +286,7 @@ jobs:
           required_documents = [
               Path('docs/kart-action-20261123/KART-AUSBAU.md'),
               Path('build/lumo-godot-qa/docs/kart-action-20261123/VEHICLES.md'),
+              Path('build/lumo-godot-qa/docs/kart-action-20261123/TRACKS.md'),
               Path('docs/integration/2026-11-22/INTEGRATION.md'),
               Path('docs/integration/2026-11-22/LEARNING-INTEGRATION.md'),
               Path('docs/integration/2026-11-22/UPLOAD-ABGLEICH.md'),

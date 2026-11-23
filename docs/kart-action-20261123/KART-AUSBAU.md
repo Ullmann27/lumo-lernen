@@ -22,6 +22,8 @@ in geeignete freie Abschnitte eingefügt. Vorhandene Erfahrungen und deren
 Schutzkorridore bleiben für die Platzierung maßgeblich. Die sichtbare
 Rampenoberfläche verwendet dasselbe Profil wie die berechnete Kontakthöhe.
 
+Im tatsächlichen gezielten Prüflauf sind 59 zusätzliche Aktionssequenzen und
+207 thematische Landschaftsgruppen auf allen 15 Strecken nachgewiesen.
 Themenbezogene Landschaftsgruppen und bewegte Leuchteffekte ergänzen alle
 Strecken. Ihre Instanzen werden gebündelt; Entfernungsstufen und die vorhandene
 Einstellung für reduzierte Bewegung sind angeschlossen.
@@ -137,20 +139,45 @@ Seine Artefakte enthalten den exakten Quellcommit, vollständige Protokolle,
 numerische Messdaten und unveränderte PNG-Aufnahmen.
 
 Die Serverprüfung auf Commit
-`447ff8956a2942bafae775a9be62edb339f64cca` hat 23 Tests bestanden, darunter
+`9368a325c508a1c2f0bd2da596ff17300d0d52fa` hat 23 Tests bestanden, darunter
 Freundschaftsanfragen, Annahme, Präsenz, aktuelle Teile/Lackfarben beim
 Bereitmelden, gemeinsame Ergebnisse und dauerhafte Daten nach Neustart.
+
+Auf demselben Commit bestehen 112.196 Fahrzeugprüfungen mit 1.877
+Steckplatzpaaren, 5.760 vollständigen Stichproben und sieben tatsächlich
+integrierten Fahrkonfigurationen einschließlich der drei zusätzlichen
+Grenzfälle. Eine Grenzprobe nahe am Boosttempo ist keine vollständige
+Beschleunigungsfahrt vom Stillstand. Sechs echte Fahrzeug-/Werkstattbilder
+und die gemessenen Touchflächen sind im Fahrzeugnachweis festgehalten.
 
 Auf demselben Commit sind auch die beiden Workflow-Stufen mit zwei getrennten
 Godot-Spielprozessen sowie der echten Kart-Spielszene erfolgreich:
 automatischer Wiedereintritt, Anfrage im Hauptmenü, Annahme, gemeinsamer
-Rennraum, sichtbares Gegenkart, Namen, Platzanzeige und Verbindungsende.
+Rennraum, sichtbares Gegenkart, Namen, Platzanzeige und Verbindungsende. Die echte
+Kart-Spielszene besteht dabei 41 Prüfungen sowohl ohne Bildausgabe als auch
+mit dem echten GL-Renderer; Runde 1/2 und Platz 2/2 sind in den Bildern belegt.
 
 Diese Nachweise sind in
-https://github.com/Ullmann27/lumo-godot/actions/runs/45133703768
+https://github.com/Ullmann27/lumo-godot/actions/runs/45136673872
 verankert. Der Gesamtlauf kann unabhängig davon andere noch fehlgeschlagene
 Prüfungen enthalten; einzelne erfolgreiche Stufen werden nicht als grüner
 Gesamtlauf ausgegeben.
+
+Die danach gezielt korrigierten Streckenprüfungen bestehen vollständig auf
+`096866a09c9d8579132cdc8b7da197aca1c8a3f3`:
+https://github.com/Ullmann27/lumo-godot/actions/runs/45141398931
+
+Dieser echte GL-Lauf bestätigt alle 15 Strecken, die vollständigen Planeten- und
+Ringabstände, fünf Rampenkanten-Phasen, drei tatsächliche Boost-Durchfahrten und
+45 Positionen der echten Spielkamera im Feensee. Die genaue Erklärung und
+Messwerte stehen in `godot-kart/TRACKS.md` im Belegpaket.
+
+Der abschließende vollständige native Lauf für den eingebetteten Quellstand
+`52b2bf0790615b5c709a35548fcc6fb4affa9b52` ist:
+https://github.com/Ullmann27/lumo-godot/actions/runs/45142199800
+
+Sein tatsächliches Endergebnis wird vor dem APK-Bau verbindlich geprüft und
+als `NATIVE-KART-SOURCE-QA.json` im Belegpaket gespeichert.
 
 Reproduzierbare Server- und Clientprüfungen:
 
