@@ -1,42 +1,49 @@
-# LUMO: zusätzliches Drei-Agent-Team — Integration 23.11.2026
+# LUMO: zusätzliches Drei-Agent-Team – gemeinsamer Kandidat 2071
 
-## Konkreter Auftrag und Zusammenarbeit
-Heinz bat, den vorherigen LUMO-Entwicklungsbericht mit drei zusätzlichen Coding-Agents zu unterstützen. Diese Sitzung hat drei echte Agents für Logikspiel, Gestaltung/Weltkarte und Bewohneraufträge eingesetzt. Die Koordinatorarbeit verbindet die Ergebnisse mit dem weiterlaufenden Hauptchat über dessen PRs und die gemeinsame Koordination [#537](https://github.com/Ullmann27/lumo-lernen/issues/537). Eine direkte Live-Verbindung zwischen den beiden Chat-Agentbäumen wird nicht behauptet.
+Stand: 23. November 2026.
 
-Der aktuelle übernommene Hauptchat-Stand ist `91a121f4302a4840ede44ece8a0494477d81c579`. Seine beiden korrigierten Menü-/Navigationstests bleiben erhalten. Die Unterstützungs-PRs sind [Flutter #539](https://github.com/Ullmann27/lumo-lernen/pull/539) und [Godot #211](https://github.com/Ullmann27/lumo-godot/pull/211), jeweils zum Entwicklungszweig `feature/logic-world-20261123`. main bleibt unverändert.
+## Auftrag und tatsächliche Zusammenarbeit
+
+Heinz beauftragte diese Sitzung, den vorherigen LUMO-Entwicklungsbericht mit drei zusätzlichen Agents zu unterstützen. Diese drei Agents bearbeiten Logikspiele, Darstellung und Bewohneraufträge. Root führt ihre Ergebnisse mit den laufenden Hauptteam-Änderungen über gemeinsame Git-Quellen und PRs zusammen. Eine direkte Verbindung zwischen zwei Chat-Laufzeiten wird nicht behauptet.
+
+Hauptteam: Flutter `47c1a6437aee4320598f3ead58be76b50934567f`, Godot `90648b0639391c88d3c2da0e3f235d30f725256d`. Die Supportzweige heißen `support/logic-world-team-b-20261123`; Ziel ist `feature/logic-world-20261123`. [Flutter #539](https://github.com/Ullmann27/lumo-lernen/pull/539), [Godot #211](https://github.com/Ullmann27/lumo-godot/pull/211), [Koordination #537](https://github.com/Ullmann27/lumo-lernen/issues/537). Main bleibt unverändert.
 
 ## Spielbare Ergänzungen
-- **Pfotenpfad:** 24 verschiedene deterministische Wegrätsel, sechs je Schulstufe. Das Kind plant eine Pfeilfolge, besucht nummerierte Sterne und erreicht das Picknick. Verschiedene gültige Lösungen und Umwege werden akzeptiert; Rand und Hindernisse werden tatsächlich simuliert.
-- **Eingliederung:** vierte Karte im bisherigen Logikmenü; individuelle Programme, Abschlüsse und Auswahl pro Kind; Backup, Profilreset und Gesamtrücksetzung berücksichtigen die neuen Daten.
-- **Echte Darstellung:** Phone-/Fold-Aufnahmen zeigten fehlende Unicode-Pfeile in der Originalschrift. Richtungstasten und Programmschritte verwenden jetzt Material-Icons; die Sternfolge verwendet lesbare Textziffern.
-- **Weltkarte:** identischer Maßstab in beiden Achsen, Standort und Blickrichtung, vier Orte, Ziel-/Orts-/Gesamtfokus und große Bedienflächen. Lange Hinweise stehen im scrollbaren Dialog.
-- **Freundepost:** drei tatsächliche Lieferungen Nelli → Bruno → Tilda → Nelli nach den sechs Hauptmissionen. Das Paket reist sichtbar zu Fuß oder im Kart; die Übergabe erfordert Nähe und Interaktion. Drei Freundschaftsstempel werden gespeichert; die Funktion erzeugt keine zusätzlichen Sterne oder XP.
-- **Erkunden und Speichern:** Die Ampel bleibt nach der Hauptgeschichte von beiden Gehsteigen bedienbar. Wiederholtes Drücken verlängert die Wartezeit nicht. Fehlgeschlagenes Speichern bleibt ausstehend; unbekannte zukünftige Freundepost-Daten bleiben vollständig erhalten.
-- Original-Schatzsuche, vorhandene Dorfwirtschaft, Schulbelege, Schreibtrainer und Journal bleiben erhalten.
 
-## Nachgewiesene Ergebnisse vor diesem APK-Bau
-- [Supportlauf 45175546161](https://github.com/Ullmann27/lumo-lernen/actions/runs/45175546161): Flutter-Analyse ohne Befunde, **53 Tests bestanden**; ursprüngliche World-Regression **169** und Freundepostmodell **289** bestanden.
-- [Supportlauf 45176854451](https://github.com/Ullmann27/lumo-lernen/actions/runs/45176854451): Flutter mit dem Iconfix bei `7c0004736c95c293c310336d161f6c3cd5b441cc` erneut **53 Tests bestanden**, Analyse ohne Befunde; echte Phone-/Fold-PNGs wurden vom Koordinator gesichtet. Sein älterer nativer Prüfabschnitt wird dadurch nicht als grün ausgegeben.
-- Godot **4.6.3**, dieselbe Version wie der APK-Bau: Controller **22**, Map **149 im Headless-Lauf** und tatsächliche World-Produktionsmethoden **27** Prüfungen bestanden. Die vollständigen CI-/Rendererläufe auf dem nun gepinnten nativen Stand sind separat erforderlich.
-- Die Controllerprüfung beendete ursprünglich Godot mit aktivem Autoload-Klickton. Der vorhandene Teardown-Helfer prüft jetzt die tatsächliche Mixerfreigabe; es werden keine ERRORs ausgeblendet.
-- Der Map-Test verwendet jetzt bereits lokale Viewportkoordinaten korrekt; der frühere Minimalprojekt-Test berücksichtigte den echten Projekt-Stretch noch nicht.
-- Die World-Integration lädt nach Autoloadstart und vergleicht tatsächlich JSON-dekodierte Zukunftsdaten. Alle 27 fachlichen Assertions bleiben erhalten.
-- Der gemeinsame JVM-Downloadhelfer besteht **20 Regressionstests**. Er behebt wiederholte HTTP 429-Downloads mit SHA-geprüftem gemeinsamem Cache, begrenztem Retry-After und unverändertem JAR-Pin; vier bestehende Suites verwenden denselben Helfer. Kein Test wird übersprungen.
+- **Pfotenpfad:** 24 deterministische Wegrätsel, sechs je Schulstufe. Das Kind plant Pfeile, besucht nummerierte Sterne und erreicht das Picknick. Tatsächliche Simulation prüft Rand, Hindernisse und Reihenfolge; verschiedene gültige Wege sind erlaubt.
+- **Direkte Spielwahl:** Vier große Einstiegsknöpfe stehen vor dem Titelbild. Alle vier Spiele bleiben bereits auf dem ersten Bildschirm erreichbar, auch auf 344 px Breite und im kurzen Querformat mit großer Schrift. Die bisherigen Detailkarten und Spielwege bleiben erhalten.
+- **Vier Logikspiele:** Die bisherigen 144 Sudoku-, Wort- und Matheaufgaben bleiben erhalten. Pfotenpfad ergänzt sie auf 168 Aufgaben.
+- **Telefonbedienung:** Bei normaler Schriftgröße bleiben auf schmalen Telefonen das vollständige Brett und die vier Pfeile zusammen sichtbar. Klassen-/Pfadwahl und vollständige Hinweise sind über klar benannte Bereiche erreichbar; der Plan lässt sich horizontal durchsehen. Die Speicheranzeige verändert die Bretthöhe nicht. Größere Schrift behält die vollständig scrollbare Darstellung.
+- **Profile:** Auswahl, Programme und Abschlüsse sind je Kind getrennt. Backup, Profilreset und Gesamtrücksetzung berücksichtigen die neuen Daten; verspätete Aktionen behalten ihre ursprüngliche Profilzuständigkeit.
+- **Weltkarte:** Gleicher Maßstab in beiden Achsen, Standort, Blickrichtung, Ziel und vier Orte. Große Schaltflächen bieten Ziel-, Orts- und Weltfokus; ausführliche Hinweise bleiben scrollbar.
+- **Freundepost:** Drei Lieferungen Nelli → Bruno → Tilda → Nelli nach den sechs Hauptmissionen. Paket am Fuchs beziehungsweise Kart, tatsächliche Nähe und Interaktion bei der Übergabe, drei gespeicherte Freundschaftsstempel.
+- **Ampel und Speichern:** Bedienung von beiden Gehsteigen auch nach der Hauptgeschichte. Wiederholtes Drücken verlängert die Wartezeit nicht. Fehlgeschlagenes Speichern wird erneut versucht; unbekannte zukünftige Freundepost-Daten bleiben erhalten.
+- **Gemeinsame World-Korrekturen:** Normale Kamera mit freiem Blick, echte HUD-Mindestgrößen, Joystick neben der Aktionsspalte, begehbarer Schuleingang und kleiner Wegweiser. Die Originalaufnahmeorte bleiben erhalten.
 
-Details zu Quellidentitäten und tatsächlichen lokalen Ausführungen:
-- `team-b-evidence/world-errands-audio-teardown-report.json`
-- `team-b-evidence/world-support-integration-report.json`
+Original-Schatzsuche, vorhandene Dorfökonomie, Schreibtrainer, Journal und bestehende Lernstände bleiben angeschlossen.
 
-## Gemeinsamer Kandidat und verbindliche Freigabe
-Version **0.14.1+2070**, Bauauftrag **46**, nativer Pin **93557b3ca206916a39fdeaa6ae6ce05442b08846**.
-Der neue `lumo-team-b-apk.yml` baut nur auf dem Supportzweig und verändert den 2069-Bau des Hauptchats nicht.
+## Belegte Prüfungen und Grenzen
 
-Veröffentlichung erfolgt erst nach den vorhandenen verbindlichen Schritten: feste saubere Quellen, Flutter-/JVM-/Godot-Prüfungen, tatsächliche Rendererbilder, signierte ARM64- und x86_64-Pakete, übereinstimmender PCK-/Versions-/Zertifikatsnachweis, installierte Android-Tour, native Starts und vollständiger Android-Backup-Rundlauf. Auch Godot-ERRORs bei Exitcode 0 lassen die neuen Proben fehlschlagen. Anschließend werden APK-Prüfsumme, Herkunft und Tourstatus erneut geprüft und ein neuer unveränderlicher Test-Release erstellt.
+Der ursprüngliche Supportstand Flutter `404d6bcaaff0ac47bf1326551381110126daf9e4` / Godot `93557b3ca206916a39fdeaa6ae6ce05442b08846` bestand [Supportlauf 45181487860](https://github.com/Ullmann27/lumo-lernen/actions/runs/45181487860): Flutter-Analyse, 53 Flutter-Tests, 20 JAR-Helfertests sowie World 169, Freundepost 289, Controller 22, World-Integration 27 und Kartenrenderer 152 Prüfaussagen.
 
-**Dieser Commit allein bestätigt weder eine fertige APK noch einen erfolgreichen Android-Lauf.** Diese Ergebnisse sind ausschließlich am zugehörigen tatsächlichen Workflow und dessen Release-Asset zu belegen. Ein physisches Fold 7 oder stabile 60 FPS wurden hier nicht gemessen.
+Sein [vollständiger APK-Bauversuch 45181487984](https://github.com/Ullmann27/lumo-lernen/actions/runs/45181487984) bestand 119 JVM-Tests, 180 Flutter-Tests und die World-/Renderer-Prüfungen, scheiterte beim erneuten kalten Fontimport. Die tatsächliche Sichtprüfung bestätigte verdeckte Fahransichten und angeschnittene Aktionsknöpfe. Dieser 2070 wird ausdrücklich nicht als fertige oder freigegebene APK ausgegeben. [Vollständiger Befund](TEAM_B_2070_QUALITY.md).
 
-## Wiederaufnahme
-1. Die beiden neuen Workflows auf genau diesem Flutter-SHA prüfen.
-2. Bei einem echten Fehler nur den betroffenen Schritt reparieren; keine Prüfungen abschwächen.
-3. Den endgültigen APK-Link erst nach vorhandenem Release-Asset, Größe, SHA256, Quell-/Godot-Pin und Signaturprüfung ausgeben.
-4. Ergebnisse an die PRs #538/#539 und Godot #210/#211 sowie Koordination #537 übergeben. Kein Main-Merge.
+Der serialisierte Ressourcenimport wurde mit Godot 4.6.3 untersucht und anschließend im vollständigen CI-Import von `7c6e728b1c0ec45d7098855c205bba6dfc50c190` erfolgreich ausgeführt: 2.089 Imports einschließlich aller drei Nunito-Schriften, keine Importfehler. Die danach gefundenen Typfehler gehörten zum älteren Hauptteam-Zwischenstand und sind im übernommenen `90648b0` korrigiert. Alle Fehlergates bleiben aktiv; eine PASS-Zeile mit vorherigem Compile-Fehler gilt nicht als Erfolg.
+
+Der JAR-Helfer behält den festgelegten SHA-256 bei und verwendet einen gemeinsamen geprüften Cache, begrenzte Wiederholungen sowie die bekannten Maven-Endpunkte. Er verändert keine Android-Produktlogik.
+
+Der neueste kombinierte native Stand `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913` besteht [Supportlauf 45186770272](https://github.com/Ullmann27/lumo-lernen/actions/runs/45186770272) vollständig mit Godot 4.6.3: World **194**, Freundepost **289**, Controller **22**, World-Integration **27**, HUD **499** und Kartenrenderer **152** Prüfaussagen. Flutter am zugehörigen Zwischenstand `02d674daa65d13d2517a005943cd86db1ff5636b` besteht 53 Tests und die Analyse. Die spätere kompakte Telefonansicht und der vollständige APK-/Android-Kandidat müssen separat geprüft werden.
+
+## Kandidatenidentität und ausstehende Freigabe
+
+Neuer gemeinsamer Kandidat: **0.14.2+2071**, Bauauftrag **47**, Godot **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**, Engine **4.6.3**. Der jeweils tatsächlich gebaute Flutter-Commit steht in der Build-Provenienz.
+
+Die neue Quelle muss alle Prüfungen erneut bestehen: Flutter/JVM, echte Godot-Quellen und Rendereraufnahmen, signierte ARM64- und x86_64-Pakete mit gleichem PCK und Zertifikat, World und HUD gegen das extrahierte APK-PCK, installierte Android-Tour, native Starts und Android-SAF-Sicherung mit Wiederherstellung. Die fünf World-Aufnahmen werden vor dem APK-Bau bereitgestellt und tatsächlich angesehen. Ein bestätigter Sichtfehler stoppt die Auslieferung.
+
+Es wird weder eine fertige 2071-APK noch ein bestandener Android-Rundgang vor dessen tatsächlichem Ergebnis behauptet. Die bestehende installierte Android-Tour prüft Onboarding, Lernatelier, Kartfahrt, Rückkehr und Erhalt des Lernstands; die native Startdiagnose prüft außerdem Lumo World. Pfotenpfad wird gezielt durch Domain-, Speicher-, Widget- und PNG-Tests geprüft, jedoch von dieser vorhandenen Android-Tour nicht geöffnet. Ein grüner Tourlauf wird daher nicht als Android-Prüfung seiner einzelnen Bedienabläufe bezeichnet. Physische Fold-7-Messung und stabile 60 FPS sind offen.
+
+## Fortsetzung
+
+Den exakten Kandidatenlauf bis zu seinen echten Ergebnissen verfolgen. Nur konkrete verbleibende Fehler korrigieren und keine Gates abschwächen. Den öffentlichen Direktlink erst nach vorhandenem Release-Asset, Dateigröße, SHA-256, Quellidentität und Signaturnachweis ausgeben. Die historische HTTP-403-Antwort am Release-Endpunkt bleibt ein möglicher tatsächlicher Veröffentlichungsblocker; keine Berechtigung umgehen.
+
+Endergebnisse in #538/#539, Godot #210/#211 und #537 vermerken. Main bleibt geschützt.

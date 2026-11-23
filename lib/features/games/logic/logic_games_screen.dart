@@ -281,7 +281,11 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
                                           ),
                                         ),
                                       ),
-                                    if (_kind == null) _hero(),
+                                    if (_kind == null) ...[
+                                      _directGames(),
+                                      const SizedBox(height: 16),
+                                      _hero(),
+                                    ],
                                     const SizedBox(height: 18),
                                     Text(
                                       'Deine Schulstufe',
@@ -398,6 +402,88 @@ class _LogicGamesScreenState extends State<LogicGamesScreen> {
       ),
     );
   }
+
+  Widget _directGames() => LayoutBuilder(
+        key: const ValueKey('logic-direct-games'),
+        builder: (context, constraints) {
+          final columns = constraints.maxWidth >= 760 ? 4 : 2;
+          final width = (constraints.maxWidth - (columns - 1) * 8) / columns;
+          return Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final kind in LogicGameKind.values)
+                SizedBox(
+                  width: width,
+                  child: _directButton(
+                    id: kind.name,
+                    label: switch (kind) {
+                      LogicGameKind.sudoku => 'Sudoku',
+                      LogicGameKind.words => 'Wörter',
+                      LogicGameKind.maths => 'Zahlen',
+                    },
+                    semanticLabel: kind.title,
+                    icon: logicIcon(kind),
+                    color: logicColor(kind),
+                    onPressed: () {
+                      _click();
+                      setState(() => _kind = kind);
+                    },
+                  ),
+                ),
+              SizedBox(
+                width: width,
+                child: _directButton(
+                  id: 'trail',
+                  label: 'Pfotenpfad',
+                  semanticLabel: 'Pfotenpfad',
+                  icon: Icons.route_rounded,
+                  color: logicGreen,
+                  onPressed: _openTrail,
+                ),
+              ),
+            ],
+          );
+        },
+      );
+
+  Widget _directButton({
+    required String id,
+    required String label,
+    required String semanticLabel,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onPressed,
+  }) =>
+      FilledButton(
+        key: ValueKey('logic-direct-$id'),
+        onPressed: _busy || !_current
+            ? null
+            : () {
+                if (_busy || !_current) return;
+                onPressed();
+              },
+        style: FilledButton.styleFrom(
+          minimumSize: const Size(48, 72),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          backgroundColor: const Color(0xFF153651),
+          foregroundColor: Colors.white,
+          side: BorderSide(color: color.withOpacity(.65)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: color, size: 24),
+            const SizedBox(height: 6),
+            Text(label,
+                semanticsLabel: semanticLabel,
+                textAlign: TextAlign.center,
+                style: iqText(16)),
+          ],
+        ),
+      );
 
   Widget _hero() => ClipRRect(
         key: const ValueKey('logic-hero'),

@@ -89,6 +89,14 @@ jobs:
             "$RUNNER_TEMP/lumo-contract-gradle.zip" | sha256sum -c -
           unzip -q "$RUNNER_TEMP/lumo-contract-gradle.zip" -d "$RUNNER_TEMP/lumo-contract-gradle"
           export LUMO_KOTLIN_LIB_DIR="$RUNNER_TEMP/lumo-contract-gradle/gradle-9.1.0/lib"
+          # Reuse the exact digest-pinned dependency across JVM suites. The
+          # 2069 first attempt hit Maven HTTP 429 on repeated unbuffered reads.
+          export LUMO_TEST_JSON_JAR="$RUNNER_TEMP/lumo-contract-json-20240303.jar"
+          curl -fL --retry 5 --retry-all-errors --connect-timeout 20 --max-time 120 \
+            https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar \
+            -o "$LUMO_TEST_JSON_JAR"
+          printf '%s  %s\n' 3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed \
+            "$LUMO_TEST_JSON_JAR" | sha256sum -c -
           python3 -m unittest scripts.tests.test_english_lesson_speech \
             scripts.tests.test_speech_envelope_contract scripts.tests.test_learning_dialog_logic \
             scripts.tests.test_studio_learning_contract \
@@ -143,7 +151,7 @@ jobs:
             godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
             || python3 .github/probes/run_godot_probe.py --timeout 600 --log build-proof/GODOT-import-retry.txt -- \
               godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
-          for probe in lumo_world_regression host_bridge_regression treasure_exploration_regression native_table_boot_regression; do
+          for probe in lumo_world_regression lumo_world_hud_regression host_bridge_regression treasure_exploration_regression native_table_boot_regression; do
             python3 .github/probes/run_godot_probe.py --timeout 600 --log "build-proof/GODOT-${probe}.txt" -- \
               godot --headless --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
           done
@@ -189,6 +197,10 @@ jobs:
             godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
             --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
             --script "$PWD/build/lumo-godot-qa/scripts/tests/lumo_world_regression.gd"
+          python3 .github/probes/run_godot_probe.py --timeout 600 --log build-proof/WORLD-PCK-HUD-REGRESSION.txt -- \
+            godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
+            --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+            --script "$PWD/build/lumo-godot-qa/scripts/tests/lumo_world_hud_regression.gd"
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"

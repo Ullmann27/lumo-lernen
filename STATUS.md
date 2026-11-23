@@ -1,58 +1,55 @@
-# LUMO Team B · geprüfte Ergänzungen, gemeinsamer Kandidat noch gesperrt
+# LUMO Team B · gemeinsamer Kandidat 2071
 
-Stand: 23. November 2026. Unterstützungszweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Die drei zusätzlichen Agents liefern 24 Pfotenpfad-Aufgaben, Weltkarte und drei Freundepost-Aufträge; zusammen mit dem Hauptteam sind 168 Logikaufgaben vorhanden. Hauptteam-Stand `5e69f23dd2a223cecff67088514a3ba1035dbf4f` wird mit seinen dokumentierten Sichtmängeln übernommen.
+Stand: 23. November 2026. Version **0.14.2+2071**, Bauauftrag **47**. Unterstützungszweig `support/logic-world-team-b-20261123`, Ziel `feature/logic-world-20261123`. Hauptteam-Flutter `47c1a6437aee4320598f3ead58be76b50934567f` und Hauptteam-Godot `90648b0639391c88d3c2da0e3f235d30f725256d` sind erhalten. Gemeinsamer nativer Pin: `e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913`.
 
-Der tatsächlich geprüfte Support-Kandidat 2070 verwendet Flutter `404d6bcaaff0ac47bf1326551381110126daf9e4` und Godot `93557b3ca206916a39fdeaa6ae6ce05442b08846`. Supportlauf 45181487860 ist vollständig grün. APK-Lauf 45181487984 besteht 119 JVM-Tests, 180 Flutter-Tests, World 169, Freundepost 289, Controller 22, reale World-Integration 27, Kartenrenderer 152, Schatzsuche 92 sowie die HostBridge-/Kartentisch-Prüfungen. Die fünf echten World-Bilder wurden von Root und Design-Agent gesehen.
+Drei zusätzliche Agents ergänzen 24 Pfotenpfad-Aufgaben, Weltkarte, drei Freundepost-Lieferungen und die dauerhafte Fußgängerampel. Zusammen mit den bisherigen Aufgaben sind vier Logikspiele mit 168 Aufgaben vorhanden. Der neue Telefonaufbau und die direkten Spieleinstiege werden in diesem Kandidaten geprüft.
 
-**Keine fertige 2070-APK, kein Android-Gesamt-PASS und keine Auslieferungsfreigabe:** Der zweite kalte Godot-Import stürzt mit SIGABRT bei Nunito-Variable.ttf ab. Zudem bestätigen die Bilder die Sichtmängel des Hauptteams. Hauptteam besitzt Kamera/HUD/Vegetation/Schule/Schild; Team B bearbeitet den getrennten Ressourcenimport. Keine parallelen Ganzdatei-Überschreibungen.
+Der gemeinsame native Stand besteht Supportlauf [45186770272](https://github.com/Ullmann27/lumo-lernen/actions/runs/45186770272) mit Godot 4.6.3 vollständig: World 194, Freundepost 289, Controller 22, tatsächliche World-Methoden 27, HUD 499 und Kartenrenderer 152 Prüfaussagen. Der vollständige Import ist fehlerfrei; Flutter am vorherigen UI-Zwischenstand besteht 53 Tests und die Analyse. Neue UI, tatsächliche 3D-Bilder, APK-/PCK-/Signatur-, Android- und SAF-Backup-Nachweise müssen am frischen 2071-Lauf beurteilt werden.
 
-Nächster gemeinsamer Folgekandidat nach Übernahme der tatsächlichen Korrekturen: **2071**, damit der vom Hauptteam vorbereitete 2070 nicht kollidiert. Build, echte Bildprüfung, APK/PCK/Signatur, Android und SAF-Backup müssen für den neuen Quellstand erneut bestehen. Physische 60 FPS sind ungemessen. Main bleibt unverändert.
+Der frühere Support-2070 ist wegen bestätigter Sichtmängel und eines tatsächlich gescheiterten kalten Fontimports zurückgehalten. [Belegter Befund](docs/agent-network/TEAM_B_2070_QUALITY.md). Es wird keine fertige 2071-APK oder physische 60-FPS-Freigabe vor einem Nachweis behauptet.
 
-[Belegter 2070-Befund](docs/agent-network/TEAM_B_2070_QUALITY.md) · [Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md) · Flutter-PR #539 · Godot-PR #211 · Koordination #537.
+[Team-B-Übergabe](docs/agent-network/TEAM_B_LOGIC_WORLD_20261123.md) · Flutter #539 · Godot #211 · Koordination #537. Main bleibt unverändert.
 
 ## Stand und Fortsetzung des Hauptteams
 
-# LUMO World und Logikspiele · visuelle Korrektur vor 2070
+# LUMO World und Logikspiele · korrigierter Kandidat 2070
 
 Stand: 23. November 2026. Beide Feature-Zweige heißen
-`feature/logic-world-20261123`. Die neuen Logikspiele und die gemeinsame World
-sind implementiert. **Kandidat 2069 wird wegen bestätigter Sichtfehler nicht
-ausgeliefert.** Der korrigierte Folgekandidat wird als 2070 vorbereitet.
+`feature/logic-world-20261123`. Kandidat **0.14.1+2070**, Bauauftrag 46,
+pinnt Godot **90648b0639391c88d3c2da0e3f235d30f725256d** mit Engine 4.6.3.
+Die neue APK, tatsächlichen Rendererbilder und Android-/Backup-Prüfungen
+stehen bei diesem Quellcheckpoint noch aus. Es wird keine Freigabe behauptet.
 
-2069 wurde am Flutter-Stand `91a121f4302a4840ede44ece8a0494477d81c579` und mit
-Godot `9decd8eb59b03f31cdc7b2a33b0703a1e0d9b8c2` tatsächlich gebaut:
-537148799 Bytes, APK-SHA-256
-`ac289d918c5f72bfd82165753962471554478233a4a6869d23b2e80112ea066b`.
-Der Buildjob `137702207095` im Lauf `45176827649`, Versuch 2, besteht.
-79 native JVM-Tests, 158 Flutter-Tests, 169 World-Prüfaussagen, 92
-Schatzsuche-Prüfaussagen, 26 Kartentisch-Prüfaussagen und HostBridge bestehen.
-Die World-Prüfung besteht erneut gegen das tatsächlich entnommene APK-PCK.
+Der zurückgehaltene 2069-Build bleibt nachvollziehbar dokumentiert:
+[visueller Befund, tatsächliche Prüfungen und Identitäten](docs/logic-games/QUALITY_2069.md).
+Seine Android-Tour und Veröffentlichung wurden vorzeitig abgebrochen.
 
-Die fünf echten Rendereransichten zeigen jedoch verdeckende Bäume bei Kartfahrt
-und eigenem Dorf, einen überbreiten Aktionsknopf und einen unklaren Schulzugang.
-Die Bildprüfung ist daher ausdrücklich negativ. Die Android-Tour und
-Veröffentlichung wurden mit Hold `f3b315bfabea1b41b30923e891fb7e0b406e52d3`
-vorzeitig abgebrochen. Kein Android-Gesamt-PASS und kein öffentlicher 2069-Release.
-[Genauer Befund und Identitäten](docs/logic-games/QUALITY_2069.md).
+2070 korrigiert die normale Folge- und Kartkamera, vollständig sichtbare
+Aktionsknöpfe, die World-Joystick-Größe, den begehbaren Schulzugang und das
+Schatzinsel-Wegschild. Der gemeinsame Dorf-Batch ergänzt nur unveränderte
+Transformationsmetadaten. Dorfwirtschaft, Spielstand und ursprüngliche
+Schatzsuche bleiben erhalten. Alle fünf bisherigen Aufnahmeorte bleiben
+für den tatsächlichen Bildvergleich unverändert.
 
-Der Ausbau umfasst 144 deterministische Logikaufgaben für Schulstufen 1–4,
+Lokal unter Godot 4.7.2: **World 194 Prüfaussagen und HUD 499 Prüfaussagen
+bestanden**, jeweils Exit 0. Diese Headless-Prüfung ersetzt weder die
+Godot 4.6.3-Renderabnahme noch die Android-Prüfung. Die Kandidatenpipeline
+prüft World und HUD erneut gegen den exakten Quellstand und gegen das
+tatsächlich aus der gebauten ARM64-APK entnommene PCK. World-Bilder sind
+bereits vor dem APK-Bau als eigenes Artefakt abrufbar.
+
+Der gesamte Ausbau umfasst 144 deterministische Logikaufgaben für Schulstufen 1–4,
 gespeicherte Entwürfe und ein beobachtungsbezogenes Stärkenprofil. Die World
 verbindet Original-Schatzinsel, Sonnendorf, Schule, Garten, Stadt und das echte
 vorhandene Dorf. Kart, Karten und ursprüngliche Dorfstrategie sind angeschlossen.
 Die Schule öffnet drei tatsächlich bewertete Lernaufgaben. Die vorhandene
 Dorfstrategie bleibt die schreibende Instanz für Wirtschaft und Bauten.
 
-Die normalen Kameras und die tatsächliche HUD-Anordnung werden korrigiert.
-Die nächsten Rendererbilder werden vor dem APK-Bau als eigenes Artefakt
-bereitgestellt. Die bisherigen Aufnahmeorte bleiben für den Vergleich erhalten.
-Ein vorbereiteter Transferworkflow kann eine exakt geprüfte APK in Teilen
-transportieren und bytegleich zusammensetzen; sein Auftrag verweist noch auf
-den zurückgehaltenen 2069-Stand und wird vor Nutzung auf den endgültigen
-Kandidaten aktualisiert.
-
-Normierte IQ/EQ/AQ-Werte, eine vollständige AAA-Welt und physische 60 FPS sind
-nicht behauptet. Die tatsächlichen 2069-Bildzeiten stammen von CPU-Softwaregrafik.
-Main, Original-Schatzsuche und frühere Veröffentlichungen bleiben erhalten.
+Normierte IQ/EQ/AQ-Werte, eine vollständige AAA-Welt, vollständig gesprochene
+World-Dialoge und physische 60 FPS sind nicht behauptet. Main und frühere
+Veröffentlichungen bleiben erhalten. Der öffentliche Publisher kann an der
+bereits für 2068 bestätigten GitHub-Berechtigung scheitern; kein öffentlicher
+Link darf ohne tatsächlichen Datei-Nachweis ausgegeben werden.
 
 Details: [Implementierung](docs/logic-games/IMPLEMENTATION.md),
 [Auswertung](docs/logic-games/LEARNING_PROFILE.md),

@@ -33,7 +33,7 @@ jobs:
           from pathlib import Path
 
           request = json.loads(Path("config/lumo-world-apk-transfer.json").read_text())
-          for key in ("build_run_id", "apk_artifact_id", "apk_bytes", "part_bytes", "part_count"):
+          for key in ("build_run_id", "apk_artifact_id", "metadata_artifact_id", "apk_bytes", "part_bytes", "part_count"):
               if type(request[key]) is not int or request[key] <= 0:
                   raise SystemExit(f"Invalid positive integer: {key}")
           if request["schema"] != 1 or not re.fullmatch(r"[A-Za-z0-9_.-]+\.apk", request["apk_name"]):
@@ -42,13 +42,11 @@ jobs:
               raise SystemExit("Invalid original source commit")
           if not re.fullmatch(r"[0-9a-f]{64}", request["apk_sha256"]):
               raise SystemExit("Invalid original APK digest")
-          if not re.fullmatch(r"[A-Za-z0-9_.-]+", request["metadata_artifact_name"]):
-              raise SystemExit("Invalid metadata artifact name")
           count = (request["apk_bytes"] + request["part_bytes"] - 1) // request["part_bytes"]
           if request["part_bytes"] > 64 * 1024 * 1024 or request["part_count"] != 9 or count != 9:
               raise SystemExit("This transport requires exactly nine parts of at most 64 MiB")
           with open(os.environ["GITHUB_OUTPUT"], "a") as output:
-              for key in ("build_run_id", "apk_artifact_id", "metadata_artifact_name"):
+              for key in ("build_run_id", "apk_artifact_id", "metadata_artifact_id"):
                   output.write(f"{key}={request[key]}\n")
           PY
 
@@ -65,10 +63,11 @@ jobs:
       - name: Originale Bauherkunft aus demselben Lauf laden
         uses: actions/download-artifact@v4
         with:
-          name: ${{ steps.request.outputs.metadata_artifact_name }}
+          artifact-ids: ${{ steps.request.outputs.metadata_artifact_id }}
           run-id: ${{ steps.request.outputs.build_run_id }}
           repository: ${{ github.repository }}
           github-token: ${{ github.token }}
+          merge-multiple: true
           path: incoming/metadata
 
       - name: Original prüfen, zerlegen und Zusammenfügung nachweisen
@@ -143,6 +142,7 @@ jobs:
               "repository": os.environ["GITHUB_REPOSITORY"],
               "build_run_id": request["build_run_id"],
               "source_apk_artifact_id": request["apk_artifact_id"],
+              "source_metadata_artifact_id": request["metadata_artifact_id"],
               "source_commit": provenance["flutter_source_commit"],
               "transfer_run_id": int(os.environ["GITHUB_RUN_ID"]),
               "transfer_run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),

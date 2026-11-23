@@ -35,6 +35,11 @@ jobs:
       LUMO_NDK_DISPOSABLE_RUNNER: '1'
       GH_TOKEN: ${{ github.token }}
     steps:
+      - name: Ausdrückliche visuelle Sperre beachten
+        if: contains(github.event.head_commit.message, '[world-visual-hold]')
+        run: |
+          echo 'Der aktuelle Kandidat wird wegen bestätigter Sichtmängel zurückgehalten.'
+          exit 1
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
@@ -150,7 +155,7 @@ jobs:
             godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
             || python3 .github/probes/run_godot_probe.py --timeout 600 --log build-proof/GODOT-import-retry.txt -- \
               godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
-          for probe in lumo_world_regression lumo_world_errands_regression lumo_world_errands_controller_regression lumo_world_support_integration_regression host_bridge_regression treasure_exploration_regression native_table_boot_regression; do
+          for probe in lumo_world_regression lumo_world_errands_regression lumo_world_errands_controller_regression lumo_world_support_integration_regression lumo_world_hud_regression host_bridge_regression treasure_exploration_regression native_table_boot_regression; do
             python3 .github/probes/run_godot_probe.py --timeout 600 --log "build-proof/GODOT-${probe}.txt" -- \
               godot --headless --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
             if grep -E 'SCRIPT ERROR|Parse Error|^ERROR:|\] FAIL ' "build-proof/GODOT-${probe}.txt"; then
@@ -175,6 +180,18 @@ jobs:
           fi
           grep -E '\[WorldMap\] PASS [0-9]+ checks' build-proof/GODOT-WORLD-MAP.txt
           test -s build-proof/world-ui/world-map.png
+      - name: Echte World-Ansichten vor dem APK-Bau bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-TEAM-B-WORLD-VIEWS-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build-proof/world-ui/
+            build-proof/GODOT-WORLD-CAPTURE.txt
+            build-proof/GODOT-WORLD-MAP.txt
+            build-proof/FLUTTER-COMMIT.txt
+            build-proof/GODOT-SOURCE.json
+          if-no-files-found: error
+          compression-level: 6
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
@@ -198,6 +215,10 @@ jobs:
             godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
             --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
             --script "$PWD/build/lumo-godot-qa/scripts/tests/lumo_world_regression.gd"
+          python3 .github/probes/run_godot_probe.py --timeout 600 --log build-proof/WORLD-PCK-HUD-REGRESSION.txt -- \
+            godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
+            --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+            --script "$PWD/build/lumo-godot-qa/scripts/tests/lumo_world_hud_regression.gd"
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
