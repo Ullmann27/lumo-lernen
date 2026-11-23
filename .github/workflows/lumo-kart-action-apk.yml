@@ -11,9 +11,11 @@ on:
       - .github/workflows/lumo-kart-action-apk.yml
       - .github/probes/native_start_diagnostics.py
       - .github/probes/run_godot_probe.py
+      - .github/probes/verify_prior_core.py
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: lumo-test-apk-${{ github.ref }}
@@ -88,7 +90,30 @@ jobs:
             scripts.tests.test_studio_learning_contract \
             scripts.tests.test_local_backup_transaction -v \
             2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
+      - name: Bereits bestandene Kernprüfungen exakt zuordnen
+        id: prior_core
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY_PRIOR_CORE'
+          import json, os, pathlib, subprocess, sys
+          request = json.loads(pathlib.Path('config/test-apk-request.json').read_text())
+          reuse = request.get('reuse_verified_core')
+          if reuse is not None:
+              subprocess.run([
+                  sys.executable, '.github/probes/verify_prior_core.py',
+                  '--repo', os.environ['GITHUB_REPOSITORY'],
+                  '--commit', os.environ['GITHUB_SHA'],
+                  '--baseline-run', str(reuse['baseline_run']),
+                  '--baseline-job', str(reuse['baseline_job']),
+                  '--baseline-commit', reuse['baseline_commit'],
+                  '--output', 'build-proof',
+              ], check=True)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('verified=' + ('true' if reuse is not None else 'false') + '\n')
+          PY_PRIOR_CORE
       - name: Flutter – Analyse und Kernprüfungen
+        if: ${{ steps.prior_core.outputs.verified != 'true' }}
         shell: bash
         env:
           LUMO_ROOM_SCREENSHOT_DIR: build-proof/room
@@ -165,6 +190,7 @@ jobs:
             test/writing_word_progress_test.dart \
             | tee build-proof/FLUTTER-CORE-TESTS.txt
       - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
+        if: ${{ steps.prior_core.outputs.verified != 'true' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -225,6 +251,16 @@ jobs:
             --script res://scripts/tests/learning_tutor_regression.gd -- \
             --part=validation,invalid,return,voice
           echo "::endgroup::"
+      - name: Unveränderte geprüfte Spielquellen für Paket und Belege bereitstellen
+        if: ${{ steps.prior_core.outputs.verified == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
+          git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          test "$(git -C build/lumo-godot-qa rev-parse HEAD)" = "$SOURCE"
+          python3 scripts/verify_kart_fleet_mirror.py build/lumo-godot-qa
       - name: Exakten Spielstand gegen vollständige native Prüfung absichern
         shell: bash
         run: |

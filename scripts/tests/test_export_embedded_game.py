@@ -1,13 +1,19 @@
 """Generated Godot metadata must not poison a second managed export."""
 import importlib.util
+import contextlib
+import io
+import os
 import hashlib
 import json
 import struct
 from unittest.mock import patch
 from pathlib import Path
 import subprocess
+import signal
 import sys
 import tempfile
+import textwrap
+import time
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -268,18 +274,20 @@ class ImportCrashRecoveryTests(unittest.TestCase):
 
     def test_transient_editor_sigsegv_retries_exact_same_command(self):
         crashed = subprocess.CalledProcessError(-11, ['godot', '--import'])
-        with patch.object(MODULE, 'run', side_effect=[crashed, None]) as execute, \
+        with patch.object(MODULE, 'run_godot', side_effect=[crashed, None]) as execute, \
              patch.object(MODULE.time, 'sleep') as sleep:
             MODULE.import_with_sigsegv_retry('godot', Path('/fixed/pinned/source'))
         self.assertEqual(execute.call_count, 2)
-        self.assertEqual(execute.call_args_list[0], execute.call_args_list[1])
+        self.assertEqual(execute.call_args_list[0].args, execute.call_args_list[1].args)
+        self.assertNotEqual(execute.call_args_list[0].kwargs['log'],
+                            execute.call_args_list[1].kwargs['log'])
         self.assertIn('--single-threaded-scene', execute.call_args.args)
         self.assertIn('--import', execute.call_args.args)
         sleep.assert_called_once_with(2)
 
     def test_other_import_failure_is_not_retried_or_silenced(self):
         invalid = subprocess.CalledProcessError(1, ['godot', '--import'])
-        with patch.object(MODULE, 'run', side_effect=invalid) as execute, \
+        with patch.object(MODULE, 'run_godot', side_effect=invalid) as execute, \
              patch.object(MODULE.time, 'sleep') as sleep:
             with self.assertRaises(subprocess.CalledProcessError):
                 MODULE.import_with_sigsegv_retry('godot', Path('/fixed/pinned/source'))
@@ -288,20 +296,236 @@ class ImportCrashRecoveryTests(unittest.TestCase):
 
     def test_persistent_segmentation_fault_still_blocks_release(self):
         crashed = subprocess.CalledProcessError(-11, ['godot', '--import'])
-        with patch.object(MODULE, 'run', side_effect=crashed) as execute, \
+        with patch.object(MODULE, 'run_godot', side_effect=crashed) as execute, \
              patch.object(MODULE.time, 'sleep') as sleep:
             with self.assertRaises(subprocess.CalledProcessError):
                 MODULE.import_with_sigsegv_retry('godot', Path('/fixed/pinned/source'))
         self.assertEqual(execute.call_count, 3)
         self.assertEqual(sleep.call_count, 2)
+        self.assertEqual([entry.args for entry in sleep.call_args_list], [(2,), (4,)])
 
     def test_successful_editor_import_needs_no_retry(self):
-        with patch.object(MODULE, 'run', return_value=None) as execute, \
+        with patch.object(MODULE, 'run_godot', return_value=None) as execute, \
              patch.object(MODULE.time, 'sleep') as sleep:
             MODULE.import_with_sigsegv_retry('godot', Path('/fixed/pinned/source'))
         execute.assert_called_once()
         sleep.assert_not_called()
 
 
+
+@unittest.skipUnless(os.name == 'posix', 'Native SIGSEGV is a POSIX process result')
+class GuardedGodotProcessTests(unittest.TestCase):
+    """Exercise real child processes, native signals, full logs and the watchdog."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.directory = Path(self.temp.name)
+        self.sequence = 0
+        self.real_sleep = time.sleep
+
+    def make_engine(self, body):
+        self.sequence += 1
+        self.case = self.directory / str(self.sequence)
+        self.case.mkdir()
+        self.repo = self.case / 'source'
+        self.repo.mkdir()
+        self.logs = self.case / 'logs'
+        self.calls = self.case / 'calls'
+        engine = self.case / 'fake-godot'
+        engine.write_text(
+            f'#!{sys.executable}\n'
+            'import os, resource, signal, sys, time\n'
+            'from pathlib import Path\n'
+            'resource.setrlimit(resource.RLIMIT_CORE, (0, 0))\n'
+            'calls = Path(__file__).with_name("calls")\n'
+            'attempt = int(calls.read_text()) + 1 if calls.exists() else 1\n'
+            'calls.write_text(str(attempt))\n'
+            + textwrap.dedent(body)
+        )
+        engine.chmod(0o755)
+        return str(engine)
+
+    def import_engine(self, engine, timeout=5):
+        # The four contract tests above verify the real 2/4-second backoff.
+        # Keep the watchdog's polling sleeps, but omit only backoff in these tests.
+        with contextlib.redirect_stdout(io.StringIO()), \
+             patch.object(MODULE.time, 'sleep',
+                          side_effect=lambda delay: self.real_sleep(delay)
+                          if delay < 1 else None):
+            MODULE.import_with_sigsegv_retry(
+                engine, self.repo, log_dir=self.logs, timeout=timeout,
+            )
+
+    def assert_import_logs(self, count):
+        self.assertEqual(
+            sorted(path.name for path in self.logs.glob('*.txt')),
+            [f'GODOT-package-import-{index}.txt' for index in range(1, count + 1)],
+        )
+
+    def test_two_native_crashes_then_success_keep_all_logs_and_existing_cache(self):
+        engine = self.make_engine("""
+            repo = Path(sys.argv[sys.argv.index('--path') + 1])
+            cache = repo / '.godot' / 'imported' / 'partial-cache'
+            if attempt == 1:
+                cache.parent.mkdir(parents=True)
+                cache.write_text('same checked source')
+            else:
+                assert cache.read_text() == 'same checked source'
+            print(f'import attempt {attempt}', flush=True)
+            print(f'stderr attempt {attempt}', file=sys.stderr, flush=True)
+            if attempt < 3:
+                os.kill(os.getpid(), signal.SIGSEGV)
+            print('completed import', flush=True)
+        """)
+        self.import_engine(engine)
+        self.assertEqual(self.calls.read_text(), '3')
+        self.assert_import_logs(3)
+        for index in (1, 2, 3):
+            log = (self.logs / f'GODOT-package-import-{index}.txt').read_text()
+            self.assertIn(f'import attempt {index}', log)
+            self.assertIn(f'stderr attempt {index}', log)
+        self.assertIn('completed import',
+                      (self.logs / 'GODOT-package-import-3.txt').read_text())
+
+    def test_three_native_crashes_fail_and_keep_every_attempt_log(self):
+        engine = self.make_engine("""
+            print(f'native crash {attempt}', flush=True)
+            os.kill(os.getpid(), signal.SIGSEGV)
+        """)
+        with self.assertRaises(subprocess.CalledProcessError) as result:
+            self.import_engine(engine)
+        self.assertEqual(result.exception.returncode, -signal.SIGSEGV)
+        self.assertEqual(self.calls.read_text(), '3')
+        self.assert_import_logs(3)
+        for index in (1, 2, 3):
+            self.assertIn(f'native crash {index}',
+                          (self.logs / f'GODOT-package-import-{index}.txt').read_text())
+
+    def test_non_native_failure_is_not_retried(self):
+        engine = self.make_engine("""
+            print('invalid import', file=sys.stderr, flush=True)
+            sys.exit(2)
+        """)
+        with self.assertRaises(subprocess.CalledProcessError) as result:
+            self.import_engine(engine)
+        self.assertEqual(result.exception.returncode, 2)
+        self.assertEqual(self.calls.read_text(), '1')
+        self.assert_import_logs(1)
+        self.assertIn('invalid import',
+                      (self.logs / 'GODOT-package-import-1.txt').read_text())
+
+    def test_explicit_exit_139_is_not_mistaken_for_a_native_signal(self):
+        engine = self.make_engine("sys.exit(139)\n")
+        with self.assertRaises(subprocess.CalledProcessError) as result:
+            self.import_engine(engine)
+        self.assertEqual(result.exception.returncode, 139)
+        self.assertEqual(self.calls.read_text(), '1')
+        self.assert_import_logs(1)
+
+    def test_runtime_faults_fail_even_when_the_engine_exits_zero(self):
+        for fault in (
+            'SCRIPT ERROR: Invalid access',
+            'Parse Error: Expected expression',
+            'Compile Error: Failed to compile',
+            'ERROR: Condition "p_size <= 0" is true',
+        ):
+            with self.subTest(fault=fault):
+                engine = self.make_engine(
+                    f'print({fault!r}, file=sys.stderr, end="", flush=True)\n'
+                )
+                with self.assertRaisesRegex(RuntimeError, 'complete log'):
+                    self.import_engine(engine)
+                self.assertEqual(self.calls.read_text(), '1')
+                self.assert_import_logs(1)
+                self.assertEqual(
+                    (self.logs / 'GODOT-package-import-1.txt').read_text(), fault,
+                )
+
+    def test_script_fault_followed_by_sigsegv_is_never_retried(self):
+        engine = self.make_engine("""
+            print('SCRIPT ERROR: Not a recoverable import', flush=True)
+            os.kill(os.getpid(), signal.SIGSEGV)
+        """)
+        with self.assertRaisesRegex(RuntimeError, 'complete log'):
+            self.import_engine(engine)
+        self.assertEqual(self.calls.read_text(), '1')
+        self.assert_import_logs(1)
+
+    def test_watchdog_timeout_is_not_retried_and_preserves_output(self):
+        engine = self.make_engine("""
+            print('stalled importer', flush=True)
+            time.sleep(30)
+        """)
+        with self.assertRaises(subprocess.TimeoutExpired):
+            self.import_engine(engine, timeout=1)
+        self.assertEqual(self.calls.read_text(), '1')
+        self.assert_import_logs(1)
+        self.assertIn('stalled importer',
+                      (self.logs / 'GODOT-package-import-1.txt').read_text())
+
+    def test_error_split_across_reads_in_a_long_line_still_fails(self):
+        engine = self.make_engine("""
+            print('ERROR: ' + 'x' * 12000, end='', flush=True)
+            time.sleep(0.15)
+            print('p_size <= 0', end='', flush=True)
+        """)
+        with self.assertRaisesRegex(RuntimeError, 'complete log'):
+            self.import_engine(engine)
+        self.assertEqual(self.calls.read_text(), '1')
+        self.assert_import_logs(1)
+        self.assertEqual(
+            (self.logs / 'GODOT-package-import-1.txt').read_text(),
+            'ERROR: ' + 'x' * 12000 + 'p_size <= 0',
+        )
+
+    def test_export_pack_native_crash_is_not_retried(self):
+        engine = self.make_engine("""
+            if '--version' in sys.argv:
+                print('4.6.3.stable.official.test')
+                sys.exit(0)
+            phase = 'import' if '--import' in sys.argv else 'export'
+            marker = Path(__file__).with_name(phase + '-calls')
+            marker.write_text(str(int(marker.read_text()) + 1)
+                              if marker.exists() else '1')
+            print('running ' + phase, flush=True)
+            if phase == 'export':
+                os.kill(os.getpid(), signal.SIGSEGV)
+        """)
+        subprocess.run(['git', 'init', '-q', str(self.repo)], check=True)
+        (self.repo / 'project.godot').write_text('config_version=5\n')
+        subprocess.run(['git', 'add', '.'], cwd=self.repo, check=True)
+        subprocess.run(
+            ['git', '-c', 'user.name=Exporter Test',
+             '-c', 'user.email=exporter@example.invalid',
+             'commit', '-qm', 'Fixture source'],
+            cwd=self.repo, check=True,
+        )
+        revision = subprocess.check_output(
+            ['git', 'rev-parse', 'HEAD'], cwd=self.repo, text=True,
+        ).strip()
+        host = self.case / 'host'
+        (host / 'config').mkdir(parents=True)
+        (host / 'config/godot-source.json').write_text(json.dumps({
+            'repository': 'https://example.invalid/not-used',
+            'revision': revision, 'engine': '4.6.3',
+        }))
+        with patch.object(MODULE, 'ROOT', host), \
+             contextlib.redirect_stdout(io.StringIO()):
+            with self.assertRaises(subprocess.CalledProcessError) as result:
+                MODULE.export(self.repo, engine)
+        self.assertEqual(result.exception.returncode, -signal.SIGSEGV)
+        self.assertEqual((self.case / 'import-calls').read_text(), '1')
+        self.assertEqual((self.case / 'export-calls').read_text(), '1')
+        self.assertIn(
+            'running export',
+            (host / 'build-proof/GODOT-package-export.txt').read_text(),
+        )
+        self.assertEqual(subprocess.check_output(
+            ['git', 'status', '--porcelain'], cwd=self.repo, text=True,
+        ), '')
+
+
 if __name__ == '__main__':
     unittest.main()
+

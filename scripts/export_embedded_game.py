@@ -2,12 +2,14 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import shutil
 import signal
 import struct
 import subprocess
+import sys
 import time
 
 from package_notices import bundle_notices
@@ -19,20 +21,118 @@ def run(*args, cwd=None):
     return subprocess.run(args, cwd=cwd, check=True)
 
 
-def import_with_sigsegv_retry(binary: str, repo: Path, attempts: int = 3) -> None:
+GODOT_FAULT = re.compile(
+    rb"SCRIPT ERROR:|Parse Error:|Compile Error:|ERROR:[^\r\n]*p_size"
+)
+
+
+def _stop_godot(process):
+    """Stop the managed importer/exporter and its children before returning."""
+    if process.poll() is not None:
+        return
+    try:
+        if os.name == 'posix':
+            os.killpg(process.pid, signal.SIGTERM)
+        else:
+            process.terminate()
+    except ProcessLookupError:
+        return
+    try:
+        process.wait(timeout=5)
+    except subprocess.TimeoutExpired:
+        try:
+            if os.name == 'posix':
+                os.killpg(process.pid, signal.SIGKILL)
+            else:
+                process.kill()
+        except ProcessLookupError:
+            pass
+        process.wait()
+
+
+def run_godot(*args, log: Path, timeout: float = 600):
+    """Keep a full engine log and reject reported faults, including exit zero."""
+    if timeout <= 0:
+        raise ValueError('Godot timeout must be positive')
+    log.parent.mkdir(parents=True, exist_ok=True)
+    offset = 0
+    tail = b''
+    fault = False
+    timed_out = False
+
+    def drain():
+        nonlocal offset, tail, fault
+        with log.open('rb') as reader:
+            reader.seek(offset)
+            chunk = reader.read()
+        offset += len(chunk)
+        if chunk:
+            sys.stdout.write(chunk.decode('utf-8', errors='replace'))
+            sys.stdout.flush()
+        scanned = tail + chunk
+        fault = fault or GODOT_FAULT.search(scanned) is not None
+        # Keep the complete unfinished line, even across reads. A font-error
+        # prefix and p_size may arrive in different chunks of the same line.
+        boundary = max(scanned.rfind(b'\n'), scanned.rfind(b'\r'))
+        tail = scanned[boundary + 1:]
+
+    with log.open('wb') as output:
+        process = subprocess.Popen(
+            args, stdout=output, stderr=subprocess.STDOUT,
+            start_new_session=(os.name == 'posix'),
+        )
+        deadline = time.monotonic() + timeout
+        try:
+            while True:
+                drain()
+                if fault:
+                    _stop_godot(process)
+                    break
+                if process.poll() is not None:
+                    break
+                if time.monotonic() >= deadline:
+                    timed_out = True
+                    _stop_godot(process)
+                    break
+                time.sleep(0.05)
+            code = process.wait()
+        finally:
+            _stop_godot(process)
+    # Include output written between the last read and process termination.
+    drain()
+    if fault:
+        raise RuntimeError(
+            'Godot reported a script, parser, compiler or invalid font error; '
+            f'complete log: {log}'
+        )
+    if timed_out:
+        raise subprocess.TimeoutExpired(args, timeout)
+    if code:
+        raise subprocess.CalledProcessError(code, args)
+
+
+def import_with_sigsegv_retry(binary: str, repo: Path, attempts: int = 3, *,
+                              log_dir: Path | None = None,
+                              timeout: float = 600) -> None:
     """Retry only the known transient Godot 4.6.3 editor SIGSEGV.
 
     Do not turn genuine import errors, other exits or persistent crashes into
     successes. Reuse the same exact pinned checkout and engine, completing the
     full editor import before attempting a signed Android package.
     """
+    if attempts not in (1, 2, 3):
+        raise ValueError('Godot import requires one to three attempts')
+    log_dir = ROOT / 'build-proof' if log_dir is None else log_dir
     command = (
         binary, '--headless', '--single-threaded-scene', '--path',
         str(repo), '--editor', '--import', '--quit',
     )
     for attempt in range(1, attempts + 1):
         try:
-            run(*command)
+            run_godot(
+                *command, log=log_dir / f'GODOT-package-import-{attempt}.txt',
+                timeout=timeout,
+            )
             return
         except subprocess.CalledProcessError as error:
             if error.returncode != -signal.SIGSEGV or attempt == attempts:
@@ -194,8 +294,9 @@ def export(repo: Path, binary: str):
         assets = ROOT / 'android/app/src/main/assets'
         assets.mkdir(parents=True, exist_ok=True)
         pack = assets / 'lumo_game.pck'
-        run(binary, '--headless', '--single-threaded-scene', '--path',
-            str(repo), '--export-pack', 'Android', str(pack))
+        run_godot(binary, '--headless', '--single-threaded-scene', '--path',
+                  str(repo), '--export-pack', 'Android', str(pack),
+                  log=ROOT / 'build-proof/GODOT-package-export.txt')
         header = pack.read_bytes()[:20]
         magic, _, major, minor, patch = struct.unpack('<4s4I', header)
         if magic != b'GDPC' or (major, minor, patch) != (4, 6, 3):
@@ -218,3 +319,4 @@ if __name__ == '__main__':
     parser.add_argument('--godot', default=shutil.which('godot') or 'godot')
     args = parser.parse_args()
     export(args.repo.resolve(), args.godot)
+
