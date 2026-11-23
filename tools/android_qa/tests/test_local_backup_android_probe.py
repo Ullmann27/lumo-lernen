@@ -199,6 +199,104 @@ class DocumentsUiContracts(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             PROBE.suggested_filename([field], DOCS)
 
+
+    def test_systemui_tree_is_reobserved_until_the_actual_picker_field_exists(self):
+        for package in ('com.android.documentsui', 'com.google.android.documentsui'):
+            with self.subTest(package=package):
+                # The observed failure had only SystemUI after the SAF intent
+                # was already resumed; a later tree contained this real field.
+                initial = [node('11:00', package='com.android.systemui',
+                                cls='android.widget.TextView')]
+                field = node(FILENAME, package=package, cls='android.widget.EditText')
+                field.set('resource-id', 'android:id/title')
+                with patch.object(PROBE.live, 'live_nodes',
+                        side_effect=[initial, [field]]) as read, \
+                     patch.object(PROBE.time, 'sleep') as sleep, \
+                     patch.object(PROBE.base, 'adb') as adb:
+                    self.assertEqual(
+                        PROBE.wait_suggested_filename(Path('.'), package, 'suggested'),
+                        FILENAME,
+                    )
+                    self.assertEqual(read.call_count, 2)
+                    self.assertEqual(
+                        [call.args for call in read.call_args_list],
+                        [(Path('.'), 'suggested-0'), (Path('.'), 'suggested-1')],
+                    )
+                    sleep.assert_called_once_with(.5)
+                    adb.assert_not_called()
+
+    def test_incomplete_picker_field_must_become_nonempty_enabled_visible_and_sized(self):
+        for attributes in (
+                {'text': ''}, {'enabled': 'false'},
+                {'visible-to-user': 'false'}, {'bounds': '[10,20][10,80]'}):
+            with self.subTest(attributes=attributes):
+                ready = node(FILENAME, cls='android.widget.EditText')
+                incomplete = deepcopy(ready)
+                incomplete.attrib.update(attributes)
+                with patch.object(PROBE.live, 'live_nodes',
+                        side_effect=[[incomplete], [ready]]) as read, \
+                     patch.object(PROBE.time, 'sleep') as sleep:
+                    self.assertEqual(
+                        PROBE.wait_suggested_filename(Path('.'), DOCS, 'ready'),
+                        FILENAME,
+                    )
+                    self.assertEqual(read.call_count, 2)
+                    sleep.assert_called_once_with(.5)
+
+    def test_filename_readiness_is_bounded_and_never_invents_a_value(self):
+        foreign = node(FILENAME, package='com.android.systemui',
+                       cls='android.widget.EditText')
+        with patch.object(PROBE.live, 'live_nodes', return_value=[foreign]) as read, \
+             patch.object(PROBE.time, 'sleep') as sleep, \
+             patch.object(PROBE.base, 'adb') as adb:
+            with self.assertRaisesRegex(TimeoutError, 'did not become ready'):
+                PROBE.wait_suggested_filename(Path('.'), DOCS, 'missing')
+            self.assertEqual(read.call_count, 25)
+            self.assertEqual(sleep.call_count, 24)
+            self.assertEqual(read.call_args.args, (Path('.'), 'missing-24'))
+            adb.assert_not_called()
+
+    def test_wrong_nonempty_names_fail_immediately_instead_of_waiting_for_a_valid_one(self):
+        for wrong in ('../' + FILENAME, FILENAME + '.json', 'Lumo-Sicherung-', 'notes.json'):
+            with self.subTest(wrong=wrong):
+                invalid = node(wrong, cls='android.widget.EditText')
+                valid = node(FILENAME, cls='android.widget.EditText')
+                with patch.object(PROBE.live, 'live_nodes',
+                        side_effect=[[invalid], [valid]]) as read, \
+                     patch.object(PROBE.time, 'sleep') as sleep:
+                    with self.assertRaisesRegex(RuntimeError, 'Exactly one'):
+                        PROBE.wait_suggested_filename(Path('.'), DOCS, 'wrong')
+                    read.assert_called_once()
+                    sleep.assert_not_called()
+
+    def test_multiple_fields_fail_immediately_even_if_one_is_not_yet_ready(self):
+        for duplicate_ready in (True, False):
+            with self.subTest(duplicate_ready=duplicate_ready):
+                field = node(FILENAME, cls='android.widget.EditText')
+                duplicate = deepcopy(field)
+                if not duplicate_ready:
+                    duplicate.set('text', '')
+                    duplicate.set('enabled', 'false')
+                with patch.object(PROBE.live, 'live_nodes',
+                        side_effect=[[field, duplicate], [field]]) as read, \
+                     patch.object(PROBE.time, 'sleep') as sleep:
+                    with self.assertRaisesRegex(RuntimeError, 'Exactly one'):
+                        PROBE.wait_suggested_filename(Path('.'), DOCS, 'ambiguous')
+                    read.assert_called_once()
+                    sleep.assert_not_called()
+
+    def test_ready_filename_returns_the_observed_value_without_extra_reads(self):
+        filename = 'Lumo-Sicherung-2026-11-23-1058.json'
+        field = node(filename, cls='android.widget.EditText')
+        with patch.object(PROBE.live, 'live_nodes', return_value=[field]) as read, \
+             patch.object(PROBE.time, 'sleep') as sleep:
+            self.assertEqual(
+                PROBE.wait_suggested_filename(Path('.'), DOCS, 'current'),
+                filename,
+            )
+            read.assert_called_once_with(Path('.'), 'current-0')
+            sleep.assert_not_called()
+
     def test_saf_intent_must_belong_to_current_resumed_activity(self):
         self.assertEqual(PROBE.picker_identity(activities(), 'CREATE_DOCUMENT')['activity_token'], 'a12')
         with self.assertRaisesRegex(RuntimeError, 'expected JSON SAF intent'):
@@ -234,3 +332,4 @@ class DocumentsUiContracts(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

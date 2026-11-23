@@ -26,6 +26,7 @@ from modernization_android_tour import verify_apk_identity
 
 base, live, PACKAGE = probe.base, probe.live, probe.PACKAGE
 DOCUMENTS = {'com.android.documentsui', 'com.google.android.documentsui'}
+SUGGESTED_BACKUP_NAME = re.compile(r'Lumo-Sicherung-\d{4}-\d{2}-\d{2}-\d{4}\.json')
 SETTINGS = 'lumo_app_settings_v1'
 PROFILE = 'lumo_active_profile'
 WALLET = 'lumo_reward_wallet_v1'
@@ -311,9 +312,33 @@ def wait_picker(out, action, tag):
 def suggested_filename(nodes, package):
     values = [node.get('text', '') for node in nodes if node.get('package') == package and
         node.get('class') == 'android.widget.EditText' and node.get('enabled') == 'true' and bounds(node)]
-    if len(values) != 1 or not re.fullmatch(r'Lumo-Sicherung-\d{4}-\d{2}-\d{2}-\d{4}\.json', values[0]):
+    if len(values) != 1 or not SUGGESTED_BACKUP_NAME.fullmatch(values[0]):
         raise RuntimeError('Exactly one current suggested backup filename is required')
     return values[0]
+
+
+
+def wait_suggested_filename(out, package, tag):
+    """Wait for the current picker field, never for a wrong name to change."""
+    for attempt in range(25):
+        nodes = live.live_nodes(out, f'{tag}-{attempt}')
+        fields = [node for node in nodes if node.get('package') == package and
+                  node.get('class') == 'android.widget.EditText']
+        if len(fields) > 1:
+            raise RuntimeError('Exactly one current suggested backup filename is required')
+        if fields:
+            field = fields[0]
+            value = field.get('text', '')
+            if value and not SUGGESTED_BACKUP_NAME.fullmatch(value):
+                raise RuntimeError('Exactly one current suggested backup filename is required')
+            if (value and field.get('enabled') == 'true' and
+                    field.get('visible-to-user') != 'false' and bounds(field)):
+                return suggested_filename(nodes, package)
+        # The SAF activity can be foreground before its accessibility tree is
+        # ready. Only missing or incomplete fields allow another live read.
+        if attempt < 24:
+            time.sleep(.5)
+    raise TimeoutError('Current suggested backup filename did not become ready')
 
 
 def downloads(out, package, tag):
@@ -460,9 +485,9 @@ def main():
         probe.flutter_tap(out, 'Sicherungsdatei speichern', 'export',
             scroll_attempts=40, min_visible_height_px=48)
         picker = wait_picker(out, 'CREATE_DOCUMENT', 'export-picker')
-        filename = suggested_filename(live.live_nodes(out, 'export-suggested-name'), picker['package'])
+        filename = wait_suggested_filename(out, picker['package'], 'export-suggested-name')
         downloads(out, picker['package'], 'export')
-        if suggested_filename(live.live_nodes(out, 'export-final-name'), picker['package']) != filename:
+        if wait_suggested_filename(out, picker['package'], 'export-final-name') != filename:
             raise RuntimeError('Current save filename changed unexpectedly')
         remote = '/sdcard/Download/' + filename
         if base.adb('shell', 'test', '-e', shlex.quote(remote), '&&', 'echo', 'exists', check=False):
@@ -574,3 +599,4 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
+

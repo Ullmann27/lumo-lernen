@@ -1,0 +1,203 @@
+name: "Lumo Kart – Android-Backup gezielt abschließen"
+on:
+  push:
+    branches: [integration/kart-action-20261123]
+    paths:
+      - .github/probes/lumo_local_backup_android_probe.py
+      - tools/android_qa/tests/test_local_backup_android_probe.py
+      - .github/probes/verify_kart_backup_recovery.py
+      - .github/workflows/lumo-kart-backup-recovery.yml
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-backup-recovery-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    name: Unveränderte APK mit vollständigem Backup erneut prüfen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Prüfcode getrennt auschecken
+        uses: actions/checkout@v4
+        with:
+          path: harness
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Unveränderliche Quelle der gebauten APK auschecken
+        uses: actions/checkout@v4
+        with:
+          ref: c6edb5ac1f7808ba5d994696ea803a364cbe6500
+          path: candidate-source
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-EMULATOR-APK-45154258300
+          run-id: 45154258300
+          github-token: ${{ github.token }}
+          path: candidate/x86_64
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-KART-APK-45154258300
+          run-id: 45154258300
+          github-token: ${{ github.token }}
+          path: release
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-KART-METADATA-45154258300
+          run-id: 45154258300
+          github-token: ${{ github.token }}
+          path: release
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-ANDROID-TOUR-45154258300
+          run-id: 45154258300
+          github-token: ${{ github.token }}
+          path: prior-android
+      - name: APK, Quellgleichheit und unveränderte Vorbelege prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p completed-evidence/tour completed-evidence/prior-attempt
+          python3 harness/.github/probes/verify_kart_backup_recovery.py prepare --harness harness --candidate candidate-source --x86 candidate/x86_64 --arm release --prior prior-android --tour completed-evidence/tour --out completed-evidence/tour/RECOVERY-SCOPE.json
+          python3 candidate-source/scripts/verify_native_start_diagnostics.py prior-android/tour/native-starts.json --out completed-evidence/prior-attempt/NATIVE-GAME-STARTS.json
+          cp prior-android/tour/tour-result.json completed-evidence/prior-attempt/tour-result.json
+          cp -a prior-android/tour/local-backup completed-evidence/prior-attempt/local-backup
+          cp candidate/x86_64/SPLIT-APK-IDENTITY.json completed-evidence/tour/SPLIT-APK-IDENTITY.json
+          awk '{print $1 "  dist/x86_64/Lumo-Lernen-Neu.apk"}' candidate/x86_64/SHA256SUMS.txt > candidate/ANDROID-TOUR-SHA256SUMS.txt
+      - name: Emulator und Prüftools vorbereiten
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          cd harness
+          ../.probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_local_backup_android_probe.py -v
+      - name: Mesa-Software-Anzeige für das Emulator-GL starten
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        shell: bash
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > completed-evidence/tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > completed-evidence/tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -Fi 'llvmpipe' completed-evidence/tour/mesa-renderer.txt
+      - uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_ANDROID_SKYPOST_PROBE: '1'
+          # Die 15 originalen Startbeobachtungen derselben APK bleiben erhalten
+          # und bestehen oben den unveränderten Startprüfer. Haupttour und
+          # vollständiger Backup-Rundlauf werden jetzt tatsächlich neu gefahren.
+          LUMO_NATIVE_START_DIAGNOSTICS: '0'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          ram-size: 4096M
+          emulator-build: '14472402'
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            cd "$GITHUB_WORKSPACE/candidate-source" && "$GITHUB_WORKSPACE/.probe-venv/bin/python" .github/probes/modernization_android_tour.py --apk "$GITHUB_WORKSPACE/candidate/x86_64/Lumo-Lernen-Neu.apk" --provenance "$GITHUB_WORKSPACE/candidate/x86_64/BUILD-PROVENANCE.json" --sums "$GITHUB_WORKSPACE/candidate/ANDROID-TOUR-SHA256SUMS.txt" --out "$GITHUB_WORKSPACE/completed-evidence/tour"
+            cd "$GITHUB_WORKSPACE/candidate-source" && "$GITHUB_WORKSPACE/.probe-venv/bin/python" "$GITHUB_WORKSPACE/harness/.github/probes/lumo_local_backup_android_probe.py" --apk "$GITHUB_WORKSPACE/candidate/x86_64/Lumo-Lernen-Neu.apk" --provenance "$GITHUB_WORKSPACE/candidate/x86_64/BUILD-PROVENANCE.json" --sums "$GITHUB_WORKSPACE/candidate/ANDROID-TOUR-SHA256SUMS.txt" --out "$GITHUB_WORKSPACE/completed-evidence/tour/local-backup"
+      - name: Tatsächlichen frischen Backup-Abschluss und Spielstartbelege verbinden
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp prior-android/tour/native-starts.json completed-evidence/tour/native-starts.json
+          cp -a prior-android/tour/native-starts completed-evidence/tour/native-starts
+          cp completed-evidence/prior-attempt/NATIVE-GAME-STARTS.json completed-evidence/tour/NATIVE-GAME-STARTS.json
+          python3 harness/.github/probes/verify_kart_backup_recovery.py complete --harness harness --candidate candidate-source --x86 candidate/x86_64 --arm release --prior prior-android --tour completed-evidence/tour --out completed-evidence/tour/RECOVERY-SCOPE.json
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('LUMO-ANDROID-PRUEFBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(Path('completed-evidence').rglob('*')):
+                  if path.is_file():
+                      archive.write(path, str(path.relative_to('completed-evidence')))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-ANDROID-RECOVERY-${{ github.run_id }}
+          path: |
+            completed-evidence/
+            LUMO-ANDROID-PRUEFBELEGE.zip
+          if-no-files-found: warn
+
+  publish:
+    name: Identische vollständig geprüfte Test-APK öffentlich bereitstellen
+    needs: android
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-KART-APK-45154258300
+          run-id: 45154258300
+          github-token: ${{ github.token }}
+          path: release
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-KART-METADATA-45154258300
+          run-id: 45154258300
+          github-token: ${{ github.token }}
+          path: release
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-ANDROID-RECOVERY-${{ github.run_id }}
+          path: recovered
+      - name: Geprüfte APK einmal veröffentlichen
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd release && sha256sum -c SHA256SUMS.txt)
+          python3 - <<'PY'
+          import json, os, shutil
+          from pathlib import Path
+          proof=json.loads(Path('release/BUILD-PROVENANCE.json').read_text())
+          recovery=json.loads(Path('recovered/completed-evidence/tour/RECOVERY-SCOPE.json').read_text())
+          assert proof['flutter_source_commit']=='c6edb5ac1f7808ba5d994696ea803a364cbe6500'
+          assert proof['sha256']=='26454377ce203dd17a4322f1b421439553d2b028450c97622c89576949e0e7c2'
+          assert recovery['source']['harness_commit']==os.environ['GITHUB_SHA']
+          assert recovery['android_status']=='PASS'
+          assert recovery['fresh_backup_status']=='PASS'
+          assert recovery['android_workflow_run']==int(os.environ['GITHUB_RUN_ID'])
+          shutil.copyfile('recovered/completed-evidence/tour/RECOVERY-SCOPE.json', 'release/ANDROID-RECOVERY-PROVENANCE.json')
+          with Path('release/LIESMICH.txt').open('a') as note:
+              note.write('\nAndroid-Abschluss: frische vollständige Haupttour und SAF-Backup-Rundlauf bestanden.\n')
+              note.write('Die APK ist bytegleich mit dem signierten Bau 45154258300; nur der Prüfhelfer wurde korrigiert.\n')
+              note.write('15 unveränderte native Startbeobachtungen desselben APK-Hashes wurden gesondert verifiziert.\n')
+              note.write('Prüfcode: '+os.environ['GITHUB_SHA']+'; Android-Lauf: '+os.environ['GITHUB_RUN_ID']+'\n')
+          PY
+          NAME="Lumo-Lernen-Test-0.13.56-2068.apk"
+          TAG="lumo-test-0.13.56-2068-$GITHUB_RUN_ID"
+          test -s "release/$NAME"
+          test -s recovered/LUMO-ANDROID-PRUEFBELEGE.zip
+          gh release create "$TAG" "release/$NAME" release/SHA256SUMS.txt release/APK-VERIFICATION.json release/BUILD-PROVENANCE.json release/ANDROID-RECOVERY-PROVENANCE.json release/LUMO-KART-AUSBAU-BELEGE.zip recovered/LUMO-ANDROID-PRUEFBELEGE.zip --repo "$GITHUB_REPOSITORY" --target c6edb5ac1f7808ba5d994696ea803a364cbe6500 --title "Lumo Kart Ausbau 0.13.56+2068" --notes-file release/LIESMICH.txt --prerelease --latest=false
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url,assets
+
