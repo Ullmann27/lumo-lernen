@@ -475,6 +475,19 @@ class MainActivity : FlutterActivity() {
                 // Geister-Duell / WLAN: nur geprüfte Formen; sonst wird das Feld weggelassen.
                 options.put("playerName", KartGhostRules.playerName(call.argument<String>("playerName")))
                     .put("friendsLan", call.argument<Boolean>("friendsLan") == true)
+                val onlineAllowed = call.argument<Boolean>("friendsOnline") == true
+                val rawOnlineEndpoint = call.argument<String>("kartOnlineEndpoint")?.trim().orEmpty()
+                val onlineEndpoint = runCatching {
+                    val uri = java.net.URI(rawOnlineEndpoint)
+                    if (rawOnlineEndpoint.length in 1..2048 && uri.scheme == "wss" &&
+                        !uri.host.isNullOrEmpty() && uri.userInfo == null &&
+                        uri.rawQuery == null && uri.rawFragment == null &&
+                        (uri.port == -1 || uri.port in 1..65535)) {
+                        uri.toASCIIString()
+                    } else ""
+                }.getOrDefault("")
+                options.put("friendsOnline", onlineAllowed && onlineEndpoint.isNotEmpty())
+                    .put("kartOnlineEndpoint", if (onlineAllowed) onlineEndpoint else "")
                 val ghostDuel = call.argument<Boolean>("friendsGhostShare") == true
                 options.put("friendsGhostShare", ghostDuel)
                 val ghost = call.argument<String>("kartFriendGhost")

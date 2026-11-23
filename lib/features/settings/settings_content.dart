@@ -28,6 +28,7 @@ import 'lumo_voice_diagnostics_card.dart';
 import 'local_voice_license_dialog.dart';
 import 'discovery_settings_card.dart';
 import '../kart_friends/kart_friends_inbox.dart';
+import 'kart_online_settings_card.dart';
 import '../backup/local_backup_card.dart';
 import '../parent_tasks/parent_tasks_editor_card.dart';
 import '../rewards/custom_rewards_card.dart';
@@ -721,7 +722,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
             const SizedBox(height: 14),
             _SettingsCard(
               key: const ValueKey('settingsFriendsCard'),
-              title: 'Mit Freunden spielen',
+              title: 'WLAN und Geister-Duell',
               children: [
                 const Text(
                     'Ohne Konto, ohne Chat, ohne Internet-Server. Beides ist aus, bis ihr es hier '
@@ -765,6 +766,8 @@ class _SettingsContentState extends State<_SettingsContentBody> {
               ],
             ),
             const SizedBox(height: 14),
+        KartOnlineSettingsCard(settings: _settings, onSave: _save),
+        const SizedBox(height: 14),
         _SettingsCard(title: 'Lumo-KI Testserver', children: [
           _SwitchRow(
             title: 'Lumo-KI-Server erlauben',

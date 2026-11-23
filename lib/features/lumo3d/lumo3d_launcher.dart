@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../core/legacy_learning_data.dart';
+import '../../core/app_settings.dart';
 import '../../core/native_profile_key_repository.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../../core/lumo_voice.dart';
@@ -233,6 +234,11 @@ Future<bool> launchLumo3D(
             ? (appState?.state.childName ?? '')
             : '',
         'friendsLan': appState?.state.settings.lanPlayEnabled == true,
+        'friendsOnline': appState?.state.settings.kartOnlineEnabled == true,
+        'kartOnlineEndpoint': appState?.state.settings.kartOnlineEnabled == true
+            ? AppSettings.sanitizeKartOnlineUrl(
+                appState?.state.settings.kartOnlineUrl)
+            : '',
         'friendsGhostShare': appState?.state.settings.ghostDuelEnabled == true,
         if (kartFriendGhost != null) ...{
           'kartFriendGhost': kartFriendGhost,

@@ -6,6 +6,9 @@ class AppSettings {
   /// vorausgefuellt, damit Heinz sie nicht jedes Mal eintragen muss.
   static const String defaultAiProxyUrl = 'https://lumo-ai-proxy.onrender.com';
 
+  /// Set only after a real relay has been deployed and verified.
+  static const String defaultKartOnlineUrl = '';
+
   const AppSettings({
     this.dailyGoal = 3,
     this.requireDailyMissionForGames = false,
@@ -28,6 +31,8 @@ class AppSettings {
     this.voicePitch = 1.0,
     this.lanPlayEnabled = false,
     this.ghostDuelEnabled = false,
+    this.kartOnlineEnabled = false,
+    this.kartOnlineUrl = defaultKartOnlineUrl,
   });
   final int dailyGoal;
   final bool requireDailyMissionForGames;
@@ -63,6 +68,10 @@ class AppSettings {
   /// von Freunden öffnen. Vorgabe aus.
   final bool ghostDuelEnabled;
 
+  /// Separate adult consent for encrypted Internet races with accepted friends.
+  final bool kartOnlineEnabled;
+  final String kartOnlineUrl;
+
   AppSettings copyWith({
     int? dailyGoal,
     bool? requireDailyMissionForGames,
@@ -85,6 +94,8 @@ class AppSettings {
     double? voicePitch,
     bool? lanPlayEnabled,
     bool? ghostDuelEnabled,
+    bool? kartOnlineEnabled,
+    String? kartOnlineUrl,
   }) {
     return AppSettings(
       dailyGoal: dailyGoal ?? this.dailyGoal,
@@ -111,6 +122,8 @@ class AppSettings {
       voicePitch: voicePitch ?? this.voicePitch,
       lanPlayEnabled: lanPlayEnabled ?? this.lanPlayEnabled,
       ghostDuelEnabled: ghostDuelEnabled ?? this.ghostDuelEnabled,
+      kartOnlineEnabled: kartOnlineEnabled ?? this.kartOnlineEnabled,
+      kartOnlineUrl: sanitizeKartOnlineUrl(kartOnlineUrl ?? this.kartOnlineUrl),
     );
   }
 
@@ -136,6 +149,8 @@ class AppSettings {
         'voicePitch': voicePitch,
         'lanPlayEnabled': lanPlayEnabled,
         'ghostDuelEnabled': ghostDuelEnabled,
+        'kartOnlineEnabled': kartOnlineEnabled,
+        'kartOnlineUrl': sanitizeKartOnlineUrl(kartOnlineUrl),
       };
 
   factory AppSettings.fromJson(Map<String, dynamic> json) {
@@ -184,7 +199,27 @@ class AppSettings {
       ),
       lanPlayEnabled: _bool(json['lanPlayEnabled'], fallback: false),
       ghostDuelEnabled: _bool(json['ghostDuelEnabled'], fallback: false),
+      kartOnlineEnabled: _bool(json['kartOnlineEnabled'], fallback: false),
+      kartOnlineUrl: sanitizeKartOnlineUrl(
+        json['kartOnlineUrl'] is String
+            ? json['kartOnlineUrl'] as String
+            : defaultKartOnlineUrl,
+      ),
     );
+  }
+
+  /// Internet identities are sent only to an explicitly configured TLS relay.
+  /// Credentials, query strings and fragments are never accepted in its URL.
+  static String sanitizeKartOnlineUrl(String? raw) {
+    final value = raw?.trim() ?? '';
+    if (value.isEmpty || value.length > 2048) return '';
+    final uri = Uri.tryParse(value);
+    if (uri == null || uri.scheme != 'wss' || uri.host.isEmpty ||
+        uri.userInfo.isNotEmpty || uri.hasQuery || uri.hasFragment ||
+        (uri.hasPort && (uri.port < 1 || uri.port > 65535))) {
+      return '';
+    }
+    return uri.replace(path: uri.path.isEmpty ? '/ws' : uri.path).toString();
   }
 
   static bool _bool(dynamic value, {required bool fallback}) =>

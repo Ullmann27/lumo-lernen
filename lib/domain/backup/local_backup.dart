@@ -23,6 +23,7 @@ class LocalBackupPolicy {
     'aiProxyEnabled',
     'lanPlayEnabled',
     'ghostDuelEnabled',
+    'kartOnlineEnabled',
   };
 
   static bool allowsPreference(String key) {
@@ -87,6 +88,7 @@ class LocalBackupPolicy {
           clean[name] = false;
         }
         clean['aiProxyUrl'] = AppSettings.defaultAiProxyUrl;
+        clean['kartOnlineUrl'] = '';
         value = jsonEncode(clean);
       }
       _typed(value);

@@ -178,7 +178,7 @@ class LumoLocalBackupBridge(private val activity: Activity,
         private const val LIST_PREFIX = "VGhpcyBpcyB0aGUgcHJlZml4IGZvciBhIGxpc3Qu!"
         private const val DOUBLE_PREFIX = "VGhpcyBpcyB0aGUgcHJlZml4IGZvciBEb3VibGUu"
         private val privateSettings = setOf("cloudVoiceEnabled", "localVoiceLicenseAccepted",
-            "microphoneEnabled", "scannerEnabled", "aiProxyEnabled", "lanPlayEnabled", "ghostDuelEnabled")
+            "microphoneEnabled", "scannerEnabled", "aiProxyEnabled", "lanPlayEnabled", "ghostDuelEnabled", "kartOnlineEnabled")
 
         private fun transaction(context: Context) = LumoBackupTransaction(
             context.filesDir, File(context.noBackupFilesDir, "lumo-local-backup-v1"))
@@ -291,11 +291,12 @@ class LumoLocalBackupBridge(private val activity: Activity,
                 })
                 if (key == "lumo_app_settings_v1") {
                     val settings = parsed(value as String)
-                    require(privateSettings.all { settings.opt(it) == false })
+                    require(privateSettings.all { (it == "kartOnlineEnabled" && !settings.has(it)) || settings.opt(it) == false })
                     require(settings.optString("aiProxyUrl") == "https://lumo-ai-proxy.onrender.com")
+                    require(!settings.has("kartOnlineUrl") || settings.optString("kartOnlineUrl").isEmpty())
                     val portableSettings = setOf("dailyGoal", "requireDailyMissionForGames", "missionTasksPerStation",
                         "soundEnabled", "voiceEnabled", "autoReadEnabled", "aiLearningMode", "aiProxyUrl", "reduceAnimations",
-                        "largeText", "calmMode", "learningMode", "voiceRate", "voicePitch") + privateSettings
+                        "largeText", "calmMode", "learningMode", "voiceRate", "voicePitch", "kartOnlineUrl") + privateSettings
                     require(settings.keys().asSequence().all { it in portableSettings })
                 }
             }
