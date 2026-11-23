@@ -213,13 +213,17 @@ class AppSettings {
   static String sanitizeKartOnlineUrl(String? raw) {
     final value = raw?.trim() ?? '';
     if (value.isEmpty || value.length > 2048) return '';
-    final uri = Uri.tryParse(value);
-    if (uri == null || uri.scheme != 'wss' || uri.host.isEmpty ||
+    final securePrefix = RegExp(r'^wss://', caseSensitive: false);
+    if (!securePrefix.hasMatch(value)) return '';
+    // Dart normalizes an explicit :0 away for unknown URI schemes. Parse the
+    // authority as HTTPS first so an invalid port cannot turn into a default.
+    final uri = Uri.tryParse(value.replaceFirst(securePrefix, 'https://'));
+    if (uri == null || uri.scheme != 'https' || uri.host.isEmpty ||
         uri.userInfo.isNotEmpty || uri.hasQuery || uri.hasFragment ||
         (uri.hasPort && (uri.port < 1 || uri.port > 65535))) {
       return '';
     }
-    return uri.replace(path: uri.path.isEmpty ? '/ws' : uri.path).toString();
+    return uri.replace(scheme: 'wss', path: uri.path.isEmpty ? '/ws' : uri.path).toString();
   }
 
   static bool _bool(dynamic value, {required bool fallback}) =>
