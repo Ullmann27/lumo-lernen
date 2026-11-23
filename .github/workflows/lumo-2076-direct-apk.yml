@@ -87,7 +87,7 @@ jobs:
         run: |
           set -euo pipefail
           test -s dist/Lumo-Lernen-Neu.apk
-          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a --abi x86_64
           sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
           cp config/godot-source.json dist/GODOT-SOURCE.json
           grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
@@ -97,7 +97,7 @@ jobs:
       - name: Upload LUMO 2076 ARM64 APK
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-2076-arm64-verified
+          name: lumo-2076-unified-verified
           path: |
             dist/Lumo-Lernen-Neu.apk
             dist/APK-SHA256.txt
