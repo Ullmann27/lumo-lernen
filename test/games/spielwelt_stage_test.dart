@@ -36,7 +36,7 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('Fold resizing and large text retain ten usable game targets',
+  testWidgets('Fold resizing and large text retain all unified game targets',
       (tester) async {
     final app = LumoAppState();
     addTearDown(app.dispose);

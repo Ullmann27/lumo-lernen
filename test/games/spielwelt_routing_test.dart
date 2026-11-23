@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
+import 'package:lumo_lernen/features/games/logic/logic_games_screen.dart';
 import 'package:lumo_lernen/features/games/memory/lumo_memory_game.dart';
 import 'package:lumo_lernen/features/games/spielwelt/spielwelt_routes.dart';
 import 'package:lumo_lernen/features/games/star_trail/star_trail_screen.dart';
@@ -29,9 +30,15 @@ void main() {
 
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  test('routing table lists thirteen unique portals and unique covers', () {
+  test('routing table exposes one unified World and unique covers', () {
     expect(SpielweltRoutes.all.map((r) => r.identity), SpielweltRoutes.identities);
-    expect(SpielweltRoutes.all, hasLength(13));
+    expect(SpielweltRoutes.all, hasLength(12));
+    expect(SpielweltRoutes.byIdentity('world').target, 'world');
+    expect(SpielweltRoutes.identities, isNot(contains('treasure')));
+    expect(SpielweltRoutes.identities, isNot(contains('build')));
+    expect(SpielweltRoutes.identities, isNot(contains('village')));
+    expect(SpielweltRoutes.byIdentity('world').targetDescription,
+        allOf(contains('Schatzinsel'), contains('Dorfwirtschaft'), contains('Baumodus')));
     expect(SpielweltRoutes.byIdentity('chess').target, 'chess');
     expect(SpielweltRoutes.byIdentity('skypost').target, 'skypost');
     final covers = [
@@ -105,10 +112,11 @@ void main() {
             reason: '${route.identity} must open scene ${route.target}');
       } else {
         final found = switch (route.target) {
+          'LogicGamesScreen' => find.byType(LogicGamesScreen),
           'LumoMemoryScreen' => find.byType(LumoMemoryScreen),
           'LumoConnectFourScreen' => find.byType(LumoConnectFourScreen),
           'QuizShowContent' => find.byType(QuizShowContent),
-          _ => find.byType(SizedBox),
+          _ => throw StateError('Unhandled Flutter Spielwelt target: ${route.target}'),
         };
         expect(found, findsOneWidget,
             reason: '${route.identity} → ${route.target}');

@@ -46,14 +46,6 @@ class SpielweltPortal {
         semanticTitle = 'Lumo 4 Gewinnt',
         specialId = 'connectFour';
 
-  /// Direct economic village; independent of the classic Bauwelt's unlocks.
-  /// The native Android bridge must still validate the child's actual launch.
-  const SpielweltPortal.village({required this.onOpen})
-      : game = null,
-        state = const GameUnlockState(unlocked: true),
-        semanticTitle = 'Dorf & Wirtschaft',
-        specialId = 'village';
-
   /// Schach ist von Anfang an offen: Lernweg für Kinder, Partie für Große.
   const SpielweltPortal.chess({required this.onOpen})
       : game = null,
@@ -82,8 +74,6 @@ class SpielweltPortal {
         return 'Quizshow';
       case 'connectFour':
         return '4 Gewinnt';
-      case 'village':
-        return 'Dorfwirtschaft';
       case 'chess':
         return 'Schach';
       case 'skypost':
@@ -104,8 +94,6 @@ class SpielweltPortal {
         'logic' => 'Sudoku, Wörterwerkstatt und Zahlenbrücken',
         'world' => 'Dein Dorf, deine Freunde und neue Abenteuer',
         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
-        'village' =>
-          'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!',
         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
         'chess' => 'Schach lernen mit Lumo – oder gegen ihn spielen',
         'skypost' => 'Fliegen, Briefe liefern, Rätsel lösen',
@@ -126,8 +114,7 @@ const _gameTileTitleStyle = TextStyle(
   color: Colors.white,
 );
 
-double _gameTileHorizontalInset(SpielweltPortal portal) =>
-    portal.identity == 'village' ? 5 : 9;
+double _gameTileHorizontalInset(SpielweltPortal portal) => 9;
 
 /// The familiar game grid, presented as one calm blue stage. Each tile opens
 /// its original game directly; neither artwork nor layout owns save state.
@@ -172,11 +159,9 @@ class _SpielweltHubState extends State<SpielweltHub> {
     'world',
     'logic',
     'kart',
-    'village',
     'skypost',
     'chess',
     'cards',
-    'build',
     'puzzle',
     'memory',
     'jumpRun',
@@ -205,22 +190,6 @@ class _SpielweltHubState extends State<SpielweltHub> {
         Theme.of(context).textTheme.bodyMedium!.merge(_gameTileTitleStyle);
     final textScaler = MediaQuery.textScalerOf(context);
     var fittedColumns = columns;
-    for (final portal
-        in portals.where((portal) => portal.identity == 'village')) {
-      final title = TextPainter(
-        text: TextSpan(text: portal.title, style: titleStyle),
-        textDirection: Directionality.of(context),
-        textScaler: textScaler,
-        locale: Localizations.maybeLocaleOf(context),
-      )..layout();
-      // Reserve the focused 2 dp border as well as the real text inset.
-      final minimumWidth =
-          title.minIntrinsicWidth + 2 * (_gameTileHorizontalInset(portal) + 2);
-      title.dispose();
-      final availableColumns =
-          math.max(1, ((width + gap) / (minimumWidth + gap)).floor());
-      fittedColumns = math.min(fittedColumns, availableColumns);
-    }
     final tileWidth = (width - gap * (fittedColumns - 1)) / fittedColumns;
     final textScale = textScaler.scale(1).clamp(1.0, 2.0);
     final iconHeight = (tileWidth * .67).clamp(76.0, 139.0);

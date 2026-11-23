@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.util.HexFormat;
 import java.util.concurrent.CancellationException;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BooleanSupplier;
 
 /** Runs production prepareGerman + ids with the exact pinned tokenizer table.
  * Only ONNX session/tensor construction is synthetic. A cancellation supplied
@@ -18,9 +20,15 @@ public final class OfflineVoiceTokenizerContract {
         checks++;
         if (!condition) throw new AssertionError(message);
     }
+    private static BooleanSupplier cancelAfterTokenization() {
+        AtomicInteger polls = new AtomicInteger();
+        // Production checks cancellation once before ids() and again before
+        // model execution. Let ids() run, then cancel before any ONNX session.
+        return () -> polls.incrementAndGet() > 1;
+    }
     private static void accepts(LumoOfflineSpeechEngine engine, String text) throws Exception {
         try {
-            engine.synthesize(text, "explain", () -> true);
+            engine.synthesize(text, "explain", cancelAfterTokenization());
             throw new AssertionError("Cancelled tokenization must not return synthetic audio");
         } catch (CancellationException expected) {
             checks++;
@@ -62,7 +70,7 @@ public final class OfflineVoiceTokenizerContract {
                 LumoOfflineSpeechEngine.prepareGerman(unsupported).contains("\u0378"),
                 "An unknown question character is not silently discarded");
             boolean rejected = false;
-            try { engine.synthesize(unsupported, "explain", () -> true); }
+            try { engine.synthesize(unsupported, "explain", cancelAfterTokenization()); }
             catch (IllegalArgumentException expected) {
                 rejected = "Unsupported speech character".equals(expected.getMessage());
             }

@@ -37,7 +37,7 @@ void main() {
     expect(AppSettings.fromJson(on.toJson()).lanPlayEnabled, isFalse);
   });
 
-  test('Die Einladung kennt alle 13 Kart-Strecken beim Namen', () {
+  test('Die Einladung kennt alle 14 Kart-Strecken beim Namen', () {
     expect(KartFriendGhost.trackNames.keys.toSet(), {
       'sonnenhafen',
       'zauberwald',
@@ -52,6 +52,7 @@ void main() {
       'desert_drift',
       'learning_lab',
       'jungle_emerald_3600',
+      'windwerk_3000',
     });
     expect(KartFriendGhost.trackNames.values.every((name) => name.length > 3),
         isTrue);

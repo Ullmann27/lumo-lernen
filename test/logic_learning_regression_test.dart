@@ -98,7 +98,11 @@ void main() {
       onAnswered: (answer) => result = answer,
     )))));
     expect(find.text('Logik'), findsOneWidget);
-    await tester.tap(find.text(task.answer));
+    final correctOption =
+        instance.options.singleWhere((option) => '${option.payload ?? option.label}' == '${instance.correctAnswer}');
+    await tester.tap(
+      find.byKey(ValueKey('answer-option-${correctOption.id}')),
+    );
     await tester.pump();
     expect(result?.correct, isTrue);
     expect(result?.answer, instance.correctAnswer);

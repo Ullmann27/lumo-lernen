@@ -53,9 +53,8 @@ void main() {
         'puzzle',
         'jumpRun',
         'rhythm',
-        'treasure',
-        'build',
-        'village',
+        'chess',
+        'skypost',
         'kart',
         'connectFour',
         'quizShow',
@@ -69,7 +68,7 @@ void main() {
             reason: '${entry.key} $identity height');
         if (entry.key == 'fold7-open-portrait') {
           expect(box.top, greaterThanOrEqualTo(0),
-              reason: 'All eleven games start inside the open Fold viewport');
+              reason: 'All unified game portals start inside the open Fold viewport');
           expect(box.bottom, lessThanOrEqualTo(entry.value.height),
               reason: 'The compact stage must not push $identity off screen');
         }
@@ -86,9 +85,8 @@ void main() {
         'Puzzle',
         'Jump & Run',
         'Rhythm',
-        'Schatzsuche',
-        'Bauwelt',
-        'Dorfwirtschaft',
+        'Schach',
+        'Sternenpost',
         'Lumo Kart',
         '4 Gewinnt',
         'Quizshow',
