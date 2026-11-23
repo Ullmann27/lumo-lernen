@@ -77,7 +77,7 @@ jobs:
       LIBGL_ALWAYS_SOFTWARE: 'true'
       GALLIUM_DRIVER: llvmpipe
       LP_NUM_THREADS: '2'
-      LUMO_NATIVE_SHA: '93557b3ca206916a39fdeaa6ae6ce05442b08846'
+      LUMO_NATIVE_SHA: '7c6e728b1c0ec45d7098855c205bba6dfc50c190'
     defaults:
       run:
         working-directory: native
@@ -85,7 +85,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Ullmann27/lumo-godot
-          ref: '93557b3ca206916a39fdeaa6ae6ce05442b08846'
+          ref: '7c6e728b1c0ec45d7098855c205bba6dfc50c190'
           path: native
           persist-credentials: false
       - name: Install the project's pinned Godot engine and offscreen renderer
@@ -118,7 +118,7 @@ jobs:
         run: |
           set -euo pipefail
           status=0
-          for probe in lumo_world_regression lumo_world_errands_regression lumo_world_errands_controller_regression lumo_world_support_integration_regression; do
+          for probe in lumo_world_regression lumo_world_errands_regression lumo_world_errands_controller_regression lumo_world_support_integration_regression lumo_world_hud_regression; do
             if ! timeout 600 godot --headless --verbose --single-threaded-scene --path . \
               --script "res://scripts/tests/$probe.gd" > "team-b-proof/$probe.log" 2>&1; then
               cat "team-b-proof/$probe.log"
