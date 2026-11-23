@@ -1,5 +1,5 @@
 {
-  "request": 51,
-  "version": "0.14.3+2073",
-  "note": "Gemeinsamer LUMO-Kandidat nach abschließendem Kart-Reaktionsfix: Open World, Pfotenpfad und Freundepost plus aktuelle importierte Fahrerreaktionen. Der zuvor rote Kart-Gate beruhte auf einer zurückgesetzten Testbeobachtung nach sechs Frames; die bereits bewährte unmittelbare 1+5-Frame-Prüfung ist wiederhergestellt, ohne die Laufzeitreaktion abzuschwächen. Nur LUMO-Laufzeit/Regressionen; keine Fremdprojekt-Laufzeit oder Fremdassets. Native Quelle ce4f53c4398638ce03465bf71b5a0b2e06b4daca. Vollständige Native-, APK- und Android-Gates verpflichtend."
+  "request": 52,
+  "version": "0.14.3+2074",
+  "note": "2074 ersetzt den verworfenen 2073-Kandidaten. Einziger zusätzlicher Fix: der Schatzsuche-Regressionstest gibt seine zwei synthetischen InputEventScreenTouch-Ressourcen vor Prozessende explizit frei. Im roten 2073-Lauf waren LumoWorld 194, Errands 289, ErrandsController 22, WorldSupport 27, WorldHUD 499, HostBridge sowie TreasureExploration 92 Checks bereits PASS; der Abbruch erfolgte erst durch '2 resources still in use at exit'. Keine Testschwächung und keine Laufzeitfunktion entfernt. Enthält weiterhin Open World/Pfotenpfad/Freundepost, 19 Kart-Items und die aktuellen importierten Fahrer. Native Quelle beef2e2fd56504dc9d7329e1c0cb89dd7e34f468."
 }
