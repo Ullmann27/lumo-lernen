@@ -140,7 +140,7 @@ jobs:
           set -euo pipefail
           LUMO_WORLD_MAP_CAPTURE="$PWD/team-b-proof/world-map.png" \
             timeout 180 xvfb-run -a -s "-screen 0 1280x900x24" \
-              godot --single-threaded-scene --path . --rendering-method gl_compatibility \
+              godot --single-threaded-scene --path . --rendering-method gl_compatibility --audio-driver Dummy \
                 --script res://scripts/tests/lumo_world_map_regression.gd \
                 > team-b-proof/world-map-renderer.log 2>&1
           if grep -E 'SCRIPT ERROR|Parse Error|^ERROR:|\] FAIL ' team-b-proof/world-map-renderer.log; then
