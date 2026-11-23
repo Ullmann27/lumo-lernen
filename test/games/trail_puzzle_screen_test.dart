@@ -66,7 +66,10 @@ void main() {
     expect((await store.load('child-a')).plans[puzzle.id], route);
     final program = find.descendant(
         of: find.byKey(const ValueKey('trail-program')),
-        matching: find.text('${route.length} ${route.last.arrow}'));
+        matching: find.byWidgetPredicate((widget) =>
+            widget is Semantics &&
+            widget.properties.label ==
+                'Schritt ${route.length}: ${route.last.label}'));
     expect(program, findsOneWidget);
     await tester.pumpWidget(const SizedBox());
     app.dispose();

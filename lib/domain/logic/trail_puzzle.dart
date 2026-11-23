@@ -78,8 +78,9 @@ class TrailPuzzle {
   String get title => 'Pfad $level · Klasse $grade';
   String get instruction => stations.length == 1
       ? 'Besuche Stern 1 und bringe die Pfote dann zum Picknick.'
-      : 'Besuche die Sterne ${List.generate(stations.length, (i) => i + 1).join(' → ')} '
-          'und gehe dann zum Picknick.';
+      : 'Besuche die Sterne der Reihe nach: '
+          '${List.generate(stations.length, (i) => i + 1).join(', ')}. '
+          'Gehe dann zum Picknick.';
 
   bool contains(int cell) => cell >= 0 && cell < rows * columns;
 

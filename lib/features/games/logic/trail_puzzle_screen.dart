@@ -10,6 +10,13 @@ import '../../tests/iq/iq_style.dart';
 import 'logic_widgets.dart';
 import 'trail_progress_store.dart';
 
+IconData _trailDirectionIcon(TrailDirection direction) => switch (direction) {
+      TrailDirection.up => Icons.arrow_upward_rounded,
+      TrailDirection.right => Icons.arrow_forward_rounded,
+      TrailDirection.down => Icons.arrow_downward_rounded,
+      TrailDirection.left => Icons.arrow_back_rounded,
+    };
+
 /// Complete route-planning game: plan, watch the program, correct and retry.
 class TrailPuzzleScreen extends StatefulWidget {
   const TrailPuzzleScreen({
@@ -480,6 +487,7 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
                     for (var i = 0; i < _commands.length; i++)
                       Semantics(
                         label: 'Schritt ${i + 1}: ${_commands[i].label}',
+                        excludeSemantics: true,
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 5),
@@ -488,11 +496,19 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
                                   ? logicGreen
                                   : const Color(0xFF2A5270),
                               borderRadius: BorderRadius.circular(10)),
-                          child: Text('${i + 1} ${_commands[i].arrow}',
-                              style: iqText(17,
-                                  color: i == _executing
-                                      ? logicNavy
-                                      : Colors.white)),
+                          child: Row(mainAxisSize: MainAxisSize.min, children: [
+                            Text('${i + 1}',
+                                style: iqText(17,
+                                    color: i == _executing
+                                        ? logicNavy
+                                        : Colors.white)),
+                            const SizedBox(width: 4),
+                            Icon(_trailDirectionIcon(_commands[i]),
+                                size: 21,
+                                color: i == _executing
+                                    ? logicNavy
+                                    : Colors.white),
+                          ]),
                         ),
                       ),
                   ]),
@@ -517,7 +533,7 @@ class _TrailPuzzleScreenState extends State<TrailPuzzleScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15))),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Text(direction.arrow, style: iqText(26)),
+                  Icon(_trailDirectionIcon(direction), size: 28),
                   Text(direction.label, style: iqText(12)),
                 ]),
               )),

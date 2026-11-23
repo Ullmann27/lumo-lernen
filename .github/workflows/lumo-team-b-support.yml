@@ -114,15 +114,24 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          status=0
           for probe in lumo_world_regression lumo_world_errands_regression lumo_world_errands_controller_regression lumo_world_support_integration_regression; do
-            timeout 600 godot --headless --single-threaded-scene --path . \
-              --script "res://scripts/tests/$probe.gd" > "team-b-proof/$probe.log" 2>&1
-            if grep -E 'SCRIPT ERROR|Parse Error|^ERROR:|\] FAIL ' "team-b-proof/$probe.log"; then
-              exit 1
+            if ! timeout 600 godot --headless --verbose --single-threaded-scene --path . \
+              --script "res://scripts/tests/$probe.gd" > "team-b-proof/$probe.log" 2>&1; then
+              cat "team-b-proof/$probe.log"
+              status=1
             fi
-            grep -E '\] PASS [0-9]+ checks' "team-b-proof/$probe.log"
+            if grep -E 'SCRIPT ERROR|Parse Error|^ERROR:|\] FAIL ' "team-b-proof/$probe.log"; then
+              cat "team-b-proof/$probe.log"
+              status=1
+            fi
+            if ! grep -E '\] PASS [0-9]+ checks' "team-b-proof/$probe.log"; then
+              status=1
+            fi
           done
+          exit "$status"
       - name: Render and exercise the actual World atlas
+        if: ${{ !cancelled() }}
         shell: bash
         run: |
           set -euo pipefail
