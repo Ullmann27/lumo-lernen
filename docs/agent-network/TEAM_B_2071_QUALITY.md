@@ -70,3 +70,9 @@ Ein früherer tatsächlicher Releaseversuch erhielt HTTP403 „Resource not acce
 ## Verbleibender tatsächlicher Umfang
 
 Die existierende installierte Android-Tour prüft Onboarding, Lernatelier, native Szenen, Kartfahrt, Rückkehr und Lernstand; Pfotenpfad wird darin noch nicht bedient. Seine Domain-, Speicher-, Widget- und Bildprüfungen werden nicht als Android-Ende-zu-Ende-Beleg ausgegeben. Physische Fold7-/ARM64-Tests,60FPS, thermische Eigenschaften und hörbare Sprachqualität bleiben offen. Die World ist ein spielbares erstes Kapitel mit Erweiterungen, keine als vollständig behauptete AAA-Welt.
+
+## Gesonderter Publisher tatsächlich geprüft
+
+Der ausschließlich prüfende [Lauf45200058196](https://github.com/Ullmann27/lumo-lernen/actions/runs/45200058196), Job137780845069, ist auf Commit1128d28dd9aed476228757e2efe8973493f75885 vollständig erfolgreich. Die exakte Team-B-Anpassung besteht **24 Schutztests**, Python-Syntax, den Vergleich der drei tatsächlichen2071-Metadaten durch verify_metadata sowie echtes Parsen beider YAML-Dateien und **11 Bashblöcke**. Root und Design-Agent haben das abgeschlossene Log unabhängig gelesen. Logic-Agent bestätigte vorab20 unveränderte Schutz-/Hilfsblöcke und24 erhaltene Testkörper.
+
+Die vorbereiteten Dateien sind aktivierungsfrei. Keine config/lumo-team-b-reviewed-publish.json, kein Secretzugriff, kein Release und keine vorweggenommene Android-Freigabe. [Konkreter späterer Ablauf](REVIEWED_PUBLISH_2071.md) und [Prüfbeleg](../evidence/team-b-2071/PUBLISHER-VALIDATION.json). Das lokale Runtimeproblem wird dadurch nicht als behoben dargestellt.

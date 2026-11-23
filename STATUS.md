@@ -14,7 +14,7 @@ Datei **Lumo-Lernen-Test-0.14.2-2071.apk**, **537231343 Bytes**, SHA-256 **c7036
 
 Der eigene Androidjob **137767273722** läuft zu diesem Checkpoint noch. Seine originale Tour, acht SAF-Sicherungs-/Rückspielschritte, beobachtete native Starts und nachgelagerte Veröffentlichung sind noch nicht als bestanden bestätigt. Ein öffentlicher Direktlink besteht noch nicht.
 
-Der früher beobachtete Release-HTTP403 ist dokumentiert. Der getrennte Hauptteam-Publisher wurde unverändert aus **00056a379d40cda2538619f114c12c76ed3c7f1c** übernommen. Seine später vorbereitete Team-B-Anpassung darf erst nach tatsächlichem Android-PASS und einer ausdrücklich eingerichteten Repository-Publisher-Identität aktiviert werden. Keine Tokensuche, keine Rechteumgehung.
+Der früher beobachtete Release-HTTP403 ist dokumentiert. Der getrennte Hauptteam-Publisher wurde unverändert aus **00056a379d40cda2538619f114c12c76ed3c7f1c** übernommen. Die eigene Team-B-Anpassung besteht jetzt24 Schutztests, den Vergleich der realen2071-Metadaten und echte YAML-/Bash-Syntaxprüfung im separaten Lauf45200058196. Sie darf erst nach tatsächlichem Android-PASS und einer ausdrücklich eingerichteten Repository-Publisher-Identität aktiviert werden. Keine Tokensuche, keine Rechteumgehung.
 
 Die lokale Arbeitsumgebung ist seit etwa 15:49 Uhr Wien nicht verfügbar. Deshalb werden dortige Dateien und der begonnene private ZIP-Fallback nicht als dauerhaft abrufbar ausgegeben. Die Originalartefakte liegen weiter im obigen GitHub-Lauf. Die einzelne APK ist 360431 Bytes größer als die vom Dateidienst beim Hauptteam tatsächlich bestätigte 512-MiB-Grenze. Es wird kein eigener fehlgeschlagener Upload erfunden.
 

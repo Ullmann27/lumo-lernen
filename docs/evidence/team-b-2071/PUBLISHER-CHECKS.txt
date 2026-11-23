@@ -1,0 +1,30 @@
+2026-11-23T14:59:56.6833429Z test_archived_evidence_must_equal_the_checked_files (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_archived_evidence_must_equal_the_checked_files) ... ok
+2026-11-23T14:59:56.7329028Z test_asset_changed_after_verification_stops_before_create (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_asset_changed_after_verification_stops_before_create) ... ok
+2026-11-23T14:59:56.7336699Z test_builtin_token_is_never_a_publisher_fallback (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_builtin_token_is_never_a_publisher_fallback) ... ok
+2026-11-23T14:59:56.7339716Z test_changed_certificate_pck_or_arm64_hash_is_rejected (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_changed_certificate_pck_or_arm64_hash_is_rejected) ... ok
+2026-11-23T14:59:56.7344340Z test_complete_order_is_specific_to_original_candidate (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_complete_order_is_specific_to_original_candidate) ... ok
+2026-11-23T14:59:56.7345229Z test_duplicate_json_fields_fail_closed (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_duplicate_json_fields_fail_closed) ... ok
+2026-11-23T14:59:56.7381128Z test_existing_release_or_tag_never_reaches_create (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_existing_release_or_tag_never_reaches_create) ... ok
+2026-11-23T14:59:56.7382305Z test_expired_or_different_artifact_id_is_rejected (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_expired_or_different_artifact_id_is_rejected) ... ok
+2026-11-23T14:59:56.7383592Z test_failed_old_publish_does_not_invalidate_successful_build_and_android (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_failed_old_publish_does_not_invalidate_successful_build_and_android) ... ok
+2026-11-23T14:59:56.7384606Z test_failed_or_unbound_job_is_rejected (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_failed_or_unbound_job_is_rejected) ... ok
+2026-11-23T14:59:56.7385488Z test_full_tour_backup_and_real_world_start_are_required (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_full_tour_backup_and_real_world_start_are_required) ... ok
+2026-11-23T14:59:56.7415903Z test_order_rejects_missing_unknown_or_boolean_identity (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_order_rejects_missing_unknown_or_boolean_identity) ... ok
+2026-11-23T14:59:56.7424449Z test_original_metadata_and_split_are_accepted (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_original_metadata_and_split_are_accepted) ... ok
+2026-11-23T14:59:56.7425554Z test_pass_label_cannot_hide_failed_or_missing_backup_step (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_pass_label_cannot_hide_failed_or_missing_backup_step) ... ok
+2026-11-23T14:59:56.7426472Z test_post_backup_installed_apk_must_match (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_post_backup_installed_apk_must_match) ... ok
+2026-11-23T14:59:56.7427330Z test_precomputed_pass_cannot_replace_world_observation (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_precomputed_pass_cannot_replace_world_observation) ... ok
+2026-11-23T14:59:56.7428303Z test_private_repository_cannot_be_claimed_as_public_delivery (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_private_repository_cannot_be_claimed_as_public_delivery) ... ok
+2026-11-23T14:59:56.7429200Z test_public_download_checks_actual_size_and_sha (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_public_download_checks_actual_size_and_sha) ... ok
+2026-11-23T14:59:56.7430026Z test_public_download_has_no_auth_or_cookie_header (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_public_download_has_no_auth_or_cookie_header) ... ok
+2026-11-23T14:59:56.7430918Z test_public_download_rejects_http_redirect (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_public_download_rejects_http_redirect) ... ok
+2026-11-23T14:59:56.7431796Z test_same_named_artifact_from_another_run_or_fork_is_rejected (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_same_named_artifact_from_another_run_or_fork_is_rejected) ... ok
+2026-11-23T14:59:56.7432664Z test_tour_for_another_apk_cannot_be_reused (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_tour_for_another_apk_cannot_be_reused) ... ok
+2026-11-23T14:59:56.7433596Z test_wrong_pending_or_retried_run_is_rejected (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_wrong_pending_or_retried_run_is_rejected) ... ok
+2026-11-23T14:59:56.7434478Z test_wrong_publisher_identity_stops_before_any_write (test_lumo_team_b_reviewed_publish.TeamBReviewedPublishTests.test_wrong_publisher_identity_stops_before_any_write) ... ok
+2026-11-23T14:59:56.7435458Z Ran 24 tests in 0.060s
+2026-11-23T14:59:56.7435696Z OK
+2026-11-23T14:59:56.8138828Z Original ARM64, x86_64 and shared PCK metadata: PASS
+2026-11-23T14:59:56.8809693Z YAML parsed: .github/workflows/lumo-team-b-reviewed-publish.yml
+2026-11-23T14:59:56.8810563Z YAML parsed: .github/workflows/lumo-team-b-reviewed-publish-check.yml
+2026-11-23T14:59:56.8811186Z Bash syntax parsed without execution: 11 blocks

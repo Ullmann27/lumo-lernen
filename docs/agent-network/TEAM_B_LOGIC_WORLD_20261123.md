@@ -14,7 +14,7 @@ Originalrun [45191784853](https://github.com/Ullmann27/lumo-lernen/actions/runs/
 
 Der frühere abgebrochene Run45190521151 gehört zur Quelleaf1b15a. Seine tatsächlichen PNGs zeigten den kontrastarmen Los!-Text. Der minimale abschließende Fixb4db erzeugte den jetzt gebauten2071. Das „Cancelled“ im Screenshot belegt deshalb den ersetzten Vorgängerlauf.
 
-Der Hauptteam-Checkpoint00056a einschließlich unveränderter2070-Publisher-Dateien und Dokumentation wird erhalten. Die eigene2071-Publisher-Anpassung wird separat geprüft. Ohne tatsächliche Android-Belege und ausdrücklich legitim eingerichtete Publisher-Identität bleibt die Aktivierungsconfig aus.
+Der Hauptteam-Checkpoint00056a einschließlich unveränderter2070-Publisher-Dateien und Dokumentation wird erhalten. Die eigene2071-Publisher-Anpassung ist in Lauf45200058196 tatsächlich geprüft:24 Schutztests, drei echte Metadaten, zwei YAML-Dateien und11 Bashblöcke erfolgreich. Ohne tatsächliche Android-Belege und ausdrücklich legitim eingerichtete Publisher-Identität bleibt die Aktivierungsconfig aus.
 
 ## Bedienwege
 
