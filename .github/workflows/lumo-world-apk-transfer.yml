@@ -4,7 +4,7 @@ name: "Lumo APK – unveränderter Dateitransport"
 # kein Release und keine Änderung an der laufenden Android-Prüfung.
 on:
   push:
-    branches: [feature/logic-world-20261123]
+    branches: [feature/logic-world-20261123, transport/team-b-apk-2071-45191784853]
     paths: [config/lumo-world-apk-transfer.json]
 
 permissions:
