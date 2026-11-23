@@ -210,13 +210,15 @@ jobs:
           echo "LUMO_JSON_JAR=$RUNNER_TEMP/lumo-contract-tools/json-20240303.jar" >> "$GITHUB_ENV"
           echo "LUMO_TEST_JSON_JAR=$RUNNER_TEMP/lumo-contract-tools/json-20240303.jar" >> "$GITHUB_ENV"
       - name: Install verified Gradle for the real build-contract probe
-        if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111' || github.head_ref == 'chatgpt/lumo-2016-host-integration-20261111' || github.ref_name == 'chatgpt/lumo-2016-host-integration-20261111' || github.head_ref == 'chatgpt/lumo-spielewelt-stage-20261112' || github.ref_name == 'chatgpt/lumo-spielewelt-stage-20261112')
+        if: (github.head_ref == 'integration/lumo-world-cards-20261123' || github.ref_name == 'integration/lumo-world-cards-20261123' || github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111' || github.head_ref == 'chatgpt/lumo-2016-host-integration-20261111' || github.ref_name == 'chatgpt/lumo-2016-host-integration-20261111' || github.head_ref == 'chatgpt/lumo-spielewelt-stage-20261112' || github.ref_name == 'chatgpt/lumo-spielewelt-stage-20261112')
         run: |
           set -euo pipefail
           curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip -o "$RUNNER_TEMP/lumo-gradle.zip"
           printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 "$RUNNER_TEMP/lumo-gradle.zip" | sha256sum -c -
           unzip -q "$RUNNER_TEMP/lumo-gradle.zip" -d "$RUNNER_TEMP/lumo-verified-gradle"
           echo "$RUNNER_TEMP/lumo-verified-gradle/gradle-9.1.0/bin" >> "$GITHUB_PATH"
+          test -n "$(find "$RUNNER_TEMP/lumo-verified-gradle/gradle-9.1.0/lib" -maxdepth 1 -name 'kotlin-compiler-embeddable-*.jar' -print -quit)"
+          echo "LUMO_KOTLIN_LIB_DIR=$RUNNER_TEMP/lumo-verified-gradle/gradle-9.1.0/lib" >> "$GITHUB_ENV"
       - name: Verify all build and preservation contracts
         env:
           REQUIRE_ALL_TESTS: ${{ (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111' || github.head_ref == 'chatgpt/lumo-2016-host-integration-20261111' || github.ref_name == 'chatgpt/lumo-2016-host-integration-20261111' || github.head_ref == 'chatgpt/lumo-spielewelt-stage-20261112' || github.ref_name == 'chatgpt/lumo-spielewelt-stage-20261112') }}

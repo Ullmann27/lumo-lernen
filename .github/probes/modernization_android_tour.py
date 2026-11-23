@@ -1451,9 +1451,15 @@ def wait_race_hud(out: Path, timeout: float = 90) -> dict:
         frame = read_frame(out / (name + '.png'))
         last = frame['text'][:300]
         if not skipped_guide:
-            skip_word = next((word for word in frame['words']
-                              if _simplify(word['text']) == 'uberspringen'
-                              and .22 * frame['height'] <= word['top'] <= .57 * frame['height']), None)
+            # Word boxes are optional evidence. Synthetic/guard frames and OCR
+            # fallbacks may intentionally provide only text/lines; absence of
+            # word boxes must not bypass the pause/result HUD rejection below.
+            words = frame.get('words') or []
+            frame_height = frame.get('height', 0)
+            skip_word = next((word for word in words
+                              if _simplify(word.get('text', '')) == 'uberspringen'
+                              and frame_height > 0
+                              and .22 * frame_height <= word.get('top', -1) <= .57 * frame_height), None)
             if skip_word is not None:
                 skip = (skip_word['left'] + skip_word['width'] // 2,
                         skip_word['top'] + skip_word['height'] // 2)

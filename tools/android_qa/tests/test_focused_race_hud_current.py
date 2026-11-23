@@ -84,6 +84,7 @@ class CurrentFocusedRaceHudTests(unittest.TestCase):
                 with patch.object(tour, '_shot', return_value=b'no-new-device-capture'), \
                         patch.object(tour, 'read_frame', return_value=frame), \
                         patch.object(tour, 'focused_race_hud_text', return_value=actual), \
+                        patch.object(tour, '_focused_icon_hud_lap', return_value=''), \
                         patch.object(tour.time, 'monotonic', side_effect=[0, 0, 91]), \
                         patch.object(tour.time, 'sleep'), \
                         patch.object(tour.evidence, 'rendered_race_frame') as pixels, \
