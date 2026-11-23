@@ -1,0 +1,110 @@
+name: LUMO 2076 verified delta APK
+on:
+  push:
+    branches:
+      - integration/lumo-kart-complete-2076
+    paths:
+      - .github/workflows/lumo-2076-direct-apk.yml
+permissions:
+  contents: read
+concurrency:
+  group: lumo-2076-direct-apk
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
+          persist-credentials: false
+
+      - name: Prove the delta from Android 2075
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=6804dbf37faa12db1450a8dfa856208eb867ded2
+          git cat-file -e "${BASE}^{commit}"
+          mapfile -t changed < <(git diff --name-only "${BASE}...HEAD" | sort)
+          printf '%s\n' "${changed[@]}" | tee /tmp/lumo-2076-delta.txt
+          allowed=(
+            ".github/workflows/lumo-2076-direct-apk.yml"
+            "config/godot-source.json"
+            "pubspec.yaml"
+          )
+          for path in "${changed[@]}"; do
+            ok=0
+            for expected in "${allowed[@]}"; do
+              if [ "$path" = "$expected" ]; then ok=1; break; fi
+            done
+            if [ "$ok" -ne 1 ]; then
+              echo "Unexpected application delta: $path" >&2
+              exit 1
+            fi
+          done
+          grep -Fxq 'config/godot-source.json' /tmp/lumo-2076-delta.txt
+          grep -Fxq 'pubspec.yaml' /tmp/lumo-2076-delta.txt
+
+      - name: Verify exact 2076 identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          cfg=json.loads(Path('config/godot-source.json').read_text())
+          assert cfg['repository']=='https://github.com/Ullmann27/lumo-godot.git'
+          assert cfg['revision']=='10a0e1177e18db17b2479c55baaf980cb3a9a2db'
+          assert cfg['engine']=='4.6.3'
+          text=Path('pubspec.yaml').read_text()
+          assert re.search(r'^version:\s*0\.14\.4\+2076\s*$', text, re.M)
+          PY
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Resolve locked dependencies
+        run: flutter pub get --enforce-lockfile
+
+      - name: Install exact Godot engine used by the project
+        run: bash scripts/install_godot_for_build.sh
+
+      - name: Build unified Android APK
+        run: bash scripts/build_unified_apk.sh
+
+      - name: Verify ARM64 package and immutable source identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a --abi x86_64
+          sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
+          cp config/godot-source.json dist/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
+          test -s dist/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+
+      - name: Upload LUMO 2076 ARM64 APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2076-unified-verified
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-SHA256.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/GODOT-SOURCE.json
+            dist/APP-VERSION.txt
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
