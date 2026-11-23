@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/games/connect_four/lumo_connect_four_game.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
+import 'package:lumo_lernen/features/games/logic/logic_games_screen.dart';
 import 'package:lumo_lernen/features/games/memory/lumo_memory_game.dart';
 import 'package:lumo_lernen/features/games/spielwelt/spielwelt_routes.dart';
 import 'package:lumo_lernen/features/games/star_trail/star_trail_screen.dart';
@@ -111,10 +112,11 @@ void main() {
             reason: '${route.identity} must open scene ${route.target}');
       } else {
         final found = switch (route.target) {
+          'LogicGamesScreen' => find.byType(LogicGamesScreen),
           'LumoMemoryScreen' => find.byType(LumoMemoryScreen),
           'LumoConnectFourScreen' => find.byType(LumoConnectFourScreen),
           'QuizShowContent' => find.byType(QuizShowContent),
-          _ => find.byType(SizedBox),
+          _ => throw StateError('Unhandled Flutter Spielwelt target: ${route.target}'),
         };
         expect(found, findsOneWidget,
             reason: '${route.identity} → ${route.target}');
