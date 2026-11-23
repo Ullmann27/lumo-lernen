@@ -263,5 +263,45 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
 
 
 
+class ImportCrashRecoveryTests(unittest.TestCase):
+    """A recoverable editor SIGSEGV never bypasses source/export checking."""
+
+    def test_transient_editor_sigsegv_retries_exact_same_command(self):
+        crashed = subprocess.CalledProcessError(-11, ['godot', '--import'])
+        with patch.object(MODULE, 'run', side_effect=[crashed, None]) as execute, \
+             patch.object(MODULE.time, 'sleep') as sleep:
+            MODULE.import_with_sigsegv_retry('godot', Path('/fixed/pinned/source'))
+        self.assertEqual(execute.call_count, 2)
+        self.assertEqual(execute.call_args_list[0], execute.call_args_list[1])
+        self.assertIn('--single-threaded-scene', execute.call_args.args)
+        self.assertIn('--import', execute.call_args.args)
+        sleep.assert_called_once_with(2)
+
+    def test_other_import_failure_is_not_retried_or_silenced(self):
+        invalid = subprocess.CalledProcessError(1, ['godot', '--import'])
+        with patch.object(MODULE, 'run', side_effect=invalid) as execute, \
+             patch.object(MODULE.time, 'sleep') as sleep:
+            with self.assertRaises(subprocess.CalledProcessError):
+                MODULE.import_with_sigsegv_retry('godot', Path('/fixed/pinned/source'))
+        execute.assert_called_once()
+        sleep.assert_not_called()
+
+    def test_persistent_segmentation_fault_still_blocks_release(self):
+        crashed = subprocess.CalledProcessError(-11, ['godot', '--import'])
+        with patch.object(MODULE, 'run', side_effect=crashed) as execute, \
+             patch.object(MODULE.time, 'sleep') as sleep:
+            with self.assertRaises(subprocess.CalledProcessError):
+                MODULE.import_with_sigsegv_retry('godot', Path('/fixed/pinned/source'))
+        self.assertEqual(execute.call_count, 3)
+        self.assertEqual(sleep.call_count, 2)
+
+    def test_successful_editor_import_needs_no_retry(self):
+        with patch.object(MODULE, 'run', return_value=None) as execute, \
+             patch.object(MODULE.time, 'sleep') as sleep:
+            MODULE.import_with_sigsegv_retry('godot', Path('/fixed/pinned/source'))
+        execute.assert_called_once()
+        sleep.assert_not_called()
+
+
 if __name__ == '__main__':
     unittest.main()

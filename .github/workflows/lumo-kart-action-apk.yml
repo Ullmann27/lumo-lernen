@@ -55,6 +55,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           python3 scripts/verify_legacy_release_pin.py
           mkdir -p build-proof
+          python3 -m unittest scripts.tests.test_export_embedded_game -v
           python3 -m unittest discover -s scripts/tests -p test_verify_test_apk_candidate.py -v
           python3 -m unittest discover -s scripts/tests -p test_verify_native_start_diagnostics.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_native_start_diagnostics.py -v

@@ -5,8 +5,10 @@ import json
 from pathlib import Path
 import re
 import shutil
+import signal
 import struct
 import subprocess
+import time
 
 from package_notices import bundle_notices
 
@@ -15,6 +17,32 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def run(*args, cwd=None):
     return subprocess.run(args, cwd=cwd, check=True)
+
+
+def import_with_sigsegv_retry(binary: str, repo: Path, attempts: int = 3) -> None:
+    """Retry only the known transient Godot 4.6.3 editor SIGSEGV.
+
+    Do not turn genuine import errors, other exits or persistent crashes into
+    successes. Reuse the same exact pinned checkout and engine, completing the
+    full editor import before attempting a signed Android package.
+    """
+    command = (
+        binary, '--headless', '--single-threaded-scene', '--path',
+        str(repo), '--editor', '--import', '--quit',
+    )
+    for attempt in range(1, attempts + 1):
+        try:
+            run(*command)
+            return
+        except subprocess.CalledProcessError as error:
+            if error.returncode != -signal.SIGSEGV or attempt == attempts:
+                raise
+            print(
+                f'[LumoGodotImport] Godot 4.6.3 editor SIGSEGV on attempt '
+                f'{attempt}/{attempts}; retrying the same pinned source',
+                flush=True,
+            )
+            time.sleep(2 * attempt)
 
 
 def git_paths(repo: Path, *args):
@@ -162,8 +190,7 @@ def export(repo: Path, binary: str):
         # worker groups and crashes (SIGSEGV) on busy CI runners. Force only
         # the headless importer/editor into main-thread scene dispatch; the
         # exported Android game's runtime threading remains unchanged.
-        run(binary, '--headless', '--single-threaded-scene', '--path',
-            str(repo), '--editor', '--import', '--quit')
+        import_with_sigsegv_retry(binary, repo)
         assets = ROOT / 'android/app/src/main/assets'
         assets.mkdir(parents=True, exist_ok=True)
         pack = assets / 'lumo_game.pck'
