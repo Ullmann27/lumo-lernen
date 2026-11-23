@@ -1,36 +1,47 @@
-# LUMO 2069 · World und Logikspiele
+# LUMO World und Logikspiele · visuelle Korrektur vor 2070
 
-Stand: 23. November 2026. Arbeitszweig in beiden Repositories:
-`feature/logic-world-20261123`. Kandidat `0.14.0+2069`.
-Godot-Pin: `9decd8eb59b03f31cdc7b2a33b0703a1e0d9b8c2`.
-Grundlage: Flutter `da66baeed50be33bc13d750a846a9eced33aa3dc`.
+Stand: 23. November 2026. Beide Feature-Zweige heißen
+`feature/logic-world-20261123`. Die neuen Logikspiele und die gemeinsame World
+sind implementiert. **Kandidat 2069 wird wegen bestätigter Sichtfehler nicht
+ausgeliefert.** Der korrigierte Folgekandidat wird als 2070 vorbereitet.
 
-Drei deterministische Logikspiele bieten 144 Aufgaben für die Schulstufen 1–4,
-gespeicherte Fortsetzung, Hilfen und ein beobachtungsbezogenes Lernprofil.
-Lumo World verbindet die Original-Schatzinsel mit Sonnendorf, Sternenstadt,
-Schule, Garten, Verkehr und dem vorhandenen eigenen Dorf. Das Original-Kart
-ist steuerbar; Portale öffnen Kart, Karten und die bestehende Dorfstrategie.
-Die sechs Missionen enthalten einen Schulauftrag mit drei tatsächlich
-bewerteten Aufgaben der Lern-App. Dorfwirtschaft und Dorfspielstand werden
-weiterhin von der vorhandenen Strategie geführt.
+2069 wurde am Flutter-Stand `91a121f4302a4840ede44ece8a0494477d81c579` und mit
+Godot `9decd8eb59b03f31cdc7b2a33b0703a1e0d9b8c2` tatsächlich gebaut:
+537148799 Bytes, APK-SHA-256
+`ac289d918c5f72bfd82165753962471554478233a4a6869d23b2e80112ea066b`.
+Der Buildjob `137702207095` im Lauf `45176827649`, Versuch 2, besteht.
+79 native JVM-Tests, 158 Flutter-Tests, 169 World-Prüfaussagen, 92
+Schatzsuche-Prüfaussagen, 26 Kartentisch-Prüfaussagen und HostBridge bestehen.
+Die World-Prüfung besteht erneut gegen das tatsächlich entnommene APK-PCK.
 
-Nachweise vor dem Umgebungsabbruch: Godot 4.7.2 World 169 Checks und ursprüngliche
-Schatzsuche 92 Checks, HostBridge und Capture-Parser bestanden. NativeStore 21,
-Activity/World-Plugin 6, Karten-Lifecycle 13, Startdiagnose 18, RequiredGate 9 sowie
-49 Build-/Hostverträge bestanden. Die Logik-UI bestand 9 Tests mit Exit 0 und
-gezielte Analyse 0. Die letzten Owner-/Titelkorrekturen werden im frischen
-CI-Lauf geprüft; nach einem lokalen SIGKILL wurde die gesamte Ausführungsumgebung
-unerreichbar. Die Welt war vollständig remote gesichert; die wenigen letzten
-App-Korrekturen wurden vom gesicherten Stand gezielt über GitHub wiederhergestellt.
+Die fünf echten Rendereransichten zeigen jedoch verdeckende Bäume bei Kartfahrt
+und eigenem Dorf, einen überbreiten Aktionsknopf und einen unklaren Schulzugang.
+Die Bildprüfung ist daher ausdrücklich negativ. Die Android-Tour und
+Veröffentlichung wurden mit Hold `f3b315bfabea1b41b30923e891fb7e0b406e52d3`
+vorzeitig abgebrochen. Kein Android-Gesamt-PASS und kein öffentlicher 2069-Release.
+[Genauer Befund und Identitäten](docs/logic-games/QUALITY_2069.md).
 
-Die Pipeline `.github/workflows/lumo-logic-world-apk.yml` verwendet Godot 4.6.3
-und prüft exakt diese neue Quelle, echte Rendereransichten, APK/PCK/Signatur,
-Android-Spielstarts einschließlich World und SAF-Backup. Noch kein neuer
-APK-/Android-/öffentlicher Download- oder physischer 60-FPS-Nachweis behauptet.
-Main und frühere Releases bleiben unverändert.
+Der Ausbau umfasst 144 deterministische Logikaufgaben für Schulstufen 1–4,
+gespeicherte Entwürfe und ein beobachtungsbezogenes Stärkenprofil. Die World
+verbindet Original-Schatzinsel, Sonnendorf, Schule, Garten, Stadt und das echte
+vorhandene Dorf. Kart, Karten und ursprüngliche Dorfstrategie sind angeschlossen.
+Die Schule öffnet drei tatsächlich bewertete Lernaufgaben. Die vorhandene
+Dorfstrategie bleibt die schreibende Instanz für Wirtschaft und Bauten.
+
+Die normalen Kameras und die tatsächliche HUD-Anordnung werden korrigiert.
+Die nächsten Rendererbilder werden vor dem APK-Bau als eigenes Artefakt
+bereitgestellt. Die bisherigen Aufnahmeorte bleiben für den Vergleich erhalten.
+Ein vorbereiteter Transferworkflow kann eine exakt geprüfte APK in Teilen
+transportieren und bytegleich zusammensetzen; sein Auftrag verweist noch auf
+den zurückgehaltenen 2069-Stand und wird vor Nutzung auf den endgültigen
+Kandidaten aktualisiert.
+
+Normierte IQ/EQ/AQ-Werte, eine vollständige AAA-Welt und physische 60 FPS sind
+nicht behauptet. Die tatsächlichen 2069-Bildzeiten stammen von CPU-Softwaregrafik.
+Main, Original-Schatzsuche und frühere Veröffentlichungen bleiben erhalten.
 
 Details: [Implementierung](docs/logic-games/IMPLEMENTATION.md),
-[Auswertungsgrenzen](docs/logic-games/LEARNING_PROFILE.md),
+[Auswertung](docs/logic-games/LEARNING_PROFILE.md),
 [Grafikherkunft](docs/logic-games/ART_PROVENANCE.md).
 
 ## Archiv vorheriger Arbeitsstände
