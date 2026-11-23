@@ -1,3 +1,25 @@
+# Wiederaufnahme · Native-Collector korrigieren, danach vollständiger neuer Prüflauf
+
+## Verbindlicher Prüfhalt für APK 2071
+
+**Originalrun45191784853 ist beendet: Bau erfolgreich, Android-Pflichtgate fehlgeschlagen, Veröffentlichung übersprungen.** Produktquelle bleibt Flutterb4db287fe562893d849d1c826c9b92e8f2e44761 / Godote0460c0b3eda9d42e9d963eb2236dc8d9c7b5913.
+
+- Originaltour:23/23 Schritte PASS.
+- Android-SAF-Sicherung/Wiederherstellung:8/8 Schritte PASS; installierte APK-Identität stimmt.
+- Native Pflichtstarts: run/quiz/kart/cards positiv; Memory ohne Router-Ladebeleg, Schach und World ohne erfolgreichen Kachelstart. Nach Memory beziehungsweise Schatzsuche bleibt beim folgenden Versuch dieselbe native Activity/PID sichtbar.
+- Tatsächlicher Gatefehler: `ValueError: memory: missing positive observation for router_loaded`.
+- Die leeren gefilterten Memory-/Schatzsuche-Logs erlauben keine Aussage, dass diese Starts fehlerfrei waren. Produkt-, Start-/Teardown- und Beobachtungsmechanismen werden anhand der Originalbelege parallel untersucht.
+- Original-Androidartefakt14831399839,92447590Bytes, SHA256`61709df3558f864800a2476bed01236ede9713c45a947e2e5193611bcfae6252` tatsächlich heruntergeladen und geprüft.
+
+**Diese APK wird nicht als freigegeben geliefert.** Der separate Publisher bleibt ohne aktivierende Config und würde den fehlgeschlagenen Original-Androidjob abweisen. Keine Gateabschwächung, keine Umwertung fehlender Beobachtungen zuPASS. Main und Hauptteamzweige bleiben unberührt.
+
+1. Zuerst [Android-Prüfhalt](docs/agent-network/TEAM_B_2071_ANDROID_HOLD.md) und unveränderte Originalbelege lesen. Collector-Korrektur und ihre Regressionstests werden getrennt von Produktdateien erstellt und unabhängig geprüft.
+2. KritischeADB-Ergebnisse, vollständige Log-/Prozessantworten, tatsächliches Ende alter Prozesse und einen frischen Flutter-Host bestätigen. Fehler nicht unterdrücken. Pflichtgate unverändert lassen.
+3. Erst nach belegter minimaler Korrektur und lokalen Tests den normalen vollständigen Kandidatenlauf mit neuem Bauauftrag auslösen. Keine hypothetische Produktreparatur und keine Zeitbudgeterhöhung.
+4. Sämtliche neuen Quellen-/Bild-/APK-/Android-/Backup-/Native-Belege müssen tatsächlich zum neu gestarteten Kandidaten passen. Alten2071/b4db nicht alsfreigegeben ausgeben; öffentliche Veröffentlichung erst nach allen echtenPASS.
+
+## Historische Fortsetzung vor Androidabschluss
+
 # Wiederaufnahme · Team B 2071 fertig prüfen und unverändert liefern
 
 Stand: 23. November 2026, 15:54 Uhr Wien. Supportzweige in beiden Repositories: `support/logic-world-team-b-20261123`; Ziel `feature/logic-world-20261123`. Main bleibt geschützt.

@@ -1,3 +1,22 @@
+# LUMO Team B · APK2071 wird zurückgehalten
+
+## Verbindlicher Prüfhalt für APK 2071
+
+**Originalrun45191784853 ist beendet: Bau erfolgreich, Android-Pflichtgate fehlgeschlagen, Veröffentlichung übersprungen.** Produktquelle bleibt Flutterb4db287fe562893d849d1c826c9b92e8f2e44761 / Godote0460c0b3eda9d42e9d963eb2236dc8d9c7b5913.
+
+- Originaltour:23/23 Schritte PASS.
+- Android-SAF-Sicherung/Wiederherstellung:8/8 Schritte PASS; installierte APK-Identität stimmt.
+- Native Pflichtstarts: run/quiz/kart/cards positiv; Memory ohne Router-Ladebeleg, Schach und World ohne erfolgreichen Kachelstart. Nach Memory beziehungsweise Schatzsuche bleibt beim folgenden Versuch dieselbe native Activity/PID sichtbar.
+- Tatsächlicher Gatefehler: `ValueError: memory: missing positive observation for router_loaded`.
+- Die leeren gefilterten Memory-/Schatzsuche-Logs erlauben keine Aussage, dass diese Starts fehlerfrei waren. Produkt-, Start-/Teardown- und Beobachtungsmechanismen werden anhand der Originalbelege parallel untersucht.
+- Original-Androidartefakt14831399839,92447590Bytes, SHA256`61709df3558f864800a2476bed01236ede9713c45a947e2e5193611bcfae6252` tatsächlich heruntergeladen und geprüft.
+
+**Diese APK wird nicht als freigegeben geliefert.** Der separate Publisher bleibt ohne aktivierende Config und würde den fehlgeschlagenen Original-Androidjob abweisen. Keine Gateabschwächung, keine Umwertung fehlender Beobachtungen zuPASS. Main und Hauptteamzweige bleiben unberührt.
+
+[Originalbefund und nächste Korrektur](docs/agent-network/TEAM_B_2071_ANDROID_HOLD.md). Der lokale Runtimezugriff ist wiederhergestellt; die Original-APK ist bytegleich rekonstruiert. Sie bleibt wegen des Native-Gates gesperrt.
+
+## Historischer Bau- und Sichtprüfcheckpoint vor Androidabschluss
+
 # LUMO Team B · gebaute gemeinsame APK 2071
 
 Stand: 23. November 2026, 15:54 Uhr Wien. Die signierte Test-APK **0.14.2+2071** ist gebaut. Ihr unveränderter Produktquellstand ist **b4db287fe562893d849d1c826c9b92e8f2e44761**, Godot **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**, Engine **4.6.3**, Bauauftrag **48**. Spätere Dokumentations-, Prüf- und Liefercommits ändern diese gebaute APK nicht.
