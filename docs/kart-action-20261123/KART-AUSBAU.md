@@ -172,12 +172,36 @@ Ringabstände, fünf Rampenkanten-Phasen, drei tatsächliche Boost-Durchfahrten 
 45 Positionen der echten Spielkamera im Feensee. Die genaue Erklärung und
 Messwerte stehen in `godot-kart/TRACKS.md` im Belegpaket.
 
-Der abschließende vollständige native Lauf für den eingebetteten Quellstand
-`52b2bf0790615b5c709a35548fcc6fb4affa9b52` ist:
+Die vollständige native Prüfung des Kart-Ausbaus auf
+`52b2bf0790615b5c709a35548fcc6fb4affa9b52` bestand mit 43 echten Renderbildern:
 https://github.com/Ullmann27/lumo-godot/actions/runs/45142199800
 
-Sein tatsächliches Endergebnis wird vor dem APK-Bau verbindlich geprüft und
-als `NATIVE-KART-SOURCE-QA.json` im Belegpaket gespeichert.
+Beim anschließenden vollständigen App-Bau stoppte die unveränderte
+Lumo-Run-Regression. Lumo Run verwendet dieselbe Welt wie Kart und musste
+ebenfalls auf die echte 63-m-Abzweigung umgestellt werden. Die Integration
+erhält die freie Hauptstraße, die durchgehende Bogenlänge, sichere seitliche
+Einfahrt und eine Kamera entlang der realen Zufahrt, des Rings und der Rückfahrt.
+Die zusammengeführte gezielte Probe besteht lokal mit 69 Checks; die
+unveränderte Flow-Probe besteht mit 13 Checks und vollständigem Dschungellauf.
+
+Zusätzlich wurden vier echte Laufzeitfehler des Satzbau-Lernmoduls behoben:
+Das Blickziel bei einer falschen Wortreihenfolge ist jetzt die Mitte der
+tatsächlichen Satzleiste. Die vollständige Holo-Probe besteht mit 1336 Checks
+ohne Laufzeitfehler. Run-HUD-Buchstaben zeichnen nur bei positivem Glyphenplatz.
+Der NeonHome-Test wartet auf die nachweisliche Freigabe seines letzten
+UI-Klicks durch den Audiomixer; produktive Audiologik bleibt unverändert.
+
+Der vollständige neue native Lauf für den endgültig eingebetteten Spielstand
+`c9619c589e3a9faa0b56f190fb38a61bf44bb1d6` ist:
+https://github.com/Ullmann27/lumo-godot/actions/runs/45148095909
+
+Er enthält 14 native Prüfungen, dieselben Kart-/Online-Renderfälle sowie drei
+zusätzliche tatsächliche Bilder der Lumo-Run-Loopfahrt. Sein erfolgreiches
+Endergebnis ist vor der APK-Paketierung verbindlich; das beobachtete Resultat
+steht in `NATIVE-KART-SOURCE-QA.json`. Die volle Lumo-Run-Ausdauerprobe mit
+30 Dschungel-Botläufen bleibt im APK-Baugate erhalten. Der neue Prozesswächter
+verwirft Script-, Parser-, Compiler- und ungültige Schriftfehler auch dann,
+wenn Godot selbst fälschlich mit Exit 0 endet.
 
 Reproduzierbare Server- und Clientprüfungen:
 

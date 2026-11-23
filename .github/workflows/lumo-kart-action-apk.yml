@@ -10,6 +10,7 @@ on:
       - config/test-apk-request.json
       - .github/workflows/lumo-kart-action-apk.yml
       - .github/probes/native_start_diagnostics.py
+      - .github/probes/run_godot_probe.py
 
 permissions:
   contents: read
@@ -180,7 +181,7 @@ jobs:
           # wird der idempotente Import genau einmal wiederholt.
           godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
             || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
-          for probe in kart_dyno_parts_regression kart_evolution_regression \
+          for probe in lumo_run_loop_regression kart_dyno_parts_regression kart_evolution_regression \
             kart_action_spectacle_regression kart_loop_seam_regression \
             kart_sonnenhafen_stunt_regression kart_action_course_regression \
             kart_neon_home_regression kart_garage_landscape_regression kart_race_kinds_regression \
@@ -188,12 +189,14 @@ jobs:
             learning_android_host_capability_regression native_learning_boot_regression; do
             echo "::group::$probe"
             if [ "$probe" = kart_sonnenhafen_stunt_regression ] || [ "$probe" = kart_action_course_regression ] || [ "$probe" = kart_action_spectacle_regression ]; then
-              timeout 600 xvfb-run -a godot --path build/lumo-godot-qa \
+              python3 .github/probes/run_godot_probe.py --timeout 600 --log "build-proof/GODOT-${probe}.txt" -- \
+                xvfb-run -a godot --path build/lumo-godot-qa \
                 --rendering-method gl_compatibility --audio-driver Dummy --resolution 1280x720 \
-                --script "res://scripts/tests/$probe.gd" 2>&1 | tee "build-proof/GODOT-${probe}.txt"
+                --script "res://scripts/tests/$probe.gd"
             else
-              timeout 600 godot --headless --path build/lumo-godot-qa \
-                --script "res://scripts/tests/$probe.gd" 2>&1 | tee "build-proof/GODOT-${probe}.txt"
+              python3 .github/probes/run_godot_probe.py --timeout 600 --log "build-proof/GODOT-${probe}.txt" -- \
+                godot --headless --path build/lumo-godot-qa \
+                --script "res://scripts/tests/$probe.gd"
             fi
             echo "::endgroup::"
           done
@@ -208,14 +211,16 @@ jobs:
             # bis Lauf 24 (Lauf 44551761545, Abbruch mit 124 ohne Fehlschlag).
             limit=600
             if [ "$probe" = lumo_run_regression ]; then limit=1500; fi
-            timeout "$limit" godot --headless --path build/lumo-godot-qa \
-              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
+            python3 .github/probes/run_godot_probe.py --timeout "$limit" --log "build-proof/GODOT-${probe}.txt" -- \
+              godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/$probe.gd"
             echo "::endgroup::"
           done
           echo "::group::learning_tutor_regression (validation, invalid, return, voice)"
-          timeout 600 godot --headless --path build/lumo-godot-qa \
+          python3 .github/probes/run_godot_probe.py --timeout 600 --log build-proof/GODOT-learning_tutor_regression.txt -- \
+            godot --headless --path build/lumo-godot-qa \
             --script res://scripts/tests/learning_tutor_regression.gd -- \
-            --part=validation,invalid,return,voice | tee build-proof/GODOT-learning_tutor_regression.txt
+            --part=validation,invalid,return,voice
           echo "::endgroup::"
       - name: Exakten Spielstand gegen vollständige native Prüfung absichern
         shell: bash
@@ -264,10 +269,10 @@ jobs:
           # Separate processes release the asset audit's resources before the full race scene.
           # Both phases are mandatory and inspect the same PCK extracted from the ARM64 APK.
           for phase in assets race; do
-            timeout 90 godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
+            python3 .github/probes/run_godot_probe.py --timeout 90 --log "build-proof/KART-DRIVER-PCK-${phase}.txt" -- \
+              godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
               --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
-              --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" -- "$phase" \
-              | tee "build-proof/KART-DRIVER-PCK-${phase}.txt"
+              --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" -- "$phase"
           done
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
