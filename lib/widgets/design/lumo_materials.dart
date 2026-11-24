@@ -31,7 +31,6 @@ abstract final class LumoMaterials {
         ),
         border: Border.all(
           color: border ?? LumoVisualTokens.cyanBright.withValues(alpha: .42),
-          width: 1.2,
         ),
         // Tiefe: dunkler Kontaktschatten plus leiser Cyan-Lichthof der Kante.
         boxShadow: [
