@@ -34,6 +34,11 @@
       "analysis_warnings": 0,
       "analysis_infos": 0,
       "evidence": "docs/evidence/build-2081-flutter-20261124/recognition-voice/"
+    },
+    "export_contract_tests": {
+      "passed": 45,
+      "failed": 0,
+      "scope": "Reviewed current pin, source/manifest tamper rejection, exact newly generated outputs, import fault handling."
     }
   },
   "apk_acceptance": "Pending exact-source GitHub APK build and real Android emulator tour. Local source tests do not certify an APK or physical-device performance.",
@@ -43,5 +48,17 @@
     "coverage": "Developed core modules compared with accessible earlier reports and executable HTML prototypes. Writing trainer, journal, profiles and writing progress remain byte-identical to the 2080 baseline.",
     "recovered_feature": "Direct dictation of a custom task in the recognition screen, using the existing speech service and confirmation flow.",
     "excluded_claims": "Static unexecuted MVPs, future briefs and the old photo-OCR demo/stub are not evidence of completed missing features. No claim of line-for-line reuse of obsolete versions."
-  }
+  },
+  "intermediate_attempts": [
+    {
+      "run": 45433091440,
+      "flutter": "5c086af2fa967f743d5801b4be23c15efbbb88ba",
+      "result": "Flutter and native/World checks passed; packaging failed because reviewed c814 pin was missing from strict production Meshy import-output allowlist."
+    },
+    {
+      "run": 45440702223,
+      "flutter": "c2e4f9e7da6ba9731e0f6dc3c2f918d43dffe010",
+      "result": "Voice-complete source; superseded by the same-source export correction before delivery."
+    }
+  ]
 }

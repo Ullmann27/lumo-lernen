@@ -29,6 +29,7 @@ Zusätzlich wurden die zugänglichen älteren Projektberichte und ausführbaren 
 - 47 gezielte Python-Prüfungen für Intro, Profilanlage und native Spielstarts bestanden.
 - Godot: `docs/handoffs/LUMO_2081_NATIVE_INTEGRATION_20261124.md` im gepinnten Repository; 1098 Prüfpunkte und die 65-Knochen-Gangprüfung bestanden unter 4.6.3. Alle vorhandenen Charakter-/Modell-/Texturdateien gegenüber dem alten Pin bleiben bytegleich.
 - Die Pipeline führt jetzt die vollständige Flutter-Suite aus, zusätzlich die fünf strikten World-Prüfungen, dann den signierten APK-Bau und die echte Android-Tour samt Datensicherung. Alle vorhandenen Paket-/Signatur-/PCK-/SHA-Prüfungen bleiben bestehen.
+- Exportkorrektur nach realem Fehler im Zwischenlauf: siehe `GODOT-EXPORT-FIX.md`. Die 16 Produktions-GLBs und ihr Manifest sind gegenüber dem alten Pin bytegleich; nur der exakt geprüfte neue Pin wird in der vorhandenen Importbereinigung ergänzt. 45 Export-Vertragstests bestanden; die Suite läuft künftig vor den langen Bauprüfungen.
 - APK- und Android-Abnahme dieses Kandidaten sind beim Anfordern des Builds noch offen. Keine Aussage über physische Fold7-Leistung, 60 FPS, Online-Mitspieler oder eine Play-Produktionssignatur.
 
 Paketkennung und Zertifikat entsprechen weiterhin der installierten Familien-Test-App. Veröffentlichte alte Dateien werden nicht verändert. Ein öffentlicher Download folgt erst aus den erfolgreich geprüften Bytes dieses Kandidaten.

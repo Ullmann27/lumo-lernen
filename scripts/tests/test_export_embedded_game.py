@@ -353,9 +353,9 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
         for row in self.all_rows:
             self.assertTrue((self.repo / row['path']).is_file())
 
-    def test_current_2078_pin_cleans_outputs_and_preserves_exact_sources(self):
+    def test_current_2081_pin_cleans_outputs_and_preserves_exact_sources(self):
         source = json.loads((MODULE.ROOT / 'config/godot-source.json').read_text())
-        self.assertEqual(source['revision'], 'c3f459eca88f659da1a9e4af1c990c804e715528')
+        self.assertEqual(source['revision'], 'c814e35249e4038f903d1fca3e19bb4751040a43')
         tracked = MODULE.git_paths(self.repo, 'ls-files')
         original = {name: (self.repo / name).read_bytes() for name in tracked}
         self.generate_outputs()
@@ -369,7 +369,7 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
         self.assertEqual(subprocess.check_output(
             ['git', 'diff', '--name-only'], cwd=self.repo, text=True), '')
 
-    def test_current_2078_pin_still_rejects_changed_manifest_glb(self):
+    def test_current_2081_pin_still_rejects_changed_manifest_glb(self):
         source = json.loads((MODULE.ROOT / 'config/godot-source.json').read_text())
         self.generate_outputs()
         outputs = MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard')
@@ -415,7 +415,8 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
         outputs = MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard')
         original = {name: (self.repo / name).read_bytes() for name in outputs}
         self.assertEqual(len(outputs), 32)
-        for revision in ('0' * 40, 'c3f459eca88f659da1a9e4af1c990c804e715529'):
+        for revision in ('0' * 40, 'c3f459eca88f659da1a9e4af1c990c804e715529',
+                         'c814e35249e4038f903d1fca3e19bb4751040a44'):
             with self.subTest(revision=revision):
                 self.cleanup(source={'revision': revision})
                 self.assertEqual(MODULE.git_paths(

@@ -279,6 +279,9 @@ PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
     # Both production asset subtrees are unchanged from the reviewed 2077 pin.
     '21a76bcda69c20ea3a427a63098cb2fc736eb881',
     'c3f459eca88f659da1a9e4af1c990c804e715528',
+    # 2081 World integration keeps the production asset tree byte-identical
+    # to c3f459e; all 16 manifest GLB hashes and output checks still apply.
+    'c814e35249e4038f903d1fca3e19bb4751040a43',
 ))
 PRODUCTION_MESHY_MANIFEST = 'assets/kart/production/meshy/manifest.json'
 PRODUCTION_MESHY_VEHICLE_IDS = frozenset((
