@@ -190,6 +190,7 @@ jobs:
               Path('docs/integration/2026-11-22/INTEGRATION.md'),
               Path('docs/integration/2026-11-24/INTEGRATION-2081.json'),
               Path('docs/handover/BUILD_2081_FLUTTER_COVERAGE_20261124.md'),
+              Path('docs/handover/BUILD_2081_RECOGNITION_VOICE_20261124.md'),
               Path('build/lumo-godot-qa/docs/handoffs/LUMO_2081_NATIVE_INTEGRATION_20261124.md'),
               Path('docs/integration/2026-11-22/LEARNING-INTEGRATION.md'),
               Path('docs/integration/2026-11-22/UPLOAD-ABGLEICH.md'),
@@ -216,6 +217,7 @@ jobs:
           proof = sorted(Path('build-proof').glob('*.txt')) + sorted(Path('build-proof').glob('*.json'))
           with zipfile.ZipFile('release/LUMO-INTEGRATIONSBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
               for path in (Path('docs/handover/BUILD_2081_FLUTTER_COVERAGE_20261124.md'),
+                           Path('docs/handover/BUILD_2081_RECOGNITION_VOICE_20261124.md'),
                            Path('build/lumo-godot-qa/docs/handoffs/LUMO_2081_NATIVE_INTEGRATION_20261124.md')):
                   archive.write(path, '2081-handoffs/' + path.name)
               for label, directory in sources.items():

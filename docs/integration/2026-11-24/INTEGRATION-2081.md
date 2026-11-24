@@ -5,6 +5,7 @@ Heinz hat am 24.11.2026 ausdrücklich angeordnet: den laufenden 2080-Lauf abbrec
 ## Neue integrierte Funktionen
 
 - Adaptive Ganzzahl-Rechenhilfe mit lösungsgeprüften Hinweisen und interaktiver Zehnerwerkstatt für Plus/Minus bis 100; die ursprüngliche Aufgabe und ihr Lernfortschritt bleiben erhalten.
+- Direkte Spracheingabe für eigene Aufgaben im Erkennen-Bildschirm über den vorhandenen Sprachdienst. Diese tatsächlich verdrahtete Eingabe aus dem älteren HTML-Prototyp fehlte noch im ersten 2081-Zwischenstand und wird vor dessen Auslieferung ergänzt.
 - Lumo World mit sieben Orten, neun lokalen Auftragsfiguren, vier Missionsketten, Dialogen und neun Figurenkarten, einschließlich strikter Daten-/Fortschrittsprüfung.
 - Zusammengeführte World-Kart-Entwicklung: sichtbarer Ersteintritt, Kart-Wegweiser, sichere Parkposition, Kartkarte, Bodenkontakt und Speichern/Wiederfinden.
 - Schachstart prüft die aktuelle Tagesmission/Profilgeneration nochmals und nutzt die bestehende Ereignisverwaltung. Der Wiederholungsfall vergibt Belohnungen nur einmal.
@@ -17,6 +18,8 @@ Sprachdialog, 3D-Nachhilfe, PR 530, die Schul-Demozweige, Logik/World und der Wo
 Die 17 zugänglichen uncommitteten Dateien des alten lokalen 2048-Workspaces sind bytegleich mit seinem gesicherten GitHub-Zweig. Er wurde vor dem Vergleich kopiert und blieb unverändert. Die früher genannten ungefähr 450 lokalen Änderungen sind in den zugänglichen Flutter-Arbeitsordnern nicht nachgewiesen. Es wird keine Wiederherstellung nicht zugänglicher Dateien behauptet.
 
 Die älteren 2075/2077-QA-Zweige enthalten nur Test-/Prüfwerkzeugdifferenzen. Die aktuelle echte PNG-Prüfung und die strengeren vorhandenen OCR-Verträge bleiben erhalten. Android-Rohbelege und vollständiges Beleg-ZIP werden weiterhin auch bei Fehlschlag hochgeladen.
+
+Zusätzlich wurden die zugänglichen älteren Projektberichte und ausführbaren HTML-Prototypen gegen die aktuellen Kernmodule abgeglichen. Lernen, adaptive Hilfen, lokaler Lumo-Dialog und Sprache, Text-Erkennung, Lerncheck, Belohnungen/eigene Gutscheine, Elternaufgaben, Elternberichte und lokale Sicherung haben aktuelle Implementierungen. Schreibtrainer, Journal, Profile und Schreibfortschritt sind gegenüber dem 2080-Ausgangsstand bytegleich erhalten. Die direkte Spracheingabe für eigene Aufgaben wird aus diesem Abgleich nachgezogen; der frühere 2081-Zwischenlauf 45433091440 wird durch den vervollständigten Quellstand ersetzt. Der alte statisch erstellte, nicht ausgeführte Flutter-MVP und Zukunftsbriefings sind kein Nachweis fertig entwickelter Funktionen. Eine wortgleiche Übernahme jeder historischen Codezeile wird nicht behauptet; eine echte Foto-OCR war in den alten Prototypen nur als Demo/Stub ausgewiesen.
 
 ## Nachweise und Grenzen
 

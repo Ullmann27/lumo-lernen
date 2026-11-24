@@ -25,5 +25,12 @@
     "godot_checks": 1098,
     "godot_65_bone_gait": "PASS"
   },
-  "apk_acceptance": "Pending exact-source GitHub APK build and real Android emulator tour. Local source tests do not certify an APK or physical-device performance."
+  "apk_acceptance": "Pending exact-source GitHub APK build and real Android emulator tour. Local source tests do not certify an APK or physical-device performance.",
+  "previous_intermediate_flutter": "5c086af2fa967f743d5801b4be23c15efbbb88ba",
+  "superseded_intermediate_run": 45433091440,
+  "legacy_prototype_audit": {
+    "coverage": "Developed core modules compared with accessible earlier reports and executable HTML prototypes. Writing trainer, journal, profiles and writing progress remain byte-identical to the 2080 baseline.",
+    "recovered_feature": "Direct dictation of a custom task in the recognition screen, using the existing speech service and confirmation flow.",
+    "excluded_claims": "Static unexecuted MVPs, future briefs and the old photo-OCR demo/stub are not evidence of completed missing features. No claim of line-for-line reuse of obsolete versions."
+  }
 }
