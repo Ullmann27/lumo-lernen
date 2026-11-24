@@ -1,5 +1,6 @@
-// Erzeugt Bildschirmfotos der Lehrkräfte-Demo (keine Prüfung, nur Bilder):
-// flutter test --update-goldens tool/teacher_demo_shots/teacher_demo_shots_test.dart
+// Erzeugt Bildschirmfotos der Lehrkräfte-Demo (keine Prüfung, nur Bilder).
+// Läuft nur auf Wunsch, die Bilder werden nicht eingecheckt:
+// LUMO_SHOTS=1 flutter test --update-goldens test/design/teacher_demo_shots_test.dart
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -24,6 +25,8 @@ Future<void> _loadFonts() async {
   await icons.load();
 }
 
+final bool _skip = !Platform.environment.containsKey('LUMO_SHOTS');
+
 void main() {
   final now = DateTime(2026, 11, 24, 12);
 
@@ -37,7 +40,9 @@ void main() {
         home: child,
       );
 
-  setUpAll(_loadFonts);
+  setUpAll(() async {
+    if (!_skip) await _loadFonts();
+  });
 
   Future<void> phone(WidgetTester tester, double height) async {
     tester.view.physicalSize = Size(1080, height * 2.7);
@@ -50,8 +55,8 @@ void main() {
     await phone(tester, 800);
     await tester.pumpWidget(host(TeacherDemoScreen(now: now)));
     await tester.pumpAndSettle();
-    await expectLater(find.byType(MaterialApp), matchesGoldenFile('shots/01_klassenuebersicht.png'));
-  });
+    await expectLater(find.byType(MaterialApp), matchesGoldenFile('teacher_demo_shots/01_klassenuebersicht.png'));
+  }, skip: _skip);
 
   testWidgets('Auswertung Demo-Kind 1', (tester) async {
     SharedPreferences.setMockInitialValues({});
@@ -59,8 +64,8 @@ void main() {
     await tester.pumpWidget(host(DemoChildDetailScreen(
         report: DemoChildReport.build(demoChildren.first, now: now))));
     await tester.pumpAndSettle();
-    await expectLater(find.byType(MaterialApp), matchesGoldenFile('shots/02_auswertung_demo_kind_1.png'));
-  });
+    await expectLater(find.byType(MaterialApp), matchesGoldenFile('teacher_demo_shots/02_auswertung_demo_kind_1.png'));
+  }, skip: _skip);
 
   testWidgets('Hausaufgaben mit Auswertung', (tester) async {
     SharedPreferences.setMockInitialValues({});
@@ -94,6 +99,6 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Hausaufgaben'));
     await tester.pumpAndSettle();
-    await expectLater(find.byType(MaterialApp), matchesGoldenFile('shots/03_hausaufgaben.png'));
-  });
+    await expectLater(find.byType(MaterialApp), matchesGoldenFile('teacher_demo_shots/03_hausaufgaben.png'));
+  }, skip: _skip);
 }

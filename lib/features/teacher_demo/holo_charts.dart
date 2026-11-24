@@ -21,11 +21,13 @@ class _Reveal extends StatelessWidget {
   }
 }
 
-TextPainter _label(String text, Color color, {double size = 11}) =>
+TextPainter _label(String text, Color color, TextStyle base,
+        {double size = 11}) =>
     TextPainter(
       text: TextSpan(
         text: text,
-        style: TextStyle(color: color, fontSize: size, fontWeight: FontWeight.w600),
+        style: base.copyWith(
+            color: color, fontSize: size, fontWeight: FontWeight.w600),
       ),
       textDirection: TextDirection.ltr,
       maxLines: 2,
@@ -50,6 +52,13 @@ void _glowStroke(Canvas canvas, Path path, Color color, double width) {
         ..strokeCap = StrokeCap.round);
 }
 
+/// Untere Grenze der Diagramm-Skala. Trefferquoten unter 40 % liegen am
+/// Rand; dadurch werden Unterschiede zwischen 60 und 100 % gut sichtbar.
+const double chartFloor = .4;
+
+double _scaled(double v) =>
+    ((v.clamp(0.0, 1.0) - chartFloor) / (1 - chartFloor)).clamp(0.0, 1.0);
+
 /// Kompetenz-Radar: ein Strahl je Fach oder Untergruppe, Wert 0..1.
 class HoloRadarChart extends StatelessWidget {
   const HoloRadarChart({
@@ -72,7 +81,8 @@ class HoloRadarChart extends StatelessWidget {
         child: _Reveal(
           builder: (t) => CustomPaint(
             size: Size.infinite,
-            painter: _RadarPainter(values, color, t),
+            painter: _RadarPainter(
+                values, color, t, DefaultTextStyle.of(context).style),
           ),
         ),
       ),
@@ -81,10 +91,11 @@ class HoloRadarChart extends StatelessWidget {
 }
 
 class _RadarPainter extends CustomPainter {
-  _RadarPainter(this.values, this.color, this.t);
+  _RadarPainter(this.values, this.color, this.t, this.base);
   final Map<String, double> values;
   final Color color;
   final double t;
+  final TextStyle base;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -115,7 +126,7 @@ class _RadarPainter extends CustomPainter {
     final entries = values.entries.toList();
     final shape = Path();
     for (var i = 0; i < n; i++) {
-      final o = at(i, entries[i].value.clamp(0, 1) * t);
+      final o = at(i, _scaled(entries[i].value) * t);
       i == 0 ? shape.moveTo(o.dx, o.dy) : shape.lineTo(o.dx, o.dy);
     }
     shape.close();
@@ -130,11 +141,11 @@ class _RadarPainter extends CustomPainter {
 
     for (var i = 0; i < n; i++) {
       final v = entries[i].value.clamp(0.0, 1.0);
-      final o = at(i, v * t);
+      final o = at(i, _scaled(v) * t);
       canvas.drawCircle(o, 4, Paint()..color = Colors.white);
       canvas.drawCircle(o, 7, Paint()..color = color.withValues(alpha: .35));
       final tp = _label('${entries[i].key}\n${(v * 100).round()} %',
-          HoloPalette.text);
+          HoloPalette.text, base);
       final lo = at(i, 1.18);
       tp.paint(canvas, lo - Offset(tp.width / 2, tp.height / 2));
     }
@@ -161,7 +172,8 @@ class HoloTrendChart extends StatelessWidget {
           child: _Reveal(
             builder: (t) => CustomPaint(
               size: Size.infinite,
-              painter: _TrendPainter(series, t),
+              painter: _TrendPainter(
+                  series, t, DefaultTextStyle.of(context).style),
             ),
           ),
         ),
@@ -195,9 +207,10 @@ class HoloTrendChart extends StatelessWidget {
 }
 
 class _TrendPainter extends CustomPainter {
-  _TrendPainter(this.series, this.t);
+  _TrendPainter(this.series, this.t, this.base);
   final Map<String, List<double>> series;
   final double t;
+  final TextStyle base;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -205,15 +218,15 @@ class _TrendPainter extends CustomPainter {
     final w = size.width - left - 8;
     final h = size.height - bottom - 6;
     final grid = Paint()..color = HoloPalette.cyan.withValues(alpha: .12);
-    for (final v in [0, 25, 50, 75, 100]) {
-      final y = 6 + h * (1 - v / 100);
+    for (final v in [40, 55, 70, 85, 100]) {
+      final y = 6 + h * (1 - _scaled(v / 100));
       canvas.drawLine(Offset(left, y), Offset(left + w, y), grid);
-      final tp = _label('$v %', HoloPalette.muted, size: 10);
+      final tp = _label('$v %', HoloPalette.muted, base, size: 10);
       tp.paint(canvas, Offset(0, y - tp.height / 2));
     }
     for (var i = 0; i < 4; i++) {
       final x = left + w * i / 3;
-      final tp = _label('Woche ${i + 1}', HoloPalette.muted, size: 10);
+      final tp = _label('Woche ${i + 1}', HoloPalette.muted, base, size: 10);
       tp.paint(canvas, Offset(x - tp.width / 2, size.height - bottom + 6));
     }
     for (final e in series.entries) {
@@ -221,7 +234,7 @@ class _TrendPainter extends CustomPainter {
       final pts = [
         for (var i = 0; i < e.value.length; i++)
           Offset(left + w * i / (e.value.length - 1),
-              6 + h * (1 - e.value[i].clamp(0, 1))),
+              6 + h * (1 - _scaled(e.value[i]))),
       ];
       if (pts.length < 2) continue;
       final path = Path()..moveTo(pts.first.dx, pts.first.dy);

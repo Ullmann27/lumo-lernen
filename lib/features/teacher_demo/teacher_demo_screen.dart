@@ -48,7 +48,7 @@ class _TeacherDemoScreenState extends State<TeacherDemoScreen> {
         appBar: AppBar(
           backgroundColor: HoloPalette.night,
           foregroundColor: HoloPalette.text,
-          title: const Text('Für Lehrkräfte · Demo-Klasse 2a'),
+          title: const Text('Demo-Klasse 2a'),
           actions: const [
             Padding(
                 padding: EdgeInsets.only(right: 12),
@@ -440,7 +440,10 @@ class _HomeworkTabState extends State<_HomeworkTab> {
                 key: const ValueKey('homework-unit'),
                 initialValue: _unit,
                 dropdownColor: HoloPalette.night,
-                style: const TextStyle(color: HoloPalette.text, fontSize: 16),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(color: HoloPalette.text, fontSize: 16),
                 decoration: const InputDecoration(
                     labelText: 'Untergruppe', labelStyle: label),
                 items: [
