@@ -8,7 +8,6 @@ class AcademyTopicUnits {
   static const Map<String, String> _aliases = {
     'm1_zahlen10': 'Mengenvergleich',
     'm1_formen': 'Geometrie Formen',
-    'm2_zahlen100': 'Plus bis 100',
     'm2_einmaleins': 'Einmaleins Vorbereitung',
     'm2_uhr': 'Uhrzeit',
     'm2_geld': 'Geld wechseln',
@@ -44,9 +43,11 @@ class AcademyTopicUnits {
     required int grade,
   }) {
     if (grade < 1 || grade > 4 ||
-        topicId == 'd3_geschichten' || topicId == 'd4_aufsatz') {
+        topicId == 'd3_geschichten' || topicId == 'd4_aufsatz' ||
+        topicId == 'm2_zahlen100') {
       return null;
     }
+    // Zahlen bis 100 is a dedicated mixed number-sense module, not addition.
     final unit = _aliases[topicId] ?? title;
     return Curriculum.unitsForGrade(subject, grade).contains(unit)
         ? unit

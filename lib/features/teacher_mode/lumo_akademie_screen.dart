@@ -134,6 +134,20 @@ class LumoCurriculum {
                   shortDesc: '7-3, 10-6 ...',
                 ),
                 LearningTopic(
+                  id: 'm1_plus20',
+                  title: 'Plus bis 20',
+                  icon: Icons.add_circle_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: '8+6: zuerst die 10 voll machen',
+                ),
+                LearningTopic(
+                  id: 'm1_minus20',
+                  title: 'Minus bis 20',
+                  icon: Icons.remove_circle_rounded,
+                  gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
+                  shortDesc: '14-6: zuerst zurück zur 10',
+                ),
+                LearningTopic(
                   id: 'm1_formen',
                   title: 'Formen',
                   icon: Icons.category_rounded,
@@ -280,6 +294,20 @@ class LumoCurriculum {
                   icon: Icons.format_list_numbered_rounded,
                   gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
                   shortDesc: 'Zehner & Einer',
+                ),
+                LearningTopic(
+                  id: 'm2_plus100',
+                  title: 'Plus bis 100',
+                  icon: Icons.add_circle_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: '37+25: Zehner, dann Einer',
+                ),
+                LearningTopic(
+                  id: 'm2_minus100',
+                  title: 'Minus bis 100',
+                  icon: Icons.remove_circle_rounded,
+                  gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
+                  shortDesc: '64-28: Zehner, dann Einer',
                 ),
                 LearningTopic(
                   id: 'm2_einmaleins',
@@ -957,6 +985,21 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                       MaterialPageRoute(
                           builder: (_) => LearningModuleRegistry.builderFor(
                               's1_farben', widget.appState)!))),
+            if (_selectedGrade == 2 &&
+                _selectedGrade == widget.appState.state.grade)
+              ListTile(
+                  key: const ValueKey('academy-tool-m2_zahlen100'),
+                  leading: const Icon(Icons.format_list_numbered_rounded,
+                      color: LumoVisualTokens.cyanBright),
+                  title: const Text('Zahlen bis 100',
+                      style: TextStyle(color: Colors.white)),
+                  subtitle: const Text(
+                      'Zahlen vergleichen, Vorgänger, Nachfolger, Zehner und Einer',
+                      style: TextStyle(color: LumoVisualTokens.muted)),
+                  onTap: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute(
+                          builder: (_) => LearningModuleRegistry.builderFor(
+                              'm2_zahlen100', widget.appState)!))),
             for (final activity in const [
               ('Deutsch', 'Deutsch gestalten', Icons.edit_note_rounded),
               ('Englisch', 'Englisch ausprobieren', Icons.translate_rounded),
