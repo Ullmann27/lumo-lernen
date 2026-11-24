@@ -250,6 +250,19 @@ jobs:
           sha256sum dist/*.apk > dist/SHA256SUMS.txt
           echo "APK collected locally in dist. Artifact upload is disabled to avoid GitHub storage quota failures."
 
+      # Schule-Demo 2026-11-24: APK als kurzlebiges Workflow-Artefakt
+      # bereitstellen (Debug, kein Release, 3 Tage Aufbewahrung).
+      - name: Upload debug APK artifact
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: Lumo-Lernen-debug-${{ github.run_number }}
+          path: |
+            dist/Lumo-Lernen-debug-${{ github.run_number }}.apk
+            dist/SHA256SUMS.txt
+          retention-days: 3
+          if-no-files-found: error
+
       - name: Job-Zusammenfassung mit Release-Link
         if: success()
         run: |
