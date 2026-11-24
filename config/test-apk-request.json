@@ -1,5 +1,5 @@
 {
-  "request": 56,
-  "version": "0.14.6+2079",
-  "note": "Schuldemo 24.11.2026 als Update der bestehenden Familien-App (coachpreview, Debug-Schlüssel tools/lumo-debug.keystore): Stand grok/schule-demo-20261124 @2eac99a6 plus Audit-Fix 132daf61 (#548). Mathe, Sprachen, Sachkunde, Startseite, Intro, Lehrerinnen-Ansicht, Holo-Design. Kein Merge nach main, keine Produktionssignierung. Request 55: Startseiten-Hinweis der Lehrkräfte-Kachel nennt keine PIN mehr (PIN-freie Einstellungen, state_persistence_regression_test). Request 56: PCK-Probe erwartet exakt die zehn Fahrer des gepinnten Godot-Stands c3f459ec (lumo-godot a5208625 „expose all ten finished drivers“, wie lumo-2078-device-repair.yml)."
+  "request": 57,
+  "version": "0.14.7+2080",
+  "note": "Abschluss 24.11.2026: Integration lumo-abschluss/integration-20261124, Update der installierten Familien-App (coachpreview, Debug-Schlüssel tools/lumo-debug.keystore), Bau über lumo-abschluss-apk.yml, kein Release. Vorher Request 56 = Schuldemo 0.14.6+2079."
 }
