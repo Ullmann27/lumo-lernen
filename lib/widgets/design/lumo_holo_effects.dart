@@ -137,7 +137,10 @@ class LumoHoloShimmerState extends State<LumoHoloShimmer>
 
   @override
   Widget build(BuildContext context) {
+    // passthrough: das Kind erhält exakt die Constraints wie ohne Schimmer
+    // (straffe Raster-Zellen bleiben straff, Layout ändert sich nicht).
     return Stack(
+      fit: StackFit.passthrough,
       children: [
         widget.child,
         Positioned.fill(

@@ -31,7 +31,6 @@ abstract final class LumoMaterials {
         ),
         border: Border.all(
           color: border ?? LumoVisualTokens.cyanBright.withValues(alpha: .42),
-          width: 1.2,
         ),
         // Tiefe: dunkler Kontaktschatten plus leiser Cyan-Lichthof der Kante.
         boxShadow: [
@@ -112,7 +111,7 @@ class LumoGoldAction extends StatelessWidget {
                             horizontal: 10, vertical: 13),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18)),
-                          textStyle: TextStyle(
+                        textStyle: TextStyle(
                             fontFamily: 'Nunito',
                             fontSize: bounds.maxWidth < 160 ? 14 : 16,
                             fontWeight: FontWeight.w900),
