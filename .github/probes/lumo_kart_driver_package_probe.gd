@@ -56,7 +56,7 @@ func _check_assets() -> void:
 		if id != "fox":
 			model_ids[id] = true
 	playable_ids.sort()
-	_check(playable_ids == ["badger", "cat", "fox", "frog", "otter", "rabbit"], "all six playable drivers are in the exported selection catalogue")
+	_check(playable_ids == ["badger", "cat", "fox", "frog", "lion", "otter", "owl", "rabbit", "squirrel", "turtle"], "all ten playable drivers are in the exported selection catalogue")
 	var lumo_scene := load("res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb") as PackedScene
 	_check(lumo_scene != null, "original Lumo facial model")
 	if lumo_scene != null:
