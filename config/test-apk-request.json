@@ -1,5 +1,5 @@
 {
-  "request": 53,
-  "version": "0.14.3+2075",
-  "note": "Finaler gemeinsamer LUMO-Kandidat nach vollständigem World/Kart-Abgleich. Enthält Open World/Pfotenpfad/Freundepost, 19 Kart-Items und sechs auswählbare Fahrer mit importierten Produktions-GLBs. Der Schatzsuche-Test gibt seine synthetischen Touch-Ressourcen sauber frei. Der Fahrer-Regressionsnachweis beobachtet den absichtlich deferred Preview-Wechsel in einem harten 8-Frame-Fenster, deutlich kürzer als der 1,46-s agree_nod-Clip. Keine Laufzeitfunktion entfernt oder Testbedingung abgeschwächt; keine Fremdprojekt-Laufzeit/Assets in den hinzugefügten Candidate-Deltas. Native Quelle e9e0b48781878c821c59750f5b8ed99420d86c0a."
+  "request": 56,
+  "version": "0.14.6+2079",
+  "note": "Schuldemo 24.11.2026 als Update der bestehenden Familien-App (coachpreview, Debug-Schlüssel tools/lumo-debug.keystore): Stand grok/schule-demo-20261124 @2eac99a6 plus Audit-Fix 132daf61 (#548). Mathe, Sprachen, Sachkunde, Startseite, Intro, Lehrerinnen-Ansicht, Holo-Design. Kein Merge nach main, keine Produktionssignierung. Request 55: Startseiten-Hinweis der Lehrkräfte-Kachel nennt keine PIN mehr (PIN-freie Einstellungen, state_persistence_regression_test). Request 56: PCK-Probe erwartet exakt die zehn Fahrer des gepinnten Godot-Stands c3f459ec (lumo-godot a5208625 „expose all ten finished drivers“, wie lumo-2078-device-repair.yml)."
 }

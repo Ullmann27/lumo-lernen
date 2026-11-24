@@ -5,7 +5,7 @@ name: "Lumo Test-APK (Flutter + Godot)"
 # das Ergebnis ist eine Vorabversion zum Testen auf dem Handy.
 on:
   push:
-    branches: [ccr-54af69f2-4uged4, delivery/lumo-2051-completion, repair/lumo-quiz-run-kart-20261119, integration/lumo-complete-20261122]
+    branches: [ccr-54af69f2-4uged4, delivery/lumo-2051-completion, repair/lumo-quiz-run-kart-20261119, integration/lumo-complete-20261122, delivery/lumo-schule-demo-20261124]
     paths:
       - config/test-apk-request.json
       - .github/workflows/lumo-test-apk.yml
