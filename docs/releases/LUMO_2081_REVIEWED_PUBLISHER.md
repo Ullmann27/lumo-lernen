@@ -1,5 +1,13 @@
 # Geprüfte Veröffentlichung von Lumo 0.14.8+2081
 
+## Kontrollierte Wiederaufnahme der Veröffentlichung
+
+Der erste Veröffentlichungsversuch `45463555833` auf `support/lumo-2081-reviewed-publish` bestand die vollständige Originalartefakt-, Manifest-, Zertifikats-, PCK- und Android-Prüfung. Die anschließende Veröffentlichung endete am 24.11.2026 um 18:50 UTC nach knapp sieben Sekunden mit einer unspezifischen `ValueError`. Der damalige Fehlerbeleg enthält nur die Auftrags-, API- und bestandene Vorabprüfung; Tag und Release waren bei der anschließenden Kontrolle nicht vorhanden. Aus diesem Befund allein folgt keine gesicherte Aussage über die konkrete Fehlerursache oder die Schreibberechtigung des Publisher-Zugangs.
+
+Die Wiederaufnahme verwendet den neuen Zweig `support/lumo-2081-publication-recovery` aus dem geprüften Stand vor der ersten Aktivierung. Die ursprüngliche Aktivierungsdatei und Historie werden nicht geändert. Erst eine auf dem neuen Zweig frisch hinzugefügte identische Anforderung aktiviert den Workflow; der bisherige `A`-Guard bleibt erhalten. Quellstand, Originalartefakte, APK-Bytes, Signatur, Tag und sämtliche Freigabeprüfungen bleiben unverändert. Bestehende Tags oder Releases führen weiterhin zum Abbruch vor jedem Schreibzugriff.
+
+Feste Phasenmarken und ein stets gesicherter Fehlerbeleg unterscheiden künftig Identitäts-/Quellprüfungen, lokale Dateiüberprüfung, Abwesenheitsprüfungen, Tag-Erstellung, Release-Entwurf, Upload und öffentlichen Rückdownload. Fehlerdiagnosen enthalten ausschließlich erlaubte Phasennamen, Fehlerklassen, numerische HTTP-/Exitcodes und eine begrenzte Ursachenklasse. Originale Fehlermeldungen, Antworttexte, Header, URLs, Tokens und Kommandoausgaben werden nicht veröffentlicht. Keine automatische Wiederholung und kein Wechsel des Publisher-Zugangs sind eingebaut.
+
 Dieser getrennte Zweig verändert den laufenden APK-Bau nicht. Der Veröffentlichungscode ist vorbereitet; die aktivierende Datei `config/lumo-2081-reviewed-publish.json` fehlt bewusst bis zur beobachteten vollständigen Abnahme.
 
 - Originalquelle: `7ece88343c005920be850b3413a3bb342c42746c`.
@@ -21,7 +29,7 @@ Der Actions-Zugang liest die Actions-Metadaten auch unmittelbar vor Veröffentli
 
 ## Bereits ausgeführte technische Prüfung
 
-15 Veröffentlichungsschutz-Tests für 2081 und 48 bestehende Prüfungen der verwandten Publisher bestanden. Python-Syntax und Whitespace der Schemakorrektur wurden geprüft. Diese Tests ersetzen weder die tatsächliche Android-Abnahme noch den verifizierten öffentlichen APK-Download.
+19 Veröffentlichungsschutz-Tests für 2081 bestanden nach der Diagnoseergänzung; 48 bestehende Prüfungen der verwandten Publisher bestanden bereits beim vorangehenden Schemaabgleich. Python-Syntax und Whitespace wurden geprüft. Diese Tests ersetzen weder die tatsächliche Android-Abnahme noch den verifizierten öffentlichen APK-Download.
 
 ### Schemaabgleich mit den echten Android-Belegen
 

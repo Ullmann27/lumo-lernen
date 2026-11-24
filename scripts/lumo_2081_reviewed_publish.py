@@ -27,7 +27,7 @@ from public_learning_download import download_public
 
 REPOSITORY = 'Ullmann27/lumo-lernen'
 OWNER_ID = 64243701
-PUBLISHER_BRANCH = 'support/lumo-2081-reviewed-publish'
+PUBLISHER_BRANCH = 'support/lumo-2081-publication-recovery'
 SOURCE_BRANCH = 'lumo-abschluss/integration-20261124'
 SOURCE = '7ece88343c005920be850b3413a3bb342c42746c'
 NATIVE = 'c814e35249e4038f903d1fca3e19bb4751040a43'
@@ -70,6 +70,79 @@ ANDROID_STEPS = {
     'Beobachtete native Spielstarts verbindlich prüfen',
     'Abgeschlossene Android-Prüfbelege zum selben Kandidaten bereitstellen',
 }
+PHASES = {
+    'initialization', 'prepare', 'verify', 'publish', 'publisher-identity',
+    'publisher-repository', 'source-gates', 'local-assets', 'release-absence',
+    'tag-absence', 'create-tag', 'verify-created-tag', 'create-draft',
+    'upload-assets', 'verify-draft', 'publish-draft', 'verify-public-release',
+    'anonymous-download', 'complete',
+}
+FAILURE_REASONS = {
+    'workflow_scope', 'permission', 'rate_limit', 'authentication',
+    'conflict', 'validation', 'service', 'http_error', 'command_error',
+    'transport', 'timeout', 'cli_unavailable',
+}
+CURRENT_PHASE = 'initialization'
+
+
+class PublicationOperationError(ValueError):
+    """Only allowlisted diagnostics; never retain a response body or command output."""
+    def __init__(self, reason, *, http_status=None, exit_code=None):
+        require(reason in FAILURE_REASONS, 'Unknown publication failure classification')
+        require(http_status is None or type(http_status) is int and 100 <= http_status <= 599,
+                'Invalid diagnostic HTTP status')
+        require(exit_code is None or type(exit_code) is int and -255 <= exit_code <= 255,
+                'Invalid diagnostic command exit code')
+        self.reason, self.http_status, self.exit_code = reason, http_status, exit_code
+        super().__init__(reason)
+
+
+def failure_reason(text, http_status=None):
+    message = text[:65536].lower()
+    if 'workflow' in message and any(term in message for term in ('scope', 'permission', 'refusing')):
+        return 'workflow_scope'
+    if any(term in message for term in ('rate limit', 'rate-limit', 'secondary rate')):
+        return 'rate_limit'
+    if http_status == 401 or 'bad credentials' in message or 'authentication failed' in message:
+        return 'authentication'
+    if http_status == 403 or 'resource not accessible' in message or 'permission denied' in message:
+        return 'permission'
+    if http_status == 409:
+        return 'conflict'
+    if http_status == 422:
+        return 'validation'
+    if http_status is not None and http_status >= 500:
+        return 'service'
+    return 'http_error' if http_status is not None else 'command_error'
+
+
+def publication_phase(name):
+    global CURRENT_PHASE
+    require(name in PHASES, 'Unknown publication phase')
+    CURRENT_PHASE = name
+    save(ROOT / 'proof/PUBLICATION-PROGRESS.json', {'phase': name})
+    print('[LumoPublicationPhase] ' + name, flush=True)
+
+
+def report_failure(error):
+    # Exception messages, request headers, URLs and process output are excluded.
+    error_type = type(error).__name__
+    allowed_types = {'ValueError', 'KeyError', 'OSError', 'FileNotFoundError',
+                     'BadZipFile', 'JSONDecodeError', 'PublicationOperationError'}
+    result = {'status': 'FAIL', 'phase': CURRENT_PHASE,
+              'exception': error_type if error_type in allowed_types else 'unexpected'}
+    if isinstance(error, PublicationOperationError):
+        result['reason'] = error.reason
+        if error.http_status is not None:
+            result['http_status'] = error.http_status
+        if error.exit_code is not None:
+            result['exit_code'] = error.exit_code
+    try:
+        save(ROOT / 'proof/PUBLICATION-FAILURE.json', result)
+    except OSError:
+        result['failure_artifact_written'] = False
+    print(json.dumps(result, sort_keys=True), file=sys.stderr)
+    return result
 
 
 def validate_order(order):
@@ -110,9 +183,14 @@ def github_json(path, token, *, absent_ok=False):
     except HTTPError as error:
         if absent_ok and error.code == 404:
             return None
-        raise ValueError('GitHub GET failed: HTTP ' + str(error.code)) from None
+        try:
+            message = error.read(65536).decode('utf-8', errors='replace')
+        except (OSError, AttributeError):
+            message = ''
+        raise PublicationOperationError(failure_reason(message, error.code),
+                                        http_status=error.code) from None
     except (URLError, OSError) as error:
-        raise ValueError('GitHub GET failed: ' + type(error).__name__) from None
+        raise PublicationOperationError('transport') from None
 
 
 def verify_owner(identity):
@@ -304,9 +382,20 @@ def publisher_cli(token, arguments, payload=None):
     config.mkdir(parents=True, exist_ok=True, mode=0o700)
     environment.update({'GH_TOKEN': token, 'GH_HOST': 'github.com', 'GH_PROMPT_DISABLED': '1',
                         'GH_CONFIG_DIR': str(config.resolve()), 'GH_NO_UPDATE_NOTIFIER': '1'})
-    result = subprocess.run(['gh', *arguments], input=json.dumps(payload) if payload is not None else None,
-                            text=True, capture_output=True, env=environment, timeout=900)
-    require(result.returncode == 0, 'Publisher command failed; no retry or alternate credential')
+    try:
+        result = subprocess.run(['gh', *arguments], input=json.dumps(payload) if payload is not None else None,
+                                text=True, capture_output=True, env=environment, timeout=900)
+    except subprocess.TimeoutExpired:
+        raise PublicationOperationError('timeout') from None
+    except FileNotFoundError:
+        raise PublicationOperationError('cli_unavailable') from None
+    if result.returncode != 0:
+        # Recognize a small set of causes without disclosing any original text.
+        message = (result.stderr or '')[:32768] + '\n' + (result.stdout or '')[:32768]
+        match = re.search(r'\bHTTP(?:/\S+\s+|\s+)([1-5][0-9]{2})\b', message)
+        status = int(match[1]) if match else None
+        raise PublicationOperationError(failure_reason(message, status),
+                                        http_status=status, exit_code=result.returncode)
     return decode(result.stdout) if payload is not None else None
 
 
@@ -337,14 +426,18 @@ def verify_release(release, ref, assets, draft):
 def publish(order):
     token = os.environ.get('LUMO_RELEASE_PUBLISH_TOKEN', '')
     require(bool(token), 'Publisher credential unavailable; no GITHUB_TOKEN fallback')
+    publication_phase('publisher-identity')
     verify_owner(github_json('user', token))
     base = 'repos/' + REPOSITORY
+    publication_phase('publisher-repository')
     repo = github_json(base, token)
     same(repo['full_name'], REPOSITORY, 'Publisher repository')
     same(repo['private'], False, 'Public publication repository')
     verify_owner(repo['owner'])
     # Re-observe source gates immediately before the first external mutation.
+    publication_phase('source-gates')
     observe_api(order, os.environ.get('LUMO_SOURCE_READ_TOKEN', ''))
+    publication_phase('local-assets')
     proof = read(ROOT / 'proof/PREPUBLICATION-VERIFICATION.json')
     same(proof['status'], 'PASS', 'Prepublication gate')
     same(proof['order'], order, 'Verified order')
@@ -357,12 +450,17 @@ def publish(order):
         require(path.is_file() and not path.is_symlink(), 'Nonregular release asset')
         same({'bytes': path.stat().st_size, 'sha256': digest(path)}, expected, 'Unchanged asset ' + name)
     for endpoint in ('releases/tags/' + TAG, 'git/ref/tags/' + TAG):
+        publication_phase('release-absence' if endpoint.startswith('releases/') else 'tag-absence')
         require(github_json(base + '/' + endpoint, token, absent_ok=True) is None,
                 'Tag or release already exists; no overwrite')
+    publication_phase('create-tag')
     publisher_cli(token, ['api', '--method', 'POST', base + '/git/refs', '--input', '-'],
                   {'ref': 'refs/tags/' + TAG, 'sha': SOURCE})
+    publication_phase('verify-created-tag')
     ref = github_json(base + '/git/ref/tags/' + TAG, token)
     same(ref['object']['sha'], SOURCE, 'New tag source')
+    save(ROOT / 'proof/CREATED-TAG.json', ref)
+    publication_phase('create-draft')
     created = publisher_cli(token, ['api', '--method', 'POST', base + '/releases', '--input', '-'], {
         'tag_name': TAG, 'target_commitish': SOURCE, 'name': 'Lumo 0.14.8+2081 – signierte Android-Testversion',
         'body': (release_dir / 'LIESMICH.md').read_text(), 'draft': True,
@@ -372,18 +470,23 @@ def publish(order):
     same(created['draft'], True, 'Upload into new draft')
     verify_owner(created['author'])
     save(ROOT / 'proof/CREATED-RELEASE.json', created)
+    publication_phase('upload-assets')
     publisher_cli(token, ['release', 'upload', TAG, '--repo', REPOSITORY,
                           *[str(release_dir / name) for name in sorted(assets)]])
+    publication_phase('verify-draft')
     release = github_json(base + '/releases/' + str(created['id']), token)
     ref = github_json(base + '/git/ref/tags/' + TAG, token)
     verify_release(release, ref, assets, draft=True)
+    publication_phase('publish-draft')
     publisher_cli(token, ['api', '--method', 'PATCH', base + '/releases/' + str(created['id']), '--input', '-'],
                   {'draft': False, 'prerelease': True, 'make_latest': 'false'})
+    publication_phase('verify-public-release')
     release = github_json(base + '/releases/' + str(created['id']), token)
     ref = github_json(base + '/git/ref/tags/' + TAG, token)
     asset = verify_release(release, ref, assets, draft=False)
     save(ROOT / 'proof/PUBLISHED-RELEASE.json', release)
     save(ROOT / 'proof/PUBLISHED-TAG.json', ref)
+    publication_phase('anonymous-download')
     observation = download_public({'url': asset['browser_download_url'],
                                    'bytes': order['apk_bytes'], 'sha256': order['apk_sha256']})
     result = {'status': 'PASS', 'source': SOURCE, 'native': NATIVE, 'source_run': RUN,
@@ -391,6 +494,7 @@ def publish(order):
               'release_url': release['html_url'], 'download': observation,
               'server_immutable_observed': release.get('immutable')}
     save(ROOT / 'proof/PUBLIC-DOWNLOAD-VERIFICATION.json', result)
+    publication_phase('complete')
     print(json.dumps(result, indent=2))
 
 
@@ -399,6 +503,7 @@ def main():
     parser.add_argument('mode', choices=('prepare', 'verify', 'publish'))
     parser.add_argument('--build-tools', type=Path)
     args = parser.parse_args()
+    publication_phase(args.mode)
     order = validate_order(read(REQUEST))
     if args.mode == 'prepare':
         prepare(order)
@@ -413,6 +518,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as error:
-        # Never print response bodies, subprocess output, secrets or CDN URLs.
-        print('2081 publication stopped: ' + type(error).__name__, file=sys.stderr)
+        report_failure(error)
         raise SystemExit(1) from None

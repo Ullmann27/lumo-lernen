@@ -4,7 +4,7 @@ name: "Lumo 2081 – geprüfte Original-APK veröffentlichen"
 # gates passed. This workflow never rebuilds, signs, overwrites or changes main.
 on:
   push:
-    branches: [support/lumo-2081-reviewed-publish]
+    branches: [support/lumo-2081-publication-recovery]
     paths: [config/lumo-2081-reviewed-publish.json]
 
 permissions:

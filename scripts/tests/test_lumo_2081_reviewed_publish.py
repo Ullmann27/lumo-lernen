@@ -1,6 +1,9 @@
 """Publication safety tests use synthetic metadata; they perform no network writes."""
 from copy import deepcopy
+from contextlib import redirect_stderr
+import hashlib
 import importlib.util
+import io
 import os
 from pathlib import Path
 import subprocess
@@ -227,6 +230,84 @@ class ReleaseTests(unittest.TestCase):
 
 
 class ClientTests(unittest.TestCase):
+    def test_failed_cli_records_only_allowlisted_cause_status_and_exit(self):
+        for reason, message in (
+                ('workflow_scope', 'refusing workflow update without workflow scope (HTTP 403)'),
+                ('permission', 'Resource not accessible by personal access token (HTTP 403)'),
+                ('rate_limit', 'API rate limit exceeded (HTTP 403)'),
+                ('authentication', 'Bad credentials (HTTP 401)'),
+                ('command_error', 'unrecognized response')):
+            with self.subTest(reason=reason), tempfile.TemporaryDirectory() as folder, \
+                    patch.object(publisher, 'ROOT', Path(folder)), \
+                    patch.object(publisher, 'CURRENT_PHASE', 'create-tag'), \
+                    patch.object(publisher.subprocess, 'run', return_value=subprocess.CompletedProcess(
+                        [], 1, 'sensitive-stdout', message + '\nAuthorization: sensitive-token')), \
+                    redirect_stderr(io.StringIO()) as captured:
+                with self.assertRaises(publisher.PublicationOperationError) as raised:
+                    publisher.publisher_cli('sensitive-token', ['api', '--method', 'POST', 'repos/test'])
+                report = publisher.report_failure(raised.exception)
+                self.assertEqual(report['phase'], 'create-tag')
+                self.assertEqual(report['reason'], reason)
+                self.assertEqual(report['exit_code'], 1)
+                saved = (Path(folder) / 'proof/PUBLICATION-FAILURE.json').read_text()
+                for secret in ('sensitive-token', 'sensitive-stdout', 'Authorization', message):
+                    self.assertNotIn(secret, saved + captured.getvalue())
+
+    def test_http_error_body_and_unexpected_exception_message_are_not_disclosed(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(publisher, 'ROOT', Path(folder)), \
+                patch.object(publisher, 'CURRENT_PHASE', 'publisher-identity'), \
+                patch.object(publisher.API_OPENER, 'open', side_effect=HTTPError(
+                    'https://api.github.com/sensitive-url', 401, 'sensitive-reason', {},
+                    io.BytesIO(b'Bad credentials sensitive-token'))), \
+                redirect_stderr(io.StringIO()) as captured:
+            with self.assertRaises(publisher.PublicationOperationError) as raised:
+                publisher.github_json('user', 'sensitive-token')
+            report = publisher.report_failure(raised.exception)
+            self.assertEqual(report['http_status'], 401)
+            self.assertEqual(report['reason'], 'authentication')
+            publisher.report_failure(ValueError('sensitive-exception-message'))
+            saved = (Path(folder) / 'proof/PUBLICATION-FAILURE.json').read_text()
+            self.assertNotIn('sensitive', saved + captured.getvalue())
+
+    def test_diagnostics_do_not_retry_commands_or_use_another_credential(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(publisher, 'ROOT', Path(folder)), \
+                patch.object(publisher.subprocess, 'run', side_effect=subprocess.TimeoutExpired(
+                    ['sensitive-command'], 900)) as run:
+            with self.assertRaises(publisher.PublicationOperationError) as raised:
+                publisher.publisher_cli('synthetic-publisher', ['api'])
+            self.assertEqual(raised.exception.reason, 'timeout')
+            self.assertEqual(run.call_count, 1)
+            self.assertEqual(run.call_args.kwargs['env']['GH_TOKEN'], 'synthetic-publisher')
+
+    def test_existing_release_or_tag_still_stops_before_any_write(self):
+        for existing in ('releases/tags/', 'git/ref/tags/'):
+            with self.subTest(existing=existing), tempfile.TemporaryDirectory() as folder, \
+                    patch.object(publisher, 'ROOT', Path(folder)), \
+                    patch.dict(os.environ, {'LUMO_RELEASE_PUBLISH_TOKEN': 'synthetic-publisher',
+                                          'LUMO_SOURCE_READ_TOKEN': 'synthetic-reader'}, clear=True), \
+                    patch.object(publisher, 'observe_api'), \
+                    patch.object(publisher, 'publisher_cli') as write:
+                request = order()
+                content = b'Unit-test APK fixture, not delivery evidence'
+                request.update(apk_bytes=len(content), apk_sha256=hashlib.sha256(content).hexdigest())
+                release = Path(folder) / 'release'
+                release.mkdir()
+                (release / publisher.APK).write_bytes(content)
+                publisher.save(Path(folder) / 'proof/PREPUBLICATION-VERIFICATION.json', {
+                    'status': 'PASS', 'order': request,
+                    'assets': {publisher.APK: {'bytes': len(content), 'sha256': request['apk_sha256']}}})
+                owner = {'login': 'Ullmann27', 'id': 64243701}
+                def observed(path, token, **kwargs):
+                    if path == 'user':
+                        return owner
+                    if path == 'repos/' + publisher.REPOSITORY:
+                        return {'full_name': publisher.REPOSITORY, 'private': False, 'owner': owner}
+                    return {'id': 123} if existing in path else None
+                with patch.object(publisher, 'github_json', side_effect=observed), \
+                        self.assertRaises(ValueError):
+                    publisher.publish(request)
+                write.assert_not_called()
+
     def test_only_observed_404_is_absence_no_redirect_or_permission_fallback(self):
         for status in (302, 403, 500):
             with patch.object(publisher.API_OPENER, 'open', side_effect=HTTPError('https://api.github.com', status, '', {}, None)) as opening:
