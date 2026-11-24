@@ -7,6 +7,7 @@ import '../../domain/school/learning_analysis.dart';
 import '../../domain/school/school_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../teacher_demo/teacher_demo_entry_card.dart';
 import 'assign_task_sheet.dart';
 import 'teacher_student_screen.dart';
 import 'teacher_widgets.dart';
@@ -257,6 +258,8 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(14, 8, 14, 28),
           children: [
+            const TeacherDemoEntryCard(),
+            const SizedBox(height: 12),
             Wrap(spacing: 8, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
               for (final c in classes)
                 ChoiceChip(
@@ -413,7 +416,7 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             const Icon(Icons.school_rounded, color: LumoVisualTokens.cyanBright, size: 56),
@@ -433,6 +436,8 @@ class _EmptyState extends StatelessWidget {
               icon: Icons.add_rounded,
               onTap: onAdd,
             ),
+            const SizedBox(height: 20),
+            const TeacherDemoEntryCard(),
           ]),
         ),
       );

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/math_task_templates.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
+import 'story_scene_images.dart';
 
 /// Sammlung aller neuen Visuals fuer die erweiterten Aufgaben-Templates
 /// (Mai 2026). Jedes Visual rendert Daten aus task.visualPayload.data oder
@@ -2031,30 +2032,17 @@ class StoryStageVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final emoji = _themeEmoji(task.prompt);
+    final scene = storySceneImageFor(task.prompt);
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
       decoration: _stageDecoration(const Color(0xFFFB923C)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            width: 84,
-            height: 84,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFFB923C).withOpacity(0.35),
-                  blurRadius: 22,
-                  spreadRadius: 1,
-                  offset: const Offset(0, 6),
-                ),
-              ],
-            ),
-            child: Text(emoji, style: const TextStyle(fontSize: 50)),
-          ),
+          if (scene != null)
+            StorySceneFrame(scene: scene, fallback: _storyEmojiBadge(emoji))
+          else
+            _storyEmojiBadge(emoji),
           const SizedBox(height: 10),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -2081,6 +2069,25 @@ class StoryStageVisual extends StatelessWidget {
 
   String _themeEmoji(String prompt) => storyThemeEmoji(prompt);
 }
+
+Widget _storyEmojiBadge(String emoji) => Container(
+      width: 84,
+      height: 84,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFFB923C).withOpacity(0.35),
+            blurRadius: 22,
+            spreadRadius: 1,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: Text(emoji, style: const TextStyle(fontSize: 50)),
+    );
 
 /// Erkennt das Thema einer Sachaufgabe an ganzen Wörtern und liefert das
 /// passende Bild. Befund L3: Früher wurden Wortteile gesucht, so wurde aus

@@ -1,0 +1,32 @@
+{
+  "base_commit": "6e7b26906a15c8497cb36cf8c1d0c2126740658c",
+  "base_tree": "caaf2772e296971f72c725d3ccd095160de2bfba",
+  "runtime": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\"",
+  "results": {
+    "before": {
+      "exit_code": 1,
+      "first_line": "57/64 failed:"
+    },
+    "after": {
+      "exit_code": 0,
+      "first_line": "PASS: 64 topic and offline-response checks."
+    },
+    "analysis": {
+      "exit_code": 0,
+      "last_line": "No issues found!"
+    }
+  },
+  "source_sha256": {
+    "lib/core/lumo_brain.dart": "60e85b986cf608f1f2180ae1ee5a8c68579d931489f13a02057385a039d4d60e",
+    "lib/features/teacher_mode/topic_curriculum.dart": "4e72ca884e4f10632c217b0f13af3598e08d5f34cfca4efab3b16398aece2693",
+    "lib/features/teacher_mode/lumo_teacher_screen.dart": "4cb0959b775f0c4e02370f8f01b5122919faa6728807e20a1b778c72e492ad5a",
+    "lib/features/teacher_mode/lumo_akademie_screen.dart": "4a04ce6953e7d8fec3b868e10e2d47b25b70aace84b88e9bc978e320d10140fd",
+    "test/learning/topic_context_scope_regression.dart": "cdbc32006e26e1a76316d1350407ccf1668d246c426281b8fee66c37d4ed1acc"
+  },
+  "limits": [
+    "Pure Dart behavior/data checks only",
+    "No full Flutter widget suite or Android APK test",
+    "Teacher widget change parsed, not exercised on device",
+    "No full curriculum or all-topic audit"
+  ]
+}
