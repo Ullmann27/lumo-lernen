@@ -210,24 +210,22 @@ class HomeContent extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   // Schul-Demo 24.11.2026: Fächer als klare Register direkt unter Lernen/Spielen.
-                  Row(children: [
-                    Expanded(
-                      child: LumoSubjectRegister(
-                        onSubject: _browseSubject,
-                        onGames: () => onSection(LumoSection.games),
+                  LumoSubjectRegister(
+                    onSubject: _browseSubject,
+                    onGames: () => onSection(LumoSection.games),
+                    extras: [
+                      LumoRegisterAction(
+                        entry: const LumoRegisterEntry(
+                          id: 'intro',
+                          title: 'Lumo-Intro',
+                          hint: 'Lumo zeigt dir alles',
+                          icon: Icons.play_circle_fill_rounded,
+                          color: Color(0xFF16728F),
+                        ),
+                        onTap: () => LumoIntroTour.show(context),
                       ),
-                    ),
-                    IconButton(
-                      key: const ValueKey('home-intro-replay'),
-                      tooltip: 'Lumo-Intro ansehen',
-                      constraints:
-                          const BoxConstraints(minWidth: 48, minHeight: 48),
-                      color: LumoVisualTokens.cyan,
-                      onPressed: () => LumoIntroTour.show(context),
-                      icon: const Icon(Icons.play_circle_outline_rounded,
-                          size: 30),
-                    ),
-                  ]),
+                    ],
+                  ),
                   const SizedBox(height: 10),
                   FilledButton.icon(
                     key: const ValueKey('home-3d-workshop'),
