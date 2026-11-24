@@ -349,7 +349,8 @@ class LumoColorTile extends StatelessWidget {
                             ]),
                         border: Border.all(
                             color: Color.lerp(color, LumoVisualTokens.cyan, .4)!
-                                .withValues(alpha: .7)),
+                                .withValues(alpha: .7),
+                            width: 1.3),
                         boxShadow: [
                           BoxShadow(
                               color: color.withValues(alpha: .12),
