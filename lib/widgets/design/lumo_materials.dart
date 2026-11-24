@@ -111,7 +111,7 @@ class LumoGoldAction extends StatelessWidget {
                             horizontal: 10, vertical: 13),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18)),
-                        textStyle: TextStyle(
+                          textStyle: TextStyle(
                             fontFamily: 'Nunito',
                             fontSize: bounds.maxWidth < 160 ? 14 : 16,
                             fontWeight: FontWeight.w900),
