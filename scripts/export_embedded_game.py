@@ -268,6 +268,140 @@ def remove_generated_gate_images(repo: Path, before: set[str], source: dict):
         print('[LumoGateImport] removed verified temporary JPEG:', relative)
 
 
+# Godot 4.6.3 writes import metadata and one extracted PNG next to each
+# production Meshy GLB in the exact 2077 game revision. These files are
+# deterministic importer byproducts, not application source. Cleanup is
+# fail-closed: it runs only for this immutable pin, after every manifest GLB
+# has been verified byte-for-byte, and removes only newly created outputs.
+PRODUCTION_MESHY_REVISION = '410327bfd5d1a66c54e3d75f772895d320daa5d6'
+PRODUCTION_MESHY_MANIFEST = 'assets/kart/production/meshy/manifest.json'
+PRODUCTION_MESHY_VEHICLE_IDS = frozenset((
+    'blitz', 'boru_rally', 'comet', 'gecko_velo', 'glider', 'iva_aurora',
+    'koloss', 'nala_comet', 'noa_tide', 'phantom', 'stella', 'terra',
+    'turbo', 'zuri_volt',
+))
+PRODUCTION_MESHY_GARAGE_IDS = frozenset((
+    'meshy_tool_workbench', 'meshy_turntable',
+))
+
+
+def remove_generated_production_meshy_imports(repo: Path, before: set[str], source: dict):
+    """Remove only verified importer outputs of the immutable 2077 Meshy inventory."""
+    if source.get('revision') != PRODUCTION_MESHY_REVISION:
+        return
+
+    manifest_path = repo / PRODUCTION_MESHY_MANIFEST
+    if manifest_path.is_symlink() or not manifest_path.is_file():
+        raise RuntimeError('Refusing 2077 Meshy import cleanup: missing manifest')
+    try:
+        manifest = json.loads(manifest_path.read_text())
+    except (OSError, json.JSONDecodeError) as error:
+        raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid manifest') from error
+
+    vehicles = manifest.get('vehicles')
+    garage = manifest.get('garage')
+    if (manifest.get('schema_version') != 1
+            or not isinstance(vehicles, list) or not isinstance(garage, list)
+            or len(vehicles) != 14 or len(garage) != 2):
+        raise RuntimeError('Refusing 2077 Meshy import cleanup: manifest inventory mismatch')
+
+    rows = vehicles + garage
+    vehicle_ids = {row.get('id') for row in vehicles if isinstance(row, dict)}
+    garage_ids = {row.get('id') for row in garage if isinstance(row, dict)}
+    if vehicle_ids != PRODUCTION_MESHY_VEHICLE_IDS or garage_ids != PRODUCTION_MESHY_GARAGE_IDS:
+        raise RuntimeError('Refusing 2077 Meshy import cleanup: manifest IDs mismatch')
+
+    allowed_outputs = set()
+    expected_paths = set()
+    for row in rows:
+        if not isinstance(row, dict):
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: malformed manifest row')
+        identifier = row.get('id')
+        relative = row.get('path')
+        expected_relative = (
+            f'assets/kart/production/meshy/{identifier}.glb'
+            if identifier in PRODUCTION_MESHY_VEHICLE_IDS
+            else f'assets/kart/production/garage/{identifier}.glb'
+        )
+        if relative != expected_relative or relative in expected_paths:
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: manifest path mismatch')
+        expected_paths.add(relative)
+
+        glb = repo / relative
+        if glb.is_symlink() or not glb.is_file():
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: manifest GLB missing')
+        raw = glb.read_bytes()
+        expected_bytes = row.get('bytes')
+        expected_sha = row.get('sha256')
+        if (not isinstance(expected_bytes, int) or expected_bytes <= 0
+                or not isinstance(expected_sha, str)
+                or not re.fullmatch(r'[0-9a-f]{64}', expected_sha)
+                or len(raw) != expected_bytes
+                or hashlib.sha256(raw).hexdigest() != expected_sha):
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: manifest GLB mismatch')
+
+        if len(raw) < 20 or raw[:4] != b'glTF':
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: malformed GLB')
+        _, version, total, json_length, json_tag = struct.unpack_from('<4s4I', raw)
+        if (version != 2 or total != len(raw) or json_tag != 0x4e4f534a
+                or json_length <= 0 or 20 + json_length > len(raw)):
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid glTF 2.0')
+        try:
+            gltf = json.loads(raw[20:20 + json_length])
+        except json.JSONDecodeError as error:
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid GLB manifest') from error
+        embedded = [
+            image for image in gltf.get('images', [])
+            if isinstance(image, dict) and image.get('mimeType') == 'image/png'
+            and 'bufferView' in image
+        ]
+        if not embedded:
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: embedded PNG missing')
+
+        rel_path = Path(relative)
+        allowed_outputs.add(relative + '.import')
+        allowed_outputs.add(str(rel_path.with_name(rel_path.stem + '_0.png')))
+
+    untracked = git_paths(repo, 'ls-files', '--others', '--exclude-standard')
+    generated = (untracked - before) & allowed_outputs
+    if not generated:
+        return
+
+    # Validate the complete removal set before deleting any file.
+    for relative in sorted(generated):
+        path = repo / relative
+        if path.is_symlink() or not path.is_file():
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: unsafe output ' + relative)
+        size = path.stat().st_size
+        if relative.endswith('.glb.import'):
+            if not 20 <= size <= 1000000:
+                raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid import metadata size')
+            try:
+                metadata = path.read_text()
+            except UnicodeDecodeError as error:
+                raise RuntimeError('Refusing 2077 Meshy import cleanup: binary import metadata') from error
+            source_relative = relative[:-len('.import')]
+            if ('[remap]' not in metadata or 'importer="scene"' not in metadata
+                    or f'source_file="res://{source_relative}"' not in metadata):
+                raise RuntimeError('Refusing 2077 Meshy import cleanup: unexpected import metadata')
+        elif relative.endswith('_0.png'):
+            if not 16 <= size <= 100000000:
+                raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid PNG size')
+            with path.open('rb') as handle:
+                prefix = handle.read(8)
+                handle.seek(-8, 2)
+                suffix = handle.read(8)
+            if prefix != b'\x89PNG\r\n\x1a\n' or suffix != b'IEND\xaeB\x60\x82':
+                raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid PNG output')
+        else:
+            raise RuntimeError('Refusing 2077 Meshy import cleanup: unrecognised output')
+
+    for relative in sorted(generated):
+        (repo / relative).unlink()
+        print('[LumoMeshyImport] removed verified temporary import output:', relative)
+
+
+
 def export(repo: Path, binary: str):
     source = json.loads((ROOT / 'config/godot-source.json').read_text())
     if not repo.exists():
@@ -307,6 +441,7 @@ def export(repo: Path, binary: str):
     finally:
         remove_generated_sidecars(repo, before)
         remove_generated_gate_images(repo, before, source)
+        remove_generated_production_meshy_imports(repo, before, source)
     remaining = subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()
     if remaining:
         raise RuntimeError('Godot import changed sources; refuse exported candidate:\n' + remaining)
