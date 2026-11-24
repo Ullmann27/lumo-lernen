@@ -372,6 +372,16 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
             set(),
         )
 
+    def test_more_than_three_alignment_bytes_are_rejected(self):
+        self.generate_outputs()
+        first = self.all_rows[0]
+        glb = self.repo / first['path']
+        texture = glb.with_name(glb.stem + '_0.png')
+        texture.write_bytes(texture.read_bytes() + b'\x00\x00\x00\x00')
+        with self.assertRaisesRegex(RuntimeError, 'invalid PNG output'):
+            self.cleanup()
+        self.assertTrue(texture.is_file())
+
     def test_other_revision_never_cleans_2077_meshy_outputs(self):
         self.generate_outputs()
         self.cleanup(source={'revision': '0' * 40})
