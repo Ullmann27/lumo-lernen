@@ -117,4 +117,21 @@ void main() {
       expect(find.textContaining('Probe: $target '), findsOneWidget);
     });
   }
+  testWidgets('extended help is opt-in and verifies the task answer', (tester) async {
+    Future<void> render(TaskInstance instance, bool enabled) =>
+        tester.pumpWidget(MaterialApp(home: Scaffold(body: SingleChildScrollView(
+          child: ArithmeticTaskAid(task: instance, reduceMotion: true,
+            showExtended: enabled),
+        ))));
+    await render(task('addition', 37, 25, 62), false);
+    expect(find.byKey(const ValueKey('guided-place-value-arithmetic')), findsNothing);
+    await render(task('addition', 37, 25, 62), true);
+    expect(find.byKey(const ValueKey('guided-place-value-arithmetic')), findsOneWidget);
+    await render(task('addition', 37, 25, 52), true);
+    expect(find.byKey(const ValueKey('guided-place-value-arithmetic')), findsNothing);
+    await render(task('subtraction', 52, 27, 25), true);
+    expect(find.text('52 − 20 = ?'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
 }

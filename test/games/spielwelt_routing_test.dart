@@ -75,6 +75,51 @@ void main() {
     expect(SpielweltLayout.tileColumns(1024), 4);
   });
 
+  testWidgets('chess refreshes the daily mission before a stale portal starts',
+      (tester) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    const bridge = MethodChannel('lumo_lernen/bridge');
+    final calls = <MethodCall>[];
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(bridge, (call) async {
+      calls.add(call);
+      return {'destination': 'games'};
+    });
+    final app = LumoAppState();
+    try {
+      await _pumpHub(tester, app);
+      final portal = find.byKey(const ValueKey('spielwelt-portal-chess'));
+      await tester.scrollUntilVisible(portal, 280,
+          scrollable: find.byType(Scrollable).first);
+      await tester.pump();
+      expect(app.canPlayToday, isTrue);
+
+      // The rendered portal predates the parent's setting change. Starting
+      // chess must refresh the same mission gate as the other guarded games.
+      app.update(app.state.copyWith(
+          settings: app.state.settings
+              .copyWith(requireDailyMissionForGames: true)));
+      expect(app.canPlayToday, isFalse);
+      expect(portal, findsOneWidget);
+      await tester.tap(portal);
+      await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 300)));
+      await tester.pump(const Duration(milliseconds: 800));
+
+      expect(app.dailyMission, isNotNull);
+      expect(app.canPlayToday, isFalse);
+      expect(calls.where((call) => call.method == 'launch3D'), isEmpty);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    } finally {
+      app.dispose();
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(bridge, null);
+      debugDefaultTargetPlatformOverride = null;
+      await tester.binding.setSurfaceSize(null);
+    }
+  });
+
   testWidgets('every visible portal opens its own target scene', (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     const bridge = MethodChannel('lumo_lernen/bridge');

@@ -1,0 +1,7 @@
+# Android 2079/2080: first-run intro observation
+
+Actual 2079 run 45415565186, Android job 138543996315: installed APK identity passed; the actual screenshot 99_fehler.png shows the optional "Hallo, ich bin Lumo!" introduction and "Überspringen", while the old probe is waiting for LumoTest on the home screen. The independent scene starts then also fail to observe Spiele/Spielen. This is evidence of an unhandled intro screen, not a successful game-start test or proof of all games being defective.
+
+The probe now recognises only an exact authored introduction title and an enabled, clickable, app-owned Skip with real visible bounds, confirms the target again after capturing the screen and taps it through Android input. The original checks for the saved fictional profile, live game navigation, race, return and backup remain required. No preference injection, no product/UI change, no relaxation of required game observations. Native-start diagnostics also recognise the optional introduction on a fresh host.
+
+Five pure Python selector tests executed locally successfully. The uploaded selector and test must match the tested blob hashes 846fbe7d7a4cfd97f5dc75ce63238b9e2dcdeacc and 7486a9f67ea965f9c6368a91b423e60cc28dc0f8. This does not prove the new Android run; the full existing pipeline must execute with the change before acceptance. Product source, APK/signature, profile data and prior failed evidence remain unchanged. No main merge and no interruption of the already-running 2080 build.

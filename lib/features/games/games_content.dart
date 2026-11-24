@@ -212,6 +212,13 @@ class _GamesContentState extends State<GamesContent> {
     if (mounted) await _load();
   }
 
+  Future<void> _launchChess() async {
+    if (!await _allowLaunch() || !mounted) return;
+    LumoCompanionRequests.instance
+        .recordInteraction(LumoInteractionKind.gameRequested);
+    await _launch3D('chess');
+  }
+
   Future<void> _launchLogic() async {
     if (!await _allowLaunch() || !mounted || _launchingGame) return;
     setState(() => _launchingGame = true);
@@ -465,7 +472,7 @@ class _GamesContentState extends State<GamesContent> {
         else if (route.identity == 'world')
           SpielweltPortal.world(onOpen: _launchWorld)
         else if (route.identity == 'chess')
-          SpielweltPortal.chess(onOpen: () => _launch3D('chess'))
+          SpielweltPortal.chess(onOpen: _launchChess)
         else if (route.identity == 'skypost')
           SpielweltPortal.skypost(onOpen: () => _launch3D('skypost'))
         else if (route.identity == 'connectFour')

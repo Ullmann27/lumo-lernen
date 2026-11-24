@@ -1,0 +1,29 @@
+{
+  "version": "0.14.8+2081",
+  "base_flutter": "a0fdd4031ba9a5637d9b943729a5f0df794071bc",
+  "base_godot": "c3f459eca88f659da1a9e4af1c990c804e715528",
+  "godot": "c814e35249e4038f903d1fca3e19bb4751040a43",
+  "integrated_flutter_sources": {
+    "adaptive_tutor": "97ac9c19a8573f8d201d4cd14735610c22062337",
+    "intro_android_qa": "809a649ac6f1bfa183079ba1857e3dba3f789aca",
+    "guarded_chess_and_coverage": "65bc96d3a8feeac431048dd5ebb79c16410120a0"
+  },
+  "integrated_native_sources": {
+    "world_quests_cards_dialogues": "e0f70a3afa134df895989fbab132470419f70341",
+    "kart_first_entry_and_ground": "6c8371aa46ac2cb30113a5bc25b80f557e5cba92",
+    "combined_native": "c814e35249e4038f903d1fca3e19bb4751040a43"
+  },
+  "cancelled_2080_run": 45421319160,
+  "preserved_android_package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "preserved_certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "scope": "All identified accessible developed changes compared with existing source; obsolete versions retained in their origin branches. Other unavailable private workspaces cannot be claimed recovered.",
+  "local_checks": {
+    "android_qa_unit_tests": 47,
+    "flutter_targeted_tests": 58,
+    "flutter_targeted_failures": 0,
+    "flutter_targeted_skips": 0,
+    "godot_checks": 1098,
+    "godot_65_bone_gait": "PASS"
+  },
+  "apk_acceptance": "Pending exact-source GitHub APK build and real Android emulator tour. Local source tests do not certify an APK or physical-device performance."
+}

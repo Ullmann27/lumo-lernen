@@ -1,5 +1,5 @@
 {
-  "request": 57,
-  "version": "0.14.7+2080",
-  "note": "Abschluss 24.11.2026: Integration lumo-abschluss/integration-20261124, Update der installierten Familien-App (coachpreview, Debug-Schlüssel tools/lumo-debug.keystore), Bau über lumo-abschluss-apk.yml, kein Release. Vorher Request 56 = Schuldemo 0.14.6+2079."
+  "request": 58,
+  "version": "0.14.8+2081",
+  "note": "Heinz, 24.11.2026: Build 2080 stoppen, fehlende entwickelte Funktionen vollständig integrieren und 2081 bauen. Gleiche installierte Familien-App und Signatur. Veröffentlichung erst nach bestandener Prüfung genau dieser APK."
 }

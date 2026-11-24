@@ -1,4 +1,6 @@
 import 'lumo_tutor_contracts.dart';
+import '../domain/learning/whole_arithmetic.dart';
+import '../domain/learning/error_detective.dart';
 import 'primary_school_word_data.dart';
 import 'school_exercise_generator.dart';
 import 'task_hint_service.dart';
@@ -71,31 +73,31 @@ class LumoTutorEngine {
   }
 
   LumoTutorVisualPlan suggestVisualPlan(LumoTutorRequest request) {
+    if (request.isTestLike) return const LumoTutorVisualPlan.none();
     if (request.subject == LumoTutorSubject.mathematik) {
-      final prompt = request.currentPrompt ?? '';
-      final calculation =
-          RegExp(r'(\d+)\s*([+−\-])\s*(\d+)\s*=').firstMatch(prompt);
-      if (calculation != null) {
-        final left = int.parse(calculation.group(1)!);
-        final right = int.parse(calculation.group(3)!);
-        if (left > 10 || right > 10) {
-          return const LumoTutorVisualPlan(
-              type: LumoTutorVisualType.numberLine);
-        }
-        if (calculation.group(2) != '+') {
-          return LumoTutorVisualPlan(
-            type: LumoTutorVisualType.apples,
-            left: left,
-            remove: right,
-          );
-        }
+      final calculation = WholeArithmetic.parse(request.currentPrompt ?? '',
+          expected: request.correctAnswer);
+      if (calculation == null || !calculation.isAddOrSubtract ||
+          calculation.result < 0) {
+        return const LumoTutorVisualPlan.none();
+      }
+      final left = calculation.left;
+      final right = calculation.right;
+      if (left > 10 || right > 10) {
+        return const LumoTutorVisualPlan(type: LumoTutorVisualType.numberLine);
+      }
+      if (calculation.operation == WholeOperation.subtraction) {
         return LumoTutorVisualPlan(
-          type: LumoTutorVisualType.tenFrame,
+          type: LumoTutorVisualType.apples,
           left: left,
-          right: right,
+          remove: right,
         );
       }
-      return const LumoTutorVisualPlan.none();
+      return LumoTutorVisualPlan(
+        type: LumoTutorVisualType.tenFrame,
+        left: left,
+        right: right,
+      );
     }
 
     if (request.subject == LumoTutorSubject.deutsch) {
@@ -131,7 +133,36 @@ class LumoTutorEngine {
   }
 
   LumoTutorResponse _mathFallback(LumoTutorRequest request) {
-    return _contextualFallback(request, 'Mathematik');
+    final fallback = _contextualFallback(request, 'Mathematik');
+    // Actual task-bound wrong answer only, and only during requested help.
+    if (request.mode != LumoTutorMode.mistakeExplanation ||
+        request.attemptCount < 1 ||
+        request.helpLevel == LumoTutorHelpLevel.hintOnly) {
+      return fallback;
+    }
+    final calculation = WholeArithmetic.parse(request.currentPrompt ?? '',
+        expected: request.correctAnswer);
+    final given = WholeArithmetic.integerAnswer(request.childAnswer);
+    if (calculation == null || request.correctAnswer == null || given == null ||
+        !(calculation.matchesMissingCarry(given) ||
+          calculation.matchesMissingBorrow(given) ||
+          calculation.matchesReversedOnes(given))) {
+      return fallback;
+    }
+    final detection = const ErrorDetective().analyze(
+      subject: 'Mathematik',
+      prompt: request.currentPrompt ?? '',
+      correctAnswer: request.correctAnswer!,
+      givenAnswer: request.childAnswer!,
+    );
+    final text = detection.childFriendlyMessage;
+    return LumoTutorResponse(
+      speech: text,
+      shortHint: text,
+      explanation: text,
+      visualPlan: fallback.visualPlan,
+      source: 'local_tutor_engine_v1',
+    );
   }
 
   LumoTutorResponse _contextualFallback(

@@ -1,0 +1,66 @@
+00:00 +0: loading /tmp/lumo-2081-flutter-features/test/learning/adaptive_whole_arithmetic_test.dart
+00:00 +0: /tmp/lumo-2081-flutter-features/test/learning/adaptive_whole_arithmetic_test.dart: whole-number parser verifies entire prompt and stored solution
+00:00 +1: /tmp/lumo-2081-flutter-features/test/learning/adaptive_whole_arithmetic_test.dart: carry and borrow produce different, task-bound explanations
+00:00 +2: /tmp/lumo-2081-flutter-features/test/learning/adaptive_whole_arithmetic_test.dart: non-arithmetic, malformed and already correct answers are neutral
+00:00 +3: /tmp/lumo-2081-flutter-features/test/learning/adaptive_whole_arithmetic_test.dart: tutor adapts requested help without revealing result or leaking to tests
+00:00 +4: /tmp/lumo-2081-flutter-features/test/tutoring/guided_place_value_arithmetic_test.dart: guided steps keep the final answer open: (37, 25, false, 57, 60, 62)
+00:00 +5: /tmp/lumo-2081-flutter-features/test/tutoring/guided_place_value_arithmetic_test.dart: guided steps keep the final answer open: (52, 27, true, 32, 30, 25)
+00:00 +6: /tmp/lumo-2081-flutter-features/test/tutoring/guided_place_value_arithmetic_test.dart: wrong step does not advance; new task resets
+00:01 +7: /tmp/lumo-2081-flutter-features/test/tutoring/guided_place_value_arithmetic_test.dart: repeated callback cannot skip an intermediate step
+00:01 +8: /tmp/lumo-2081-flutter-features/test/tutoring/arithmetic_task_aid_test.dart: Originalaufgabe behält Faktoren, Reihen und offene Lösung
+00:01 +9: /tmp/lumo-2081-flutter-features/test/tutoring/arithmetic_task_aid_test.dart: Zwei selbst ausgeführte Sprünge addition 8 und 5
+00:01 +10: /tmp/lumo-2081-flutter-features/test/tutoring/arithmetic_task_aid_test.dart: Zwei selbst ausgeführte Sprünge subtraction 14 und 8
+00:02 +11: /tmp/lumo-2081-flutter-features/test/tutoring/arithmetic_task_aid_test.dart: Zwei selbst ausgeführte Sprünge addition 3 und 4
+00:02 +12: /tmp/lumo-2081-flutter-features/test/tutoring/arithmetic_task_aid_test.dart: extended help is opt-in and verifies the task answer
+00:02 +13: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Startweg der 3D-Nachhilfe: echter launchLumo3D-Payload übersteht Codec und JSON (Fixture für Godot)
+00:02 +14: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:02 +15: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:03 +16: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +17: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +18: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +19: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +20: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +21: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +22: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +23: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +24: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +25: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +26: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +27: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +28: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +29: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +30: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +31: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +32: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +33: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:04 +34: /tmp/lumo-2081-flutter-features/test/tutoring/lumo_nachhilfe_3d_test.dart: 3D-Start scheitert: die 2D-Nachhilfe bleibt offen
+00:07 +35: /tmp/lumo-2081-flutter-features/test/learning/core_conversation_route_test.dart: (setUpAll)
+00:07 +35: /tmp/lumo-2081-flutter-features/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:08 +36: /tmp/lumo-2081-flutter-features/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:08 +37: /tmp/lumo-2081-flutter-features/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:09 +38: /tmp/lumo-2081-flutter-features/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:10 +39: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:11 +40: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:11 +41: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:12 +42: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:12 +43: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:13 +44: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:13 +45: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:14 +46: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:14 +47: /tmp/lumo-2081-flutter-features/test/games/spielwelt_routing_test.dart: every visible portal opens its own target scene
+00:14 +48: /tmp/lumo-2081-flutter-features/test/learning/core_conversation_route_test.dart: task change during menu closing discards its pending action
+00:14 +49: /tmp/lumo-2081-flutter-features/test/learning/core_conversation_route_test.dart: pause and resume while menu closes retire its pending action
+00:15 +50: /tmp/lumo-2081-flutter-features/test/learning/core_conversation_route_test.dart: (tearDownAll)
+00:15 +50: /tmp/lumo-2081-flutter-features/test/embedded_game_service_test.dart: real completed-result contract persists wallet and returns to games
+00:15 +51: /tmp/lumo-2081-flutter-features/test/embedded_game_service_test.dart: lost acknowledgement and process restart replay the reward exactly once
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+00:15 +52: /tmp/lumo-2081-flutter-features/test/embedded_game_service_test.dart: Sternenpost: ein quittierter Flug trotz verlorener erster Quittung
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+00:15 +53: /tmp/lumo-2081-flutter-features/test/embedded_game_service_test.dart: simultaneous resumed callbacks share the same replay operation
+00:15 +54: /tmp/lumo-2081-flutter-features/test/embedded_game_service_test.dart: parent reset removes pending engine rewards before resetting the wallet
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+00:15 +55: /tmp/lumo-2081-flutter-features/test/embedded_game_service_test.dart: resume during a stale read drains the newly completed race before returning
+00:15 +56: /tmp/lumo-2081-flutter-features/test/embedded_game_service_test.dart: new native games award explicit XP once and reject malformed rewards
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+00:15 +57: /tmp/lumo-2081-flutter-features/test/embedded_game_service_test.dart: card table and Lumo Lauf results are booked exactly once
+00:15 +58: All tests passed!

@@ -1,4 +1,4 @@
-name: "Lumo Abschluss-APK (Flutter + Godot, Update der Familien-App, kein Release)"
+name: "Lumo 2081 – integrierte Familien-App und Android-Abnahme"
 # Baut eine installierbare, signierte Test-APK aus genau diesem Stand.
 # Kopie von lumo-test-apk.yml ohne jede Release-/Tag-Erzeugung (Abschluss 24.11.2026).
 # Ausgelöst nur durch config/abschluss-apk-request.json. Ergebnis: Workflow-Artefakt.
@@ -19,24 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  integration-hold:
-    name: Build 2080 auf Nutzerwunsch angehalten – Integration 2081
-    runs-on: ubuntu-24.04
-    timeout-minutes: 2
-    steps:
-      - name: Integrationspause dokumentieren
-        run: echo "Build 2080 wurde zugunsten der vollständigen Integration 2081 angehalten. Kein APK-Bau in diesem Lauf."
-      - name: Vorhandenen Veröffentlichungszugang prüfen
-        env:
-          RELEASE_TOKEN_PRESENT: ${{ secrets.LUMO_RELEASE_PUBLISH_TOKEN != '' }}
-        run: |
-          echo "release_credential_available=$RELEASE_TOKEN_PRESENT" >> "$GITHUB_STEP_SUMMARY"
-          echo "release_credential_available=$RELEASE_TOKEN_PRESENT"
-          echo "Keine Veröffentlichung, kein Tag und keine Änderung von Zugangsdaten."
   apk:
-    # Heinz requested stopping 2080 before integrating the missing development.
-    # The unchanged concurrency group cancels the older run on this branch.
-    if: ${{ false }}
     name: Signierte Test-APK bauen
     runs-on: ubuntu-24.04
     timeout-minutes: 120
@@ -74,6 +57,7 @@ jobs:
           python3 -m unittest discover -s scripts/tests -p test_verify_test_apk_candidate.py -v
           python3 -m unittest discover -s scripts/tests -p test_verify_native_start_diagnostics.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_native_start_diagnostics.py -v
+          python3 -m unittest discover -s tools/android_qa/tests -p test_intro_dialog.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_local_backup_android_probe.py -v
           python3 -m unittest scripts.tests.test_prepare_android -v
           python3 scripts/verify_test_apk_candidate.py source --expected-commit "$GITHUB_SHA" \
@@ -86,6 +70,8 @@ jobs:
         run: |
           set -euo pipefail
           flutter pub get --enforce-lockfile
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
           bash scripts/install_ndk_for_build.sh build-proof/ndk
           bash scripts/install_godot_for_build.sh
       - name: Native Sprache, Lerndialog und Datensicherung – JVM-Verträge
@@ -103,7 +89,7 @@ jobs:
             scripts.tests.test_studio_learning_contract \
             scripts.tests.test_local_backup_transaction -v \
             2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
-      - name: Flutter – Analyse und Kernprüfungen
+      - name: Flutter – Analyse und vollständige Testsuite
         shell: bash
         env:
           LUMO_ROOM_SCREENSHOT_DIR: build-proof/room
@@ -111,71 +97,7 @@ jobs:
           set -euo pipefail
           flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
             | tee build-proof/FLUTTER-ANALYSIS.txt
-          flutter test --no-pub --reporter expanded --concurrency=2 \
-            test/games/memory_native_entry_test.dart \
-            test/games/memory_screen_test.dart \
-            test/games/memory_result_frame_test.dart \
-            test/quiz_native_roundtrip_lifecycle_test.dart \
-            test/quiz_show_meister_test.dart \
-            test/home_3d_workshop_entry_test.dart \
-            test/learning/lab_native_entry_test.dart \
-            test/learning/remaining_native_entry_test.dart \
-            test/tutoring/native_english_activity_test.dart \
-            test/learning/lab_native_model_contract_test.dart \
-            test/profile_target_layout_test.dart \
-            test/smoke_main_screens_test.dart \
-            test/learning/math_explanation_film_test.dart \
-            test/math_explanation_facts_test.dart \
-            test/language_example_board_test.dart \
-            test/tutoring/lumo_nachhilfe_test.dart \
-            test/tutoring/lumo_nachhilfe_entry_test.dart \
-            test/tutoring/lumo_nachhilfe_3d_test.dart \
-            test/lumo_learning_dialogue_contract_test.dart \
-            test/lumo_context_conversation_test.dart \
-            test/learning/core_conversation_route_test.dart \
-            test/learning/nextgen_answer_payload_test.dart \
-            test/learning/nextgen_lab_bus_integration_test.dart \
-            test/learning/nextgen_task_quality_test.dart \
-            test/learning/nextgen_task_hint_precision_test.dart \
-            test/learning/module_frame_practical_links_test.dart \
-            test/tutoring/guided_coach_binding_test.dart \
-            test/parent_task_repository_test.dart \
-            test/parent_task_flow_test.dart \
-            test/recognized_task_parser_test.dart \
-            test/recognized_task_flow_test.dart \
-            test/learning_answer_reward_test.dart \
-            test/local_backup_format_test.dart \
-            test/local_backup_flow_test.dart \
-            test/app_state_student_identity_test.dart \
-            test/learning_profile_isolation_test.dart \
-            test/profile_fail_closed_regression_test.dart \
-            test/rewards/custom_reward_repository_test.dart \
-            test/rewards/reward_shop_redemption_test.dart \
-            test/rewards/custom_rewards_flow_test.dart \
-            test/rewards/legacy_reward_history_owner_test.dart \
-            test/room/lumo_room_wallet_test.dart \
-            test/room/lumo_room_flow_test.dart \
-            test/achievement_repository_test.dart \
-            test/achievement_flow_test.dart \
-            test/live_pro_question_coach_test.dart \
-            test/story_nextgen_flow_test.dart \
-            test/story_completion_storage_test.dart \
-            test/story_answer_retry_test.dart \
-            test/reward_wallet_transaction_test.dart \
-            test/reward_wallet_dedup_confirmation_test.dart \
-            test/reward_wallet_queue_zone_test.dart \
-            test/state_persistence_regression_test.dart \
-            test/restart_regression_test.dart \
-            test/pin_free_access_test.dart \
-            test/design/learning_adventure_layout_test.dart \
-            test/games/connect_four_native_session_test.dart \
-            test/games/flame_adventure_flow_test.dart \
-            test/learning_modules/bruchrechnen_answers_test.dart \
-            test/learning_modules/deutsch_sach_module_progress_test.dart \
-            test/learning_modules/learning_module_progress_test.dart \
-            test/learning_modules/plus_bis_10_persistence_test.dart \
-            test/legacy_learning_data_test.dart \
-            test/writing_word_progress_test.dart \
+          flutter test --no-pub --reporter expanded --timeout=60s --concurrency=2 \
             | tee build-proof/FLUTTER-CORE-TESTS.txt
       - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
         shell: bash
@@ -219,6 +141,18 @@ jobs:
             --script res://scripts/tests/learning_tutor_regression.gd -- \
             --part=validation,invalid,return,voice | tee build-proof/GODOT-learning_tutor_regression.txt
           echo "::endgroup::"
+      - name: World – integrierte Missionen, Kart, Figuren und Spielstand
+        shell: bash
+        run: |
+          set -euo pipefail
+          for probe in lumo_world_quest_integrity_regression lumo_world_first_entry_regression \
+            lumo_world_kart_ground_regression lumo_world_open_world_integration_regression \
+            lumo_world_kart_persistence_regression; do
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 600 --required "PASS" --log "build-proof/GODOT-${probe}.txt" -- \
+              godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/${probe}.gd"
+          done
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
@@ -254,6 +188,9 @@ jobs:
 
           required_documents = [
               Path('docs/integration/2026-11-22/INTEGRATION.md'),
+              Path('docs/integration/2026-11-24/INTEGRATION-2081.json'),
+              Path('docs/handover/BUILD_2081_FLUTTER_COVERAGE_20261124.md'),
+              Path('build/lumo-godot-qa/docs/handoffs/LUMO_2081_NATIVE_INTEGRATION_20261124.md'),
               Path('docs/integration/2026-11-22/LEARNING-INTEGRATION.md'),
               Path('docs/integration/2026-11-22/UPLOAD-ABGLEICH.md'),
               Path('docs/integration/2026-11-22/CUSTOM-REWARDS-INTEGRATION.md'),
@@ -271,10 +208,16 @@ jobs:
                   raise FileNotFoundError(f'Missing integration evidence: {path}')
           sources = {
               'flutter': Path('docs/integration/2026-11-22'),
+              'flutter-2081': Path('docs/integration/2026-11-24'),
+              'flutter-2081-tests': Path('docs/evidence/build-2081-flutter-20261124'),
+              'godot-2081-tests': Path('build/lumo-godot-qa/docs/evidence/integration-2081-20261124'),
               'godot': Path('build/lumo-godot-qa/docs/integration/2026-11-22'),
           }
           proof = sorted(Path('build-proof').glob('*.txt')) + sorted(Path('build-proof').glob('*.json'))
           with zipfile.ZipFile('release/LUMO-INTEGRATIONSBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in (Path('docs/handover/BUILD_2081_FLUTTER_COVERAGE_20261124.md'),
+                           Path('build/lumo-godot-qa/docs/handoffs/LUMO_2081_NATIVE_INTEGRATION_20261124.md')):
+                  archive.write(path, '2081-handoffs/' + path.name)
               for label, directory in sources.items():
                   for path in sorted(directory.rglob('*')):
                       if path.is_file() and path.suffix in {'.md', '.json', '.txt', '.log', '.png'}:
@@ -312,7 +255,7 @@ jobs:
           EXPECTED_CERT=a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
           test "$PKG" = dev.ullmann.lumo.lumo_lernen.coachpreview
           test "$CERT" = "$EXPECTED_CERT"
-          test "$VC" -gt 2078
+          test "$VC" -eq 2081
           SHA="$(sha256sum "$APK" | cut -d' ' -f1)"
           SIZE="$(stat -c %s "$APK")"
           printf 'package=%s\nversionCode=%s\ncert_sha256=%s\napk=%s\napk_sha256=%s\napk_bytes=%s\n' "$PKG" "$VC" "$CERT" "$LUMO_APK_NAME" "$SHA" "$SIZE" | tee build-proof/APK-IDENTITY-ABSCHLUSS.txt
