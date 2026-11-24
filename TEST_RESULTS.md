@@ -17,11 +17,17 @@ Freigabe: Heinz direkt 24.11. 15:52 (testen, integrieren, nach grüner CI nach m
 - Version 0.14.7+2080 (> 2078 installiert, > 2079 Demo). Workflow `.github/workflows/lumo-abschluss-apk.yml` = lumo-test-apk.yml ohne Release/Tag, Ergebnis nur als Workflow-Artefakt.
 - Paket: `scripts/build_unified_apk.sh` ruft `prepare_android.py --side-by-side` auf; diese Option erzeugt genau die installierte App-ID `dev.ullmann.lumo.lumo_lernen.coachpreview` (ohne sie entstünde `dev.ullmann.lumo.lumo_lernen`, also eine andere App). Signatur: tools/lumo-debug.keystore, erwartetes Zertifikat SHA-256 a6b1ef61…0702 (wie 2078). Beides prüft der Workflow mit aapt/apksigner.
 
-## CI / Ergebnisse
-- (wird nach den Läufen ergänzt)
+## CI / Ergebnisse (Stand 24.11. 16:15)
+- APK-Lauf 1: 45420243511 (7348e3ca) FAIL – verify_test_apk_candidate.py: config/test-apk-request.json (0.14.6+2079) ≠ pubspec. Behoben in 19aab662 (Request 57 = 0.14.7+2080).
+- APK-Lauf 2: 45421319160 (19aab662) lief bei Abbruch noch (Flutter-Analyse/Kernprüfungen); Ergebnis siehe Lauf.
+- PR #550 → main: Prüfungen bei Abbruch noch nicht vollständig grün → **nicht nach main gemergt**.
+- lumo-godot PR #228 (lumo-abschluss/integration-20261124): 1. Lauf auf 729b414b mit 4 roten Prüfungen (build/test_nextgen_runner 53≠52, Meshy-Runtime Manifest 9 Fahrer, 65-bone gait „Calm mode freezes footsteps“, Hoist-Baseline-Import SIGSEGV); veraltete Gates in 6ca95867 an das ausgelieferte Verhalten angepasst, Ergebnis offen → **nicht nach main gemergt**, Pin bleibt c3f459ec.
 
-## Offen
-- DEVICE/FOLD7 NOT RUN (kein Gerät auf dem Box-Rechner).
+## Offen (Abbruch wegen Nutzungslimit, Heinz 16:09/16:12)
+- main-Merge beider Repos: erst wenn alle Prüfungen auf #228 und #550 grün sind (Freigabe Heinz liegt vor).
+- #530 (WIP, Konflikte), agent/sprache (Konflikt), 2077-QA-Testzweige (Konflikte), Doku-Commit e5dbe5ca aus #529.
+- Godot: fix/lumo-world-gait-20261123 und delivery/lumo-schach-2048 (Konflikte), fix/world-kart-save (pausierter World-Kart-Strom), Meshy-/Fahrer-Linien vom 23.11. (überholt).
+- DEVICE/FOLD7 NOT RUN (kein Gerät auf dem Box-Rechner); Installation über 2078/2079 nicht auf Gerät geprüft.
 # TEST_RESULTS – lumo-nullpunkt/integration-20261117 (lumo-lernen) – Stand 17.11.2026 13:30 (Europe/Vienna)
 
 Abbruch wegen Nutzungslimit (90 %). **Nicht nach main gemergt.**
