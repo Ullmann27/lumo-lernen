@@ -389,12 +389,20 @@ def remove_generated_production_meshy_imports(repo: Path, before: set[str], sour
                 raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid PNG size')
             with path.open('rb') as handle:
                 prefix = handle.read(8)
-                handle.seek(-8, 2)
-                suffix = handle.read(8)
-            if prefix != b'\x89PNG\r\n\x1a\n' or suffix != b'IEND\xaeB\x60\x82':
+                tail_size = min(size, 11)
+                handle.seek(-tail_size, 2)
+                tail = handle.read(tail_size)
+            # Embedded glTF bufferViews are 4-byte aligned. Godot 4.6.3 keeps
+            # up to three alignment NUL bytes when it extracts these exact
+            # verified textures next to the GLB.
+            unpadded = tail.rstrip(b'\x00')
+            padding = len(tail) - len(unpadded)
+            if (prefix != b'\x89PNG\r\n\x1a\n' or padding > 3
+                    or not unpadded.endswith(b'IEND\xaeB\x60\x82')):
                 raise RuntimeError(
                     'Refusing 2077 Meshy import cleanup: invalid PNG output '
-                    f'{relative} size={size} prefix={prefix.hex()} suffix={suffix.hex()}'
+                    f'{relative} size={size} prefix={prefix.hex()} '
+                    f'tail={tail.hex()} padding={padding}'
                 )
         else:
             raise RuntimeError('Refusing 2077 Meshy import cleanup: unrecognised output')
