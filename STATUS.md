@@ -1,12 +1,14 @@
 # Aktuell: LUMO 0.14.6+2078 mit allen neun Meshy-Fahrern
 
-Stand dieses Quellcheckpoints: 24. November 2026, vor dem vollständigen neuen Build.
+Stand dieses Quellcheckpoints: 24. November 2026, vor Abschluss des erneuten vollständigen Builds.
 
-Godot ist vollständig veröffentlicht: `b590322f4ffe881dffbbcc9bc5244a23c997e6b9`, Baum `6a19273465c9786d64183cc6af5423ed19727b99`. Alle 153 übertragenen Dateien stimmen mit dem geprüften lokalen Integrationsstand überein. Die App pinnt genau diesen Remote-Commit. Enthalten sind 27 vollständig geriggte Meshy-LOD-Dateien, neun Porträts, die vorhandenen 2078-Kartreparaturen und der wiederaufgenommene World-Kamerafix.
+Godot ist veröffentlicht: `21a76bcda69c20ea3a427a63098cb2fc736eb881`, Baum `dcf3df8eaa14b9b2cce3ecf2276fad239d344f17`. Der App-Pin verwendet genau diesen Commit. Enthalten sind die vollständig übertragenen 27 Meshy-LOD-Dateien, neun Porträts, vorhandene 2078-Kartreparaturen und der wiederaufgenommene World-Kamerafix.
 
-Der vorherige Android-Abbruch beim Onboarding-Leseserver ist gezielt repariert und mit acht Regressionen geprüft. Der neue Workflow enthält außerdem den bestandenen 27-Punkte-Kameratest. Der erste vollständige Lauf 45353940191 stoppte an einer widersprüchlichen 64×64-Headless-Testfixture. Diese ist bei unverändertem Produktlayout korrigiert; 2.197 Menüprüfpunkte über fünf echte Fenster-/Dichtekonfigurationen bestehen. Der erneute vollständige 2078-Lauf muss den kombinierten Quellstand, Bilder, APK und echte Android-Aktionen erneut bestätigen; ältere APKs oder Prüfergebnisse sind kein Ersatz dafür.
+Zwei Fehler der Testfixtures sind anhand tatsächlicher Läufe korrigiert: Die Menüprüfung verwendet jetzt echte Fenstergrößen und Dichten (2.197 Prüfungen bestanden). Der Meshy-Test wartet die tatsächlichen Renderframes ab und bestätigt die Szenenfreigabe (390 Prüfungen, null GLES-Enginefehler). Alle bisherigen Assertions und das strenge Fehlergate bleiben erhalten. Der folgende Kartensalon-Test besteht unverändert mit 119 Prüfungen. Die ursprünglichen Fehler und A/B-Belege sind erhalten.
 
-Fortsetzung: den Workflow `lumo-2078-device-repair.yml` auf `repair/lumo-device-bugs-2078` bis zum Ende verfolgen. Nur die dort tatsächlich geprüfte und veröffentlichte APK als neuen Download ausgeben. Kein Merge nach main ist erfolgt. [Quellstand und Nachweise](docs/evidence/meshy-rigs-20261124/README.md).
+Der frühere Android-Abbruch beim Onboarding-Leseserver ist mit acht gezielten Regressionen repariert. Der neue vollständige Lauf muss nun Bilder, APK, Android-Aktionen, Sicherung/Wiederherstellung und Veröffentlichung bestätigen. Die Läufe 45353940191 und 45357083172 scheiterten vor dem APK-Bau; aus ihnen existiert keine neue freigegebene APK.
+
+Fortsetzung: den neuen Workflow `lumo-2078-device-repair.yml` auf `repair/lumo-device-bugs-2078` bis zum tatsächlichen Ende verfolgen. Nur die dort geprüfte und veröffentlichte APK als neuen Download ausgeben. Main bleibt unverändert. [Quellstand und Nachweise](docs/evidence/meshy-rigs-20261124/README.md).
 
 ---
 

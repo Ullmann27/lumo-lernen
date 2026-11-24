@@ -5,8 +5,8 @@ Stand dieses Quellcheckpoints: 24. November 2026, vor dem neuen vollständigen A
 ## Verbindlicher Quellstand
 
 - Flutter-Ausgangsstand: `a7626c17cb38691a3b3d5a974d84ce274d6acf4b`.
-- Veröffentlichter Godot-Commit: `b590322f4ffe881dffbbcc9bc5244a23c997e6b9`.
-- Geprüfter Godot-Baum: `6a19273465c9786d64183cc6af5423ed19727b99`.
+- Veröffentlichter Godot-Commit: `21a76bcda69c20ea3a427a63098cb2fc736eb881`.
+- Geprüfter Godot-Baum: `dcf3df8eaa14b9b2cce3ecf2276fad239d344f17`.
 - Entwicklungszweig in beiden Repositories: `repair/lumo-device-bugs-2078`.
 - App-Version: `0.14.6+2078`, Engine Godot 4.6.3, Flutter 3.44.9.
 
@@ -54,3 +54,11 @@ Lauf `45353940191` auf Flutter `099d96adc38760f223165cb396b60e0656c59f84` und de
 Die Fixture hatte nur das Menü auf 1280×720 vergrößert, während das reale Headless-Fenster bei 64×64 blieb. Der korrigierte Test setzt Fenstergröße und Host-Dichte vor der Menüerzeugung. Das Produktlayout bleibt unverändert; alle ursprünglichen 343 Prüfpunkte sind erhalten. Die zusätzliche Prüfung aller 15 Strecken in fünf Handy-/Fold-Konfigurationen besteht mit insgesamt 2.197 Prüfpunkten, keinen Fehlern und Exitcode 0. Der einzige zusätzliche Godot-Blob ist diese Testdatei; die Modelle bleiben unverändert. Siehe `neon-window-matrix.log` und `neon-window-verification.json`.
 
 Der aktuelle Pin enthält diese Korrektur. Der vollständige Lieferablauf wird auf diesem neuen exakt gepinnten Stand erneut ausgeführt.
+
+## Zweiter vollständiger Lauf und korrigierter Renderablauf
+
+Lauf `45357083172` auf Flutter `531597c2483250cc3ae17845a0c5e19785a5a2f4` und Godot `b590322f4ffe881dffbbcc9bc5244a23c997e6b9` bestätigte zusätzlich NeonHome 2.197, RivalRig 1.558, ProductionDriver 8.245 und DriverGesture 423 ohne Prüffehler. Danach brach der unveränderte strenge Runner beim tatsächlichen GLES-Test `kart_meshy_assets_regression.gd` an einem Engine-Materialfehler bei synchronem `kart.free()` ab. APK, Android und Veröffentlichung wurden korrekt nicht gestartet. Der heruntergeladene Originalbeleg ist über Artefakt-ID und SHA-256 in `material-frame/verification.json` gebunden.
+
+Die lokale A/B-Reproduktion mit Godot 4.6.3 und Mesa zeigte: Der ursprüngliche Test meldet zwar 374 bestandene Assertions, erzeugt jedoch 56 Enginefehler, weil Aufbau, LOD-Wechsel und Freigabe vor dem ersten tatsächlichen Renderframe erfolgen. Ein tatsächlicher Renderframe vor dem unveränderten `free()` beseitigt alle 56 Fehler. Der finale Test wartet für jede Detailstufe auf den Renderframe und nutzt das vorhandene begrenzte Verfahren zur beobachteten Szenenfreigabe. Alle 374 ursprünglichen Assertions bleiben erhalten; 16 Freigabeprüfungen kommen hinzu. Unter dem unveränderten strengen Runner besteht der commitgebundene GLES-Lauf mit 390 Prüfungen, null Fehlern und Exit 0. Produktdateien und Fehlergate wurden dafür nicht verändert.
+
+Auch der folgende unveränderte Kartensalon-Test besteht auf demselben tatsächlichen Renderer mit 119 Prüfungen und null Enginefehlern. Der reine Headless-Dummy-Renderer zeigt sowohl vorher als auch nachher je 14 vorhandene Materialfehler; dafür wird ausdrücklich kein sauberer PASS behauptet. Der aktuelle Workflow nutzt den erfolgreich geprüften GLES-Pfad. Vergleichslogs und Laufdaten sind vollständig unter `material-frame/` abgelegt. Der vollständige Lieferablauf muss den neuen Pin erneut bis einschließlich APK, Android und Veröffentlichung bestätigen.
