@@ -1,0 +1,102 @@
+name: LUMO 2078 existing publisher access preflight
+
+# Read-only diagnostic for the already configured publication credential.
+# It cannot create tags, releases or assets, and never reads a secret value back.
+on:
+  push:
+    branches: [support/lumo-2078-publisher-preflight]
+    paths: [.github/workflows/lumo-2078-publisher-preflight.yml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-2078-existing-publisher-preflight
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/support/lumo-2078-publisher-preflight'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check the existing publisher identity without modifying GitHub
+        env:
+          LUMO_RELEASE_PUBLISH_TOKEN: ${{ secrets.LUMO_RELEASE_PUBLISH_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from urllib.error import HTTPError, URLError
+          from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
+
+          target = Path('proof/PUBLISHER-PREFLIGHT.json')
+          proof = {
+              'status': 'BLOCKED',
+              'repository': 'Ullmann27/lumo-lernen',
+              'credential_name': 'LUMO_RELEASE_PUBLISH_TOKEN',
+              'expected_login': 'Ullmann27',
+              'expected_user_id': 64243701,
+              'run_id': int(os.environ['GITHUB_RUN_ID']),
+              'run_attempt': int(os.environ['GITHUB_RUN_ATTEMPT']),
+              'source_sha': os.environ['GITHUB_SHA'],
+              'writes_performed': False,
+              'scope': 'Read-only availability and identity check; not proof of release permission or publication.',
+          }
+
+          def finish(status, reason, code):
+              proof.update(status=status, reason=reason)
+              target.write_text(json.dumps(proof, indent=2) + '\n')
+              print(status + ': ' + reason)
+              raise SystemExit(code)
+
+          token = os.environ.get('LUMO_RELEASE_PUBLISH_TOKEN', '')
+          proof['credential_available'] = bool(token)
+          if not token:
+              finish('BLOCKED', 'The existing repository publisher credential is not available to this job. No fallback was attempted.', 1)
+
+          class NoRedirects(HTTPRedirectHandler):
+              def redirect_request(self, request, response, code, message, headers, new_url):
+                  return None
+
+          opener = build_opener(ProxyHandler({}), NoRedirects())
+
+          def read_api(path):
+              request = Request('https://api.github.com/' + path, headers={
+                  'Authorization': 'Bearer ' + token,
+                  'Accept': 'application/vnd.github+json',
+                  'X-GitHub-Api-Version': '2026-03-10',
+                  'User-Agent': 'lumo-2078-existing-publisher-preflight',
+              }, method='GET')
+              try:
+                  with opener.open(request, timeout=30) as response:
+                      return json.load(response)
+              except HTTPError as error:
+                  proof['http_status'] = error.code
+                  finish('BLOCKED', 'The existing publisher credential could not read the required identity or repository metadata.', 1)
+              except (URLError, TimeoutError, ValueError, OSError):
+                  finish('BLOCKED', 'The read-only identity check did not complete; no publication was attempted.', 1)
+
+          identity = read_api('user')
+          proof['observed_login'] = identity.get('login')
+          proof['observed_user_id'] = identity.get('id')
+          if identity.get('login') != proof['expected_login'] or identity.get('id') != proof['expected_user_id']:
+              finish('BLOCKED', 'The existing publisher identity differs from the connected repository owner.', 1)
+          repository = read_api('repos/Ullmann27/lumo-lernen')
+          proof['repository_push_permission'] = repository.get('permissions', {}).get('push') is True
+          if repository.get('full_name') != proof['repository'] or not proof['repository_push_permission']:
+              finish('BLOCKED', 'The existing publisher identity does not report push access to the required repository.', 1)
+          finish('IDENTITY_CONFIRMED', 'The existing publisher credential matches the connected owner. Workflow-write authorization and actual release publication are not established by this read-only check.', 0)
+          PY
+      - name: Save the non-secret availability result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2078-PUBLISHER-PREFLIGHT-${{ github.run_id }}-${{ github.run_attempt }}
+          path: proof/PUBLISHER-PREFLIGHT.json
+          if-no-files-found: error
+          retention-days: 30
