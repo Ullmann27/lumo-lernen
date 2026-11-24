@@ -1,0 +1,43 @@
+{
+  "status": "LOCAL_VALIDATION_PASS",
+  "guard_tests": {
+    "count": 12,
+    "status": "PASS",
+    "scope": "Mocked network and writes; no credential provisioning or live publish."
+  },
+  "syntax": {
+    "python_ast": "PASS",
+    "workflow_yaml": "PASS",
+    "bash_run_steps": "PASS"
+  },
+  "original_files": {
+    "metadata_count": 8,
+    "status": "PASS",
+    "apk_bytes": 701640419,
+    "apk_sha256": "3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198",
+    "shared_apk_was_symlink": true,
+    "local_validation": "Resolved original shared APK explicitly; CI no-symlink guard unchanged."
+  },
+  "copied_evidence_hashes": "PASS",
+  "actual_original_api_gates": {
+    "status": "PASS",
+    "sha256": "e4021441d1bc18e27ed58ed47ffd5e2d6f8b79b71705ce0d67886948a56ad64c",
+    "source": "/tmp/lumo-github-upload/reviewed-2078-actual-gates.json"
+  },
+  "unchanged_base_helpers": {
+    "scripts/lumo_team_b_reviewed_publish.py": "1fb30210fcdf57698cef89cbdcad6555bd94e18a",
+    "scripts/verify_native_start_diagnostics.py": "2b7a1b192153fdab16106f36bfb7722f5264e7bf",
+    "tools/nextgen/public_learning_download.py": "cc7b37b2a8fad807e9f8bf58ce520ab5df04693c"
+  },
+  "base_commit": "2f28299d3c3f8ec8bb50d738eba08d038cdcc5a2",
+  "activating_request_present": false,
+  "secret_provisioned_or_tested": false,
+  "remote_publish_attempted": false,
+  "original_source": "94cabcff7f6c568eddfe6805801f49a00ad58312",
+  "publisher_script_sha256": "79fd34a5659bf8b07d5f9cf46e05a194761e6b143889859e0b3c82ff41210994",
+  "workflow_sha256": "bea77e68b86a3496b4a2d6e6d3d3494f5062336dc4241cc6fdb4a76bec26e166",
+  "original_log_whitespace": {
+    "status": "PRESERVED",
+    "detail": "Original publisher logs contain trailing blank lines; byte-exact evidence retained. Other added files pass git diff --check."
+  }
+}

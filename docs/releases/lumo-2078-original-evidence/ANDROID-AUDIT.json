@@ -1,0 +1,230 @@
+{
+  "run_id": 45365478105,
+  "artifact_id": 14910694437,
+  "zip_bytes": 90934708,
+  "zip_sha256": "570841ce0bbd0c93c7f0814e614f917ff6c26c66d49fc169607329bb974ee58d",
+  "tour_status": "PASS",
+  "tour_steps": 23,
+  "tour_all_steps_ok": true,
+  "tour_step_names": [
+    "apk-identity",
+    "launch",
+    "onboarding",
+    "navigate-start",
+    "atelier-roundtrip",
+    "navigate-lernen",
+    "navigate-spiele",
+    "open-kart",
+    "start-kart-race",
+    "race-running",
+    "race-hud",
+    "race-drive",
+    "pause-menu",
+    "showroom-after-race",
+    "return-from-kart",
+    "learning-state-after-kart",
+    "lernen-usable-after-kart",
+    "profile-after-kart",
+    "restart-keeps-learning-state",
+    "display-fold_offen",
+    "display-fold_aussen",
+    "display-quer",
+    "skypost-roundtrip"
+  ],
+  "fatal_crashes": 0,
+  "apk_identity": {
+    "step": "apk-identity",
+    "ok": true,
+    "apk_sha256": "3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198",
+    "flutter_source_commit": "94cabcff7f6c568eddfe6805801f49a00ad58312",
+    "godot_revision": "c3f459eca88f659da1a9e4af1c990c804e715528",
+    "godot_pck_sha256": "c5370a45b32fc72856dc4c0021d800f2e1189fdd47b2793f5a6016c04cf74578",
+    "versionName": "0.14.6",
+    "versionCode": 2078,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "required_native_status": "PASS",
+  "required_native_scenes": {
+    "run": {
+      "router_loaded_after_s": 5.3,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 6786,
+      "router_loaded_line": "11-24 10:14:01.103  6786  6812 I godot   : [Router] loaded:run (res://scenes/games/lumo_run.tscn)"
+    },
+    "quiz": {
+      "router_loaded_after_s": 5.3,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 7118,
+      "router_loaded_line": "11-24 10:15:11.780  7118  7138 I godot   : [Router] loaded:quiz (res://scenes/games/quiz_studio.tscn)"
+    },
+    "memory": {
+      "router_loaded_after_s": 5.3,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 7425,
+      "router_loaded_line": "11-24 10:16:19.414  7425  7444 I godot   : [Router] loaded:memory (res://scenes/games/memory_table.tscn)"
+    },
+    "chess": {
+      "router_loaded_after_s": 5.2,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 7770,
+      "router_loaded_line": "11-24 10:17:26.604  7770  7789 I godot   : [Router] loaded:chess (res://scenes/games/chess_table.tscn)"
+    },
+    "kart": {
+      "router_loaded_after_s": 15.7,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 8052,
+      "router_loaded_line": "11-24 10:18:44.780  8052  8071 I godot   : [Router] loaded:kart (res://scenes/games/kart_island.tscn)"
+    },
+    "cards": {
+      "router_loaded_after_s": 5.2,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 8548,
+      "router_loaded_line": "11-24 10:20:40.195  8548  8567 I godot   : [Router] loaded:cards (res://scenes/games/cards_table.tscn)"
+    },
+    "world": {
+      "router_loaded_after_s": 10.3,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 10814,
+      "router_loaded_line": "11-24 10:29:35.118 10814 10833 I godot   : [Router] loaded:world (res://scenes/creative/lumo_world.tscn)"
+    }
+  },
+  "diagnostic_native_successful_attempts": 13,
+  "diagnostic_native_total_attempts": 16,
+  "diagnostic_routes_not_found": [
+    "settlement",
+    "build",
+    "treasure"
+  ],
+  "diagnostic_native_issues": {
+    "script_error": 0,
+    "godot_error": 0,
+    "fatal": 0,
+    "android_runtime": 0,
+    "fatal_signal": 0,
+    "lowmemorykiller": 0,
+    "loading_too_long": 0,
+    "boot_load_error": 0,
+    "process_died": 0
+  },
+  "backup_status": "PASS",
+  "backup_steps": 8,
+  "backup_all_steps_ok": true,
+  "backup_step_names": [
+    "apk-identity",
+    "fictional-profile",
+    "saf-export",
+    "export-archive",
+    "changed-setting",
+    "saf-review",
+    "process-closed",
+    "restore-and-preservation"
+  ],
+  "independent_backup_payload_sha256": "734e0f0e964c06211984eed773e13f3bfbfc80eea295e4446d37cd8f8785d9c6",
+  "independent_backup_preference_count": 17,
+  "independent_native_files": [
+    {
+      "path": "jump_session.cfg",
+      "bytes": 357,
+      "sha256": "9e8d9b8b3ad1a031d20083ebce313b969b838de57fb61187a300dabcae7da3cf",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "kart_holographic_records.cfg",
+      "bytes": 112,
+      "sha256": "62f61a66b0d21206b4dd4d1abbf299710b7b0cd70d69c1d6727633bb246a77e1",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "kart_preferences.cfg",
+      "bytes": 263,
+      "sha256": "5ddc4761890bb69b992b0a68cc25ef280daab6bc08860d385a388b227af939be",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "kart_sonnenhafen_session.cfg",
+      "bytes": 2483,
+      "sha256": "bb3264eaa0984aa8ca9eb9599d158f2d79340665bb0ba997f01ff4a7050ab238",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "lumo_cards_f848a30f476d608d44abb9b7.json",
+      "bytes": 127,
+      "sha256": "bd5ff654f3635d45338e4167ccd2607207073e6396938014ac1c7e93fc7ec7f9",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "lumo_first_run_5b565a33b80b75dc462328a68cb5b57d.cfg",
+      "bytes": 100,
+      "sha256": "d28f4bb2222f9e6d7050474077fc78d7be419c259c41bf811137937040879d80",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "lumo_first_run_f848a30f476d608d44abb9b78d05b3ba.cfg",
+      "bytes": 364,
+      "sha256": "2c181585a12f8705caf5e9a6f6b23ed4ad4d1396d524705be8aefc54f88836e9",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "lumo_game_events.json",
+      "bytes": 14,
+      "sha256": "5021e624e752b001ce3e3846e8f158ed4aeb93a4c9a72fdb35a0c5b14a0eea84",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "progress.cfg",
+      "bytes": 135,
+      "sha256": "a5b5f0ce38de84ce4b2e3a4010e5be1fd59f24c068d29f2db0464f091fef411c",
+      "archive_export_restored_identical": true
+    },
+    {
+      "path": "skypost_records.cfg",
+      "bytes": 280,
+      "sha256": "972adda4111f07e3d9993055e50f3ff2a247b7d9d9f483d52851299a871299dc",
+      "archive_export_restored_identical": true
+    }
+  ],
+  "nonfatal_godot_messages": {
+    "skypost_can_process_outside_tree_count": 3,
+    "timestamps": [
+      "10:11:43.200",
+      "10:11:52.227",
+      "10:12:59.363"
+    ],
+    "source": "evidence/logcat.txt",
+    "observed_effect": "No fatal crash; SkyPost free-flight, reward and host return passed; precise caller not exposed in log."
+  },
+  "tour_not_tested": [
+    "physical Samsung Fold",
+    "device GPU frame times / 60 FPS",
+    "audio output",
+    "complete two-lap race and reward (kart_complete_android_probe)"
+  ],
+  "backup_not_tested": [
+    "restoration of a running native game process",
+    "physical user devices"
+  ]
+}
