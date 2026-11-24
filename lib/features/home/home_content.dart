@@ -7,6 +7,8 @@ import '../report/lumo_coach_card.dart';
 import '../shared/widgets/lumo_mission_journey.dart';
 import 'widgets/lumo_subject_showcase_card.dart';
 import 'widgets/lumo_home_hero.dart';
+import 'widgets/lumo_subject_register.dart';
+import '../onboarding/lumo_intro_tour.dart';
 import '../../widgets/design/lumo_section_heading.dart';
 import '../teacher/student_assignments_card.dart';
 import '../parent_tasks/parent_tasks_entry_card.dart';
@@ -206,7 +208,27 @@ class HomeContent extends StatelessWidget {
                         ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
+                  // Schul-Demo 24.11.2026: Fächer als klare Register direkt unter Lernen/Spielen.
+                  Row(children: [
+                    Expanded(
+                      child: LumoSubjectRegister(
+                        onSubject: _browseSubject,
+                        onGames: () => onSection(LumoSection.games),
+                      ),
+                    ),
+                    IconButton(
+                      key: const ValueKey('home-intro-replay'),
+                      tooltip: 'Lumo-Intro ansehen',
+                      constraints:
+                          const BoxConstraints(minWidth: 48, minHeight: 48),
+                      color: LumoVisualTokens.cyan,
+                      onPressed: () => LumoIntroTour.show(context),
+                      icon: const Icon(Icons.play_circle_outline_rounded,
+                          size: 30),
+                    ),
+                  ]),
+                  const SizedBox(height: 10),
                   FilledButton.icon(
                     key: const ValueKey('home-3d-workshop'),
                     style: FilledButton.styleFrom(
