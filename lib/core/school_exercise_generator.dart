@@ -1156,10 +1156,12 @@ class ExerciseFactory {
   static const _writingLowercase = 'abcdefghijklmnopqrstuvwxyzäöüß';
   static const _writingTrickyWords = <int, List<String>>{
     3: <String>['Straße', 'Füße', 'Grüße', 'Mädchen', 'Schlüssel', 'Gemüse',
-      'Löwe', 'Quelle', 'Hexe', 'Käse', 'Brücke', 'Zwetschke'],
+      'Löwe', 'Quelle', 'Hexe', 'Käse', 'Brücke', 'Zwetschke', 'Bäcker',
+      'Küche', 'Größe', 'Mäuse', 'Quark', 'Boxer'],
     4: <String>['Fußgänger', 'Gebäude', 'Bibliothek', 'Rhythmus', 'Qualle',
       'Taxi', 'Pyjama', 'Geräusch', 'Überraschung', 'Gießkanne',
-      'Märchenbuch', 'Spaß'],
+      'Märchenbuch', 'Spaß', 'Xylophon', 'Pyramide', 'Äquator',
+      'Gemüsesuppe', 'Süßigkeit', 'Häuschen'],
   };
   static const _writingNumberWords = <int, String>{
     11: 'elf', 12: 'zwölf', 13: 'dreizehn', 14: 'vierzehn', 15: 'fünfzehn',
@@ -1170,6 +1172,22 @@ class ExerciseFactory {
     66: 'sechsundsechzig', 99: 'neunundneunzig', 200: 'zweihundert',
     500: 'fünfhundert', 1000: 'tausend',
   };
+  static const _writingSentencesGrade1 = <String>[
+    'Der Hund bellt.',
+    'Mama malt.',
+    'Oma liest ein Buch.',
+    'Wir spielen Ball.',
+    'Die Sonne scheint.',
+    'Ich bin froh.',
+  ];
+  static const _writingSentencesGrade2 = <String>[
+    'Der Bus kommt um acht Uhr.',
+    'Lena füttert die Katze.',
+    'Im Winter fällt Schnee.',
+    'Ich packe meine Schultasche.',
+    'Papa kocht heute Nudeln.',
+    'Wir gehen in den Park.',
+  ];
   static const _writingSentencesGrade3 = <String>[
     'Im Herbst fallen die Blätter.',
     'Die Straße ist nass und glatt.',
@@ -1181,6 +1199,12 @@ class ExerciseFactory {
     'Der Igel schläft unter dem Laub.',
     'Wann beginnt die Turnstunde?',
     'Heute ist es sehr heiß!',
+    'Der Bäcker backt frisches Brot.',
+    'Unsere Klasse fährt in den Zoo.',
+    'Im Winter bauen wir einen Schneemann.',
+    'Die Katze schläft auf dem Sofa.',
+    'Hast du deine Hausübung gemacht?',
+    'Mein Fahrrad hat eine neue Klingel.',
   ];
   static const _writingSentencesGrade4 = <String>[
     'Lumo fragt: „Kommst du mit?“',
@@ -1193,6 +1217,12 @@ class ExerciseFactory {
     '„Komm schnell!“, ruft Opa.',
     'Ich glaube, dass es morgen schneit.',
     'Weil es regnet, bleiben wir drinnen.',
+    'Oma fragt: „Wer möchte Kuchen?“',
+    'Im Rucksack sind Jause, Trinkflasche und Jacke.',
+    '„Ich habe gewonnen!“, jubelt Mia.',
+    'Wenn die Sonne scheint, gehen wir baden.',
+    'Der Trainer ruft: „Alle zum Tor!“',
+    'Ich weiß, dass du das schaffst.',
   ];
 
   LumoTask _writing(int grade, String unit) {
@@ -1243,7 +1273,9 @@ class ExerciseFactory {
     } else if (unit == 'Schwunguebung') {
       if (grade >= 3) {
         const swingWords = <String>[
-          'Welle', 'Sonne', 'Wolle', 'Muschel', 'Schnecke', 'Locke'
+          'Welle', 'Sonne', 'Wolle', 'Muschel', 'Schnecke', 'Locke',
+          'Wolke', 'Schlange', 'Melone', 'Nudel', 'Lamm', 'Mimose',
+          'Ballon', 'Wiese', 'Mühle', 'Lilie'
         ];
         final word = swingWords[_random.nextInt(swingWords.length)];
         prompt = 'Schreibe das Wort: $word';
@@ -1275,10 +1307,13 @@ class ExerciseFactory {
                 'Doppelpunkt und Anführungszeichen.';
       } else {
         final options = readingPassages[grade.clamp(1, 4)]!;
-        final passage = options[_random.nextInt(options.length)];
         // Copy one complete sentence. Avoid long multi-sentence writing targets.
-        final sentence = passage.text.split('.').first;
-        prompt = 'Schreibe: $sentence.';
+        final sentences = <String>{
+          for (final passage in options) '${passage.text.split('.').first}.',
+          ...(grade == 1 ? _writingSentencesGrade1 : _writingSentencesGrade2),
+        }.toList();
+        final sentence = sentences[_random.nextInt(sentences.length)];
+        prompt = 'Schreibe: $sentence';
         explanation =
             'Schreibe den ganzen Satz. Achte auf Abstände, den großen Anfang und das Satzzeichen.';
       }
@@ -1312,7 +1347,19 @@ class ExerciseFactory {
         '🌻': 'Blume',
         '🍎': 'Apfel',
         '🐟': 'Fisch',
-        '🦋': 'Schmetterling'
+        '🦋': 'Schmetterling',
+        '🐭': 'Maus',
+        '🐴': 'Pferd',
+        '🐷': 'Schwein',
+        '🦆': 'Ente',
+        '🐝': 'Biene',
+        '🍌': 'Banane',
+        '🍓': 'Erdbeere',
+        '🚗': 'Auto',
+        '🏠': 'Haus',
+        '🌙': 'Mond',
+        '🐌': 'Schnecke',
+        '🦔': 'Igel'
       };
       final picture =
           pictures.entries.elementAt(_random.nextInt(pictures.length));
@@ -1344,6 +1391,14 @@ class ExerciseFactory {
         (1, ['Er lebt im Wasser und hat Flossen.', 'Fisch', 'Tisch', 'Fleisch']),
         (1, ['Darin schläfst du.', 'Bett', 'Brett', 'Bart']),
         (1, ['Es ist grün und wächst am Ast.', 'Blatt', 'Bild', 'Platz']),
+        (1, ['Damit spielst du Fußball.', 'Ball', 'Bank', 'Band']),
+        (1, ['Dieses Tier miaut.', 'Katze', 'Tatze', 'Kasse']),
+        (1, ['Dieses Tier gibt Milch.', 'Kuh', 'Schuh', 'Kugel']),
+        (1, ['Du ziehst ihn an den Fuß.', 'Schuh', 'Schule', 'Stuhl']),
+        (1, ['Darauf sitzt du am Tisch.', 'Sessel', 'Kessel', 'Schlüssel']),
+        (1, ['Er leuchtet in der Nacht am Himmel.', 'Mond', 'Mund', 'Hund']),
+        (1, ['Damit kämmst du deine Haare.', 'Kamm', 'Kamel', 'Lamm']),
+        (1, ['Es ist ein rotes Obst vom Baum.', 'Apfel', 'Ampel', 'Gabel']),
         (2, ['Es hat zwei Räder und Pedale.', 'Fahrrad', 'Fahrbahn', 'Fahrplan']),
         (2, ['Damit sperrst du die Tür auf.', 'Schlüssel', 'Schüssel', 'Schaufel']),
         (2, ['Damit putzt du deine Zähne.', 'Zahnbürste', 'Zahnlücke', 'Haarbürste']),
