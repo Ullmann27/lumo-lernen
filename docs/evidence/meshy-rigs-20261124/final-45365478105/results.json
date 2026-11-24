@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "document_state": "QUALITY_PASS_PUBLICATION_BLOCKED",
+  "observed_at_utc": "2026-11-24T10:24:37.204834+00:00",
+  "original_run": {
+    "id": 45365478105,
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45365478105",
+    "source_sha": "94cabcff7f6c568eddfe6805801f49a00ad58312",
+    "workflow": ".github/workflows/lumo-2078-device-repair.yml",
+    "overall_conclusion": "NO_OVERALL_PASS_CLAIM; both publisher attempts failed"
+  },
+  "godot": {
+    "revision": "c3f459eca88f659da1a9e4af1c990c804e715528",
+    "engine": "4.6.3",
+    "tree": "6b7c47a3010cec04736f9cd495adf34ad0ec2e6f"
+  },
+  "native": {
+    "status": "PASS",
+    "job_id": 138346148805,
+    "assertion_total": 15246,
+    "neon_home_checks_included_in_total": 2243,
+    "programs": [
+      {
+        "log": "native/lumo_world_regression.log",
+        "checks": 206,
+        "reported_result": "[LumoWorld] PASS 206 checks"
+      },
+      {
+        "log": "native/lumo_world_hud_regression.log",
+        "checks": 939,
+        "reported_result": "[LumoWorldHUD] PASS 939 checks"
+      },
+      {
+        "log": "native/lumo_world_device_regression.log",
+        "checks": 44,
+        "reported_result": "[LumoWorldDevice] PASS 44 checks"
+      },
+      {
+        "log": "native/lumo_world_camera_regression.log",
+        "checks": 27,
+        "reported_result": "[LumoWorldCamera] PASS 27 checks"
+      },
+      {
+        "log": "native/kart_extra_drivers_regression.log",
+        "checks": 333,
+        "reported_result": "EXTRA_DRIVERS_PASS checks=333 failures=0"
+      },
+      {
+        "log": "native/kart_spatial_menu_regression.log",
+        "checks": 641,
+        "reported_result": "[SpatialMenu] PASS 641 checks; 5/5 cases; renderer=headless"
+      },
+      {
+        "log": "native/kart_lan_entry_layout_regression.log",
+        "checks": 78,
+        "reported_result": "[KartLanEntryLayout] PASS 78 checks"
+      },
+      {
+        "log": "native/kart_neon_home_regression.log",
+        "checks": 2243,
+        "reported_result": "[NeonHome] {\"checks\":2243,\"failures\":[],\"status\":\"PASS\"}"
+      },
+      {
+        "log": "native/lumo_rival_rig_contract_regression.log",
+        "checks": 1558,
+        "reported_result": "[RivalRig] checks=1558 failures=0"
+      },
+      {
+        "log": "native/lumo_kart_production_driver_regression.log",
+        "checks": 8245,
+        "reported_result": "[ProductionDriver] checks=8245 failures=0 imported=27 maximum_hand_error_m=0.00020817259792"
+      },
+      {
+        "log": "native/kart_driver_gesture_regression.log",
+        "checks": 423,
+        "reported_result": "DRIVER_GESTURE_PASS checks=423 failures=0"
+      },
+      {
+        "log": "native/kart_meshy_assets_regression.log",
+        "checks": 390,
+        "reported_result": "[MeshyKart] checks=390 failures=0"
+      },
+      {
+        "log": "native/cards_character_roster_regression.log",
+        "checks": 119,
+        "reported_result": "[CardsCharacters] checks=119 failures=0"
+      }
+    ],
+    "image_count": 73,
+    "image_hash_report": "native/IMAGE-VERIFICATION.json",
+    "artifact": "native/ARTIFACT.json",
+    "archive_sha256_locally_matched": true,
+    "scope": "Actual desktop renderer captures in declared viewports; no physical Android performance claim"
+  },
+  "apk": {
+    "status": "PASS",
+    "job_id": 138357008376,
+    "artifact_id": 14908418202,
+    "bytes": 701640419,
+    "sha256": "3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198",
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionName": "0.14.6",
+    "versionCode": 2078,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "packaged_driver_count": 9,
+    "packaged_production_variants": 27,
+    "proof": "apk/KART-DRIVER-PACKAGE.json",
+    "provenance": "apk/BUILD-PROVENANCE.json"
+  },
+  "transport": {
+    "status": "PASS",
+    "run_id": 45372281795,
+    "source_sha": "7c0dcc03f45ef85442f7b1d1e3303f4645ac2224",
+    "proof": "transport/LOCAL-TRANSPORT-VERIFICATION.json",
+    "original_bytes_unchanged": true,
+    "rebuild": false,
+    "resigned": false
+  },
+  "android": {
+    "status": "PASS",
+    "job_id": 138363355593,
+    "run_id": 45365478105,
+    "run_attempt": 1,
+    "artifact_id": 14910694437,
+    "tour_steps_passed": 23,
+    "tour_steps_total": 23,
+    "fatal_crashes": 0,
+    "apk_sha256": "3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198",
+    "proof": "android/tour-result.json",
+    "independent_audit": "android/ANDROID-AUDIT.json",
+    "required_native_starts": {
+      "status": "PASS",
+      "passed": 7,
+      "total": 7,
+      "scenes": [
+        "run",
+        "quiz",
+        "memory",
+        "chess",
+        "kart",
+        "cards",
+        "world"
+      ],
+      "proof": "android/NATIVE-GAME-STARTS.json"
+    },
+    "diagnostic_routes": {
+      "successful": 13,
+      "total": 16,
+      "not_found": [
+        "settlement",
+        "build",
+        "treasure"
+      ],
+      "proof": "android/native-starts.json",
+      "scope": "Additional diagnostic routes; distinct from the seven required native starts."
+    },
+    "nonfatal_godot_messages": {
+      "skypost_can_process_outside_tree_count": 3,
+      "timestamps": [
+        "10:11:43.200",
+        "10:11:52.227",
+        "10:12:59.363"
+      ],
+      "source": "evidence/logcat.txt",
+      "observed_effect": "No fatal crash; SkyPost free-flight, reward and host return passed; precise caller not exposed in log."
+    },
+    "not_tested": [
+      "physical Samsung Fold",
+      "device GPU frame times / 60 FPS",
+      "audio output",
+      "complete two-lap race and reward (kart_complete_android_probe)"
+    ]
+  },
+  "saf_backup_restore": {
+    "status": "PASS",
+    "run_id": 45365478105,
+    "job_id": 138363355593,
+    "run_attempt": 1,
+    "steps_passed": 8,
+    "steps_total": 8,
+    "proof": "android/local-backup/backup-result.json",
+    "independent_payload_sha256": "734e0f0e964c06211984eed773e13f3bfbfc80eea295e4446d37cd8f8785d9c6",
+    "independent_preference_count": 17,
+    "independent_native_files": 10,
+    "native_files_archive_export_restored_identical": true,
+    "not_tested": [
+      "restoration of a running native game process",
+      "physical user devices"
+    ]
+  },
+  "publication": {
+    "status": "BLOCKED",
+    "run_id": 45365478105,
+    "attempts": [
+      {
+        "attempt": 1,
+        "publisher_job_id": 138384742953,
+        "status": "FAIL"
+      },
+      {
+        "attempt": 2,
+        "publisher_job_id": 138386118647,
+        "status": "FAIL"
+      }
+    ],
+    "proof": "publisher/PUBLICATION-STATUS.json",
+    "release_url": null,
+    "apk_download_url": null,
+    "public_bytes_verified": false
+  },
+  "update_channels": {
+    "manual_2078": "Original APK verified; public release blocked after two publisher failures; no public download URL.",
+    "family_button": "Published prerelease coachpreview-build-N with exact asset Lumo-Lernen-Neu.apk; 2078 publisher does not use this schema",
+    "implementation": "lib/core/app_update_service.dart::familyPreviewFromReleases"
+  },
+  "limits": [
+    "Native/APK/Android/SAF passes do not imply successful publication; both publisher attempts failed.",
+    "Three nonfatal Godot can_process/outside-tree messages occurred in the SkyPost tour interval; no fatal crash was observed and precise caller is not exposed in the log.",
+    "Seven of seven required native UI starts passed; only 13 of 16 additional diagnostic routes were found/successful. Settlement, build and treasure were not found in that diagnostic traversal.",
+    "A left arrow covers the beginning of Sonnenhafen in one 2400x1080 Kart landscape capture; a functional failure has not been demonstrated.",
+    "73 image hashes are not a claim that all 73 images received manual visual review or every UI layout is perfect.",
+    "No physical Samsung Fold7, device GPU frame-time / 60 FPS, audio-output or complete two-lap race/reward acceptance.",
+    "SAF verification did not cover restoring a running native game process or physical user devices.",
+    "Test certificate; no Play Store production signing or release.",
+    "No claim that all original village NPCs were replaced by Meshy drivers."
+  ],
+  "visual_remainder": {
+    "status": "OPEN_COSMETIC_FINDING",
+    "proof": "android/visual/VISUAL-REMAINDER.json",
+    "image": "android/visual/21_kart_premium_start.png",
+    "functional_failure_demonstrated": false
+  }
+}

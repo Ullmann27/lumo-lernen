@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "path": "/tmp/lumo-2078-delivery/Lumo-Lernen-0.14.6-2078.apk",
+  "bytes": 701640419,
+  "sha256": "3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198",
+  "source_run_id": 45365478105,
+  "source_sha": "94cabcff7f6c568eddfe6805801f49a00ad58312",
+  "source_artifact_id": 14908418202,
+  "source_artifact_sha256": "1b52eac413a54f1f8406a76f2880cccec3294c5e16b6ee0705f38e0b4dc2e97e",
+  "transport_run_id": 45372281795,
+  "transport_commit": "7c0dcc03f45ef85442f7b1d1e3303f4645ac2224",
+  "part_count": 3,
+  "all_zip_digests_verified": true,
+  "all_part_hashes_verified": true,
+  "original_metadata_hashes_verified": true,
+  "original_bytes_unchanged": true,
+  "aapt": {
+    "status": "PASS",
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2078,
+    "versionName": "0.14.6",
+    "log": "LOCAL-AAPT-BADGING.txt"
+  },
+  "apksigner": {
+    "status": "PASS",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "log": "LOCAL-APKSIGNER-VERIFY.txt"
+  }
+}

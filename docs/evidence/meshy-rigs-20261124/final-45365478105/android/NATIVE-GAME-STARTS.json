@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "required_scenes": {
+    "run": {
+      "router_loaded_after_s": 5.3,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 6786,
+      "router_loaded_line": "11-24 10:14:01.103  6786  6812 I godot   : [Router] loaded:run (res://scenes/games/lumo_run.tscn)"
+    },
+    "quiz": {
+      "router_loaded_after_s": 5.3,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 7118,
+      "router_loaded_line": "11-24 10:15:11.780  7118  7138 I godot   : [Router] loaded:quiz (res://scenes/games/quiz_studio.tscn)"
+    },
+    "memory": {
+      "router_loaded_after_s": 5.3,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 7425,
+      "router_loaded_line": "11-24 10:16:19.414  7425  7444 I godot   : [Router] loaded:memory (res://scenes/games/memory_table.tscn)"
+    },
+    "chess": {
+      "router_loaded_after_s": 5.2,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 7770,
+      "router_loaded_line": "11-24 10:17:26.604  7770  7789 I godot   : [Router] loaded:chess (res://scenes/games/chess_table.tscn)"
+    },
+    "kart": {
+      "router_loaded_after_s": 15.7,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 8052,
+      "router_loaded_line": "11-24 10:18:44.780  8052  8071 I godot   : [Router] loaded:kart (res://scenes/games/kart_island.tscn)"
+    },
+    "cards": {
+      "router_loaded_after_s": 5.2,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 8548,
+      "router_loaded_line": "11-24 10:20:40.195  8548  8567 I godot   : [Router] loaded:cards (res://scenes/games/cards_table.tscn)"
+    },
+    "world": {
+      "router_loaded_after_s": 10.3,
+      "ui_route": true,
+      "process_alive": true,
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid": 10814,
+      "router_loaded_line": "11-24 10:29:35.118 10814 10833 I godot   : [Router] loaded:world (res://scenes/creative/lumo_world.tscn)"
+    }
+  },
+  "scope": "Observed UI launch and process survival, not full gameplay or physical-device FPS."
+}

@@ -1,0 +1,664 @@
+{
+  "status": "PASS",
+  "godot_revision": "c3f459eca88f659da1a9e4af1c990c804e715528",
+  "scope": "Actual desktop renderer captures in declared viewports; no physical Android performance claim",
+  "images": [
+    {
+      "file": "kart/home-comet-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1559233,
+      "sha256": "73dc574eecb555258fa6c03c671a80dbeb18403a65ad5fbcb8061341b18e9550"
+    },
+    {
+      "file": "kart/home-comet-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 377896,
+      "sha256": "31cf1eb44630afc0e9a70c5a809047724caf851bc485109aed70f05ff694e418"
+    },
+    {
+      "file": "kart/garage-comet-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1088104,
+      "sha256": "6ecd79dfb835fe21ac81909798f381cd5cce50fcebcad29db4149ad63833a816"
+    },
+    {
+      "file": "kart/garage-comet-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 795005,
+      "sha256": "d11a46602c8081898da774499ab519c30ff4b83199845668c968d975aec638c4"
+    },
+    {
+      "file": "kart/garage-gecko_velo-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1108082,
+      "sha256": "6250c30d442b64f645c0a7d086d45612dd7927502ca8ddc24c0a4b8e2f254fe8"
+    },
+    {
+      "file": "kart/garage-gecko_velo-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 807534,
+      "sha256": "681ec1220e68621d87173b1c03de580512b4c67ecaf09fff7f031eff0d0be209"
+    },
+    {
+      "file": "kart/garage-boru_rally-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1146992,
+      "sha256": "e3a045192874a8979af3faa504d594f5e3f0e4805f5f216825055dc816144d49"
+    },
+    {
+      "file": "kart/garage-boru_rally-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 857734,
+      "sha256": "8518e27ccdd758cac9c46b737d94c234540f5c43d0634816e4cd6189a23d37eb"
+    },
+    {
+      "file": "kart/garage-glider-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1081089,
+      "sha256": "737456da3efdf46980736e2800fe22c0cc27a813fb86a1feba7efd68bea405b6"
+    },
+    {
+      "file": "kart/garage-glider-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 792013,
+      "sha256": "f249293068cdd1e9e7c9b29c42da75efca2ba012d5d53151c52aef0dad5423d4"
+    },
+    {
+      "file": "kart/garage-nala_comet-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1096215,
+      "sha256": "a30834e59e3f517ae771209980fa2d5e96b00b4766f964ff377f1a392826cb04"
+    },
+    {
+      "file": "kart/garage-nala_comet-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 802964,
+      "sha256": "5218f79bc001beded407a88c9f81e0957121e64fcf476620643bfb0afd5b71a8"
+    },
+    {
+      "file": "kart/garage-noa_tide-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1044714,
+      "sha256": "6ec86b10656bf01330b2d37f30f604354cfe42bd799e7b60883aec198240973d"
+    },
+    {
+      "file": "kart/garage-noa_tide-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 751081,
+      "sha256": "459af819f755e235cce7374fcf66adef08186b136fd2753e55deb147ce5f670e"
+    },
+    {
+      "file": "kart/garage-iva_aurora-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1099262,
+      "sha256": "ee02bfcdca8a9c4b235a3f995655e88f388b94ae4bbbb04203a38d27404fe9e1"
+    },
+    {
+      "file": "kart/garage-iva_aurora-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 800139,
+      "sha256": "0917e4ce1045b2f18fc7a3e2eccf641e6155bd25b1df06f62a3a22f8a1923593"
+    },
+    {
+      "file": "kart/garage-turbo-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1119341,
+      "sha256": "382e6e9f06720925c87f94dd8a40dfa44f80cc42ef37e609c4f4317166522a90"
+    },
+    {
+      "file": "kart/garage-turbo-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 827722,
+      "sha256": "b2944e3cadd6326ad6eecb659d71542f9fdd4744033dc8aa0bbaf0f95b861f9f"
+    },
+    {
+      "file": "kart/garage-zuri_volt-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1099860,
+      "sha256": "a087efe5de095ce640f5449263796a277f8fba7c9384c31072946fb3e8f246a1"
+    },
+    {
+      "file": "kart/garage-zuri_volt-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 802754,
+      "sha256": "f3aeade6134a5eec7ba1b9ab8381c1f8986dda530045294ab53cb1045c0f5ba8"
+    },
+    {
+      "file": "kart/garage-blitz-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1116029,
+      "sha256": "4f8e3a8079677159baa033d50f800685e6082e01199518ac0d9e49586f73d9a8"
+    },
+    {
+      "file": "kart/garage-blitz-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 820426,
+      "sha256": "679de89824cede401fb22252ae2097fb62dee56449fddeefbdcf0ed3e520b9ee"
+    },
+    {
+      "file": "kart/garage-terra-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1139018,
+      "sha256": "c523e3bb411d5d98acd57c06939ef05be24c54a1776bf50d52dfced5ce897183"
+    },
+    {
+      "file": "kart/garage-terra-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 855066,
+      "sha256": "f630263ae5d644d1ec9106ea9586b48b159989267f762889928e9525585b1335"
+    },
+    {
+      "file": "kart/garage-koloss-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1096353,
+      "sha256": "ceef0e0640e5b6fe3caac5eee386f683c572c7c8b3f1be68f5d1404feb3d581d"
+    },
+    {
+      "file": "kart/garage-koloss-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 813690,
+      "sha256": "669e202357932ded75c9b5d283484a4f69223ea0511836a1559e1b77e197a88d"
+    },
+    {
+      "file": "kart/garage-phantom-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1147758,
+      "sha256": "92eeb2b49d657c225af3c49aa3cb4bd141480bf7722935fe652d12f0b9b1983e"
+    },
+    {
+      "file": "kart/garage-phantom-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 854506,
+      "sha256": "f8563e2255ca1f9f53553abf9c87b29b14e207b5470608b0e3277d9d5d1c2a9c"
+    },
+    {
+      "file": "kart/garage-stella-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1126234,
+      "sha256": "e6d9cca380ea1a4140df66b6e9d14866c653afbcaf1baab59e2b78d92a7ec040"
+    },
+    {
+      "file": "kart/garage-stella-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 834278,
+      "sha256": "6cda56c5e4be92c766a5809dce0b6f78c015268266e5b769afc29c3ba7201a57"
+    },
+    {
+      "file": "kart/home-selected-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1564418,
+      "sha256": "8bbdd2ff4f540545c6cec1082c61df39e58562d3ac0118a746cc1c1b575a2314"
+    },
+    {
+      "file": "kart/home-selected-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 374541,
+      "sha256": "a317ad6e088ea14994ea1e7d65728567f96d7be51c58d2874cf6d1759575e190"
+    },
+    {
+      "file": "kart-density2/home-comet-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1448861,
+      "sha256": "8bc8dd54a7afa74f54bb41f5d3b9c4fc529fcaaf4232126bd8fe8edc0dd3948b"
+    },
+    {
+      "file": "kart-density2/home-comet-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 334997,
+      "sha256": "48193a3332816e65c0bddf5adb7ebf9e625847a593b8c32432492eddaff60e0e"
+    },
+    {
+      "file": "kart-density2/garage-comet-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 710306,
+      "sha256": "be6ea0d1137192edbf3d872b99416f9203529f8db95b79db6df3a398d6e7efb7"
+    },
+    {
+      "file": "kart-density2/garage-comet-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 428755,
+      "sha256": "c0ae383d2c949b08d7479abc9bf25b343d8bce9c5a104832e0688e1f292e687a"
+    },
+    {
+      "file": "kart-density2/garage-gecko_velo-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 711557,
+      "sha256": "a11394dbb4407b9a878c52796e86843ae94909c73a8d2bc3f05b37ff1ddff7c0"
+    },
+    {
+      "file": "kart-density2/garage-gecko_velo-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 428745,
+      "sha256": "dd6c1ce65b937df1f03f984158bc0b27af17fd5b525fd56a9d532d615e25835c"
+    },
+    {
+      "file": "kart-density2/garage-boru_rally-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 724594,
+      "sha256": "6d6f20b0399249b7f6014f44dea1135cb6a1a2d708c91a198eb2adfedffae29c"
+    },
+    {
+      "file": "kart-density2/garage-boru_rally-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 437254,
+      "sha256": "0563f865d0431825e3e43985f6f8cc73514ba9cd495a8bfb2667353ad2e7f363"
+    },
+    {
+      "file": "kart-density2/garage-glider-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 716667,
+      "sha256": "b106a72697b0e6b3b107d4e7fea138455f178ffcea580ec80651eb47baf5ce46"
+    },
+    {
+      "file": "kart-density2/garage-glider-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 430742,
+      "sha256": "9c1dc31d52d430a0459ade64324653d164b5d162cb4d38209affaa81429acd2d"
+    },
+    {
+      "file": "kart-density2/garage-nala_comet-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 712250,
+      "sha256": "80742758ddbb9b9597f42b0a27b3252b22c18bd3de137e42bc17feb768e58102"
+    },
+    {
+      "file": "kart-density2/garage-nala_comet-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 430260,
+      "sha256": "ece129dc160d07dfdac1c48f6412ecf4c11eb0e7d1b22a73e9ff47ca2b89f977"
+    },
+    {
+      "file": "kart-density2/garage-noa_tide-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 704381,
+      "sha256": "5a6db270384bcbc2bfa7b83270ce79dcea5e6fb9252197764efb5d700cbf3e58"
+    },
+    {
+      "file": "kart-density2/garage-noa_tide-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 421897,
+      "sha256": "149345558f182654ec06b5f7fa37b342184c5382dd88a5b141ff5fa192986d49"
+    },
+    {
+      "file": "kart-density2/garage-iva_aurora-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 715569,
+      "sha256": "a956a96a110b150279398512f433c56efdb3e14e5e19eed177c6215e44ce6604"
+    },
+    {
+      "file": "kart-density2/garage-iva_aurora-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 428850,
+      "sha256": "f418a0ccbec2479554be9897393cdf8f1010542823f5de36465991aba0196e91"
+    },
+    {
+      "file": "kart-density2/garage-turbo-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 716991,
+      "sha256": "aedea1945694cd6ebb6de0b524e7516200ab732ff752d176d4379af60d08f443"
+    },
+    {
+      "file": "kart-density2/garage-turbo-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 430002,
+      "sha256": "4c28991571ed3a1bc407e7595ff74873e7807099700dd353d4b07e21e39f13d9"
+    },
+    {
+      "file": "kart-density2/garage-zuri_volt-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 703719,
+      "sha256": "7e10c2f421c59ae88db04592d73e410d7325c0e30973ca748fe29035d23d4ac2"
+    },
+    {
+      "file": "kart-density2/garage-zuri_volt-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 428326,
+      "sha256": "43f91ec17bc69b09b49cab2dfdcb18bab6cf56323614bb7f122c124e8864c2b8"
+    },
+    {
+      "file": "kart-density2/garage-blitz-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 707853,
+      "sha256": "714401ca7eb28a2d3b20ded6c7035ee7df7cb46716f5635f4bf29230e83a9598"
+    },
+    {
+      "file": "kart-density2/garage-blitz-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 430222,
+      "sha256": "465b917a8668b8dd88dd92e3c53dbf71071d6c23ddc2cd4f072668f939276bbb"
+    },
+    {
+      "file": "kart-density2/garage-terra-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 724593,
+      "sha256": "5a0cdad5d5416234a4dc4c74e952db61077b4cada4a223509144d560c9229e5a"
+    },
+    {
+      "file": "kart-density2/garage-terra-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 436083,
+      "sha256": "8b1210bd2cbe650af73433abc638eb97f04f73bc01abfb37464dbb8fc921b015"
+    },
+    {
+      "file": "kart-density2/garage-koloss-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 715693,
+      "sha256": "c806b63f6317a845ad7d8dab5fb91110d0bafe3c1458ae037c7082c290fbbb57"
+    },
+    {
+      "file": "kart-density2/garage-koloss-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 428359,
+      "sha256": "1af58f6e5296b7bac7203b7d3ee8a5719edfe174311593673cc552b55307b7c3"
+    },
+    {
+      "file": "kart-density2/garage-phantom-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 713579,
+      "sha256": "8776c9926d5495a74e06349c224018e780292ee9e844a8c7c76520d80d2d8d63"
+    },
+    {
+      "file": "kart-density2/garage-phantom-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 432287,
+      "sha256": "24139b18a087e54815c4c920aa1401c61570c0114b799d23a3e9f1a3b99ad62e"
+    },
+    {
+      "file": "kart-density2/garage-stella-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 713917,
+      "sha256": "819e1b3a572460482a92145365598f8942a683ce793670e0fabac0eb89ef576b"
+    },
+    {
+      "file": "kart-density2/garage-stella-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 431537,
+      "sha256": "dabecc0e82ddd64ceb9620ba01726579691e3d3a43f7c5589a2e3da31eff7a66"
+    },
+    {
+      "file": "kart-density2/home-selected-1384x1400.png",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 1451519,
+      "sha256": "289ee557fe389d1c869a86044de8ce9920601fe8c47d953c4bbb17a8eaaa6a27"
+    },
+    {
+      "file": "kart-density2/home-selected-1384x1400-preview.png",
+      "dimensions": [
+        1280,
+        1294
+      ],
+      "bytes": 337374,
+      "sha256": "a27a43ab387c938fcb748a4be300d4925257588a5bd0898904b6fbb9cf4fdce4"
+    },
+    {
+      "file": "world/world-treasure_foundation.webp",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 390344,
+      "sha256": "75ff32f8f5967b54084df9aeb1e580cdc254862570232a0c5ba1463717bea6cb"
+    },
+    {
+      "file": "world/world-village_walking.webp",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 152888,
+      "sha256": "4be9b50065695790cb976e46d0fa238fe5a222a4afc5c7158bae2eabb4e1093c"
+    },
+    {
+      "file": "world/world-school_portrait.webp",
+      "dimensions": [
+        720,
+        1280
+      ],
+      "bytes": 149202,
+      "sha256": "a78601cac7f25e81c994b13a05a7e9dfc4fc9cf8177b170fba67a40a962f3105"
+    },
+    {
+      "file": "world/world-kart_driving.webp",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 147230,
+      "sha256": "88ba15b7756587833161fe03adefe75bc2b66311792bfbfe917e8cb4a2a29475"
+    },
+    {
+      "file": "world/world-saved_village.webp",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 243760,
+      "sha256": "9b819ee744797d5ba86a00fb3292f05b3c11a74a2a8631d9bb233dd0898602a1"
+    },
+    {
+      "file": "world/world-fold_town_road.webp",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 364556,
+      "sha256": "a954067df7bbf9cc3f54bb3f4d801792324aa416270fb76c633db86bd67f3359"
+    },
+    {
+      "file": "world/world-fold_city_road.webp",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 312016,
+      "sha256": "54aa1d6e5b273252351b714947200b2113fb22f8a44c3d24ee7b8803bd0c2372"
+    },
+    {
+      "file": "world/world-fold_village_entry.webp",
+      "dimensions": [
+        1384,
+        1400
+      ],
+      "bytes": 365188,
+      "sha256": "377b3e94c0c15ac0fa0e182c60babe1d2ba93733b9f0698f646aaf8071f6b4d4"
+    },
+    {
+      "file": "drivers.png",
+      "dimensions": [
+        2100,
+        2520
+      ],
+      "bytes": 1603554,
+      "sha256": "dd59727eb7fb5189fb150346c7397727aef3fd561ce6f0c9aa85c8d8b5e4e1cb"
+    }
+  ]
+}

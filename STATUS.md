@@ -1,3 +1,42 @@
+# Aktuell: LUMO 0.14.6+2078 – geprüft, öffentliche Auslieferung blockiert
+
+Stand: 24. November 2026. **Native Prüfungen, APK, Android-Pflichtabnahme und SAF-Rückspiel sind bestanden. Beide Publisher-Versuche scheiterten beim Tag-Push. Ein öffentlicher APK-Download besteht noch nicht.** Der Gesamtworkflow wird nicht als vollständig erfolgreich ausgegeben.
+
+Gebauter Flutter-Quellstand: `94cabcff7f6c568eddfe6805801f49a00ad58312`.
+Godot: `c3f459eca88f659da1a9e4af1c990c804e715528`, Engine 4.6.3.
+Spätere Dokumentations- und Transportcommits verändern diese Produktidentität nicht.
+
+| Stufe | Tatsächlich belegt | Originalnachweis |
+| --- | --- | --- |
+| Native Prüfungen | 15.246 Assertions aus 13 Programmen; darin 2.243 NeonHome-Prüfungen | Run 45365478105, Job 138346148805 |
+| Rendererbilder | 73 quellgebundene Bilddateien mit geprüften Hashes | Artefakt 14908790405 |
+| APK und Modelle | Signierte APK; neun Fahrer und 27 Produktionsvarianten im tatsächlichen APK-Paket | Job 138357008376 |
+| Android-Tour | 23/23 Schritte PASS, kein fataler Absturz im beobachteten Lauf | Job 138363355593, Versuch 1 |
+| Verbindliche native Starts | 7/7 PASS: run, quiz, memory, chess, kart, cards, world | Originales NATIVE-GAME-STARTS.json |
+| SAF-Sicherung/Rückspiel | 8/8 PASS; zusätzlich 17 Einstellungen und zehn native Dateien unabhängig abgeglichen | Originales backup-result.json und ANDROID-AUDIT.json |
+| Bytegleicher Transfer | Vollständige Byte-, SHA-, Paket- und Signaturprüfung PASS | Support-Run 45372281795 |
+| Publisher | Versuch 1 / Job 138384742953 FAIL; einmaliger Retry / Job 138386118647 ebenfalls FAIL | Beide unveränderten Originallogs |
+| Öffentlicher Download | Nicht vorhanden; Release und Tag nach dem Retry jeweils 404 beobachtet | Bestätigte Root-Beobachtung; kein Link eingetragen |
+
+APK: **Lumo-Lernen-0.14.6-2078.apk**, **701.640.419 Bytes**,
+SHA256 `3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198`.
+Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version **0.14.6**, Code **2078**. Originalbytes und Testsignatur bleiben unverändert.
+
+## Verbleibende Grenzen und sichtbarer Restbefund
+
+- Im Sternenpost-Zeitfenster enthält das Tourlog **drei nichtfatale Godot-`can_process`-/Outside-tree-Meldungen**. Freiflug, Belohnung und Rückkehr bestanden; der genaue Aufrufer ist im Log nicht erkennbar. Keine Behauptung fehlerfreier Gesamtlogs.
+- Die zusätzliche Routendiagnose fand **13 von 16** Versuchen; `settlement`, `build` und `treasure` wurden dort nicht gefunden. Das ist getrennt vom bestandenen Pflichtgate **7/7**.
+- Das originale [Kartbild im flachen Querformat](docs/evidence/meshy-rigs-20261124/final-45365478105/android/visual/21_kart_premium_start.png) zeigt, dass die linke Pfeilfläche den Beginn von **Sonnenhafen** überdeckt. Kleiner optischer Restbefund; keine dadurch belegte Funktionsstörung.
+- Keine physische Fold7-/60-FPS-Abnahme, keine Audioausgabe- und keine vollständige Zwei-Runden-Rennen-/Belohnungsabnahme. SAF prüfte keinen Rückspielvorgang eines laufenden nativen Spielprozesses. Bildhashes bedeuten keine vollständige manuelle Abnahme aller Ansichten.
+
+Der Publisher meldete in beiden Versuchen einen **Timeout bei GitHubs Workflow-Rechteprüfung**; eine konkret fehlende Berechtigung ist damit allein nicht bewiesen. Es gab keinen Neubuild, keine Neusignierung und keine Rechteänderung. Weitere Wiederholungsserien und der vorbereitete öffentliche Byteverifier bleiben deaktiviert. Nächster Auslieferungsschritt ist der legitime authentifizierte Veröffentlichungsweg nach gesichertem Nachweischeckpoint.
+
+[Quellen, Originalberichte, Publisherlogs und Grenzen](docs/evidence/meshy-rigs-20261124/final-45365478105/README.md) · [Wiederaufnahme](CONTINUE.md).
+
+---
+
+## Archiv: bisherige Checkpoints unverändert
+
 # Aktuell: LUMO 0.14.6+2078 – Modelle, Kamera und freie Startbedienung
 
 Stand dieses Quellcheckpoints: 24. November 2026, vor dem vollständigen APK-/Android-Abschluss.

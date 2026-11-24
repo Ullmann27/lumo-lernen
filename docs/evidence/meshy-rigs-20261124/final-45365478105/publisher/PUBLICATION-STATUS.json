@@ -1,0 +1,47 @@
+{
+  "status": "BLOCKED",
+  "source_run_id": 45365478105,
+  "source_sha": "94cabcff7f6c568eddfe6805801f49a00ad58312",
+  "quality_attempt": 1,
+  "original_quality_job_ids": [
+    138346148805,
+    138357008376,
+    138363355593
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "job_id": 138384742953,
+      "status": "FAIL",
+      "stage": "Push the source-bound release tag",
+      "log": "publisher-original.log",
+      "diagnostic_timestamp_utc": "2026-11-24T10:39:13.3783130Z"
+    },
+    {
+      "attempt": 2,
+      "job_id": 138386118647,
+      "status": "FAIL",
+      "stage": "Push the same source-bound release tag",
+      "log": "publisher-retry-original.log",
+      "diagnostic_timestamp_utc": "2026-11-24T10:42:28.9150281Z"
+    }
+  ],
+  "observed_diagnostic": "Unable to determine if workflow can be created or updated due to timeout; workflows scope may be required.",
+  "diagnostic_limit": "The message reports a timeout in GitHub's workflow-permission check; it does not by itself prove that a particular permission is missing.",
+  "rebuild": false,
+  "resigned": false,
+  "permission_change": false,
+  "release_tag": "lumo-0.14.6-2078-45365478105",
+  "release_absence": {
+    "http_status": 404,
+    "observation_source": "Root confirmed the read-only API result after the second publisher attempt; no new remote query was made for this overlay."
+  },
+  "tag_absence": {
+    "http_status": 404,
+    "observation_source": "Root confirmed the read-only API result after the second publisher attempt; no new remote query was made for this overlay."
+  },
+  "release_url": null,
+  "public_apk_url": null,
+  "public_byte_verifier": "NOT_STARTED; the prepared retry-bound workflow requires retry SUCCESS and must not run after these two failures.",
+  "remaining_delivery_step": "Record the source/evidence checkpoint, then use the legitimate authenticated publication path. Verify the actual public APK bytes after publication."
+}

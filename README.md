@@ -9,10 +9,20 @@ Regeln: [`CLAUDE.md`](CLAUDE.md). Datenschutz: [`PRIVACY.md`](PRIVACY.md).
 Aktuelle Cards-/Vier-Gewinnt-Überarbeitung: [`docs/COMPUTER_CARDS_1922.md`](docs/COMPUTER_CARDS_1922.md).
 Quell- und Sprachdateiprüfung: `node scripts/audit_source.mjs`.
 
-## Android-Testversion (Familien-App)
+## Android-Testversion 0.14.6+2078: manueller Download
 
-Die auf dem Gerät installierte Familien-App (`dev.ullmann.lumo.lumo_lernen.coachpreview`) holt Updates nur über veröffentlichte GitHub-Prereleases mit dem Tag `coachpreview-build-N` und der Datei `Lumo-Lernen-Neu.apk`. Entwürfe (Drafts) werden vom Update-Button absichtlich ignoriert. Nicht vorher deinstallieren, sonst gehen Profile und Lernstand verloren.
+Die Original-APK 2078 ist gebaut und auf Bytes, Paket sowie Testsignatur geprüft. Android-Tour **23/23**, verbindliche native Starts **7/7** und SAF-Sicherung/Wiederherstellung **8/8** sind bestanden. **Die Veröffentlichung ist nach zwei fehlgeschlagenen Publisher-Versuchen noch blockiert. Ein öffentlicher APK-Downloadlink besteht noch nicht.**
 
-Aktuell veröffentlicht: [coachpreview-build-2004](https://github.com/Ullmann27/lumo-lernen/releases/tag/coachpreview-build-2004) (0.12.92+2004). Direktlink: [Lumo-Lernen-Neu.apk](https://github.com/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2004/Lumo-Lernen-Neu.apk), Prüfziffer: [Lumo-Lernen-Neu.apk.sha256](https://github.com/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2004/Lumo-Lernen-Neu.apk.sha256).
+Nach legitimer Veröffentlichung und vollständiger öffentlicher Byteprüfung wird hier die einzelne Datei `Lumo-Lernen-0.14.6-2078.apk` als manueller Chrome-Download verlinkt. Gebaute Identität: **701.640.419 Bytes**, Version **0.14.6**, Code **2078**, Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`. Vor einer Aktualisierung nicht deinstallieren; Paket und Signatur müssen zur vorhandenen Familien-App passen.
 
-Die nächste Version 0.13.0+2012 ist noch nicht veröffentlicht. Ablauf: [`docs/releases/LUMO_FAMILIEN_UPDATEKANAL.md`](docs/releases/LUMO_FAMILIEN_UPDATEKANAL.md). Wiederverwendbare Pipeline: `.github/workflows/lumo-family-draft-release.yml`.
+[Aktueller Status und bekannte Grenzen](STATUS.md) · [Originalberichte und Publisherfehler](docs/evidence/meshy-rigs-20261124/final-45365478105/README.md). Die Testabnahme umfasst keine physische Fold7-Bildrate, Audioausgabe oder vollständige Zwei-Runden-Rennenabnahme. Nichtfatale Logmeldungen und ein kleiner optischer Restbefund sind ausdrücklich dokumentiert.
+
+## Bestehender Update-Button der Familien-App
+
+Der vorhandene Kanal berücksichtigt ausschließlich veröffentlichte Prereleases mit dem Tag `coachpreview-build-N` und dem exakten Asset `Lumo-Lernen-Neu.apk`. Drafts werden ignoriert. Das ist in `lib/core/app_update_service.dart`, Methode `familyPreviewFromReleases`, festgelegt.
+
+Der 2078-Publisher verwendet einen separaten versions- und rungebundenen Tag sowie `Lumo-Lernen-0.14.6-2078.apk`. Eine erfolgreiche manuelle Veröffentlichung in diesem Schema macht 2078 deshalb noch nicht im vorhandenen Update-Button auffindbar. Der Kanal wird in diesem Arbeitsschritt nicht umgestellt. Ausführliche Beschreibung: [Familien-Updatekanal](docs/releases/LUMO_FAMILIEN_UPDATEKANAL.md).
+
+## Historischer Dokumentationsstand
+
+Die frühere README dokumentierte Build 2004 und einen damals vorgesehenen Build 2012. Diese Angaben werden hier nicht als heutiger Kanalstand übernommen. Ihr unveränderter Originalwortlaut bleibt im [historischen README-Beleg](docs/evidence/meshy-rigs-20261124/final-45365478105/history/README-before-2078.txt) erhalten.

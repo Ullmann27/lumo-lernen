@@ -1,0 +1,27 @@
+{
+  "status": "OPEN_COSMETIC_FINDING",
+  "source_run_id": 45365478105,
+  "source_artifact_id": 14910694437,
+  "source_sha": "94cabcff7f6c568eddfe6805801f49a00ad58312",
+  "godot_revision": "c3f459eca88f659da1a9e4af1c990c804e715528",
+  "image": "21_kart_premium_start.png",
+  "archive_member": "21_kart_premium_start.png",
+  "dimensions": [
+    2400,
+    1080
+  ],
+  "bytes": 1333585,
+  "sha256": "0aaeb22ccf757dd4cc460a1bd599d7f3d08c35d462273e8b6ba08bdb4046f956",
+  "observed_by": [
+    "model_audit",
+    "Root",
+    "documentation review"
+  ],
+  "finding": "In the shallow landscape menu, the left track-arrow surface covers the beginning of the Sonnenhafen label.",
+  "scope": "Visible cosmetic overlap; no demonstrated functional failure. No product modification or rebuild was performed.",
+  "not_claimed": [
+    "All UI layouts are perfect",
+    "Every frame or viewport was visually accepted",
+    "A touch or navigation failure caused by this overlap"
+  ]
+}

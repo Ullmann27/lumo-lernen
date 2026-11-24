@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "purpose": "Lossless transport of the original APK; no rebuild, signing, release or Android acceptance.",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "94cabcff7f6c568eddfe6805801f49a00ad58312",
+  "source_run_id": 45365478105,
+  "source_artifact_id": 14908418202,
+  "source_artifact_bytes": 701710167,
+  "source_artifact_sha256": "1b52eac413a54f1f8406a76f2880cccec3294c5e16b6ee0705f38e0b4dc2e97e",
+  "transfer_run_id": 45372281795,
+  "transfer_run_attempt": 1,
+  "transfer_commit": "7c0dcc03f45ef85442f7b1d1e3303f4645ac2224",
+  "apk": {
+    "source_name": "Lumo-Lernen-Neu.apk",
+    "name": "Lumo-Lernen-0.14.6-2078.apk",
+    "bytes": 701640419,
+    "sha256": "3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198",
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionName": "0.14.6",
+    "versionCode": 2078,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702"
+  },
+  "godot": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "c3f459eca88f659da1a9e4af1c990c804e715528",
+    "engine": "4.6.3",
+    "bytes": 394293988,
+    "pck_sha256": "c5370a45b32fc72856dc4c0021d800f2e1189fdd47b2793f5a6016c04cf74578"
+  },
+  "part_limit_bytes": 251658240,
+  "parts": [
+    {
+      "index": 0,
+      "name": "Lumo-Lernen-0.14.6-2078.apk.part-00",
+      "bytes": 251658240,
+      "sha256": "e432f3db8edfc41d377ce5dcf713eb6960302747812caf22fb5e6543629078cd",
+      "artifact": "LUMO-2078-APK-PART-00-45372281795-1"
+    },
+    {
+      "index": 1,
+      "name": "Lumo-Lernen-0.14.6-2078.apk.part-01",
+      "bytes": 251658240,
+      "sha256": "096d01a62b548da2d3b52b8da865e1c3268d071f74e25b22b41401bc3cef2d38",
+      "artifact": "LUMO-2078-APK-PART-01-45372281795-1"
+    },
+    {
+      "index": 2,
+      "name": "Lumo-Lernen-0.14.6-2078.apk.part-02",
+      "bytes": 198323939,
+      "sha256": "bc3a585e79fd39d467f3481625056bc280c8b102913b099d413b139d9eb0c42c",
+      "artifact": "LUMO-2078-APK-PART-02-45372281795-1"
+    }
+  ],
+  "original_metadata": [
+    {
+      "name": "APK-SHA256.txt",
+      "bytes": 91,
+      "sha256": "8abac85d4b88c68da61b492db218800d49594f9aa2e19be0edee13884625e665"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 86,
+      "sha256": "0251b9d8403ab568903fa1082e9a9c5db69c56ad0904c4e7035445d9087a1769"
+    },
+    {
+      "name": "APK-VERIFICATION.json",
+      "bytes": 3848,
+      "sha256": "28edee73cb07f0e0d9473bd0269d34dbbc00464e8e0f017b2fa8b79fa6a31a9a"
+    },
+    {
+      "name": "BUILD-PROVENANCE.json",
+      "bytes": 9658,
+      "sha256": "337ad2aa251ab18feb8d72573ac185daf9a1474b46169b87498d3aae0de25161"
+    },
+    {
+      "name": "GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "cc318a5869b6168c0d3b3d9a9bf69c6c1fa6d78126fd639f5e0203f492126e45"
+    },
+    {
+      "name": "APP-VERSION.txt",
+      "bytes": 21,
+      "sha256": "12f6dadf3cdffee7789479f8fe80f3e9fb302c6de4a5d4fc9c3bb605442c87f9"
+    },
+    {
+      "name": "KART-DRIVER-PACKAGE.json",
+      "bytes": 54148,
+      "sha256": "dd9083c3e549203e6642d931c6a2bdd34e6e47cd19bd05652444766e69bbcc01"
+    },
+    {
+      "name": "KART-DRIVER-PACKAGE.log",
+      "bytes": 565,
+      "sha256": "4af2ed3aefc6925564381754b583199288dfe5713341050adc79bb5d09eb3a12"
+    }
+  ],
+  "concatenation_verified": true
+}

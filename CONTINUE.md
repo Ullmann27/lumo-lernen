@@ -1,3 +1,23 @@
+# Fortsetzung: geprüfte Original-APK 2078 öffentlich bereitstellen
+
+Stand: 24. November 2026. **Native-/APK-/Android-/SAF-Qualitätsnachweise sind abgeschlossen. Die öffentliche Auslieferung ist nach zwei Publisherfehlern offen.**
+
+1. **Produktquelle und Originalbytes erhalten.** APK 0.14.6+2078 stammt aus Flutter `94cabcff7f6c568eddfe6805801f49a00ad58312` und Godot `c3f459eca88f659da1a9e4af1c990c804e715528`. Originalrun `45365478105`; Native `138346148805`, APK `138357008376` und Android `138363355593` bestanden in Versuch 1. Kein Neubuild oder erneutes Signieren für die Veröffentlichung.
+2. **Nachweischeckpoint sichern.** Die ursprüngliche Historie und beide Publisherlogs behalten. Aktuelle Ergebnisse: 15.246 Assertions, 73 Bildhashes, 27 verpackte Modelle, Tour 23/23, Pflichtstarts 7/7, SAF 8/8. Die drei nichtfatalen Sternenpost-Meldungen, Diagnose 13/16 und das originale Kartbild mit Pfeil-/Sonnenhafen-Überdeckung bleiben ausdrücklich dokumentiert.
+3. **Publisherfehler nicht wiederholen oder umdeuten.** Job `138384742953` / Versuch 1 und der einmalige Retry `138386118647` / Versuch 2 scheiterten am selben Tag-Push mit einem Timeout der Workflow-Rechteprüfung. Release und Tag waren danach jeweils 404. Keine weitere Retryserie, kein Löschen oder Ersetzen alter Releases, keine Rechteänderung als stiller Workaround. Der vorbereitete öffentliche Byteverifier bleibt aus; seine aktuelle Fassung verlangt einen tatsächlich erfolgreichen Retry, den es nicht gibt.
+4. **Legitime GitHub-Anmeldung und Veröffentlichung abschließen.** Das Releaseformular zeigt derzeit die Anmeldung. Root sichert zuerst den Quellen-/Nachweischeckpoint und nutzt anschließend den sicheren Authentifizierungsschritt als verbleibende Nutzerinteraktion. Zugangsdaten gehören nicht in Chat, Quellcode oder Belegdateien. Erst den tatsächlich vorhandenen Tag, Release und das hochgeladene Originalasset als veröffentlicht dokumentieren.
+5. **Öffentliche Originalbytes vollständig prüfen.** Nach der legitimen Veröffentlichung die tatsächliche `browser_download_url` auf Repository, Tag und APK-Datei begrenzen und die gesamte Datei ohne Auth herunterladen. Größe und SHA müssen der Original-APK entsprechen. Die Prüfung muss den tatsächlich benutzten Veröffentlichungsweg binden; den auf den fehlgeschlagenen Retry festgelegten Entwurf nicht unverändert starten. Erst nach diesem Nachweis den echten direkten Chrome-Link ergänzen.
+6. **Manuellen Bezug und Update-Button unterscheiden.** `Lumo-Lernen-0.14.6-2078.apk` unter dem separaten Lumo-Tag ist ein manueller Download. Der bestehende Familien-Updateknopf erkennt ausschließlich `coachpreview-build-N` mit `Lumo-Lernen-Neu.apk`. Keine automatische Auffindbarkeit von 2078 behaupten und den Kanal in diesem Schritt nicht umstellen.
+
+Verbindliche APK: **701.640.419 Bytes**; SHA256 `3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198`.
+Lokaler, bereits geprüfter Arbeitsstand: `/tmp/lumo-2078-delivery/Lumo-Lernen-0.14.6-2078.apk`. Dieser temporäre Pfad ersetzt keinen öffentlichen Chrome-Download.
+
+[Originalnachweise, Veröffentlichungshalt und Grenzen](docs/evidence/meshy-rigs-20261124/final-45365478105/README.md). Main, ältere Releases und die geprüften Produktdateien bleiben unverändert.
+
+---
+
+## Archiv: bisherige Wiederaufnahmehinweise unverändert
+
 # Aktuell: LUMO 0.14.6+2078 – Modelle, Kamera und freie Startbedienung
 
 Stand dieses Quellcheckpoints: 24. November 2026, vor dem vollständigen APK-/Android-Abschluss.

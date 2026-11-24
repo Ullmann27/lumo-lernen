@@ -1,0 +1,291 @@
+{
+  "scope": "Exact copies of original evidence; generated summaries and job snapshots are identified separately.",
+  "files": [
+    {
+      "path": "native/lumo_world_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/lumo_world_regression.log",
+      "bytes": 516,
+      "sha256": "2cdaf083307ee4fc88a1f1bb42c5baf43cd3934f9a3a8140028b1947801ce125"
+    },
+    {
+      "path": "native/lumo_world_hud_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/lumo_world_hud_regression.log",
+      "bytes": 519,
+      "sha256": "30a14037487a88d1bc98cb73f1eba26fd21a7a641313b3eedb0b4780ae71bfae"
+    },
+    {
+      "path": "native/lumo_world_device_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/lumo_world_device_regression.log",
+      "bytes": 521,
+      "sha256": "ff7c31c6a7167639b73ab742b763e4a88f30b3f59937c6898f79d17a133caccb"
+    },
+    {
+      "path": "native/lumo_world_camera_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/lumo_world_camera_regression.log",
+      "bytes": 897,
+      "sha256": "ee13584fd132956a4679e25a46c274e7877259ef3250ad3b48adab89dd43769e"
+    },
+    {
+      "path": "native/kart_extra_drivers_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/kart_extra_drivers_regression.log",
+      "bytes": 4304,
+      "sha256": "532def5f850937a403ea65d1134f6463d36393186a3d15ae8ecd3d45963c990d"
+    },
+    {
+      "path": "native/kart_spatial_menu_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/kart_spatial_menu_regression.log",
+      "bytes": 4468,
+      "sha256": "afd34ed5113cb146213d2b76c21f8796dce7c6ccf5f99e241b24c059285e6f14"
+    },
+    {
+      "path": "native/kart_lan_entry_layout_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/kart_lan_entry_layout_regression.log",
+      "bytes": 524,
+      "sha256": "e922dc62941c2e2223fdc09b3e496516c55c957ffc65b183a4e344e2c273e699"
+    },
+    {
+      "path": "native/kart_neon_home_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/kart_neon_home_regression.log",
+      "bytes": 2438,
+      "sha256": "15cda0d2fb43f80c6ed0df6e189e24dafc577a6a786fccebecc829d3f5cd25c5"
+    },
+    {
+      "path": "native/lumo_rival_rig_contract_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/lumo_rival_rig_contract_regression.log",
+      "bytes": 959,
+      "sha256": "120211c6aeead11ddf5c2e1660135c695d25e40f8002a960639ed792804edc60"
+    },
+    {
+      "path": "native/lumo_kart_production_driver_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/lumo_kart_production_driver_regression.log",
+      "bytes": 580,
+      "sha256": "f0e7144dc3690da587fa96f65143144466c84263180af4e403300043fd7c2efa"
+    },
+    {
+      "path": "native/kart_driver_gesture_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/kart_driver_gesture_regression.log",
+      "bytes": 530,
+      "sha256": "2faea8dfd3350fcea7eef70d9560ec992a7fd4bd3f7df5e6da60ad49b644dd3f"
+    },
+    {
+      "path": "native/kart_meshy_assets_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/kart_meshy_assets_regression.log",
+      "bytes": 2589,
+      "sha256": "49938f761ac8775d91a17a4bf8328c182a3601f5c0abcedd3f851244e849ef7f"
+    },
+    {
+      "path": "native/cards_character_roster_regression.log",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/cards_character_roster_regression.log",
+      "bytes": 1003,
+      "sha256": "44a1c06b3ffd8efc085997a406a4aa1edb8b75222696479a126b5c10d2b87c89"
+    },
+    {
+      "path": "native/FLUTTER-COMMIT.txt",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/FLUTTER-COMMIT.txt",
+      "bytes": 41,
+      "sha256": "ae5ede7ad2432652257235d4b68c2bbb127a2429aefba7345788339fd9ca0d89"
+    },
+    {
+      "path": "native/GODOT-COMMIT.txt",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/GODOT-COMMIT.txt",
+      "bytes": 41,
+      "sha256": "8024836067e01d24e1fc5938e3412767a1eefa69921ce6edf2c7683593edb416"
+    },
+    {
+      "path": "native/IMAGE-VERIFICATION.json",
+      "original_local_path": "/tmp/lumo-2078-native-45365478105/proof/IMAGE-VERIFICATION.json",
+      "bytes": 17381,
+      "sha256": "d1ae89df9fd9da70bf90762e86fb49c5342fff7bb817fa3fa9c6d999f95159c1"
+    },
+    {
+      "path": "apk/APK-VERIFICATION.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/APK-VERIFICATION.json",
+      "bytes": 3848,
+      "sha256": "28edee73cb07f0e0d9473bd0269d34dbbc00464e8e0f017b2fa8b79fa6a31a9a"
+    },
+    {
+      "path": "apk/BUILD-PROVENANCE.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/BUILD-PROVENANCE.json",
+      "bytes": 9658,
+      "sha256": "337ad2aa251ab18feb8d72573ac185daf9a1474b46169b87498d3aae0de25161"
+    },
+    {
+      "path": "apk/GODOT-SOURCE.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "cc318a5869b6168c0d3b3d9a9bf69c6c1fa6d78126fd639f5e0203f492126e45"
+    },
+    {
+      "path": "apk/APP-VERSION.txt",
+      "original_local_path": "/tmp/lumo-2078-delivery/APP-VERSION.txt",
+      "bytes": 21,
+      "sha256": "12f6dadf3cdffee7789479f8fe80f3e9fb302c6de4a5d4fc9c3bb605442c87f9"
+    },
+    {
+      "path": "apk/APK-SHA256.txt",
+      "original_local_path": "/tmp/lumo-2078-delivery/APK-SHA256.txt",
+      "bytes": 91,
+      "sha256": "8abac85d4b88c68da61b492db218800d49594f9aa2e19be0edee13884625e665"
+    },
+    {
+      "path": "apk/SHA256SUMS.txt",
+      "original_local_path": "/tmp/lumo-2078-delivery/SHA256SUMS.txt",
+      "bytes": 86,
+      "sha256": "0251b9d8403ab568903fa1082e9a9c5db69c56ad0904c4e7035445d9087a1769"
+    },
+    {
+      "path": "apk/KART-DRIVER-PACKAGE.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/KART-DRIVER-PACKAGE.json",
+      "bytes": 54148,
+      "sha256": "dd9083c3e549203e6642d931c6a2bdd34e6e47cd19bd05652444766e69bbcc01"
+    },
+    {
+      "path": "apk/KART-DRIVER-PACKAGE.log",
+      "original_local_path": "/tmp/lumo-2078-delivery/KART-DRIVER-PACKAGE.log",
+      "bytes": 565,
+      "sha256": "4af2ed3aefc6925564381754b583199288dfe5713341050adc79bb5d09eb3a12"
+    },
+    {
+      "path": "apk/SOURCE-ARTIFACT.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/SOURCE-ARTIFACT.json",
+      "bytes": 722,
+      "sha256": "88c748312a2a4daa478f74016b6cabbff75b0a3c9e33f4531885d6bd6fb782cb"
+    },
+    {
+      "path": "transport/TRANSPORT-MANIFEST.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/TRANSPORT-MANIFEST.json",
+      "bytes": 3401,
+      "sha256": "27b275ff678597d6fbe6b1778978489d2487ede7d0234147cdd9efc8a1026e43"
+    },
+    {
+      "path": "transport/TRANSPORT-RECEIPTS.jsonl",
+      "original_local_path": "/tmp/lumo-2078-delivery/TRANSPORT-RECEIPTS.jsonl",
+      "bytes": 1194,
+      "sha256": "b1527336d56b9734e3161cd40c2a3e0e7796a74e072a11df71bf61ce98bb9951"
+    },
+    {
+      "path": "transport/LOCAL-TRANSPORT-VERIFICATION.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/LOCAL-TRANSPORT-VERIFICATION.json",
+      "bytes": 1061,
+      "sha256": "24eae9219ea82d9d387f56fba4c1627969d1b15006b9371d4b41c503f2d6b83b"
+    },
+    {
+      "path": "transport/LOCAL-AAPT-BADGING.txt",
+      "original_local_path": "/tmp/lumo-2078-delivery/LOCAL-AAPT-BADGING.txt",
+      "bytes": 5790,
+      "sha256": "e4bc55d933dd7bb2d78fb7cc64f3ca7ae1e3d10a98bf94ecfb5da0f9e31835c9"
+    },
+    {
+      "path": "transport/LOCAL-APKSIGNER-VERIFY.txt",
+      "original_local_path": "/tmp/lumo-2078-delivery/LOCAL-APKSIGNER-VERIFY.txt",
+      "bytes": 959,
+      "sha256": "68c9a43e30955d242f5332da25a79bc8bcd60bc71ed4f450d714e8e85dad119b"
+    },
+    {
+      "path": "transport/DELIVERY-SHA256SUMS.txt",
+      "original_local_path": "/tmp/lumo-2078-delivery/DELIVERY-SHA256SUMS.txt",
+      "bytes": 94,
+      "sha256": "1b68e1ce0818cd756864436c0801961dfb8d778fed505b9430624967804c7632"
+    },
+    {
+      "path": "transport/GITHUB-TRANSPORT-ARTIFACTS.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/GITHUB-TRANSPORT-ARTIFACTS.json",
+      "bytes": 3258,
+      "sha256": "542d6388b344e44d27e3ff5f72a3532cbc8acac865b2dc51a9da177def5ed3d7"
+    },
+    {
+      "path": "transport/TRANSPORT-RUN.json",
+      "original_local_path": "/tmp/lumo-2078-delivery/TRANSPORT-RUN.json",
+      "bytes": 14007,
+      "sha256": "ccf9a590d6e4162da43500c73b606bcec439ccb259f59a7a3677203f0c6694ed"
+    },
+    {
+      "path": "history/README-before-2078.txt",
+      "original_local_path": "/tmp/lumo-meshy-flutter/README.md",
+      "bytes": 1571,
+      "sha256": "e92bad11ffc4896c6bbfb916b081e121751a048d08cd36e0dc43f2e61f3ba86d",
+      "scope": "Historical README text preserved unchanged; its release statements are not a current channel query."
+    },
+    {
+      "path": "android/ANDROID-AUDIT.json",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/ANDROID-AUDIT.json",
+      "bytes": 7892,
+      "sha256": "c4e432b7c31d2235cd9775c9545995e4d1fc327a72315f35b86b9bf1deba7c1f",
+      "scope": "Independent summary of original Android, native-start and SAF evidence."
+    },
+    {
+      "path": "android/tour-result.json",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/evidence/tour-result.json",
+      "bytes": 10029,
+      "sha256": "531eddbe7c5ca83b5ab965c6b6cd621a9632bd8768bbfcd6e6850e795ede5674",
+      "source_artifact_id": 14910694437,
+      "source_archive_member": "tour-result.json"
+    },
+    {
+      "path": "android/NATIVE-GAME-STARTS.json",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/evidence/NATIVE-GAME-STARTS.json",
+      "bytes": 2622,
+      "sha256": "5980457dd1a1ddff6d6df1a4da836e7976c395b123244a7140d27120d60c648b",
+      "source_artifact_id": 14910694437,
+      "source_archive_member": "NATIVE-GAME-STARTS.json"
+    },
+    {
+      "path": "android/native-starts.json",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/evidence/native-starts.json",
+      "bytes": 118389,
+      "sha256": "27fe2ffcf032bd9a38084dcd66ccd41d4325fbd84b1678929a16b51c97afd676",
+      "source_artifact_id": 14910694437,
+      "source_archive_member": "native-starts.json"
+    },
+    {
+      "path": "android/local-backup/backup-result.json",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/evidence/local-backup/backup-result.json",
+      "bytes": 14266,
+      "sha256": "404ff66821367b9de2b9c9afcf8e10e9125eaa977db69ba38766ae218d0277ba",
+      "source_artifact_id": 14910694437,
+      "source_archive_member": "local-backup/backup-result.json"
+    },
+    {
+      "path": "android/21_race_drive_telemetry.json",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/evidence/21_race_drive_telemetry.json",
+      "bytes": 629,
+      "sha256": "09276b14c0aa268e86ccfb46c2cc5fe640970ef69a0407e2f1f032234c9f6aaf",
+      "source_artifact_id": 14910694437,
+      "source_archive_member": "21_race_drive_telemetry.json"
+    },
+    {
+      "path": "android/visual/21_kart_premium_start.png",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/visual-review/21_kart_premium_start.png",
+      "bytes": 1333585,
+      "sha256": "0aaeb22ccf757dd4cc460a1bd599d7f3d08c35d462273e8b6ba08bdb4046f956",
+      "source_artifact_id": 14910694437,
+      "source_archive_member": "21_kart_premium_start.png"
+    },
+    {
+      "path": "android/visual/world-end.jpg",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/visual-review/native-starts/world-end.jpg",
+      "bytes": 93225,
+      "sha256": "9e9569d454d540f47ca7e11eb7e19916621b5840c523e5bb755a4727bb5b26c8",
+      "source_artifact_id": 14910694437,
+      "source_archive_member": "native-starts/world-end.jpg"
+    },
+    {
+      "path": "publisher/publisher-original.log",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/publisher-original.log",
+      "bytes": 24796,
+      "sha256": "8f9e6a064f1bb6131b764ed21157c89aef64cc816698aebd676187e5d12b8607",
+      "source_job_id": 138384742953,
+      "source_run_id": 45365478105,
+      "source_attempt": 1
+    },
+    {
+      "path": "publisher/publisher-retry-original.log",
+      "original_local_path": "/tmp/lumo-2078-android-45365478105/publisher-retry-original.log",
+      "bytes": 25292,
+      "sha256": "f1d59086bbffc988afa721809d4ef0e199afcff43517d353f684052ea69e9635",
+      "source_job_id": 138386118647,
+      "source_run_id": 45365478105,
+      "source_attempt": 2
+    }
+  ]
+}

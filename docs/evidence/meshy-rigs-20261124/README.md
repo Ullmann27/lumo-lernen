@@ -1,3 +1,19 @@
+# LUMO 2078: geprüfte APK und noch blockierte Veröffentlichung
+
+Stand: 24. November 2026. Im Originalrun **45365478105** bestanden die Native-/APK-/Android-Qualitätsjobs: **15.246 Assertions** einschließlich **2.243 NeonHome-Prüfungen**, **73 hashgebundene Rendererbilder**, **27 Produktionsvarianten der neun Fahrer im tatsächlichen APK-Paket**, Android-Tour **23/23**, Pflichtstarts **7/7** und SAF-Sicherung/Wiederherstellung **8/8**. Die Original-APK wurde unverändert transportiert und lokal auf Bytes, Paket und Signatur nachgeprüft.
+
+Verbindliche Produktquelle: Flutter `94cabcff7f6c568eddfe6805801f49a00ad58312`, Godot `c3f459eca88f659da1a9e4af1c990c804e715528`, Version **0.14.6+2078**.
+
+**Beide Publisher-Versuche sind fehlgeschlagen. Release und Tag wurden danach mit 404 beobachtet; ein öffentlicher Downloadlink fehlt.** Der Gesamtworkflow wird nicht als vollständig erfolgreich ausgegeben.
+
+Die Abschlussbelege erhalten außerdem drei nichtfatale Sternenpost-`can_process`-Meldungen, die Diagnosegrenze **13/16 Routen** und den kleinen optischen Restbefund der linken Pfeilfläche über dem Wortanfang **Sonnenhafen**. Keine physische Fold7-/60-FPS-, Audio- oder vollständige Zwei-Runden-Rennenabnahme.
+
+[Originalnachweise, beide Publisherlogs, Bild und genaue Grenzen](final-45365478105/README.md).
+
+---
+
+## Archiv: bisherige Quell- und Reparaturcheckpoints unverändert
+
 # LUMO 2078: Meshy-Fahrer und integrierte Gerätefehlerkorrekturen
 
 Stand dieses Quellcheckpoints: 24. November 2026, vor dem neuen vollständigen APK-/Android-Lauf.
