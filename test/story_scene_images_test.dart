@@ -67,4 +67,31 @@ void main() {
     const open = StorySceneImage('assets/y.webp', 'zugedeckter Korb');
     expect(open.fitsAmounts('Im Korb liegen 7 Äpfel.'), isTrue);
   });
+
+  test('Klasse 3: Zwei-Schritt-Geschichten bekommen passende Bilder', () {
+    final twoStep = MathTaskTemplates.templates
+        .where((t) => t.kind == MathTemplateKind.wordProblemTwoStep)
+        .toList();
+    expect(twoStep, isNotEmpty);
+    final withImage = <String>{};
+    final without = <String>{};
+    for (final template in twoStep) {
+      for (var seed = 0; seed < 400; seed++) {
+        final prompt = template.concretize(seed).prompt;
+        final key = prompt.split(RegExp(r'\d')).first;
+        final scene = storySceneImageFor(prompt);
+        if (scene == null) {
+          without.add(key);
+        } else {
+          withImage.add(key);
+          expect(scene.fitsAmounts(prompt), isTrue, reason: prompt);
+          expect(File(scene.asset).existsSync(), isTrue, reason: scene.asset);
+        }
+      }
+    }
+    // Neun der zwölf Geschichten haben ein Bild; Bastelpapier, Sticker
+    // (Anna/Ben) und Sessel zeigen bewusst weiter das Themen-Symbol.
+    expect(withImage.length, greaterThanOrEqualTo(9), reason: '$withImage');
+    expect(without.length, lessThanOrEqualTo(3), reason: '$without');
+  });
 }

@@ -86,6 +86,23 @@ final List<_SceneRule> _rules = <_SceneRule>[
   _SceneRule(RegExp(r'^Auf dem Teller liegen \d+ Semmeln'), _semmeln),
   _SceneRule(RegExp(r'^Im Regal stehen \d+ Bücher'),
       const StorySceneImage('$_dir/story3d_buecherei.webp', 'Ein Kind geht mit der Büchertasche aus der Bücherei')),
+  // Klasse 3: Zwei-Schritt-Geschichten, jugendlicher Bildstil.
+  _SceneRule(RegExp(r'^Im Garten blühen \d+ Tulpen\. \d+ gehen neu auf'),
+      const StorySceneImage('$_dir/story3d_k3_tulpen.webp', 'Ein Tulpenbeet mit Gartenschere und Handschuh')),
+  _SceneRule(RegExp(r'^In der Bücherei stehen \d+ Bilderbücher'),
+      const StorySceneImage('$_dir/story3d_buecherei.webp', 'Ein Kind geht mit der Büchertasche aus der Bücherei')),
+  _SceneRule(RegExp(r'^Im Schwimmbad sind \d+ Kinder im großen Becken'),
+      const StorySceneImage('$_dir/story3d_k3_schwimmbad.webp', 'Hallenbad mit großem und kleinem Becken und Rutsche')),
+  _SceneRule(RegExp(r'^Im Aquarium schwimmen \d+ Goldfische'),
+      const StorySceneImage('$_dir/story3d_k3_aquarium.webp', 'Aquarium mit Wasserpflanzen, hinter denen sich Fische verstecken')),
+  _SceneRule(RegExp(r'^Am Markt liegen \d+ Paradeiser'),
+      const StorySceneImage('$_dir/story3d_k3_markt.webp', 'Ein Marktstand mit zugedeckten Kisten')),
+  _SceneRule(RegExp(r'^Lena liest am Montag \d+ Seiten'),
+      const StorySceneImage('$_dir/story3d_k3_lesen.webp', 'Ein Mädchen liest am Fenster ein dickes Buch')),
+  _SceneRule(RegExp(r'^Mama kauft \d+ Packungen mit je \d+ Semmeln'),
+      const StorySceneImage('$_dir/story3d_k3_gebaeck.webp', 'Mama und Sohn bekommen beim Bäcker ein Sackerl')),
+  _SceneRule(RegExp(r'^In der Garderobe hängen \d+ Jacken'),
+      const StorySceneImage('$_dir/story3d_k3_garderobe.webp', 'Ein Bub zieht in der Schulgarderobe seine Jacke an')),
 ];
 
 /// Alle Szenenbilder, die eine Geschichte auslösen kann.
