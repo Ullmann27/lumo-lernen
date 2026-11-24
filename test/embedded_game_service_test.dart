@@ -200,20 +200,20 @@ void main() {
     final state = LumoAppState(walletRepository: wallet);
     final service = EmbeddedGameService(appState: state, wallet: wallet, onDestination: (_) {});
     pending['results'] = [
-      for (final game in ['build', 'puzzle', 'rhythm', 'treasure'])
+      for (final game in ['build', 'puzzle', 'rhythm', 'treasure', 'chess'])
         {'game': game, 'resultId': 'creative-$game', 'status': 'completed', 'stars': 3, 'xp': 24},
       {'game': 'build', 'resultId': 'bad-xp', 'status': 'completed', 'stars': 3, 'xp': -1},
       {'game': 'puzzle', 'resultId': 'bad-stars', 'status': 'completed', 'stars': 101, 'xp': 24},
     ];
     failAcknowledgement = true;
     await service.synchronize();
-    expect(state.state.stars, 12);
-    expect(state.state.xp, 96);
+    expect(state.state.stars, 15);
+    expect(state.state.xp, 120);
     failAcknowledgement = false;
     await service.synchronize();
-    expect(state.state.stars, 12);
-    expect(state.state.xp, 96);
-    expect(acknowledged, hasLength(4));
+    expect(state.state.stars, 15);
+    expect(state.state.xp, 120);
+    expect(acknowledged, hasLength(5));
     expect((pending['results'] as List).map((e) => e['resultId']), ['bad-xp', 'bad-stars']);
     service.dispose(); state.dispose();
   });
