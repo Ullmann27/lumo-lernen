@@ -2,6 +2,7 @@ import '../../domain/learning/skill_evidence.dart';
 import 'package:flutter/material.dart';
 import '../learning/learning_navigation.dart';
 
+import '../../core/curriculum/math_unit_order.dart';
 import '../../core/progress_repository.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -370,11 +371,39 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
               child: Text('Für dieses Fach sind noch keine Themen verfügbar.',
                   style: TextStyle(color: Colors.white)),
             ),
-          for (final unit in units)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: _unitCard(subject, unit),
-            ),
+          // One column for the whole register: the grouped list is short
+          // enough to build at once, so every topic is reachable by scrolling
+          // to it, also the ones at the end of the school order.
+          if (subject.name == 'Mathematik')
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                for (final (group, groupUnits)
+                    in MathUnitOrder.grouped(units)) ...[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 8, 4, 8),
+                    child: Text(group,
+                        key: ValueKey('learning-unit-group-$group'),
+                        style: const TextStyle(
+                            color: LumoVisualTokens.cyanBright,
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w800,
+                            fontSize: 15)),
+                  ),
+                  for (final unit in groupUnits)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: _unitCard(subject, unit),
+                    ),
+                ],
+              ],
+            )
+          else
+            for (final unit in units)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: _unitCard(subject, unit),
+              ),
         ],
       ],
     );
@@ -397,6 +426,9 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
     final record = _skillFor(subject.name, unit);
     final practiced = record != null && record.attempts > 0;
     final title = Curriculum.prettifyUnit(unit);
+    final isMath = subject.name == 'Mathematik';
+    final example = isMath ? MathUnitOrder.exampleOf(unit) : null;
+    final symbol = isMath ? MathUnitOrder.symbolOf(unit) : null;
     // No percentage: a stage that is backed by counted answers. "Sicher"
     // needs enough tasks solved alone on at least two different days.
     final evidence = record?.evidence;
@@ -441,7 +473,16 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                 child: SizedBox(
                   width: 46,
                   height: 46,
-                  child: Icon(subject.icon, color: Colors.white, size: 25),
+                  child: symbol == null
+                      ? Icon(subject.icon, color: Colors.white, size: 25)
+                      : Center(
+                          child: Text(symbol,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 26)),
+                        ),
                 ),
               ),
               const SizedBox(width: 14),
@@ -456,6 +497,15 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                           fontFamily: 'Nunito',
                           fontWeight: FontWeight.w800,
                           fontSize: 15)),
+                  if (example != null)
+                    Text(example,
+                        key: ValueKey(
+                            'learning-unit-example-${subject.name}-$unit'),
+                        style: const TextStyle(
+                            color: Color(0xFFE2F1FF),
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12.5)),
                   const SizedBox(height: 3),
                   Text(status,
                       key: ValueKey(

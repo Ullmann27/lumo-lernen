@@ -134,6 +134,20 @@ class LumoCurriculum {
                   shortDesc: '7-3, 10-6 ...',
                 ),
                 LearningTopic(
+                  id: 'm1_plus20',
+                  title: 'Plus bis 20',
+                  icon: Icons.add_circle_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: '8+6: zuerst die 10 voll machen',
+                ),
+                LearningTopic(
+                  id: 'm1_minus20',
+                  title: 'Minus bis 20',
+                  icon: Icons.remove_circle_rounded,
+                  gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
+                  shortDesc: '14-6: zuerst zurück zur 10',
+                ),
+                LearningTopic(
                   id: 'm1_formen',
                   title: 'Formen',
                   icon: Icons.category_rounded,
@@ -280,6 +294,20 @@ class LumoCurriculum {
                   icon: Icons.format_list_numbered_rounded,
                   gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
                   shortDesc: 'Zehner & Einer',
+                ),
+                LearningTopic(
+                  id: 'm2_plus100',
+                  title: 'Plus bis 100',
+                  icon: Icons.add_circle_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: '37+25: Zehner, dann Einer',
+                ),
+                LearningTopic(
+                  id: 'm2_minus100',
+                  title: 'Minus bis 100',
+                  icon: Icons.remove_circle_rounded,
+                  gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
+                  shortDesc: '64-28: Zehner, dann Einer',
                 ),
                 LearningTopic(
                   id: 'm2_einmaleins',
