@@ -27,9 +27,9 @@ REPOSITORY = 'Ullmann27/lumo-lernen'
 OWNER_ID = 64243701
 PUBLISHER_BRANCH = 'support/lumo-2081-reviewed-publish'
 SOURCE_BRANCH = 'lumo-abschluss/integration-20261124'
-SOURCE = '5c086af2fa967f743d5801b4be23c15efbbb88ba'
+SOURCE = '7ece88343c005920be850b3413a3bb342c42746c'
 NATIVE = 'c814e35249e4038f903d1fca3e19bb4751040a43'
-RUN = 45433091440
+RUN = 45443343100
 TAG = f'lumo-0.14.8-2081-{RUN}'
 APK = 'Lumo-Lernen-Test-0.14.8-2081.apk'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
@@ -239,7 +239,8 @@ def verify_files(order, build_tools):
     for name in ('PUBLICATION-ORDER.json', 'ORIGINAL-RUN-AND-ARTIFACTS.json'):
         shutil.copyfile(ROOT / 'proof' / name, release / name)
     notes = (f'# Lumo 0.14.8+2081 – integrierte Android-Testversion\n\n'
-             'Adaptive Nachhilfe und Zehnerwerkstatt, World-Orte/Originalfiguren/Missionen/Karten, '
+             'Adaptive Nachhilfe und Zehnerwerkstatt, direkte Spracheingabe eigener Aufgaben, '
+             'World-Orte/Originalfiguren/Missionen/Karten, '
              'Kart-Führung und Bodenkontakt, Schach-Startschutz und bedienbare Intro-Prüfung. '
              'Bestehende Sprach-/3D-Nachhilfe und ursprüngliche Figuren bleiben erhalten.\n\n'
              f'Flutter: `{SOURCE}`\n\nGodot: `{NATIVE}`\n\nOriginal-Baulauf: {RUN}\n\n'

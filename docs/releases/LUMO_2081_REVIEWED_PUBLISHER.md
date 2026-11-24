@@ -2,10 +2,12 @@
 
 Dieser getrennte Zweig verändert den laufenden APK-Bau nicht. Der Veröffentlichungscode ist vorbereitet; die aktivierende Datei `config/lumo-2081-reviewed-publish.json` fehlt bewusst bis zur beobachteten vollständigen Abnahme.
 
-- Originalquelle: `5c086af2fa967f743d5801b4be23c15efbbb88ba`.
+- Originalquelle: `7ece88343c005920be850b3413a3bb342c42746c`.
 - Godot: `c814e35249e4038f903d1fca3e19bb4751040a43`.
-- Original-Baulauf: `45433091440`, Workflow `lumo-abschluss-apk.yml`.
+- Original-Baulauf: `45443343100`, Workflow `lumo-abschluss-apk.yml`.
 - Neue Version: `0.14.8+2081`; gleicher Paketname und gleiches Familien-Testzertifikat.
+
+Der endgültige Stand enthält zusätzlich die direkte Spracheingabe eigener Aufgaben und die eng begrenzte Importkorrektur für die byteidentischen Produktionsmodelle des neuen Godot-Pins. Die früheren Zwischenläufe `45433091440` und `45440702223` sind keine Veröffentlichungsquelle. Der erste scheiterte nach bestandenen Flutter-/Spielprüfungen an der fehlenden expliziten Importfreigabe des neuen Pins; der zweite wurde durch den korrigierten Stand ersetzt.
 
 ## Ablauf
 
