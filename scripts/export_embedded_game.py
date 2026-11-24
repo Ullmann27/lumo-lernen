@@ -269,11 +269,16 @@ def remove_generated_gate_images(repo: Path, before: set[str], source: dict):
 
 
 # Godot 4.6.3 writes import metadata and one extracted PNG next to each
-# production Meshy GLB in the exact 2077 game revision. These files are
-# deterministic importer byproducts, not application source. Cleanup is
-# fail-closed: it runs only for this immutable pin, after every manifest GLB
-# has been verified byte-for-byte, and removes only newly created outputs.
+# production Meshy GLB in the reviewed 2077 and 2078 game revisions. These
+# files are deterministic importer byproducts, not application source.
+# Cleanup runs only for these immutable pins, after every manifest GLB has
+# been verified byte-for-byte, and removes only newly created outputs.
 PRODUCTION_MESHY_REVISION = '410327bfd5d1a66c54e3d75f772895d320daa5d6'
+PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
+    PRODUCTION_MESHY_REVISION,
+    # Both production asset subtrees are unchanged from the reviewed 2077 pin.
+    '21a76bcda69c20ea3a427a63098cb2fc736eb881',
+))
 PRODUCTION_MESHY_MANIFEST = 'assets/kart/production/meshy/manifest.json'
 PRODUCTION_MESHY_VEHICLE_IDS = frozenset((
     'blitz', 'boru_rally', 'comet', 'gecko_velo', 'glider', 'iva_aurora',
@@ -286,8 +291,8 @@ PRODUCTION_MESHY_GARAGE_IDS = frozenset((
 
 
 def remove_generated_production_meshy_imports(repo: Path, before: set[str], source: dict):
-    """Remove only verified importer outputs of the immutable 2077 Meshy inventory."""
-    if source.get('revision') != PRODUCTION_MESHY_REVISION:
+    """Remove verified importer outputs only for the reviewed immutable pins."""
+    if source.get('revision') not in PRODUCTION_MESHY_ALLOWED_REVISIONS:
         return
 
     manifest_path = repo / PRODUCTION_MESHY_MANIFEST

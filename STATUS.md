@@ -6,6 +6,8 @@ Godot ist veröffentlicht: `21a76bcda69c20ea3a427a63098cb2fc736eb881`, Baum `dcf
 
 Zwei Fehler der Testfixtures sind anhand tatsächlicher Läufe korrigiert: Die Menüprüfung verwendet jetzt echte Fenstergrößen und Dichten (2.197 Prüfungen bestanden). Der Meshy-Test wartet die tatsächlichen Renderframes ab und bestätigt die Szenenfreigabe (390 Prüfungen, null GLES-Enginefehler). Alle bisherigen Assertions und das strenge Fehlergate bleiben erhalten. Der folgende Kartensalon-Test besteht unverändert mit 119 Prüfungen. Die ursprünglichen Fehler und A/B-Belege sind erhalten.
 
+Der APK-Exporter kennt nun zusätzlich den exakt geprüften aktuellen Pin für die Bereinigung der unveränderten 16 Fahrzeug-/Garagenmodelle. 56 Tests und ein Lauf mit 32 tatsächlichen Importdateien bestätigen die gezielte Bereinigung bei vollständig erhaltenen Quellen. Diese Anpassung wird im nächsten vollständigen Lauf geprüft.
+
 Der frühere Android-Abbruch beim Onboarding-Leseserver ist mit acht gezielten Regressionen repariert. Der neue vollständige Lauf muss nun Bilder, APK, Android-Aktionen, Sicherung/Wiederherstellung und Veröffentlichung bestätigen. Die Läufe 45353940191 und 45357083172 scheiterten vor dem APK-Bau; aus ihnen existiert keine neue freigegebene APK.
 
 Fortsetzung: den neuen Workflow `lumo-2078-device-repair.yml` auf `repair/lumo-device-bugs-2078` bis zum tatsächlichen Ende verfolgen. Nur die dort geprüfte und veröffentlichte APK als neuen Download ausgeben. Main bleibt unverändert. [Quellstand und Nachweise](docs/evidence/meshy-rigs-20261124/README.md).

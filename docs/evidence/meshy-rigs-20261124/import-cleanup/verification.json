@@ -1,0 +1,18 @@
+{
+  "native_revision": "21a76bcda69c20ea3a427a63098cb2fc736eb881",
+  "local_exporter_commit": "94f5ad9873c0b56f38d9dc8c6d324806c031273c",
+  "same_asset_inventory_as": "410327bfd5d1a66c54e3d75f772895d320daa5d6",
+  "identical_git_trees": {
+    "assets/kart/production/meshy": "54d73b2bea3f0bdfb1cab577d05fa747977641ce",
+    "assets/kart/production/garage": "11ea80a83d67c160e84352ee348086992b561390"
+  },
+  "tests_passed": 56,
+  "actual_import_outputs_replayed": 32,
+  "tracked_source_files_unchanged": 17,
+  "scope": "Targeted exporter tests and replay with real imported files; complete APK and Android verification remain pending",
+  "files": {
+    "actual-import-replay.log": "44b796236150c00b02e53c591fd83f1cc7471b4212b27642e6fbfb655e79e40c",
+    "actual-import-replay.json": "98f44701324c23ec820ec45e0c86b7f5946e2569f2fc409f8d9c37d2065ec023",
+    "tests.log": "3e2a21048e5582e2fdfb5877a65ff3877d3e2200d016c606c3c3ed5d252f4bbe"
+  }
+}

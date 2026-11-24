@@ -270,7 +270,7 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
 
 
 class GeneratedProductionMeshyImportsTests(unittest.TestCase):
-    """Godot 4.6.3 Meshy GLB import byproducts are cleaned only for the exact 2077 pin."""
+    """Meshy import byproducts are cleaned only for reviewed immutable pins."""
 
     VEHICLES = (
         'blitz', 'boru_rally', 'comet', 'gecko_velo', 'glider', 'iva_aurora',
@@ -353,6 +353,34 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
         for row in self.all_rows:
             self.assertTrue((self.repo / row['path']).is_file())
 
+    def test_current_2078_pin_cleans_outputs_and_preserves_exact_sources(self):
+        source = json.loads((MODULE.ROOT / 'config/godot-source.json').read_text())
+        self.assertEqual(source['revision'], '21a76bcda69c20ea3a427a63098cb2fc736eb881')
+        tracked = MODULE.git_paths(self.repo, 'ls-files')
+        original = {name: (self.repo / name).read_bytes() for name in tracked}
+        self.generate_outputs()
+        self.assertEqual(len(MODULE.git_paths(
+            self.repo, 'ls-files', '--others', '--exclude-standard')), 32)
+        self.cleanup(source=source)
+        self.assertEqual(MODULE.git_paths(
+            self.repo, 'ls-files', '--others', '--exclude-standard'), set())
+        self.assertEqual(
+            {name: (self.repo / name).read_bytes() for name in tracked}, original)
+        self.assertEqual(subprocess.check_output(
+            ['git', 'diff', '--name-only'], cwd=self.repo, text=True), '')
+
+    def test_current_2078_pin_still_rejects_changed_manifest_glb(self):
+        source = json.loads((MODULE.ROOT / 'config/godot-source.json').read_text())
+        self.generate_outputs()
+        outputs = MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard')
+        original = {name: (self.repo / name).read_bytes() for name in outputs}
+        target = self.repo / self.all_rows[0]['path']
+        target.write_bytes(target.read_bytes() + b'tamper')
+        with self.assertRaisesRegex(RuntimeError, 'manifest GLB mismatch'):
+            self.cleanup(source=source)
+        self.assertEqual(
+            {name: (self.repo / name).read_bytes() for name in outputs}, original)
+
     def test_unknown_untracked_file_is_preserved(self):
         self.generate_outputs()
         outsider = self.repo / 'assets/kart/production/meshy/notes.png'
@@ -382,12 +410,18 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
             self.cleanup()
         self.assertTrue(texture.is_file())
 
-    def test_other_revision_never_cleans_2077_meshy_outputs(self):
+    def test_unreviewed_revision_preserves_every_meshy_import_output(self):
         self.generate_outputs()
-        self.cleanup(source={'revision': '0' * 40})
-        untracked = MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard')
-        self.assertTrue(any(path.endswith('.glb.import') for path in untracked))
-        self.assertTrue(any(path.endswith('_0.png') for path in untracked))
+        outputs = MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard')
+        original = {name: (self.repo / name).read_bytes() for name in outputs}
+        self.assertEqual(len(outputs), 32)
+        for revision in ('0' * 40, '21a76bcda69c20ea3a427a63098cb2fc736eb880'):
+            with self.subTest(revision=revision):
+                self.cleanup(source={'revision': revision})
+                self.assertEqual(MODULE.git_paths(
+                    self.repo, 'ls-files', '--others', '--exclude-standard'), outputs)
+                self.assertEqual(
+                    {name: (self.repo / name).read_bytes() for name in outputs}, original)
 
     def test_manifest_hash_mismatch_fails_closed_without_deleting_outputs(self):
         self.generate_outputs()
