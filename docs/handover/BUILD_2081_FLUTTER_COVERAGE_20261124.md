@@ -43,7 +43,10 @@ Ein ergänzender Widget-Regressionstest ändert die Elternvorgabe nach dem Rende
 - `git diff --check`: bestanden.
 - Dart 3.12.2 / Flutter 3.44.9 lokal vorhanden. `dart format --output=none` konnte alle drei ergänzten Dart-Dateien parsen (Exit 0); fehlende lokal aufgelöste `flutter_lints` wurden als Paketauflösungswarnung gemeldet. Vorbestehende Formatierung wurde nicht pauschal umgeschrieben.
 - PR-551-Lauf `45424664425`, Job `138553325984`: GitHub meldet Erfolg für vollständige Analyse, reale Szenen-/Profil-/Wiederherstellungsbelege und vollständige Flutter-Suite. Das ist die Abnahme des PR-551-Stands, nicht die Abnahme dieser zusätzlichen Schachänderung oder der endgültigen 2081-APK.
-- Neue Schach-Widget-/Ergebnisprüfung und vollständige gemeinsame Flutter-/Android-Prüfung: **noch auszuführen**. Ein langsamer lokaler Dependency-Aufbau ist kein bestandener Test.
+- Lokaler gezielter Flutter-Lauf am identischen Tree `091851098fc4b9e9402e98d1dd5931e45b3f46e8` (Remote `8d365ad7`, lokal `20dd79e9`): **58 PASS, 0 FAIL, 0 SKIP** in neun Testdateien, einschließlich der neuen Schach-Prüfungen. Analyse der drei ergänzten Dart-Dateien: Exit 0, keine Fehler/Warnungen, drei vorbestehende Info-Hinweise.
+- Kontrollierte Gegenprobe: Nur `games_content.dart` wurde vorübergehend durch die unveränderte Datei aus `97ac9c1` ersetzt. Derselbe neue Schachtest scheiterte wie erwartet (Tagesmission blieb null). Danach wurde die geprüfte Datei wiederhergestellt; `git status` war sauber.
+- Originalprotokolle und SHA-256 stehen in `docs/evidence/build-2081-flutter-20261124/`. Der vollständige PR-551-Originallog bestätigt 3.584 PASS und 193 SKIP auf `97ac9c1`; seine 48 fokussierten Prüfungen werden nicht hinzuaddiert.
+- Die vollständige gemeinsame Flutter-Suite und Android-Abnahme des endgültigen 2081-Kandidaten bleiben beim Integrator offen. Eine APK- oder Geräteabnahme wird aus den lokalen Tests nicht abgeleitet.
 
 Für den gezielten gemeinsamen Flutter-Lauf:
 

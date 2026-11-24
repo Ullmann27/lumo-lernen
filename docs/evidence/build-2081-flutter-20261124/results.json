@@ -1,0 +1,60 @@
+{
+  "source": {
+    "remote_commit": "8d365ad7e1b6c097f1d5b5a6f6d390f06b44e2b3",
+    "local_commit": "20dd79e9a043f4d4b82ff30db5e89afd3c55a549",
+    "identical_git_tree": "091851098fc4b9e9402e98d1dd5931e45b3f46e8",
+    "flutter": "3.44.9",
+    "dart": "3.12.2"
+  },
+  "targeted_regression": {
+    "exit_code": 0,
+    "passed": 58,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "9 named Flutter test files; includes new chess stale-portal regression and reward replay, adaptive arithmetic, existing dialogue and 3D tutoring contracts",
+    "device": false
+  },
+  "analysis": {
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0,
+    "info": 3,
+    "scope": "3 changed chess Dart files"
+  },
+  "controlled_negative_regression": {
+    "exit_code": 1,
+    "expected_failure": true,
+    "replaced_file": "lib/features/games/games_content.dart",
+    "baseline_ref": "97ac9c19a8573f8d201d4cd14735610c22062337",
+    "kept_test_ref": "8d365ad7e1b6c097f1d5b5a6f6d390f06b44e2b3",
+    "observed": "dailyMission remained null after the stale chess portal tap",
+    "restore_verified_by_clean_git_status": true
+  },
+  "existing_adaptive_ci": {
+    "run_id": 45424664425,
+    "job_id": 138553325984,
+    "recorded_source_sha": "97ac9c19a8573f8d201d4cd14735610c22062337",
+    "focused_pass": 48,
+    "full_pass": 3584,
+    "full_skip": 193,
+    "does_not_validate_later_chess_or_apk_changes": true
+  },
+  "logs": [
+    {
+      "path": "targeted-tests.log",
+      "bytes": 10669,
+      "sha256": "a8b65e013d282f5436fa18ba62607d9565a966795d86e4ea960043356daf5b75"
+    },
+    {
+      "path": "analysis.log",
+      "bytes": 721,
+      "sha256": "a59c69a465babfa1ec874fb32ddc5268ee513827ff1cedc2fcfec82faca39e4f"
+    },
+    {
+      "path": "chess-baseline-negative.log",
+      "bytes": 1935,
+      "sha256": "bb24869e1e6125a326b5285c58bdaa11d1da64f2aaac53b3090577da87060655"
+    }
+  ],
+  "apk_or_android_pass_claimed": false
+}
