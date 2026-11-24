@@ -75,7 +75,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=3 update -qq
-          sudo apt-get -o Acquire::Retries=3 install -y ripgrep python3-pil ffmpeg
+          sudo apt-get -o Acquire::Retries=3 install -y ripgrep python3-pil python3-venv ffmpeg
           command -v rg
           rg --version
           python3 -c "import PIL; print('Pillow', PIL.__version__)"
@@ -179,6 +179,17 @@ jobs:
 
       - name: Smoke Tests EXPLICIT (Wallet/Akademie - mussen gruen sein)
         run: flutter test test/smoke_main_screens_test.dart --no-pub
+
+      - name: Prepare official Lumo launcher icons
+        run: |
+          set -euo pipefail
+          # Isolated build-only image tooling; no global pip or app dependency changes.
+          # Same sequence as scripts/build_unified_apk.sh so debug APKs use the real Lumo icon.
+          python3 -m venv build/lumo-icon-tools
+          build/lumo-icon-tools/bin/python -m pip install --disable-pip-version-check \
+            --only-binary=:all: -r scripts/requirements-icons.txt
+          build/lumo-icon-tools/bin/python -m unittest discover -s scripts/icon_tests -v
+          build/lumo-icon-tools/bin/python scripts/prepare_launcher_icons.py
 
       - name: Build debug APK
         id: build_apk
