@@ -26,6 +26,13 @@ jobs:
     steps:
       - name: Integrationspause dokumentieren
         run: echo "Build 2080 wurde zugunsten der vollständigen Integration 2081 angehalten. Kein APK-Bau in diesem Lauf."
+      - name: Vorhandenen Veröffentlichungszugang prüfen
+        env:
+          RELEASE_TOKEN_PRESENT: ${{ secrets.LUMO_RELEASE_PUBLISH_TOKEN != '' }}
+        run: |
+          echo "release_credential_available=$RELEASE_TOKEN_PRESENT" >> "$GITHUB_STEP_SUMMARY"
+          echo "release_credential_available=$RELEASE_TOKEN_PRESENT"
+          echo "Keine Veröffentlichung, kein Tag und keine Änderung von Zugangsdaten."
   apk:
     # Heinz requested stopping 2080 before integrating the missing development.
     # The unchanged concurrency group cancels the older run on this branch.
